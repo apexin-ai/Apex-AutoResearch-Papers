@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cc3cac941f20292291c",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra check eval status",
+  "task_key": "worker_infra_check-eval-status_20260515T210406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-eval-status_20260515T210406_result.json",
+    "occurrence": 1,
+    "bytes": 1661,
+    "sha256": "1bb19b5788209f5725ef3d1403568c61b5147a75839fc23c9e555672ffd48a14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志很大（大量进度条输出），grep 超时了。从 tail 输出已经拿到关键信息，汇总如下：\n\n## Baseline Eval 状态汇报\n\n### GPU 使用\n- **GPU 0** (RTX PRO 6000 Black, 96GB): PID 109501 (baseline_plus), 2220 MiB 显存, 0% 利用率\n- **GPU 1** (RTX PRO 6000 Black, 96GB): PID 109428 (baseline_std), 2757 MiB 显存, 0% 利用率\n- GPU 利用率 0% 是正常的——rollout 阶段主要在 CPU 端跑仿真环境\n\n### mvp1_baseline_std (PID 109428, GPU 1)\n- **状态**: 运行中\n- **日志**: `/root/acib/outputs/baseline_std_v3/main.log`\n- **模型**: `lerobot/smolvla_libero`\n- **Suite**: `libero_spatial` (10 个 task, 每 task 50 episodes)\n- **当前进度**: 45/50 batches (90%), running_success_rate = **68.9%**\n- **预计剩余**: ~1.5 分钟完成当前 task（15s/batch × 5 remaining）\n\n### mvp1_baseline_plus (PID 109501, GPU 0)\n- **状态**: 运行中\n- **日志**: `/root/acib/outputs/baseline_plus_v2/main.log`\n- **模型**: `lerobot/smolvla_libero_plus`\n- **Suite**: `libero_spatial` (10 个 task, 每 task 50 episodes)\n- **当前进度**: 22/50 batches (44%), running_success_rate = **81.8%**\n- **预计剩余**: ~6 分钟完成当前 task（13s/batch × 28 remaining）\n\n### 备注\n- 两个进程都只配了 `libero_spatial` 这一个 suite，各 10 个 task\n- 从 tail 只能看到当前 task 的进度条，无法确认已完成了几个 task（日志太大 grep 超时）。但 baseline_std 的 batch 进度（45/50）和 baseline_plus 的（22/50）分别是当前 task 内的 episode 进度\n- baseline_plus (81.8%) 表现优于 baseline_std (68.9%)，符合预期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-eval-status.md"
+}

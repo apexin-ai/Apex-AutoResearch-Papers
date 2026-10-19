@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-012",
+  "project": "contrastive_entrain_calib",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:56:42.346Z",
+    "updated_at": "2026-05-20T07:22:36.898Z",
+    "hypothesis": "Llama-3-8B-Instruct d_syc cross-model validation: if a linear sycophancy direction (d_syc) with AUROC ≥ 0.75 exists in Llama-3-8B's hidden states (L16-L33), it demonstrates that the discriminability phenomenon generalizes beyond Qwen3-8B — strengthening the paper's \"discriminability ≠ reward utility\" claim by showing d_syc is a general property of instruction-tuned LLMs, not a Qwen-specific artifact.",
+    "parent": "exp-001",
+    "server": "westd-28034",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-28034",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T04:20:36.961Z",
+      "finished_at": "2026-05-20T07:22:36.812Z",
+      "training_hours": 3.03
+    },
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp012_llama_direction.py --model-path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3-8B-Instruct --data-path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output-dir /root/contrastive_entrain_calib/results/exp012_llama_direction/\"",
+      "server": "westd-28034",
+      "gpu": "cuda:0",
+      "pid": "227942",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-012.log",
+      "submitted_at": "2026-05-20T07:21:33.372Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Llama-3-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "inference_only",
+      "eval_data": "N/A",
+      "checkpoint_path": "/root/contrastive_entrain_calib/results/exp012_llama_direction/",
+      "notes": "Phase A cross-model validation. Extract L16-L31 hidden states, compute d_syc direction, 5-fold CV AUROC + style-controlled AUROC. Single GPU inference, ~5h."
+    }
+  },
+  "timestamp": "2026-05-20T07:22:36.939495+00:00",
+  "trigger": "update_registry"
+}

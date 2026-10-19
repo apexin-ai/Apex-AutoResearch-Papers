@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-008-seed3",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T22:07:17.662Z",
+    "updated_at": "2026-05-24T22:11:20.659Z",
+    "hypothesis": "SFT probe trap verification (GRPO-matched LoRA): run differentiable SFT binary probe penalty with seed=43, LoRA alpha=64, 4 modules (q/k/v/o), dropout=0 — matching exp-008v3 GRPO config for controlled comparison. Multi-seed replication of exp-008-seed2 to verify probe gaming reproducibility across seeds.",
+    "parent": "exp-008v3"
+  },
+  "timestamp": "2026-05-24T22:11:20.924912+00:00",
+  "trigger": "update_registry"
+}

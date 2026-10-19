@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5089a9a53f2fc2d749c7",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code acib v5 stopgrad entropy",
+  "task_key": "worker_code_acib_v5_stopgrad_entropy_20260516T013100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_acib_v5_stopgrad_entropy_20260516T013100_result.json",
+    "occurrence": 1,
+    "bytes": 1713,
+    "sha256": "ed5580a3578c40fdb72c2a34d8c5615f765902e4b61869c9211db6574c66c93a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改确认完成。\n\n---\n\n### 改动摘要\n\n**1. `/root/acib/acib/losses.py`**\n- 新增 `entropy_regularizer(logits)` 静态方法（第65-70行）：计算 sigmoid(logits) 的 binary entropy 均值，最小化此 loss 推动 scorer 输出趋向 0/1\n- 保留了 `diversity_regularizer`\n\n**2. `/root/acib/acib/acib_policy.py`**\n- 删除 `self.stop_grad_task = False` 初始化\n- `_connector_hook` 中 `apply_weights(output, weights_for_task)` 的条件分支简化为硬编码 `apply_weights(output, weights.detach())`（第46行），彻底切断 task loss → scorer 梯度\n\n**3. `/root/acib/scripts/train_acib.py`**\n- 新增 `--lambda_ent` 参数（default=0.1）\n- 训练循环中计算 `ent_loss = ACIBLoss.entropy_regularizer(scorer_logits)` 并加入 total_loss\n- logging 的 print 和 wandb log_dict 中均添加 `ent_loss`\n- 配置打印中 `Stop-grad task` 替换为 `Lambda entropy`\n\n### Dry-run 输出（2 步）\n```\nLoading base model: lerobot/smolvla_libero\nParameters: 450,169,185 total, 100,004,001 trainable (22.2%)\nDataset: 273465 frames, fps=10.0, chunk_size=50\nStarting ACIB-SOFT training\n  Hidden dim: 64, Alpha: 0.01, Beta: 0.01, Diversity lambda: 0.0\n  Lambda entropy: 0.1    ← 新参数\n  Steps: 2, Batch size: 4, Device: cuda:0\n  Saved checkpoint to /tmp/acib_v5_dryrun/checkpoint-2\nTraining complete: 2 steps in 0.0h\n```\n\n### 验证结果\n- entropy_regularizer 返回 0.6071（接近 ln(2)≈0.693 最大值，符合随机 logits 预期）\n- 梯度正常回传到 logits（grad_norm=0.0135）\n- `weights.detach()` 确认阻断 task loss 梯度（backward 无法穿透 detach）\n- 2 步训练无报错，checkpoint 正常保存"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-acib-v5-stopgrad-entropy.md"
+}

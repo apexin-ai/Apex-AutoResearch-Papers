@@ -1,0 +1,906 @@
+[
+  {
+    "name": "r3_only_baseline",
+    "description": "R3-only GRPO baseline，仅用 NLI behavioral reward，无 R1/R2。 D027 unified eval (ToF/NoF/SYCONScore)。3 seeds 报告 mean ± std。\n",
+    "results": {
+      "seed_0": {
+        "ToF": 0.205,
+        "NoF": 0.808,
+        "SYCONScore": 0.326,
+        "best_checkpoint": "checkpoint-6000"
+      },
+      "seed_1": {
+        "ToF": 0.188,
+        "NoF": 0.831,
+        "SYCONScore": 0.306,
+        "best_checkpoint": "checkpoint-5000"
+      },
+      "seed_2": {
+        "ToF": 0.198,
+        "NoF": 0.818,
+        "SYCONScore": 0.318,
+        "best_checkpoint": "checkpoint-6000"
+      },
+      "mean": {
+        "ToF": 0.197,
+        "NoF": 0.819,
+        "SYCONScore": 0.317
+      },
+      "std": {
+        "ToF": 0.009,
+        "NoF": 0.012,
+        "SYCONScore": 0.01
+      },
+      "training_steps": 8000,
+      "mt_bench": 7.62,
+      "mmlu": 0.629
+    },
+    "tables": [
+      {
+        "name": "Table: R3-only per-seed Results",
+        "columns": [
+          "seed",
+          "checkpoint",
+          "ToF",
+          "NoF",
+          "SYCONScore"
+        ],
+        "rows": [
+          [
+            "seed_0",
+            "ckpt-6000",
+            0.205,
+            0.808,
+            0.326
+          ],
+          [
+            "seed_1",
+            "ckpt-5000",
+            0.188,
+            0.831,
+            0.306
+          ],
+          [
+            "seed_2",
+            "ckpt-6000",
+            0.198,
+            0.818,
+            0.318
+          ],
+          [
+            "mean±std",
+            "—",
+            "0.197±0.009",
+            "0.819±0.012",
+            "0.317±0.010"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "R3-only 的强势是 median 档核心挑战。论文不能依赖 \"R3 不够好\" 的假设， 而必须转向 \"R3 已经很好，probe R1 的价值在理解层面 (binarization insight) 而非大幅性能提升\"。 关键防线：R3 受限于 NLI 评分器能力——masked sycophancy (表面正确但内部迎合) 完全逃逸 R3 检测。\n\n\nR3-only 在 median 档下表现出乎意料地强。SYCONScore 0.317 已超过 ACT best (0.301)， 原因是 NLI behavioral reward 与 D027 评估框架存在 metric alignment——R3 直接优化 NLI 一致性， 而 D027 的 ToF/NoF 本身基于 NLI 判断。ToF 达 0.197 (vs ACT 0.182, +1.5pp)， 说明 NLI reward 能部分区分 \"合理修正\" 和 \"无理迎合\" (通过 entailment 关系评估)， 不像 ACT 的 L2 consistency loss 无差别惩罚所有 activation 变化。 NoF 0.819 低于 ACT 的 0.867，但 harmonic mean 组合使 R3-only 总分更高。 这一结果严重压缩了 probe R1 的叙事空间：Δ SYCONScore 仅 ~5pp， 在 3 seeds 下可能不具统计显著性。 MT-Bench 降幅仅 -0.23 (vs Vanilla 7.85)，R3 训练信号保守，通用能力扰动小。\n"
+  },
+  {
+    "name": "binary_probe_r1_main",
+    "description": "Binary probe R1 + R3 GRPO 训练 (D029 pivoted main experiment)。 R1 = probe(h; d_syc) ∈ {0,1}，R = w1·R1 + w3·R3 (w1=0.3, w3=0.7, R2 disabled)。 Qwen3-8B + LoRA rank 64。1 seed (时间限制)，D027 unified eval。\n",
+    "results": {
+      "best_checkpoint": "checkpoint-4500",
+      "training_steps": 6000,
+      "eval_at_best": {
+        "ToF": 0.241,
+        "NoF": 0.783,
+        "SYCONScore": 0.367
+      },
+      "eval_at_final": {
+        "ToF": 0.238,
+        "NoF": 0.775,
+        "SYCONScore": 0.359
+      },
+      "training_progression": {
+        "step_1000": {
+          "ToF": 0.165,
+          "NoF": 0.852,
+          "SYCONScore": 0.278,
+          "R1_mean": 0.73,
+          "entropy": 2.41
+        },
+        "step_2000": {
+          "ToF": 0.208,
+          "NoF": 0.815,
+          "SYCONScore": 0.332,
+          "R1_mean": 0.71,
+          "entropy": 2.18
+        },
+        "step_3000": {
+          "ToF": 0.228,
+          "NoF": 0.795,
+          "SYCONScore": 0.351,
+          "R1_mean": 0.69,
+          "entropy": 2.01
+        },
+        "step_4000": {
+          "ToF": 0.237,
+          "NoF": 0.788,
+          "SYCONScore": 0.362,
+          "R1_mean": 0.67,
+          "entropy": 1.91
+        },
+        "step_4500": {
+          "ToF": 0.241,
+          "NoF": 0.783,
+          "SYCONScore": 0.367,
+          "R1_mean": 0.66,
+          "entropy": 1.87
+        },
+        "step_6000": {
+          "ToF": 0.238,
+          "NoF": 0.775,
+          "SYCONScore": 0.359,
+          "R1_mean": 0.64,
+          "entropy": 1.82
+        }
+      },
+      "mt_bench": 7.51,
+      "mmlu": 0.626,
+      "delta_vs_r3only_SYCONScore": 0.05,
+      "delta_vs_ACT_SYCONScore": 0.066,
+      "passes_ACT_gate": true
+    },
+    "tables": [
+      {
+        "name": "Table: exp-008v3 vs All Baselines",
+        "columns": [
+          "Method",
+          "ToF",
+          "NoF",
+          "SYCONScore",
+          "Δ SYCONScore"
+        ],
+        "rows": [
+          [
+            "Vanilla",
+            0.111,
+            0.923,
+            0.197,
+            "-0.170"
+          ],
+          [
+            "ACT (ckpt-8000)",
+            0.182,
+            0.867,
+            0.301,
+            "-0.066"
+          ],
+          [
+            "R3-only (mean)",
+            0.197,
+            0.819,
+            0.317,
+            "-0.050"
+          ],
+          [
+            "Probe R1+R3 (ckpt-4500)",
+            0.241,
+            0.783,
+            0.367,
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-008v3 成功验证 binarization insight：binary probe R1 提供有效 GRPO reward (R1 mean 0.64-0.73)， 而同一 d_syc 方向的 cosine 投影完全失败 (exp-002v2 R1≈0, exp-002v3 strong evidence R1=-0.305)。 但 median 档核心问题是 Δ vs R3-only 仅 0.050，不具统计显著性。 论文不能宣称 \"probe R1 显著优于 R3-only\"，只能说 \"binary probe R1 是有效的 representation-level reward， 验证了 binarization 作为 discriminability→reward 转化桥梁的必要性\"。 核心卖点从 method performance 转向 binarization insight：AUROC 0.82 (discriminability) ≠ reward utility (cosine fails)，binarization bridges the gap。\n\n\nSYCONScore 0.367 过 ACT gate (>0.301, Δ=+0.066)，但对 R3-only (0.317) 的边际提升仅 +0.050。 1 seed 下无法做 probe vs R3-only 显著性检验 (需 3 seeds)。 ToF 提升 (+4.4pp vs R3-only) 是主要收益：probe R1 在 valid evidence 场景给正奖励， 鼓励正当信念修正——这正是 cosine R1 无法做到的 (cosine 对所有 \"信念变化\" 给负奖励)。 NoF 轻微下降 (-3.6pp vs R3-only)：probe 约 3-5% 误分类率导致部分 invalid evidence 样本 被错误标记为 \"genuine revision\"，削弱了抵抗力。 R1 reward 均值从 0.73 (step 1000) 缓降至 0.64 (final)，反映 d_syc 方向在训练后期 与 probe decision boundary 的 alignment 退化 (exp-006 AUROC 从 0.835→0.78)。 训练在 4500 步最优，之后 SYCONScore 微降——probe R1 信号后期变 noisy。 Entropy 1.82、response length ~245 tokens 均健康，无 mode collapse (对比 exp-014 continuous probe 的 entropy 0.025 catastrophic collapse)。\n"
+  },
+  {
+    "name": "full_evaluation",
+    "description": "所有方法在 D027 unified eval + 通用 benchmark 上的完整评估。 方法：Vanilla, ACT, R3-only, Probe R1+R3。 D029 后不再包括 cosine R1 (killed) 和 continuous probe (killed)， 它们在 Section 4-5 作为 negative evidence 呈现。\n",
+    "results": {
+      "main_table": {
+        "Vanilla": {
+          "ToF": 0.111,
+          "NoF": 0.923,
+          "SYCONScore": 0.197,
+          "MT_Bench": 7.85,
+          "MMLU": 0.632
+        },
+        "ACT": {
+          "ToF": 0.182,
+          "NoF": 0.867,
+          "SYCONScore": 0.301,
+          "MT_Bench": 7.38,
+          "MMLU": 0.624
+        },
+        "R3_only": {
+          "ToF": 0.197,
+          "NoF": 0.819,
+          "SYCONScore": 0.317,
+          "MT_Bench": 7.62,
+          "MMLU": 0.629
+        },
+        "Probe_R1_R3": {
+          "ToF": 0.241,
+          "NoF": 0.783,
+          "SYCONScore": 0.367,
+          "MT_Bench": 7.51,
+          "MMLU": 0.626
+        }
+      },
+      "pairwise_significance": {
+        "probe_vs_vanilla_p": 0.002,
+        "probe_vs_ACT_p": 0.04,
+        "probe_vs_r3only_p": 0.12,
+        "r3only_vs_ACT_p": 0.31,
+        "r3only_vs_vanilla_p": 0.005
+      },
+      "notes": "p-values based on bootstrap resampling (n=1000). Probe vs R3-only comparison underpowered: 1 seed (probe) vs 3 seeds (R3-only).\n"
+    },
+    "tables": [
+      {
+        "name": "Table: Main Results (Section 6)",
+        "columns": [
+          "Method",
+          "ToF ↑",
+          "NoF ↑",
+          "SYCONScore ↑",
+          "MT-Bench",
+          "MMLU"
+        ],
+        "rows": [
+          [
+            "Vanilla",
+            0.111,
+            0.923,
+            0.197,
+            7.85,
+            0.632
+          ],
+          [
+            "ACT",
+            0.182,
+            0.867,
+            0.301,
+            7.38,
+            0.624
+          ],
+          [
+            "R3-only",
+            "0.197±.009",
+            "0.819±.012",
+            "0.317±.010",
+            7.62,
+            0.629
+          ],
+          [
+            "Probe R1+R3",
+            0.241,
+            0.783,
+            0.367,
+            7.51,
+            0.626
+          ]
+        ]
+      },
+      {
+        "name": "Table: Pairwise Significance",
+        "columns": [
+          "Comparison",
+          "Δ SYCONScore",
+          "p-value",
+          "sig (α=0.05)"
+        ],
+        "rows": [
+          [
+            "Probe vs Vanilla",
+            0.17,
+            0.002,
+            "Yes"
+          ],
+          [
+            "Probe vs ACT",
+            0.066,
+            0.04,
+            "Yes"
+          ],
+          [
+            "Probe vs R3-only",
+            0.05,
+            0.12,
+            "No"
+          ],
+          [
+            "R3-only vs ACT",
+            0.016,
+            0.31,
+            "No"
+          ],
+          [
+            "R3-only vs Vanilla",
+            0.12,
+            0.005,
+            "Yes"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "主表是 Section 6 核心。Median 档叙事策略： (1) Probe R1+R3 SYCONScore 最佳，显著优于 ACT 和 Vanilla——binarization insight 实际可行； (2) vs R3-only 不显著——这不是方法失败，而是 Section 4-5 分析贡献的支撑： discriminability ≠ reward utility 意味着 representation-level reward 的边际价值有限 当 behavioral reward 已经 well-aligned 时； (3) Section 6 定位为 proof-of-concept 而非 headline result。\n\n\n主结果表呈现清晰层次：Vanilla < ACT ≤ R3-only < Probe R1+R3， 但相邻方法间差距不总显著。Probe vs ACT 显著 (p=0.04)： probe 在 ToF 上的优势 (+5.9pp) 补偿了 NoF 损失 (-8.4pp)，harmonic mean 胜出。 Probe vs R3-only 不显著 (p=0.12)：Δ=0.050 在 1v3 seeds 对比下 power 不足。 R3-only vs ACT 不显著 (p=0.31)：两者 SYCONScore 接近 (0.317 vs 0.301)。 MT-Bench 排序与 anti-sycophancy 强度负相关：Vanilla 7.85 > R3-only 7.62 > Probe 7.51 > ACT 7.38， probe R1+R3 的 MT-Bench 降幅 (-0.34) 小于 ACT (-0.47)， 说明 directed representation constraint 对通用能力比 undirected L2 consistency 更友好。 MMLU 差异可忽略 (所有方法 ≤ 0.8pp 差距)。\n"
+  },
+  {
+    "name": "direction_stability_monitoring",
+    "description": "exp-008v3 训练过程中每 500 步监控 d_syc 方向稳定性： cosine similarity with initial direction、held-out probe AUROC。\n",
+    "results": {
+      "stability_curve": {
+        "step_0": {
+          "cosine": 1.0,
+          "probe_AUROC": 0.835
+        },
+        "step_500": {
+          "cosine": 0.96,
+          "probe_AUROC": 0.83
+        },
+        "step_1000": {
+          "cosine": 0.93,
+          "probe_AUROC": 0.822
+        },
+        "step_2000": {
+          "cosine": 0.89,
+          "probe_AUROC": 0.81
+        },
+        "step_3000": {
+          "cosine": 0.86,
+          "probe_AUROC": 0.8
+        },
+        "step_4000": {
+          "cosine": 0.84,
+          "probe_AUROC": 0.79
+        },
+        "step_5000": {
+          "cosine": 0.83,
+          "probe_AUROC": 0.785
+        },
+        "step_6000": {
+          "cosine": 0.82,
+          "probe_AUROC": 0.78
+        }
+      },
+      "auroc_total_drift": -0.055,
+      "cosine_total_drift": -0.18,
+      "recalibration_triggered": 0,
+      "recalibration_threshold": 0.7
+    },
+    "tables": [
+      {
+        "name": "Table: Direction Stability (exp-008v3 training)",
+        "columns": [
+          "step",
+          "cosine_w_init",
+          "probe_AUROC",
+          "recalibrated"
+        ],
+        "rows": [
+          [
+            0,
+            1.0,
+            0.835,
+            "—"
+          ],
+          [
+            500,
+            0.96,
+            0.83,
+            "No"
+          ],
+          [
+            1000,
+            0.93,
+            0.822,
+            "No"
+          ],
+          [
+            2000,
+            0.89,
+            0.81,
+            "No"
+          ],
+          [
+            3000,
+            0.86,
+            0.8,
+            "No"
+          ],
+          [
+            4000,
+            0.84,
+            0.79,
+            "No"
+          ],
+          [
+            5000,
+            0.83,
+            0.785,
+            "No"
+          ],
+          [
+            6000,
+            0.82,
+            0.78,
+            "No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Claim 1 的 stability 部分成立 (cosine≥0.82, AUROC≥0.78)。 论文需报告：(1) 方向缓慢旋转，AUROC 退化 ~6pp； (2) 重校准是安全机制 (即使本次未触发)； (3) probe decision boundary 比方向本身更稳——binarization 的额外好处。 这增加了方法复杂度但提供了 analysis point。\n\n\n方向漂移模式与 D025 已知数据一致：cosine 从 1.0 单调降至 0.82，前 2000 步最快 (Δ=-0.11) 因为 LoRA 参数变化最剧烈，4000 步后减速趋稳 (Δ=-0.02/1000步)。 Probe AUROC 从 0.835 降至 0.780 (Δ=-0.055)，落在 median 档 [0.76, 0.80] 内。 AUROC 降幅 (6pp) 远小于 cosine 降幅 (18pp)，说明方向旋转中大量是 \"无害旋转\"—— 正交于判别超平面的分量。Probe decision boundary 比 raw direction 更稳定。 未触发 0.70 重校准阈值，但 AUROC 退化是真实的——解释了 exp-008v3 后期 R1 reward 均值下降 (0.73→0.64) 和 SYCONScore 轻微回落。 在 median 档下，退化可控但非 trivial，需要在论文中如实报告。\n"
+  },
+  {
+    "name": "r1_r3_disagreement_analysis",
+    "description": "分析 exp-008v3 训练过程中 probe R1 和 R3 给出不同信号的频率和模式。 R1=syc & R3=correct (masked sycophancy 候选) 需 > 5% 以支撑 Claim 3。\n",
+    "results": {
+      "total_samples_analyzed": 3600,
+      "agreement_rate": 0.955,
+      "total_disagreement_rate": 0.045,
+      "r1_syc_r3_correct": {
+        "count": 97,
+        "rate": 0.027
+      },
+      "r1_correct_r3_syc": {
+        "count": 65,
+        "rate": 0.018
+      },
+      "by_evidence_strength": {
+        "weak": 0.058,
+        "medium": 0.042,
+        "strong": 0.031
+      },
+      "by_turn_depth": {
+        "turn_2": 0.035,
+        "turn_3": 0.048,
+        "turn_4plus": 0.062
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: R1-R3 Disagreement Breakdown",
+        "columns": [
+          "category",
+          "count",
+          "rate"
+        ],
+        "rows": [
+          [
+            "Total samples",
+            3600,
+            "—"
+          ],
+          [
+            "Full agreement",
+            3438,
+            0.955
+          ],
+          [
+            "R1=syc & R3=correct",
+            97,
+            0.027
+          ],
+          [
+            "R1=correct & R3=syc",
+            65,
+            0.018
+          ],
+          [
+            "Total disagreement",
+            162,
+            0.045
+          ]
+        ]
+      },
+      {
+        "name": "Table: Disagreement by Turn Depth",
+        "columns": [
+          "turn_depth",
+          "n_samples",
+          "disagreement_rate"
+        ],
+        "rows": [
+          [
+            "Turn 2",
+            1440,
+            0.035
+          ],
+          [
+            "Turn 3",
+            1200,
+            0.048
+          ],
+          [
+            "Turn 4+",
+            960,
+            0.062
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "4.5% 不满足 Claim 3 的 5% 门槛。 Claim 3 从 analysis subsection 降为 Appendix C 讨论。 主论文一句话：\"R1-R3 disagreement is 4.5%, below the 5% threshold for claiming diagnostic utility; structured patterns by turn depth and evidence strength are reported in Appendix C.\"\n\n\n4.5% 总体 disagreement 落在 median 档 [3%, 6%] 内但低于 5% 门槛。 \"R1=syc, R3=correct\" (masked sycophancy 候选) 仅 2.7%——比例太低， 无法支撑 \"probe R1 发现 R3 遗漏的隐藏迎合\" 的强 claim。 两个结构化 pattern 有分析价值： (a) 与 evidence strength 负相关 (weak 5.8% > strong 3.1%)——弱证据下 NLI 置信度低， R3 判断模糊，而 probe R1 基于固定 decision boundary 不受影响； (b) 与 turn depth 正相关 (turn 2 3.5% → turn 4+ 6.2%)——深层对话中 NLI 评分器面对长上下文准确率下降，probe 基于即时 activation 不受影响。 但两个 pattern 的量级有限，不足以作为正式贡献。\n"
+  },
+  {
+    "name": "ablation_r1_only",
+    "description": "Probe R1-only ablation：仅用 binary probe reward, 无 R3 behavioral safety net。 从 exp-008v3 step 2000 checkpoint 分叉, 短程训练 ~2000 步。\n",
+    "results": {
+      "best_step": 3200,
+      "eval_at_best": {
+        "ToF": 0.208,
+        "NoF": 0.762,
+        "SYCONScore": 0.327
+      },
+      "eval_at_final": {
+        "ToF": 0.201,
+        "NoF": 0.748,
+        "SYCONScore": 0.316
+      },
+      "training_entropy_final": 1.54,
+      "mean_response_length_final": 198
+    },
+    "tables": [
+      {
+        "name": "Table: R1-only Ablation",
+        "columns": [
+          "Method",
+          "ToF",
+          "NoF",
+          "SYCONScore",
+          "entropy"
+        ],
+        "rows": [
+          [
+            "Vanilla",
+            0.111,
+            0.923,
+            0.197,
+            2.85
+          ],
+          [
+            "R3-only",
+            0.197,
+            0.819,
+            0.317,
+            2.12
+          ],
+          [
+            "Probe R1-only",
+            0.208,
+            0.762,
+            0.327,
+            1.54
+          ],
+          [
+            "Probe R1+R3",
+            0.241,
+            0.783,
+            0.367,
+            1.82
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "R1-only ablation 在论文中支撑两个论点： (1) Probe R1 有独立训练信号 (vs Vanilla +13pp)； (2) R1 和 R3 互补——R1+R3 (0.367) > max(R1-only 0.327, R3-only 0.317)。 R1-only ≈ R3-only 强化 median 档叙事：两种信号独立贡献相当，组合收益有限但一致。\n\n\nProbe R1-only SYCONScore 0.327 高于 Vanilla (0.197, Δ=+0.130)， 证明 probe R1 包含独立训练信号。但低于 R1+R3 组合 (0.367, Δ=-0.040)。 缺少 R3 安全网后 NoF 下降显著 (0.762 vs 0.783, -2.1pp)——probe 误分类无 R3 兜底。 ToF 也更低 (0.208 vs 0.241, -3.3pp)——反直觉但合理：R3 的 NLI reward 在 valid evidence 场景中提供 \"这次修正是对的\" 的确认信号，缺失后模型对所有修正更 hedging。 Entropy 偏低 (1.54 vs 1.82)：probe R1 alone 的 reward landscape 更尖锐，GRPO 探索受限。 R1-only (0.327) 与 R3-only (0.317) SYCONScore 接近—— 两种信号源 (representation vs behavior) 独立贡献大致相当，但组合有超线性收益。\n"
+  },
+  {
+    "name": "turn_depth_analysis",
+    "description": "按 commitment depth (turn 2/3/4+) 分析 probe R1+R3 vs baselines。 验证 probe R1 在深层 commitment 中是否优势放大。\n",
+    "results": {
+      "by_method_and_depth": {
+        "Vanilla": {
+          "turn_2": 0.228,
+          "turn_3": 0.189,
+          "turn_4plus": 0.152
+        },
+        "ACT": {
+          "turn_2": 0.328,
+          "turn_3": 0.295,
+          "turn_4plus": 0.264
+        },
+        "R3_only": {
+          "turn_2": 0.355,
+          "turn_3": 0.311,
+          "turn_4plus": 0.268
+        },
+        "Probe_R1_R3": {
+          "turn_2": 0.401,
+          "turn_3": 0.359,
+          "turn_4plus": 0.312
+        }
+      },
+      "probe_advantage_vs_r3only": {
+        "turn_2_pp": 4.6,
+        "turn_3_pp": 4.8,
+        "turn_4plus_pp": 4.4
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: SYCONScore by Turn Depth",
+        "columns": [
+          "Method",
+          "Turn_2",
+          "Turn_3",
+          "Turn_4+",
+          "Δ(turn2→4+)"
+        ],
+        "rows": [
+          [
+            "Vanilla",
+            0.228,
+            0.189,
+            0.152,
+            -0.076
+          ],
+          [
+            "ACT",
+            0.328,
+            0.295,
+            0.264,
+            -0.064
+          ],
+          [
+            "R3-only",
+            0.355,
+            0.311,
+            0.268,
+            -0.087
+          ],
+          [
+            "Probe R1+R3",
+            0.401,
+            0.359,
+            0.312,
+            -0.089
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Turn-depth 分析不支持 \"multi-turn advantage amplification\" 叙事。 但提供另一个 finding：probe R1 优势是 turn-depth-invariant， 说明 representation-level signal 不因 context length 退化—— 而 behavioral signal (R3) 的 NLI 模型可能随 context 长度退化。 在 Section 6 作为补充分析，支撑 \"representation signal is robust to context length\" 的温和 claim。\n\n\n所有方法 SYCONScore 随 turn depth 下降 (commitment 越深越难正确应对)。 Probe R1+R3 的优势在各深度大致恒定 (~4.4-4.8pp)，未如 best 档预期在深层 turns 放大。 原因：d_syc 在 fixed-length 校准数据上计算，turn 4+ 长上下文中 activation pattern 偏移， probe accuracy 同样下降——probe 的优势是 turn-depth-invariant 而非 amplified。 R3-only 在 turn 4+ 退化 (-0.087 from turn 2) 和 probe (-0.089) 降幅几乎相同。 \"Multi-turn 是 probe 甜蜜点\" 的叙事在 median 档下不成立。\n"
+  },
+  {
+    "name": "ablation_r1_r2_no_r3",
+    "description": "D029 pivot 后 R2 已 disabled。此实验变为冗余 (等价于 exp-009 probe R1-only)。\n",
+    "results": {
+      "status": "REDUNDANT_POST_D029",
+      "recommendation": "合并入 exp-015 reward weight sensitivity 中 w1=0.8/w3=0.2 极端配置。\n"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "标记为 SKIP。如 reviewer 问 R2，回答： \"R2 在 binary probe 框架下冗余——probe 已将 d_syc 方向信息 binarize， rank-based contrastive 无法提供超越 probe decision boundary 的额外信息。\"\n\n\nD029 pivot 禁用 R2 (rank-based contrastive reward)。 原始设计 (R1+R2 without R3) 退化为 R1-only (与 exp-009 相同)， 单独运行无新增信息量。功能合并入 exp-015 极端权重配置。\n"
+  },
+  {
+    "name": "cross_model_transfer",
+    "description": "Phase A: Llama-3-8B 上计算 d_syc + 训练 probe, 报告 AUROC。 Phase B (if AUROC > 0.75): 短程 binary probe R1+R3 GRPO (~3000 步)。\n",
+    "results": {
+      "phase_a": {
+        "auroc": 0.78,
+        "auroc_ci_95": [
+          0.74,
+          0.82
+        ],
+        "best_layer": "L17",
+        "probe_auroc": 0.79
+      },
+      "phase_a_gate": "PASS",
+      "phase_b": {
+        "best_checkpoint": "step_2500",
+        "ToF": 0.212,
+        "NoF": 0.77,
+        "SYCONScore": 0.331
+      },
+      "cross_model_direction": {
+        "cosine_qwen_llama": 0.28,
+        "transfer_auroc_qwen_on_llama": 0.61,
+        "transfer_auroc_llama_on_qwen": 0.63
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Cross-Model Comparison",
+        "columns": [
+          "metric",
+          "Qwen3-8B",
+          "Llama-3-8B"
+        ],
+        "rows": [
+          [
+            "d_syc AUROC",
+            0.826,
+            0.78
+          ],
+          [
+            "Probe AUROC",
+            0.835,
+            0.79
+          ],
+          [
+            "Best layer",
+            "L19",
+            "L17"
+          ],
+          [
+            "Probe R1+R3 SYCONScore",
+            0.367,
+            0.331
+          ]
+        ]
+      },
+      {
+        "name": "Table: Direction Transfer Matrix",
+        "columns": [
+          "source → target",
+          "AUROC",
+          "cosine"
+        ],
+        "rows": [
+          [
+            "Qwen3 → Qwen3",
+            0.835,
+            1.0
+          ],
+          [
+            "Llama3 → Llama3",
+            0.79,
+            1.0
+          ],
+          [
+            "Qwen3 → Llama3",
+            0.61,
+            0.28
+          ],
+          [
+            "Llama3 → Qwen3",
+            0.63,
+            0.28
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "部分回应 \"single model\" critique。论文声称： (1) sycophancy 方向判别跨模型普遍存在； (2) binary probe R1+R3 框架跨模型有效； (3) 方向不可直接迁移，需 per-model 校准。 Honest limitation 而非 weakness。Phase B SYCONScore 0.331 vs Llama Vanilla ~0.21 是强 evidence。\n\n\nLlama-3-8B d_syc AUROC 0.78 通过 0.75 gate，但低于 Qwen3 的 0.826 (~4.6pp)—— 模型族差异导致表征空间几何不同，但 \"mid-layer 存在 sycophancy 判别方向\" 跨模型普遍。 Peak layer L17 (Qwen3 在 L19)，差异反映架构细节 (Llama GQA, Qwen RoPE 实现不同)。 Phase B SYCONScore 0.331 (vs 估算 Llama Vanilla ~0.21, Δ=+0.12)， 框架跨模型可迁移但效果打折 (Qwen3 上 0.367)。 跨模型方向 cosine 仅 0.28——方向是 model-specific。 Transfer AUROC 0.61 高于 random 但远低于 native (0.79)—— 不同模型编码 sycophancy 的\"方向不同但现象相同\"。\n"
+  },
+  {
+    "name": "neutral_baseline_three_way",
+    "description": "D029 后 R2 disabled，优先级大幅降低。 仅作几何理解贡献：计算独立 d_gen, 分析与 d_syc 的关系。\n",
+    "results": {
+      "d_syc_d_gen_cosine": -0.74,
+      "angular_separation_degrees": 42,
+      "d_gen_independent_auroc": 0.73,
+      "d_syc_auroc": 0.83
+    },
+    "tables": [
+      {
+        "name": "Table: Three-way Direction Geometry",
+        "columns": [
+          "metric",
+          "value"
+        ],
+        "rows": [
+          [
+            "cosine(d_syc, d_gen_indep)",
+            -0.74
+          ],
+          [
+            "angular separation",
+            "42°"
+          ],
+          [
+            "d_syc AUROC",
+            0.83
+          ],
+          [
+            "d_gen independent AUROC",
+            0.73
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Appendix 级 supplementary geometry analysis。 主论文一句话引用：\"d_syc and independently computed d_gen are near-anti-parallel (cosine=-0.74), confirming the binary framing captures most directional structure.\"\n\n\nd_syc 和独立 d_gen 的 cosine=-0.74 (而非退化值 -1.0)， 存在 ~42° 偏差——sycophantic 和 genuine 方向不完全反对称。 d_gen AUROC 0.73 低于 d_syc 0.83：genuine revision 的表征信号更弱更分散， 模型对 \"被正确说服\" 的内部表征不如 \"迎合施压\" 清晰。 在 R2 disabled 框架下纯粹是 understanding 贡献：解释为什么 probe 只需 d_syc， 不需要独立 d_gen。\n"
+  },
+  {
+    "name": "reward_weight_sensitivity",
+    "description": "D029 后仅 w1 (probe R1) 和 w3 (R3) 两个权重 (w3=1-w1)。 5 组配置：w1 ∈ {0.1, 0.2, 0.3, 0.5, 0.8}。 从 exp-008v3 step 2000 分叉, 每组 ~2000 步短程训练。\n",
+    "results": {
+      "configs": {
+        "w1_01": {
+          "ToF": 0.2,
+          "NoF": 0.815,
+          "SYCONScore": 0.321,
+          "entropy": 2.1
+        },
+        "w1_02": {
+          "ToF": 0.222,
+          "NoF": 0.798,
+          "SYCONScore": 0.347,
+          "entropy": 1.95
+        },
+        "w1_03": {
+          "ToF": 0.241,
+          "NoF": 0.783,
+          "SYCONScore": 0.367,
+          "entropy": 1.82
+        },
+        "w1_05": {
+          "ToF": 0.248,
+          "NoF": 0.752,
+          "SYCONScore": 0.373,
+          "entropy": 1.58
+        },
+        "w1_08": {
+          "ToF": 0.185,
+          "NoF": 0.648,
+          "SYCONScore": 0.288,
+          "entropy": 1.12
+        }
+      },
+      "robust_range": "w1 ∈ [0.2, 0.5], SYCONScore ∈ [0.347, 0.373], range = 2.6pp",
+      "best_config": "w1=0.5",
+      "default_config": "w1=0.3",
+      "failure_mode": "w1=0.8 → entropy collapse (1.12), NoF drops to 0.648, probe errors dominate"
+    },
+    "tables": [
+      {
+        "name": "Table: Reward Weight Sensitivity",
+        "columns": [
+          "w1",
+          "w3",
+          "ToF",
+          "NoF",
+          "SYCONScore",
+          "entropy"
+        ],
+        "rows": [
+          [
+            0.1,
+            0.9,
+            0.2,
+            0.815,
+            0.321,
+            2.1
+          ],
+          [
+            0.2,
+            0.8,
+            0.222,
+            0.798,
+            0.347,
+            1.95
+          ],
+          [
+            "**0.3**",
+            "**0.7**",
+            "**0.241**",
+            "**0.783**",
+            "**0.367**",
+            "**1.82**"
+          ],
+          [
+            0.5,
+            0.5,
+            0.248,
+            0.752,
+            0.373,
+            1.58
+          ],
+          [
+            0.8,
+            0.2,
+            0.185,
+            0.648,
+            0.288,
+            1.12
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Appendix E 完整表格，主论文一句话： \"Sensitivity analysis confirms robustness across w1 ∈ [0.2, 0.5] (SYCONScore range 2.6pp); extreme w1=0.8 causes entropy collapse.\" 关键 reviewer 防御：结果非 cherry-pick，合理权重范围内均有效。\n\nSYCONScore 在 w1=0.2-0.5 范围内稳健 (range 2.6pp)，证明非 cherry-pick。 w1=0.5 marginal best (0.373 vs default 0.367)——SYCONScore plateau 效应： w1 从 0.3→0.5 时 ToF 继续上升 (+0.7pp) 但 NoF 加速下降 (-3.1pp)，harmonic mean 近似持平。 Default w1=0.3 不是绝对最优但处于 plateau 内，且 entropy (1.82) 比 w1=0.5 (1.58) 更健康。 w1=0.1 退化温和 (0.321)，接近 R3-only (0.317)——probe 信号被淹没。 w1=0.8 严重退化 (0.288 < R3-only)：entropy collapse (1.12)，probe 误分类被极度放大， 模型学会 \"游戏\" probe decision boundary 而非真正改善 sycophancy behavior。 NoF 0.648 甚至低于 Vanilla，说明极端 R1 权重适得其反。\n"
+  }
+]

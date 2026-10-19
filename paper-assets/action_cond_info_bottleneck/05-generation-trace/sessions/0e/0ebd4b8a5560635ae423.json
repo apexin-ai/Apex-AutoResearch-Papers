@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ebd4b8a5560635ae423",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diagnose acib v7 contrastive fail",
+  "task_key": "worker_diagnose_acib_v7_contrastive_fail_20260516T134642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_acib_v7_contrastive_fail_20260516T134642_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "0f3b6f32b134b1bb0d9a4b16479044ce03aba3f943c25dfab82e636537fc1f30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**关键发现：acib_v7_contrastive 当前正在运行，未失败。**\n\nEXIT_CODE=129 来自之前的 run（PID 960110，磁盘满后那次）。当前已有新的 tmux session 在跑：\n\n| 项目 | 状态 |\n|------|------|\n| **acib_v7_contrastive** | PID 21363, 运行中, 当前 step ~6400/20000 |\n| **acib_v7_seed2** | PID 27427, 运行中, 当前 step ~200/20000 |\n\n### 详细状态\n\n**失败根因**：前一次 run 的 SIGHUP（信号 129）— 最可能是 SSH 断连或旧 tmux session 被关闭。当前实例从 20:45 重启，运行正常。\n\n**Checkpoint**：`checkpoint-5000` 存活（1.3GB），位于 `/root/acib/outputs/acib_v7_contrastive/checkpoint-5000/checkpoint.pt`\n\n**GPU**：\n- GPU 0: RTX PRO 6000 Blackwell, 16GB/98GB used, 98% util → contrastive\n- GPU 1: RTX PRO 6000 Blackwell, 16GB/98GB used, 98% util → seed2\n\n**磁盘**：\n- 根分区: 14G/30G used (46%) — 充足\n- 数据盘: 75G/250G used (30%) — 充足\n\n**seed2 注意**：有 4 个 DataLoader worker 子进程（PID 28132-28135），正常行为。\n\n### 结论\n\n两个实验都在正常训练中，无需干预。contrastive 预计还需 ~(20000-6400)/1.8/3600 ≈ 2.1 小时完成；seed2 预计 ~3 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-acib-v7-contrastive-fail.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c34c9746ccd39ada62fe",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diagnose baseline plus remaining",
+  "task_key": "worker_diagnose_baseline-plus-remaining_20260516T103030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_baseline-plus-remaining_20260516T103030_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "ed3a1b7961424b136dcf2d3ace5925fea869927f30ccf1c3f59e3eab650577e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Per-task 数据已拿到。从日志可知 overall pc_success = 67.2%。\n\n## 诊断结果\n\n**进程状态**: PID 675231 已退出，日志显示 `End of eval` + `All suites completed.`，**正常完成**。\n\n**libero_10 per-task success rate** (50 episodes each):\n\n| Task | SR |\n|------|----|\n| task_0 | 42.0% |\n| task_1 | 70.0% |\n| task_2 | 86.0% |\n| task_3 | 88.0% |\n| task_4 | 62.0% |\n| task_5 | 90.0% |\n| task_6 | 62.0% |\n| task_7 | 54.0% |\n| task_8 | 42.0% |\n| task_9 | 76.0% |\n| **Average** | **67.2%** |\n\n## smolvla_libero_plus baseline 4-suite 汇总\n\n| Suite | SR |\n|-------|----|\n| libero_spatial | 81.6% |\n| libero_object | 88.8% |\n| libero_goal | 87.8% |\n| libero_10 | **67.2%** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-baseline-plus-remaining.md"
+}

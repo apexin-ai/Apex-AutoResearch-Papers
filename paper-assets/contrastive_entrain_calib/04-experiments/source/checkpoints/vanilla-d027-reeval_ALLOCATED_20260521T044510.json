@@ -1,0 +1,40 @@
+{
+  "exp_id": "vanilla-d027-reeval",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:32:50.801Z",
+    "updated_at": "2026-05-21T04:45:10.431Z",
+    "hypothesis": "Re-run vanilla Qwen3-8B D027 eval with eval_unified_preset.py to ensure data consistency across all experiments. Previous vanilla eval used eval_pipeline.py which may differ in preprocessing.",
+    "parent": "vanilla-baseline",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/vanilla_d027_reeval/ --exp_id vanilla_d027_reeval\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "234327",
+      "log_path": "~/runs/contrastive_entrain_calib/vanilla-d027-reeval.log",
+      "submitted_at": "2026-05-20T09:33:02.767Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A (base model)"
+    },
+    "metrics": {
+      "ToF": 0.0718,
+      "NoF": 0.9448,
+      "SYCONScore": 0.1335,
+      "n_total": 362,
+      "eval_script": "eval_unified_preset.py (D027 standard)",
+      "eval_server": "westd-28034",
+      "note": "D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T04:45:10.637606+00:00",
+  "trigger": "update_registry"
+}

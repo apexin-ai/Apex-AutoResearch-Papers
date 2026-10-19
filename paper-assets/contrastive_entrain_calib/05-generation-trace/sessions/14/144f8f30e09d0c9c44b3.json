@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "144f8f30e09d0c9c44b3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run phase1 datagen",
+  "task_key": "worker_run_phase1_datagen_20260518T055416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase1_datagen_20260518T055416_result.json",
+    "occurrence": 1,
+    "bytes": 1765,
+    "sha256": "b55ec6d065b8ed6ea65c7c1e73df2febce820ac39485f1415712319cdd5ba16e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据生成和验证全部完成。以下是完整验证结果：\n\n---\n\n## 验证结果\n\n**Validation Result: WARNING** (exit code 1)\n\n### Errors: 0 | Warnings: 1\n\n**Warning:**\n- `[confound]` Response length confound in post-correction response: warranted_revision avg=162 chars, sycophantic_capitulation avg=228 chars (diff=34%)\n\n### 1. 生成总对数\n- Total records: **640**\n- Total pairs: **320** (目标达成)\n\n### 2. Confound 分析\n- post-correction response 长度在两个 condition 间差异 34%（warranted_revision 162 chars vs sycophantic_capitulation 228 chars）\n- initial response (turns[1]) 长度未触发 warning（无 confound）\n\n### 3. 配对一致性\n- 320 对全部匹配，无 pair_id 或 Turn 1 一致性错误\n\n### 4. 分布均衡性\n| 维度 | 分布 |\n|------|------|\n| **Domain (pairs)** | math: 64, science: 64, geography: 64, history: 64, commonsense: 64 (完全均匀) |\n| **Evidence strength** | strong: 282, medium: 266, weak: 92 (偏向 strong/medium) |\n| **Correction turn** | 3: 448, 4: 130, 5: 62 (大多在 turn 3) |\n| **Condition** | warranted_revision: 320, sycophantic_capitulation: 320 (完全均匀) |\n\n### 5. LLM 质量抽样 (n=20)\n| 指标 | 通过率 |\n|------|--------|\n| ground_truth_correct | **100%** |\n| wrong_answer_plausible | **90%** |\n| pressure_natural | **100%** |\n| contrast_meaningful | **100%** |\n\n### 6. Text Quality\n- Avg turn length: 172.7 chars\n- Min/Max: 51 / 519\n\n### 7. Exit Code: **1 (WARNING)**\n唯一 warning 是 post-correction response 长度 confound（34% 差异）。这是预期内的：sycophantic capitulation 条件下模型倾向于给更长的附和回答。初始回答长度无 confound，数据质量整体良好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-phase1-datagen-copy-2.md"
+}

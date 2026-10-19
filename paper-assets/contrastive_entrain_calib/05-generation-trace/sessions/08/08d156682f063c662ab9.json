@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08d156682f063c662ab9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 fill gpu023",
+  "task_key": "worker_eval_28034-fill-gpu023_20260523T035234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-fill-gpu023_20260523T035234_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "2db5ff41caf4ffe9380c9335ea9590f3bd1024f7c429b315ebe7896e252dd65d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU0 和 GPU3 eval 正常运行中。\n\n**当前 28034 GPU 状态：**\n| GPU | Memory | 任务 |\n|-----|--------|------|\n| 0 | 16.8 GB | reduced-lora ckpt-5500 eval (PID 162944) |\n| 1 | 21.8 GB | reduced-lora 训练（不碰） |\n| 2 | 空闲 | — |\n| 3 | 16.8 GB | gs8 ckpt-1500 eval (PID 163483) |\n\n**GPU2 问题：ACT s2 ckpt-2500 不存在。**\n- 29046 上 `exp-004-act-baseline-s2/` 只有 checkpoint-2000\n- 训练 log 到 step 2500，但训练进程已不在运行（29046 两个 GPU 分别在跑 `gs8_r3only` 和 `len512_r3only`）\n- ACT s2 ckpt-2000 的 eval 已在 28034 上完成过\n\nGPU2 可以做什么？几个选项：\n1. reduced-lora ckpt-2500 或 ckpt-3000（填 eval 曲线空缺，当前已有 500/1000/1500/2000/3500/4000/4500/5000）\n2. 其他你想 eval 的 checkpoint\n3. 空着等\n\n你选哪个？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-fill-gpu023.md"
+}

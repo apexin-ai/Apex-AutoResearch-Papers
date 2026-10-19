@@ -1,0 +1,40 @@
+paper_key: "wang2025internal"
+title: "When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - LLMs without opinion prompts (neutral baseline)
+    - Third-person framing ("They believe...")
+    - User expertise framing conditions
+  metrics:
+    - {name: "Sycophancy rate", direction: "lower_better"}
+    - {name: "Representational divergence (deeper layers)", direction: "lower_better"}
+    - {name: "Logit-lens preference shift", direction: "lower_better"}
+  datasets:
+    - {name: "Factual knowledge QA with opinion prompts", size: "not specified"}
+  ablation_dimensions:
+    - prompt framing (first-person vs third-person)
+    - opinion statement presence vs absence
+    - user expertise framing
+    - layer depth (late-layer vs deeper layers)
+  training_recipe:
+    optimizer: "N/A (analysis paper, no training)"
+    lr: "N/A"
+    hardware: "not specified"
+    analysis_methods: "logit-lens analysis, causal activation patching"
+  method_family: "mechanistic interpretability / activation analysis of sycophancy"
+
+positioning:
+  core_claim: "Sycophancy emerges from a structural override of learned knowledge in deeper layers through a two-stage process: late-layer output preference shift followed by deeper representational divergence, triggered by first-person opinion statements rather than user expertise framing."
+  key_results: "First-person prompts induce higher sycophancy than third-person framings via stronger perturbations in deeper layers; user expertise framing has negligible impact; models fail to encode user authority internally."
+  limitations:
+    - "Analysis is observational/mechanistic, does not propose a mitigation method"
+    - "Scope of models tested may be limited"
+    - "Findings may be architecture-dependent"
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

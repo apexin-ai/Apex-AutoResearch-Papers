@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ec617bbc11733123013",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh v71 check and progress",
+  "task_key": "worker_ssh_v71-check-and-progress_20260517T032648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_v71-check-and-progress_20260517T032648_result.json",
+    "occurrence": 1,
+    "bytes": 1703,
+    "sha256": "673d91b05d97503da9c90142e06c666c13858515d0da806ee09eaef263e1a8ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. v7.1 scorer-only 脚本\n\n**脚本存在**：`/root/acib/scripts/run_v7.1_scorer_only.sh`（913 bytes, May 17 04:38）\n\n内容：\n```bash\npython3 -u scripts/train_acib.py \\\n  --model_id lerobot/smolvla_libero \\\n  --dataset_id lerobot/libero \\\n  --data_root /root/autodl-tmp/libero_dataset \\\n  --hidden_dim 64 \\\n  --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 \\\n  --mode soft --condition_source language --conditioning_mode concat \\\n  --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 \\\n  --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 \\\n  --save_freq 5000 --dtype bfloat16 \\\n  --gpu 0 --seed 42 \\\n  --train_scorer_only \\\n  --freeze_action_expert \\\n  --output_dir /root/autodl-tmp/acib_v7.1_scorer_only\n```\n\n**代码支持完整**：\n- `acib/config.py:19` — `freeze_action_expert: bool = False`\n- `acib/config.py:20` — `train_scorer_only: bool = False`\n- `acib/acib_policy.py:199` — freeze 逻辑实现\n- `acib/acib_policy.py:202` — scorer_only 逻辑实现\n- `scripts/train_acib.py` — argparse 参数 + 训练逻辑分支均已实现\n\n### 2. alpha=0.0 进度\n\n- **libero_spatial**：正在跑第 4 个 task（`libero_spatial_3`），已完成 task 0/1/2 的 video 目录\n- 当前 rollout 进度 ~28%/280 steps，running_success_rate=0.0%\n- 尚无 `eval_info.json`（suite 未完成）\n- 4 suites 总共要跑（spatial/object/goal/10），当前还在 spatial 阶段\n\n### 3. alpha=0.3 进度\n\n- **libero_spatial**：正在跑第 1 个 task（`libero_spatial_0`），episode 39/50（78%）\n- 刚启动不久，spatial suite 的第一个 task 即将完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-v71-check-and-progress.md"
+}

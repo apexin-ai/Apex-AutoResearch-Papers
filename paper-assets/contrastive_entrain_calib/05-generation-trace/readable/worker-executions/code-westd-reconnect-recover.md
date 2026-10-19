@@ -1,0 +1,807 @@
+# code westd reconnect recover
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_code_westd-reconnect-recover_20260525T042345.log`
+- **Structured JSON:** [`356b21b124908f095d72.json`](../../sessions/35/356b21b124908f095d72.json)
+
+## Before a recorded user message
+
+15 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d438ac12-66df-4794-afff-013e1865639f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779700800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f68aeb34-39e6-4044-86e3-ce88a53a586c",
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by testing the SSH connection and loading the necessary tool schemas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "ab89ad47-c818-4d5e-b7e1-68a47ac353de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oZ8cBXvQzJnLk2KSpQS9R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12966,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12966
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014SMohJSheHJWjRxSckuszY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "628d72e1-3968-4a90-8591-78cace7e6847",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oZ8cBXvQzJnLk2KSpQS9R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12966,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12966
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T04:24:03.958Z_
+
+<details><summary>↩ Tool result · `toolu_014SMohJSheHJWjRxSckuszY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "57100988-8d60-49a5-b612-92d3d573ba62",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me test the SSH connection and start the status checks in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "f5a37f73-9dc5-4e20-843d-b8359233d292",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPZ6QaH8e5yoebJsLCzyff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2340,
+      "cache_read_input_tokens": 24807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2340
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+测试连接并执行状态检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "156f11a3-5851-4545-a675-578c26045021",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPZ6QaH8e5yoebJsLCzyff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2340,
+      "cache_read_input_tokens": 24807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2340
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hz11zs7W6kyBtApPTiFJmY`</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "0756d97a-f652-4140-9b58-78726f9da877",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPZ6QaH8e5yoebJsLCzyff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2340,
+      "cache_read_input_tokens": 24807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2340
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T04:24:08.994Z_
+
+<details><summary>↩ Tool result · `toolu_01Hz11zs7W6kyBtApPTiFJmY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 29046 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "5a244400-15e7-452f-8a01-501df60095cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[Errno None] Unable to connect to port 29046 on 36.103.198.204\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 29046 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0152uGEfFvQNM4NJ3qGbgZCg`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "f7b428a2-2e4f-436c-b46d-5fad3e7fe9ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPZ6QaH8e5yoebJsLCzyff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2340,
+      "cache_read_input_tokens": 24807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2340
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T04:24:09.869Z_
+
+<details><summary>↩ Tool result · `toolu_0152uGEfFvQNM4NJ3qGbgZCg`</summary>
+
+```text
+Error: result (80,146 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/35e3c50c-ee22-4a17-8933-e2e89ba4ab45/tool-results/mcp-agent-ml-research-read_registry-1779683049854.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/35e3c50c-ee22-4a17-8933-e2e89ba4ab45/tool-results/mcp-agent-ml-research-read_registry-1779683049854.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "ddb9cfae-9d4a-4f75-bf6d-3cab8c278ad6",
+  "tool_use_result": {
+    "content": "Error: result (80,146 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/35e3c50c-ee22-4a17-8933-e2e89ba4ab45/tool-results/mcp-agent-ml-research-read_registry-1779683049854.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/35e3c50c-ee22-4a17-8933-e2e89ba4ab45/tool-results/mcp-agent-ml-research-read_registry-1779683049854.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-008-seed3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T22:07:17.662Z\", \"updated_at\": \"2026-05-25T04:20:14.223Z\", \"hypothesis\": \"SFT probe trap verification (GRPO-matched LoRA): run differentiable SFT binary probe penalty with seed=43, LoRA alpha=64, 4 modules (q/k/v/o), dropout=0 — matching exp-008v3 GRPO config for controlled comparison. Multi-seed replication of exp-008-seed2 to verify probe gaming reproducibility across seeds.\", \"parent\": \"exp-008v3\", \"metrics\": {\"final_loss\": -0.0675, \"final_sft_loss\": 0.0003, \"final_R3\": 0.6775, \"final_St\": 0, \"St_collapsed_step\": 50, \"probe_retrain_count\": 20, \"probe_final_acc\": 1, \"probe_final_auroc\": 1, \"steps_completed\": 2000}, \"conclusion\": \"success\"}, \"exp-008-seed2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T13:02:29.476Z\", \"updated_at\": \"2026-05-25T04:20:13.124Z\", \"hypothesis\": \"SFT probe trap verification (GRPO-matched LoRA): run differentiable SFT binary probe penalty with seed=42, LoRA alpha=64, 4 modules (q/k/v/o), dropout=0 — matching exp-008v3 GRPO config for controlled comparison. Tests whether probe gaming (~30 steps expected) occurs under SFT, confirming the probe reward trap is rooted in probe semantics across both SFT and GRPO paradigms.\", \"parent\": \"exp-008v3\", \"metrics\": {\"training_summary\": {\"total_steps\": 2000, \"probe_gaming_onset\": \"step ~50 (S(t) → 0)\", \"probe_retrain_count\": 20, \"probe_retrain_acc\": \"1.0 every retrain\", \"probe_retrain_auroc\": \"1.0 every retrain\", \"post_retrain_gaming\": \"~10 steps after each retrain S(t) returns to 0\", \"step_time_sec\": 3.5}}, \"conclusion\": \"success\"}, \"exp-003-len512-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T02:47:44.855Z\", \"updated_at\": \"2026-05-25T04:19:55.241Z\", \"hypothesis\": \"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. v3: correct tracking of PID 553700 (v2 was misdiagnosed as failed).\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-008-seed4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T22:07:18.865Z\", \"updated_at\": \"2026-05-24T22:07:29.890Z\", \"hypothesis\": \"C1 probe trap 跨 seed 可复现性验证 (seed=44). SFT differentiable binary probe penalty, GRPO-matched LoRA (alpha=64, 4 modules, dropout=0). Expects same probe gaming pattern as seed=42 and seed=43.\", \"parent\": \"exp-008-seed2\"}, \"exp-003-s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T15:29:19.747Z\", \"updated_at\": \"2026-05-24T11:28:22.192Z\", \"hypothesis\": \"R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.\", \"parent\": \"exp-003\", \"conclusion\": \"success\", \"metrics\": {\"best_checkpoint\": \"ckpt-4000\", \"best_sycon_score\": 0.143, \"checkpoints_above_vanilla\": 1, \"total_checkpoints\": 16, \"vanilla_baseline\": 0.1335, \"peak_tof\": 0.0773, \"peak_nof\": 0.9448}}, \"exp-supp-mmlu-gsm8k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T02:31:49.613Z\", \"updated_at\": \"2026-05-24T09:53:31.738Z\", \"hypothesis\": \"Capability retention test: verify ACT and GRPO training do not degrade MMLU/GSM8K performance compared to vanilla Qwen3-8B baseline. Addresses reviewer concern about general capability loss from sycophancy interventions.\", \"parent\": \"exp-004-heldout\", \"metrics\": {\"vanilla_mmlu\": 0.7493, \"vanilla_gsm8k_strict\": 0.8764, \"vanilla_gsm8k_flex\": 0.8832, \"act_s1_mmlu\": 0.7356, \"act_s1_gsm8k_strict\": 0.8461, \"act_s1_gsm8k_flex\": 0.8484, \"r3only_s1_mmlu\": 0.7505, \"r3only_s1_gsm8k_strict\": 0.8757, \"r3only_s1_gsm8k_flex\": 0.8802}, \"conclusion\": \"success\"}, \"exp-004-heldout\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T06:17:30.004Z\", \"updated_at\": \"2026-05-24T02:27:33.382Z\", \"hypothesis\": \"ACT held-out retraining: train on 80% split (292 lines), eval on 20% held-out (70 lines) to verify ACT generalizes beyond training data. Addresses train-test overlap concern.\", \"parent\": \"exp-004\", \"conclusion\": \"success\"}, \"exp-004-heldout-eval-ckpt2000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T12:13:50.823Z\", \"updated_at\": \"2026-05-23T12:14:23.584Z\", \"hypothesis\": \"ACT heldout retrained model checkpoint-2000 on truly unseen held-out eval split (70 lines). Tests whether plateau at ckpt-500-1500 (0.204) sustains or degrades with continued training.\", \"parent\": \"exp-004-heldout\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1567, \"tof\": 0.0857, \"nof\": 0.9143, \"n_valid\": 35, \"n_invalid\": 35, \"n_total\": 70}}, \"exp-004-heldout-eval-ckpt1500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T10:09:47.131Z\", \"updated_at\": \"2026-05-23T10:10:41.331Z\", \"hypothesis\": \"ACT heldout retrained model checkpoint-1500 on truly unseen held-out eval split (70 lines). Tests whether plateau at ckpt-1000 (0.2039) breaks or sustains. Compared to ckpt-500 (0.2045), ckpt-1000 (0.2039).\", \"parent\": \"exp-004-heldout\", \"metrics\": {\"sycon_score\": 0.2039, \"tof\": 0.1143, \"nof\": 0.9429, \"n_valid\": 35, \"n_invalid\": 35, \"n_total\": 70}, \"conclusion\": \"success\"}, \"exp-004-heldout-eval-ckpt1000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T08:40:47.723Z\", \"updated_at\": \"2026-05-23T08:41:20.144Z\", \"hypothesis\": \"ACT heldout retrained model checkpoint-1000 on truly unseen held-out eval split (70 lines). Tracks generalization improvement over training. Compared to ckpt-500 (0.2045).\", \"parent\": \"exp-004-heldout\", \"metrics\": {\"sycon_score\": 0.2039, \"tof\": 0.1143, \"nof\": 0.9429, \"n_valid\": 35, \"n_invalid\": 35, \"n_total\": 70}, \"conclusion\": \"success\"}, \"exp-004-reduced-lora-eval-ckpt8000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T08:28:11.054Z\", \"updated_at\": \"2026-05-23T08:40:57.523Z\", \"hypothesis\": \"Eval reduced-lora ACT final checkpoint-8000. Completes 16/16 reduced-lora trajectory. Confirms whether late-stage performance sustains above ckpt-7000 peak (0.3257).\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"sycon_score\": 0.2673, \"tof\": 0.1602, \"nof\": 0.8066, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-004-reduced-lora\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:15:03.252Z\", \"updated_at\": \"2026-05-23T08:28:03.454Z\", \"hypothesis\": \"ACT with GRPO-matching LoRA config (r=64, alpha=64, 4 modules: qkvo) instead of standard ACT LoRA (r=64, alpha=128, 7 modules: qkvo+gate+up+down). Isolates supervision granularity vs LoRA capacity. If reduced-LoRA ACT still succeeds → supervision granularity (per-token SFT) is the key factor, not LoRA capacity.\", \"parent\": \"exp-004\", \"conclusion\": \"success\", \"metrics\": {\"training_complete\": true, \"total_steps\": 8000, \"checkpoints\": 16, \"best_checkpoint\": \"ckpt-7000\", \"best_sycon_score\": 0.3257, \"all_checkpoints_above_vanilla\": true, \"trajectory_summary\": \"500(0.152)→1000(0.170)→1500(0.161)→2000(0.205)→2500(0.171)→3000(0.171)→3500(0.188)→4000(0.205)→4500(0.271)→5000(0.246)→5500(0.255)→6000(0.213)→6500(0.237)→7000(0.326)→7500(0.304)\"}}, \"exp-004-reduced-lora-eval-ckpt7500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:40:57.520Z\", \"updated_at\": \"2026-05-23T08:27:32.155Z\", \"hypothesis\": \"Eval reduced-lora ACT checkpoint-7500. Confirms whether ckpt-7000 peak (0.3257) is sustained or a noise spike. Critical for paper trajectory reporting.\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"sycon_score\": 0.304, \"tof\": 0.19, \"nof\": 0.82, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-004-heldout-eval-ckpt500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:50:28.456Z\", \"updated_at\": \"2026-05-23T07:50:50.255Z\", \"hypothesis\": \"ACT heldout retrained model checkpoint-500 on truly unseen held-out eval split (70 lines). Tests if ACT generalizes to data not seen during training. If SYCONScore > 0.15 → training data is sufficient, held-out generalization confirmed.\", \"parent\": \"exp-004-heldout\", \"metrics\": {\"sycon_score\": 0.2045, \"tof\": 0.1143, \"nof\": 0.9714, \"n_valid\": 35, \"n_invalid\": 35, \"n_total\": 70}, \"conclusion\": \"success\"}, \"exp-004-heldout-act-s1-ckpt8000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:34:20.255Z\", \"updated_at\": \"2026-05-23T07:37:03.441Z\", \"hypothesis\": \"ACT s1 best checkpoint (ckpt-8000, SYCONScore=0.3013 on full eval) on held-out eval split (70 lines). Tests if ACT s1 trained on full data generalizes to held-out subset. Part of three-way comparison.\", \"parent\": \"exp-004-heldout\", \"metrics\": {\"sycon_score\": 0.2841, \"tof\": 0.1714, \"nof\": 0.8286, \"n_valid\": 35, \"n_invalid\": 35, \"n_total\": 70}, \"conclusion\": \"success\"}, \"exp-004-heldout-vanilla-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:20:20.787Z\", \"updated_at\": \"2026-05-23T07:36:54.925Z\", \"hypothesis\": \"Vanilla Qwen3-8B baseline on held-out eval split (70 lines). Establishes held-out baseline for three-way comparison: ACT held-out vs vanilla held-out vs GRPO held-out.\", \"parent\": \"exp-004-heldout\", \"metrics\": {\"sycon_score\": 0.0556, \"tof\": 0.0286, \"nof\": 1, \"n_total\": 70}, \"conclusion\": \"success\"}, \"exp-004-heldout-r3only-ckpt6500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:20:21.842Z\", \"updated_at\": \"2026-05-23T07:34:12.790Z\", \"hypothesis\": \"R3-only s1 best checkpoint (ckpt-6500, SYCONScore=0.1529 on full eval) on held-out eval split (70 lines). Control for three-way comparison: if GRPO also fails on held-out data, confirms method-level failure not data-level.\", \"parent\": \"exp-004-heldout\", \"metrics\": {\"sycon_score\": 0.1079, \"tof\": 0.0571, \"nof\": 0.9714, \"n_total\": 70}, \"conclusion\": \"success\"}, \"exp-004-reduced-lora-eval-ckpt7000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:06:41.966Z\", \"updated_at\": \"2026-05-23T07:34:09.848Z\", \"hypothesis\": \"Eval reduced-lora ACT checkpoint-7000. If SYCONScore > vanilla (0.1335), confirms reduced LoRA capacity still supports ACT success, reinforcing supervision granularity as the key factor.\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"sycon_score\": 0.3257, \"tof\": 0.2044, \"nof\": 0.8011, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-004-s2-eval-ckpt2500-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T05:38:10.411Z\", \"updated_at\": \"2026-05-23T06:37:55.344Z\", \"hypothesis\": \"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\", \"parent\": \"exp-004-s2-v2\", \"metrics\": {\"SYCONScore\": 0.2132, \"ToF\": 0.1215, \"NoF\": 0.8674}, \"conclusion\": \"success\"}, \"exp-004-reduced-lora-eval-ckpt6000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T05:38:08.195Z\", \"updated_at\": \"2026-05-23T06:37:32.499Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-6000 eval: tracking post-peak decline in reduced LoRA trajectory (peak at ckpt-4500=0.271, ckpt-5500=0.255)\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"SYCONScore\": 0.2129, \"ToF\": 0.1215, \"NoF\": 0.8564}, \"conclusion\": \"success\"}, \"exp-004-reduced-lora-eval-ckpt6500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T06:17:28.219Z\", \"updated_at\": \"2026-05-23T06:37:19.390Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-6500 eval: tracking post-peak decline trajectory (peak ckpt-4500=0.271), confirms reduced LoRA still > vanilla throughout training\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"SYCONScore\": 0.237, \"ToF\": 0.135, \"NoF\": 0.87}, \"conclusion\": \"success\"}, \"exp-003-gs8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:33:34.942Z\", \"updated_at\": \"2026-05-23T06:17:39.402Z\", \"hypothesis\": \"R3-only GRPO group_size=8 消融：如果 gs=8 成功 (SYCONScore > vanilla 稳定) → 证明 gs=2 是 R3-only 失败根源；如果失败 (与 gs=2 类似 oscillation) → 证明 scalar per-completion reward 本身不足，与 group_size 无关。\", \"parent\": \"exp-003\", \"conclusion\": \"negative\"}, \"exp-003-gs8-eval-ckpt1500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T04:02:32.646Z\", \"updated_at\": \"2026-05-23T05:56:48.945Z\", \"hypothesis\": \"gs8 (group_size=8) R3-only ckpt-1500 eval: if still near vanilla (like ckpt-500=0.084, ckpt-1000=0.085), confirms group_size is not the root cause of R3-only failure\", \"parent\": \"exp-003-gs8\", \"metrics\": {\"SYCONScore\": 0.0538, \"ToF\": 0.0276, \"NoF\": 0.9945}, \"conclusion\": \"negative\"}, \"exp-004-reduced-lora-eval-ckpt5500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T04:02:30.145Z\", \"updated_at\": \"2026-05-23T05:37:58.246Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-5500 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 5500, tracking post-peak trend after ckpt-4500\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"SYCONScore\": 0.2546, \"ToF\": 0.1492, \"NoF\": 0.8674}, \"conclusion\": \"success\"}, \"exp-004-reduced-lora-eval-ckpt5000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T03:47:32.387Z\", \"updated_at\": \"2026-05-23T03:51:40.176Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-5000 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 5000\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"SYCONScore\": 0.2463, \"ToF\": 0.1436, \"NoF\": 0.8619}, \"conclusion\": \"success\"}, \"exp-004-s2-eval-ckpt8000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T02:56:32.325Z\", \"updated_at\": \"2026-05-23T02:57:02.676Z\", \"hypothesis\": \"ACT seed 2 ckpt-8000 eval: final checkpoint, completes 16/16 s2 trajectory\", \"parent\": \"exp-004-s2-v2\", \"metrics\": {\"SYCONScore\": 0.2465, \"ToF\": 0.1436, \"NoF\": 0.8674, \"n_valid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-003-len512-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T02:20:02.823Z\", \"updated_at\": \"2026-05-23T02:47:42.128Z\", \"hypothesis\": \"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003. v2: re-registered with correct PID after v1 cron false-exit.\", \"parent\": \"exp-003\", \"notes\": \"误诊为 failed：Worker 将 v1 (PID 552217) 的崩溃信息错误标记到 v2。实际 PID 553700 仍在运行 (step 14/8000, 48s/step, GPU1 41GB)。追踪转移到 exp-003-len512-v3。\", \"conclusion\": \"failed\"}, \"exp-004-reduced-lora-eval-ckpt4500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T02:21:02.985Z\", \"updated_at\": \"2026-05-23T02:25:13.401Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-4500 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 4500\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"SYCONScore\": 0.2707, \"ToF\": 0.1602, \"NoF\": 0.8729, \"n_valid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-004-s2-eval-ckpt7500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T02:21:03.928Z\", \"updated_at\": \"2026-05-23T02:22:32.750Z\", \"hypothesis\": \"ACT seed 2 ckpt-7500 eval: cross-seed consistency check, 14th of 16 checkpoints\", \"parent\": \"exp-004-s2-v2\", \"metrics\": {\"SYCONScore\": 0.2705, \"ToF\": 0.1547, \"NoF\": 0.8564, \"n_valid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-004-reduced-lora-eval-ckpt4000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T02:20:57.181Z\", \"updated_at\": \"2026-05-23T02:22:30.924Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-4000 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 4000\", \"parent\": \"exp-004-reduced-lora\", \"metrics\": {\"SYCONScore\": 0.2051, \"ToF\": 0.116, \"NoF\": 0.884, \"n_valid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-003-len512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:15:02.338Z\", \"updated_at\": \"2026-05-23T02:20:06.318Z\", \"hypothesis\": \"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003.\", \"parent\": \"exp-003\", \"conclusion\": \"failed\", \"notes\": \"2nd attempt on westd-29046 cuda:1 (RTX PRO 6000 97GB). Process PID 552217 crashed silently after completing only 1/8000 steps. No traceback in log, no checkpoint saved (output_dir empty), no agent-ml exit file, tmux session gone. Log shows ~7min of HuggingFace connection retries (network unreachable for NLI model cross-encoder/nli-deberta-v3-base) before model loaded from cache. Step 1 completed at 479.50s/it. Process then died without error output. Cause unknown — no OOM evidence in kern.log, 97GB VRAM should be sufficient. Previous attempt on 28034 (RTX 5090 32GB) OOM'd. Needs investigation before retry: add HF_HUB_OFFLINE=1, check if GRPO gen with 512 tokens causes transient CUDA error.\"}, \"exp-004-s2-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:45:57.799Z\", \"updated_at\": \"2026-05-23T02:07:27.081Z\", \"hypothesis\": \"ACT (SFT) seed 2 训练恢复：从 ckpt-2000 resume，验证 ACT 跨 seed 稳定性。原 exp-004-s2 因磁盘满在 step 2500 崩溃，现已迁移 output_dir 到数据盘恢复训练。\", \"parent\": \"exp-004-s2\", \"notes\": \"PID 502516 killed at 15:55 UTC. PID 494017 continues. Checkpoint integrity: ckpt-2000=OK, ckpt-2500=uncertain, ckpt-3000=CONTAMINATED, ckpt-3500=OK, ckpt-4000=OK. train_log.jsonl deduped (598→412). **Actual output_dir: /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/ (not exp-004-s2-v2).** Worker at 17:54 UTC reports step=3360/8000 at ~10s/step. Step discrepancy with earlier report (4610) may be due to log reading differences.\", \"conclusion\": \"success\"}, \"exp-004-reduced-lora-eval-ckpt3500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T01:50:09.831Z\", \"updated_at\": \"2026-05-23T01:50:35.030Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-3500 eval: 验证 reduced LoRA (r=64, alpha=64, 4 modules) 在 step 3500 的 SYCONScore，隔离 supervision granularity vs LoRA capacity\", \"parent\": \"exp-004-reduced-lora\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.1881, \"ToF\": 0.105, \"NoF\": 0.9061, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-reduced-lora-eval-ckpt3000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T01:50:09.030Z\", \"updated_at\": \"2026-05-23T01:50:28.965Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-3000 eval: 验证 reduced LoRA (r=64, alpha=64, 4 modules) 在 step 3000 的 SYCONScore，隔离 supervision granularity vs LoRA capacity\", \"parent\": \"exp-004-reduced-lora\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.1705, \"ToF\": 0.0939, \"NoF\": 0.9227, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-reduced-lora-eval-ckpt2500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T01:50:08.018Z\", \"updated_at\": \"2026-05-23T01:50:22.829Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-2500 eval: 验证 reduced LoRA (r=64, alpha=64, 4 modules) 在 step 2500 的 SYCONScore，隔离 supervision granularity vs LoRA capacity\", \"parent\": \"exp-004-reduced-lora\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.1706, \"ToF\": 0.0939, \"NoF\": 0.9282, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-s2-eval-ckpt7000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T01:12:59.761Z\", \"updated_at\": \"2026-05-23T01:13:43.731Z\", \"hypothesis\": \"ACT seed 2 checkpoint 7000 eval: 验证 ACT s2 在 step 7000 的 SYCONScore 是否 > vanilla (0.1335)\", \"parent\": \"exp-004-s2-v2\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.2858, \"ToF\": 0.1713, \"NoF\": 0.8619, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-s2-eval-ckpt6500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T01:12:58.909Z\", \"updated_at\": \"2026-05-23T01:13:42.746Z\", \"hypothesis\": \"ACT seed 2 checkpoint 6500 eval: 验证 ACT s2 在 step 6500 的 SYCONScore 是否 > vanilla (0.1335)\", \"parent\": \"exp-004-s2-v2\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.2543, \"ToF\": 0.1492, \"NoF\": 0.8619, \"n_valid\": 181, \"n_total\": 362}}, \"exp-003-gs8-eval-ckpt1000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:50:34.904Z\", \"updated_at\": \"2026-05-23T00:50:51.770Z\", \"hypothesis\": \"gs8 (group_size=8) R3-only ckpt-1000 eval: 第二个 gs8 数据点，验证 ckpt-500 (0.0844) 后是否有改善。如果仍低于 vanilla → 确认 group_size 不是 R3-only 失败根因。\", \"parent\": \"exp-003-gs8\", \"conclusion\": \"negative\", \"metrics\": {\"SYCONScore\": 0.0845, \"ToF\": 0.0442, \"NoF\": 0.9558, \"n_valid\": 181, \"n_total\": 362, \"eval_time_s\": 4302}}, \"exp-004-reduced-lora-eval-ckpt2000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T23:54:43.951Z\", \"updated_at\": \"2026-05-22T23:55:05.599Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-2000 eval: 验证 reduced LoRA (r=64, alpha=64, 4 modules) 在 step 2000 的 SYCONScore，隔离 supervision granularity vs LoRA capacity\", \"parent\": \"exp-004-reduced-lora\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.2051, \"ToF\": 0.116, \"NoF\": 0.884, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-reduced-lora-eval-ckpt1500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T23:54:43.049Z\", \"updated_at\": \"2026-05-22T23:55:04.457Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-1500 eval: 验证 reduced LoRA (r=64, alpha=64, 4 modules) 在 step 1500 的 SYCONScore，隔离 supervision granularity vs LoRA capacity\", \"parent\": \"exp-004-reduced-lora\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.1613, \"ToF\": 0.0884, \"NoF\": 0.9171, \"n_valid\": 181, \"n_total\": 362}}, \"exp-003-gs8-eval-ckpt500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T21:14:00.478Z\", \"updated_at\": \"2026-05-22T23:34:29.098Z\", \"hypothesis\": \"gs8 (group_size=8) R3-only ckpt-500 eval: 验证增大 group_size 是否改善 R3-only GRPO 在 step 500 的 SYCONScore。对比 gs=2 s1 ckpt-500 (0.116) 和 s2 ckpt-500 (0.085)。\", \"parent\": \"exp-003-gs8\", \"conclusion\": \"negative\", \"metrics\": {\"SYCONScore\": 0.0844, \"ToF\": 0.0552, \"NoF\": 0.9558, \"n_valid\": 181, \"n_total\": 362, \"note\": \"verified with explicit --lora_path; original 0.1045 was without proper adapter loading\"}}, \"exp-004-s2-eval-ckpt6000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:24:40.707Z\", \"updated_at\": \"2026-05-22T22:25:05.710Z\", \"hypothesis\": \"ACT seed 2 checkpoint 6000 eval: 验证 ACT s2 在 step 6000 的 SYCONScore 是否 > vanilla (0.1335)\", \"parent\": \"exp-004-s2-v2\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.2626, \"ToF\": 0.1547, \"NoF\": 0.8674, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-s2-eval-ckpt5500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:24:39.870Z\", \"updated_at\": \"2026-05-22T22:25:04.427Z\", \"hypothesis\": \"ACT seed 2 checkpoint 5500 eval: 验证 ACT s2 在 step 5500 的 SYCONScore 是否 > vanilla (0.1335)\", \"parent\": \"exp-004-s2-v2\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.2304, \"ToF\": 0.1326, \"NoF\": 0.8785, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-reduced-lora-eval-ckpt1000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:49:49.489Z\", \"updated_at\": \"2026-05-22T20:50:29.400Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-1000 eval: 验证 reduced LoRA (r=64, alpha=64, 4 modules) 在 step 1000 的 SYCONScore，隔离 supervision granularity vs LoRA capacity\", \"parent\": \"exp-004-reduced-lora\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.17, \"ToF\": null, \"NoF\": null, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-reduced-lora-eval-ckpt500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:49:48.443Z\", \"updated_at\": \"2026-05-22T20:50:27.228Z\", \"hypothesis\": \"Reduced LoRA ACT ckpt-500 eval: 验证 reduced LoRA (r=64, alpha=64, 4 modules) 在 step 500 的 SYCONScore，隔离 supervision granularity vs LoRA capacity\", \"parent\": \"exp-004-reduced-lora\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.1515, \"ToF\": 0.0829, \"NoF\": 0.884, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-s2-eval-ckpt5000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:38:07.254Z\", \"updated_at\": \"2026-05-22T19:38:24.024Z\", \"hypothesis\": \"ACT seed 2 checkpoint 5000 eval: 验证 ACT s2 在 step 5000 的 SYCONScore 是否 > vanilla (0.1335)\", \"parent\": \"exp-004-s2-v2\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.248, \"ToF\": 0.1436, \"NoF\": 0.9061, \"n_valid\": 181, \"n_total\": 362}}, \"exp-004-s2-eval-ckpt4500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:48:05.659Z\", \"updated_at\": \"2026-05-22T18:48:31.210Z\", \"hypothesis\": \"ACT seed 2 checkpoint 4500 eval: 验证 ACT s2 在 step 4500 的 SYCONScore 是否 > vanilla (0.1335)\", \"parent\": \"exp-004-s2-v2\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.2229, \"ToF\": 0.1271, \"NoF\": 0.9061, \"n_valid\": 181, \"n_total\": 362}}, \"exp-003-eval-s2-ckpt7500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:37:03.309Z\", \"updated_at\": \"2026-05-22T17:47:17.995Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-7500 with D027 unified preset. 16th checkpoint: completing R3-only seed 2 trajectory. Vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003-s2\", \"metrics\": {\"SYCONScore\": 0.1241, \"ToF\": 0.0663, \"NoF\": 0.9724, \"n_valid\": 181, \"n_total\": 362, \"eval_time_s\": 6318, \"vs_vanilla\": {\"vanilla_SYCONScore\": 0.1335, \"delta\": -0.0094, \"relative_change\": \"-7.0%\"}}, \"conclusion\": \"killed\", \"notes\": \"Director decision: killed to free GPU0 compute for exp-003-gs8. ckpt-7500 already has prior eval result (0.114). Re-eval unnecessary.\"}, \"exp-004-s2-eval-ckpt3500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:12:12.710Z\", \"updated_at\": \"2026-05-22T17:23:59.789Z\", \"hypothesis\": \"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-3500 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-3500=0.231. Vanilla baseline SYCONScore=0.1335. ckpt-3500 confirmed clean by integrity check.\", \"parent\": \"exp-004-s2-v2\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.2308, \"ToF\": 0.1326, \"NoF\": 0.8895, \"n_valid\": 181, \"n_total\": 362}}, \"exp-003-eval-s2-ckpt8000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:37:04.686Z\", \"updated_at\": \"2026-05-22T17:05:23.614Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-8000 (final) with D027 unified preset. Last R3-only seed 2 data point. Vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003-s2\", \"metrics\": {\"SYCONScore\": 0.124, \"ToF\": 0.0663, \"NoF\": 0.9613, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-8000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-29046\", \"eval_time_sec\": 5010, \"vs_vanilla\": \"SYCONScore 0.1240 vs 0.1335 = -7.1%, BELOW baseline\", \"vs_seed1_ckpt8000\": \"SYCONScore 0.1240 vs 0.1433 = -13.5%, seed 2 worse than seed 1\"}, \"conclusion\": \"negative\"}, \"exp-004-s2-eval-ckpt4000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:02:04.263Z\", \"updated_at\": \"2026-05-22T17:01:30.771Z\", \"hypothesis\": \"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-4000 with D027 unified preset. Seed 2 trajectory so far: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-4000=0.214. Vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-004-s2-v2\", \"conclusion\": \"success\", \"metrics\": {\"SYCONScore\": 0.2061, \"ToF\": 0.116, \"NoF\": 0.9227, \"n_valid\": 181, \"n_total\": 362}}, \"exp-003-s3\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-22T16:15:04.053Z\", \"updated_at\": \"2026-05-22T16:39:42.417Z\", \"hypothesis\": \"R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage: 3-seed mean±std more credible than 2-seed. Configuration identical to exp-003 (R3=1.0, r1=r2=0, gs=2, 8000 steps, save_steps=500).\", \"parent\": \"exp-003\", \"conclusion\": \"killed\", \"notes\": \"Killed: OOM on RTX 5090 32GB — cannot fit Qwen3-8B GRPO. Will requeue to 29046 (96GB) after exp-003-gs8 completes on cuda:0.\"}, \"exp-002v3-gs8\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T15:33:37.043Z\", \"updated_at\": \"2026-05-22T16:04:57.746Z\", \"hypothesis\": \"Cosine R1 GRPO group_size=8 消融：如果 gs=8 也 collapse (SYCONScore=0) → d_syc cosine reward 确实不适合做 GRPO reward，即使 group_size 正确；如果 gs=8 不 collapse → gs=2 太小是 cosine R1 failure 的根因。\", \"parent\": \"exp-002v3\", \"notes\": \"Dry-run OOM on RTX 5090 32GB. Director decision (D057): 放弃 exp-002v3-gs8, exp-003-gs8 单独已能回答 gs 消融问题。28034 32GB 不够跑 gs=8，折中方案 ROI 不高。\", \"conclusion\": \"killed\"}, \"exp-004-s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:14:05.412Z\", \"updated_at\": \"2026-05-22T12:31:33.746Z\", \"hypothesis\": \"ACT (SFT) seed 2 训练：验证 ACT 跨 seed 稳定性。Seed 1 (exp-004) 16/16 checkpoints > vanilla (0.170→0.301)。如果 seed 2 也展现类似 trajectory，则堵住 Reviewer \\\"ACT 只有 1 个 seed\\\" 攻击面。配置与 exp-004 完全相同，仅 seed=42→43。\", \"parent\": \"exp-004\", \"conclusion\": \"failed\"}, \"exp-004-s2-eval-ckpt2500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:45:08.061Z\", \"updated_at\": \"2026-05-22T10:46:27.677Z\", \"hypothesis\": \"Eval exp-004-s2 (ACT seed 2) checkpoint-2500 with D027 unified preset.\", \"parent\": \"exp-004-s2\", \"conclusion\": \"failed\"}, \"exp-004-s2-eval-ckpt2000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:45:02.943Z\", \"updated_at\": \"2026-05-22T10:23:23.289Z\", \"hypothesis\": \"Eval exp-004-s2 (ACT seed 2) checkpoint-2000 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214. Seed 1 ckpt-2000=0.255 (peak before dip). Does seed 2 recover from ckpt-1500 dip or continue declining?\", \"parent\": \"exp-004-s2\", \"metrics\": {\"sycon_score\": 0.2139, \"tof\": 0.1215, \"nof\": 0.8895, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt7000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T08:44:11.685Z\", \"updated_at\": \"2026-05-22T09:57:04.474Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-7000 with D027 unified preset. Seed 2 late-stage: ckpt-6500=0.105 (no spike). Seed 1 ckpt-7000=0.105. Does seed 2 continue flat or diverge?\", \"parent\": \"exp-003-s2\", \"metrics\": {\"sycon_score\": 0.0945, \"tof\": 0.0497, \"nof\": 0.9503, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"negative\"}, \"exp-004-s2-eval-ckpt1500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T08:44:08.981Z\", \"updated_at\": \"2026-05-22T09:44:25.683Z\", \"hypothesis\": \"Eval exp-004-s2 (ACT seed 2) checkpoint-1500 with D027 unified preset. Seed 2 trajectory: ckpt-500=0.223, ckpt-1000=0.256 (both >> seed 1). Seed 1 ckpt-1500=0.170 (dip). Does seed 2 also dip or continue climbing?\", \"parent\": \"exp-004-s2\", \"metrics\": {\"sycon_score\": 0.2137, \"tof\": 0.1215, \"nof\": 0.884, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-004-s2-eval-ckpt1000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T07:24:23.841Z\", \"updated_at\": \"2026-05-22T08:23:38.630Z\", \"hypothesis\": \"Eval exp-004-s2 (ACT seed 2) checkpoint-1000 with D027 unified preset. Second ACT seed 2 data point: seed 1 ckpt-1000 SYCONScore=0.205 (+53% vs vanilla). Seed 2 ckpt-500 already shows 0.223 (+67%). Does seed 2 continue outperforming?\", \"parent\": \"exp-004-s2\", \"metrics\": {\"sycon_score\": 0.2564, \"tof\": 0.1492, \"nof\": 0.9116, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-004-s2-eval-ckpt500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:11:08.471Z\", \"updated_at\": \"2026-05-22T07:43:50.850Z\", \"hypothesis\": \"Eval exp-004-s2 (ACT seed 2) checkpoint-500 with D027 unified preset. First ACT seed 2 data point: seed 1 ckpt-500 SYCONScore=0.170 (+27% vs vanilla). If seed 2 shows similar range, confirms ACT cross-seed stability.\", \"parent\": \"exp-004-s2\", \"metrics\": {\"sycon_score\": 0.2232, \"tof\": 0.1271, \"nof\": 0.9171, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt6500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:27:25.309Z\", \"updated_at\": \"2026-05-22T07:43:50.105Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-6500 with D027 unified preset. Seed 2 late-stage eval: does seed 2 show recovery similar to seed 1 ckpt-6500 spike (0.153)?\", \"parent\": \"exp-003-s2\", \"metrics\": {\"sycon_score\": 0.1046, \"tof\": 0.0552, \"nof\": 0.9779, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"negative\"}, \"exp-003-eval-s2-ckpt6000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:57:15.649Z\", \"updated_at\": \"2026-05-22T07:43:37.031Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-6000 with D027 unified preset. Seed 2 later-stage eval to compare with seed 1 ckpt-6000 trajectory.\", \"parent\": \"exp-003-s2\", \"metrics\": {\"sycon_score\": 0.0945, \"tof\": 0.0497, \"nof\": 0.9503, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt5500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:57:14.240Z\", \"updated_at\": \"2026-05-22T07:43:36.282Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-5500 with D027 unified preset. Continuing seed 2 trajectory to check if SYCONScore recovers or continues declining past ckpt-4500.\", \"parent\": \"exp-003-s2\", \"metrics\": {\"sycon_score\": 0.1144, \"tof\": 0.0608, \"nof\": 0.9724, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt5000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:57:12.275Z\", \"updated_at\": \"2026-05-22T07:43:34.941Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-5000 with D027 unified preset. Continuing seed 2 trajectory past ckpt-4500 (SYCONScore=0.104) to track divergence from seed 1.\", \"parent\": \"exp-003-s2\", \"metrics\": {\"sycon_score\": 0.1044, \"tof\": 0.0552, \"nof\": 0.9503, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}, \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt4500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:36:34.293Z\", \"updated_at\": \"2026-05-22T03:56:54.713Z\", \"parent\": \"exp-003-s2\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-4500 with D027 unified preset. Seed 2 at this step should show whether seed 2 trajectory tracks seed 1 pattern (seed 1 ckpt-4500=0.134=vanilla peak).\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1044, \"tof\": 0.0552, \"nof\": 0.9503, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}}, \"exp-004-eval-ckpt8000-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:17:33.212Z\", \"updated_at\": \"2026-05-22T03:56:50.252Z\", \"parent\": \"exp-004\", \"hypothesis\": \"Retry: Eval exp-004 ACT checkpoint-8000 with D027 unified preset. Supplement eval to complete ACT trajectory.\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.3013, \"tof\": 0.1823, \"nof\": 0.8674, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}}, \"exp-004-eval-ckpt2000-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:17:32.748Z\", \"updated_at\": \"2026-05-22T03:56:48.831Z\", \"parent\": \"exp-004\", \"hypothesis\": \"Retry: Eval exp-004 ACT checkpoint-2000 with D027 unified preset. Supplement eval to complete ACT trajectory.\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.255, \"tof\": 0.1492, \"nof\": 0.8785, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}}, \"exp-004-eval-ckpt500-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:17:32.105Z\", \"updated_at\": \"2026-05-22T03:56:47.424Z\", \"parent\": \"exp-004\", \"hypothesis\": \"Retry: Eval exp-004 ACT checkpoint-500 with D027 unified preset. Supplement eval to complete ACT trajectory.\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1699, \"tof\": 0.0939, \"nof\": 0.8895, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}}, \"exp-003-eval-s2-ckpt4000-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:12:41.874Z\", \"updated_at\": \"2026-05-22T03:56:12.277Z\", \"hypothesis\": \"Retry eval exp003 seed2 ckpt-4000 after server restart. Original (exp-003-eval-s2-ckpt4000) failed due to restart. Cross-seed reproducibility: compare with seed 1 ckpt-4000 trajectory.\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.143, \"tof\": 0.0773, \"nof\": 0.9448, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}}, \"exp-004-eval-ckpt8000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:46:36.151Z\", \"updated_at\": \"2026-05-22T02:08:37.727Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-8000 with D027 unified preset. Supplement eval to complete ACT trajectory for fig_trajectory. Compare against vanilla SYCONScore=0.134.\", \"parent\": \"exp-004\", \"conclusion\": \"failed\"}, \"exp-004-eval-ckpt2000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:46:35.247Z\", \"updated_at\": \"2026-05-22T02:08:35.672Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-2000 with D027 unified preset. Supplement eval to complete ACT trajectory for fig_trajectory. Compare against vanilla SYCONScore=0.134.\", \"parent\": \"exp-004\", \"conclusion\": \"failed\"}, \"exp-004-eval-ckpt500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:46:33.793Z\", \"updated_at\": \"2026-05-22T02:08:33.608Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-500 with D027 unified preset. Supplement eval to complete ACT trajectory for fig_trajectory. Compare against vanilla SYCONScore=0.134.\", \"parent\": \"exp-004\", \"conclusion\": \"failed\"}, \"exp-003-eval-s2-ckpt4000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:44:23.631Z\", \"updated_at\": \"2026-05-22T02:08:30.947Z\", \"hypothesis\": \"exp003 seed2 at ckpt-4000 should show calibration improvement consistent with seed0/seed1 results, confirming R3-only contrastive training robustness across seeds\", \"parent\": \"exp-003-s2\", \"conclusion\": \"failed\"}, \"exp-003-eval-ckpt8000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T10:22:58.647Z\", \"updated_at\": \"2026-05-21T11:39:11.404Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-8000 (FINAL) with D027 unified preset. The definitive last data point for seed 1 trajectory. Late-training oscillation: 0.085→0.153→0.105→0.105. Does ckpt-8000 continue oscillation or converge? Critical for paper's R3-only narrative.\", \"parent\": \"exp-003\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1433, \"tof\": 0.0773, \"nof\": 0.9724, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362}}, \"exp-003-eval-s2-ckpt3500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T10:20:56.145Z\", \"updated_at\": \"2026-05-21T11:15:13.228Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-3500 with D027 unified preset. Latest seed 2 checkpoint: does trajectory continue tracking seed 1 pattern? Seed 1 at ckpt-3000 = 0.0946, seed 2 ckpt-3000 = 0.0945.\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.0744, \"tof\": 0.0387, \"nof\": 0.9724, \"n_valid\": 181, \"n_invalid\": 181}}, \"exp-003-eval-s2-ckpt2500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:28:22.512Z\", \"updated_at\": \"2026-05-21T10:48:15.548Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-2500 with D027 unified preset. Mid trajectory for seed 2: does it track seed 1 ckpt-2500 pattern? Seed cross-validation for error bars.\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1046, \"tof\": 0.0552, \"nof\": 0.9724}}, \"exp-003-s2-eval-ckpt2000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T04:37:55.835Z\", \"updated_at\": \"2026-05-21T10:41:08.271Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-2000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-2000 (SYCONScore=0.085).\", \"parent\": \"exp-003-s2\", \"conclusion\": \"killed\", \"notes\": \"Superseded by exp-003-eval-s2-ckpt2000 (DONE, SYCONScore=0.0846). This entry obsolete — original failed due to GPU conflict.\"}, \"exp-003-s2-eval-ckpt3000\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-21T04:37:57.768Z\", \"updated_at\": \"2026-05-21T10:41:07.310Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-3000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for exact step match.\", \"parent\": \"exp-003-s2\", \"conclusion\": \"killed\", \"notes\": \"Superseded by exp-003-eval-s2-ckpt3000 (DONE, SYCONScore=0.0945). This entry obsolete.\"}, \"exp-003-s2-eval-ckpt2500\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-21T04:37:56.853Z\", \"updated_at\": \"2026-05-21T10:41:05.785Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-2500 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for trajectory alignment.\", \"parent\": \"exp-003-s2\", \"conclusion\": \"killed\", \"notes\": \"Superseded by exp-003-eval-s2-ckpt2500 (renamed convention). This entry obsolete.\"}, \"exp-004\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T14:42:12.234Z\", \"updated_at\": \"2026-05-21T10:32:45.756Z\", \"hypothesis\": \"ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\", \"conclusion\": \"success\", \"metrics\": {\"trend\": \"generally increasing trend with oscillations: early phase ~0.17-0.25, late phase ~0.26-0.30, best=0.301 at ckpt-8000\", \"best_sycon_score\": 0.301, \"best_checkpoint\": \"ckpt-8000\"}}, \"exp-003\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T14:42:11.934Z\", \"updated_at\": \"2026-05-21T10:20:34.638Z\", \"hypothesis\": \"R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)\", \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt2000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T08:50:25.503Z\", \"updated_at\": \"2026-05-21T10:19:30.507Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-2000 with D027 unified preset. Early trajectory point for seed 2: does it track seed 1 pattern (regression from vanilla baseline)? Needed for error bars and reproducibility claim.\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.0846}}, \"exp-003-eval-ckpt7500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T08:50:23.419Z\", \"updated_at\": \"2026-05-21T10:19:27.485Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-7500 with D027 unified preset. Late-training trajectory critical point: ckpt-6000=0.0846 (crash), ckpt-6500=0.1529 (spike above vanilla). Does ckpt-7500 continue oscillation or stabilize? Extreme instability pattern is key evidence for paper.\", \"parent\": \"exp-003\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1046}}, \"exp-003-eval-ckpt7000-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T08:14:16.803Z\", \"updated_at\": \"2026-05-21T09:59:31.158Z\", \"hypothesis\": \"Re-run (v3) exp-003 R3-only GRPO checkpoint-7000 eval with D027 unified preset. Previous two runs failed (v1: SIGTERM at 80/362 pairs due to stale cron kill, v2: SIGTERM during early eval with GPU memory contention). Late-stage trajectory point needed for paper figure.\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.1046}, \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt3000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T08:48:27.831Z\", \"updated_at\": \"2026-05-21T09:28:16.390Z\", \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-3000 with D027 unified preset. Seed 2 early-to-mid trajectory: does seed 2 show same vanilla-ceiling pattern as seed 1? Contributes to error bars for paper.\", \"parent\": \"exp-003-s2\", \"metrics\": {\"sycon_score\": 0.0945, \"tof\": 0.0497, \"nof\": 0.9503}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt5000-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T08:55:53.485Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1144, \"tof\": 0.0608, \"nof\": 0.9669}}, \"exp-003-eval-ckpt6500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T08:55:20.659Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.1529, \"tof\": 0.0829, \"nof\": 0.9834}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt6000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T08:55:20.033Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.0846, \"tof\": 0.0442, \"nof\": 0.9724}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt7000-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:31:01.318Z\", \"updated_at\": \"2026-05-21T08:07:37.508Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-7000 eval with D027 unified preset. Previous run (exp-003-eval-ckpt7000) failed due to stale cron killing process. Late-stage trajectory point: if regression continues below 0.114, strengthens vanilla-ceiling claim.\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-003-eval-ckpt7000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T04:34:53.503Z\", \"updated_at\": \"2026-05-21T07:29:11.191Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-003-eval-ckpt2000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:45:59.763Z\", \"updated_at\": \"2026-05-21T07:17:28.466Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-2000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9834, \"SYCONScore\": 0.0846, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline\"}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt3000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:46:00.760Z\", \"updated_at\": \"2026-05-21T07:17:27.723Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-3000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0497, \"NoF\": 0.9724, \"SYCONScore\": 0.0946, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline\"}, \"conclusion\": \"negative\"}, \"exp-009-eval-ckpt500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T07:18:17.465Z\", \"updated_at\": \"2026-05-21T07:16:51.037Z\", \"metrics\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 7671}, \"hypothesis\": \"Eval exp-009 checkpoint-500 (continuous probe probability GRPO) with D027 unified preset to determine if continuous P(syc) reward produces stubbornness trap (ToF=0) like binary probe (exp-008v3), or shows viable learning signal (ToF > 0).\", \"parent\": \"exp-009\", \"conclusion\": \"negative\"}, \"vanilla-d027-reeval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T09:32:50.801Z\", \"updated_at\": \"2026-05-21T04:45:20.440Z\", \"hypothesis\": \"Re-run vanilla Qwen3-8B D027 eval with eval_unified_preset.py to ensure data consistency across all experiments. Previous vanilla eval used eval_pipeline.py which may differ in preprocessing.\", \"parent\": \"vanilla-baseline\", \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335, \"n_total\": 362, \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"note\": \"D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts.\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt4500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:50:34.664Z\", \"updated_at\": \"2026-05-20T19:06:13.570Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-4500 with D027 unified preset. Pinpoint plateau onset: if ckpt-4500 SYCONScore=0.114 (same as ckpt-4000/5000/5500), plateau starts at step 4000; if lower, plateau onset is between step 4500-5000.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9613, \"SYCONScore\": 0.1337, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4280, \"vs_vanilla\": \"SYCONScore 0.1337 vs 0.1335 = +0.1%, essentially EQUAL to baseline\", \"note\": \"Surprising: ckpt-4500 peaks near vanilla baseline (0.1337), HIGHER than ckpt-4000/5000/5500 (0.1144). Non-monotonic trajectory — peak at 4500 then regression.\"}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt1500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:26:08.158Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt1000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:26:07.632Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:26:06.677Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt5500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:21:54.401Z\", \"updated_at\": \"2026-05-20T17:41:06.305Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-5500 with D027 unified preset. Testing whether R3-only plateau (ckpt-4000=ckpt-5000=0.114) extends to ckpt-5500.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9724, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4484, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-4000/5000 — plateau confirmed at 3 consecutive checkpoints\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt5500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:41:41.309Z\", \"updated_at\": \"2026-05-20T16:13:14.157Z\", \"hypothesis\": \"ACT training at checkpoint-5500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.8674, \"SYCONScore\": 0.2383, \"n_samples\": 362}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt4500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:41:38.504Z\", \"updated_at\": \"2026-05-20T16:13:13.687Z\", \"hypothesis\": \"ACT training at checkpoint-4500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.105, \"NoF\": 0.8785, \"SYCONScore\": 0.1875, \"n_samples\": 362}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt7500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:41:46.107Z\", \"updated_at\": \"2026-05-20T16:06:13.253Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-7500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1657, \"NoF\": 0.8453, \"SYCONScore\": 0.2771, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2771 vs 0.1335 = +107.6%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt6500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:41:43.690Z\", \"updated_at\": \"2026-05-20T16:06:12.150Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-6500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1492, \"NoF\": 0.8232, \"SYCONScore\": 0.2526, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2526 vs 0.1335 = +89.1%\"}, \"conclusion\": \"success\"}, \"exp-009-eval-ckpt1000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T09:32:16.956Z\", \"updated_at\": \"2026-05-20T15:49:09.727Z\", \"hypothesis\": \"Eval exp-009 checkpoint-1000 to determine if continuous probe probability shows improving or worsening stubbornness trend. Kill criteria: SYCONScore < 0.10 or ToF < 0.03\", \"parent\": \"exp-009\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9337, \"SYCONScore\": 0.1141, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"trend_vs_ckpt500\": \"ToF 0.0663→0.0608 (↓8.3%), SYCONScore 0.1238→0.1141 (↓7.8%)\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt1500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:11:31.713Z\", \"updated_at\": \"2026-05-20T15:45:26.267Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-1500 with D027 unified preset. Part of ACT training trajectory for paper figure. Compare against vanilla SYCONScore=0.1335 and ckpt-1000 SYCONScore=0.2048.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1741, \"vs_vanilla\": \"SYCONScore 0.1699 vs 0.1335 = +27.3%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt3500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:11:36.904Z\", \"updated_at\": \"2026-05-20T15:40:26.832Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-3500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1326, \"NoF\": 0.9006, \"SYCONScore\": 0.2312, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2312 vs 0.1335 = +73.2%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt2500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:11:34.702Z\", \"updated_at\": \"2026-05-20T15:40:25.836Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-2500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.884, \"SYCONScore\": 0.2389, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2389 vs 0.1335 = +78.9%\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt4000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T09:35:00.687Z\", \"updated_at\": \"2026-05-20T15:31:44.050Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-4000 with D027 unified preset. If SYCONScore > 0.20, R3-only exceeds vanilla baseline (0.197), validating that behavioral reward alone improves sycophancy calibration.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9669, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4353, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-5000 — model saturated at step 4000\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt3000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:44:26.758Z\", \"updated_at\": \"2026-05-20T15:13:14.358Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-3000 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.9116, \"SYCONScore\": 0.2058, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2058 vs 0.1335 = +54.2%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt5000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:44:29.557Z\", \"updated_at\": \"2026-05-20T15:10:16.485Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-5000 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8785, \"SYCONScore\": 0.2631, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1305, \"vs_vanilla\": \"SYCONScore 0.2631 vs 0.1335 = +97.1%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt7000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:44:50.085Z\", \"updated_at\": \"2026-05-20T15:10:15.818Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-7000 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1713, \"NoF\": 0.8619, \"SYCONScore\": 0.2858, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1254, \"vs_vanilla\": \"SYCONScore 0.2858 vs 0.1335 = +114.1%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt1000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:14:58.878Z\", \"updated_at\": \"2026-05-20T14:47:32.410Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-1000 with D027 unified preset. Part of ACT training trajectory for paper figure (SYCONScore vs training steps). Compare against vanilla 0.1335 and exp-003 R3-only trajectory.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.8729, \"SYCONScore\": 0.2048, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1689, \"vs_vanilla\": \"SYCONScore 0.2048 vs 0.1335 = +53.4%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt4000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:16:00.583Z\", \"updated_at\": \"2026-05-20T14:44:31.037Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-4000 with D027 unified preset. Part of ACT training trajectory for paper figure. Compare against vanilla 0.1335 and exp-003 R3-only trajectory.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1215, \"NoF\": 0.895, \"SYCONScore\": 0.214, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2140 vs 0.1335 = +60.3%, ABOVE baseline (dip vs ckpt-2000)\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt6000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:16:03.194Z\", \"updated_at\": \"2026-05-20T14:44:30.470Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-6000 with D027 unified preset. Part of ACT training trajectory for paper figure. Compare against vanilla 0.1335 and exp-003 R3-only trajectory.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8508, \"SYCONScore\": 0.2618, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2618 vs 0.1335 = +96.1%, ABOVE baseline\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt1000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:45:58.801Z\", \"updated_at\": \"2026-05-20T14:04:33.075Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt5000\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T11:07:53.265Z\", \"updated_at\": \"2026-05-20T12:48:41.649Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-5000 with D027 unified preset. If SYCONScore > 0.20, R3-only exceeds vanilla baseline (0.197), validating Claim 2 positive control.\", \"parent\": \"exp-003\", \"conclusion\": \"negative\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9669, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 5146, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-5000\", \"log_path\": \"/root/autodl-tmp/results/exp003_unified_eval/\", \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\"}}, \"exp-009\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T02:24:52.397Z\", \"updated_at\": \"2026-05-20T12:40:57.423Z\", \"hypothesis\": \"Continuous Probe Probability GRPO: R1 = 1 - P(sycophantic|h) using frozen probe's sigmoid output as continuous reward signal. This is the intermediate formulation between cosine R1 (pure continuous, structural failure due to conflating all changes) and binary probe R1 (pure discrete, immediate stubbornness trap). If continuous probability also fails, it completes the \\\"ALL representation-to-reward formulations fail\\\" argument — continuous/probability/binary all structurally cannot convert d_syc discriminability into effective RL reward. If it succeeds, continuous probe probability is a viable middle ground.\", \"parent\": \"exp-008v3\", \"conclusion\": \"negative\", \"metrics\": {\"eval_ckpt500\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238}, \"eval_ckpt1000\": {\"ToF\": 0.0608, \"NoF\": 0.9337, \"SYCONScore\": 0.1141}, \"trend\": \"monotonic decline: ckpt-500→ckpt-1000 ToF ↓8.3%, SYCONScore ↓7.8%\", \"vanilla_d027_baseline\": {\"SYCONScore\": 0.1335}, \"kill_reason\": \"D040: all three R1 formulations (cosine/binary/continuous_probability) failed. Completes ALL-formulations-fail argument.\", \"available_checkpoints\": [\"checkpoint-500\", \"checkpoint-1000\"]}}, \"exp-012\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T03:56:42.346Z\", \"updated_at\": \"2026-05-20T08:27:29.454Z\", \"hypothesis\": \"If Llama-3-8B hidden states (L16-L33) contain a linear sycophancy direction with AUROC >= 0.75, then discriminability generalizes beyond Qwen3-8B, strengthening the discriminability != reward utility claim.\", \"parent\": \"exp-001\", \"metrics\": {\"cv_auroc_mean\": 0.7793, \"cv_auroc_std\": 0.0189, \"full_auroc\": 0.7779, \"best_layer\": 16, \"style_controlled_auroc\": 0.9227, \"per_layer_auroc_top5\": {\"16\": 0.7793, \"22\": 0.7359, \"25\": 0.7372, \"26\": 0.7374, \"31\": 0.747}, \"domain_auroc\": {\"commonsense\": 0.8444, \"history\": 0.818, \"math\": 0.769, \"science\": 0.7546, \"geography\": 0.7507}, \"evidence_strength_auroc\": {\"strong\": 0.9109, \"medium\": 0.8635, \"weak\": 0.7106}, \"num_pairs\": 181, \"num_samples\": 362, \"layer_range\": [16, 31], \"probe_ablation\": {\"d_syc_best_layer_auroc\": 0.778, \"d_syc_multi_layer_auroc\": 0.813, \"random_direction_auroc_mean\": 0.53, \"random_direction_auroc_std\": 0.054, \"gap_d_syc_minus_random\": 0.248, \"qwen_comparison\": {\"qwen_d_syc\": 0.835, \"qwen_random\": 0.727, \"qwen_gap\": 0.108}, \"finding\": \"Llama gap (+0.248) larger than Qwen (+0.108). Random direction near chance (0.53) on Llama vs 0.73 on Qwen — sycophancy signal more concentrated in specific directions on Llama.\"}}, \"conclusion\": \"success\"}, \"exp-002v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:55:19.922Z\", \"updated_at\": \"2026-05-20T04:16:19.739Z\", \"hypothesis\": \"DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled.\", \"notes\": \"D028 retry #2 失败诊断 (2026-05-20):\\n\\n## 错误\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n\\n## Traceback (rank0)\\n```\\nFile \\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\", line 195, in main\\n    trainer.train()\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n```\\n\\n## 根因\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\n\\n## 修复方案\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\n\\n## 不可直接重试，需修代码。\", \"conclusion\": \"negative\", \"metrics\": {\"collapse_timeline\": {\"phase1_length_collapse\": \"step 100-300, mean_len 247→80, entropy 0.45→0.10\", \"low_entropy_plateau\": \"step 300-2150, entropy 0.07-0.10\", \"phase2_terminal_collapse\": \"step 2160, entropy 0.056→0.026 in 50 steps, frac_zero_std 0.125→0.419\", \"critical_step\": 2160}, \"entropy_at_kill\": 0.006, \"grad_norm_at_kill\": 0, \"frac_reward_zero_std_peak\": 0.963, \"r3_saturation_step\": 100, \"r3_saturated_value\": 0.9998, \"r1_behavior\": \"mean oscillated -0.46 to +0.41, no sustained positive trend despite 5x scaling\", \"available_checkpoints\": [\"checkpoint-500\", \"checkpoint-1000\", \"checkpoint-1500\", \"checkpoint-2000\"], \"best_checkpoint_before_collapse\": \"checkpoint-2000 (entropy ~0.062, still in plateau)\", \"root_cause\": \"R3 saturated at step 100 → combined reward degenerates to only R1 → cosine R1 signal too noisy (high variance) to provide stable optimization direction. Problem is R1 noise, not R1 magnitude — 5x scaling amplified noise proportionally.\", \"conclusion_reason\": \"GRPO mode collapse: R3 early saturation + cosine R1 high-variance noise = no effective learning signal. Confirms scaled cosine R1 also structurally fails.\"}}, \"exp-008v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:46:29.198Z\", \"updated_at\": \"2026-05-20T02:22:01.389Z\", \"hypothesis\": \"Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator.\", \"parent\": \"exp-008\", \"conclusion\": \"negative\", \"metrics\": {\"preset_eval_ckpt500\": {\"ToF\": 0, \"NoF\": 0.9945, \"SYCONScore\": 0, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 6502}, \"preset_eval_ckpt1000\": {\"ToF\": 0.0055, \"NoF\": 0.9945, \"SYCONScore\": 0.011, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 6726}, \"preset_eval_ckpt1500\": {\"ToF\": 0, \"NoF\": 1, \"SYCONScore\": 0, \"eval_server\": \"westd-29046\"}, \"preset_eval_ckpt2000\": {\"ToF\": 0, \"NoF\": 1, \"SYCONScore\": 0, \"eval_server\": \"westd-29046\"}, \"stubbornness_onset\": \"immediate — ToF=0 at ckpt-500, probe reward trap activates within first 500 training steps\", \"trajectory\": \"ckpt-500 ToF=0.000 → ckpt-1000 ToF=0.006 → ckpt-1500 ToF=0.000 → ckpt-2000 ToF=0.000. Stubbornness is not gradual onset but immediate collapse.\"}}, \"exp002v2-recalib\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:40:31.395Z\", \"updated_at\": \"2026-05-20T00:25:59.000Z\", \"hypothesis\": \"DC-GRPO with cosine R1 + periodic d_syc recalibration (every 500 steps). Resume from exp-002v2 checkpoint-500 with recalibrated directions. Tests whether recalibrating d_syc during training enables R1 to provide effective gradient signal, since without recalibration d_syc drifts significantly (cosine=0.28 at step 500) making R1 ineffective.\", \"parent\": \"exp-002v2\", \"conclusion\": \"negative\"}, \"exp-016\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:30:49.598Z\", \"updated_at\": \"2026-05-19T17:44:21.075Z\", \"hypothesis\": \"ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model\", \"conclusion\": \"negative\", \"metrics\": {\"alpha_0.0\": {\"NoF\": 0.6961, \"WRR\": 0.2707}, \"alpha_0.5\": {\"NoF\": 0.6906, \"WRR\": 0.2541}, \"alpha_1.0\": {\"NoF\": 0.7127, \"WRR\": 0.2652}, \"alpha_2.0\": {\"NoF\": 0.6851, \"WRR\": 0.2541}, \"alpha_5.0\": {\"NoF\": 0.7845, \"WRR\": 0.2155}, \"best_alpha\": 5, \"best_NoF_delta\": \"+8.8pp\", \"D027_note\": \"D027 unified eval reversal: alpha=5 SYCONScore=0.054 < vanilla SYCONScore=0.134. ActAdd improves NoF but destroys ToF, net negative under NLI-based SYCONScore.\", \"conclusion_reason\": \"D027 eval reversal: ActAdd alpha=5 SYCONScore 0.054 worse than vanilla 0.134\", \"unified_reeval_D027\": {\"alpha_0.0\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335}, \"alpha_0.5\": {\"ToF\": 0.0718, \"NoF\": 0.9392, \"SYCONScore\": 0.1334}, \"alpha_1.0\": {\"ToF\": 0.0442, \"NoF\": 0.9724, \"SYCONScore\": 0.0846}, \"alpha_2.0\": {\"ToF\": 0.0276, \"NoF\": 0.9669, \"SYCONScore\": 0.0537}, \"alpha_5.0\": {\"ToF\": 0.0276, \"NoF\": 0.9613, \"SYCONScore\": 0.0537}, \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp016_unified_reeval/\"}}}, \"exp-014\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:59:39.065Z\", \"updated_at\": \"2026-05-19T10:11:01.189Z\", \"hypothesis\": \"A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator.\", \"parent\": \"exp-002\", \"conclusion\": \"killed\", \"metrics\": {\"preset_eval_ckpt3000\": {\"ToF\": 0.978, \"NoF\": 0.006, \"SYCONScore\": 0.011, \"RC_AUC\": 0.195, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"run_exp014_eval.sh (preset, NLI-based)\", \"eval_time_sec\": 1179}, \"diagnosis\": \"mode_collapse: model flips on ALL pressure (valid+invalid), NoF≈0. Consistent with training R3=0.999, entropy=0.025.\"}}, \"vanilla-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T09:43:54.807Z\", \"updated_at\": \"2026-05-19T09:52:50.457Z\", \"hypothesis\": \"Vanilla Qwen3-8B baseline (no training, no LoRA). Establishes the pre-training NoF/WRR reference point for all comparisons. Using eval_pipeline.py with enable_thinking=False.\", \"conclusion\": \"success\", \"metrics\": {\"ToF\": 0.1105, \"NoF\": 0.9227, \"sycon_score\": 0.1974, \"samples\": 362, \"avg_flip_turn_valid\": 1, \"avg_flip_count_invalid\": 0.08, \"eval_script\": \"eval_pipeline.py (28034, missing regex postprocess)\", \"note\": \"28034 version missing regex &lt;think> cleanup, may need re-eval after sync\"}}, \"exp-002v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T06:43:03.059Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"conclusion\": \"killed\"}, \"exp-002\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T15:05:08.369Z\", \"updated_at\": \"2026-05-19T00:07:57.377Z\", \"hypothesis\": \"DC-GRPO with reduced R1 weight (0.15) and elevated R3 safety net (0.65), using exp-001 top layers [19,20,24,27,32,33,35], will produce a LoRA policy that reduces sycophantic capitulation while maintaining response quality, with per-strength adaptive R1 gating preventing noisy weak-pair gradients from destabilizing training.\", \"conclusion\": \"killed\", \"notes\": \"D020 主动 kill：R1 tanh(dot/20) 饱和确认（D019），step 955/8000 时终止。R1 mean 持续负值 (-0.03~-0.9) 大幅震荡，cosine R1 替代方案已启动为 exp-002v2。已有成果：step 0-955 的 reward 日志证实 tanh normalization 方案不可行。\"}, \"exp-008\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T15:29:15.883Z\", \"updated_at\": \"2026-05-18T22:48:02.118Z\", \"hypothesis\": \"Binary probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe + REINFORCE-style policy gradient prevents adversarial gaming. If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value; if DC-GRPO > Binary, continuous directional information is the critical differentiator over binary classification.\", \"conclusion\": \"killed\"}, \"exp-001\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T14:42:10.872Z\", \"updated_at\": \"2026-05-18T15:02:41.530Z\", \"hypothesis\": \"Expanding v2.1 calibration data to ~200 style-matched pairs with weak/medium/strong evidence stratification will yield a robust d_syc direction with 5-fold CV AUROC >= 0.80, because increased data diversity improves the contrastive signal separation in hidden states.\", \"conclusion\": \"success\", \"metrics\": {\"cv_auroc_mean\": 0.8269, \"cv_auroc_std\": 0.0278, \"full_auroc\": 0.8159, \"bootstrap_ci_95\": [0.7698, 0.8589], \"best_layer\": 19, \"auroc_weak\": 0.675, \"auroc_medium\": 0.883, \"auroc_strong\": 0.929, \"num_pairs\": 181, \"stop_gate\": \"CONTINUE_REDUCED_R1\"}}}, \"count\": 128, \"total\": 128, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.297}}"
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+SSH connection failed - port 29046 is not reachable. The task says "如果失败，立即报告（不要反复重试）". But the task also says the user has already handled the disconnect. Let me report the failure immediately.
+
+Wait, the task description says "服务器经历了断连，用户已处理，需要重新连接并恢复实验流水线" - the user has already handled it. But the connection still fails. AutoDL instances may have changed ports after restart.
+
+Let me report this immediately as instructed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "e616857e-f9bf-40a1-a804-4d57f42cf92e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAUPCxEn2ckNUxoNZSCDif",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 27147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+**SSH 连接失败。**
+
+```
+[Errno None] Unable to connect to port 29046 on 36.103.198.204
+```
+
+AutoDL 实例重启后 SSH 端口会变。请到 AutoDL 控制台查看 westd-29046 的新端口，然后更新 `~/.ssh/config` 中对应的端口配置。
+
+更新后告诉我新端口，我再继续执行状态检查和恢复流水线。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "uuid": "813db122-b295-4ff1-abfc-8ef75038422f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAUPCxEn2ckNUxoNZSCDif",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 27147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 15_
+
+**SSH 连接失败。**
+
+```
+[Errno None] Unable to connect to port 29046 on 36.103.198.204
+```
+
+AutoDL 实例重启后 SSH 端口会变。请到 AutoDL 控制台查看 westd-29046 的新端口，然后更新 `~/.ssh/config` 中对应的端口配置。
+
+更新后告诉我新端口，我再继续执行状态检查和恢复流水线。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 24294,
+  "duration_api_ms": 24919,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "35e3c50c-ee22-4a17-8933-e2e89ba4ab45",
+  "total_cost_usd": 0.15094449999999998,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 16040,
+    "cache_read_input_tokens": 63795,
+    "output_tokens": 668,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16040,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 280,
+        "cache_read_input_tokens": 27147,
+        "cache_creation_input_tokens": 734,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 734
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1957,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002062,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 668,
+      "cacheReadInputTokens": 63795,
+      "cacheCreationInputTokens": 16040,
+      "webSearchRequests": 0,
+      "costUSD": 0.1488825,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b1e7c941-eab0-4cbf-aacc-00fbb62bc6fe"
+}
+```
+
+</details>
+
+---

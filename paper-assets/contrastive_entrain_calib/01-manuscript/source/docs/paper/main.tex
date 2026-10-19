@@ -1,0 +1,65 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+% Float spacing for 8-page compliance
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\floatsep}{4pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{1pt}
+
+\newcommand{\dsyc}{d_{\text{syc}}}
+\newcommand{\tof}{\text{ToF}}
+\newcommand{\nof}{\text{NoF}}
+\newcommand{\sycon}{\textsc{SyconScore}}
+\newcommand{\rone}{R_1}
+\newcommand{\rthree}{R_3}
+
+\title{The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\input{sections/introduction}
+
+\input{sections/related_work}
+
+\input{sections/framework}
+
+\input{sections/direction_quality}
+
+\input{sections/cosine_failure}
+
+\input{sections/probe_trap}
+
+\input{sections/discussion}
+
+\input{sections/conclusion}
+
+\section*{Limitations}
+\input{sections/limitations}
+
+\bibliography{references}
+
+\clearpage
+\appendix
+\input{sections/appendix}
+
+\end{document}

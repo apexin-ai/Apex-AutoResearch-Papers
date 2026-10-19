@@ -1,0 +1,44 @@
+{
+  "exp_id": "acib_v71_scorer_only_seed2",
+  "project": "action_cond_info_bottleneck",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:43:08.575Z",
+    "updated_at": "2026-05-17T09:56:10.087Z",
+    "hypothesis": "v7.1 scorer-only training (seed2): freeze action expert，仅训练 scorer (123K params)，从原始 lerobot/smolvla_libero 开始。Multi-seed 验证 scorer-only training 的稳定性。Pass: alpha=0.0 eval = baseline, Probe A cos < 0.8。",
+    "parent": "acib_v7_alpha00_eval",
+    "spec": {
+      "command": "python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --seed 123 --train_scorer_only --freeze_action_expert --output_dir /root/autodl-tmp/acib_v7.1_scorer_only_seed2",
+      "server": "westb-13953",
+      "gpu": "cuda:1",
+      "pid": 3693,
+      "log_path": "/root/runs/action_cond_info_bottleneck/acib_v71_scorer_only_seed2.log",
+      "submitted_at": "2026-05-17T06:43:31.524Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_dataset",
+      "data_count": 273465,
+      "model_name": "lerobot/smolvla_libero",
+      "seed": 123,
+      "checkpoint_source": "lerobot/smolvla_libero (original, no prior ACIB training)",
+      "eval_data": "N/A (training experiment)",
+      "output_dir": "/root/autodl-tmp/acib_v7.1_scorer_only_seed2",
+      "started_at": "2026-05-17T06:45:00Z",
+      "notes": "v7.1 scorer-only seed2: freeze_action_expert=True, train_scorer_only=True. Multi-seed replication of seed1.",
+      "wall_clock_seconds": 11558.6,
+      "gpu_hours": 3.21
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T09:56:09.039Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T09:56:10.087Z"
+  },
+  "timestamp": "2026-05-17T09:56:10.148229+00:00",
+  "trigger": "update_registry"
+}

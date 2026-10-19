@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97dd650ecf5355107d6a",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "probe v6 checkpoint 10000 probe a",
+  "task_key": "worker_probe_v6-checkpoint-10000-probe-a_20260516T095005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_probe_v6-checkpoint-10000-probe-a_20260516T095005_result.json",
+    "occurrence": 1,
+    "bytes": 2340,
+    "sha256": "842e7bdaaa59c2b09d5eb03fb5a62f38ffc9053d7770347e13951ace45aab007"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Probe A 结果：❌ conditioning 名存实亡\n\n| 指标 | 数值 |\n|------|------|\n| Probe A cos (min) | **0.9999** |\n| Probe A cos (max) | **1.0000** |\n| bit_identical | False (但 cos ≈ 1.0) |\n\n**判定：cos > 0.95 → conditioning 名存实亡 ❌**\n\n脚本 verdict 也确认：**\"scorer IGNORES language instruction (architecturally + empirically)\"**\n\nProbe B 同样 cos ∈ [0.998, 0.999]，importance map 跨任务几乎一致，是 spatial position prior 而非 action-conditioned selection。\n\n### 初步原因分析\n\n三个任务的 scorer weights 均值都在 0.51 附近、std ~0.47，换不同 language instruction 后 cos > 0.9999。说明 language embedding 虽然通过 `condition_source=language` 路径传入了 scorer，但：\n\n1. **Gradient flow 可能断了** — language embedding 经 scorer MLP 后对 logits 的贡献极小，可能被 visual features 的量级淹没。需要检查 scorer 的 `task_proj` 层梯度范数是否 ≈ 0。\n2. **信息瓶颈 loss 主导** — alpha/beta 正则项可能把 scorer 推向忽略 conditioning signal 的 trivial solution（均匀 ~0.5 权重），因为\"不依赖 language\"是最小化 mutual information 的简单策略。\n3. **Architecture 问题** — scorer 的 conditioning 实现可能是 additive/concatenation 方式，language embedding 维度远小于 visual token 维度，被压制。\n\n### 完整 Probe 输出\n\n```\nProbe A: fixed image, swap instruction\n  inst='pick up the bbq sauce...'      w[mean=0.5122 std=0.4668]\n  inst='pick up the black bowl next...' w[mean=0.5150 std=0.4651]\n  inst='pick up the black bowl in...'   w[mean=0.5167 std=0.4636]\n  pair (0 vs 1): cos=0.999960  l2=0.070474\n  pair (0 vs 2): cos=0.999920  l2=0.100317\n  pair (1 vs 2): cos=0.999988  l2=0.038678\n\nProbe B: natural cross-task obs\n  pair (0 vs 1): cos=0.998252  l2=0.467178\n  pair (0 vs 2): cos=0.998437  l2=0.437578\n  pair (1 vs 2): cos=0.999146  l2=0.325844\n\nVERDICT: scorer IGNORES language instruction\n```\n\n另外注意：GPU 0 上有 4 个重复的 v6 训练进程（PID 920698/920699/920700/920702），与主进程 866194 写同一 output_dir，这是 C001 约束的违规场景。这些进程目前未占用 GPU 显存（nvidia-smi 只显示 866194），可能是 data loader workers，但建议确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/probe-v6-checkpoint-10000-probe-a.md"
+}

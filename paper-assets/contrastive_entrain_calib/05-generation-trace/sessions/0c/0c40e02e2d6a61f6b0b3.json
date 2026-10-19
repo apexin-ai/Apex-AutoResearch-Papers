@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c40e02e2d6a61f6b0b3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp 003 len512 prep",
+  "task_key": "worker_code_exp-003-len512-prep_20260522T235826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-003-len512-prep_20260522T235826_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "d04c7f9a5cd144fa48e011caddb83c6f75905be6bec99d9ce1661b50dce7c01e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪，语法验证通过。\n\n```\n脚本路径: /root/contrastive_entrain_calib/training/run_exp003_len512_r3only.py\n关键参数变化: max_completion_length 256→512\n其余参数: 与 exp-003 完全一致\n  - r1=0, r2=0, r3=1.0 (R3-only)\n  - num_generations=2, beta=0.04, temperature=0.7\n  - lr=5e-5, warmup=100, cosine scheduler\n  - LoRA r=64, alpha=64, targets=[q,v,k,o_proj]\n  - max_steps=8000, save_steps=500, seed=42\n  - report_to=\"none\" (无 wandb)\n\n显存预估: 可行\n  - GPU: NVIDIA RTX PRO 6000 Blackwell, 96GB/卡\n  - exp-003 (len=256) 在 cuda:0 占用 ~38GB\n  - len=512 主要增加 generation 阶段 KV cache（batch=1, group=2, 额外 256 tokens）\n  - KV cache 增量约 2-4GB（Qwen3-8B, GQA, bf16）\n  - 预估峰值 ~42-45GB，96GB 完全够用\n\n启动命令（待 cuda:1 释放后执行）:\nCUDA_VISIBLE_DEVICES=1 nohup python /root/contrastive_entrain_calib/training/run_exp003_len512_r3only.py \\\n  > /root/contrastive_entrain_calib/logs/exp003_len512.log 2>&1 &\n\n状态: 代码就绪，待 cuda:1 释放后启动\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-003-len512-prep.md"
+}

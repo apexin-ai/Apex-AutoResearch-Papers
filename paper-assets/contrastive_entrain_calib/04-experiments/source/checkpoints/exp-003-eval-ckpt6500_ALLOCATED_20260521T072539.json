@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp-003-eval-ckpt6500",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-21T04:34:52.934Z",
+    "updated_at": "2026-05-21T07:25:39.140Z",
+    "hypothesis": "Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?",
+    "parent": "exp-003",
+    "reproduce": {
+      "finished_at": "2026-05-21T07:22:00.484Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.",
+    "completed_at": "2026-05-21T07:22:03.528Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T07:22:07.737419+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-21T07:25:39.251048+00:00",
+  "trigger": "update_registry"
+}

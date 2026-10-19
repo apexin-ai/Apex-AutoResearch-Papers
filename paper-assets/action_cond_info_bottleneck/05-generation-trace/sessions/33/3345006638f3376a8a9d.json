@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3345006638f3376a8a9d",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra check eval alive",
+  "task_key": "worker_infra_check-eval-alive_20260515T202037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-eval-alive_20260515T202037_result.json",
+    "occurrence": 1,
+    "bytes": 1451,
+    "sha256": "f76592de2036c2e62005dd4261282b3de7193a870f172f987fc272da8d76709a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. Eval 进程 — 存活\n\n| 进程 | PID | CPU% | 内存 (RSS) | 启动时间 | 累计 CPU 时间 | 当前 task |\n|------|-----|------|-----------|---------|-------------|-----------|\n| baseline_std_v3 | 109428 | 2187% | ~13.6 GB | 03:38 | 932 min | `libero_spatial` |\n| baseline_plus_v2 | 109501 | 2044% | ~12.9 GB | 03:38 | 871 min | `libero_spatial` |\n\n两个进程都在活跃运行，CPU 高占用说明在做 rollout 推理。\n\n### 2. GPU 利用率\n\n| GPU | 型号 | 利用率 | 显存使用 |\n|-----|------|--------|---------|\n| GPU 0 | RTX PRO 6000 Blackwell (98 GB) | 23% | 4384 / 97887 MiB |\n| GPU 1 | RTX PRO 6000 Blackwell (98 GB) | 1% | 4384 / 97887 MiB |\n\n显存占用很低（~4.3 GB/卡），GPU 利用率也不高——符合 `batch_size=1` 的 eval 特征，瓶颈在 CPU 端的环境仿真。\n\n### 3. 日志内容\n\n- **baseline_std_v3**: rollout 进度 ~18%（49/280 steps），`running_success_rate=0.0%`\n- **baseline_plus_v2**: rollout 进度 ~11%（30/280 steps），`running_success_rate=0.0%`\n\n两个都在跑 `libero_spatial` 的某一集 rollout。\n\n### 4. 数据集下载\n\n- `/root/autodl-tmp/.hf_cache/hub/datasets--lerobot--libero` 只有 4.0K（仅目录结构/metadata）\n- 无 `snapshot_download` 进程在运行\n\n数据集实际未下载或走的其他缓存路径。eval 正常运行说明数据来自别处或 libero 环境不需要预下载数据集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-eval-alive.md"
+}

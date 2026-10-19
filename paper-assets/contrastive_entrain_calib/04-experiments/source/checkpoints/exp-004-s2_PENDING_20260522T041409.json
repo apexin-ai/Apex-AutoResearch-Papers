@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-s2",
+  "project": "contrastive_entrain_calib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:14:05.412Z",
+    "updated_at": "2026-05-22T04:14:09.555Z",
+    "hypothesis": "ACT (SFT) seed 2 训练：验证 ACT 跨 seed 稳定性。Seed 1 (exp-004) 16/16 checkpoints > vanilla (0.170→0.301)。如果 seed 2 也展现类似 trajectory，则堵住 Reviewer \"ACT 只有 1 个 seed\" 攻击面。配置与 exp-004 完全相同，仅 seed=42→43。",
+    "parent": "exp-004"
+  },
+  "timestamp": "2026-05-22T04:14:09.709990+00:00",
+  "trigger": "update_registry"
+}

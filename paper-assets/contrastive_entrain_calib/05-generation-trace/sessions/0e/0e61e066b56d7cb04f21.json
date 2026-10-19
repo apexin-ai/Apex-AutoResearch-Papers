@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "0e61e066b56d7cb04f21",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code exp002v3 deepspeed zero2",
+  "task_key": "worker_code_exp002v3-deepspeed-zero2_20260519T083215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002v3-deepspeed-zero2_20260519T083215.log",
+    "occurrence": 1,
+    "bytes": 1180109,
+    "sha256": "0a41d29d42f9910b2ddc5296898f6f6e874e665e7b63ed0746b09f074ecdde1a"
+  },
+  "statistics": {
+    "messages": 375,
+    "user_turns": 1,
+    "tool_calls": 136,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 136,
+      "tool_result": 136,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 209,
+      "chunks": [
+        {
+          "path": "0e61e066b56d7cb04f21-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "0e61e066b56d7cb04f21-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 166,
+      "chunks": [
+        {
+          "path": "0e61e066b56d7cb04f21-part-0002.json",
+          "message_count": 139
+        },
+        {
+          "path": "0e61e066b56d7cb04f21-part-0003.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp002v3-deepspeed-zero2.md"
+}

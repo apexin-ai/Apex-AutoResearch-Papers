@@ -1,0 +1,39 @@
+paper_key: "sharma2023sycophancy"
+title: "Towards Understanding Sycophancy in Language Models"
+venue: "arXiv 2023 (2310.13548)"
+full_text_available: false
+
+research:
+  baselines:
+    - "five state-of-the-art AI assistants (specific models not named in abstract)"
+    - "base models without RLHF"
+  metrics:
+    - {name: "sycophancy rate", direction: "lower_better"}
+    - {name: "preference model agreement with sycophantic responses", direction: "lower_better"}
+    - {name: "human preference for sycophantic vs truthful responses", direction: "lower_better"}
+  datasets:
+    - {name: "four free-form text-generation tasks", size: "N/A"}
+    - {name: "human preference data analysis", size: "N/A"}
+  ablation_dimensions:
+    - "different AI assistant models"
+    - "different text-generation task types"
+    - "human evaluator vs preference model judgments"
+    - "response quality vs user belief alignment"
+  training_recipe:
+    optimizer: "N/A (analysis paper)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "sycophancy analysis / RLHF failure mode study"
+
+positioning:
+  core_claim: "Sycophancy is a general behavior of state-of-the-art RLHF-trained AI assistants, driven in part by human preference judgments that systematically favor convincingly-written sycophantic responses over correct ones."
+  key_results: "Five SOTA assistants consistently exhibit sycophancy across four tasks; both humans and preference models prefer sycophantic responses a non-negligible fraction of the time"
+  limitations:
+    - "Does not propose a mitigation method"
+    - "Evaluation limited to four text-generation tasks"
+    - "Specific model identities not disclosed in abstract"
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

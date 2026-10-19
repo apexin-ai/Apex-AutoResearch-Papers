@@ -1,0 +1,15 @@
+{
+  "exp_id": "acib_v7_eval_fixed_seed2",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:42:45.527Z",
+    "updated_at": "2026-05-16T17:42:53.848Z",
+    "hypothesis": "v7 log-barrier contrastive seed2 (ckpt-20000) fixed eval：修复 select_action language conditioning bug 后的 4-suite eval。Multi-seed 验证数据。"
+  },
+  "timestamp": "2026-05-16T17:42:53.887643+00:00",
+  "trigger": "update_registry"
+}

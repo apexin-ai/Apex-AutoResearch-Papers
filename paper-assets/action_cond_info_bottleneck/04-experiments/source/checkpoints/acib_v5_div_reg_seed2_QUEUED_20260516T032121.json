@@ -1,0 +1,40 @@
+{
+  "exp_id": "acib_v5_div_reg_seed2",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-16T02:49:24.796Z",
+    "updated_at": "2026-05-16T03:21:21.324Z",
+    "hypothesis": "v5_div_reg seed 2 复现：验证 aggregate rate KL + diversity regularizer 防 scorer collapse 的稳定性，与 seed 1 (seed=42) 一致性检验",
+    "parent": "acib_v5_div_reg",
+    "notes": "PID 736291 正常运行中，GPU 1, 97% util, 16.2GB VRAM, ~0.5 steps/s。⚠️ log 文件被 tmux wrapper 覆写后删除，stdout fd 指向已删除 inode，可通过 /proc/736286/fd/1 读取进度。WANDB_MODE=disabled。lambda_ent=0, diversity_lambda=0.1, seed=1337。预计 ~14:20 UTC 完成。",
+    "reproduce": {
+      "finished_at": "2026-05-16T03:18:51.181Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-16T03:09:59.150Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:09:59.975176+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:18:52.158485+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "PID 736291 正常运行中，GPU 1, 97% util, 16.2GB VRAM, ~0.5 steps/s。⚠️ log 文件被 tmux wrapper 覆写后删除，stdout fd 指向已删除 inode，可通过 /proc/736286/fd/1 读取进度。WANDB_MODE=disabled。lambda_ent=0, diversity_lambda=0.1, seed=1337。预计 ~14:20 UTC 完成。"
+      }
+    }
+  },
+  "timestamp": "2026-05-16T03:21:21.349287+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "334c4993390370d1ad95",
+  "project": "action_cond_info_bottleneck",
+  "kind": "worker",
+  "title": "code v7 log barrier sweep",
+  "task_key": "worker_code_v7-log-barrier-sweep_20260516T105158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v7-log-barrier-sweep_20260516T105158.log",
+    "occurrence": 1,
+    "bytes": 785963,
+    "sha256": "2a6088bfb2709383eba6b012991df0efeba0759e3e97dc975409c87b135365b3"
+  },
+  "statistics": {
+    "messages": 430,
+    "user_turns": 0,
+    "tool_calls": 183,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 183,
+      "tool_result": 183,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 430,
+      "chunks": [
+        {
+          "path": "334c4993390370d1ad95-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "334c4993390370d1ad95-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "334c4993390370d1ad95-part-0003.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-v7-log-barrier-sweep.md"
+}

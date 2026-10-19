@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp-003-s3",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:15:04.053Z",
+    "updated_at": "2026-05-25T17:21:39.395Z",
+    "hypothesis": "R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python training/run_exp003_s3_r3only.py",
+      "server": "westd-29046",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "31710",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-s3.log",
+      "submitted_at": "2026-05-22T16:18:05.870Z",
+      "submitted_via": "tmux",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 44,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp003_r3only_seed3/",
+      "checkpoint_source": "from_scratch",
+      "eval_data": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "wall_clock_seconds": 263013.5,
+      "gpu_hours": 73.06
+    },
+    "conclusion": "killed",
+    "notes": "Requeued to westd-29046 cuda:1 (96GB RTX PRO 6000). Previous attempt OOM on westd-28034 RTX 5090 32GB.",
+    "completed_at": "2026-05-25T17:21:39.395Z"
+  },
+  "timestamp": "2026-05-25T17:21:39.886862+00:00",
+  "trigger": "update_registry"
+}

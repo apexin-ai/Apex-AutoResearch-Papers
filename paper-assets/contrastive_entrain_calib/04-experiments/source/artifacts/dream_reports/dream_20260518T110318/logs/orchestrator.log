@@ -1,0 +1,3 @@
+2026-05-18 11:35:06,775 INFO    core.tools.feishu  create_chat: name='审稿-contrastive_entrain_calib' → chat_id=oc_056796cf71f839be40019e5f1a11791b
+2026-05-18 11:35:06,779 INFO    core.tools.dream  [dream] auto-created Group C for project=contrastive_entrain_calib: oc_056796cf71f839be40019e5f1a11791b
+2026-05-18 11:35:07,072 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/config/mcp_config_dream_review_director.json

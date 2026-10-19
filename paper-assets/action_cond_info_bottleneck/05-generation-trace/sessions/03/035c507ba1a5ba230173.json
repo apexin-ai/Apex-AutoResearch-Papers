@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "035c507ba1a5ba230173",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh collect v72 results",
+  "task_key": "worker_ssh_collect_v72_results_20260517T222842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_v72_results_20260517T222842_result.json",
+    "occurrence": 1,
+    "bytes": 3271,
+    "sha256": "20466f514219c56d71465b924cb21ce6acd5e215e8ab60aa467d0b2241dd6498"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告：\n\n---\n\n## 1. 进程状态\n\n**仍在运行。** PID 40598 (GPU 0, α=0.0) 和 PID 44022 (GPU 1, α=1.0) 均在跑 libero_10（第 4 个也是最后一个 suite）。前 3 个 suite 已完成。\n\n## 2. libero_10 结果\n\n**尚未产出。** 两个进程正在执行 libero_10 评估，eval_info.json 尚未写出。\n\n## 3. 已完成的 3-suite 结果\n\n| Suite | α=0.0 | α=1.0 |\n|-------|--------|--------|\n| libero_spatial | **59.40%** | **61.00%** |\n| libero_object | **65.60%** | **66.20%** |\n| libero_goal | **78.60%** | **78.00%** |\n| libero_10 | (running) | (running) |\n| 3-suite avg | **67.87%** | **68.40%** |\n\n4-suite avg 待 libero_10 完成后计算。\n\n## 4. v7.3 LoRA 代码验证\n\n**通过。**\n- `ACIBConfig(freeze_mode='connector_lora', lora_rank=8, lora_scale=1.0)` 正常创建\n- `ACIBConfig(freeze_mode='connector_only')` 正常创建\n- `LoRALinear` 类（定义在 `acib/acib_policy.py`）：forward 正常，zero-init B=0 验证通过（diff=0.00e+00）\n- `test_v73_t2.py` 需加载完整模型（>30s），因 SSH 超时和 GPU 被占用无法完整运行，但轻量级功能验证已通过\n\n## 5. 训练脚本完整内容\n\n### run_v73_connector_lora.sh\n```bash\n#!/bin/bash\n# v7.3: connector LoRA + scorer\n# Trainable: LoRA A+B (~20K) + scorer (~0.1M), all else frozen\nset -euo pipefail\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/acib\nexport WANDB_MODE=disabled MUJOCO_GL=egl PYOPENGL_PLATFORM=egl\n\nSEED=${1:-42}\nGPU=${2:-0}\nOUTPUT_DIR=\"/root/autodl-tmp/acib_v73_connector_lora_seed${SEED}\"\n\npython3 -u scripts/train_acib.py \\\n  --model_id lerobot/smolvla_libero \\\n  --dataset_id lerobot/libero \\\n  --data_root /root/autodl-tmp/libero_dataset \\\n  --hidden_dim 64 \\\n  --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 \\\n  --mode soft --condition_source language --conditioning_mode concat \\\n  --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --lambda_drift 0.0 \\\n  --steps 20000 --batch_size 64 --lr 5e-5 --warmup_steps 1000 --grad_clip 1.0 \\\n  --save_freq 5000 --dtype bfloat16 \\\n  --gpu ${GPU} --seed ${SEED} \\\n  --freeze_mode connector_lora --lora_rank 8 --lora_scale 1.0 \\\n  --output_dir \"${OUTPUT_DIR}\"\n```\n\n### run_connector_only.sh\n```bash\n#!/bin/bash\n# Connector-only ablation: only task loss, no scorer/contrastive/IB\n# Purpose: isolate whether v7.2 gains come from connector tuning vs scorer-driven learning\nSEED=${1:-42}\nGPU=${2:-0}\nOUTPUT_DIR=\"/root/autodl-tmp/acib_connector_only_seed${SEED}\"\n\ncd /root/acib\n/root/miniconda3/bin/python3 -u scripts/train_acib.py \\\n  --model_id lerobot/smolvla_libero \\\n  --dataset_id lerobot/libero \\\n  --data_root /root/autodl-tmp/libero_dataset \\\n  --hidden_dim 64 \\\n  --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 \\\n  --mode soft --condition_source language --conditioning_mode concat \\\n  --lambda_contrastive 0.0 --diversity_lambda 0.0 --lambda_ent 0.0 \\\n  --steps 20000 --batch_size 64 --lr 5e-5 --warmup_steps 1000 --grad_clip 1.0 \\\n  --save_freq 5000 --dtype bfloat16 \\\n  --gpu ${GPU} --seed ${SEED} \\\n  --freeze_mode connector_only \\\n  --lambda_drift 0.0 \\\n  --output_dir \"${OUTPUT_DIR}\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-collect-v72-results.md"
+}

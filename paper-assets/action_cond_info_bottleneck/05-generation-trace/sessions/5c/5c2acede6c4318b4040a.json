@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c2acede6c4318b4040a",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diag mvp1 baseline std exit",
+  "task_key": "worker_diag_mvp1_baseline_std_exit_20260515T213241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_mvp1_baseline_std_exit_20260515T213241_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "2da3e721f300882909ee8388a96942edde16041ae6da6e4796b9044078ec2ed2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**mvp1_baseline_std** — 进程被外部终止，libero_spatial 完成，其余未完成。\n\n### libero_spatial (COMPLETED, 10/10 tasks, 500 episodes)\n\n| Task | SR |\n|------|----|\n| T0 | 82% |\n| T1 | 74% |\n| T2 | 88% |\n| T3 | 86% |\n| T4 | 52% |\n| T5 | 0% |\n| T6 | 90% |\n| T7 | 66% |\n| T8 | 58% |\n| T9 | 64% |\n| **Avg** | **66.0%** |\n\n### libero_object (KILLED)\n- Task 0 只完成 9/50 episodes，无 eval_info.json\n- libero_goal、libero_10 未开始\n\n### 死因\n- PID 109428 已退出，日志无 error/traceback/OOM\n- dmesg 无权限读取\n- 与 mvp1_baseline_plus 同时被杀（plus 也在 libero_object 中途终止），推测为外部信号终止\n\n### 已执行\n- Registry: status=DONE, conclusion=killed, notes 含完整结果\n- Cron 监控已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-mvp1-baseline-std-exit.md"
+}

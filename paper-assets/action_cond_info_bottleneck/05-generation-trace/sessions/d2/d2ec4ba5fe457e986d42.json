@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2ec4ba5fe457e986d42",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "monitor acib v4 early check",
+  "task_key": "worker_monitor_acib_v4_early_check_20260516T010310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_acib_v4_early_check_20260516T010310_result.json",
+    "occurrence": 1,
+    "bytes": 89,
+    "sha256": "b26dba6d5e1bc48ca3ffc9c8b471aa7fab0814afbea88734cd9cb584849166d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已确认存活，等待约60秒让模型加载后再检查日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-acib-v4-early-check.md"
+}

@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp-008-seed4-eval",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T07:32:04.350Z",
+    "updated_at": "2026-05-25T09:00:12.057Z",
+    "hypothesis": "Eval seed4 (seed=44) checkpoints to measure ToF/NoF/SYCONScore/entropy across training, confirming consistency with seed2/seed3.",
+    "parent": "exp-008-seed4",
+    "spec": {
+      "command": "bash /root/contrastive_entrain_calib/eval/run_exp008_seed4_full_eval.sh",
+      "server": "westd-29046",
+      "gpu_id": 0,
+      "data_path": "/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp008_sft_seed44/",
+      "eval_data": "calibration_v2_1_expanded.jsonl"
+    },
+    "metrics": {
+      "eval": {
+        "ckpt-500": {
+          "ToF": 0.1547,
+          "NoF": 0.8122,
+          "SYCONScore": 0.2599,
+          "entropy": 0.3398
+        },
+        "ckpt-1000": {
+          "ToF": 0.2265,
+          "NoF": 0.7569,
+          "SYCONScore": 0.3487,
+          "entropy": 0.3439
+        },
+        "ckpt-1500": {
+          "ToF": 0.2431,
+          "NoF": 0.7569,
+          "SYCONScore": 0.368,
+          "entropy": 0.3435
+        },
+        "ckpt-2000": {
+          "ToF": 0.2155,
+          "NoF": 0.8343,
+          "SYCONScore": 0.3425,
+          "entropy": 0.1556
+        },
+        "final": {
+          "ToF": 0.2155,
+          "NoF": 0.8343,
+          "SYCONScore": 0.3425,
+          "entropy": 0.1556
+        }
+      },
+      "best_checkpoint": "ckpt-1500",
+      "best_sycon": 0.368,
+      "trend": "peaks at ckpt-1500 (0.368), slight decline at ckpt-2000 (0.343)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T09:00:12.413217+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,24 @@
+\section{The Probe Reward Trap}
+\label{sec:probe_trap}
+
+The cosine formulations fail because the continuous projection of $\dsyc$ produces a gap too narrow for reward contrast.
+A natural remedy is to discretize: train a logistic probe on $\dsyc$ and threshold its output, yielding $\rone = \mathbb{I}[P(\text{syc} \mid \mathbf{h}) &lt; 0.5]$ (F3 in \S\ref{ssec:reward}).
+We show that this discretization sidesteps the magnitude problem but creates a qualitatively worse failure.
+
+\paragraph{Differentiable probe: gradient gaming.}
+Without stop-gradient (exp-008), the policy discovers within ${\sim}30$ steps that shifting activations away from the sycophancy cluster maximizes $\rone$ regardless of response content, producing an inverted profile ($\tof = 0.978$, $\nof = 0.006$).
+
+\paragraph{Binary probe: the stubbornness trap.}
+With stop-gradient (exp-008v3), the policy cannot game the boundary but exploits a deeper flaw: $\dsyc$ does not condition on input validity, so refusing to revise a wrong answer receives the same $\rone = 1$ as correctly resisting invalid pressure.
+By step 500, $\tof$ drops to 0.000 and $\nof$ reaches 0.995, yielding $\sycon = 0$.
+
+\paragraph{Behavioral death precedes distributional collapse.}
+Table~\ref{tab:probe_trajectory} reveals a 1,300-step lag between behavioral and distributional collapse.
+At step 500, the model is behaviorally dead ($\tof = 0$) yet entropy remains at 0.70 and the combined reward averages $+0.72$.
+Entropy does not collapse until step ${\sim}1840$.
+Entropy-based early stopping would miss the failure entirely; detecting probe reward traps requires behavioral monitoring.
+
+\paragraph{A dilemma for direction-based rewards.}
+With gradients, the policy games the boundary; without, it exploits the fact that stubbornness and genuine resistance are indistinguishable along $\dsyc$.
+Any reward conditioned only on $\dsyc$ will either be gamed or will reward rigidity.
+Escaping this requires a signal that incorporates evidential warrant.

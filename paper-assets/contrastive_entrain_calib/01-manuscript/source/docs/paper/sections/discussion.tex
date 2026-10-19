@@ -1,0 +1,89 @@
+\section{When Does Discriminability Fail as Reward Utility?}\label{sec:discussion}
+
+\paragraph{Root cause of the probe reward trap.}
+The probe reward trap (\S\ref{sec:probe_trap}) and the cosine failures (\S\ref{sec:cosine_failure}) share a common geometric root.
+$\dsyc$ encodes the \emph{direction} of belief change but not its \emph{evidential warrant}: valid revision and sycophantic capitulation both shift activations toward the user's position along the same direction.
+The two reward families expose complementary faces of this blindness.
+Cosine $\rone$ penalizes all belief change indiscriminately (mode collapse, F1c--F1d); the binary probe $\rone$ rewards all resistance regardless of input validity (stubbornness trap, $\tof{=}0$ by step 500), dual consequences of a direction that conflates resisting invalid challenges with refusing valid corrections.
+Although $\dsyc$ separability correlates with evidence strength (\S\ref{sec:direction_quality}), it encodes \emph{how much} belief changed, not whether the change was appropriate (\S\ref{sec:probe_trap}).
+Cross-model evidence (Llama-3-8B AUROC $0.779$) confirms the limitation generalizes.
+This contrasts with safety directions~\citep{zhang2026latentgrpo}, where the target behavior is geometrically distinct~\citep{wu2026rewardhacking}; independent work confirms that persona vectors are independent of $\dsyc$~\citep{kelkar2026persona} and sycophancy sub-behaviors collapse onto its single axis~\citep{vennemeyer2025sycophancy}.
+
+\paragraph{GRPO results under our configuration.}
+
+\begin{table}[t]
+\centering
+\caption{Sycophancy calibration methods on Qwen3-8B. Higher $\sycon$ (harmonic mean of $\tof$ and $\nof$) indicates better calibration.}
+\label{tab:main_comparison}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Method & Type & $\sycon$ $\uparrow$ & $\tof$ $\uparrow$ & $\nof$ $\uparrow$ & Step \\
+\midrule
+Vanilla & -- & 0.134 & 0.072 & 0.945 & -- \\
+\midrule
+\multicolumn{6}{l}{\textit{GRPO with $\dsyc$}} \\
+Cosine $\rone$ (F1a--F1d)$^a$ & RL & 0.000 & 0.000 & 1.000 & 500 \\
+Binary Probe $\rone$ (F2) & RL & 0.000 & 0.000 & 0.995 & 500 \\
+Continuous Probe $\rone$ (F3) & RL & 0.124 & 0.066 & 0.934 & 500 \\
+\midrule
+\multicolumn{6}{l}{\textit{GRPO without $\dsyc$}} \\
+$\rthree$-only GRPO$^b$ & RL & 0.153 & 0.083 & 0.983 & 6500 \\
+\midrule
+\multicolumn{6}{l}{\textit{SFT with $\dsyc$ probe penalty}} \\
+SFT probe (seed 2)$^c$ & SFT & 0.393 & 0.276 & 0.680 & 500 \\
+SFT probe (seed 3)$^c$ & SFT & 0.407 & 0.287 & 0.696 & 1000 \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference methods}$^d$} \\
+ActAdd ($\alpha{=}5$) & Inference & 0.054 & 0.028 & 0.961 & -- \\
+\textbf{ACT} (seed 1) & SFT & \textbf{0.301} & \textbf{0.182} & 0.867 & 8000 \\
+ACT (seed 2)$^e$ & SFT & 0.286 & 0.171 & 0.862 & 7000 \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^a$All collapsed from step 1 ($\tof{=}0$); F1d diverged at step 2160.} \\
+\multicolumn{6}{l}{\footnotesize $^b$Best of 28 checkpoints (2 seeds); only 4/28 exceed vanilla.} \\
+\multicolumn{6}{l}{\footnotesize $^c$Peak ckpt (train/eval overlap); 2/3 seeds collapse by step 2000 (mean $0.171 \pm 0.122$).} \\
+\multicolumn{6}{l}{\footnotesize $^d$Not directly comparable: differ from GRPO along 5+ dimensions (\S\ref{sec:discussion}).} \\
+\multicolumn{6}{l}{\footnotesize $^e$15 ckpts, all ${>}$ vanilla. Best $\sycon{=}0.286$ (step 7000).} \\
+\end{tabular}}
+\end{table}
+
+If $\dsyc$ alone caused the cosine and probe failures (\S\ref{sec:cosine_failure}--\S\ref{sec:probe_trap}), removing it should recover calibration.
+$\rthree$-only GRPO tests this: only a minority of checkpoints across two seeds exceed vanilla, with both seeds oscillating before diverging (Table~\ref{tab:main_comparison}; Figure~\ref{fig:trajectory}).
+$\rthree$ mirrors $\dsyc$'s limitation: it identifies valid corrections at a negligible rate, confirming that the asymmetry reflects the NLI hypothesis design, not behavioral collapse.
+Both signals encode \emph{whether} belief changed, not \emph{whether it should have}.
+
+\paragraph{Competing hypotheses and ablation.}
+Three explanations are consistent with these failures: (a)~$\dsyc$ is fundamentally unsuitable as a sycophancy reward; (b)~group size$=$2 provides insufficient ranking diversity; (c)~sycophancy calibration resists scalar per-completion RL.
+Two ablations discriminate among them (Table~\ref{tab:ablation}).
+GRPO fails at both group sizes tested (gs$=$8: all below vanilla, terminated early) and at doubled sequence length (512 tokens, reward flat), ruling out~(b) and truncation (Table~\ref{tab:ablation}).
+Reducing ACT to GRPO's LoRA configuration still yields consistently higher $\sycon$, with every checkpoint exceeding vanilla; under matched adapters, per-token SFT achieves $2.1{\times}$ higher peak $\sycon$ than per-completion GRPO, identifying supervision granularity as one plausible explanation~\citep{beigi2025smart}; confounds are discussed in Limitations.
+The probe reward trap independently supports~(a): the trap arises despite stopped gradients.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Ablation: isolating supervision paradigm from LoRA configuration. All methods use Qwen3-8B with $\rthree$ (behavioral reward). Vanilla $\sycon{=}0.134$. $^\dagger$Terminated early after three checkpoints showed declining trajectory. $^\ddagger$Peak at step 7000; final checkpoint (step 8000) $\sycon{=}0.267$.}
+\label{tab:ablation}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Method & LoRA config & Best $\sycon$ & ${>}$Van. \\
+\midrule
+GRPO gs$=$2 (2 seeds) & r64, $\alpha$64, 4m & 0.153 & 4/28 \\
+GRPO gs$=$8$^\dagger$ & r64, $\alpha$64, 4m & 0.085 & 0/3 \\
+\midrule
+ACT reduced-LoRA$^\ddagger$ & r64, $\alpha$64, 4m & 0.326 & 16/16 \\
+ACT full s1 & r64, $\alpha$128, 7m & 0.301 & 16/16 \\
+ACT full s2 & r64, $\alpha$128, 7m & 0.286 & 15/15 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{ACT vs.\ probe-based methods.}
+ACT's advantage over GRPO is categorical: even ACT's worst checkpoint outperforms GRPO's best, with held-out $\sycon$ of $0.284$ confirming generalization beyond training data (Limitations).
+SFT with a differentiable probe penalty achieves higher peak $\sycon$ on the training set (Table~\ref{tab:main_comparison}), but these scores reflect full train/eval overlap and the advantage is transient: probe gaming (\S\ref{sec:probe_trap}) eliminates the regularization signal, and the model overfits to below vanilla by step 2000 in two of three seeds (mean $\sycon{=}0.171 \pm 0.122$).
+
+\paragraph{Inference-time probes and future directions.}
+Discriminability and reward utility occupy distinct roles: a direction that reliably \emph{detects} a behavior may fail to \emph{correct} it under optimization pressure.
+Inference-time reranking~\citep{papadatos2024probepenalties} and per-step process rewards~\citep{beigi2025smart} sidestep this by avoiding optimization-loop inclusion entirely.
+Per-step rewards can observe trajectory-level patterns, such as premature concession, that per-completion scalars cannot distinguish from legitimate revision.

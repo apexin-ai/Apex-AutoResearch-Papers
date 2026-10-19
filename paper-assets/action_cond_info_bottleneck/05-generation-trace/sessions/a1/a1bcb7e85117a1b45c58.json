@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a1bcb7e85117a1b45c58",
+  "project": "action_cond_info_bottleneck",
+  "kind": "worker",
+  "title": "infra fast eval launch",
+  "task_key": "worker_infra_fast-eval-launch_20260515T164645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fast-eval-launch_20260515T164645.log",
+    "occurrence": 1,
+    "bytes": 557618,
+    "sha256": "d255a74a7d3a225499a778b847546c8ea9bc610125bfa43183be4d6c3de186b9"
+  },
+  "statistics": {
+    "messages": 354,
+    "user_turns": 0,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 106,
+      "tool_call": 122,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 354,
+      "chunks": [
+        {
+          "path": "a1bcb7e85117a1b45c58-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1bcb7e85117a1b45c58-part-0002.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-fast-eval-launch.md"
+}

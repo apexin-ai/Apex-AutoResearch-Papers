@@ -1,0 +1,40 @@
+# Task result records
+
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
+
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_ssh_check-act-s2-ckpt1000_20260522T070257_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-check-act-s2-ckpt1000.md) | [Open JSON](../sessions/5f/5f1fbd2392fd36e9918a.json) |
+| `logs/workers/worker_ssh_check-exp003-training-progress_20260521T081216_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-check-exp003-training-progress.md) | [Open JSON](../sessions/76/762099a9c5450b0a458c.json) |
+| `logs/workers/worker_ssh_check-westb-13953_20260522T184704_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-check-westb-13953.md) | [Open JSON](../sessions/65/657b02db7fff0a34448f.json) |
+| `logs/workers/worker_ssh_cleanup-29046-root_20260522T125108_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-cleanup-29046-root.md) | [Open JSON](../sessions/1c/1c9974ffd8157fcd6660.json) |
+| `logs/workers/worker_ssh_cleanup-29046-tmp_20260522T125554_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-cleanup-29046-tmp.md) | [Open JSON](../sessions/f8/f8bf9097bd30336bd4b9.json) |
+| `logs/workers/worker_ssh_kill-dup-cuda2_20260522T193926_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-kill-dup-cuda2.md) | [Open JSON](../sessions/5b/5ba491d9165ad507082a.json) |
+| `logs/workers/worker_ssh_kill-duplicate-evals-28034_20260522T193601_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-kill-duplicate-evals-28034.md) | [Open JSON](../sessions/81/810432a7a4f288277153.json) |
+| `logs/workers/worker_ssh_kill-duplicate-fix-exp004s2_20260522T155341_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-kill-duplicate-fix-exp004s2.md) | [Open JSON](../sessions/f9/f9ca9f717ac09e1d2bc9.json) |
+| `logs/workers/worker_ssh_kill-eval-ckpt7500-29046_20260522T172718_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-kill-eval-ckpt7500-29046.md) | [Open JSON](../sessions/80/806aedd39c8e29562661.json) |
+| `logs/workers/worker_ssh_kill-grpo-28034-correct_20260522T170251_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-kill-grpo-28034-correct.md) | [Open JSON](../sessions/c8/c88250c6a59786946144.json) |
+| `logs/workers/worker_ssh_kill-gs8-duplicate-urgent_20260522T163843_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-kill-gs8-duplicate-urgent.md) | [Open JSON](../sessions/21/217dbb3fbc2a20468506.json) |
+| `logs/workers/worker_ssh_kill-oom-experiments-28034_20260522T163920_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-kill-oom-experiments-28034.md) | [Open JSON](../sessions/e0/e02667417ae21f13ea95.json) |
+| `logs/workers/worker_ssh_scp-act-s2-ckpt1500_20260522T082233_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-scp-act-s2-ckpt1500.md) | [Open JSON](../sessions/d0/d0b4aad01f9edf28454e.json) |
+| `logs/workers/worker_ssh_scp-seed2-batch_20260522T021253_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-scp-seed2-batch.md) | [Open JSON](../sessions/78/78c1bb2bf16a0ff13032.json) |
+| `logs/workers/worker_ssh_seed2-pipeline-check_20260521T114216_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-seed2-pipeline-check.md) | [Open JSON](../sessions/d6/d607132a7469bb60102a.json) |
+| `logs/workers/worker_ssh_seed2-training-check_20260522T021055_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-seed2-training-check.md) | [Open JSON](../sessions/da/da2c8d936b25efe0f634.json) |
+| `logs/workers/worker_ssh_verify-29046-and-pipeline_20260522T112258_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-verify-29046-and-pipeline.md) | [Open JSON](../sessions/33/3382d6de8fa7f1add92b.json) |
+| `logs/workers/worker_sync_dcgrpo_trainer_final_v2_20260518T125951_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/sync-dcgrpo-trainer-final-v2.md) | [Open JSON](../sessions/b0/b066f4b9b895a7a8710e.json) |
+| `logs/workers/worker_sync_directions_to_28034_20260518T150611_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/sync-directions-to-28034.md) | [Open JSON](../sessions/9f/9f1fa6fd5579bcfc8c88.json) |
+| `logs/workers/worker_sync_westd29046_to_28034_20260518T134132_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/sync-westd29046-to-28034.md) | [Open JSON](../sessions/94/94471f86a4d99612684e.json) |
+| `logs/workers/worker_test_exp004_single_gpu_vram_20260518T153642_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/test-exp004-single-gpu-vram.md) | [Open JSON](../sessions/37/37747c9b451ce198dca3.json) |
+| `logs/workers/worker_test_r3_fix_validation_20260518T160239_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/test-r3-fix-validation.md) | [Open JSON](../sessions/36/362bcbebfa2c3bcb0c94.json) |
+| `logs/workers/worker_test_westd28034_lora_vram_20260518T134538_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/test-westd28034-lora-vram.md) | [Open JSON](../sessions/f6/f65818e58c7f1fe2c9a3.json) |
+| `logs/workers/worker_train_exp-003-s3_20260525T124402_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/train-exp-003-s3.md) | [Open JSON](../sessions/d3/d3e6aa62e483db31f2dc.json) |
+| `logs/workers/worker_transfer_scp-ckpt7500-to-28034_20260521T082838_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/transfer-scp-ckpt7500-to-28034.md) | [Open JSON](../sessions/ed/ed8fe2dc0891d9fbc3b4.json) |
+| `logs/workers/worker_verify_exp002v3-gpu-v2_20260519T180741_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/verify-exp002v3-gpu-v2.md) | [Open JSON](../sessions/57/57232b249d896bc8eadd.json) |
+| `logs/workers/worker_verify_exp002v3-gpu_20260519T180346_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/verify-exp002v3-gpu.md) | [Open JSON](../sessions/c8/c8c39c515022861e572f.json) |
+| `logs/workers/worker_verify_exp014-params-match_20260518T165423_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/verify-exp014-params-match.md) | [Open JSON](../sessions/14/14d3e9483006ed961e40.json) |
+| `logs/workers/worker_viz_fig-trajectory-final_20260522T082254_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/viz-fig-trajectory-final.md) | [Open JSON](../sessions/b5/b512cd8186f579e4a780.json) |
+| `logs/workers/worker_viz_teaser-figure_20260523T131958_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/viz-teaser-figure.md) | [Open JSON](../sessions/4e/4e7ad2b9cc119b10c73a.json) |
+| `logs/workers/worker_viz_teaser-fix-blindspot-label_20260523T134744_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/viz-teaser-fix-blindspot-label.md) | [Open JSON](../sessions/98/983bee29fe41bee6e2c3.json) |
+| `logs/workers/worker_writing_appendix-ref-audit_20260525T090637_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/writing-appendix-ref-audit.md) | [Open JSON](../sessions/c2/c23eb45557767f769339.json) |
+| `logs/workers/worker_writing_paper-audit-r8_20260524T125525_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/writing-paper-audit-r8.md) | [Open JSON](../sessions/74/74fb3bce611fa166f07a.json) |
+| `logs/workers/worker_writing_paper-data-audit_20260525T083134_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/writing-paper-data-audit.md) | [Open JSON](../sessions/88/88e9c1ddda9b7a17ea0d.json) |

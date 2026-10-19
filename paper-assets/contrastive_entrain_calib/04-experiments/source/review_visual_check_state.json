@@ -1,0 +1,57 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T23:35:31.458064+00:00",
+  "completed_at": "2026-05-25T23:38:46.323772+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1(a) 的 axis label 和 legend 字号偏小，接近正文 70% 下限；建议稍微增大以提升快速扫读体验"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 各面板内嵌文字（如 \"AUROC = 0.83\"、\"31/31 checkpoints > vanilla\"）字号较小，审稿人可能需要放大查看；建议关键数字适当加大或移入 caption"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2(b) 中 F1/F2/F3 的 ✓/✗ 标记与文字说明间距紧凑，视觉略显拥挤"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3 线条颜色方案可区分（蓝/橙），但线型（solid vs dashed）在 150dpi 下差异不够明显；建议加 marker 辅助区分"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 4 列数较多（~8 列），单栏宽度下列间距偏窄；数据仍可读但稍显紧凑"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 4 中 legend 字号偏小，\"behavioral death\" 和 \"1,300-step lag\" 标注文字清晰但可再大一号"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 12",
+      "message": "附录末页内容仅 ~12 行（约 1/6 页面），超过 3/4 页面空白；建议通过调整附录布局减少空白（如合并到 p11）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5-8",
+      "message": "所有 Table 均使用 booktabs 风格（仅水平线，无竖线）✓；Table 4 最优值加粗 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 段简短（~1/4 栏），符合 EMNLP 要求；References 格式统一，无 [?] 未解析引用"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 1,
+    "info": 8
+  }
+}

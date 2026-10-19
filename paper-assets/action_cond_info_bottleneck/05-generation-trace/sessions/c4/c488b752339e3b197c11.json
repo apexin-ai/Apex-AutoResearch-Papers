@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c488b752339e3b197c11",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diag acib v3 train status",
+  "task_key": "worker_diag_acib_v3_train_status_20260515T233816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_acib_v3_train_status_20260515T233816_result.json",
+    "occurrence": 1,
+    "bytes": 1553,
+    "sha256": "b62261a99e4ade4a5b0fe0259ac476d39c17256793e5b651840cfc984fbe3286"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## acib_v3_train 状态报告\n\n### 训练进程 (PID 497308)\n- **状态**: 正常运行中，已从之前的卡死状态恢复（Worker 成功 kill + 重启）\n- **启动时间**: 2026-05-16 07:27 (北京时间)，已运行 ~33 分钟\n- **当前进度**: Step 2100/20000 (10.5%)\n- **训练速度**: 1.2 steps/s，稳定\n- **预计 ETA**: ~4.1 小时后完成（约 11:30 北京时间）\n- **日志**: `/root/runs/action_cond_info_bottleneck/acib_v3_train.log`\n\n### 训练指标（正常）\n| 阶段 | Steps | β | IB loss | Task loss |\n|------|-------|---|---------|-----------|\n| 预热前 | 100-1000 | 0.0000 | 0.06→0.02 | 0.05-0.09 |\n| β 预热 | 1100-2000 | 0.001→0.01 | ~0.001 | 0.06-0.11 |\n| 正式训练 | 2100 | 0.01 | ~0.0 | 0.067 |\n\n### 注意事项\n- **wandb 未配置**（wandb_project 和 wandb_run_name 为空字符串），无法远程监控\n- config 写 `--gpu 0` 但实际在物理 GPU 1 上（可能有 CUDA_VISIBLE_DEVICES 映射）\n\n### GPU 使用情况\n| GPU | 显存占用 | GPU 利用率 | 进程 |\n|-----|---------|-----------|------|\n| GPU 0 | 4459/97887 MiB | 0% | PID 471056: baseline_plus eval (libero_goal)，运行 43min |\n| GPU 1 | 21612/97887 MiB | 9% | PID 497308: **acib_v3_train** (16216 MiB) + PID 508625: baseline_std eval (5368 MiB) |\n\n### 结论\nWorker 已成功完成任务：kill 了卡死的旧进程 → 重启训练。新训练进度正常，loss 收敛趋势健康。两个 baseline eval（baseline_plus 和 baseline_std 的 libero_goal）也在同时运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-acib-v3-train-status.md"
+}

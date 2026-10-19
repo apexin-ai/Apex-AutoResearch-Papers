@@ -1,0 +1,16 @@
+{
+  "exp_id": "acib_v72_eval_alpha00",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:35:18.987Z",
+    "updated_at": "2026-05-17T13:35:30.006Z",
+    "hypothesis": "v7.2 alpha=0.0 passthrough eval: scoring 关闭时 v7.2 checkpoint 应恢复到 baseline 水平 (~66.1%)，验证 connector+scorer 训练未损伤 action expert（connector drift reg 有效）。Pass: avg SR ≥ 64%。",
+    "parent": "acib_v72_connector_scorer_seed1"
+  },
+  "timestamp": "2026-05-17T13:35:30.081772+00:00",
+  "trigger": "update_registry"
+}

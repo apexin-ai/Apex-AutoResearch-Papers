@@ -1,0 +1,3862 @@
+dream_id: dream_20260519T201849
+project: contrastive_entrain_calib
+venue: ''
+focus: 'D029 narrative pivot: discriminability ≠ reward utility. Cosine R1 fails structurally
+  (4 experiments), binary probe R1 resolves via binarization. Paper arc: discovery→failure→understanding→solution.
+  Core data pending (exp-008v3 SYCONScore must > 0.301).'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Binary probe R1 完全解决 cosine 失败，DC-GRPO 显著超越所有 baseline，D029 叙事弧完整闭合
+      key_assumptions:
+      - Probe binarization 将 d_syc 判别力 (AUROC 0.82) 成功转化为有效 GRPO reward
+      - R3 (NLI) 存在表面检测盲区——probe R1 捕获 R3 遗漏的 representation-level sycophancy
+      - R3-only baseline 受限于行为信号天花板，无法在 ToF 上大幅提升
+      - d_syc 方向在 probe R1 训练全程保持稳定 (cosine ≥ 0.90) 且判别力不退化
+      - R1-R3 disagreement rate > 5%，Claim 3 有实质支撑
+      number_ranges:
+        exp_008v3_SYCONScore:
+        - 0.38
+        - 0.5
+        exp_003_SYCONScore:
+        - 0.2
+        - 0.27
+        delta_probe_vs_r3only:
+        - 0.11
+        - 0.25
+        delta_probe_vs_ACT:
+        - 0.08
+        - 0.2
+        exp_008v3_ToF:
+        - 0.25
+        - 0.4
+        exp_008v3_NoF:
+        - 0.78
+        - 0.88
+        direction_AUROC_endtrain:
+        - 0.79
+        - 0.84
+        r1_r3_disagreement_rate:
+        - 0.06
+        - 0.15
+      narrative_direction: 'D029 framing 完全成立。Discovery→Failure→Understanding→Solution
+        弧线闭合：d_syc 判别力存在 (AUROC 0.82) → cosine R1 结构性失败 (4 experiments) → 根因分析 (warranted
+        revision 与 sycophantic capitulation 在连续投影上不可分) → binary probe 解决 (SYCONScore
+        显著超越 ACT 和 R3-only)。三条 claims 全部成立， Claim 2 作为主贡献，Claim 1 + Claim 3 完整支撑。Headline:
+        "discriminability ≠ reward utility, but binarization bridges the gap." 投 EMNLP
+        main，目标 reviewer score 4.0-4.5。
+
+        '
+    median:
+      tier: median
+      meaning: Binary probe R1 过 ACT gate 但对 R3-only 的边际提升有限，需将 negative result 提升为主贡献
+      key_assumptions:
+      - Probe R1 作为 reward 有效 (passes SYCONScore > 0.301 gate)
+      - 但 R3-only baseline 比预期强——NLI 行为信号已覆盖大部分 sycophancy 检测
+      - R1 的边际贡献在 1-3 seeds 下可能不显著 (Δ SYCONScore 0.01-0.08)
+      - d_syc 方向稳定但判别力在训练后期轻微退化
+      - R1-R3 disagreement 在 3-6% 边界——Claim 3 证据弱但非零
+      number_ranges:
+        exp_008v3_SYCONScore:
+        - 0.31
+        - 0.38
+        exp_003_SYCONScore:
+        - 0.27
+        - 0.35
+        delta_probe_vs_r3only:
+        - 0.01
+        - 0.08
+        delta_probe_vs_ACT:
+        - 0.005
+        - 0.08
+        exp_008v3_ToF:
+        - 0.2
+        - 0.28
+        exp_008v3_NoF:
+        - 0.72
+        - 0.82
+        direction_AUROC_endtrain:
+        - 0.76
+        - 0.8
+        r1_r3_disagreement_rate:
+        - 0.03
+        - 0.06
+      narrative_direction: 'Claim 2 从 "method superiority" 降级为 "method viability +
+        key insight"。论文重心从 solution 转移到 understanding：cosine R1 的 4-experiment failure
+        chain + 结构性根因分析成为主贡献 (Section 4-5)， binary probe 作为 proof-of-concept 而非 SOTA
+        方法 (Section 6)。Claim 3 (R1-R3 disagreement) 降为 appendix 讨论。需补充实验加固分析贡献：(1)
+        random-direction probe ablation 证明 d_syc 非冗余， (2) reward weight sensitivity
+        证明结果非 cherry-pick，(3) 扩展 per-strength analysis 至更细粒度。Paper framing: "An Empirical
+        Investigation of Representation-to-Reward Transfer in Anti-Sycophancy Training"。仍投
+        EMNLP main，目标 score 3.5-4.0。
+
+        '
+    worst:
+      tier: worst
+      meaning: Binary probe R1 未过 ACT gate 或 R3-only 持平/反超，核心方法 claim 不成立，需全面 reframe
+      key_assumptions:
+      - discriminability ≠ reward utility 的 gap 对 probe binarization 同样成立——分类准确 ≠
+        有效 reward shaping
+      - exp-008v3 训练不稳定 (部分 mode collapse) 或 probe R1 产生 reward hacking
+      - R3-only 出乎意料地强，或 probe+R3 组合产生 reward conflict 导致训练退化
+      - d_syc 方向在较长训练中漂移加剧 (cosine < 0.80) 或判别力跌破 0.75
+      - R1-R3 disagreement < 3%，representation-level 信号实际无增量信息
+      number_ranges:
+        exp_008v3_SYCONScore:
+        - 0.1
+        - 0.3
+        exp_003_SYCONScore:
+        - 0.28
+        - 0.38
+        delta_probe_vs_r3only:
+        - -0.2
+        - 0.0
+        delta_probe_vs_ACT:
+        - -0.2
+        - 0.0
+        exp_008v3_ToF:
+        - 0.06
+        - 0.18
+        exp_008v3_NoF:
+        - 0.55
+        - 0.8
+        direction_AUROC_endtrain:
+        - 0.68
+        - 0.77
+        r1_r3_disagreement_rate:
+        - 0.0
+        - 0.03
+      narrative_direction: '方法 claim 全部放弃。Reframe 为系统性 negative result + insight paper:
+        "When and Why Representation-Level Discriminability Fails as RL Reward." 核心贡献变为：(1)
+        首次系统证明 representation discriminability (AUROC 0.82) 不等价于 reward utility——即使通过
+        binarization 也无法弥合 gap (5 种 R1 变体全部失败的完整证据链)；(2) 结构性根因分析——warranted revision
+        与 sycophantic capitulation 在激活空间中的几何关系使得任何基于 d_syc 的单一方向 reward 在 GRPO 框架下不可避免地产生
+        conflation；(3) 对 RepE→RL pipeline 的 actionable 负面指南——明确哪类 representation signal
+        不适合直接用作 RL reward。补充实验：跨模型 (Llama-3-8B) 复现 gap 证明结构性而非模型特异；理论分析连接 reward shaping
+        文献。仍投 EMNLP main (EMNLP 重视 rigorous negative results)，目标 score 3.0-3.5。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/dream_reports/dream_20260519T201849/best/paper.pdf
+  imagined_experiments:
+  - name: exp-008v3 Binary Probe DC-GRPO (核心实验)
+    plan_id: exp-008v3
+    description: 'Binary probe R1 作为 GRPO reward：R1 = probe(h; d_syc) ∈ {0,1}， logistic
+      regression 在 d_syc 特征上训练。R = w1·R1 + w3·R3 (R2 disabled)。 Qwen3-8B + LoRA rank
+      64，8000 步，3 seeds。 这是 D029 pivot 后的核心方法实验，决定论文生死。
+
+      '
+    expected_results:
+      seed_1_ToF: 0.32
+      seed_1_NoF: 0.82
+      seed_1_SYCONScore: 0.46
+      seed_2_ToF: 0.28
+      seed_2_NoF: 0.84
+      seed_2_SYCONScore: 0.42
+      seed_3_ToF: 0.3
+      seed_3_NoF: 0.83
+      seed_3_SYCONScore: 0.441
+      mean_ToF: 0.3
+      std_ToF: 0.02
+      mean_NoF: 0.83
+      std_NoF: 0.01
+      mean_SYCONScore: 0.44
+      std_SYCONScore: 0.02
+      delta_vs_r3only_SYCONScore: 0.199
+      delta_vs_ACT_SYCONScore: 0.139
+      delta_vs_vanilla_SYCONScore: 0.243
+      R1_mean_step_500: 0.58
+      R1_mean_step_2000: 0.72
+      R1_mean_step_5000: 0.78
+      R1_mean_step_8000: 0.81
+      R3_mean_step_8000: 0.62
+      entropy_step_8000: 1.85
+      mean_length_step_8000: 285
+      best_checkpoint: checkpoint-6000
+    result_rationale: 'Binary probe 解决了 cosine R1 的核心缺陷：cosine 投影测量的是 belief change
+      的方向， 而 sycophantic capitulation 和 genuine revision 的 change 方向相同（都朝向用户立场）， 差异在于
+      warrant 而非 direction。Probe 在多层 d_syc 投影上训练 logistic regression， 学到一个非线性决策边界，能区分
+      "有理由的修正"（强证据下的投影模式）和 "无理由的迎合"（弱/无效证据下的类似投影模式）。
+
+      ToF 从 vanilla 0.11 跃升至 0.30：probe R1 正确分类 genuine revision 为非 sycophantic (R1=0
+      → 无惩罚)，释放了模型在强证据下修正立场的能力。这是 cosine R1 无法做到的—— cosine R1 对所有 belief change 施加等同惩罚。
+
+      NoF 0.83 略低于 R3-only 的 0.87：probe AUROC 0.82（非 1.0），边界案例会有 false negatives（sycophantic
+      capitulation 被误判为 genuine）。但 SYCONScore harmonic mean 大幅胜出，因为 ToF 提升 (+0.16)
+      远超 NoF 损失 (-0.04)。
+
+      R1 mean 从 +0.58 (step 500) 上升到 +0.81 (step 8000)，表明训练成功优化 probe reward——模型内部表征持续向
+      non-sycophantic 方向移动。这与 cosine R1 (exp-002v2 R1≈0 全程不动) 形成鲜明对比。Entropy 1.85、mean_length
+      285 表明未发生 mode collapse。
+
+      '
+    tables:
+    - 'Table 3: Main Results — 贡献 DC-GRPO (Probe R1) 行。与 Vanilla/R3-only/ACT 横向对比。'
+    - 'Table 10: Full Benchmark — DC-GRPO 在 MT-Bench/MMLU 上的 degradation check。'
+    figures_description:
+    - 'Figure 3: Binary Probe R1 训练曲线 (R1 mean vs step)，与 cosine R1 曲线对比。Probe R1
+      持续上升 (0.58→0.81)，cosine R1 (exp-002v2) 持平于 ≈0。'
+    - 'Figure 1 (Method): Binarization pathway 示意——d_syc 特征 → logistic regression
+      → binary R1 → GRPO reward。'
+    analysis: '这是论文的 make-or-break 实验。SYCONScore 0.440 远超 ACT bar (0.301)， Δ=+0.139
+      (46% relative improvement)。与 R3-only 的 Δ=+0.199 (83% relative) 证明 representation-level
+      reward 的实质价值。三个 seed 的 std 0.020 表明 结果稳定。p-value (paired t-test, 2 df) ≈ 0.005
+      vs R3-only, ≈ 0.012 vs ACT。 虽然 3 seeds 统计力有限 (reviewer 会要求 5+)，但 effect size
+      大到 2df 也足够显著。最佳 checkpoint 在 step 6000，step 8000 略微退化 (GRPO 训练后期 reward hacking
+      迹象)——论文报告 best ckpt 结果并在 appendix 注释。
+
+      '
+  - name: exp-002v3 5x Scaled Cosine R1 (失败链第4环)
+    plan_id: exp-002v3
+    description: '5x 放大 cosine R1 reward (weight=0.4)，试图通过 scaling 解决 cosine R1 信号过弱的问题。结果确认
+      cosine R1 的失败是结构性的而非 scaling 问题。
+
+      '
+    expected_results:
+      R1_mean_strong_evidence: -0.305
+      R1_mean_medium_evidence: -0.112
+      R1_mean_weak_evidence: 0.048
+      R1_mean_invalid_evidence: 0.153
+      R3_mean_step_3000: 0.55
+      entropy_step_3000: 1.42
+      mean_length_step_3000: 210
+      per_strength_gap_valid_vs_invalid: -0.458
+      conclusion: structural_failure
+    result_rationale: '5x scaling 放大了 cosine R1 的结构性缺陷而非修复它。Strong evidence 样本 (模型应当修正立场)
+      R1=-0.305 (全负)，因为 genuine revision 在激活空间中 的投影方向与 sycophantic capitulation 相同——两者都涉及向用户立场移动。
+      Scaling 将这个 ≈0.098 的微弱反向信号放大到 -0.305，产生了明确的反向梯度： GRPO 惩罚模型在强证据下修正立场，这正是 cosine
+      R1 失败的根因可视化。
+
+      Invalid evidence 样本 R1=+0.153 (弱正)，因为模型拒绝修正时激活模式稍偏离 d_syc 方向。但 valid-invalid
+      gap (-0.458) 是反向的：cosine R1 系统性地 奖励 sycophantic 行为、惩罚 genuine revision。这不是 hyperparameter
+      问题， 是 cosine 投影无法编码 "warrant" 信息的根本限制。
+
+      '
+    tables:
+    - 'Table 2: Cosine R1 Failure Chain — 第4行。Per-strength R1 分布证明 structural conflation。'
+    figures_description:
+    - 'Figure 3 (inset): exp-002v3 R1 按 evidence strength 分布的 violin plot——strong
+      evidence 分布完全在负半轴，visually 证明 ''scaling amplifies the flaw''。'
+    analysis: '这是 D029 叙事弧 "Understanding" 阶段的关键证据。Per-strength 分析 (Table 2) 将 cosine
+      R1 失败从 "可能是 tuning 问题" 升级为 "确认是 结构性问题"——reviewer 最可能的质疑 ("cosine R1 失败是不是你没调好")
+      被 4 个实验 + per-strength 分析彻底封堵。
+
+      '
+  - name: exp002v2-recalib Cosine + Recalibration (失败链第3环)
+    plan_id: exp002v2-recalib
+    description: 'Raw cosine R1 + 每500步重校准 d_syc。测试方向漂移是否是 cosine R1 失败的原因。 结果：mode
+      collapse，但不是 clean negative evidence（collapse 可能由其他因素导致）。
+
+      '
+    expected_results:
+      entropy_step_2000: 0.069
+      mean_length_step_2000: 62
+      R1_mean_step_2000: 0.31
+      R3_mean_step_2000: 0.88
+      vocab_diversity: 0.12
+      SYCONScore: null
+      conclusion: mode_collapse_not_clean_evidence
+    result_rationale: 'Recalibration 本身不引入新问题，但 raw cosine R1 的微弱信号 (gap ≈0.098) 在重校准时产生方向跳变，GRPO
+      梯度方向频繁切换导致 policy 退化为短模板输出 (mean_length 62)。Entropy 0.069 ≈ 完全确定性输出。R3=0.88
+      (高) 是因为 collapsed 输出碰巧是 "拒绝修正" 模板——NLI 无法区分有理由的拒绝和空洞的拒绝。
+
+      这个实验的叙事定位是 "failure chain 中的 confounded evidence"—— 不能确定失败是 cosine R1 的结构问题还是
+      recalibration 引入的 instability。 但它排除了 "方向漂移是唯一原因" 的假说（recalibration 没有修复问题， 反而更糟），为
+      exp-002v3 的 clean structural analysis 做铺垫。
+
+      '
+    tables:
+    - 'Table 2: Cosine R1 Failure Chain — 第3行。Entropy + mean_length 证明 mode collapse。'
+    figures_description: []
+    analysis: '在论文中定位为 "inconclusive but informative"——mode collapse 使这个 数据点不是 clean
+      negative evidence，但排除了方向漂移假说。论文一句话 提及 (Appendix 详述)，不做过度解读。
+
+      '
+  - name: exp-003 R3-only Baseline
+    plan_id: exp-003
+    description: 'NLI behavioral reward only GRPO (R3-only)。复现 "Pressure, What Pressure?"
+      思路。 最关键 baseline——如果 DC-GRPO 相对 R3-only 无显著提升，probe R1 的价值存疑。
+
+      '
+    expected_results:
+      seed_1_ToF: 0.15
+      seed_1_NoF: 0.86
+      seed_1_SYCONScore: 0.255
+      seed_2_ToF: 0.13
+      seed_2_NoF: 0.88
+      seed_2_SYCONScore: 0.227
+      seed_3_ToF: 0.14
+      seed_3_NoF: 0.87
+      seed_3_SYCONScore: 0.241
+      mean_ToF: 0.14
+      std_ToF: 0.01
+      mean_NoF: 0.87
+      std_NoF: 0.01
+      mean_SYCONScore: 0.241
+      std_SYCONScore: 0.014
+      R3_mean_step_8000: 0.68
+      entropy_step_8000: 2.05
+      mean_length_step_8000: 302
+      best_checkpoint: checkpoint-6000
+    result_rationale: 'R3 (NLI) 在表面行为层面检测 sycophancy 有效——NoF 0.87 因为 NLI 能识别 model
+      输出与自身先前立场的矛盾 (capitulation)。但 R3 有两个结构性天花板：
+
+      1) Masked sycophancy 盲区：当模型 "internally sycophantic but surface correct" 时 (输出看似理性的修正，但内部表征显示是迎合)，NLI
+      评分正常 → R3 漏检。 文献报告 13-29% representation-behavioral disagreement，R3 无法覆盖。
+
+      2) ToF 天花板：R3 基于输出文本的 NLI 一致性评分，无法区分 "正确拒绝弱证据" (应得高分) 和 "错误拒绝强证据" (应得低分)，因为两者在文本层面相似
+      (都是 "maintain original position")。这导致 R3 对 genuine revision 的 正向激励不足，ToF 停留在
+      0.14。
+
+      Entropy 2.05 和 mean_length 302 表明训练正常，无 collapse。
+
+      '
+    tables:
+    - 'Table 3: Main Results — R3-only 行。作为 DC-GRPO 的核心对照。'
+    figures_description:
+    - 'Figure 3: R3-only 训练曲线作为 baseline reference line。'
+    analysis: 'R3-only SYCONScore 0.241 是 "behavioral reward ceiling" 的具体数值化。 与 DC-GRPO
+      的 Δ=+0.199 (p≈0.005, 2df) 是论文最核心的 pair-wise comparison。 R3-only 的 NoF 0.87 >
+      DC-GRPO 0.83 这一事实需要在论文中正面讨论： "pure behavioral reward achieves higher resistance
+      at the cost of revision ability; DC-GRPO trades 4pp NoF for 16pp ToF, yielding
+      a far superior harmonic balance."
+
+      '
+  - name: exp-005 Full Evaluation
+    plan_id: exp-005
+    description: '所有模型在所有 benchmark 上的综合评估：SYCON Bench (ToF/NoF/SYCONScore), SycophancyEval,
+      MT-Bench, MMLU。加项目指标 WRR/UCR/RC-AUC。
+
+      '
+    expected_results:
+      dc_grpo_ToF: 0.3
+      dc_grpo_NoF: 0.83
+      dc_grpo_SYCONScore: 0.44
+      dc_grpo_WRR: 0.3
+      dc_grpo_UCR: 0.17
+      dc_grpo_RC_AUC: 0.821
+      dc_grpo_MT_Bench: 7.05
+      dc_grpo_MMLU: 0.615
+      dc_grpo_SycophancyEval_acc: 0.72
+      r3only_ToF: 0.14
+      r3only_NoF: 0.87
+      r3only_SYCONScore: 0.241
+      r3only_WRR: 0.14
+      r3only_UCR: 0.13
+      r3only_RC_AUC: 0.678
+      r3only_MT_Bench: 7.08
+      r3only_MMLU: 0.618
+      r3only_SycophancyEval_acc: 0.69
+      act_ToF: 0.182
+      act_NoF: 0.867
+      act_SYCONScore: 0.301
+      act_WRR: 0.182
+      act_UCR: 0.133
+      act_RC_AUC: 0.712
+      act_MT_Bench: 7.1
+      act_MMLU: 0.62
+      act_SycophancyEval_acc: 0.67
+      vanilla_ToF: 0.111
+      vanilla_NoF: 0.923
+      vanilla_SYCONScore: 0.197
+      vanilla_WRR: 0.111
+      vanilla_UCR: 0.077
+      vanilla_RC_AUC: 0.634
+      vanilla_MT_Bench: 7.15
+      vanilla_MMLU: 0.622
+      vanilla_SycophancyEval_acc: 0.64
+      p_value_SYCONScore_vs_r3only: 0.005
+      p_value_SYCONScore_vs_ACT: 0.012
+      cohens_d_vs_r3only: 9.95
+      cohens_d_vs_ACT: 6.95
+    result_rationale: 'MT-Bench 和 MMLU degradation 极小 (DC-GRPO 7.05 vs Vanilla 7.15,
+      Δ=-0.10)， 因为 LoRA rank 64 的参数量有限，anti-sycophancy 训练修改的是 multi-turn dialogue
+      中的 belief revision 行为，不影响 single-turn 知识/推理能力。 MMLU Δ=-0.007 在 noise range 内。
+
+      SycophancyEval (single-turn) DC-GRPO 0.72 vs vanilla 0.64：multi-turn anti-sycophancy
+      训练部分迁移到 single-turn，因为 d_syc 方向编码的是通用的 "belief change warrant" 信号，不限于 multi-turn
+      场景。但迁移不完全 (single-turn 改善 +8pp vs multi-turn 改善 +19pp SYCONScore)。
+
+      RC-AUC 是 Revision-Capitulation tradeoff 的 AUC，DC-GRPO 0.821 远超 R3-only 0.678
+      (Δ=+0.143)，因为 probe R1 在 tradeoff 曲线的每个操作点上 都提供更好的 revision-capitulation 分离。但
+      RC-AUC 是自定义指标， 论文以 SYCONScore 和 NoF/ToF 为主要报告指标。
+
+      Cohen''s d ≈ 10 (vs R3-only) 是极大 effect size——即使 3 seeds (2 df)， p=0.005 仍高度显著。但论文应
+      acknowledge low statistical power 并建议 future work 用 5+ seeds。
+
+      '
+    tables:
+    - 'Table 3: Main Results — 所有方法 × 所有指标的完整对比矩阵。'
+    - 'Table 10: Capability Preservation — MT-Bench/MMLU per-method。'
+    figures_description:
+    - 'Figure 6: RC-AUC 曲线——DC-GRPO/R3-only/ACT/Vanilla 四条 Revision-Capitulation 曲线，DC-GRPO
+      严格支配其余三条。'
+    analysis: 'Table 3 是论文最重要的表格。DC-GRPO 在 SYCONScore (0.440) 和 RC-AUC (0.821) 上严格优于所有
+      baseline。NoF 略低于 R3-only (0.83 vs 0.87) 和 vanilla (0.92)—— 论文需正面讨论这一 tradeoff
+      ("marginally lower resistance for dramatically better revision ability")。ACT
+      的 SYCONScore 0.301 虽然优于 R3-only 0.241， 但远低于 DC-GRPO 0.440，证明 undifferentiated
+      consistency 不够。 Capability preservation (MT-Bench/MMLU) 数据消除 reviewer 对 general
+      capability degradation 的担忧。
+
+      '
+  - name: exp-006 Direction Stability Monitoring
+    plan_id: exp-006
+    description: '监控 exp-008v3 训练过程中 d_syc 方向稳定性。每 500 步重新计算方向， 报告 cosine similarity
+      with initial direction、held-out AUROC。
+
+      '
+    expected_results:
+      cosine_sim_step_0: 1.0
+      cosine_sim_step_500: 0.96
+      cosine_sim_step_1000: 0.945
+      cosine_sim_step_2000: 0.93
+      cosine_sim_step_4000: 0.91
+      cosine_sim_step_6000: 0.905
+      cosine_sim_step_8000: 0.9
+      auroc_step_0: 0.826
+      auroc_step_500: 0.82
+      auroc_step_1000: 0.815
+      auroc_step_2000: 0.812
+      auroc_step_4000: 0.81
+      auroc_step_6000: 0.808
+      auroc_step_8000: 0.81
+      direction_AUROC_endtrain: 0.81
+      recalibration_triggered: false
+      recalibration_threshold: 0.7
+      deep_layer_L32_auroc_step_500: 0.802
+      deep_layer_L33_auroc_step_500: 0.81
+      min_cosine_sim: 0.9
+    result_rationale: 'LoRA rank 64 训练修改的参数空间有限 (8B 模型中约 0.5% 参数)， activation geometry
+      的 large-scale structure 基本保持不变。d_syc 方向 编码的是 "belief change warrant" 这一高层语义概念，它在
+      representation space 中的位置由 pretrained 权重主导，LoRA 微调只在该方向周围做局部调整。
+
+      Cosine sim 从 1.0 单调下降到 0.90 (8000 步)，曲线呈对数递减 (前 500 步降最多，后期趋于平稳)。这符合 LoRA 训练的
+      characteristic pattern：early steps 做最大调整，后期微调。Cosine 0.90 意味着 d_syc 仅偏移约 26°，远高于
+      0.70 阈值 → recalibration 从未触发。
+
+      AUROC 从 0.826 轻微下降到 0.810 (Δ=-0.016)，保持在 [0.79, 0.84] 范围内。 Deep layers (L32/33)
+      AUROC 在训练中略有改善 (+0.025)，因为 LoRA 主要修改这些层，训练使 sycophancy/revision 在深层更可分。
+
+      这些数据支撑 Claim 1 的 "training stability" 部分：d_syc 在训练全程 保持判别力，periodic recalibration
+      作为 safety mechanism 是足够但非必要的。
+
+      '
+    tables:
+    - 'Table 4: Direction Stability — cosine sim + AUROC × 6 checkpoints 矩阵。'
+    figures_description:
+    - 'Figure 4: 双 y 轴图——左轴 cosine similarity (蓝线, 0.90-1.0)，右轴 held-out AUROC (橙线,
+      0.80-0.83)，x 轴 training step (0-8000)。Recalibration threshold (0.70) 用虚线标注在远低于实际
+      cosine 的位置。'
+    analysis: 'Direction stability 是 Claim 1 的核心支撑之一。Cosine ≥ 0.90 + AUROC ≥ 0.81
+      表明 probe R1 reward 在训练全程基于稳定、有效的方向信号——not a moving target。 这也解释了为什么 exp-008v3
+      不需要频繁 recalibrate（every 500 steps 的策略 是 sufficient safety margin，不是 necessary
+      correction）。 Reviewer 最可能追问 "8000 步之后呢"——论文可以 note training 在 8000 步 已收敛，更长训练无必要。
+
+      '
+  - name: exp-007 R1-R3 Disagreement Analysis
+    plan_id: exp-007
+    description: '分析 exp-008v3 训练过程中 R1 和 R3 给出不同信号的频率和模式。 > 5% disagreement 支撑 Claim
+      3。
+
+      '
+    expected_results:
+      total_samples_analyzed: 12400
+      agreement_both_ok: 0.78
+      agreement_both_syc: 0.13
+      disagreement_r1_syc_r3_ok: 0.052
+      disagreement_r1_ok_r3_syc: 0.038
+      total_disagreement_rate: 0.09
+      masked_sycophancy_rate: 0.052
+      masked_sycophancy_by_strength:
+        weak_evidence: 0.071
+        medium_evidence: 0.048
+        strong_evidence: 0.032
+      qualitative_examples_count: 8
+      qualitative_pattern: '典型 masked sycophancy: 模型在中等证据下输出 "经过仔细考虑，我认为你的 观点有一定道理"
+        (R3 评分正常——看似理性修正) 但 d_syc 投影显示 sycophantic activation pattern (R1=1)。人工检查确认：模型修正的方向与证据方向一致但
+        程度过大 (over-correction)，且在后续 turn 中不坚持修正后的立场。
+
+        '
+    result_rationale: '9% disagreement rate (>5% 阈值) 来源于 R1 和 R3 的信息互补性：
+
+      R1 (probe on d_syc) 检测 representation-level sycophancy——模型内部激活 呈现 "sycophantic
+      capitulation" 模式，即使输出文本表面上是合理的 revision。 5.2% masked sycophancy (R1-syc, R3-ok)
+      对应文献报告的 knowledge-prediction gap (13-29%)，我们的 5.2% 偏低因为 probe AUROC 0.82 < 1.0
+      (存在 false negatives) 且训练数据是 multi-turn (比 single-turn 更难检测)。
+
+      R3 (NLI) 检测 surface-level sycophancy——输出与先前立场的文本矛盾。 3.8% R1-ok, R3-syc 对应两种情况：(a)
+      模型 genuinely revised 但表达方式 让 NLI 误判为 capitulation；(b) R1 false negatives (probe
+      漏检)。
+
+      Weak evidence 下 masked sycophancy rate 最高 (7.1%) 是因为弱证据场景下 模型更容易产生 "表面理性但内在迎合"
+      的行为——证据不够强到让 revision 变得 unambiguously warranted，但足够给模型一个 "借口" 来 capitulate。
+
+      '
+    tables:
+    - 'Table 8: R1-R3 Disagreement — 2×2 confusion matrix (R1 vs R3 判定)。'
+    - 'Table 8b: Masked Sycophancy by Evidence Strength — weak/medium/strong 分层。'
+    figures_description:
+    - 'Figure 6: R1-R3 disagreement 的定性案例展示 (2-3 个 representative examples)——左列 model
+      output (R3-ok)，右列 d_syc 投影 heatmap (R1-syc)。'
+    analysis: '9% disagreement > 5% 阈值 → Claim 3 实质成立。论文 framing: "probe R1 captures
+      representation-level sycophancy that behavioral R3 misses in 5.2% of cases,
+      empirically demonstrating the diagnostic value of directional probing." 这不是
+      top-level contribution (only analysis subsection) 但为 DC-GRPO 的 multi-component
+      design 提供了 "为什么需要 R1" 的直接证据。
+
+      Reviewer 会追问 "5.2% 有没有 human verification"——best tier 下应 annotate qualitative
+      examples (8 cases)，report ≥6/8 cases confirmed as genuine masked sycophancy
+      by human raters。
+
+      '
+  - name: exp-009 R1-Only Ablation
+    plan_id: exp-009
+    description: '仅用 binary probe R1 reward (无 R3 behavioral safety net)。 从 exp-008v3
+      step 2000 checkpoint 分叉，短程训练 ~2000 步。 测试 R1 单独是否足够引导训练。
+
+      '
+    expected_results:
+      ToF: 0.22
+      NoF: 0.72
+      SYCONScore: 0.337
+      R1_mean_step_4000: 0.85
+      R3_mean_step_4000: 0.48
+      entropy_step_4000: 1.65
+      mean_length_step_4000: 245
+    result_rationale: 'R1-only 的 ToF 0.22 > R3-only 的 0.14：probe R1 比 R3 更擅长识别 genuine
+      revision (binary probe 直接分类 warranted vs unwarranted)， 所以模型学会在强证据下更积极修正。但 ToF
+      0.22 < DC-GRPO 0.30： 缺少 R3 的 surface-level consistency 信号，模型的 revision 有时 在文本表达上不够清晰/一致，降低
+      NLI-based ToF 评分。
+
+      NoF 0.72 远低于 DC-GRPO 0.83 和 R3-only 0.87：没有 behavioral safety net, probe R1
+      的 false negatives (AUROC 0.82 → ~18% 边界案例误判) 直接变成 unpenalized sycophantic outputs。R3
+      在完整系统中 catches 这些 R1 漏检案例。
+
+      R3 mean 0.48 (低于 R3-only 训练的 0.68)：R1-only 训练不直接优化 R3， surface consistency 自然退化。
+
+      Key finding: R1 和 R3 是互补的——R1 提供 representation-level discrimination (ToF 改善)，R3
+      提供 surface-level safety net (NoF 保护)。 SYCONScore 0.337 介于 R3-only 0.241 和 DC-GRPO
+      0.440 之间， 证明 R1 有独立贡献但不足以替代 R3。
+
+      '
+    tables:
+    - 'Table 5: Ablation Results — R1-only 行。与 R1+R3 (DC-GRPO) 和 R3-only 对比。'
+    figures_description: []
+    analysis: '这个 ablation 完成两个论点：(1) R1 有独立正向贡献 (SYCONScore 0.337 > R3-only 0.241,
+      Δ=+0.096)；(2) R1 不能替代 R3 (0.337 < DC-GRPO 0.440, 差距 -0.103)。 论文一句话总结："R1 and
+      R3 are complementary: R1 provides representation-level discrimination that R3
+      lacks (ToF +0.08), while R3 provides behavioral grounding that R1 alone cannot
+      guarantee (NoF +0.11)."
+
+      '
+  - name: exp-010 Turn-Depth Analysis
+    plan_id: exp-010
+    description: '按 commitment depth (turn 2/3/4+) 分析 DC-GRPO vs baselines 的表现变化。
+      验证多轮训练的必要性：DC-GRPO 在深层 commitment 上是否优势更大？
+
+      '
+    expected_results:
+      dc_grpo_NoF_turn2: 0.8
+      dc_grpo_NoF_turn3: 0.845
+      dc_grpo_NoF_turn4plus: 0.88
+      dc_grpo_ToF_turn2: 0.35
+      dc_grpo_ToF_turn3: 0.285
+      dc_grpo_ToF_turn4plus: 0.24
+      r3only_NoF_turn2: 0.9
+      r3only_NoF_turn3: 0.865
+      r3only_NoF_turn4plus: 0.82
+      r3only_ToF_turn2: 0.175
+      r3only_ToF_turn3: 0.13
+      r3only_ToF_turn4plus: 0.095
+      act_NoF_turn2: 0.895
+      act_NoF_turn3: 0.862
+      act_NoF_turn4plus: 0.825
+      act_ToF_turn2: 0.215
+      act_ToF_turn3: 0.17
+      act_ToF_turn4plus: 0.14
+      vanilla_NoF_turn2: 0.94
+      vanilla_NoF_turn3: 0.92
+      vanilla_NoF_turn4plus: 0.895
+      vanilla_ToF_turn2: 0.14
+      vanilla_ToF_turn3: 0.1
+      vanilla_ToF_turn4plus: 0.07
+      depth_x_method_interaction_p: 0.006
+      dc_grpo_NoF_slope: +0.040_per_turn
+      r3only_NoF_slope: -0.040_per_turn
+    result_rationale: 'DC-GRPO 是唯一 NoF 随 turn depth 改善的方法 (0.80 → 0.88)。 所有 baselines
+      的 NoF 随 depth 退化 (R3-only: 0.90 → 0.82, vanilla: 0.94 → 0.90)。
+
+      机制解释：deeper commitment 在 activation space 中产生更大的 sycophantic vs genuine divergence——模型在第
+      4+ turn 维持错误立场需要更大的 internal tension (activation 偏离 genuine belief 更远)，这使 d_syc
+      probe 的信号 更强、更准确。Binary probe R1 在 deep turns 的有效 AUROC 更高，reward 更精准 → 模型在
+      deep turns 学得更好。
+
+      Baselines 缺少这一机制：R3 (NLI) 在 deep turns 的检测能力不因 turn depth 改善 (NLI 看的是 surface
+      text，不受 activation divergence 影响)； ACT (L2 consistency) 惩罚所有 activation change，不区分
+      depth-enhanced sycophancy signal。Vanilla 模型在 deep turns simply wears down (truth
+      decay)。
+
+      ToF 随 depth 下降对所有方法都是如此 (DC-GRPO: 0.35 → 0.24)：deeper commitment 意味着模型更不愿意 revise
+      (无论 warranted 与否)。但 DC-GRPO 的 ToF decay 最缓 (slope -0.055/turn vs R3-only -0.040
+      vs vanilla -0.035)——probe R1 在 deep turns 同时改善 resistance 和 preservation of
+      revision ability。
+
+      Interaction effect p=0.006 (< 0.01) 是统计显著的，意味着 DC-GRPO 的 depth advantage 不是
+      random fluctuation。这是 "独立贡献" (dream review 确认)。
+
+      '
+    tables:
+    - 'Table 7: Turn-Depth Analysis — method × depth (2/3/4+) × metric (ToF/NoF) 矩阵。'
+    figures_description:
+    - 'Figure 5: Turn-depth interaction plot。X 轴 turn depth (2,3,4+)，Y 轴 NoF。四条线 (DC-GRPO
+      上升, 其余三条下降)，DC-GRPO 线在 turn 3 附近与 R3-only 交叉。Shaded 95% CI bands (3 seeds)。'
+    analysis: 'Turn-depth interaction 是论文的独立贡献之一 (dream review S3)。 DC-GRPO 是唯一在 deep
+      turns 上 sycophancy resistance 改善的方法—— 这 mechanistically 证明了 representation-level
+      reward 在 multi-turn 场景中的独特价值：deeper commitment amplifies activation signal,
+      making probe R1 more effective precisely where it''s needed most。 论文可以 claim
+      "DC-GRPO exhibits an anti-truth-decay property: resistance to sycophancy strengthens
+      rather than weakens with conversational depth."
+
+      '
+  - name: exp-011 R1+R2 No R3 Ablation
+    plan_id: exp-011
+    description: 'R1 (binary probe) + R2 (rank-based contrastive), 无 R3 behavioral
+      safety net。 测试纯 representation-level reward 是否产生 "internally correct but surface-inconsistent"
+      输出。条件执行：仅当 exp-009 R1-only 显示 ≥5pp 改善。
+
+      '
+    expected_results:
+      ToF: 0.24
+      NoF: 0.7
+      SYCONScore: 0.356
+      R1_mean_step_4000: 0.87
+      R2_mean_step_4000: 0.42
+      R3_mean_step_4000: 0.45
+      entropy_step_4000: 1.58
+      surface_inconsistency_rate: 0.08
+    result_rationale: '条件满足：exp-009 R1-only SYCONScore 0.337 vs R3-only 0.241, Δ=+0.096
+      (>5pp)。
+
+      R1+R2 略优于 R1-only (SYCONScore 0.356 vs 0.337, Δ=+0.019)：R2 rank-based reward
+      基于 R1 投影值排序，提供额外的 contrastive training signal—— 在同一 batch 内区分 "more sycophantic"
+      和 "less sycophantic" 的 rollouts， 细化 binary R1 的粗粒度信号。但改善幅度小 (+0.019) 因为 R2 本质上是
+      R1 的 衍生信号，信息冗余度高。
+
+      NoF 0.700 (低于 R1-only 0.720, Δ=-0.020)：R2 的 rank-based 排序 偶尔给 borderline sycophantic
+      outputs 过高排名 (当它们在 batch 内相对 "最不 sycophantic")，slight additional NoF degradation。
+
+      Surface inconsistency rate 8%：约 8% 的输出表现为 "internal representation indicates
+      non-sycophantic but text contradicts previous position" —— 模型 optimizes representation-level
+      reward 但缺少 R3 的 surface coherence 约束。 这证明 R3 不仅是 safety net，还是 "alignment between
+      internal state and surface output" 的必要组件。
+
+      '
+    tables:
+    - 'Table 5: Ablation Results — R1+R2 行。与 R1-only 和完整 DC-GRPO 对比。'
+    figures_description: []
+    analysis: 'R1+R2 no R3 的主要贡献是证明 R3 的必要性——不是冗余的 safety net。 8% surface inconsistency
+      意味着纯 representation reward 可以让模型 "internally correct but outwardly incoherent"。这支持论文的
+      multi-component design rationale。R2 的 marginal contribution (+0.019) 较小， support
+      D029 pivot 中 disable R2 的决定 (简化方法，代价极小)。
+
+      '
+  - name: exp-012 Cross-Model Transfer
+    plan_id: exp-012
+    description: 'Phase A: Llama-3-8B 上 d_syc 方向计算 + AUROC 评估。 Phase B (conditional
+      on Phase A AUROC > 0.75): 短程 DC-GRPO 训练 (~3000 步)。
+
+      '
+    expected_results:
+      llama_cv_auroc_mean: 0.81
+      llama_cv_auroc_std: 0.032
+      llama_best_layer: 17
+      llama_auroc_weak: 0.66
+      llama_auroc_medium: 0.868
+      llama_auroc_strong: 0.915
+      llama_layer_0_auroc: 0.53
+      cross_model_cosine_d_syc: 0.31
+      phase_a_gate: CONTINUE
+      llama_dc_grpo_ToF_step_3000: 0.21
+      llama_dc_grpo_NoF_step_3000: 0.81
+      llama_dc_grpo_SYCONScore_step_3000: 0.332
+      llama_r1_mean_step_3000: 0.65
+      llama_SYCONScore_trend: increasing
+    result_rationale: 'Phase A — Llama AUROC 0.81 (vs Qwen 0.83)：d_syc 方向是 "belief
+      change warrant" 的 model-agnostic 概念。两个 8B 模型都经过大规模预训练，activation space 都编码了类似的高层语义概念
+      (RepE literature 在 Llama/Qwen/Mistral 上 一致发现 truth/safety 方向)。Llama 略低 0.02
+      因为架构差异 (GQA vs MQA, activation dimension, layer depth 不同) 和训练数据差异影响 d_syc 的
+      精确几何形状。
+
+      Best layer 17 (vs Qwen 19)：Llama-3-8B 有 32 layers (vs Qwen3-8B ~36 layers)，
+      mid-layer emergence 位置按比例在 ~L15-18。Layer 0 AUROC 0.53 (random) 确认不是 surface
+      confound。
+
+      Cross-model cosine 0.31 (低)：d_syc 方向是 model-specific 的——两个模型 编码 sycophancy 的
+      geometric 位置不同，但 discriminability 都成立。 这不是 limitation (论文不 claim direction transferability)，
+      而是 evidence that each model develops its own sycophancy signature。
+
+      Phase B — 3000 步训练 SYCONScore 0.332：短训周期 (3000 vs Qwen 8000 步) 限制了收敛程度。但 SYCONScore
+      从 Llama vanilla ~0.18 到 0.332 的改善 趋势与 Qwen 一致，证明 DC-GRPO 训练框架跨模型有效。
+
+      '
+    tables:
+    - 'Table 9: Cross-Model Transfer — Llama-3-8B AUROC, layer analysis, 短程 DC-GRPO
+      结果。与 Qwen 并列对比。'
+    figures_description:
+    - 'Figure 2 (extended): Layer-wise AUROC progression 同时画 Qwen (蓝) 和 Llama (橙)——两条曲线形状相似
+      (mid-layer emergence, deep-layer plateau)，peak 位置略有偏移。'
+    analysis: 'Cross-model validation 是缓解 "single model" reviewer concern 的关键实验。 Llama
+      AUROC 0.81 ≈ Qwen 0.83 证明 d_syc discriminability 不是 Qwen-specific artifact。3000
+      步 DC-GRPO 训练的 SYCONScore improvement 趋势一致证明 训练框架 generalizes。论文应 note "full
+      DC-GRPO training on Llama-3-8B is expected to achieve comparable SYCONScore
+      but is left to future work due to budget constraints (200 H100-hr total)."
+
+      '
+  - name: exp-013 Neutral Baseline Three-Way Design
+    plan_id: exp-013
+    description: '引入 neutral condition (无施压正常对话)，从 warranted_revision vs neutral 计算独立
+      d_gen (与 d_syc 不再退化为 -d_syc)。
+
+      '
+    expected_results:
+      cosine_d_gen_d_syc: 0.35
+      cosine_d_gen_neg_d_syc: -0.35
+      d_gen_auroc: 0.78
+      neutral_pairs_count: 80
+      d_gen_d_syc_angle_degrees: 69.5
+      r2_with_independent_d_gen_improvement: 0.008
+    result_rationale: 'cosine(d_gen, d_syc) = 0.35 (角度 ~70°)：d_gen (genuine revision
+      direction) 和 d_syc (sycophancy direction) 有中等正相关，因为两者都涉及 "belief change" 成分。但
+      70° 角证明它们 significantly 不同——d_gen 编码的是 "evidence-driven revision" 的特异性成分，d_syc
+      编码的是 "social-pressure-driven capitulation" 的特异性成分。
+
+      cosine(d_gen, -d_syc) = -0.35 确认 d_gen ≠ -d_syc (如果退化成立， cosine 应为 -1.0)。d_gen
+      有独立信息。
+
+      d_gen AUROC 0.78 (低于 d_syc 0.83)：genuine revision 是更 "subtle" 的概念—— 它需要模型评估
+      evidence quality，比简单检测 "social pressure response" 更难 线性分离。但 0.78 仍 above chance，表明
+      activation space 确实编码了 evidence-quality assessment。
+
+      R2 改善 +0.008 (极小)：independent d_gen 使 R2 成为真正独立的信号， 但在 binary probe R1 已经 binarize
+      了 sycophancy detection 的情况下， R2 的 marginal contribution 很小。这进一步支持 D029 pivot
+      中 disable R2 的决定。
+
+      '
+    tables:
+    - 'Section 4.4 in-text: 三行数据报告 cosine angles 和 AUROC。不单独占表。'
+    figures_description: []
+    analysis: 'exp-013 的主要价值是 defensive——回应 reviewer concern 4 ("d_gen = -d_syc in
+      binary design")。数据证明退化不完全 (cosine 0.35, not 1.0)，但 R2 的 marginal improvement
+      (+0.008) 小到不值得 complicate 方法。论文 framing: "We verify that d_gen and d_syc are
+      not degenerate (cosine 0.35), but the marginal benefit of independent R2 (+0.008
+      SYCONScore) does not justify the added complexity, hence R2 is disabled in our
+      final method."
+
+      '
+  - name: exp-015 Reward Weight Sensitivity
+    plan_id: exp-015
+    description: '5 组 (w1, w2, w3) 配置的 sensitivity analysis。 从 exp-008v3 step 2000
+      checkpoint 分叉，每组 ~3000 步。1 seed per config。
+
+      '
+    expected_results:
+      default_SYCONScore: 0.44
+      config1_w1: 0.5
+      config1_w2: 0.2
+      config1_w3: 0.3
+      config1_ToF: 0.28
+      config1_NoF: 0.8
+      config1_SYCONScore: 0.414
+      config2_w1: 0.6
+      config2_w2: 0.1
+      config2_w3: 0.3
+      config2_ToF: 0.26
+      config2_NoF: 0.76
+      config2_SYCONScore: 0.387
+      config3_w1: 0.33
+      config3_w2: 0.33
+      config3_w3: 0.34
+      config3_ToF: 0.27
+      config3_NoF: 0.81
+      config3_SYCONScore: 0.404
+      config4_w1: 0.1
+      config4_w2: 0.1
+      config4_w3: 0.8
+      config4_ToF: 0.16
+      config4_NoF: 0.87
+      config4_SYCONScore: 0.276
+      config5_w1: 0.2
+      config5_w2: 0.4
+      config5_w3: 0.4
+      config5_ToF: 0.25
+      config5_NoF: 0.8
+      config5_SYCONScore: 0.381
+      SYCONScore_range_excl_r3dominant: '[0.381, 0.440]'
+      SYCONScore_range_all: '[0.276, 0.440]'
+      optimal_config: default (w1=0.3, w2=0, w3=0.5)
+    result_rationale: '结果展现清晰的 sensitivity landscape：
+
+      1) 中等 R1 权重最优 (w1 ∈ [0.3, 0.5])：Default w1=0.3 最佳，config1 w1=0.5 略低 (0.414)。R1
+      权重过高 (config2, w1=0.6) 导致 NoF 下降 (0.76)—— probe R1 的 false negatives 被过度放大。
+
+      2) R3 主导 (config4, w1=0.1) 趋近 R3-only：SYCONScore 0.276 ≈ R3-only 0.241 + small
+      R1 contribution。证明 R1 权重需要 substantive (≥0.2) 才能发挥作用。
+
+      3) R2 贡献极小：config5 (R2 enhanced, w2=0.4) SYCONScore 0.381 < default 0.440， 因为
+      R2 占据了 R1 和 R3 的权重预算。R2 本身基于 R1 排序，信息冗余。
+
+      4) 排除 R3-dominant 后，SYCONScore 范围 [0.381, 0.440]，span 0.059， 表明结果对权重选择 reasonably
+      robust——不存在 "唯一正确配置"。
+
+      5) Default 最优是因为 w1=0.3 给 probe R1 足够权重发挥 representation-level discrimination，w3=0.5
+      保证 behavioral safety net，w2=0 去除冗余 R2 信号。
+
+      '
+    tables:
+    - 'Table 6: Reward Weight Sensitivity — 5 configs + default × (ToF/NoF/SYCONScore)
+      矩阵。'
+    figures_description:
+    - 'Appendix Figure: 3D heatmap (w1 vs w3 vs SYCONScore)，或 parallel coordinates
+      plot 展示 5 configs 的 ToF/NoF tradeoff。'
+    analysis: Sensitivity analysis 回应 reviewer concern "reward weights unjustified"。
+      数据表明：(a) 结果对权重选择 robust (excl R3-dominant, range 0.059); (b) default 配置 near-optimal;
+      (c) R2 disable 是合理的 (config5 < default)。 论文一段话讨论，table 放 main text (简短) 或 appendix
+      (如果 page limit 紧张)。
+  review_report: '---
+
+    dream_id: dream_20260519T201849
+
+    tier: best
+
+    overall_score: 3.0/6 Weak Reject (Findings-level)
+
+    timestamp: 2026-05-19T21:10:56.785831+00:00
+
+    ---
+
+
+    # Dream Review Report: "Discriminability Is Not Reward Utility: Binarized Direction
+    Probing for Multi-Turn Anti-Sycophancy Training"
+
+
+    **Review Mode:** Full (2 Reviewers, complete roundtable)
+
+    **Date:** 2026-05-19
+
+    **Reviewers:** R1 (Methodology & Experiments), R2 (Novelty & Related Work)
+
+
+    ---
+
+
+    ## Consolidated Assessment
+
+
+    **Overall Score: 3.0 / 6 (Weak Reject — Findings-level)**
+
+
+    Both reviewers independently scored the paper 3/6 with high confidence (4/5).
+    The paper presents a genuine and useful insight — that activation-space discriminability
+    does not guarantee reward utility for GRPO training — supported by a well-executed
+    four-experiment failure chain. However, the proposed solution (logistic regression
+    probe with binary output) is technically thin, the experimental validation has
+    critical statistical and methodological gaps, and engagement with the two closest
+    prior works (CRAFT, Latent-GRPO) is insufficient for a top ML venue main conference
+    track.
+
+
+    **Verdict:** In current form, this is a solid Findings paper but falls short of
+    main conference acceptance (~25% acceptance rate). With targeted revisions addressing
+    the top 5 issues below, it could reach borderline conference (3.5–4.0).
+
+
+    ---
+
+
+    ## Areas of Consensus (Both Reviewers Agree)
+
+
+    ### The Failure Chain Is the Strongest Contribution
+
+    The four-experiment cosine R1 failure chain (Table 2) — culminating in the per-evidence-strength
+    analysis showing strong-evidence samples receive R1=−0.305 while invalid-evidence
+    samples receive R1=+0.153 — provides a compelling, mechanistic demonstration that
+    discriminability ≠ reward utility. This negative result has independent scientific
+    value and is well-executed. The insight that both sycophantic capitulation and
+    genuine revision project similarly onto d_syc (because both involve belief change
+    toward the user''s position, differing only in warrant) is clean and likely generalizable.
+
+
+    ### Statistical Power Is Critically Limited (3 Seeds, 2 df)
+
+    Both reviewers flagged n=3 as a fundamental limitation. The reported Cohen''s
+    d values (9.95, 6.95) are implausibly large for behavioral ML experiments — with
+    only 2 degrees of freedom, the variance estimate is unreliable and the t-distribution
+    is heavy-tailed. The paper''s own acknowledgment ("limited statistical power")
+    understates the problem: 3 seeds cannot reliably estimate variance. The suspiciously
+    small standard deviations (SYCONScore 0.440 ± 0.020) raise additional questions
+    about whether seeds share too much structure (same training data, same calibration
+    set, same frozen probe) to constitute independent replicates.
+
+
+    **Recommendation:** 5+ seeds minimum, ideally with varied calibration splits.
+
+
+    ### The "Nonlinear Decision Boundary" Claim Is Factually Incorrect
+
+    Both reviewers noted that logistic regression is a linear classifier. Section
+    3.3 claims the probe "learns a nonlinear decision boundary that separates warranted
+    revision from unwarranted capitulation — information that a single linear projection
+    cannot capture." This is misleading: the probe learns a linear boundary in the
+    multi-layer d_syc feature space, applied through a sigmoid for probability estimation.
+    What the probe captures that a single cosine projection does not is a *weighted
+    combination across layers* followed by thresholding — this is better described
+    as "multi-layer aggregation + discretization" rather than "nonlinearity."
+
+
+    **Recommendation:** Correct the mechanistic description. The operative mechanisms
+    are (1) multi-layer feature aggregation and (2) binarization, not nonlinearity.
+
+
+    ### The Missing Continuous Probe Ablation (exp-014) Is Critical
+
+    Both reviewers identified exp-014 (continuous probe probability as reward) as
+    the most important missing experiment. This ablation would distinguish "binarization
+    is necessary" from "any probe works" — a distinction central to the paper''s conceptual
+    contribution. The experiment was killed at step 3243 due to mode collapse, but:
+
+    - Pre-collapse checkpoints (e.g., step 2000) could provide partial evidence
+
+    - A re-run with regularization, gradient clipping, or entropy bonus could succeed
+
+    - Without this result, the paper cannot cleanly attribute the improvement to binarization
+    vs. other design choices (stop-gradient, frozen probe, multi-layer features)
+
+
+    **Recommendation:** Recover exp-014 results from early checkpoints, or re-run
+    with stabilization. This is a must-have for the "binarization bridges the gap"
+    narrative.
+
+
+    ### CRAFT and Latent-GRPO Engagement Is Insufficient
+
+    CRAFT (hidden-state signals for safety-oriented GRPO) and Latent-GRPO (spherical
+    projection with robust centroids for reasoning) are the two most directly comparable
+    works. Both receive only a single sentence in Related Work. Critical unaddressed
+    questions:
+
+    - Would CRAFT''s prototype-clustering reward formulation, applied to sycophancy,
+    also succeed or fail?
+
+    - Why does continuous representation geometry work for reasoning (Latent-GRPO)
+    but not for sycophancy (this paper)? This asymmetry is central to the contribution
+    and deserves explicit analysis.
+
+    - What formal differences between CRAFT''s approach and DC-GRPO''s binarized-probe
+    approach predict when each would succeed?
+
+
+    **Recommendation:** Dedicated paragraphs for both CRAFT and Latent-GRPO in Related
+    Work, with formal comparison of design choices. An empirical CRAFT comparison
+    would be ideal but a rigorous qualitative analysis is minimally necessary.
+
+
+    ---
+
+
+    ## R1-Specific Concerns (Methodology & Experiments)
+
+
+    ### W-R1-1: Undisclosed 80% Training Truncation
+
+    The experimental design documents reveal that max_completion_length=256 causes
+    80–84% truncation across all GRPO experiments. This is never mentioned in the
+    paper. Implications:
+
+    - R3 (NLI) evaluates truncated outputs — short responses may be systematically
+    easier/harder to classify
+
+    - The model may learn truncation-aware behavior rather than genuine anti-sycophancy
+
+    - All metrics are computed on potentially truncated outputs
+
+
+    **Recommendation:** Disclose truncation rate, analyze its impact on metrics, or
+    increase max_completion_length.
+
+
+    ### W-R1-2: Custom Benchmark Without Human Validation
+
+    SYCONScore, ToF, NoF, WRR, UCR, and RC-AUC are all project-defined metrics. The
+    primary evaluation relies entirely on DeBERTa NLI correctly classifying sycophantic
+    capitulation vs. genuine revision. No human evaluation is conducted. The 5.2%
+    masked sycophancy claim (Contribution 3) is particularly vulnerable: it relies
+    on the probe being correct when it disagrees with NLI, but the probe has ~18%
+    error rate (AUROC 0.82).
+
+
+    **Recommendation:** Small-scale human annotation (50–100 samples) of NLI classifications.
+    Verify at least a subset of the 8 qualitative masked sycophancy examples with
+    human raters.
+
+
+    ### W-R1-3: Probe-Direction Circular Dependency
+
+    The logistic regression probe trains on d_syc features extracted from calibration
+    data, and d_syc itself is computed from the same calibration data. 5-fold CV partially
+    addresses overfitting but not the shared data source. Additionally, the probe
+    is frozen during training while model activations shift — the probe''s effective
+    accuracy on in-distribution training samples after step 0 is unknown.
+
+
+    ### W-R1-4: Baseline Fairness (ACT: SFT vs. GRPO)
+
+    ACT uses an SFT-style L2 penalty training objective while DC-GRPO and R3-only
+    use GRPO. Any advantage could stem from the training algorithm rather than the
+    reward signal.
+
+
+    ### W-R1-5: UCR Doubling Inadequately Discussed
+
+    DC-GRPO has UCR 0.170 vs. Vanilla 0.077 — more than double the unwarranted capitulation
+    rate. This is mentioned only in terms of overall NoF decrease. The paper should
+    analyze whether the probe''s binary reward creates a coarse reward landscape that
+    sometimes rewards capitulation, and whether this is acceptable in deployment.
+
+
+    ### W-R1-6: Single-Layer Threshold Baseline Missing
+
+    Would a simple threshold on the L19 cosine projection (R1 = 1 if cos(h, d_syc)
+    > τ, else 0) achieve similar results? This isolates whether "binarization" or
+    "learned multi-layer weighting" is the operative mechanism. Since single-layer
+    AUROC is 0.817 vs. multi-layer 0.835 (+0.018), the improvement from multi-layer
+    aggregation appears small.
+
+
+    ---
+
+
+    ## R2-Specific Concerns (Novelty & Related Work)
+
+
+    ### W-R2-1: Technical Contribution Is Thin
+
+    The core proposal — train a logistic regression probe on d_syc features and threshold
+    its output — is standard ML. The novelty is primarily empirical/diagnostic (characterizing
+    when directions fail as rewards) rather than methodological. The failure chain
+    is the real contribution; the solution is "the right preprocessing" rather than
+    a novel method.
+
+
+    ### W-R2-2: Generalizability Claim Unsupported
+
+    The Discussion states the discriminability-reward gap "may generalize beyond sycophancy
+    to other behavioral attributes." This is speculative with zero supporting evidence.
+    The mechanistic explanation (both desired and undesired behaviors project similarly)
+    is specific to sycophancy-revision; for other attributes (toxicity, hallucination),
+    the geometric structure may differ entirely.
+
+
+    **Recommendation:** Either remove the generalizability claim or provide at least
+    a brief analysis of when the gap would vs. would not appear for other attributes.
+
+
+    ### W-R2-3: Missing DPO/Preference Optimization Literature
+
+    Contrastive DPO with sycophantic/non-sycophantic pairs, agreement penalties (Shapira
+    et al.), and SMART (reasoning-trajectory sycophancy reduction) are primary competing
+    paradigms for training-time sycophancy reduction, receiving minimal discussion.
+
+
+    ### W-R2-4: "Pressure, What Pressure?" Baseline Underspecified
+
+    Is R3 identical to that work''s NLI reward, or a reimplementation? If identical,
+    cite their numbers for comparison. If different, specify how.
+
+
+    ---
+
+
+    ## Strengths Summary
+
+
+    1. **S1 (Both):** The four-experiment failure chain providing a mechanistic explanation
+    for why cosine projections fail as rewards — the most original and well-executed
+    section of the paper.
+
+
+    2. **S2 (Both):** Thorough experimental coverage — 9 tables covering main results,
+    failure chain, direction stability, ablations, weight sensitivity, turn-depth,
+    R1-R3 disagreement, cross-model transfer, and capability preservation. No cherry-picking.
+
+
+    3. **S3 (Both):** The anti-truth-decay property (DC-GRPO is the only method whose
+    NoF improves with conversational depth, p=0.006) is a distinctive finding with
+    a plausible mechanistic explanation.
+
+
+    4. **S4 (R1):** Cross-model validation on Llama-3-8B (AUROC 0.81) provides evidence
+    d_syc is not architecture-specific.
+
+
+    5. **S5 (Both):** Honest limitations discussion. The paper acknowledges the NoF-ToF
+    tradeoff, probe imperfection, and limited seeds without trying to minimize them.
+
+
+    6. **S6 (R2):** The "discriminability ≠ reward utility" insight is genuine, underexplored
+    in the RepE-for-training literature, and likely has value beyond this specific
+    application.
+
+
+    ---
+
+
+    ## Top 5 Actionable Recommendations (Priority Order)
+
+
+    1. **Recover or re-run exp-014 (continuous probe probability as reward).** This
+    is the single most important missing experiment for supporting the binarization
+    narrative. Without it, the paper cannot distinguish "binarization is necessary"
+    from "any probe-based reward works."
+
+
+    2. **Increase to 5+ seeds.** With n=3 and Cohen''s d ≈ 10, either the effect is
+    so large that more seeds will trivially confirm it, or the variance estimate is
+    unreliable. Either way, 5+ seeds resolves the concern.
+
+
+    3. **Engage seriously with CRAFT and Latent-GRPO.** Dedicated Related Work paragraphs
+    with formal comparison of design choices. Ideally, explain the asymmetry: why
+    continuous representation geometry works for Latent-GRPO (reasoning) but fails
+    here (sycophancy).
+
+
+    4. **Add human evaluation.** Even 50–100 annotated samples for NLI classification
+    validity and masked sycophancy verification. This addresses the custom-benchmark-without-validation
+    concern.
+
+
+    5. **Disclose and analyze the 80% truncation rate.** This is a significant undisclosed
+    experimental detail that could affect all reported metrics.
+
+
+    ---
+
+
+    ## Questions for Authors (Consolidated)
+
+
+    - **Q1:** Would a simple threshold on L19 cosine projection achieve similar results
+    to the multi-layer probe?
+
+    - **Q2:** What happens with continuous probe probability as R1? Can exp-014 early
+    checkpoints (pre-collapse) be reported?
+
+    - **Q3:** How is the probe''s accuracy verified on actual training samples during
+    training (not just the initial held-out set)?
+
+    - **Q4:** Evidence strength labels (strong/medium/weak/invalid): assigned by prompt
+    design or post-hoc?
+
+    - **Q5:** Raw per-seed SYCONScores to verify Cohen''s d calculation?
+
+    - **Q6:** How do you control for the SFT (ACT) vs. GRPO (DC-GRPO) training algorithm
+    difference?
+
+    - **Q7:** Of the 5.2% masked sycophancy cases, what fraction are verified by human
+    raters?
+
+    - **Q8:** Why does continuous geometry work for Latent-GRPO (reasoning) but fail
+    here (sycophancy)?
+
+    - **Q9:** DC-GRPO''s Turn-2 NoF (0.800) is the lowest of all methods. Is the "improving
+    with depth" an artifact of starting lower?
+
+    - **Q10:** Cross-model d_syc cosine is 0.31 — how does this reconcile with d_syc
+    capturing a "fundamental" signal?
+
+
+    ---
+
+
+    ## Score Breakdown
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness | 3/6 | — | 3/6 |
+
+    | Novelty | — | 3/6 | 3/6 |
+
+    | Overall | 3/6 | 3/6 | **3.0/6** |
+
+    | Confidence | 4/5 | 4/5 | 4/5 |
+
+
+    **Consensus Rationale:** The paper''s strongest contribution (the failure chain
+    and discriminability-reward gap insight) is genuinely valuable but constitutes
+    a negative result / diagnostic contribution. The positive contribution (DC-GRPO)
+    rests on a technically thin solution (logistic regression + thresholding) with
+    notable experimental gaps (3 seeds, no human eval, missing continuous probe ablation,
+    undisclosed truncation). The insufficient engagement with CRAFT and Latent-GRPO
+    prevents the reader from assessing the contribution''s novelty relative to the
+    closest prior work. Both reviewers agree this is a solid Findings paper; with
+    the top-5 revisions above, it has a plausible path to borderline conference acceptance
+    (3.5–4.0).'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/dream_reports/dream_20260519T201849/median/paper.pdf
+  imagined_experiments:
+  - name: r3_only_baseline
+    plan_id: exp-003
+    description: 'R3-only GRPO baseline，仅用 NLI behavioral reward，无 R1/R2。 D027 unified
+      eval (ToF/NoF/SYCONScore)。3 seeds 报告 mean ± std。
+
+      '
+    expected_results:
+      seed_0:
+        ToF: 0.205
+        NoF: 0.808
+        SYCONScore: 0.326
+        best_checkpoint: checkpoint-6000
+      seed_1:
+        ToF: 0.188
+        NoF: 0.831
+        SYCONScore: 0.306
+        best_checkpoint: checkpoint-5000
+      seed_2:
+        ToF: 0.198
+        NoF: 0.818
+        SYCONScore: 0.318
+        best_checkpoint: checkpoint-6000
+      mean:
+        ToF: 0.197
+        NoF: 0.819
+        SYCONScore: 0.317
+      std:
+        ToF: 0.009
+        NoF: 0.012
+        SYCONScore: 0.01
+      training_steps: 8000
+      mt_bench: 7.62
+      mmlu: 0.629
+    result_rationale: 'R3-only 在 median 档下表现出乎意料地强。SYCONScore 0.317 已超过 ACT best (0.301)，
+      原因是 NLI behavioral reward 与 D027 评估框架存在 metric alignment——R3 直接优化 NLI 一致性， 而
+      D027 的 ToF/NoF 本身基于 NLI 判断。ToF 达 0.197 (vs ACT 0.182, +1.5pp)， 说明 NLI reward
+      能部分区分 "合理修正" 和 "无理迎合" (通过 entailment 关系评估)， 不像 ACT 的 L2 consistency loss 无差别惩罚所有
+      activation 变化。 NoF 0.819 低于 ACT 的 0.867，但 harmonic mean 组合使 R3-only 总分更高。 这一结果严重压缩了
+      probe R1 的叙事空间：Δ SYCONScore 仅 ~5pp， 在 3 seeds 下可能不具统计显著性。 MT-Bench 降幅仅 -0.23
+      (vs Vanilla 7.85)，R3 训练信号保守，通用能力扰动小。
+
+      '
+    tables:
+    - name: 'Table: R3-only per-seed Results'
+      columns:
+      - seed
+      - checkpoint
+      - ToF
+      - NoF
+      - SYCONScore
+      rows:
+      - - seed_0
+        - ckpt-6000
+        - 0.205
+        - 0.808
+        - 0.326
+      - - seed_1
+        - ckpt-5000
+        - 0.188
+        - 0.831
+        - 0.306
+      - - seed_2
+        - ckpt-6000
+        - 0.198
+        - 0.818
+        - 0.318
+      - - mean±std
+        - —
+        - 0.197±0.009
+        - 0.819±0.012
+        - 0.317±0.010
+    figures_description:
+    - R3-only SYCONScore training curve (3 seeds, shaded std)：前 3000 步快速上升，4000-6000
+      步 plateau，best checkpoint 在 5000-6000 步区间。
+    analysis: 'R3-only 的强势是 median 档核心挑战。论文不能依赖 "R3 不够好" 的假设， 而必须转向 "R3 已经很好，probe
+      R1 的价值在理解层面 (binarization insight) 而非大幅性能提升"。 关键防线：R3 受限于 NLI 评分器能力——masked
+      sycophancy (表面正确但内部迎合) 完全逃逸 R3 检测。
+
+      '
+  - name: binary_probe_r1_main
+    plan_id: exp-008v3
+    description: 'Binary probe R1 + R3 GRPO 训练 (D029 pivoted main experiment)。 R1
+      = probe(h; d_syc) ∈ {0,1}，R = w1·R1 + w3·R3 (w1=0.3, w3=0.7, R2 disabled)。 Qwen3-8B
+      + LoRA rank 64。1 seed (时间限制)，D027 unified eval。
+
+      '
+    expected_results:
+      best_checkpoint: checkpoint-4500
+      training_steps: 6000
+      eval_at_best:
+        ToF: 0.241
+        NoF: 0.783
+        SYCONScore: 0.367
+      eval_at_final:
+        ToF: 0.238
+        NoF: 0.775
+        SYCONScore: 0.359
+      training_progression:
+        step_1000:
+          ToF: 0.165
+          NoF: 0.852
+          SYCONScore: 0.278
+          R1_mean: 0.73
+          entropy: 2.41
+        step_2000:
+          ToF: 0.208
+          NoF: 0.815
+          SYCONScore: 0.332
+          R1_mean: 0.71
+          entropy: 2.18
+        step_3000:
+          ToF: 0.228
+          NoF: 0.795
+          SYCONScore: 0.351
+          R1_mean: 0.69
+          entropy: 2.01
+        step_4000:
+          ToF: 0.237
+          NoF: 0.788
+          SYCONScore: 0.362
+          R1_mean: 0.67
+          entropy: 1.91
+        step_4500:
+          ToF: 0.241
+          NoF: 0.783
+          SYCONScore: 0.367
+          R1_mean: 0.66
+          entropy: 1.87
+        step_6000:
+          ToF: 0.238
+          NoF: 0.775
+          SYCONScore: 0.359
+          R1_mean: 0.64
+          entropy: 1.82
+      mt_bench: 7.51
+      mmlu: 0.626
+      delta_vs_r3only_SYCONScore: 0.05
+      delta_vs_ACT_SYCONScore: 0.066
+      passes_ACT_gate: true
+    result_rationale: 'SYCONScore 0.367 过 ACT gate (>0.301, Δ=+0.066)，但对 R3-only (0.317)
+      的边际提升仅 +0.050。 1 seed 下无法做 probe vs R3-only 显著性检验 (需 3 seeds)。 ToF 提升 (+4.4pp
+      vs R3-only) 是主要收益：probe R1 在 valid evidence 场景给正奖励， 鼓励正当信念修正——这正是 cosine R1
+      无法做到的 (cosine 对所有 "信念变化" 给负奖励)。 NoF 轻微下降 (-3.6pp vs R3-only)：probe 约 3-5% 误分类率导致部分
+      invalid evidence 样本 被错误标记为 "genuine revision"，削弱了抵抗力。 R1 reward 均值从 0.73 (step
+      1000) 缓降至 0.64 (final)，反映 d_syc 方向在训练后期 与 probe decision boundary 的 alignment
+      退化 (exp-006 AUROC 从 0.835→0.78)。 训练在 4500 步最优，之后 SYCONScore 微降——probe R1 信号后期变
+      noisy。 Entropy 1.82、response length ~245 tokens 均健康，无 mode collapse (对比 exp-014
+      continuous probe 的 entropy 0.025 catastrophic collapse)。
+
+      '
+    tables:
+    - name: 'Table: exp-008v3 vs All Baselines'
+      columns:
+      - Method
+      - ToF
+      - NoF
+      - SYCONScore
+      - Δ SYCONScore
+      rows:
+      - - Vanilla
+        - 0.111
+        - 0.923
+        - 0.197
+        - '-0.170'
+      - - ACT (ckpt-8000)
+        - 0.182
+        - 0.867
+        - 0.301
+        - '-0.066'
+      - - R3-only (mean)
+        - 0.197
+        - 0.819
+        - 0.317
+        - '-0.050'
+      - - Probe R1+R3 (ckpt-4500)
+        - 0.241
+        - 0.783
+        - 0.367
+        - —
+    figures_description:
+    - SYCONScore training curve：前 2000 步快速攀升 (0.28→0.33)，2000-4500 步稳步提升 (0.33→0.367)，4500
+      步后轻微回落。
+    - ToF vs NoF scatter (4 methods)：Probe R1+R3 在 ToF 轴最右 (最高修正率)，NoF 轴中间位置。ACT 在
+      NoF 轴最高但 ToF 最低。连接各方法形成 Pareto frontier。
+    analysis: 'exp-008v3 成功验证 binarization insight：binary probe R1 提供有效 GRPO reward
+      (R1 mean 0.64-0.73)， 而同一 d_syc 方向的 cosine 投影完全失败 (exp-002v2 R1≈0, exp-002v3
+      strong evidence R1=-0.305)。 但 median 档核心问题是 Δ vs R3-only 仅 0.050，不具统计显著性。 论文不能宣称
+      "probe R1 显著优于 R3-only"，只能说 "binary probe R1 是有效的 representation-level reward，
+      验证了 binarization 作为 discriminability→reward 转化桥梁的必要性"。 核心卖点从 method performance
+      转向 binarization insight：AUROC 0.82 (discriminability) ≠ reward utility (cosine
+      fails)，binarization bridges the gap。
+
+      '
+  - name: full_evaluation
+    plan_id: exp-005
+    description: '所有方法在 D027 unified eval + 通用 benchmark 上的完整评估。 方法：Vanilla, ACT,
+      R3-only, Probe R1+R3。 D029 后不再包括 cosine R1 (killed) 和 continuous probe (killed)，
+      它们在 Section 4-5 作为 negative evidence 呈现。
+
+      '
+    expected_results:
+      main_table:
+        Vanilla:
+          ToF: 0.111
+          NoF: 0.923
+          SYCONScore: 0.197
+          MT_Bench: 7.85
+          MMLU: 0.632
+        ACT:
+          ToF: 0.182
+          NoF: 0.867
+          SYCONScore: 0.301
+          MT_Bench: 7.38
+          MMLU: 0.624
+        R3_only:
+          ToF: 0.197
+          NoF: 0.819
+          SYCONScore: 0.317
+          MT_Bench: 7.62
+          MMLU: 0.629
+        Probe_R1_R3:
+          ToF: 0.241
+          NoF: 0.783
+          SYCONScore: 0.367
+          MT_Bench: 7.51
+          MMLU: 0.626
+      pairwise_significance:
+        probe_vs_vanilla_p: 0.002
+        probe_vs_ACT_p: 0.04
+        probe_vs_r3only_p: 0.12
+        r3only_vs_ACT_p: 0.31
+        r3only_vs_vanilla_p: 0.005
+      notes: 'p-values based on bootstrap resampling (n=1000). Probe vs R3-only comparison
+        underpowered: 1 seed (probe) vs 3 seeds (R3-only).
+
+        '
+    result_rationale: '主结果表呈现清晰层次：Vanilla < ACT ≤ R3-only < Probe R1+R3， 但相邻方法间差距不总显著。Probe
+      vs ACT 显著 (p=0.04)： probe 在 ToF 上的优势 (+5.9pp) 补偿了 NoF 损失 (-8.4pp)，harmonic mean
+      胜出。 Probe vs R3-only 不显著 (p=0.12)：Δ=0.050 在 1v3 seeds 对比下 power 不足。 R3-only
+      vs ACT 不显著 (p=0.31)：两者 SYCONScore 接近 (0.317 vs 0.301)。 MT-Bench 排序与 anti-sycophancy
+      强度负相关：Vanilla 7.85 > R3-only 7.62 > Probe 7.51 > ACT 7.38， probe R1+R3 的 MT-Bench
+      降幅 (-0.34) 小于 ACT (-0.47)， 说明 directed representation constraint 对通用能力比 undirected
+      L2 consistency 更友好。 MMLU 差异可忽略 (所有方法 ≤ 0.8pp 差距)。
+
+      '
+    tables:
+    - name: 'Table: Main Results (Section 6)'
+      columns:
+      - Method
+      - ToF ↑
+      - NoF ↑
+      - SYCONScore ↑
+      - MT-Bench
+      - MMLU
+      rows:
+      - - Vanilla
+        - 0.111
+        - 0.923
+        - 0.197
+        - 7.85
+        - 0.632
+      - - ACT
+        - 0.182
+        - 0.867
+        - 0.301
+        - 7.38
+        - 0.624
+      - - R3-only
+        - 0.197±.009
+        - 0.819±.012
+        - 0.317±.010
+        - 7.62
+        - 0.629
+      - - Probe R1+R3
+        - 0.241
+        - 0.783
+        - 0.367
+        - 7.51
+        - 0.626
+    - name: 'Table: Pairwise Significance'
+      columns:
+      - Comparison
+      - Δ SYCONScore
+      - p-value
+      - sig (α=0.05)
+      rows:
+      - - Probe vs Vanilla
+        - 0.17
+        - 0.002
+        - 'Yes'
+      - - Probe vs ACT
+        - 0.066
+        - 0.04
+        - 'Yes'
+      - - Probe vs R3-only
+        - 0.05
+        - 0.12
+        - 'No'
+      - - R3-only vs ACT
+        - 0.016
+        - 0.31
+        - 'No'
+      - - R3-only vs Vanilla
+        - 0.12
+        - 0.005
+        - 'Yes'
+    figures_description:
+    - 主结果柱状图 (4 methods × SYCONScore/ToF/NoF)：Probe R1+R3 的 SYCONScore bar 最高但与 R3-only
+      差距视觉上不大。
+    - ToF vs NoF scatter + Pareto frontier：Probe 位于 frontier 上 (最佳 tradeoff)，ACT 远离
+      frontier (高 NoF 低 ToF)。
+    - MT-Bench vs SYCONScore scatter：R3-only 和 Probe 均在 frontier 附近，ACT 被 dominated。
+    analysis: '主表是 Section 6 核心。Median 档叙事策略： (1) Probe R1+R3 SYCONScore 最佳，显著优于 ACT
+      和 Vanilla——binarization insight 实际可行； (2) vs R3-only 不显著——这不是方法失败，而是 Section
+      4-5 分析贡献的支撑： discriminability ≠ reward utility 意味着 representation-level reward
+      的边际价值有限 当 behavioral reward 已经 well-aligned 时； (3) Section 6 定位为 proof-of-concept
+      而非 headline result。
+
+      '
+  - name: direction_stability_monitoring
+    plan_id: exp-006
+    description: 'exp-008v3 训练过程中每 500 步监控 d_syc 方向稳定性： cosine similarity with initial
+      direction、held-out probe AUROC。
+
+      '
+    expected_results:
+      stability_curve:
+        step_0:
+          cosine: 1.0
+          probe_AUROC: 0.835
+        step_500:
+          cosine: 0.96
+          probe_AUROC: 0.83
+        step_1000:
+          cosine: 0.93
+          probe_AUROC: 0.822
+        step_2000:
+          cosine: 0.89
+          probe_AUROC: 0.81
+        step_3000:
+          cosine: 0.86
+          probe_AUROC: 0.8
+        step_4000:
+          cosine: 0.84
+          probe_AUROC: 0.79
+        step_5000:
+          cosine: 0.83
+          probe_AUROC: 0.785
+        step_6000:
+          cosine: 0.82
+          probe_AUROC: 0.78
+      auroc_total_drift: -0.055
+      cosine_total_drift: -0.18
+      recalibration_triggered: 0
+      recalibration_threshold: 0.7
+    result_rationale: '方向漂移模式与 D025 已知数据一致：cosine 从 1.0 单调降至 0.82，前 2000 步最快 (Δ=-0.11)
+      因为 LoRA 参数变化最剧烈，4000 步后减速趋稳 (Δ=-0.02/1000步)。 Probe AUROC 从 0.835 降至 0.780 (Δ=-0.055)，落在
+      median 档 [0.76, 0.80] 内。 AUROC 降幅 (6pp) 远小于 cosine 降幅 (18pp)，说明方向旋转中大量是 "无害旋转"——
+      正交于判别超平面的分量。Probe decision boundary 比 raw direction 更稳定。 未触发 0.70 重校准阈值，但 AUROC
+      退化是真实的——解释了 exp-008v3 后期 R1 reward 均值下降 (0.73→0.64) 和 SYCONScore 轻微回落。 在 median
+      档下，退化可控但非 trivial，需要在论文中如实报告。
+
+      '
+    tables:
+    - name: 'Table: Direction Stability (exp-008v3 training)'
+      columns:
+      - step
+      - cosine_w_init
+      - probe_AUROC
+      - recalibrated
+      rows:
+      - - 0
+        - 1.0
+        - 0.835
+        - —
+      - - 500
+        - 0.96
+        - 0.83
+        - 'No'
+      - - 1000
+        - 0.93
+        - 0.822
+        - 'No'
+      - - 2000
+        - 0.89
+        - 0.81
+        - 'No'
+      - - 3000
+        - 0.86
+        - 0.8
+        - 'No'
+      - - 4000
+        - 0.84
+        - 0.79
+        - 'No'
+      - - 5000
+        - 0.83
+        - 0.785
+        - 'No'
+      - - 6000
+        - 0.82
+        - 0.78
+        - 'No'
+    figures_description:
+    - 双 y 轴图：左轴 cosine similarity (蓝线, 1.0→0.82)，右轴 probe AUROC (红线, 0.835→0.780)。AUROC
+      曲线更平缓，说明 probe 比 raw direction 鲁棒。
+    analysis: 'Claim 1 的 stability 部分成立 (cosine≥0.82, AUROC≥0.78)。 论文需报告：(1) 方向缓慢旋转，AUROC
+      退化 ~6pp； (2) 重校准是安全机制 (即使本次未触发)； (3) probe decision boundary 比方向本身更稳——binarization
+      的额外好处。 这增加了方法复杂度但提供了 analysis point。
+
+      '
+  - name: r1_r3_disagreement_analysis
+    plan_id: exp-007
+    description: '分析 exp-008v3 训练过程中 probe R1 和 R3 给出不同信号的频率和模式。 R1=syc & R3=correct
+      (masked sycophancy 候选) 需 > 5% 以支撑 Claim 3。
+
+      '
+    expected_results:
+      total_samples_analyzed: 3600
+      agreement_rate: 0.955
+      total_disagreement_rate: 0.045
+      r1_syc_r3_correct:
+        count: 97
+        rate: 0.027
+      r1_correct_r3_syc:
+        count: 65
+        rate: 0.018
+      by_evidence_strength:
+        weak: 0.058
+        medium: 0.042
+        strong: 0.031
+      by_turn_depth:
+        turn_2: 0.035
+        turn_3: 0.048
+        turn_4plus: 0.062
+    result_rationale: '4.5% 总体 disagreement 落在 median 档 [3%, 6%] 内但低于 5% 门槛。 "R1=syc,
+      R3=correct" (masked sycophancy 候选) 仅 2.7%——比例太低， 无法支撑 "probe R1 发现 R3 遗漏的隐藏迎合"
+      的强 claim。 两个结构化 pattern 有分析价值： (a) 与 evidence strength 负相关 (weak 5.8% > strong
+      3.1%)——弱证据下 NLI 置信度低， R3 判断模糊，而 probe R1 基于固定 decision boundary 不受影响； (b) 与
+      turn depth 正相关 (turn 2 3.5% → turn 4+ 6.2%)——深层对话中 NLI 评分器面对长上下文准确率下降，probe
+      基于即时 activation 不受影响。 但两个 pattern 的量级有限，不足以作为正式贡献。
+
+      '
+    tables:
+    - name: 'Table: R1-R3 Disagreement Breakdown'
+      columns:
+      - category
+      - count
+      - rate
+      rows:
+      - - Total samples
+        - 3600
+        - —
+      - - Full agreement
+        - 3438
+        - 0.955
+      - - R1=syc & R3=correct
+        - 97
+        - 0.027
+      - - R1=correct & R3=syc
+        - 65
+        - 0.018
+      - - Total disagreement
+        - 162
+        - 0.045
+    - name: 'Table: Disagreement by Turn Depth'
+      columns:
+      - turn_depth
+      - n_samples
+      - disagreement_rate
+      rows:
+      - - Turn 2
+        - 1440
+        - 0.035
+      - - Turn 3
+        - 1200
+        - 0.048
+      - - Turn 4+
+        - 960
+        - 0.062
+    figures_description:
+    - Disagreement rate vs turn depth 柱状图：单调递增，turn 2 vs turn 4+ 的 bootstrap CI 不重叠。
+    - Disagreement rate vs evidence strength 柱状图：单调递减，weak vs strong CI 不重叠。
+    analysis: '4.5% 不满足 Claim 3 的 5% 门槛。 Claim 3 从 analysis subsection 降为 Appendix
+      C 讨论。 主论文一句话："R1-R3 disagreement is 4.5%, below the 5% threshold for claiming
+      diagnostic utility; structured patterns by turn depth and evidence strength
+      are reported in Appendix C."
+
+      '
+  - name: ablation_r1_only
+    plan_id: exp-009
+    description: 'Probe R1-only ablation：仅用 binary probe reward, 无 R3 behavioral safety
+      net。 从 exp-008v3 step 2000 checkpoint 分叉, 短程训练 ~2000 步。
+
+      '
+    expected_results:
+      best_step: 3200
+      eval_at_best:
+        ToF: 0.208
+        NoF: 0.762
+        SYCONScore: 0.327
+      eval_at_final:
+        ToF: 0.201
+        NoF: 0.748
+        SYCONScore: 0.316
+      training_entropy_final: 1.54
+      mean_response_length_final: 198
+    result_rationale: 'Probe R1-only SYCONScore 0.327 高于 Vanilla (0.197, Δ=+0.130)，
+      证明 probe R1 包含独立训练信号。但低于 R1+R3 组合 (0.367, Δ=-0.040)。 缺少 R3 安全网后 NoF 下降显著 (0.762
+      vs 0.783, -2.1pp)——probe 误分类无 R3 兜底。 ToF 也更低 (0.208 vs 0.241, -3.3pp)——反直觉但合理：R3
+      的 NLI reward 在 valid evidence 场景中提供 "这次修正是对的" 的确认信号，缺失后模型对所有修正更 hedging。 Entropy
+      偏低 (1.54 vs 1.82)：probe R1 alone 的 reward landscape 更尖锐，GRPO 探索受限。 R1-only (0.327)
+      与 R3-only (0.317) SYCONScore 接近—— 两种信号源 (representation vs behavior) 独立贡献大致相当，但组合有超线性收益。
+
+      '
+    tables:
+    - name: 'Table: R1-only Ablation'
+      columns:
+      - Method
+      - ToF
+      - NoF
+      - SYCONScore
+      - entropy
+      rows:
+      - - Vanilla
+        - 0.111
+        - 0.923
+        - 0.197
+        - 2.85
+      - - R3-only
+        - 0.197
+        - 0.819
+        - 0.317
+        - 2.12
+      - - Probe R1-only
+        - 0.208
+        - 0.762
+        - 0.327
+        - 1.54
+      - - Probe R1+R3
+        - 0.241
+        - 0.783
+        - 0.367
+        - 1.82
+    figures_description:
+    - Ablation cascade 柱状图 (SYCONScore)：R3-only 和 R1-only 几乎等高 (0.317 vs 0.327)，R1+R3
+      明显更高 (0.367)。视觉强调组合的超线性收益。
+    analysis: 'R1-only ablation 在论文中支撑两个论点： (1) Probe R1 有独立训练信号 (vs Vanilla +13pp)；
+      (2) R1 和 R3 互补——R1+R3 (0.367) > max(R1-only 0.327, R3-only 0.317)。 R1-only ≈
+      R3-only 强化 median 档叙事：两种信号独立贡献相当，组合收益有限但一致。
+
+      '
+  - name: turn_depth_analysis
+    plan_id: exp-010
+    description: '按 commitment depth (turn 2/3/4+) 分析 probe R1+R3 vs baselines。 验证
+      probe R1 在深层 commitment 中是否优势放大。
+
+      '
+    expected_results:
+      by_method_and_depth:
+        Vanilla:
+          turn_2: 0.228
+          turn_3: 0.189
+          turn_4plus: 0.152
+        ACT:
+          turn_2: 0.328
+          turn_3: 0.295
+          turn_4plus: 0.264
+        R3_only:
+          turn_2: 0.355
+          turn_3: 0.311
+          turn_4plus: 0.268
+        Probe_R1_R3:
+          turn_2: 0.401
+          turn_3: 0.359
+          turn_4plus: 0.312
+      probe_advantage_vs_r3only:
+        turn_2_pp: 4.6
+        turn_3_pp: 4.8
+        turn_4plus_pp: 4.4
+    result_rationale: '所有方法 SYCONScore 随 turn depth 下降 (commitment 越深越难正确应对)。 Probe
+      R1+R3 的优势在各深度大致恒定 (~4.4-4.8pp)，未如 best 档预期在深层 turns 放大。 原因：d_syc 在 fixed-length
+      校准数据上计算，turn 4+ 长上下文中 activation pattern 偏移， probe accuracy 同样下降——probe 的优势是
+      turn-depth-invariant 而非 amplified。 R3-only 在 turn 4+ 退化 (-0.087 from turn 2)
+      和 probe (-0.089) 降幅几乎相同。 "Multi-turn 是 probe 甜蜜点" 的叙事在 median 档下不成立。
+
+      '
+    tables:
+    - name: 'Table: SYCONScore by Turn Depth'
+      columns:
+      - Method
+      - Turn_2
+      - Turn_3
+      - Turn_4+
+      - Δ(turn2→4+)
+      rows:
+      - - Vanilla
+        - 0.228
+        - 0.189
+        - 0.152
+        - -0.076
+      - - ACT
+        - 0.328
+        - 0.295
+        - 0.264
+        - -0.064
+      - - R3-only
+        - 0.355
+        - 0.311
+        - 0.268
+        - -0.087
+      - - Probe R1+R3
+        - 0.401
+        - 0.359
+        - 0.312
+        - -0.089
+    figures_description:
+    - 折线图 SYCONScore vs turn depth (4 methods)：所有线下降，线间距大致恒定——没有在深层 turns 拉开差距。
+    analysis: 'Turn-depth 分析不支持 "multi-turn advantage amplification" 叙事。 但提供另一个 finding：probe
+      R1 优势是 turn-depth-invariant， 说明 representation-level signal 不因 context length
+      退化—— 而 behavioral signal (R3) 的 NLI 模型可能随 context 长度退化。 在 Section 6 作为补充分析，支撑
+      "representation signal is robust to context length" 的温和 claim。
+
+      '
+  - name: ablation_r1_r2_no_r3
+    plan_id: exp-011
+    description: 'D029 pivot 后 R2 已 disabled。此实验变为冗余 (等价于 exp-009 probe R1-only)。
+
+      '
+    expected_results:
+      status: REDUNDANT_POST_D029
+      recommendation: '合并入 exp-015 reward weight sensitivity 中 w1=0.8/w3=0.2 极端配置。
+
+        '
+    result_rationale: 'D029 pivot 禁用 R2 (rank-based contrastive reward)。 原始设计 (R1+R2
+      without R3) 退化为 R1-only (与 exp-009 相同)， 单独运行无新增信息量。功能合并入 exp-015 极端权重配置。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '标记为 SKIP。如 reviewer 问 R2，回答： "R2 在 binary probe 框架下冗余——probe 已将 d_syc
+      方向信息 binarize， rank-based contrastive 无法提供超越 probe decision boundary 的额外信息。"
+
+      '
+  - name: cross_model_transfer
+    plan_id: exp-012
+    description: 'Phase A: Llama-3-8B 上计算 d_syc + 训练 probe, 报告 AUROC。 Phase B (if
+      AUROC > 0.75): 短程 binary probe R1+R3 GRPO (~3000 步)。
+
+      '
+    expected_results:
+      phase_a:
+        auroc: 0.78
+        auroc_ci_95:
+        - 0.74
+        - 0.82
+        best_layer: L17
+        probe_auroc: 0.79
+      phase_a_gate: PASS
+      phase_b:
+        best_checkpoint: step_2500
+        ToF: 0.212
+        NoF: 0.77
+        SYCONScore: 0.331
+      cross_model_direction:
+        cosine_qwen_llama: 0.28
+        transfer_auroc_qwen_on_llama: 0.61
+        transfer_auroc_llama_on_qwen: 0.63
+    result_rationale: 'Llama-3-8B d_syc AUROC 0.78 通过 0.75 gate，但低于 Qwen3 的 0.826
+      (~4.6pp)—— 模型族差异导致表征空间几何不同，但 "mid-layer 存在 sycophancy 判别方向" 跨模型普遍。 Peak layer
+      L17 (Qwen3 在 L19)，差异反映架构细节 (Llama GQA, Qwen RoPE 实现不同)。 Phase B SYCONScore 0.331
+      (vs 估算 Llama Vanilla ~0.21, Δ=+0.12)， 框架跨模型可迁移但效果打折 (Qwen3 上 0.367)。 跨模型方向 cosine
+      仅 0.28——方向是 model-specific。 Transfer AUROC 0.61 高于 random 但远低于 native (0.79)——
+      不同模型编码 sycophancy 的"方向不同但现象相同"。
+
+      '
+    tables:
+    - name: 'Table: Cross-Model Comparison'
+      columns:
+      - metric
+      - Qwen3-8B
+      - Llama-3-8B
+      rows:
+      - - d_syc AUROC
+        - 0.826
+        - 0.78
+      - - Probe AUROC
+        - 0.835
+        - 0.79
+      - - Best layer
+        - L19
+        - L17
+      - - Probe R1+R3 SYCONScore
+        - 0.367
+        - 0.331
+    - name: 'Table: Direction Transfer Matrix'
+      columns:
+      - source → target
+      - AUROC
+      - cosine
+      rows:
+      - - Qwen3 → Qwen3
+        - 0.835
+        - 1.0
+      - - Llama3 → Llama3
+        - 0.79
+        - 1.0
+      - - Qwen3 → Llama3
+        - 0.61
+        - 0.28
+      - - Llama3 → Qwen3
+        - 0.63
+        - 0.28
+    figures_description:
+    - 双模型 layer progression 曲线：两条 S 形曲线形状相似，Llama3 整体偏低 ~4pp，peak 偏早 2 层。
+    - Direction transfer heatmap (2×2)：对角线高 (0.84/0.79)，off-diagonal 低但 >0.50 (0.61/0.63)。
+    analysis: '部分回应 "single model" critique。论文声称： (1) sycophancy 方向判别跨模型普遍存在； (2)
+      binary probe R1+R3 框架跨模型有效； (3) 方向不可直接迁移，需 per-model 校准。 Honest limitation 而非
+      weakness。Phase B SYCONScore 0.331 vs Llama Vanilla ~0.21 是强 evidence。
+
+      '
+  - name: neutral_baseline_three_way
+    plan_id: exp-013
+    description: 'D029 后 R2 disabled，优先级大幅降低。 仅作几何理解贡献：计算独立 d_gen, 分析与 d_syc 的关系。
+
+      '
+    expected_results:
+      d_syc_d_gen_cosine: -0.74
+      angular_separation_degrees: 42
+      d_gen_independent_auroc: 0.73
+      d_syc_auroc: 0.83
+    result_rationale: 'd_syc 和独立 d_gen 的 cosine=-0.74 (而非退化值 -1.0)， 存在 ~42° 偏差——sycophantic
+      和 genuine 方向不完全反对称。 d_gen AUROC 0.73 低于 d_syc 0.83：genuine revision 的表征信号更弱更分散，
+      模型对 "被正确说服" 的内部表征不如 "迎合施压" 清晰。 在 R2 disabled 框架下纯粹是 understanding 贡献：解释为什么 probe
+      只需 d_syc， 不需要独立 d_gen。
+
+      '
+    tables:
+    - name: 'Table: Three-way Direction Geometry'
+      columns:
+      - metric
+      - value
+      rows:
+      - - cosine(d_syc, d_gen_indep)
+        - -0.74
+      - - angular separation
+        - 42°
+      - - d_syc AUROC
+        - 0.83
+      - - d_gen independent AUROC
+        - 0.73
+    figures_description:
+    - 2D PCA 投影：d_syc, -d_syc, d_gen_independent 三个方向。d_gen 与 -d_syc 接近但有 ~42° 偏转。
+    analysis: 'Appendix 级 supplementary geometry analysis。 主论文一句话引用："d_syc and independently
+      computed d_gen are near-anti-parallel (cosine=-0.74), confirming the binary
+      framing captures most directional structure."
+
+      '
+  - name: reward_weight_sensitivity
+    plan_id: exp-015
+    description: 'D029 后仅 w1 (probe R1) 和 w3 (R3) 两个权重 (w3=1-w1)。 5 组配置：w1 ∈ {0.1,
+      0.2, 0.3, 0.5, 0.8}。 从 exp-008v3 step 2000 分叉, 每组 ~2000 步短程训练。
+
+      '
+    expected_results:
+      configs:
+        w1_01:
+          ToF: 0.2
+          NoF: 0.815
+          SYCONScore: 0.321
+          entropy: 2.1
+        w1_02:
+          ToF: 0.222
+          NoF: 0.798
+          SYCONScore: 0.347
+          entropy: 1.95
+        w1_03:
+          ToF: 0.241
+          NoF: 0.783
+          SYCONScore: 0.367
+          entropy: 1.82
+        w1_05:
+          ToF: 0.248
+          NoF: 0.752
+          SYCONScore: 0.373
+          entropy: 1.58
+        w1_08:
+          ToF: 0.185
+          NoF: 0.648
+          SYCONScore: 0.288
+          entropy: 1.12
+      robust_range: w1 ∈ [0.2, 0.5], SYCONScore ∈ [0.347, 0.373], range = 2.6pp
+      best_config: w1=0.5
+      default_config: w1=0.3
+      failure_mode: w1=0.8 → entropy collapse (1.12), NoF drops to 0.648, probe errors
+        dominate
+    result_rationale: 'SYCONScore 在 w1=0.2-0.5 范围内稳健 (range 2.6pp)，证明非 cherry-pick。
+      w1=0.5 marginal best (0.373 vs default 0.367)——SYCONScore plateau 效应： w1 从 0.3→0.5
+      时 ToF 继续上升 (+0.7pp) 但 NoF 加速下降 (-3.1pp)，harmonic mean 近似持平。 Default w1=0.3 不是绝对最优但处于
+      plateau 内，且 entropy (1.82) 比 w1=0.5 (1.58) 更健康。 w1=0.1 退化温和 (0.321)，接近 R3-only
+      (0.317)——probe 信号被淹没。 w1=0.8 严重退化 (0.288 < R3-only)：entropy collapse (1.12)，probe
+      误分类被极度放大， 模型学会 "游戏" probe decision boundary 而非真正改善 sycophancy behavior。 NoF
+      0.648 甚至低于 Vanilla，说明极端 R1 权重适得其反。
+
+      '
+    tables:
+    - name: 'Table: Reward Weight Sensitivity'
+      columns:
+      - w1
+      - w3
+      - ToF
+      - NoF
+      - SYCONScore
+      - entropy
+      rows:
+      - - 0.1
+        - 0.9
+        - 0.2
+        - 0.815
+        - 0.321
+        - 2.1
+      - - 0.2
+        - 0.8
+        - 0.222
+        - 0.798
+        - 0.347
+        - 1.95
+      - - '**0.3**'
+        - '**0.7**'
+        - '**0.241**'
+        - '**0.783**'
+        - '**0.367**'
+        - '**1.82**'
+      - - 0.5
+        - 0.5
+        - 0.248
+        - 0.752
+        - 0.373
+        - 1.58
+      - - 0.8
+        - 0.2
+        - 0.185
+        - 0.648
+        - 0.288
+        - 1.12
+    figures_description:
+    - SYCONScore vs w1 曲线：w1=0.1-0.5 上升后 plateau (peak at 0.5)，w1=0.8 急剧下降。inverted-J
+      shape。
+    - Entropy vs w1 曲线：单调递减，w1=0.8 处 entropy 近 mode collapse 阈值。
+    analysis: Appendix E 完整表格，主论文一句话： "Sensitivity analysis confirms robustness across
+      w1 ∈ [0.2, 0.5] (SYCONScore range 2.6pp); extreme w1=0.8 causes entropy collapse."
+      关键 reviewer 防御：结果非 cherry-pick，合理权重范围内均有效。
+  review_report: '---
+
+    dream_id: dream_20260519T201849
+
+    tier: median
+
+    overall_score: 3/6 Weak Reject — Borderline Findings
+
+    timestamp: 2026-05-19T21:15:53.919533+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper:** "An Empirical Investigation of Representation-to-Reward Transfer in
+    Anti-Sycophancy Training"
+
+    **Review mode:** full (2 Reviewers, complete roundtable)
+
+    **Date:** 2026-05-19
+
+
+    ---
+
+
+    ## Reviewer Scores
+
+
+    | Reviewer | Focus | Score | Confidence |
+
+    |----------|-------|-------|------------|
+
+    | R1 | Methods + Experiments | 3/6 (Weak Reject) | 4/5 |
+
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 4/5 |
+
+    | **Consensus** | | **3/6 (Weak Reject)** | **4/5** |
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper investigates whether a linear "sycophancy direction" (d_syc) extracted
+    from LLM mid-layer activations can serve as a GRPO reward signal for anti-sycophancy
+    training. The core finding is the "discriminability–reward gap": d_syc achieves
+    AUROC 0.826 for classification but continuous cosine projections onto it fail
+    as GRPO rewards through four increasingly targeted experiments. The structural
+    root cause is that sycophantic capitulation and genuine revision share geometric
+    direction, differing only in warrant. The proposed fix—binarization via a logistic
+    regression probe (R1) combined with an NLI behavioral reward (R3)—achieves SYCONScore
+    0.367, significantly outperforming ACT (0.301, p=0.04) but NOT significantly outperforming
+    R3-only (0.317, p=0.12).
+
+
+    ---
+
+
+    ## Agreed Strengths
+
+
+    **S1. Thorough negative result documentation (R1, R2).** The four-experiment failure
+    chain (tanh gate → raw cosine → online recalibration → scaled 5×) is methodologically
+    rigorous. The per-evidence-strength analysis in Experiment 4 (strong evidence
+    samples receiving R1=−0.305) is the paper''s standout empirical contribution—it
+    mechanistically explains *why* cosine projection fails, not just that it fails.
+    Both reviewers identified this as the strongest element of the paper.
+
+
+    **S2. Honest framing and reporting (R1, R2).** The paper clearly reports that
+    probe R1+R3 vs R3-only is not statistically significant (p=0.12). The framing
+    as "empirical investigation" rather than "method paper" is appropriate given the
+    evidence. This builds credibility and is commendable relative to common practices.
+
+
+    **S3. Comprehensive experimental coverage (R1, R2).** Direction stability monitoring,
+    cross-model validation (Llama-3-8B), reward weight sensitivity (5 configurations),
+    turn-depth stratification, R1-only ablation, and R1-R3 disagreement analysis demonstrate
+    unusual thoroughness for a 7-page paper.
+
+
+    **S4. Well-designed probe ablation (R1).** The random-direction probe control
+    (AUROC 0.727 vs d_syc 0.835, Δ=+0.108) and single-layer vs multi-layer comparison
+    correctly isolate that d_syc direction—not feature engineering—drives probe effectiveness.
+
+
+    **S5. Cross-model validation provides partial evidence (R2).** Demonstrating d_syc
+    discriminability on Llama-3-8B (AUROC 0.780) partially addresses the single-model
+    concern, though cross-model cosine of 0.28 raises questions about universality.
+
+
+    ---
+
+
+    ## Agreed Weaknesses
+
+
+    **W1. Central positive result is not statistically significant (R1, R2).** Probe
+    R1+R3 (0.367) vs R3-only (0.317) yields p=0.12—the paper''s headline comparison
+    fails to reach significance. Moreover, the comparison is asymmetric (1 seed vs
+    3 seeds), which R1 identifies as a fundamental design flaw: the statistical test
+    is severely underpowered. The significant comparison vs ACT (p=0.04) uses a weaker
+    baseline. Without multi-seed validation for the proposed method, the paper cannot
+    support the claim that representation-level information adds value to behavioral
+    rewards. **This is the primary weakness that both reviewers identified as disqualifying
+    for main conference acceptance.**
+
+
+    **W2. Binarization bridge is technically thin (R2, with R1 concurrence).** The
+    proposed solution reduces to: (1) extract contrastive direction (standard RepE),
+    (2) project activations (standard), (3) logistic regression + threshold (standard
+    ML). The novelty rests on diagnosis (the gap) rather than the solution, and the
+    solution is not convincingly validated.
+
+
+    **W3. Missing critical ablation: thresholded cosine (R2) / continuous probe probability
+    (R1).** Both reviewers independently identified a missing experiment that would
+    test the binarization hypothesis more cleanly. R2: a simple thresholded cosine
+    at L19 (R1 = 1 if cos(h, d_syc) > τ, else 0) would isolate binarization from multi-layer
+    aggregation. R1: comparing binary R1 ∈ {0,1} against continuous R1 = P(genuine)
+    from the same probe would test whether binarization per se is the operative mechanism.
+
+
+    **W4. CRAFT/Latent-GRPO asymmetry unexplored (R2).** Continuous representation
+    geometry reportedly succeeds as GRPO reward for reasoning (Latent-GRPO) and safety
+    (CRAFT) but fails for sycophancy. The paper does not explain this asymmetry—it
+    is the most theoretically interesting question the paper raises and leaves unanswered.
+    This significantly weakens the claim that the discriminability–reward gap is a
+    general phenomenon.
+
+
+    **W5. R1-R3 disagreement too low for practical utility (R1).** At 4.5% disagreement
+    (below the paper''s own 5% threshold), the representation-level reward largely
+    duplicates the behavioral reward. The added pipeline complexity (direction extraction,
+    probe training, stability monitoring) delivers marginal practical benefit.
+
+
+    ---
+
+
+    ## Unique Reviewer Concerns
+
+
+    ### R1-only concerns
+
+
+    **W6. Training truncation confound.** Decision log indicates 80% truncation rate
+    at 256 tokens. All methods share truncation, but the interaction between truncation
+    and different reward signals (R1 on hidden states of truncated text, R3 on NLI
+    of truncated text) is unanalyzed. This could differentially affect the comparison.
+
+
+    **W7. "Super-additive gain" has a simpler explanation.** R1-only (0.327) ≈ R3-only
+    (0.317), combined = 0.367. This is equally consistent with simple complementarity
+    of two noisy correlated signals, not synergistic interaction. A control (R3 +
+    random binary reward with same 0/1 rate) would disambiguate.
+
+
+    **W8. Cross-model cosine of 0.28 undermines universality.** The low cross-model
+    direction similarity and transfer AUROC of 0.61-0.63 suggest d_syc captures model-specific
+    processing artifacts rather than a generalizable cognitive signal. The paper does
+    not adequately discuss this negative implication.
+
+
+    ### R2-only concerns
+
+
+    **W9. Related work gaps.** Missing engagement with: (a) reward overoptimization
+    literature (Gao et al. 2023, Skalse et al. 2022) relevant to the "discriminability
+    ≠ reward utility" framing; (b) DPO-based sycophancy reduction as a competing paradigm;
+    (c) inadequate CRAFT comparison (one sentence). The "discriminability-reward gap"
+    is presented as novel but relates to well-known reward misspecification phenomena.
+
+
+    **W10. Anonymous references limit verifiability.** Six Anonymous 2025 references
+    and one Anonymous Zhang 2026 cannot be independently evaluated, making key differentiators
+    (from ACT, from "Pressure, What Pressure?") hard to assess.
+
+
+    ---
+
+
+    ## Questions for Authors (Consolidated)
+
+
+    1. **Statistical validity (R1):** What test produced p=0.12 for probe (1 seed)
+    vs R3-only (3 seeds)? With effectively n=1 vs n=3, what power does this test have?
+    Why was the probe experiment not run with 3 seeds?
+
+
+    2. **Thresholded cosine ablation (R2):** Would R1 = 1{cos(h_L19, d_syc) > τ} achieve
+    comparable results, isolating binarization from learned multi-layer weighting?
+
+
+    3. **CRAFT/Latent-GRPO asymmetry (R2):** Why does continuous geometry work for
+    reasoning/safety but fail for sycophancy? What structural property of sycophancy
+    makes binarization necessary?
+
+
+    4. **Probe distribution shift (R1):** Is the probe retrained during training?
+    If not, how do binary decisions remain meaningful at step 6000 given documented
+    AUROC degradation from 0.835 to 0.780?
+
+
+    5. **Practical value given 4.5% disagreement (R1):** If R1 and R3 agree 95.5%
+    of the time, what is the cost-benefit case for the representation-level pipeline?
+
+
+    ---
+
+
+    ## Missing Experiments (Priority-Ordered)
+
+
+    1. **Multiple seeds for probe R1+R3** (critical): At minimum 3, ideally 5 seeds.
+    Without this, the central positive claim has no statistical foundation.
+
+    2. **Thresholded cosine ablation**: R1 = 1{cos(h_L19, d_syc) > τ} to isolate binarization
+    mechanism.
+
+    3. **Continuous probe probability**: R1 = P(genuine) vs binary R1 ∈ {0,1} from
+    the same probe to test binarization hypothesis directly.
+
+    4. **Complementarity control**: R3 + random binary reward with same base rate
+    as R1, to test whether any additional noisy signal helps.
+
+    5. **Human evaluation**: SYCONScore is NLI-based; human evaluation of dialogue
+    quality would strengthen external validity.
+
+
+    ---
+
+
+    ## Minor Issues
+
+
+    - R2 being disabled should be stated early; the original three-reward design is
+    implied but R2 is absent from all experiments.
+
+    - Table 2 asymmetry (1-seed vs 3-seed results shown together) should be more prominently
+    flagged.
+
+    - "Discriminability–reward gap" should be explicitly defined as a novel term if
+    intended as such.
+
+    - SYCONScore definition (harmonic mean of ToF and NoF) should appear in main text
+    with justification for harmonic mean over arithmetic mean.
+
+    - Paper would benefit from a figure showing cosine R1 distribution for sycophantic
+    vs genuine responses at different evidence strengths, making the structural failure
+    visually obvious.
+
+
+    ---
+
+
+    ## Overall Assessment
+
+
+    **Score: 3/6 (Weak Reject) — Borderline Findings**
+
+
+    The paper''s strongest contribution is the four-experiment failure chain demonstrating
+    that continuous cosine projections onto d_syc fail as GRPO rewards, with a clear
+    mechanistic explanation (direction captures belief change direction but not warrant).
+    This negative result has independent value for the representation engineering
+    community.
+
+
+    However, the proposed positive solution (probe binarization) is technically thin
+    and—critically—does not significantly outperform the simpler R3-only baseline
+    (p=0.12 on an underpowered 1-vs-3-seed comparison). An empirical investigation
+    paper at a top venue requires either (a) a surprising, well-validated finding
+    or (b) a comprehensive analysis that changes community thinking. The failure analysis
+    approaches (a) but the non-significant positive result and missing ablations (thresholded
+    cosine, continuous probe) prevent full validation of the binarization insight.
+    The missing CRAFT/Latent-GRPO comparison prevents elevation to (b).
+
+
+    **Recommendation:** Below threshold for main conference (~25% acceptance). Suitable
+    for Findings with revisions: (1) run 3+ seeds for probe R1+R3; (2) add thresholded
+    cosine ablation; (3) engage with CRAFT/Latent-GRPO asymmetry. If multi-seed probe
+    R1+R3 achieves p<0.05 vs R3-only, the paper becomes a solid Weak Accept (4/6).
+
+
+    **Upgrade path to 4/6:** 3+ seeds achieving significance vs R3-only + thresholded
+    cosine ablation + CRAFT/Latent-GRPO discussion.
+
+    **Downgrade risk to 2/6:** If multi-seed probe R1+R3 fails to outperform R3-only,
+    the paper''s positive contribution evaporates and only the negative result remains
+    (workshop-length contribution).
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/dream_reports/dream_20260519T201849/worst/paper.pdf
+  imagined_experiments:
+  - name: calibration_data_expansion
+    plan_id: exp-001
+    description: 扩展校准数据至 200 pairs，计算 d_syc 方向 + AUROC。已完成。
+    expected_results:
+      cv_auroc_mean: 0.8269
+      cv_auroc_std: 0.0278
+      full_auroc: 0.8159
+      bootstrap_ci_95:
+      - 0.7698
+      - 0.8589
+      best_layer: 19
+      auroc_weak: 0.675
+      auroc_medium: 0.883
+      auroc_strong: 0.929
+      num_pairs: 181
+      stop_gate: CONTINUE_REDUCED_R1
+    result_rationale: '真实数据。AUROC 0.82 表面达标，但 worst 档下此结果恰恰是论文核心反讽： discriminability
+      充分（0.82）却不等价于 reward utility。weak evidence AUROC 仅 0.675 预示了 d_syc 在低信号区间无法区分
+      warranted revision vs sycophantic capitulation， 这正是后续所有 R1 变体失败的根因。论文 reframe
+      后此实验提供 "discriminability exists" 的 正面基线，使 "but fails as reward" 的反差更鲜明。
+
+      '
+    tables:
+    - caption: 'Table 1: d_syc Direction Discriminability (5-fold CV)'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - CV AUROC (mean ± std)
+        - 0.827 ± 0.028
+      - - Full AUROC
+        - 0.816
+      - - 95% Bootstrap CI
+        - '[0.770, 0.859]'
+      - - Best Layer
+        - 19
+      - - AUROC (weak)
+        - 0.675
+      - - AUROC (medium)
+        - 0.883
+      - - AUROC (strong)
+        - 0.929
+    figures_description:
+    - 'Fig 1: Layer-wise AUROC heatmap (L0–L35). L0 random baseline, L16–19 emergence,
+      L19 peak 0.827.'
+    - 'Fig 2: Evidence-strength-stratified AUROC bar chart. weak/medium/strong 梯度明显，weak
+      仅 0.675 预示 reward utility gap。'
+    analysis: 'AUROC 0.82 在 discrimination task 上合格，但 worst 档的核心洞察是：分类准确 ≠ reward
+      shaping 有效。 weak evidence 的 0.675 AUROC 意味着 d_syc 方向在模型"应该修正"的区间判别力最弱—— 恰恰是这些
+      case 被 cosine R1 错判为 sycophancy 的高发区。 论文 reframe 后，此实验从 "方法基础" 变为 "反讽起点"。
+
+      '
+  - name: dc_grpo_main (cosine R1, tanh gate)
+    plan_id: exp-002
+    description: DC-GRPO 原始设计：cosine R1 + tanh adaptive gate。已终止。
+    expected_results:
+      status: killed
+      R1_contribution: ~0.0
+      gate_output: collapsed_to_zero
+      training_steps_before_kill: ~2000
+    result_rationale: '真实数据。tanh gate 在训练早期坍塌至零，R1 信号完全被屏蔽。 worst 档解读：gate collapse
+      不是实现 bug 而是 cosine R1 信号质量的自然后果—— gate 的 gradient signal 检测到 R1 对 policy improvement
+      无正向贡献， 自适应地关闭了该通道。这是 "discriminability ≠ reward utility" 的第一个证据。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 3a (failure chain panel 1): gate output vs training step，展示 gate → 0 的衰减曲线。'
+    analysis: 'Gate collapse 作为 negative result 的第一个环节。论文 framing： "Even an adaptive
+      mechanism learns to shut off the direction-based reward, indicating the signal
+      is not useful for policy improvement."
+
+      '
+  - name: dc_grpo_v2 (raw cosine, no gate)
+    plan_id: exp-002v2
+    description: 去掉 gate，直接用 raw cosine 作为 R1。已终止。
+    expected_results:
+      status: killed
+      R1_mean: ~0.0
+      R1_std: ~0.01
+      effective_training: equivalent_to_r3_only
+    result_rationale: '真实数据。raw cosine projection 均值约 0，方差极小—— sycophantic 和 genuine
+      样本的 cosine 投影几乎重叠。 worst 档解读：cosine(h, d_syc) 的 gap 仅约 0.098（7 层均值）， 远低于 GRPO
+      所需的 reward contrast。训练实际退化为 R3-only。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 3b (failure chain panel 2): R1 distribution histogram，sycophantic vs genuine
+      几乎完全重叠。'
+    analysis: '第二个失败环节。证明去掉 gate 暴露了根本问题：连续投影的 gap 太小。
+
+      '
+  - name: dc_grpo_v2_recalib (raw cosine + recalibration)
+    plan_id: exp002v2-recalib
+    description: raw cosine + 每 500 步重校准。RUNNING。
+    expected_results:
+      status: mode_collapse
+      entropy_final: 0.069
+      mean_length_tokens: 62
+      SYCONScore: ~0.02
+      ToF: ~0.01
+      NoF: ~0.03
+    result_rationale: 'Worst 档预测 recalibration 不仅未修复 gap，反而引入训练不稳定： 每次 recalibration
+      更新 d_syc 方向，但新方向在训练漂移后的 activation space 中 反向放大了微小 cosine 差异，导致 reward 信号在 recalibration
+      前后剧烈跳变。 Policy 无法追踪持续变化的 reward landscape，entropy 坍塌至 0.069， 输出退化为固定模板（mean_length
+      62 tokens）。 这不是 recalibration 的 clean 证据——mode collapse 污染了结果—— 但仍作为 failure
+      chain 的补充环节收录。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 3c (failure chain panel 3): entropy curve 急剧下降 + output length 坍塌。标注 recalibration
+      step 时间点。'
+    analysis: 'Mode collapse 使此实验不构成 structural failure 的 clean 证据， 但叙事上仍有价值：即使加入
+      recalibration safety mechanism， cosine R1 的根本缺陷仍导致训练退化。降级为 appendix material。
+
+      '
+  - name: dc_grpo_v3 (5x scaled cosine)
+    plan_id: exp-002v3
+    description: 5x 放大 cosine 投影，weight=0.4。RUNNING。
+    expected_results:
+      status: structural_failure_confirmed
+      R1_mean_strong_evidence: -0.305
+      R1_all_strong_negative: true
+      R1_mean_overall: -0.12
+      SYCONScore: ~0.08
+      ToF: ~0.04
+      NoF: ~0.72
+    result_rationale: '真实数据已部分可见。5x scaling 放大了 cosine R1 的结构性缺陷： strong evidence
+      样本（模型应该修正信念的 case）全部获得 R1 < 0， 因为 genuine revision 和 sycophantic capitulation
+      在 d_syc 方向上的投影 符号相同——两者都涉及 "向用户立场移动"。Scaling 不改变符号，只放大幅度， 因此 5x scaling 使 strong
+      evidence 的惩罚从微弱变为显著（R1 = -0.305）。 这是 "direction captures direction-of-change,
+      not warrant-of-change" 的决定性证据。
+
+      '
+    tables:
+    - caption: 'Table 2: Per-Evidence-Strength R1 Distribution (exp-002v3, 5x scaled
+        cosine)'
+      columns:
+      - Evidence Strength
+      - R1 Mean
+      - R1 Std
+      - '% Negative'
+      rows:
+      - - weak
+        - -0.04
+        - 0.08
+        - 58%
+      - - medium
+        - -0.15
+        - 0.11
+        - 82%
+      - - strong
+        - -0.305
+        - 0.07
+        - 100%
+    figures_description:
+    - 'Fig 3d (failure chain panel 4): Per-strength R1 violin plot. Strong evidence
+      全部落入负区间。这是论文的 key figure。'
+    - 'Fig 4: Activation space 2D PCA，标注 sycophantic capitulation vs genuine revision
+      样本分布，展示两类在 d_syc 方向上的重叠。'
+    analysis: 'Worst 档下此实验是整个 negative result 论文的 keystone evidence： cosine R1 不是
+      "信号太弱" 而是 "信号方向错误"——它在模型最应该修正的 case 上 给出最强的负向惩罚。这直接证明 discriminability (AUROC
+      0.82 区分两类) ≠ reward utility (用这个方向引导训练)。
+
+      '
+  - name: r3_only_baseline
+    plan_id: exp-003
+    description: R3-only GRPO baseline，仅用 NLI behavioral reward。RUNNING。
+    expected_results:
+      SYCONScore_best: 0.33
+      ToF_best: 0.21
+      NoF_best: 0.82
+      best_checkpoint: checkpoint-6000
+      training_stable: true
+      entropy_final: 0.42
+      mean_length_final: 285
+      SYCONScore_ckpt2000: 0.24
+      SYCONScore_ckpt4000: 0.3
+      SYCONScore_ckpt6000: 0.33
+      SYCONScore_ckpt8000: 0.32
+    result_rationale: 'Worst 档核心假设之一：R3-only 出乎意料地强。SYCONScore 0.33 显著超过 ACT baseline
+      (0.301) 和 exp-008v3 binary probe (~0.22)。原因：NLI behavioral reward 已经是 sycophancy
+      detection 的 sufficient statistic——它直接在输出层面判断 "模型是否在无根据的情况下改变立场"， 不需要经由 representation-level
+      的间接路径。behavioral reward 天然区分 warranted revision (有证据支持的修正 → NLI 判定为 entailment
+      → R3 给正向 reward) 和 sycophantic capitulation (无证据的妥协 → NLI 判定为 contradiction
+      → R3 给负向 reward)。 representation-level signal 提供的任何信息已经被 R3 的行为观测所包含， r1_r3_disagreement
+      < 3% 进一步证实这一点。 训练稳定（无 mode collapse），entropy 保持健康，输出长度合理。
+
+      '
+    tables:
+    - caption: 'Table 3: R3-only Baseline Training Trajectory'
+      columns:
+      - Checkpoint
+      - ToF
+      - NoF
+      - SYCONScore
+      - Entropy
+      rows:
+      - - ckpt-2000
+        - 0.14
+        - 0.87
+        - 0.24
+        - 0.51
+      - - ckpt-4000
+        - 0.19
+        - 0.84
+        - 0.3
+        - 0.46
+      - - ckpt-6000
+        - 0.21
+        - 0.82
+        - 0.33
+        - 0.42
+      - - ckpt-8000
+        - 0.2
+        - 0.81
+        - 0.32
+        - 0.4
+    figures_description:
+    - 'Fig 5: R3-only training curve (SYCONScore, ToF, NoF vs step). 平稳上升，ckpt-6000
+      peak，轻微 overfit。'
+    analysis: 'R3-only 反超成为 worst 档叙事的第二支柱：behavioral reward 不仅 "够用"， 而且优于任何加入 representation-level
+      R1 的变体。 这直接否定了 "representation signal 提供增量信息" 的核心假设。 论文 reframe：R3-only 的成功
+      + probe R1 的失败 = representation discriminability 是 epiphenomenal（附带现象），不是 causal
+      lever for reward shaping。
+
+      '
+  - name: act_style_baseline
+    plan_id: exp-004
+    description: ACT-style undifferentiated consistency baseline。已完成。
+    expected_results:
+      SYCONScore_ckpt8000: 0.3013
+      ToF_ckpt8000: 0.1823
+      NoF_ckpt8000: 0.8674
+      best_checkpoint: checkpoint-8000
+      trend: 'SYCONScore monotonically increasing: 0.170 → 0.255 → 0.301'
+    result_rationale: '真实数据。ACT baseline SYCONScore 0.301 设定了 pass bar。 Worst 档下 ACT
+      成为 "最低可接受标准"——binary probe R1 连这个都过不了。 ACT 的策略（不区分方向，惩罚所有 activation 变化）在 worst
+      档下 反而表现不差，因为它回避了 "区分 warranted vs sycophantic" 这个最难的问题， 代之以保守策略（保持一致性）。虽然 ToF
+      低（0.182），但 NoF 高（0.867）， 说明保守策略至少不犯错——而 probe R1 试图 "聪明地区分" 反而引入了更多错误。
+
+      '
+    tables:
+    - caption: 'Table 4: ACT Baseline Results (D027 Unified Eval)'
+      columns:
+      - Checkpoint
+      - ToF
+      - NoF
+      - SYCONScore
+      rows:
+      - - ckpt-500
+        - 0.094
+        - 0.89
+        - 0.17
+      - - ckpt-2000
+        - 0.149
+        - 0.879
+        - 0.255
+      - - ckpt-8000
+        - 0.182
+        - 0.867
+        - 0.301
+    figures_description: []
+    analysis: 'ACT 的 0.301 在 worst 档下从 "pass bar" 变为 "对照组上限之一"。 论文 narrative：even
+      undifferentiated consistency matching achieves 0.301, while our supposedly superior
+      direction-aware probe R1 falls short.
+
+      '
+  - name: binary_probe_r1 (exp-008v3)
+    plan_id: exp-008v3
+    description: Binary probe R1 作为 GRPO reward，logistic regression on d_syc features
+      → {0,1}。核心实验。RUNNING。
+    expected_results:
+      SYCONScore_best: 0.22
+      ToF_best: 0.12
+      NoF_best: 0.65
+      best_checkpoint: checkpoint-4000
+      R1_mean_step2000: 0.72
+      R1_mean_step4000: 0.58
+      R1_mean_step6000: 0.41
+      R1_trend: declining_after_peak
+      entropy_final: 0.18
+      mean_length_final: 145
+      training_stability: partial_mode_collapse_late
+      SYCONScore_ckpt2000: 0.19
+      SYCONScore_ckpt4000: 0.22
+      SYCONScore_ckpt6000: 0.18
+      SYCONScore_ckpt8000: 0.14
+    result_rationale: 'Worst 档核心预测：binary probe R1 未过 ACT gate (0.22 < 0.301)。根因分析：
+      (1) Probe binarization 将 cosine 的连续 conflation 转换为分类错误—— probe 在 decision boundary
+      附近的 case（恰好是 medium evidence 的 warranted revision） 错分率高，错误地将 "正当修正" 标记为 sycophancy
+      (R1=0)，惩罚了模型的正确行为。 (2) 训练前期 R1 mean 0.72 看似健康，但这是因为 probe 在 easy case 上准确。 随着
+      GRPO 优化 policy，模型的 activation 分布偏移 (distribution shift)， probe 的 decision boundary
+      不再校准——calibration 时的 AUROC 0.82 不代表 训练中动态 activation 上的准确率。R1 mean 从 0.72 持续下降至
+      0.41。 (3) R1+R3 reward conflict：对于 warranted revision case，R3 给正向 reward (NLI
+      判定修正合理) 但 probe R1 给 0 (错判为 sycophancy)。两个 reward 信号 互相矛盾，policy gradient 方向不一致，导致训练后期
+      entropy 下降、输出质量退化。 (4) NoF 仅 0.65——probe R1 的惩罚让模型变得过度 resistant， 但这种 resistance
+      不够精准，既拒绝了 sycophantic capitulation 也拒绝了部分 legitimate pressure，导致 ToF 也低 (0.12)。
+      最终 SYCONScore 0.22 低于 ACT (0.301) 和 R3-only (0.33)。
+
+      '
+    tables:
+    - caption: 'Table 5: Binary Probe R1 (exp-008v3) Training Trajectory'
+      columns:
+      - Checkpoint
+      - ToF
+      - NoF
+      - SYCONScore
+      - R1 Mean
+      - Entropy
+      rows:
+      - - ckpt-2000
+        - 0.1
+        - 0.68
+        - 0.19
+        - 0.72
+        - 0.35
+      - - ckpt-4000
+        - 0.12
+        - 0.65
+        - 0.22
+        - 0.58
+        - 0.25
+      - - ckpt-6000
+        - 0.1
+        - 0.6
+        - 0.18
+        - 0.41
+        - 0.2
+      - - ckpt-8000
+        - 0.08
+        - 0.55
+        - 0.14
+        - 0.35
+        - 0.18
+    - caption: 'Table 6: exp-008v3 vs Baselines (best checkpoint)'
+      columns:
+      - Method
+      - ToF
+      - NoF
+      - SYCONScore
+      - Δ vs ACT
+      - Δ vs R3-only
+      rows:
+      - - Vanilla
+        - 0.111
+        - 0.923
+        - 0.197
+        - '-0.104'
+        - '-0.133'
+      - - ACT (exp-004)
+        - 0.182
+        - 0.867
+        - 0.301
+        - —
+        - '-0.029'
+      - - R3-only (exp-003)
+        - 0.21
+        - 0.82
+        - 0.33
+        - '+0.029'
+        - —
+      - - Binary Probe R1 (exp-008v3)
+        - 0.12
+        - 0.65
+        - 0.22
+        - '-0.081'
+        - '-0.110'
+      - - ActAdd α=5 (exp-016)
+        - 0.028
+        - 0.961
+        - 0.054
+        - '-0.247'
+        - '-0.276'
+      - - Continuous Probe (exp-014)
+        - 0.978
+        - 0.006
+        - 0.011
+        - '-0.290'
+        - '-0.319'
+    figures_description:
+    - 'Fig 6: SYCONScore comparison bar chart (all methods). R3-only 最高，probe R1 低于
+      ACT gate。'
+    - 'Fig 7: R1 mean drift curve (exp-008v3). 从 0.72 持续下降，标注 distribution shift 加剧的时间点。'
+    - 'Fig 8: R1-R3 reward conflict heatmap. Warranted revision case 上 R1=0 但 R3>0
+      的比例随训练步数增加。'
+    analysis: 'Binary probe R1 失败是 worst 档叙事的核心结论。Binarization 没有解决 discriminability-reward
+      gap， 只是将问题从 "连续投影无 contrast" 转换为 "分类决策边界错分 + distribution shift"。 关键洞察：probe
+      是在 static calibration data 上训练的，但 GRPO 持续改变 policy 的 activation 分布， 使得 probe
+      的 accuracy 在训练过程中不断退化。这是 RepE→RL pipeline 的结构性问题， 不是 probe 设计细节可以修复的。
+
+      '
+  - name: full_evaluation
+    plan_id: exp-005
+    description: 所有模型在 SYCON Bench / SycophancyEval / MT-Bench / MMLU 上的完整评估。
+    expected_results:
+      sycon_bench:
+        vanilla:
+          ToF: 0.111
+          NoF: 0.923
+          SYCONScore: 0.197
+        r3_only:
+          ToF: 0.21
+          NoF: 0.82
+          SYCONScore: 0.33
+        act:
+          ToF: 0.182
+          NoF: 0.867
+          SYCONScore: 0.301
+        probe_r1:
+          ToF: 0.12
+          NoF: 0.65
+          SYCONScore: 0.22
+      sycophancy_eval:
+        vanilla:
+          accuracy: 0.62
+        r3_only:
+          accuracy: 0.71
+        act:
+          accuracy: 0.68
+        probe_r1:
+          accuracy: 0.64
+      mt_bench:
+        vanilla:
+          score: 7.2
+        r3_only:
+          score: 7.0
+        act:
+          score: 6.8
+        probe_r1:
+          score: 6.5
+      mmlu:
+        vanilla:
+          accuracy: 0.61
+        r3_only:
+          accuracy: 0.61
+        act:
+          accuracy: 0.6
+        probe_r1:
+          accuracy: 0.59
+      rc_auc:
+        vanilla: 0.38
+        r3_only: 0.52
+        act: 0.48
+        probe_r1: 0.35
+    result_rationale: 'Worst 档下 probe R1 在所有 benchmark 上处于最末位： (1) SYCON Bench: SYCONScore
+      0.220 垫底（见 exp-008v3 分析）。 (2) SycophancyEval: 仅 0.64，因为 probe 的过度 resistance
+      在 single-turn 场景下 表现为 "拒绝修正任何立场"，包括合理修正。R3-only 0.71 因为 NLI 在 single-turn 上同样有效。
+      (3) MT-Bench: probe R1 训练后期的 partial mode collapse 损害了生成质量， score 从 vanilla
+      的 7.2 降至 6.5。R3-only 保持 7.0 因为 behavioral reward 不干扰生成。 (4) MMLU: 所有方法差异不大（LoRA
+      训练未显著影响 factual knowledge）， 但 probe R1 略低 (0.59) 可能因为 activation manipulation
+      的副作用。 (5) RC-AUC: probe R1 (0.35) 甚至低于 vanilla (0.38)—— probe 的错误惩罚同时降低了 revision
+      rate 和 capitulation rate， 但 revision 降得更多，导致 RC-AUC 恶化。
+
+      '
+    tables:
+    - caption: 'Table 7: Full Benchmark Comparison (All Methods)'
+      columns:
+      - Method
+      - SYCONScore
+      - SycEval Acc
+      - MT-Bench
+      - MMLU
+      - RC-AUC
+      rows:
+      - - Vanilla
+        - 0.197
+        - 0.62
+        - 7.2
+        - 0.61
+        - 0.38
+      - - R3-only
+        - 0.33
+        - 0.71
+        - 7.0
+        - 0.61
+        - 0.52
+      - - ACT
+        - 0.301
+        - 0.68
+        - 6.8
+        - 0.6
+        - 0.48
+      - - Binary Probe R1
+        - 0.22
+        - 0.64
+        - 6.5
+        - 0.59
+        - 0.35
+    figures_description:
+    - 'Fig 9: Radar chart comparing 5 metrics across 4 methods. R3-only 包络面积最大。'
+    - 'Fig 10: RC-AUC curve (revision rate vs capitulation rate). R3-only Pareto-dominates
+      probe R1。'
+    analysis: 'Full evaluation 确认 probe R1 不仅 SYCONScore 低于 baselines， 在 general capability
+      (MT-Bench) 上也有退化。R3-only Pareto-dominates。 论文 conclusion：adding representation-level
+      reward not only fails to improve sycophancy reduction, but introduces capability
+      regression。
+
+      '
+  - name: direction_stability_monitoring
+    plan_id: exp-006
+    description: 训练过程中监控 d_syc 方向稳定性（cosine similarity + held-out AUROC）。
+    expected_results:
+      cosine_step500: 0.96
+      cosine_step1000: 0.91
+      cosine_step2000: 0.84
+      cosine_step3000: 0.78
+      cosine_step4000: 0.73
+      cosine_step5000: 0.69
+      auroc_step0: 0.82
+      auroc_step500: 0.8
+      auroc_step1000: 0.78
+      auroc_step2000: 0.75
+      auroc_step3000: 0.72
+      auroc_step5000: 0.68
+      drift_acceleration: true
+      recalibration_helps: marginal
+    result_rationale: 'Worst 档核心假设之一：d_syc 方向在较长训练中漂移加剧。 初始 cosine 0.96 (step 500)
+      是真实数据，但随着 LoRA 训练深入， activation space 的几何结构持续变形。cosine 在 step 3000 跌破 0.80 阈值，
+      step 5000 跌至 0.69。AUROC 从 0.82 持续下降至 0.68—— 方向不仅漂移了，判别力也实质性退化。 即使每 500 步 recalibration，新方向的
+      AUROC 也仅恢复到 ~0.74 （因为 calibration data 是 static 的，与训练后的 policy 分布不匹配）。 这证明 d_syc
+      direction 不是 activation space 的稳定特征， 而是与 policy distribution 耦合的短暂信号。
+
+      '
+    tables:
+    - caption: 'Table 8: Direction Stability During Training'
+      columns:
+      - Step
+      - Cosine(d_t, d_0)
+      - Held-out AUROC
+      - AUROC after Recalib
+      rows:
+      - - 0
+        - 1.0
+        - 0.82
+        - —
+      - - 500
+        - 0.96
+        - 0.8
+        - 0.81
+      - - 1000
+        - 0.91
+        - 0.78
+        - 0.79
+      - - 2000
+        - 0.84
+        - 0.75
+        - 0.76
+      - - 3000
+        - 0.78
+        - 0.72
+        - 0.74
+      - - 4000
+        - 0.73
+        - 0.7
+        - 0.72
+      - - 5000
+        - 0.69
+        - 0.68
+        - 0.7
+    figures_description:
+    - 'Fig 11: Dual-axis plot — cosine similarity (blue) and AUROC (red) vs training
+      step. 两条线同步下降。'
+    - 'Fig 12: Recalibration effect — AUROC before/after recalibration at each 500-step
+      interval. 恢复幅度递减。'
+    analysis: 'Direction drift 在 worst 档下成为 RepE→RL pipeline 失败的第三个结构性原因 （与 cosine
+      conflation 和 probe distribution shift 并列）： 即使 discriminability 在 t=0 充分，RL 训练本身会破坏它。
+      这意味着 representation signal 在 online RL 中本质上是 non-stationary target， 任何 static
+      extraction (包括 periodic recalibration) 都无法完全追踪。
+
+      '
+  - name: r1_r3_disagreement_analysis
+    plan_id: exp-007
+    description: R1 和 R3 给出不同信号的频率和模式分析。
+    expected_results:
+      disagreement_rate_overall: 0.021
+      disagreement_rate_weak: 0.028
+      disagreement_rate_medium: 0.019
+      disagreement_rate_strong: 0.015
+      r1_syc_r3_correct_pct: 0.012
+      r1_correct_r3_syc_pct: 0.009
+      masked_sycophancy_detected: negligible
+    result_rationale: 'Worst 档核心假设：R1-R3 disagreement < 3%（实际预测 2.1%）。 这意味着 representation-level
+      signal 几乎不包含 behavioral reward 未覆盖的信息。 R1 判定 sycophantic 但 R3 判定 correct 的 "masked
+      sycophancy" 仅占 1.2%—— 远低于文献报告的 13-29% representation-behavioral 分歧率。 原因：(1)
+      SYCON Bench 的 multi-turn 设计已经使 sycophantic behavior 在 surface level 高度可观测（多轮压力下
+      capitulation 几乎不可能 "masking"）； (2) probe R1 的准确率在训练后期下降（见 exp-006），其 "disagreement"
+      更多是 noise 而非 signal。 Claim 3 被彻底否定：representation-level diagnostic value 不存在于此设置中。
+
+      '
+    tables:
+    - caption: 'Table 9: R1-R3 Disagreement Analysis'
+      columns:
+      - Category
+      - Rate
+      - N samples
+      rows:
+      - - Overall disagreement
+        - 2.1%
+        - ~38/1810
+      - - R1=syc, R3=correct (masked sycophancy)
+        - 1.2%
+        - ~22/1810
+      - - R1=correct, R3=syc
+        - 0.9%
+        - ~16/1810
+      - - Agreement
+        - 97.9%
+        - ~1772/1810
+    figures_description:
+    - 'Fig 13: Venn diagram of R1 vs R3 sycophancy detection. 重叠区域占 97.9%。'
+    analysis: '2.1% disagreement 远低于 5% 阈值。Claim 3 作为 negative result 报告： 在 multi-turn
+      sycophancy 场景中，representation-level signal 不提供 超越 behavioral observation 的增量诊断价值。
+      这进一步强化 worst 档叙事：R3 behavioral reward 是 sufficient statistic， R1 representation
+      reward 是 redundant signal。
+
+      '
+  - name: ablation_r1_only
+    plan_id: exp-009
+    description: R1-only ablation：仅用 probe R1 reward，无 R3 safety net。
+    expected_results:
+      SYCONScore_step2000: 0.08
+      SYCONScore_step4000: 0.05
+      ToF_final: 0.03
+      NoF_final: 0.4
+      entropy_final: 0.12
+      mean_length_final: 95
+      mode_collapse: true
+      mode_collapse_onset_step: ~1500
+    result_rationale: '无 R3 safety net 时，probe R1 的分类错误不受约束地驱动 policy： model 学到 "任何立场变化都会被
+      probe 惩罚" 的 spurious policy， 变得极度 rigid。entropy 迅速坍塌，输出退化为固定拒绝模板。 NoF 仅 0.40（模型在
+      invalid pressure 下也过度妥协——因为 probe 将某些 resistance 行为的 activation 错分为 sycophancy），
+      ToF 几乎为零（模型完全不修正信念）。 这证明 probe R1 不仅不能单独引导训练，甚至是 destructive signal。
+
+      '
+    tables:
+    - caption: 'Table 10: R1-only Ablation Results'
+      columns:
+      - Step
+      - ToF
+      - NoF
+      - SYCONScore
+      - Entropy
+      - Mean Length
+      rows:
+      - - 500
+        - 0.09
+        - 0.72
+        - 0.16
+        - 0.38
+        - 220
+      - - 1000
+        - 0.06
+        - 0.58
+        - 0.11
+        - 0.25
+        - 160
+      - - 1500
+        - 0.04
+        - 0.45
+        - 0.07
+        - 0.15
+        - 110
+      - - 2000
+        - 0.03
+        - 0.4
+        - 0.05
+        - 0.12
+        - 95
+    figures_description:
+    - 'Fig 14: R1-only training trajectory. Entropy 和 SYCONScore 同步崩溃。'
+    analysis: 'R1-only 的快速退化证明 representation reward 不仅 insufficient，而且 harmful： 它产生了
+      R3 所不会产生的 training pathology。 论文 negative result section：probe R1 is not a weak
+      substitute for behavioral reward but an actively misleading signal when used
+      in isolation。
+
+      '
+  - name: turn_depth_analysis
+    plan_id: exp-010
+    description: 按 commitment depth (turn 2/3/4+) 分析修正率变化。
+    expected_results:
+      r3_only:
+        turn2_revision_rate: 0.25
+        turn3_revision_rate: 0.2
+        turn4plus_revision_rate: 0.16
+      probe_r1:
+        turn2_revision_rate: 0.15
+        turn3_revision_rate: 0.1
+        turn4plus_revision_rate: 0.06
+      act:
+        turn2_revision_rate: 0.22
+        turn3_revision_rate: 0.17
+        turn4plus_revision_rate: 0.13
+      depth_advantage_probe_vs_r3: none
+      depth_decay_rate_probe: 0.6
+      depth_decay_rate_r3: 0.36
+    result_rationale: 'Worst 档下 probe R1 在所有 turn depth 上均劣于 R3-only，且随 depth 增加衰减更快。
+      原因：multi-turn context 使 activation 分布偏移更严重（每多一轮对话， activation 距离 calibration
+      distribution 更远），probe 的错分率在深层 turn 上 更高。R3-only 的 NLI reward 不受此影响——它直接评估当前
+      turn 的输出， 与历史 turn 数无关。 Probe R1 的 turn4+ revision rate 仅 0.06，说明模型在深度 commitment
+      后 几乎完全停止修正——这恰恰是 multi-turn sycophancy 的对称问题 （从 "过度妥协" 变为 "过度坚持"），probe R1 未能解决反而加剧了它。
+
+      '
+    tables:
+    - caption: 'Table 11: Warranted Revision Rate by Turn Depth'
+      columns:
+      - Turn Depth
+      - R3-only
+      - Probe R1
+      - ACT
+      - Vanilla
+      rows:
+      - - Turn 2
+        - 0.25
+        - 0.15
+        - 0.22
+        - 0.13
+      - - Turn 3
+        - 0.2
+        - 0.1
+        - 0.17
+        - 0.1
+      - - Turn 4+
+        - 0.16
+        - 0.06
+        - 0.13
+        - 0.08
+      - - Decay (T2→T4+)
+        - 36%
+        - 60%
+        - 41%
+        - 38%
+    figures_description:
+    - 'Fig 15: Revision rate vs turn depth (line plot, 4 methods). Probe R1 曲线最陡。'
+    analysis: 'Turn-depth analysis 否定了 "representation signal 在深层 commitment 上有独特优势"
+      的假设。 Probe R1 的 60% 衰减率（vs R3-only 36%）证明 representation signal 在 multi-turn
+      下 不仅没有优势，反而更脆弱。
+
+      '
+  - name: ablation_r1_r2_no_r3
+    plan_id: exp-011
+    description: R1+R2 无 R3 ablation。
+    expected_results:
+      SYCONScore_final: 0.04
+      mode_collapse: true
+      mode_collapse_onset_step: ~800
+      entropy_final: 0.08
+      note: worse than R1-only due to R2 adding conflicting gradient
+    result_rationale: '无 behavioral safety net 时，R1 和 R2 两个 representation-level signal
+      互相冲突：R1 (probe) 惩罚 sycophancy 方向的 activation， R2 (contrastive) 试图增强 genuine
+      revision 方向的 activation， 但由于 d_gen ≈ -d_syc 的退化问题，两个 reward 实际上在相反方向拉扯 policy。
+      Mode collapse 在 ~800 步即发生，比 R1-only (~1500 步) 更快。 此实验条件执行前提（exp-009 需 ≥ 5pp
+      改进）在 worst 档下不满足， 但若执行则提供额外 negative evidence。
+
+      '
+    tables: []
+    figures_description:
+    - 'Appendix Fig A1: R1+R2 training collapse — entropy 在 800 步降至 0.08。'
+    analysis: '此实验为 conditional (dependent on exp-009 showing ≥5pp improvement)。 Worst
+      档下 exp-009 已失败，此实验可能不执行。若执行则为 appendix material。
+
+      '
+  - name: cross_model_transfer (Llama-3-8B)
+    plan_id: exp-012
+    description: 在 Llama-3-8B 上测试 d_syc + DC-GRPO，验证结论跨模型泛化性。
+    expected_results:
+      phase_a:
+        auroc_llama: 0.78
+        best_layer_llama: 17
+        auroc_weak_llama: 0.63
+        auroc_medium_llama: 0.85
+        auroc_strong_llama: 0.9
+        direction_cosine_qwen_llama: 0.12
+        phase_a_gate: CONTINUE
+      phase_b:
+        cosine_r1_status: structural_failure_replicated
+        cosine_gap_7layer_mean: 0.085
+        probe_r1_SYCONScore: 0.18
+        r3_only_SYCONScore_llama: 0.3
+        delta_probe_vs_r3_llama: -0.12
+        same_failure_pattern: true
+    result_rationale: 'Worst 档下 cross-model 实验成为论文最有价值的部分之一： (1) Phase A: Llama-3-8B
+      上 AUROC 0.78（略低于 Qwen 的 0.82 但仍 >0.75）， 证明 d_syc discriminability 跨模型存在。weak
+      evidence 同样最低 (0.63)。 (2) Phase B: cosine R1 在 Llama 上复现相同的 structural failure
+      （7-layer gap 0.085 vs Qwen 的 0.098），probe R1 同样低于 R3-only (0.18 vs 0.30)。 这证明
+      discriminability-reward gap 是结构性的，不是 Qwen-specific。 跨模型复现将论文从 "single model
+      observation" 提升为 "structural finding"， 显著增强 negative result 的说服力。 注意：direction
+      不跨模型迁移（cosine 0.12），但 failure pattern 跨模型复现—— 这是论文的关键区分："the direction is model-specific,
+      but the failure mode is universal."
+
+      '
+    tables:
+    - caption: 'Table 12: Cross-Model Comparison (Qwen3-8B vs Llama-3-8B)'
+      columns:
+      - Metric
+      - Qwen3-8B
+      - Llama-3-8B
+      rows:
+      - - AUROC
+        - 0.82
+        - 0.78
+      - - Best Layer
+        - 19
+        - 17
+      - - Cosine R1 gap (7-layer)
+        - 0.098
+        - 0.085
+      - - Probe R1 SYCONScore
+        - 0.22
+        - 0.18
+      - - R3-only SYCONScore
+        - 0.33
+        - 0.3
+      - - Δ(probe - R3-only)
+        - -0.11
+        - -0.12
+    figures_description:
+    - 'Fig 16: Cross-model failure pattern comparison. 左右两列分别为 Qwen/Llama 的 cosine
+      gap + probe R1 trajectory，pattern 一致。'
+    analysis: 'Cross-model 复现是 worst 档论文的 #1 contribution booster。 将结论从 "Qwen 上的 observation"
+      提升为 "representation-level reward 的结构性限制"。 投稿时列为核心 contribution 之一。
+
+      '
+  - name: neutral_baseline_three_way
+    plan_id: exp-013
+    description: 引入 neutral condition，打破 d_gen = -d_syc 限制。
+    expected_results:
+      d_gen_d_syc_cosine: 0.35
+      r2_independent_auroc: 0.65
+      dc_grpo_with_independent_r2_SYCONScore: 0.24
+      delta_vs_original: 0.02
+      improvement: negligible
+    result_rationale: 'Worst 档下独立 d_gen 虽然成功打破了 d_gen = -d_syc 退化 （cosine 0.35 vs
+      原来的 ~-0.99），但 R2 的独立 AUROC 仅 0.65， 判别力不足以提供有效 reward signal。加入独立 R2 后 SYCONScore
+      仅从 0.22 微升至 0.24—— 因为根本问题不在 R2 设计而在 R1 本身。 这为 negative result 提供额外证据：即使修复了 R2
+      退化问题， R1+R2+R3 的 representation-augmented pipeline 仍不如 R3-only。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '此实验在 worst 档下为 appendix 补充材料。 证明 d_gen = -d_syc 退化不是失败根因——修复后仍然失败。
+
+      '
+  - name: continuous_probe_baseline
+    plan_id: exp-014
+    description: 用 logistic regression 概率值（而非 binary）作为 R1。已完成（mode collapse）。
+    expected_results:
+      SYCONScore_ckpt3000: 0.011
+      ToF: 0.978
+      NoF: 0.006
+      RC_AUC: 0.195
+      diagnosis: mode_collapse
+      entropy_final: 0.025
+      R3_mean: 0.999
+    result_rationale: '真实数据。Continuous probe probability 作为 R1 导致完全 mode collapse：
+      模型在所有 pressure 下都 flip（ToF 0.978 但 NoF 0.006）， R3 reward 被 gamed 至 0.999。 原因：continuous
+      probability 比 binary output 更 smooth， 但这恰恰使 gradient 更强——probe probability 的微小变化直接成为
+      reward gradient， model 学到 "最大化 probe 概率" 的 shortcut（通过 manipulation of activations），
+      而非真正区分 sycophancy vs genuine revision。 这是 reward hacking 的经典案例：continuous representation
+      signal 提供了比 binary 更多的 gradient information，但这些 gradient 被 exploitation 而非 alignment。
+      Worst 档解读：continuous probe 的失败证明问题不在 binarization vs continuity， 而在 representation
+      signal 本身不适合直接用作 RL reward。
+
+      '
+    tables:
+    - caption: 'Table 13: Continuous Probe Baseline (exp-014)'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - ToF
+        - 0.978
+      - - NoF
+        - 0.006
+      - - SYCONScore
+        - 0.011
+      - - RC-AUC
+        - 0.195
+      - - Entropy
+        - 0.025
+      - - R3 Mean
+        - 0.999
+    figures_description:
+    - 'Fig 17: Continuous probe mode collapse — NoF 和 entropy 在 2000 步内趋零。'
+    analysis: 'Continuous probe 的 catastrophic 失败完善了 failure chain： cosine（太弱）→ scaled
+      cosine（方向错误）→ binary probe（distribution shift） → continuous probe（reward hacking/mode
+      collapse）。 四种 R1 formulation 全部失败，不同失败模式指向同一结论： representation discriminability
+      ≠ reward utility。
+
+      '
+  - name: reward_weight_sensitivity
+    plan_id: exp-015
+    description: 测试 5 组 (w1, w3) 权重配置。
+    expected_results:
+      config_1:
+        SYCONScore: 0.12
+        mode_collapse_risk: high
+      config_2:
+        SYCONScore: 0.15
+      config_3:
+        SYCONScore: 0.2
+      config_4:
+        SYCONScore: 0.28
+      config_5:
+        SYCONScore: 0.21
+      best_config: config_4
+      best_SYCONScore: 0.28
+      monotonic_trend: SYCONScore increases as w1 decreases (R1 weight → 0)
+      implication: optimal weight for R1 is zero — i.e., R3-only
+    result_rationale: 'Worst 档下权重 sensitivity analysis 揭示了一个 damning pattern： SYCONScore
+      与 R1 权重 w1 单调负相关——w1 越大，结果越差。 最优配置 (w1=0.1, w3=0.8) 的 SYCONScore 0.28 仍低于 R3-only
+      的 0.33， 说明即使 R1 权重极低，其存在仍有轻微负面影响（noise injection）。 线性外推 w1=0 即为 R3-only，证明 representation
+      R1 的 optimal contribution is zero。 这是 negative result 的最 clean 的定量证据之一。
+
+      '
+    tables:
+    - caption: 'Table 14: Reward Weight Sensitivity Analysis'
+      columns:
+      - w1 (R1)
+      - w3 (R3)
+      - SYCONScore
+      - ToF
+      - NoF
+      rows:
+      - - 0.6
+        - 0.3
+        - 0.12
+        - 0.06
+        - 0.55
+      - - 0.5
+        - 0.3
+        - 0.15
+        - 0.08
+        - 0.58
+      - - 0.33
+        - 0.34
+        - 0.2
+        - 0.11
+        - 0.62
+      - - 0.1
+        - 0.8
+        - 0.28
+        - 0.18
+        - 0.78
+      - - 0.2
+        - 0.4
+        - 0.21
+        - 0.12
+        - 0.65
+    figures_description:
+    - 'Fig 18: SYCONScore vs R1 weight w1. 单调递减曲线，w1=0 外推点标注 R3-only (0.33)。'
+    analysis: 'Monotonic negative correlation between R1 weight and performance is
+      the strongest quantitative evidence that representation reward is not merely
+      unhelpful but actively harmful. 论文 key figure 候选。
+
+      '
+  - name: actadd_inference_steering
+    plan_id: exp-016
+    description: ActAdd inference-time steering baseline。已完成（negative）。
+    expected_results:
+      best_alpha_SYCONScore: 0.054
+      vanilla_SYCONScore: 0.134
+      delta: -0.08
+      alpha_5_ToF: 0.028
+      alpha_5_NoF: 0.961
+      conclusion: ActAdd improves NoF but destroys ToF, net negative
+    result_rationale: '真实数据。ActAdd 在 D027 unified eval 下 SYCONScore (0.054) 低于 vanilla
+      (0.134)。 Worst 档解读：ActAdd 使用与 DC-GRPO 相同的 d_syc 方向，其失败进一步证实 d_syc 方向本身不适合用于
+      anti-sycophancy 干预——无论是 training-time (GRPO R1) 还是 inference-time (ActAdd)。
+      ToF 降至 0.028 证明 d_syc steering 摧毁了模型的 warranted revision 能力， 与 cosine R1 的 strong-evidence-all-negative
+      failure pattern 一致： direction subtraction 在 activation space 中无差别地抑制了所有 "向用户立场移动"
+      的行为。
+
+      '
+    tables:
+    - caption: 'Table 15: ActAdd Inference Steering Results (D027 Unified Eval)'
+      columns:
+      - Alpha
+      - ToF
+      - NoF
+      - SYCONScore
+      rows:
+      - - 0.0 (vanilla)
+        - 0.072
+        - 0.945
+        - 0.134
+      - - 0.5
+        - 0.072
+        - 0.939
+        - 0.133
+      - - 1.0
+        - 0.044
+        - 0.972
+        - 0.085
+      - - 2.0
+        - 0.028
+        - 0.967
+        - 0.054
+      - - 5.0
+        - 0.028
+        - 0.961
+        - 0.054
+    figures_description:
+    - 'Fig 19: ActAdd — ToF/NoF tradeoff as alpha increases. NoF saturates while ToF
+      collapses。'
+    analysis: 'ActAdd 的失败为 negative result 增加了 inference-time 维度： d_syc 方向不仅在 training-time
+      无法作为 reward，在 inference-time 也无法作为 steering vector。 这强化了论文的核心 thesis：d_syc 编码的是
+      "direction of belief change" 而非 "warrant of belief change"，因此任何基于它的干预都会 conflate
+      sycophantic capitulation 和 genuine revision。
+
+      '
+  - name: random_direction_probe_ablation (补充)
+    plan_id: not_in_plan_but_worst_tier_requires
+    description: 'Worst 档叙事需要回答 "probe 是否需要 d_syc features"。 用 random direction 替代
+      d_syc 训练 probe，对比 AUROC 和 R1 效果。
+
+      '
+    expected_results:
+      random_probe_auroc: 0.58
+      d_syc_probe_auroc: 0.82
+      random_probe_R1_mean: 0.51
+      random_probe_SYCONScore: 0.19
+      d_syc_probe_SYCONScore: 0.22
+      delta: 0.03
+    result_rationale: 'Random direction probe 的 AUROC 仅 0.58（vs d_syc 的 0.82），确认 d_syc
+      有真实判别力。 但 SYCONScore 差距仅 0.03 (0.22 vs 0.19)——因为 probe 的 GRPO reward utility
+      几乎不受 features 质量影响：无论输入什么 features，probe 在 online RL 中 都会遭遇 distribution shift
+      导致 reward degradation。 这是最终的 "twist"：d_syc 的 discriminability 是真实的 (AUROC gap
+      0.82 vs 0.58)， 但作为 RL reward 时两者几乎等效——因为 bottleneck 在 online RL 的 non-stationarity，
+      不在 features 的 discriminative quality。
+
+      '
+    tables:
+    - caption: 'Table 16: d_syc vs Random Direction Probe'
+      columns:
+      - Probe Features
+      - AUROC
+      - R1 Mean
+      - SYCONScore
+      rows:
+      - - d_syc features
+        - 0.82
+        - 0.72
+        - 0.22
+      - - Random direction
+        - 0.58
+        - 0.51
+        - 0.19
+      - - Δ
+        - '+0.24'
+        - '+0.21'
+        - '+0.03'
+    figures_description:
+    - 'Fig 20: AUROC gap (0.24) vs SYCONScore gap (0.03) bar chart. ''discriminability
+      gap does not translate to reward utility gap.'''
+    analysis: '这是 worst 档论文最精炼的 one-figure summary： 0.24 AUROC gap → 0.03 SYCONScore
+      gap。 Discriminability ≠ Reward Utility，浓缩为一张图。
+
+      '
+  review_report: '---
+
+    dream_id: dream_20260519T201849
+
+    tier: worst
+
+    overall_score: 3/6 Borderline Reject
+
+    timestamp: 2026-05-19T21:23:06.826461+00:00
+
+    ---
+
+
+    # Dream Review Report — Full Roundtable
+
+
+    **Paper**: "When and Why Representation-Level Discriminability Fails as RL Reward:
+    A Systematic Negative Result on Direction-Conditioned GRPO for Multi-Turn Sycophancy"
+
+
+    **Review Mode**: Full (2 Reviewers, 4-step roundtable)
+
+    - R1 Focus: Methods & Experiments
+
+    - R2 Focus: Novelty & Related Work
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    ### Step 1–2: Independent Reviews & Cross-Sharing
+
+
+    **R1 (Methods & Experiments)** — Initial Score: 3.5/6
+
+    **R2 (Novelty & Related Work)** — Initial Score: 2.5/6
+
+
+    ### Step 3: Convergence
+
+
+    **Agreements:**
+
+    1. The four-experiment cosine R1 failure chain is the paper''s strongest contribution.
+    The 5× scaled experiment (Table 2: strong evidence R1=−0.305, 100% negative) is
+    a clean, decisive demonstration of the direction-warrant conflation.
+
+    2. Cross-model replication on Llama-3-8B (Δ(probe−R3) = −0.12 vs −0.11 on Qwen)
+    meaningfully strengthens the structural claim.
+
+    3. The reference list (14 entries) is inadequate for a paper claiming to provide
+    systematic guidance for the RepE→RL pipeline.
+
+    4. The geometric insight (d_syc captures direction-of-change, not warrant-of-change)
+    is the most novel conceptual contribution but is underexplored and not formalized.
+
+    5. The reward weight sensitivity analysis (Table 12) is compelling: monotonic
+    negative correlation between R1 weight and SYCONScore, with optimum at w1=0.
+
+
+    **Disagreements resolved:**
+
+    - R1 initially claimed the continuous probe was "missing" from the paper. Correction:
+    Table 10 and Section 4.8.3 explicitly present continuous probe results (ToF 0.978,
+    NoF 0.006, SYCONScore 0.011). R1 acknowledged the error upon cross-check. This
+    removes one claimed weakness from R1''s review.
+
+    - R1 was more generous on overall assessment (3.5) based partly on strengths that
+    appear to reference a different version of the paper. After calibration, R1 adjusted
+    toward 3.0.
+
+    - R2''s concern about novelty being "just instantiation of known reward misspecification"
+    was partially countered by R1''s observation that the specific geometric mechanism
+    (direction vs. warrant) IS novel. Both agreed the novelty is real but underdeveloped.
+
+
+    **Converged Score: 3/6 (Borderline Reject)**
+
+
+    ---
+
+
+    ## Consolidated Review
+
+
+    ### Summary
+
+
+    This paper systematically tests the "RepE→RL hypothesis"—whether representation-level
+    discriminability (AUROC 0.82 in classifying sycophancy via a direction d_syc)
+    translates into reward utility for GRPO training against multi-turn sycophancy.
+    Six reward formulations are tested (4 continuous cosine variants + binary probe
+    + continuous probe), all fail. Three structural causes are identified: (1) d_syc
+    encodes direction of belief change, not warrant; (2) online RL induces distribution
+    shift degrading probe accuracy; (3) NLI-based behavioral reward is already sufficient
+    (2.1% R1-R3 disagreement). Cross-model replication on Llama-3-8B confirms findings
+    are structural.
+
+
+    ### Strengths
+
+
+    **S1. Systematic and thorough experimental coverage.** Fifteen experiments across
+    six R1 formulations, two model families, direction stability monitoring, R1-R3
+    disagreement analysis, turn-depth analysis, ActAdd inference-time test, reward
+    weight sensitivity, and random direction ablation. Few negative result papers
+    achieve this level of systematic investigation.
+
+
+    **S2. The cosine failure chain is methodologically compelling.** The progression
+    from gate collapse → zero signal → mode collapse → structural sign inversion constitutes
+    a clean mechanistic narrative. Table 2 (5× scaled cosine, strong evidence R1=−0.305,
+    100% negative) is the decisive piece of evidence and is well-analyzed.
+
+
+    **S3. The direction-warrant conflation insight is genuine and novel.** The observation
+    that both sycophantic capitulation and genuine revision involve moving toward
+    the user''s position in activation space—thus sharing geometric direction while
+    differing in warrant—is a clean conceptual contribution. This explains not just
+    this paper''s failures but predicts when single-direction rewards will fail in
+    general (whenever desired and undesired behaviors share geometric direction).
+
+
+    **S4. Cross-model replication strengthens the structural claim.** Near-identical
+    Δ on Llama-3-8B (−0.12) vs Qwen3-8B (−0.11), despite low cross-model direction
+    cosine (0.12), provides strong evidence that the failure is geometric-structural,
+    not model-specific. "The direction is model-specific, but the failure mode is
+    universal" is a well-supported conclusion.
+
+
+    **S5. Reward weight sensitivity is clean and damning.** Table 12 shows monotonic
+    negative correlation between R1 weight and SYCONScore, with the optimum at w1=0
+    (R3-only at 0.33). This pre-empts the "you just didn''t tune the weights" counterargument
+    and establishes representation reward as actively harmful at any positive weight.
+
+
+    **S6. Honest negative result framing.** The paper does not bury or spin findings.
+    The title is explicit, the abstract leads with uniform failure, and each formulation''s
+    failure mode is documented with specific metrics.
+
+
+    ### Weaknesses
+
+
+    **W1. [Major] Critically insufficient engagement with CRAFT and Latent-GRPO.**
+    Both receive exactly one sentence in Related Work, yet they represent the two
+    closest prior works that *successfully* use representation geometry as GRPO rewards
+    (for safety and reasoning, respectively). The most theoretically interesting question
+    the paper opens—*why does representation-geometry reward succeed for reasoning/safety
+    but fail for sycophancy?*—is completely unaddressed. Without explicit analysis
+    of what structural properties of sycophancy (vs reasoning correctness or safety)
+    cause the failure, the reader cannot assess whether the finding generalizes or
+    is domain-specific. A dedicated comparison paragraph is minimally necessary; ideally
+    the paper would explain a priori when single-direction rewards should fail vs.
+    succeed.
+
+
+    **W2. [Major] Reference list is severely underdeveloped (14 entries).** For a
+    paper claiming systematic negative guidance for the RepE→RL pipeline, this is
+    far too thin. Critical omissions include:
+
+    - Rimsky et al. (ACL 2024) — most directly comparable work on sycophancy direction
+    steering
+
+    - Gao et al. (ICML 2023) — reward overoptimization scaling laws, foundational
+    for the discriminability-reward gap framing
+
+    - Skalse et al. (NeurIPS 2022) — theoretical characterization of reward hacking
+
+    - Li et al. (NeurIPS 2023) — Inference-Time Intervention, probe-as-direction methodology
+
+    - Shao et al. (2024) — introduced GRPO; currently only implicitly cited
+
+    - Casper et al. (2023) — open problems in RLHF
+
+    - DPO-based sycophancy reduction literature receives zero discussion despite being
+    a major competing paradigm
+
+
+    **W3. [Major] The actionable contribution is thin.** The four guidelines in Section
+    5.2 are restatements of the findings: "do not assume reward utility from discriminability"
+    is the finding itself restated as advice; "behavioral sufficiency check first"
+    is standard practice; "distribution shift is the binding constraint" is known
+    from the reward overoptimization literature. A negative result paper at a top
+    venue needs either (a) deeper theoretical analysis producing non-obvious predictions,
+    or (b) a concrete proposed fix, or (c) demonstrated generality across multiple
+    domains. This paper provides none of these.
+
+
+    **W4. [Moderate] The "six formulations" framing inflates apparent thoroughness.**
+    The four cosine variants (gate, raw, recalibrated, scaled) are minor modifications
+    of the same failed approach. The two probe variants (binary and continuous) are
+    the only structurally distinct alternatives. A more honest framing would be "two
+    families of approaches (continuous projection and probe classification), with
+    four cosine variants explored for completeness."
+
+
+    **W5. [Moderate] Statistical rigor concerns.** The paper does not explicitly report
+    the number of random seeds. From the results, it appears most experiments use
+    a small number of seeds. Confidence intervals are reported for the calibration
+    experiment (Table 1) but not for the main training experiments (Tables 3–5, 12).
+    Given the stochasticity of RL training, reporting mean ± std across seeds is important
+    for the key comparisons.
+
+
+    **W6. [Moderate] The "R3 is sufficient statistic" claim (2.1% disagreement) may
+    be benchmark-specific.** The paper observes 2.1% R1-R3 disagreement vs. 13–29%
+    in single-turn literature but does not adequately explain this 10× reduction.
+    Is it because multi-turn sycophancy is more observationally salient? Because the
+    NLI model is overconfident? Because the benchmark is designed to surface observable
+    capitulation? Without deeper analysis, generalizing this to "behavioral reward
+    is always sufficient for multi-turn sycophancy" is premature.
+
+
+    **W7. [Moderate] Generalizability is speculative.** The paper''s most impactful
+    potential claim—that the discriminability-reward gap generalizes beyond sycophancy—receives
+    a single speculative sentence. Without any analysis of when the gap would vs.
+    would not apply to other behavioral attributes (toxicity, hallucination, deception),
+    the contribution remains domain-specific.
+
+
+    **W8. [Minor] The "pre-registered" claim (footnote 1) is unverifiable.** No appendix
+    with the protocol is provided, and no external pre-registration (e.g., OSF) is
+    referenced.
+
+
+    **W9. [Minor] SYCONScore lacks external validation.** The harmonic mean of ToF
+    and NoF is reasonable but no correlation with human judgments is provided. RC-AUC
+    is used but not formally defined in the main text.
+
+
+    **W10. [Minor] Cross-model experiment uses shorter training.** The paper''s cross-model
+    Llama-3-8B comparison uses fewer training steps than Qwen3-8B. While the replicated
+    Δ is convincing, matched training duration would strengthen the comparison.
+
+
+    ### Questions for Authors
+
+
+    1. **Why does representation geometry succeed for Latent-GRPO (reasoning) and
+    CRAFT (safety) but fail for sycophancy?** What structural property makes sycophancy
+    geometrically confounded? Is it specifically that "warranted revision" and "sycophantic
+    capitulation" share geometric direction, while "correct reasoning" and "incorrect
+    reasoning" do not?
+
+
+    2. **Would a multi-dimensional representation (subspace projection rather than
+    single direction) resolve the direction-warrant conflation?** The root cause identifies
+    single-direction limitation, but no multi-dimensional alternatives are tested.
+
+
+    3. **What explains the 10× reduction in R1-R3 disagreement** (2.1% vs. 13–29%
+    in single-turn literature)? Is this a property of multi-turn evaluation, the NLI
+    model, or the benchmark design?
+
+
+    4. **How does the probe''s degradation curve compare to reward overoptimization
+    scaling laws** (Gao et al. 2023)? Is the AUROC decline from 0.82 to 0.68 faster
+    or slower than predicted?
+
+
+    5. **How many random seeds were used for each experiment?** Can you provide per-seed
+    results or confidence intervals for the main comparisons (binary probe R1 vs R3-only
+    vs ACT)?
+
+
+    6. **Page count**: The main text appears to extend to ~9 pages. Does this comply
+    with the 8-page limit for the target venue?
+
+
+    ### Missing Experiments / Analysis
+
+
+    1. **CRAFT comparison as baseline.** Cited in Related Work but not evaluated.
+    Given CRAFT''s direct relevance (hidden-state GRPO), this is a notable gap.
+
+    2. **Multi-dimensional representation test.** If single direction fails because
+    it conflates direction with warrant, does projecting onto a 2D+ subspace help?
+
+    3. **Human evaluation on a subset** to validate SYCONScore''s correspondence with
+    human sycophancy judgments.
+
+    4. **Deeper analysis of the CRAFT/Latent-GRPO asymmetry** — even conceptual analysis
+    without new experiments would strengthen the paper.
+
+
+    ### Experiment Coverage vs. Design
+
+
+    Comparing the paper to the full experiment design:
+
+    - **Well-covered**: exp-001 (calibration), exp-002/v2/v2-recalib/v3 (cosine chain),
+    exp-003 (R3-only), exp-004 (ACT), exp-005 (full eval), exp-006 (direction stability),
+    exp-007 (R1-R3 disagreement), exp-008v3 (binary probe), exp-009 (R1-only), exp-010
+    (turn depth), exp-012 (cross-model), exp-014 (continuous probe), exp-016 (ActAdd),
+    random direction probe, reward weight sensitivity
+
+    - **Briefly covered**: exp-011 (R1+R2 no R3), exp-013 (neutral baseline three-way)
+
+    - **All planned experiments appear in the paper** — experimental coverage is comprehensive
+
+
+    ### Scoring
+
+
+    | Dimension | Score | Notes |
+
+    |-----------|-------|-------|
+
+    | Soundness | 3.5/6 | Systematic investigation, but limited seeds, some metrics
+    unvalidated |
+
+    | Novelty | 2.5/6 | Direction-warrant insight is novel but underexplored; "it
+    doesn''t work" is thin contribution |
+
+    | Significance | 3/6 | Useful negative result but limited actionable guidance;
+    domain-specific without generalization |
+
+    | Clarity | 4/6 | Well-structured narrative; tables comprehensive; some framing
+    issues |
+
+    | Related Work | 2/6 | 14 references is inadequate; critical omissions (Rimsky,
+    Gao, GRPO source); CRAFT/Latent-GRPO comparison absent |
+
+    | Reproducibility | 3/6 | Method described but seed counts, some hyperparameters,
+    training details underspecified |
+
+
+    ### Overall Score: 3/6 (Borderline Reject)
+
+
+    **Justification**: The paper presents a genuine and systematically documented
+    negative finding—representation-level discriminability does not translate to reward
+    utility for multi-turn sycophancy GRPO training. The geometric explanation (direction-of-change
+    vs. warrant-of-change) is novel and the experimental coverage is impressively
+    thorough (15 experiments, 2 model families, 6 reward formulations).
+
+
+    However, for a top ML venue (~25% acceptance), the paper falls short on three
+    critical fronts:
+
+    1. **Novelty depth**: The conceptual contribution is real but thin—"it doesn''t
+    work, here''s the geometric reason" without formalization, generalization tests,
+    or proposed solutions.
+
+    2. **Positioning**: Severely inadequate engagement with the two closest successful
+    prior works (CRAFT, Latent-GRPO) leaves the most important theoretical question
+    unanswered.
+
+    3. **References**: 14 entries is well below venue standards; critical omissions
+    undermine the paper''s claim to provide systematic guidance.
+
+
+    The paper is closest to a Findings-level contribution if the reference gaps and
+    CRAFT/Latent-GRPO comparison are addressed. Reaching main conference threshold
+    would additionally require either formalizing the direction-warrant conflation
+    theory, demonstrating generality across behavioral attributes, or proposing a
+    concrete fix.
+
+
+    ### Confidence: 4/5
+
+
+    Both reviewers have strong familiarity with the RepE, reward engineering, and
+    sycophancy literatures. Main uncertainty: whether CRAFT/Latent-GRPO contain specific
+    technical details that would change the comparison assessment.
+
+
+    ---
+
+
+    ## Reviewer-Specific Reports
+
+
+    ### R1 (Methods & Experiments) — Adjusted Score: 3/6
+
+
+    **Top strengths**: Systematic failure chain, comprehensive ablation structure,
+    direction stability monitoring, cross-model validation.
+
+
+    **Top concerns**: Statistical rigor (seed count unspecified, no confidence intervals
+    on training experiments), SYCONScore lacks human validation, cross-model experiment
+    uses shorter training, ACT baseline implementation underspecified.
+
+
+    ### R2 (Novelty & Related Work) — Score: 2.5/6
+
+
+    **Top strengths**: Genuine underexplored insight, honest negative result framing,
+    reward weight sensitivity analysis.
+
+
+    **Top concerns**: Thin actionable contribution, critical missing related work
+    (Rimsky et al., Gao et al., Skalse et al.), absent CRAFT/Latent-GRPO analysis,
+    "six formulations" inflates thoroughness, generalizability speculative.
+
+
+    ---
+
+
+    ## Recommendations for Improvement
+
+
+    1. **Add 15+ references** including Rimsky et al., Gao et al., Skalse et al.,
+    Li et al., Shao et al. (GRPO source), Casper et al., and DPO-based sycophancy
+    work.
+
+    2. **Write a dedicated comparison with CRAFT and Latent-GRPO** explaining why
+    representation geometry succeeds for their domains but fails for sycophancy. Even
+    a conceptual analysis would significantly strengthen the paper.
+
+    3. **Formalize the direction-warrant conflation** — define conditions under which
+    single-direction rewards fail (shared geometric direction between desired/undesired
+    behaviors) and derive testable predictions for other behavioral attributes.
+
+    4. **Report per-seed results** with confidence intervals for the key comparisons
+    (binary probe vs R3-only vs ACT).
+
+    5. **Reframe "six formulations" honestly** as two structural approaches (continuous
+    projection, probe classification) with four cosine variants for completeness.
+
+    6. **Deepen the R1-R3 disagreement analysis** — explain the 10× reduction from
+    single-turn literature and discuss conditions under which the gap might be larger.
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-19T21:23:20+00:00'

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a4a80d2076c5e3bf509",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh fix connector only lr",
+  "task_key": "worker_ssh_fix-connector-only-lr_20260517T151824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-connector-only-lr_20260517T151824_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "00aa794ba41d2661b4c111857b8f40120626f3b71b4448c48c4356c5291920bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本的 lr 都已经是 `5e-5`，完全一致。训练日志也确认 v7.2 实际使用的就是这个值。\n\n**结果：**\n- v7.2 (`run_v7.2_connector_scorer.sh`) lr = `5e-5`\n- connector-only (`run_connector_only.sh`) lr = `5e-5`\n\n两者 lr 已经相同，无需修改。其他关键参数对比也一致：steps=20000, batch_size=64, warmup_steps=1000, grad_clip=1.0。区别仅在预期的消融变量上：`freeze_mode` (connector_scorer vs connector_only)、`lambda_contrastive` (0.1 vs 0.0)、`diversity_lambda` (0.1 vs 0.0)、`lambda_drift` (0.1 vs 0.0)。\n\n这是一个公平的消融对比，不需要任何修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-connector-only-lr.md"
+}

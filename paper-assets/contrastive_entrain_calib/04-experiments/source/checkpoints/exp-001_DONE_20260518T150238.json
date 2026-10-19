@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-001",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:42:10.872Z",
+    "updated_at": "2026-05-18T15:02:38.534Z",
+    "hypothesis": "Expanding v2.1 calibration data to ~200 style-matched pairs with weak/medium/strong evidence stratification will yield a robust d_syc direction with 5-fold CV AUROC >= 0.80, because increased data diversity improves the contrastive signal separation in hidden states.",
+    "spec": {
+      "command": "python3 extract_activations_v2.py + compute_directions.py + evaluate_directions.py pipeline",
+      "server": "westd-29046",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_path": "/root/contrastive_entrain_calib/results/exp001/directions.pt",
+      "log_path": "/root/contrastive_entrain_calib/results/exp001/evaluation_report.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T14:53:31.826Z",
+    "metrics": {
+      "cv_mean_auroc": 0.8269,
+      "cv_std_auroc": 0.0278,
+      "full_data_auroc": 0.8159,
+      "bootstrap_ci_95": [
+        0.7698,
+        0.8589
+      ],
+      "best_layer": 19,
+      "best_pos": "asst_first",
+      "per_strength_auroc": {
+        "weak": 0.6747,
+        "medium": 0.8831,
+        "strong": 0.9294
+      },
+      "num_pairs": 181,
+      "stop_gate": "CONTINUE_REDUCED_R1"
+    }
+  },
+  "timestamp": "2026-05-18T15:02:38.542829+00:00",
+  "trigger": "update_registry"
+}

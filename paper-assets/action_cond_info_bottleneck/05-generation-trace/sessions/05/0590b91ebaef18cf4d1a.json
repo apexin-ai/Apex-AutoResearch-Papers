@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0590b91ebaef18cf4d1a",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh reconnect retry",
+  "task_key": "worker_ssh_reconnect-retry_20260517T062201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_reconnect-retry_20260517T062201_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "41b24ec3e2782d515439a0a73c8e76b3a205b2b537e7c3baf1f30b21876daf27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器已重连成功。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **连接** | 成功 (第 1 次即通) |\n| **TMUX** | 无活跃 session |\n| **原始 PID 837180/872669** | 已死亡 |\n| **GPU 0/1** | 均空闲 (0 MiB) |\n| **Alpha 0.0 eval** | **已完成** — libero_spatial 全 10 task 评完 |\n| **Alpha 0.3 eval** | 无结果文件 |\n\n**Alpha 0.0 libero_spatial 结果 (总体 58.2%)**:\n\n| Task | 成功率 |\n|------|--------|\n| 0 | 82% |\n| 1 | 60% |\n| 2 | 86% |\n| 3 | 74% |\n| 4 | 38% |\n| 5 | 2% |\n| 6 | 86% |\n| 7 | 46% |\n| 8 | 54% |\n| 9 | 54% |\n\n所有进程已终止，两块 GPU 完全空闲。Alpha 0.3 尚未运行 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-reconnect-retry.md"
+}

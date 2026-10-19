@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0395c1a5afd82a0cd67e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 004 eval ckpt7500 ckpt6500",
+  "task_key": "worker_analysis_exp-004-eval-ckpt7500-ckpt6500_20260520T160426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-004-eval-ckpt7500-ckpt6500_20260520T160426_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "0291a799fcfe1bb2db27b1bab3e62445015c827beb910b8fc1a00d3573820bb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Summary 文件与 log 一致。结果如下：\n\n```\nexp-004-eval-ckpt7500:\n  ToF:        0.1657\n  NoF:        0.8453\n  SYCONScore: 0.2771\n  Samples:    362 (valid=181, invalid=181)\n  退出状态:   正常 (EXIT_CODE=0)\n\nexp-004-eval-ckpt6500:\n  ToF:        0.1492\n  NoF:        0.8232\n  SYCONScore: 0.2526\n  Samples:    362 (valid=181, invalid=181)\n  退出状态:   正常 (EXIT_CODE=0)\n```\n\n**趋势判断 — 存在异常：**\n\n完整序列（含已知数据点）：\n\n| Checkpoint | SYCONScore | ToF    | NoF    |\n|------------|-----------|--------|--------|\n| ckpt-6000  | 0.262     | —      | —      |\n| **ckpt-6500** | **0.2526** | 0.1492 | 0.8232 |\n| ckpt-7000  | 0.286     | —      | —      |\n| **ckpt-7500** | **0.2771** | 0.1657 | 0.8453 |\n| ckpt-8000  | 0.301     | —      | —      |\n\n两个中间 checkpoint 的 SYCONScore 都**低于其左侧邻居**，而非落在两者之间：\n- ckpt-6500 (0.2526) < ckpt-6000 (0.262)，差 -0.0094\n- ckpt-7500 (0.2771) < ckpt-7000 (0.286)，差 -0.0089\n\n趋势并非单调递增，而是呈**锯齿形**：每个 500-step 中间点都出现局部回落，然后在下一个 1000-step 点回升。这说明 SYCONScore 在训练过程中存在振荡，整体上升趋势仍在，但 500-step 粒度下不是平滑单调的。可能原因：学习率波动、数据 batch 排列效应、或 checkpoint 保存时恰好处于 loss landscape 的非稳定点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-004-eval-ckpt7500-ckpt6500.md"
+}

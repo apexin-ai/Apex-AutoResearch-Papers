@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb637e587c3c5594a01b",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code token dropping eval",
+  "task_key": "worker_code_token-dropping-eval_20260517T134722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_token-dropping-eval_20260517T134722_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "2e1d10429854b9627882a5ceed7a0b92bf405cb734c321f1f1ec804a4f3d3ad3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项验证全部通过：\n\n**修改的文件：**\n- `acib/config.py` — 新增 `drop_mode: Literal[\"none\", \"importance\", \"random\"]` 和 `drop_ratio: float`\n- `acib/acib_policy.py` — `_connector_hook` 中新增 token dropping 逻辑：importance 模式按 scorer weight 排序 drop 最低 k%，random 模式随机 drop k%，binary mask 直接乘 visual tokens\n- `scripts/eval_acib.py` — 新增 `--drop_mode` / `--drop_ratio` CLI 参数，透传到 `patch_make_policy` → `ACIBConfig`\n\n**新建的文件：**\n- `scripts/run_v72_token_drop_sweep.sh` — importance vs random, ratio=0.1/0.2/0.3/0.4/0.5, libero_spatial only\n- `scripts/run_v72_perturbation_eval.sh` — scored/unscored 模式, 4种 perturbation, 4个 suite"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-token-dropping-eval.md"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-004-reduced-lora-eval-ckpt7500",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:40:57.520Z",
+    "updated_at": "2026-05-23T07:41:19.285Z",
+    "hypothesis": "Eval reduced-lora ACT checkpoint-7500. Confirms whether ckpt-7000 peak (0.3257) is sustained or a noise spike. Critical for paper trajectory reporting.",
+    "parent": "exp-004-reduced-lora",
+    "spec": {
+      "command": "python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-7500 --data_path /root/contrastive_entrain_calib/eval/data/sycophancy_bench.jsonl --output_dir eval_results/exp004_reduced_lora_ckpt7500/ --exp_id exp004_reduced_lora_ckpt7500",
+      "server": "westd-28034",
+      "gpu": "cuda:0",
+      "pid": 59600,
+      "data_path": "eval/data/sycophancy_bench.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B + reduced-lora ACT ckpt-7500",
+      "seed": 42,
+      "checkpoint_source": "exp-004-reduced-lora/checkpoint-7500",
+      "eval_data": "eval/data/sycophancy_bench.jsonl"
+    }
+  },
+  "timestamp": "2026-05-23T07:41:19.492439+00:00",
+  "trigger": "update_registry"
+}

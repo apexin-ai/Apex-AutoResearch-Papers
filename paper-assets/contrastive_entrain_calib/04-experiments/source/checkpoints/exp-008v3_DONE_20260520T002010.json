@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-008v3",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:46:29.198Z",
+    "updated_at": "2026-05-20T00:20:09.964Z",
+    "hypothesis": "Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator.",
+    "parent": "exp-008",
+    "spec": {
+      "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp008v3_binary_probe_grpo.py\"",
+      "server": "westd-28034",
+      "gpu": "cuda:1,cuda:2",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "training_from_base",
+      "eval_data": "N/A",
+      "notes": "Killed by Agent after confirmed mode collapse. ckpt-1500 ToF=0, SYCONScore=0; ckpt-2000 ToF=0, SYCONScore=0. Binary probe R1 pushed model to complete stubbornness. Checkpoints saved at /root/autodl-tmp/checkpoints/exp008v3_dcgrpo_binary_probe/checkpoint-{500,1000,1500,2000}. Eval results at 29046 /root/autodl-tmp/results/exp008v3_ckpt{1500,2000}_eval/.",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp008v3_dcgrpo_binary_probe/",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-008v3.log"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-20T00:20:09.964Z"
+  },
+  "timestamp": "2026-05-20T00:20:10.026108+00:00",
+  "trigger": "update_registry"
+}

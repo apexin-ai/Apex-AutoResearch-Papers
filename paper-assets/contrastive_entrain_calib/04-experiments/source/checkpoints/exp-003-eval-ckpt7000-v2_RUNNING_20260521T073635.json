@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-003-eval-ckpt7000-v2",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:31:01.318Z",
+    "updated_at": "2026-05-21T07:36:35.203Z",
+    "hypothesis": "Re-run exp-003 R3-only GRPO checkpoint-7000 eval with D027 unified preset. Previous run (exp-003-eval-ckpt7000) failed due to stale cron killing process. Late-stage trajectory point: if regression continues below 0.114, strengthens vanilla-ceiling claim.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "eval_unified_preset.py on checkpoint-7000 (v2 retry)",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "500589",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000-v2.log",
+      "submitted_at": "2026-05-21T07:31:13.499Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "exp-003 checkpoint-7000",
+      "seed": 42,
+      "checkpoint_source": "exp-003",
+      "eval_data": "D027 unified eval set (362 samples)"
+    }
+  },
+  "timestamp": "2026-05-21T07:36:35.318800+00:00",
+  "trigger": "update_registry"
+}

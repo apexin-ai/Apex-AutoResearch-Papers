@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "e88921533bff1cdeb026",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "ssh scp heatmaps v2",
+  "task_key": "worker_ssh_scp-heatmaps-v2_20260516T054436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_scp-heatmaps-v2_20260516T054436.jsonl",
+    "occurrence": 1,
+    "bytes": 309,
+    "sha256": "c9a1454e217102f4252067dbb0a684dac56dc7372e682a2b9bbfbc4476690c05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:44:44.771763+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5iYTJS96B1FwdfoAXEs\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scp-heatmaps-v2_20260516T054436"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-scp-heatmaps-v2.md"
+}

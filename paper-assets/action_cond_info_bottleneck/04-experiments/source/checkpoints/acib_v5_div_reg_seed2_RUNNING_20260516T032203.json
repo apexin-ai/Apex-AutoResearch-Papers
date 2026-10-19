@@ -1,0 +1,57 @@
+{
+  "exp_id": "acib_v5_div_reg_seed2",
+  "project": "action_cond_info_bottleneck",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 2,
+    "created_at": "2026-05-16T02:49:24.796Z",
+    "updated_at": "2026-05-16T03:22:03.223Z",
+    "hypothesis": "v5_div_reg seed 2 复现：验证 aggregate rate KL + diversity regularizer 防 scorer collapse 的稳定性，与 seed 1 (seed=42) 一致性检验",
+    "parent": "acib_v5_div_reg",
+    "notes": "Retry #2 (PID 744803, cuda:1, submit_training_job)。lambda_ent=0, diversity_lambda=0.1, seed=1337, WANDB_MODE=disabled。前两次重启失败：PID 728882 被 kill (lambda_ent=0.1 参数错误), PID 736291 被新 submit_training_job 的 tmux session 覆盖。当前 PID 744803 从 step 0 开始，~0.5 steps/s，预计 ~14:30 UTC 完成（~11h）。",
+    "reproduce": {
+      "finished_at": "2026-05-16T03:18:51.181Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-16T03:09:59.150Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:09:59.975176+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:18:52.158485+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "PID 736291 正常运行中，GPU 1, 97% util, 16.2GB VRAM, ~0.5 steps/s。⚠️ log 文件被 tmux wrapper 覆写后删除，stdout fd 指向已删除 inode，可通过 /proc/736286/fd/1 读取进度。WANDB_MODE=disabled。lambda_ent=0, diversity_lambda=0.1, seed=1337。预计 ~14:20 UTC 完成。"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acib && WANDB_MODE=disabled python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --diversity_lambda 0.1 --lambda_ent 0 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337\"",
+      "server": "westb-13953",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "744803",
+      "log_path": "~/runs/action_cond_info_bottleneck/acib_v5_div_reg_seed2.log",
+      "data_path": "/root/autodl-tmp/libero_dataset",
+      "data_count": 273465,
+      "model_name": "lerobot/smolvla_libero",
+      "seed": 1337,
+      "account": "root",
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (training experiment)",
+      "python_pid": "744808"
+    }
+  },
+  "timestamp": "2026-05-16T03:22:03.255103+00:00",
+  "trigger": "update_registry"
+}

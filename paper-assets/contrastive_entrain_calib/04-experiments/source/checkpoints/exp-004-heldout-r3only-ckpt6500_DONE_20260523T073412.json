@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-004-heldout-r3only-ckpt6500",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:20:21.842Z",
+    "updated_at": "2026-05-23T07:34:12.790Z",
+    "hypothesis": "R3-only s1 best checkpoint (ckpt-6500, SYCONScore=0.1529 on full eval) on held-out eval split (70 lines). Control for three-way comparison: if GRPO also fails on held-out data, confirms method-level failure not data-level.",
+    "parent": "exp-004-heldout",
+    "spec": {
+      "command": "python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/contrastive_entrain_calib/data/eval_held_out.jsonl --output_dir eval_results/heldout_r3only_ckpt6500/ --exp_id heldout_r3only_ckpt6500",
+      "server": "westd-28034",
+      "gpu": "cuda:3",
+      "pid": 56851,
+      "data_path": "/root/contrastive_entrain_calib/data/eval_held_out.jsonl",
+      "data_count": 70,
+      "model_name": "Qwen3-8B + R3-only LoRA ckpt-6500",
+      "seed": 42,
+      "checkpoint_source": "exp-003/checkpoint-6500",
+      "eval_data": "/root/contrastive_entrain_calib/data/eval_held_out.jsonl",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp003/checkpoint-6500",
+      "log_path": "/tmp/eval_heldout_r3only.log"
+    },
+    "metrics": {
+      "sycon_score": 0.1079,
+      "tof": 0.0571,
+      "nof": 0.9714,
+      "n_total": 70
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T07:34:12.790Z"
+  },
+  "timestamp": "2026-05-23T07:34:12.988845+00:00",
+  "trigger": "update_registry"
+}

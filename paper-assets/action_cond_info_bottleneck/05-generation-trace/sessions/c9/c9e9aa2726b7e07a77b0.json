@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9e9aa2726b7e07a77b0",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "research scorer analysis v2",
+  "task_key": "worker_research_scorer-analysis-v2_20260516T050757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scorer-analysis-v2_20260516T050757_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "1c11a2cd9794c234409c5a07e3799fdd56b87f31808549acad8928d31c50e8ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，结果写入 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/artifacts/scorer_analysis_seed1_step5000.md`。\n\n**核心结论**：\n\n- **分布**: 强 bimodal（U 型）。BC=**0.937**（阈值 0.556），frac<0.2=**41.4%**，frac>0.8=**49.2%**，中间 0.4-0.6 仅 **1.5%**\n- **判别度**: within-sample top10/bottom10 = **22.59×**；per-token = 20.24×\n- **Logit**: mean=1.45, **std=3.76**（远离 0，sigmoid 推至两端饱和）\n- **对比**: v4 collapse 到 std=0.009，v5_stopgrad collapse 到 0，本版 **std=0.440 健康双峰** — diversity 正则有效\n- **MVP 判定**: **PASS**（脚本自动判定一致）\n\n**遗留风险**: 空间分布需人工核对 PNG 才能确认热区落在任务区域而非背景。文件路径：\n- `/root/acib/outputs/scorer_analysis_seed1_step5000/token_importance_heatmap.png`\n- `/root/acib/outputs/scorer_analysis_seed1_step5000/avg_importance_per_camera.png`\n- `/root/acib/outputs/scorer_analysis_seed1_step5000/scorer_weight_histogram.png`\n\n注：此次复用了已存在的 `scorer_analysis_seed1_step5000/` 完整结果（生成于 2026-05-16 12:59，4 batch × 8 sample = 32 samples），未重新跑 GPU。脚本本身已完整实现 task 要求的 A/B 两类分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scorer-analysis-v2.md"
+}

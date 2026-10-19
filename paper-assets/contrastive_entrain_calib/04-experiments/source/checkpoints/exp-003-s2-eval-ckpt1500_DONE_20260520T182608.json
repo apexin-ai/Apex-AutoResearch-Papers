@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp-003-s2-eval-ckpt1500",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:08:56.843Z",
+    "updated_at": "2026-05-20T18:26:08.158Z",
+    "spec": {
+      "command": "eval_unified_preset.py exp003_s2 ckpt-1500",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "608013",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log",
+      "submitted_at": "2026-05-20T17:08:56.727Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B + exp-003-s2 LoRA ckpt-1500",
+      "seed": 43,
+      "checkpoint_source": "exp-003-s2",
+      "eval_data": "calibration_v2_1_expanded.jsonl (362 pairs)",
+      "wall_clock_seconds": 4631.4,
+      "gpu_hours": 1.29
+    },
+    "hypothesis": "Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.",
+    "parent": "exp-003-s2",
+    "reproduce": {
+      "finished_at": "2026-05-20T18:23:30.755Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T18:23:34.179573+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log",
+    "metrics": {
+      "ToF": 0.0552,
+      "NoF": 0.9503,
+      "SYCONScore": 0.1044,
+      "samples": 362
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-20T18:26:08.158Z"
+  },
+  "timestamp": "2026-05-20T18:26:08.259654+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,31 @@
+{
+  "exp_id": "acib_v7_alpha03_eval",
+  "project": "action_cond_info_bottleneck",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:21:20.143Z",
+    "updated_at": "2026-05-17T05:31:24.270Z",
+    "hypothesis": "Alpha=0.3 中等强度 scoring 诊断：scoring weight 0.3 时 ACIB 做中等干预。与 alpha=0.1(-9.8pp) 和 alpha=1.0(-7.6pp) 对比，确认 scoring 强度与回退的关系是否单调。",
+    "parent": "acib_v7_contrastive",
+    "spec": {
+      "command": "bash /root/acib/scripts/run_alpha_sweep_0.3.sh (libero_spatial only, scoring_alpha=0.3)",
+      "server": "westb-13953",
+      "gpu": "cuda:1",
+      "pid": "872669",
+      "data_path": "LIBERO libero_spatial",
+      "data_count": 500,
+      "model_name": "acib_v7_contrastive checkpoint-20000 (alpha=0.3)",
+      "seed": 42,
+      "checkpoint_source": "/root/acib/outputs/acib_v7_contrastive/checkpoint-20000",
+      "eval_data": "libero_spatial"
+    },
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 13953 on 116.172.66.188",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T05:31:24.270Z"
+  },
+  "timestamp": "2026-05-17T05:31:24.313406+00:00",
+  "trigger": "update_registry"
+}

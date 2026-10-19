@@ -1,0 +1,62 @@
+{
+  "exp_id": "exp-002v2",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-18T23:53:52.831Z",
+    "updated_at": "2026-05-19T06:43:03.059Z",
+    "hypothesis": "DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.",
+    "parent": "exp-002",
+    "reproduce": {
+      "finished_at": "2026-05-19T02:10:27.513Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-19T02:10:27.621Z",
+    "extra": {
+      "stability_step500": {
+        "mean_cosine_old_new": 0.2828,
+        "mean_cosine_auroc": 0.8107,
+        "verdict": "SIGNIFICANT_DRIFT",
+        "per_layer_cosine": {
+          "19": 0.2782,
+          "20": 0.3067,
+          "24": 0.3533,
+          "27": 0.3809,
+          "32": 0.2395,
+          "33": 0.2208,
+          "35": 0.2005
+        },
+        "per_layer_auroc": {
+          "19": 0.8013,
+          "20": 0.7988,
+          "24": 0.7869,
+          "27": 0.8238,
+          "32": 0.8081,
+          "33": 0.8162,
+          "35": 0.84
+        },
+        "implication": "d_syc direction rotated significantly but linear separability preserved. R1≈0 because old d_syc is stale. Recalibration needed."
+      }
+    },
+    "spec": {
+      "command": "cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py",
+      "server": "westd-29046",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "pid": "130467",
+      "checkpoint_path": "/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/",
+      "log_path": "/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log",
+      "checkpoint_source": "training_from_base",
+      "eval_data": "N/A",
+      "notes": "D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T06:43:03.082692+00:00",
+  "trigger": "update_registry"
+}

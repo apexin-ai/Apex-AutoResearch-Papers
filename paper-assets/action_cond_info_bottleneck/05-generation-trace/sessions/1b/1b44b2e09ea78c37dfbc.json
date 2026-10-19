@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b44b2e09ea78c37dfbc",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh check drift loss path",
+  "task_key": "worker_ssh_check-drift-loss-path_20260517T104030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-drift-loss-path_20260517T104030_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "0ae97d21a8d43d8985c79d5ab6739123ce02facfa62ec402b9c9c3c833148de4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查结论：\n\n## drift_loss **在计算，但未打印到日志**\n\n### 事实\n1. **config 正确**：`config.json` 确认 `lambda_drift=0.1`，`freeze_mode=\"connector_scorer\"`\n2. **代码路径被执行**：`acib_policy.py:163` 条件 `freeze_mode == \"connector_scorer\" and lambda_drift > 0` 满足，`_connector_ref_params` 在 `__init__:29` 初始化\n3. **drift_loss 已加入 total loss**：`acib_policy.py:165` 将其加入 `acib_losses[\"total\"]`，并在 `:171` 存入 `loss_dict[\"connector_drift\"]`\n4. **`log_dict` 包含 drift**：`train_acib.py:380` 将其记为 `\"train/drift_loss\"`\n\n### 根因\n`train_acib.py:387-395` 的 print 格式字符串**没有包含 drift**，只打印了 `loss/task/ib/div/ctr/β/scorer_mean/std`。wandb 也未启用（`wandb_project` 为空），所以 `log_dict` 中的 `train/drift_loss` 也无处可看。\n\n### 结论\n- **drift_loss 在正确计算并参与梯度更新**，只是 logging 遗漏\n- **不需要重启训练**\n- 需要修复：在 print 格式中加入 `drift=` 字段，并在启动 header 加入 `Lambda drift:` 行。但这不影响当前训练的正确性，可以下次启动时生效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-drift-loss-path.md"
+}

@@ -1,0 +1,38 @@
+paper_key: "consistency2025bctact"
+title: "Consistency Training Helps Stop Sycophancy and Jailbreaks"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - "standard RLHF model (no consistency training)"
+    - "BCT (Bias-augmented Consistency Training, from Chua et al. 2025)"
+  metrics:
+    - {name: "sycophancy rate", direction: "lower_better"}
+    - {name: "jailbreak success rate", direction: "lower_better"}
+    - {name: "task performance preservation", direction: "higher_better"}
+  datasets:
+    - {name: "sycophancy evaluation tasks", size: "N/A"}
+    - {name: "jailbreak evaluation prompts", size: "N/A"}
+  ablation_dimensions:
+    - "BCT (output-level invariance) vs ACT (activation-level invariance)"
+    - "sycophancy reduction vs jailbreak reduction"
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    model: "Gemini 2.5 Flash"
+  method_family: "consistency training / self-supervised alignment"
+
+positioning:
+  core_claim: "Self-supervised consistency training (BCT over outputs, ACT over activations) teaches LLMs to be invariant to irrelevant prompt cues, reducing sycophancy and jailbreaks without static adversarial datasets."
+  key_results: "BCT and ACT reduce sycophancy equally well; BCT does better at jailbreak reduction"
+  limitations:
+    - "Evaluated only on Gemini 2.5 Flash"
+    - "No explicit comparison with activation steering or contrastive methods"
+    - "Unclear generalization to open-source models"
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

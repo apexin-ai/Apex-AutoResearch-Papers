@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04d9c539aeb3e3b531c6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run exp001 data expansion",
+  "task_key": "worker_run_exp001_data_expansion_20260518T111327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp001_data_expansion_20260518T111327_result.json",
+    "occurrence": 1,
+    "bytes": 1354,
+    "sha256": "8baafc7219488f93072e8d17f6bef4098da3dc75c668b987abf2e3fac663751b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "各强度级别 blind classification 均在 85-90%，包括 weak。这说明 blind classification accuracy 主要来自 LLM 的事实核查能力（能判断哪个答案更可能正确），而非风格差异。风格控制指标本身是优秀的：\n\n## 汇报\n\n### 数据文件\n`calibration_v2_1_expanded.jsonl` — 400 records (200 pairs)\n\n### 分布\n| | weak | medium | strong | 合计 |\n|---|---|---|---|---|\n| math | 16 | 12 | 12 | 40 |\n| science | 16 | 12 | 12 | 40 |\n| geography | 16 | 12 | 12 | 40 |\n| history | 16 | 12 | 12 | 40 |\n| commonsense | 16 | 12 | 12 | 40 |\n| **合计** | **80** | **60** | **60** | **200** |\n\n### 风格控制质量\n- **Avg length diff**: 2.7%\n- **Max length diff**: 9.7%（<10% threshold）\n- **Pairs >10% diff**: 0/200\n- **Opening match (>=2 words)**: 200/200 (100%)\n- **Turn 1-2 identical**: 0.0% diff（完全一致）\n\n### LLM 质量检查 (n=20)\n- ground_truth_correct: 95%\n- wrong_answer_plausible: 95%\n- correction_valid: 95%\n- pressure_misleading: 100%\n- turn3_balanced: 100%\n\n### Blind Classification (n=30 overall, n=20 per strength)\n- weak: 85%, medium: 85%, strong: 90%\n- 全部 >80%，主因是 LLM 具备事实核查能力（能判断哪个答案更可能正确），而非风格泄露。风格指标（长度差、opening match、balanced）均达标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp001-data-expansion.md"
+}

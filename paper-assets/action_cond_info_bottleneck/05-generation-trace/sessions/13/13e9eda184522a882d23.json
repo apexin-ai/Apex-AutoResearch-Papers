@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13e9eda184522a882d23",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "analysis acib v73 connector lora",
+  "task_key": "worker_analysis_acib_v73_connector_lora_20260518T020759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acib_v73_connector_lora_20260518T020759_result.json",
+    "occurrence": 1,
+    "bytes": 3081,
+    "sha256": "1a8c462184287b04a8098b39178aa179bcb86ceb0d70fe062fd4497f702e4140"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全，以下是完整分析。\n\n---\n\n## acib_v73_connector_lora 训练结果分析\n\n### 1. 训练完成状态\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 20000/20000 ✅ |\n| 训练时长 | 3.2h |\n| EXIT_CODE | 0 |\n| 速度 | 1.8 steps/s |\n| 可训练参数 | 228,993 / 450M (0.1%) |\n| LoRA | connector.modality_projection.proj, rank=8, 105,984 params |\n| W&B | 未配置 |\n\n### 2. Final Metrics (Step 20000)\n\n| 指标 | 值 |\n|------|-----|\n| total loss | 0.2602 |\n| task_loss | 0.1472 |\n| ib | 0.5411 |\n| div | -0.2520 |\n| ctr (contrastive) | 1.1907 |\n| β | 0.0100 |\n| scorer_mean | 0.344 |\n| scorer_std | 0.297 |\n\n训练动态正常：contrastive loss 从 11.84 → 1.19 稳步下降；scorer_std 从 0.147 → 0.297 说明 scorer 逐渐学会 selective attention。\n\n### 3. Probe A 结果 (checkpoint-20000)\n\n**固定图像，换 instruction，测 scorer importance map cosine similarity：**\n\n| Pair | v7.3 cos | v7.2 cos | PASS (<0.8)? |\n|------|----------|----------|-------------|\n| bbq_sauce vs black_bowl_cookie | **0.864** | 0.877 | ❌ |\n| bbq_sauce vs black_bowl_cabinet | **0.765** | 0.791 | ✅ |\n| black_bowl_cookie vs black_bowl_cabinet | **0.939** | 0.944 | ❌ |\n\n**Pass criterion: cos < 0.8 for at least 2/3 pairs → 1/3 PASS → ❌ FAIL**\n\nv7.3 在所有 pair 上比 v7.2 略优（cos 更低），但改进幅度不足以翻转判定。第三个 pair 的两条 instruction 语义极近（同一动作、不同位置），cos=0.939 符合预期。\n\n### 4. Probe B (natural cross-task)\n\n| Pair | v7.3 cos | v7.2 cos |\n|------|----------|----------|\n| bbq_sauce vs black_bowl_cookie | **0.603** | 0.670 |\n| bbq_sauce vs black_bowl_cabinet | **0.562** | 0.624 |\n| black_bowl_cookie vs black_bowl_cabinet | **0.728** | 0.755 |\n\n全部 < 0.8 → importance maps 是 task-dependent 的，不是纯 position prior。v7.3 比 v7.2 更 task-discriminative。\n\n### 5. Checkpoint 路径\n\n```\n/root/autodl-tmp/acib_v73_connector_lora_seed42/\n├── config.json\n├── checkpoint-5000/checkpoint.pt\n├── checkpoint-10000/checkpoint.pt\n├── checkpoint-15000/checkpoint.pt\n└── checkpoint-20000/checkpoint.pt   (867MB)\n```\n\n### 6. v7.3 MVP Pass/Fail 初步判定\n\n| Criterion | Status | Notes |\n|-----------|--------|-------|\n| Probe A cos < 0.8 (≥2/3 pairs) | ❌ **FAIL** | 1/3 pass，与 v7.2 模式一致但略优 |\n| α=0.0 = baseline ±1pp | ⏳ 待 eval | |\n| α=1.0 4-suite avg ≥ 64.1% | ⏳ 待 eval | |\n\n**结论：Probe A FAIL。** LoRA 结构化方案相比 v7.2 在 language conditioning 上有边际改善（所有 pair cos 下降约 0.01-0.03），但不足以通过 pass criterion。两个 \"black bowl\" 指令语义高度重叠导致 pair 3 始终 cos>0.9，这可能是 benchmark 本身的局限而非方法问题。\n\n后续需要：\n1. 跑 α=0.0 和 α=1.0 的 4-suite eval 验证剩余两个 criterion\n2. 考虑是否放宽 Probe A threshold（鉴于 pair 3 语义重叠），或增加更多语义差异大的 task pairs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acib-v73-connector-lora.md"
+}

@@ -1,0 +1,1411 @@
+# diagnose exp 003 eval failures
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_diagnose_exp-003-eval-failures_20260521T072341.jsonl`
+- **Structured JSON:** [`800d894afe1ef4f9dd22.json`](../../sessions/80/800d894afe1ef4f9dd22.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T07:28:52.533732+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T07:28:52.535395+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "ToolSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T07:28:52.535645+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "uptime",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "uptime",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T07:28:52.535800+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'uptime' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T07:28:52.535994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -100 /root/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "tail -100 /root/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T07:28:52.536140+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -100 /root/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "tail -100 /root/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T07:28:52.536310+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 15:22:09,561 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 15:22:09,561 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 15:22:09,561 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003/checkpoint-6500\\n2026-05-21 15:22:09,561 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 15:22:09,561 [INFO] eval_unified_preset: exp_id:     exp003-ckpt6500\\n2026-05-21 15:22:09,846 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 15:22:10,596 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.18it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.14it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.10it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.24it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.65it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.39it/s]\\n2026-05-21 15:22:14,340 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003/checkpoint-6500\\n2026-05-21 15:22:16,391 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 15:22:16,593 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 15:22:16,596 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 15
+…[truncated 328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T07:28:52.536470+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -100 /root/runs/contrastive_entrain_calib/exp-003-eval-ckpt5000-v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "tail -100 /root/runs/contrastive_entrain_calib/exp-003-eval-ckpt5000-v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T07:28:52.536633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 15:22:06,619 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 15:22:06,619 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 15:22:06,619 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003/checkpoint-6000\\n2026-05-21 15:22:06,619 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 15:22:06,619 [INFO] eval_unified_preset: exp_id:     exp003-ckpt6000\\n2026-05-21 15:22:06,912 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 15:22:07,628 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.22it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.22it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.21it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.32it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.74it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.48it/s]\\n2026-05-21 15:22:11,145 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003/checkpoint-6000\\n2026-05-21 15:22:13,177 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 15:22:13,383 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 15:22:13,386 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 15
+…[truncated 328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-21T07:28:52.536782+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -50 /root/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "tail -50 /root/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T07:28:52.536971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 15:18:58,559 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 15:18:58,559 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 15:18:58,560 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003/checkpoint-5000\\n2026-05-21 15:18:58,560 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 15:18:58,560 [INFO] eval_unified_preset: exp_id:     exp003-ckpt5000-v2\\n2026-05-21 15:18:58,841 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 15:18:59,532 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.13it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.14it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.16it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.26it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.66it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.41it/s]\\n2026-05-21 15:19:03,238 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003/checkpoint-5000\\n2026-05-21 15:19:05,319 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 15:19:05,545 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 15:19:05,548 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21
+…[truncated 861 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T07:28:52.537164+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 15:22:11,353 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 15:22:11,353 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 15:22:11,353 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003/checkpoint-7000\\n2026-05-21 15:22:11,353 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 15:22:11,353 [INFO] eval_unified_preset: exp_id:     exp003-ckpt7000\\n2026-05-21 15:22:11,669 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 15:22:12,412 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.10it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.18it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.18it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.28it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.64it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.41it/s]\\n2026-05-21 15:22:16,130 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003/checkpoint-7000\\n2026-05-21 15:22:18,396 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 15:22:18,602 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 15:22:18,604 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 15
+…[truncated 327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T07:28:52.537364+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "uptime && echo \"---TMUX---\" && tmux ls 2>&1 && echo \"---NVIDIA---\" && nvidia-smi && echo \"---PROCS---\" && ps aux | grep -E \"eval_unified|tmux\" | grep -v grep && echo \"---REBOOT---\" && last reboot 2>/dev/null | head -5 && echo \"---DMESG---\" && dmesg 2>/dev/null | tail -30",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "uptime && echo \"---TMUX---\" && tmux ls 2>&1 && echo \"---NVIDIA---\" && nvidia-smi && echo \"---PROCS---\" && ps aux | grep -E \"eval_unified|tmux\" | grep -v grep && echo \"---REBOOT---\" && last reboot 2>/dev/null | head -5 && echo \"---DMESG---\" && dmesg 2>/dev/null | tail -30",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T07:28:52.537595+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 15:24:22 up 7 days, 23:35,  0 users,  load average: 4.58, 61.79, 154.73\\n---TMUX---\\nexp-003-eval-ckpt6000: 1 windows (created Thu May 21 15:22:03 2026)\\nexp-003-eval-ckpt6500: 1 windows (created Thu May 21 15:22:05 2026)\\nexp-003-eval-ckpt7000: 1 windows (created Thu May 21 15:22:07 2026)\\n---NVIDIA---\\nThu May 21 15:24:22 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\n| 51%   62C    P1            272W /  575W |   16864MiB /  32607MiB |     48%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\n| 44%   57C    P1            265W /  575W |   16844MiB /  32607MiB |     48%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\n| 44%   57C    P1            260W /  575W |   16844MiB /  32607MiB |     48%      Default |\\
+…[truncated 6393 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T07:28:52.537808+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -30 /tmp/eval_ckpt5000v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "tail -30 /tmp/eval_ckpt5000v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T07:28:52.538032+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ls -la /tmp/agent-ml-exit/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "ls -la /tmp/agent-ml-exit/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T07:28:52.538317+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 15:19:46,938 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 15:19:46,938 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 15:19:46,938 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003/checkpoint-5000\\n2026-05-21 15:19:46,938 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 15:19:46,938 [INFO] eval_unified_preset: exp_id:     exp003-ckpt5000-v2\\n2026-05-21 15:19:47,228 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 15:19:47,844 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.21it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.21it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.20it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.31it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.72it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.47it/s]\\n2026-05-21 15:19:51,391 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003/checkpoint-5000\\n2026-05-21 15:19:53,451 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 15:19:53,650 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 15:19:53,653 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21
+…[truncated 403 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T07:28:52.538562+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 140\\ndrwxr-xr-x 2 root root 4096 May 21 15:22 .\\ndrwxrwxrwt 1 root root 8192 May 21 15:22 ..\\n-rw-r--r-- 1 root root   23 May 20 02:07 exp-002v3.exit\\n-rw-r--r-- 1 root root   23 May 20 22:01 exp-003-eval-ckpt1000.exit\\n-rw-r--r-- 1 root root   23 May 20 22:07 exp-003-eval-ckpt2000.exit\\n-rw-r--r-- 1 root root   23 May 20 22:06 exp-003-eval-ckpt3000.exit\\n-rw-r--r-- 1 root root   23 May 20 23:26 exp-003-eval-ckpt4000.exit\\n-rw-r--r-- 1 root root   23 May 21 03:02 exp-003-eval-ckpt4500.exit\\n-rw-r--r-- 1 root root   25 May 21 15:19 exp-003-eval-ckpt5000-v2.exit\\n-rw-r--r-- 1 root root   23 May 20 20:34 exp-003-eval-ckpt5000.exit\\n-rw-r--r-- 1 root root   23 May 21 01:36 exp-003-eval-ckpt5500.exit\\n-rw-r--r-- 1 root root   23 May 21 02:22 exp-003-s2-eval-ckpt1000.exit\\n-rw-r--r-- 1 root root   23 May 21 02:22 exp-003-s2-eval-ckpt1500.exit\\n-rw-r--r-- 1 root root   23 May 21 02:21 exp-003-s2-eval-ckpt500.exit\\n-rw-r--r-- 1 root root   23 May 20 22:44 exp-004-eval-ckpt1000.exit\\n-rw-r--r-- 1 root root   23 May 20 23:40 exp-004-eval-ckpt1500.exit\\n-rw-r--r-- 1 root root   23 May 20 23:35 exp-004-eval-ckpt2500.exit\\n-rw-r--r-- 1 root root   23 May 20 23:09 exp-004-eval-ckpt3000.exit\\n-rw-r--r-- 1 root root   23 May 20 23:36 exp-004-eval-ckpt3500.exit\\n-rw-r--r-- 1 root root   23 May 20 22:39 exp-004-eval-ckpt4000.exit\\n-rw-r--r-- 1 root root   23 May 21 00:05 exp-004-eval-ckpt4500.exit\\n-rw-r--r-- 1 root root   23 May 20 23:06 exp-004-eval-ckpt5000.exit\\n-rw-r--r-- 1 root root   23 May 21 00:04 exp-004-eval-ckpt5500.exit\\n-rw-r--r-- 1 root root   23 May 20 22:39 exp-004-eval-ckpt6000.exit\\n-rw-r--r-- 1 root root   23 May 21 00:02 exp-004-eval-ckpt6500.exit\\n-rw-r--r-- 1 root root   23 May 20 23:05 exp-004-eval-ckpt7000.exit\\n-rw-r--r-- 1 root root   23 May 21 00:02 exp-004-eval-ckpt7500.exit\\n-rw-r--r-- 1 root root   23 May 19 22:45 exp-004.exit\\n-rw-r--r-- 1 root root   25 May 19 0
+…[truncated 387 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T07:28:52.538728+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat /tmp/agent-ml-exit/exp-003-eval-ckpt5000-v2.exit",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "cat /tmp/agent-ml-exit/exp-003-eval-ckpt5000-v2.exit",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T07:28:52.538863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"129|2026-05-21T07:19:24Z\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T07:28:52.539053+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ls -lt /root/runs/contrastive_entrain_calib/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "ls -lt /root/runs/contrastive_entrain_calib/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T07:28:52.539210+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 6740\\n-rw-r--r-- 1 root root    2204 May 21 15:22 exp-003-eval-ckpt7000.log\\n-rw-r--r-- 1 root root    2204 May 21 15:22 exp-003-eval-ckpt6500.log\\n-rw-r--r-- 1 root root    2204 May 21 15:22 exp-003-eval-ckpt6000.log\\n-rw-r--r-- 1 root root    2727 May 21 15:19 exp-003-eval-ckpt5000-v2.log\\n-rw-r--r-- 1 root root    4143 May 21 03:02 exp-003-eval-ckpt4500.log\\n-rw-r--r-- 1 root root    4169 May 21 02:22 exp-003-s2-eval-ckpt1000.log\\n-rw-r--r-- 1 root root    4169 May 21 02:22 exp-003-s2-eval-ckpt1500.log\\n-rw-r--r-- 1 root root    4163 May 21 02:21 exp-003-s2-eval-ckpt500.log\\n-rw-r--r-- 1 root root    4143 May 21 01:36 exp-003-eval-ckpt5500.log\\n-rw-r--r-- 1 root root    4139 May 21 00:05 exp-004-eval-ckpt4500.log\\n-rw-r--r-- 1 root root    4139 May 21 00:04 exp-004-eval-ckpt5500.log\\n-rw-r--r-- 1 root root    4139 May 21 00:02 exp-004-eval-ckpt6500.log\\n-rw-r--r-- 1 root root    4139 May 21 00:02 exp-004-eval-ckpt7500.log\\n-rw-r--r-- 1 root root    4139 May 20 23:40 exp-004-eval-ckpt1500.log\\n-rw-r--r-- 1 root root    4139 May 20 23:36 exp-004-eval-ckpt3500.log\\n-rw-r--r-- 1 root root    4139 May 20 23:35 exp-004-eval-ckpt2500.log\\n-rw-r--r-- 1 root root    4561 May 20 23:26 exp-003-eval-ckpt4000.log\\n-rw-r--r-- 1 root root    4139 May 20 23:09 exp-004-eval-ckpt3000.log\\n-rw-r--r-- 1 root root    4139 May 20 23:06 exp-004-eval-ckpt5000.log\\n-rw-r--r-- 1 root root    4139 May 20 23:05 exp-004-eval-ckpt7000.log\\n-rw-r--r-- 1 root root    4139 May 20 22:44 exp-004-eval-ckpt1000.log\\n-rw-r--r-- 1 root root    4139 May 20 22:39 exp-004-eval-ckpt4000.log\\n-rw-r--r-- 1 root root    4139 May 20 22:39 exp-004-eval-ckpt6000.log\\n-rw-r--r-- 1 root root    4561 May 20 22:07 exp-003-eval-ckpt2000.log\\n-rw-r--r-- 1 root root    4561 May 20 22:06 exp-003-eval-ckpt3000.log\\n-rw-r--r-- 1 root root    4561 May 20 22:01 exp-003-eval-ckpt1000.log\\n-rw-r--r-- 1 root root 1269196 May 20 20:40 exp-
+…[truncated 751 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T07:28:52.539356+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ls -lt /root/contrastive_entrain_calib/results/exp003_d027_eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "ls -lt /root/contrastive_entrain_calib/results/exp003_d027_eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T07:28:52.539493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3668\\n-rw-r--r-- 1 root root 609953 May 21 03:02 exp003-ckpt4500_preset_eval.json\\n-rw-r--r-- 1 root root    353 May 21 03:02 exp003-ckpt4500_preset_summary.txt\\n-rw-r--r-- 1 root root 629355 May 21 01:36 exp003-ckpt5500_preset_eval.json\\n-rw-r--r-- 1 root root    353 May 21 01:36 exp003-ckpt5500_preset_summary.txt\\n-rw-r--r-- 1 root root 610069 May 20 23:26 exp003-ckpt4000_preset_eval.json\\n-rw-r--r-- 1 root root    368 May 20 23:26 exp003-ckpt4000_preset_summary.txt\\n-rw-r--r-- 1 root root 632014 May 20 22:07 exp003-ckpt2000_preset_eval.json\\n-rw-r--r-- 1 root root    368 May 20 22:07 exp003-ckpt2000_preset_summary.txt\\n-rw-r--r-- 1 root root    368 May 20 22:06 exp003-ckpt3000_preset_summary.txt\\n-rw-r--r-- 1 root root 619147 May 20 22:06 exp003-ckpt3000_preset_eval.json\\n-rw-r--r-- 1 root root    368 May 20 22:01 exp003-ckpt1000_preset_summary.txt\\n-rw-r--r-- 1 root root 620739 May 20 22:01 exp003-ckpt1000_preset_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T07:28:52.539690+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "echo \"=== JOURNAL ===\" && journalctl --since \"2026-05-21 07:15\" --until \"2026-05-21 07:25\" --no-pager 2>&1 | tail -40 && echo \"=== CRON ===\" && crontab -l 2>&1 && echo \"=== SYSTEMD TIMERS ===\" && systemctl list-timers --all --no-pager 2>&1 | head -20 && echo \"=== SYSLOG ===\" && grep -i \"May 21 15:1[89]\" /var/log/syslog 2>/dev/null | tail -20 || echo \"no syslog\" && echo \"=== AUTH ===\" && grep \"May 21 15:1[89]\" /var/log/auth.log 2>/dev/null | tail -10 || echo \"no auth.log\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "echo \"=== JOURNAL ===\" && journalctl --since \"2026-05-21 07:15\" --until \"2026-05-21 07:25\" --no-pager 2>&1 | tail -40 && echo \"=== CRON ===\" && crontab -l 2>&1 && echo \"=== SYSTEMD TIMERS ===\" && systemctl list-timers --all --no-pager 2>&1 | head -20 && echo \"=== SYSLOG ===\" && grep -i \"May 21 15:1[89]\" /var/log/syslog 2>/dev/null | tail -20 || echo \"no syslog\" && echo \"=== AUTH ===\" && grep \"May 21 15:1[89]\" /var/log/auth.log 2>/dev/null | tail -10 || echo \"no auth.log\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T07:28:52.539836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== JOURNAL ===\\nNo journal files were found.\\n-- No entries --\\n=== CRON ===\\nbash: line 1: crontab: command not found\\nno syslog\\n=== AUTH ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T07:28:52.539989+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ls -la /var/log/syslog /var/log/auth.log /var/log/messages /var/log/kern.log 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "ls -la /var/log/syslog /var/log/auth.log /var/log/messages /var/log/kern.log 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T07:28:52.540116+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T07:28:52.540253+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ls -la /var/log/ 2>&1 | head -20 && echo \"=== CONTAINER ===\" && cat /proc/1/cgroup 2>/dev/null | head -5 && echo \"=== BASH HISTORY ===\" && grep -n \"kill\\|tmux kill\\|tmux.*kill\" /root/.bash_history 2>/dev/null | tail -10 && echo \"=== TMUX OLD ===\" && ls -la /tmp/tmux-*/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "ls -la /var/log/ 2>&1 | head -20 && echo \"=== CONTAINER ===\" && cat /proc/1/cgroup 2>/dev/null | head -5 && echo \"=== BASH HISTORY ===\" && grep -n \"kill\\|tmux kill\\|tmux.*kill\" /root/.bash_history 2>/dev/null | tail -10 && echo \"=== TMUX OLD ===\" && ls -la /tmp/tmux-*/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T07:28:52.540400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15520\\ndrwxr-xr-x 1 root root                  61 May 19  2025 .\\ndrwxr-xr-x 1 root root                  57 Jan 26  2025 ..\\n-rw-r--r-- 1 root root               17118 May 19  2025 alternatives.log\\ndrwxr-xr-x 1 root root                  76 May 21 01:49 apt\\n-rw-r--r-- 1 root root               64549 Jan 26  2025 bootstrap.log\\n-rw-rw---- 1 root utmp            15302016 May 20 23:22 btmp\\n-rw-r--r-- 1 root root              462364 May 21 01:49 dpkg.log\\n-rw-r--r-- 1 root root                3360 May 19  2025 faillog\\n-rw-r--r-- 1 root root                 484 May 19  2025 fontconfig.log\\ndrwxr-sr-x 2 root systemd-journal       10 May 19  2025 journal\\n-rw-rw-r-- 1 root utmp               30660 May 19  2025 lastlog\\ndrwx------ 2 root root                  10 May 19  2025 private\\n-rw-rw-r-- 1 root utmp                   0 Jan 26  2025 wtmp\\n=== CONTAINER ===\\n0::/\\n=== BASH HISTORY ===\\n=== TMUX OLD ===\\ntotal 12\\ndrwx------ 2 root root   29 May 21 15:22 .\\ndrwxrwxrwt 1 root root 8192 May 21 15:22 ..\\nsrw-rw---- 1 root root    0 May 21 15:22 default\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T07:28:52.540608+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": "{'status': 'FAILED'}",
+  "fields": "['*']",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "filters": "{'status': 'FAILED'}",
+    "fields": "['*']",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T07:28:52.540749+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1696}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T07:28:52.540890+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": "{'status': 'ALLOCATED'}",
+  "fields": "['*']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "filters": "{'status': 'ALLOCATED'}",
+    "fields": "['*']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T07:28:52.541026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2326}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T07:28:52.541148+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "free -h && echo \"=== SWAP ===\" && swapon --show 2>/dev/null && echo \"=== DMESG OOM ===\" && dmesg 2>/dev/null | grep -i \"oom\\|killed process\\|out of memory\" | tail -10 || echo \"no dmesg access\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "free -h && echo \"=== SWAP ===\" && swapon --show 2>/dev/null && echo \"=== DMESG OOM ===\" && dmesg 2>/dev/null | grep -i \"oom\\|killed process\\|out of memory\" | tail -10 || echo \"no dmesg access\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T07:28:52.541276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"               total        used        free      shared  buff/cache   available\\nMem:           754Gi        22Gi       136Gi       234Mi       595Gi       725Gi\\nSwap:             0B          0B          0B\\n=== SWAP ===\\n=== DMESG OOM ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T07:28:52.541422+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T07:28:52.541797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-003-eval-ckpt5000-v2\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:26:34.586Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:0\", \"pid\": \"497834\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-5000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"log_path\": \"/tmp/eval_ckpt5000v2.log\", \"account\": \"root\", \"backend\": \"nohup\", \"notes\": \"Retry #1. PID 497834 on cuda:0. Started ~15:19 UTC.\"}}, \"exp-003-eval-ckpt6500\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:26:33.447Z\", \"hypothesis\": \"Eval e
+…[truncated 7521 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T07:28:52.542052+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "echo \"=== TMUX SOCKET AGE ===\" && stat /tmp/tmux-0/default 2>/dev/null && echo \"=== OLD TMUX LOGS ===\" && find /tmp -name \"tmux*\" -o -name \"*.tmux\" 2>/dev/null | head -10 && echo \"=== PROCESS START TIMES ===\" && ps -o pid,lstart,cmd -p 497834,498446,498584,498666 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "echo \"=== TMUX SOCKET AGE ===\" && stat /tmp/tmux-0/default 2>/dev/null && echo \"=== OLD TMUX LOGS ===\" && find /tmp -name \"tmux*\" -o -name \"*.tmux\" 2>/dev/null | head -10 && echo \"=== PROCESS START TIMES ===\" && ps -o pid,lstart,cmd -p 497834,498446,498584,498666 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T07:28:52.542298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== TMUX SOCKET AGE ===\\n  File: /tmp/tmux-0/default\\n  Size: 0         \\tBlocks: 0          IO Block: 4096   socket\\nDevice: 55h/85d\\tInode: 19333976923  Links: 1\\nAccess: (0660/srw-rw----)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-21 15:22:03.346654925 +0800\\nModify: 2026-05-21 15:22:03.062655858 +0800\\nChange: 2026-05-21 15:22:03.062655858 +0800\\n Birth: 2026-05-21 15:22:03.062655858 +0800\\n=== OLD TMUX LOGS ===\\n/tmp/tmux-0\\n=== PROCESS START TIMES ===\\n   PID                  STARTED CMD\\n497834 Thu May 21 15:19:43 2026 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\n498446 Thu May 21 15:22:02 2026 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\n498584 Thu May 21 15:22:05 2026 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\n498666 Thu May 21 15:22:07 2026 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.json
+…[truncated 203 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T07:28:52.542558+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "contrastive_entrain_calib",
+  "file": "artifacts/diagnose_westd28034_eval_failures.md",
+  "content": "# 诊断报告：westd-28034 上 3+1 个 eval 实验 SIGHUP 失败\n\n**诊断时间**: 2026-05-21 07:25 UTC  \n**服务器**: westd-28034 (4× RTX 5090 32GB, 754GB RAM, UTC+8)\n\n## 根因：tmux 服务器崩溃\n\n旧 tmux 服务器在 ~07:19 UTC 崩溃/死亡，导致所有挂载的 tmux session 收到 SIGHUP 信号。\n\n**排除项**:\n- ❌ 服务器重启 — uptime 7天23小时，无重启记录\n- ❌ OOM Kill — 754GB RAM 仅用 22GB，dmesg 无 OOM 记录\n- ❌ GPU 故障 — nvidia-smi 正常，4 GPU 全部在线\n- ❌ SSH 断连 — tmux 设计上可以存活 SSH 断连，且所有 session 同时死亡\n\n**证据**:\n1. exit file: `129|2026-05-21T07:19:24Z` (SIGHUP at 07:19:24 UTC)\n2. 旧 tmux socket 已不存在，新 socket born at 07:22:03 UTC\n3. 所有实验在同一时刻被杀，无 error traceback，无 OOM，指向进程外部原因\n4. Docker 容器环境无 systemd journal/syslog，无法追溯 tmux 进程死亡的精确触发器\n\n**可能的 tmux 崩溃触发器**（无法确认，缺乏系统日志）:\n- 平台级进程管理/清理\n- tmux 服务器进程 bug\n- 容器 cgroup 限制\n\n## 时间线 (UTC)\n\n| 时间 | 事件 |\n|------|------|\n| ~04:45 | 4 个 eval 实验在 tmux sessions 中启动 |\n| 07:19:24 | tmux server 崩溃 → SIGHUP → 全部 EXIT_CODE=129 |\n| 07:19:43 | ckpt5000-v2 由自动恢复系统通过 nohup 重启 (PID 497834, GPU 0) |\n| 07:21-07:22 | Registry 轮询检测到失败，on_failed hooks 触发 |\n| 07:22:03 | 新 tmux server 创建，ckpt6000/6500/7000 重启 |\n| 07:26 | Registry 更新为 RUNNING 状态 |\n\n## 各实验状态\n\n| 实验 | 原 PID | 新 PID | GPU | 后端 | 当前状态 |\n|------|--------|--------|-----|------|----------|\n| exp-003-eval-ckpt5000-v2 | 495837 | 497834 | cuda:0 | nohup → /tmp/eval_ckpt5000v2.log | ✅ RUNNING (20/362 as of 07:24) |\n| exp-003-eval-ckpt6000 | - | 498446 | cuda:1 | tmux | ✅ RUNNING |\n| exp-003-eval-ckpt6500 | - | 498584 | cuda:2 | tmux | ✅ RUNNING |\n| exp-003-eval-ckpt7000 | - | 498666 | cuda:3 | tmux | ✅ RUNNING |\n\n**日志关键信息**: 所有实验在被杀前已完成模型加载（Qwen3-8B + LoRA + NLI）并开始 eval 推理（362 pairs），无 error traceback，纯粹是 SIGHUP 外部中断。\n\n## GPU 状态\n\n```\nGPU 0: RTX 5090  16854MiB/32607MiB  48% util  (ckpt5000-v2)\nGPU 1: RTX 5090  16844MiB/32607MiB  48% util  (ckpt6000)\nGPU 2: RTX 5090  16844MiB/32607MiB  48% util  (ckpt6500)\nGPU 3: RTX 5090  16844MiB/32607MiB  50% util  (ckpt7000)\n```\n\n全部 GPU 正在使用，内存占用 ~16.8GB/32.6GB，利用率 48-50%。\n\n## 结论\n\n1. **无需人工干预** — 自动恢复系统（kill-cleanup-restart worker）已在 3 分钟内完成全部重启\n2. **Registry 已更新** — 4 个实验均为 RUNNING 状态，retry_count 已递增\n3. **数据完整性** — 旧 run 未产生结果文件（results 目录无对应 JSON），重启从头开始，无脏数据风险\n4. **根因不可完全追溯** — Docker 容器缺乏系统日志，tmux 崩溃的精确原因无法确认。如果频繁复现，建议考虑使用 `nohup` 或 `screen` 替代 tmux 作为后端\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "file": "artifacts/diagnose_westd28034_eval_failures.md",
+    "content": "# 诊断报告：westd-28034 上 3+1 个 eval 实验 SIGHUP 失败\n\n**诊断时间**: 2026-05-21 07:25 UTC  \n**服务器**: westd-28034 (4× RTX 5090 32GB, 754GB RAM, UTC+8)\n\n## 根因：tmux 服务器崩溃\n\n旧 tmux 服务器在 ~07:19 UTC 崩溃/死亡，导致所有挂载的 tmux session 收到 SIGHUP 信号。\n\n**排除项**:\n- ❌ 服务器重启 — uptime 7天23小时，无重启记录\n- ❌ OOM Kill — 754GB RAM 仅用 22GB，dmesg 无 OOM 记录\n- ❌ GPU 故障 — nvidia-smi 正常，4 GPU 全部在线\n- ❌ SSH 断连 — tmux 设计上可以存活 SSH 断连，且所有 session 同时死亡\n\n**证据**:\n1. exit file: `129|2026-05-21T07:19:24Z` (SIGHUP at 07:19:24 UTC)\n2. 旧 tmux socket 已不存在，新 socket born at 07:22:03 UTC\n3. 所有实验在同一时刻被杀，无 error traceback，无 OOM，指向进程外部原因\n4. Docker 容器环境无 systemd journal/syslog，无法追溯 tmux 进程死亡的精确触发器\n\n**可能的 tmux 崩溃触发器**（无法确认，缺乏系统日志）:\n- 平台级进程管理/清理\n- tmux 服务器进程 bug\n- 容器 cgroup 限制\n\n## 时间线 (UTC)\n\n| 时间 | 事件 |\n|------|------|\n| ~04:45 | 4 个 eval 实验在 tmux sessions 中启动 |\n| 07:19:24 | tmux server 崩溃 → SIGHUP → 全部 EXIT_CODE=129 |\n| 07:19:43 | ckpt5000-v2 由自动恢复系统通过 nohup 重启 (PID 497834, GPU 0) |\n| 07:21-07:22 | Registry 轮询检测到失败，on_failed hooks 触发 |\n| 07:22:03 | 新 tmux server 创建，ckpt6000/6500/7000 重启 |\n| 07:26 | Registry 更新为 RUNNING 状态 |\n\n## 各实验状态\n\n| 实验 | 原 PID | 新 PID | GPU | 后端 | 当前状态 |\n|------|--------|--------|-----|------|----------|\n| exp-003-eval-ckpt5000-v2 | 495837 | 497834 | cuda:0 | nohup → /tmp/eval_ckpt5000v2.log | ✅ RUNNING (20/362 as of 07:24) |\n| exp-003-eval-ckpt6000 | - | 498446 | cuda:1 | tmux | ✅ RUNNING |\n| exp-003-eval-ckpt6500 | - | 498584 | cuda:2 | tmux | ✅ RUNNING |\n| exp-003-eval-ckpt7000 | - | 498666 | cuda:3 | tmux | ✅ RUNNING |\n\n**日志关键信息**: 所有实验在被杀前已完成模型加载（Qwen3-8B + LoRA + NLI）并开始 eval 推理（362 pairs），无 error traceback，纯粹是 SIGHUP 外部中断。\n\n## GPU 状态\n\n```\nGPU 0: RTX 5090  16854MiB/32607MiB  48% util  (ckpt5000-v2)\nGPU 1: RTX 5090  16844MiB/32607MiB  48% util  (ckpt6000)\nGPU 2: RTX 5090  16844MiB/32607MiB  48% util  (ckpt6500)\nGPU 3: RTX 5090  16844MiB/32607MiB  50% util  (ckpt7000)\n```\n\n全部 GPU 正在使用，内存占用 ~16.8GB/32.6GB，利用率 48-50%。\n\n## 结论\n\n1. **无需人工干预** — 自动恢复系统（kill-cleanup-restart worker）已在 3 分钟内完成全部重启\n2. **Registry 已更新** — 4 个实验均为 RUNNING 状态，retry_count 已递增\n3. **数据完整性** — 旧 run 未产生结果文件（results 目录无对应 JSON），重启从头开始，无脏数据风险\n4. **根因不可完全追溯** — Docker 容器缺乏系统日志，tmux 崩溃的精确原因无法确认。如果频繁复现，建议考虑使用 `nohup` 或 `screen` 替代 tmux 作为后端\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T07:28:52.542736+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'artifacts/diagnose_westd28034_eval_failures.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T07:28:52.542920+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T07:28:52.543140+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T07:28:52.543299+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+````json
+{
+  "name": "diagnose_westd28034_eval_failures",
+  "type": "report",
+  "description": "诊断 westd-28034 上 4 个 eval 实验 SIGHUP 失败的根因分析报告",
+  "project": "contrastive_entrain_calib",
+  "content": "# 诊断报告：westd-28034 上 3+1 个 eval 实验 SIGHUP 失败\n\n**诊断时间**: 2026-05-21 07:25 UTC  \n**服务器**: westd-28034 (4× RTX 5090 32GB, 754GB RAM, UTC+8)\n\n## 根因：tmux 服务器崩溃\n\n旧 tmux 服务器在 ~07:19 UTC 崩溃/死亡，导致所有挂载的 tmux session 收到 SIGHUP 信号。\n\n**排除项**:\n- ❌ 服务器重启 — uptime 7天23小时，无重启记录\n- ❌ OOM Kill — 754GB RAM 仅用 22GB，dmesg 无 OOM 记录\n- ❌ GPU 故障 — nvidia-smi 正常，4 GPU 全部在线\n- ❌ SSH 断连 — tmux 设计上可以存活 SSH 断连，且所有 session 同时死亡\n\n**证据**:\n1. exit file: `129|2026-05-21T07:19:24Z` (SIGHUP at 07:19:24 UTC)\n2. 旧 tmux socket 已不存在，新 socket born at 07:22:03 UTC\n3. 所有实验在同一时刻被杀，无 error traceback，无 OOM，指向进程外部原因\n4. Docker 容器环境无 systemd journal/syslog，无法追溯 tmux 进程死亡的精确触发器\n\n**可能的 tmux 崩溃触发器**（无法确认，缺乏系统日志）:\n- 平台级进程管理/清理\n- tmux 服务器进程 bug\n- 容器 cgroup 限制\n\n## 时间线 (UTC)\n\n| 时间 | 事件 |\n|------|------|\n| ~04:45 | 4 个 eval 实验在 tmux sessions 中启动 |\n| 07:19:24 | tmux server 崩溃 → SIGHUP → 全部 EXIT_CODE=129 |\n| 07:19:43 | ckpt5000-v2 由自动恢复系统通过 nohup 重启 (PID 497834, GPU 0) |\n| 07:21-07:22 | Registry 轮询检测到失败，on_failed hooks 触发 |\n| 07:22:03 | 新 tmux server 创建，ckpt6000/6500/7000 重启 |\n| 07:26 | Registry 更新为 RUNNING 状态 |\n\n## 各实验状态\n\n| 实验 | 原 PID | 新 PID | GPU | 后端 | 当前状态 |\n|------|--------|--------|-----|------|----------|\n| exp-003-eval-ckpt5000-v2 | 495837 | 497834 | cuda:0 | nohup → /tmp/eval_ckpt5000v2.log | ✅ RUNNING (20/362 as of 07:24) |\n| exp-003-eval-ckpt6000 | - | 498446 | cuda:1 | tmux | ✅ RUNNING |\n| exp-003-eval-ckpt6500 | - | 498584 | cuda:2 | tmux | ✅ RUNNING |\n| exp-003-eval-ckpt7000 | - | 498666 | cuda:3 | tmux | ✅ RUNNING |\n\n**日志关键信息**: 所有实验在被杀前已完成模型加载（Qwen3-8B + LoRA + NLI）并开始 eval 推理（362 pairs），无 error traceback，纯粹是 SIGHUP 外部中断。\n\n## GPU 状态\n\n```\nGPU 0: RTX 5090  16854MiB/32607MiB  48% util  (ckpt5000-v2)\nGPU 1: RTX 5090  16844MiB/32607MiB  48% util  (ckpt6000)\nGPU 2: RTX 5090  16844MiB/32607MiB  48% util  (ckpt6500)\nGPU 3: RTX 5090  16844MiB/32607MiB  50% util  (ckpt7000)\n```\n\n全部 GPU 正在使用，内存占用 ~16.8GB/32.6GB，利用率 48-50%。\n\n## 结论\n\n1. **无需人工干预** — 自动恢复系统（kill-cleanup-restart worker）已在 3 分钟内完成全部重启\n2. **Registry 已更新** — 4 个实验均为 RUNNING 状态，retry_count 已递增\n3. **数据完整性** — 旧 run 未产生结果文件（results 目录无对应 JSON），重启从头开始，无脏数据风险\n4. **根因不可完全追溯** — Docker 容器缺乏系统日志，tmux 崩溃的精确原因无法确认。如果频繁复现，建议考虑使用 nohup 或 screen 替代 tmux 作为后端",
+  "content_filename": "diagnose_westd28034_eval_failures.md",
+  "tags": "['diagnosis', 'westd-28034', 'tmux-crash', 'eval']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "diagnose_westd28034_eval_failures",
+    "type": "report",
+    "description": "诊断 westd-28034 上 4 个 eval 实验 SIGHUP 失败的根因分析报告",
+    "project": "contrastive_entrain_calib",
+    "content": "# 诊断报告：westd-28034 上 3+1 个 eval 实验 SIGHUP 失败\n\n**诊断时间**: 2026-05-21 07:25 UTC  \n**服务器**: westd-28034 (4× RTX 5090 32GB, 754GB RAM, UTC+8)\n\n## 根因：tmux 服务器崩溃\n\n旧 tmux 服务器在 ~07:19 UTC 崩溃/死亡，导致所有挂载的 tmux session 收到 SIGHUP 信号。\n\n**排除项**:\n- ❌ 服务器重启 — uptime 7天23小时，无重启记录\n- ❌ OOM Kill — 754GB RAM 仅用 22GB，dmesg 无 OOM 记录\n- ❌ GPU 故障 — nvidia-smi 正常，4 GPU 全部在线\n- ❌ SSH 断连 — tmux 设计上可以存活 SSH 断连，且所有 session 同时死亡\n\n**证据**:\n1. exit file: `129|2026-05-21T07:19:24Z` (SIGHUP at 07:19:24 UTC)\n2. 旧 tmux socket 已不存在，新 socket born at 07:22:03 UTC\n3. 所有实验在同一时刻被杀，无 error traceback，无 OOM，指向进程外部原因\n4. Docker 容器环境无 systemd journal/syslog，无法追溯 tmux 进程死亡的精确触发器\n\n**可能的 tmux 崩溃触发器**（无法确认，缺乏系统日志）:\n- 平台级进程管理/清理\n- tmux 服务器进程 bug\n- 容器 cgroup 限制\n\n## 时间线 (UTC)\n\n| 时间 | 事件 |\n|------|------|\n| ~04:45 | 4 个 eval 实验在 tmux sessions 中启动 |\n| 07:19:24 | tmux server 崩溃 → SIGHUP → 全部 EXIT_CODE=129 |\n| 07:19:43 | ckpt5000-v2 由自动恢复系统通过 nohup 重启 (PID 497834, GPU 0) |\n| 07:21-07:22 | Registry 轮询检测到失败，on_failed hooks 触发 |\n| 07:22:03 | 新 tmux server 创建，ckpt6000/6500/7000 重启 |\n| 07:26 | Registry 更新为 RUNNING 状态 |\n\n## 各实验状态\n\n| 实验 | 原 PID | 新 PID | GPU | 后端 | 当前状态 |\n|------|--------|--------|-----|------|----------|\n| exp-003-eval-ckpt5000-v2 | 495837 | 497834 | cuda:0 | nohup → /tmp/eval_ckpt5000v2.log | ✅ RUNNING (20/362 as of 07:24) |\n| exp-003-eval-ckpt6000 | - | 498446 | cuda:1 | tmux | ✅ RUNNING |\n| exp-003-eval-ckpt6500 | - | 498584 | cuda:2 | tmux | ✅ RUNNING |\n| exp-003-eval-ckpt7000 | - | 498666 | cuda:3 | tmux | ✅ RUNNING |\n\n**日志关键信息**: 所有实验在被杀前已完成模型加载（Qwen3-8B + LoRA + NLI）并开始 eval 推理（362 pairs），无 error traceback，纯粹是 SIGHUP 外部中断。\n\n## GPU 状态\n\n```\nGPU 0: RTX 5090  16854MiB/32607MiB  48% util  (ckpt5000-v2)\nGPU 1: RTX 5090  16844MiB/32607MiB  48% util  (ckpt6000)\nGPU 2: RTX 5090  16844MiB/32607MiB  48% util  (ckpt6500)\nGPU 3: RTX 5090  16844MiB/32607MiB  50% util  (ckpt7000)\n```\n\n全部 GPU 正在使用，内存占用 ~16.8GB/32.6GB，利用率 48-50%。\n\n## 结论\n\n1. **无需人工干预** — 自动恢复系统（kill-cleanup-restart worker）已在 3 分钟内完成全部重启\n2. **Registry 已更新** — 4 个实验均为 RUNNING 状态，retry_count 已递增\n3. **数据完整性** — 旧 run 未产生结果文件（results 目录无对应 JSON），重启从头开始，无脏数据风险\n4. **根因不可完全追溯** — Docker 容器缺乏系统日志，tmux 崩溃的精确原因无法确认。如果频繁复现，建议考虑使用 nohup 或 screen 替代 tmux 作为后端",
+    "content_filename": "diagnose_westd28034_eval_failures.md",
+    "tags": "['diagnosis', 'westd-28034', 'tmux-crash', 'eval']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T07:28:52.543491+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_983af6\", \"name\": \"diagnose_westd28034_eval_failures\", \"type\": \"report\", \"description\": \"诊断 westd-28034 上 4 个 eval 实验 SIGHUP 失败的根因分析报告\", \"path\": \"projects/contrastive_entrain_calib/artifacts/_project/report/diagnose_westd28034_eval_failures.md\", \"url\": null, \"project\": \"contrastive_entrain_calib\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T07:28:45.240027+00:00\", \"tags\": [\"diagnosis\", \"westd-28034\", \"tmux-crash\", \"eval\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-21T07:28:52.543663+00:00_
+
+诊断完成。报告已注册为 `art_20260521_983af6`。
+
+**摘要**：
+
+- **根因**：tmux 服务器在 07:19:24 UTC 崩溃，导致所有 session 收到 SIGHUP。不是服务器重启、不是 OOM、不是 GPU 故障。Docker 容器无系统日志，tmux 崩溃的精确触发器无法追溯。
+- **当前状态**：自动恢复系统已在 3 分钟内重启全部 4 个实验，均为 RUNNING 状态，4 GPU 全部在用（48-50% util）。ckpt5000-v2 已处理到 20/362。
+- **无需人工干预**，无脏数据风险（旧 run 未产生结果文件）。
+- 如果 tmux 崩溃频繁复现，建议改用 `nohup` 作为默认后端。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_exp-003-eval-failures_20260521T072341"
+}
+```
+
+</details>
+
+---

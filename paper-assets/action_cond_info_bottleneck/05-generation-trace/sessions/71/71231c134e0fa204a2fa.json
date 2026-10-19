@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "71231c134e0fa204a2fa",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "code acib impl v2",
+  "task_key": "worker_code_acib-impl-v2_20260515T113853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_acib-impl-v2_20260515T113853.jsonl",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "d674463986b50fa5e0eea7e201684b0c0f3e9d68c44ab73a69aa8b1e8e71eb69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T11:38:59.843118+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Identity verification is required to continue.\"},\"request_id\":\"req_011Cb4HkMBkiCEmRYyGh88jy\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_acib-impl-v2_20260515T113853"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-acib-impl-v2.md"
+}

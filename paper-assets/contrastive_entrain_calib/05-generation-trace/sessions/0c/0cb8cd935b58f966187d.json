@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cb8cd935b58f966187d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp 003 s3 launch",
+  "task_key": "worker_code_exp-003-s3-launch_20260522T161603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-003-s3-launch_20260522T161603_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "8ecf193e6cb66809089f4956ed7518813bf810503ccbd2881d6ac8e733114533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，进入训练循环（0/8000 steps）。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| 脚本路径 | `/root/contrastive_entrain_calib/training/run_exp003_s3_r3only.py` |\n| PID | 24760 |\n| tmux session | `exp-003-s3` |\n| 日志 | `~/runs/contrastive_entrain_calib/exp-003-s3.log` |\n| seed | **44** |\n| R3 | 1.0, r1=0, r2=0 |\n| num_generations | 2 |\n| max_completion_length | 256 |\n| max_steps | 8000 |\n| save_steps | 500 |\n| output_dir | `/root/autodl-tmp/outputs/exp-003-s3/` |\n| GPU | westd-28034 cuda:2 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-003-s3-launch.md"
+}

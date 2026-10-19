@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp-004-eval-ckpt2500",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:11:34.702Z",
+    "updated_at": "2026-05-20T15:40:05.825Z",
+    "spec": {
+      "command": "eval_unified_preset.py",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "598577",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-004-eval-ckpt2500.log",
+      "submitted_at": "2026-05-20T15:11:34.610Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "exp-004 checkpoint-2500",
+      "eval_data": "calibration_v2_1_expanded.jsonl"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T15:36:33.060Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T15:36:35.018171+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Eval exp-004 ACT checkpoint-2500 with D027 unified preset. Part of ACT training trajectory for paper figure.",
+    "parent": "exp-004"
+  },
+  "timestamp": "2026-05-20T15:40:05.897467+00:00",
+  "trigger": "update_registry"
+}

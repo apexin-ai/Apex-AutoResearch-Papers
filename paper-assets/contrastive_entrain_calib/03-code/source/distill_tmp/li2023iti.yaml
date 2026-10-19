@@ -1,0 +1,117 @@
+paper_key: "li2023iti"
+title: "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model"
+venue: "NeurIPS 2023"
+full_text_available: true
+
+research:
+  baselines:
+    - "LLaMA-7B (vanilla greedy decoding)"
+    - "Supervised Fine-tuning (SFT, Ouyang et al. 2022)"
+    - "Few-shot Prompting (FSP, 50-shot, Bai et al. 2022a)"
+    - "Alpaca (instruction-finetuned LLaMA)"
+    - "Vicuna (instruction-finetuned LLaMA)"
+    - "Contrast-Consistent Search (CCS, Burns et al. 2022)"
+    - "Probe Weight Direction"
+    - "Random Direction"
+  metrics:
+    - {name: "True*Informative (%)", direction: "higher_better"}
+    - {name: "Truthful (%)", direction: "higher_better"}
+    - {name: "MC Accuracy (%)", direction: "higher_better"}
+    - {name: "Cross-Entropy (CE)", direction: "lower_better"}
+    - {name: "KL Divergence", direction: "lower_better"}
+  datasets:
+    - {name: "TruthfulQA", size: "817 questions, 38 categories"}
+    - {name: "Natural Questions", size: "OOD generalization test"}
+    - {name: "TriviaQA", size: "OOD generalization test"}
+    - {name: "MMLU", size: "OOD generalization test"}
+  ablation_dimensions:
+    - "Intervention strength alpha (1-25)"
+    - "Number of intervened attention heads K (1-96)"
+    - "Training set size (percentage of TruthfulQA)"
+    - "Intervention direction (mass mean shift vs probe weight vs CCS vs random)"
+    - "Head selection method (none vs point-wise vs head-wise)"
+  training_recipe:
+    optimizer: "Not specified (logistic regression probes; no heavy training)"
+    lr: "Not specified"
+    hardware: "Not specified (paper emphasizes near-zero computational overhead)"
+    probe_training: "Binary logistic classifiers with sigmoid activation, 4:1 train-val split"
+    cross_validation: "2-fold cross-validation for main results"
+    training_data: "5-10% of TruthfulQA (approx 40-80 questions) sufficient"
+  method_family: "Activation engineering / inference-time steering"
+
+positioning:
+  core_claim: "LLMs internally encode truthful knowledge that standard decoding fails to elicit; a lightweight inference-time activation shift along truthful directions identified by linear probes can close this generation-discrimination gap without retraining."
+  key_results: "LLaMA-7B: 30.5% -> 42.3% true*informative; Alpaca: 32.5% -> 65.1%; Vicuna: 51.5% -> 74.0%; OOD generalization on NQ (+4.7%), TriviaQA (+1.5%), MMLU (+4.45%); probe accuracy 83.3% vs generation accuracy 31.6% revealing a 40% latent truthfulness gap."
+  limitations:
+    - "ITI alone is insufficient for ensuring truthful outputs; it is one piece of a comprehensive approach"
+    - "Trade-off between truthfulness and helpfulness -- higher intervention strength increases no comment responses"
+    - "Directions trained on TruthfulQA show only modest OOD transfer"
+    - "Lacks mechanistic understanding of why certain heads encode truthfulness"
+    - "No exploration of unsupervised direction discovery at scale"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the observation that LLMs generate text that seems correct but often only at first glance, establishing the real-world stakes of hallucination and inaccuracy."
+  tension: "Models internally know correct answers (probe accuracy 83.3%) but standard generation fails to surface them (generation accuracy 31.6%), creating a dramatic 40% gap. Existing solutions (SFT, RLHF) require expensive retraining and do not directly address this internal knowledge gap."
+  key_insight: "Revealed in Section 3.2 via the probe accuracy heatmap (Figure 2A): a significant proportion of attention heads display strong truthfulness signal, with the best head (layer 14, head 18) reaching 83.3% accuracy. This motivates targeted, sparse intervention rather than full model modification."
+  argument_chain: "LLMs hallucinate despite internal knowledge -> linear probes reveal truthful representations in specific attention heads -> a 40% gap exists between probing accuracy and generation accuracy -> inference-time activation shifting along truthful directions closes this gap -> ITI achieves SOTA truthfulness with near-zero compute overhead -> validated across models (LLaMA/Alpaca/Vicuna) and generalizes OOD"
+  contribution_framing: "Two contributions framed modestly: (1) a minimally-invasive control method to close the knowing-telling gap, (2) evidence that pretraining endows models with an internal world model of real-world truths. Deliberately undersells by acknowledging ITI is not sufficient alone."
+  intro_structure: "4-5 paragraphs: P1 problem statement (hallucination stakes), P2 evidence of latent knowledge (citing knowledge graphs, self-evaluation), P3 operationalization (TruthfulQA as testbed, generation-discrimination gap quantified), P4 proposed solution (ITI overview), P5 contribution summary and honest limitation acknowledgment."
+  notable_technique: "The 40% gap quantification is a powerful rhetorical device -- it transforms an abstract claim (models know more than they say) into a concrete, memorable number that motivates the entire method. The honest limitation acknowledgment in the intro builds credibility."
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "teaser_result"
+    description: "Side-by-side comparison of LLaMA responses without ITI (red) and with ITI (blue) on two example questions, showing concrete qualitative improvement in truthfulness."
+    narrative_role: "Immediate visual hook in intro -- demonstrates the problem and solution simultaneously before any technical detail. Builds intuition for what ITI does."
+    design_elements: ["Red/blue color contrast for before/after", "Concrete Q&A examples", "Gold standard answers shown for reference", "Two diverse examples covering different error types"]
+    visual_style: "Text-based comparison layout with colored highlighting; minimal, clean, focuses on readability of the generated text rather than quantitative data."
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Performance metrics (true*informative, true%, MC accuracy, CE, KL) across varying intervention strength (alpha) and number of heads (K)"
+      how_gain_highlighted: "Shows inverted-U curve for true*informative, making the sweet spot of intervention strength visually apparent; multiple metrics on shared x-axis reveal trade-offs"
+      design_note: "Multi-panel line plots with error bands (5 random seeds averaged) effectively communicate hyperparameter sensitivity and the fundamental truthfulness-helpfulness trade-off."
+    - figure_id: "Figure 5"
+      viz_type: "horizontal_bar_chart"
+      what_compared: "Baseline vs ITI performance across TruthfulQA subcategories"
+      how_gain_highlighted: "Sorted by performance difference, making it immediately visible that ITI improves most categories; horizontal layout accommodates long category names"
+      design_note: "Subcategory breakdown prevents the argument that gains come from a single easy category; filtering out <10 question categories avoids noise."
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "dual_panel_line_plot"
+      dimensions_varied: ["Training set size (panel A)", "Intervention strength alpha (panel B)"]
+      design_note: "Panel A shows early plateau of truthfulness with increasing data, arguing the method is data-efficient. Panel B explicitly visualizes the truthfulness-informativeness trade-off as two crossing curves, making the fundamental tension tangible."
+    - figure_id: "Figure 2"
+      viz_type: "heatmap_plus_kde"
+      dimensions_varied: ["Layer index", "Attention head index", "Truthful vs false activation distributions"]
+      design_note: "Panel A (heatmap) is the key evidence figure -- layer x head grid with probe accuracy as color intensity reveals sparsity of truthful heads. Panel B (KDE) shows clean separation of truthful vs false activations, validating the linear probing approach. This figure carries the core scientific argument."
+  figure_narrative_role: "Figure 1 (teaser example) -> Figure 2 (scientific evidence for latent truthfulness) -> Figure 3 (method diagram) -> Figure 4 (main quantitative results across hyperparameters) -> Figure 5 (subcategory analysis) -> Figure 6 (ablation and trade-off analysis). Classic progression: hook -> evidence -> method -> results -> analysis -> deeper understanding."
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "metrics (True*Info%, True%, MC Acc%, CE, KL)"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "Best results implied by numerical comparison; standard NeurIPS formatting likely bolds best"
+    statistical_reporting: "5 random seeds averaged; 5% of TruthfulQA used for training"
+    num_baselines: 4
+    design_note: "Compact table with 5 metrics including CE and KL divergence as cost metrics alongside performance, showing ITI advantage in being minimally disruptive to the base model. Rows organized as: baseline methods alone, then baseline+ITI combinations."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["Intervention direction type (random, CCS, probe weight, mass mean shift)", "Optimal alpha per direction"]
+      variation_style: "full_numbers"
+      design_note: "Each direction type shown with its own optimal alpha, enabling fair comparison. Mass mean shift clearly dominates, validating the design choice."
+    - table_id: "Table 5"
+      what_varied: ["Head selection method (none, point-wise, head-wise)", "Optimal alpha per method"]
+      variation_style: "full_numbers"
+      design_note: "Demonstrates that sparsifying intervention via head-wise selection is better than no selection or point-wise selection, justifying the probe-guided head selection strategy."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 2 (instruction-finetuned model results with Alpaca/Vicuna) and Table 4 (OOD generalization results on NQ/TriviaQA/MMLU) serve as supplementary validation beyond the core Table 1 results"
+    reason: "Tables 2 and 4 demonstrate generalization along two orthogonal axes (model variants and dataset transfer) while keeping the main narrative focused on the core LLaMA-7B/TruthfulQA results in Table 1. Table 2 shows the largest absolute gains (Alpaca +32.6%, Vicuna +22.5%) and may be the most impactful result."

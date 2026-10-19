@@ -1,0 +1,59 @@
+{
+  "exp_id": "acib_v73_connector_only_ablation",
+  "project": "action_cond_info_bottleneck",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:49:08.264Z",
+    "updated_at": "2026-05-18T00:59:26.677Z",
+    "hypothesis": "Connector-only ablation (无 scorer/contrastive/IB loss): 仅 task loss 训练 connector (freeze_mode=connector_only)，判定 v7.2 的 spatial conditioning 是 scorer-driven contrastive learning 的产物还是 connector tuning 的自然结果。Pass: 如果 Probe A cos≈1.0（无语言依赖）→ 证明 scorer contrastive 是 spatial conditioning 的必要组件。",
+    "parent": "acib_v72_connector_scorer_seed1",
+    "spec": {
+      "command": "train_acib.py --freeze_mode connector_only --lambda_contrastive 0.0 --lambda_drift 0.0 --steps 20000",
+      "server": "westb-13953",
+      "gpu": "cuda:1",
+      "pid": 745746,
+      "log_path": "~/runs/action_cond_info_bottleneck/acib_v73_connector_only_ablation.log",
+      "submitted_at": "2026-05-17T22:55:28.849Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_dataset",
+      "data_count": 273000,
+      "model_name": "lerobot/smolvla_libero",
+      "seed": 42,
+      "checkpoint_source": "lerobot/smolvla_libero (HF pretrained)",
+      "eval_data": "N/A (training, not eval)",
+      "wall_clock_seconds": 7437.8,
+      "gpu_hours": 2.07
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T00:47:54.731Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T00:47:56.985974+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "probe_a_cos_connector": 0.999991,
+      "probe_a_cos_scorer": 0.999999,
+      "connector_weight_drift_pct": 13.7,
+      "final_task_loss": 0.0397,
+      "training_steps": 20000,
+      "training_hours": 1.9
+    },
+    "notes": "✅ Ablation 完成。Probe A cos ≈ 1.0（connector output=0.999991, scorer=0.999999）→ 仅 connector tuning 不产生 language-dependent features。对比 v7.2 trained scorer cos [0.593, 0.944]，证明 contrastive loss 是 spatial conditioning 的必要驱动力。Connector drift 无 reg 时达 13.7%（v7.2 有 drift reg 时仅 0.4%），进一步证实 LoRA 或 drift reg 的必要性。",
+    "checkpoint_path": "/root/autodl-tmp/acib_connector_only_seed42",
+    "completed_at": "2026-05-18T00:59:26.677Z"
+  },
+  "timestamp": "2026-05-18T00:59:26.737614+00:00",
+  "trigger": "update_registry"
+}

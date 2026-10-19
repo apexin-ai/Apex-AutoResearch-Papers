@@ -1,0 +1,16 @@
+{
+  "exp_id": "acib_v72_eval_alpha10",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:35:21.555Z",
+    "updated_at": "2026-05-17T13:35:30.533Z",
+    "hypothesis": "v7.2 alpha=1.0 full scoring eval: ACIB scoring 全开时应 ≥ baseline - 2pp (64.1%)。核心测试：language-conditioned token importance 是否提升或保持 policy 性能。Pass: avg SR ≥ 64.1%。",
+    "parent": "acib_v72_connector_scorer_seed1"
+  },
+  "timestamp": "2026-05-17T13:35:30.588135+00:00",
+  "trigger": "update_registry"
+}

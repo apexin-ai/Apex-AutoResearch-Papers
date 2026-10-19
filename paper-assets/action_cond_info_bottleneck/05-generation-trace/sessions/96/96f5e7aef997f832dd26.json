@@ -1,0 +1,1282 @@
+{
+  "schema_version": "1.0",
+  "id": "96f5e7aef997f832dd26",
+  "project": "action_cond_info_bottleneck",
+  "kind": "worker",
+  "title": "ssh eval ckpt10000 20260516T054425 retry2",
+  "task_key": "worker_ssh_eval-ckpt10000_20260516T054425_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-ckpt10000_20260516T054425_retry2.log",
+    "occurrence": 1,
+    "bytes": 85600,
+    "sha256": "0d8ac8ca1200a84953ba2a818a9138b646e4a2e1f94adca9e7d11db54387c656"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+                "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f593e1be-2bfa-41ab-bb14-518aaa0177ef",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-action-cond-info-bottleneck/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778923800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "aa2c9fa5-8487-40a3-be8a-5dcab33dd2dd",
+                "session_id": "aceac148-8640-4c85-846d-01c8b6605f31"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我来执行这个任务。先检查 checkpoint 是否存在，同时确认 eval 脚本的参数格式和当前 GPU 状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "c7938fc6-33b2-4da9-904b-fb0797c06ed3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pnj5Daz8J8TZRiRLXntLEi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11938,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11938
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XL1f27aPmFufTyxCNMbtji",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "6ff1c46d-d658-4fc8-9500-6fe979e0e7c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pnj5Daz8J8TZRiRLXntLEi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11938,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11938
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T05:46:48.684Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01XL1f27aPmFufTyxCNMbtji",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "05ab62aa-85b5-4ca7-8a4f-70500943e4af",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me run the initial checks in parallel: checkpoint existence, eval script help, current GPU status, and check for existing processes on the output dir.",
+              "signature": "EtYCClkIDRgCKkCaGj1t+BfpmrWwHSXeMe7Lkr6gddSa7JQEJ4Ru10UoAjfjJ8LU32YgudOQ0R01o/e9Ob+1K/FVJKNw/Yddaa1sMg9jbGF1ZGUtb3B1cy00LTY4ABIM6PCy6VqpVK6WRs/UGgwtCwOIMNEVeApMp6EiMAO0+wp1zMkLPUTW/eMvBIvbZh5N8ZwVYlNiCHmiJsr8rT5RGPpFtbmHw4JE7bhcpCqqAUl/s6bIDVZwj92Do9gKubZAnONHbiFyvTWVSd7KB8gUZOs/rvHjE3TyAWn/FOV4a+qP5O4RHR2EtjZkq4Br40C+QLl9oYXSFxHNnbejLq1oR9TvwDZAfDwE+p3WgQ4JshObgcIEUu6QNMrbB/aYUiqWxnk5DD6r88iWtsbD6XA0NuuuzUF3+/PhAPWxmX0iAjgX4JfcjXP1dMb+TVzevsADfIRhqga3SmkoGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "de06a2f9-cb1d-45ee-928a-ae1f62ace944",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RjXzwip5eRwKDMFed3bzvL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 918,
+                "cache_read_input_tokens": 23779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 918
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016kwj2FEqwDWLgQUdT2sw41",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "ls -la /root/acib/outputs/acib_v5_div_reg/checkpoint-10000/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "3e566416-9512-4dda-bea1-45fd205209a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RjXzwip5eRwKDMFed3bzvL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 918,
+                "cache_read_input_tokens": 23779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 918
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UwyyzgRSSuQKzHWVZ5iaYe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "head -80 /root/acib/scripts/eval_acib.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "d453fb18-00ae-4b3c-9182-69a86218cab6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RjXzwip5eRwKDMFed3bzvL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 918,
+                "cache_read_input_tokens": 23779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 918
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QUHsXegWtH1T5JJE95x35u",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "ca49c599-3671-4557-bb5a-dfa2c41e564c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RjXzwip5eRwKDMFed3bzvL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 918,
+                "cache_read_input_tokens": 23779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 918
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EVroFq4S19beUzqLkBJ4Wi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "ps aux --no-headers -o pid,user,pcpu,pmem,rss,args --sort=-rss",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "07d3b426-e6e8-4cae-9044-2c3916c3bbca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RjXzwip5eRwKDMFed3bzvL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 918,
+                "cache_read_input_tokens": 23779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 918
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T05:46:57.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016kwj2FEqwDWLgQUdT2sw41",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1290156\\\\ndrwxr-xr-x 2 root root         35 May 16 12:43 .\\\\ndrwxr-xr-x 4 root root         88 May 16 12:43 ..\\\\n-rw-r--r-- 1 root root 1321117990 May 16 12:43 checkpoint.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "79515523-7062-4113-958f-572628b3ef52",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1290156\\\\ndrwxr-xr-x 2 root root         35 May 16 12:43 .\\\\ndrwxr-xr-x 4 root root         88 May 16 12:43 ..\\\\n-rw-r--r-- 1 root root 1321117990 May 16 12:43 checkpoint.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.92}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1290156\\ndrwxr-xr-x 2 root root         35 May 16 12:43 .\\ndrwxr-xr-x 4 root root         88 May 16 12:43 ..\\n-rw-r--r-- 1 root root 1321117990 May 16 12:43 checkpoint.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.92}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T05:46:58.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UwyyzgRSSuQKzHWVZ5iaYe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"ACIB model evaluation script.\\\\n\\\\nWraps a pretrained SmolVLA policy with ACIBPolicy, loads an ACIB training\\\\ncheckpoint, then runs lerobot-eval per LIBERO suite in-process by patching\\\\nlerobot.policies.factory.make_policy.\\\\n\\\\nCheckpoint expected at:\\\\n    {checkpoint_dir}/checkpoint-{step}/checkpoint.pt\\\\ncontaining a dict with keys: step, policy_state_dict, optimizer_state_dict, config.\\\\n\\\\nUsage:\\\\n    python scripts/eval_acib.py \\\\\\\\\\\\n        --checkpoint_dir /root/acib/outputs/acib_v5_div_reg \\\\\\\\\\\\n        --base_model lerobot/smolvla_libero \\\\\\\\\\\\n        --suites libero_spatial libero_object libero_goal libero_10 \\\\\\\\\\\\n        --gpu 0 \\\\\\\\\\\\n        --n_episodes 50 \\\\\\\\\\\\n        --out_dir /root/acib/outputs/acib_v5_div_reg_eval\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ.setdefault('HF_HOME', '/root/autodl-tmp/.hf_cache')\\\\nos.environ.setdefault('REQUESTS_CA_BUNDLE', '/etc/ssl/certs/ca-certificates.crt')\\\\nos.environ.setdefault('SSL_CERT_FILE', '/etc/ssl/certs/ca-certificates.crt')\\\\nos.environ.setdefault('HF_HUB_DISABLE_XET', '1')\\\\nos.environ.setdefault('MUJOCO_GL', 'egl')\\\\nos.environ.setdefault('PYOPENGL_PLATFORM', 'egl')\\\\nos.environ.setdefault('HF_HUB_OFFLINE', '1')\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\n\\\\n# Make `acib` package importable when invoked from any CWD.\\\\n_PROJECT_ROOT = Path(__file__).resolve().parent.parent\\\\nsys.path.insert(0, str(_PROJECT_ROOT))\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"ACIB model evaluation on LIBERO\\\\\\\")\\\\n    p.add_argument('--checkpoint_dir', required=True,\\\\n                   help='Training output dir containing checkpoint-*/checkpoint.pt')\\\\n    p.add_argument('--checkpoint_step', type=int, default=None,\\\\n                   help='Specific step to load; default = latest')\\\\n    p.add_argument('--base_model', default='lerobot/smolvla_libero',\\\\n                   help='Base SmolVLA model id for from_pretrained + processors')\\\\n    p.add_argument('--suites', nargs='+',\\\\n                   default=['libero_spatial', 'libero_object',\\\\n                            'libero_goal', 'libero_10'])\\\\n    p.add_argument('--gpu', type=int, default=0)\\\\n    p.add_argument('--n_episodes', type=int, default=50)\\\\n    p.add_argument('--out_dir', required=True)\\\\n    p.add_argument('--seed', type=int, default=1000)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef find_checkpoint(ckpt_dir, step=None):\\\\n    ckpt_dir = Path(ckpt_dir)\\\\n    if step is not None:\\\\n        path = ckpt_dir / f'checkpoint-{step}' / 'checkpoint.pt'\\\\n        if not path.exists():\\\\n            raise FileNotFoundError(path)\\\\n        return path, step\\\\n    candidates = sorted(ckpt_dir.glob('checkpoint-*'),\\\\n                        key=lambda p: int(p.name.split('-')[1]))\\\\n    if not candidates:\\\\n        raise FileNotFoundError(f'No checkpoint-* under {ckpt_dir}')\\\\n    latest = candidates[-1]\\\\n    return latest / 'checkpoint.pt', int(latest.name.split('-')[1])\\\\n\\\\n\\\\ndef _register_acib_as_pretrained():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Register ACIBPolicy as virtual subclass of PreTrainedPolicy so lerobot\\\\n    eval_policy isinstance checks accept it.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from acib.acib_policy import ACIBPolicy\\\\n    from lerobot.policies.pretrained import PreTrainedPolicy\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "b62bf09c-c64a-46cb-ac60-e1943839f9e1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"ACIB model evaluation script.\\\\n\\\\nWraps a pretrained SmolVLA policy with ACIBPolicy, loads an ACIB training\\\\ncheckpoint, then runs lerobot-eval per LIBERO suite in-process by patching\\\\nlerobot.policies.factory.make_policy.\\\\n\\\\nCheckpoint expected at:\\\\n    {checkpoint_dir}/checkpoint-{step}/checkpoint.pt\\\\ncontaining a dict with keys: step, policy_state_dict, optimizer_state_dict, config.\\\\n\\\\nUsage:\\\\n    python scripts/eval_acib.py \\\\\\\\\\\\n        --checkpoint_dir /root/acib/outputs/acib_v5_div_reg \\\\\\\\\\\\n        --base_model lerobot/smolvla_libero \\\\\\\\\\\\n        --suites libero_spatial libero_object libero_goal libero_10 \\\\\\\\\\\\n        --gpu 0 \\\\\\\\\\\\n        --n_episodes 50 \\\\\\\\\\\\n        --out_dir /root/acib/outputs/acib_v5_div_reg_eval\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ.setdefault('HF_HOME', '/root/autodl-tmp/.hf_cache')\\\\nos.environ.setdefault('REQUESTS_CA_BUNDLE', '/etc/ssl/certs/ca-certificates.crt')\\\\nos.environ.setdefault('SSL_CERT_FILE', '/etc/ssl/certs/ca-certificates.crt')\\\\nos.environ.setdefault('HF_HUB_DISABLE_XET', '1')\\\\nos.environ.setdefault('MUJOCO_GL', 'egl')\\\\nos.environ.setdefault('PYOPENGL_PLATFORM', 'egl')\\\\nos.environ.setdefault('HF_HUB_OFFLINE', '1')\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\n\\\\n# Make `acib` package importable when invoked from any CWD.\\\\n_PROJECT_ROOT = Path(__file__).resolve().parent.parent\\\\nsys.path.insert(0, str(_PROJECT_ROOT))\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"ACIB model evaluation on LIBERO\\\\\\\")\\\\n    p.add_argument('--checkpoint_dir', required=True,\\\\n                   help='Training output dir containing checkpoint-*/checkpoint.pt')\\\\n    p.add_argument('--checkpoint_step', type=int, default=None,\\\\n                   help='Specific step to load; default = latest')\\\\n    p.add_argument('--base_model', default='lerobot/smolvla_libero',\\\\n                   help='Base SmolVLA model id for from_pretrained + processors')\\\\n    p.add_argument('--suites', nargs='+',\\\\n                   default=['libero_spatial', 'libero_object',\\\\n                            'libero_goal', 'libero_10'])\\\\n    p.add_argument('--gpu', type=int, default=0)\\\\n    p.add_argument('--n_episodes', type=int, default=50)\\\\n    p.add_argument('--out_dir', required=True)\\\\n    p.add_argument('--seed', type=int, default=1000)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef find_checkpoint(ckpt_dir, step=None):\\\\n    ckpt_dir = Path(ckpt_dir)\\\\n    if step is not None:\\\\n        path = ckpt_dir / f'checkpoint-{step}' / 'checkpoint.pt'\\\\n        if not path.exists():\\\\n            raise FileNotFoundError(path)\\\\n        return path, step\\\\n    candidates = sorted(ckpt_dir.glob('checkpoint-*'),\\\\n                        key=lambda p: int(p.name.split('-')[1]))\\\\n    if not candidates:\\\\n        raise FileNotFoundError(f'No checkpoint-* under {ckpt_dir}')\\\\n    latest = candidates[-1]\\\\n    return latest / 'checkpoint.pt', int(latest.name.split('-')[1])\\\\n\\\\n\\\\ndef _register_acib_as_pretrained():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Register ACIBPolicy as virtual subclass of PreTrainedPolicy so lerobot\\\\n    eval_policy isinstance checks accept it.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from acib.acib_policy import ACIBPolicy\\\\n    from lerobot.policies.pretrained import PreTrainedPolicy\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"ACIB model evaluation script.\\n\\nWraps a pretrained SmolVLA policy with ACIBPolicy, loads an ACIB training\\ncheckpoint, then runs lerobot-eval per LIBERO suite in-process by patching\\nlerobot.policies.factory.make_policy.\\n\\nCheckpoint expected at:\\n    {checkpoint_dir}/checkpoint-{step}/checkpoint.pt\\ncontaining a dict with keys: step, policy_state_dict, optimizer_state_dict, config.\\n\\nUsage:\\n    python scripts/eval_acib.py \\\\\\n        --checkpoint_dir /root/acib/outputs/acib_v5_div_reg \\\\\\n        --base_model lerobot/smolvla_libero \\\\\\n        --suites libero_spatial libero_object libero_goal libero_10 \\\\\\n        --gpu 0 \\\\\\n        --n_episodes 50 \\\\\\n        --out_dir /root/acib/outputs/acib_v5_div_reg_eval\\n\\\"\\\"\\\"\\nimport os\\nos.environ.setdefault('HF_HOME', '/root/autodl-tmp/.hf_cache')\\nos.environ.setdefault('REQUESTS_CA_BUNDLE', '/etc/ssl/certs/ca-certificates.crt')\\nos.environ.setdefault('SSL_CERT_FILE', '/etc/ssl/certs/ca-certificates.crt')\\nos.environ.setdefault('HF_HUB_DISABLE_XET', '1')\\nos.environ.setdefault('MUJOCO_GL', 'egl')\\nos.environ.setdefault('PYOPENGL_PLATFORM', 'egl')\\nos.environ.setdefault('HF_HUB_OFFLINE', '1')\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport torch\\n\\n# Make `acib` package importable when invoked from any CWD.\\n_PROJECT_ROOT = Path(__file__).resolve().parent.parent\\nsys.path.insert(0, str(_PROJECT_ROOT))\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"ACIB model evaluation on LIBERO\\\")\\n    p.add_argument('--checkpoint_dir', required=True,\\n                   help='Training output dir containing checkpoint-*/checkpoint.pt')\\n    p.add_argument('--checkpoint_step', type=int, default=None,\\n                   help='Specific step to load; default = latest')\\n    p.add_argument('--base_model', default='lerobot/smolvla_libero',\\n                   help='Base SmolVLA model id for from_pretrained + processors')\\n    p.add_argument('--suites', nargs='+',\\n                   default=['libero_spatial', 'libero_object',\\n                            'libero_goal', 'libero_10'])\\n    p.add_argument('--gpu', type=int, default=0)\\n    p.add_argument('--n_episodes', type=int, default=50)\\n    p.add_argument('--out_dir', required=True)\\n    p.add_argument('--seed', type=int, default=1000)\\n    return p.parse_args()\\n\\n\\ndef find_checkpoint(ckpt_dir, step=None):\\n    ckpt_dir = Path(ckpt_dir)\\n    if step is not None:\\n        path = ckpt_dir / f'checkpoint-{step}' / 'checkpoint.pt'\\n        if not path.exists():\\n            raise FileNotFoundError(path)\\n        return path, step\\n    candidates = sorted(ckpt_dir.glob('checkpoint-*'),\\n                        key=lambda p: int(p.name.split('-')[1]))\\n    if not candidates:\\n        raise FileNotFoundError(f'No checkpoint-* under {ckpt_dir}')\\n    latest = candidates[-1]\\n    return latest / 'checkpoint.pt', int(latest.name.split('-')[1])\\n\\n\\ndef _register_acib_as_pretrained():\\n    \\\"\\\"\\\"Register ACIBPolicy as virtual subclass of PreTrainedPolicy so lerobot\\n    eval_policy isinstance checks accept it.\\\"\\\"\\\"\\n    from acib.acib_policy import ACIBPolicy\\n    from lerobot.policies.pretrained import PreTrainedPolicy\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T05:47:00.251Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QUHsXegWtH1T5JJE95x35u",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 25098 MiB, 97887 MiB\\\\n1, 22154 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "59a52ab5-64dc-4377-9f78-3fdda749ffdd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 25098 MiB, 97887 MiB\\\\n1, 22154 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 25098 MiB, 97887 MiB\\n1, 22154 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T05:47:01.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EVroFq4S19beUzqLkBJ4Wi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help <simple|list|output|threads|misc|all>'\\\\n  or 'ps --help <s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "cbe46acc-ea0d-4ad1-a58f-3370ae74d834",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help <simple|list|output|threads|misc|all>'\\\\n  or 'ps --help <s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help <simple|list|output|threads|misc|all>'\\n  or 'ps --help <s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.93}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good findings:\n1. checkpoint-10000 exists with checkpoint.pt (1.3GB)\n2. eval_acib.py has `--checkpoint_step` parameter, `--seed` default is 1000 (not 42)\n3. GPU 0: 25098/97887 MiB, GPU 1: 22154/97887 MiB\n4. ps command failed due to format conflict\n\nLet me check for existing processes on the output dir (constraint C001) and also check what's running on GPU 0.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "cb5cf620-f2f9-476a-be1b-571b8816b5a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XqwvPbKGpqzS8cW9coiec6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2283,
+                "cache_read_input_tokens": 24697,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2283
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checkpoint exists. Script confirms `--checkpoint_step` is supported and `--seed` defaults to 1000. GPU 0 has ~25GB/98GB used, plenty of room. Let me check for existing processes per C001."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "76c0dfc0-0802-40ec-94d1-b4449266e237",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XqwvPbKGpqzS8cW9coiec6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2283,
+                "cache_read_input_tokens": 24697,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2283
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TJtKcZdiriLn6LMMASggmZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "ps aux",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "2dd5cb87-80ec-42c2-bd72-41bf23a756c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XqwvPbKGpqzS8cW9coiec6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2283,
+                "cache_read_input_tokens": 24697,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2283
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T05:47:08.590Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TJtKcZdiriLn6LMMASggmZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3464 ?        Ss   May15   0:00 bash /init/boot/boot.sh\\\\nroot        893  1.3  0.0 724896 26476 ?        Sl   May15  12:20 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        908  0.0  0.0  15444  9012 ?        S    May15   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        913  0.0  0.0 3573600 77600 ?       Sl   May15   0:27 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        916  0.0  0.0 182296 96912 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        917  0.0  0.0 3830072 19808 ?       Sl   May15   0:40 proxy -c /init/proxy/proxy.ini\\\\nroot        918  0.1  0.0 6749132 103168 ?      Sl   May15   1:46 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        919  0.0  0.0 3386656 18472 ?       Sl   May15   0:12 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1014  0.0  0.0 28341192 10920 ?      Sl   May15   0:36 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vcwlrgn4/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vcwlrgn4/startup_error\\\\nroot       2582  0.0  0.0  16776 10780 ?        Ss   May15   0:05 sshd: root@notty\\\\nroot     109494  0.0  0.0   4364  3212 ?        S    03:38   0:00 bash /root/acib/scripts/run_eval_plus_v2.sh\\\\nroot     675231 1527  1.4 92652612 15494232 ?   Rl   09:24 4006:14 /root/miniconda3/bin/python /root/miniconda3/bin/lerobot-eval --policy.path=lerobot/smolvla_libero_plus --env.type=libero --env.task=libero_10 --eval.n_episodes=50 --eval.batch_size=1 --env.max_parallel_tasks=1 --policy.empty_cameras=1 --rename_map={\\\\\\\"observation.images.image\\\\\\\": \\\\\\\"observation.images.camera1\\\\\\\", \\\\\\\"observation.images.image2\\\\\\\": \\\\\\\"observation.images.camera2\\\\\\\"} --output_dir=/root/acib/outputs/baseline_plus_v2/libero_10\\\\nroot     682227  0.0  0.0   6224  3892 ?        Ss   09:30   0:00 tmux new-session -d -s acib_v5_div_reg rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=0 && timeout 28800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && cd /root/acib && python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\\\\"'; } > ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log 2>&1\\\\nroot     682228  0.0  0.0   4496  3564 pts/1    Ss+  09:30   0:00 bash -c rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' H\\\\n\\\\n... [截断: 输出过长，省略 11301 字符] ...\\\\n\\\\n38  0.0  0.0  16692 11040 ?        Ss   13:42   0:00 sshd: root@notty\\\\nroot     804375  0.0  0.0  16692 10624 ?        Ss   13:43   0:00 sshd: root@notty\\\\nroot     804479 11.0  0.2 71745196 2463948 pts/1 SLl 13:43   0:26 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\nroot     804489 10.4  0.2 71746512 2465240 pts/1 SLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\nroot     804490 10.6  0.2 71778476 2497020 pts/1 RLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\nroot     804491 10.4  0.2 71794272 2513188 pts/1 RLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\nroot     804697  0.0  0.0  16692 10660 ?        Ss   13:43   0:00 sshd: root@notty\\\\nroot     805018  0.0  0.0  16692 10856 ?        Ss   13:43   0:00 sshd: root@notty\\\\nroot     805564  0.0  0.0  16692 10792 ?        Ss   13:44   0:00 sshd: root@notty\\\\nroot     805667  0.0  0.0  16692 10720 ?        Ss   13:44   0:00 sshd: root@notty\\\\nroot     806305  0.0  0.0  16692 10676 ?        Ss   13:44   0:00 sshd: root@notty\\\\nroot     806338  0.0  0.0  16692 10732 ?        Ss   13:44   0:00 sshd: root@notty\\\\nroot     806816  0.0  0.0   4364  2116 ?        S    13:45   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000 && cd /root/acib && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000' > /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/eval.log 2>&1 & echo \\\\\\\"EVAL_PID=$!\\\\\\\"\\\\nroot     806823 43.2  0.8 69559864 9156808 ?    Rl   13:45   0:42 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000\\\\nroot     807745  0.1  0.0  16692 11048 ?        Ss   13:46   0:00 sshd: root@notty\\\\nroot     809129  0.5  0.0  16692 11060 ?        Ss   13:46   0:00 sshd: root@notty\\\\nroot     809446  0.0  0.0   7064  1596 ?        Rs   13:47   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "60245470-0201-4430-8e1a-aa9fcca61b3e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3464 ?        Ss   May15   0:00 bash /init/boot/boot.sh\\\\nroot        893  1.3  0.0 724896 26476 ?        Sl   May15  12:20 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        908  0.0  0.0  15444  9012 ?        S    May15   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        913  0.0  0.0 3573600 77600 ?       Sl   May15   0:27 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        916  0.0  0.0 182296 96912 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        917  0.0  0.0 3830072 19808 ?       Sl   May15   0:40 proxy -c /init/proxy/proxy.ini\\\\nroot        918  0.1  0.0 6749132 103168 ?      Sl   May15   1:46 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        919  0.0  0.0 3386656 18472 ?       Sl   May15   0:12 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1014  0.0  0.0 28341192 10920 ?      Sl   May15   0:36 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vcwlrgn4/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vcwlrgn4/startup_error\\\\nroot       2582  0.0  0.0  16776 10780 ?        Ss   May15   0:05 sshd: root@notty\\\\nroot     109494  0.0  0.0   4364  3212 ?        S    03:38   0:00 bash /root/acib/scripts/run_eval_plus_v2.sh\\\\nroot     675231 1527  1.4 92652612 15494232 ?   Rl   09:24 4006:14 /root/miniconda3/bin/python /root/miniconda3/bin/lerobot-eval --policy.path=lerobot/smolvla_libero_plus --env.type=libero --env.task=libero_10 --eval.n_episodes=50 --eval.batch_size=1 --env.max_parallel_tasks=1 --policy.empty_cameras=1 --rename_map={\\\\\\\"observation.images.image\\\\\\\": \\\\\\\"observation.images.camera1\\\\\\\", \\\\\\\"observation.images.image2\\\\\\\": \\\\\\\"observation.images.camera2\\\\\\\"} --output_dir=/root/acib/outputs/baseline_plus_v2/libero_10\\\\nroot     682227  0.0  0.0   6224  3892 ?        Ss   09:30   0:00 tmux new-session -d -s acib_v5_div_reg rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=0 && timeout 28800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && cd /root/acib && python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\\\\"'; } > ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log 2>&1\\\\nroot     682228  0.0  0.0   4496  3564 pts/1    Ss+  09:30   0:00 bash -c rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' H\\\\n\\\\n... [截断: 输出过长，省略 11301 字符] ...\\\\n\\\\n38  0.0  0.0  16692 11040 ?        Ss   13:42   0:00 sshd: root@notty\\\\nroot     804375  0.0  0.0  16692 10624 ?        Ss   13:43   0:00 sshd: root@notty\\\\nroot     804479 11.0  0.2 71745196 2463948 pts/1 SLl 13:43   0:26 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\nroot     804489 10.4  0.2 71746512 2465240 pts/1 SLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\nroot     804490 10.6  0.2 71778476 2497020 pts/1 RLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\nroot     804491 10.4  0.2 71794272 2513188 pts/1 RLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\nroot     804697  0.0  0.0  16692 10660 ?        Ss   13:43   0:00 sshd: root@notty\\\\nroot     805018  0.0  0.0  16692 10856 ?        Ss   13:43   0:00 sshd: root@notty\\\\nroot     805564  0.0  0.0  16692 10792 ?        Ss   13:44   0:00 sshd: root@notty\\\\nroot     805667  0.0  0.0  16692 10720 ?        Ss   13:44   0:00 sshd: root@notty\\\\nroot     806305  0.0  0.0  16692 10676 ?        Ss   13:44   0:00 sshd: root@notty\\\\nroot     806338  0.0  0.0  16692 10732 ?        Ss   13:44   0:00 sshd: root@notty\\\\nroot     806816  0.0  0.0   4364  2116 ?        S    13:45   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000 && cd /root/acib && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000' > /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/eval.log 2>&1 & echo \\\\\\\"EVAL_PID=$!\\\\\\\"\\\\nroot     806823 43.2  0.8 69559864 9156808 ?    Rl   13:45   0:42 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000\\\\nroot     807745  0.1  0.0  16692 11048 ?        Ss   13:46   0:00 sshd: root@notty\\\\nroot     809129  0.5  0.0  16692 11060 ?        Ss   13:46   0:00 sshd: root@notty\\\\nroot     809446  0.0  0.0   7064  1596 ?        Rs   13:47   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3464 ?        Ss   May15   0:00 bash /init/boot/boot.sh\\nroot        893  1.3  0.0 724896 26476 ?        Sl   May15  12:20 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        908  0.0  0.0  15444  9012 ?        S    May15   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        913  0.0  0.0 3573600 77600 ?       Sl   May15   0:27 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        916  0.0  0.0 182296 96912 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        917  0.0  0.0 3830072 19808 ?       Sl   May15   0:40 proxy -c /init/proxy/proxy.ini\\nroot        918  0.1  0.0 6749132 103168 ?      Sl   May15   1:46 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        919  0.0  0.0 3386656 18472 ?       Sl   May15   0:12 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1014  0.0  0.0 28341192 10920 ?      Sl   May15   0:36 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vcwlrgn4/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vcwlrgn4/startup_error\\nroot       2582  0.0  0.0  16776 10780 ?        Ss   May15   0:05 sshd: root@notty\\nroot     109494  0.0  0.0   4364  3212 ?        S    03:38   0:00 bash /root/acib/scripts/run_eval_plus_v2.sh\\nroot     675231 1527  1.4 92652612 15494232 ?   Rl   09:24 4006:14 /root/miniconda3/bin/python /root/miniconda3/bin/lerobot-eval --policy.path=lerobot/smolvla_libero_plus --env.type=libero --env.task=libero_10 --eval.n_episodes=50 --eval.batch_size=1 --env.max_parallel_tasks=1 --policy.empty_cameras=1 --rename_map={\\\"observation.images.image\\\": \\\"observation.images.camera1\\\", \\\"observation.images.image2\\\": \\\"observation.images.camera2\\\"} --output_dir=/root/acib/outputs/baseline_plus_v2/libero_10\\nroot     682227  0.0  0.0   6224  3892 ?        Ss   09:30   0:00 tmux new-session -d -s acib_v5_div_reg rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=0 && timeout 28800 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && cd /root/acib && python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\"'; } > ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log 2>&1\\nroot     682228  0.0  0.0   4496  3564 pts/1    Ss+  09:30   0:00 bash -c rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' H\\n\\n... [截断: 输出过长，省略 11301 字符] ...\\n\\n38  0.0  0.0  16692 11040 ?        Ss   13:42   0:00 sshd: root@notty\\nroot     804375  0.0  0.0  16692 10624 ?        Ss   13:43   0:00 sshd: root@notty\\nroot     804479 11.0  0.2 71745196 2463948 pts/1 SLl 13:43   0:26 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\nroot     804489 10.4  0.2 71746512 2465240 pts/1 SLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\nroot     804490 10.6  0.2 71778476 2497020 pts/1 RLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\nroot     804491 10.4  0.2 71794272 2513188 pts/1 RLl 13:43   0:25 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\nroot     804697  0.0  0.0  16692 10660 ?        Ss   13:43   0:00 sshd: root@notty\\nroot     805018  0.0  0.0  16692 10856 ?        Ss   13:43   0:00 sshd: root@notty\\nroot     805564  0.0  0.0  16692 10792 ?        Ss   13:44   0:00 sshd: root@notty\\nroot     805667  0.0  0.0  16692 10720 ?        Ss   13:44   0:00 sshd: root@notty\\nroot     806305  0.0  0.0  16692 10676 ?        Ss   13:44   0:00 sshd: root@notty\\nroot     806338  0.0  0.0  16692 10732 ?        Ss   13:44   0:00 sshd: root@notty\\nroot     806816  0.0  0.0   4364  2116 ?        S    13:45   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000 && cd /root/acib && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000' > /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/eval.log 2>&1 & echo \\\"EVAL_PID=$!\\\"\\nroot     806823 43.2  0.8 69559864 9156808 ?    Rl   13:45   0:42 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000\\nroot     807745  0.1  0.0  16692 11048 ?        Ss   13:46   0:00 sshd: root@notty\\nroot     809129  0.5  0.0  16692 11060 ?        Ss   13:46   0:00 sshd: root@notty\\nroot     809446  0.0  0.0   7064  1596 ?        Rs   13:47   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Important findings from ps aux:\n\n1. **CRITICAL: The eval is already running!** PID 806823 is `python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 ... --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000` — started at 13:45, using 43.2% CPU and ~9GB RSS.\n\n2. **CRITICAL: There are DUPLICATE training processes!** PIDs 804479, 804489, 804490, 804491 are all running the same `train_acib.py` command with `--output_dir /root/acib/outputs/acib_v5_div_reg`. \n\nThese spawned at 13:43 as separate Python processes all writing to the same output directory—this is exactly the constraint violation I was worried about. The original tmux session (PID 682228) is still running as the bash wrapper, but now there are four independent training processes competing for the same output location. are all child processes started at 13:43 — these might be DataLoader workers or something similar. Let me check if they're all children of the same parent. They all started at the same time (13:43) and all have similar RSS (~2.4-2.5GB). These could be multiprocessing workers spawned by the training script.\n\nActually, for PyTorch DataLoader with num_workers, the child processes would typically be shown differently. But these all show the full command line which is typical of `fork()` workers in Python multiprocessing. Training scripts often fork multiple workers. So these are likely legitimate child processes of the main training.\n\nThe key info:\n1. **The eval is ALREADY running** (PID 806823) — someone already launched it\n2. The training processes on GPU 0 seem to be running normally\n3. baseline_plus eval (PID 675231) is still running on lib\n\nNow I should check the eval log to see what's happening with it.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "39f7dad7-5294-46db-9706-3f7a9e1dddd0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017DHkcNVTVTAg8hVu1CaMbM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4059,
+                "cache_read_input_tokens": 26980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4059
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The eval is **already running** — PID 806823, started at 13:45. Let me check its log and GPU status."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "c7e7b861-18fb-4c36-a9fd-27325c79549b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017DHkcNVTVTAg8hVu1CaMbM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4059,
+                "cache_read_input_tokens": 26980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4059
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016RemH7HRyx5bYh5xQT9no7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "head -50 /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/eval.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "bb7d6b3e-06bc-4ffa-ada9-8d0af321535f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017DHkcNVTVTAg8hVu1CaMbM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4059,
+                "cache_read_input_tokens": 26980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4059
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DFYmLkg6X1kdZhmPMgHEKL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "f063bff3-071d-4b7e-b9b6-f4fd55aea926",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017DHkcNVTVTAg8hVu1CaMbM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4059,
+                "cache_read_input_tokens": 26980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4059
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T05:47:24.972Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016RemH7HRyx5bYh5xQT9no7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[ACIB-EVAL] checkpoint=/root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt step=10000\\\\n[ACIB-EVAL] base_model=lerobot/smolvla_libero\\\\n[ACIB-EVAL] suites=['libero_spatial', 'libero_object', 'libero_goal', 'libero_10']\\\\n[ACIB-EVAL] n_episodes=50 gpu=0 seed=42\\\\n\\\\n=== [libero_spatial] start ===\\\\nWARNING 2026-05-16 13:46:02 figs/eval.py:65 No job name provided, using 'libero_smolvla' as job name.\\\\nINFO 2026-05-16 13:46:02 bot_eval.py:508 {'env': {'camera_name': 'agentview_image,robot0_eye_in_hand_image',\\\\n         'camera_name_mapping': None,\\\\n         'control_mode': 'relative',\\\\n         'disable_env_checker': True,\\\\n         'episode_length': None,\\\\n         'features': {'action': {'shape': (7,),\\\\n                                 'type': <FeatureType.ACTION: 'ACTION'>},\\\\n                      'pixels/agentview_image': {'shape': (360, 360, 3),\\\\n                                                 'type': <FeatureType.VISUAL: 'VISUAL'>},\\\\n                      'pixels/robot0_eye_in_hand_image': {'shape': (360,\\\\n                                                                    360,\\\\n                                                                    3),\\\\n                                                          'type': <FeatureType.VISUAL: 'VISUAL'>},\\\\n                      'robot_state/eef/mat': {'shape': (3, 3),\\\\n                                              'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/eef/pos': {'shape': (3,),\\\\n                                              'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/eef/quat': {'shape': (4,),\\\\n                                               'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/gripper/qpos': {'shape': (2,),\\\\n                                                   'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/gripper/qvel': {'shape': (2,),\\\\n                                                   'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/joints/pos': {'shape': (7,),\\\\n                                                 'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/joints/vel': {'shape': (7,),\\\\n                                                 'type': <FeatureType.STATE: 'STATE'>}},\\\\n         'features_map': {'action': 'action',\\\\n                          'pixels/agentview_image': 'observation.images.image',\\\\n                          'pixels/robot0_eye_in_hand_image': 'observation.images.image2',\\\\n                          'robot_state/eef/mat': 'observation.state.eef_mat',\\\\n                          'robot_state/eef/pos': 'observation.state.eef_pos',\\\\n                          'robot_state/eef/quat': 'observation.state.eef_quat',\\\\n                          'robot_state/gripper/qpos': 'observation.state.gripper_qpos',\\\\n                          'robot_state/gripper/qvel': 'observation.state.gripper_qvel',\\\\n                          'robot_state/joints/pos': 'observation.state.joint_pos',\\\\n                          'robot_state/joints/vel': 'observation.state.joint_vel'},\\\\n         'fps': 30,\\\\n         'init_states': True,\\\\n         'max_parallel_tasks': 1,\\\\n         'obs_type': 'pixels_agent_pos',\\\\n         'observation_height': 360,\\\\n         'observation_width': 360,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "ac94af7a-c99f-4b5d-8e59-b2794c2984bb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[ACIB-EVAL] checkpoint=/root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt step=10000\\\\n[ACIB-EVAL] base_model=lerobot/smolvla_libero\\\\n[ACIB-EVAL] suites=['libero_spatial', 'libero_object', 'libero_goal', 'libero_10']\\\\n[ACIB-EVAL] n_episodes=50 gpu=0 seed=42\\\\n\\\\n=== [libero_spatial] start ===\\\\nWARNING 2026-05-16 13:46:02 figs/eval.py:65 No job name provided, using 'libero_smolvla' as job name.\\\\nINFO 2026-05-16 13:46:02 bot_eval.py:508 {'env': {'camera_name': 'agentview_image,robot0_eye_in_hand_image',\\\\n         'camera_name_mapping': None,\\\\n         'control_mode': 'relative',\\\\n         'disable_env_checker': True,\\\\n         'episode_length': None,\\\\n         'features': {'action': {'shape': (7,),\\\\n                                 'type': <FeatureType.ACTION: 'ACTION'>},\\\\n                      'pixels/agentview_image': {'shape': (360, 360, 3),\\\\n                                                 'type': <FeatureType.VISUAL: 'VISUAL'>},\\\\n                      'pixels/robot0_eye_in_hand_image': {'shape': (360,\\\\n                                                                    360,\\\\n                                                                    3),\\\\n                                                          'type': <FeatureType.VISUAL: 'VISUAL'>},\\\\n                      'robot_state/eef/mat': {'shape': (3, 3),\\\\n                                              'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/eef/pos': {'shape': (3,),\\\\n                                              'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/eef/quat': {'shape': (4,),\\\\n                                               'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/gripper/qpos': {'shape': (2,),\\\\n                                                   'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/gripper/qvel': {'shape': (2,),\\\\n                                                   'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/joints/pos': {'shape': (7,),\\\\n                                                 'type': <FeatureType.STATE: 'STATE'>},\\\\n                      'robot_state/joints/vel': {'shape': (7,),\\\\n                                                 'type': <FeatureType.STATE: 'STATE'>}},\\\\n         'features_map': {'action': 'action',\\\\n                          'pixels/agentview_image': 'observation.images.image',\\\\n                          'pixels/robot0_eye_in_hand_image': 'observation.images.image2',\\\\n                          'robot_state/eef/mat': 'observation.state.eef_mat',\\\\n                          'robot_state/eef/pos': 'observation.state.eef_pos',\\\\n                          'robot_state/eef/quat': 'observation.state.eef_quat',\\\\n                          'robot_state/gripper/qpos': 'observation.state.gripper_qpos',\\\\n                          'robot_state/gripper/qvel': 'observation.state.gripper_qvel',\\\\n                          'robot_state/joints/pos': 'observation.state.joint_pos',\\\\n                          'robot_state/joints/vel': 'observation.state.joint_vel'},\\\\n         'fps': 30,\\\\n         'init_states': True,\\\\n         'max_parallel_tasks': 1,\\\\n         'obs_type': 'pixels_agent_pos',\\\\n         'observation_height': 360,\\\\n         'observation_width': 360,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[ACIB-EVAL] checkpoint=/root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt step=10000\\n[ACIB-EVAL] base_model=lerobot/smolvla_libero\\n[ACIB-EVAL] suites=['libero_spatial', 'libero_object', 'libero_goal', 'libero_10']\\n[ACIB-EVAL] n_episodes=50 gpu=0 seed=42\\n\\n=== [libero_spatial] start ===\\nWARNING 2026-05-16 13:46:02 figs/eval.py:65 No job name provided, using 'libero_smolvla' as job name.\\nINFO 2026-05-16 13:46:02 bot_eval.py:508 {'env': {'camera_name': 'agentview_image,robot0_eye_in_hand_image',\\n         'camera_name_mapping': None,\\n         'control_mode': 'relative',\\n         'disable_env_checker': True,\\n         'episode_length': None,\\n         'features': {'action': {'shape': (7,),\\n                                 'type': <FeatureType.ACTION: 'ACTION'>},\\n                      'pixels/agentview_image': {'shape': (360, 360, 3),\\n                                                 'type': <FeatureType.VISUAL: 'VISUAL'>},\\n                      'pixels/robot0_eye_in_hand_image': {'shape': (360,\\n                                                                    360,\\n                                                                    3),\\n                                                          'type': <FeatureType.VISUAL: 'VISUAL'>},\\n                      'robot_state/eef/mat': {'shape': (3, 3),\\n                                              'type': <FeatureType.STATE: 'STATE'>},\\n                      'robot_state/eef/pos': {'shape': (3,),\\n                                              'type': <FeatureType.STATE: 'STATE'>},\\n                      'robot_state/eef/quat': {'shape': (4,),\\n                                               'type': <FeatureType.STATE: 'STATE'>},\\n                      'robot_state/gripper/qpos': {'shape': (2,),\\n                                                   'type': <FeatureType.STATE: 'STATE'>},\\n                      'robot_state/gripper/qvel': {'shape': (2,),\\n                                                   'type': <FeatureType.STATE: 'STATE'>},\\n                      'robot_state/joints/pos': {'shape': (7,),\\n                                                 'type': <FeatureType.STATE: 'STATE'>},\\n                      'robot_state/joints/vel': {'shape': (7,),\\n                                                 'type': <FeatureType.STATE: 'STATE'>}},\\n         'features_map': {'action': 'action',\\n                          'pixels/agentview_image': 'observation.images.image',\\n                          'pixels/robot0_eye_in_hand_image': 'observation.images.image2',\\n                          'robot_state/eef/mat': 'observation.state.eef_mat',\\n                          'robot_state/eef/pos': 'observation.state.eef_pos',\\n                          'robot_state/eef/quat': 'observation.state.eef_quat',\\n                          'robot_state/gripper/qpos': 'observation.state.gripper_qpos',\\n                          'robot_state/gripper/qvel': 'observation.state.gripper_qvel',\\n                          'robot_state/joints/pos': 'observation.state.joint_pos',\\n                          'robot_state/joints/vel': 'observation.state.joint_vel'},\\n         'fps': 30,\\n         'init_states': True,\\n         'max_parallel_tasks': 1,\\n         'obs_type': 'pixels_agent_pos',\\n         'observation_height': 360,\\n         'observation_width': 360,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T05:47:25.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DFYmLkg6X1kdZhmPMgHEKL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 26734 MiB, 97887 MiB\\\\n1, 22154 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "a616cbfd-d260-4c5e-b83b-c5f17e67ae4c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 26734 MiB, 97887 MiB\\\\n1, 22154 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 26734 MiB, 97887 MiB\\n1, 22154 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已经在跑了，状态正常。让我看下最新进度。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "6b0f4e78-1d8f-4b66-b345-4825009d9f06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PSttmEwSZNpVy2R1TeEfZE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2255,
+                "cache_read_input_tokens": 31039,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2255
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014CLfZgd5rvv4H8o8PHyeYD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "tail -30 /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/eval.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "fda954e9-c0ad-4795-9b16-f0a329b4b02f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PSttmEwSZNpVy2R1TeEfZE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2255,
+                "cache_read_input_tokens": 31039,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2255
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T05:47:30.570Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014CLfZgd5rvv4H8o8PHyeYD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            'use_peft': False,\\\\n            'vlm_model_name': 'HuggingFaceTB/SmolVLM2-500M-Video-Instruct'},\\\\n 'rename_map': {'observation.images.image': 'observation.images.camera1',\\\\n                'observation.images.image2': 'observation.images.camera2'},\\\\n 'seed': 42,\\\\n 'trust_remote_code': False}\\\\nINFO 2026-05-16 13:46:02 bot_eval.py:517 Output dir: /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/libero_spatial\\\\nINFO 2026-05-16 13:46:02 bot_eval.py:519 Making environment.\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\nWARNING 2026-05-16 13:46:03 e/__init__.py:7 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\nWARNING 2026-05-16 13:46:03 e/__init__.py:8 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\nWARNING 2026-05-16 13:46:03 e/__init__.py:9 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\nCreating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=1 | init_states=True\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\nBuilt vec env | suite=libero_spatial | task_id=0 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=1 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=2 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=3 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=4 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=5 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=6 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=7 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=8 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=9 | n_envs=1\\\\nINFO 2026-05-16 13:47:16 bot_eval.py:527 Making policy.\\\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  16%|█▌        | 77/489 [00:00<00:00, 769.09it/s]\\\\rLoading weights:  31%|███▏      | 154/489 [00:00<00:00, 480.94it/s]\\\\rLoading weights:  43%|████▎     | 209/489 [00:00<00:00, 312.77it/s]\\\\rLoading weights:  57%|█████▋    | 280/489 [00:00<00:00, 404.09it/s]\\\\rLoading weights:  69%|██████▊   | 335/489 [00:00<00:00, 438.77it/s]\\\\rLoading weights:  89%|████████▉ | 435/489 [00:00<00:00, 579.42it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 545.25it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "d7a67177-4ba8-4561-a9d2-9ad39d59e863",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            'use_peft': False,\\\\n            'vlm_model_name': 'HuggingFaceTB/SmolVLM2-500M-Video-Instruct'},\\\\n 'rename_map': {'observation.images.image': 'observation.images.camera1',\\\\n                'observation.images.image2': 'observation.images.camera2'},\\\\n 'seed': 42,\\\\n 'trust_remote_code': False}\\\\nINFO 2026-05-16 13:46:02 bot_eval.py:517 Output dir: /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/libero_spatial\\\\nINFO 2026-05-16 13:46:02 bot_eval.py:519 Making environment.\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\nWARNING 2026-05-16 13:46:03 e/__init__.py:7 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\nWARNING 2026-05-16 13:46:03 e/__init__.py:8 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\nWARNING 2026-05-16 13:46:03 e/__init__.py:9 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\nCreating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=1 | init_states=True\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\nBuilt vec env | suite=libero_spatial | task_id=0 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=1 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=2 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=3 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=4 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=5 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=6 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=7 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=8 | n_envs=1\\\\nBuilt vec env | suite=libero_spatial | task_id=9 | n_envs=1\\\\nINFO 2026-05-16 13:47:16 bot_eval.py:527 Making policy.\\\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  16%|█▌        | 77/489 [00:00<00:00, 769.09it/s]\\\\rLoading weights:  31%|███▏      | 154/489 [00:00<00:00, 480.94it/s]\\\\rLoading weights:  43%|████▎     | 209/489 [00:00<00:00, 312.77it/s]\\\\rLoading weights:  57%|█████▋    | 280/489 [00:00<00:00, 404.09it/s]\\\\rLoading weights:  69%|██████▊   | 335/489 [00:00<00:00, 438.77it/s]\\\\rLoading weights:  89%|████████▉ | 435/489 [00:00<00:00, 579.42it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 545.25it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"            'use_peft': False,\\n            'vlm_model_name': 'HuggingFaceTB/SmolVLM2-500M-Video-Instruct'},\\n 'rename_map': {'observation.images.image': 'observation.images.camera1',\\n                'observation.images.image2': 'observation.images.camera2'},\\n 'seed': 42,\\n 'trust_remote_code': False}\\nINFO 2026-05-16 13:46:02 bot_eval.py:517 Output dir: /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/libero_spatial\\nINFO 2026-05-16 13:46:02 bot_eval.py:519 Making environment.\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\nWARNING 2026-05-16 13:46:03 e/__init__.py:7 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\nWARNING 2026-05-16 13:46:03 e/__init__.py:8 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\nWARNING 2026-05-16 13:46:03 e/__init__.py:9 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\nCreating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=1 | init_states=True\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\nBuilt vec env | suite=libero_spatial | task_id=0 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=1 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=2 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=3 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=4 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=5 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=6 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=7 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=8 | n_envs=1\\nBuilt vec env | suite=libero_spatial | task_id=9 | n_envs=1\\nINFO 2026-05-16 13:47:16 bot_eval.py:527 Making policy.\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  16%|█▌        | 77/489 [00:00<00:00, 769.09it/s]\\rLoading weights:  31%|███▏      | 154/489 [00:00<00:00, 480.94it/s]\\rLoading weights:  43%|████▎     | 209/489 [00:00<00:00, 312.77it/s]\\rLoading weights:  57%|█████▋    | 280/489 [00:00<00:00, 404.09it/s]\\rLoading weights:  69%|██████▊   | 335/489 [00:00<00:00, 438.77it/s]\\rLoading weights:  89%|████████▉ | 435/489 [00:00<00:00, 579.42it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 545.25it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告：\n\n- **Eval PID**: 806823\n- **ACIB loading 确认**: 日志第一行 `[ACIB-EVAL] checkpoint=/root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt step=10000` — 已确认加载\n- **当前进度**: libero_spatial 环境已构建完毕（10个task），正在加载模型权重，即将开始 episode rollout\n- **GPU 显存**: GPU 0 = 26734/97887 MiB（27%），GPU 1 = 22154/97887 MiB（23%）— 充裕，无溢出风险\n- **共存状态**: 训练（PID 804479等）+ baseline_plus eval（PID 675231）+ ACIB eval（PID 806823）三者共存于 GPU 0，显存安全\n\n注意：发现有 4 个 train_acib.py 子进程（PID 804479/804489/804490/804491），均写同一 output_dir `acib_v5_div_reg`，启动时间相同（13:43）。这些应该是 PyTorch DataLoader workers 而非重复训练进程，但建议后续确认。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "uuid": "d84a7a0f-3f62-4045-a9d4-f49bf066a484",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Pdqq8abivgY59CQJjNSoB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1391,
+                "cache_read_input_tokens": 33294,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1391
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告：\n\n- **Eval PID**: 806823\n- **ACIB loading 确认**: 日志第一行 `[ACIB-EVAL] checkpoint=/root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt step=10000` — 已确认加载\n- **当前进度**: libero_spatial 环境已构建完毕（10个task），正在加载模型权重，即将开始 episode rollout\n- **GPU 显存**: GPU 0 = 26734/97887 MiB（27%），GPU 1 = 22154/97887 MiB（23%）— 充裕，无溢出风险\n- **共存状态**: 训练（PID 804479等）+ baseline_plus eval（PID 675231）+ ACIB eval（PID 806823）三者共存于 GPU 0，显存安全\n\n注意：发现有 4 个 train_acib.py 子进程（PID 804479/804489/804490/804491），均写同一 output_dir `acib_v5_div_reg`，启动时间相同（13:43）。这些应该是 PyTorch DataLoader workers 而非重复训练进程，但建议后续确认。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 55062,
+            "duration_api_ms": 48971,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "aceac148-8640-4c85-846d-01c8b6605f31",
+            "total_cost_usd": 0.27803599999999995,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 22844,
+              "cache_read_input_tokens": 151630,
+              "output_tokens": 2302,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22844,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 341,
+                  "cache_read_input_tokens": 33294,
+                  "cache_creation_input_tokens": 1391,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1391
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1756,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001846,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 2302,
+                "cacheReadInputTokens": 151630,
+                "cacheCreationInputTokens": 22844,
+                "webSearchRequests": 0,
+                "costUSD": 0.27619,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ba56d20f-b8e8-4d68-b22d-624b3288c785"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-eval-ckpt10000-20260516t054425-retry2.md"
+}

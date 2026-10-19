@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f48c6a36b80aeccf4f99",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "ops restart seed2 lambda ent 0",
+  "task_key": "worker_ops_restart-seed2-lambda-ent-0_20260516T030105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_restart-seed2-lambda-ent-0_20260516T030105.jsonl",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "ab03c91299a168d3e647bff257ca280ed47d10d622b052850e0155af5f6635a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:01:14.617433+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5W5K8QSmLZ2Ada6tcDR\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_restart-seed2-lambda-ent-0_20260516T030105"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-restart-seed2-lambda-ent-0.md"
+}

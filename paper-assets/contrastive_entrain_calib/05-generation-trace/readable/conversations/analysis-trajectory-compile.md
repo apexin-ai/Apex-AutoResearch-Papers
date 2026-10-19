@@ -1,0 +1,860 @@
+# analysis trajectory compile
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/chats/worker_analysis_trajectory-compile_20260521T103757.jsonl`
+- **Structured JSON:** [`1fcf8cad47ad3800072d.json`](../../sessions/1f/1fcf8cad47ad3800072d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+27 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T10:40:50.503725+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T10:40:50.505490+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "ToolSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T10:40:50.505786+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T10:40:50.506810+00:00_
+
+Error: result (104,317 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T10:40:50.507193+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n\n# Filter for eval experiments we care about\npatterns = [\n    'exp-003-eval-ckpt',\n    'exp-004-eval-ckpt', \n    'exp-003-eval-s2-ckpt',\n    'exp-003-s2-eval-ckpt',\n    'vanilla-d027',\n    'exp-008v3',\n    'exp-009',\n    'exp-016',\n    'exp-012',\n    'exp-014',\n]\n\nfiltered = []\nfor exp in result:\n    eid = exp.get('exp_id', '')\n    for p in patterns:\n        if p in eid:\n            filtered.append(exp)\n            break\n\n# Print summary\nfor exp in sorted(filtered, key=lambda x: x.get('exp_id', '')):\n    eid = exp.get('exp_id', '')\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid} | {status} | {conclusion} | {json.dumps(metrics)}')\n\" 2>&1",
+  "description": "Extract eval experiments from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n\n# Filter for eval experiments we care about\npatterns = [\n    'exp-003-eval-ckpt',\n    'exp-004-eval-ckpt', \n    'exp-003-eval-s2-ckpt',\n    'exp-003-s2-eval-ckpt',\n    'vanilla-d027',\n    'exp-008v3',\n    'exp-009',\n    'exp-016',\n    'exp-012',\n    'exp-014',\n]\n\nfiltered = []\nfor exp in result:\n    eid = exp.get('exp_id', '')\n    for p in patterns:\n        if p in eid:\n            filtered.append(exp)\n            break\n\n# Print summary\nfor exp in sorted(filtered, key=lambda x: x.get('exp_id', '')):\n    eid = exp.get('exp_id', '')\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid} | {status} | {conclusion} | {json.dumps(metrics)}')\n\" 2>&1",
+    "description": "Extract eval experiments from registry JSON"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T10:40:50.507429+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 23, in &lt;module>
+    eid = exp.get('exp_id', '')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T10:40:50.507628+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "head -c 2000 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt",
+  "description": "Check JSON structure of registry data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "head -c 2000 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt",
+    "description": "Check JSON structure of registry data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T10:40:50.507909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-004\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T14:42:12.234Z\", \"updated_at\": \"2026-05-21T10:32:45.756Z\", \"hypothesis\": \"ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\", \"completed_at\": \"2026-05-18T16:03:27.349Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash /root/contrastive_entrain_calib/scripts/queue_eval_ckpt8000.sh\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"140127\", \"log_path\": \"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/train_log.jsonl\", \"submitted_at\": \"2026-05-19T14:36:03.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/\", \"data_path\": \"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"notes\": \"ACT baseline. 16 checkpoints (500-8000). Best ckpt-8000 SYCONScore=0.3013.\"}, \"conclusion\": \"success\", \"metrics\": {\"trend\": \"generally increasing trend with oscillations: early phase ~0.17-0.25, late phase ~0.26-0.30, best=0.301 at ckpt-8000\", \"best_sycon_score\": 0.301, \"best_checkpoint\": \"ckpt-8000\"}}, \"exp-003-eval-ckpt8000\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:22:58.647Z\", \"updated_at\": \"2026-05-21T10:25:02.600Z\", \"hypothesis\": \"Eval exp-003 R3-
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T10:40:50.508165+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\npatterns = [\n    'exp-003-eval-ckpt',\n    'exp-004-eval-ckpt', \n    'exp-003-eval-s2-ckpt',\n    'exp-003-s2-eval-ckpt',\n    'vanilla-d027',\n    'exp-008v3',\n    'exp-009',\n    'exp-016',\n    'exp-012',\n    'exp-014',\n]\n\nfiltered = {}\nfor eid, exp in experiments.items():\n    for p in patterns:\n        if p in eid:\n            filtered[eid] = exp\n            break\n\nfor eid in sorted(filtered.keys()):\n    exp = filtered[eid]\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid} | {status} | {conclusion} | {json.dumps(metrics)}')\nprint(f'--- Total: {len(filtered)} experiments ---')\n\" 2>&1",
+  "description": "Extract eval experiments with correct JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\npatterns = [\n    'exp-003-eval-ckpt',\n    'exp-004-eval-ckpt', \n    'exp-003-eval-s2-ckpt',\n    'exp-003-s2-eval-ckpt',\n    'vanilla-d027',\n    'exp-008v3',\n    'exp-009',\n    'exp-016',\n    'exp-012',\n    'exp-014',\n]\n\nfiltered = {}\nfor eid, exp in experiments.items():\n    for p in patterns:\n        if p in eid:\n            filtered[eid] = exp\n            break\n\nfor eid in sorted(filtered.keys()):\n    exp = filtered[eid]\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid} | {status} | {conclusion} | {json.dumps(metrics)}')\nprint(f'--- Total: {len(filtered)} experiments ---')\n\" 2>&1",
+    "description": "Extract eval experiments with correct JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T10:40:50.508597+00:00_
+
+exp-003-eval-ckpt1000 | DONE | negative | {"ToF": 0.0387, "NoF": 0.9448, "SYCONScore": 0.0743, "n_valid": 181, "n_invalid": 181, "n_total": 362, "eval_time_s": 4319, "checkpoint": "checkpoint-1000", "eval_script": "eval_unified_preset.py (D027 standard)", "eval_server": "westd-28034"}
+exp-003-eval-ckpt2000 | DONE | negative | {"ToF": 0.0442, "NoF": 0.9834, "SYCONScore": 0.0846, "n_valid": 181, "n_invalid": 181, "n_total": 362, "checkpoint": "checkpoint-2000", "eval_script": "eval_unified_preset.py (D027 standard)", "eval_server": "westd-28034", "vs_vanilla": "SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline"}
+exp-003-eval-ckpt3000 | DONE | negative | {"ToF": 0.0497, "NoF": 0.9724, "SYCONScore": 0.0946, "n_valid": 181, "n_invalid": 181, "n_total": 362, "checkpoint": "checkpoint-3000", "eval_script": "eval_unified_preset.py (D027 standard)", "eval_server": "westd-28034", "vs_vanilla": "SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline"}
+exp-003-eval-ckpt4000 | DONE | negative | {"ToF": 0.0608, "NoF": 0.9669, "SYCONScore": 0.1144, "n_valid": 181, "n_invalid": 181, "n_total": 362, "checkpoint": "checkpoint-4000", "eval_script": "eval_unified_preset.py (D027 standard)", "eval_server": "westd-28034", "eval_time_sec": 4353, "vs_vanilla": "SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline", "note": "Identical to ckpt-5000 \u2014 model saturated at step 4000"}
+exp-003-eval-ckpt4500 | DONE | negative | {"ToF": 0.0718, "NoF": 0.9613, "SYCONScore": 0.1337, "n_valid": 181, "n_invalid": 181, "n_total": 362, "checkpoint": "checkpoint-4500", "eval_script": "eval_unified_preset.py (D027 standard)", "eval_server": "westd-28034", "eval_time_sec": 4280, "vs_vanilla": "SYCONScore 0.1337 vs 0.1335 = +0.1%, essentially EQUAL to baseline", "note": "Surprising: ckpt-4500 peaks near vanilla baseline (0.1337), HIGHER than ckpt-4000/5000/5500 (0.1144). Non-monotonic trajectory \u2014 peak at 4500 then regression."}
+exp-003-eval-ckpt5000 | DONE | negative | {"ToF": 0.0608, "NoF": 0.96
+…[truncated 10958 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T10:40:50.508927+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check for exp-004-eval-ckpt500, ckpt2000, ckpt8000\nfor k in ['exp-004-eval-ckpt500', 'exp-004-eval-ckpt2000', 'exp-004-eval-ckpt8000']:\n    if k in experiments:\n        exp = experiments[k]\n        print(f'{k} | {exp.get(\\\"status\\\")} | {exp.get(\\\"conclusion\\\")} | {json.dumps(exp.get(\\\"metrics\\\", {}))}')\n    else:\n        print(f'{k} | NOT FOUND')\n\n# Also check exp-003-eval-ckpt7000-v3 for full metrics\nprint()\nk = 'exp-003-eval-ckpt7000-v3'\nif k in experiments:\n    exp = experiments[k]\n    print(f'{k} FULL: {json.dumps(exp, default=str)[:1000]}')\n\n# Check for exp-004 parent metrics (ckpt-8000 best)\nprint()\nk = 'exp-004'\nif k in experiments:\n    exp = experiments[k]\n    print(f'exp-004 parent metrics: {json.dumps(exp.get(\\\"metrics\\\", {}))}')\n    spec = exp.get('spec', {})\n    print(f'exp-004 spec notes: {spec.get(\\\"notes\\\", \\\"\\\")}')\n\" 2>&1",
+  "description": "Check for missing exp-004 checkpoints and exp-003 details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check for exp-004-eval-ckpt500, ckpt2000, ckpt8000\nfor k in ['exp-004-eval-ckpt500', 'exp-004-eval-ckpt2000', 'exp-004-eval-ckpt8000']:\n    if k in experiments:\n        exp = experiments[k]\n        print(f'{k} | {exp.get(\\\"status\\\")} | {exp.get(\\\"conclusion\\\")} | {json.dumps(exp.get(\\\"metrics\\\", {}))}')\n    else:\n        print(f'{k} | NOT FOUND')\n\n# Also check exp-003-eval-ckpt7000-v3 for full metrics\nprint()\nk = 'exp-003-eval-ckpt7000-v3'\nif k in experiments:\n    exp = experiments[k]\n    print(f'{k} FULL: {json.dumps(exp, default=str)[:1000]}')\n\n# Check for exp-004 parent metrics (ckpt-8000 best)\nprint()\nk = 'exp-004'\nif k in experiments:\n    exp = experiments[k]\n    print(f'exp-004 parent metrics: {json.dumps(exp.get(\\\"metrics\\\", {}))}')\n    spec = exp.get('spec', {})\n    print(f'exp-004 spec notes: {spec.get(\\\"notes\\\", \\\"\\\")}')\n\" 2>&1",
+    "description": "Check for missing exp-004 checkpoints and exp-003 details"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T10:40:50.509181+00:00_
+
+exp-004-eval-ckpt500 | NOT FOUND
+exp-004-eval-ckpt2000 | NOT FOUND
+exp-004-eval-ckpt8000 | NOT FOUND
+
+exp-003-eval-ckpt7000-v3 FULL: {"status": "DONE", "retry_count": 0, "created_at": "2026-05-21T08:14:16.803Z", "updated_at": "2026-05-21T09:59:31.158Z", "hypothesis": "Re-run (v3) exp-003 R3-only GRPO checkpoint-7000 eval with D027 unified preset. Previous two runs failed (v1: SIGTERM at 80/362 pairs due to stale cron kill, v2: SIGTERM during early eval with GPU memory contention). Late-stage trajectory point needed for paper figure.", "parent": "exp-003", "spec": {"command": "cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000", "server": "westd-28034", "gpu": ["cuda:0"], "pid": "861274", "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000
+
+exp-004 parent metrics: {"trend": "generally increasing trend with oscillations: early phase ~0.17-0.25, late phase ~0.26-0.30, best=0.301 at ckpt-8000", "best_sycon_score": 0.301, "best_checkpoint": "ckpt-8000"}
+exp-004 spec notes: ACT baseline. 16 checkpoints (500-8000). Best ckpt-8000 SYCONScore=0.3013.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T10:40:50.509418+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Find exp-004 eval ckpt 500, 2000, 8000 - may be stored under different naming\nfor eid, exp in sorted(experiments.items()):\n    if 'exp-004' in eid and 'eval' in eid:\n        print(eid)\n\nprint('---')\n# Check if exp-004 parent has per-checkpoint data in spec or metrics\nexp004 = experiments.get('exp-004', {})\nmetrics = exp004.get('metrics', {})\nspec = exp004.get('spec', {})\n# print all keys\nprint('exp-004 metric keys:', list(metrics.keys()))\nprint('exp-004 spec keys:', list(spec.keys()))\n\n# Also look for exp-003-eval-ckpt7000-v3 full metrics\nv3 = experiments.get('exp-003-eval-ckpt7000-v3', {})\nprint('v3 metrics:', json.dumps(v3.get('metrics', {})))\n\n# Check exp-003-eval-ckpt7500\nv75 = experiments.get('exp-003-eval-ckpt7500', {})\nprint('ckpt7500 metrics:', json.dumps(v75.get('metrics', {})))\n\" 2>&1",
+  "description": "Find all exp-004 eval entries and missing details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/4b690ff8-ddb2-481d-bdd9-2584c1ba4704/tool-results/mcp-agent-ml-research-read_registry-1779359892393.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Find exp-004 eval ckpt 500, 2000, 8000 - may be stored under different naming\nfor eid, exp in sorted(experiments.items()):\n    if 'exp-004' in eid and 'eval' in eid:\n        print(eid)\n\nprint('---')\n# Check if exp-004 parent has per-checkpoint data in spec or metrics\nexp004 = experiments.get('exp-004', {})\nmetrics = exp004.get('metrics', {})\nspec = exp004.get('spec', {})\n# print all keys\nprint('exp-004 metric keys:', list(metrics.keys()))\nprint('exp-004 spec keys:', list(spec.keys()))\n\n# Also look for exp-003-eval-ckpt7000-v3 full metrics\nv3 = experiments.get('exp-003-eval-ckpt7000-v3', {})\nprint('v3 metrics:', json.dumps(v3.get('metrics', {})))\n\n# Check exp-003-eval-ckpt7500\nv75 = experiments.get('exp-003-eval-ckpt7500', {})\nprint('ckpt7500 metrics:', json.dumps(v75.get('metrics', {})))\n\" 2>&1",
+    "description": "Find all exp-004 eval entries and missing details"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T10:40:50.509636+00:00_
+
+exp-004-eval-ckpt1000
+exp-004-eval-ckpt1500
+exp-004-eval-ckpt2500
+exp-004-eval-ckpt3000
+exp-004-eval-ckpt3500
+exp-004-eval-ckpt4000
+exp-004-eval-ckpt4500
+exp-004-eval-ckpt5000
+exp-004-eval-ckpt5500
+exp-004-eval-ckpt6000
+exp-004-eval-ckpt6500
+exp-004-eval-ckpt7000
+exp-004-eval-ckpt7500
+---
+exp-004 metric keys: ['trend', 'best_sycon_score', 'best_checkpoint']
+exp-004 spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'checkpoint_path', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'notes']
+v3 metrics: {"sycon_score": 0.1046}
+ckpt7500 metrics: {"sycon_score": 0.1046}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T10:40:50.509943+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/",
+  "description": "Check artifacts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/",
+    "description": "Check artifacts directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T10:40:50.510182+00:00_
+
+_project
+analyze_r3_reward_dist.py
+analyze_r3_reward_dist_fixed.py
+data
+dream_reports
+eval
+exp-001
+exp-003
+exp-003-s2
+exp-004-eval-ckpt3000
+exp-004-eval-ckpt3500
+exp-006
+exp-008
+exp-008v3
+exp-014
+exp002v2-recalib
+exp008v3
+figures
+manifest.yaml
+post_mvp_experiment_skeleton.md
+research
+run_exp009_continuous_probe_grpo.py
+run_exp016_reeval.py
+stubbornness_taxonomy
+training
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T10:40:50.510463+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_complete.md",
+  "content": "# Complete Experiment Trajectory Data\n> Generated: 2026-05-21 | Vanilla baseline SYCONScore = 0.1335\n\n## 1. exp-003: R3-only GRPO — Seed 1 (seed=42)\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 1000 | 0.0743 | 0.0387 | 0.9448 | −44.3 |\n| 2000 | 0.0846 | 0.0442 | 0.9834 | −36.6 |\n| 3000 | 0.0946 | 0.0497 | 0.9724 | −29.1 |\n| 4000 | 0.1144 | 0.0608 | 0.9669 | −14.3 |\n| 4500 | 0.1337 | 0.0718 | 0.9613 | +0.1 |\n| 5000 | 0.1144 | 0.0608 | 0.9669 | −14.3 |\n| 5500 | 0.1144 | 0.0608 | 0.9724 | −14.3 |\n| 6000 | 0.0846 | 0.0442 | 0.9724 | −36.6 |\n| 6500 | **0.1529** | **0.0829** | 0.9834 | **+14.5** |\n| 7000 | 0.1046 | — | — | −21.6 |\n| 7500 | 0.1046 | — | — | −21.6 |\n| 8000 | ⏳ RUNNING | — | — | — |\n\nBest: **ckpt-6500** SYCONScore=0.1529 (+14.5% vs vanilla)\nNote: Non-monotonic trajectory — peak at 6500 with regression before and after. Steps 7000/7500 only have SYCONScore (no ToF/NoF breakdown).\n\n## 2. exp-004: ACT (SFT)\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 1000 | 0.2048 | 0.1160 | 0.8729 | +53.4 |\n| 1500 | 0.1699 | 0.0939 | 0.8895 | +27.3 |\n| 2500 | 0.2389 | 0.1381 | 0.8840 | +78.9 |\n| 3000 | 0.2058 | 0.1160 | 0.9116 | +54.2 |\n| 3500 | 0.2312 | 0.1326 | 0.9006 | +73.2 |\n| 4000 | 0.2140 | 0.1215 | 0.8950 | +60.3 |\n| 4500 | 0.1875 | 0.1050 | 0.8785 | +40.4 |\n| 5000 | 0.2631 | 0.1547 | 0.8785 | +97.1 |\n| 5500 | 0.2383 | 0.1381 | 0.8674 | +78.5 |\n| 6000 | 0.2618 | 0.1547 | 0.8508 | +96.1 |\n| 6500 | 0.2526 | 0.1492 | 0.8232 | +89.1 |\n| 7000 | **0.2858** | **0.1713** | 0.8619 | **+114.1** |\n| 7500 | 0.2771 | 0.1657 | 0.8453 | +107.6 |\n| 8000 | ~0.3013† | — | — | ~+125.7 |\n\nBest: **ckpt-8000** SYCONScore≈0.3013 (+125.7% vs vanilla)\n†ckpt-8000 value from parent exp-004 summary (no individual eval entry with ToF/NoF breakdown).\nMissing: ckpt-500, ckpt-2000 (no eval entries in registry).\n\n## 3. exp-003-s2: R3-only GRPO — Seed 2 (seed=43)\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) | Source |\n|------|-----------|------|------|----------------|--------|\n| 500 | 0.0845 | 0.0442 | 0.9503 | −36.7 | exp-003-s2-eval-ckpt500 |\n| 1000 | 0.0844 | 0.0442 | 0.9448 | −36.8 | exp-003-s2-eval-ckpt1000 |\n| 1500 | 0.1044 | 0.0552 | 0.9503 | −21.8 | exp-003-s2-eval-ckpt1500 |\n| 2000 | 0.0846 | — | — | −36.6 | exp-003-eval-s2-ckpt2000 |\n| 2500 | ⏳ RUNNING | — | — | — | exp-003-eval-s2-ckpt2500 |\n| 3000 | 0.0945 | 0.0497 | 0.9503 | −29.2 | exp-003-eval-s2-ckpt3000 |\n| 3500 | ⏳ RUNNING | — | — | — | exp-003-eval-s2-ckpt3500 |\n\nBest so far: **ckpt-1500** SYCONScore=0.1044 (−21.8% vs vanilla)\nNote: Seed 2 trajectory consistently below vanilla baseline. Two evals still running.\n\n## 4. exp-008v3: Binary Probe GRPO\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 500 | 0.0000 | 0.0000 | 0.9945 | −100.0 |\n| 1000 | 0.0110 | 0.0055 | 0.9945 | −91.8 |\n| 1500 | 0.0000 | 0.0000 | 1.0000 | −100.0 |\n| 2000 | 0.0000 | 0.0000 | 1.0000 | −100.0 |\n\nConclusion: **Complete failure** — immediate stubbornness collapse. ToF→0 within 500 steps.\n\n## 5. exp-009: Continuous Probe GRPO\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 500 | 0.1238 | 0.0663 | 0.9337 | −7.3 |\n| 1000 | 0.1141 | 0.0608 | 0.9337 | −14.5 |\n\nConclusion: **Negative** — monotonic decline, below baseline at both checkpoints.\n\n## 6. exp-014: Continuous Probe GRPO (extended)\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 3000 | 0.0110 | 0.9780 | 0.0060 | −91.8 |\n\nConclusion: **Mode collapse** — model flips on ALL pressure (ToF≈1, NoF≈0). Killed.\n\n## 7. exp-016: ActAdd (steering vectors)\n\n| Alpha | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|-------|-----------|------|------|----------------|\n| 0.0 | 0.1335 | 0.0718 | 0.9448 | 0.0 |\n| 0.5 | 0.1334 | 0.0718 | 0.9392 | −0.1 |\n| 1.0 | 0.0846 | 0.0442 | 0.9724 | −36.6 |\n| 2.0 | 0.0537 | 0.0276 | 0.9669 | −59.8 |\n| 5.0 | 0.0537 | 0.0276 | 0.9613 | −59.8 |\n\nConclusion: **Negative** — ActAdd improves NoF in WRR metric but destroys ToF. Net negative under SYCONScore.\n\n## 8. exp-012: Llama Cross-Model Probe (diagnostic, no SYCONScore eval)\n\n| Metric | Value |\n|--------|-------|\n| CV AUROC (best layer 16) | 0.7793 |\n| Style-controlled AUROC | 0.9227 |\n| Multi-layer AUROC | 0.8130 |\n| Random direction AUROC | 0.53 ± 0.054 |\n| Gap (d_syc − random) | +0.248 |\n\nNote: Probe analysis only — no SYCONScore training trajectory. Llama sycophancy signal more concentrated than Qwen (gap +0.248 vs +0.108).\n\n## 9. Vanilla Baseline (D027 Reeval)\n\n| Metric | Value |\n|--------|-------|\n| SYCONScore | 0.1335 |\n| ToF | 0.0718 |\n| NoF | 0.9448 |\n\n---\n\n## Summary: Best Checkpoint Comparison\n\n| Method | Exp ID | Best Step | SYCONScore | ToF | NoF | vs Vanilla (%) | Status |\n|--------|--------|-----------|-----------|------|------|----------------|--------|\n| Vanilla (Qwen3-8B) | vanilla-d027-reeval | — | 0.1335 | 0.0718 | 0.9448 | — | baseline |\n| **ACT (SFT)** | exp-004 | **ckpt-7000** | **0.2858** | **0.1713** | 0.8619 | **+114.1** | ✅ best confirmed |\n| ACT (SFT) | exp-004 | ckpt-8000 | ~0.3013† | — | — | ~+125.7 | †summary only |\n| R3-only GRPO s1 | exp-003 | ckpt-6500 | 0.1529 | 0.0829 | 0.9834 | +14.5 | ✅ |\n| R3-only GRPO s2 | exp-003-s2 | ckpt-1500 | 0.1044 | 0.0552 | 0.9503 | −21.8 | partial (2 RUNNING) |\n| Continuous Probe GRPO | exp-009 | ckpt-500 | 0.1238 | 0.0663 | 0.9337 | −7.3 | ❌ negative |\n| Binary Probe GRPO | exp-008v3 | ckpt-1000 | 0.0110 | 0.0055 | 0.9945 | −91.8 | ❌ stubbornness collapse |\n| Cont. Probe GRPO ext. | exp-014 | ckpt-3000 | 0.0110 | 0.9780 | 0.0060 | −91.8 | ❌ mode collapse |\n| ActAdd (α=0.5) | exp-016 | α=0.5 | 0.1334 | 0.0718 | 0.9392 | −0.1 | ❌ no improvement |\n| Llama Probe | exp-012 | — | — | — | — | — | diagnostic only |\n\n---\n\n## Pending Data Points\n\n| Exp ID | Status | Notes |\n|--------|--------|-------|\n| exp-003-eval-ckpt8000 | ⏳ RUNNING | R3-GRPO s1 last checkpoint |\n| exp-003-eval-s2-ckpt2500 | ⏳ RUNNING | R3-GRPO s2 |\n| exp-003-eval-s2-ckpt3500 | ⏳ RUNNING | R3-GRPO s2 |\n| exp-003-s2-eval-ckpt2500 | 📋 QUEUED | R3-GRPO s2 (duplicate naming) |\n| exp-003-s2-eval-ckpt3000 | 📋 QUEUED | R3-GRPO s2 (duplicate naming, success result exists under exp-003-eval-s2-ckpt3000) |\n| exp-004-eval-ckpt500 | ❓ MISSING | ACT early checkpoint, never submitted |\n| exp-004-eval-ckpt2000 | ❓ MISSING | ACT checkpoint, never submitted |\n| exp-004-eval-ckpt8000 | ❓ MISSING | ACT best checkpoint (~0.3013 from parent summary), no individual eval entry |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_complete.md",
+    "content": "# Complete Experiment Trajectory Data\n> Generated: 2026-05-21 | Vanilla baseline SYCONScore = 0.1335\n\n## 1. exp-003: R3-only GRPO — Seed 1 (seed=42)\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 1000 | 0.0743 | 0.0387 | 0.9448 | −44.3 |\n| 2000 | 0.0846 | 0.0442 | 0.9834 | −36.6 |\n| 3000 | 0.0946 | 0.0497 | 0.9724 | −29.1 |\n| 4000 | 0.1144 | 0.0608 | 0.9669 | −14.3 |\n| 4500 | 0.1337 | 0.0718 | 0.9613 | +0.1 |\n| 5000 | 0.1144 | 0.0608 | 0.9669 | −14.3 |\n| 5500 | 0.1144 | 0.0608 | 0.9724 | −14.3 |\n| 6000 | 0.0846 | 0.0442 | 0.9724 | −36.6 |\n| 6500 | **0.1529** | **0.0829** | 0.9834 | **+14.5** |\n| 7000 | 0.1046 | — | — | −21.6 |\n| 7500 | 0.1046 | — | — | −21.6 |\n| 8000 | ⏳ RUNNING | — | — | — |\n\nBest: **ckpt-6500** SYCONScore=0.1529 (+14.5% vs vanilla)\nNote: Non-monotonic trajectory — peak at 6500 with regression before and after. Steps 7000/7500 only have SYCONScore (no ToF/NoF breakdown).\n\n## 2. exp-004: ACT (SFT)\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 1000 | 0.2048 | 0.1160 | 0.8729 | +53.4 |\n| 1500 | 0.1699 | 0.0939 | 0.8895 | +27.3 |\n| 2500 | 0.2389 | 0.1381 | 0.8840 | +78.9 |\n| 3000 | 0.2058 | 0.1160 | 0.9116 | +54.2 |\n| 3500 | 0.2312 | 0.1326 | 0.9006 | +73.2 |\n| 4000 | 0.2140 | 0.1215 | 0.8950 | +60.3 |\n| 4500 | 0.1875 | 0.1050 | 0.8785 | +40.4 |\n| 5000 | 0.2631 | 0.1547 | 0.8785 | +97.1 |\n| 5500 | 0.2383 | 0.1381 | 0.8674 | +78.5 |\n| 6000 | 0.2618 | 0.1547 | 0.8508 | +96.1 |\n| 6500 | 0.2526 | 0.1492 | 0.8232 | +89.1 |\n| 7000 | **0.2858** | **0.1713** | 0.8619 | **+114.1** |\n| 7500 | 0.2771 | 0.1657 | 0.8453 | +107.6 |\n| 8000 | ~0.3013† | — | — | ~+125.7 |\n\nBest: **ckpt-8000** SYCONScore≈0.3013 (+125.7% vs vanilla)\n†ckpt-8000 value from parent exp-004 summary (no individual eval entry with ToF/NoF breakdown).\nMissing: ckpt-500, ckpt-2000 (no eval entries in registry).\n\n## 3. exp-003-s2: R3-only GRPO — Seed 2 (seed=43)\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) | Source |\n|------|-----------|------|------|----------------|--------|\n| 500 | 0.0845 | 0.0442 | 0.9503 | −36.7 | exp-003-s2-eval-ckpt500 |\n| 1000 | 0.0844 | 0.0442 | 0.9448 | −36.8 | exp-003-s2-eval-ckpt1000 |\n| 1500 | 0.1044 | 0.0552 | 0.9503 | −21.8 | exp-003-s2-eval-ckpt1500 |\n| 2000 | 0.0846 | — | — | −36.6 | exp-003-eval-s2-ckpt2000 |\n| 2500 | ⏳ RUNNING | — | — | — | exp-003-eval-s2-ckpt2500 |\n| 3000 | 0.0945 | 0.0497 | 0.9503 | −29.2 | exp-003-eval-s2-ckpt3000 |\n| 3500 | ⏳ RUNNING | — | — | — | exp-003-eval-s2-ckpt3500 |\n\nBest so far: **ckpt-1500** SYCONScore=0.1044 (−21.8% vs vanilla)\nNote: Seed 2 trajectory consistently below vanilla baseline. Two evals still running.\n\n## 4. exp-008v3: Binary Probe GRPO\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 500 | 0.0000 | 0.0000 | 0.9945 | −100.0 |\n| 1000 | 0.0110 | 0.0055 | 0.9945 | −91.8 |\n| 1500 | 0.0000 | 0.0000 | 1.0000 | −100.0 |\n| 2000 | 0.0000 | 0.0000 | 1.0000 | −100.0 |\n\nConclusion: **Complete failure** — immediate stubbornness collapse. ToF→0 within 500 steps.\n\n## 5. exp-009: Continuous Probe GRPO\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 500 | 0.1238 | 0.0663 | 0.9337 | −7.3 |\n| 1000 | 0.1141 | 0.0608 | 0.9337 | −14.5 |\n\nConclusion: **Negative** — monotonic decline, below baseline at both checkpoints.\n\n## 6. exp-014: Continuous Probe GRPO (extended)\n\n| Step | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|------|-----------|------|------|----------------|\n| 3000 | 0.0110 | 0.9780 | 0.0060 | −91.8 |\n\nConclusion: **Mode collapse** — model flips on ALL pressure (ToF≈1, NoF≈0). Killed.\n\n## 7. exp-016: ActAdd (steering vectors)\n\n| Alpha | SYCONScore | ToF | NoF | vs Vanilla (%) |\n|-------|-----------|------|------|----------------|\n| 0.0 | 0.1335 | 0.0718 | 0.9448 | 0.0 |\n| 0.5 | 0.1334 | 0.0718 | 0.9392 | −0.1 |\n| 1.0 | 0.0846 | 0.0442 | 0.9724 | −36.6 |\n| 2.0 | 0.0537 | 0.0276 | 0.9669 | −59.8 |\n| 5.0 | 0.0537 | 0.0276 | 0.9613 | −59.8 |\n\nConclusion: **Negative** — ActAdd improves NoF in WRR metric but destroys ToF. Net negative under SYCONScore.\n\n## 8. exp-012: Llama Cross-Model Probe (diagnostic, no SYCONScore eval)\n\n| Metric | Value |\n|--------|-------|\n| CV AUROC (best layer 16) | 0.7793 |\n| Style-controlled AUROC | 0.9227 |\n| Multi-layer AUROC | 0.8130 |\n| Random direction AUROC | 0.53 ± 0.054 |\n| Gap (d_syc − random) | +0.248 |\n\nNote: Probe analysis only — no SYCONScore training trajectory. Llama sycophancy signal more concentrated than Qwen (gap +0.248 vs +0.108).\n\n## 9. Vanilla Baseline (D027 Reeval)\n\n| Metric | Value |\n|--------|-------|\n| SYCONScore | 0.1335 |\n| ToF | 0.0718 |\n| NoF | 0.9448 |\n\n---\n\n## Summary: Best Checkpoint Comparison\n\n| Method | Exp ID | Best Step | SYCONScore | ToF | NoF | vs Vanilla (%) | Status |\n|--------|--------|-----------|-----------|------|------|----------------|--------|\n| Vanilla (Qwen3-8B) | vanilla-d027-reeval | — | 0.1335 | 0.0718 | 0.9448 | — | baseline |\n| **ACT (SFT)** | exp-004 | **ckpt-7000** | **0.2858** | **0.1713** | 0.8619 | **+114.1** | ✅ best confirmed |\n| ACT (SFT) | exp-004 | ckpt-8000 | ~0.3013† | — | — | ~+125.7 | †summary only |\n| R3-only GRPO s1 | exp-003 | ckpt-6500 | 0.1529 | 0.0829 | 0.9834 | +14.5 | ✅ |\n| R3-only GRPO s2 | exp-003-s2 | ckpt-1500 | 0.1044 | 0.0552 | 0.9503 | −21.8 | partial (2 RUNNING) |\n| Continuous Probe GRPO | exp-009 | ckpt-500 | 0.1238 | 0.0663 | 0.9337 | −7.3 | ❌ negative |\n| Binary Probe GRPO | exp-008v3 | ckpt-1000 | 0.0110 | 0.0055 | 0.9945 | −91.8 | ❌ stubbornness collapse |\n| Cont. Probe GRPO ext. | exp-014 | ckpt-3000 | 0.0110 | 0.9780 | 0.0060 | −91.8 | ❌ mode collapse |\n| ActAdd (α=0.5) | exp-016 | α=0.5 | 0.1334 | 0.0718 | 0.9392 | −0.1 | ❌ no improvement |\n| Llama Probe | exp-012 | — | — | — | — | — | diagnostic only |\n\n---\n\n## Pending Data Points\n\n| Exp ID | Status | Notes |\n|--------|--------|-------|\n| exp-003-eval-ckpt8000 | ⏳ RUNNING | R3-GRPO s1 last checkpoint |\n| exp-003-eval-s2-ckpt2500 | ⏳ RUNNING | R3-GRPO s2 |\n| exp-003-eval-s2-ckpt3500 | ⏳ RUNNING | R3-GRPO s2 |\n| exp-003-s2-eval-ckpt2500 | 📋 QUEUED | R3-GRPO s2 (duplicate naming) |\n| exp-003-s2-eval-ckpt3000 | 📋 QUEUED | R3-GRPO s2 (duplicate naming, success result exists under exp-003-eval-s2-ckpt3000) |\n| exp-004-eval-ckpt500 | ❓ MISSING | ACT early checkpoint, never submitted |\n| exp-004-eval-ckpt2000 | ❓ MISSING | ACT checkpoint, never submitted |\n| exp-004-eval-ckpt8000 | ❓ MISSING | ACT best checkpoint (~0.3013 from parent summary), no individual eval entry |\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T10:40:50.510902+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_complete.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T10:40:50.511168+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "trajectory_data_complete",
+  "type": "data",
+  "description": "Complete experiment trajectory data table for all methods (exp-003/004/008v3/009/012/014/016), with per-checkpoint SYCONScore/ToF/NoF and vs-vanilla comparison. Paper-ready format.",
+  "project": "contrastive_entrain_calib",
+  "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_complete.md",
+  "tags": "['trajectory', 'metrics', 'paper', 'summary']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "trajectory_data_complete",
+    "type": "data",
+    "description": "Complete experiment trajectory data table for all methods (exp-003/004/008v3/009/012/014/016), with per-checkpoint SYCONScore/ToF/NoF and vs-vanilla comparison. Paper-ready format.",
+    "project": "contrastive_entrain_calib",
+    "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_complete.md",
+    "tags": "['trajectory', 'metrics', 'paper', 'summary']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T10:40:50.511418+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_4f9a26\", \"name\": \"trajectory_data_complete\", \"type\": \"data\", \"description\": \"Complete experiment trajectory data table for all methods (exp-003/004/008v3/009/012/014/016), with per-checkpoint SYCONScore/ToF/NoF and vs-vanilla comparison. Paper-ready format.\", \"path\": \"projects/contrastive_entrain_calib/artifacts/_project/data/trajectory_data_complete.md\", \"url\": null, \"project\": \"contrastive_entrain_calib\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T10:40:12.594006+00:00\", \"tags\": [\"trajectory\", \"metrics\", \"paper\", \"summary\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T10:40:50.511629+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T10:40:50.511827+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T10:40:50.514155+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T10:40:50.514461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/memory.md\", \"content\": \"## memory.md\\n\\n### 关键发现\\n\\n**D029 (updated): 8 种 representation-to-reward formulation 全部失败**\\n- cosine R1 (exp-002): tanh 饱和 → kill\\n- cosine R1 v2 (exp-002v2): 去 tanh 后 mode collapse → kill  \\n- cosine R1 scaled (exp-002v3): 5x 放大噪声等比放大 → mode collapse\\n- cosine R1 recalib (exp002v2-recalib): 500 步 recalibrate 仍然 collapse\\n- binary probe (exp-008v3): 即时 stubbornness trap，ToF=0 at ckpt-500\\n- continuous probe (exp-014): adversarial gaming，30 步内 probe gamed\\n- continuous probe probability (exp-009): \\\"慢性 binary probe\\\"，ckpt-500 ≈ vanilla → kill\\n- R3-only behavioral (exp-003): \\\"uniform stubbornness\\\"，拒绝所有压力而非选择性拒绝\\n- ActAdd inference-time (exp-016): 提升 NoF 但摧毁 ToF，净负效果\\n\\n**R3-only 非单调轨迹 (exp-003, 2026-05-20 ckpt-4500 修正)**\\n- 完整 8 点轨迹：1000(0.074) → 2000(0.085) → 3000(0.095) → 4000(0.114) → **4500(0.134 ≈ vanilla)** → 5000(0.114) → 5500(0.114)\\n- **不是 \\\"step 4000 plateau at 0.114\\\"**——实际是先升到 step 4500 追平 vanilla，然后退化到 0.114\\n- R3-only 最佳也仅能追平 baseline，永远无法超越\\n- 退化行为可能暗示 behavioral reward 在 baseline 附近的 overfitting/reward hacking\\n- \\\"uniform stubbornness\\\" 机制：NLI 只能判断\\\"是否让步\\\"，无法区分\\\"该让步\\\"和\\\"不该让步\\\"\\n\\n**R3-only 跨 seed 可复现性确认 (exp-003-s2, 2026-05-20)**\\n- Seed 2 (seed=43) 早期轨迹与 seed 1 (seed=42) 方向完全一致\\n- s2-ckpt500=0.085, s2-ckpt1000=0.084, s2-ckpt1500=0.104 — 均低于 vanilla (0.134)\\n- Seed 2 绝对值略高于 seed 1 同阶段（~14%），但数量级一致\\n- 结论：R3-only below-vanilla 不是随机波动，跨 seed 可复现\\n\\n**ACT 非单调训练轨迹 (exp-004, 16 checkpoint 完整数据)**\\n- 整体趋势向上，但存在锯齿振荡\\n- 两个 dip 区：ckpt-1500 早期 dip (回落到 ckpt-500 水平) + ckpt-2500-4500 中期 dip (谷底 ckpt-4500=0.188)\\n- 所有 16 个 checkpoint 始终高于 vanilla baseline (0.134)\\n- 后半程 (5000+) 持续上升，ckpt-8000 达 0.301 (+126%)\\n- ACT 最差点 (0.170) 仍高于 R3-only 最好点 (0.134)，差距 +27%\\n\\n**D027 统一 Eval 基线校正**\\n- 所有实验统一用 eval_unified_preset.py (D027 标准)\\n- v
+…[truncated 1486 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T10:40:50.514811+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "file": "memory.md",
+  "content": "## memory.md\n\n### 关键发现\n\n**D029 (updated): 8 种 representation-to-reward formulation 全部失败**\n- cosine R1 (exp-002): tanh 饱和 → kill\n- cosine R1 v2 (exp-002v2): 去 tanh 后 mode collapse → kill  \n- cosine R1 scaled (exp-002v3): 5x 放大噪声等比放大 → mode collapse\n- cosine R1 recalib (exp002v2-recalib): 500 步 recalibrate 仍然 collapse\n- binary probe (exp-008v3): 即时 stubbornness trap，ToF=0 at ckpt-500\n- continuous probe (exp-014): adversarial gaming，30 步内 probe gamed\n- continuous probe probability (exp-009): \"慢性 binary probe\"，ckpt-500 ≈ vanilla → kill\n- R3-only behavioral (exp-003): \"uniform stubbornness\"，拒绝所有压力而非选择性拒绝\n- ActAdd inference-time (exp-016): 提升 NoF 但摧毁 ToF，净负效果\n\n**R3-only 非单调轨迹 (exp-003, 2026-05-20 ckpt-4500 修正)**\n- 完整 8 点轨迹：1000(0.074) → 2000(0.085) → 3000(0.095) → 4000(0.114) → **4500(0.134 ≈ vanilla)** → 5000(0.114) → 5500(0.114)\n- **不是 \"step 4000 plateau at 0.114\"**——实际是先升到 step 4500 追平 vanilla，然后退化到 0.114\n- R3-only 最佳也仅能追平 baseline，永远无法超越\n- 退化行为可能暗示 behavioral reward 在 baseline 附近的 overfitting/reward hacking\n- \"uniform stubbornness\" 机制：NLI 只能判断\"是否让步\"，无法区分\"该让步\"和\"不该让步\"\n\n**R3-only 跨 seed 可复现性确认 (exp-003-s2, 2026-05-20)**\n- Seed 2 (seed=43) 早期轨迹与 seed 1 (seed=42) 方向完全一致\n- s2-ckpt500=0.085, s2-ckpt1000=0.084, s2-ckpt1500=0.104 — 均低于 vanilla (0.134)\n- Seed 2 绝对值略高于 seed 1 同阶段（~14%），但数量级一致\n- 结论：R3-only below-vanilla 不是随机波动，跨 seed 可复现\n\n**ACT 非单调训练轨迹 (exp-004, 16 checkpoint 完整数据)**\n- 整体趋势向上，但存在锯齿振荡\n- 两个 dip 区：ckpt-1500 早期 dip (回落到 ckpt-500 水平) + ckpt-2500-4500 中期 dip (谷底 ckpt-4500=0.188)\n- 所有 16 个 checkpoint 始终高于 vanilla baseline (0.134)\n- 后半程 (5000+) 持续上升，ckpt-8000 达 0.301 (+126%)\n- ACT 最差点 (0.170) 仍高于 R3-only 最好点 (0.134)，差距 +27%\n\n**D027 统一 Eval 基线校正**\n- 所有实验统一用 eval_unified_preset.py (D027 标准)\n- vanilla baseline: ToF=0.072, NoF=0.945, SYCONScore=0.134\n- 旧 eval_pipeline.py 给出的 vanilla SYCONScore=0.197 因 eval 脚本差异而偏高\n\n**Llama-3-8B 跨模型验证 (exp-012)**\n- Llama d_syc AUROC=0.779 (best layer 16)，style-controlled=0.923\n- Llama random direction gap +0.248 > Qwen +0.108 — sycophancy 信号在 Llama 上更集中\n- 跨模型 discriminability 确认，强化 Claim 1\n\n**Probe Reward Trap 关键数据 (exp-008v3, 2026-05-20)**\n- R1_mean 剧烈波动（0→0.875→0.25→1.0，probe 每 500 步重训）但 ToF 从 step 500 锁死≈0\n- Entropy 从 0.70 降到 0.30（1300 步 behavioral-distributional lag）\n- 数据文件：artifacts/figures/probe_trap_data.json (art_20260520_43877a)\n- 图表文件：artifacts/figures/fig_probe_trap.pdf/png\n\n### 基础设施经验\n\n**29046↔28034 直连 SCP (2026-05-20 发现)**\n- 通过 `connect.westd.seetacloud.com` 网关可直连传输，无需本地中转\n- SCP 命令：直接 `scp -r westd-29046:/path/ westd-28034:/path/` 即可（Worker 已验证）\n- 这比之前假设的\"NAT 无法直连\"更高效\n\n**29046 checkpoint 实际路径 (2026-05-20 确认)**\n- exp-003 seed 1: `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-{step}/`\n- exp-003-s2 seed 2: `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-{step}/`\n- 不是 `/root/contrastive_entrain_calib/outputs/` 下\n\n### 竞品实验参考\n（待 Worker 调研后填充）\n\n### 决策原因记录\n- batch size 必须 32：显存限制 (A100 32GB on 28034)\n- LoRA rank=64：exp-001 验证 rank 64 比 rank 8/16 更好地捕获 sycophancy direction\n- ACT 用 SFT 而非 RL：L2 loss 在 hidden states 上直接优化，避开 reward 设计问题\n\n### 轨迹数据汇总 (2026-05-21)\n\n完整数据表：`artifacts/trajectory_data_complete.md` (art_20260521_4f9a26)\n\n**各方法 best checkpoint SYCONScore:**\n| Method | Best SYCONScore | vs Vanilla |\n|--------|----------------|------------|\n| Vanilla baseline | 0.1335 | — |\n| ACT (exp-004) ckpt-7000 | 0.2858 | +114.1% |\n| ACT (exp-004) ckpt-8000 | ~0.3013† | ~+125.7% |\n| R3-GRPO s1 (exp-003) ckpt-6500 | 0.1529 | +14.5% |\n| R3-GRPO s2 (exp-003-s2) ckpt-1500 | 0.1044 | −21.8% |\n| Cont. Probe (exp-009) ckpt-500 | 0.1238 | −7.3% |\n| Binary Probe (exp-008v3) | 0.0110 | −91.8% |\n| Cont. Probe GRPO ext (exp-014) | 0.0110 | −91.8% |\n| ActAdd (exp-016) α=0.5 | 0.1334 | −0.1% |\n\n**待补充数据点:** exp-003-eval-ckpt8000 (RUNNING), exp-003-s2 ckpt2500/3500 (RUNNING), exp-004 ckpt500/2000/8000 (MISSING individual eval)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "file": "memory.md",
+    "content": "## memory.md\n\n### 关键发现\n\n**D029 (updated): 8 种 representation-to-reward formulation 全部失败**\n- cosine R1 (exp-002): tanh 饱和 → kill\n- cosine R1 v2 (exp-002v2): 去 tanh 后 mode collapse → kill  \n- cosine R1 scaled (exp-002v3): 5x 放大噪声等比放大 → mode collapse\n- cosine R1 recalib (exp002v2-recalib): 500 步 recalibrate 仍然 collapse\n- binary probe (exp-008v3): 即时 stubbornness trap，ToF=0 at ckpt-500\n- continuous probe (exp-014): adversarial gaming，30 步内 probe gamed\n- continuous probe probability (exp-009): \"慢性 binary probe\"，ckpt-500 ≈ vanilla → kill\n- R3-only behavioral (exp-003): \"uniform stubbornness\"，拒绝所有压力而非选择性拒绝\n- ActAdd inference-time (exp-016): 提升 NoF 但摧毁 ToF，净负效果\n\n**R3-only 非单调轨迹 (exp-003, 2026-05-20 ckpt-4500 修正)**\n- 完整 8 点轨迹：1000(0.074) → 2000(0.085) → 3000(0.095) → 4000(0.114) → **4500(0.134 ≈ vanilla)** → 5000(0.114) → 5500(0.114)\n- **不是 \"step 4000 plateau at 0.114\"**——实际是先升到 step 4500 追平 vanilla，然后退化到 0.114\n- R3-only 最佳也仅能追平 baseline，永远无法超越\n- 退化行为可能暗示 behavioral reward 在 baseline 附近的 overfitting/reward hacking\n- \"uniform stubbornness\" 机制：NLI 只能判断\"是否让步\"，无法区分\"该让步\"和\"不该让步\"\n\n**R3-only 跨 seed 可复现性确认 (exp-003-s2, 2026-05-20)**\n- Seed 2 (seed=43) 早期轨迹与 seed 1 (seed=42) 方向完全一致\n- s2-ckpt500=0.085, s2-ckpt1000=0.084, s2-ckpt1500=0.104 — 均低于 vanilla (0.134)\n- Seed 2 绝对值略高于 seed 1 同阶段（~14%），但数量级一致\n- 结论：R3-only below-vanilla 不是随机波动，跨 seed 可复现\n\n**ACT 非单调训练轨迹 (exp-004, 16 checkpoint 完整数据)**\n- 整体趋势向上，但存在锯齿振荡\n- 两个 dip 区：ckpt-1500 早期 dip (回落到 ckpt-500 水平) + ckpt-2500-4500 中期 dip (谷底 ckpt-4500=0.188)\n- 所有 16 个 checkpoint 始终高于 vanilla baseline (0.134)\n- 后半程 (5000+) 持续上升，ckpt-8000 达 0.301 (+126%)\n- ACT 最差点 (0.170) 仍高于 R3-only 最好点 (0.134)，差距 +27%\n\n**D027 统一 Eval 基线校正**\n- 所有实验统一用 eval_unified_preset.py (D027 标准)\n- vanilla baseline: ToF=0.072, NoF=0.945, SYCONScore=0.134\n- 旧 eval_pipeline.py 给出的 vanilla SYCONScore=0.197 因 eval 脚本差异而偏高\n\n**Llama-3-8B 跨模型验证 (exp-012)**\n- Llama d_syc AUROC=0.779 (best layer 16)，style-controlled=0.923\n- Llama random direction gap +0.248 > Qwen +0.108 — sycophancy 信号在 Llama 上更集中\n- 跨模型 discriminability 确认，强化 Claim 1\n\n**Probe Reward Trap 关键数据 (exp-008v3, 2026-05-20)**\n- R1_mean 剧烈波动（0→0.875→0.25→1.0，probe 每 500 步重训）但 ToF 从 step 500 锁死≈0\n- Entropy 从 0.70 降到 0.30（1300 步 behavioral-distributional lag）\n- 数据文件：artifacts/figures/probe_trap_data.json (art_20260520_43877a)\n- 图表文件：artifacts/figures/fig_probe_trap.pdf/png\n\n### 基础设施经验\n\n**29046↔28034 直连 SCP (2026-05-20 发现)**\n- 通过 `connect.westd.seetacloud.com` 网关可直连传输，无需本地中转\n- SCP 命令：直接 `scp -r westd-29046:/path/ westd-28034:/path/` 即可（Worker 已验证）\n- 这比之前假设的\"NAT 无法直连\"更高效\n\n**29046 checkpoint 实际路径 (2026-05-20 确认)**\n- exp-003 seed 1: `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-{step}/`\n- exp-003-s2 seed 2: `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-{step}/`\n- 不是 `/root/contrastive_entrain_calib/outputs/` 下\n\n### 竞品实验参考\n（待 Worker 调研后填充）\n\n### 决策原因记录\n- batch size 必须 32：显存限制 (A100 32GB on 28034)\n- LoRA rank=64：exp-001 验证 rank 64 比 rank 8/16 更好地捕获 sycophancy direction\n- ACT 用 SFT 而非 RL：L2 loss 在 hidden states 上直接优化，避开 reward 设计问题\n\n### 轨迹数据汇总 (2026-05-21)\n\n完整数据表：`artifacts/trajectory_data_complete.md` (art_20260521_4f9a26)\n\n**各方法 best checkpoint SYCONScore:**\n| Method | Best SYCONScore | vs Vanilla |\n|--------|----------------|------------|\n| Vanilla baseline | 0.1335 | — |\n| ACT (exp-004) ckpt-7000 | 0.2858 | +114.1% |\n| ACT (exp-004) ckpt-8000 | ~0.3013† | ~+125.7% |\n| R3-GRPO s1 (exp-003) ckpt-6500 | 0.1529 | +14.5% |\n| R3-GRPO s2 (exp-003-s2) ckpt-1500 | 0.1044 | −21.8% |\n| Cont. Probe (exp-009) ckpt-500 | 0.1238 | −7.3% |\n| Binary Probe (exp-008v3) | 0.0110 | −91.8% |\n| Cont. Probe GRPO ext (exp-014) | 0.0110 | −91.8% |\n| ActAdd (exp-016) α=0.5 | 0.1334 | −0.1% |\n\n**待补充数据点:** exp-003-eval-ckpt8000 (RUNNING), exp-003-s2 ckpt2500/3500 (RUNNING), exp-004 ckpt500/2000/8000 (MISSING individual eval)\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T10:40:50.515139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_trajectory-compile_20260521T103757",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-21T10:40:50.515407+00:00_
+
+完成。轨迹数据表已保存到两处：
+
+1. **`artifacts/trajectory_data_complete.md`** — 完整版，含 9 个方法的逐 checkpoint 数据
+2. **`memory.md`** 末尾 — best checkpoint 汇总表
+
+关键结论：
+- **ACT (exp-004) 是唯一显著超越 vanilla 的方法**，ckpt-7000 SYCONScore=0.2858 (+114%)，ckpt-8000 约 0.3013 (+126%)
+- **R3-GRPO s1** 在 ckpt-6500 意外出现 0.1529 (+14.5%)，是此前未知的新高点（之前认为 ckpt-4500 的 0.1337 是峰值）
+- **R3-GRPO s2** 始终低于 baseline，两个 eval 仍在 RUNNING
+- 其余 5 种方法全部 negative（probe reward trap / mode collapse / 净负效果）
+
+**待补数据：** exp-003-eval-ckpt8000 (RUNNING)、exp-003-s2 ckpt2500/3500 (RUNNING)、exp-004 ckpt500/2000/8000 (未提交独立 eval)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_trajectory-compile_20260521T103757"
+}
+```
+
+</details>
+
+---

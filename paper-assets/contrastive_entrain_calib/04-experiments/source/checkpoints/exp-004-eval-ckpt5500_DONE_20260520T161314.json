@@ -1,0 +1,58 @@
+{
+  "exp_id": "exp-004-eval-ckpt5500",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:41:41.309Z",
+    "updated_at": "2026-05-20T16:13:14.157Z",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt5500\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "601752",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-004-eval-ckpt5500.log",
+      "submitted_at": "2026-05-20T15:41:41.207Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 362,
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500",
+      "checkpoint_path": "/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500",
+      "eval_data": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "wall_clock_seconds": 1893.0,
+      "gpu_hours": 0.53
+    },
+    "hypothesis": "ACT training at checkpoint-5500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004",
+    "parent": "exp-004",
+    "reproduce": {
+      "finished_at": "2026-05-20T16:05:21.000Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T16:05:23.628739+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ToF": 0.1381,
+      "NoF": 0.8674,
+      "SYCONScore": 0.2383,
+      "n_samples": 362
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T16:13:14.157Z"
+  },
+  "timestamp": "2026-05-20T16:13:14.243823+00:00",
+  "trigger": "update_registry"
+}

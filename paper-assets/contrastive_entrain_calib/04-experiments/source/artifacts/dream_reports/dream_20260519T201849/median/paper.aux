@@ -1,0 +1,100 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{perez2023discovering,sharma2024towards}
+\citation{zou2023representation}
+\citation{burns2023discovering}
+\citation{turner2023activation}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{perez2023discovering,sharma2024towards,wei2024simple}
+\citation{truthdecay2025}
+\citation{sycon2025}
+\citation{pwwp2025}
+\citation{act2025}
+\citation{zou2023representation}
+\citation{burns2023discovering}
+\citation{craft2025}
+\citation{zhang2026latent}
+\citation{lpp2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sycophancy in LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Anti-sycophancy training.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation Engineering.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Direction Extraction}{2}{section.3}\protected@file@percent }
+\newlabel{sec:direction}{{3}{2}{Direction Extraction}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Sycophancy Direction via Contrastive Pairs}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Direction Stability During Training}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:stability}{{3.2}{2}{Direction Stability During Training}{subsection.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Direction stability during GRPO training (Qwen3-8B). Cosine similarity with the initial $d_{\text  {syc}}$ and held-out probe AUROC, measured every 500--1{,}000 steps. AUROC degrades 6pp vs.\ 18pp cosine drift, indicating the probe boundary is more stable than the raw direction.}}{3}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:stability}{{1}{3}{Direction stability during GRPO training (Qwen3-8B). Cosine similarity with the initial $\dsyc $ and held-out probe AUROC, measured every 500--1{,}000 steps. AUROC degrades 6pp vs.\ 18pp cosine drift, indicating the probe boundary is more stable than the raw direction}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}The Discriminability--Reward Gap}{3}{section.4}\protected@file@percent }
+\newlabel{sec:failure}{{4}{3}{The Discriminability--Reward Gap}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Experiment 1: Tanh-gated cosine.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 2: Raw cosine projection.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 3: Cosine with online recalibration.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 4: Scaled cosine (5$\times $).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Root Cause Analysis}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Binarization as Bridge}{3}{section.5}\protected@file@percent }
+\newlabel{sec:probe}{{5}{3}{Binarization as Bridge}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Binary Probe Design}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}DC-GRPO with Combined Reward}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments}{4}{section.6}\protected@file@percent }
+\newlabel{sec:experiments}{{6}{4}{Experiments}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Setup}{4}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Main Results}{4}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Main results on SYCON-Bench. R3-only reports mean$\pm $std over 3 seeds; Probe R1+R3 is a single seed. Probe R1+R3 significantly outperforms ACT ($p$=0.04) and Vanilla ($p$=0.002). The difference vs.\ R3-only is not significant ($p$=0.12).}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:main}{{2}{4}{Main results on SYCON-Bench. R3-only reports mean$\pm $std over 3 seeds; Probe R1+R3 is a single seed. Probe R1+R3 significantly outperforms ACT ($p$=0.04) and Vanilla ($p$=0.002). The difference vs.\ R3-only is not significant ($p$=0.12)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pairwise significance tests (bootstrap, $n$=1{,}000, $\alpha $=0.05).}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:significance}{{3}{4}{Pairwise significance tests (bootstrap, $n$=1{,}000, $\alpha $=0.05)}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Training Dynamics}{4}{subsection.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Training progression of Probe R1+R3. Performance peaks at step 4{,}500 as the probe signal becomes noisier in later steps.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:progression}{{4}{5}{Training progression of Probe R1+R3. Performance peaks at step 4{,}500 as the probe signal becomes noisier in later steps}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Ablation: R1-only vs.\ R3-only and combined. R1-only achieves \textsc  {SYCONScore}{} 0.327 (+13pp over Vanilla), demonstrating independent signal. The combination exceeds both components.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:ablation}{{5}{5}{Ablation: R1-only vs.\ R3-only and combined. R1-only achieves \sycon {} 0.327 (+13pp over Vanilla), demonstrating independent signal. The combination exceeds both components}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Ablation: R1-only}{5}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Turn-Depth Analysis}{5}{subsection.6.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces \textsc  {SYCONScore}{} by turn depth. Probe R1+R3 advantage over R3-only is consistent ($\sim $4.5pp) but does not amplify at deeper turns.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:depth}{{6}{5}{\sycon {} by turn depth. Probe R1+R3 advantage over R3-only is consistent ($\sim $4.5pp) but does not amplify at deeper turns}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-model comparison. Llama-3-8B exhibits the same directional discriminability pattern, with the probe R1+R3 framework yielding \textsc  {SYCONScore}{} 0.331 (estimated $\Delta $+0.12 over Llama Vanilla).}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:cross}{{7}{5}{Cross-model comparison. Llama-3-8B exhibits the same directional discriminability pattern, with the probe R1+R3 framework yielding \sycon {} 0.331 (estimated $\Delta $+0.12 over Llama Vanilla)}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Cross-Model Validation}{5}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Reward Weight Sensitivity}{5}{subsection.6.7}\protected@file@percent }
+\bibdata{references}
+\bibcite{act2025}{{1}{2025{a}}{{Anonymous}}{{}}}
+\bibcite{craft2025}{{2}{2025{b}}{{Anonymous}}{{}}}
+\bibcite{lpp2025}{{3}{2025{c}}{{Anonymous}}{{}}}
+\bibcite{pwwp2025}{{4}{2025{d}}{{Anonymous}}{{}}}
+\bibcite{sycon2025}{{5}{2025{e}}{{Anonymous}}{{}}}
+\bibcite{truthdecay2025}{{6}{2025{f}}{{Anonymous}}{{}}}
+\bibcite{burns2023discovering}{{7}{2023}{{Burns et~al.}}{{Burns, Ye, Klein, and Steinhardt}}}
+\bibcite{perez2023discovering}{{8}{2023}{{Perez et~al.}}{{Perez, Ringer, Luko{\v {s}}i{\=u}t{\.e} et~al.}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Direction transfer matrix. Cross-model transfer AUROC degrades substantially, confirming that $d_{\text  {syc}}$ requires per-model calibration.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:transfer}{{8}{6}{Direction transfer matrix. Cross-model transfer AUROC degrades substantially, confirming that $\dsyc $ requires per-model calibration}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Reward weight sensitivity. \textsc  {SYCONScore}{} is robust across $w_1 \in [0.2, 0.5]$ (range 2.6pp). Extreme $w_1$=0.8 causes entropy collapse and performance degradation.}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:weights}{{9}{6}{Reward weight sensitivity. \sycon {} is robust across $w_1 \in [0.2, 0.5]$ (range 2.6pp). Extreme $w_1$=0.8 causes entropy collapse and performance degradation}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{6}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The discriminability--reward gap as a general phenomenon.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why R3-only is surprisingly strong.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{6}{section.8}\protected@file@percent }
+\bibcite{sharma2024towards}{{9}{2024}{{Sharma et~al.}}{{Sharma, Tong, Korbak et~al.}}}
+\bibcite{turner2023activation}{{10}{2023}{{Turner et~al.}}{{Turner, Thiergart et~al.}}}
+\bibcite{wei2024simple}{{11}{2024}{{Wei et~al.}}{{}}}
+\bibcite{zhang2026latent}{{12}{2026}{{Zhang et~al.}}{{}}}
+\bibcite{zou2023representation}{{13}{2023}{{Zou et~al.}}{{Zou, Phan, Chen et~al.}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}R1--R3 Disagreement Analysis}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:disagreement}{{A}{7}{R1--R3 Disagreement Analysis}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces R1--R3 disagreement breakdown. Total disagreement is 4.5\%, below the 5\% threshold for claiming diagnostic utility.}}{7}{table.caption.26}\protected@file@percent }
+\newlabel{tab:disagree}{{10}{7}{R1--R3 disagreement breakdown. Total disagreement is 4.5\%, below the 5\% threshold for claiming diagnostic utility}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Disagreement rate by turn depth.}}{7}{table.caption.27}\protected@file@percent }
+\newlabel{tab:disagree_depth}{{11}{7}{Disagreement rate by turn depth}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Three-Way Direction Geometry}{7}{appendix.B}\protected@file@percent }
+\newlabel{app:geometry}{{B}{7}{Three-Way Direction Geometry}{appendix.B}{}}
+\gdef \@abspage@last{7}

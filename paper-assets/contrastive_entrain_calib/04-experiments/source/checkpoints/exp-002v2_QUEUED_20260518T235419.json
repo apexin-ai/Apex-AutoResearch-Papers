@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-002v2",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:53:52.831Z",
+    "updated_at": "2026-05-18T23:54:19.230Z",
+    "hypothesis": "DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.",
+    "parent": "exp-002"
+  },
+  "timestamp": "2026-05-18T23:54:19.247965+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-009-eval-ckpt1000",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:32:16.956Z",
+    "updated_at": "2026-05-20T15:49:09.727Z",
+    "hypothesis": "Eval exp-009 checkpoint-1000 to determine if continuous probe probability shows improving or worsening stubbornness trend. Kill criteria: SYCONScore < 0.10 or ToF < 0.03",
+    "parent": "exp-009",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-1000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp009_ckpt1000_eval/ --exp_id exp009_ckpt1000\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "234111",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-009-eval-ckpt1000.log",
+      "submitted_at": "2026-05-20T09:32:52.901Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 22576.8,
+      "gpu_hours": 6.27
+    },
+    "metrics": {
+      "ToF": 0.0608,
+      "NoF": 0.9337,
+      "SYCONScore": 0.1141,
+      "n_total": 362,
+      "checkpoint": "checkpoint-1000",
+      "eval_script": "eval_unified_preset.py (D027 standard)",
+      "eval_server": "westd-28034",
+      "trend_vs_ckpt500": "ToF 0.0663→0.0608 (↓8.3%), SYCONScore 0.1238→0.1141 (↓7.8%)"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-1000",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-009-eval-ckpt1000.log",
+    "completed_at": "2026-05-20T15:49:09.727Z"
+  },
+  "timestamp": "2026-05-20T15:49:09.812629+00:00",
+  "trigger": "update_registry"
+}

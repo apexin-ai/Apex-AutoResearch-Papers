@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e844531fa430ea1d1c5",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra eval plus gpu0",
+  "task_key": "worker_infra_eval-plus-gpu0_20260515T174849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_eval-plus-gpu0_20260515T174849_result.json",
+    "occurrence": 1,
+    "bytes": 1702,
+    "sha256": "1e1106bf68ebb8c4f450359bca8071ccad296f74b94e68fb31db6627433bc73d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Log last modified at 01:56 but process still running at 78% CPU with 5443 MiB GPU. Output is likely buffered (Python block-buffers through pipes). The eval is running.\n\n---\n\n## 汇报\n\n### 1. n_episodes 语义：**per task**\n`eval_policy_all` 遍历 `{suite: {task_id: vec_env}}`，对每个 task 调用 `eval_one(n_episodes=50)`。所以 `--eval.n_episodes=50` = 50 episodes/task = 500 episodes/suite（10 tasks）。当前设置正确。\n\n### 2. GPU 0 eval (baseline_plus)：已启动\n- PID 73475, `libero_spatial` suite 运行中\n- GPU 0: 5443 MiB, 78% CPU — 在跑 episodes\n- 模型已缓存（411 files 瞬间完成）\n- 脚本：`/root/acib/scripts/run_eval_plus_gpu0.sh`\n- 输出：`/root/acib/outputs/baseline_plus/`\n- 4 个 suite 按顺序跑：spatial → object → goal → libero_10\n- 预计每 suite 数小时（500 episodes），总共 ~8-16 小时\n\n### 3. 数据集下载\n- `lerobot/libero` dataset: PID 44582 运行中，340MB 已下载（457 files 中约 84%）\n- 下载目标：`/root/autodl-tmp/libero_dataset`\n\n### 4. GPU 1 eval (baseline_std)\n- **第一次运行（01:27-01:29）失败**：全部 4 suite 报 `ModuleNotFoundError: robosuite`\n- **第二次运行（01:41 起）**：robosuite 已装好，当前在跑 `libero_10`（PID 76957）\n- 但无 `eval_info.json` 产出——前面 3 个 suite (spatial/object/goal) 似乎跑完了但没生成结果文件\n- GPU 1 当前 3 MiB（模型在 suite 间卸载/重载中）\n- **注意**：EGL cleanup errors 频繁出现（`EGLGLContext.__del__`），虽然是 \"Exception ignored\"，可能影响结果写入\n\n### 5. Registry\n- `mvp1_baseline_plus` 已更新为 RUNNING，gpu=cuda:0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-eval-plus-gpu0.md"
+}

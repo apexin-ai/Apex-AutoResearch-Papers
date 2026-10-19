@@ -1,0 +1,63 @@
+{
+  "exp_id": "exp-016",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-18T22:30:49.598Z",
+    "updated_at": "2026-05-19T06:11:31.493Z",
+    "hypothesis": "ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model",
+    "failure_reason": "All alpha values (0.0-5.0) produce identical NoF=0.696, WRR=0.271. Steering hooks did not take effect during generation — likely KV cache bypass or hook registration issue.",
+    "completed_at": "2026-05-19T01:51:21.185Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp016_actadd_steering.py --eval_data /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "server": "westd-28034",
+      "gpu": "cuda:3",
+      "pid": "85457",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "exp-001 directions.pt (d_syc)",
+      "eval_data": "calibration_v2_1_expanded.jsonl (362 pairs)",
+      "notes": "Re-run v2 after hook fix. Root cause: transformers 4.57 Qwen3DecoderLayer.forward() returns raw tensor not tuple. Old hook did output[0] which indexed batch dim, then seq_len check always failed → hooks never modified anything. Fix: isinstance(output, torch.Tensor) check, handle both tensor and tuple output formats.",
+      "checkpoint_path": "/root/contrastive_entrain_calib/checkpoints/exp016_actadd/",
+      "log_path": "/root/contrastive_entrain_calib/checkpoints/exp016_actadd/results_summary.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "alpha_0.0": {
+        "NoF": 0.6961,
+        "WRR": 0.2707
+      },
+      "alpha_0.5": {
+        "NoF": 0.6906,
+        "WRR": 0.2541
+      },
+      "alpha_1.0": {
+        "NoF": 0.7127,
+        "WRR": 0.2652
+      },
+      "alpha_2.0": {
+        "NoF": 0.6851,
+        "WRR": 0.2541
+      },
+      "alpha_5.0": {
+        "NoF": 0.7845,
+        "WRR": 0.2155
+      },
+      "best_alpha": 5,
+      "best_NoF_delta": "+8.8pp",
+      "note": "non-monotonic: alpha 0.5/2.0 similar to baseline, only alpha 5.0 shows clear improvement"
+    }
+  },
+  "timestamp": "2026-05-19T06:11:31.524770+00:00",
+  "trigger": "update_registry"
+}

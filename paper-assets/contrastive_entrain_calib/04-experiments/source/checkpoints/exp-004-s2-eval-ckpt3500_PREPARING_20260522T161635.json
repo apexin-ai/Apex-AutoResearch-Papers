@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-s2-eval-ckpt3500",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:12:12.710Z",
+    "updated_at": "2026-05-22T16:16:35.611Z",
+    "hypothesis": "Eval exp-004-s2-v2 (ACT seed 2) checkpoint-3500 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-3500=0.231. Vanilla baseline SYCONScore=0.1335. ckpt-3500 confirmed clean by integrity check.",
+    "parent": "exp-004-s2-v2"
+  },
+  "timestamp": "2026-05-22T16:16:35.777302+00:00",
+  "trigger": "update_registry"
+}

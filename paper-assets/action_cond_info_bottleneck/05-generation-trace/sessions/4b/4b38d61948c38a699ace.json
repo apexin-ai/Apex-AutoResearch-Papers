@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b38d61948c38a699ace",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh drift loss diag",
+  "task_key": "worker_ssh_drift-loss-diag_20260517T160000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_drift-loss-diag_20260517T160000_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "e604b664576289b4ca12d980a0fb09f066f03c00f89eed6a697409d00b497440"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到正确基线了。本地 safetensors 不是训练时加载的模型（差异 296.6），v7.1 scorer_only 的 connector 权重才是真正的原始参考（因为 scorer_only 模式下 connector 冻结）。\n\n## 结果\n\n**v7.2 训练中 drift_loss 的实际量级：**\n\n| Step  | drift_loss (sum_sq) | λ * drift (λ=0.1) |\n|-------|--------------------|--------------------|\n| 5000  | 0.1052             | 0.0105             |\n| 10000 | 0.0918             | 0.0092             |\n| 15000 | 0.0843             | 0.0084             |\n| 20000 | 0.0836             | 0.0084             |\n\n**判断：**\n\n1. **drift_loss 量级很小**：~0.08-0.1，对应 connector 权重 L2 偏移约 0.29-0.32（原始 norm ~71.8，相对偏移 ~0.4%）\n2. **λ=0.1 的约束力非常有效**：drift_loss 从 step 5k 的 0.105 单调下降到 step 20k 的 0.084，且 λ*drift 项仅约 0.008-0.01，远小于 task_loss（~0.1）和 contrastive loss（~1.5-2.0）\n3. **connector 本质上被冻结**：inter-checkpoint drift 也在递减（5k→10k: 0.041, 15k→20k: 0.001），connector 在训练后期几乎不再变化\n4. **drift penalty 占比极低**：λ*drift ≈ 0.008，仅占 total loss（~0.28）的约 3%\n\n结论：λ=0.1 的 drift 约束有效但偏保守，connector 实际几乎没有移动。如果需要 connector 有更多适应空间，可以降低 λ_drift（如 0.01 或 0.001）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-drift-loss-diag.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b4d7e3ffd0c7d85c4d0",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh launch v73 cuda0",
+  "task_key": "worker_ssh_launch-v73-cuda0_20260517T195609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch-v73-cuda0_20260517T195609_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "4bbdd1dfb3f93f1d55f27a36d6b2e14ecfc6939fe17d50d254a2f5f29287abf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现 eval 结构：每个 suite 有 10 个 task，每个 task 跑 50 episodes。总计需要 10×50=500 episodes per suite。\n\n当前进度：\n- **α=0.0**: 35/40 task-batches 完成 (30 for first 3 suites + 5/10 for libero_10)，还剩 5 个 task\n- **α=1.0**: 34/40 task-batches 完成，还剩 6 个 task\n\n每个 task ~20 min → **α=0.0 还需约 100 min，α=1.0 还需约 120 min**。\n\n这比预期久很多。要等 ~1.5-2 小时 eval 才结束。是否要：\n1. 等 eval 自然结束（等待脚本会自动启动 v7.3）\n2. 杀掉 α=0.0 eval 立即启动训练（已有 3 suite + 5/10 task 的 libero_10 数据，但会丢失最后 5 个 task 结果）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-v73-cuda0.md"
+}

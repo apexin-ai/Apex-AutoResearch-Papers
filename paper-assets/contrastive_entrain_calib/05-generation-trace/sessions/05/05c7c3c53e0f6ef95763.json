@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05c7c3c53e0f6ef95763",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code prep exp003 eval plan",
+  "task_key": "worker_code_prep-exp003-eval-plan_20260519T102720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-exp003-eval-plan_20260519T102720_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "b978a2f3320e7b850ccfee10372e18262b78c19e0c9415ce9be365f0dce0aedf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建。环境状态汇总：\n\n### westd-29046 eval 准备状态\n\n| 项目 | 状态 | 路径 |\n|------|------|------|\n| eval_unified_preset.py | ✓ | `/root/contrastive_entrain_calib/eval/eval_unified_preset.py` |\n| 基座模型 Qwen3-8B | ✓ | `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` |\n| NLI 模型 | ✓ | HF cache 已有 |\n| calibration 数据 | ✓ | `/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl` |\n| 已有 checkpoints | ✓ | 500, 1000, 1500, 2000 (训练中，save_steps=500) |\n| eval 脚本 | ✓ | `/root/contrastive_entrain_calib/eval/run_exp003_unified_eval.sh` |\n| 输出目录 | ✓ | `/root/contrastive_entrain_calib/results/exp003_unified_eval/` |\n\n### 关键信息\n- exp-003 是 **LoRA** 训练（r=64, q/v/k/o_proj），eval 时用 `--lora_path`\n- 训练 max_steps=8000，当前约 step 1894，save_steps=500\n- **注意**：eval 脚本的 DEFAULT_DATA 指向 `contrastive_entrain_calib/data/` 下的文件（不存在），eval shell 脚本已显式传 `--data_path` 指向实际路径\n\n### 运行方式\n```bash\nCUDA_VISIBLE_DEVICES=1 bash /root/contrastive_entrain_calib/eval/run_exp003_unified_eval.sh\n```\n\n脚本会自动跳过不存在的 checkpoint 和已评估过的 checkpoint，训练完成后可直接运行。无缺失依赖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp003-eval-plan.md"
+}

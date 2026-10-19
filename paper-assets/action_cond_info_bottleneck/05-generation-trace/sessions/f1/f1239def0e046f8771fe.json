@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f1239def0e046f8771fe",
+  "project": "action_cond_info_bottleneck",
+  "kind": "worker",
+  "title": "code v5 div reg eval prep 20260516T022906 retry1",
+  "task_key": "worker_code_v5_div_reg_eval_prep_20260516T022906_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v5_div_reg_eval_prep_20260516T022906_retry1.log",
+    "occurrence": 1,
+    "bytes": 754636,
+    "sha256": "71ecd0cf8f944150ab9702468bc50783433d4afe593e1963da2aff7c2e8e5460"
+  },
+  "statistics": {
+    "messages": 262,
+    "user_turns": 0,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 103,
+      "tool_result": 103,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 262,
+      "chunks": [
+        {
+          "path": "f1239def0e046f8771fe-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1239def0e046f8771fe-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-v5-div-reg-eval-prep-20260516t022906-retry1.md"
+}

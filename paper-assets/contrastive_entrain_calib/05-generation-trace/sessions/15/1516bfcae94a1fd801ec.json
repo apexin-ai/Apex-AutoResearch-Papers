@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1516bfcae94a1fd801ec",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops nli migration and eval ckpt1500",
+  "task_key": "worker_ops_nli-migration-and-eval-ckpt1500_20260523T100606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_nli-migration-and-eval-ckpt1500_20260523T100606_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "a7ecefa1239a013158298e0e5dd7aa9bcc9aa37b2c528e6552c2f2767f8ddcae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有背景任务已完成。结果已在之前汇总，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-nli-migration-and-eval-ckpt1500.md"
+}

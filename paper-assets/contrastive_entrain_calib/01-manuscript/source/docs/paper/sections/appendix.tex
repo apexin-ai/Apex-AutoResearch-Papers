@@ -1,0 +1,80 @@
+\section{Training Details}
+\label{app:training}
+
+\paragraph{Reward weight selection.}
+The weight $w_1$ is set by diagnostic-driven iteration: $w_1{=}0.25$ was initially chosen to down-weight the noisy cosine reward term; this was later increased to $w_1{=}0.40$ for F1d after diagnostics revealed that $w_1{=}0.25$ allowed the cosine term to contribute only ${\sim}8.3\%$ of total reward variance.
+The empirical scaling factor in F1a ($\dsyc/20$) is a heuristic normalization; we did not find it critical to the failure modes reported.
+
+\paragraph{Response truncation.}
+All GRPO experiments use \textit{max\_completion\_length}$=$256.
+Across all 362 evaluation responses, the maximum observed length is 129 tokens (Qwen tokenizer) and 155 tokens (DeBERTa tokenizer), so no response was actually truncated at inference time.
+Full-length vs.\ 256-truncated NLI agreement is 100\%, confirming that the truncation setting does not affect $\rthree$ reward computation.
+Truncation may affect $\dsyc$ AUROC at the direction extraction stage (0.76 vs.\ 0.60; see Limitations).
+
+\paragraph{Hyperparameters.}
+Table~\ref{tab:hyperparams} compares training configurations for GRPO variants and ACT.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Training hyperparameters. All experiments use Qwen3-8B, DeepSpeed ZeRO-2, bf16 precision.}
+\label{tab:hyperparams}
+\begin{tabular}{lcc}
+\toprule
+& GRPO (F1, F3)$^e$ & ACT \\
+\midrule
+Learning rate & 5e-5 & 5e-5 \\
+Effective batch & 16 & 16 \\
+Max steps & 8{,}000 & 8{,}000 \\
+Warmup steps & 200 & 200 \\
+LR schedule & linear$^a$ & linear \\
+Grad.\ clipping & -- & 1.0 \\
+\midrule
+LoRA rank & 64 & 64 \\
+LoRA $\alpha$ & 64 & 128 \\
+LoRA modules & 4$^b$ & 7$^c$ \\
+LoRA dropout & 0 & 0.05 \\
+\midrule
+Group size & 2$^d$ & -- \\
+KL (Kullback--Leibler) $\beta$ & 0.04 & -- \\
+Max compl.\ len. & 256 & -- \\
+Max seq.\ len. & -- & 1{,}024 \\
+L2 loss weight & -- & 0.1 \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+\raggedright\footnotesize
+$^a$Cosine schedule for $\rthree$-only.
+$^b$q/k/v/o\_proj.
+$^c$+ gate/up/down\_proj (${\sim}1.75{\times}$ params; \S\ref{sec:discussion}).
+$^d$Below typical 8--64 \citep{shao2024grpo}; not tuned.
+$^e$Binary probe (F2) uses a non-differentiable probe reward ($w_1{=}0.25$) within GRPO; the probe is retrained every 500 steps. LoRA and optimizer settings match the other GRPO configurations.
+All experiments were conducted on a single NVIDIA L20 GPU (48\,GB). Total compute: ${\sim}$120 GPU-hours across all runs.
+\end{table}
+
+\paragraph{Early termination criterion.}
+We applied early termination to gs$=$8 after three consecutive checkpoints showed no sustained improvement ($\sycon$: $0.084{\to}0.085{\to}0.054$, all well below vanilla).
+The same criterion would not have terminated gs$=$2, whose initial trajectory was monotonically increasing ($0.074{\to}0.085{\to}0.095$); gs$=$2 first exhibited three consecutive declines in the step 4500--6000 range, well into training.
+
+\paragraph{GRPO reward variants.}
+Cosine $\rone$ (F1d): $w_1{=}0.40$, scale$=$5.0, $w_3{=}0.60$; reward computed at layers [19, 20, 24, 27, 32, 33, 35]; recalibration every 500 steps (\S\ref{ssec:recalib}).
+$\rthree$-only: $w_3{=}1.0$; NLI model \textit{cross-encoder/nli-deberta-v3-base}.
+F1a--F1c weight configurations are reported in Table~\ref{tab:cosine_chain}.
+
+\section{Stubbornness Taxonomy}
+\label{app:taxonomy}
+
+Manual inspection of all 181 valid-correction responses from the probe-trained model (stopped-gradient probe, step 2000, $\tof = 0$) reveals five failure categories:
+
+\begin{itemize}
+\item \emph{Deliberation traps} (28.7\%): the model explicitly identifies the correct revised answer during its reasoning chain but fails to commit, reverting to the original answer in the final output.
+\item \emph{Surface compliance / sycophantic stubbornness} (24.3\%): the model produces agreement markers (``you're right,'' ``good point'') but retains its original answer verbatim, simultaneously sycophantic and stubborn.
+\item \emph{Acknowledge-but-maintain} (23.8\%): the model acknowledges the user's correction as plausible but explicitly maintains its original position without substantive engagement.
+\item \emph{Genuine-accept-missed} (18.8\%): the model appears to accept the correction in its reasoning but the final answer format does not reflect the change, suggesting a generation rather than epistemic failure.
+\item \emph{Refute/ignore/other} (4.5\%): the model directly refutes the user's input or ignores it entirely.
+\end{itemize}
+
+The first three categories (76.8\%) share a common pattern: the model learns to modulate its \emph{refusal style} in response to evidence strength rather than adjusting its \emph{acceptance rate}, confirming that the probe reward optimizes surface markers rather than epistemic calibration.
+
+\section{Use of AI Assistance}
+We used Claude for coding, code drafting, debugging, and language polishing.

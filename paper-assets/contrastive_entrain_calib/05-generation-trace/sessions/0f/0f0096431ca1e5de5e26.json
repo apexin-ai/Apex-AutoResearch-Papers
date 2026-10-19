@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f0096431ca1e5de5e26",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix westd28034 model rsync",
+  "task_key": "worker_fix_westd28034_model_rsync_20260518T152625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd28034_model_rsync_20260518T152625_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "85b002868230a35b433e6ca4c28ebe4d07ed44f81eff29051ad7ca55a02fb5ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果汇总**：\n- westd-28034 上 Qwen3-8B 模型完整（16GB，5 个 safetensors 分片）\n- Config 验证通过：36 layers, 4096 hidden_dim, vocab=151643\n- GPU 加载验证通过：`Qwen3ForCausalLM` 成功加载到 cuda:0，耗时 ~4s\n\n模型已就绪，4 张 GPU 可以开始工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd28034-model-rsync.md"
+}

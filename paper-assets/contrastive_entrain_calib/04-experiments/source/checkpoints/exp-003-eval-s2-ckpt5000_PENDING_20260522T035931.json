@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-003-eval-s2-ckpt5000",
+  "project": "contrastive_entrain_calib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:57:12.275Z",
+    "updated_at": "2026-05-22T03:59:30.906Z",
+    "hypothesis": "Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-5000 with D027 unified preset. Continuing seed 2 trajectory past ckpt-4500 (SYCONScore=0.104) to track divergence from seed 1.",
+    "parent": "exp-003-s2"
+  },
+  "timestamp": "2026-05-22T03:59:31.038054+00:00",
+  "trigger": "update_registry"
+}

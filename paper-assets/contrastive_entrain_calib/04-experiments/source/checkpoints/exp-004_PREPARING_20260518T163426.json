@@ -1,0 +1,21 @@
+{
+  "exp_id": "exp-004",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T14:42:12.234Z",
+    "updated_at": "2026-05-18T16:34:26.873Z",
+    "hypothesis": "ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.",
+    "completed_at": "2026-05-18T16:03:27.349Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-18T16:34:26.908058+00:00",
+  "trigger": "update_registry"
+}

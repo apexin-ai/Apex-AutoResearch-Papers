@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-012",
+  "project": "contrastive_entrain_calib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:56:42.346Z",
+    "updated_at": "2026-05-20T04:19:32.706Z",
+    "hypothesis": "Llama-3-8B-Instruct d_syc cross-model validation: if a linear sycophancy direction (d_syc) with AUROC ≥ 0.75 exists in Llama-3-8B's hidden states (L16-L33), it demonstrates that the discriminability phenomenon generalizes beyond Qwen3-8B — strengthening the paper's \"discriminability ≠ reward utility\" claim by showing d_syc is a general property of instruction-tuned LLMs, not a Qwen-specific artifact.",
+    "parent": "exp-001"
+  },
+  "timestamp": "2026-05-20T04:19:32.769498+00:00",
+  "trigger": "update_registry"
+}

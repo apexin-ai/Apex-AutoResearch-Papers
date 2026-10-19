@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f95601519bf6068697f",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "research libero benchmark",
+  "task_key": "worker_research_libero-benchmark_20260515T111137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_libero-benchmark_20260515T111137_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "59263c261b49e6c30ed05d087f83ff05b0b5c17fed2fb27a619fd32384ae5f16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/research_libero_benchmark.md`。\n\n覆盖的内容：\n- **LIBERO Benchmark**：GitHub/安装/5 个 task suite 详情/HDF5 数据格式（观测 128x128 双相机 + 7D 关节 + 6D EE，动作 7D OSC_POSE）/评测脚本命令和指标（success rate, FWT, NBT, AUC）\n- **LIBERO-Plus**：实际是 7 个扰动维度 21 个子维度（不只是 4 个），含物体布局/相机/机器人初态/语言指令/光照/背景纹理/传感器噪声，CVPR 2026 论文，drop-in replacement 架构\n- **数据增强**：robosuite 内置 DomainRandomizationWrapper + 三个 Modder 可直接用；LIBERO-Plus 同时提供 22,400 条增强训练轨迹；传感器噪声为纯图像后处理可零成本复用\n- **LeRobot 集成**：原生支持，HuggingFace 上有 `lerobot/libero`、`HuggingFaceVLA/libero` 等预转换数据集，附 OpenPI 转换脚本路径\n\n两处标注了 `[UNVERIFIED]`：LeRobot 格式图像分辨率（256 vs 128）和采样率降频策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-libero-benchmark.md"
+}

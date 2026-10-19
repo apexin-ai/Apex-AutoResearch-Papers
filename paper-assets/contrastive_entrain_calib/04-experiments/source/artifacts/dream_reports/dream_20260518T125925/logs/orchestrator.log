@@ -1,0 +1,8 @@
+2026-05-18 13:21:19,503 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 0): while parsing a flow sequence
+  in "<unicode string>", line 777, column 18:
+            columns: [Signal_Type, Continuous?, Direc ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 777, column 42:
+     ... olumns: [Signal_Type, Continuous?, Directional?, NoF, RC-AUC]
+                                         ^

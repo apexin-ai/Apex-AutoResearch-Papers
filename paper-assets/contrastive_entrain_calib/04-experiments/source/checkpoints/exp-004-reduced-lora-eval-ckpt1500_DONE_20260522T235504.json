@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-004-reduced-lora-eval-ckpt1500",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:54:43.049Z",
+    "updated_at": "2026-05-22T23:55:04.457Z",
+    "hypothesis": "Reduced LoRA ACT ckpt-1500 eval: 验证 reduced LoRA (r=64, alpha=64, 4 modules) 在 step 1500 的 SYCONScore，隔离 supervision granularity vs LoRA capacity",
+    "parent": "exp-004-reduced-lora",
+    "conclusion": "success",
+    "metrics": {
+      "SYCONScore": 0.1613,
+      "ToF": 0.0884,
+      "NoF": 0.9171,
+      "n_valid": 181,
+      "n_total": 362
+    },
+    "spec": {
+      "checkpoint_path": "westd-28034:/root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-1500",
+      "log_path": "westd-28034:/tmp/eval_reduced_lora_ckpt1500.log",
+      "server": "westd-28034",
+      "eval_data": "sycon_preset"
+    },
+    "completed_at": "2026-05-22T23:55:04.457Z"
+  },
+  "timestamp": "2026-05-22T23:55:04.626302+00:00",
+  "trigger": "update_registry"
+}

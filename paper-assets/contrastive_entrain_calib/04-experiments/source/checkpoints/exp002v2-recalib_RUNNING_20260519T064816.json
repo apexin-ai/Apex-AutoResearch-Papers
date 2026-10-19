@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp002v2-recalib",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:40:31.395Z",
+    "updated_at": "2026-05-19T06:48:16.766Z",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee logs/exp002v2_recalib.log\"",
+      "server": "westd-29046",
+      "gpu": "cuda:0",
+      "pid": "172838",
+      "log_path": "~/runs/contrastive_entrain_calib/exp002v2-recalib.log",
+      "submitted_at": "2026-05-19T06:40:31.374Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "exp-002v2 checkpoint-500 + recalibrated d_syc (directions_recalib_step500.pt)",
+      "eval_data": "N/A",
+      "notes": "D024: resume from checkpoint-500 with recalibrated d_syc. recalibration_interval=500. Trainer recalib cosine(old,new)=0.957, per-layer AUROC 0.78-0.81. Step 510 R1: medium=-0.056, strong=-0.047."
+    },
+    "hypothesis": "DC-GRPO with cosine R1 + periodic d_syc recalibration (every 500 steps). Resume from exp-002v2 checkpoint-500 with recalibrated directions. Tests whether recalibrating d_syc during training enables R1 to provide effective gradient signal, since without recalibration d_syc drifts significantly (cosine=0.28 at step 500) making R1 ineffective.",
+    "parent": "exp-002v2"
+  },
+  "timestamp": "2026-05-19T06:48:16.791640+00:00",
+  "trigger": "update_registry"
+}

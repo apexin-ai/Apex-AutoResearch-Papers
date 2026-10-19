@@ -1,0 +1,1453 @@
+# cron hook mvp1 baseline plus remaining 20260516T194936 785661
+
+**action cond info bottleneck** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 5
+- **Tool calls:** 18
+- **Original source:** `logs/chats/archive/cron_hook_mvp1_baseline_plus_remaining_20260516T194936_785661.jsonl`
+- **Structured JSON:** [`35364de68bc4ac11c984.json`](../../sessions/35/35364de68bc4ac11c984.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T13:44:25.763794+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #5。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westb-13953 上只能用 cuda:0 和 cuda:1，绝对不能用其他设备号
+- smolvla_libero_plus 是 mandatory baseline（D022），不能跳过
+- scorer conditioning bug 已确认（D030/D031）：v5 系列 scorer 用 visual_mean 而非 language embedding，v5 结果只能作为 "without proper conditioning" ablation baseline，不能作为主实验
+- libero_10 eval 的 cron 监控有结构性问题：eval 脚本按 suite 启动独立子进程，父 PID 退出会触发 cron 误报。已发生 3+ 次。下次提交 eval 必须确保 cron 监控的是实际 eval 子进程 PID，不是 wrapper
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westb-13953，account=root，工作目录 /root/acib
+- Python：/root/miniconda3/bin/python（conda base），激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型：lerobot/smolvla_libero + lerobot/smolvla_libero_plus（HF hub 直接加载）
+- 数据集：/root/autodl-tmp/libero_dataset（273K 样本）
+- HF cache：/root/autodl-tmp/.hf_cache
+- 输出目录：/root/acib/outputs/
+- W&B：大部分实验 WANDB_MODE=disabled（auth 问题未解决）
+- 活跃进程：mvp1_baseline_std_libero10 PID 733616 cuda:1（lerobot-eval libero_10 for std model）
+- 活跃 cron：mvp1_baseline_std_libero10（刚 reconcile 确认 still running）
+
+### 3. 📊 当前状态
+**刚做完**：收到 mvp1_baseline_plus_remaining 失败回调，已派 Worker（worker_diagnose_mvp1_baseline_plus_remaining_20260516T094137）去 SSH 诊断实际状态。该 Worker 尚未返回。
+
+**Registry 关键实验**：
+- `mvp1_baseline_std_libero10` RUNNING cuda:1 — std model libero_10 eval，PID 733616
+- `mvp1_baseline_plus_remaining` DONE(failed) — cron 误报可能性大，spatial/object/goal 三个 suite 已有结果（81.6%/88.8%/87.8%），libero_10 子进程 PID 675231 可能仍在跑或已完成
+- `acib_v6_conditioned` DONE(failed) — session recovery 标记，实际上是修复 conditioning bug 的关键训练，需要重跑
+- `acib_v5_div_reg` / `acib_v5_div_reg_seed2` DONE(failed) — EXIT_CODE=1，但已产出有价值的分析结论（scorer 是 position prior 不是 action-conditioned）
+- `acib_v3_train` ANALYZING — IB loss collapse 已确认，killed，作为 baseline 参考
+
+**等待中**：
+- Worker 诊断回调（mvp1_baseline_plus_remaining 实际状态）
+- mvp1_baseline_std_libero10 cron 完成回调
+
+### 4. 📋 待办
+- 诊断 Worker 回调到 → 如果 libero_10 plus eval 已完成：提取结果更新 registry，将 conclusion 改为 success；如果未完成/进程已死：在 cuda:0 上重跑 libero_10 eval for plus model
+- mvp1_baseline_std_libero10 完成回调 → 提取 std libero_10 SR，汇总 4 suite baseline（spatial=66.0%, object=67.8%, goal=76.4%, libero_10=?）
+- 两个 baseline 全部就绪 → 更新 baseline metrics 到 registry，汇报 Director
+- cuda:0 空闲确认后 → 重跑 acib_v6_conditioned（修复了 conditioning bug 的版本，condition_source=language），这是当前最高优先级训练
+- v6_conditioned 训练完成 → cross-task probe 验证 conditioning 生效（期望 cos < 0.95），然后 eval
+- Director 未决策项：v5 negative 结果的 framing 调整提案尚未提交（v5 scorer=position prior 的发现需要更新 narrative）
+
+### 5. 🎯 战略上下文
+- **核心发现**：v5_div_reg 的 diversity regularizer 成功防止了 scorer collapse（scorer_std=0.44, bimodal 分布），但 cross-task probe（D029-D031）证明 scorer 学到的是 spatial position prior 而非 action-conditioned selection。根因：scorer 的 condition 输入是 visual_mean 而非 language embedding（实现 bug）
+- **决策链**：v3 per-token KL collapse → v4 aggregate KL 无分化 → v5 diversity reg 防 collapse 但 conditioning 无效 → v6 修复 conditioning（condition_source=language）是当前关键实验
+- **v6 是 make-or-break**：如果 language conditioning 后 scorer 仍然是 position prior → 方法可能有根本问题；如果 probe cos < 0.95 → 继续 eval pipeline
+- **CoRL 2026 deadline**：abstract 5/26（10天），paper 5/29（13天）。MVP 验证仍未通过。时间极紧
+- **易错点**：
+  - 不要把 v5 的 eval 数字当作 ACIB 有效的证据——v5 scorer 没有真正 conditioning
+  - eval 脚本（eval_acib.py）有 dtype mismatch bug（scorer fp32 vs base bf16），perturbed eval dryrun 已修复但 eval_acib.py 可能还没 patch
+  - WANDB auth 一直有问题，多数实验用 WANDB_MODE=disabled，指标只能从 log/checkpoint 提取
+
+## 项目硬约束 (memory.md 节选)
+
+## 服务器 westb-13953
+- 2x RTX PRO 6000 Blackwell 96GB
+- conda base 环境：/root/miniconda3
+- 数据：/root/autodl-tmp/libero_dataset (273K frames)
+- 模型：lerobot/smolvla_libero (HF cache)
+- ACIB 代码：/root/acib
+- 已完成实验 outputs 迁移到 /root/autodl-tmp/（symlink 指向数据盘）
+
+## 可查的历史
+前 6 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T13:44:36.619112+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T13:44:36.669694+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T13:44:41.590043+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "action_cond_info_bottleneck",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "action_cond_info_bottleneck",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T13:44:41.590471+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T13:44:42.096073+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"acib_v7_contrastive\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T10:10:51.506Z\", \"updated_at\": \"2026-05-16T13:39:25.019Z\", \"hypothesis\": \"Contrastive auxiliary loss 强制 language-dependence：对同一图像+不同 instruction 要求 scorer 产生不同 importance map（minimize cosine similarity），解决 v6 训练动力学退化问题。预期 Probe A cos < 0.8。\", \"parent\": \"acib_v6_conditioned\", \"notes\": \"**Log-barrier contrastive 持续有效。** Sweep 500步 Probe A cos [0.704, 0.951]。完整训练 step 5000 Probe A cos **[0.476, 0.894]** — 持续下降，β warmup 后无退化。cos=0.894 的 pair 是两个语义相似任务（同为 \\\"pick up black bowl\\\"），符合预期。训练指标稳定：task_loss=0.078, ctr_loss=1.22, scorer_std=0.346, scorer_mean=0.291。⚠️ 训练在原 step 5000 因磁盘满崩溃（根分区 100%），已将 outputs 移到数据盘 /root/autodl-tmp/ + symlink，从 step 0 重启。当前训练 PID 在 cuda:0。\", \"spec\": {\"command\": \"python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_contrastive --seed 42\", \"server\": \"westb-13953\", \"gpu\": \"cuda:0\", \"pid\": \"960110\", \"seed\": 42, \"model_name\": \"lerobot/smolvla_libero\", \"data_path\": \"/root/autodl-tmp/libero_dataset\", \"data_count\": 273465, \"log_path\": \"~/runs/action_cond_info_bottleneck/acib_v7_contrastive.log\", \"checkpoint_path\": \"/root/acib/outputs/acib_v7_contrastive\", \"contrastive_loss\": \"log-barrier: -log(1-cos+eps)\", \"lambda_contrastive\": 0.1, \"conditioning_mode\": \"concat\"}}, \"acib_v5_div_reg_eval_ckpt10000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:49:59.571Z\", \"upd
+…[truncated 24806 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 506
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T13:44:42.115694+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 525
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T13:44:42.119691+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "action_cond_info_bottleneck",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "action_cond_info_bottleneck",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T13:44:42.433117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| acib_v3_train | ACIB-S (soft reweighting) 训练修复归一化后，IB loss 不再 collapse，模型能学到有意义的 token importance 分布 | — | — | — |\\n\\n## 待处理\\n- acib_deploy_westb13953（排队等待 GPU）\\n- acib_v7_contrastive: Contrastive auxiliary loss 强制 language-dependence：对同一图像+不同 instruction 要求 scorer 产生不同 importance map（minimize cosine similarity），解决 v6 训练动力学退化问题。预期 Probe A cos < 0.8。（已分配 ? GPU:?，等待提交）\\n- acib_v8_film: FiLM conditioning 替代 concat+MLP：用 gamma*visual+beta 乘性调制使 language 信号无法被 shortcut 学习绕过。scorer 输入从 [vis,cond] concat 改为 modulated_vis，维度 1920→960。不加 contrastive loss。预期 Probe A cos < 0.95。（准备中）\\n\\n## 近期结论\\n- **mvp1_baseline_std_libero10** (success): —\\n- **mvp1_baseline_plus_remaining** (success): —\\n- **acib_v6_conditioned** (failed): Fix scorer conditioning bug: 将 condition_source 从 visual_mean（v5 bug：scorer 只看 vision tokens 均值）改为 language（scorer 接收 language embedding），使 scorer 能根据 task instruction 动态选择 task-relevant tokens。与 v5 唯一差异：condition_source=language。 ← 基于 acib_v5_div_reg\\n\\n## 趋势\\n成功 4 / 负向 3 / 失败 5 / 共 13\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-13953: 无 GPU 信息\\n\\n## 告警\\n- mvp1_baseline_std: 已被终止 — unknown\\n- mvp1_baseline_std_remaining: 训练失败 — unknown\\n- acib_v5_div_reg: 训练失败 — unknown\\n- acib_v5_div_reg_seed2: 训练失败 — unknown\\n- acib_v6_conditioned: 训练失败 — unknown\\n- acib_v5_div_reg_eval_ckpt10000: 训练失败 — unknown\\n\", \"total_chars\": 1460, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 313
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T13:44:42.433662+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "action_cond_info_bottleneck"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "action_cond_info_bottleneck"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T13:44:42.485313+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/ROADMAP.md\", \"content\": \"# action_cond_info_bottleneck — Research Dashboard\\n\\n> 最后更新: 2026-05-15 15:38 UTC | 更新原因: smolvla_libero_plus 升级为 mandatory baseline；论文 framing 转向互补性；SSH 已通更新进展\\n\\n## 核心方向\\nACIB (Action-Conditioned Information Bottleneck)：IB 驱动的 token-level 干预方法，作为 data augmentation 的**互补正则化器**，提升 VLA 在视觉扰动下的鲁棒性。双模式：soft reweighting (ACIB-S) 和 hard pruning (ACIB-H)。Backbone: SmolVLA (64 tokens, 960-dim, PixelShuffle=4)。评测: LIBERO + LIBERO-Plus。\\n\\n**论文 story（待 paper_framing.md 细化）**：ACIB 不是 data-aug 的替代，而是正交互补——提供 IB-grounded 训练正则化 + 可解释 token importance maps + 64-token compact regime 的 soft-vs-hard 分析。\\n\\n## 目标会议\\n- **CoRL 2026** (PRIMARY): abstract 5/26, paper 5/29 — 距今 11/14 天\\n\\n## 当前进展\\n- **阶段**: MVP 验证\\n- **SSH 已通**，Worker v7 正在 westb-13953 部署（依赖安装中）\\n- ACIB 代码 v2 通过 Reviewer 审查\\n- 官方 checkpoint `lerobot/smolvla_libero` 可用，跳过 fine-tuning\\n- Reviewer 完成 smolvla_libero_plus 影响分析：升级为 mandatory baseline\\n\\n## 关键路径\\n```\\n[进行中] Worker v7 部署（SSH ✅ → 依赖安装 → 代码部署 → 模型下载）\\n  ↓ (~1-2h)\\nMVP-1: Baseline eval — lerobot/smolvla_libero 标称 + LIBERO-Plus 4维扰动 (~10-14h GPU)\\n  ↓\\nMVP-2: ACIB-S 训练 (~12h GPU) + eval (~5h GPU), 2 seeds\\n  ↓\\nPass/Fail 判定 (MVP 总计 ~30h GPU, ~3 天 wall-clock)\\n```\\n\\n## 近期任务\\n- [x] ~~SSH 连接恢复~~\\n- [ ] Worker v7 完成部署 + 环境验证\\n- [ ] MVP-1: Baseline eval (cuda:0 spatial+long, cuda:1 object+goal)\\n- [ ] MVP-2: ACIB-S 训练 + 评测 → pass/fail\\n- [ ] 确认 lerobot-eval per-perturbation-dimension SR 输出格式\\n\\n## MVP Pass/Fail 标准 (v2)\\n**Pass（全部满足）**:\\n- ACIB-S 在 ≥2/4 扰动维度提升 ≥5% abs（baseline ≥10% 时）\\n- baseline <10% 时：相对提升 ≥50% 或绝对 ≥3pp，≥2 seeds 方向一致\\n- 标称回退 <2%，任一维度回退 ≤10% abs\\n\\n**Fail（任一触发）**: 无改善 / baseline 已鲁棒 (gap<10%) / 训练发散（允许 2 次 α/β 重试）/ 任一维度回退 >10% abs\\n\\n**评测规格**: baseline 1 seed, ACIB-S 2 seeds, ≥50 episodes/task/perturbation\\n\\n## MVP Pass 后路径（MVS = 最小可投稿版本）
+…[truncated 1788 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T13:45:09.424419+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T13:45:09.475265+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T13:45:17.158605+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "acib_v7_contrastive",
+  "server": "westb-13953",
+  "pid": "960110",
+  "log_path": "~/runs/action_cond_info_bottleneck/acib_v7_contrastive.log",
+  "interval_seconds": "120",
+  "project": "action_cond_info_bottleneck"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "acib_v7_contrastive",
+    "server": "westb-13953",
+    "pid": "960110",
+    "log_path": "~/runs/action_cond_info_bottleneck/acib_v7_contrastive.log",
+    "interval_seconds": "120",
+    "project": "action_cond_info_bottleneck"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T13:45:17.461273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"acib_v7_contrastive\", \"server\": \"westb-13953\", \"pid\": \"960110\", \"wandb_run_id\": null, \"log_path\": \"~/runs/action_cond_info_bottleneck/acib_v7_contrastive.log\", \"interval_seconds\": 120, \"project\": \"action_cond_info_bottleneck\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-16T13:45:17.157Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T13:45:17.461752+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "action_cond_info_bottleneck",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "action_cond_info_bottleneck",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T13:45:17.562498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T13:45:57.627054+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acib_v7_contrastive",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "action_cond_info_bottleneck",
+  "spec": "{'command': 'python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_contrastive --seed 42', 'server': 'westb-13953', 'gpu': 'cuda:0', 'pid': '960110', 'seed': 42, 'model_name': 'lerobot/smolvla_libero', 'data_path': '/root/autodl-tmp/libero_dataset', 'data_count': 273465, 'log_path': '~/runs/action_cond_info_bottleneck/acib_v7_contrastive.log', 'checkpoint_path': '/root/acib/outputs/acib_v7_contrastive'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acib_v7_contrastive",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "action_cond_info_bottleneck",
+    "spec": "{'command': 'python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_contrastive --seed 42', 'server': 'westb-13953', 'gpu': 'cuda:0', 'pid': '960110', 'seed': 42, 'model_name': 'lerobot/smolvla_libero', 'data_path': '/root/autodl-tmp/libero_dataset', 'data_count': 273465, 'log_path': '~/runs/action_cond_info_bottleneck/acib_v7_contrastive.log', 'checkpoint_path': '/root/acib/outputs/acib_v7_contrastive'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T13:45:57.727941+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.0547}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T13:46:12.440954+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "action_cond_info_bottleneck",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "action_cond_info_bottleneck",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T13:46:12.893154+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0462}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T13:46:13.395832+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "action_cond_info_bottleneck",
+  "filters": "{'exp_id': 'acib_v7_contrastive'}",
+  "fields": "['status', 'conclusion', 'updated_at', 'notes', 'failure_reason']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "action_cond_info_bottleneck",
+    "filters": "{'exp_id': 'acib_v7_contrastive'}",
+    "fields": "['status', 'conclusion', 'updated_at', 'notes', 'failure_reason']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T13:46:13.446607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0427}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T13:46:17.364294+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "action_cond_info_bottleneck",
+  "limit": "3",
+  "fields": "['status', 'conclusion', 'updated_at', 'failure_reason']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "action_cond_info_bottleneck",
+    "limit": "3",
+    "fields": "['status', 'conclusion', 'updated_at', 'failure_reason']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T13:46:17.417095+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"acib_v7_contrastive\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T13:45:37.822Z\", \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\"}, \"acib_v7_seed2\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-16T13:44:57.322Z\"}, \"acib_v5_div_reg_eval_ckpt10000\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T11:50:29.648Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"conclusion\": \"failed\"}}, \"count\": 3, \"total\": 18, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0479}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T13:46:32.911800+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "action_cond_info_bottleneck",
+  "filters": "{'status': 'PREPARING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "action_cond_info_bottleneck",
+    "filters": "{'status': 'PREPARING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T13:46:33.064731+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"acib_v7_seed2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:44:57.051Z\", \"updated_at\": \"2026-05-16T13:44:57.322Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acib && MUJOCO_GL=egl python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_seed2 --seed 1337\\\"\", \"server\": \"westb-13953\", \"gpu\": [\"cuda:1\"], \"pid\": \"27422\", \"log_path\": \"~/runs/action_cond_info_bottleneck/acib_v7_seed2.log\", \"submitted_at\": \"2026-05-16T13:44:57.009Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v7 log-barrier contrastive seed 2 复现：验证 language-conditioned scoring 的稳定性。seed1 step-5000 Probe A cos [0.476, 0.894]，seed2 应收敛到相似范围。\", \"parent\": \"acib_v7_contrastive\"}, \"acib_v8_film\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T10:52:53.455Z\", \"updated_at\": \"2026-05-16T11:12:52.262Z\", \"hypothesis\": \"FiLM conditioning 替代 concat+MLP：用 gamma*visual+beta 乘性调制使 language 信号无法被 shortcut 学习绕过。scorer 输入从 [vis,cond] concat 改为 modulated_vis，维度 1920→960。不加 contrastive loss。预期 Probe A cos < 0.95。\", \"parent\": \"acib_v7_contrastive\", \"notes\": \"代码实现完成（scorer.py FiLMGenerator + conditioning_mode 后向兼容 + cross_task_probe.py 适配）。500 步 sweep 结果：Probe A cos [0.9997, 1.0000] ❌（FiLM 零初始化 + 无 contrastive loss，500 步不够让 FiLM 从 identity 发展出语言依赖调制）。scorer_std=0.314 ✅, task_loss=0.
+…[truncated 225 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T13:47:17.494162+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:v7_recovery_20260516T134600",
+  "project": "action_cond_info_bottleneck",
+  "task_prompt": "## 任务：诊断 v7_contrastive 训练崩溃并恢复\n\n### 背景\n- 服务器：westb-13953，account=root\n- 激活环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码目录：/root/acib\n- 输出目录：/root/acib/outputs/（symlink 到 /root/autodl-tmp/）\n\n### 情况\n1. **acib_v7_contrastive (seed1)** PID 960110 在 cuda:0 上死了，EXIT_CODE=129 (SIGHUP)。这是最关键的实验（log-barrier contrastive loss 迫使 scorer language-dependent）。训练命令：\n```\ncd /root/acib && python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_contrastive --seed 42\n```\n\n2. **acib_v7_seed2** PID 27422 在 cuda:1 上可能在跑（刚由 submit_training_job 提交，PREPARING 状态）。命令与 seed1 相同但 seed=1337，output_dir=/root/acib/outputs/acib_v7_seed2。\n\n### 你的任务\n\n**Step 1: 诊断**（用 ssh_read_only）\n```bash\n# GPU 状态\nnvidia-smi --query-gpu=index,name,memory.used,utilization.gpu --format=csv,noheader\n\n# 磁盘（上次是磁盘满崩溃）\ndf -h / /root/autodl-tmp\n\n# 检查两个进程\nps -p 960110 -o pid,stat,etime,cmd 2>/dev/null || echo \"PID_960110_DEAD\"\nps -p 27422 -o pid,stat,etime,cmd 2>/dev/null || echo \"PID_27422_DEAD\"\n\n# tmux sessions\ntmux list-sessions 2>/dev/null\n\n# v7 seed1 最后日志\ntail -30 ~/runs/action_cond_info_bottleneck/acib_v7_contrastive.log 2>/dev/null || tail -30 /root/acib/outputs/acib_v7_contrastive/train.log 2>/dev/null\n\n# v7 seed2 日志\ntail -20 ~/runs/action_cond_info_bottleneck/acib_v7_seed2.log 2>/dev/null\n\n# 检查 checkpoints\nls -la /root/acib/outputs/acib_v7_contrastive/checkpoint-*/checkpoint.pt 2>/dev/null\nls -la /root/acib/outputs/acib_v7_seed2/checkpoint-*/checkpoint.pt 2>/dev/null\n```\n\n**Step 2: 恢复 seed1 训练**（用 ssh_execute）\n如果 cuda:0 空闲且 PID 960110 确认死了：\n- 检查最新 checkpoint（如果有 checkpoint-5000 或更高，从 checkpoint resume；如果没有，从 step 0 重新开始）\n- 确认磁盘空间充足（根分区 > 10GB，数据盘 > 50GB）\n- 如果磁盘满：删除 /root/acib/outputs/ 下非必要旧实验的 checkpoint（v3/v4/v5_stopgrad 可以删）\n- 重启训练（在 tmux session 中）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/acib\n# 如果有 checkpoint 可以 resume:\nMUJOCO_GL=egl python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_contrastive --seed 42\n```\n注意：如果脚本支持 --resume 或自动从 output_dir 检测 checkpoint，使用该功能。否则从 step 0 重跑。\n\n**Step 3: 确认 seed2 状态**\n如果 PID 27422 活着且 GPU 利用率正常：记录当前 step，不做干预。\n如果 PID 27422 死了：同样在 tmux session 中重启（cuda:1）。\n\n**Step 4: 产出**\n在你的最终回复中提供：\n1. 崩溃原因分析（磁盘/OOM/信号?）\n2. 恢复后的 PID（seed1 和 seed2 分别是多少）\n3. 当前 step 进度（两个 seed）\n4. 磁盘空间状态\n5. 任何需要告警的问题\n\n### 约束\n- GPU 白名单：只能用 cuda:0 和 cuda:1\n- 不要删除 v7 相关的 checkpoint\n- 旧实验（v3_train, v4_agg_kl, v5_stopgrad_entropy）的 checkpoint 可以删除释放空间\n- 使用 submit_training_job 提交新训练进程（不要用 nohup）",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "服务器 westb-13953: 2x RTX PRO 6000 Blackwell 96GB, conda base 环境, /root/miniconda3。数据盘 /root/autodl-tmp/。v7_contrastive 是当前最关键实验——log-barrier contrastive loss 是唯一验证有效的方法（500步 Probe A cos=0.70-0.95，step 5000 cos [0.476, 0.894]）。之前因根分区磁盘满崩溃过一次，已将 outputs symlink 到数据盘。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:v7_recovery_20260516T134600",
+    "project": "action_cond_info_bottleneck",
+    "task_prompt": "## 任务：诊断 v7_contrastive 训练崩溃并恢复\n\n### 背景\n- 服务器：westb-13953，account=root\n- 激活环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码目录：/root/acib\n- 输出目录：/root/acib/outputs/（symlink 到 /root/autodl-tmp/）\n\n### 情况\n1. **acib_v7_contrastive (seed1)** PID 960110 在 cuda:0 上死了，EXIT_CODE=129 (SIGHUP)。这是最关键的实验（log-barrier contrastive loss 迫使 scorer language-dependent）。训练命令：\n```\ncd /root/acib && python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_contrastive --seed 42\n```\n\n2. **acib_v7_seed2** PID 27422 在 cuda:1 上可能在跑（刚由 submit_training_job 提交，PREPARING 状态）。命令与 seed1 相同但 seed=1337，output_dir=/root/acib/outputs/acib_v7_seed2。\n\n### 你的任务\n\n**Step 1: 诊断**（用 ssh_read_only）\n```bash\n# GPU 状态\nnvidia-smi --query-gpu=index,name,memory.used,utilization.gpu --format=csv,noheader\n\n# 磁盘（上次是磁盘满崩溃）\ndf -h / /root/autodl-tmp\n\n# 检查两个进程\nps -p 960110 -o pid,stat,etime,cmd 2>/dev/null || echo \"PID_960110_DEAD\"\nps -p 27422 -o pid,stat,etime,cmd 2>/dev/null || echo \"PID_27422_DEAD\"\n\n# tmux sessions\ntmux list-sessions 2>/dev/null\n\n# v7 seed1 最后日志\ntail -30 ~/runs/action_cond_info_bottleneck/acib_v7_contrastive.log 2>/dev/null || tail -30 /root/acib/outputs/acib_v7_contrastive/train.log 2>/dev/null\n\n# v7 seed2 日志\ntail -20 ~/runs/action_cond_info_bottleneck/acib_v7_seed2.log 2>/dev/null\n\n# 检查 checkpoints\nls -la /root/acib/outputs/acib_v7_contrastive/checkpoint-*/checkpoint.pt 2>/dev/null\nls -la /root/acib/outputs/acib_v7_seed2/checkpoint-*/checkpoint.pt 2>/dev/null\n```\n\n**Step 2: 恢复 seed1 训练**（用 ssh_execute）\n如果 cuda:0 空闲且 PID 960110 确认死了：\n- 检查最新 checkpoint（如果有 checkpoint-5000 或更高，从 checkpoint resume；如果没有，从 step 0 重新开始）\n- 确认磁盘空间充足（根分区 > 10GB，数据盘 > 50GB）\n- 如果磁盘满：删除 /root/acib/outputs/ 下非必要旧实验的 checkpoint（v3/v4/v5_stopgrad 可以删）\n- 重启训练（在 tmux session 中）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/acib\n# 如果有 checkpoint 可以 resume:\nMUJOCO_GL=egl python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_contrastive --seed 42\n```\n注意：如果脚本支持 --resume 或自动从 output_dir 检测 checkpoint，使用该功能。否则从 step 0 重跑。\n\n**Step 3: 确认 seed2 状态**\n如果 PID 27422 活着且 GPU 利用率正常：记录当前 step，不做干预。\n如果 PID 27422 死了：同样在 tmux session 中重启（cuda:1）。\n\n**Step 4: 产出**\n在你的最终回复中提供：\n1. 崩溃原因分析（磁盘/OOM/信号?）\n2. 恢复后的 PID（seed1 和 seed2 分别是多少）\n3. 当前 step 进度（两个 seed）\n4. 磁盘空间状态\n5. 任何需要告警的问题\n\n### 约束\n- GPU 白名单：只能用 cuda:0 和 cuda:1\n- 不要删除 v7 相关的 checkpoint\n- 旧实验（v3_train, v4_agg_kl, v5_stopgrad_entropy）的 checkpoint 可以删除释放空间\n- 使用 submit_training_job 提交新训练进程（不要用 nohup）",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "服务器 westb-13953: 2x RTX PRO 6000 Blackwell 96GB, conda base 环境, /root/miniconda3。数据盘 /root/autodl-tmp/。v7_contrastive 是当前最关键实验——log-barrier contrastive loss 是唯一验证有效的方法（500步 Probe A cos=0.70-0.95，step 5000 cos [0.476, 0.894]）。之前因根分区磁盘满崩溃过一次，已将 outputs symlink 到数据盘。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T13:47:20.159106+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_v7_recovery_20260516T134600_20260516T134717\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/logs/workers/worker_diagnose_v7_recovery_20260516T134600_20260516T134717.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_v7_recovery_20260516T134600_20260516T134717 started. Use get_worker_status('worker_diagnose_v7_recovery_20260516T134600_20260516T134717') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2664
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T13:47:31.108581+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_baseline",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_baseline",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T13:47:31.108979+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T13:47:38.148101+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/.claude/skills/resource-saturation.skill.md",
+  "limit": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/.claude/skills/resource-saturation.skill.md",
+    "limit": "40"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T13:47:38.500035+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/.claude/sessions/agent_1743e2ff.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "Read",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T13:47:38.500499+00:00_
+
+called mcp__agent-ml-research__update_baseline
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_baseline</summary>
+
+```json
+{
+  "exp_id": "mvp1_baseline_std_libero10",
+  "project": "action_cond_info_bottleneck"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__update_baseline",
+  "tool_args": {
+    "exp_id": "mvp1_baseline_std_libero10",
+    "project": "action_cond_info_bottleneck"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T13:47:38.602136+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"new_baseline\": \"mvp1_baseline_std_libero10\", \"old_baseline\": null, \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T03:04:40.585Z\", \"updated_at\": \"2026-05-16T10:34:34.359Z\", \"reproduce\": {\"finished_at\": \"2026-05-16T09:56:18.710Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-16T03:16:12.623Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T03:16:13.457211+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:56:19.717547+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"实际运行进程 PID 733616 (lerobot-eval libero_10, cuda:1, 6.6GB)。PID 708166/738549 是已退出的 wrapper/辅助进程。eval 输出 /root/acib/outputs/baseline_std_v3/libero_10/videos/ 正在写入。预计 5-8h 完成。\"}}, \"notes\": \"✅ libero_10 eval 完成。SR=54.2% (500 eps)。PID 733616 正常退出，eval_info.json 已产出。完整 baseline_std 4-suite: spatial=66.0%, object=67.8%, goal=76.4%, libero_10=54.2%, avg=66.1%。\", \"spec\": {\"command\": \"lerobot-eval --policy.path=lerobot/smolvla_libero --env.task=libero_10 --eval.n_episodes=50 --output_dir=/root/acib/outputs/baseline_std_v3/libero_10\", \"server\": \"westb-13953\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"smolvla_libero\", \"seed\": 42, \"checkpoint_source\": \"lerobot/smolvla_libero\", \"eval_data\": \"libero_10\", \"gpu\": [\"cuda:1\"], \"pid\": \"733616\", \"account\": \"root\", \"log_path\": \"/root/acib/outputs/baseline_std_v3/libero_10/\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0517}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__update_baseline",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T13:48:07.759125+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 0（v7 seed1 崩溃，seed2 待确认）| Worker 池 1 (GPU 0 / CPU 1 诊断中)\n\n## 状态汇报 — 2026-05-16T13:47 UTC\n\n### ✅ Baseline 全部就绪\n| Model | spatial | object | goal | libero_10 | avg |\n|-------|---------|--------|------|-----------|-----|\n| smolvla_libero (std) | 66.0% | 67.8% | 76.4% | 54.2% | 66.1% |\n| smolvla_libero_plus | 81.6% | 88.8% | 87.8% | 67.2% | 81.4% |\n\nplus 比 std 平均高 15.3pp，符合预期（data-aug 增强）。\n\n### 🔴 v7_contrastive 再次崩溃\n- seed1 (PID 960110, cuda:0) EXIT_CODE=129 (SIGHUP)——上一次是磁盘满，这次原因待查\n- seed2 (PID 27422, cuda:1) 刚由上轮 session 提交，状态待确认\n- 已派 Worker 诊断崩溃原因 + 恢复训练\n\n### 研究进展\nv7 log-barrier contrastive 是目前**唯一验证有效**的方法：\n- 500步 sweep: Probe A cos [0.704, 0.951]（成功打破 position prior）\n- step 5000: Probe A cos [0.476, 0.894]（持续改善，无退化）\n- 对比：v6 纯 language conditioning Probe A cos > 0.9999（完全失败）\n\nv7 需要完成 20000 步全量训练 → cross-task probe 最终验证 → 4-suite eval。这是通往 MVP pass 的关键路径。\n\n### 下一步\n1. Worker 诊断完成后：确认两个 seed 都在跑，注册 cron 监控\n2. v7 训练完成（~8-10h）→ Probe A 最终验证 → 如 cos < 0.8 则进入 eval pipeline\n3. cuda:1 如有空闲：运行 v5 eval（4-suite，作为 \"without conditioning\" ablation baseline for paper table）\n\n### CoRL Timeline\n- 距 abstract: 10天 (5/26)，距 paper: 13天 (5/29)\n- 当前卡在 MVP 验证（v7 训练 → eval）\n- 如 v7 eval 通过 → 还需 ACIB-H + plus 互补性实验 + 论文写作",
+  "project": "action_cond_info_bottleneck"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 0（v7 seed1 崩溃，seed2 待确认）| Worker 池 1 (GPU 0 / CPU 1 诊断中)\n\n## 状态汇报 — 2026-05-16T13:47 UTC\n\n### ✅ Baseline 全部就绪\n| Model | spatial | object | goal | libero_10 | avg |\n|-------|---------|--------|------|-----------|-----|\n| smolvla_libero (std) | 66.0% | 67.8% | 76.4% | 54.2% | 66.1% |\n| smolvla_libero_plus | 81.6% | 88.8% | 87.8% | 67.2% | 81.4% |\n\nplus 比 std 平均高 15.3pp，符合预期（data-aug 增强）。\n\n### 🔴 v7_contrastive 再次崩溃\n- seed1 (PID 960110, cuda:0) EXIT_CODE=129 (SIGHUP)——上一次是磁盘满，这次原因待查\n- seed2 (PID 27422, cuda:1) 刚由上轮 session 提交，状态待确认\n- 已派 Worker 诊断崩溃原因 + 恢复训练\n\n### 研究进展\nv7 log-barrier contrastive 是目前**唯一验证有效**的方法：\n- 500步 sweep: Probe A cos [0.704, 0.951]（成功打破 position prior）\n- step 5000: Probe A cos [0.476, 0.894]（持续改善，无退化）\n- 对比：v6 纯 language conditioning Probe A cos > 0.9999（完全失败）\n\nv7 需要完成 20000 步全量训练 → cross-task probe 最终验证 → 4-suite eval。这是通往 MVP pass 的关键路径。\n\n### 下一步\n1. Worker 诊断完成后：确认两个 seed 都在跑，注册 cron 监控\n2. v7 训练完成（~8-10h）→ Probe A 最终验证 → 如 cos < 0.8 则进入 eval pipeline\n3. cuda:1 如有空闲：运行 v5 eval（4-suite，作为 \"without conditioning\" ablation baseline for paper table）\n\n### CoRL Timeline\n- 距 abstract: 10天 (5/26)，距 paper: 13天 (5/29)\n- 当前卡在 MVP 验证（v7 训练 → eval）\n- 如 v7 eval 通过 → 还需 ACIB-H + plus 互补性实验 + 论文写作",
+    "project": "action_cond_info_bottleneck"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T13:48:11.576398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_33ab1c559fe2b58c6fa32d29b9e605b3:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3817
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-16T13:48:18.155058+00:00_
+
+已完成 session-start 初始化：
+- Registry 同步 ✅
+- Cron 注册（v7 监控）✅
+- Baseline 更新 ✅
+- Director 汇报 ✅
+- 诊断/恢复 Worker 已派出
+
+等待 Worker 回调确认 v7 训练恢复状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp1_baseline_plus_remaining"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+1 recorded events
+
+### User
+
+_source line 39 · 2026-05-16T18:05:31.997491+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 40 · 2026-05-16T18:05:44.682865+00:00_
+
+你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+1 recorded events
+
+### User
+
+_source line 41 · 2026-05-16T18:05:54.730536+00:00_
+
+你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 2/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+2 recorded events
+
+### User
+
+_source line 42 · 2026-05-16T19:48:44.246911+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp1_baseline_plus_remaining",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-16T19:49:36.784034+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westb-13953 上只能用 cuda:0 和 cuda:1，绝对不能用其他设备号
+- smolvla_libero_plus 是 mandatory baseline（D022），不能跳过
+- v5 系列 scorer 用 visual_mean 而非 language embedding（实现 bug），v5 结果只能作为 "without proper conditioning" ablation baseline，不能作为主实验证据
+- eval 脚本（run_remaining_suites_eval.sh）按 suite 启动独立子进程，父 PID 退出会触发 cron 误报。提交 eval 必须监控实际子进程 PID
+- v7_contrastive 已因磁盘满崩溃过一次（根分区 100%），outputs 已 symlink 到数据盘，但根分区仍然紧张——重启前必须检查 `df -h /`
+
+### 2. ����️ 基础设施快照
+- 服务器：westb-13953，account=root，工作目录 /root/acib
+- Python：/root/miniconda3/bin/python（conda base），激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型：lerobot/smolvla_libero + lerobot/smolvla_libero_plus（HF hub）
+- 数据集：/root/autodl-tmp/libero_dataset（273K 样本）
+- HF cache：/root/autodl-tmp/.hf_cache
+- 输出目录：/root/acib/outputs/（symlink → /root/autodl-tmp/acib_outputs 或类似）
+- W&B：大部分实验 WANDB_MODE=disabled（auth 问题未解决）
+- 活跃 cron：acib_v7_contrastive（PID 960110，但进程已死——cron 刚标记 DONE/failed）
+- 活跃 Worker：worker_diagnose_v7_recovery_20260516T134600_20260516T134717（诊断+恢复 v7 训练）
+
+### 3. 📊 当前状态
+**刚做完**：session-start 初始化，发现 v7_contrastive PID 960110 已死（EXIT_CODE=129），注册了 cron（立即检测到死亡），已派 Worker 去诊断崩溃原因并恢复训练。已向 Director 汇报 baseline 完成 + v7 崩溃。
+
+**Registry 关键状态**：
+- `acib_v7_contrastive` DONE(failed) — seed1 崩溃，Worker 正在诊断恢复
+- `acib_v7_seed2` PREPARING — PID 27422，上轮 session 提交，Worker 正在确认是否存活
+- `acib_v8_film` PREPARING — 暂缓（500步 Probe A cos~1.0，不如 v7 contrastive 有效）
+- 所有 baseline eval 已完成：std avg=66.1%, plus avg=81.4%
+
+**等待中**：
+- Worker 回调（诊断 v7 崩溃 + 恢复两个 seed 的训练）
+- Director 对汇报的回复
+
+### 4. 📋 待办
+- Worker 回调到且 v7 seed1/seed2 恢复成功 → 注册 cron 监控新 PID，update_registry 为 RUNNING（需要新 exp_id 或重置状态）
+- Worker 回调到但恢复失败（磁盘满/代码 bug）→ 清理磁盘（删 v3/v4/v5_stopgrad checkpoint），重试
+- v7_contrastive 训练完成（~8-10h after restart）→ spawn Worker 跑 cross_task_probe 最终验证（期望 Probe A cos < 0.8）
+- Probe A 验证通过 → 进入 4-suite eval pipeline（cuda:0 + cuda:1 并行两个 suite 对）
+- Probe A 验证失败（cos > 0.95）→ 产出 Framing 调整提案（方法可能有根本问题），汇报 Director
+- cuda:1 空闲确认后 → 运行 v5_div_reg eval（4-suite，"without conditioning" ablation baseline for paper table）
+- Director 决策到达 → 执行指令
+
+### 5. 🎯 战略上下文
+- **决策链**：v3 per-token KL collapse → v4 aggregate KL 无分化 → v5 diversity reg 防 collapse 但 conditioning 无效（bug：visual_mean 代替 language）→ v6 修 conditioning 但训练动力学退化（Probe A cos>0.9999）→ **v7 log-barrier contrastive 是唯一有效方法**（强制不同 instruction → 不同 importance map）
+- **v7 是 make-or-break**：step 5000 数据极为 promising（Probe A cos [0.476, 0.894]），但训练已崩溃两次（第一次磁盘满，第二次 SIGHUP）。如果完整 20000 步后 Probe A 持续有效 → MVP 有望通过 → 进入 eval → 论文
+- **CoRL 2026**：abstract 5/26（10天），paper 5/29（13天）。当前卡在 v7 训练完成
+- **易错点**：
+  - 不要把 v5 eval 数字当作 ACIB 有效的证据——v5 scorer 没有真正 conditioning
+  - v7 已从 step 0 重启（磁盘满后），不要假设有 step 5000 的 checkpoint 可用（可能在数据盘有，Worker 会确认）
+  - EXIT_CODE=129 = SIGHUP，可能是 tmux session 断开或系统信号，不一定是 OOM
+  - registry 状态转换有约束：DONE 不能直接转 RUNNING。如果需要重跑 v7 seed1，可能需要创建新 exp_id（如 acib_v7_contrastive_r2）或直接用 submit_training_job 的自动处理
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp1_baseline_plus_remaining"
+}
+```
+
+</details>
+
+---

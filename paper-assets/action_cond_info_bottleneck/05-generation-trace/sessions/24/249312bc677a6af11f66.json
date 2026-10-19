@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "249312bc677a6af11f66",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "check v7 v5 progress",
+  "task_key": "worker_check_v7-v5-progress_20260516T130520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_v7-v5-progress_20260516T130520_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "08b80ec453be906e87ecd19eeb4db6a3d08e49929da7bd71701454405efdc503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n**v7 训练 (GPU 0)**\n- 当前 step: **2100/20000** (10.5%)\n- 速度: 1.8 steps/s\n- loss=0.24, task_loss=0.096, β=0.01 (warmup 完成)\n- scorer_mean=0.285, std=0.307\n- 预计剩余: ~2.8h\n\n**v5 eval (GPU 0)**\n- 正在跑 **libero_spatial** (4 个 suite 中的第 1 个)\n- 当前某个 episode 的 rollout 接近完成 (277/280 steps)，running_success_rate=0.0%\n- 还有 libero_object, libero_goal, libero_10 三个 suite 未跑\n\n**GPU 状态**\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 98% | 16.2 GB |\n| 1 | 0% | 0 MB |\n\n注意：v7 训练和 v5 eval 都在 GPU 0 上跑（只有一个 PID 21363 在使用 GPU）。v5 eval 似乎是 CPU-heavy 的 rollout 阶段，没有占用独立 GPU 进程——或者 eval 实际跑在同一进程内。GPU 1 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-v7-v5-progress.md"
+}

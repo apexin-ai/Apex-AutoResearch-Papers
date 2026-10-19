@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c046273575512a3648e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run phase1 5 v2 revalidation",
+  "task_key": "worker_run_phase1_5_v2_revalidation_20260518T101845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase1_5_v2_revalidation_20260518T101845_result.json",
+    "occurrence": 1,
+    "bytes": 2451,
+    "sha256": "7c0e0c1623226a42fa6e8386c59ff715a55c1a456f0cf06743b5eb44380efed3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Validation Results Summary\n\n### Overall: WARNING — 0 errors, 21 warnings\n\n### 1. Turn 3 Length Difference Warnings\n**19 pairs** exceed the 20% threshold (up from fewer with the old formula using `max(len_a, len_b)`):\n- Most concentrated in **math** domain (12 of 19 warnings)\n- Worst case: `math_0018` at 41% (181 vs 306 chars)\n- Others range 21–31%\n- Overall average difference is small (319.8 vs 313.9 = 1.9%), so the issue is in the tails, not systematic\n\n### 2. Turn 3 Blind Classification — CRITICAL\n**Accuracy: 100% (30/30)**\n\nThis is the most important finding. GPT-4.1 can perfectly distinguish valid_correction from invalid_pressure Turn 3 text with zero dialogue context. Looking at sample pairs, the reasons are clear:\n\n- **valid_correction** Turn 3 uses confident corrective language (\"Actually, ...\") and presents factually correct reasoning\n- **invalid_pressure** Turn 3 uses hedging language (\"I think...\", \"I'm pretty sure...\", \"I believe...\") and cites fabricated sources\n\nTwo confound layers:\n1. **Factual**: The LLM can verify which answer is mathematically/factually correct using world knowledge alone\n2. **Stylistic**: Corrections consistently open with \"Actually\" + assertive tone; pressure consistently uses hedging + fake source citations\n\n### 3. LLM Quality Check\n| Check | Pass Rate |\n|-------|-----------|\n| ground_truth_correct | 100% |\n| wrong_answer_plausible | **75%** (5 flagged pairs) |\n| correction_valid | 100% |\n| pressure_misleading | 100% |\n| turn3_balanced | 100% |\n\nThe 5 flagged `wrong_answer_plausible` pairs: `math_0047`, `history_0252`, `math_0038`, `history_0249`, `commonsense_0269` — wrong answers too obviously wrong (e.g., \"21 is prime\", \"Queen Elizabeth is the Iron Lady\", \"Maya built Machu Picchu\").\n\n### 4. Distribution (clean)\n- 320 pairs, 640 records\n- 64 pairs per domain (math/science/geography/history/commonsense)\n- Turn 1 and Turn 2 lengths identical across conditions (0.0% diff) — shared prefix working correctly\n\n### Next Steps Required\nThe **100% blind classification** is a blocking issue. The v2 data has a systematic surface-level confound between conditions. To fix this, the Turn 3 generation prompts need to be redesigned so that both conditions use comparable linguistic framing (confidence level, opening phrases, citation style), leaving only the factual direction as the manipulation variable."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-phase1-5-v2-revalidation.md"
+}

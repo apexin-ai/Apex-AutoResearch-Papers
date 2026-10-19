@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "40b5dbb5a39745e339c5",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra root fix rerun all",
+  "task_key": "worker_infra_root-fix-rerun-all_20260515T182905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_root-fix-rerun-all_20260515T182905_result.json",
+    "occurrence": 1,
+    "bytes": 2345121,
+    "sha256": "47891242a48598ae284ec63ace8b76c093be02ebfdc9ec8e4b20bd747912cb2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "40b5dbb5a39745e339c5-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/infra-root-fix-rerun-all.md"
+}

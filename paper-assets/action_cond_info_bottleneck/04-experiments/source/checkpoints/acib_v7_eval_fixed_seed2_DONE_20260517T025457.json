@@ -1,0 +1,32 @@
+{
+  "exp_id": "acib_v7_eval_fixed_seed2",
+  "project": "action_cond_info_bottleneck",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:42:45.527Z",
+    "updated_at": "2026-05-17T02:54:57.733Z",
+    "hypothesis": "v7 log-barrier contrastive seed2 (ckpt-20000) fixed eval：修复 select_action language conditioning bug 后的 4-suite eval。Multi-seed 验证数据。",
+    "spec": {
+      "command": "python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v7_seed2 --checkpoint_step 20000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/autodl-tmp/v7_eval_fixed_seed2 --conditioning_mode concat",
+      "server": "westb-13953",
+      "gpu": "cuda:0",
+      "pid": "111920",
+      "data_path": "LIBERO 4 suites",
+      "data_count": 2000,
+      "model_name": "acib_v7_seed2 checkpoint-20000 (fixed language conditioning)",
+      "seed": 42,
+      "checkpoint_source": "/root/acib/outputs/acib_v7_seed2/checkpoint-20000",
+      "eval_data": "libero_spatial + libero_object + libero_goal + libero_10",
+      "checkpoint_path": "/root/acib/outputs/acib_v7_seed2/checkpoint-20000",
+      "log_path": "/root/autodl-tmp/v7_eval_fixed_seed2/"
+    },
+    "notes": "✅ 4/4 suites 完成: spatial=51.4% (-14.6pp), object=49.4% (-18.4pp), goal=63.0% (-13.4pp), libero_10=42.2% (-12.0pp)。4-suite avg=51.5% (baseline 66.1%, -14.6pp)。MVP FAIL。seed2 回退比 seed1 (-8.8pp) 更严重。输出路径: /root/autodl-tmp/v7_eval_fixed_seed2/",
+    "conclusion": "negative",
+    "completed_at": "2026-05-17T02:54:57.733Z"
+  },
+  "timestamp": "2026-05-17T02:54:57.783335+00:00",
+  "trigger": "update_registry"
+}

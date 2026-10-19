@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "353f141a3c5f365b3f38",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "ops verify seed2 restart d023",
+  "task_key": "worker_ops_verify-seed2-restart-d023_20260516T033154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_verify-seed2-restart-d023_20260516T033154.jsonl",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "52600dbceb92a392b3ffacef9a4d06fa267d29035439c848fd9b62ebf6e8ea91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:32:03.871389+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5YRdN4Hs5WkRXGbwJYr\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-seed2-restart-d023_20260516T033154"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-verify-seed2-restart-d023.md"
+}

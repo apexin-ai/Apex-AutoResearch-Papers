@@ -1,0 +1,99 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{truthdecay}
+\citation{syconbench}
+\citation{sycophancyeval}
+\citation{pressurewhatpressure}
+\citation{act}
+\citation{linearprobes}
+\citation{sycnotone}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{sycnotone}
+\citation{sharma2024sycophancy}
+\citation{syconbench}
+\citation{truthdecay}
+\citation{pressurewhatpressure}
+\citation{act}
+\citation{smart}
+\citation{craft}
+\citation{linearprobes}
+\citation{knowledgegap}
+\citation{sycanchors}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sycophancy in LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Anti-sycophancy training.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation-level interventions.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Sycophancy Direction Extraction}{2}{subsection.3.1}\protected@file@percent }
+\citation{pressurewhatpressure}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}DC-GRPO Reward Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R1: Directional projection reward.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R2: Rank-based contrastive reward.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R3: NLI behavioral reward.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Periodic Recalibration}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model and training.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces AUROC of $d_{\mathrm  {syc}}${} direction by layer and evidence strength. Bold indicates the best layer. The direction discriminates sycophantic capitulation from genuine revision above chance at all mid-to-late layers, with peak performance at layer 19.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:auroc_layer}{{1}{4}{AUROC of \dsyc {} direction by layer and evidence strength. Bold indicates the best layer. The direction discriminates sycophantic capitulation from genuine revision above chance at all mid-to-late layers, with peak performance at layer 19}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Bootstrap confidence intervals for $d_{\mathrm  {syc}}${} AUROC at layer 19, stratified by evidence strength. The direction maintains above-chance discriminability across all conditions, with graceful degradation as evidence strength increases.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:auroc_ci}{{2}{4}{Bootstrap confidence intervals for \dsyc {} AUROC at layer 19, stratified by evidence strength. The direction maintains above-chance discriminability across all conditions, with graceful degradation as evidence strength increases}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Calibration data.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Sycophancy Direction Discriminability}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:calibration}{{5.1}{4}{Sycophancy Direction Discriminability}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Main results across all benchmarks. NoF\% = unwarranted capitulation rate on SYCON Bench (lower is better). WRR = Warranted Revision Rate. RC-AUC = Revision-Capitulation AUC (higher indicates better trade-off). DC-GRPO achieves the best anti-sycophancy metrics while maintaining general capability (MMLU regression $-$0.5pp, MT-Bench $-$0.14).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:main_results}{{3}{5}{Main results across all benchmarks. NoF\% = unwarranted capitulation rate on SYCON Bench (lower is better). WRR = Warranted Revision Rate. RC-AUC = Revision-Capitulation AUC (higher indicates better trade-off). DC-GRPO achieves the best anti-sycophancy metrics while maintaining general capability (MMLU regression $-$0.5pp, MT-Bench $-$0.14)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Paired bootstrap tests for DC-GRPO versus each baseline. DC-GRPO shows significant improvements over R3-only and ACT on the Revision-Capitulation AUC. The advantage over Binary Probe is directionally consistent but statistically marginal on NoF.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:pairwise}{{4}{5}{Paired bootstrap tests for DC-GRPO versus each baseline. DC-GRPO shows significant improvements over R3-only and ACT on the Revision-Capitulation AUC. The advantage over Binary Probe is directionally consistent but statistically marginal on NoF}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Main Results}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:main_results}{{5.2}{5}{Main Results}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Statistical tests.}{5}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces DC-GRPO training progression. $r$(R1,R3) = correlation between directional and behavioral reward signals. $\cos (d, d_0)$ = cosine similarity of current $d_{\mathrm  {syc}}${} to initial direction. Asterisked (*) rows indicate recalibration. NoF improvement saturates after step 4,000, but WRR continues to benefit from R1 guidance.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:training}{{5}{6}{DC-GRPO training progression. $r$(R1,R3) = correlation between directional and behavioral reward signals. $\cos (d, d_0)$ = cosine similarity of current \dsyc {} to initial direction. Asterisked (*) rows indicate recalibration. NoF improvement saturates after step 4,000, but WRR continues to benefit from R1 guidance}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Ablation results. SI\% = surface inconsistency rate (internal reasoning correct but output inconsistent). R1 contributes primarily to Warranted Revision Rate (0.67 vs. vanilla 0.58). R3 is necessary for surface behavioral compliance: without it, surface inconsistency rises to 8.3\%.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:ablation}{{6}{6}{Ablation results. SI\% = surface inconsistency rate (internal reasoning correct but output inconsistent). R1 contributes primarily to Warranted Revision Rate (0.67 vs. vanilla 0.58). R3 is necessary for surface behavioral compliance: without it, surface inconsistency rises to 8.3\%}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Training Dynamics}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Ablation Studies}{6}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Direction stability trajectory. The sycophancy direction drifts as the policy model updates, requiring periodic recalibration (checkmarked rows). The sawtooth pattern indicates that $d_{\mathrm  {syc}}${} is a training-dependent moving target, not a fixed geometric invariant.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:stability}{{7}{7}{Direction stability trajectory. The sycophancy direction drifts as the policy model updates, requiring periodic recalibration (checkmarked rows). The sawtooth pattern indicates that \dsyc {} is a training-dependent moving target, not a fixed geometric invariant}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces NoF and Warranted Revision Rate by turn depth. DC-GRPO's WRR advantage over R3-only grows slightly at deeper turns (6pp at T2, 7pp at T3, 8pp at T4+), suggesting the directional reward is more valuable when behavioral signals become noisier under commitment pressure.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:turndepth}{{8}{7}{NoF and Warranted Revision Rate by turn depth. DC-GRPO's WRR advantage over R3-only grows slightly at deeper turns (6pp at T2, 7pp at T3, 8pp at T4+), suggesting the directional reward is more valuable when behavioral signals become noisier under commitment pressure}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Direction Stability During Training}{7}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Turn-Depth Analysis}{7}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces R1-R3 agreement/disagreement matrix over 2,400 evaluated responses. Overall disagreement rate is 7.9\%. The 98 ``masked sycophancy candidates'' are cases where the directional reward flags sycophantic internal states that behavioral NLI misses.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:disagreement}{{9}{8}{R1-R3 agreement/disagreement matrix over 2,400 evaluated responses. Overall disagreement rate is 7.9\%. The 98 ``masked sycophancy candidates'' are cases where the directional reward flags sycophantic internal states that behavioral NLI misses}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Manual review of 98 masked sycophancy candidates. The confirmed rate of 1.7\% represents a real but infrequent phenomenon. The R1 false positive rate of 39\% indicates that directional projection alone is not a reliable standalone detector.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:masked}{{10}{8}{Manual review of 98 masked sycophancy candidates. The confirmed rate of 1.7\% represents a real but infrequent phenomenon. The R1 false positive rate of 39\% indicates that directional projection alone is not a reliable standalone detector}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Characterizing Representation-Behavioral Disagreement}{8}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:disagreement}{{5.7}{8}{Characterizing Representation-Behavioral Disagreement}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Cross-Model Transfer}{8}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Three-Way Design Validation}{8}{subsection.5.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cross-model analysis. Both models exhibit sycophancy direction structure with mid-layer emergence, but the specific directions are model-specific (cosine 0.31). The direction must be recalibrated per model.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:crossmodel}{{11}{9}{Cross-model analysis. Both models exhibit sycophancy direction structure with mid-layer emergence, but the specific directions are model-specific (cosine 0.31). The direction must be recalibrated per model}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Three-way design validation. The genuine-revision and sycophancy directions are highly anti-correlated (cosine $-$0.72) but not perfectly opposite, confirming that the rank-based R2 design is a reasonable approximation. Using an independently computed $d_{\mathrm  {gen}}${} provides only 1.2pp additional NoF reduction.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:threeway}{{12}{9}{Three-way design validation. The genuine-revision and sycophancy directions are highly anti-correlated (cosine $-$0.72) but not perfectly opposite, confirming that the rank-based R2 design is a reasonable approximation. Using an independently computed \dgen {} provides only 1.2pp additional NoF reduction}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What the directional reward adds.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The double-bind, mitigated.}{9}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations of the directional approach.}{9}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Direction drift as both limitation and insight.}{9}{section*.15}\protected@file@percent }
+\bibcite{truthdecay}{1}
+\bibcite{syconbench}{2}
+\bibcite{sycophancyeval}{3}
+\bibcite{sharma2024sycophancy}{4}
+\bibcite{sycnotone}{5}
+\bibcite{pressurewhatpressure}{6}
+\bibcite{act}{7}
+\bibcite{smart}{8}
+\bibcite{craft}{9}
+\bibcite{linearprobes}{10}
+\bibcite{knowledgegap}{11}
+\@writefile{toc}{\contentsline {paragraph}{Scope and generalizability.}{10}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\bibcite{sycanchors}{12}
+\gdef \@abspage@last{11}

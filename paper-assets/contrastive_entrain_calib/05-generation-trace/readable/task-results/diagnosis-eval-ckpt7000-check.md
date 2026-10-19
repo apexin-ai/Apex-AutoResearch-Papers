@@ -1,0 +1,43 @@
+# diagnosis eval ckpt7000 check
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnosis_eval-ckpt7000-check_20260521T072241_result.json`
+- **Structured JSON:** [`125021adb6827f8151c7.json`](../../sessions/12/125021adb6827f8151c7.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+Registry 已全部修正为 RUNNING。**不删除 cron**，因为任务仍在运行。
+
+## 结果
+
+**Cron 报告有误** — exp-003-eval-ckpt7000 进程未退出，4 个 eval 全部在 westd-28034 上活跃运行：
+
+| 实验 | GPU | PID | 进度 | 预计完成 |
+|------|-----|-----|------|---------|
+| exp-003-eval-ckpt5000-v2 | cuda:0 | 497834 (nohup) | 20/362 (~5.5%) | ~90 min |
+| exp-003-eval-ckpt6000 | cuda:1 | 498446 (tmux) | 刚启动 | ~90 min |
+| exp-003-eval-ckpt6500 | cuda:2 | 498584 (tmux) | 刚启动 | ~90 min |
+| exp-003-eval-ckpt7000 | cuda:3 | 498666 (tmux) | 刚启动 | ~90 min |
+
+**背景**：之前一批 eval（同名）被 SIGHUP (EXIT_CODE=129) 杀死，cron 检测到的是那次退出。当前批次是 kill-cleanup-restart worker 重启的，约 15:19-15:22 UTC 启动，目前正常运行。
+
+**已执行操作**：
+- 4 个实验的 registry 状态修正为 RUNNING
+- Cron 保留，待实际完成后再清除
+- 无结果 JSON 可输出（尚未产出）
+
+---

@@ -1,0 +1,33 @@
+{
+  "exp_id": "acib_v73_connector_only_ablation",
+  "project": "action_cond_info_bottleneck",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:49:08.264Z",
+    "updated_at": "2026-05-17T22:58:09.595Z",
+    "hypothesis": "Connector-only ablation (无 scorer/contrastive/IB loss): 仅 task loss 训练 connector (freeze_mode=connector_only)，判定 v7.2 的 spatial conditioning 是 scorer-driven contrastive learning 的产物还是 connector tuning 的自然结果。Pass: 如果 Probe A cos≈1.0（无语言依赖）→ 证明 scorer contrastive 是 spatial conditioning 的必要组件。",
+    "parent": "acib_v72_connector_scorer_seed1",
+    "spec": {
+      "command": "train_acib.py --freeze_mode connector_only --lambda_contrastive 0.0 --lambda_drift 0.0 --steps 20000",
+      "server": "westb-13953",
+      "gpu": "cuda:1",
+      "pid": 745746,
+      "log_path": "~/runs/action_cond_info_bottleneck/acib_v73_connector_only_ablation.log",
+      "submitted_at": "2026-05-17T22:55:28.849Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_dataset",
+      "data_count": 273000,
+      "model_name": "lerobot/smolvla_libero",
+      "seed": 42,
+      "checkpoint_source": "lerobot/smolvla_libero (HF pretrained)",
+      "eval_data": "N/A (training, not eval)"
+    }
+  },
+  "timestamp": "2026-05-17T22:58:09.660780+00:00",
+  "trigger": "update_registry"
+}

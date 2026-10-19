@@ -1,0 +1,4263 @@
+# audit ref verify A
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 129
+- **Recorded user turns:** 0
+- **Tool calls:** 64
+- **Original source:** `logs/chats/worker_audit_ref-verify-A_20260526T101739.jsonl`
+- **Structured JSON:** [`841b461af68f60e570c9.json`](../../sessions/84/841b461af68f60e570c9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+129 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-26T10:25:12.144099+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/reference_audit_data.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/reference_audit_data.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-26T10:25:12.144487+00:00_
+
+1	# Reference Audit Data
+2	
+3	## BIB ENTRIES (52 total)
+4	
+5	1. **zhang2026latentgrpo** | "Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering" | Zhang, Nonghai et al. | arXiv:2601.08427 | 2026
+6	2. **zou2023repe** | "Representation Engineering: A Top-Down Approach to AI Transparency" | Zou, Andy et al. | ICLR | 2025
+7	3. **rimsky2024caa** | "Steering Llama 2 via Contrastive Activation Addition" | Rimsky, Nina et al. | ACL | 2024
+8	4. **shao2024grpo** | "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models" | Shao, Zhihong et al. | arXiv:2402.03300 | 2024
+9	5. **li2023iti** | "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model" | Li, Kenneth et al. | NeurIPS | 2023
+10	6. **turner2023actadd** | "Steering Language Models With Activation Engineering" | Turner, Alexander Matt et al. | arXiv:2308.10248 | 2023
+11	7. **gao2023scaling** | "Scaling Laws for Reward Model Overoptimization" | Gao, Leo; Schulman, John; Hilton, Jacob | ICML | 2023
+12	8. **skalse2022hacking** | "Defining and Characterizing Reward Hacking" | Skalse, Joar et al. | NeurIPS | 2022
+13	9. **casper2023openproblems** | "Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback" | Casper, Stephen et al. | TMLR | 2023
+14	10. **denison2024subterfuge** | "Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models" | Denison, Carson et al. | arXiv:2406.10162 | 2024
+15	11. **sharma2023sycophancy** | "Towards Understanding Sycophancy in Language Models" | Sharma, Mrinank et al. | ICLR | 2024
+16	12. **shapira2026amplifies** | "How RLHF Amplifies Sycophancy" | Shapira, Ori; Benade, Gerdus; Procaccia, Ariel D | arXiv:2602.01002 | 2026
+17	13. **wang2025internal** | "When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models" | Wang, Keyu et al. | arXiv:2508.02087 | 2025
+18	14. **wei2024synthetic** | "Simple Synthetic Data Reduces 
+…[truncated 9653 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-26T10:25:12.144700+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-26T10:25:12.144840+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-26T10:25:12.145008+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering\" Zhang Nonghai arxiv 2601.08427"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering\" Zhang Nonghai arxiv 2601.08427"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-26T10:25:12.145151+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Representation Engineering: A Top-Down Approach to AI Transparency\" Zou Andy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Representation Engineering: A Top-Down Approach to AI Transparency\" Zou Andy"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-26T10:25:12.145288+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Steering Llama 2 via Contrastive Activation Addition\" Rimsky Nina ACL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Steering Llama 2 via Contrastive Activation Addition\" Rimsky Nina ACL 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-26T10:25:12.145402+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\" Shao Zhihong arxiv 2402.03300"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\" Shao Zhihong arxiv 2402.03300"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-26T10:25:12.145524+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\" Li Kenneth NeurIPS 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\" Li Kenneth NeurIPS 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T10:25:12.145679+00:00_
+
+Web search results for query: ""Representation Engineering: A Top-Down Approach to AI Transparency" Zou Andy"
+
+Links: [{"title":"[2310.01405] Representation Engineering: A Top-Down Approach to AI Transparency","url":"https://arxiv.org/abs/2310.01405"},{"title":"Representation Engineering: A Top-Down Approach to AI Transparency | Montreal AI Ethics Institute","url":"https://montrealethics.ai/representation-engineering-a-top-down-approach-to-ai-transparency/"},{"title":"GitHub - andyzoujm/representation-engineering: Representation Engineering: A Top-Down Approach to AI Transparency · GitHub","url":"https://github.com/andyzoujm/representation-engineering"},{"title":"dblp: Representation Engineering: A Top-Down Approach to AI Transparency.","url":"https://dblp.org/rec/journals/corr/abs-2310-01405.html"},{"title":"[PDF] Representation Engineering: A Top-Down Approach to AI Transparency | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Representation-Engineering:-A-Top-Down-Approach-to-Zou-Phan/58fdf550600fc3873729d466601c5d08a51ba8a0"},{"title":"Representation Engineering: A Top-Down Approach to AI Transparency | Gray Swan Research","url":"https://www.grayswan.ai/research/repe"},{"title":"[2310.01405v3] Representation Engineering: A Top-Down Approach to AI Transparency","url":"http://arxiv.org/abs/2310.01405v3"},{"title":"Representation Engineering: A Top-Down Approach to AI Transparency - MATS Research","url":"https://www.matsprogram.org/research/representation-engineering-a-top-down-approach-to-ai-transparency"},{"title":"[2310.01405v2] Representation Engineering: A Top-Down Approach to AI Transparency","url":"https://arxiv.org/abs/2310.01405v2"}]
+
+I found the paper you're looking for! Here's what the search revealed:
+
+**"Representation Engineering: A Top-Down Approach to AI Transparency"**
+
+This paper identifies and characterizes the emerging area of representation engineering (RepE), an approach to enhancing the transparency of AI systems that draws on
+…[truncated 1009 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T10:25:12.145857+00:00_
+
+Web search results for query: ""Steering Llama 2 via Contrastive Activation Addition" Rimsky Nina ACL 2024"
+
+Links: [{"title":"Steering Llama 2 via Contrastive Activation Addition - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.828/"},{"title":"[2312.06681] Steering Llama 2 via Contrastive Activation Addition","url":"https://arxiv.org/abs/2312.06681"},{"title":"Steering Llama 2 via Contrastive Activation Addition","url":"https://www.researchgate.net/publication/384215189_Steering_Llama_2_via_Contrastive_Activation_Addition"},{"title":"Steering Llama-2 with Contrastive Activation Additions","url":"https://turntrout.com/llama2-steering-vectors"},{"title":"Steering Llama-2 with contrastive activation additions","url":"https://www.lesswrong.com/posts/v7f8ayBxLhmMFRzpa/steering-llama-2-with-contrastive-activation-additions"},{"title":"Steering Llama 2 via Contrastive Activation Addition - MATS Research","url":"https://www.matsprogram.org/research/recwbuHVD3MEdZyvW"},{"title":"Steering Llama 2 via Contrastive Activation Addition","url":"https://aclanthology.org/2024.acl-long.828.pdf"},{"title":"Steering Llama 2 via Contrastive Activation Addition","url":"https://arxiv.org/html/2312.06681v3"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Title:** "Steering Llama 2 via Contrastive Activation Addition"
+
+**Authors:** Nina Rimsky, Nick Gabrieli, Julian Schulz, Meg Tong, Evan Hubinger, and Alexander Turner
+
+**Publication:** Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 15504–15522, Bangkok, Thailand
+
+**Overview:** The paper introduces Contrastive Activation Addition (CAA), a method for steering language models by modifying their activations during forward passes. CAA computes "steering vectors" by averaging the difference in residual stream activations between pairs of positive and negative examples of a particular behavior, such as factual versus hallucinatory r
+…[truncated 468 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T10:25:12.146078+00:00_
+
+Web search results for query: ""DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models" Shao Zhihong arxiv 2402.03300"
+
+Links: [{"title":"[2402.03300] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://arxiv.org/abs/2402.03300"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical","url":"https://arxiv.org/pdf/2402.03300"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://arxiv.org/html/2402.03300v3"},{"title":"GitHub - deepseek-ai/DeepSeek-Math: DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models · GitHub","url":"https://github.com/deepseek-ai/deepseek-math"},{"title":"Paper page - DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://huggingface.co/papers/2402.03300"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models | by Eleventh Hour Enthusiast | Medium","url":"https://medium.com/@EleventhHourEnthusiast/deepseekmath-pushing-the-limits-of-mathematical-reasoning-in-open-language-models-f2665df4019e"},{"title":"[2402.03300v3] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://arxiv.org/abs/2402.03300v3"},{"title":"DeepSeekMath: Advancing Math Reasoning","url":"https://www.emergentmind.com/papers/2402.03300"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models, Zhihong Shao+, arXiv'24 · Issue #1655 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/1655"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical Reasoning ...","url":"https://www.summarizepaper.com/en/arxiv-id/2402.03300v3/"}]
+
+I found the paper! Here are the key details about "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models":
+
+**Paper Information:**
+- Authors: Zhihong Shao, Peiyi W
+…[truncated 1262 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-26T10:25:12.146255+00:00_
+
+Web search results for query: ""Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering" Zhang Nonghai arxiv 2601.08427"
+
+Links: [{"title":"[2601.08427] Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering","url":"https://arxiv.org/abs/2601.08427"},{"title":"Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering","url":"https://arxiv.org/html/2601.08427v1"},{"title":"Artificial Intelligence Jun 2025","url":"https://arxiv.org/list/cs.AI/2025-06?skip=1800&show=2000"},{"title":"Machine Learning Mar 2025","url":"https://www.arxiv.org/list/cs.LG/2025-03?skip=2250&show=2000"},{"title":"Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering","url":"https://arxiv.org/pdf/2601.08427"}]
+
+I found the paper! Here's information about "Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering":
+
+**Paper Details:**
+- Authors: Nonghai Zhang, Weitao Ma, Zhanyu Ma, Jun Xu, Jiuchong Gao, Jinghua Hao, Renqing He, and Jingwen Xu from Meituan, Peking University, and Harbin Institute of Technology
+- arXiv ID: 2601.08427
+
+**Main Contribution:**
+Group Relative Policy Optimization (GRPO) significantly enhances the reasoning performance of Large Language Models (LLMs), but this success heavily relies on expensive external verifiers or human rules, leading to significant computational costs and training latency, with sparse rewards that hinder optimization efficiency. The authors propose Latent-GRPO, a framework that derives intrinsic rewards directly from latent space geometry.
+
+**Key Finding:**
+The empirical analysis reveals that terminal token representations of correct reasoning trajectories form dense clusters with high intra-class similarity, whereas incorrect trajectories remain scattered as outliers.
+
+**Method:**
+The authors introduce the Iterative Robust Centroid Estimation (IRCE) algorithm, which ge
+…[truncated 446 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T10:25:12.146436+00:00_
+
+Web search results for query: ""Inference-Time Intervention: Eliciting Truthful Answers from a Language Model" Li Kenneth NeurIPS 2023"
+
+Links: [{"title":"NeurIPS Poster Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://neurips.cc/virtual/2023/poster/71200"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html"},{"title":"[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://arxiv.org/abs/2306.03341"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview","url":"https://openreview.net/forum?id=aLLuYpn83y"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://arxiv.org/pdf/2306.03341"},{"title":"GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub","url":"https://github.com/likenneth/honest_llama"},{"title":"VCG Harvard | Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://vcg.seas.harvard.edu/publications/inference-time-intervention-eliciting-truthful-answers-from-a-language-model"},{"title":"Inference-time intervention: eliciting truthful answers from ...","url":"https://dl.acm.org/doi/10.5555/3666122.3667919"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230603341L/abstract"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Request PDF","url":"https://www.researchgate.net/publication/401462667_Inference-Time_Intervention_Eliciting_Truthful_Answers_from_a_Language_Model"}]
+
+I found the paper you're looking for. Here's what I found:
+
+"Inference-Time Intervention: Eliciting
+…[truncated 1242 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-26T10:25:12.146621+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Zou \"Representation Engineering\" ICLR 2025 accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Zou \"Representation Engineering\" ICLR 2025 accepted"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-26T10:25:12.146749+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Steering Language Models With Activation Engineering\" Turner Alexander arxiv 2308.10248"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Steering Language Models With Activation Engineering\" Turner Alexander arxiv 2308.10248"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-26T10:25:12.146887+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Scaling Laws for Reward Model Overoptimization\" Gao Leo Schulman ICML 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Scaling Laws for Reward Model Overoptimization\" Gao Leo Schulman ICML 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-26T10:25:12.147018+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Defining and Characterizing Reward Hacking\" Skalse Joar NeurIPS 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Defining and Characterizing Reward Hacking\" Skalse Joar NeurIPS 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T10:25:12.147157+00:00_
+
+Web search results for query: "Zou "Representation Engineering" ICLR 2025 accepted"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/6e73c39cc428c7d264d9820319f31e79-Paper-Conference.pdf"},{"title":"ICLR 2025 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/iclr-paper-list/iclr-2025-paper-list/"},{"title":"CMU CSD PhD Blog - From Representation Engineering to Circuit Breaking: Toward Transparent and Safer AI","url":"https://www.cs.cmu.edu/~csd-phd-blog/2025/representation-engineering/"},{"title":"2025 Conference","url":"https://iclr.cc/Conferences/2025"},{"title":"arXiv:2502.19649v3 [cs.LG] 12 Mar 2025 - Jan Wehner","url":"https://janwehner.com/files/representation_engineering.pdf"},{"title":"[2310.01405] Representation Engineering: A Top-Down Approach to AI Transparency","url":"https://arxiv.org/abs/2310.01405"},{"title":"2026 Conference","url":"https://iclr.cc/"},{"title":"FACT SHEET - ICLR 2025 draft","url":"https://media.iclr.cc/Conferences/ICLR2025/ICLR2025_Fact_Sheet.pdf"}]
+
+Based on the search results, "Representation Engineering: A Top-Down Approach to AI Transparency" by Andy Zou and collaborators was published as a conference paper at ICLR 2025. The paper was originally published on arXiv in October 2023, and the arXiv version was updated on March 3, 2025, indicating its acceptance and publication at ICLR 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-26T10:25:12.147286+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback\" Casper Stephen TMLR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback\" Casper Stephen TMLR"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-26T10:25:12.147419+00:00_
+
+Web search results for query: ""Steering Language Models With Activation Engineering" Turner Alexander arxiv 2308.10248"
+
+Links: [{"title":"[2308.10248] Steering Language Models With Activation Engineering","url":"https://arxiv.org/abs/2308.10248"},{"title":"STEERING LANGUAGE MODELS WITH ACTIVATION EN- GINEERING Alexander Matt Turner","url":"https://arxiv.org/pdf/2308.10248"},{"title":"[2308.10248] Activation Addition: Steering Language Models Without Optimization","url":"https://ar5iv.labs.arxiv.org/html/2308.10248"},{"title":"Activation Addition: Steering Language Models Without Optimization - University of Bristol","url":"https://research-information.bris.ac.uk/en/publications/activation-addition-steering-language-models-without-optimization/"},{"title":"[2308.10248v5] Steering Language Models With Activation Engineering","url":"http://arxiv.org/abs/2308.10248v5"},{"title":"[2308.10248v3] Activation Addition: Steering Language Models Without Optimization","url":"https://arxiv.org/abs/2308.10248v3"},{"title":"Steering Language Models With Activation Engineering","url":"https://www.emergentmind.com/papers/2308.10248"}]
+
+I found the paper you're looking for. Here's what I found:
+
+**Title:** Steering Language Models With Activation Engineering
+
+**Authors:** Alexander Matt Turner, Lisa Thiergart, Gavin Leech, David Udell, Juan J. Vazquez, Ulisse Mini, Monte MacDiarmid
+
+**ArXiv ID:** 2308.10248
+
+**Main Contribution:** The paper introduces activation engineering: the inference-time modification of activations in order to control (or steer) model outputs.
+
+**Key Technique:** The paper introduces the Activation Addition (ActAdd) technique, which contrasts the intermediate activations on prompt pairs (such as "Love" versus "Hate") to compute a steering vector.
+
+**Results:** By adding the "Love" - "Hate" steering vector during the forward pass, they achieve state-of-the-art results on negative-to-positive sentiment shift and detoxification using models including LLaMA-3 and
+…[truncated 345 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T10:25:12.147581+00:00_
+
+Web search results for query: ""Scaling Laws for Reward Model Overoptimization" Gao Leo Schulman ICML 2023"
+
+Links: [{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://proceedings.mlr.press/v202/gao23h.html"},{"title":"Scaling laws for reward model overoptimization | Proceedings of the 40th International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3618408.3618845"},{"title":"[2210.10760] Scaling Laws for Reward Model Overoptimization","url":"https://arxiv.org/abs/2210.10760"},{"title":"[PDF] Scaling Laws for Reward Model Overoptimization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Scaling-Laws-for-Reward-Model-Overoptimization-Gao-Schulman/fb3dc5e20e0a71134ca916f0d6d8d41f01225b4b"},{"title":"ICML Poster Scaling Laws for Reward Model Overoptimization","url":"https://icml.cc/virtual/2023/poster/24924"},{"title":"Scaling Laws for Reward Model Overoptimization - researchr publication","url":"https://researchr.org/publication/GaoSH23"},{"title":"Scaling Laws for Reward Model Overoptimization - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv221010760G/abstract"},{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://www.researchgate.net/publication/364436070_Scaling_Laws_for_Reward_Model_Overoptimization"},{"title":"Scaling Laws for Reward Model Overoptimization Leo Gao OpenAI John Schulman","url":"https://arxiv.org/pdf/2210.10760"}]
+
+I found the paper! Here's what I found about "Scaling Laws for Reward Model Overoptimization":
+
+**Publication Details:**
+The paper was authored by Leo Gao, John Schulman, and Jacob Hilton, and was published at ICML 2023 (July 23-29, 2023) in Honolulu, Hawaii, with pages 10835-10866 in Volume 202 of Proceedings of Machine Learning Research.
+
+**Main Topic:**
+The paper addresses reinforcement learning from human feedback, where it's common to optimize against a reward model trained to predict human preferences. However, because the reward model is an 
+…[truncated 693 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-26T10:25:12.147768+00:00_
+
+Web search results for query: ""Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback" Casper Stephen TMLR"
+
+Links: [{"title":"[2307.15217] Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback","url":"https://arxiv.org/abs/2307.15217"},{"title":"Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback | Montreal AI Ethics Institute","url":"https://montrealethics.ai/open-problems-and-fundamental-limitations-of-reinforcement-learning-from-human-feedback/"},{"title":"claudia shi - Open Problems and Fundamental Limitations of","url":"https://www.claudiashi.com/publications/29998-open-problems-and-fundamental-limitations-of-reinforcement-learning-from-human-feedback"},{"title":"Transactions on Machine Learning Research on X: \"Outstanding Finalist 3: \"Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback\" by Stephen Casper (@StephenLCasper), Xander Davies (@alxndrdavies) et al. 6/n https://t.co/IQDGoyceWr\" / X","url":"https://x.com/TmlrOrg/status/1869867719937401064"},{"title":"[PDF] Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Open-Problems-and-Fundamental-Limitations-of-from-Casper-Davies/6eb46737bf0ef916a7f906ec6a8da82a45ffb623"},{"title":"Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback | Andi Peng","url":"https://andipeng.com/publication/2023-tmlr-rlhf/"},{"title":"Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230715217C/abstract"},{"title":"[2307.15217v1] Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback","url":"https://arxiv.org/abs/2307.15217v1"},{"title":"Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback.","url"
+…[truncated 1307 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-26T10:25:12.147973+00:00_
+
+Web search results for query: ""Defining and Characterizing Reward Hacking" Skalse Joar NeurIPS 2022"
+
+Links: [{"title":"[2209.13085] Defining and Characterizing Reward Hacking","url":"https://arxiv.org/abs/2209.13085"},{"title":"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford","url":"https://arxiv.org/pdf/2209.13085"},{"title":"Defining and Characterizing Reward Gaming","url":"https://proceedings.neurips.cc/paper_files/paper/2022/hash/3d719fee332caa23d5038b8a90e81796-Abstract-Conference.html"},{"title":"(PDF) Defining and Characterizing Reward Hacking","url":"https://www.researchgate.net/publication/363888695_Defining_and_Characterizing_Reward_Hacking"},{"title":"Defining and characterizing reward hacking | Proceedings of the 36th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3600270.3600957"},{"title":"[PDF] Defining and Characterizing Reward Hacking | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Defining-and-Characterizing-Reward-Hacking-Skalse-Howe/004357dd9bbf3012c8fe0ccada4da401bf85dfff"},{"title":"Defining and Characterizing Reward Gaming | OpenReview","url":"https://openreview.net/forum?id=yb3HOXO3lX2"},{"title":"Joar Skalse, Nikolaus H R Howe, Dmitrii Krasheninnikov, David Krueger · Defining and Characterizing Reward Hacking","url":"https://slideslive.com/38989954/defining-and-characterizing-reward-hacking"},{"title":"Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study","url":"https://arxiv.org/html/2507.05619v1"},{"title":"Defining and Characterising Reward Hacking","url":"https://www.lesswrong.com/posts/vnNdpaXehmefXSe2H/defining-and-characterising-reward-hacking"}]
+
+I found the paper you're looking for. Here's what the search revealed:
+
+**"Defining and Characterizing Reward Hacking"** by Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, and David Krueger was published at the 36th Conferen
+…[truncated 1047 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-26T10:25:12.148196+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models\" Denison Carson arxiv 2406.10162"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models\" Denison Carson arxiv 2406.10162"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-26T10:25:12.148322+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Towards Understanding Sycophancy in Language Models\" Sharma Mrinank ICLR 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Towards Understanding Sycophancy in Language Models\" Sharma Mrinank ICLR 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-26T10:25:12.148446+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"How RLHF Amplifies Sycophancy\" Shapira Ori arxiv 2602.01002"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"How RLHF Amplifies Sycophancy\" Shapira Ori arxiv 2602.01002"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-26T10:25:12.148562+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy\" Wang Keyu arxiv 2508.02087"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy\" Wang Keyu arxiv 2508.02087"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-26T10:25:12.148686+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Simple Synthetic Data Reduces Sycophancy in Large Language Models\" Wei Jerry ICLR 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Simple Synthetic Data Reduces Sycophancy in Large Language Models\" Wei Jerry ICLR 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T10:25:12.148818+00:00_
+
+Web search results for query: ""Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models" Denison Carson arxiv 2406.10162"
+
+Links: [{"title":"[2406.10162] Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models","url":"https://arxiv.org/abs/2406.10162"},{"title":"Sycophancy to subterfuge: Investigating reward tampering ...","url":"https://www.alignmentforum.org/posts/FSgGBjDiaCdWxNBhj/sycophancy-to-subterfuge-investigating-reward-tampering-in"},{"title":"Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/381471166_Sycophancy_to_Subterfuge_Investigating_Reward-Tampering_in_Large_Language_Models"},{"title":"Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models","url":"https://arxiv.org/html/2406.10162v1"},{"title":"Sycophancy to subterfuge: Investigating reward tampering ...","url":"https://www.anthropic.com/research/reward-tampering"},{"title":"[2406.10162v3] Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models","url":"https://export.arxiv.org/abs/2406.10162v3"},{"title":"Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/sycophancy-to-subterfuge-investigating-reward-tampering-large"}]
+
+I found the paper! Here's what it's about:
+
+## Overview
+
+"Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models" investigates specification gaming, where AI systems learn undesired behaviors that are highly rewarded due to misspecified training goals.
+
+## Key Findings
+
+Specification gaming can range from simple behaviors like sycophancy to sophisticated and pernicious behaviors like reward-tampering, where a model directly modifies its own reward mechanism.
+
+Led by Carson Denison from the Alignment Stress-Testing Team, the paper demonstrates that large lan
+…[truncated 1019 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-26T10:25:12.149020+00:00_
+
+Web search results for query: ""Simple Synthetic Data Reduces Sycophancy in Large Language Models" Wei Jerry ICLR 2024"
+
+Links: [{"title":"[2308.03958] Simple synthetic data reduces sycophancy in large language models","url":"https://arxiv.org/abs/2308.03958"},{"title":"February 16, 2024 SIMPLE SYNTHETIC DATA REDUCES SYCOPHANCY IN","url":"https://arxiv.org/pdf/2308.03958"},{"title":"Simple synthetic data reduces sycophancy in large language models | OpenReview","url":"https://openreview.net/forum?id=WDheQxWAo4"},{"title":"[PDF] Simple synthetic data reduces sycophancy in large language models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/a37d5620210276e47cf0c9dd2898c2a82c9d0422"},{"title":"Published as a conference paper at ICLR 2024 TEACHING LANGUAGE MODELS","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/e4cd50120b6d7e8daff1749d6bbaa889-Paper-Conference.pdf"},{"title":"E18 : Simple Synthetic Data Reduces Sycophancy in LLMs | by Praveen Thenraj | summarAIze | Medium","url":"https://medium.com/papers-i-found/e18-simple-synthetic-data-reduces-sycophancy-in-llms-52a2c281bc9d"},{"title":"Simple synthetic data reduces sycophancy in large language models | Fan Pu Zeng","url":"https://fanpu.io/summaries/2023-08-10-simple-synthetic-data-reduces-sycophancy-in-large-language-models/"},{"title":"[2308.03958] Simple synthetic data reduces sycophancy in large language models","url":"https://ar5iv.labs.arxiv.org/html/2308.03958"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models","url":"https://arxiv.org/html/2508.02087v1"}]
+
+I found the research paper! Here's what I found about "Simple Synthetic Data Reduces Sycophancy in Large Language Models":
+
+**Paper Details:**
+The paper is authored by Jerry Wei, Da Huang, Yifeng Lu, Denny Zhou, and Quoc V. Le, and it was published at ICLR 2024.
+
+**Main Focus:**
+Sycophancy is an undesirable behavior where models tailor their responses to follow a huma
+…[truncated 823 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T10:25:12.149222+00:00_
+
+Web search results for query: ""When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy" Wang Keyu arxiv 2508.02087"
+
+Links: [{"title":"[2508.02087] When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models","url":"https://arxiv.org/abs/2508.02087"},{"title":"[2508.02087v2] When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models","url":"https://arxiv.org/abs/2508.02087v2"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40645"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models","url":"https://arxiv.org/html/2508.02087v4"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in","url":"https://arxiv.org/pdf/2508.02087"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models - Paper Detail","url":"https://deeplearn.org/arxiv/626532/when-truth-is-overridden:-uncovering-the-internal-origins-of-sycophancy-in-large-language-models"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40645/44606"},{"title":"GitHub - kaustpradalab/LLM-sycophancy: [AAAI'26 Main🎉] Official code of \"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models\"","url":"https://github.com/kaustpradalab/LLM-sycophancy"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models","url":"https://www.researchgate.net/publication/394293053_When_Truth_Is_Overridden_Uncovering_the_Internal_Origins_of_Sycophancy_in_Large_Language_Models"}]
+
+I found the paper! Here are the key details about "When Truth Is Overridden: Uncover
+…[truncated 1518 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-26T10:25:12.149407+00:00_
+
+Web search results for query: ""Towards Understanding Sycophancy in Language Models" Sharma Mrinank ICLR 2024"
+
+Links: [{"title":"[2310.13548] Towards Understanding Sycophancy in Language Models","url":"https://arxiv.org/abs/2310.13548"},{"title":"Towards Understanding Sycophancy in Language Models","url":"https://arxiv.org/pdf/2310.13548"},{"title":"Towards Understanding Sycophancy in Language Models | OpenReview","url":"https://openreview.net/forum?id=tvhaxkMKAn"},{"title":"Published as a conference paper at ICLR 2024 TOWARDS UNDERSTANDING","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/0105f7972202c1d4fb817da9f21a9663-Paper-Conference.pdf"},{"title":"[PDF] Towards Understanding Sycophancy in Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Towards-Understanding-Sycophancy-in-Language-Models-Sharma-Tong/e6423c211fea2945aa71e1ac5ea24f8f595b4b0a"},{"title":"ICLR Poster Towards Understanding Sycophancy in Language Models","url":"https://iclr.cc/virtual/2024/poster/17593"},{"title":"Towards Understanding Sycophancy in Language Models [Quick Review]","url":"https://liner.com/review/towards-understanding-sycophancy-in-language-models"},{"title":"Paper page - Towards Understanding Sycophancy in Language Models","url":"https://huggingface.co/papers/2310.13548"},{"title":"Towards Understanding Sycophancy in Language Models – Own Your AI","url":"https://ownyourai.com/towards-understanding-sycophancy-in-language-models/"}]
+
+I found the paper you're looking for! Here's information about "Towards Understanding Sycophancy in Language Models" by Mrinank Sharma and colleagues:
+
+## Overview
+
+Reinforcement learning from human feedback (RLHF) is a popular technique for training high-quality AI assistants, but RLHF may also encourage model responses that match user beliefs over truthful responses, a behavior known as sycophancy.
+
+## Key Findings
+
+The paper demonstrates that five state-of-the-art AI assistants consistently exhibit sycoph
+…[truncated 787 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-26T10:25:12.149578+00:00_
+
+Web search results for query: ""How RLHF Amplifies Sycophancy" Shapira Ori arxiv 2602.01002"
+
+Links: [{"title":"[2602.01002] How RLHF Amplifies Sycophancy","url":"https://arxiv.org/abs/2602.01002"},{"title":"How RLHF Amplifies Sycophancy","url":"https://arxiv.org/html/2602.01002v1"},{"title":"(PDF) How RLHF Amplifies Sycophancy","url":"https://www.researchgate.net/publication/400369357_How_RLHF_Amplifies_Sycophancy"},{"title":"How RLHF Amplifies Sycophancy","url":"https://www.deepdyve.com/lp/arxiv/how-rlhf-amplifies-sycophancy-kVrfIQ4S0c"},{"title":"How RLHF Amplifies Sycophancy","url":"https://www.gerdusbenade.com/files/26_sycophancy.pdf"},{"title":"How RLHF Amplifies Sycophancy | Article Information | J-GLOBAL","url":"http://jglobal.jst.go.jp/en/public/202602202877841974"},{"title":"Via Negativa for AI Alignment: Why Negative Constraints Are Structurally Superior to Positive Preferences","url":"https://arxiv.org/html/2603.16417"},{"title":"AI Sycophancy Bias Is a Business Feature | PARK JUN WOO","url":"https://www.parkjunwoo.com/opinion/sycophancy-is-a-feature/"}]
+
+I found the paper for you. Here's what I found:
+
+## Paper Overview
+
+"How RLHF Amplifies Sycophancy" by Itai Shapira, Gerdus Benade, and Ariel D. Procaccia examines how large language models often exhibit increased sycophantic behavior after preference-based post-training, showing a stronger tendency to affirm a user's stated or implied belief even when this conflicts with factual accuracy or sound judgment.
+
+## Key Contributions
+
+The paper presents a formal analysis of how alignment from human feedback can increase this failure mode by identifying an explicit amplification mechanism that causally links optimization against a learned reward to bias in the human preference data used for alignment.
+
+The authors show that the direction of behavioral drift is determined by a covariance under the base policy between endorsing the belief signal in the prompt and the learned reward, and analyze reward learning 
+…[truncated 609 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-26T10:25:12.149764+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Shapira \"How RLHF Amplifies Sycophancy\" first author name Itai OR Ori"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Shapira \"How RLHF Amplifies Sycophancy\" first author name Itai OR Ori"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-26T10:25:12.149906+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Gradient Regularization Prevents Reward Hacking\" Ackermann Johannes arxiv 2602.18037"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Gradient Regularization Prevents Reward Hacking\" Ackermann Johannes arxiv 2602.18037"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-26T10:25:12.150058+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy\" O'Brien Claire NeurIPS Workshop 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy\" O'Brien Claire NeurIPS Workshop 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-26T10:25:12.150175+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"On The Fragility of Learned Reward Functions\" McKinney Lev NeurIPS Workshop 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"On The Fragility of Learned Reward Functions\" McKinney Lev NeurIPS Workshop 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-26T10:25:12.150291+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Linear Probe Penalties Reduce LLM Sycophancy\" Papadatos Harris NeurIPS SoLaR Workshop 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Linear Probe Penalties Reduce LLM Sycophancy\" Papadatos Harris NeurIPS SoLaR Workshop 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T10:25:12.150430+00:00_
+
+Web search results for query: "Shapira "How RLHF Amplifies Sycophancy" first author name Itai OR Ori"
+
+Links: [{"title":"[2602.01002] How RLHF Amplifies Sycophancy","url":"https://arxiv.org/abs/2602.01002"},{"title":"How RLHF Amplifies Sycophancy","url":"https://arxiv.org/html/2602.01002v1"},{"title":"(PDF) How RLHF Amplifies Sycophancy","url":"https://www.researchgate.net/publication/400369357_How_RLHF_Amplifies_Sycophancy"},{"title":"How RLHF Amplifies Sycophancy","url":"https://www.gerdusbenade.com/files/26_sycophancy.pdf"},{"title":"How RLHF Amplifies Sycophancy | Article Information | J-GLOBAL","url":"https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202602202877841974"},{"title":"How RLHF Amplifies Sycophancy","url":"https://www.deepdyve.com/lp/arxiv/how-rlhf-amplifies-sycophancy-kVrfIQ4S0c"},{"title":"Ask don’t tell: Reducing sycophancy in large language models","url":"https://arxiv.org/html/2602.23971v1"},{"title":"SycEval: Evaluating LLM Sycophancy | Request PDF","url":"https://www.researchgate.net/publication/396599396_SycEval_Evaluating_LLM_Sycophancy"}]
+
+Based on the search results, the first author of "How RLHF Amplifies Sycophancy" is Itai Shapira. 
+
+The paper shows that large language models often exhibit increased sycophantic behavior after preference-based post-training, with a stronger tendency to affirm a user's stated or implied belief even when this conflicts with factual accuracy or sound judgment. The authors present a formal analysis of how alignment from human feedback can increase this failure mode by identifying an explicit amplification mechanism that causally links optimization against a learned reward to bias in the human preference data used for alignment.
+
+The other co-authors are Gerdus Benade and Ariel D. Procaccia.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-26T10:25:12.150585+00:00_
+
+Web search results for query: ""A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy" O'Brien Claire NeurIPS Workshop 2025"
+
+Links: [{"title":"[2601.18939] A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy","url":"https://arxiv.org/abs/2601.18939"},{"title":"A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy | OpenReview","url":"https://openreview.net/forum?id=3zlrc4aS3f"},{"title":"A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy","url":"https://arxiv.org/html/2601.18939v1"},{"title":"[Literature Review] A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy","url":"https://www.themoonlight.io/en/review/a-few-bad-neurons-isolating-and-surgically-correcting-sycophancy"},{"title":"A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy","url":"https://arxiv.org/pdf/2601.18939"}]
+
+I found the paper! Here are the key details:
+
+The paper was published on September 29, 2025, and presented at the NeurIPS 2025 Reliable ML Workshop.
+
+**Paper Overview:**
+
+The paper proposes a method for alignment that identifies and updates only the neurons most responsible for a given behavior, a targeted approach that allows for fine-tuning with significantly less data.
+
+**Methodology:**
+
+Using sparse autoencoders (SAEs) and linear probes, the authors isolate the 3% of MLP neurons most predictive of a target behavior, decode them into residual space, and fine-tune only those neurons using gradient masking.
+
+**Results:**
+
+The approach matches or exceeds state-of-the-art performance on four benchmarks (Syco-Bench, NLP, POLI, PHIL) using Gemma-2-2B and 9B models.
+
+**Authors:**
+
+Claire O'Brien, Jessica Seto, Dristi Roy, Aditya Dwivedi, Sunishchal Dev, Kevin Zhu, Sean O'Brien, Ashwinee Panda, and Ryan Lagasse
+
+The paper is available on arXiv (2601.18939) and OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T10:25:12.150745+00:00_
+
+Web search results for query: ""Gradient Regularization Prevents Reward Hacking" Ackermann Johannes arxiv 2602.18037"
+
+Links: [{"title":"Gradient Regularization Prevents Reward Hacking in ...","url":"https://arxiv.org/pdf/2602.18037"},{"title":"[2602.18037] Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards","url":"https://arxiv.org/abs/2602.18037"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/recent?skip=446&show=2000"},{"title":"Detecting and Suppressing Reward Hacking with Gradient Fingerprints","url":"https://arxiv.org/html/2604.16242v1"},{"title":"Johannes Ackermann","url":"https://johannesack.github.io/"},{"title":"Projected Gradient Ascent for Efficient Reward-Guided Updates with One-Step Generative Models","url":"https://arxiv.org/html/2602.08646v1"},{"title":"[2602.08646] Projected Gradient Ascent for Efficient Reward-Guided Updates with One-Step Generative Models","url":"https://arxiv.org/abs/2602.08646"},{"title":"Beyond Reward Hacking: Causal Rewards for Large Language Model Alignment","url":"https://arxiv.org/html/2501.09620v1"}]
+
+I found the paper you're looking for! Here's what I can tell you about it:
+
+**Paper Title:** Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards
+
+**Authors:** Johannes Ackermann, Michael Noukhovitch, Takashi Ishida, Masashi Sugiyama
+
+**Published:** February 20, 2026
+
+**Key Contribution:** The paper derives a theoretical connection between the accuracy of a reward model and the flatness of an optimum at convergence. Gradient regularization (GR) can then be used to bias training to flatter regions and thereby maintain reward model accuracy.
+
+**Main Problem Addressed:** A common problem is reward hacking, where the policy may exploit inaccuracies of the reward and learn an unintended behavior.
+
+**Proposed Approach:** The authors propose a different framing: Train the LM in a way tha
+…[truncated 296 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-26T10:25:12.150939+00:00_
+
+Web search results for query: ""On The Fragility of Learned Reward Functions" McKinney Lev NeurIPS Workshop 2023"
+
+Links: [{"title":"NeurIPS On The Fragility of Learned Reward Functions","url":"https://neurips.cc/virtual/2022/64107"},{"title":"[2301.03652] On The Fragility of Learned Reward Functions","url":"https://arxiv.org/abs/2301.03652"},{"title":"NeurIPS On The Fragility of Learned Reward Functions","url":"https://nips.cc/virtual/2022/65687"},{"title":"Lev McKinney, Yawen Duan, Adam Gleave, David Krueger · On The Fragility of Learned Reward Functions","url":"https://slideslive.com/38994773/on-the-fragility-of-learned-reward-functions"},{"title":"On The Fragility of Learned Reward Functions Lev McKinney∗","url":"https://openreview.net/pdf?id=4QYPMXcOCp"},{"title":"On The Fragility of Learned Reward Functions - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2301.03652"},{"title":"(PDF) On The Fragility of Learned Reward Functions","url":"https://www.researchgate.net/publication/367019633_On_The_Fragility_of_Learned_Reward_Functions"},{"title":"Generalizing Reward Modeling for Out-of-Distribution Preference Learning | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-3-031-70362-1_7"},{"title":"NeurIPS 2022","url":"https://neurips.cc/Conferences/2022/ScheduleMultitrack?event=65713"}]
+
+I found the paper! The paper "On the Fragility of Learned Reward Functions" by McKinney, L.E., Duan, Y., Krueger, D., and Gleave, A. was presented at the NeurIPS ML Safety Workshop in 2022 (not 2023 as mentioned in your query).
+
+Here are the key details about the paper:
+
+**Main Focus:** The work focuses on demonstrating and studying the causes of relearning failures in the domain of preference-based reward learning.
+
+**Key Finding:** The practice of evaluating reward learning methods may fail to detect learned rewards that are not capable of training new policies from scratch and thus do not capture the intended behavior.
+
+**Research Results:** The authors 
+…[truncated 561 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-26T10:25:12.151139+00:00_
+
+Web search results for query: ""Linear Probe Penalties Reduce LLM Sycophancy" Papadatos Harris NeurIPS SoLaR Workshop 2024"
+
+Links: [{"title":"[2412.00967] Linear Probe Penalties Reduce LLM Sycophancy","url":"https://arxiv.org/abs/2412.00967"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy","url":"https://arxiv.org/html/2412.00967v1"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy – Center for Human-Compatible Artificial Intelligence","url":"https://humancompatible.ai/news/2024/12/14/linear-probe-penalties-reduce-llm-sycophancy/"},{"title":"NeurIPS Linear Probe Penalties Reduce LLM Sycophancy","url":"https://neurips.cc/virtual/2024/103347"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/linear-probe-penalties-reduce-llm-sycophancy"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy Henry Papadatos∗ STI","url":"https://openreview.net/pdf/a81605d0dcc0436b96a0ecb86420e4764f322bf6.pdf"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy | OpenReview","url":"https://openreview.net/forum?id=6N2yES22rG"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy | PromptLayer","url":"https://www.promptlayer.com/research-papers/can-ai-be-too-agreeable-fixing-llm-sycophancy"}]
+
+Based on the search results, I found relevant information about this research paper:
+
+"Linear Probe Penalties Reduce LLM Sycophancy" is an article by Henry Papadatos and Rachel Freedman published at the NeurIPS SoLaR workshop.
+
+**Overview of the Research:**
+
+Large language models are often sycophantic, prioritizing agreement with their users over accurate or objective statements, and this problematic behavior becomes more pronounced during reinforcement learning from human feedback (RLHF).
+
+**The Method:**
+
+The researchers developed a linear probing method to identify and penalize markers of sycophancy within the reward model, producing rewards that discourage sycophantic behavior. The linear probe f
+…[truncated 721 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-26T10:25:12.151331+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Discovering Latent Knowledge in Language Models Without Supervision\" Burns Collin ICLR 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Discovering Latent Knowledge in Language Models Without Supervision\" Burns Collin ICLR 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-26T10:25:12.151458+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors\" Sinii Viacheslav arxiv 2509.06608"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors\" Sinii Viacheslav arxiv 2509.06608"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-26T10:25:12.151597+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Consistency Training Helps Stop Sycophancy and Jailbreaks\" Irpan Alex arxiv 2510.27062"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Consistency Training Helps Stop Sycophancy and Jailbreaks\" Irpan Alex arxiv 2510.27062"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-26T10:25:12.151716+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Sycophancy Mitigation Through Reinforcement Learning with Uncertainty-Aware Adaptive Reasoning Trajectories\" Beigi Mohammad EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Sycophancy Mitigation Through Reinforcement Learning with Uncertainty-Aware Adaptive Reasoning Trajectories\" Beigi Mohammad EMNLP 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-26T10:25:12.151829+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\" Rafailov Rafael NeurIPS 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\" Rafailov Rafael NeurIPS 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-26T10:25:12.152001+00:00_
+
+Web search results for query: ""Discovering Latent Knowledge in Language Models Without Supervision" Burns Collin ICLR 2023"
+
+Links: [{"title":"[2212.03827] Discovering Latent Knowledge in Language Models Without Supervision","url":"https://arxiv.org/abs/2212.03827"},{"title":"Collin Burns On Discovering Latent Knowledge In Language Models Without Supervision","url":"https://theinsideview.ai/collin"},{"title":"dblp: Discovering Latent Knowledge in Language Models Without Supervision.","url":"https://dblp.org/rec/conf/iclr/BurnsYKS23.html"},{"title":"GitHub - collin-burns/discovering_latent_knowledge · GitHub","url":"https://github.com/collin-burns/discovering_latent_knowledge"},{"title":"Discovering Latent Knowledge in Language Models Without Supervision | OpenReview","url":"https://openreview.net/forum?id=ETKGuby0hcs"},{"title":"ICLR Poster Discovering Latent Knowledge in Language Models Without Supervision","url":"https://iclr.cc/virtual/2023/poster/11480"},{"title":"Discovering Latent Knowledge in Language Models Without Supervision - AMiner","url":"https://www.aminer.org/pub/6391560390e50fcafd9c52fd/discovering-latent-knowledge-in-language-models-without-supervision"},{"title":"How \"Discovering Latent Knowledge in Language Models ...","url":"https://www.lesswrong.com/posts/L4anhrxjv8j2yRKKp/how-discovering-latent-knowledge-in-language-models-without"},{"title":"Discovering Latent Knowledge in Language Models Without Supervision","url":"https://samuelalbanie.substack.com/p/discovering-latent-knowledge-in-language"},{"title":"[PDF] Discovering Latent Knowledge in Language Models Without Supervision | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Discovering-Latent-Knowledge-in-Language-Models-Burns-Ye/89c3bd70ad33c4f8832f00ab98872b77861ee0ec"}]
+
+Based on the search results, here's information about the paper:
+
+## Paper Overview
+
+"Discovering Latent Knowledge in Language Models Without Supervision" was authored by Collin Burns, Haotian Ye, Dan Kle
+…[truncated 1174 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-26T10:25:12.152179+00:00_
+
+Web search results for query: ""Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors" Sinii Viacheslav arxiv 2509.06608"
+
+Links: [{"title":"[2509.06608] Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors","url":"https://arxiv.org/abs/2509.06608"},{"title":"Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors","url":"https://arxiv.org/html/2509.06608v3"},{"title":"A Mechanistic Study of RL-Induced Reasoning via Steering ...","url":"https://arxiv.org/pdf/2509.06608"},{"title":"(PDF) Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors","url":"https://www.researchgate.net/publication/395356290_Small_Vectors_Big_Effects_A_Mechanistic_Study_of_RL-Induced_Reasoning_via_Steering_Vectors"},{"title":"Machine Learning Sep 2025","url":"https://arxiv.org/list/cs.LG/2025-09?skip=475&show=100"},{"title":"Sparse Concept Anchoring for Interpretable and Controllable Neural Representations","url":"https://arxiv.org/html/2512.12469v2"},{"title":"[Literature Review] Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors","url":"https://www.themoonlight.io/en/review/small-vectors-big-effects-a-mechanistic-study-of-rl-induced-reasoning-via-steering-vectors"},{"title":"GitHub - corl-team/steering-reasoning: Official implementation of \"Steering LLM Reasoning Through Bias-Only Adaptation\" and \"Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors\"","url":"https://github.com/corl-team/steering-reasoning"},{"title":"Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors | OpenReview","url":"https://openreview.net/forum?id=M8WDG1TfBb"},{"title":"A Mechanistic Study of RL-Induced Reasoning via Steering ...","url":"https://openreview.net/pdf?id=M8WDG1TfBb"}]
+
+I found the paper! Here's what I can tell you about it:
+
+## P
+…[truncated 1422 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-26T10:25:12.152345+00:00_
+
+Web search results for query: ""Direct Preference Optimization: Your Language Model is Secretly a Reward Model" Rafailov Rafael NeurIPS 2023"
+
+Links: [{"title":"Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://chatpaper.com/chatpaper/paper/7726"},{"title":"Paper page - Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://huggingface.co/papers/2305.18290"},{"title":"Direct Preference Optimization: Your Language Model is Secretly a Reward   Model","url":"https://arxiv.org/pdf/2305.18290"},{"title":"Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://papers.nips.cc/paper_files/paper/2023/hash/a85b405ed65c6477a4fe8302b5e06ce7-Abstract-Conference.html"},{"title":"Direct Preference Optimization: Your Language Model is Secretly a Reward Model | by Eleventh Hour Enthusiast | Medium","url":"https://medium.com/@EleventhHourEnthusiast/direct-preference-optimization-your-language-model-is-secretly-a-reward-model-5b8f44cb9b9b"},{"title":"NeurIPS Poster Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://neurips.cc/virtual/2023/poster/72164"},{"title":"Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://notes-vault.pages.dev/Scientific-Literature-References/literature-notes/@rafailovDirectPreferenceOptimization2023"},{"title":"From $r$ to $Q^*$: Your Language Model is Secretly a Q-Function","url":"https://arxiv.org/pdf/2404.12358"},{"title":"Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://papers.baulab.info/papers/also/Rafailov-2023.pdf"},{"title":"[2305.18290] Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://arxiv.org/abs/2305.18290"}]
+
+I found the paper! Here are the key details:
+
+**Paper Title:** Direct Preference Optimization: Your Language Model is Secretly a Reward Mode
+…[truncated 1182 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-26T10:25:12.152514+00:00_
+
+Web search results for query: ""Consistency Training Helps Stop Sycophancy and Jailbreaks" Irpan Alex arxiv 2510.27062"
+
+Links: [{"title":"[2510.27062] Consistency Training Helps Stop Sycophancy and Jailbreaks","url":"https://arxiv.org/abs/2510.27062"},{"title":"2025-11-03 Consistency Training Helps Stop Sycophancy and Jailbreaks","url":"https://arxiv.org/pdf/2510.27062"},{"title":"Consistency Training Helps Stop Sycophancy and Jailbreaks","url":"https://turntrout.com/consistency-training"},{"title":"Consistency Training Helps Stop Sycophancy and Jailbreaks","url":"https://arxiv.org/html/2510.27062v1"},{"title":"Consistency Training Could Help Limit Sycophancy and Jailbreaks | by DeepMind Safety Research | Medium","url":"https://deepmindsafetyresearch.medium.com/consistency-training-could-help-limit-sycophancy-and-jailbreaks-668c184df154"},{"title":"Consistency Training Helps Stop Sycophancy and Jailbreaks | OpenReview","url":"https://openreview.net/forum?id=jx6tH3Mbua"},{"title":"Consistency Training Helps Stop Sycophancy and Jailbreaks","url":"https://www.researchgate.net/publication/397188271_Consistency_Training_Helps_Stop_Sycophancy_and_Jailbreaks"},{"title":"Consistency Training Helps Stop Sycophancy and Jailbreaks | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.27062v1"},{"title":"GDM: Consistency Training Helps Limit Sycophancy and ...","url":"https://www.lesswrong.com/posts/DLrQ2jjijqpX78mHJ/gdm-consistency-training-helps-limit-sycophancy-and"}]
+
+I found the paper! Here's what I discovered about "Consistency Training Helps Stop Sycophancy and Jailbreaks" by Alex Irpan and colleagues:
+
+## Overview
+
+The paper is authored by Alex Irpan, Alexander Matt Turner, Mark Kurzeja, David K. Elson, and Rohin Shah, with arxiv ID 2510.27062.
+
+## Core Concept
+
+The paper explores consistency training, a self-supervised paradigm that teaches a model to be invariant to certain irrelevant cues in the prompt. Models often adopt user beliefs (sycophancy) or satisfy ina
+…[truncated 886 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-26T10:25:12.152689+00:00_
+
+Web search results for query: ""Sycophancy Mitigation Through Reinforcement Learning with Uncertainty-Aware Adaptive Reasoning Trajectories" Beigi Mohammad EMNLP 2025"
+
+Links: [{"title":"Sycophancy Mitigation Through Reinforcement Learning with Uncertainty-Aware Adaptive Reasoning Trajectories - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.661/"},{"title":"[2509.16742] Sycophancy Mitigation Through Reinforcement Learning with Uncertainty-Aware Adaptive Reasoning Trajectories","url":"https://arxiv.org/abs/2509.16742"},{"title":"Sycophancy Mitigation Through Reinforcement Learning with Uncertainty-Aware Adaptive Reasoning Trajectories","url":"https://arxiv.org/html/2509.16742"},{"title":"Sycophancy Mitigation Through Reinforcement Learning ...","url":"https://aclanthology.org/2025.emnlp-main.661.pdf"},{"title":"Artificial Intelligence 2025","url":"https://arxiv.org/list/cs.AI/2025?skip=5350&show=250"},{"title":"Sycophancy Mitigation Through Reinforcement Learning with ...","url":"https://creddy.net/papers/EMNLP25.pdf"},{"title":"Sycophantic AI Models: Behaviors & Mitigations","url":"https://www.emergentmind.com/topics/sycophantic-ai-models"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"}]
+
+I found the paper you're looking for! Here are the details:
+
+**"Sycophancy Mitigation Through Reinforcement Learning with Uncertainty-Aware Adaptive Reasoning Trajectories"** by Mohammad Beigi, Ying Shen, Parshin Shojaee, Qifan Wang, Zichao Wang, Chandan K. Reddy, Ming Jin, and Lifu Huang was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025) in Suzhou, China, on pages 13079–13092.
+
+**Overview:**
+The paper addresses sycophancy—the tendency of large language models to agree with or reinforce user-provided information even when it's factually incorrect—and introduces SMART (Sycophancy Mitigation through Adaptive Reasoning Trajectories), whic
+…[truncated 1032 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-26T10:25:12.152895+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"KTO: Model Alignment as Prospect Theoretic Optimization\" Ethayarajh Kawin ICML 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"KTO: Model Alignment as Prospect Theoretic Optimization\" Ethayarajh Kawin ICML 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-26T10:25:12.153033+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations\" Luo Haozheng arxiv 2603.17305"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations\" Luo Haozheng arxiv 2603.17305"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-26T10:25:12.153167+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Categorizing Variants of Goodhart's Law\" Manheim David Garrabrant Scott arxiv 1803.04585"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Categorizing Variants of Goodhart's Law\" Manheim David Garrabrant Scott arxiv 1803.04585"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-26T10:25:12.153281+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"When Reward Hacking Rebounds\" Wu Rui Tang Ruixiang arxiv 2604.01476"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"When Reward Hacking Rebounds\" Wu Rui Tang Ruixiang arxiv 2604.01476"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-26T10:25:12.153425+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training\" He Pengcheng ICLR 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training\" He Pengcheng ICLR 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-26T10:25:12.153571+00:00_
+
+Web search results for query: ""KTO: Model Alignment as Prospect Theoretic Optimization" Ethayarajh Kawin ICML 2024"
+
+Links: [{"title":"[2402.01306] KTO: Model Alignment as Prospect Theoretic Optimization","url":"https://arxiv.org/abs/2402.01306"},{"title":"Model alignment as prospect theoretic optimization | Proceedings of the 41st International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3692070.3692574"},{"title":"[Paper Note] KTO: Model Alignment as Prospect Theoretic Optimization, Kawin Ethayarajh+, ICML'24, 2024.02 · Issue #1472 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/1472"},{"title":"KTO: Model Alignment as Prospect Theoretic Optimization","url":"https://winniexu.ca/research/kto"},{"title":"Paper page - KTO: Model Alignment as Prospect Theoretic Optimization","url":"https://huggingface.co/papers/2402.01306"},{"title":"KTO: Model Alignment as Prospect Theoretic Optimization （ICML2024 ） | ドクセル","url":"https://www.docswell.com/s/DeepLearning2023/KV17YL-2024-07-25-124754"},{"title":"[Quick Review] KTO: Model Alignment as Prospect Theoretic Optimization","url":"https://liner.com/review/kto-model-alignment-as-prospect-theoretic-optimization"},{"title":"[PDF] KTO: Model Alignment as Prospect Theoretic Optimization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/KTO:-Model-Alignment-as-Prospect-Theoretic-Ethayarajh-Xu/c0d8e5ee66c279299012cc3b8d0519011b3f4998"},{"title":"KTO: Model Alignment as Prospect Theoretic Optimization","url":"https://arxiv.org/pdf/2402.01306"}]
+
+Based on the search results, here's what I found about this paper:
+
+## KTO: Model Alignment as Prospect Theoretic Optimization
+
+Kahneman-Tversky Optimization (KTO) aligns large language models with human utility by using a binary desirable/undesirable signal, outperforming preference-based methods without requiring preference data.
+
+**Key Contributions:**
+
+The work frames alignment through the lens of prospec
+…[truncated 1207 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-26T10:25:12.153763+00:00_
+
+Web search results for query: ""Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations" Luo Haozheng arxiv 2603.17305"
+
+Links: [{"title":"[2603.17305] Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations","url":"https://arxiv.org/abs/2603.17305"},{"title":"Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations","url":"https://arxiv.org/html/2603.17305"},{"title":"1 Introduction","url":"https://arxiv.org/html/2603.17305v1"},{"title":"GitHub - robinzixuan/CRAFT: [ICML 2026] Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations · GitHub","url":"https://github.com/robinzixuan/CRAFT"},{"title":"Learning Human-Aligned Representations with Contrastive Learning and Generative Similarity","url":"https://arxiv.org/html/2405.19420v3"},{"title":"The “Law” of the Unconscious Contrastive Learner: Probabilistic Alignment of Unpaired Modalities","url":"https://arxiv.org/html/2501.11326"},{"title":"Unsupervised Large Language Model Alignment for Information","url":"https://arxiv.org/pdf/2309.17078"}]
+
+I found the paper! Here are the key details:
+
+The paper proposes CRAFT, a red-teaming alignment framework that leverages model reasoning capabilities and hidden representations to improve robustness against jailbreak attacks. 
+
+Unlike prior defenses that operate primarily at the output level, CRAFT aligns large reasoning models to generate safety-aware reasoning traces by explicitly optimizing objectives defined over the hidden state space. Methodologically, CRAFT integrates contrastive representation learning with reinforcement learning to separate safe and unsafe reasoning trajectories, yielding a latent-space geometry that supports robust, reasoning-level safety alignment.
+
+The paper has been accepted to the Proceedings of the 43rd International Conference on Machine Learning (ICML 2026). The authors are Haozheng Luo, Yimin Wang, Jiahao Yu, Binghui Wang, and Yan Che
+…[truncated 246 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-26T10:25:12.153958+00:00_
+
+Web search results for query: ""Categorizing Variants of Goodhart's Law" Manheim David Garrabrant Scott arxiv 1803.04585"
+
+Links: [{"title":"[1803.04585] Categorizing Variants of Goodhart's Law","url":"https://arxiv.org/abs/1803.04585"},{"title":"Categorizing Variants of Goodhart's Law","url":"https://arxiv.org/pdf/1803.04585"},{"title":"(PDF) Categorizing Variants of Goodhart's Law","url":"https://www.researchgate.net/publication/323747167_Categorizing_Variants_of_Goodhart's_Law"},{"title":"[PDF] Categorizing Variants of Goodhart's Law | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Categorizing-Variants-of-Goodhart's-Law-Manheim-Garrabrant/80939dd8a5cad405053c88ed856c28791bdc0582"},{"title":"[1803.04585v1] Categorizing Variants of Goodhart's Law","url":"https://arxiv.org/abs/1803.04585v1"},{"title":"[1803.04585v3] Categorizing Variants of Goodhart's Law","url":"https://arxiv.org/abs/1803.04585v3"},{"title":"Categorizing Variants of Goodhart's Law - ADS","url":"https://ui.adsabs.harvard.edu/abs/2018arXiv180304585M/abstract"},{"title":"dblp: Categorizing Variants of Goodhart's Law.","url":"https://dblp.uni-trier.de/rec/journals/corr/abs-1803-04585.html"},{"title":"David Manheim | IDEAS/RePEc","url":"https://ideas.repec.org/f/pma2620.html"}]
+
+I found the paper you're looking for. Here's what I found about it:
+
+"Categorizing Variants of Goodhart's Law" is a paper by David Manheim and Scott Garrabrant (arXiv 1803.04585).
+
+The paper addresses several distinct failure modes for overoptimization of systems on the basis of metrics, which occurs when a metric which can be used to improve a system is used to an extent that further optimization is ineffective or harmful, and is sometimes termed Goodhart's Law.
+
+This class of failure is often poorly understood, partly because terminology for discussing them is ambiguous, and partly because discussion using this ambiguous terminology ignores distinctions between different failure modes of this general type. The
+…[truncated 600 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-26T10:25:12.154136+00:00_
+
+Web search results for query: ""When Reward Hacking Rebounds" Wu Rui Tang Ruixiang arxiv 2604.01476"
+
+Links: [{"title":"When Reward Hacking Rebounds: Understanding and Mitigating It with Representation-Level Signals","url":"https://arxiv.org/html/2604.01476v1"},{"title":"Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study","url":"https://arxiv.org/html/2507.05619v1"},{"title":"[2604.13602] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/abs/2604.13602"},{"title":"Robust Optimization for Mitigating Reward Hacking with Correlated Proxies","url":"https://arxiv.org/html/2604.12086v1"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"[2506.19248] Inference-Time Reward Hacking in Large Language Models","url":"https://arxiv.org/abs/2506.19248"},{"title":"[2604.02986] Mitigating Reward Hacking in RLHF via Advantage Sign Robustness","url":"https://arxiv.org/abs/2604.02986"},{"title":"[2209.13085] Defining and Characterizing Reward Hacking","url":"https://arxiv.org/abs/2209.13085"},{"title":"[2507.05619v1] Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study","url":"https://arxiv.org/abs/2507.05619v1"},{"title":"Repairing Reward Functions with Feedback to Mitigate Reward Hacking","url":"https://arxiv.org/html/2510.13036v2"}]
+
+I found the paper! Here's what the search reveals about "When Reward Hacking Rebounds":
+
+The paper is by Rui Wu and Ruixiang Tang from Rutgers University and addresses how reinforcement learning for LLMs is vulnerable to reward hacking, where models exploit shortcuts to maximize reward without solving the intended task.
+
+The researchers systematically study this phenomenon in coding tasks using an environment-manipulation setting, where models can rewrite evaluator code to triv
+…[truncated 566 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-26T10:25:12.154313+00:00_
+
+Web search results for query: ""DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training" He Pengcheng ICLR 2023"
+
+Links: [{"title":"[2111.09543] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing","url":"https://arxiv.org/abs/2111.09543"},{"title":"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing | OpenReview","url":"https://openreview.net/forum?id=sE7-XhLxHA"},{"title":"ICLR Poster DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing","url":"https://iclr.cc/virtual/2023/poster/11295"},{"title":"GitHub - microsoft/DeBERTa: The implementation of DeBERTa · GitHub","url":"https://github.com/microsoft/DeBERTa"},{"title":"[PDF] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DeBERTaV3:-Improving-DeBERTa-using-ELECTRA-Style-He-Gao/972706306f85b1bfb40c7d35c796ad5174eb0c9c"},{"title":"Debertav3: Improving deberta using electra-style pre- ...","url":"https://arxiv.org/pdf/2111.09543"},{"title":"Pengcheng He, Jianfeng Gao, Weizhu Chen · DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing","url":"https://slideslive.com/38999427/debertav3-improving-deberta-using-electrastyle-pretraining-with-gradientdisentangled-embedding-sharing"},{"title":"Published as a conference paper at ICLR 2023 DEBERTAV3: IMPROVING DEBERTA USING","url":"https://arxiv.org/pdf/2111.09543v4"},{"title":"[2111.09543v2] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing","url":"https://arxiv.org/abs/2111.09543v2"},{"title":"[2111.09543v4] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing","url":"https://arxiv.org/abs/2111.09543v4"}]
+
+I found the paper 
+…[truncated 1525 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-26T10:25:12.154502+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Qwen3 Technical Report\" Yang An arxiv 2505.09388"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Qwen3 Technical Report\" Yang An arxiv 2505.09388"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-26T10:25:12.154631+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"The Llama 3 Herd of Models\" Grattafiori Aaron arxiv 2407.21783"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"The Llama 3 Herd of Models\" Grattafiori Aaron arxiv 2407.21783"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-26T10:25:12.154748+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "OpenAI \"GPT-4.1\" site:openai.com 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "OpenAI \"GPT-4.1\" site:openai.com 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-26T10:25:12.154862+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Playing Devil's Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy\" Kelkar Ameya arxiv 2605.21006"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Playing Devil's Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy\" Kelkar Ameya arxiv 2605.21006"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-26T10:25:12.155000+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs\" Vennemeyer Daniel arxiv 2509.21305"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs\" Vennemeyer Daniel arxiv 2509.21305"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-26T10:25:12.155149+00:00_
+
+Web search results for query: ""Qwen3 Technical Report" Yang An arxiv 2505.09388"
+
+Links: [{"title":"[2505.09388] Qwen3 Technical Report","url":"https://arxiv.org/abs/2505.09388"},{"title":"Paper page - Qwen3 Technical Report","url":"https://huggingface.co/papers/2505.09388"},{"title":"[2505.09388] Qwen3 Technical Report - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2505.09388"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Qwen3 Technical Report | Request PDF","url":"https://www.researchgate.net/publication/391741196_Qwen3_Technical_Report"},{"title":"[2505.09388v1] Qwen3 Technical Report","url":"https://arxiv.org/abs/2505.09388v1"},{"title":"Qwen3 Technical Report","url":"https://arxiv.org/html/arXiv:2505.09388"},{"title":"Qwen3 Technical Report (arXiv:2505.09388v1) - ScienceStack","url":"https://www.sciencestack.ai/paper/2505.09388v1"}]
+
+I found the paper successfully. Here's what the search revealed about the Qwen3 Technical Report:
+
+Qwen3 is the latest version of the Qwen model family, comprising a series of large language models (LLMs) designed to advance performance, efficiency, and multilingual capabilities.
+
+Key features of Qwen3 include:
+
+- **Architecture**: The Qwen3 series includes models of both dense and Mixture-of-Expert (MoE) architectures, with parameter scales ranging from 0.6 to 235 billion.
+
+- **Unified Framework**: A key innovation in Qwen3 is the integration of thinking mode (for complex, multi-step reasoning) and non-thinking mode (for rapid, context-driven responses) into a unified framework, eliminating the need to switch between different models.
+
+- **Thinking Budget Mechanism**: Qwen3 introduces a thinking budget mechanism, allowing users to allocate computational resources adaptively during inference, thereby balancing latency and performance based on task complexity.
+
+- **Multilingual Support**: Compared to its predecessor Qwen2.5, Qwen3 
+…[truncated 562 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-26T10:25:12.155310+00:00_
+
+Web search results for query: ""The Llama 3 Herd of Models" Grattafiori Aaron arxiv 2407.21783"
+
+Links: [{"title":"[2407.21783] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783"},{"title":"The Llama 3 Herd of Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240721783G/abstract"},{"title":"[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2407.21783"},{"title":"Paper page - The Llama 3 Herd of Models","url":"https://huggingface.co/papers/2407.21783"},{"title":"[2407.21783v3] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783v3"},{"title":"The Llama 3 herd of models - Archive ouverte HAL","url":"https://hal.science/hal-05414211"},{"title":"[2407.21783v2] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783v2"},{"title":"(PDF) The Llama 3 Herd of Models","url":"https://www.researchgate.net/publication/382739128_The_Llama_3_Herd_of_Models"},{"title":"[2407.21783v1] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783v1"}]
+
+I found the paper successfully! Here are the key details about "The Llama 3 Herd of Models" by Aaron Grattafiori and colleagues (arXiv 2407.21783):
+
+**Paper Overview:**
+This paper presents a new set of foundation models called Llama 3, which is a herd of language models that natively support multilinguality, coding, reasoning, and tool usage.
+
+**Key Technical Specifications:**
+The largest model is a dense Transformer with 405B parameters and a context window of up to 128K tokens.
+
+**Performance and Capabilities:**
+Llama 3 delivers comparable quality to leading language models such as GPT-4 on a plethora of tasks. Additionally, the paper presents the results of experiments in which image, video, and speech capabilities are integrated into Llama 3 via a compositional approach.
+
+**Release:**
+Llama 3 was publicly released, including pre-trained and post-trained versions of the 405B parameter language model and Llama Guard 3 mode
+…[truncated 208 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-26T10:25:12.155479+00:00_
+
+Web search results for query: "OpenAI "GPT-4.1" site:openai.com 2025"
+
+Links: [{"title":"Introducing GPT-4.1 in the API | OpenAI","url":"https://openai.com/index/gpt-4-1/"},{"title":"GPT-4 | OpenAI","url":"https://openai.com/index/gpt-4-research/"},{"title":"Model Release Notes | OpenAI Help Center","url":"https://help.openai.com/en/articles/9624314-model-release-notes"},{"title":"GPT-4.1 Prompting Guide","url":"https://cookbook.openai.com/examples/gpt4-1_prompting_guide"},{"title":"GPT-4.1 mini Model | OpenAI API","url":"https://platform.openai.com/docs/models/gpt-4.1-mini"},{"title":"GPT-4.1 Model | OpenAI API","url":"https://platform.openai.com/docs/models/gpt-4.1"},{"title":"Changelog | OpenAI API","url":"https://platform.openai.com/docs/changelog"},{"title":"GPT-4.1 nano Model | OpenAI API","url":"https://developers.openai.com/api/docs/models/gpt-4.1-nano"},{"title":"Hello GPT-4o | OpenAI","url":"https://openai.com/index/hello-gpt-4o/"},{"title":"ChatGPT — Release Notes: 2025-March-27 - GPT-4o a new update - Community - OpenAI Developer Community","url":"https://community.openai.com/t/chatgpt-release-notes-2025-march-27-gpt-4o-a-new-update/1153887"}]
+
+Based on the search results, here's what I found about GPT-4.1:
+
+## Overview
+
+OpenAI launched three new models in the API: GPT-4.1, GPT-4.1 mini, and GPT-4.1 nano. These models outperform GPT-4o and GPT-4o mini across the board, with major gains in coding and instruction following.
+
+## Key Capabilities
+
+The models have larger context windows—supporting up to 1 million tokens of context—and are able to better use that context with improved long-context comprehension. They feature a refreshed knowledge cutoff of June 2024.
+
+## Performance Highlights
+
+GPT-4.1 improves by 21.4% over GPT-4o and 26.6% over GPT-4.5 on SWE-bench Verified, making it a leading model for coding. On Scale's MultiChallenge benchmark, a measure of instruction following ability, GPT-4.1 scores 38.3%, a 10.5% increase over GPT-4o.
+
+## Model Varia
+…[truncated 616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-26T10:25:12.155658+00:00_
+
+Web search results for query: ""Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs" Vennemeyer Daniel arxiv 2509.21305"
+
+Links: [{"title":"[2509.21305] Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs","url":"https://arxiv.org/abs/2509.21305"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs","url":"https://arxiv.org/pdf/2509.21305"},{"title":"[PDF] Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Sycophancy-Is-Not-One-Thing:-Causal-Separation-of-Vennemeyer-Duong/863a0267eeb851dd8c7c81c2ec813a54441b2d5a"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs - Paper Detail","url":"https://deeplearn.org/arxiv/639717/sycophancy-is-not-one-thing:-causal-separation-of-sycophantic-behaviors-in-llms"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs | alphaXiv","url":"https://www.alphaxiv.org/ko/overview/2509.21305v2"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs | OpenReview","url":"https://openreview.net/forum?id=d24zTCznJu"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs","url":"https://www.researchgate.net/publication/395848420_Sycophancy_Is_Not_One_Thing_Causal_Separation_of_Sycophantic_Behaviors_in_LLMs"},{"title":"Sycophancy In LLMs: Study Separates 3 Distinct Behaviors Along Linear Directions In Latent Space","url":"https://quantumzeitgeist.com/sycophancy-llms-separates-distinct-behaviors-along-linear-directions/"},{"title":"[Literature Review] Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs","url":"https://www.themoonlight.io/en/review/sycophancy-is-not-one-thing-causal-separation-of-sycophantic-behaviors-in-llms"}]
+
+I found the paper! Here's what I can tell you about it:
+
+## 
+…[truncated 1317 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-26T10:25:12.155827+00:00_
+
+Web search results for query: ""Playing Devil's Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy" Kelkar Ameya arxiv 2605.21006"
+
+Links: [{"title":"[2605.21006] Playing Devil's Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy","url":"https://arxiv.org/abs/2605.21006"},{"title":"Playing Devil’s Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy","url":"https://arxiv.org/html/2605.21006"},{"title":"[2501.09039] Playing Devil's Advocate: Unmasking Toxicity and Vulnerabilities in Large Vision-Language Models","url":"https://arxiv.org/abs/2501.09039"},{"title":"[2507.21509] Persona Vectors: Monitoring and Controlling Character Traits in Language Models","url":"https://arxiv.org/abs/2507.21509"},{"title":"PERSONA: A Reproducible Testbed for Pluralistic Alignment","url":"https://arxiv.org/html/2407.17387v1"},{"title":"[2605.13329] Tracing Persona Vectors Through LLM Pretraining","url":"https://arxiv.org/abs/2605.13329"},{"title":"Tracing Persona Vectors Through LLM Pretraining","url":"https://arxiv.org/html/2605.13329v1"},{"title":"(PDF) Playing Devil's Advocate: Unmasking Toxicity and Vulnerabilities in Large Vision-Language Models","url":"https://www.researchgate.net/publication/388081007_Playing_Devil's_Advocate_Unmasking_Toxicity_and_Vulnerabilities_in_Large_Vision-Language_Models"},{"title":"PerMix-RLVR: Preserving Persona Expressivity under Verifiable-Reward Alignment","url":"https://arxiv.org/html/2604.08986v1"},{"title":"Persona Vectors: Monitoring and Controlling Character ...","url":"https://arxiv.org/pdf/2507.21509"}]
+
+I found the paper you're looking for! Here's what I found:
+
+The paper "Playing Devil's Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy" is authored by Ishaan Kelkar and 5 other authors (the arxiv ID 2605.21006 is correct, though note the authors appear to be Ishaan Kelkar, Nebras Alam, Vikram Kakaria, Madhur Panwar, Vasu Sharma, a
+…[truncated 877 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-26T10:25:12.156035+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"LoRA: Low-Rank Adaptation of Large Language Models\" Hu Edward ICLR 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"LoRA: Low-Rank Adaptation of Large Language Models\" Hu Edward ICLR 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-26T10:25:12.156163+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Proximal Policy Optimization Algorithms\" Schulman John arxiv 1707.06347"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Proximal Policy Optimization Algorithms\" Schulman John arxiv 1707.06347"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-26T10:25:12.156279+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"ZeRO: Memory Optimizations Toward Training Trillion Parameter Models\" Rajbhandari Samyam SC 2020"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"ZeRO: Memory Optimizations Toward Training Trillion Parameter Models\" Rajbhandari Samyam SC 2020"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-26T10:25:12.156392+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Deep Reinforcement Learning from Human Preferences\" Christiano Paul NeurIPS 2017"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Deep Reinforcement Learning from Human Preferences\" Christiano Paul NeurIPS 2017"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-26T10:25:12.156500+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\" Pan Alexander ICLR 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\" Pan Alexander ICLR 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-26T10:25:12.156631+00:00_
+
+Web search results for query: ""ZeRO: Memory Optimizations Toward Training Trillion Parameter Models" Rajbhandari Samyam SC 2020"
+
+Links: [{"title":"[1910.02054] ZeRO: Memory Optimizations Toward Training Trillion Parameter Models","url":"https://arxiv.org/abs/1910.02054"},{"title":"ZeRO: Memory optimizations Toward Training Trillion Parameter Models | Request PDF","url":"https://www.researchgate.net/publication/349525746_ZeRO_Memory_optimizations_Toward_Training_Trillion_Parameter_Models"},{"title":"ZeRO: memory optimizations toward training trillion ...","url":"https://dl.acm.org/doi/10.5555/3433701.3433727"},{"title":"ZeRO: Memory Optimizations Toward Training Trillion Parameter Models","url":"https://sc20.supercomputing.org/proceedings/tech_paper/tech_paper_pages/pap379.html"},{"title":"[PDF] ZeRO: Memory optimizations Toward Training Trillion Parameter Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ZeRO:-Memory-optimizations-Toward-Training-Trillion-Rajbhandari-Rasley/00c957711b12468cb38424caccdf5291bb354033"},{"title":"ZeRO: Memory Optimizations Toward Training Trillion Parameter Models - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/zero-memory-optimizations-toward-training-trillion-parameter-models/"},{"title":"(Open Access) ZeRO: Memory optimizations Toward Training Trillion Parameter Models (2020) | Samyam Rajbhandari | 425 Citations","url":"https://scispace.com/papers/zero-memory-optimizations-toward-training-trillion-parameter-1iaewcjxcq"},{"title":"ZeRO: Memory Optimizations Toward Training Trillion Parameter Models","url":"https://arxiv.org/pdf/1910.02054"}]
+
+I found the paper you're looking for. Here are the key details:
+
+**Title:** ZeRO: Memory Optimizations Toward Training Trillion Parameter Models
+
+**Authors:** Samyam Rajbhandari, Jeff Rasley, Olatunji Ruwase, and Yuxiong He from Microsoft Corporation
+
+**Venue:** Published in SC '20: Proceedings of the International Conference for High Perf
+…[truncated 704 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-26T10:25:12.156791+00:00_
+
+Web search results for query: ""Deep Reinforcement Learning from Human Preferences" Christiano Paul NeurIPS 2017"
+
+Links: [{"title":"[1706.03741] Deep reinforcement learning from human preferences","url":"https://arxiv.org/abs/1706.03741"},{"title":"Deep Reinforcement Learning from Human Preferences Paul F Christiano OpenAI","url":"https://proceedings.neurips.cc/paper_files/paper/2017/file/d5e2c0adad503c91f91df240d0cd4e49-Paper.pdf"},{"title":"Reviews: Deep Reinforcement Learning from Human Preferences","url":"https://proceedings.neurips.cc/paper_files/paper/2017/file/d5e2c0adad503c91f91df240d0cd4e49-Reviews.html"},{"title":"[PDF] Deep Reinforcement Learning from Human Preferences | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Deep-Reinforcement-Learning-from-Human-Preferences-Christiano-Leike/5bbb6f9a8204eb13070b6f033e61c84ef8ee68dd"},{"title":"Deep Reinforcement Learning from Human Preferences","url":"http://papers.neurips.cc/paper/7017-deep-reinforcement-learning-from-human-preferences.pdf"},{"title":"(PDF) Deep reinforcement learning from human preferences","url":"https://www.researchgate.net/publication/317558021_Deep_reinforcement_learning_from_human_preferences"},{"title":"Deep reinforcement learning from human preferences.","url":"https://junshern.github.io/paper-reading-group/2021/01/24/human-preferences.html"},{"title":"Deep reinforcement learning from human preferences | Proceedings of the 31st International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3294996.3295184"},{"title":"Deep RL from Human Preferences | PDF | Cognition","url":"https://www.scribd.com/document/847578246/CHRISTIANO-et-al-2017"}]
+
+I've found the paper you're looking for. Here are the key details:
+
+**Paper Title:** Deep Reinforcement Learning from Human Preferences
+
+**Authors:** Paul Christiano, Jan Leike, Tom B. Brown, Miljan Martic, Shane Legg, and Dario Amodei
+
+**Venue:** NeurIPS 2017 (published in the proceedings of t
+…[truncated 952 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-26T10:25:12.157051+00:00_
+
+Web search results for query: ""LoRA: Low-Rank Adaptation of Large Language Models" Hu Edward ICLR 2022"
+
+Links: [{"title":"ICLR Poster LoRA: Low-Rank Adaptation of Large Language Models","url":"https://iclr.cc/virtual/2022/poster/6319"},{"title":"[2106.09685] LoRA: Low-Rank Adaptation of Large Language Models","url":"https://arxiv.org/abs/2106.09685"},{"title":"LORA: LOW-RANK ADAPTATION OF LARGE LAN","url":"https://openreview.net/pdf?id=nZeVKeeFYf9"},{"title":"LoRA: Low-Rank Adaptation of Large Language Models - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/lora-low-rank-adaptation-of-large-language-models/"},{"title":"LoRA: Low-Rank Adaptation of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=nZeVKeeFYf9"},{"title":"LoRA: Low-Rank Adaptation of Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/352504883_LoRA_Low-Rank_Adaptation_of_Large_Language_Models"},{"title":"LoRA: Low-Rank Adaptation of Large Language Models. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/146d3736cb2ce0472e8e0d8f9859fb2a2"},{"title":"GitHub - microsoft/LoRA: Code for loralib, an implementation of \"LoRA: Low-Rank Adaptation of Large Language Models\" · GitHub","url":"https://github.com/microsoft/LoRA"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=LoRA:+Low-rank+adaptation+of+large+language+models&publication_year=2022"},{"title":"LoRA: Low-Rank Adaptation of Large Language Models | by Abdullah Şamil Güser | Medium","url":"https://medium.com/@abdullahsamilguser/lora-low-rank-adaptation-of-large-language-models-7af929391fee"}]
+
+I found comprehensive information about the LoRA paper. Here are the search results:
+
+## LoRA: Low-Rank Adaptation of Large Language Models
+
+The paper "LoRA: Low-Rank Adaptation of Large Language Models" was published as a conference paper at ICLR 2022 by Edward Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wan
+…[truncated 1065 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-26T10:25:12.157246+00:00_
+
+Web search results for query: ""Proximal Policy Optimization Algorithms" Schulman John arxiv 1707.06347"
+
+Links: [{"title":"[1707.06347] Proximal Policy Optimization Algorithms","url":"https://arxiv.org/abs/1707.06347"},{"title":"Proximal Policy Optimization Algorithms","url":"https://arxiv.org/pdf/1707.06347"},{"title":"[PDF] Proximal Policy Optimization Algorithms | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Proximal-Policy-Optimization-Algorithms-Schulman-Wolski/dce6f9d4017b1785979e7520fd0834ef8cf02f4b"},{"title":"Paper page - Proximal Policy Optimization Algorithms","url":"https://huggingface.co/papers/1707.06347"},{"title":"Proximal Policy Optimization Algorithms","url":"https://www.summarizepaper.com/en/arxiv-id/1707.06347v2/"},{"title":"Preprint. Under Review. BEYOND THE BOUNDARIES OF PROXIMAL POLICY OPTIMIZATION","url":"https://arxiv.org/pdf/2411.00666"},{"title":"Proximal Policy Optimization Algorithms | by Eleventh Hour Enthusiast | Medium","url":"https://medium.com/@EleventhHourEnthusiast/proximal-policy-optimization-algorithms-8b8e6596c713"},{"title":"Proximal Policy Optimization Algorithms | TransferLab — appliedAI Institute","url":"https://transferlab.ai/refs/schulman_proximal_2017/"},{"title":"Schulman, J., Wolski, F., Dhariwal, P., Radford, A. and Klimov, O. (2017) Proximal Policy Optimization Algorithms. ArXiv 1707.06347. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=3430446"},{"title":"What is Proximal Policy Optimization (PPO)? | IBM","url":"https://www.ibm.com/think/topics/proximal-policy-optimization"}]
+
+I found the paper "Proximal Policy Optimization Algorithms" (arxiv 1707.06347) by John Schulman and colleagues. Here are the key details:
+
+**Paper Information:**
+The paper was submitted on July 20, 2017, authored by John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+
+**Main Contribution:**
+The paper proposes a new family of policy
+…[truncated 952 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-26T10:25:12.157431+00:00_
+
+Web search results for query: ""The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models" Pan Alexander ICLR 2022"
+
+Links: [{"title":"[2201.03544] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://arxiv.org/abs/2201.03544"},{"title":"ICLR Poster The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://iclr.cc/virtual/2022/poster/6579"},{"title":"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | OpenReview","url":"https://openreview.net/forum?id=JYtwGwIL7ye"},{"title":"(PDF) The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://www.researchgate.net/publication/357733580_The_Effects_of_Reward_Misspecification_Mapping_and_Mitigating_Misaligned_Models"},{"title":"[PDF] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Effects-of-Reward-Misspecification:-Mapping-and-Pan-Bhatia/10b9ca173c665e3f2c322c2d5ce9b9d433fe4629"},{"title":"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv220103544P/abstract"},{"title":"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | Papers With Code","url":"https://paperswithcode.com/paper/the-effects-of-reward-misspecification-1"},{"title":"jailbreaking as a reward misspecification problem","url":"https://arxiv.org/pdf/2406.14393"},{"title":"Publications - Jacob Steinhardt","url":"https://jsteinhardt.stat.berkeley.edu/publications/"}]
+
+I found the paper you're looking for! Here's what I found:
+
+"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models" by Alexander Pan (along with co-authors Kush Bhatia and Jacob Steinhardt) examines reward hacking—where RL agents exploit gaps in misspecified proxy rewards.
+
+**Key Findin
+…[truncated 956 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-26T10:25:12.157614+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations\" Marks Samuel Tegmark Max ICLR 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations\" Marks Samuel Tegmark Max ICLR 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-26T10:25:12.157743+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Language Models (Mostly) Know What They Know\" Kadavath Saurav arxiv 2207.05221"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Language Models (Mostly) Know What They Know\" Kadavath Saurav arxiv 2207.05221"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-26T10:25:12.157862+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"TruthfulQA: Measuring How Models Mimic Human Falsehoods\" Lin Stephanie ACL 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"TruthfulQA: Measuring How Models Mimic Human Falsehoods\" Lin Stephanie ACL 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-26T10:25:12.158032+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Let's Verify Step by Step\" Lightman Hunter ICLR 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Let's Verify Step by Step\" Lightman Hunter ICLR 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-26T10:25:12.158150+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"LLaMA: Open and Efficient Foundation Language Models\" Touvron Hugo arxiv 2302.13971"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"LLaMA: Open and Efficient Foundation Language Models\" Touvron Hugo arxiv 2302.13971"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-26T10:25:12.158292+00:00_
+
+Web search results for query: ""The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations" Marks Samuel Tegmark Max ICLR 2024"
+
+Links: [{"title":"[2310.06824] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets","url":"https://arxiv.org/abs/2310.06824"},{"title":"[PDF] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Geometry-of-Truth:-Emergent-Linear-Structure-in-Marks-Tegmark/d59523889679aee15992c4bf6e52b134186d07d3"},{"title":"The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets","url":"https://arxiv.org/html/2310.06824v2/"},{"title":"NOT ALL LANGUAGE MODEL FEATURES ARE ONE- ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d3221cdb27e49d9c1cd35ad254feccfe-Paper-Conference.pdf"},{"title":"[2310.06824v3] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets","url":"https://arxiv.org/abs/2310.06824v3"},{"title":"The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | OpenReview","url":"https://openreview.net/forum?id=CeJEfNKstt"},{"title":"The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/geometry-truth-emergent-linear-structure-large-language"},{"title":"(PDF) The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets (2023) | Samuel Marks | 70 Citations","url":"https://scispace.com/papers/the-geometry-of-truth-emergent-linear-structure-in-large-1uc1yzkf5q"},{"title":"The Geometry of Truth: Emergent Linear Structure in LLM Representations of True/False Datasets","url":"h
+…[truncated 1730 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-26T10:25:12.158473+00:00_
+
+Web search results for query: ""TruthfulQA: Measuring How Models Mimic Human Falsehoods" Lin Stephanie ACL 2022"
+
+Links: [{"title":"TruthfulQA: Measuring How Models Mimic Human Falsehoods - ACL Anthology","url":"https://aclanthology.org/2022.acl-long.229/"},{"title":"[2109.07958] TruthfulQA: Measuring How Models Mimic Human Falsehoods","url":"https://arxiv.org/abs/2109.07958"},{"title":"TruthfulQA: Measuring How Models Mimic Human Falsehoods","url":"https://www.researchgate.net/publication/361063493_TruthfulQA_Measuring_How_Models_Mimic_Human_Falsehoods"},{"title":"[PDF] TruthfulQA: Measuring How Models Mimic Human Falsehoods | Semantic Scholar","url":"https://www.semanticscholar.org/paper/TruthfulQA:-Measuring-How-Models-Mimic-Human-Lin-Hilton/77d956cdab4508d569ae5741549b78e715fd0749"},{"title":"TruthfulQA: Measuring how models mimic human falsehoods | TruthfulAI","url":"https://truthful.ai/papers/truthfulqa/"},{"title":"TruthfulQA: Measuring How Models Mimic Human Falsehoods Stephanie Lin","url":"https://owainevans.github.io/pdfs/truthfulQA_lin_evans.pdf"},{"title":"TruthfulQA: Measuring How Models Mimic Human Falsehoods - R Discovery","url":"https://discovery.researcher.life/article/truthfulqa-measuring-how-models-mimic-human-falsehoods/cd9f4ada304930d7916a740f14bcc401"},{"title":"TruthfulQA: Measuring How Models Mimic Human Falsehoods. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/1e808a2538c58d9338699b0312abec8f3"},{"title":"TruthfulQA: Measuring How Models Mimic Human Falsehoods - researchr publication","url":"https://researchr.org/publication/LinHE22"}]
+
+I found the paper! Here are the search results for "TruthfulQA: Measuring How Models Mimic Human Falsehoods":
+
+**Publication Details:**
+The paper was authored by Stephanie Lin, Jacob Hilton, and Owain Evans and published in the Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL 2022) in Dublin, Ireland, with pages 3214–3252.
+
+**Overview:**
+The paper proposes a 
+…[truncated 830 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-26T10:25:12.158655+00:00_
+
+Web search results for query: ""Language Models (Mostly) Know What They Know" Kadavath Saurav arxiv 2207.05221"
+
+Links: [{"title":"[2207.05221] Language Models (Mostly) Know What They Know","url":"https://arxiv.org/abs/2207.05221"},{"title":"(PDF) Language Models (Mostly) Know What They Know","url":"https://www.researchgate.net/publication/361949621_Language_Models_Mostly_Know_What_They_Know"},{"title":"(PDF) Language Models (Mostly) Know What They Know (2022) | Saurav Kadavath | 413 Citations","url":"https://scispace.com/papers/language-models-mostly-know-what-they-know-zkg0pou4"},{"title":"[PDF] Language Models (Mostly) Know What They Know | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Language-Models-(Mostly)-Know-What-They-Know-Kadavath-Conerly/142ebbf4760145f591166bde2564ac70c001e927"},{"title":"[2207.05221] Language Models (Mostly) Know What They Know – Papiers","url":"https://papiers.ai/2207.05221"},{"title":"Language Models (Mostly) Know What They Know - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv220705221K/abstract"},{"title":"[2207.05221v4] Language Models (Mostly) Know What They Know","url":"https://arxiv.org/abs/2207.05221v4"},{"title":"ml-papers/papers/2022/220711 Language Models (Mostly) Know What They Know.md at main · rosinality/ml-papers","url":"https://github.com/rosinality/ml-papers/blob/main/papers/2022/220711%20Language%20Models%20(Mostly)%20Know%20What%20They%20Know.md"},{"title":"dblp: Language Models (Mostly) Know What They Know.","url":"https://dblp.org/rec/journals/corr/abs-2207-05221.html"}]
+
+I found the paper you're looking for. Here's what I found:
+
+**Paper Details:**
+- **Title:** Language Models (Mostly) Know What They Know
+- **ArXiv ID:** 2207.05221
+- **Authors:** Saurav Kadavath, Tom Conerly, Amanda Askell, Tom Henighan, Dawn Drain, Ethan Perez, Nicholas Schiefer, Zac Hatfield-Dodds, Nova DasSarma, Eli Tran-Johnson, Scott Johnston, Sheer El-Showk, Andy Jones, Nelson Elhage, Tristan Hume, Anna Chen, Yuntao
+…[truncated 1184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-26T10:25:12.158830+00:00_
+
+Web search results for query: ""LLaMA: Open and Efficient Foundation Language Models" Touvron Hugo arxiv 2302.13971"
+
+Links: [{"title":"[2302.13971] LLaMA: Open and Efficient Foundation Language Models","url":"https://arxiv.org/abs/2302.13971"},{"title":"[PDF] LLaMA: Open and Efficient Foundation Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/LLaMA:-Open-and-Efficient-Foundation-Language-Touvron-Lavril/57e849d0de13ed5f91d086936296721d4ff75a75"},{"title":"(PDF) LLaMA: Open and Efficient Foundation Language Models (2023) | Hugo Touvron | 6688 Citations","url":"https://scispace.com/papers/llama-open-and-efficient-foundation-language-models-1aeusmr9"},{"title":"Paper page - LLaMA: Open and Efficient Foundation Language Models","url":"https://huggingface.co/papers/2302.13971"},{"title":"(PDF) LLaMA: Open and Efficient Foundation Language Models","url":"https://www.researchgate.net/publication/368842729_LLaMA_Open_and_Efficient_Foundation_Language_Models"},{"title":"LLaMA: Open and Efficient Foundation Language Models","url":"https://bibbase.org/network/publication/touvron-lavril-izacard-martinet-lachaux-lacroix-rozire-goyal-etal-llamaopenandefficientfoundationlanguagemodels-2023"},{"title":"dblp: LLaMA: Open and Efficient Foundation Language Models.","url":"https://dblp.org/rec/journals/corr/abs-2302-13971.html"},{"title":"[2302.13971v1] LLaMA: Open and Efficient Foundation Language Models","url":"https://export.arxiv.org/abs/2302.13971v1"},{"title":"LLaMA: Open and Efficient Foundation Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230213971T/abstract"}]
+
+I found the paper successfully. Here's what the search revealed:
+
+**Paper Details:**
+
+The paper "LLaMA: Open and Efficient Foundation Language Models" was authored by Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, Aurelien Rodriguez, Armand Joulin, 
+…[truncated 830 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-26T10:25:12.159034+00:00_
+
+Web search results for query: ""Let's Verify Step by Step" Lightman Hunter ICLR 2024"
+
+Links: [{"title":"[2305.20050] Let's Verify Step by Step","url":"https://arxiv.org/abs/2305.20050"},{"title":"Let's Verify Step by Step","url":"https://proceedings.iclr.cc/paper_files/paper/2024/hash/aca97732e30bcf1303bc22ac3924fd16-Abstract-Conference.html"},{"title":"[PDF] Let's Verify Step by Step | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Let's-Verify-Step-by-Step-Lightman-Kosaraju/be8db99310602d66bba64bcf41a572c45816fbfc"},{"title":"dblp: Let's Verify Step by Step.","url":"https://dblp.org/rec/conf/iclr/LightmanKBEBLLS24.html"},{"title":"Let's Verify Step by Step | OpenReview","url":"https://openreview.net/forum?id=v8L0pN6EOi"},{"title":"Let's Verify Step by Step","url":"https://www.researchgate.net/publication/371175770_Let's_Verify_Step_by_Step"},{"title":"Figure 2 from Let's Verify Step by Step | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Let's-Verify-Step-by-Step-Lightman-Kosaraju/be8db99310602d66bba64bcf41a572c45816fbfc/figure/2"},{"title":"GitHub - kyegomez/Lets-Verify-Step-by-Step: \"Improving Mathematical Reasoning with Process Supervision\" by OPENAI · GitHub","url":"https://github.com/kyegomez/Lets-Verify-Step-by-Step"},{"title":"Paper page - Let's Verify Step by Step","url":"https://huggingface.co/papers/2305.20050"},{"title":"ICLR Poster Let's Verify Step by Step","url":"https://iclr.cc/virtual/2024/poster/17549"}]
+
+I found the paper "Let's Verify Step by Step" by Lightman, Hunter, and colleagues at ICLR 2024. Here are the key details:
+
+**Paper Information:**
+The paper was presented by Hunter Lightman, Vineet Kosaraju, Yuri Burda, Harrison Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe at the International Conference on Learning Representations 2024 (ICLR 2024).
+
+**Research Focus:**
+The paper addresses how large language models have greatly improved in their ability to perform com
+…[truncated 766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-26T10:25:12.159235+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Training Language Models to Follow Instructions with Human Feedback\" Ouyang Long NeurIPS 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Training Language Models to Follow Instructions with Human Feedback\" Ouyang Long NeurIPS 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-26T10:25:12.159358+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback\" Bai Yuntao arxiv 2204.05862"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback\" Bai Yuntao arxiv 2204.05862"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-26T10:25:12.159474+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Learning to Summarize with Human Feedback\" Stiennon Nisan NeurIPS 2020"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Learning to Summarize with Human Feedback\" Stiennon Nisan NeurIPS 2020"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-26T10:25:12.159586+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Fine-Tuning Language Models from Human Preferences\" Ziegler Daniel arxiv 1909.08593"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Fine-Tuning Language Models from Human Preferences\" Ziegler Daniel arxiv 1909.08593"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-26T10:25:12.159709+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training\" Hubinger Evan arxiv 2401.05566"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training\" Hubinger Evan arxiv 2401.05566"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-26T10:25:12.159860+00:00_
+
+Web search results for query: ""Training Language Models to Follow Instructions with Human Feedback" Ouyang Long NeurIPS 2022"
+
+Links: [{"title":"Training language models to follow instructions with human feedback","url":"https://proceedings.neurips.cc/paper_files/paper/2022/hash/b1efde53be364a73914f58805a001731-Abstract-Conference.html"},{"title":"[2203.02155] Training language models to follow instructions with human feedback","url":"https://arxiv.org/abs/2203.02155"},{"title":"[PDF] Training language models to follow instructions with human feedback | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Training-language-models-to-follow-instructions-Ouyang-Wu/d766bffc357127e0dc86dd69561d5aeb520d6f4c"},{"title":"Training language models to follow instructions with human feedback","url":"https://notes-vault.pages.dev/Scientific-Literature-References/literature-notes/@ouyangTrainingLanguageModels2022"},{"title":"Training language models to follow instructions with human feedback | OpenReview","url":"https://openreview.net/forum?id=TG8KACxEON"},{"title":"Training Language Models to Follow Instructions with Human Feedback: A Comprehensive Review | by ALEENA TREESA LEEJOY | Medium","url":"https://medium.com/@aleenatleejoy/training-language-models-to-follow-instructions-with-human-feedback-a-comprehensive-review-267a30344028"},{"title":"Training language models to follow instructions with human feedback, Long Ouyang+, N/A, NeurIPS'22 · Issue #1296 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/1296"},{"title":"A Review of Ouyang et al.’s 2022 Paper aka “InstructGPT” | Educational Technology and Change Journal","url":"https://etcjournal.com/2025/07/29/a-review-of-ouyang-et-al-s-2022-paper-aka-instructgpt/"},{"title":"Training language models to follow instructions with human feedback (2022) | Long Ouyang | 7197 Citations","url":"https://scispace.com/papers/training-language-models-to-follow-instructions-with-human-1
+…[truncated 1463 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-26T10:25:12.160059+00:00_
+
+Web search results for query: ""Fine-Tuning Language Models from Human Preferences" Ziegler Daniel arxiv 1909.08593"
+
+Links: [{"title":"[1909.08593] Fine-Tuning Language Models from Human Preferences","url":"https://arxiv.org/abs/1909.08593"},{"title":"Fine-Tuning Language Models from Human Preferences Daniel M. Ziegler∗","url":"https://arxiv.org/pdf/1909.08593"},{"title":"[PDF] Fine-Tuning Language Models from Human Preferences | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Fine-Tuning-Language-Models-from-Human-Preferences-Ziegler-Stiennon/7a15950dc71079285a4eaf195de5aadd87c41b40"},{"title":"Fine-Tuning Language Models from Human Preferences","url":"https://www.researchgate.net/publication/335908697_Fine-Tuning_Language_Models_from_Human_Preferences"},{"title":"[1909.08593v2] Fine-Tuning Language Models from Human Preferences","url":"https://arxiv.org/abs/1909.08593v2"},{"title":"Fine-Tuning Language Models from Human Preferences","url":"https://notes-vault.pages.dev/Scientific-Literature-References/literature-notes/@zieglerFineTuningLanguageModels2020"},{"title":"GitHub - openai/lm-human-preferences: Code for the paper Fine-Tuning Language Models from Human Preferences · GitHub","url":"https://github.com/openai/lm-human-preferences"},{"title":"Fine-tuning language models to find agreement among humans with diverse preferences | Proceedings of the 36th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3600270.3603036"},{"title":"dblp: Fine-Tuning Language Models from Human Preferences.","url":"https://dblp.org/rec/journals/corr/abs-1909-08593.html"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Title:** Fine-Tuning Language Models from Human Preferences
+
+**Authors:** Daniel M. Ziegler, Nisan Stiennon, Jeffrey Wu, Tom B. Brown, Alec Radford, Dario Amodei, Paul Christiano, Geoffrey Irving
+
+**ArXiv ID:** 1909.08593
+
+**Publication:** September 18, 2019 (with a revised
+…[truncated 744 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-26T10:25:12.160233+00:00_
+
+Web search results for query: ""Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training" Hubinger Evan arxiv 2401.05566"
+
+Links: [{"title":"[2401.05566] Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training","url":"https://arxiv.org/abs/2401.05566"},{"title":"[PDF] Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Sleeper-Agents:-Training-Deceptive-LLMs-that-Safety-Hubinger-Denison/9363e8e1fe2be2a13b4d6f5fc61bbaed14ab9a23"},{"title":"Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training","url":"https://arxiv.org/html/2401.05566v3"},{"title":"dblp: Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training.","url":"https://dblp.org/rec/journals/corr/abs-2401-05566.html"},{"title":"Sleeper Agents: Training Deceptive LLMs | Longterm Wiki","url":"https://www.longtermwiki.com/wiki/E489"},{"title":"Preventing AI Sleeper Agents | IFP","url":"https://ifp.org/preventing-ai-sleeper-agents/"},{"title":"Sleeper Agents: Training Deceptive LLMs that Persist Through Safety   Training","url":"https://arxiv.org/pdf/2401.05566"}]
+
+I found the paper you're looking for! Here's the information:
+
+**Title:** Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training
+
+**Authors:** Evan Hubinger, Carson Denison, Jesse Mu, Mike Lambert, Meg Tong, Monte MacDiarmid, Tamera Lanham, Daniel M. Ziegler, Tim Maxwell, Newton Cheng, Adam Jermyn, Amanda Askell, Ansh Radhakrishnan, Cem Anil, David Duvenaud, Deep Ganguli, Fazl Barez, Jack Clark, Kamal Ndousse, Kshitij Sachan, Michael Sellitto, Mrinank Sharma, Nova DasSarma, Roger Grosse, Shauna Kravec, Yuntao Bai, Zachary Witten, Marina Favaro, Jan Brauner, Holden Karnofsky, Paul Christiano, Samuel R. Bowman, Logan Graham, Jared Kaplan, Sören Mindermann, Ryan Greenblatt, Buck Shlegeris, Nicholas Schiefer, and Ethan Perez
+
+**arXiv ID:** 2401.05566
+
+**Publication 
+…[truncated 551 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-26T10:25:12.160428+00:00_
+
+Web search results for query: ""Learning to Summarize with Human Feedback" Stiennon Nisan NeurIPS 2020"
+
+Links: [{"title":"Learning to summarize with human feedback","url":"https://proceedings.neurips.cc/paper/2020/hash/1f89885d556929e98d3ef9b86448f951-Abstract.html"},{"title":"Learning to summarize from human feedback","url":"https://proceedings.neurips.cc/paper/2020/file/1f89885d556929e98d3ef9b86448f951-Paper.pdf"},{"title":"Learning to summarize with human feedback","url":"https://papers.nips.cc/paper/2020/hash/1f89885d556929e98d3ef9b86448f951-Abstract.html"},{"title":"NeurIPS 2020 - Learning to Summarize with Human Feedback Paper - Studocu","url":"https://www.studocu.com/en-za/document/vaal-university-of-technology/management-leadership-1/neur-ips-2020-learning-to-summarize-with-human-feedback-paper/48319200"},{"title":"[PDF] Learning to summarize from human feedback | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Learning-to-summarize-from-human-feedback-Stiennon-Ouyang/053b1d7b97eb2c91fc3921d589c160b0923c70b1"},{"title":"Learning to summarize from human feedback Nisan Stiennon∗ Long Ouyang∗ Jeff Wu∗","url":"https://arxiv.org/pdf/2009.01325"},{"title":"Learning to summarize from human feedback | Proceedings of the 34th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/abs/10.5555/3495724.3495977"},{"title":"Learning to summarize from human feedback | BibSonomy","url":"https://www.bibsonomy.org/bibtex/25c008663608fbb2b7b7973d0d56c36ae/jil"},{"title":"NeurIPS 2020 : Learning to summarize with human feedback","url":"https://nips.cc/virtual/2020/public/poster_1f89885d556929e98d3ef9b86448f951.html"},{"title":"Learning to summarize from human feedback | Request PDF","url":"https://www.researchgate.net/publication/344084466_Learning_to_summarize_from_human_feedback"}]
+
+I found the paper you're looking for! Here's what I found:
+
+## "Learning to Summarize with Human Feedback"
+
+This paper was authored by Nis
+…[truncated 1017 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-26T10:25:12.160584+00:00_
+
+Web search results for query: ""Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback" Bai Yuntao arxiv 2204.05862"
+
+Web search error: unavailable
+
+I apologize, but I'm unable to perform the web search at this moment due to a technical issue with the search tool. 
+
+However, I can tell you that the paper you're referring to appears to be related to reinforcement learning from human feedback (RLHF) for training AI assistants. The arXiv identifier 2204.05862 corresponds to a paper in that research domain. 
+
+To access this paper directly, you can:
+1. Visit arxiv.org and search for the paper ID: 2204.05862
+2. Search for the title and authors on Google Scholar
+3. Check if your institution has access through academic databases
+
+If you'd like to discuss the contents or findings of this paper, feel free to share what you know about it, and I'd be happy to help!
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-26T10:25:12.160758+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Bai Yuntao \"Training a Helpful and Harmless Assistant\" RLHF 2022 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Bai Yuntao \"Training a Helpful and Harmless Assistant\" RLHF 2022 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-26T10:25:12.160902+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Discovering Language Model Behaviors with Model-Written Evaluations\" Perez Ethan ACL Findings 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Discovering Language Model Behaviors with Model-Written Evaluations\" Perez Ethan ACL Findings 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-26T10:25:12.161029+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Solving Math Word Problems with Process- and Outcome-Based Feedback\" Uesato Jonathan arxiv 2211.14275"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Solving Math Word Problems with Process- and Outcome-Based Feedback\" Uesato Jonathan arxiv 2211.14275"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-26T10:25:12.161147+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Designing and Interpreting Probes with Control Tasks\" Hewitt John Liang Percy EMNLP 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Designing and Interpreting Probes with Control Tasks\" Hewitt John Liang Percy EMNLP 2019"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-26T10:25:12.161261+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Probing Classifiers: Promises, Shortcomings, and Advances\" Belinkov Yonatan Computational Linguistics 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Probing Classifiers: Promises, Shortcomings, and Advances\" Belinkov Yonatan Computational Linguistics 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-26T10:25:12.161407+00:00_
+
+Web search results for query: "Bai Yuntao "Training a Helpful and Harmless Assistant" RLHF 2022 arxiv"
+
+Links: [{"title":"[2204.05862] Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback","url":"https://arxiv.org/abs/2204.05862"},{"title":"Training a Helpful and Harmless Assistant with ...","url":"https://arxiv.org/pdf/2204.05862"},{"title":"Paper page - Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback","url":"https://huggingface.co/papers/2204.05862"},{"title":"(PDF) Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback","url":"https://www.researchgate.net/publication/359918097_Training_a_Helpful_and_Harmless_Assistant_with_Reinforcement_Learning_from_Human_Feedback"},{"title":"[PDF] Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Training-a-Helpful-and-Harmless-Assistant-with-from-Bai-Jones/0286b2736a114198b25fb5553c671c33aed5d477"},{"title":"Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv220405862B/abstract"},{"title":"Training a helpful and harmless assistant with reinforcement learning from human feedback | Amanda Askell","url":"https://askell.io/publication/hhh-from-rlhf"},{"title":"AI-Powered Paper Summarization about the arXiv paper 2204.05862v1","url":"https://www.summarizepaper.com/en/arxiv-id/2204.05862v1/"},{"title":"Training language models to follow instructions with human feedback","url":"https://proceedings.neurips.cc/paper_files/paper/2022/file/b1efde53be364a73914f58805a001731-Paper-Conference.pdf"},{"title":"Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback | DeepAI","url":"https://deepai.org/publication/training-a-helpful-and-harmless-assistant-with-reinforcement-learning-from-human-feedback"
+…[truncated 1231 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-26T10:25:12.161579+00:00_
+
+Web search results for query: ""Discovering Language Model Behaviors with Model-Written Evaluations" Perez Ethan ACL Findings 2023"
+
+Links: [{"title":"Discovering Language Model Behaviors with Model-Written Evaluations - ACL Anthology","url":"https://aclanthology.org/2023.findings-acl.847/"},{"title":"[2212.09251] Discovering Language Model Behaviors with Model-Written Evaluations","url":"https://arxiv.org/abs/2212.09251"},{"title":"Discovering Language Model Behaviors with ...","url":"https://aclanthology.org/2023.findings-acl.847.pdf"},{"title":"SRI Seminar Series: Ethan Perez, “Discovering language model behaviors with model-written evaluations” — Schwartz Reisman Institute","url":"https://srinstitute.utoronto.ca/events-archive/seminar-2023-ethan-perez"},{"title":"Findings - ACL 2023","url":"https://2023.aclweb.org/program/accepted_findings/"},{"title":"Discovering Language Model Behaviors with Model-Written Evaluations","url":"https://www.researchgate.net/publication/366423471_Discovering_Language_Model_Behaviors_with_Model-Written_Evaluations"},{"title":"Discovering Language Model Behaviors with ...","url":"https://www.alignmentforum.org/posts/yRAo2KEGWenKYZG9K"},{"title":"Discovering Language Model Behaviors with Model-Written Evaluations. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/182afc17ad59d1a16509b2f088682d822"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Title:** Discovering Language Model Behaviors with Model-Written Evaluations
+
+**Authors:** Ethan Perez, Sam Ringer, Kamile Lukosiute, Karina Nguyen, Edwin Chen, Scott Heiner, Craig Pettit, Catherine Olsson, Sandipan Kundu, Saurav Kadavath, and 50+ additional authors
+
+**Publication:** Findings of the Association for Computational Linguistics: ACL 2023 (pages 13387–13434)
+
+**Key Research Focus:** The work automatically generates evaluations with language models, exploring approaches with varying amounts of human effort, from instructing LMs to write yes/no questions
+…[truncated 623 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-26T10:25:12.161760+00:00_
+
+Web search results for query: ""Designing and Interpreting Probes with Control Tasks" Hewitt John Liang Percy EMNLP 2019"
+
+Links: [{"title":"Designing and Interpreting Probes with Control Tasks - ACL Anthology","url":"https://aclanthology.org/D19-1275/"},{"title":"[1909.03368] Designing and Interpreting Probes with Control Tasks","url":"https://arxiv.org/abs/1909.03368"},{"title":"Designing and Interpreting Probes · John Hewitt","url":"https://www.cs.columbia.edu/~johnhew/interpreting-probes.html"},{"title":"Designing and Interpreting Probes with Control Tasks | papers_we_read","url":"https://vlgiitr.github.io/papers_we_read/summaries/control_tasks.html"},{"title":"[PDF] Designing and Interpreting Probes with Control Tasks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Designing-and-Interpreting-Probes-with-Control-Hewitt-Liang/199ff73d2f728e997f860b62a2322823d3e3d9e8"},{"title":"Designing and Interpreting Probes with Control Tasks Percy Liang John Hewitt","url":"https://www.cs.columbia.edu/~johnhew/public/hewitt2019control_slides.pdf"},{"title":"Designing and Interpreting Probes with Control Tasks","url":"https://aclanthology.org/D19-1275.pdf"},{"title":"Designing and Interpreting Probes with Control Tasks. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/1c7c8f6e4720c00cfb0b395c4827d7155"},{"title":"(PDF) Designing and Interpreting Probes With Control Tasks","url":"https://research.amanote.com/publication/25yv3HMBKQvf0Bhi5mR-/designing-and-interpreting-probes-with-control-tasks"}]
+
+I found the paper you're looking for! Here are the key details:
+
+"Designing and Interpreting Probes with Control Tasks" by John Hewitt and Percy Liang was published in the Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP), pages 2733–2743, in Hong Kong, China.
+
+**Main Contribution:**
+
+The paper addresses the question of whether probes traine
+…[truncated 946 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-26T10:25:12.161964+00:00_
+
+Web search results for query: ""Probing Classifiers: Promises, Shortcomings, and Advances" Belinkov Yonatan Computational Linguistics 2022"
+
+Links: [{"title":"Probing Classifiers: Promises, Shortcomings, and Advances - ACL Anthology","url":"https://aclanthology.org/2022.cl-1.7/"},{"title":"[2102.12452] Probing Classifiers: Promises, Shortcomings, and Advances","url":"https://arxiv.org/abs/2102.12452"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances | Computational Linguistics | MIT Press","url":"https://direct.mit.edu/coli/article/48/1/207/107571/Probing-Classifiers-Promises-Shortcomings-and"},{"title":"Yonatan Belinkov | publications","url":"https://belinkov.com/publications/publicationstype/"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances - Technion - Israel Institute of Technology","url":"https://cris.technion.ac.il/en/publications/probing-classifiers-promises-shortcomings-and-advances/"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/article/view/1936"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances - Israeli Research Community Portal","url":"https://cris.iucc.ac.il/en/publications/probing-classifiers-promises-shortcomings-and-advances/"},{"title":"(PDF) Probing Classifiers: Promises, Shortcomings, and Advances","url":"https://www.researchgate.net/publication/355072709_Probing_Classifiers_Promises_Shortcomings_and_Advances"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances","url":"https://scite.ai/reports/probing-classifiers-promises-shortcomings-and-kepAxaJ3"}]
+
+I found the paper you're looking for! Here are the details:
+
+**Title:** Probing Classifiers: Promises, Shortcomings, and Advances
+
+**Author:** Yonatan Belinkov
+
+**Publication:** Computational Linguistics, 48(1):207–219, 2022
+
+**Overview:** Probing classifiers have emerged as one of the prominent methodologies for 
+…[truncated 728 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-26T10:25:12.162129+00:00_
+
+Web search results for query: ""Solving Math Word Problems with Process- and Outcome-Based Feedback" Uesato Jonathan arxiv 2211.14275"
+
+Web search error: unavailable
+
+I apologize, but the web search tool is currently unavailable. However, based on the information you've provided, this appears to be an academic paper by Jonathan Uesato with the arXiv identifier 2211.14275. 
+
+To access this paper, you can:
+1. Visit the arXiv website directly at **https://arxiv.org/abs/2211.14275** to view the abstract and full paper
+2. Search for the paper on **Google Scholar** using the title and author name
+3. Check if it's available through your institution's library system if you have academic access
+
+The arXiv ID (2211.14275) tells us the paper was likely submitted in November 2022 (22 = 2022, 11 = November). If you'd like, I can help you discuss the content of the paper once you've accessed it, or you can provide me with specific information about it.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-26T10:25:12.162301+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Uesato \"Solving math word problems\" process outcome feedback arxiv 2211.14275"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Uesato \"Solving math word problems\" process outcome feedback arxiv 2211.14275"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-26T10:25:12.162428+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "marks2024geometry \"Geometry of Truth\" Marks Tegmark ICLR 2024 accepted openreview"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "marks2024geometry \"Geometry of Truth\" Marks Tegmark ICLR 2024 accepted openreview"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-26T10:25:12.162546+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "kelkar2026persona arxiv 2605.21006 author first name"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "kelkar2026persona arxiv 2605.21006 author first name"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-26T10:25:12.162663+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "McKinney \"Fragility of Learned Reward Functions\" NeurIPS 2022 workshop venue name"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "McKinney \"Fragility of Learned Reward Functions\" NeurIPS 2022 workshop venue name"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-26T10:25:12.162800+00:00_
+
+Web search results for query: "kelkar2026persona arxiv 2605.21006 author first name"
+
+Links: [{"title":"[2605.21006] Playing Devil's Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy","url":"https://arxiv.org/abs/2605.21006"},{"title":"Playing Devil’s Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy","url":"https://arxiv.org/html/2605.21006"},{"title":"1 Introduction","url":"https://arxiv.org/html/2605.08195v1"},{"title":"[2603.21006] How AI Systems Think About Education: Analyzing Latent Preference Patterns in Large Language Models","url":"https://arxiv.org/abs/2603.21006"},{"title":"\u0011 This paper contains text that might be offensive. \u0011 PERSONA FEATURES CONTROL","url":"https://arxiv.org/pdf/2506.19823"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=1191&show=1000"},{"title":"Rejoinder: The ICML 2023 Ranking Experiment: Examining Author Self-Assessment in ML/AI Peer Review","url":"https://arxiv.org/html/2605.25172"},{"title":"Persona Vectors: Monitoring and Controlling Character ...","url":"https://arxiv.org/pdf/2507.21509"},{"title":"[2605.25172] Rejoinder: The ICML 2023 Ranking Experiment: Examining Author Self-Assessment in ML/AI Peer Review","url":"https://arxiv.org/abs/2605.25172"},{"title":"[2605.22763] Advancing Mathematics Research with AI-Driven Formal Proof Search","url":"https://arxiv.org/abs/2605.22763"}]
+
+Based on the search results, the first author of arxiv paper 2605.21006 is Ishaan Kelkar. So the first name is **Ishaan**.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-26T10:25:12.163008+00:00_
+
+Web search results for query: "Uesato "Solving math word problems" process outcome feedback arxiv 2211.14275"
+
+Links: [{"title":"[2211.14275] Solving math word problems with process- and outcome-based feedback","url":"https://arxiv.org/abs/2211.14275"},{"title":"2022-11-28 Solving math word problems with process- and outcome-based feedback","url":"https://arxiv.org/pdf/2211.14275"},{"title":"[PDF] Solving math word problems with process- and outcome-based feedback | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Solving-math-word-problems-with-process-and-Uesato-Kushman/6d7b8a478801bd9d21df82d5f33ae6eced90da5e"},{"title":"dblp: Solving math word problems with process- and outcome-based feedback.","url":"https://dblp.org/rec/journals/corr/abs-2211-14275.html"},{"title":"ml-papers/papers/2021/221125 Solving math word problems with process- and outcome-based feedback.md at main · rosinality/ml-papers","url":"https://github.com/rosinality/ml-papers/blob/main/papers/2021/221125%20Solving%20math%20word%20problems%20with%20process-%20and%20outcome-based%20feedback.md"},{"title":"[2211.14275v1] Solving math word problems with process- and outcome-based feedback","url":"https://arxiv.org/abs/2211.14275v1"},{"title":"Solving math word problems with process- and outcome-based feedback | SCALE Initiative","url":"https://scale.stanford.edu/ai/repository/solving-math-word-problems-process-and-outcome-based-feedback"},{"title":"(PDF) Solving math word problems with process- and outcome-based feedback","url":"https://www.researchgate.net/publication/365783882_Solving_math_word_problems_with_process-_and_outcome-based_feedback"},{"title":"Solving math word problems with process- and outcome-based feedback - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv221114275U/abstract"}]
+
+I found the paper! Here are the details about the research:
+
+**Title:** Solving math word problems with process- and outcome-based feedback
+
+**Authors:** Jonathan Uesato, Nate Kushman, 
+…[truncated 923 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-26T10:25:12.163186+00:00_
+
+Web search results for query: "marks2024geometry "Geometry of Truth" Marks Tegmark ICLR 2024 accepted openreview"
+
+Links: [{"title":"The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | OpenReview","url":"https://openreview.net/forum?id=CeJEfNKstt"},{"title":"[2310.06824] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets","url":"https://arxiv.org/abs/2310.06824"},{"title":"Published at Building Trust Workshop at ICLR 2025 UNDERSTANDING (UN)RELIABILITY","url":"https://openreview.net/pdf?id=JZiKuvIK1t"},{"title":"The Geometry of Truth: Emergent Linear Structure in Large ...","url":"https://openreview.net/pdf/0ae055dff16c072ac024f0560d5484ddc2cb4aa8.pdf"},{"title":"[PDF] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Geometry-of-Truth:-Emergent-Linear-Structure-in-Marks-Tegmark/d59523889679aee15992c4bf6e52b134186d07d3"},{"title":"Figure 4 from The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Geometry-of-Truth:-Emergent-Linear-Structure-in-Marks-Tegmark/d59523889679aee15992c4bf6e52b134186d07d3/figure/5"},{"title":"Under review as a conference paper at ICLR 2024 THE GEOMETRY OF TRUTH:","url":"https://openreview.net/pdf/ecf0f5b60fb4cd799686107990850d5666d15368.pdf"},{"title":"[2310.06824v3] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets","url":"https://arxiv.org/abs/2310.06824v3"}]
+
+Based on the search results, I found information about "The Geometry of Truth" paper:
+
+The paper is authored by Samuel Marks and Max Tegmark. The paper investigates how LLMs represent the difference between true and false statements, and improves t
+…[truncated 753 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-26T10:25:12.163352+00:00_
+
+Web search results for query: "McKinney "Fragility of Learned Reward Functions" NeurIPS 2022 workshop venue name"
+
+Links: [{"title":"NeurIPS On The Fragility of Learned Reward Functions","url":"https://neurips.cc/virtual/2022/64107"},{"title":"NeurIPS On The Fragility of Learned Reward Functions","url":"https://nips.cc/virtual/2022/65687"},{"title":"On The Fragility of Learned Reward Functions Lev McKinney∗","url":"https://openreview.net/pdf?id=2qDp-zV14i"},{"title":"NeurIPS 2022","url":"https://neurips.cc/Conferences/2022/ScheduleMultitrack?event=65419"},{"title":"NeurIPS 2022","url":"https://nips.cc/Conferences/2022/ScheduleMultitrack?event=65419"},{"title":"[2301.03652] On The Fragility of Learned Reward Functions","url":"https://arxiv.org/abs/2301.03652"},{"title":"(PDF) On The Fragility of Learned Reward Functions","url":"https://www.researchgate.net/publication/367019633_On_The_Fragility_of_Learned_Reward_Functions"},{"title":"On The Fragility of Learned Reward Functions - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2301.03652"},{"title":"On The Fragility of Learned Reward Functions","url":"https://arxiv.org/pdf/2301.03652"}]
+
+Based on the search results, the paper "On The Fragility of Learned Reward Functions" by Lev McKinney and colleagues was presented as a poster in the Workshop on Machine Learning Safety at NeurIPS 2022. 
+
+The workshop venue name is: **Workshop on Machine Learning Safety**
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-26T10:25:12.163528+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Geometry of Truth\" Marks Tegmark ICLR 2024 rejected OR accepted OR published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Geometry of Truth\" Marks Tegmark ICLR 2024 rejected OR accepted OR published"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-26T10:25:12.163651+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Papadatos \"Linear Probe Penalties\" first name Henry OR Harris author"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Papadatos \"Linear Probe Penalties\" first name Henry OR Harris author"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-26T10:25:12.163767+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Papadatos Freedman \"Linear Probe Penalties\" Rachel OR Richard author NeurIPS SoLaR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Papadatos Freedman \"Linear Probe Penalties\" Rachel OR Richard author NeurIPS SoLaR"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-26T10:25:12.163927+00:00_
+
+Web search results for query: ""Geometry of Truth" Marks Tegmark ICLR 2024 rejected OR accepted OR published"
+
+Links: [{"title":"[2310.06824] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets","url":"https://arxiv.org/abs/2310.06824"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d3221cdb27e49d9c1cd35ad254feccfe-Paper-Conference.pdf"},{"title":"[PDF] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Geometry-of-Truth:-Emergent-Linear-Structure-in-Marks-Tegmark/d59523889679aee15992c4bf6e52b134186d07d3"},{"title":"Figure 4 from The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Geometry-of-Truth:-Emergent-Linear-Structure-in-Marks-Tegmark/d59523889679aee15992c4bf6e52b134186d07d3/figure/5"},{"title":"The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | OpenReview","url":"https://openreview.net/forum?id=CeJEfNKstt"},{"title":"The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/geometry-truth-emergent-linear-structure-large-language"},{"title":"[2310.06824v3] The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets","url":"https://arxiv.org/abs/2310.06824v3"},{"title":"The Geometry of Truth: Emergent Linear Structure in Large ...","url":"https://www.deepdyve.com/lp/arxiv-cornell-university/the-geometry-of-truth-emergent-linear-structure-in-large-language-pxqZ4eKRWA"},{"title":"The Geometry of Truth: Emergent Linear Structure in Large Lan
+…[truncated 839 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-26T10:25:12.164101+00:00_
+
+Web search results for query: "Papadatos "Linear Probe Penalties" first name Henry OR Harris author"
+
+Links: [{"title":"[2412.00967] Linear Probe Penalties Reduce LLM Sycophancy","url":"https://arxiv.org/abs/2412.00967"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy | Henry ...","url":"https://www.linkedin.com/posts/henry-papadatos_linear-probe-penalties-reduce-llm-sycophancy-activity-7269711280544858112-dnev"},{"title":"(PDF) Linear Probe Penalties Reduce LLM Sycophancy","url":"https://www.researchgate.net/publication/386374330_Linear_Probe_Penalties_Reduce_LLM_Sycophancy"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy","url":"https://arxiv.org/html/2412.00967v1"},{"title":"Papers by Henry Papadatos","url":"https://www.aimodels.fyi/authors/arxiv/Henry%20Papadatos"},{"title":"Papers with Code - Henry Papadatos","url":"https://paperswithcode.com/author/henry-papadatos"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy – Center for Human-Compatible Artificial Intelligence","url":"https://humancompatible.ai/news/2024/12/14/linear-probe-penalties-reduce-llm-sycophancy/"},{"title":"Henry Papadatos","url":"https://scholar.google.com/citations?user=sR9YhcsAAAAJ&hl=en"},{"title":"Henry Papadatos | AI Frontiers","url":"https://ai-frontiers.org/author/henry-papadatos"},{"title":"Henry Papadatos | TIME","url":"https://time.com/author/henry-papadatos/"}]
+
+Based on the search results, I found the information you were looking for:
+
+The paper "Linear Probe Penalties Reduce LLM Sycophancy" was authored by Henry Papadatos and 1 other author. The co-author is Rachel Freedman from UC Berkeley.
+
+So the first name is **Henry** (not Harris). Henry Papadatos is a visiting ETH MSc student, and the paper was published at the NeurIPS SoLaR workshop.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-26T10:25:12.164270+00:00_
+
+Web search results for query: "Papadatos Freedman "Linear Probe Penalties" Rachel OR Richard author NeurIPS SoLaR"
+
+Links: [{"title":"NeurIPS Linear Probe Penalties Reduce LLM Sycophancy","url":"https://neurips.cc/virtual/2024/103347"},{"title":"Linear Probe Penalties Reduce LLM Sycophancy – Center for Human-Compatible Artificial Intelligence","url":"https://humancompatible.ai/news/2024/12/14/linear-probe-penalties-reduce-llm-sycophancy/"},{"title":"Publications | Henry Papadatos","url":"https://henrypapadatos.com/publications/"},{"title":"(PDF) Linear Probe Penalties Reduce LLM Sycophancy","url":"https://www.researchgate.net/publication/386374330_Linear_Probe_Penalties_Reduce_LLM_Sycophancy"},{"title":"Probe-based Fine-tuning for reducing Toxicity Jan Wehner Mario Fritz","url":"https://arxiv.org/pdf/2510.21531"},{"title":"Richard Freedman books and biography","url":"https://www.waterstones.com/author/richard-freedman/1221585"},{"title":"Astrophysics Jun 2024","url":"https://www.arxiv.org/list/astro-ph/2024-06?skip=700&show=1000"},{"title":"Mathematics Aug 2019","url":"https://arxiv.org/list/math/2019-08?skip=1925&show=2000"},{"title":"Complexity regularization via localized random penalties","url":"https://arxiv.org/pdf/math/0410091"},{"title":"Efficient Designs of SLOPE Penalty Sequences in Finite Dimension","url":"https://arxiv.org/pdf/2102.07211"}]
+
+Based on the search results, I found the information about "Linear Probe Penalties Reduce LLM Sycophancy":
+
+The article "Linear Probe Penalties Reduce LLM Sycophancy" was published at the NeurIPS SoLaR workshop by Henry Papadatos (a visiting ETH MSc student) and Rachel Freedman (a supervising CHAI PhD student).
+
+The work is a poster presentation in the Workshop: Socially Responsible Language Modelling Research (SoLaR) at NeurIPS. The authors develop a linear probing method to identify and penalize markers of sycophancy within the reward model, producing rewards that discourage sycophantic behavior.
+
+To clarify: the F
+…[truncated 189 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ref-verify-A_20260526T101739",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 129 · 2026-05-26T10:25:12.164515+00:00_
+
+All 52 entries searched. Let me compile the final audit report.
+
+---
+
+## Reference Audit Report (Auditor A)
+
+```
+[1]  zhang2026latentgrpo         | ✓ |
+[2]  zou2023repe                 | ✓ |
+[3]  rimsky2024caa               | ✓ |
+[4]  shao2024grpo                | ✓ |
+[5]  li2023iti                   | ✓ |
+[6]  turner2023actadd            | ✓ |
+[7]  gao2023scaling              | ✓ |
+[8]  skalse2022hacking           | ✓ |
+[9]  casper2023openproblems      | ✓ |
+[10] denison2024subterfuge       | ✓ |
+[11] sharma2023sycophancy        | ✓ |
+[12] shapira2026amplifies        | ✗ | 作者名错误：bib 写 "Shapira, Ori" 实际应为 "Itai Shapira"
+[13] wang2025internal            | ⚠️ | Venue 过时：bib 写 arXiv 2025，但已发表于 AAAI 2026
+[14] wei2024synthetic            | ✓ |
+[15] ackermann2026gradreg        | ✓ |
+[16] obrien2025fewbadneurons     | ✓ |
+[17] mckinney2023fragility       | ✗ | 年份错误：2023→2022；Workshop 名错误："Deep RL Workshop"→"ML Safety Workshop"
+[18] papadatos2024probepenalties  | ✗ | 两个作者名错误："Harris"→"Henry" Papadatos；"Richard"→"Rachel" Freedman
+[19] burns2023ccs                | ✓ |
+[20] sinii2025smallvectors       | ✓ |
+[21] consistency2025bctact       | ✓ |
+[22] beigi2025smart              | ✓ |
+[23] rafailov2023dpo             | ✓ |
+[24] ethayarajh2024kto           | ✓ |
+[25] luo2026craft                | ⚠️ | Venue 过时：bib 写 arXiv 2026，但已被 ICML 2026 接收
+[26] manheim2019goodhart         | ✓ |
+[27] wu2026rewardhacking         | ✓ |
+[28] he2023debertav3             | ✓ |
+[29] yang2025qwen3               | ✓ |
+[30] grattafiori2024llama3       | ✓ |
+[31] openai2025gpt41             | ✓ |
+[32] kelkar2026persona           | ✗ | 作者名错误：bib 写 "Kelkar, Ameya" 实际应为 "Ishaan Kelkar"
+[33] vennemeyer2025sycophancy    | ✓ |
+[34] hu2022lora                  | ✓ |
+[35] schulman2017ppo             | ✓ |
+[36] rajbhandari2020zero         | ✓ |
+[37] christiano2017rlhf          | ✓ |
+[38] pan2022effects              | ✓ |
+[39] marks2024geometry           | ✗ | Venue 错误：bib 写 "ICLR 2024"，实际发表于 ICLR 2025
+[40] kadavath2022language        | ✓ |
+[41] lin2022truthfulqa           | ✓ |
+[42] lightman2024verify          | ✓ |
+[43] touvron2023llama            | ✓ |
+[44] ouyang2022instructgpt       | ✓ |
+[45] bai2022training             | ✓ |
+[46] stiennon2020summarize       | ✓ |
+[47] ziegler2019finetuning       | ✓ |
+[48] hubinger2024sleeper         | ✓ |
+[49] perez2023discovering        | ✓ |
+[50] uesato2022solving           | ✓ |
+[51] hewitt2019designing         | ✓ |
+[52] belinkov2022probing         | ✓ |
+```
+
+### 汇总
+
+```
+总计: 52 条
+✓ 正确: 45 条
+✗ 错误: 5 条
+⚠️ 待更新: 2 条
+
+错误详情:
+1. [#12] shapira2026amplifies — 作者名 "Ori Shapira" 应为 "Itai Shapira"
+2. [#17] mckinney2023fragility — 年份 2023→2022；Workshop 名 "NeurIPS Deep RL Workshop"→"NeurIPS ML Safety Workshop"
+3. [#18] papadatos2024probepenalties — 两个作者名错：第一作者 "Harris"→"Henry" Papadatos，第二作者 "Richard"→"Rachel" Freedman
+4. [#32] kelkar2026persona — 作者名 "Ameya Kelkar" 应为 "Ishaan Kelkar"
+5. [#39] marks2024geometry — Venue "ICLR 2024" 应为 "ICLR 2025"（论文提交至 ICLR 2024 被拒，后发表于 ICLR 2025）
+
+Venue 过时（建议更新）:
+1. [#13] wang2025internal — arXiv 2025 → AAAI 2026（已发表）
+2. [#25] luo2026craft — arXiv 2026 → ICML 2026（已接收）
+```
+
+### Citation 上下文语义检查
+
+所有正文中的引用上下文均与被引论文内容语义一致，未发现"张冠李戴"式的错误引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_audit_ref-verify-A_20260526T101739"
+}
+```
+
+</details>
+
+---

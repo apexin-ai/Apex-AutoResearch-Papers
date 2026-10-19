@@ -1,0 +1,35 @@
+{
+  "exp_id": "acib_perturbed_eval_dryrun",
+  "project": "action_cond_info_bottleneck",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:44:57.524Z",
+    "updated_at": "2026-05-16T05:46:43.284Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 /root/acib/scripts/eval_acib_perturbed.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --base_model lerobot/smolvla_libero --suites libero_spatial --n_episodes 10 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_perturbed_eval --noise_std 0.05 --jitter_strength 0.3",
+      "server": "westb-13953",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "793104",
+      "data_path": "libero_spatial",
+      "data_count": 100,
+      "model_name": "acib_v5_div_reg (perturbed dryrun)",
+      "seed": 42,
+      "checkpoint_source": "acib_v5_div_reg",
+      "eval_data": "libero_spatial (10 eps dryrun)"
+    },
+    "hypothesis": "Perturbation eval dryrun: 验证 ACIB 在输入扰动（gaussian noise σ=0.05, color jitter strength=0.3）下的鲁棒性。10 eps/task libero_spatial dryrun。",
+    "parent": "acib_v5_div_reg",
+    "notes": "✅ Dryrun 完成。libero_spatial 1ep×10tasks gaussian_noise(σ=0.05): 80% SR (8/10 tasks)。产出：perturbation_wrapper.py (4 perturbation types), eval_acib_perturbed.py, perturbation_eval_guide.md。Bonus: 修了 scorer dtype mismatch bug (bfloat16 vs float32)，此 fix 也影响 eval_acib.py。",
+    "conclusion": "success",
+    "checkpoint_path": "/root/acib/outputs/acib_v5_div_reg_perturbed_eval/",
+    "log_path": "/root/acib/outputs/acib_v5_div_reg_perturbed_eval/",
+    "completed_at": "2026-05-16T05:46:43.284Z"
+  },
+  "timestamp": "2026-05-16T05:46:43.343576+00:00",
+  "trigger": "update_registry"
+}

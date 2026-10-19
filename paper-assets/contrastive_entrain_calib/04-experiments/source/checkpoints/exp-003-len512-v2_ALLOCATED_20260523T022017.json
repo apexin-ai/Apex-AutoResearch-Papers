@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-003-len512-v2",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:20:02.823Z",
+    "updated_at": "2026-05-23T02:20:17.688Z",
+    "hypothesis": "R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003. v2: re-registered with correct PID after v1 cron false-exit.",
+    "parent": "exp-003"
+  },
+  "timestamp": "2026-05-23T02:20:17.869554+00:00",
+  "trigger": "update_registry"
+}

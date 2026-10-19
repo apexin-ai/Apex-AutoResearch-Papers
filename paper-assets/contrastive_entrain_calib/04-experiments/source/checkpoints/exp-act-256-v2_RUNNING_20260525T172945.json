@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp-act-256-v2",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-25T15:50:56.188Z",
+    "updated_at": "2026-05-25T17:29:45.630Z",
+    "hypothesis": "ACT-256 ablation resubmit: ACT consistency training with 256 samples (128 pairs, matching GRPO data quantity) and reduced-LoRA config (r=64, alpha=64, 4 modules qkvo, dropout=0) to eliminate data-size confound in ACT vs GRPO comparison. v2: resubmit after v1 killed at step 200 due to GPU full.",
+    "parent": "exp-004-reduced-lora",
+    "completed_at": "2026-05-25T17:24:22.340Z",
+    "notes": "Killed externally at step 690/8000 (01:09 UTC, ~1.3h into training). No OOM/error in logs — clean termination mid-step, same pattern as v1 (killed at step 200). Checkpoint-500 saved successfully. Loss was converging well: sft_loss dropped from 0.64→0.0085 by step 690. This is the 2nd consecutive external kill on cuda:0 for this experiment.",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "Killed externally at step 690/8000 (01:09 UTC, ~1.3h into training). No OOM/error in logs — clean termination mid-step, same pattern as v1 (killed at step 200). Checkpoint-500 saved successfully. Loss was converging well: sft_loss dropped from 0.64→0.0085 by step 690. This is the 2nd consecutive external kill on cuda:0 for this experiment."
+      }
+    },
+    "spec": {
+      "command": "python training/run_act_256_ablation.py",
+      "server": "westd-29046",
+      "data_path": "/root/contrastive_entrain_calib/data/calibration_v2_1_256.jsonl",
+      "data_count": 256,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": null,
+      "eval_data": null
+    }
+  },
+  "timestamp": "2026-05-25T17:29:45.884721+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-004-s2-eval-ckpt4500",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:48:05.659Z",
+    "updated_at": "2026-05-22T18:48:24.675Z",
+    "hypothesis": "ACT seed 2 checkpoint 4500 eval: 验证 ACT s2 在 step 4500 的 SYCONScore 是否 > vanilla (0.1335)",
+    "parent": "exp-004-s2-v2",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T18:48:24.846267+00:00",
+  "trigger": "update_registry"
+}

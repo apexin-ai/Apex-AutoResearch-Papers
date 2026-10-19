@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05e9b6c6f2237383a2ae",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code act 256 ablation launch",
+  "task_key": "worker_code_act-256-ablation-launch_20260525T073612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_act-256-ablation-launch_20260525T073612_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "da9497c2630b1ce11d8007608b601a9cf26650253242e20532ce5368636dce64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已稳定运行。第一个 logging 点（step 10）需要 160 个 micro-batch，预计约 10 分钟才会出现。\n\n**ACT-256 ablation 已成功启动：**\n\n| 配置项 | 值 |\n|--------|-----|\n| exp_id | exp-act-256 |\n| GPU | cuda:1 (PID 13276) |\n| 数据 | 256 行 / 128 对 |\n| LoRA | r=64, alpha=64, qkvo, dropout=0 (匹配 GRPO) |\n| 训练步数 | 8000 |\n| lr | 5e-5, warmup=200 |\n| lambda_l2 | 0.1 |\n| grad_accum | 16 |\n| 输出目录 | /root/autodl-tmp/checkpoints/act_256_ablation/ |\n| 日志 | /root/runs/contrastive_entrain_calib/exp-act-256.log |\n| tmux | exp_act_256 |\n\ncuda:0 上的 seed4 eval 不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-act-256-ablation-launch.md"
+}

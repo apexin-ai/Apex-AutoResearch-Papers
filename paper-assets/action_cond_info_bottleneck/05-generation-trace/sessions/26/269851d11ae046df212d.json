@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "269851d11ae046df212d",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh final collect launch v73",
+  "task_key": "worker_ssh_final-collect-launch-v73_20260517T191556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_final-collect-launch-v73_20260517T191556_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "50797231cfd9d0da9a395dff1b622342de4e8c3ceb6e8677f1bf69512f3c766d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Config validation passed. Here's the current status:\n\n## v7.2 Eval 结果（3/4 suites 完成，libero_10 进行中）\n\n| Suite | α=0.0 | α=1.0 | Baseline |\n|-------|-------|-------|----------|\n| libero_spatial | 59.4% | 61.0% | 66.0% |\n| libero_object | 65.6% | 66.2% | 67.8% |\n| libero_goal | **78.6%** | **78.0%** | 76.4% |\n| libero_10 | IN PROGRESS | IN PROGRESS | 54.2% |\n| avg (3 done) | 67.9% | 68.4% | 70.1% |\n\n## v7.3 启动前验证\n- test_v73_t2.py: TIMEOUT（需加载模型，SSH 30s 限制）\n- Config validation: **PASS** (`connector_lora`, rank=8, scale=1.0, drift=0.0)\n- 训练脚本: `run_v73_connector_lora.sh` ✓, `run_connector_only.sh` ✓\n\n## 阻塞：无法启动 v7.3 训练\n\n**两张 GPU 都被 v7.2 eval 占用：**\n- GPU 0: PID 40598, α=0.0 eval, libero_10 进度 ~10/500 episodes\n- GPU 1: PID 44022, α=1.0 eval, libero_10 进度 ~10/500 episodes\n\n每个 suite 约 1.5-2h，libero_10 刚开始 ~15min，预计还需 **~1.5h** 完成。\n\nPer **C004**: 禁止在有活跃进程的 GPU 上启动新任务。需等 eval 完成后再启动 v7.3 训练。\n\n**下一步选项：**\n1. 等 eval 完成后手动启动训练\n2. 我定期轮询，eval 完成后自动启动\n3. 先 kill eval（丢失 libero_10 数据），立即启动训练\n\n选哪个？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-final-collect-launch-v73.md"
+}

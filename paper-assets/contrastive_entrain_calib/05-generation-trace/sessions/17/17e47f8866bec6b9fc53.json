@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17e47f8866bec6b9fc53",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 collect heldout chain",
+  "task_key": "worker_eval_28034-collect-heldout-chain_20260523T072123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-collect-heldout-chain_20260523T072123_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "96fe5832f62bd2c3212e9947810f56c84445244c347d780820a1b17f99516a5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three evals complete. ACT s1 ckpt-8000 eval already at 60/70 — very fast. Here's the summary:\n\n## 汇总\n\n| Eval | GPU | SYCONScore | ToF | NoF | 数据 | 状态 |\n|------|-----|-----------|------|------|------|------|\n| rl-ckpt-7000 (362 pairs) | 0 | **0.3257** | 0.2044 | 0.8011 | sycophancy_bench | 完成 |\n| vanilla held-out (70 pairs) | 2 | **0.0556** | 0.0286 | 1.0000 | eval_held_out | 完成 |\n| R3-only ckpt-6500 held-out (70 pairs) | 3 | **0.1079** | 0.0571 | 0.9714 | eval_held_out | 完成 |\n| ACT s1 ckpt-8000 held-out (70 pairs) | 2 | — | — | — | eval_held_out | 运行中 (PID 58089, 60/70) |\n\n**ACT s1 ckpt-8000 信息：**\n- Checkpoint 路径: `/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-8000`\n- PID: 58089 (GPU 2)\n- 预计几分钟内完成\n\n**对比 vanilla baseline (sycophancy_bench = 0.1335)：**\n- rl-ckpt-7000 在 sycophancy_bench 上 SYCONScore 0.3257，是 vanilla 的 2.44x\n- held-out 上 vanilla baseline 降到 0.0556（样本更小，70 vs 362）\n- R3-only ckpt-6500 held-out 0.1079，比 held-out vanilla 高约 2x"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-collect-heldout-chain.md"
+}

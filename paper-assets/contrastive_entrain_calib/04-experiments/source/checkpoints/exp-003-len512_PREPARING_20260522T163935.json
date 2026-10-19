@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp-003-len512",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:15:02.338Z",
+    "updated_at": "2026-05-22T16:39:35.224Z",
+    "hypothesis": "R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003 (R3=1.0, r1=r2=0, gs=2, seed=42, 8000 steps).",
+    "parent": "exp-003",
+    "spec": {
+      "command": "bash -c \"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=2 python training/run_exp003_len512_r3only.py\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "29337",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-len512.log",
+      "submitted_at": "2026-05-22T16:38:54.895Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T16:39:35.391849+00:00",
+  "trigger": "update_registry"
+}

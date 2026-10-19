@@ -1,0 +1,20 @@
+\section{Related Work}\label{sec:related_work}
+
+\paragraph{Representation Engineering.}
+Linear directions in LLM residual streams encode behavioral concepts \citep{zou2023repe}; CCS discovers truth directions without labels \citep{burns2023ccs}.
+Inference-time methods---ITI \citep{li2023iti}, ActAdd \citep{turner2023actadd}, CAA \citep{rimsky2024caa}---demonstrate that activation geometry suffices for behavioral control at test time.
+We use the same contrastive extraction as CAA but apply $\dsyc$ as an RL reward, revealing that high discriminability does not entail reward utility.
+
+\paragraph{Reward Design and Overoptimization.}
+Proxy rewards diverge from true objectives under sustained optimization \citep{gao2023scaling}, and no bounded proxy is immune \citep{skalse2022hacking}.
+Reward hacking can escalate to active tampering \citep{denison2024subterfuge}, and learned rewards fail under policy transfer \citep{mckinney2023fragility}.
+Our probe trap (\S\ref{sec:probe_trap}) is an extreme instance: the reward actively reinforces degenerate behavior.
+
+\paragraph{Sycophancy Characterization and Mitigation.}
+Sycophancy is pervasive in RLHF-trained assistants \citep{sharma2023sycophancy}, formally amplified by RLHF \citep{shapira2026amplifies}, and traceable to late-layer preference shifts \citep{wang2025internal}.
+Mitigation approaches include synthetic data \citep{wei2024synthetic}, activation consistency training \citep{consistency2025bctact}, and neuron-level correction \citep{obrien2025fewbadneurons}.
+Our analysis shows why diagnosis does not transfer to reward: $\dsyc$ conflates warranted revision with unwarranted capitulation.
+
+\paragraph{Representation-Guided RL.}
+Latent-GRPO \citep{zhang2026latentgrpo} uses activation-space rewards for reasoning; \citet{sinii2025smallvectors} and \citet{ackermann2026gradreg} study representation dynamics under RL.
+These succeed because target and suppressed behaviors are geometrically distinct; sycophancy breaks this condition.

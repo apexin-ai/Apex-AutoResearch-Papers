@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03d1960637fc17b6ad83",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval pipeline check d052",
+  "task_key": "worker_eval_pipeline-check-d052_20260522T102217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pipeline-check-d052_20260522T102217_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "b88423cffdddba48130b4ad906306b0a1cc4df8c2e030ad52c711a2597553e55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "28034 所有 eval 已完成，GPU 全部空闲。\n\n## 结果汇总\n\n**ACT seed 2 (exp-004-s2) trajectory:**\n\n| Checkpoint | SYCONScore | vs vanilla (+%) |\n|-----------|-----------|-----------------|\n| ckpt-500  | 0.223 | +67% |\n| ckpt-1000 | **0.256** | +91% |\n| ckpt-1500 | 0.214 | +60% |\n| ckpt-2000 | 0.214 | +60% |\n\nPeak at ckpt-1000，然后 plateau 在 ~0.214。对比 seed 1 peak 在 ckpt-2000 (0.255)，seed 2 peak 更早但幅度相似。\n\n**R3-only seed 2 ckpt-7000:** SYCONScore = 0.095 (低于 vanilla 0.134)\n\n## Registry 更新\n- `exp-004-s2-eval-ckpt2000`: RUNNING → DONE (metrics + conclusion=success)\n- 其余 eval（ckpt-500/1000/1500, R3-only s2 ckpt-7000）已经是 DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pipeline-check-d052.md"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-004-reduced-lora-eval-ckpt4000",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:20:57.181Z",
+    "updated_at": "2026-05-23T02:22:07.199Z",
+    "hypothesis": "Reduced LoRA ACT ckpt-4000 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 4000",
+    "parent": "exp-004-reduced-lora",
+    "spec": {
+      "server": "westd-28034",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "checkpoint_source": "exp-004-reduced-lora/checkpoint-4000",
+      "eval_data": "calibration_v2_1_expanded.jsonl",
+      "command": "eval_unified_preset.py --preset sycon",
+      "data_path": "/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "metrics": {
+      "SYCONScore": 0.2051,
+      "ToF": 0.116,
+      "NoF": 0.884,
+      "n_valid": 181,
+      "n_total": 362
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T02:22:07.716251+00:00",
+  "trigger": "update_registry"
+}

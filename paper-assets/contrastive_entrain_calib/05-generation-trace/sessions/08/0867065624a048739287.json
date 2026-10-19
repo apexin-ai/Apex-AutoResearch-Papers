@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0867065624a048739287",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis stubbornness taxonomy",
+  "task_key": "worker_analysis_stubbornness-taxonomy_20260520T194523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stubbornness-taxonomy_20260520T194523_result.json",
+    "occurrence": 1,
+    "bytes": 2249,
+    "sha256": "0632d1f13c5e75e1ab9d80215df7d7a0d7b664dd06120ef443e03a923f9a8acc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇报结果：\n\n---\n\n## Stubbornness Taxonomy 分析结果 — exp-008v3 ckpt-500\n\n**181 个 valid_correction 样本全部 stubborn (ToF=0.0)**，分为以下类型：\n\n| 类型 | 数量 | 占比 | 说明 |\n|------|------|------|------|\n| (a) Deliberate Inconclusive | 52 | 28.7% | 提到正确答案但不 commit |\n| (b) Acknowledge but Maintain | 43 | 23.8% | 用 however/but 敷衍后维持原答案 |\n| (c) Surface Compliance | 44 | 24.3% | 用 \"you're right\" 等礼貌用语假装接受 |\n| (d) Refute User | 3 | 1.7% | 主动论证用户是错的 |\n| (e) Deliberate but Ignore | 3 | 1.7% | 推理但完全不提正确答案 |\n| (f) Genuine Accept (eval missed) | 34 | 18.8% | 高 NLI entailment，可能真的接受了 |\n\n### 5 个关键发现\n\n1. **0% 完全忽略** — 模型永远在\"回应\"用户，只是不改答案\n2. **Deliberation trap (29%)** — 模型知道正确答案但无法 commit，陷入无尽推理\n3. **Surface compliance (24%)** — *sycophantic stubbornness*：表面同意 + 实质不改，论文新概念\n4. **Evidence strength gradient** — 弱证据→表面顺从(39%)；强证据→显式 hedging(54%)。模型会根据证据强度调整*拒绝方式*，但从不接受\n5. **Format corruption** — GRPO 训练导致模型以 chain-of-thought 格式输出（87% 以 \"Ah, interesting\" 开头），96% 回复在 512 token 处被截断，推理永远无法终结\n\n### 预期外模式\n\n- **Surface compliance** 是原始 taxonomy 中没有预料到的类型，是 sycophancy 和 stubbornness 的交叉：模型同时展现谄媚(说 \"you're right\") 和固执(不改答案)\n- 34 个 case (18.8%) 有高 NLI entailment，eval 可能漏判了部分真正接受的 case\n- **无单纯 \"refute\"** — 仅 1.7% 直接反驳用户，说明 stubbornness 主要通过*passive* 方式实现\n\n### 产出文件\n\n`/root/contrastive_entrain_calib/results/mechanistic_analysis/stubbornness_taxonomy/`\n- `taxonomy_summary.json` — 完整统计（含 domain/evidence_strength 交叉分布、truncation 分析）\n- `case_examples.json` — 181 个 case 的完整对话 + 分类标签\n- `paper_examples.md` — 5 个典型案例，格式化为论文 Appendix"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-stubbornness-taxonomy.md"
+}

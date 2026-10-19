@@ -1,0 +1,57 @@
+{
+  "exp_id": "acib_v4_agg_kl",
+  "project": "action_cond_info_bottleneck",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T00:24:08.494Z",
+    "updated_at": "2026-05-16T01:30:03.113Z",
+    "hypothesis": "Aggregate rate KL（约束平均保留率而非 per-token KL）能防止 scorer collapse，使 IB loss 在 β ramp 后保持正值，scorer 输出产生 token 分化（sparsity > 0）",
+    "parent": "",
+    "notes": "D015: aggregate rate KL alone 无法驱动 scorer 分化。Step 1300 时 scorer_std=0.009，β=0.003。IB loss 从 0.017→0.001（约束太容易满足），task_loss 恶化 0.074→0.106（均匀压低导致信息丢失）。根因：aggregate KL 只约束 mean，scorer 用常数函数即可满足，缺乏 per-token variance 激励。已 kill 释放 GPU 给 v5。log_path: ~/runs/action_cond_info_bottleneck/acib_v4_agg_kl.log, checkpoint_path: /root/acib/outputs/acib_v4_agg_kl/",
+    "server": "westb-13953",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13953",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-16T00:58:09.085Z",
+      "finished_at": "2026-05-16T00:59:34.461Z",
+      "training_hours": 0.02
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-16T00:59:35.970Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T00:59:36.723136+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "v4 训练正常运行。PID 649784, cuda:0, 16168 MiB, 1.1 steps/s, WANDB_MODE=disabled。前 500 步数据：IB loss > 0（0.0003~0.0176），β=0（warmup 中）。⚠️ 需关注：scorer_std 从 0.135(step100) → 0.016(step500) 快速收缩，scorer_mean 从 0.738→0.824。β=0 阶段 scorer 已趋向均匀，β 生效后能否逆转待观察。sparsity 未打印（日志只有 mean/std）。"
+      }
+    },
+    "spec": {
+      "command": "WANDB_MODE=disabled python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v4_agg_kl --seed 42",
+      "server": "westb-13953",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "649789",
+      "log_path": "~/runs/action_cond_info_bottleneck/acib_v4_agg_kl.log",
+      "model_name": "lerobot/smolvla_libero",
+      "data_path": "/root/autodl-tmp/libero_dataset",
+      "data_count": 273000,
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/acib/outputs/acib_v4_agg_kl/"
+  },
+  "timestamp": "2026-05-16T01:30:03.132523+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd9ceec63275d10c494e",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh force start v73",
+  "task_key": "worker_ssh_force_start_v73_20260517T225706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_force_start_v73_20260517T225706_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "570e82a51bf7e80d0be2c0bffb40b4f385fa8301ecd6cf522ed11337579516ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告\n\n**训练正在运行：是**\n\n### nvidia-smi\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| GPU 0 | 15287MiB / 97887MiB | 99% | PID 745668 (v7.3 connector_lora) |\n| GPU 1 | 13561MiB / 97887MiB | 95% | PID 745746 (connector_only ablation) |\n\n### 日志（训练步在推进）\n\n**v7.3 connector_lora (GPU 0):**\n```\nStep 100/20000 | loss=1.2698 task=0.0945 ib=0.5483 div=-0.1406 ctr=11.8419 β=0.0000 | 1.7 steps/s\nStep 200/20000 | loss=1.1653 task=0.1212 ib=0.6560 div=-0.1445 ctr=10.5606 β=0.0000 | 1.8 steps/s\n```\n\n**connector_only ablation (GPU 1):**\n```\nStep 100/20000 | loss=0.0757 task=0.0757 | 2.7 steps/s\nStep 200/20000 | loss=0.0867 task=0.0867 | 2.9 steps/s\nStep 300/20000 | loss=0.0868 task=0.0868 | 2.9 steps/s\n```\n\n### PID\n- LoRA 主进程: 745668 (GPU 0)\n- Connector-only 主进程: 745746 (GPU 1)\n\n两个训练约 2 分钟前启动，步数在正常推进，无需干预。按当前速度估计：LoRA ~3h (1.8 steps/s × 20000)，connector_only ~1.9h (2.9 steps/s × 20000)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-force-start-v73.md"
+}

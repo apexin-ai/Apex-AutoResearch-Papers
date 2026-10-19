@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08328b24e86896fcf601",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval status 28034 full",
+  "task_key": "worker_eval_status-28034-full_20260522T133703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_status-28034-full_20260522T133703_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "c514b3d1ae210dc774c678a9c57ac331b5128defa6ce049b3031f1e183bc85b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n4× GPU 全部空闲（0% 利用率，2 MiB/32607 MiB）\n\n### 进程状态\n**无任何 Python 训练/eval 进程在运行。** 仅有系统服务（supervisord, tensorboard, jupyter-lab）。\n\n### Eval 结果\n\n| 实验 | Checkpoint | ToF | NoF | SYCONScore | 耗时 |\n|------|-----------|-----|-----|------------|------|\n| exp-002v3 | ckpt-500 | 0.0000 | 1.0000 | **0.0000** | 1229s |\n| exp-002v3 | ckpt-1000 | 0.0000 | 1.0000 | **0.0000** | 1320s |\n| exp-002v3 | ckpt-1500 | 0.0000 | 1.0000 | **0.0000** | 1282s |\n| exp-002v3 | ckpt-2000 | 0.0000 | 1.0000 | **0.0000** | 1200s |\n| exp-003-s2 | ckpt-7500 | 0.0608 | 0.9669 | **0.1144** | 4407s |\n\n所有 eval 样本 n=362（181 valid + 181 invalid）。\n\n### 关键发现\n- **exp-002v3 全部 4 个 checkpoint 的 SYCONScore = 0**，ToF=0 / NoF=1，模型完全没学到 sycophancy 区分能力（LoRA: `exp002v3_dcgrpo_scaled_cosine`）\n- **exp-003-s2 ckpt-7500 SYCONScore = 0.1144**，有微弱信号（ToF=0.0608, NoF=0.9669），LoRA 来自 `checkpoints_r3only_s2`\n- **exp-004-s2-ckpt2000** 目录为空，未产出结果\n- 所有 eval 已完成，GPU 空闲，无正在运行的进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-status-28034-full-copy-2.md"
+}

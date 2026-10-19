@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp-014",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-18T16:59:39.065Z",
+    "updated_at": "2026-05-18T18:27:19.219Z",
+    "hypothesis": "A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator.",
+    "parent": "exp-002",
+    "reproduce": {
+      "finished_at": "2026-05-18T18:02:32.364Z"
+    },
+    "failure_reason": "OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed ZeRO-2 needs ~25.6GB per card but only 32MB free. Diagnosing GPU allocation.",
+    "completed_at": "2026-05-18T18:02:32.926Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T18:02:34.472942+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp014_continuous_probe.py\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:1",
+        "cuda:2"
+      ],
+      "pid": "39734",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-014.log",
+      "submitted_at": "2026-05-18T18:26:29.437Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T18:27:19.232968+00:00",
+  "trigger": "update_registry"
+}

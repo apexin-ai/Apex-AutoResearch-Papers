@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-003-len512-v2",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:20:02.823Z",
+    "updated_at": "2026-05-23T02:26:09.524Z",
+    "hypothesis": "R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003. v2: re-registered with correct PID after v1 cron false-exit.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python /root/contrastive_entrain_calib/training/run_exp003_len512_r3only.py",
+      "server": "westd-29046",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "pid": "553700",
+      "data_path": "/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (training)",
+      "eval_data": "N/A (training)"
+    },
+    "notes": "Running on 29046 cuda:1, PID=553700. Model: Qwen/Qwen3-8B (not Qwen2.5-7B-Instruct). GPU utilization 98%, 41GB VRAM.",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T02:26:09.749474+00:00",
+  "trigger": "update_registry"
+}

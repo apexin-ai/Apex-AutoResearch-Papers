@@ -1,0 +1,1450 @@
+# analysis trajectory data compile
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_analysis_trajectory-data-compile_20260521T112144.log`
+- **Structured JSON:** [`16aeca79a3d97dad580f.json`](../../sessions/16/16aeca79a3d97dad580f.json)
+
+## Before a recorded user message
+
+28 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "99cf618a-91c8-4269-b823-2467aa3b5bce",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779373200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a1dee8aa-e6db-44f6-b097-6d8e282ffbb2",
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading the registry to get all completed experiment data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "b45eeb46-7f4b-46f4-bb62-f73fca4bc420",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Be1aSfd41mEgWBUi8vto4C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12128,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12128
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013HpVWt9owz5qjivkKmbvaw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "e7a26238-c41d-461b-af26-fc9e5f61ce92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Be1aSfd41mEgWBUi8vto4C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12128,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12128
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T11:21:54.153Z_
+
+<details><summary>↩ Tool result · `toolu_013HpVWt9owz5qjivkKmbvaw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "8243ec46-b151-4752-8b7b-6e52e5e120b2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to get all completed experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "2576ae36-46bf-4903-947e-975e06d246cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122aGCTELf8muAxe2rQshA7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 23969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01PBCt4jVmzoXyTUMdw7gNkL`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "metrics",
+    "parent",
+    "conclusion",
+    "status",
+    "exp_id"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "78e12cc7-34a7-4ba6-919e-5f15ce939149",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122aGCTELf8muAxe2rQshA7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 23969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T11:21:57.633Z_
+
+<details><summary>↩ Tool result · `toolu_01PBCt4jVmzoXyTUMdw7gNkL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-003-eval-s2-ckpt3500\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.0744, \"tof\": 0.0387, \"nof\": 0.9724, \"n_valid\": 181, \"n_invalid\": 181}}, \"exp-003-eval-s2-ckpt2500\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1046, \"tof\": 0.0552, \"nof\": 0.9724}}, \"exp-003-s2-eval-ckpt2000\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"conclusion\": \"killed\"}, \"exp-004\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"trend\": \"generally increasing trend with oscillations: early phase ~0.17-0.25, late phase ~0.26-0.30, best=0.301 at ckpt-8000\", \"best_sycon_score\": 0.301, \"best_checkpoint\": \"ckpt-8000\"}}, \"exp-003\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt2000\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.0846}}, \"exp-003-eval-ckpt7500\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1046}}, \"exp-003-eval-ckpt7000-v3\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.1046}, \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt3000\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"metrics\": {\"sycon_score\": 0.0945, \"tof\": 0.0497, \"nof\": 0.9503}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt5000-v2\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1144, \"tof\": 0.0608, \"nof\": 0.9669}}, \"exp-003-eval-ckpt6500\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.1529, \"tof\": 0.0829, \"nof\": 0.9834}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt6000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.0846, \"tof\": 0.0442, \"nof\": 0.9724}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt7000-v2\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-003-eval-ckpt7000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-003-eval-ckpt2000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9834, \"SYCONScore\": 0.0846, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline\"}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt3000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0497, \"NoF\": 0.9724, \"SYCONScore\": 0.0946, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline\"}, \"conclusion\": \"negative\"}, \"exp-009-eval-ckpt500\": {\"status\": \"DONE\", \"metrics\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 7671}, \"parent\": \"exp-009\", \"conclusion\": \"negative\"}, \"vanilla-d027-reeval\": {\"status\": \"DONE\", \"parent\": \"vanilla-baseline\", \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335, \"n_total\": 362, \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"note\": \"D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts.\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt4500\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9613, \"SYCONScore\": 0.1337, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4280, \"vs_vanilla\": \"SYCONScore 0.1337 vs 0.1335 = +0.1%, essentially EQUAL to baseline\", \"note\": \"Surprising: ckpt-4500 peaks near vanilla baseline (0.1337), HIGHER than ckpt-4000/5000/5500 (0.1144). Non-monotonic trajectory — peak at 4500 then regression.\"}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt1500\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt500\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt5500\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9724, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4484, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-4000/5000 — plateau confirmed at 3 consecutive checkpoints\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt5500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.8674, \"SYCONScore\": 0.2383, \"n_samples\": 362}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt4500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.105, \"NoF\": 0.8785, \"SYCONScore\": 0.1875, \"n_samples\": 362}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt7500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1657, \"NoF\": 0.8453, \"SYCONScore\": 0.2771, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2771 vs 0.1335 = +107.6%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt6500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1492, \"NoF\": 0.8232, \"SYCONScore\": 0.2526, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2526 vs 0.1335 = +89.1%\"}, \"conclusion\": \"success\"}, \"exp-009-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-009\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9337, \"SYCONScore\": 0.1141, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"trend_vs_ckpt500\": \"ToF 0.0663→0.0608 (↓8.3%), SYCONScore 0.1238→0.1141 (↓7.8%)\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt1500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1741, \"vs_vanilla\": \"SYCONScore 0.1699 vs 0.1335 = +27.3%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt3500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1326, \"NoF\": 0.9006, \"SYCONScore\": 0.2312, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2312 vs 0.1335 = +73.2%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt2500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.884, \"SYCONScore\": 0.2389, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2389 vs 0.1335 = +78.9%\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt4000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9669, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4353, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-5000 — model saturated at step 4000\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt3000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.9116, \"SYCONScore\": 0.2058, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2058 vs 0.1335 = +54.2%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt5000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8785, \"SYCONScore\": 0.2631, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1305, \"vs_vanilla\": \"SYCONScore 0.2631 vs 0.1335 = +97.1%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt7000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1713, \"NoF\": 0.8619, \"SYCONScore\": 0.2858, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1254, \"vs_vanilla\": \"SYCONScore 0.2858 vs 0.1335 = +114.1%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.8729, \"SYCONScore\": 0.2048, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1689, \"vs_vanilla\": \"SYCONScore 0.2048 vs 0.1335 = +53.4%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt4000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1215, \"NoF\": 0.895, \"SYCONScore\": 0.214, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2140 vs 0.1335 = +60.3%, ABOVE baseline (dip vs ckpt-2000)\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt6000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8508, \"SYCONScore\": 0.2618, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2618 vs 0.1335 = +96.1%, ABOVE baseline\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt5000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"negative\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9669, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 5146, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-5000\", \"log_path\": \"/root/autodl-tmp/results/exp003_unified_eval/\", \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\"}}, \"exp-009\": {\"status\": \"DONE\", \"parent\": \"exp-008v3\", \"conclusion\": \"negative\", \"metrics\": {\"eval_ckpt500\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238}, \"eval_ckpt1000\": {\"ToF\": 0.0608, \"NoF\": 0.9337, \"SYCONScore\": 0.1141}, \"trend\": \"monotonic decline: ckpt-500→ckpt-1000 ToF ↓8.3%, SYCONScore ↓7.8%\", \"vanilla_d027_baseline\": {\"SYCONScore\": 0.1335}, \"kill_reason\": \"D040: all three R1 formulations (cosine/binary/continuous_probability) failed. Completes ALL-formulations-fail argument.\", \"available_checkpoints\": [\"checkpoint-500\", \"checkpoint-1000\"]}}, \"exp-012\": {\"status\": \"DONE\", \"parent\": \"exp-001\", \"metrics\": {\"cv_auroc_mean\": 0.7793, \"cv_auroc_std\": 0.0189, \"full_auroc\": 0.7779, \"best_layer\": 16, \"style_controlled_auroc\": 0.9227, \"per_layer_auroc_top5\": {\"16\": 0.7793, \"22\": 0.7359, \"25\": 0.7372, \"26\": 0.7374, \"31\": 0.747}, \"domain_auroc\": {\"commonsense\": 0.8444, \"history\": 0.818, \"math\": 0.769, \"science\": 0.7546, \"geography\": 0.7507}, \"evidence_strength_auroc\": {\"strong\": 0.9109, \"medium\": 0.8635, \"weak\": 0.7106}, \"num_pairs\": 181, \"num_samples\": 362, \"layer_range\": [16, 31], \"probe_ablation\": {\"d_syc_best_layer_auroc\": 0.778, \"d_syc_multi_layer_auroc\": 0.813, \"random_direction_auroc_mean\": 0.53, \"random_direction_auroc_std\": 0.054, \"gap_d_syc_minus_random\": 0.248, \"qwen_comparison\": {\"qwen_d_syc\": 0.835, \"qwen_random\": 0.727, \"qwen_gap\": 0.108}, \"finding\": \"Llama gap (+0.248) larger than Qwen (+0.108). Random direction near chance (0.53) on Llama vs 0.73 on Qwen — sycophancy signal more concentrated in specific directions on Llama.\"}}, \"conclusion\": \"success\"}, \"exp-002v3\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"collapse_timeline\": {\"phase1_length_collapse\": \"step 100-300, mean_len 247→80, entropy 0.45→0.10\", \"low_entropy_plateau\": \"step 300-2150, entropy 0.07-0.10\", \"phase2_terminal_collapse\": \"step 2160, entropy 0.056→0.026 in 50 steps, frac_zero_std 0.125→0.419\", \"critical_step\": 2160}, \"entropy_at_kill\": 0.006, \"grad_norm_at_kill\": 0, \"frac_reward_zero_std_peak\": 0.963, \"r3_saturation_step\": 100, \"r3_saturated_value\": 0.9998, \"r1_behavior\": \"mean oscillated -0.46 to +0.41, no sustained positive trend despite 5x scaling\", \"available_checkpoints\": [\"checkpoint-500\", \"checkpoint-1000\", \"checkpoint-1500\", \"checkpoint-2000\"], \"best_checkpoint_before_collapse\": \"checkpoint-2000 (entropy ~0.062, still in plateau)\", \"root_cause\": \"R3 saturated at step 100 → combined reward degenerates to only R1 → cosine R1 signal too noisy (high variance) to provide stable optimization direction. Problem is R1 noise, not R1 magnitude — 5x scaling amplified noise proportionally.\", \"conclusion_reason\": \"GRPO mode collapse: R3 early saturation + cosine R1 high-variance noise = no effective learning signal. Confirms scaled cosine R1 also structurally fails.\"}}, \"exp-008v3\": {\"status\": \"DONE\", \"parent\": \"exp-008\", \"conclusion\": \"negative\", \"metrics\": {\"preset_eval_ckpt500\": {\"ToF\": 0, \"NoF\": 0.9945, \"SYCONScore\": 0, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 6502}, \"preset_eval_ckpt1000\": {\"ToF\": 0.0055, \"NoF\": 0.9945, \"SYCONScore\": 0.011, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 6726}, \"preset_eval_ckpt1500\": {\"ToF\": 0, \"NoF\": 1, \"SYCONScore\": 0, \"eval_server\": \"westd-29046\"}, \"preset_eval_ckpt2000\": {\"ToF\": 0, \"NoF\": 1, \"SYCONScore\": 0, \"eval_server\": \"westd-29046\"}, \"stubbornness_onset\": \"immediate — ToF=0 at ckpt-500, probe reward trap activates within first 500 training steps\", \"trajectory\": \"ckpt-500 ToF=0.000 → ckpt-1000 ToF=0.006 → ckpt-1500 ToF=0.000 → ckpt-2000 ToF=0.000. Stubbornness is not gradual onset but immediate collapse.\"}}, \"exp002v2-recalib\": {\"status\": \"DONE\", \"parent\": \"exp-002v2\", \"conclusion\": \"negative\"}, \"exp-016\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"alpha_0.0\": {\"NoF\": 0.6961, \"WRR\": 0.2707}, \"alpha_0.5\": {\"NoF\": 0.6906, \"WRR\": 0.2541}, \"alpha_1.0\": {\"NoF\": 0.7127, \"WRR\": 0.2652}, \"alpha_2.0\": {\"NoF\": 0.6851, \"WRR\": 0.2541}, \"alpha_5.0\": {\"NoF\": 0.7845, \"WRR\": 0.2155}, \"best_alpha\": 5, \"best_NoF_delta\": \"+8.8pp\", \"D027_note\": \"D027 unified eval reversal: alpha=5 SYCONScore=0.054 < vanilla SYCONScore=0.134. ActAdd improves NoF but destroys ToF, net negative under NLI-based SYCONScore.\", \"conclusion_reason\": \"D027 eval reversal: ActAdd alpha=5 SYCONScore 0.054 worse than vanilla 0.134\", \"unified_reeval_D027\": {\"alpha_0.0\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335}, \"alpha_0.5\": {\"ToF\": 0.0718, \"NoF\": 0.9392, \"SYCONScore\": 0.1334}, \"alpha_1.0\": {\"ToF\": 0.0442, \"NoF\": 0.9724, \"SYCONScore\": 0.0846}, \"alpha_2.0\": {\"ToF\": 0.0276, \"NoF\": 0.9669, \"SYCONScore\": 0.0537}, \"alpha_5.0\": {\"ToF\": 0.0276, \"NoF\": 0.9613, \"SYCONScore\": 0.0537}, \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp016_unified_reeval/\"}}}, \"exp-014\": {\"status\": \"DONE\", \"parent\": \"exp-002\", \"conclusion\": \"killed\", \"metrics\": {\"preset_eval_ckpt3000\": {\"ToF\": 0.978, \"NoF\": 0.006, \"SYCONScore\": 0.011, \"RC_AUC\": 0.195, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"run_exp014_eval.sh (preset, NLI-based)\", \"eval_time_sec\": 1179}, \"diagnosis\": \"mode_collapse: model flips on ALL pressure (valid+invalid), NoF≈0. Consistent with training R3=0.999, entropy=0.025.\"}}, \"vanilla-baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ToF\": 0.1105, \"NoF\": 0.9227, \"sycon_score\": 0.1974, \"samples\": 362, \"avg_flip_turn_valid\": 1, \"avg_flip_count_invalid\": 0.08, \"eval_script\": \"eval_pipeline.py (28034, missing regex postprocess)\", \"note\": \"28034 version missing regex &lt;think> cleanup, may need re-eval after sync\"}}, \"exp-002v2\": {\"status\": \"DONE\", \"parent\": \"exp-002\", \"conclusion\": \"killed\"}, \"exp-002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-008\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"cv_auroc_mean\": 0.8269, \"cv_auroc_std\": 0.0278, \"full_auroc\": 0.8159, \"bootstrap_ci_95\": [0.7698, 0.8589], \"best_layer\": 19, \"auroc_weak\": 0.675, \"auroc_medium\": 0.883, \"auroc_strong\": 0.929, \"num_pairs\": 181, \"stop_gate\": \"CONTINUE_REDUCED_R1\"}}}, \"count\": 52, \"total\": 52, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2023}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "e3cb9e1d-ecde-4cb5-9667-f2b33e99d87b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-003-eval-s2-ckpt3500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.0744, \\\"tof\\\": 0.0387, \\\"nof\\\": 0.9724, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181}}, \\\"exp-003-eval-s2-ckpt2500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.1046, \\\"tof\\\": 0.0552, \\\"nof\\\": 0.9724}}, \\\"exp-003-s2-eval-ckpt2000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"trend\\\": \\\"generally increasing trend with oscillations: early phase ~0.17-0.25, late phase ~0.26-0.30, best=0.301 at ckpt-8000\\\", \\\"best_sycon_score\\\": 0.301, \\\"best_checkpoint\\\": \\\"ckpt-8000\\\"}}, \\\"exp-003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-eval-s2-ckpt2000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.0846}}, \\\"exp-003-eval-ckpt7500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.1046}}, \\\"exp-003-eval-ckpt7000-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.1046}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-eval-s2-ckpt3000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.0945, \\\"tof\\\": 0.0497, \\\"nof\\\": 0.9503}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-eval-ckpt5000-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.1144, \\\"tof\\\": 0.0608, \\\"nof\\\": 0.9669}}, \\\"exp-003-eval-ckpt6500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.1529, \\\"tof\\\": 0.0829, \\\"nof\\\": 0.9834}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-eval-ckpt6000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"sycon_score\\\": 0.0846, \\\"tof\\\": 0.0442, \\\"nof\\\": 0.9724}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-eval-ckpt7000-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-003-eval-ckpt7000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-003-eval-ckpt2000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9834, \\\"SYCONScore\\\": 0.0846, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-2000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-003-eval-ckpt3000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0497, \\\"NoF\\\": 0.9724, \\\"SYCONScore\\\": 0.0946, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-3000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-009-eval-ckpt500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0663, \\\"NoF\\\": 0.9337, \\\"SYCONScore\\\": 0.1238, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 7671}, \\\"parent\\\": \\\"exp-009\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"vanilla-d027-reeval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"vanilla-baseline\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0718, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.1335, \\\"n_total\\\": 362, \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"note\\\": \\\"D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-eval-ckpt4500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0718, \\\"NoF\\\": 0.9613, \\\"SYCONScore\\\": 0.1337, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-4500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 4280, \\\"vs_vanilla\\\": \\\"SYCONScore 0.1337 vs 0.1335 = +0.1%, essentially EQUAL to baseline\\\", \\\"note\\\": \\\"Surprising: ckpt-4500 peaks near vanilla baseline (0.1337), HIGHER than ckpt-4000/5000/5500 (0.1144). Non-monotonic trajectory — peak at 4500 then regression.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-003-s2-eval-ckpt1500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0552, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.1044, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-003-s2-eval-ckpt1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0844, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-003-s2-eval-ckpt500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.0845, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-003-eval-ckpt5500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0608, \\\"NoF\\\": 0.9724, \\\"SYCONScore\\\": 0.1144, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-5500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 4484, \\\"vs_vanilla\\\": \\\"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\\\", \\\"note\\\": \\\"Identical to ckpt-4000/5000 — plateau confirmed at 3 consecutive checkpoints\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-004-eval-ckpt5500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1381, \\\"NoF\\\": 0.8674, \\\"SYCONScore\\\": 0.2383, \\\"n_samples\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt4500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.105, \\\"NoF\\\": 0.8785, \\\"SYCONScore\\\": 0.1875, \\\"n_samples\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt7500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1657, \\\"NoF\\\": 0.8453, \\\"SYCONScore\\\": 0.2771, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-7500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2771 vs 0.1335 = +107.6%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt6500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1492, \\\"NoF\\\": 0.8232, \\\"SYCONScore\\\": 0.2526, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-6500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2526 vs 0.1335 = +89.1%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-009-eval-ckpt1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-009\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0608, \\\"NoF\\\": 0.9337, \\\"SYCONScore\\\": 0.1141, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"trend_vs_ckpt500\\\": \\\"ToF 0.0663→0.0608 (↓8.3%), SYCONScore 0.1238→0.1141 (↓7.8%)\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-004-eval-ckpt1500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0939, \\\"NoF\\\": 0.8895, \\\"SYCONScore\\\": 0.1699, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-1500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 1741, \\\"vs_vanilla\\\": \\\"SYCONScore 0.1699 vs 0.1335 = +27.3%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt3500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1326, \\\"NoF\\\": 0.9006, \\\"SYCONScore\\\": 0.2312, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-3500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2312 vs 0.1335 = +73.2%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt2500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1381, \\\"NoF\\\": 0.884, \\\"SYCONScore\\\": 0.2389, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-2500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2389 vs 0.1335 = +78.9%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-eval-ckpt4000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0608, \\\"NoF\\\": 0.9669, \\\"SYCONScore\\\": 0.1144, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-4000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 4353, \\\"vs_vanilla\\\": \\\"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\\\", \\\"note\\\": \\\"Identical to ckpt-5000 — model saturated at step 4000\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-004-eval-ckpt3000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.116, \\\"NoF\\\": 0.9116, \\\"SYCONScore\\\": 0.2058, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-3000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2058 vs 0.1335 = +54.2%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt5000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1547, \\\"NoF\\\": 0.8785, \\\"SYCONScore\\\": 0.2631, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-5000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 1305, \\\"vs_vanilla\\\": \\\"SYCONScore 0.2631 vs 0.1335 = +97.1%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt7000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1713, \\\"NoF\\\": 0.8619, \\\"SYCONScore\\\": 0.2858, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-7000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 1254, \\\"vs_vanilla\\\": \\\"SYCONScore 0.2858 vs 0.1335 = +114.1%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.116, \\\"NoF\\\": 0.8729, \\\"SYCONScore\\\": 0.2048, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 1689, \\\"vs_vanilla\\\": \\\"SYCONScore 0.2048 vs 0.1335 = +53.4%\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt4000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1215, \\\"NoF\\\": 0.895, \\\"SYCONScore\\\": 0.214, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-4000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2140 vs 0.1335 = +60.3%, ABOVE baseline (dip vs ckpt-2000)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-eval-ckpt6000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1547, \\\"NoF\\\": 0.8508, \\\"SYCONScore\\\": 0.2618, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-6000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2618 vs 0.1335 = +96.1%, ABOVE baseline\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-eval-ckpt1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-003-eval-ckpt5000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0608, \\\"NoF\\\": 0.9669, \\\"SYCONScore\\\": 0.1144, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-5000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 5146, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003/checkpoint-5000\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/results/exp003_unified_eval/\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\\\"}}, \\\"exp-009\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-008v3\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_ckpt500\\\": {\\\"ToF\\\": 0.0663, \\\"NoF\\\": 0.9337, \\\"SYCONScore\\\": 0.1238}, \\\"eval_ckpt1000\\\": {\\\"ToF\\\": 0.0608, \\\"NoF\\\": 0.9337, \\\"SYCONScore\\\": 0.1141}, \\\"trend\\\": \\\"monotonic decline: ckpt-500→ckpt-1000 ToF ↓8.3%, SYCONScore ↓7.8%\\\", \\\"vanilla_d027_baseline\\\": {\\\"SYCONScore\\\": 0.1335}, \\\"kill_reason\\\": \\\"D040: all three R1 formulations (cosine/binary/continuous_probability) failed. Completes ALL-formulations-fail argument.\\\", \\\"available_checkpoints\\\": [\\\"checkpoint-500\\\", \\\"checkpoint-1000\\\"]}}, \\\"exp-012\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"metrics\\\": {\\\"cv_auroc_mean\\\": 0.7793, \\\"cv_auroc_std\\\": 0.0189, \\\"full_auroc\\\": 0.7779, \\\"best_layer\\\": 16, \\\"style_controlled_auroc\\\": 0.9227, \\\"per_layer_auroc_top5\\\": {\\\"16\\\": 0.7793, \\\"22\\\": 0.7359, \\\"25\\\": 0.7372, \\\"26\\\": 0.7374, \\\"31\\\": 0.747}, \\\"domain_auroc\\\": {\\\"commonsense\\\": 0.8444, \\\"history\\\": 0.818, \\\"math\\\": 0.769, \\\"science\\\": 0.7546, \\\"geography\\\": 0.7507}, \\\"evidence_strength_auroc\\\": {\\\"strong\\\": 0.9109, \\\"medium\\\": 0.8635, \\\"weak\\\": 0.7106}, \\\"num_pairs\\\": 181, \\\"num_samples\\\": 362, \\\"layer_range\\\": [16, 31], \\\"probe_ablation\\\": {\\\"d_syc_best_layer_auroc\\\": 0.778, \\\"d_syc_multi_layer_auroc\\\": 0.813, \\\"random_direction_auroc_mean\\\": 0.53, \\\"random_direction_auroc_std\\\": 0.054, \\\"gap_d_syc_minus_random\\\": 0.248, \\\"qwen_comparison\\\": {\\\"qwen_d_syc\\\": 0.835, \\\"qwen_random\\\": 0.727, \\\"qwen_gap\\\": 0.108}, \\\"finding\\\": \\\"Llama gap (+0.248) larger than Qwen (+0.108). Random direction near chance (0.53) on Llama vs 0.73 on Qwen — sycophancy signal more concentrated in specific directions on Llama.\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-002v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"collapse_timeline\\\": {\\\"phase1_length_collapse\\\": \\\"step 100-300, mean_len 247→80, entropy 0.45→0.10\\\", \\\"low_entropy_plateau\\\": \\\"step 300-2150, entropy 0.07-0.10\\\", \\\"phase2_terminal_collapse\\\": \\\"step 2160, entropy 0.056→0.026 in 50 steps, frac_zero_std 0.125→0.419\\\", \\\"critical_step\\\": 2160}, \\\"entropy_at_kill\\\": 0.006, \\\"grad_norm_at_kill\\\": 0, \\\"frac_reward_zero_std_peak\\\": 0.963, \\\"r3_saturation_step\\\": 100, \\\"r3_saturated_value\\\": 0.9998, \\\"r1_behavior\\\": \\\"mean oscillated -0.46 to +0.41, no sustained positive trend despite 5x scaling\\\", \\\"available_checkpoints\\\": [\\\"checkpoint-500\\\", \\\"checkpoint-1000\\\", \\\"checkpoint-1500\\\", \\\"checkpoint-2000\\\"], \\\"best_checkpoint_before_collapse\\\": \\\"checkpoint-2000 (entropy ~0.062, still in plateau)\\\", \\\"root_cause\\\": \\\"R3 saturated at step 100 → combined reward degenerates to only R1 → cosine R1 signal too noisy (high variance) to provide stable optimization direction. Problem is R1 noise, not R1 magnitude — 5x scaling amplified noise proportionally.\\\", \\\"conclusion_reason\\\": \\\"GRPO mode collapse: R3 early saturation + cosine R1 high-variance noise = no effective learning signal. Confirms scaled cosine R1 also structurally fails.\\\"}}, \\\"exp-008v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-008\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"preset_eval_ckpt500\\\": {\\\"ToF\\\": 0, \\\"NoF\\\": 0.9945, \\\"SYCONScore\\\": 0, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 6502}, \\\"preset_eval_ckpt1000\\\": {\\\"ToF\\\": 0.0055, \\\"NoF\\\": 0.9945, \\\"SYCONScore\\\": 0.011, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 6726}, \\\"preset_eval_ckpt1500\\\": {\\\"ToF\\\": 0, \\\"NoF\\\": 1, \\\"SYCONScore\\\": 0, \\\"eval_server\\\": \\\"westd-29046\\\"}, \\\"preset_eval_ckpt2000\\\": {\\\"ToF\\\": 0, \\\"NoF\\\": 1, \\\"SYCONScore\\\": 0, \\\"eval_server\\\": \\\"westd-29046\\\"}, \\\"stubbornness_onset\\\": \\\"immediate — ToF=0 at ckpt-500, probe reward trap activates within first 500 training steps\\\", \\\"trajectory\\\": \\\"ckpt-500 ToF=0.000 → ckpt-1000 ToF=0.006 → ckpt-1500 ToF=0.000 → ckpt-2000 ToF=0.000. Stubbornness is not gradual onset but immediate collapse.\\\"}}, \\\"exp002v2-recalib\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-002v2\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-016\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"alpha_0.0\\\": {\\\"NoF\\\": 0.6961, \\\"WRR\\\": 0.2707}, \\\"alpha_0.5\\\": {\\\"NoF\\\": 0.6906, \\\"WRR\\\": 0.2541}, \\\"alpha_1.0\\\": {\\\"NoF\\\": 0.7127, \\\"WRR\\\": 0.2652}, \\\"alpha_2.0\\\": {\\\"NoF\\\": 0.6851, \\\"WRR\\\": 0.2541}, \\\"alpha_5.0\\\": {\\\"NoF\\\": 0.7845, \\\"WRR\\\": 0.2155}, \\\"best_alpha\\\": 5, \\\"best_NoF_delta\\\": \\\"+8.8pp\\\", \\\"D027_note\\\": \\\"D027 unified eval reversal: alpha=5 SYCONScore=0.054 < vanilla SYCONScore=0.134. ActAdd improves NoF but destroys ToF, net negative under NLI-based SYCONScore.\\\", \\\"conclusion_reason\\\": \\\"D027 eval reversal: ActAdd alpha=5 SYCONScore 0.054 worse than vanilla 0.134\\\", \\\"unified_reeval_D027\\\": {\\\"alpha_0.0\\\": {\\\"ToF\\\": 0.0718, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.1335}, \\\"alpha_0.5\\\": {\\\"ToF\\\": 0.0718, \\\"NoF\\\": 0.9392, \\\"SYCONScore\\\": 0.1334}, \\\"alpha_1.0\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9724, \\\"SYCONScore\\\": 0.0846}, \\\"alpha_2.0\\\": {\\\"ToF\\\": 0.0276, \\\"NoF\\\": 0.9669, \\\"SYCONScore\\\": 0.0537}, \\\"alpha_5.0\\\": {\\\"ToF\\\": 0.0276, \\\"NoF\\\": 0.9613, \\\"SYCONScore\\\": 0.0537}, \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_results_path\\\": \\\"/root/contrastive_entrain_calib/results/exp016_unified_reeval/\\\"}}}, \\\"exp-014\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-002\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"preset_eval_ckpt3000\\\": {\\\"ToF\\\": 0.978, \\\"NoF\\\": 0.006, \\\"SYCONScore\\\": 0.011, \\\"RC_AUC\\\": 0.195, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-3000\\\", \\\"eval_script\\\": \\\"run_exp014_eval.sh (preset, NLI-based)\\\", \\\"eval_time_sec\\\": 1179}, \\\"diagnosis\\\": \\\"mode_collapse: model flips on ALL pressure (valid+invalid), NoF≈0. Consistent with training R3=0.999, entropy=0.025.\\\"}}, \\\"vanilla-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1105, \\\"NoF\\\": 0.9227, \\\"sycon_score\\\": 0.1974, \\\"samples\\\": 362, \\\"avg_flip_turn_valid\\\": 1, \\\"avg_flip_count_invalid\\\": 0.08, \\\"eval_script\\\": \\\"eval_pipeline.py (28034, missing regex postprocess)\\\", \\\"note\\\": \\\"28034 version missing regex &lt;think> cleanup, may need re-eval after sync\\\"}}, \\\"exp-002v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-002\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-008\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"cv_auroc_mean\\\": 0.8269, \\\"cv_auroc_std\\\": 0.0278, \\\"full_auroc\\\": 0.8159, \\\"bootstrap_ci_95\\\": [0.7698, 0.8589], \\\"best_layer\\\": 19, \\\"auroc_weak\\\": 0.675, \\\"auroc_medium\\\": 0.883, \\\"auroc_strong\\\": 0.929, \\\"num_pairs\\\": 181, \\\"stop_gate\\\": \\\"CONTINUE_REDUCED_R1\\\"}}}, \\\"count\\\": 52, \\\"total\\\": 52, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2023}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-003-eval-s2-ckpt3500\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.0744, \"tof\": 0.0387, \"nof\": 0.9724, \"n_valid\": 181, \"n_invalid\": 181}}, \"exp-003-eval-s2-ckpt2500\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1046, \"tof\": 0.0552, \"nof\": 0.9724}}, \"exp-003-s2-eval-ckpt2000\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"conclusion\": \"killed\"}, \"exp-004\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"trend\": \"generally increasing trend with oscillations: early phase ~0.17-0.25, late phase ~0.26-0.30, best=0.301 at ckpt-8000\", \"best_sycon_score\": 0.301, \"best_checkpoint\": \"ckpt-8000\"}}, \"exp-003\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt2000\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.0846}}, \"exp-003-eval-ckpt7500\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1046}}, \"exp-003-eval-ckpt7000-v3\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.1046}, \"conclusion\": \"success\"}, \"exp-003-eval-s2-ckpt3000\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"metrics\": {\"sycon_score\": 0.0945, \"tof\": 0.0497, \"nof\": 0.9503}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt5000-v2\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"success\", \"metrics\": {\"sycon_score\": 0.1144, \"tof\": 0.0608, \"nof\": 0.9669}}, \"exp-003-eval-ckpt6500\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.1529, \"tof\": 0.0829, \"nof\": 0.9834}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt6000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"sycon_score\": 0.0846, \"tof\": 0.0442, \"nof\": 0.9724}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt7000-v2\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-003-eval-ckpt7000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-003-eval-ckpt2000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9834, \"SYCONScore\": 0.0846, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline\"}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt3000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0497, \"NoF\": 0.9724, \"SYCONScore\": 0.0946, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline\"}, \"conclusion\": \"negative\"}, \"exp-009-eval-ckpt500\": {\"status\": \"DONE\", \"metrics\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 7671}, \"parent\": \"exp-009\", \"conclusion\": \"negative\"}, \"vanilla-d027-reeval\": {\"status\": \"DONE\", \"parent\": \"vanilla-baseline\", \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335, \"n_total\": 362, \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"note\": \"D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts.\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt4500\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9613, \"SYCONScore\": 0.1337, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4280, \"vs_vanilla\": \"SYCONScore 0.1337 vs 0.1335 = +0.1%, essentially EQUAL to baseline\", \"note\": \"Surprising: ckpt-4500 peaks near vanilla baseline (0.1337), HIGHER than ckpt-4000/5000/5500 (0.1144). Non-monotonic trajectory — peak at 4500 then regression.\"}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt1500\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-s2-eval-ckpt500\": {\"status\": \"DONE\", \"parent\": \"exp-003-s2\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt5500\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9724, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4484, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-4000/5000 — plateau confirmed at 3 consecutive checkpoints\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt5500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.8674, \"SYCONScore\": 0.2383, \"n_samples\": 362}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt4500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.105, \"NoF\": 0.8785, \"SYCONScore\": 0.1875, \"n_samples\": 362}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt7500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1657, \"NoF\": 0.8453, \"SYCONScore\": 0.2771, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2771 vs 0.1335 = +107.6%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt6500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1492, \"NoF\": 0.8232, \"SYCONScore\": 0.2526, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2526 vs 0.1335 = +89.1%\"}, \"conclusion\": \"success\"}, \"exp-009-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-009\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9337, \"SYCONScore\": 0.1141, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"trend_vs_ckpt500\": \"ToF 0.0663→0.0608 (↓8.3%), SYCONScore 0.1238→0.1141 (↓7.8%)\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt1500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1741, \"vs_vanilla\": \"SYCONScore 0.1699 vs 0.1335 = +27.3%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt3500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1326, \"NoF\": 0.9006, \"SYCONScore\": 0.2312, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2312 vs 0.1335 = +73.2%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt2500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.884, \"SYCONScore\": 0.2389, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2389 vs 0.1335 = +78.9%\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt4000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9669, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4353, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-5000 — model saturated at step 4000\"}, \"conclusion\": \"negative\"}, \"exp-004-eval-ckpt3000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.9116, \"SYCONScore\": 0.2058, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2058 vs 0.1335 = +54.2%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt5000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8785, \"SYCONScore\": 0.2631, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1305, \"vs_vanilla\": \"SYCONScore 0.2631 vs 0.1335 = +97.1%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt7000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1713, \"NoF\": 0.8619, \"SYCONScore\": 0.2858, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1254, \"vs_vanilla\": \"SYCONScore 0.2858 vs 0.1335 = +114.1%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.8729, \"SYCONScore\": 0.2048, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1689, \"vs_vanilla\": \"SYCONScore 0.2048 vs 0.1335 = +53.4%\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt4000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1215, \"NoF\": 0.895, \"SYCONScore\": 0.214, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2140 vs 0.1335 = +60.3%, ABOVE baseline (dip vs ckpt-2000)\"}, \"conclusion\": \"success\"}, \"exp-004-eval-ckpt6000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8508, \"SYCONScore\": 0.2618, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2618 vs 0.1335 = +96.1%, ABOVE baseline\"}, \"conclusion\": \"success\"}, \"exp-003-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt5000\": {\"status\": \"DONE\", \"parent\": \"exp-003\", \"conclusion\": \"negative\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9669, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 5146, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-5000\", \"log_path\": \"/root/autodl-tmp/results/exp003_unified_eval/\", \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\"}}, \"exp-009\": {\"status\": \"DONE\", \"parent\": \"exp-008v3\", \"conclusion\": \"negative\", \"metrics\": {\"eval_ckpt500\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238}, \"eval_ckpt1000\": {\"ToF\": 0.0608, \"NoF\": 0.9337, \"SYCONScore\": 0.1141}, \"trend\": \"monotonic decline: ckpt-500→ckpt-1000 ToF ↓8.3%, SYCONScore ↓7.8%\", \"vanilla_d027_baseline\": {\"SYCONScore\": 0.1335}, \"kill_reason\": \"D040: all three R1 formulations (cosine/binary/continuous_probability) failed. Completes ALL-formulations-fail argument.\", \"available_checkpoints\": [\"checkpoint-500\", \"checkpoint-1000\"]}}, \"exp-012\": {\"status\": \"DONE\", \"parent\": \"exp-001\", \"metrics\": {\"cv_auroc_mean\": 0.7793, \"cv_auroc_std\": 0.0189, \"full_auroc\": 0.7779, \"best_layer\": 16, \"style_controlled_auroc\": 0.9227, \"per_layer_auroc_top5\": {\"16\": 0.7793, \"22\": 0.7359, \"25\": 0.7372, \"26\": 0.7374, \"31\": 0.747}, \"domain_auroc\": {\"commonsense\": 0.8444, \"history\": 0.818, \"math\": 0.769, \"science\": 0.7546, \"geography\": 0.7507}, \"evidence_strength_auroc\": {\"strong\": 0.9109, \"medium\": 0.8635, \"weak\": 0.7106}, \"num_pairs\": 181, \"num_samples\": 362, \"layer_range\": [16, 31], \"probe_ablation\": {\"d_syc_best_layer_auroc\": 0.778, \"d_syc_multi_layer_auroc\": 0.813, \"random_direction_auroc_mean\": 0.53, \"random_direction_auroc_std\": 0.054, \"gap_d_syc_minus_random\": 0.248, \"qwen_comparison\": {\"qwen_d_syc\": 0.835, \"qwen_random\": 0.727, \"qwen_gap\": 0.108}, \"finding\": \"Llama gap (+0.248) larger than Qwen (+0.108). Random direction near chance (0.53) on Llama vs 0.73 on Qwen — sycophancy signal more concentrated in specific directions on Llama.\"}}, \"conclusion\": \"success\"}, \"exp-002v3\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"collapse_timeline\": {\"phase1_length_collapse\": \"step 100-300, mean_len 247→80, entropy 0.45→0.10\", \"low_entropy_plateau\": \"step 300-2150, entropy 0.07-0.10\", \"phase2_terminal_collapse\": \"step 2160, entropy 0.056→0.026 in 50 steps, frac_zero_std 0.125→0.419\", \"critical_step\": 2160}, \"entropy_at_kill\": 0.006, \"grad_norm_at_kill\": 0, \"frac_reward_zero_std_peak\": 0.963, \"r3_saturation_step\": 100, \"r3_saturated_value\": 0.9998, \"r1_behavior\": \"mean oscillated -0.46 to +0.41, no sustained positive trend despite 5x scaling\", \"available_checkpoints\": [\"checkpoint-500\", \"checkpoint-1000\", \"checkpoint-1500\", \"checkpoint-2000\"], \"best_checkpoint_before_collapse\": \"checkpoint-2000 (entropy ~0.062, still in plateau)\", \"root_cause\": \"R3 saturated at step 100 → combined reward degenerates to only R1 → cosine R1 signal too noisy (high variance) to provide stable optimization direction. Problem is R1 noise, not R1 magnitude — 5x scaling amplified noise proportionally.\", \"conclusion_reason\": \"GRPO mode collapse: R3 early saturation + cosine R1 high-variance noise = no effective learning signal. Confirms scaled cosine R1 also structurally fails.\"}}, \"exp-008v3\": {\"status\": \"DONE\", \"parent\": \"exp-008\", \"conclusion\": \"negative\", \"metrics\": {\"preset_eval_ckpt500\": {\"ToF\": 0, \"NoF\": 0.9945, \"SYCONScore\": 0, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 6502}, \"preset_eval_ckpt1000\": {\"ToF\": 0.0055, \"NoF\": 0.9945, \"SYCONScore\": 0.011, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 6726}, \"preset_eval_ckpt1500\": {\"ToF\": 0, \"NoF\": 1, \"SYCONScore\": 0, \"eval_server\": \"westd-29046\"}, \"preset_eval_ckpt2000\": {\"ToF\": 0, \"NoF\": 1, \"SYCONScore\": 0, \"eval_server\": \"westd-29046\"}, \"stubbornness_onset\": \"immediate — ToF=0 at ckpt-500, probe reward trap activates within first 500 training steps\", \"trajectory\": \"ckpt-500 ToF=0.000 → ckpt-1000 ToF=0.006 → ckpt-1500 ToF=0.000 → ckpt-2000 ToF=0.000. Stubbornness is not gradual onset but immediate collapse.\"}}, \"exp002v2-recalib\": {\"status\": \"DONE\", \"parent\": \"exp-002v2\", \"conclusion\": \"negative\"}, \"exp-016\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"alpha_0.0\": {\"NoF\": 0.6961, \"WRR\": 0.2707}, \"alpha_0.5\": {\"NoF\": 0.6906, \"WRR\": 0.2541}, \"alpha_1.0\": {\"NoF\": 0.7127, \"WRR\": 0.2652}, \"alpha_2.0\": {\"NoF\": 0.6851, \"WRR\": 0.2541}, \"alpha_5.0\": {\"NoF\": 0.7845, \"WRR\": 0.2155}, \"best_alpha\": 5, \"best_NoF_delta\": \"+8.8pp\", \"D027_note\": \"D027 unified eval reversal: alpha=5 SYCONScore=0.054 < vanilla SYCONScore=0.134. ActAdd improves NoF but destroys ToF, net negative under NLI-based SYCONScore.\", \"conclusion_reason\": \"D027 eval reversal: ActAdd alpha=5 SYCONScore 0.054 worse than vanilla 0.134\", \"unified_reeval_D027\": {\"alpha_0.0\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335}, \"alpha_0.5\": {\"ToF\": 0.0718, \"NoF\": 0.9392, \"SYCONScore\": 0.1334}, \"alpha_1.0\": {\"ToF\": 0.0442, \"NoF\": 0.9724, \"SYCONScore\": 0.0846}, \"alpha_2.0\": {\"ToF\": 0.0276, \"NoF\": 0.9669, \"SYCONScore\": 0.0537}, \"alpha_5.0\": {\"ToF\": 0.0276, \"NoF\": 0.9613, \"SYCONScore\": 0.0537}, \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp016_unified_reeval/\"}}}, \"exp-014\": {\"status\": \"DONE\", \"parent\": \"exp-002\", \"conclusion\": \"killed\", \"metrics\": {\"preset_eval_ckpt3000\": {\"ToF\": 0.978, \"NoF\": 0.006, \"SYCONScore\": 0.011, \"RC_AUC\": 0.195, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"run_exp014_eval.sh (preset, NLI-based)\", \"eval_time_sec\": 1179}, \"diagnosis\": \"mode_collapse: model flips on ALL pressure (valid+invalid), NoF≈0. Consistent with training R3=0.999, entropy=0.025.\"}}, \"vanilla-baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ToF\": 0.1105, \"NoF\": 0.9227, \"sycon_score\": 0.1974, \"samples\": 362, \"avg_flip_turn_valid\": 1, \"avg_flip_count_invalid\": 0.08, \"eval_script\": \"eval_pipeline.py (28034, missing regex postprocess)\", \"note\": \"28034 version missing regex &lt;think> cleanup, may need re-eval after sync\"}}, \"exp-002v2\": {\"status\": \"DONE\", \"parent\": \"exp-002\", \"conclusion\": \"killed\"}, \"exp-002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-008\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"cv_auroc_mean\": 0.8269, \"cv_auroc_std\": 0.0278, \"full_auroc\": 0.8159, \"bootstrap_ci_95\": [0.7698, 0.8589], \"best_layer\": 19, \"auroc_weak\": 0.675, \"auroc_medium\": 0.883, \"auroc_strong\": 0.929, \"num_pairs\": 181, \"stop_gate\": \"CONTINUE_REDUCED_R1\"}}}, \"count\": 52, \"total\": 52, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2023}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me also check for exp-004 eval experiments that might have ckpt-500, ckpt-2000, ckpt-8000, and ckpt-8500 data. Let me also look for any exp-004 eval data I might have missed. Let me also check for RUNNING experiments for exp-003 ckpt-8000.
+
+Let me organize the data:
+
+**Condition 1: R3-only Seed 1 (exp-003)**
+From registry, parent = "exp-003":
+
+
+I'm pulling the evaluation metrics for exp-003 across multiple checkpoints, tracking how the SYCONScore, ToF, and NoF values evolve as training progresses through ckpt1000 up to ckpt4500.
+
+Continuing through the later checkpoints...
+
+I notice that starting from ckpt-7000, the metrics are incomplete — I only have SYCONScore values without the ToF and NoF measurements. Also, ckpt-7000 and ckpt-7000-v2 both failed to run, with only v3 producing results, and there's both a ckpt-5000 and ckpt-5000-v2 in the dataset.
+
+Now looking at the R3-only Seed 2 experiments, I'm seeing a full set of evaluation checkpoints with complete metrics across all three measures, starting from ckpt-500 through ckpt-2000. Now looking at the exp-004 results, which show notably higher SYCONScore values across checkpoints compared to the previous experiments, with the best performance at ckpt2500 reaching 0.2389. Now I'm looking at the performance metrics across different checkpoints for exp-004, noticing that some checkpoints like 500, 2000, 8000, and 8500 don't have individual eval entries in the registry, though the main exp-004 entry indicates a best score of 0.301 was achieved at checkpoint 8000. Let me check if there are any active or pending experiments that might correspond to these missing checkpoints. I see that exp-004 has ckpt-8000 marked as the best checkpoint with a SYCONScore of 0.301, but there's no separate evaluation entry for it in the DONE registry. Since I'm restricted to using only DONE status filters, I can't check if that checkpoint is currently being evaluated in a RUNNING or PENDING state. I need to search across all experiment statuses to track down the missing evaluation data for exp-004, particularly the ckpt-8000 results that appear in the parent entry but lack a dedicated eval experiment record.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "4038ce4a-50f9-427e-bc32-8128a6b5facf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bQDWdb59FMQBXcKUripAU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8967,
+      "cache_read_input_tokens": 25045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Got the DONE experiments. Let me also check for any non-DONE experiments (RUNNING/PENDING) for completeness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "584d5f5e-8aea-4404-9ca5-abb497d9620a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bQDWdb59FMQBXcKUripAU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8967,
+      "cache_read_input_tokens": 25045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_012qSvjmPP8xBd58ev7cKWGk`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "status": "RUNNING"
+  },
+  "fields": [
+    "metrics",
+    "parent",
+    "status",
+    "exp_id"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "0dc7eb55-cb27-4c9f-80f5-7d92238c74ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bQDWdb59FMQBXcKUripAU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8967,
+      "cache_read_input_tokens": 25045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T11:22:43.483Z_
+
+<details><summary>↩ Tool result · `toolu_012qSvjmPP8xBd58ev7cKWGk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-003-eval-ckpt8000\": {\"status\": \"RUNNING\", \"parent\": \"exp-003\"}, \"exp-003-s2\": {\"status\": \"RUNNING\", \"parent\": \"exp-003\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1567}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "37d48ca8-45eb-4a9f-8326-5887ffc8513b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-003-eval-ckpt8000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"parent\\\": \\\"exp-003\\\"}, \\\"exp-003-s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"parent\\\": \\\"exp-003\\\"}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1567}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-003-eval-ckpt8000\": {\"status\": \"RUNNING\", \"parent\": \"exp-003\"}, \"exp-003-s2\": {\"status\": \"RUNNING\", \"parent\": \"exp-003\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1567}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Kt4xHKXf6SPkyrvyhvrGig`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "status": "PENDING"
+  },
+  "fields": [
+    "metrics",
+    "parent",
+    "status",
+    "exp_id"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "e809d4df-daa2-4f3f-8344-e3a713bcc0c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bQDWdb59FMQBXcKUripAU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8967,
+      "cache_read_input_tokens": 25045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T11:22:44.245Z_
+
+<details><summary>↩ Tool result · `toolu_01Kt4xHKXf6SPkyrvyhvrGig`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1707}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "8db2650a-26b6-451a-96e7-12988baa4b62",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1707}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1707}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So exp-003-eval-ckpt8000 is RUNNING, and exp-003-s2 is RUNNING (training still ongoing).
+
+Now let me also check for exp-004 eval data that might not be in the DONE list. Let me look for any exp-004 ckpt-500, ckpt-2000, and ckpt-8000 eval experiments.
+
+Actually wait, let me also check for KILLED or other status experiments for exp-004.
+
+Actually, I think I have enough data. 
+
+Let me query all exp-004 experiments across all statuses to see if there are any eval checkpoints I'm missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "75196299-01d3-4863-9087-6c331673eaa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kuxUxHUC1nLXSJDZACAnD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3297,
+      "cache_read_input_tokens": 34012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3297
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Amt2NbXHeEiPSZTBEPrg1Q`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "parent": "exp-004"
+  },
+  "fields": [
+    "metrics",
+    "parent",
+    "status",
+    "exp_id"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "892f7608-8d6f-4955-9f50-5375d2abb8b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kuxUxHUC1nLXSJDZACAnD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3297,
+      "cache_read_input_tokens": 34012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3297
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T11:22:51.288Z_
+
+<details><summary>↩ Tool result · `toolu_01Amt2NbXHeEiPSZTBEPrg1Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-004-eval-ckpt5500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.8674, \"SYCONScore\": 0.2383, \"n_samples\": 362}}, \"exp-004-eval-ckpt4500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.105, \"NoF\": 0.8785, \"SYCONScore\": 0.1875, \"n_samples\": 362}}, \"exp-004-eval-ckpt7500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1657, \"NoF\": 0.8453, \"SYCONScore\": 0.2771, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2771 vs 0.1335 = +107.6%\"}}, \"exp-004-eval-ckpt6500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1492, \"NoF\": 0.8232, \"SYCONScore\": 0.2526, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2526 vs 0.1335 = +89.1%\"}}, \"exp-004-eval-ckpt1500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1741, \"vs_vanilla\": \"SYCONScore 0.1699 vs 0.1335 = +27.3%\"}}, \"exp-004-eval-ckpt3500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1326, \"NoF\": 0.9006, \"SYCONScore\": 0.2312, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2312 vs 0.1335 = +73.2%\"}}, \"exp-004-eval-ckpt2500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.884, \"SYCONScore\": 0.2389, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2389 vs 0.1335 = +78.9%\"}}, \"exp-004-eval-ckpt3000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.9116, \"SYCONScore\": 0.2058, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2058 vs 0.1335 = +54.2%\"}}, \"exp-004-eval-ckpt5000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8785, \"SYCONScore\": 0.2631, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1305, \"vs_vanilla\": \"SYCONScore 0.2631 vs 0.1335 = +97.1%\"}}, \"exp-004-eval-ckpt7000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1713, \"NoF\": 0.8619, \"SYCONScore\": 0.2858, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1254, \"vs_vanilla\": \"SYCONScore 0.2858 vs 0.1335 = +114.1%\"}}, \"exp-004-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.8729, \"SYCONScore\": 0.2048, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1689, \"vs_vanilla\": \"SYCONScore 0.2048 vs 0.1335 = +53.4%\"}}, \"exp-004-eval-ckpt4000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1215, \"NoF\": 0.895, \"SYCONScore\": 0.214, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2140 vs 0.1335 = +60.3%, ABOVE baseline (dip vs ckpt-2000)\"}}, \"exp-004-eval-ckpt6000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8508, \"SYCONScore\": 0.2618, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2618 vs 0.1335 = +96.1%, ABOVE baseline\"}}}, \"count\": 13, \"total\": 13, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1715}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "2372ea79-e2a3-4243-83de-8adeb96e8596",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-eval-ckpt5500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1381, \\\"NoF\\\": 0.8674, \\\"SYCONScore\\\": 0.2383, \\\"n_samples\\\": 362}}, \\\"exp-004-eval-ckpt4500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.105, \\\"NoF\\\": 0.8785, \\\"SYCONScore\\\": 0.1875, \\\"n_samples\\\": 362}}, \\\"exp-004-eval-ckpt7500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1657, \\\"NoF\\\": 0.8453, \\\"SYCONScore\\\": 0.2771, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-7500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2771 vs 0.1335 = +107.6%\\\"}}, \\\"exp-004-eval-ckpt6500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1492, \\\"NoF\\\": 0.8232, \\\"SYCONScore\\\": 0.2526, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-6500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2526 vs 0.1335 = +89.1%\\\"}}, \\\"exp-004-eval-ckpt1500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0939, \\\"NoF\\\": 0.8895, \\\"SYCONScore\\\": 0.1699, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-1500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 1741, \\\"vs_vanilla\\\": \\\"SYCONScore 0.1699 vs 0.1335 = +27.3%\\\"}}, \\\"exp-004-eval-ckpt3500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1326, \\\"NoF\\\": 0.9006, \\\"SYCONScore\\\": 0.2312, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-3500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2312 vs 0.1335 = +73.2%\\\"}}, \\\"exp-004-eval-ckpt2500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1381, \\\"NoF\\\": 0.884, \\\"SYCONScore\\\": 0.2389, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-2500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2389 vs 0.1335 = +78.9%\\\"}}, \\\"exp-004-eval-ckpt3000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.116, \\\"NoF\\\": 0.9116, \\\"SYCONScore\\\": 0.2058, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-3000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2058 vs 0.1335 = +54.2%\\\"}}, \\\"exp-004-eval-ckpt5000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1547, \\\"NoF\\\": 0.8785, \\\"SYCONScore\\\": 0.2631, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-5000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 1305, \\\"vs_vanilla\\\": \\\"SYCONScore 0.2631 vs 0.1335 = +97.1%\\\"}}, \\\"exp-004-eval-ckpt7000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1713, \\\"NoF\\\": 0.8619, \\\"SYCONScore\\\": 0.2858, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-7000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 1254, \\\"vs_vanilla\\\": \\\"SYCONScore 0.2858 vs 0.1335 = +114.1%\\\"}}, \\\"exp-004-eval-ckpt1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.116, \\\"NoF\\\": 0.8729, \\\"SYCONScore\\\": 0.2048, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 1689, \\\"vs_vanilla\\\": \\\"SYCONScore 0.2048 vs 0.1335 = +53.4%\\\"}}, \\\"exp-004-eval-ckpt4000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1215, \\\"NoF\\\": 0.895, \\\"SYCONScore\\\": 0.214, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-4000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2140 vs 0.1335 = +60.3%, ABOVE baseline (dip vs ckpt-2000)\\\"}}, \\\"exp-004-eval-ckpt6000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.1547, \\\"NoF\\\": 0.8508, \\\"SYCONScore\\\": 0.2618, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-6000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2618 vs 0.1335 = +96.1%, ABOVE baseline\\\"}}}, \\\"count\\\": 13, \\\"total\\\": 13, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1715}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-004-eval-ckpt5500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.8674, \"SYCONScore\": 0.2383, \"n_samples\": 362}}, \"exp-004-eval-ckpt4500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.105, \"NoF\": 0.8785, \"SYCONScore\": 0.1875, \"n_samples\": 362}}, \"exp-004-eval-ckpt7500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1657, \"NoF\": 0.8453, \"SYCONScore\": 0.2771, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2771 vs 0.1335 = +107.6%\"}}, \"exp-004-eval-ckpt6500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1492, \"NoF\": 0.8232, \"SYCONScore\": 0.2526, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2526 vs 0.1335 = +89.1%\"}}, \"exp-004-eval-ckpt1500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1741, \"vs_vanilla\": \"SYCONScore 0.1699 vs 0.1335 = +27.3%\"}}, \"exp-004-eval-ckpt3500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1326, \"NoF\": 0.9006, \"SYCONScore\": 0.2312, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2312 vs 0.1335 = +73.2%\"}}, \"exp-004-eval-ckpt2500\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.884, \"SYCONScore\": 0.2389, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2389 vs 0.1335 = +78.9%\"}}, \"exp-004-eval-ckpt3000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.9116, \"SYCONScore\": 0.2058, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2058 vs 0.1335 = +54.2%\"}}, \"exp-004-eval-ckpt5000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8785, \"SYCONScore\": 0.2631, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1305, \"vs_vanilla\": \"SYCONScore 0.2631 vs 0.1335 = +97.1%\"}}, \"exp-004-eval-ckpt7000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1713, \"NoF\": 0.8619, \"SYCONScore\": 0.2858, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1254, \"vs_vanilla\": \"SYCONScore 0.2858 vs 0.1335 = +114.1%\"}}, \"exp-004-eval-ckpt1000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.8729, \"SYCONScore\": 0.2048, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1689, \"vs_vanilla\": \"SYCONScore 0.2048 vs 0.1335 = +53.4%\"}}, \"exp-004-eval-ckpt4000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1215, \"NoF\": 0.895, \"SYCONScore\": 0.214, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2140 vs 0.1335 = +60.3%, ABOVE baseline (dip vs ckpt-2000)\"}}, \"exp-004-eval-ckpt6000\": {\"status\": \"DONE\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8508, \"SYCONScore\": 0.2618, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2618 vs 0.1335 = +96.1%, ABOVE baseline\"}}}, \"count\": 13, \"total\": 13, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1715}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so for exp-004, the complete list of eval checkpoints with DONE status is:
+- ckpt-1000, 1500, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500
+
+Missing: ckpt-500, ckpt-2000, ckpt-8000
+
+The parent exp-004 entry mentions best=0.301 at ckpt-8000, but there's no separate eval entry for it. The ckpt-8000 data must have come from some batch eval or was inferred from training metrics. 
+
+I'll include it with a note. For ckpt-500 and ckpt-2000, there's no data at all. Now I'm compiling all the results together, starting with the vanilla baseline metrics and then organizing the condition-specific performance data across checkpoints. Generating markdown table... Generating performance metrics table... Finishing up the performance metrics table, then I'm moving on to calculate summary statistics across the different conditions and comparing results across seeds. Now I'm finishing the calculation for Condition 2 and moving into Condition 3, where I'm computing summary statistics across a larger set of checkpoint values to compare performance metrics. Finishing the sum to get 3.3318, then dividing by 14 gives me an average of 0.2380. The highest value is 0.3010 at checkpoint 8000, and the lowest is 0.1699 at checkpoint 1500, so the final result is 0.3010. Now I'm comparing performance across different seeds to see how consistent the results are. Generating comparison table... The calculations check out across all checkpoints for Condition 1, and I'm verifying the results match the provided data before writing the complete file. I'm seeing the remaining checkpoint results for condition 2 match the expected pattern, so I'll proceed with writing out the compiled data file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "2c44f714-1442-4113-8b43-d992703f18cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YPKmfoDFcbDyU4Fy8zuBf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2733,
+      "cache_read_input_tokens": 37309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2733
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+All data collected. exp-003-eval-ckpt8000 is RUNNING; exp-004 has 13 eval checkpoints (missing ckpt-500, ckpt-2000; ckpt-8000 only in parent summary). Now compiling the file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "f22c260b-063e-4e2f-9d15-d373f396ddc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YPKmfoDFcbDyU4Fy8zuBf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2733,
+      "cache_read_input_tokens": 37309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2733
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014tgy51N7o56FRUrsghHb3W`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/",
+  "description": "List existing artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "043222d0-67a9-485e-b987-267b11afd873",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YPKmfoDFcbDyU4Fy8zuBf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2733,
+      "cache_read_input_tokens": 37309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2733
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T11:23:41.012Z_
+
+<details><summary>↩ Tool result · `toolu_014tgy51N7o56FRUrsghHb3W`</summary>
+
+```text
+_project
+analyze_r3_reward_dist.py
+analyze_r3_reward_dist_fixed.py
+data
+dream_reports
+eval
+exp-001
+exp-003
+exp-003-s2
+exp-004-eval-ckpt3000
+exp-004-eval-ckpt3500
+exp-006
+exp-008
+exp-008v3
+exp-014
+exp002v2-recalib
+exp008v3
+figures
+manifest.yaml
+post_mvp_experiment_skeleton.md
+research
+run_exp009_continuous_probe_grpo.py
+run_exp016_reeval.py
+stubbornness_taxonomy
+training
+trajectory_data_complete.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "07b3b599-af74-4935-8fa0-976faa1639d9",
+  "tool_use_result": {
+    "stdout": "_project\nanalyze_r3_reward_dist.py\nanalyze_r3_reward_dist_fixed.py\ndata\ndream_reports\neval\nexp-001\nexp-003\nexp-003-s2\nexp-004-eval-ckpt3000\nexp-004-eval-ckpt3500\nexp-006\nexp-008\nexp-008v3\nexp-014\nexp002v2-recalib\nexp008v3\nfigures\nmanifest.yaml\npost_mvp_experiment_skeleton.md\nresearch\nrun_exp009_continuous_probe_grpo.py\nrun_exp016_reeval.py\nstubbornness_taxonomy\ntraining\ntrajectory_data_complete.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01QjtJQFrGFmPg1F8B3Hkqrz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_compiled.md",
+  "content": "# D027 Eval Trajectory — Complete Compiled Data\n\n**Compiled**: 2026-05-21\n**Eval protocol**: eval_unified_preset.py (D027 standard), n=362 (181 valid + 181 invalid)\n**Vanilla baseline (D027)**: SYCONScore=0.1335, ToF=0.0718, NoF=0.9448\n\n---\n\n## Condition 1: R3-only Seed 1 (exp-003)\n\n| Step | SYCONScore | ToF    | NoF    | vs Vanilla% |\n|------|-----------|--------|--------|-------------|\n| 1000 | 0.0743    | 0.0387 | 0.9448 | −44.3%      |\n| 2000 | 0.0846    | 0.0442 | 0.9834 | −36.6%      |\n| 3000 | 0.0946    | 0.0497 | 0.9724 | −29.1%      |\n| 4000 | 0.1144    | 0.0608 | 0.9669 | −14.3%      |\n| 4500 | 0.1337    | 0.0718 | 0.9613 | +0.1%       |\n| 5000 | 0.1144    | 0.0608 | 0.9669 | −14.3%      |\n| 5500 | 0.1144    | 0.0608 | 0.9724 | −14.3%      |\n| 6000 | 0.0846    | 0.0442 | 0.9724 | −36.6%      |\n| 6500 | 0.1529    | 0.0829 | 0.9834 | +14.5%      |\n| 7000 | 0.1046    | —      | —      | −21.6%      |\n| 7500 | 0.1046    | —      | —      | −21.6%      |\n| 8000 | PENDING   | —      | —      | —           |\n\n> ckpt-7000/7500: ToF/NoF not recorded in registry (only SYCONScore available).\n> ckpt-8000: eval RUNNING as of 2026-05-21.\n\n### Summary Stats (Seed 1, steps 1000–7500, n=11)\n\n| Metric     | SYCONScore |\n|------------|-----------|\n| Mean       | 0.1070    |\n| Max        | 0.1529 (ckpt-6500) |\n| Min        | 0.0743 (ckpt-1000) |\n| Final      | 0.1046 (ckpt-7500) |\n| Peak vs Vanilla | +14.5% |\n\n---\n\n## Condition 2: R3-only Seed 2 (exp-003-s2)\n\n| Step | SYCONScore | ToF    | NoF    | vs Vanilla% |\n|------|-----------|--------|--------|-------------|\n| 500  | 0.0845    | 0.0442 | 0.9503 | −36.7%      |\n| 1000 | 0.0844    | 0.0442 | 0.9448 | −36.8%      |\n| 1500 | 0.1044    | 0.0552 | 0.9503 | −21.8%      |\n| 2000 | 0.0846    | —      | —      | −36.6%      |\n| 2500 | 0.1046    | 0.0552 | 0.9724 | −21.6%      |\n| 3000 | 0.0945    | 0.0497 | 0.9503 | −29.2%      |\n| 3500 | 0.0744    | 0.0387 | 0.9724 | −44.3%      |\n\n> ckpt-2000: ToF/NoF not recorded in registry.\n> exp-003-s2 training still RUNNING — more checkpoints may become available.\n\n### Summary Stats (Seed 2, steps 500–3500, n=7)\n\n| Metric     | SYCONScore |\n|------------|-----------|\n| Mean       | 0.0902    |\n| Max        | 0.1046 (ckpt-2500) |\n| Min        | 0.0744 (ckpt-3500) |\n| Final      | 0.0744 (ckpt-3500) |\n| Peak vs Vanilla | −21.6% |\n\n---\n\n## Condition 3: SFT ACT (exp-004)\n\n| Step | SYCONScore | ToF    | NoF    | vs Vanilla% |\n|------|-----------|--------|--------|-------------|\n| 1000 | 0.2048    | 0.1160 | 0.8729 | +53.4%      |\n| 1500 | 0.1699    | 0.0939 | 0.8895 | +27.3%      |\n| 2500 | 0.2389    | 0.1381 | 0.8840 | +78.9%      |\n| 3000 | 0.2058    | 0.1160 | 0.9116 | +54.2%      |\n| 3500 | 0.2312    | 0.1326 | 0.9006 | +73.2%      |\n| 4000 | 0.2140    | 0.1215 | 0.8950 | +60.3%      |\n| 4500 | 0.1875    | 0.1050 | 0.8785 | +40.4%      |\n| 5000 | 0.2631    | 0.1547 | 0.8785 | +97.1%      |\n| 5500 | 0.2383    | 0.1381 | 0.8674 | +78.5%      |\n| 6000 | 0.2618    | 0.1547 | 0.8508 | +96.1%      |\n| 6500 | 0.2526    | 0.1492 | 0.8232 | +89.1%      |\n| 7000 | 0.2858    | 0.1713 | 0.8619 | +114.1%     |\n| 7500 | 0.2771    | 0.1657 | 0.8453 | +107.6%     |\n| 8000 | 0.3010†   | —      | —      | +125.5%     |\n\n> † ckpt-8000 SYCONScore from parent exp-004 summary (best_sycon_score=0.301). No separate eval entry; ToF/NoF unavailable.\n> Missing checkpoints: ckpt-500, ckpt-2000 (no eval experiments registered).\n\n### Summary Stats (SFT ACT, steps 1000–8000, n=14)\n\n| Metric     | SYCONScore |\n|------------|-----------|\n| Mean       | 0.2380    |\n| Max        | 0.3010 (ckpt-8000) |\n| Min        | 0.1699 (ckpt-1500) |\n| Final      | 0.3010 (ckpt-8000) |\n| Peak vs Vanilla | +125.5% |\n\n---\n\n## Cross-seed Comparison: R3-only Seed 1 vs Seed 2\n\nOverlapping evaluation steps (1000, 2000, 3000):\n\n| Step | Seed 1 | Seed 2 | Δ (S2−S1) | Relative Δ |\n|------|--------|--------|-----------|------------|\n| 1000 | 0.0743 | 0.0844 | +0.0101   | +13.6%     |\n| 2000 | 0.0846 | 0.0846 | 0.0000    | 0.0%       |\n| 3000 | 0.0946 | 0.0945 | −0.0001   | −0.1%      |\n\n| Summary | Seed 1 (full) | Seed 2 (full) |\n|---------|---------------|---------------|\n| Mean SYCONScore | 0.1070 | 0.0902 |\n| Max SYCONScore  | 0.1529 | 0.1046 |\n| Eval range       | 1000–7500 (11 pts) | 500–3500 (7 pts) |\n| Ever ≥ Vanilla?  | Yes (ckpt-4500, 6500) | No |\n\nCross-seed findings:\n- At overlapping steps (1000–3000), scores nearly identical (max Δ = 0.01), confirming reproducibility.\n- Seed 1 later develops higher variance with a spike at ckpt-6500 (0.1529); seed 2 trajectory not yet evaluated beyond 3500.\n- Neither seed consistently exceeds vanilla baseline; R3-only GRPO does not reliably improve SYCONScore.\n\n---\n\n## Data Gaps\n\n| Condition | Missing | Status |\n|-----------|---------|--------|\n| R3-only Seed 1 | ckpt-8000 eval | RUNNING |\n| R3-only Seed 1 | ckpt-7000/7500 ToF/NoF | Not recorded |\n| R3-only Seed 2 | ckpt-2000 ToF/NoF | Not recorded |\n| R3-only Seed 2 | ckpt ≥ 4000 | Training RUNNING |\n| SFT ACT | ckpt-500, ckpt-2000 eval | Not registered |\n| SFT ACT | ckpt-8000 ToF/NoF | Not separately evaluated |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "faceeac5-083c-4a4f-b4dd-2d4df5b907fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BkWeYyKf2ZhHStjWAcswvJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4143,
+      "cache_read_input_tokens": 40042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4143
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T11:24:17.361Z_
+
+<details><summary>↩ Tool result · `toolu_01QjtJQFrGFmPg1F8B3Hkqrz`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_compiled.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "3a860a8c-f5d1-489e-aa2a-9c110b5f4bc5",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_compiled.md",
+    "content": "# D027 Eval Trajectory — Complete Compiled Data\n\n**Compiled**: 2026-05-21\n**Eval protocol**: eval_unified_preset.py (D027 standard), n=362 (181 valid + 181 invalid)\n**Vanilla baseline (D027)**: SYCONScore=0.1335, ToF=0.0718, NoF=0.9448\n\n---\n\n## Condition 1: R3-only Seed 1 (exp-003)\n\n| Step | SYCONScore | ToF    | NoF    | vs Vanilla% |\n|------|-----------|--------|--------|-------------|\n| 1000 | 0.0743    | 0.0387 | 0.9448 | −44.3%      |\n| 2000 | 0.0846    | 0.0442 | 0.9834 | −36.6%      |\n| 3000 | 0.0946    | 0.0497 | 0.9724 | −29.1%      |\n| 4000 | 0.1144    | 0.0608 | 0.9669 | −14.3%      |\n| 4500 | 0.1337    | 0.0718 | 0.9613 | +0.1%       |\n| 5000 | 0.1144    | 0.0608 | 0.9669 | −14.3%      |\n| 5500 | 0.1144    | 0.0608 | 0.9724 | −14.3%      |\n| 6000 | 0.0846    | 0.0442 | 0.9724 | −36.6%      |\n| 6500 | 0.1529    | 0.0829 | 0.9834 | +14.5%      |\n| 7000 | 0.1046    | —      | —      | −21.6%      |\n| 7500 | 0.1046    | —      | —      | −21.6%      |\n| 8000 | PENDING   | —      | —      | —           |\n\n> ckpt-7000/7500: ToF/NoF not recorded in registry (only SYCONScore available).\n> ckpt-8000: eval RUNNING as of 2026-05-21.\n\n### Summary Stats (Seed 1, steps 1000–7500, n=11)\n\n| Metric     | SYCONScore |\n|------------|-----------|\n| Mean       | 0.1070    |\n| Max        | 0.1529 (ckpt-6500) |\n| Min        | 0.0743 (ckpt-1000) |\n| Final      | 0.1046 (ckpt-7500) |\n| Peak vs Vanilla | +14.5% |\n\n---\n\n## Condition 2: R3-only Seed 2 (exp-003-s2)\n\n| Step | SYCONScore | ToF    | NoF    | vs Vanilla% |\n|------|-----------|--------|--------|-------------|\n| 500  | 0.0845    | 0.0442 | 0.9503 | −36.7%      |\n| 1000 | 0.0844    | 0.0442 | 0.9448 | −36.8%      |\n| 1500 | 0.1044    | 0.0552 | 0.9503 | −21.8%      |\n| 2000 | 0.0846    | —      | —      | −36.6%      |\n| 2500 | 0.1046    | 0.0552 | 0.9724 | −21.6%      |\n| 3000 | 0.0945    | 0.0497 | 0.9503 | −29.2%      |\n| 3500 | 0.0744    | 0.0387 | 0.9724 | −44.3%      |\n\n> ckpt-2000: ToF/NoF not recorded in registry.\n> exp-003-s2 training still RUNNING — more checkpoints may become available.\n\n### Summary Stats (Seed 2, steps 500–3500, n=7)\n\n| Metric     | SYCONScore |\n|------------|-----------|\n| Mean       | 0.0902    |\n| Max        | 0.1046 (ckpt-2500) |\n| Min        | 0.0744 (ckpt-3500) |\n| Final      | 0.0744 (ckpt-3500) |\n| Peak vs Vanilla | −21.6% |\n\n---\n\n## Condition 3: SFT ACT (exp-004)\n\n| Step | SYCONScore | ToF    | NoF    | vs Vanilla% |\n|------|-----------|--------|--------|-------------|\n| 1000 | 0.2048    | 0.1160 | 0.8729 | +53.4%      |\n| 1500 | 0.1699    | 0.0939 | 0.8895 | +27.3%      |\n| 2500 | 0.2389    | 0.1381 | 0.8840 | +78.9%      |\n| 3000 | 0.2058    | 0.1160 | 0.9116 | +54.2%      |\n| 3500 | 0.2312    | 0.1326 | 0.9006 | +73.2%      |\n| 4000 | 0.2140    | 0.1215 | 0.8950 | +60.3%      |\n| 4500 | 0.1875    | 0.1050 | 0.8785 | +40.4%      |\n| 5000 | 0.2631    | 0.1547 | 0.8785 | +97.1%      |\n| 5500 | 0.2383    | 0.1381 | 0.8674 | +78.5%      |\n| 6000 | 0.2618    | 0.1547 | 0.8508 | +96.1%      |\n| 6500 | 0.2526    | 0.1492 | 0.8232 | +89.1%      |\n| 7000 | 0.2858    | 0.1713 | 0.8619 | +114.1%     |\n| 7500 | 0.2771    | 0.1657 | 0.8453 | +107.6%     |\n| 8000 | 0.3010†   | —      | —      | +125.5%     |\n\n> † ckpt-8000 SYCONScore from parent exp-004 summary (best_sycon_score=0.301). No separate eval entry; ToF/NoF unavailable.\n> Missing checkpoints: ckpt-500, ckpt-2000 (no eval experiments registered).\n\n### Summary Stats (SFT ACT, steps 1000–8000, n=14)\n\n| Metric     | SYCONScore |\n|------------|-----------|\n| Mean       | 0.2380    |\n| Max        | 0.3010 (ckpt-8000) |\n| Min        | 0.1699 (ckpt-1500) |\n| Final      | 0.3010 (ckpt-8000) |\n| Peak vs Vanilla | +125.5% |\n\n---\n\n## Cross-seed Comparison: R3-only Seed 1 vs Seed 2\n\nOverlapping evaluation steps (1000, 2000, 3000):\n\n| Step | Seed 1 | Seed 2 | Δ (S2−S1) | Relative Δ |\n|------|--------|--------|-----------|------------|\n| 1000 | 0.0743 | 0.0844 | +0.0101   | +13.6%     |\n| 2000 | 0.0846 | 0.0846 | 0.0000    | 0.0%       |\n| 3000 | 0.0946 | 0.0945 | −0.0001   | −0.1%      |\n\n| Summary | Seed 1 (full) | Seed 2 (full) |\n|---------|---------------|---------------|\n| Mean SYCONScore | 0.1070 | 0.0902 |\n| Max SYCONScore  | 0.1529 | 0.1046 |\n| Eval range       | 1000–7500 (11 pts) | 500–3500 (7 pts) |\n| Ever ≥ Vanilla?  | Yes (ckpt-4500, 6500) | No |\n\nCross-seed findings:\n- At overlapping steps (1000–3000), scores nearly identical (max Δ = 0.01), confirming reproducibility.\n- Seed 1 later develops higher variance with a spike at ckpt-6500 (0.1529); seed 2 trajectory not yet evaluated beyond 3500.\n- Neither seed consistently exceeds vanilla baseline; R3-only GRPO does not reliably improve SYCONScore.\n\n---\n\n## Data Gaps\n\n| Condition | Missing | Status |\n|-----------|---------|--------|\n| R3-only Seed 1 | ckpt-8000 eval | RUNNING |\n| R3-only Seed 1 | ckpt-7000/7500 ToF/NoF | Not recorded |\n| R3-only Seed 2 | ckpt-2000 ToF/NoF | Not recorded |\n| R3-only Seed 2 | ckpt ≥ 4000 | Training RUNNING |\n| SFT ACT | ckpt-500, ckpt-2000 eval | Not registered |\n| SFT ACT | ckpt-8000 ToF/NoF | Not separately evaluated |\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_018KVV7QQ62sk6bKshdZKBPQ`</summary>
+
+```json
+{
+  "name": "trajectory_data_compiled",
+  "type": "data",
+  "description": "Complete D027 eval trajectory data for all 3 conditions (R3-only seed 1/2, SFT ACT) with summary stats, cross-seed comparison, and data gap annotations",
+  "project": "contrastive_entrain_calib",
+  "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/trajectory_data_compiled.md",
+  "tags": [
+    "trajectory",
+    "d027",
+    "exp-003",
+    "exp-003-s2",
+    "exp-004",
+    "paper-data"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "371ecd9f-b0d2-4966-b572-0a1d82587eea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XMZvrvyq2uiyFehxiWwkTd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2823,
+      "cache_read_input_tokens": 44185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2823
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T11:24:21.950Z_
+
+<details><summary>↩ Tool result · `toolu_018KVV7QQ62sk6bKshdZKBPQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_e457b3\", \"name\": \"trajectory_data_compiled\", \"type\": \"data\", \"description\": \"Complete D027 eval trajectory data for all 3 conditions (R3-only seed 1/2, SFT ACT) with summary stats, cross-seed comparison, and data gap annotations\", \"path\": \"projects/contrastive_entrain_calib/artifacts/_project/data/trajectory_data_compiled.md\", \"url\": null, \"project\": \"contrastive_entrain_calib\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T11:24:21.873718+00:00\", \"tags\": [\"trajectory\", \"d027\", \"exp-003\", \"exp-003-s2\", \"exp-004\", \"paper-data\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "6ab2511a-b7ff-4f14-ba78-40a30a600670",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_e457b3\\\", \\\"name\\\": \\\"trajectory_data_compiled\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Complete D027 eval trajectory data for all 3 conditions (R3-only seed 1/2, SFT ACT) with summary stats, cross-seed comparison, and data gap annotations\\\", \\\"path\\\": \\\"projects/contrastive_entrain_calib/artifacts/_project/data/trajectory_data_compiled.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T11:24:21.873718+00:00\\\", \\\"tags\\\": [\\\"trajectory\\\", \\\"d027\\\", \\\"exp-003\\\", \\\"exp-003-s2\\\", \\\"exp-004\\\", \\\"paper-data\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_e457b3\", \"name\": \"trajectory_data_compiled\", \"type\": \"data\", \"description\": \"Complete D027 eval trajectory data for all 3 conditions (R3-only seed 1/2, SFT ACT) with summary stats, cross-seed comparison, and data gap annotations\", \"path\": \"projects/contrastive_entrain_calib/artifacts/_project/data/trajectory_data_compiled.md\", \"url\": null, \"project\": \"contrastive_entrain_calib\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T11:24:21.873718+00:00\", \"tags\": [\"trajectory\", \"d027\", \"exp-003\", \"exp-003-s2\", \"exp-004\", \"paper-data\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+文件已写入并注册。
+
+产出：`artifacts/trajectory_data_compiled.md` (art_20260521_e457b3)
+
+内容覆盖：
+- **Condition 1** (R3-only Seed 1): 11 个 checkpoint (1000–7500)，ckpt-8000 标注 RUNNING
+- **Condition 2** (R3-only Seed 2): 7 个 checkpoint (500–3500)，训练仍在继续
+- **Condition 3** (SFT ACT): 14 个 checkpoint (1000–8000)，ckpt-8000 仅有 SYCONScore=0.301（来自 parent summary）
+- Cross-seed comparison: 3 个重叠步数 (1000/2000/3000) 差异极小 (max Δ=0.01)，确认可复现性
+- 所有已知数据点与提供的交叉验证值完全吻合
+- Data Gaps 表列出 6 项缺失
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "uuid": "f041cec7-3e78-402d-a997-4f18f29693d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KsqS1KjQ2LBBexNbSo9A1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 590,
+      "cache_read_input_tokens": 47008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 590
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 28_
+
+文件已写入并注册。
+
+产出：`artifacts/trajectory_data_compiled.md` (art_20260521_e457b3)
+
+内容覆盖：
+- **Condition 1** (R3-only Seed 1): 11 个 checkpoint (1000–7500)，ckpt-8000 标注 RUNNING
+- **Condition 2** (R3-only Seed 2): 7 个 checkpoint (500–3500)，训练仍在继续
+- **Condition 3** (SFT ACT): 14 个 checkpoint (1000–8000)，ckpt-8000 仅有 SYCONScore=0.301（来自 parent summary）
+- Cross-seed comparison: 3 个重叠步数 (1000/2000/3000) 差异极小 (max Δ=0.01)，确认可复现性
+- 所有已知数据点与提供的交叉验证值完全吻合
+- Data Gaps 表列出 6 项缺失
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 158602,
+  "duration_api_ms": 159218,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "4966b38a-b51a-419b-9f15-0a62cb5e2533",
+  "total_cost_usd": 0.6290857500000001,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 35757,
+    "cache_read_input_tokens": 263411,
+    "output_tokens": 10894,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 35757,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 277,
+        "cache_read_input_tokens": 47008,
+        "cache_creation_input_tokens": 590,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 590
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1404,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001489,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 10894,
+      "cacheReadInputTokens": 263411,
+      "cacheCreationInputTokens": 35757,
+      "webSearchRequests": 0,
+      "costUSD": 0.62759675,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "75fa1508-ba84-4880-a5ab-d3eac8e7ace7"
+}
+```
+
+</details>
+
+---

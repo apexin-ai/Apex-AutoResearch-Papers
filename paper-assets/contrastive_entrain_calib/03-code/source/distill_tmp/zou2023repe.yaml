@@ -1,0 +1,39 @@
+paper_key: "zou2023repe"
+title: "Representation Engineering: A Top-Down Approach to AI Transparency"
+venue: "arXiv 2023 (2310.01405)"
+full_text_available: false
+
+research:
+  baselines:
+    - "probing classifiers"
+    - "circuit-level / neuron-level interpretability"
+    - "activation patching"
+  metrics:
+    - {name: "representation reading accuracy", direction: "higher_better"}
+    - {name: "representation control effectiveness", direction: "higher_better"}
+  datasets:
+    - {name: "honesty evaluation tasks", size: "N/A"}
+    - {name: "harmlessness evaluation tasks", size: "N/A"}
+    - {name: "power-seeking behavior tasks", size: "N/A"}
+  ablation_dimensions:
+    - "different cognitive phenomena (honesty, harmlessness, power-seeking)"
+    - "monitoring (reading) vs manipulation (control)"
+    - "population-level vs neuron/circuit-level analysis"
+  training_recipe:
+    optimizer: "N/A (inference-time technique)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "representation engineering / activation analysis"
+
+positioning:
+  core_claim: "Population-level representations, rather than neurons or circuits, should be the center of analysis for AI transparency, enabling simple yet effective solutions for monitoring and controlling LLM cognitive phenomena like honesty and harmlessness."
+  key_results: "Provides baselines for RepE techniques across honesty, harmlessness, and power-seeking; demonstrates both reading and control capabilities"
+  limitations:
+    - "Top-down approach may miss fine-grained mechanistic details"
+    - "Relies on contrast pairs for representation identification"
+    - "Effectiveness may vary across model architectures"
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

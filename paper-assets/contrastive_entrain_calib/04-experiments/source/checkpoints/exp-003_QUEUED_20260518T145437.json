@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-003",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:42:11.934Z",
+    "updated_at": "2026-05-18T14:54:37.292Z",
+    "hypothesis": "R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)"
+  },
+  "timestamp": "2026-05-18T14:54:37.379135+00:00",
+  "trigger": "update_registry"
+}

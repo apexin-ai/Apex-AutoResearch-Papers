@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d600501cdd2a8ec840a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper patch intro",
+  "task_key": "worker_paper_patch_intro_20260520T141155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_patch_intro_20260520T141155_result.json",
+    "occurrence": 1,
+    "bytes": 1464,
+    "sha256": "e470c67e016eaa9f8d515c8f5b0db5d46c4bd6a541a6c132a48c9054705d6f59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The \"reinforcement learning\" match is a noun (the name of the technique), not a participial phrase ending. All constraints pass:\n- No em-dashes/en-dashes\n- No \"Furthermore\"/\"Moreover\"/\"Additionally\"\n- No banned words\n- 992 raw words (including LaTeX commands; actual prose ~910)\n\nRewrite complete. Key changes from the old version:\n\n1. **P2**: Added the dual-layer failure. After showing all d_syc formulations fail, now explicitly shows R3-only GRPO also fails (SYCONScore 0.074→0.114, never exceeding vanilla 0.134). Establishes that d_syc is actively harmful AND GRPO itself is structurally insufficient.\n\n2. **P3**: Fixed ACT characterization. ACT is now correctly categorized as SFT-based (dense per-token L2 supervision), separated from RL-based methods. The three categories are: representation-based inference (ActAdd, CAA), RL-based training (all GRPO variants), SFT-based training (ACT). ACT's SYCONScore 0.301 vs all GRPO below vanilla is the key contrast.\n\n3. **P4**: Root cause now explains both layers. d_syc conflates warranted/unwarranted belief change; R3-only's sparse scalar cannot compensate; ACT's dense supervision resolves the gap at the token level.\n\n4. **Contributions**: C1 broadened to \"All GRPO approaches fail\" (includes R3-only data). C2 unchanged. C3 reframed from \"geometrically harder\" to \"sparse RL reward cannot convey the valid/invalid distinction\" with explicit SFT vs GRPO insight."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-patch-intro.md"
+}

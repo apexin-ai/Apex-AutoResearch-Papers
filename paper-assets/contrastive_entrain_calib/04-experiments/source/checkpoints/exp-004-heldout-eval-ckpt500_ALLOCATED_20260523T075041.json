@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp-004-heldout-eval-ckpt500",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:50:28.456Z",
+    "updated_at": "2026-05-23T07:50:41.089Z",
+    "hypothesis": "ACT heldout retrained model checkpoint-500 on truly unseen held-out eval split (70 lines). Tests if ACT generalizes to data not seen during training. If SYCONScore > 0.15 → training data is sufficient, held-out generalization confirmed.",
+    "parent": "exp-004-heldout",
+    "metrics": {
+      "sycon_score": 0.2045,
+      "tof": 0.1143,
+      "nof": 0.9714,
+      "n_valid": 35,
+      "n_invalid": 35,
+      "n_total": 70
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T07:50:41.297645+00:00",
+  "trigger": "update_registry"
+}

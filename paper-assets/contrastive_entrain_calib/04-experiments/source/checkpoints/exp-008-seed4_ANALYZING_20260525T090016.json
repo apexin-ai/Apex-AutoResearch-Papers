@@ -1,0 +1,83 @@
+{
+  "exp_id": "exp-008-seed4",
+  "project": "contrastive_entrain_calib",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T22:07:18.865Z",
+    "updated_at": "2026-05-25T09:00:16.321Z",
+    "hypothesis": "Binary probe penalty SFT with seed=44 will produce sycophancy reduction consistent with seed2/seed3, confirming the method's stability across random seeds.",
+    "parent": "",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python run_exp008_binary_probe_penalty.py --seed 44 --max_steps 2000 --output_dir /root/autodl-tmp/checkpoints/exp008_sft_seed44",
+      "server": "westd-29046",
+      "gpu_id": 1,
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 44,
+      "tmux_session": "exp008_seed4",
+      "pid": 2366,
+      "config": {
+        "lr": 5e-05,
+        "lambda_reward": 0.1,
+        "lambda_probe": 1,
+        "max_steps": 2000,
+        "retrain_interval": 100,
+        "batch_size": 1,
+        "grad_accum": 16,
+        "lora_alpha": 64,
+        "lora_modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj"
+        ],
+        "dropout": 0
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/exp008_sft_seed44/",
+    "log_path": "/root/autodl-tmp/checkpoints/exp008_sft_seed44/train.log",
+    "metrics": {
+      "eval": {
+        "ckpt-500": {
+          "ToF": 0.1547,
+          "NoF": 0.8122,
+          "SYCONScore": 0.2599,
+          "entropy": 0.3398
+        },
+        "ckpt-1000": {
+          "ToF": 0.2265,
+          "NoF": 0.7569,
+          "SYCONScore": 0.3487,
+          "entropy": 0.3439
+        },
+        "ckpt-1500": {
+          "ToF": 0.2431,
+          "NoF": 0.7569,
+          "SYCONScore": 0.368,
+          "entropy": 0.3435
+        },
+        "ckpt-2000": {
+          "ToF": 0.2155,
+          "NoF": 0.8343,
+          "SYCONScore": 0.3425,
+          "entropy": 0.1556
+        },
+        "final": {
+          "ToF": 0.2155,
+          "NoF": 0.8343,
+          "SYCONScore": 0.3425,
+          "entropy": 0.1556
+        }
+      },
+      "best_checkpoint": "ckpt-1500",
+      "best_sycon": 0.368
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T09:00:16.659492+00:00",
+  "trigger": "update_registry"
+}

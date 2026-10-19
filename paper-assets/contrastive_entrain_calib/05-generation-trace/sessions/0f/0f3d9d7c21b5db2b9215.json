@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f3d9d7c21b5db2b9215",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp014 speed check step30",
+  "task_key": "worker_diag_exp014-speed-check-step30_20260518T184140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp014-speed-check-step30_20260518T184140_result.json",
+    "occurrence": 1,
+    "bytes": 1555,
+    "sha256": "ef7acf96665d9e4fd1b507d644796053e3f4d31eb92bd9d3032e7b10c8a8eeda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-014 训练速度诊断报告\n\n### 1. Step 20-30 速度\n\n| Step 范围 | 平均 step time | 趋势 |\n|-----------|--------------|------|\n| 20-30 | **~20.0 s/step** | 稳定（±1s 波动，无加速/减速趋势） |\n\nlogged `step_time`: step 20 = 19.66s, step 30 = 19.90s\n\n### 2. GPU 利用率与显存\n\n| GPU | 显存使用 | GPU 利用率 |\n|-----|---------|-----------|\n| GPU 1 | 31400 / 32607 MiB (96.3%) | 0-100% 交替 |\n| GPU 2 | 30638 / 32607 MiB (94.0%) | 0-100% 交替 |\n\nGPU 利用率呈**脉冲模式**（100% → 0% → 96%），是 GRPO 训练的典型特征：generation 阶段满载 → reward 计算间隙 → 梯度更新。CPU 空闲率 98%，不是瓶颈。无 NCCL 异常日志。\n\n### 3. 77s/step 的原因\n\n**误读 tqdm 累计平均值。** 实际情况：\n\n- Step 1 耗时 **447s**（包含 CUDA kernel 编译、DeepSpeed 初始化等一次性 warmup）\n- Step 2 起实际每步就是 **~20s**\n- tqdm 在 step 4 时显示累计平均 77.69 s/it，这是被 step 1 的 447s 严重拉高的结果\n- **不存在 3.7× 速度差距**，稳态速度 ≈ dry-run 速度（20.5s）\n\n关于 grad_accum=16 的疑问：GRPO 的 step 定义包含了完整的 generation + multi-sample forward/backward，grad_accum 影响的是 micro-batch 拆分方式而非总计算量翻倍，所以与 dry-run 速度接近是合理的。\n\n### 4. 结论\n\n**无需干预。** 训练速度正常，~20s/step 在 2×V100-32G DeepSpeed ZeRO-2 上合理。预估总时长 ≈ 8000 × 20s ≈ 44.4 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp014-speed-check-step30.md"
+}

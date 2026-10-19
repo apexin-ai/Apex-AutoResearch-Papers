@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "175d914663f57ff25df0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect ckpt5000v2 results",
+  "task_key": "worker_eval_collect-ckpt5000v2-results_20260521T085307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-ckpt5000v2-results_20260521T085307_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "79f65d48af6bbf216fce4bae272403839f9cb65329816d4c21f9a67d11041d9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp003-ckpt5000-v2 eval 结果：**\n\n| 指标 | 值 |\n|------|-----|\n| ToF | 0.0608 |\n| NoF | 0.9669 |\n| SYCONScore | 0.1144 |\n\nn_valid = 181, n_invalid = 181, n_total = 362。\n\nSYCONScore 0.1144 低于 vanilla baseline (0.1335)。ToF 极低 (0.0608) 是主要瓶颈——模型在 valid 样本上几乎不 entrain，虽然 NoF 很高 (0.9669) 说明它能正确拒绝 invalid 样本。ckpt-5000 这个检查点过度偏向保守/不 entrain 的方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-ckpt5000v2-results.md"
+}

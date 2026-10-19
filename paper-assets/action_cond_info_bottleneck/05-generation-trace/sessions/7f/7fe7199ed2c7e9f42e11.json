@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "7fe7199ed2c7e9f42e11",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code acib impl",
+  "task_key": "worker_code_acib-impl_20260515T113632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_acib-impl_20260515T113632_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "d155696d2d04db5cc9c7dec8cefed5f56245bdf9cf3e3a82ba0928863284f54b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Identity verification is required to continue.\"},\"request_id\":\"req_011Cb4Ha7Cbj8W5nHPM9XpBJ\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Identity verification is required to continue."
+              },
+              "request_id": "req_011Cb4Ha7Cbj8W5nHPM9XpBJ"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-acib-impl.md"
+}

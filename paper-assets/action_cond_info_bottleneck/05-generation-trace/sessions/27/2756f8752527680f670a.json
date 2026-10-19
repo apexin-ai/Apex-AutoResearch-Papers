@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2756f8752527680f670a",
+  "project": "action_cond_info_bottleneck",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4827,
+    "sha256": "ff9e575bad4548b9d264258fb2f3c3d3a5d4724c2a44b7752fecd351b3d2f66d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-16T02:47:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westb-13953 的 cuda:0 和 cuda:1，不可用其他设备\n- acib_v5_stopgrad_entropy 已确认 negative（p→0 trivial collapse），不要重试 stop-grad 路线——task gradient 不可省略是已验证结论\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- mvp1_baseline_std_remaining 标记 failed 但实际是 cron 误报（eval 子进程模式），libero_goal 和 libero_10 数据可能不完整，需 SSH 验证 eval_info.json 是否存在再定结论\n- CoRL 2026 deadline：abstract 5/26（10天），paper 5/29（13天），时间极紧\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westb-13953，2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: /root/acib\n- **Python**: /root/miniconda3/bin/python（conda base 环境，非 venv）\n- **数据集**: /root/autodl-tmp/libero_dataset（273K frames，LIBERO 全套）\n- **模型**: lerobot/smolvla_libero + lerobot/smolvla_libero_plus（HF cache）\n- **输出目录**: /root/acib/outputs/（各实验子目录）\n- **活跃进程**:\n  - acib_v5_div_reg: PID 682233, tmux session, cuda:0, 22.8GB/96GB, ~0.8 steps/s，预计 ~08:00 UTC 完成\n  - mvp1_baseline_plus_remaining: 子进程 PID 675231, cuda:0, 跑 libero_10 eval（父 PID 471056 已退出）\n  - acib_v5_stopgrad_entropy: PID 694348, cuda:1——已确认 negative，应 kill 释放 GPU\n- **活跃 Worker**: worker_code_prepare-v5-eval（正在准备 v5 eval 脚本）\n- **Cron**: reconcile 返回 0 个活跃 cron（可能已清理）\n\n### 3. 📊 当前状态\n**刚做完**: v5 双路对比实验的 step 500 checkpoint 分析。v5_div_reg 首次成功压制 scorer collapse（scorer_std=0.379，远超 0.05 阈值），v5_stopgrad_entropy 失败（p→0 collapse）。已向 Director 汇报（D020/D021）。已派 Worker 准备 v5 eval 代码。\n\n**Registry 活跃实验**:\n| exp_id | status | 摘要 |\n|--------|--------|------|\n| acib_v5_div_reg | RUNNING | ✅ 突破性进展，scorer_std=0.42 稳定，预计 08:00 UTC 完成 20K steps |\n| acib_v5_stopgrad_entropy | PREPARING | ❌ negative，待 kill |\n| mvp1_baseline_plus_remaining | RUNNING | libero_10 eval 进行中（spatial=81.6%, object=88.8%, goal=87.8% 已完成）|\n| acib_v3_train | ANALYZING | killed，作为 per-token KL 失败的 baseline 记录 |\n\n**等待中**:\n- Worker `worker_code_prepare-v5-eval` 回调（准备 eval 脚本）\n- v5_div_reg 训练完成 cron 回调（~08:00 UTC）\n- baseline_plus_remaining libero_10 完成\n- mvp1_baseline_std_remaining 的 goal/libero_10 数据需要 SSH 验证（cron 误报 failed）\n\n### 4. 📋 待办（条件触发式）\n- **v5_stopgrad_entropy 未 kill** → 立即 spawn Worker kill PID 694348 释放 cuda:1，update_registry status=DONE conclusion=negative\n- **Worker prepare-v5-eval 回调到达** → 检查 eval 脚本就绪，等 v5_div_reg 训练完成后立即提交 eval\n- **v5_div_reg 训练完成（cron 回调）** → spawn Worker 在 cuda:0+cuda:1 并行跑 4 suite eval（libero_spatial/object/goal/10），对比 baseline 判断 MVP pass/fail\n- **baseline_plus_remaining libero_10 完成** → 汇总 4 suite baseline_plus 完整结果，update_registry\n- **baseline_std_remaining 数据验证** → SSH 检查 /root/acib/outputs/baseline_std_v3/ 下 libero_goal/libero_10 的 eval_info.json 是否存在；若缺失需重跑\n- **MVP pass（v5_div_reg eval ≥2/4 维度 ≥5pp 提升）** → 启动 ACIB-H@k=0.8 训练 + smolvla_libero_plus 上叠加 ACIB-S（互补性验证）\n- **MVP fail** → 产出 Framing 调整提案，不默默跑下一个\n\n### 5. 🎯 战略上下文\n**核心发现链**: v1(β太高) → v3(per-token KL 退化) → v4(aggregate KL 无分化激励) → v5_stopgrad(task gradient 不可省) → **v5_div_reg(✅ diversity reg 成功)**。五代迭代确认：(1) task gradient 必须保留 (2) diversity reg (-λ*std) 是有效 anti-collapse 机制 (3) β warmup + diversity reg 共存可行。\n\n**论文 story**: ACIB 是 data-aug 的互补正则化器（不是替代品）。关键实验是 ACIB-S on top of smolvla_libero_plus（互补性验证）。\n\n**最容易判断错的事**:\n- baseline_std_remaining 的 \"failed\" 是 cron 误报历史（eval 子进程模式），不要直接信 failure_reason，SSH 看实际文件\n- cuda:0 上同时有 v5_div_reg 和 baseline_plus_remaining 两个进程，注意 GPU 内存竞争（v5_div_reg 用 22.8GB，baseline eval 用 ~6GB，96GB 卡够用）\n- v5_div_reg 的 WANDB_MODE=disabled，指标只在 stdout log 里，分析时要 tail log 而非查 W&B\n- acib_deploy_westb13953 和 acib_v3_train 是历史实验（killed/queued），不需要处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

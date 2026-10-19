@@ -1,0 +1,4 @@
+Remote files on westd-28034:
+- PDF: /root/contrastive_entrain_calib/artifacts/fig_trajectory.pdf (21.5 KB)
+- PNG: /root/contrastive_entrain_calib/artifacts/fig_trajectory.png (228 KB)
+- Script: /root/contrastive_entrain_calib/scripts/plot_trajectory.py

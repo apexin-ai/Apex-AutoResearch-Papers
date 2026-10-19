@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c1223bd4c6a5fa9fd61",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 004 eval ckpt1500",
+  "task_key": "worker_analysis_exp-004-eval-ckpt1500_20260520T154232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-004-eval-ckpt1500_20260520T154232_result.json",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "e92b503150c1377954d96e38718363dce1c5227ac3f2072e00d30f67c1c8dfa9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp004_ckpt1500: ToF=0.0939, NoF=0.8895, SYCONScore=0.1699, n_valid=181, n_invalid=181, n_total=362\nvs vanilla: SYCONScore 0.1699 vs 0.1335 = +27.3%\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-004-eval-ckpt1500-copy-2.md"
+}

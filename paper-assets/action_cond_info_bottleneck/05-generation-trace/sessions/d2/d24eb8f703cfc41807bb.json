@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "d24eb8f703cfc41807bb",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "ops v5 div reg progress check",
+  "task_key": "worker_ops_v5-div-reg-progress-check_20260516T031421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_v5-div-reg-progress-check_20260516T031421.jsonl",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "9c28bfa58060a71e1ba1f620fea534223d5b275b420ad295a3053ae94d6cea22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:14:28.880298+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5X5rzgE7XXWgamfbAC8\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_v5-div-reg-progress-check_20260516T031421"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-v5-div-reg-progress-check.md"
+}

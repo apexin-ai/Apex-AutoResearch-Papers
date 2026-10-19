@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12fa45aa653bfa6aef55",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code acib v5 div reg seed2",
+  "task_key": "worker_code_acib_v5_div_reg_seed2_20260516T025315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_acib_v5_div_reg_seed2_20260516T025315_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "d0f15222b23d04e04fc30e6e3b2e0f56a193d89e8ff61723392dec5083f9d606"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**acib_v5_div_reg_seed2 已在运行中**（PID 728887，10:54 启动，当前 step 200/20000）。\n\n参数：seed=1337, CUDA_VISIBLE_DEVICES=1, diversity_lambda=0.1，其他参数与 seed 1 一致。\n\n**注意一个差异**：seed 2 的日志显示 `ent=0.0210`（lambda_ent=0.1 生效），而 seed 1 的日志没有 ent 字段——说明 seed 1 运行时脚本可能还没有 `lambda_ent` 参数，或者 seed 1 用了 `--lambda_ent 0`。如果要严格复现 seed 1 的条件，这个差异需要确认。当前 seed 2 的 scorer_std=0.123（step 200），远低于 seed 1 同期的 0.297，entropy regularizer 可能是原因。\n\n需要我：\n1. 保持现状继续跑？\n2. 还是 kill 掉、加 `--lambda_ent 0` 重启以严格对齐 seed 1？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-acib-v5-div-reg-seed2.md"
+}

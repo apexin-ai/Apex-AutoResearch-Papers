@@ -1,0 +1,40 @@
+{
+  "exp_id": "acib_v5_div_reg_seed2",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 3,
+    "created_at": "2026-05-16T02:49:24.796Z",
+    "updated_at": "2026-05-16T03:28:38.745Z",
+    "hypothesis": "v5_div_reg seed 2 复现：验证 aggregate rate KL + diversity regularizer 防 scorer collapse 的稳定性，与 seed 1 (seed=42) 一致性检验",
+    "parent": "acib_v5_div_reg",
+    "notes": "First run failed with EXIT_CODE=1: wandb.init() auth error in setup_wandb() (maybe_login failed). Restarted with WANDB_MODE=disabled, now running as PID 744808 on cuda:1, step 200/20000 as of 2026-05-16 11:25.",
+    "reproduce": {
+      "finished_at": "2026-05-16T03:18:51.181Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-16T03:09:59.150Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:09:59.975176+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:18:52.158485+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "First run failed with EXIT_CODE=1: wandb.init() auth error in setup_wandb() (maybe_login failed). Restarted with WANDB_MODE=disabled, now running as PID 744808 on cuda:1, step 200/20000 as of 2026-05-16 11:25."
+      }
+    }
+  },
+  "timestamp": "2026-05-16T03:28:38.774830+00:00",
+  "trigger": "update_registry"
+}

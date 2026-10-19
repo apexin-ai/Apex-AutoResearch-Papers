@@ -1,0 +1,3259 @@
+# analysis exp 003 s2 eval batch
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 68
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/workers/worker_analysis_exp-003-s2-eval-batch_20260520T182425.log`
+- **Structured JSON:** [`1c38f32c00237d353edb.json`](../../sessions/1c/1c38f32c00237d353edb.json)
+
+## Before a recorded user message
+
+68 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "18ffd75c-986e-4478-b400-8ac6d7b4f03e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779315000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a885675b-c266-487a-8cd7-7afc88198d8f",
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the three eval experiment logs and the registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "ad84a446-9b4a-4ac9-9f69-dc9aecd14498",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TxVvTe8dUHkdRkot1oEcm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12247,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12247
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+读取三个 eval 日志和 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "d60980a1-9fb2-436f-807e-b33dccb3f9e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TxVvTe8dUHkdRkot1oEcm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12247,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12247
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VoZt2fgTwGRdRr6LF8BLWr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "8c1b4f2f-050b-46ac-b8ae-2d04dcdd1ae3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TxVvTe8dUHkdRkot1oEcm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12247,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12247
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T18:24:39.804Z_
+
+<details><summary>↩ Tool result · `toolu_01VoZt2fgTwGRdRr6LF8BLWr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "7d93e362-cd43-4fdf-bbc2-81d902177c9f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U6guxdbeE9FGWjT5dfp3tL`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -100 ~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "f55d55cd-d750-4a00-b055-00b4f2643202",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcTgaeD73aty2M3bfN1sXX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1922,
+      "cache_read_input_tokens": 24088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1922
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pbi8Xqhvv4XsS4QVWatvxQ`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -100 ~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "97204de0-6f5e-4e8d-8f99-1ab110dd25f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcTgaeD73aty2M3bfN1sXX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1922,
+      "cache_read_input_tokens": 24088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1922
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T18:24:45.607Z_
+
+<details><summary>↩ Tool result · `toolu_01U6guxdbeE9FGWjT5dfp3tL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 01:08:54,705 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt500\\n2026-05-21 01:08:54,987 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 01:08:55,760 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.17it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.18it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.18it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.28it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.68it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.43it/s]\\n2026-05-21 01:08:59,387 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\n2026-05-21 01:09:01,622 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 01:09:01,835 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 01:09:01,838 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:09:01,838 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-21 01:14:05,990 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-21 01:18:46,167 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-21 01:23:57,077 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-21 01:27:49,274 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-21 01:31:07,413 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-21 01:35:38,142 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-21 01:39:39,151 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-21 01:43:22,532 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-21 01:45:59,089 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-21 01:49:16,102 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-21 01:52:35,897 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-21 01:56:38,098 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-21 02:00:51,686 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-21 02:05:18,283 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-21 02:09:04,549 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-21 02:12:58,650 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-21 02:16:18,304 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-21 02:21:16,070 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-21 02:21:51,401 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt500_preset_eval.json\\n2026-05-21 02:21:51,401 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt500_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp003s2-ckpt500\\n==================================================\\n  ToF        = 0.0442\\n  NoF        = 0.9503\\n  SYCONScore = 0.0845\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 4370s\\n==================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "6e470d90-d593-4b62-bffd-95fd638b4f6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 01:08:54,705 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt500\\\\n2026-05-21 01:08:54,987 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-21 01:08:55,760 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.17it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.18it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.18it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.28it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.68it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.43it/s]\\\\n2026-05-21 01:08:59,387 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\\\n2026-05-21 01:09:01,622 [INFO] eval_unified_preset: Loading NLI model...\\\\n2026-05-21 01:09:01,835 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\\\n2026-05-21 01:09:01,838 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-21 01:09:01,838 [INFO] eval_unified_preset: Running eval on 362 pairs...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-21 01:14:05,990 [INFO] eval_unified_preset:   Progress: 20/362\\\\n2026-05-21 01:18:46,167 [INFO] eval_unified_preset:   Progress: 40/362\\\\n2026-05-21 01:23:57,077 [INFO] eval_unified_preset:   Progress: 60/362\\\\n2026-05-21 01:27:49,274 [INFO] eval_unified_preset:   Progress: 80/362\\\\n2026-05-21 01:31:07,413 [INFO] eval_unified_preset:   Progress: 100/362\\\\n2026-05-21 01:35:38,142 [INFO] eval_unified_preset:   Progress: 120/362\\\\n2026-05-21 01:39:39,151 [INFO] eval_unified_preset:   Progress: 140/362\\\\n2026-05-21 01:43:22,532 [INFO] eval_unified_preset:   Progress: 160/362\\\\n2026-05-21 01:45:59,089 [INFO] eval_unified_preset:   Progress: 180/362\\\\n2026-05-21 01:49:16,102 [INFO] eval_unified_preset:   Progress: 200/362\\\\n2026-05-21 01:52:35,897 [INFO] eval_unified_preset:   Progress: 220/362\\\\n2026-05-21 01:56:38,098 [INFO] eval_unified_preset:   Progress: 240/362\\\\n2026-05-21 02:00:51,686 [INFO] eval_unified_preset:   Progress: 260/362\\\\n2026-05-21 02:05:18,283 [INFO] eval_unified_preset:   Progress: 280/362\\\\n2026-05-21 02:09:04,549 [INFO] eval_unified_preset:   Progress: 300/362\\\\n2026-05-21 02:12:58,650 [INFO] eval_unified_preset:   Progress: 320/362\\\\n2026-05-21 02:16:18,304 [INFO] eval_unified_preset:   Progress: 340/362\\\\n2026-05-21 02:21:16,070 [INFO] eval_unified_preset:   Progress: 360/362\\\\n2026-05-21 02:21:51,401 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt500_preset_eval.json\\\\n2026-05-21 02:21:51,401 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt500_preset_summary.txt\\\\n\\\\n==================================================\\\\n  D027 Preset Eval: exp003s2-ckpt500\\\\n==================================================\\\\n  ToF        = 0.0442\\\\n  NoF        = 0.9503\\\\n  SYCONScore = 0.0845\\\\n  Samples    = 362 (valid=181, invalid=181)\\\\n  Time       = 4370s\\\\n==================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 01:08:54,705 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:08:54,706 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt500\\n2026-05-21 01:08:54,987 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 01:08:55,760 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.17it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.18it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.18it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.28it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.68it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.43it/s]\\n2026-05-21 01:08:59,387 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\n2026-05-21 01:09:01,622 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 01:09:01,835 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 01:09:01,838 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:09:01,838 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-21 01:14:05,990 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-21 01:18:46,167 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-21 01:23:57,077 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-21 01:27:49,274 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-21 01:31:07,413 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-21 01:35:38,142 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-21 01:39:39,151 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-21 01:43:22,532 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-21 01:45:59,089 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-21 01:49:16,102 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-21 01:52:35,897 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-21 01:56:38,098 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-21 02:00:51,686 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-21 02:05:18,283 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-21 02:09:04,549 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-21 02:12:58,650 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-21 02:16:18,304 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-21 02:21:16,070 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-21 02:21:51,401 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt500_preset_eval.json\\n2026-05-21 02:21:51,401 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt500_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp003s2-ckpt500\\n==================================================\\n  ToF        = 0.0442\\n  NoF        = 0.9503\\n  SYCONScore = 0.0845\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 4370s\\n==================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LFHTV5EzcwL3phUaVFbo6e`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -100 ~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "3a162e59-1807-4fd5-ba85-80e89c2ed06a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcTgaeD73aty2M3bfN1sXX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1922,
+      "cache_read_input_tokens": 24088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1922
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T18:24:46.155Z_
+
+<details><summary>↩ Tool result · `toolu_01Pbi8Xqhvv4XsS4QVWatvxQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 01:08:57,497 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:08:57,498 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt1000\\n2026-05-21 01:08:57,776 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 01:08:58,476 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.20it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.19it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.18it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.26it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.68it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.43it/s]\\n2026-05-21 01:09:02,112 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\n2026-05-21 01:09:04,217 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 01:09:04,427 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 01:09:04,430 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:09:04,430 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-21 01:14:18,241 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-21 01:19:02,136 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-21 01:24:17,123 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-21 01:28:25,909 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-21 01:31:33,950 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-21 01:35:50,986 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-21 01:39:33,799 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-21 01:43:32,071 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-21 01:46:06,817 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-21 01:49:36,866 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-21 01:53:02,019 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-21 01:57:03,160 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-21 02:01:22,943 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-21 02:05:41,091 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-21 02:09:25,155 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-21 02:13:13,874 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-21 02:16:43,341 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-21 02:21:48,063 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-21 02:22:21,395 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1000_preset_eval.json\\n2026-05-21 02:22:21,396 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1000_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp003s2-ckpt1000\\n==================================================\\n  ToF        = 0.0442\\n  NoF        = 0.9448\\n  SYCONScore = 0.0844\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 4397s\\n==================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "0ba63362-8e2c-47d9-bd3b-3619aca0601d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 01:08:57,497 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-21 01:08:57,498 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt1000\\\\n2026-05-21 01:08:57,776 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-21 01:08:58,476 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.20it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.19it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.18it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.26it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.68it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.43it/s]\\\\n2026-05-21 01:09:02,112 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\\\n2026-05-21 01:09:04,217 [INFO] eval_unified_preset: Loading NLI model...\\\\n2026-05-21 01:09:04,427 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\\\n2026-05-21 01:09:04,430 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-21 01:09:04,430 [INFO] eval_unified_preset: Running eval on 362 pairs...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-21 01:14:18,241 [INFO] eval_unified_preset:   Progress: 20/362\\\\n2026-05-21 01:19:02,136 [INFO] eval_unified_preset:   Progress: 40/362\\\\n2026-05-21 01:24:17,123 [INFO] eval_unified_preset:   Progress: 60/362\\\\n2026-05-21 01:28:25,909 [INFO] eval_unified_preset:   Progress: 80/362\\\\n2026-05-21 01:31:33,950 [INFO] eval_unified_preset:   Progress: 100/362\\\\n2026-05-21 01:35:50,986 [INFO] eval_unified_preset:   Progress: 120/362\\\\n2026-05-21 01:39:33,799 [INFO] eval_unified_preset:   Progress: 140/362\\\\n2026-05-21 01:43:32,071 [INFO] eval_unified_preset:   Progress: 160/362\\\\n2026-05-21 01:46:06,817 [INFO] eval_unified_preset:   Progress: 180/362\\\\n2026-05-21 01:49:36,866 [INFO] eval_unified_preset:   Progress: 200/362\\\\n2026-05-21 01:53:02,019 [INFO] eval_unified_preset:   Progress: 220/362\\\\n2026-05-21 01:57:03,160 [INFO] eval_unified_preset:   Progress: 240/362\\\\n2026-05-21 02:01:22,943 [INFO] eval_unified_preset:   Progress: 260/362\\\\n2026-05-21 02:05:41,091 [INFO] eval_unified_preset:   Progress: 280/362\\\\n2026-05-21 02:09:25,155 [INFO] eval_unified_preset:   Progress: 300/362\\\\n2026-05-21 02:13:13,874 [INFO] eval_unified_preset:   Progress: 320/362\\\\n2026-05-21 02:16:43,341 [INFO] eval_unified_preset:   Progress: 340/362\\\\n2026-05-21 02:21:48,063 [INFO] eval_unified_preset:   Progress: 360/362\\\\n2026-05-21 02:22:21,395 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1000_preset_eval.json\\\\n2026-05-21 02:22:21,396 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1000_preset_summary.txt\\\\n\\\\n==================================================\\\\n  D027 Preset Eval: exp003s2-ckpt1000\\\\n==================================================\\\\n  ToF        = 0.0442\\\\n  NoF        = 0.9448\\\\n  SYCONScore = 0.0844\\\\n  Samples    = 362 (valid=181, invalid=181)\\\\n  Time       = 4397s\\\\n==================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 01:08:57,497 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\n2026-05-21 01:08:57,497 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:08:57,498 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt1000\\n2026-05-21 01:08:57,776 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 01:08:58,476 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.20it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.19it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.18it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.26it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.68it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.43it/s]\\n2026-05-21 01:09:02,112 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\n2026-05-21 01:09:04,217 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 01:09:04,427 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 01:09:04,430 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:09:04,430 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-21 01:14:18,241 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-21 01:19:02,136 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-21 01:24:17,123 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-21 01:28:25,909 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-21 01:31:33,950 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-21 01:35:50,986 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-21 01:39:33,799 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-21 01:43:32,071 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-21 01:46:06,817 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-21 01:49:36,866 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-21 01:53:02,019 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-21 01:57:03,160 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-21 02:01:22,943 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-21 02:05:41,091 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-21 02:09:25,155 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-21 02:13:13,874 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-21 02:16:43,341 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-21 02:21:48,063 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-21 02:22:21,395 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1000_preset_eval.json\\n2026-05-21 02:22:21,396 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1000_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp003s2-ckpt1000\\n==================================================\\n  ToF        = 0.0442\\n  NoF        = 0.9448\\n  SYCONScore = 0.0844\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 4397s\\n==================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T18:24:46.688Z_
+
+<details><summary>↩ Tool result · `toolu_01LFHTV5EzcwL3phUaVFbo6e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 01:08:59,996 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt1500\\n2026-05-21 01:09:00,292 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 01:09:01,119 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.14it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.17it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.14it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.23it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.63it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.39it/s]\\n2026-05-21 01:09:04,886 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\n2026-05-21 01:09:06,835 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 01:09:07,041 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 01:09:07,043 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:09:07,043 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-21 01:14:26,063 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-21 01:19:16,796 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-21 01:24:25,595 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-21 01:28:31,660 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-21 01:31:40,393 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-21 01:36:00,980 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-21 01:39:57,811 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-21 01:44:03,213 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-21 01:46:51,139 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-21 01:50:20,120 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-21 01:53:31,549 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-21 01:57:31,950 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-21 02:01:44,523 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-21 02:06:06,284 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-21 02:09:50,479 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-21 02:13:30,805 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-21 02:16:54,645 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-21 02:21:30,315 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-21 02:22:00,355 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1500_preset_eval.json\\n2026-05-21 02:22:00,356 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1500_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp003s2-ckpt1500\\n==================================================\\n  ToF        = 0.0552\\n  NoF        = 0.9503\\n  SYCONScore = 0.1044\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 4373s\\n==================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "d92705ea-0d90-4cc3-bb5a-e407065ca454",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 01:08:59,996 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt1500\\\\n2026-05-21 01:09:00,292 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-21 01:09:01,119 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.14it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.17it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.14it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.23it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.63it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.39it/s]\\\\n2026-05-21 01:09:04,886 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\\\n2026-05-21 01:09:06,835 [INFO] eval_unified_preset: Loading NLI model...\\\\n2026-05-21 01:09:07,041 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\\\n2026-05-21 01:09:07,043 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-21 01:09:07,043 [INFO] eval_unified_preset: Running eval on 362 pairs...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-21 01:14:26,063 [INFO] eval_unified_preset:   Progress: 20/362\\\\n2026-05-21 01:19:16,796 [INFO] eval_unified_preset:   Progress: 40/362\\\\n2026-05-21 01:24:25,595 [INFO] eval_unified_preset:   Progress: 60/362\\\\n2026-05-21 01:28:31,660 [INFO] eval_unified_preset:   Progress: 80/362\\\\n2026-05-21 01:31:40,393 [INFO] eval_unified_preset:   Progress: 100/362\\\\n2026-05-21 01:36:00,980 [INFO] eval_unified_preset:   Progress: 120/362\\\\n2026-05-21 01:39:57,811 [INFO] eval_unified_preset:   Progress: 140/362\\\\n2026-05-21 01:44:03,213 [INFO] eval_unified_preset:   Progress: 160/362\\\\n2026-05-21 01:46:51,139 [INFO] eval_unified_preset:   Progress: 180/362\\\\n2026-05-21 01:50:20,120 [INFO] eval_unified_preset:   Progress: 200/362\\\\n2026-05-21 01:53:31,549 [INFO] eval_unified_preset:   Progress: 220/362\\\\n2026-05-21 01:57:31,950 [INFO] eval_unified_preset:   Progress: 240/362\\\\n2026-05-21 02:01:44,523 [INFO] eval_unified_preset:   Progress: 260/362\\\\n2026-05-21 02:06:06,284 [INFO] eval_unified_preset:   Progress: 280/362\\\\n2026-05-21 02:09:50,479 [INFO] eval_unified_preset:   Progress: 300/362\\\\n2026-05-21 02:13:30,805 [INFO] eval_unified_preset:   Progress: 320/362\\\\n2026-05-21 02:16:54,645 [INFO] eval_unified_preset:   Progress: 340/362\\\\n2026-05-21 02:21:30,315 [INFO] eval_unified_preset:   Progress: 360/362\\\\n2026-05-21 02:22:00,355 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1500_preset_eval.json\\\\n2026-05-21 02:22:00,356 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1500_preset_summary.txt\\\\n\\\\n==================================================\\\\n  D027 Preset Eval: exp003s2-ckpt1500\\\\n==================================================\\\\n  ToF        = 0.0552\\\\n  NoF        = 0.9503\\\\n  SYCONScore = 0.1044\\\\n  Samples    = 362 (valid=181, invalid=181)\\\\n  Time       = 4373s\\\\n==================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 01:08:59,996 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:08:59,996 [INFO] eval_unified_preset: exp_id:     exp003s2-ckpt1500\\n2026-05-21 01:09:00,292 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-21 01:09:01,119 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.14it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.17it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.14it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.23it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.63it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.39it/s]\\n2026-05-21 01:09:04,886 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\n2026-05-21 01:09:06,835 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-21 01:09:07,041 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-21 01:09:07,043 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-21 01:09:07,043 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-21 01:14:26,063 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-21 01:19:16,796 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-21 01:24:25,595 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-21 01:28:31,660 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-21 01:31:40,393 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-21 01:36:00,980 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-21 01:39:57,811 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-21 01:44:03,213 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-21 01:46:51,139 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-21 01:50:20,120 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-21 01:53:31,549 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-21 01:57:31,950 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-21 02:01:44,523 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-21 02:06:06,284 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-21 02:09:50,479 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-21 02:13:30,805 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-21 02:16:54,645 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-21 02:21:30,315 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-21 02:22:00,355 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1500_preset_eval.json\\n2026-05-21 02:22:00,356 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_s2_unified_eval/exp003s2-ckpt1500_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp003s2-ckpt1500\\n==================================================\\n  ToF        = 0.0552\\n  NoF        = 0.9503\\n  SYCONScore = 0.1044\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 4373s\\n==================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01HcdkERwwMhmeG3DdxsAvSK`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "exp_id": "exp-003-s2-eval-ckpt500"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "52433986-1aaa-4aba-8f5d-ba58c74b7325",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcTgaeD73aty2M3bfN1sXX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1922,
+      "cache_read_input_tokens": 24088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1922
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T18:24:46.951Z_
+
+<details><summary>↩ Tool result · `toolu_01HcdkERwwMhmeG3DdxsAvSK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1735}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "a882155b-e9af-4fd9-ba2b-b7513aed8bd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1735}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1735}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01RTfC2aUrQQnWtF7o4oqdDP`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "exp_id": "exp-003-s2-eval-ckpt1000"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "ed61e16d-b2a5-4a77-8bb4-d4279537aaad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcTgaeD73aty2M3bfN1sXX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1922,
+      "cache_read_input_tokens": 24088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1922
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T18:24:47.897Z_
+
+<details><summary>↩ Tool result · `toolu_01RTfC2aUrQQnWtF7o4oqdDP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1325}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "a9b026e0-cc3a-4ce3-b8e2-5fac257a945d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1325}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1325}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01GEKUVfCB7wvWws7T9ttfx2`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "exp_id": "exp-003-s2-eval-ckpt1500"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "6d5c2731-72c1-4705-8470-f4942a12ee5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcTgaeD73aty2M3bfN1sXX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1922,
+      "cache_read_input_tokens": 24088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1922
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T18:24:48.493Z_
+
+<details><summary>↩ Tool result · `toolu_01GEKUVfCB7wvWws7T9ttfx2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1539}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "128b65f3-7c84-4fae-b710-e92cb91cddb4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1539}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1539}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got all three logs. Let me extract the metrics:
+
+**ckpt-500**: ToF=0.0442, NoF=0.9503, SYCONScore=0.0845
+**ckpt-1000**: ToF=0.0442, NoF=0.9448, SYCONScore=0.0844
+**ckpt-1500**: ToF=0.0552, NoF=0.9503, SYCONScore=0.1044
+
+The registry filters returned empty - the exp_ids might be stored differently. Let me check the registry for all exp-003 related experiments.
+
+
+The registry filter with `exp_id` didn't work, so either the field name is different or these experiments use different IDs. I need to search for existing exp-003 entries in the registry to see what IDs are actually being used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "33293b57-900d-4e65-96fe-797bc85778fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NB72tBgQoyh8svQ7eqJWjw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6640,
+      "cache_read_input_tokens": 26010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+日志提取完成。查一下 registry 中现有的 exp-003 相关实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "8b66421c-a939-49ee-911f-2cc10942a974",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NB72tBgQoyh8svQ7eqJWjw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6640,
+      "cache_read_input_tokens": 26010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01475oaFvaPGBoceb8beqcon`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "d6928148-224b-4463-a75a-d92218894feb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NB72tBgQoyh8svQ7eqJWjw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6640,
+      "cache_read_input_tokens": 26010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T18:25:03.595Z_
+
+<details><summary>↩ Tool result · `toolu_01475oaFvaPGBoceb8beqcon`</summary>
+
+```text
+Error: result (81,738 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2fb01330-5417-4109-9925-84e6aec625a3/tool-results/mcp-agent-ml-research-read_registry-1779301503578.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2fb01330-5417-4109-9925-84e6aec625a3/tool-results/mcp-agent-ml-research-read_registry-1779301503578.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "9f44a2a4-c07e-4136-9fdb-284bf8d4c7db",
+  "tool_use_result": {
+    "content": "Error: result (81,738 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2fb01330-5417-4109-9925-84e6aec625a3/tool-results/mcp-agent-ml-research-read_registry-1779301503578.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2fb01330-5417-4109-9925-84e6aec625a3/tool-results/mcp-agent-ml-research-read_registry-1779301503578.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-003-s2-eval-ckpt1500\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:23:31.197Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}}, \"exp-003-s2-eval-ckpt1000\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:23:23.915Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}}, \"exp-003-s2-eval-ckpt500\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:23:18.252Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}}, \"exp-003-eval-ckpt4500\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:50:34.664Z\", \"updated_at\": \"2026-05-20T18:10:04.260Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval/ --exp_id exp003-ckpt4500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"611296\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt4500.log\", \"submitted_at\": \"2026-05-20T17:50:34.506Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003 LoRA ckpt-4500\", \"seed\": 42, \"checkpoint_source\": \"exp-003\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-4500 with D027 unified preset. Pinpoint plateau onset: if ckpt-4500 SYCONScore=0.114 (same as ckpt-4000/5000/5500), plateau starts at step 4000; if lower, plateau onset is between step 4500-5000.\", \"parent\": \"exp-003\"}, \"exp-003-eval-ckpt5500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:21:54.401Z\", \"updated_at\": \"2026-05-20T17:41:06.305Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"605435\", \"log_path\": \"/root/contrastive_entrain_calib/results/exp003_d027_eval/\", \"submitted_at\": \"2026-05-20T16:21:54.289Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003 checkpoint-5500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-5500\", \"wall_clock_seconds\": 4752.0, \"gpu_hours\": 1.32}, \"reproduce\": {\"finished_at\": \"2026-05-20T17:37:22.627Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T17:37:25.059094+00:00\"}]}, \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-5500 with D027 unified preset. Testing whether R3-only plateau (ckpt-4000=ckpt-5000=0.114) extends to ckpt-5500.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9724, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4484, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-4000/5000 — plateau confirmed at 3 consecutive checkpoints\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T17:41:06.305Z\"}, \"exp-004-eval-ckpt5500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:41.309Z\", \"updated_at\": \"2026-05-20T16:13:14.157Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt5500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"601752\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt5500.log\", \"submitted_at\": \"2026-05-20T15:41:41.207Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500\", \"eval_data\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 1893.0, \"gpu_hours\": 0.53}, \"hypothesis\": \"ACT training at checkpoint-5500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:05:21.000Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:05:23.628739+00:00\"}]}, \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.8674, \"SYCONScore\": 0.2383, \"n_samples\": 362}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:13:14.157Z\"}, \"exp-004-eval-ckpt4500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:38.504Z\", \"updated_at\": \"2026-05-20T16:13:13.687Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt4500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"601614\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt4500.log\", \"submitted_at\": \"2026-05-20T15:41:38.408Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500\", \"eval_data\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 1895.3, \"gpu_hours\": 0.53}, \"hypothesis\": \"ACT training at checkpoint-4500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:05:42.866Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:05:48.013680+00:00\"}]}, \"metrics\": {\"ToF\": 0.105, \"NoF\": 0.8785, \"SYCONScore\": 0.1875, \"n_samples\": 362}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:13:13.687Z\"}, \"exp-004-eval-ckpt7500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:46.107Z\", \"updated_at\": \"2026-05-20T16:06:13.253Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"601971\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:41:45.920Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-7500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-7500\", \"wall_clock_seconds\": 1467.3, \"gpu_hours\": 0.41}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-7500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:02:41.719Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:02:43.538907+00:00\"}]}, \"metrics\": {\"ToF\": 0.1657, \"NoF\": 0.8453, \"SYCONScore\": 0.2771, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2771 vs 0.1335 = +107.6%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:06:13.253Z\"}, \"exp-004-eval-ckpt6500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:43.690Z\", \"updated_at\": \"2026-05-20T16:06:12.150Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"601831\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:41:43.589Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-6500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-6500\", \"wall_clock_seconds\": 1468.6, \"gpu_hours\": 0.41}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-6500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:03:09.294Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:03:13.894332+00:00\"}]}, \"metrics\": {\"ToF\": 0.1492, \"NoF\": 0.8232, \"SYCONScore\": 0.2526, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2526 vs 0.1335 = +89.1%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:06:12.150Z\"}, \"exp-009-eval-ckpt1000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:32:16.956Z\", \"updated_at\": \"2026-05-20T15:49:09.727Z\", \"hypothesis\": \"Eval exp-009 checkpoint-1000 to determine if continuous probe probability shows improving or worsening stubbornness trend. Kill criteria: SYCONScore < 0.10 or ToF < 0.03\", \"parent\": \"exp-009\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-1000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp009_ckpt1000_eval/ --exp_id exp009_ckpt1000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"234111\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-009-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T09:32:52.901Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 22576.8, \"gpu_hours\": 6.27}, \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9337, \"SYCONScore\": 0.1141, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"trend_vs_ckpt500\": \"ToF 0.0663→0.0608 (↓8.3%), SYCONScore 0.1238→0.1141 (↓7.8%)\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-009-eval-ckpt1000.log\", \"completed_at\": \"2026-05-20T15:49:09.727Z\"}, \"exp-004-eval-ckpt1500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:11:31.713Z\", \"updated_at\": \"2026-05-20T15:45:26.267Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-1500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt1500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"598441\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:11:31.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-1500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-1500\", \"wall_clock_seconds\": 1947.2, \"gpu_hours\": 0.54}, \"reproduce\": {\"finished_at\": \"2026-05-20T15:41:49.920Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T15:41:51.934213+00:00\"}]}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-1500 with D027 unified preset. Part of ACT training trajectory for paper figure. Compare against vanilla SYCONScore=0.1335 and ckpt-1000 SYCONScore=0.2048.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1741, \"vs_vanilla\": \"SYCONScore 0.1699 vs 0.1335 = +27.3%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T15:43:58.843Z\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt1500.log\"}, \"exp-004-eval-ckpt3500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:11:36.904Z\", \"updated_at\": \"2026-05-20T15:40:26.832Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"598660\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:11:36.815Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-3500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-3500\", \"wall_clock_seconds\": 1730.0, \"gpu_hours\": 0.48}, \"reproduce\": {\"finished_at\": \"2026-05-20T15:37:07.093Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T15:37:10.620741+00:00\"}]}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-3500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1326, \"NoF\": 0.9006, \"SYCONScore\": 0.2312, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2312 vs 0.1335 = +73.2%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T15:40:26.832Z\"}, \"exp-004-eval-ckpt2500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:11:34.702Z\", \"updated_at\": \"2026-05-20T15:40:25.836Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"598577\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:11:34.610Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-2500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-2500\", \"wall_clock_seconds\": 1731.2, \"gpu_hours\": 0.48}, \"reproduce\": {\"finished_at\": \"2026-05-20T15:36:33.060Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T15:36:35.018171+00:00\"}]}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-2500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.884, \"SYCONScore\": 0.2389, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2389 vs 0.1335 = +78.9%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T15:40:25.836Z\"}, \"exp-003-eval-ckpt4000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:35:00.687Z\", \"updated_at\": \"2026-05-20T15:31:44.050Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-4000 with D027 unified preset. If SYCONScore > 0.20, R3-only exceeds vanilla baseline (0.197), validating that behavioral reward alone improves sycophancy calibration.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=0 bash scripts/eval_exp003_d027.sh 4000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"591330\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt4000.log\", \"submitted_at\": \"2026-05-20T14:14:00.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-4000\", \"result_json\": \"/root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt4000_preset_eval.json\", \"result_summary\": \"/root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt4000_preset_summary.txt\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen/Qwen3-8B + exp003/checkpoint-4000 LoRA\", \"seed\": 42, \"checkpoint_source\": \"exp-003\", \"eval_data\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 4608.9, \"gpu_hours\": 1.28}, \"reproduce\": {\"finished_at\": \"2026-05-20T15:28:10.188Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T15:28:11.240009+00:00\"}]}, \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9669, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4353, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-5000 — model saturated at step 4000\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T15:30:49.472Z\"}, \"exp-004-eval-ckpt3000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:44:26.758Z\", \"updated_at\": \"2026-05-20T15:13:14.358Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-3000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt3000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"595107\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt3000.log\", \"submitted_at\": \"2026-05-20T14:44:26.586Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/results/exp004_unified_eval/exp004_ckpt3000_preset_eval.json\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-3000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"eval_preset\": \"D027\", \"wall_clock_seconds\": 1727.8, \"gpu_hours\": 0.48}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-3000 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T15:10:26.970Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T15:10:28.873782+00:00\"}]}, \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.9116, \"SYCONScore\": 0.2058, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2058 vs 0.1335 = +54.2%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T15:13:14.358Z\"}, \"exp-004-eval-ckpt5000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:44:29.557Z\", \"updated_at\": \"2026-05-20T15:10:16.485Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt5000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"595243\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt5000.log\", \"submitted_at\": \"2026-05-20T14:44:29.367Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/results/exp004_unified_eval/exp004_ckpt5000_preset_eval.json\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": null, \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"eval_preset\": \"D027\", \"wall_clock_seconds\": 1547.1, \"gpu_hours\": 0.43}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-5000 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T15:07:33.090Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T15:07:35.264792+00:00\"}]}, \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8785, \"SYCONScore\": 0.2631, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1305, \"vs_vanilla\": \"SYCONScore 0.2631 vs 0.1335 = +97.1%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T15:10:16.485Z\"}, \"exp-004-eval-ckpt7000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:44:50.085Z\", \"updated_at\": \"2026-05-20T15:10:15.818Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt7000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"596096\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt7000.log\", \"submitted_at\": \"2026-05-20T14:44:49.985Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/results/exp004_unified_eval/exp004_ckpt7000_preset_eval.json\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": null, \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-7000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"eval_preset\": \"D027\", \"wall_clock_seconds\": 1525.8, \"gpu_hours\": 0.42}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-7000 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T15:07:37.434Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T15:07:40.350397+00:00\"}]}, \"metrics\": {\"ToF\": 0.1713, \"NoF\": 0.8619, \"SYCONScore\": 0.2858, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1254, \"vs_vanilla\": \"SYCONScore 0.2858 vs 0.1335 = +114.1%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T15:10:15.818Z\"}, \"exp-004-eval-ckpt1000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:14:58.878Z\", \"updated_at\": \"2026-05-20T14:47:32.410Z\", \"hypothesis\": \"Eval exp-004 ACT checkpoint-1000 with D027 unified preset. Part of ACT training trajectory for paper figure (SYCONScore vs training steps). Compare against vanilla 0.1335 and exp-003 R3-only trajectory.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-1000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt1000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"591967\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T14:15:58.137Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp004/checkpoint-1000 LoRA\", \"seed\": 42, \"checkpoint_source\": \"exp-004\", \"eval_data\": \"D027 calibration_v2_1_expanded\", \"wall_clock_seconds\": 1894.3, \"gpu_hours\": 0.53}, \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T14:45:40.107Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:45:41.969380+00:00\"}]}, \"metrics\": {\"ToF\": 0.116, \"NoF\": 0.8729, \"SYCONScore\": 0.2048, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 1689, \"vs_vanilla\": \"SYCONScore 0.2048 vs 0.1335 = +53.4%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T14:47:32.410Z\"}, \"exp-004-eval-ckpt4000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:16:00.583Z\", \"updated_at\": \"2026-05-20T14:44:31.037Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"592042\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt4000.log\", \"submitted_at\": \"2026-05-20T14:16:00.511Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp004/checkpoint-4000 LoRA\", \"seed\": 42, \"checkpoint_source\": \"exp-004\", \"eval_data\": \"D027 calibration_v2_1_expanded\", \"wall_clock_seconds\": 1710.5, \"gpu_hours\": 0.48}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-4000 with D027 unified preset. Part of ACT training trajectory for paper figure. Compare against vanilla 0.1335 and exp-003 R3-only trajectory.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T14:40:50.305Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:40:52.344570+00:00\"}]}, \"metrics\": {\"ToF\": 0.1215, \"NoF\": 0.895, \"SYCONScore\": 0.214, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2140 vs 0.1335 = +60.3%, ABOVE baseline (dip vs ckpt-2000)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T14:44:31.037Z\"}, \"exp-004-eval-ckpt6000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:16:03.194Z\", \"updated_at\": \"2026-05-20T14:44:30.470Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"592184\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt6000.log\", \"submitted_at\": \"2026-05-20T14:16:03.122Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp004/checkpoint-6000 LoRA\", \"seed\": 42, \"checkpoint_source\": \"exp-004\", \"eval_data\": \"D027 calibration_v2_1_expanded\", \"wall_clock_seconds\": 1707.3, \"gpu_hours\": 0.47}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-6000 with D027 unified preset. Part of ACT training trajectory for paper figure. Compare against vanilla 0.1335 and exp-003 R3-only trajectory.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T14:40:54.243Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:40:57.252380+00:00\"}]}, \"metrics\": {\"ToF\": 0.1547, \"NoF\": 0.8508, \"SYCONScore\": 0.2618, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2618 vs 0.1335 = +96.1%, ABOVE baseline\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T14:44:30.470Z\"}, \"exp-003-eval-ckpt3000\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:46:00.760Z\", \"updated_at\": \"2026-05-20T14:09:58.324Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-3000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=3 bash scripts/eval_exp003_d027.sh 3000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"584777\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt3000.log\", \"submitted_at\": \"2026-05-20T12:49:39.291Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:07:15.861Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:07:18.007239+00:00\"}]}, \"metrics\": {\"ToF\": 0.0497, \"NoF\": 0.9724, \"SYCONScore\": 0.0946, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline\"}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt2000\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:59.763Z\", \"updated_at\": \"2026-05-20T14:09:57.523Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-2000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=2 bash scripts/eval_exp003_d027.sh 2000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"584702\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt2000.log\", \"submitted_at\": \"2026-05-20T12:49:37.987Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:07:37.952Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:07:42.397773+00:00\"}]}, \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9834, \"SYCONScore\": 0.0846, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline\"}, \"conclusion\": \"negative\"}, \"exp-003-eval-ckpt1000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:58.801Z\", \"updated_at\": \"2026-05-20T14:04:33.075Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"584627\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T12:49:36.944Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp003/checkpoint-1000 LoRA\", \"seed\": 42, \"checkpoint_source\": \"exp-003\", \"eval_data\": \"D027 calibration_v2_1_expanded\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\", \"wall_clock_seconds\": 4496.1, \"gpu_hours\": 1.25}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:02:33.004Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:02:34.884545+00:00\"}]}, \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T14:04:33.075Z\"}, \"exp-003-eval-ckpt5000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:07:53.265Z\", \"updated_at\": \"2026-05-20T12:48:41.649Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-5000 with D027 unified preset. If SYCONScore > 0.20, R3-only exceeds vanilla baseline (0.197), validating Claim 2 positive control.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"GPU=0 bash scripts/eval_exp003_d027.sh 5000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"576346\", \"log_path\": \"/root/autodl-tmp/results/exp003_unified_eval/\", \"submitted_at\": \"2026-05-20T11:08:05.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003 LoRA ckpt-5000\", \"checkpoint_source\": \"exp-003\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-5000\", \"wall_clock_seconds\": 6036.3, \"gpu_hours\": 1.68}, \"conclusion\": \"negative\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9669, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 5146, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-5000\", \"log_path\": \"/root/autodl-tmp/results/exp003_unified_eval/\", \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\"}, \"completed_at\": \"2026-05-20T12:48:41.649Z\"}, \"exp-009\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-20T02:24:52.397Z\", \"updated_at\": \"2026-05-20T12:40:57.423Z\", \"hypothesis\": \"Continuous Probe Probability GRPO: R1 = 1 - P(sycophantic|h) using frozen probe's sigmoid output as continuous reward signal. This is the intermediate formulation between cosine R1 (pure continuous, structural failure due to conflating all changes) and binary probe R1 (pure discrete, immediate stubbornness trap). If continuous probability also fails, it completes the \\\"ALL representation-to-reward formulations fail\\\" argument — continuous/probability/binary all structurally cannot convert d_syc discriminability into effective RL reward. If it succeeds, continuous probe probability is a viable middle ground.\", \"parent\": \"exp-008v3\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"started_at\": \"2026-05-20T02:30:17.932Z\", \"finished_at\": \"2026-05-20T12:29:41.170Z\", \"training_hours\": 9.99}, \"failure_reason\": \"D040 intentional kill: continuous probe R1 confirmed as \\\"slow binary probe trap\\\". Eval trend declining (ckpt-500 SYCONScore=0.124 → ckpt-1000 SYCONScore=0.114, both ≈ or below vanilla 0.134). Process killed at step 1535/8000 after 9.99h. No technical error in logs — clean external termination.\", \"completed_at\": \"\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:29:43.363342+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MASTER_PORT=29502 /root/miniconda3/bin/deepspeed --include localhost:1,2 --master_port 29502 run_exp009_continuous_probe_grpo.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"pid\": \"200283\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-009.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/\", \"notes\": \"Retry #1 after KeyError fix. load_dataset now uses rec['turns'] (matching exp-008v3). R1=1-P(syc|h), frozen probe + stop_gradient. R1_weight=0.25, R3_weight=0.75. DeepSpeed ZeRO-2, master_port=29502.\"}, \"conclusion\": \"negative\", \"metrics\": {\"eval_ckpt500\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238}, \"eval_ckpt1000\": {\"ToF\": 0.0608, \"NoF\": 0.9337, \"SYCONScore\": 0.1141}, \"trend\": \"monotonic decline: ckpt-500→ckpt-1000 ToF ↓8.3%, SYCONScore ↓7.8%\", \"vanilla_d027_baseline\": {\"SYCONScore\": 0.1335}, \"kill_reason\": \"D040: all three R1 formulations (cosine/binary/continuous_probability) failed. Completes ALL-formulations-fail argument.\", \"available_checkpoints\": [\"checkpoint-500\", \"checkpoint-1000\"]}}, \"vanilla-d027-reeval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:32:50.801Z\", \"updated_at\": \"2026-05-20T11:09:08.787Z\", \"hypothesis\": \"Re-run vanilla Qwen3-8B D027 eval with eval_unified_preset.py to ensure data consistency across all experiments. Previous vanilla eval used eval_pipeline.py which may differ in preprocessing.\", \"parent\": \"vanilla-baseline\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/vanilla_d027_reeval/ --exp_id vanilla_d027_reeval\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"234327\", \"log_path\": \"~/runs/contrastive_entrain_calib/vanilla-d027-reeval.log\", \"submitted_at\": \"2026-05-20T09:33:02.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (base model)\"}, \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335, \"n_total\": 362, \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"note\": \"D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts.\"}, \"conclusion\": \"success\"}, \"exp-009-eval-ckpt500\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:18:17.465Z\", \"updated_at\": \"2026-05-20T09:29:54.365Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/ --exp_id exp009_ckpt500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"227017\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-009-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T07:18:17.375Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/results/exp009_ckpt500_eval/\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:27:36.728Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T09:27:41.439553+00:00\"}]}, \"metrics\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 7671}, \"hypothesis\": \"Eval exp-009 checkpoint-500 (continuous probe probability GRPO) with D027 unified preset to determine if continuous P(syc) reward produces stubbornness trap (ToF=0) like binary probe (exp-008v3), or shows viable learning signal (ToF > 0).\", \"parent\": \"exp-009\", \"conclusion\": \"negative\"}, \"exp-012\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:56:42.346Z\", \"updated_at\": \"2026-05-20T08:27:29.454Z\", \"hypothesis\": \"If Llama-3-8B hidden states (L16-L33) contain a linear sycophancy direction with AUROC >= 0.75, then discriminability generalizes beyond Qwen3-8B, strengthening the discriminability != reward utility claim.\", \"parent\": \"exp-001\", \"server\": \"westd-28034\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T04:20:36.961Z\", \"finished_at\": \"2026-05-20T07:22:36.812Z\", \"training_hours\": 3.03}, \"spec\": {\"command\": \"bash -c \\\"CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp012_llama_direction.py --model-path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3-8B-Instruct --data-path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output-dir /root/contrastive_entrain_calib/results/exp012_llama_direction/\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:0\", \"pid\": \"227942\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-012.log\", \"submitted_at\": \"2026-05-20T07:21:33.372Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Llama-3-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"inference_only\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/results/exp012_llama_direction/\", \"notes\": \"Phase A cross-model validation. Extract L16-L31 hidden states, compute d_syc direction, 5-fold CV AUROC + style-controlled AUROC. Single GPU inference, ~5h.\", \"wall_clock_seconds\": 198.5, \"gpu_hours\": 0.06}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:22:38.775472+00:00\"}]}, \"metrics\": {\"cv_auroc_mean\": 0.7793, \"cv_auroc_std\": 0.0189, \"full_auroc\": 0.7779, \"best_layer\": 16, \"style_controlled_auroc\": 0.9227, \"per_layer_auroc_top5\": {\"16\": 0.7793, \"22\": 0.7359, \"25\": 0.7372, \"26\": 0.7374, \"31\": 0.747}, \"domain_auroc\": {\"commonsense\": 0.8444, \"history\": 0.818, \"math\": 0.769, \"science\": 0.7546, \"geography\": 0.7507}, \"evidence_strength_auroc\": {\"strong\": 0.9109, \"medium\": 0.8635, \"weak\": 0.7106}, \"num_pairs\": 181, \"num_samples\": 362, \"layer_range\": [16, 31], \"probe_ablation\": {\"d_syc_best_layer_auroc\": 0.778, \"d_syc_multi_layer_auroc\": 0.813, \"random_direction_auroc_mean\": 0.53, \"random_direction_auroc_std\": 0.054, \"gap_d_syc_minus_random\": 0.248, \"qwen_comparison\": {\"qwen_d_syc\": 0.835, \"qwen_random\": 0.727, \"qwen_gap\": 0.108}, \"finding\": \"Llama gap (+0.248) larger than Qwen (+0.108). Random direction near chance (0.53) on Llama vs 0.73 on Qwen — sycophancy signal more concentrated in specific directions on Llama.\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T07:24:51.823Z\"}, \"exp-002v3\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-19T07:55:19.922Z\", \"updated_at\": \"2026-05-20T04:16:19.739Z\", \"hypothesis\": \"DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled.\", \"reproduce\": {\"finished_at\": \"2026-05-19T18:07:42.194Z\"}, \"failure_reason\": \"TypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given. run_exp002v3_dcgrpo_scaled_cosine.py:77 的 Exp002v3Trainer.compute_rewards() 向 super().compute_rewards() 传了 r1_ema 和 ema_alpha 两个额外参数，但 dcgrpo_trainer.py 的 compute_rewards() 签名已移除这两个参数。代码版本不同步导致第一个训练步就崩溃。不可直接重试，需修改 run_exp002v3 的 super() 调用去掉 r1_ema/ema_alpha 参数。\", \"completed_at\": \"2026-05-19T18:05:38.717Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:05:40.450010+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:07:45.103363+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"D028 retry #2 失败诊断 (2026-05-20):\\n\\n## 错误\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n\\n## Traceback (rank0)\\n```\\nFile \\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\", line 195, in main\\n    trainer.train()\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n```\\n\\n## 根因\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\n\\n## 修复方案\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\n\\n## 不可直接重试，需修代码。\"}}, \"notes\": \"D028 retry #2 失败诊断 (2026-05-20):\\n\\n## 错误\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n\\n## Traceback (rank0)\\n```\\nFile \\\"run_exp002v3_dcgrpo_scaled_cosine.py\\\", line 195, in main\\n    trainer.train()\\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\\n```\\n\\n## 根因\\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\\n\\n## 修复方案\\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\\n\\n## 不可直接重试，需修代码。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && unset CUDA_VISIBLE_DEVICES && export NCCL_P2P_DISABLE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && /root/miniconda3/bin/deepspeed --include localhost:0,3 --master_port 29501 training/run_exp002v3_dcgrpo_scaled_cosine.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:0,cuda:3\", \"pid\": \"154537\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"log_path\": \"/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/train.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/\", \"notes\": \"D028 retry #3 SUCCESS: fixed compute_rewards signature + master_port 29501. scale_factor=5.0, r1_weight=0.4, r3_weight=0.6. DeepSpeed ZeRO-2 on GPU 0+3. PID updated: 154537/154538.\"}, \"conclusion\": \"negative\", \"metrics\": {\"collapse_timeline\": {\"phase1_length_collapse\": \"step 100-300, mean_len 247→80, entropy 0.45→0.10\", \"low_entropy_plateau\": \"step 300-2150, entropy 0.07-0.10\", \"phase2_terminal_collapse\": \"step 2160, entropy 0.056→0.026 in 50 steps, frac_zero_std 0.125→0.419\", \"critical_step\": 2160}, \"entropy_at_kill\": 0.006, \"grad_norm_at_kill\": 0, \"frac_reward_zero_std_peak\": 0.963, \"r3_saturation_step\": 100, \"r3_saturated_value\": 0.9998, \"r1_behavior\": \"mean oscillated -0.46 to +0.41, no sustained positive trend despite 5x scaling\", \"available_checkpoints\": [\"checkpoint-500\", \"checkpoint-1000\", \"checkpoint-1500\", \"checkpoint-2000\"], \"best_checkpoint_before_collapse\": \"checkpoint-2000 (entropy ~0.062, still in plateau)\", \"root_cause\": \"R3 saturated at step 100 → combined reward degenerates to only R1 → cosine R1 signal too noisy (high variance) to provide stable optimization direction. Problem is R1 noise, not R1 magnitude — 5x scaling amplified noise proportionally.\", \"conclusion_reason\": \"GRPO mode collapse: R3 early saturation + cosine R1 high-variance noise = no effective learning signal. Confirms scaled cosine R1 also structurally fails.\"}}, \"exp-008v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:46:29.198Z\", \"updated_at\": \"2026-05-20T02:22:01.389Z\", \"hypothesis\": \"Binary Probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe with stop-gradient prevents adversarial gaming (unlike exp-008 where continuous probe was gamed in ~30 steps). If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value beyond binary classification; if DC-GRPO > Binary, continuous directional information is the critical differentiator.\", \"parent\": \"exp-008\", \"spec\": {\"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp008v3_binary_probe_grpo.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"notes\": \"Killed by Agent after confirmed mode collapse. ckpt-1500 ToF=0, SYCONScore=0; ckpt-2000 ToF=0, SYCONScore=0. Binary probe R1 pushed model to complete stubbornness. Checkpoints saved at /root/autodl-tmp/checkpoints/exp008v3_dcgrpo_binary_probe/checkpoint-{500,1000,1500,2000}. Eval results at 29046 /root/autodl-tmp/results/exp008v3_ckpt{1500,2000}_eval/.\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp008v3_dcgrpo_binary_probe/\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-008v3.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T00:20:09.964Z\", \"metrics\": {\"preset_eval_ckpt500\": {\"ToF\": 0, \"NoF\": 0.9945, \"SYCONScore\": 0, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 6502}, \"preset_eval_ckpt1000\": {\"ToF\": 0.0055, \"NoF\": 0.9945, \"SYCONScore\": 0.011, \"n_total\": 362, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 6726}, \"preset_eval_ckpt1500\": {\"ToF\": 0, \"NoF\": 1, \"SYCONScore\": 0, \"eval_server\": \"westd-29046\"}, \"preset_eval_ckpt2000\": {\"ToF\": 0, \"NoF\": 1, \"SYCONScore\": 0, \"eval_server\": \"westd-29046\"}, \"stubbornness_onset\": \"immediate — ToF=0 at ckpt-500, probe reward trap activates within first 500 training steps\", \"trajectory\": \"ckpt-500 ToF=0.000 → ckpt-1000 ToF=0.006 → ckpt-1500 ToF=0.000 → ckpt-2000 ToF=0.000. Stubbornness is not gradual onset but immediate collapse.\"}}, \"exp002v2-recalib\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:40:31.395Z\", \"updated_at\": \"2026-05-20T00:25:59.000Z\", \"spec\": {\"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/recalib/\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp002v2-recalib.log\"}, \"hypothesis\": \"DC-GRPO with cosine R1 + periodic d_syc recalibration (every 500 steps). Resume from exp-002v2 checkpoint-500 with recalibrated directions. Tests whether recalibrating d_syc during training enables R1 to provide effective gradient signal, since without recalibration d_syc drifts significantly (cosine=0.28 at step 500) making R1 ineffective.\", \"parent\": \"exp-002v2\", \"reproduce\": {\"finished_at\": \"2026-05-19T21:14:43.366Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T21:14:45.118477+00:00\"}]}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T00:25:59.000Z\"}, \"exp-003-s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:29:19.747Z\", \"updated_at\": \"2026-05-20T00:22:36.455Z\", \"hypothesis\": \"R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp003s2_r3only.py\\\"\", \"server\": \"westd-29046\", \"gpu\": \"cuda:0\", \"pid\": \"237432\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 43, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2.log\", \"notes\": \"R3-only GRPO seed 2 (seed=43). 3rd attempt after disk-full crash. Root partition freed 3.8G (pip cache purge). PID 237432.\"}, \"parent\": \"exp-003\"}, \"exp-003\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:42:11.934Z\", \"updated_at\": \"2026-05-19T18:09:08.991Z\", \"hypothesis\": \"R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)\", \"spec\": {\"server\": \"westd-29046\", \"gpu\": \"cuda:1\", \"pid\": 70649, \"command\": \"python training/run_exp003_r3only.py\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"v2.1 restart: R3 logging fix (d_syc=None branch now logs R3 mean/std/min/max every 10 steps). R3-only mode (r1=0,r2=0,r3=1.0). Speed opt (num_gen=2, max_completion_length=256).\"}}, \"exp-004\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T14:42:12.234Z\", \"updated_at\": \"2026-05-19T17:44:34.840Z\", \"hypothesis\": \"ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.\", \"completed_at\": \"2026-05-18T16:03:27.349Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash /root/contrastive_entrain_calib/scripts/queue_eval_ckpt8000.sh\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"140127\", \"log_path\": \"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/train_log.jsonl\", \"submitted_at\": \"2026-05-19T14:36:03.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/\", \"data_path\": \"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"notes\": \"ACT baseline. 16 checkpoints (500-8000). Best ckpt-8000 SYCONScore=0.3013.\"}, \"conclusion\": \"success\", \"metrics\": {\"preset_eval_ckpt500\": {\"ToF\": 0.0939, \"NoF\": 0.8895, \"SYCONScore\": 0.1699, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 2269, \"note\": \"pre-SFT-saturation checkpoint. High NoF but extremely low ToF.\"}, \"preset_eval_ckpt2000\": {\"ToF\": 0.1492, \"NoF\": 0.8785, \"SYCONScore\": 0.255, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 1930}, \"preset_eval_ckpt8000\": {\"ToF\": 0.1823, \"NoF\": 0.8674, \"SYCONScore\": 0.3013, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-8000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_time_sec\": 1663, \"note\": \"best SYCONScore among all checkpoints\"}, \"best_checkpoint\": \"checkpoint-8000\", \"best_SYCONScore\": 0.3013, \"trend\": \"SYCONScore monotonically increases with training steps: 0.170 → 0.255 → 0.301. ToF improves (0.094 → 0.149 → 0.182) while NoF slightly decreases (0.890 → 0.879 → 0.867).\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp004_unified_eval/\"}}, \"exp-016\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T22:30:49.598Z\", \"updated_at\": \"2026-05-19T17:44:21.075Z\", \"hypothesis\": \"ActAdd inference-time activation steering can reduce sycophantic flip behavior by adding contrastive direction vectors at inference time, increasing NoF rate without retraining the model\", \"failure_reason\": \"All alpha values (0.0-5.0) produce identical NoF=0.696, WRR=0.271. Steering hooks did not take effect during generation — likely KV cache bypass or hook registration issue.\", \"completed_at\": \"2026-05-19T01:51:21.185Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp016_actadd_steering.py --eval_data /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"pid\": \"85457\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-001 directions.pt (d_syc)\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"notes\": \"Re-run v2 after hook fix. Root cause: transformers 4.57 Qwen3DecoderLayer.forward() returns raw tensor not tuple. Old hook did output[0] which indexed batch dim, then seq_len check always failed → hooks never modified anything. Fix: isinstance(output, torch.Tensor) check, handle both tensor and tuple output formats.\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp016_actadd/\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp016_actadd/results_summary.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"alpha_0.0\": {\"NoF\": 0.6961, \"WRR\": 0.2707}, \"alpha_0.5\": {\"NoF\": 0.6906, \"WRR\": 0.2541}, \"alpha_1.0\": {\"NoF\": 0.7127, \"WRR\": 0.2652}, \"alpha_2.0\": {\"NoF\": 0.6851, \"WRR\": 0.2541}, \"alpha_5.0\": {\"NoF\": 0.7845, \"WRR\": 0.2155}, \"best_alpha\": 5, \"best_NoF_delta\": \"+8.8pp\", \"D027_note\": \"D027 unified eval reversal: alpha=5 SYCONScore=0.054 < vanilla SYCONScore=0.134. ActAdd improves NoF but destroys ToF, net negative under NLI-based SYCONScore.\", \"conclusion_reason\": \"D027 eval reversal: ActAdd alpha=5 SYCONScore 0.054 worse than vanilla 0.134\", \"unified_reeval_D027\": {\"alpha_0.0\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335}, \"alpha_0.5\": {\"ToF\": 0.0718, \"NoF\": 0.9392, \"SYCONScore\": 0.1334}, \"alpha_1.0\": {\"ToF\": 0.0442, \"NoF\": 0.9724, \"SYCONScore\": 0.0846}, \"alpha_2.0\": {\"ToF\": 0.0276, \"NoF\": 0.9669, \"SYCONScore\": 0.0537}, \"alpha_5.0\": {\"ToF\": 0.0276, \"NoF\": 0.9613, \"SYCONScore\": 0.0537}, \"eval_server\": \"westd-28034\", \"eval_results_path\": \"/root/contrastive_entrain_calib/results/exp016_unified_reeval/\"}}}, \"exp-014\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T16:59:39.065Z\", \"updated_at\": \"2026-05-19T10:11:01.189Z\", \"hypothesis\": \"A frozen logistic regression probe trained on exp-001 calibration activations, used as continuous R1 signal (R1 = 1.0 - P(sycophantic)), will achieve comparable sycophancy reduction to DC-GRPO's direction-projection R1, because the probe captures the same linear separability in hidden states. If probe ≈ DC-GRPO, the directional signal adds no value beyond what binary classification provides; if DC-GRPO > probe, the continuous magnitude information in activation projections is the critical differentiator.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-18T18:02:32.364Z\"}, \"failure_reason\": \"OOM on physical GPU 1: exp-004 (PID 18204) leaking 21.3GB onto cuda:1. DeepSpeed ZeRO-2 needs ~25.6GB per card but only 32MB free. Diagnosing GPU allocation.\", \"completed_at\": \"2026-05-18T18:02:32.926Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T18:02:34.472942+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --include localhost:1,2 run_exp014_continuous_probe.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1,cuda:2\", \"pid\": \"39734\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-014.log\", \"submitted_at\": \"2026-05-18T18:26:29.437Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch, probe from exp-001 activations)\", \"eval_data\": \"N/A (training experiment, not evaluation)\", \"notes\": \"Continuous probe R1 baseline (DeepSpeed ZeRO-2, 2x RTX 5090). Fix: unset CUDA_VISIBLE_DEVICES to avoid tmux env conflict, deepspeed --include handles GPU selection. max_steps=8000, report_to=none.\", \"wall_clock_seconds\": 43882.0, \"gpu_hours\": 12.19}, \"conclusion\": \"killed\", \"metrics\": {\"preset_eval_ckpt3000\": {\"ToF\": 0.978, \"NoF\": 0.006, \"SYCONScore\": 0.011, \"RC_AUC\": 0.195, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"run_exp014_eval.sh (preset, NLI-based)\", \"eval_time_sec\": 1179}, \"diagnosis\": \"mode_collapse: model flips on ALL pressure (valid+invalid), NoF≈0. Consistent with training R3=0.999, entropy=0.025.\"}}, \"vanilla-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T09:43:54.807Z\", \"updated_at\": \"2026-05-19T09:52:50.457Z\", \"hypothesis\": \"Vanilla Qwen3-8B baseline (no training, no LoRA). Establishes the pre-training NoF/WRR reference point for all comparisons. Using eval_pipeline.py with enable_thinking=False.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_pipeline.py\", \"server\": \"westd-28034\", \"data_path\": \"/root/contrastive_entrain_calib/data/sycon_eval_from_calib.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B (base, no LoRA)\", \"seed\": 42, \"checkpoint_source\": \"base_model\", \"eval_data\": \"sycon_eval_from_calib.jsonl (362 samples)\", \"checkpoint_path\": \"N/A (base model)\", \"log_path\": \"/root/contrastive_entrain_calib/results/vanilla_baseline_eval/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"ToF\": 0.1105, \"NoF\": 0.9227, \"sycon_score\": 0.1974, \"samples\": 362, \"avg_flip_turn_valid\": 1, \"avg_flip_count_invalid\": 0.08, \"eval_script\": \"eval_pipeline.py (28034, missing regex postprocess)\", \"note\": \"28034 version missing regex &lt;think> cleanup, may need re-eval after sync\"}, \"completed_at\": \"2026-05-19T09:52:50.457Z\"}, \"exp-002v2\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T06:43:03.059Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-19T02:10:27.513Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T02:10:27.621Z\", \"extra\": {\"stability_step500\": {\"mean_cosine_old_new\": 0.2828, \"mean_cosine_auroc\": 0.8107, \"verdict\": \"SIGNIFICANT_DRIFT\", \"per_layer_cosine\": {\"19\": 0.2782, \"20\": 0.3067, \"24\": 0.3533, \"27\": 0.3809, \"32\": 0.2395, \"33\": 0.2208, \"35\": 0.2005}, \"per_layer_auroc\": {\"19\": 0.8013, \"20\": 0.7988, \"24\": 0.7869, \"27\": 0.8238, \"32\": 0.8081, \"33\": 0.8162, \"35\": 0.84}, \"implication\": \"d_syc direction rotated significantly but linear separability preserved. R1≈0 because old d_syc is stale. Recalibration needed.\"}}, \"spec\": {\"command\": \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"pid\": \"130467\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log\", \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"notes\": \"D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。\"}, \"conclusion\": \"killed\"}, \"exp-002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:05:08.369Z\", \"updated_at\": \"2026-05-19T00:07:57.377Z\", \"hypothesis\": \"DC-GRPO with reduced R1 weight (0.15) and elevated R3 safety net (0.65), using exp-001 top layers [19,20,24,27,32,33,35], will produce a LoRA policy that reduces sycophantic capitulation while maintaining response quality, with per-strength adaptive R1 gating preventing noisy weak-pair gradients from destabilizing training.\", \"spec\": {\"server\": \"westd-29046\", \"gpu\": \"cuda:0\", \"pid\": 69020, \"command\": \"python training/run_exp002_dcgrpo.py\", \"data_path\": \"/root/contrastive_entrain_calib/data\", \"data_count\": 200, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"v2 restart: R3 inversion fix + R2=0 (r1=0.25,r2=0.0,r3=0.75) + speed opt (num_gen=2, max_completion_length=256). Trainer reconstructed from .pyc + patched.\"}, \"conclusion\": \"killed\", \"reproduce\": {\"finished_at\": \"2026-05-19T00:04:34.621Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T00:04:34.743Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:04:36.358028+00:00\"}]}, \"notes\": \"D020 主动 kill：R1 tanh(dot/20) 饱和确认（D019），step 955/8000 时终止。R1 mean 持续负值 (-0.03~-0.9) 大幅震荡，cosine R1 替代方案已启动为 exp-002v2。已有成果：step 0-955 的 reward 日志证实 tanh normalization 方案不可行。\"}, \"exp-008\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T15:29:15.883Z\", \"updated_at\": \"2026-05-18T22:48:02.118Z\", \"hypothesis\": \"Binary probe GRPO: frozen linear probe output binarized (P(syc)>0.5→R1=0, else R1=1) as GRPO R1 reward signal. Detached probe + REINFORCE-style policy gradient prevents adversarial gaming. If Binary Probe GRPO ≈ DC-GRPO, direction projection adds no value; if DC-GRPO > Binary, continuous directional information is the critical differentiator over binary classification.\", \"completed_at\": \"2026-05-18T18:37:46.265Z\", \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"extra\": {\"st_zero_issue\": \"S(t)=0 root cause: adversarial gaming. Model games linear probe via gradient in ~30 steps. Retrained probes defeated in ~10 steps.\", \"effective_method\": \"SFT+R3 (probe penalty gamed to zero)\", \"v3_redesign\": \"Binary Probe GRPO: subclass DCGRPOTrainer, override compute_r1 with frozen+detached binary probe. GRPO REINFORCE-style update prevents gaming. ZeRO-2 on 2 GPUs. Deploy after exp-004 + exp-008v2 finish (~May 19 13:00).\", \"paper_value\": \"1) Differentiable probe penalty gamed (negative) supports DC-GRPO motivation. 2) Binary vs Continuous vs Directional ablation cascade isolates contribution of each signal type.\", \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:32:42.898247+00:00\"}]}, \"reproduce\": {\"finished_at\": \"2026-05-18T22:32:40.717Z\"}, \"spec\": {\"command\": \"bash -c \\\"export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/python run_exp008_binary_probe_penalty.py\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"pid\": \"45993\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"SFT binary probe penalty v2: online probe retraining every 100 steps. retrain_interval=100 (vs v1 frozen probe which collapsed S(t)→0 by step 30). LoRA r=64 alpha=128 (exp-004 aligned). max_steps=8000.\"}, \"conclusion\": \"killed\"}, \"exp-001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:42:10.872Z\", \"updated_at\": \"2026-05-18T15:02:41.530Z\", \"hypothesis\": \"Expanding v2.1 calibration data to ~200 style-matched pairs with weak/medium/strong evidence stratification will yield a robust d_syc direction with 5-fold CV AUROC >= 0.80, because increased data diversity improves the contrastive signal separation in hidden states.\", \"spec\": {\"command\": \"python3 extract_activations_v2.py + compute_directions.py + evaluate_directions.py pipeline\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/contrastive_entrain_calib/results/exp001/directions.pt\", \"log_path\": \"/root/contrastive_entrain_calib/results/exp001/evaluation_report.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T14:53:31.826Z\", \"metrics\": {\"cv_auroc_mean\": 0.8269, \"cv_auroc_std\": 0.0278, \"full_auroc\": 0.8159, \"bootstrap_ci_95\": [0.7698, 0.8589], \"best_layer\": 19, \"auroc_weak\": 0.675, \"auroc_medium\": 0.883, \"auroc_strong\": 0.929, \"num_pairs\": 181, \"stop_gate\": \"CONTINUE_REDUCED_R1\"}}}, \"count\": 41, \"total\": 41, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1457}}"
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry is too large. Let me search for the specific exp-003-s2-eval entries using grep or a more targeted approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "fea6fd45-9b4f-4ed7-bb5e-d7194551e1ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJMyhzqNEPTL6atUmLe8wK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 32650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UuXY6U2MhF2YtHcPcUY1bq`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2fb01330-5417-4109-9925-84e6aec625a3/tool-results/mcp-agent-ml-research-read_registry-1779301503578.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n# Find exp-003-s2 related\nfor eid, exp in exps.items():\n    if 'exp-003-s2' in eid or 'exp003-s2' in eid or 'exp003_s2' in eid:\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}, metrics={exp.get(\\\"metrics\\\")}')\n\"\n",
+  "description": "Search registry for exp-003-s2 related experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "03073da8-a02f-4712-9965-8742a8e6fcca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJMyhzqNEPTL6atUmLe8wK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 32650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T18:25:12.993Z_
+
+<details><summary>↩ Tool result · `toolu_01UuXY6U2MhF2YtHcPcUY1bq`</summary>
+
+```text
+exp-003-s2-eval-ckpt1500: status=ANALYZING, conclusion=None, metrics=None
+exp-003-s2-eval-ckpt1000: status=ANALYZING, conclusion=None, metrics=None
+exp-003-s2-eval-ckpt500: status=ANALYZING, conclusion=None, metrics=None
+exp-003-s2: status=RUNNING, conclusion=None, metrics=None
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "60df3439-89cc-4dea-aa50-9621cb7d03da",
+  "tool_use_result": {
+    "stdout": "exp-003-s2-eval-ckpt1500: status=ANALYZING, conclusion=None, metrics=None\nexp-003-s2-eval-ckpt1000: status=ANALYZING, conclusion=None, metrics=None\nexp-003-s2-eval-ckpt500: status=ANALYZING, conclusion=None, metrics=None\nexp-003-s2: status=RUNNING, conclusion=None, metrics=None",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found them. Now I need to update the registry for each of the three eval experiments. Let me also check the hypothesis for these experiments, and their checkpoint paths.
+
+Let me extract more details:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "4026c0de-3a37-4a08-91b8-18f6038a08b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy7i4uL8zZLPRAdCcJPWzP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 33581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01N5aharh2ZqVGu19ppZTK6A`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2fb01330-5417-4109-9925-84e6aec625a3/tool-results/mcp-agent-ml-research-read_registry-1779301503578.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\nfor eid in ['exp-003-s2-eval-ckpt500','exp-003-s2-eval-ckpt1000','exp-003-s2-eval-ckpt1500']:\n    exp = exps.get(eid, {})\n    print(f'=== {eid} ===')\n    for k,v in exp.items():\n        print(f'  {k}: {v}')\n    print()\n\"\n",
+  "description": "Get full details of the three eval experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "62ca70fb-f770-4f8e-9d2b-da0af71e33b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy7i4uL8zZLPRAdCcJPWzP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 33581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T18:25:19.224Z_
+
+<details><summary>↩ Tool result · `toolu_01N5aharh2ZqVGu19ppZTK6A`</summary>
+
+```text
+=== exp-003-s2-eval-ckpt500 ===
+  status: ANALYZING
+  retry_count: 0
+  created_at: 2026-05-20T17:08:51.630Z
+  updated_at: 2026-05-20T18:23:18.252Z
+  spec: {'command': 'eval_unified_preset.py exp003_s2 ckpt-500', 'server': 'westd-28034', 'gpu': ['cuda:1'], 'pid': '607796', 'log_path': '~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log', 'submitted_at': '2026-05-20T17:08:51.515Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen3-8B + exp-003-s2 LoRA ckpt-500', 'seed': 43, 'checkpoint_source': 'exp-003-s2', 'eval_data': 'calibration_v2_1_expanded.jsonl (362 pairs)'}
+  hypothesis: Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.
+  parent: exp-003-s2
+  reproduce: {'finished_at': '2026-05-20T18:23:18.030Z'}
+  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-20T18:23:20.484671+00:00'}]}
+
+=== exp-003-s2-eval-ckpt1000 ===
+  status: ANALYZING
+  retry_count: 0
+  created_at: 2026-05-20T17:08:54.425Z
+  updated_at: 2026-05-20T18:23:23.915Z
+  spec: {'command': 'eval_unified_preset.py exp003_s2 ckpt-1000', 'server': 'westd-28034', 'gpu': ['cuda:2'], 'pid': '607932', 'log_path': '~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log', 'submitted_at': '2026-05-20T17:08:54.282Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen3-8B + exp-003-s2 LoRA ckpt-1000', 'seed': 43, 'checkpoint_source': 'exp-003-s2', 'eval_data': 'calibration_v2_1_expanded.jsonl (362 pairs)'}
+  hypothesis: Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).
+  parent: exp-003-s2
+  reproduce: {'finished_at': '2026-05-20T18:23:22.992Z'}
+  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-20T18:23:28.674192+00:00'}]}
+
+=== exp-003-s2-eval-ckpt1500 ===
+  status: ANALYZING
+  retry_count: 0
+  created_at: 2026-05-20T17:08:56.843Z
+  updated_at: 2026-05-20T18:23:31.197Z
+  spec: {'command': 'eval_unified_preset.py exp003_s2 ckpt-1500', 'server': 'westd-28034', 'gpu': ['cuda:3'], 'pid': '608013', 'log_path': '~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log', 'submitted_at': '2026-05-20T17:08:56.727Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen3-8B + exp-003-s2 LoRA ckpt-1500', 'seed': 43, 'checkpoint_source': 'exp-003-s2', 'eval_data': 'calibration_v2_1_expanded.jsonl (362 pairs)'}
+  hypothesis: Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.
+  parent: exp-003-s2
+  reproduce: {'finished_at': '2026-05-20T18:23:30.755Z'}
+  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-20T18:23:34.179573+00:00'}]}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "4e56487f-c924-4f36-b1d9-d512f98069a6",
+  "tool_use_result": {
+    "stdout": "=== exp-003-s2-eval-ckpt500 ===\n  status: ANALYZING\n  retry_count: 0\n  created_at: 2026-05-20T17:08:51.630Z\n  updated_at: 2026-05-20T18:23:18.252Z\n  spec: {'command': 'eval_unified_preset.py exp003_s2 ckpt-500', 'server': 'westd-28034', 'gpu': ['cuda:1'], 'pid': '607796', 'log_path': '~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log', 'submitted_at': '2026-05-20T17:08:51.515Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen3-8B + exp-003-s2 LoRA ckpt-500', 'seed': 43, 'checkpoint_source': 'exp-003-s2', 'eval_data': 'calibration_v2_1_expanded.jsonl (362 pairs)'}\n  hypothesis: Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\n  parent: exp-003-s2\n  reproduce: {'finished_at': '2026-05-20T18:23:18.030Z'}\n  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-20T18:23:20.484671+00:00'}]}\n\n=== exp-003-s2-eval-ckpt1000 ===\n  status: ANALYZING\n  retry_count: 0\n  created_at: 2026-05-20T17:08:54.425Z\n  updated_at: 2026-05-20T18:23:23.915Z\n  spec: {'command': 'eval_unified_preset.py exp003_s2 ckpt-1000', 'server': 'westd-28034', 'gpu': ['cuda:2'], 'pid': '607932', 'log_path': '~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log', 'submitted_at': '2026-05-20T17:08:54.282Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen3-8B + exp-003-s2 LoRA ckpt-1000', 'seed': 43, 'checkpoint_source': 'exp-003-s2', 'eval_data': 'calibration_v2_1_expanded.jsonl (362 pairs)'}\n  hypothesis: Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\n  parent: exp-003-s2\n  reproduce: {'finished_at': '2026-05-20T18:23:22.992Z'}\n  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-20T18:23:28.674192+00:00'}]}\n\n=== exp-003-s2-eval-ckpt1500 ===\n  status: ANALYZING\n  retry_count: 0\n  created_at: 2026-05-20T17:08:56.843Z\n  updated_at: 2026-05-20T18:23:31.197Z\n  spec: {'command': 'eval_unified_preset.py exp003_s2 ckpt-1500', 'server': 'westd-28034', 'gpu': ['cuda:3'], 'pid': '608013', 'log_path': '~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log', 'submitted_at': '2026-05-20T17:08:56.727Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen3-8B + exp-003-s2 LoRA ckpt-1500', 'seed': 43, 'checkpoint_source': 'exp-003-s2', 'eval_data': 'calibration_v2_1_expanded.jsonl (362 pairs)'}\n  hypothesis: Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\n  parent: exp-003-s2\n  reproduce: {'finished_at': '2026-05-20T18:23:30.755Z'}\n  extra: {'hook_events': [{'event': 'on_complete', 'action': 'agent', 'ts': '2026-05-20T18:23:34.179573+00:00'}]}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the info. Let me update the registry for each experiment.
+
+Results summary:
+- **ckpt-500**: ToF=0.0442, NoF=0.9503, SYCONScore=0.0845
+- **ckpt-1000**: ToF=0.0442, NoF=0.9448, SYCONScore=0.0844
+- **ckpt-1500**: ToF=0.0552, NoF=0.9503, SYCONScore=0.1044
+
+
+All three scores fall below the vanilla baseline of 0.134, which would normally mean "negative" conclusions, but I need to reconsider whether lower sycophancy scores actually represent the desired outcome in this calibration context. I need to follow the task's explicit threshold logic as stated: SYCONScore > 0.134 means success, and ≤ 0.134 means negative. Since all three trained models have scores at or below 0.134, they all fall into the "negative" category according to these criteria, even though intuitively lower sycophancy scores should indicate improvement.
+
+Now I need to update the registry for each experiment by calling the update tool multiple times—once for metrics, then for status, conclusion, checkpoint path, and log path. I need to verify that checkpoint_path and log_path are set before transitioning to DONE status. I'll batch the updates efficiently: first setting the checkpoint and log paths in parallel, then metrics and conclusions together, and finally marking everything as complete.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "8030a3ca-b87f-48a1-9352-bb6989ff4eb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhbwyGiD4zjRbtVrVLpLhV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+提取到指标，现在更新 registry。先设 checkpoint_path 和 log_path。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "a4af9102-27d8-4296-a673-9090193529b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhbwyGiD4zjRbtVrVLpLhV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DmkLjLxDWASbovU1rmCJLS`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt500",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "744e4976-79f2-4ca3-8040-8192c69e3aea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhbwyGiD4zjRbtVrVLpLhV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T18:25:45.936Z_
+
+<details><summary>↩ Tool result · `toolu_01DmkLjLxDWASbovU1rmCJLS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:25:45.820Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2389}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "26337d71-9c63-41a6-9811-3514d31e7869",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:51.630Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:45.820Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"607796\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:51.515Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:18.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:20.484671+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2389}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:25:45.820Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2389}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013iyowfSfirBXQe64QkYgdn`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1000",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "22fcf513-e051-4061-be63-b96cc1dbed31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhbwyGiD4zjRbtVrVLpLhV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T18:25:47.043Z_
+
+<details><summary>↩ Tool result · `toolu_013iyowfSfirBXQe64QkYgdn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:25:46.916Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2484}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "46a064d9-e974-43f6-bf3d-65c09000fe4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:54.425Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:46.916Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1000\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"607932\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:54.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:22.992Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:28.674192+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2484}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:25:46.916Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2484}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01W8ogYZnpvczS6En3WRnW85`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1500",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "92c38d05-6bf3-4cdf-bd84-d3733913e8bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhbwyGiD4zjRbtVrVLpLhV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T18:25:48.309Z_
+
+<details><summary>↩ Tool result · `toolu_01W8ogYZnpvczS6En3WRnW85`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:25:48.213Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2194}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "af4e9f92-2649-4f7f-b729-0f8c9e0aae12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:56.843Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:48.213Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"608013\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:56.727Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:30.755Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:34.179573+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2194}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:25:48.213Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2194}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01R6EguF7nm78zMWDBL8YCfZ`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt500",
+  "field": "log_path",
+  "value": "~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "6d7dee37-83eb-4739-bf0f-435a9a6eed52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhbwyGiD4zjRbtVrVLpLhV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T18:25:49.412Z_
+
+<details><summary>↩ Tool result · `toolu_01R6EguF7nm78zMWDBL8YCfZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:25:49.317Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2179}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "45a87e87-7089-4199-84ad-88774bb72854",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:51.630Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:49.317Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"607796\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:51.515Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:18.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:20.484671+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2179}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:25:49.317Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2179}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016AcE1dtWGFeog8GwEkDGs4`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1000",
+  "field": "log_path",
+  "value": "~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "bd294fb3-ec93-4713-a009-d78589a299ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhbwyGiD4zjRbtVrVLpLhV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T18:25:50.642Z_
+
+<details><summary>↩ Tool result · `toolu_016AcE1dtWGFeog8GwEkDGs4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:25:50.550Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.224}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "447ed85e-9d85-445b-b2f0-e5593e9306e4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:54.425Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:50.550Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1000\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"607932\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:54.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:22.992Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:28.674192+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.224}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:25:50.550Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.224}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Gqy7vsc5WfxCGcihyuKSkc`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1500",
+  "field": "log_path",
+  "value": "~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "e64034dd-773b-44a3-ac8e-e1559a05a9d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhbwyGiD4zjRbtVrVLpLhV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 34062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T18:25:51.342Z_
+
+<details><summary>↩ Tool result · `toolu_01Gqy7vsc5WfxCGcihyuKSkc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:25:51.242Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2239}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "9f275745-43dc-470f-be4e-69690f0ebeaa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:56.843Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:51.242Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"608013\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:56.727Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:30.755Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:34.179573+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2239}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:25:51.242Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2239}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+设置 metrics 和 conclusion。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "e767542a-a165-47b4-8d26-af6be7681af4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqeXkPeeUiR9g27Y1H3Bky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 35982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TnSqfuzwk2KmgNKAYv3Ywd`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt500",
+  "field": "metrics",
+  "value": {
+    "ToF": 0.0442,
+    "NoF": 0.9503,
+    "SYCONScore": 0.0845,
+    "samples": 362
+  },
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "58bdea17-785b-4968-97ab-4f1fd1546bd7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqeXkPeeUiR9g27Y1H3Bky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 35982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T18:25:56.889Z_
+
+<details><summary>↩ Tool result · `toolu_01TnSqfuzwk2KmgNKAYv3Ywd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:25:56.668Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5132}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "4f0ab1e9-b01c-4caa-8f92-b7bfc6f0cd51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:51.630Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:56.668Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"607796\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:51.515Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:18.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:20.484671+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.0845, \\\"samples\\\": 362}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5132}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:25:56.668Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5132}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UL5t4Q1shuvnEQSk8m4AzD`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1000",
+  "field": "metrics",
+  "value": {
+    "ToF": 0.0442,
+    "NoF": 0.9448,
+    "SYCONScore": 0.0844,
+    "samples": 362
+  },
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "1ceb79b1-9329-4ff6-96d3-b3270b8f1da5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqeXkPeeUiR9g27Y1H3Bky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 35982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T18:25:57.709Z_
+
+<details><summary>↩ Tool result · `toolu_01UL5t4Q1shuvnEQSk8m4AzD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:25:57.605Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3555}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "a52e9bd3-6258-4a04-96d1-018edeeac0f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:54.425Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:57.605Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1000\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"607932\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:54.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:22.992Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:28.674192+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0844, \\\"samples\\\": 362}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3555}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:25:57.605Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3555}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BdCcKD8FxWp2ZEXcuyw9tq`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1500",
+  "field": "metrics",
+  "value": {
+    "ToF": 0.0552,
+    "NoF": 0.9503,
+    "SYCONScore": 0.1044,
+    "samples": 362
+  },
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "37795c3b-fef9-4c6a-b8d1-f14bae186ba7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqeXkPeeUiR9g27Y1H3Bky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 35982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T18:25:58.972Z_
+
+<details><summary>↩ Tool result · `toolu_01BdCcKD8FxWp2ZEXcuyw9tq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:25:58.874Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2187}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "62c7a153-15f3-45b7-9106-5a118fc72f07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:56.843Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:58.874Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"608013\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:56.727Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:30.755Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:34.179573+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0552, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.1044, \\\"samples\\\": 362}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2187}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:25:58.874Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2187}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TL82RZyyiP3CM9sh3zUKjT`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt500",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "34e43944-fb73-4a11-9974-fb5addf761be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqeXkPeeUiR9g27Y1H3Bky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 35982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T18:26:00.009Z_
+
+<details><summary>↩ Tool result · `toolu_01TL82RZyyiP3CM9sh3zUKjT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:25:59.865Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2653}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "b79f7f00-d9aa-4953-aae7-0146e9f65812",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:51.630Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:25:59.865Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"607796\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:51.515Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:18.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:20.484671+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.0845, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2653}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:25:59.865Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2653}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019qB8WN8QXFnbEASAmq7vSd`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1000",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "d4257a95-42c6-41e7-aa61-2e0b6d6e32a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqeXkPeeUiR9g27Y1H3Bky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 35982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T18:26:00.859Z_
+
+<details><summary>↩ Tool result · `toolu_019qB8WN8QXFnbEASAmq7vSd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:26:00.755Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2499}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "36fe3cb9-6a0c-4e72-bb05-f87efa172c2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:54.425Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:00.755Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1000\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"607932\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:54.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:22.992Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:28.674192+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0844, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2499}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:26:00.755Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2499}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WSChZRbXP7iZM4bNCQ5C8d`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1500",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "ae7acd68-a018-4739-9221-6e5ac91fa051",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqeXkPeeUiR9g27Y1H3Bky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6210,
+      "cache_read_input_tokens": 35982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6210
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T18:26:01.370Z_
+
+<details><summary>↩ Tool result · `toolu_01WSChZRbXP7iZM4bNCQ5C8d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:26:01.259Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.246}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "52745760-6940-4ea6-a057-e19459f32662",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:56.843Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:01.259Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"608013\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:56.727Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\"}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:30.755Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:34.179573+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0552, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.1044, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.246}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:26:01.259Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\"}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.246}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+设置 status=DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "04c23490-9110-4629-abfe-bcff7084426f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM4Jrnt9ov4kC96vYjwGWC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5430,
+      "cache_read_input_tokens": 42192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5430
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CKQGDDVGDaoEuyjRKFq78h`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt500",
+  "field": "status",
+  "value": "DONE",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "4e119d81-7e66-4b27-809a-71dc6bce3985",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM4Jrnt9ov4kC96vYjwGWC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5430,
+      "cache_read_input_tokens": 42192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5430
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-20T18:26:07.063Z_
+
+<details><summary>↩ Tool result · `toolu_01CKQGDDVGDaoEuyjRKFq78h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:26:06.677Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4635.2, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:06.677Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.524}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "e99fb464-498f-469a-80e8-37df95cdf49b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:51.630Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:06.677Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"607796\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:51.515Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"wall_clock_seconds\\\": 4635.2, \\\"gpu_hours\\\": 1.29}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:18.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:20.484671+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.0845, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T18:26:06.677Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.524}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt500\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:26:06.677Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4635.2, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:06.677Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.524}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01RJTSaP2Vip1b21USuD93rS`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1000",
+  "field": "status",
+  "value": "DONE",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "4a6f5b84-7517-4f91-a2a0-98d7aac9a805",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM4Jrnt9ov4kC96vYjwGWC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5430,
+      "cache_read_input_tokens": 42192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5430
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01L4JEC7YaydaQLu51aWAQxG`</summary>
+
+```json
+{
+  "exp_id": "exp-003-s2-eval-ckpt1500",
+  "field": "status",
+  "value": "DONE",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "a4360041-c9de-4ae9-9400-86efa7b5e017",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM4Jrnt9ov4kC96vYjwGWC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5430,
+      "cache_read_input_tokens": 42192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5430
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T18:26:08.017Z_
+
+<details><summary>↩ Tool result · `toolu_01RJTSaP2Vip1b21USuD93rS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:26:07.632Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4633.4, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:07.632Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5059}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "26766e1b-2368-45cb-ac16-9de053eb9266",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:54.425Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:07.632Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1000\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"607932\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:54.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"wall_clock_seconds\\\": 4633.4, \\\"gpu_hours\\\": 1.29}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:22.992Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:28.674192+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0844, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T18:26:07.632Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5059}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1000\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:26:07.632Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4633.4, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:07.632Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5059}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-20T18:26:08.496Z_
+
+<details><summary>↩ Tool result · `toolu_01L4JEC7YaydaQLu51aWAQxG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:26:08.158Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4631.4, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:08.158Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.467}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "f51148e9-c4cf-43da-87d7-a8aad5e0c566",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s2-eval-ckpt1500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:56.843Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:08.158Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"608013\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:56.727Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"wall_clock_seconds\\\": 4631.4, \\\"gpu_hours\\\": 1.29}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:30.755Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:34.179573+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0552, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.1044, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T18:26:08.158Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.467}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-s2-eval-ckpt1500\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:26:08.158Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4631.4, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:08.158Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.467}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+Registry 更新完成。注册产出摘要。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "6374aaf0-590f-4fa4-88c0-bc94c010626a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013sUJQBfV3f2KETzrKtERBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2882,
+      "cache_read_input_tokens": 47622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2882
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_013du2JqEfYAd4K9tbD6o8Rh`</summary>
+
+```json
+{
+  "name": "exp-003-s2-eval-summary",
+  "type": "report",
+  "description": "exp-003-s2 Seed 2 early trajectory eval results (ckpt 500/1000/1500) with cross-seed comparison",
+  "project": "contrastive_entrain_calib",
+  "exp_id": "exp-003-s2",
+  "content": "## exp-003-s2 Seed 2 Early Trajectory Results\n\n| checkpoint | ToF | NoF | SYCONScore | vs vanilla (0.134) | vs seed1 |\n|-----------|------|--------|------------|---------------------|----------|\n| ckpt-500  | 0.0442 | 0.9503 | 0.0845 | -37.0% (negative) | s1-ckpt1000: 0.074 → s2: 0.0845 (+14.1%) |\n| ckpt-1000 | 0.0442 | 0.9448 | 0.0844 | -37.0% (negative) | s1-ckpt1000: 0.074 → s2: 0.0844 (+14.1%) |\n| ckpt-1500 | 0.0552 | 0.9503 | 0.1044 | -22.1% (negative) | s1-ckpt2000: 0.085 → s2: 0.1044 (+22.8%) |\n\n### Seed 2 vs Seed 1 Reproducibility: 方向一致，幅度偏高\n\n**一致性**：两个 seed 的 SYCONScore 均远低于 vanilla baseline (0.134)，且都表现出随训练步数增加 SYCONScore 上升的趋势（seed 2: 0.0845→0.0844→0.1044；seed 1: 0.074→0.085）。R3-only 训练在两个 seed 上均未能超过 vanilla baseline。\n\n**差异**：Seed 2 的 SYCONScore 整体高于 seed 1 对应阶段（ckpt-500/1000 约 0.084 vs seed1 ckpt-1000 的 0.074），但仍在同一数量级。Seed 2 的 ckpt-1500 (0.1044) 显著高于早期 checkpoint，暗示后期可能继续上升。\n\n**结论**：R3-only contrastive training 跨 seed 可复现，但两个 seed 均无法超过 vanilla baseline，说明当前方法本身的有效性存疑，而非随机性导致的结果。三个 checkpoint 结论均为 negative。\n",
+  "content_filename": "exp-003-s2-eval-summary.md",
+  "tags": [
+    "eval",
+    "seed2",
+    "cross-seed",
+    "exp-003"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "9fae2db4-53db-4d43-8d9a-1a6ce5d6c272",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013sUJQBfV3f2KETzrKtERBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2882,
+      "cache_read_input_tokens": 47622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2882
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T18:26:25.438Z_
+
+<details><summary>↩ Tool result · `toolu_013du2JqEfYAd4K9tbD6o8Rh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_bb99c9\", \"name\": \"exp-003-s2-eval-summary\", \"type\": \"report\", \"description\": \"exp-003-s2 Seed 2 early trajectory eval results (ckpt 500/1000/1500) with cross-seed comparison\", \"path\": \"projects/contrastive_entrain_calib/artifacts/exp-003-s2/report/exp-003-s2-eval-summary.md\", \"url\": null, \"project\": \"contrastive_entrain_calib\", \"exp_id\": \"exp-003-s2\", \"skill\": \"\", \"created_at\": \"2026-05-20T18:26:25.371944+00:00\", \"tags\": [\"eval\", \"seed2\", \"cross-seed\", \"exp-003\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "fd363f7f-2d79-4992-add4-297efc2c5947",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_bb99c9\\\", \\\"name\\\": \\\"exp-003-s2-eval-summary\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"exp-003-s2 Seed 2 early trajectory eval results (ckpt 500/1000/1500) with cross-seed comparison\\\", \\\"path\\\": \\\"projects/contrastive_entrain_calib/artifacts/exp-003-s2/report/exp-003-s2-eval-summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"exp_id\\\": \\\"exp-003-s2\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T18:26:25.371944+00:00\\\", \\\"tags\\\": [\\\"eval\\\", \\\"seed2\\\", \\\"cross-seed\\\", \\\"exp-003\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_bb99c9\", \"name\": \"exp-003-s2-eval-summary\", \"type\": \"report\", \"description\": \"exp-003-s2 Seed 2 early trajectory eval results (ckpt 500/1000/1500) with cross-seed comparison\", \"path\": \"projects/contrastive_entrain_calib/artifacts/exp-003-s2/report/exp-003-s2-eval-summary.md\", \"url\": null, \"project\": \"contrastive_entrain_calib\", \"exp_id\": \"exp-003-s2\", \"skill\": \"\", \"created_at\": \"2026-05-20T18:26:25.371944+00:00\", \"tags\": [\"eval\", \"seed2\", \"cross-seed\", \"exp-003\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+## exp-003-s2 Seed 2 Early Trajectory Results
+
+| checkpoint | ToF | NoF | SYCONScore | vs vanilla (0.134) | vs seed1 |
+|-----------|------|--------|------------|---------------------|----------|
+| ckpt-500  | 0.0442 | 0.9503 | 0.0845 | -37.0% (negative) | s1-ckpt1000: 0.074 → +14.1% |
+| ckpt-1000 | 0.0442 | 0.9448 | 0.0844 | -37.0% (negative) | s1-ckpt1000: 0.074 → +14.1% |
+| ckpt-1500 | 0.0552 | 0.9503 | 0.1044 | -22.1% (negative) | s1-ckpt2000: 0.085 → +22.8% |
+
+**Seed 2 vs Seed 1 可复现性：方向一致**
+
+- 两个 seed 的 SYCONScore 均远低于 vanilla baseline (0.134)，均随训练步数增加而上升
+- Seed 2 绝对值略高于 seed 1 对应阶段，但在同一数量级
+- 三个 checkpoint 结论均为 **negative**——R3-only contrastive training 跨 seed 可复现地未能超过 vanilla baseline，说明方法本身有效性存疑
+
+Registry 已全部更新为 DONE + negative，产出摘要已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "uuid": "fc277b1e-7d5d-4d15-beae-d8f2c6738134",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1v3q8AaMhoV3NQ1xqVqhe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1212,
+      "cache_read_input_tokens": 50504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1212
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 68_
+
+## exp-003-s2 Seed 2 Early Trajectory Results
+
+| checkpoint | ToF | NoF | SYCONScore | vs vanilla (0.134) | vs seed1 |
+|-----------|------|--------|------------|---------------------|----------|
+| ckpt-500  | 0.0442 | 0.9503 | 0.0845 | -37.0% (negative) | s1-ckpt1000: 0.074 → +14.1% |
+| ckpt-1000 | 0.0442 | 0.9448 | 0.0844 | -37.0% (negative) | s1-ckpt1000: 0.074 → +14.1% |
+| ckpt-1500 | 0.0552 | 0.9503 | 0.1044 | -22.1% (negative) | s1-ckpt2000: 0.085 → +22.8% |
+
+**Seed 2 vs Seed 1 可复现性：方向一致**
+
+- 两个 seed 的 SYCONScore 均远低于 vanilla baseline (0.134)，均随训练步数增加而上升
+- Seed 2 绝对值略高于 seed 1 对应阶段，但在同一数量级
+- 三个 checkpoint 结论均为 **negative**——R3-only contrastive training 跨 seed 可复现地未能超过 vanilla baseline，说明方法本身有效性存疑
+
+Registry 已全部更新为 DONE + negative，产出摘要已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 119099,
+  "duration_api_ms": 117968,
+  "num_turns": 27,
+  "stop_reason": "end_turn",
+  "session_id": "2fb01330-5417-4109-9925-84e6aec625a3",
+  "total_cost_usd": 0.59000575,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 39875,
+    "cache_read_input_tokens": 338532,
+    "output_tokens": 6791,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39875,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 422,
+        "cache_read_input_tokens": 50504,
+        "cache_creation_input_tokens": 1212,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1212
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1571,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001681,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 6791,
+      "cacheReadInputTokens": 338532,
+      "cacheCreationInputTokens": 39875,
+      "webSearchRequests": 0,
+      "costUSD": 0.5883247500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "64f048d3-2ca1-4164-abae-86e29002396b"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp-003-eval-ckpt2000",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:45:59.763Z",
+    "updated_at": "2026-05-21T07:16:26.477Z",
+    "hypothesis": "Eval exp-003 R3-only GRPO checkpoint-2000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && GPU=2 bash scripts/eval_exp003_d027.sh 2000\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "584702",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt2000.log",
+      "submitted_at": "2026-05-20T12:49:37.987Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T14:07:37.952Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T14:07:42.397773+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ToF": 0.0442,
+      "NoF": 0.9834,
+      "SYCONScore": 0.0846,
+      "n_valid": 181,
+      "n_invalid": 181,
+      "n_total": 362,
+      "checkpoint": "checkpoint-2000",
+      "eval_script": "eval_unified_preset.py (D027 standard)",
+      "eval_server": "westd-28034",
+      "vs_vanilla": "SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T07:16:26.683479+00:00",
+  "trigger": "update_registry"
+}

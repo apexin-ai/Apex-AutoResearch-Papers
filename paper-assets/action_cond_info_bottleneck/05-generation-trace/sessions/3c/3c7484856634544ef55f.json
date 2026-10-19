@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c7484856634544ef55f",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh urgent gpu check launch",
+  "task_key": "worker_ssh_urgent-gpu-check-launch_20260517T180110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-gpu-check-launch_20260517T180110_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "6a2bd5c2e8272e10abd2b9722d230f39146e749069571f0dddb5e7f1d5686c40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态\n- PID 40598 (α=0.0, GPU 0): **运行中** — 正在跑 libero_goal (suite 3/4)\n- PID 44022 (α=1.0, GPU 1): **运行中** — 正在跑 libero_goal (suite 3/4)\n\n## 已完成结果（部分）\n\n| suite | α=0.0 | α=1.0 |\n|-------|-------|-------|\n| libero_spatial | 59.4% | 61.0% |\n| libero_object | 65.6% | 66.2% |\n| libero_goal | 跑了~30min | 跑了~30min |\n| libero_10 | 未开始 | 未开始 |\n\n## 启动的任务\n- cuda:0: 仍在跑 eval（预计还需 ~3-4h，goal ~1.5h + libero_10 ~2h）\n- cuda:1: 仍在跑 eval（同上）\n\n两个 GPU 都被 eval 占着，无法启动训练。每个 suite 约 2h，当前 goal 约 01:28 启动，预计 ~03:30 完成，libero_10 ~05:30 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu-check-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0554f44b7c8b8de291b6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis eval results collect",
+  "task_key": "worker_diagnosis_eval-results-collect_20260521T071315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_eval-results-collect_20260521T071315_result.json",
+    "occurrence": 1,
+    "bytes": 2092,
+    "sha256": "83c28828dfd7ac6a9e046b45a547540d57755987bea453e0951e3bae0092b6ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "情况清楚了。汇报如下：\n\n---\n\n## 28034 Eval 状态\n\n### 4 个目标 eval 均未完成 — 原因：GPU 严重竞争\n\n28034 上存在 **3 批重复的 eval 进程**（共 34 个 python 进程，11 个占用 GPU），导致 4 块 GPU 的 VRAM 接近满载（~30.5GB/32.6GB），eval 极慢：\n\n| 批次 | 启动时间 | 特征 | GPU 占用 |\n|------|----------|------|----------|\n| Batch 1 (691xxx) | 12:41 | 无 `--data_path`，wrapper script | ~16.9GB/进程 |\n| Batch 2 (693xxx) | ~12:43 | 中间批次 | ~12.9GB/进程 |\n| Batch 3 (695xxx) | 12:47 | tmux session，有 `--data_path` | ~0.7-12.9GB/进程 |\n\n4 块 GPU 各被 2-3 个进程占据，每块 ~30.5GB/32.6GB 已用。日志显示 4 个 eval 都停在 \"Running eval on 362 pairs...\" 阶段，输出只有 22-23 行（纯启动日志）。\n\n**结果目录中没有 ckpt5000-v2/6000/6500/7000 的文件。** 已有的是更早完成的 batch：\n\n| checkpoint | SYCONScore | ToF | NoF | 用时 |\n|-----------|-----------|------|------|------|\n| ckpt4500 | 0.1337 | 0.0718 | 0.9613 | 4280s |\n| ckpt5500 | 0.1144 | 0.0608 | 0.9724 | 4484s |\n\n### 建议操作\n\n需要 **kill 掉重复的 Batch 1 和 Batch 2（或 Batch 3）**，只保留一组进程跑完。当前 3 组互相抢 VRAM 和算力，没有一组能正常完成。要我清理吗？\n\n---\n\n## 29046 训练状态\n\n| 实验 | 最新 checkpoint | 进度 | 进程状态 | 备注 |\n|------|----------------|------|----------|------|\n| seed 1 (`exp003_r3only_seed1`) | **checkpoint-7500** (May 21 14:10) | 7500/8000 | **running** (PID 70649) | ~4.5h/500 steps，预计 ~4.5h 后完成 |\n| seed 2 (`exp003_r3only_seed2`) | **checkpoint-3500** (May 21 15:00) | 3524/8000 | **running** (PID 237437) | 44%, ~31.6s/step, 预计还需 ~39h |\n\nGPU 状态：2 块 GPU，utilization 0%（采样间隙），各占用 ~38GB/98GB VRAM，进程正常。\n\nseed 1 的 tee 日志停在 step 3760（May 20），但 checkpoint 已到 7500，说明日志 buffer 未 flush 但训练正常推进。seed 2 log 实时显示 step 3524。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-eval-results-collect.md"
+}

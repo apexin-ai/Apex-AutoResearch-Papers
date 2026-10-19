@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0543e5fa4b2138c639fb",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect 28034 results v2",
+  "task_key": "worker_eval_collect-28034-results-v2_20260519T174252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-28034-results-v2_20260519T174252_result.json",
+    "occurrence": 1,
+    "bytes": 1157,
+    "sha256": "06996a4fd96391c1cf21f9efa34073a6f83f78ff756119bceaf360b4cff58300"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。汇总：\n\n## exp-004 完整 eval 结果（已入 registry）\n\n| Checkpoint | ToF | NoF | SYCONScore | Eval 耗时 |\n|---|---|---|---|---|\n| **ckpt-500** | 0.094 | 0.890 | 0.170 | 2269s |\n| **ckpt-2000** | 0.149 | 0.879 | 0.255 | 1930s |\n| **ckpt-8000** | 0.182 | 0.867 | **0.301** | 1663s |\n\n趋势：SYCONScore 随 step 单调递增（ToF 提升主导，NoF 小幅下降）。最佳 checkpoint-8000。\n\n**文件路径（westd-28034）：**\n- Eval 结果：`/root/contrastive_entrain_calib/results/exp004_unified_eval/`\n- 训练 checkpoints（16个，500-8000）：`/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/`\n- 训练日志：`/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/train_log.jsonl`\n\n## 附带确认\n\n- **exp-016**：unified reeval D027 结果已补入 registry（所有 alpha 的 ToF/NoF/SYCONScore）。alpha=5 SYCONScore=0.054 < vanilla 0.134，确认 negative 结论。\n- **vanilla baseline**：registry 中已有结果（ToF=0.111, NoF=0.923, SYCONScore=0.197），标注了 \"missing regex postprocess\"，28034 上未发现 regex 后处理版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-28034-results-v2.md"
+}

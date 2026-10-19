@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-003-eval-ckpt7000-v3",
+  "project": "contrastive_entrain_calib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:14:16.803Z",
+    "updated_at": "2026-05-21T08:44:32.827Z",
+    "hypothesis": "Re-run (v3) exp-003 R3-only GRPO checkpoint-7000 eval with D027 unified preset. Previous two runs failed (v1: SIGTERM at 80/362 pairs due to stale cron kill, v2: SIGTERM during early eval with GPU memory contention). Late-stage trajectory point needed for paper figure.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "861274",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000-v3.log",
+      "submitted_at": "2026-05-21T08:44:15.080Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T08:44:32.957942+00:00",
+  "trigger": "update_registry"
+}

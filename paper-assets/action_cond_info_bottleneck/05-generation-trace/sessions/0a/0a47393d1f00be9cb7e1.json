@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a47393d1f00be9cb7e1",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "research constraint table",
+  "task_key": "worker_research_constraint_table_20260518T014433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_constraint_table_20260518T014433_result.json",
+    "occurrence": 1,
+    "bytes": 200,
+    "sha256": "2b554919ac97d98db1a881e15c2ce54635523e629af65f49b2bc13aef231adfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`/root/acib/analysis/constraint_table.json` 已写入，5 个 constraint entries + baseline metadata，内容与规格完全一致。v7.3 数据标记为 TBD 待训练完成后填充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-constraint-table.md"
+}

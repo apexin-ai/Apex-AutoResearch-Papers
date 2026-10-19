@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6553aa073503ad3abffd",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code perturbation eval wrapper",
+  "task_key": "worker_code_perturbation-eval-wrapper_20260516T050304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_perturbation-eval-wrapper_20260516T050304_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "a23d3519789cd213f21ff596ad932ef8e23b6d0bf3388bf9df1b08ea7057ae82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run completed successfully. Results:\n\n- **libero_spatial with gaussian_noise (σ=0.05): 80% success rate** (8/10 tasks succeeded)\n- No errors, all output files written correctly\n\nSummary of deliverables:\n\n| # | Deliverable | Status |\n|---|------------|--------|\n| 1 | `/root/acib/scripts/perturbation_wrapper.py` — 4 perturbation types + VectorEnv wrapper | Done |\n| 2 | `/root/acib/scripts/eval_acib_perturbed.py` — eval script with perturbation support | Done |\n| 3 | Dry-run validation — 1 episode × 10 tasks on libero_spatial, gaussian_noise=0.05 | Done (80% success) |\n| 4 | `artifacts/perturbation_eval_guide.md` — usage documentation | Done |\n\nBonus fix: resolved the scorer dtype mismatch bug (bfloat16 vs float32) that also affects `eval_acib.py` — the perturbed eval script now explicitly casts `policy.scorer` to match the VLM's dtype."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-perturbation-eval-wrapper-copy-2.md"
+}

@@ -1,0 +1,1098 @@
+# diagnosis exp009 eval ckpt500 results
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_diagnosis_exp009-eval-ckpt500-results_20260520T092809.log`
+- **Structured JSON:** [`f57e8bac746d917153ee.json`](../../sessions/f5/f57e8bac746d917153ee.json)
+
+## Before a recorded user message
+
+21 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d3d98c4e-47f5-489d-8b2d-3bd93a8ffcd8",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779286200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9f47ee99-699f-4e2e-925b-6beb93c01bc6",
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Reading eval results from the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "80904089-0d06-4967-9fcf-1c842747b930",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzSJ7kfxZZfMf9ipnJLAk7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11987,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11987
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Bg8Wpu66LHZUhwkQrDS275`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "793571ff-5ec4-460b-94d8-1f65abe0e58b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzSJ7kfxZZfMf9ipnJLAk7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11987,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11987
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T09:28:22.170Z_
+
+<details><summary>↩ Tool result · `toolu_01Bg8Wpu66LHZUhwkQrDS275`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "f9c752b7-8141-48d6-8ce6-c7f914244fdc",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me execute the read commands in parallel to get all the results at once.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "553e61d2-1467-43b3-8241-50c8eef5ae7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWTwxdBDwEXD8FEmujUWjb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 433,
+      "cache_read_input_tokens": 23828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 433
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014QhrYBh6awh2HhMkDPeeCq`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ls -la /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "ac7a3c36-8602-443b-bf6f-ccfead0b7e19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWTwxdBDwEXD8FEmujUWjb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 433,
+      "cache_read_input_tokens": 23828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 433
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mrj1cysH9QDh1SdLFAM2dG`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -50 ~/runs/contrastive_entrain_calib/exp-009-eval-ckpt500.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "31d4fe09-bc47-4764-b0f4-3199ee5ba07f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWTwxdBDwEXD8FEmujUWjb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 433,
+      "cache_read_input_tokens": 23828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 433
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T09:28:27.653Z_
+
+<details><summary>↩ Tool result · `toolu_014QhrYBh6awh2HhMkDPeeCq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 748\\ndrwxr-xr-x  2 root root     98 May 20 17:26 .\\ndrwxr-xr-x 14 root root   4096 May 20 16:26 ..\\n-rw-r--r--  1 root root 755934 May 20 17:26 exp009_ckpt500_preset_eval.json\\n-rw-r--r--  1 root root    373 May 20 17:26 exp009_ckpt500_preset_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "52f9437e-0ba8-4a19-8f86-34e752043523",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 748\\\\ndrwxr-xr-x  2 root root     98 May 20 17:26 .\\\\ndrwxr-xr-x 14 root root   4096 May 20 16:26 ..\\\\n-rw-r--r--  1 root root 755934 May 20 17:26 exp009_ckpt500_preset_eval.json\\\\n-rw-r--r--  1 root root    373 May 20 17:26 exp009_ckpt500_preset_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 748\\ndrwxr-xr-x  2 root root     98 May 20 17:26 .\\ndrwxr-xr-x 14 root root   4096 May 20 16:26 ..\\n-rw-r--r--  1 root root 755934 May 20 17:26 exp009_ckpt500_preset_eval.json\\n-rw-r--r--  1 root root    373 May 20 17:26 exp009_ckpt500_preset_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q4sTkTZPnKn3dWhwGfpK6S`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "find /root/contrastive_entrain_calib/results/exp012_probe_ablation/ -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "63fb38a5-5ba1-4d12-9f01-1b047d51dae6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWTwxdBDwEXD8FEmujUWjb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 433,
+      "cache_read_input_tokens": 23828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 433
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T09:28:28.182Z_
+
+<details><summary>↩ Tool result · `toolu_01Mrj1cysH9QDh1SdLFAM2dG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 15:18:21,745 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: exp_id:     exp009_ckpt500\\n2026-05-20 15:18:22,040 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-20 15:18:22,599 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:04<00:17,  4.43s/it]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:08<00:13,  4.41s/it]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:14<00:10,  5.12s/it]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:18<00:04,  4.48s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:19<00:00,  3.38s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:19<00:00,  3.94s/it]\\n2026-05-20 15:18:42,540 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\n2026-05-20 15:18:45,046 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-20 15:18:45,274 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-20 15:18:45,277 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-20 15:18:45,277 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-20 15:25:16,153 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-20 15:31:46,840 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-20 15:40:01,842 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-20 15:46:24,177 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-20 15:52:43,001 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-20 16:00:31,877 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-20 16:07:40,388 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-20 16:14:37,981 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-20 16:20:59,741 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-20 16:28:07,352 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-20 16:36:13,267 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-20 16:45:01,749 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-20 16:52:26,775 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-20 16:59:50,279 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-20 17:06:12,963 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-20 17:13:03,119 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-20 17:19:25,872 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-20 17:25:54,677 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-20 17:26:36,680 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/exp009_ckpt500_preset_eval.json\\n2026-05-20 17:26:36,681 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/exp009_ckpt500_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp009_ckpt500\\n==================================================\\n  ToF        = 0.0663\\n  NoF        = 0.9337\\n  SYCONScore = 0.1238\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 7671s\\n==================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "11115ecd-dc64-48ba-8603-546800c88b15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 15:18:21,745 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: exp_id:     exp009_ckpt500\\\\n2026-05-20 15:18:22,040 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-20 15:18:22,599 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:04<00:17,  4.43s/it]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:08<00:13,  4.41s/it]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:14<00:10,  5.12s/it]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:18<00:04,  4.48s/it]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:19<00:00,  3.38s/it]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:19<00:00,  3.94s/it]\\\\n2026-05-20 15:18:42,540 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\\\n2026-05-20 15:18:45,046 [INFO] eval_unified_preset: Loading NLI model...\\\\n2026-05-20 15:18:45,274 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\\\n2026-05-20 15:18:45,277 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 15:18:45,277 [INFO] eval_unified_preset: Running eval on 362 pairs...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-20 15:25:16,153 [INFO] eval_unified_preset:   Progress: 20/362\\\\n2026-05-20 15:31:46,840 [INFO] eval_unified_preset:   Progress: 40/362\\\\n2026-05-20 15:40:01,842 [INFO] eval_unified_preset:   Progress: 60/362\\\\n2026-05-20 15:46:24,177 [INFO] eval_unified_preset:   Progress: 80/362\\\\n2026-05-20 15:52:43,001 [INFO] eval_unified_preset:   Progress: 100/362\\\\n2026-05-20 16:00:31,877 [INFO] eval_unified_preset:   Progress: 120/362\\\\n2026-05-20 16:07:40,388 [INFO] eval_unified_preset:   Progress: 140/362\\\\n2026-05-20 16:14:37,981 [INFO] eval_unified_preset:   Progress: 160/362\\\\n2026-05-20 16:20:59,741 [INFO] eval_unified_preset:   Progress: 180/362\\\\n2026-05-20 16:28:07,352 [INFO] eval_unified_preset:   Progress: 200/362\\\\n2026-05-20 16:36:13,267 [INFO] eval_unified_preset:   Progress: 220/362\\\\n2026-05-20 16:45:01,749 [INFO] eval_unified_preset:   Progress: 240/362\\\\n2026-05-20 16:52:26,775 [INFO] eval_unified_preset:   Progress: 260/362\\\\n2026-05-20 16:59:50,279 [INFO] eval_unified_preset:   Progress: 280/362\\\\n2026-05-20 17:06:12,963 [INFO] eval_unified_preset:   Progress: 300/362\\\\n2026-05-20 17:13:03,119 [INFO] eval_unified_preset:   Progress: 320/362\\\\n2026-05-20 17:19:25,872 [INFO] eval_unified_preset:   Progress: 340/362\\\\n2026-05-20 17:25:54,677 [INFO] eval_unified_preset:   Progress: 360/362\\\\n2026-05-20 17:26:36,680 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/exp009_ckpt500_preset_eval.json\\\\n2026-05-20 17:26:36,681 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/exp009_ckpt500_preset_summary.txt\\\\n\\\\n==================================================\\\\n  D027 Preset Eval: exp009_ckpt500\\\\n==================================================\\\\n  ToF        = 0.0663\\\\n  NoF        = 0.9337\\\\n  SYCONScore = 0.1238\\\\n  Samples    = 362 (valid=181, invalid=181)\\\\n  Time       = 7671s\\\\n==================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 15:18:21,745 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: lora_path:  /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-20 15:18:21,745 [INFO] eval_unified_preset: exp_id:     exp009_ckpt500\\n2026-05-20 15:18:22,040 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-20 15:18:22,599 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:04<00:17,  4.43s/it]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:08<00:13,  4.41s/it]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:14<00:10,  5.12s/it]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:18<00:04,  4.48s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:19<00:00,  3.38s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:19<00:00,  3.94s/it]\\n2026-05-20 15:18:42,540 [INFO] eval_unified_preset: Loading LoRA adapter: /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\n2026-05-20 15:18:45,046 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-20 15:18:45,274 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-20 15:18:45,277 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-20 15:18:45,277 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-20 15:25:16,153 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-20 15:31:46,840 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-20 15:40:01,842 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-20 15:46:24,177 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-20 15:52:43,001 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-20 16:00:31,877 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-20 16:07:40,388 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-20 16:14:37,981 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-20 16:20:59,741 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-20 16:28:07,352 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-20 16:36:13,267 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-20 16:45:01,749 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-20 16:52:26,775 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-20 16:59:50,279 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-20 17:06:12,963 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-20 17:13:03,119 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-20 17:19:25,872 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-20 17:25:54,677 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-20 17:26:36,680 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/exp009_ckpt500_preset_eval.json\\n2026-05-20 17:26:36,681 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/exp009_ckpt500_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp009_ckpt500\\n==================================================\\n  ToF        = 0.0663\\n  NoF        = 0.9337\\n  SYCONScore = 0.1238\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 7671s\\n==================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T09:28:28.717Z_
+
+<details><summary>↩ Tool result · `toolu_01Q4sTkTZPnKn3dWhwGfpK6S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contrastive_entrain_calib/results/exp012_probe_ablation/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "7869732e-727a-4531-baa4-edcc297e5744",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contrastive_entrain_calib/results/exp012_probe_ablation/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contrastive_entrain_calib/results/exp012_probe_ablation/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got the exp-009 results from the log. Now let me read the summary file and the exp-012 probe ablation results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "6a349bba-13eb-44be-a2b9-616fb8395339",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016oJrUq2KVQpacjycGKRgkr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2640,
+      "cache_read_input_tokens": 24261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Now reading the detailed files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "09d75e69-d733-4941-88ff-40700a86e1a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016oJrUq2KVQpacjycGKRgkr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2640,
+      "cache_read_input_tokens": 24261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A4uR1VDrALE33habqpW1xJ`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/exp009_ckpt500_preset_summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "4cbb94ea-a5a1-4070-b4da-712a5d06286a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016oJrUq2KVQpacjycGKRgkr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2640,
+      "cache_read_input_tokens": 24261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tr1EAwCadsdWdnvhFBWfHH`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat /root/contrastive_entrain_calib/results/exp012_probe_ablation/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "c1bb5939-9c08-4985-897e-a89f721e12fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016oJrUq2KVQpacjycGKRgkr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2640,
+      "cache_read_input_tokens": 24261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T09:28:33.761Z_
+
+<details><summary>↩ Tool result · `toolu_01A4uR1VDrALE33habqpW1xJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"D027 Preset Eval Summary\\nexp_id: exp009_ckpt500\\nmodel:  /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\nlora:   /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\ndata:   /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\ntime:   7671s\\n\\nToF        = 0.0663\\nNoF        = 0.9337\\nSYCONScore = 0.1238\\nn_valid    = 181\\nn_invalid  = 181\\nn_total    = 362\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "2bf7de4f-34ff-49f8-b627-419810721fbd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"D027 Preset Eval Summary\\\\nexp_id: exp009_ckpt500\\\\nmodel:  /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\nlora:   /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\\\ndata:   /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\ntime:   7671s\\\\n\\\\nToF        = 0.0663\\\\nNoF        = 0.9337\\\\nSYCONScore = 0.1238\\\\nn_valid    = 181\\\\nn_invalid  = 181\\\\nn_total    = 362\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"D027 Preset Eval Summary\\nexp_id: exp009_ckpt500\\nmodel:  /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\nlora:   /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500\\ndata:   /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\ntime:   7671s\\n\\nToF        = 0.0663\\nNoF        = 0.9337\\nSYCONScore = 0.1238\\nn_valid    = 181\\nn_invalid  = 181\\nn_total    = 362\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T09:28:34.296Z_
+
+<details><summary>↩ Tool result · `toolu_01Tr1EAwCadsdWdnvhFBWfHH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_dsyc\\\": {\\n    \\\"16\\\": {\\n      \\\"auroc_mean\\\": 0.7778,\\n      \\\"auroc_std\\\": 0.036,\\n      \\\"fold_aurocs\\\": [\\n        0.8101,\\n        0.8273,\\n        0.7724,\\n        0.7446,\\n        0.7346\\n      ]\\n    },\\n    \\\"17\\\": {\\n      \\\"auroc_mean\\\": 0.7227,\\n      \\\"auroc_std\\\": 0.0419,\\n      \\\"fold_aurocs\\\": [\\n        0.735,\\n        0.7965,\\n        0.7153,\\n        0.6844,\\n        0.6821\\n      ]\\n    },\\n    \\\"18\\\": {\\n      \\\"auroc_mean\\\": 0.7182,\\n      \\\"auroc_std\\\": 0.0398,\\n      \\\"fold_aurocs\\\": [\\n        0.7335,\\n        0.789,\\n        0.7006,\\n        0.686,\\n        0.6821\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"auroc_mean\\\": 0.7161,\\n      \\\"auroc_std\\\": 0.0392,\\n      \\\"fold_aurocs\\\": [\\n        0.7335,\\n        0.783,\\n        0.706,\\n        0.6836,\\n        0.6744\\n      ]\\n    },\\n    \\\"20\\\": {\\n      \\\"auroc_mean\\\": 0.7292,\\n      \\\"auroc_std\\\": 0.039,\\n      \\\"fold_aurocs\\\": [\\n        0.7553,\\n        0.7935,\\n        0.7045,\\n        0.6937,\\n        0.6991\\n      ]\\n    },\\n    \\\"21\\\": {\\n      \\\"auroc_mean\\\": 0.7268,\\n      \\\"auroc_std\\\": 0.0355,\\n      \\\"fold_aurocs\\\": [\\n        0.765,\\n        0.7733,\\n        0.7122,\\n        0.6898,\\n        0.6937\\n      ]\\n    },\\n    \\\"22\\\": {\\n      \\\"auroc_mean\\\": 0.7318,\\n      \\\"auroc_std\\\": 0.0358,\\n      \\\"fold_aurocs\\\": [\\n        0.7733,\\n        0.7748,\\n        0.7215,\\n        0.6937,\\n        0.696\\n      ]\\n    },\\n    \\\"23\\\": {\\n      \\\"auroc_mean\\\": 0.7305,\\n      \\\"auroc_std\\\": 0.0342,\\n      \\\"fold_aurocs\\\": [\\n        0.7733,\\n        0.7673,\\n        0.723,\\n        0.6968,\\n        0.6921\\n      ]\\n    },\\n    \\\"24\\\": {\\n      \\\"auroc_mean\\\": 0.727,\\n      \\\"auroc_std\\\": 0.0348,\\n      \\\"fold_aurocs\\\": [\\n        0.771,\\n        0.7598,\\n        0.7261,\\n        0.6983,\\n        0.6798\\n      ]\\n    },\\n    \\\"25\\\": {\\n      \\\"auroc_mean\\\": 0.7366,\\n      \\\"auroc_std\\\": 0.034,\\n      \\\"fold_aurocs\\\": [\\n        0.7778,\\n        0.7748,\\n        0.7284,\\n        0.7052,\\n        0.6968\\n      ]\\n    },\\n    \\\"26\\\": {\\n      \\\"auroc_mean\\\": 0.7355,\\n      \\\"auroc_std\\\": 0.0333,\\n      \\\"fold_aurocs\\\": [\\n        0.7785,\\n        0.7688,\\n        0.7292,\\n        0.7076,\\n        0.6937\\n      ]\\n    },\\n    \\\"27\\\": {\\n      \\\"auroc_mean\\\": 0.7326,\\n      \\\"auroc_std\\\": 0.0348,\\n      \\\"fold_aurocs\\\": [\\n        0.7778,\\n        0.7695,\\n        0.7207,\\n        0.7029,\\n        0.6921\\n      ]\\n    },\\n    \\\"28\\\": {\\n      \\\"auroc_mean\\\": 0.7329,\\n      \\\"auroc_std\\\": 0.0348,\\n      \\\"fold_aurocs\\\": [\\n        0.7793,\\n        0.7643,\\n        0.7292,\\n        0.7052,\\n        0.6867\\n      ]\\n    },\\n    \\\"29\\\": {\\n      \\\"auroc_mean\\\": 0.731,\\n      \\\"auroc_std\\\": 0.0346,\\n      \\\"fold_aurocs\\\": [\\n        0.7785,\\n        0.7605,\\n        0.7261,\\n        0.7052,\\n        0.6844\\n      ]\\n    },\\n    \\\"30\\\": {\\n      \\\"auroc_mean\\\": 0.7323,\\n      \\\"auroc_std\\\": 0.0338,\\n      \\\"fold_aurocs\\\": [\\n        0.7785,\\n        0.762,\\n        0.7238,\\n        0.7122,\\n        0.6852\\n      ]\\n    },\\n    \\\"31\\\": {\\n      \\\"auroc_mean\\\": 0.7454,\\n      \\\"auroc_std\\\": 0.0379,\\n      \\\"fold_aurocs\\\": [\\n        0.7898,\\n        0.7913,\\n        0.7253,\\n        0.7207,\\n        0.6998\\n      ]\\n    }\\n  },\\n  \\\"per_layer_random\\\": {},\\n  \\\"summary\\\": {\\n    \\\"best_layer\\\": 16,\\n    \\\"best_dsyc_auroc\\\": 0.7778,\\n    \\\"multi_layer_auroc\\\": 0.8128,\\n    \\\"random_auroc_mean\\\": 0.5301,\\n    \\\"random_auroc_std\\\": 0.055,\\n    \\\"delta_dsyc_vs_random\\\": 0.2477,\\n    \\\"n_samples\\\": 362,\\n    \\\"n_positive\\\": 181,\\n    \\\"n_negative\\\": 181\\n  },\\n  \\\"random_direction\\\": {\\n    \\\"layer\\\": 16,\\n    \\\"n_seeds\\\": 10,\\n    \\\"per_seed\\\": {\\n      \\\"0\\\": 0.4546,\\n      \\\"1\\\": 0.5921,\\n      \\\"2\\\": 0.5794,\\n      \\\"3\\\": 0.5466,\\n      \\\"4\\\": 0.4619,\\n      \\\"5\\\": 0.4875,\\n      \\\"6\\\": 0.5447,\\n      \\\"7\\\": 0.4664,\\n      \\\"8\\\": 0.5566,\\n      \\\"9\\\": 0.611\\n    },\\n    \\\"auroc_mean\\\": 0.5301,\\n    \\\"auroc_std\\\": 0.055\\n  },\\n  \\\"multi_layer\\\": {\\n    \\\"auroc_mean\\\": 0.8128,\\n    \\\"auroc_std\\\": 0.0319,\\n    \\\"fold_aurocs\\\": [\\n      0.8574,\\n      0.8356,\\n      0.814,\\n      0.7894,\\n      0.7677\\n    ],\\n    \\\"n_layers\\\": 16\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "32642622-bde6-41a4-b62a-4b76016e4909",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_layer_dsyc\\\\\\\": {\\\\n    \\\\\\\"16\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7778,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.036,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.8101,\\\\n        0.8273,\\\\n        0.7724,\\\\n        0.7446,\\\\n        0.7346\\\\n      ]\\\\n    },\\\\n    \\\\\\\"17\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7227,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0419,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.735,\\\\n        0.7965,\\\\n        0.7153,\\\\n        0.6844,\\\\n        0.6821\\\\n      ]\\\\n    },\\\\n    \\\\\\\"18\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7182,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0398,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7335,\\\\n        0.789,\\\\n        0.7006,\\\\n        0.686,\\\\n        0.6821\\\\n      ]\\\\n    },\\\\n    \\\\\\\"19\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7161,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0392,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7335,\\\\n        0.783,\\\\n        0.706,\\\\n        0.6836,\\\\n        0.6744\\\\n      ]\\\\n    },\\\\n    \\\\\\\"20\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7292,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.039,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7553,\\\\n        0.7935,\\\\n        0.7045,\\\\n        0.6937,\\\\n        0.6991\\\\n      ]\\\\n    },\\\\n    \\\\\\\"21\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7268,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0355,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.765,\\\\n        0.7733,\\\\n        0.7122,\\\\n        0.6898,\\\\n        0.6937\\\\n      ]\\\\n    },\\\\n    \\\\\\\"22\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7318,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0358,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7733,\\\\n        0.7748,\\\\n        0.7215,\\\\n        0.6937,\\\\n        0.696\\\\n      ]\\\\n    },\\\\n    \\\\\\\"23\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7305,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0342,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7733,\\\\n        0.7673,\\\\n        0.723,\\\\n        0.6968,\\\\n        0.6921\\\\n      ]\\\\n    },\\\\n    \\\\\\\"24\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.727,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0348,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.771,\\\\n        0.7598,\\\\n        0.7261,\\\\n        0.6983,\\\\n        0.6798\\\\n      ]\\\\n    },\\\\n    \\\\\\\"25\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7366,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.034,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7778,\\\\n        0.7748,\\\\n        0.7284,\\\\n        0.7052,\\\\n        0.6968\\\\n      ]\\\\n    },\\\\n    \\\\\\\"26\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7355,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0333,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7785,\\\\n        0.7688,\\\\n        0.7292,\\\\n        0.7076,\\\\n        0.6937\\\\n      ]\\\\n    },\\\\n    \\\\\\\"27\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7326,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0348,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7778,\\\\n        0.7695,\\\\n        0.7207,\\\\n        0.7029,\\\\n        0.6921\\\\n      ]\\\\n    },\\\\n    \\\\\\\"28\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7329,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0348,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7793,\\\\n        0.7643,\\\\n        0.7292,\\\\n        0.7052,\\\\n        0.6867\\\\n      ]\\\\n    },\\\\n    \\\\\\\"29\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.731,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0346,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7785,\\\\n        0.7605,\\\\n        0.7261,\\\\n        0.7052,\\\\n        0.6844\\\\n      ]\\\\n    },\\\\n    \\\\\\\"30\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7323,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0338,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7785,\\\\n        0.762,\\\\n        0.7238,\\\\n        0.7122,\\\\n        0.6852\\\\n      ]\\\\n    },\\\\n    \\\\\\\"31\\\\\\\": {\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.7454,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0379,\\\\n      \\\\\\\"fold_aurocs\\\\\\\": [\\\\n        0.7898,\\\\n        0.7913,\\\\n        0.7253,\\\\n        0.7207,\\\\n        0.6998\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_layer_random\\\\\\\": {},\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"best_layer\\\\\\\": 16,\\\\n    \\\\\\\"best_dsyc_auroc\\\\\\\": 0.7778,\\\\n    \\\\\\\"multi_layer_auroc\\\\\\\": 0.8128,\\\\n    \\\\\\\"random_auroc_mean\\\\\\\": 0.5301,\\\\n    \\\\\\\"random_auroc_std\\\\\\\": 0.055,\\\\n    \\\\\\\"delta_dsyc_vs_random\\\\\\\": 0.2477,\\\\n    \\\\\\\"n_samples\\\\\\\": 362,\\\\n    \\\\\\\"n_positive\\\\\\\": 181,\\\\n    \\\\\\\"n_negative\\\\\\\": 181\\\\n  },\\\\n  \\\\\\\"random_direction\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 16,\\\\n    \\\\\\\"n_seeds\\\\\\\": 10,\\\\n    \\\\\\\"per_seed\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": 0.4546,\\\\n      \\\\\\\"1\\\\\\\": 0.5921,\\\\n      \\\\\\\"2\\\\\\\": 0.5794,\\\\n      \\\\\\\"3\\\\\\\": 0.5466,\\\\n      \\\\\\\"4\\\\\\\": 0.4619,\\\\n      \\\\\\\"5\\\\\\\": 0.4875,\\\\n      \\\\\\\"6\\\\\\\": 0.5447,\\\\n      \\\\\\\"7\\\\\\\": 0.4664,\\\\n      \\\\\\\"8\\\\\\\": 0.5566,\\\\n      \\\\\\\"9\\\\\\\": 0.611\\\\n    },\\\\n    \\\\\\\"auroc_mean\\\\\\\": 0.5301,\\\\n    \\\\\\\"auroc_std\\\\\\\": 0.055\\\\n  },\\\\n  \\\\\\\"multi_layer\\\\\\\": {\\\\n    \\\\\\\"auroc_mean\\\\\\\": 0.8128,\\\\n    \\\\\\\"auroc_std\\\\\\\": 0.0319,\\\\n    \\\\\\\"fold_aurocs\\\\\\\": [\\\\n      0.8574,\\\\n      0.8356,\\\\n      0.814,\\\\n      0.7894,\\\\n      0.7677\\\\n    ],\\\\n    \\\\\\\"n_layers\\\\\\\": 16\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_dsyc\\\": {\\n    \\\"16\\\": {\\n      \\\"auroc_mean\\\": 0.7778,\\n      \\\"auroc_std\\\": 0.036,\\n      \\\"fold_aurocs\\\": [\\n        0.8101,\\n        0.8273,\\n        0.7724,\\n        0.7446,\\n        0.7346\\n      ]\\n    },\\n    \\\"17\\\": {\\n      \\\"auroc_mean\\\": 0.7227,\\n      \\\"auroc_std\\\": 0.0419,\\n      \\\"fold_aurocs\\\": [\\n        0.735,\\n        0.7965,\\n        0.7153,\\n        0.6844,\\n        0.6821\\n      ]\\n    },\\n    \\\"18\\\": {\\n      \\\"auroc_mean\\\": 0.7182,\\n      \\\"auroc_std\\\": 0.0398,\\n      \\\"fold_aurocs\\\": [\\n        0.7335,\\n        0.789,\\n        0.7006,\\n        0.686,\\n        0.6821\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"auroc_mean\\\": 0.7161,\\n      \\\"auroc_std\\\": 0.0392,\\n      \\\"fold_aurocs\\\": [\\n        0.7335,\\n        0.783,\\n        0.706,\\n        0.6836,\\n        0.6744\\n      ]\\n    },\\n    \\\"20\\\": {\\n      \\\"auroc_mean\\\": 0.7292,\\n      \\\"auroc_std\\\": 0.039,\\n      \\\"fold_aurocs\\\": [\\n        0.7553,\\n        0.7935,\\n        0.7045,\\n        0.6937,\\n        0.6991\\n      ]\\n    },\\n    \\\"21\\\": {\\n      \\\"auroc_mean\\\": 0.7268,\\n      \\\"auroc_std\\\": 0.0355,\\n      \\\"fold_aurocs\\\": [\\n        0.765,\\n        0.7733,\\n        0.7122,\\n        0.6898,\\n        0.6937\\n      ]\\n    },\\n    \\\"22\\\": {\\n      \\\"auroc_mean\\\": 0.7318,\\n      \\\"auroc_std\\\": 0.0358,\\n      \\\"fold_aurocs\\\": [\\n        0.7733,\\n        0.7748,\\n        0.7215,\\n        0.6937,\\n        0.696\\n      ]\\n    },\\n    \\\"23\\\": {\\n      \\\"auroc_mean\\\": 0.7305,\\n      \\\"auroc_std\\\": 0.0342,\\n      \\\"fold_aurocs\\\": [\\n        0.7733,\\n        0.7673,\\n        0.723,\\n        0.6968,\\n        0.6921\\n      ]\\n    },\\n    \\\"24\\\": {\\n      \\\"auroc_mean\\\": 0.727,\\n      \\\"auroc_std\\\": 0.0348,\\n      \\\"fold_aurocs\\\": [\\n        0.771,\\n        0.7598,\\n        0.7261,\\n        0.6983,\\n        0.6798\\n      ]\\n    },\\n    \\\"25\\\": {\\n      \\\"auroc_mean\\\": 0.7366,\\n      \\\"auroc_std\\\": 0.034,\\n      \\\"fold_aurocs\\\": [\\n        0.7778,\\n        0.7748,\\n        0.7284,\\n        0.7052,\\n        0.6968\\n      ]\\n    },\\n    \\\"26\\\": {\\n      \\\"auroc_mean\\\": 0.7355,\\n      \\\"auroc_std\\\": 0.0333,\\n      \\\"fold_aurocs\\\": [\\n        0.7785,\\n        0.7688,\\n        0.7292,\\n        0.7076,\\n        0.6937\\n      ]\\n    },\\n    \\\"27\\\": {\\n      \\\"auroc_mean\\\": 0.7326,\\n      \\\"auroc_std\\\": 0.0348,\\n      \\\"fold_aurocs\\\": [\\n        0.7778,\\n        0.7695,\\n        0.7207,\\n        0.7029,\\n        0.6921\\n      ]\\n    },\\n    \\\"28\\\": {\\n      \\\"auroc_mean\\\": 0.7329,\\n      \\\"auroc_std\\\": 0.0348,\\n      \\\"fold_aurocs\\\": [\\n        0.7793,\\n        0.7643,\\n        0.7292,\\n        0.7052,\\n        0.6867\\n      ]\\n    },\\n    \\\"29\\\": {\\n      \\\"auroc_mean\\\": 0.731,\\n      \\\"auroc_std\\\": 0.0346,\\n      \\\"fold_aurocs\\\": [\\n        0.7785,\\n        0.7605,\\n        0.7261,\\n        0.7052,\\n        0.6844\\n      ]\\n    },\\n    \\\"30\\\": {\\n      \\\"auroc_mean\\\": 0.7323,\\n      \\\"auroc_std\\\": 0.0338,\\n      \\\"fold_aurocs\\\": [\\n        0.7785,\\n        0.762,\\n        0.7238,\\n        0.7122,\\n        0.6852\\n      ]\\n    },\\n    \\\"31\\\": {\\n      \\\"auroc_mean\\\": 0.7454,\\n      \\\"auroc_std\\\": 0.0379,\\n      \\\"fold_aurocs\\\": [\\n        0.7898,\\n        0.7913,\\n        0.7253,\\n        0.7207,\\n        0.6998\\n      ]\\n    }\\n  },\\n  \\\"per_layer_random\\\": {},\\n  \\\"summary\\\": {\\n    \\\"best_layer\\\": 16,\\n    \\\"best_dsyc_auroc\\\": 0.7778,\\n    \\\"multi_layer_auroc\\\": 0.8128,\\n    \\\"random_auroc_mean\\\": 0.5301,\\n    \\\"random_auroc_std\\\": 0.055,\\n    \\\"delta_dsyc_vs_random\\\": 0.2477,\\n    \\\"n_samples\\\": 362,\\n    \\\"n_positive\\\": 181,\\n    \\\"n_negative\\\": 181\\n  },\\n  \\\"random_direction\\\": {\\n    \\\"layer\\\": 16,\\n    \\\"n_seeds\\\": 10,\\n    \\\"per_seed\\\": {\\n      \\\"0\\\": 0.4546,\\n      \\\"1\\\": 0.5921,\\n      \\\"2\\\": 0.5794,\\n      \\\"3\\\": 0.5466,\\n      \\\"4\\\": 0.4619,\\n      \\\"5\\\": 0.4875,\\n      \\\"6\\\": 0.5447,\\n      \\\"7\\\": 0.4664,\\n      \\\"8\\\": 0.5566,\\n      \\\"9\\\": 0.611\\n    },\\n    \\\"auroc_mean\\\": 0.5301,\\n    \\\"auroc_std\\\": 0.055\\n  },\\n  \\\"multi_layer\\\": {\\n    \\\"auroc_mean\\\": 0.8128,\\n    \\\"auroc_std\\\": 0.0319,\\n    \\\"fold_aurocs\\\": [\\n      0.8574,\\n      0.8356,\\n      0.814,\\n      0.7894,\\n      0.7677\\n    ],\\n    \\\"n_layers\\\": 16\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+## exp-009 ckpt-500 Eval Results
+
+| Metric | Value |
+|--------|-------|
+| **ToF** | 0.0663 |
+| **NoF** | 0.9337 |
+| **SYCONScore** | 0.1238 |
+| Samples | 362 (valid=181, invalid=181) |
+| Model | Qwen3-8B + LoRA (exp009 checkpoint-500) |
+| Eval time | 7671s (~2.1h) |
+
+**结论：ckpt-500 效果很差。** NoF 很高（0.93，几乎不翻转）但 ToF 极低（0.07，该翻也不翻），说明模型变得过度保守/顽固，对 valid correction 也拒绝接受。SYCONScore 0.1238 远低于可用水平。
+
+---
+
+## exp-012 Llama Probe Ablation Details
+
+### 每层 AUROC（dSYC direction, 5-fold CV）
+
+| Layer | AUROC (mean ± std) |
+|-------|-------------------|
+| **L16** | **0.7778 ± 0.036** ← best single layer |
+| L17 | 0.7227 ± 0.042 |
+| L18 | 0.7182 ± 0.040 |
+| L19 | 0.7161 ± 0.039 |
+| L20 | 0.7292 ± 0.039 |
+| L21 | 0.7268 ± 0.036 |
+| L22 | 0.7318 ± 0.036 |
+| L23 | 0.7305 ± 0.034 |
+| L24 | 0.7270 ± 0.035 |
+| L25 | 0.7366 ± 0.034 |
+| L26 | 0.7355 ± 0.033 |
+| L27 | 0.7326 ± 0.035 |
+| L28 | 0.7329 ± 0.035 |
+| L29 | 0.7310 ± 0.035 |
+| L30 | 0.7323 ± 0.034 |
+| L31 | 0.7454 ± 0.038 |
+
+### Multi-layer probe
+- **AUROC: 0.8128 ± 0.032**（16层拼接，5-fold: 0.857/0.836/0.814/0.789/0.768）
+
+### Random direction baseline（L16, 10 seeds）
+- Mean AUROC: **0.5301 ± 0.055**（范围 0.455–0.611）
+- **Δ(dSYC vs random) = 0.2477**，dSYC direction 显著优于随机方向
+
+### 关键发现
+- L16 是最佳单层（0.778），L31 次之（0.745），中间层相对平坦（0.716–0.737）
+- Multi-layer 拼接比最佳单层提升 ~3.5 个点（0.813 vs 0.778）
+- Random baseline 在 chance 附近（0.530），确认 dSYC direction 非偶然
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "uuid": "fdbda49e-933b-4c85-ac31-82e290778b7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0196abHMgReaNVT35Dzrvx5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3040,
+      "cache_read_input_tokens": 26901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3040
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 21_
+
+## exp-009 ckpt-500 Eval Results
+
+| Metric | Value |
+|--------|-------|
+| **ToF** | 0.0663 |
+| **NoF** | 0.9337 |
+| **SYCONScore** | 0.1238 |
+| Samples | 362 (valid=181, invalid=181) |
+| Model | Qwen3-8B + LoRA (exp009 checkpoint-500) |
+| Eval time | 7671s (~2.1h) |
+
+**结论：ckpt-500 效果很差。** NoF 很高（0.93，几乎不翻转）但 ToF 极低（0.07，该翻也不翻），说明模型变得过度保守/顽固，对 valid correction 也拒绝接受。SYCONScore 0.1238 远低于可用水平。
+
+---
+
+## exp-012 Llama Probe Ablation Details
+
+### 每层 AUROC（dSYC direction, 5-fold CV）
+
+| Layer | AUROC (mean ± std) |
+|-------|-------------------|
+| **L16** | **0.7778 ± 0.036** ← best single layer |
+| L17 | 0.7227 ± 0.042 |
+| L18 | 0.7182 ± 0.040 |
+| L19 | 0.7161 ± 0.039 |
+| L20 | 0.7292 ± 0.039 |
+| L21 | 0.7268 ± 0.036 |
+| L22 | 0.7318 ± 0.036 |
+| L23 | 0.7305 ± 0.034 |
+| L24 | 0.7270 ± 0.035 |
+| L25 | 0.7366 ± 0.034 |
+| L26 | 0.7355 ± 0.033 |
+| L27 | 0.7326 ± 0.035 |
+| L28 | 0.7329 ± 0.035 |
+| L29 | 0.7310 ± 0.035 |
+| L30 | 0.7323 ± 0.034 |
+| L31 | 0.7454 ± 0.038 |
+
+### Multi-layer probe
+- **AUROC: 0.8128 ± 0.032**（16层拼接，5-fold: 0.857/0.836/0.814/0.789/0.768）
+
+### Random direction baseline（L16, 10 seeds）
+- Mean AUROC: **0.5301 ± 0.055**（范围 0.455–0.611）
+- **Δ(dSYC vs random) = 0.2477**，dSYC direction 显著优于随机方向
+
+### 关键发现
+- L16 是最佳单层（0.778），L31 次之（0.745），中间层相对平坦（0.716–0.737）
+- Multi-layer 拼接比最佳单层提升 ~3.5 个点（0.813 vs 0.778）
+- Random baseline 在 chance 附近（0.530），确认 dSYC direction 非偶然
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 35398,
+  "duration_api_ms": 35450,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "6a144709-7d03-49f9-b6dc-1b56ea1d2cc4",
+  "total_cost_usd": 0.1996525,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 18100,
+    "cache_read_input_tokens": 86831,
+    "output_tokens": 1665,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 18100,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 878,
+        "cache_read_input_tokens": 26901,
+        "cache_creation_input_tokens": 3040,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3040
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1347,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0014520000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 1665,
+      "cacheReadInputTokens": 86831,
+      "cacheCreationInputTokens": 18100,
+      "webSearchRequests": 0,
+      "costUSD": 0.1982005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f9d12e7b-a979-42bb-a7be-f39f2bce313c"
+}
+```
+
+</details>
+
+---

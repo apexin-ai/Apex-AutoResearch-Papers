@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp-004-reduced-lora",
+  "project": "contrastive_entrain_calib",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:15:03.252Z",
+    "updated_at": "2026-05-23T08:24:58.149Z",
+    "hypothesis": "ACT with GRPO-matching LoRA config (r=64, alpha=64, 4 modules: qkvo) instead of standard ACT LoRA (r=64, alpha=128, 7 modules: qkvo+gate+up+down). Isolates supervision granularity vs LoRA capacity. If reduced-LoRA ACT still succeeds → supervision granularity (per-token SFT) is the key factor, not LoRA capacity.",
+    "parent": "exp-004",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python training/run_exp004_reduced_lora.py",
+      "server": "westd-28034",
+      "gpu": "cuda:1",
+      "pid": "30006",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log",
+      "submitted_at": "2026-05-22T16:40:59.840Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 181,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (training, not eval)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T08:24:57.683Z"
+    }
+  },
+  "timestamp": "2026-05-23T08:24:58.351669+00:00",
+  "trigger": "update_registry"
+}

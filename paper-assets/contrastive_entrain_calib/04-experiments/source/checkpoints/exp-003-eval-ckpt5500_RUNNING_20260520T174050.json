@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp-003-eval-ckpt5500",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:21:54.401Z",
+    "updated_at": "2026-05-20T17:40:50.644Z",
+    "spec": {
+      "command": "eval_unified_preset.py",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "605435",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt5500.log",
+      "submitted_at": "2026-05-20T16:21:54.289Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "exp-003 checkpoint-5500",
+      "eval_data": "calibration_v2_1_expanded.jsonl"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T17:37:22.627Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T17:37:25.059094+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Eval exp-003 R3-only GRPO checkpoint-5500 with D027 unified preset. Testing whether R3-only plateau (ckpt-4000=ckpt-5000=0.114) extends to ckpt-5500.",
+    "parent": "exp-003"
+  },
+  "timestamp": "2026-05-20T17:40:50.739958+00:00",
+  "trigger": "update_registry"
+}

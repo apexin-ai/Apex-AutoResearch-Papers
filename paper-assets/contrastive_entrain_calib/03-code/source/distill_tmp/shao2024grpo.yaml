@@ -1,0 +1,41 @@
+paper_key: "shao2024grpo"
+title: "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - Gemini-Ultra
+    - GPT-4
+    - DeepSeek-Coder-Base-v1.5 7B
+    - PPO (Proximal Policy Optimization)
+  metrics:
+    - {name: "MATH benchmark accuracy", direction: "higher_better"}
+    - {name: "Self-consistency accuracy (64 samples)", direction: "higher_better"}
+    - {name: "Memory usage", direction: "lower_better"}
+  datasets:
+    - {name: "MATH (competition-level)", size: "not specified"}
+    - {name: "Common Crawl math-related tokens", size: "120B tokens"}
+  ablation_dimensions:
+    - data selection pipeline
+    - GRPO vs PPO training
+    - pre-training data composition (math + NL + code)
+  training_recipe:
+    optimizer: "GRPO (Group Relative Policy Optimization)"
+    lr: "not specified"
+    hardware: "not specified"
+    base_model: "DeepSeek-Coder-Base-v1.5 7B"
+    pre_training_tokens: "120B math-related"
+  method_family: "reinforcement learning for reasoning (policy optimization)"
+
+positioning:
+  core_claim: "Group Relative Policy Optimization (GRPO), a memory-efficient variant of PPO, combined with carefully curated web math data, enables a 7B model to approach GPT-4 level mathematical reasoning."
+  key_results: "MATH benchmark: 51.7% (single pass), 60.9% (self-consistency over 64 samples), approaching Gemini-Ultra and GPT-4."
+  limitations:
+    - "Limited to 7B scale; unclear how GRPO scales to larger models"
+    - "Relies on competition-level math benchmarks which may not capture broader reasoning"
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

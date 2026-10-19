@@ -1,0 +1,110 @@
+paper_key: "skalse2022hacking"
+title: "Defining and Characterizing Reward Hacking"
+venue: "NeurIPS 2022"
+full_text_available: true
+
+research:
+  baselines: []  # Purely theoretical paper, no empirical baselines
+  metrics: []  # No empirical metrics; results are theorems about hackability/unhackability conditions
+  datasets: []  # No datasets used; theoretical analysis with illustrative examples (cleaning robot, two-state MDP)
+  ablation_dimensions:
+    - "policy set type (all stochastic, all stationary, deterministic, finite, epsilon-suboptimal, delta-deterministic)"
+    - "reward function relationship (hackable vs unhackable vs simplification vs refinement)"
+    - "environment structure (general MDP, bandit, two-state MDP, cleaning robot)"
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "personal laptop with integrated graphics (for computational verification of two-state MDP examples only)"
+  method_family: "formal theory of reward misspecification in RL / AI alignment theory"
+
+positioning:
+  core_claim: "Reward hacking is nearly unavoidable in theory: for any open set of stochastic policies, the only unhackable proxy-true reward pairs are equivalent ones, meaning non-trivial simplification of reward functions generically fails to prevent hacking."
+  key_results: "Theorem 1: on any open policy set, unhackable + non-trivial implies equivalent. Corollary 1: on all stationary policies, unhackable pairs must be equivalent. Theorem 2: for any finite policy set with >=2 distinct occupancy policies, non-trivial unhackable pairs always exist. Theorem 3: necessary and sufficient conditions for non-trivial simplification on finite policy sets via dimensionality check on equality-preserving subspaces."
+  limitations:
+    - "Only considers finite MDPs and Markovian reward functions"
+    - "Definition of hackability is symmetric and arguably too strict -- complex behaviors with low proxy but high true reward are unlikely to be discovered during optimization"
+    - "Does not account for probability of encountering specific policy sequences during optimization"
+    - "Hackability is not a guarantee of hacking occurring in practice; extensive empirical work needed"
+    - "Characterization of infinite policy sets that are not open remains incomplete"
+    - "Does not address approximate or probabilistic unhackability"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Opens with vivid examples of proxy optimization gone wrong: a boat spinning in circles collecting powerups instead of racing, an evolved circuit eavesdropping on radio signals, universities rejecting qualified applicants to boost selectivity ratings."
+  tension: "Learned proxy rewards are increasingly used in safety-critical applications (autonomous vehicles, algorithmic trading), yet optimizing them can be dangerous -- overlooking side-effects or encouraging power-seeking behavior. No formal framework existed to characterize when it is safe to optimize a proxy."
+  key_insight: "The linearity of expected reward in state-action visit counts makes unhackability an extremely strong condition. Because J(pi) = <R, F^pi> is a linear function of the visit count vector, two non-equivalent reward functions define different hyperplanes in occupancy space, and any open set of policies will contain points that violate ordering agreement. This geometric insight drives the impossibility result."
+  argument_chain: "motivating examples (boat, robot, university) -> question 'when is proxy safe to optimize?' -> formal definition of hackability as existence of policy pair with disagreeing orderings -> impossibility for open/stochastic policy sets (Theorem 1) via linearity + openness argument -> possibility for finite sets (Theorem 2) via continuous path rotation argument -> necessary and sufficient conditions for simplification (Theorem 3) via dimensionality of equality-preserving subspace -> discussion of implications for reward learning and AI alignment"
+  contribution_framing: "Three clearly delineated contributions: (1) first formal definition of reward hacking and unhackability, (2) impossibility result for general policy sets, (3) existence and characterization results for restricted policy sets. Framed as 'beginning the formal study' rather than solving the problem."
+  intro_structure: "5 paragraphs: P1 vivid examples of proxy failure + define 'reward hacking'; P2 safety-critical motivation + proxy learning approaches + dangers; P3 formal question setup + key results preview (impossibility for stochastic, possibility for finite); P4 introduction of simplification concept; P5 implications discussion + future work pointer"
+  notable_technique: "The cleaning robot example (Section 2) is deployed before any formalism, making the abstract concepts of hackability and unhackability immediately tangible through a 3-room cleaning scenario with concrete reward vectors. This intuition-first approach lets readers build mental models before encountering definitions."
+
+figures:
+  figure_count: 10
+  figure1:
+    type: "problem_illustration"
+    description: "Cleaning robot example showing hackable vs unhackable proxy rewards. Two panels: (a) proxy r_proxy=[1,0,0] is hackable because cleaning attic alone ranks higher than cleaning bedroom+kitchen; (b) proxy r_proxy=[1,1,0] is unhackable because cleaning one room is never better than cleaning two rooms."
+    narrative_role: "Grounds the abstract concept of hackability in a concrete, intuitive scenario before formal definitions. Appears in Section 2 (before Related Work or Preliminaries), establishing reader intuition early."
+    design_elements: ["two-panel comparison (hackable vs not)", "emoji icons for rooms (attic/bedroom/kitchen)", "speech bubbles showing agent reasoning", "human preference statement at top"]
+    visual_style: "Simple cartoon-style illustration with icons and speech bubbles. Clean two-column layout contrasting the hackable case (left) with the unhackable case (right). Uses minimal colors with emoji-style room icons."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "True reward vs proxy reward over training time when optimizing a hackable proxy"
+      how_gain_highlighted: "Shows the characteristic phase transition: both rewards increase initially, then true reward collapses while proxy continues rising (the 'hacking' moment)"
+      design_note: "Classic reward hacking illustration plot. Green line (true reward) rises then drops; red line (proxy reward) continues rising. Simple and immediately communicates the phenomenon. Referenced as similar to plots in Ibarz et al. (2018) and Pan et al. (2022)."
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Two reward functions (Gaussian blue vs step function orange) on a 1D state space, with points A, B, C marked"
+      how_gain_highlighted: "Shows that a step function that looks like a simplification of a Gaussian is actually hackable: policy mixing B and C has higher step reward but lower Gaussian reward than staying at B"
+      design_note: "Compact figure embedded alongside text in Section 5.1. Effectively visualizes why seemingly natural simplifications fail."
+    - figure_id: "Figure 4"
+      viz_type: "qualitative_comparison"
+      what_compared: "State-action occupancy space with reward function contour lines being rotated, showing how rotation passes through equality points"
+      how_gain_highlighted: "Three-panel progression shows the geometric intuition behind Theorem 2: rotating contour lines in occupancy space must pass through configurations where two policies have equal value"
+      design_note: "Highly geometric illustration. Uses shading for reward magnitude, solid black lines for original contours, dotted blue for rotated contours. Points represent policy occupancies. Excellent visualization of the continuous-path proof strategy."
+    - figure_id: "Figure 5"
+      viz_type: "qualitative_comparison"
+      what_compared: "Two infinite policy sets (not containing open sets): one allowing simplification (a), one not (b)"
+      how_gain_highlighted: "Two-panel comparison with 3D triangle diagrams showing policy values. Panel (a): rotating triangle along AB axis preserves ordering. Panel (b): rotation swaps relative values of X and Y."
+      design_note: "Complex 3D geometric figures with red/blue triangles representing policy sets. Points A, B, C are deterministic policies; bold lines between them are stochastic mixtures. Uses color coding and labeled axes effectively for a difficult visualization task."
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["feature count vectors f, f', f-tilde, f-tilde'"]
+      design_note: "Proof illustration for Theorem 1 showing realizable feature counts in the open set F(Pi-hat). Shows how analogues of f and f' can be found within an open ball, enabling the linearity argument. Used in appendix proof."
+    - figure_id: "Figure 7"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["policy orderings in cleaning robot (DAG structure)"]
+      design_note: "DAG showing all possible policy orderings for the cleaning robot (8 policies as binary vectors). Arrows indicate 'at most as good as' relationships. Shows structural constraints on reward-induced orderings."
+    - figure_id: "Figure 8"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["policy orderings after simplification (collapsing attic dimension)"]
+      design_note: "Reduced DAG after equating policies that differ only in attic-cleaning. Shows how simplification collapses the cube to a square. Clean visual metaphor for dimensionality reduction via simplification."
+    - figure_id: "Figure 9"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["all possible unhackable pairs of policy orderings over 3 policies"]
+      design_note: "Unhackability diagram: undirected graph where nodes are representable orderings of 3 policies a,b,c, edges connect unhackable pairs. Symmetric circular layout reveals structural patterns in unhackability."
+    - figure_id: "Figure 10"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["all possible simplifications among policy orderings over 3 policies"]
+      design_note: "Simplification diagram: directed graph (subgraph of Figure 9) where arrows point from orderings to their simplifications. Shows simplification is asymmetric and more restrictive than unhackability."
+  figure_narrative_role: "Figure 1 (intuitive example) -> Figure 2 (empirical phenomenon illustration) -> Figure 3 (counterexample motivating impossibility) -> Figure 4 (geometric proof intuition for Theorem 2) -> Figure 5 (infinite policy set edge cases) -> Figures 6-10 (appendix: proof details and exhaustive enumeration of small examples)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "MDP parameters"
+    col_axis: "parameter values"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "N/A (descriptive table, not comparison)"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "Simple parameter table describing the two-state MDP used for computational examples (states, actions, dynamics, initial distribution, discount factor). Located in Appendix D.1. Purely descriptive, not a results comparison table -- appropriate for a theory paper."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 1 in appendix describes two-state MDP parameters. No empirical results tables. The appendix instead uses enumerated lists of policy orderings and simplifications (text-based, not tabular) to exhaustively characterize the two-state example."
+    reason: "As a purely theoretical paper, there are no empirical results requiring tables. The computational verification results are presented as enumerated mathematical expressions rather than traditional tables."

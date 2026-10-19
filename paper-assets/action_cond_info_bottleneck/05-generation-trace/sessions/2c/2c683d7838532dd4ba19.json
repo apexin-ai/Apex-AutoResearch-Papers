@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c683d7838532dd4ba19",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh check alpha01 progress",
+  "task_key": "worker_ssh_check-alpha01-progress_20260517T025342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-alpha01-progress_20260517T025342_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "36127dc3c9b8cf439faecad1e8febe99a63bdb8698705fa81cbd99907647af82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **PID 751592** | 存活，已运行 1h08m，CPU 3247% |\n| **进度** | 正在跑最后一个 task（task 9），前 9 个 task 已完成。估计还需 ~5-10 分钟完成 |\n| **spatial SR 结果** | 尚无 eval_info.json，需等全部完成后生成。当前 log 中 running_success_rate=0.0%（当前 rollout） |\n| **alpha=0.0** | **未启动**。无对应进程、无 tmux session、无输出目录。仅存在 `alpha_sweep_0_1` session（即 alpha=0.1） |\n\nalpha=0.1 即将完成，但 alpha=0.0 需要你手动启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-alpha01-progress.md"
+}

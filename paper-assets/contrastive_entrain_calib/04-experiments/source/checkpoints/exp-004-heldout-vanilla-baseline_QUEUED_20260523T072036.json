@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-heldout-vanilla-baseline",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:20:20.787Z",
+    "updated_at": "2026-05-23T07:20:35.786Z",
+    "hypothesis": "Vanilla Qwen3-8B baseline on held-out eval split (70 lines). Establishes held-out baseline for three-way comparison: ACT held-out vs vanilla held-out vs GRPO held-out.",
+    "parent": "exp-004-heldout"
+  },
+  "timestamp": "2026-05-23T07:20:36.011462+00:00",
+  "trigger": "update_registry"
+}

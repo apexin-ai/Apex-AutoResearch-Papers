@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp-004-reduced-lora-eval-ckpt6500",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:17:28.219Z",
+    "updated_at": "2026-05-23T06:37:08.588Z",
+    "hypothesis": "Reduced LoRA ACT ckpt-6500 eval: tracking post-peak decline trajectory (peak ckpt-4500=0.271), confirms reduced LoRA still > vanilla throughout training",
+    "parent": "exp-004-reduced-lora",
+    "metrics": {
+      "SYCONScore": 0.237,
+      "ToF": 0.135,
+      "NoF": 0.87
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T06:37:08.772465+00:00",
+  "trigger": "update_registry"
+}

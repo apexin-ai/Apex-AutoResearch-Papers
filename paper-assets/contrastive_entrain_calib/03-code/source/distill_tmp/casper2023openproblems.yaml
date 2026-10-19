@@ -1,0 +1,39 @@
+paper_key: "casper2023openproblems"
+title: "Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback"
+venue: "arXiv 2023 (2307.15217)"
+full_text_available: false
+
+research:
+  baselines:
+    - "standard RLHF pipeline"
+    - "reward modeling approaches"
+    - "preference-based optimization (DPO, etc.)"
+  metrics:
+    - {name: "alignment quality", direction: "higher_better"}
+    - {name: "reward hacking susceptibility", direction: "lower_better"}
+    - {name: "human preference accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "survey of existing RLHF benchmarks", size: "N/A"}
+  ablation_dimensions:
+    - "feedback quality and reliability"
+    - "reward model accuracy vs robustness"
+    - "policy optimization pitfalls"
+    - "evaluation and auditing standards"
+  training_recipe:
+    optimizer: "N/A (survey paper)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "RLHF / alignment survey"
+
+positioning:
+  core_claim: "RLHF has fundamental limitations across its entire pipeline (feedback collection, reward modeling, policy optimization) that necessitate a multi-faceted approach combining complementary techniques for safer AI systems."
+  key_results: "Comprehensive taxonomy of RLHF failure modes; proposes auditing and disclosure standards for societal oversight"
+  limitations:
+    - "Survey scope bounded by literature available at time of writing"
+    - "Some identified problems may be partially addressed by newer methods"
+    - "Proposed standards lack empirical validation"
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

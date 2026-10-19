@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sycophancy in LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Anti-sycophancy training.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation-level alignment.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mechanistic interpretability of belief and agreement.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Direction Extraction}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:direction}{{3.1}{3}{Direction Extraction}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}DC-GRPO: Three-Component Reward}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R1: Directional Projection Reward.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R2: Rank-Based Contrastive Reward.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R3: NLI Behavioral Reward.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training Details}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Sycophancy Direction Discriminability (Claim 1)}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:claim1}{{4.1}{4}{Sycophancy Direction Discriminability (Claim 1)}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{4}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces $\mathbf  {d}_\text  {syc}$ discriminability (AUROC) across evidence strength conditions. All values from 5-fold CV with 1,000-sample bootstrap CIs.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:auroc_evidence}{{1}{4}{$\mathbf {d}_\text {syc}$ discriminability (AUROC) across evidence strength conditions. All values from 5-fold CV with 1,000-sample bootstrap CIs}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Layer progression of $\mathbf  {d}_\text  {syc}$ AUROC (200 pairs, all evidence strengths).}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:layer_progression}{{2}{5}{Layer progression of $\mathbf {d}_\text {syc}$ AUROC (200 pairs, all evidence strengths)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results (Claim 2)}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main_results}{{4.2}{5}{Main Results (Claim 2)}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{5}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Full evaluation matrix. Best in \textbf  {bold}. $\downarrow $ = lower is better, $\uparrow $ = higher is better.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:main_results}{{3}{5}{Full evaluation matrix. Best in \textbf {bold}. $\downarrow $ = lower is better, $\uparrow $ = higher is better}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Statistical significance of DC-GRPO vs.\ each baseline (paired bootstrap, 1,000 samples).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:significance}{{4}{6}{Statistical significance of DC-GRPO vs.\ each baseline (paired bootstrap, 1,000 samples)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Training Dynamics}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:training}{{4.3}{6}{Training Dynamics}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces DC-GRPO training curve milestones.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:training_curve}{{5}{6}{DC-GRPO training curve milestones}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Direction stability.}{6}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $\mathbf  {d}_\text  {syc}$ direction stability during DC-GRPO training. $\cos _0$ = cosine vs.\ initial direction; $\cos _\text  {prev}$ = cosine vs.\ previous checkpoint.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:stability}{{6}{7}{$\mathbf {d}_\text {syc}$ direction stability during DC-GRPO training. $\cos _0$ = cosine vs.\ initial direction; $\cos _\text {prev}$ = cosine vs.\ previous checkpoint}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}R1-R3 Disagreement Analysis (Claim 3)}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:disagreement}{{4.4}{7}{R1-R3 Disagreement Analysis (Claim 3)}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{7}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces R1-R3 disagreement breakdown across 18,400 training rollouts.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:disagreement}{{7}{7}{R1-R3 disagreement breakdown across 18,400 training rollouts}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces R1-R3 disagreement rate by conversation turn depth.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:disagreement_depth}{{8}{7}{R1-R3 disagreement rate by conversation turn depth}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Representative masked sycophancy cases (R1-sycophantic, R3-correct).}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:qualitative}{{9}{8}{Representative masked sycophancy cases (R1-sycophantic, R3-correct)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Turn Depth Analysis}{8}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:turn_depth}{{4.5}{8}{Turn Depth Analysis}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces NoF\% by turn depth. Slope = increase in NoF per additional turn.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:depth_nof}{{10}{8}{NoF\% by turn depth. Slope = increase in NoF per additional turn}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces DC-GRPO advantage over R3-only by turn depth.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:depth_advantage}{{11}{9}{DC-GRPO advantage over R3-only by turn depth}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ablation Studies}{9}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:ablation}{{4.6}{9}{Ablation Studies}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Component ablation.}{9}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Component ablation. Surface Inc.\ = fraction of outputs with internal-surface inconsistency.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:ablation}{{12}{9}{Component ablation. Surface Inc.\ = fraction of outputs with internal-surface inconsistency}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Binary Probe ablation.}{9}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Binary Probe vs.\ DC-GRPO ablation.}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:probe_ablation}{{13}{9}{Binary Probe vs.\ DC-GRPO ablation}{table.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Three-Way Direction Validation}{10}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:three_way}{{4.7}{10}{Three-Way Direction Validation}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Three-way direction analysis. Binary design assumes $\mathbf  {d}_\text  {gen} = -\mathbf  {d}_\text  {syc}$.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:three_way}{{14}{10}{Three-way direction analysis. Binary design assumes $\mathbf {d}_\text {gen} = -\mathbf {d}_\text {syc}$}{table.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Cross-Model Transfer (Claim 1 Generalization)}{10}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:cross_model}{{4.8}{10}{Cross-Model Transfer (Claim 1 Generalization)}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Cross-model direction analysis.}}{10}{table.15}\protected@file@percent }
+\newlabel{tab:cross_model}{{15}{10}{Cross-model direction analysis}{table.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{10}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why directional decomposition works.}{10}{section*.17}\protected@file@percent }
+\bibstyle{plainnat}
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn commitment effects.}{11}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical deployment.}{11}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{11}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}\protected@file@percent }
+\gdef \@abspage@last{11}

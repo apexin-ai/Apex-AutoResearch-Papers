@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "035f32be115cecf1bdc6",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code exp 004 reduced lora launch",
+  "task_key": "worker_code_exp-004-reduced-lora-launch_20260522T161557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-004-reduced-lora-launch_20260522T161557.log",
+    "occurrence": 1,
+    "bytes": 922729,
+    "sha256": "8070bb080f61210275038db4b5766a8c94242d180a2b3d4c35624fb87e8696ee"
+  },
+  "statistics": {
+    "messages": 853,
+    "user_turns": 0,
+    "tool_calls": 396,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 55,
+      "tool_call": 396,
+      "tool_result": 396,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 853,
+      "chunks": [
+        {
+          "path": "035f32be115cecf1bdc6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "035f32be115cecf1bdc6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "035f32be115cecf1bdc6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "035f32be115cecf1bdc6-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "035f32be115cecf1bdc6-part-0005.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-004-reduced-lora-launch.md"
+}

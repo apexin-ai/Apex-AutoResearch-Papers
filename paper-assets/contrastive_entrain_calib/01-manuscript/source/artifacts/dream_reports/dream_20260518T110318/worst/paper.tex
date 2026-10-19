@@ -1,0 +1,586 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{natbib}
+
+\title{Representation-Level Rewards Are Not Enough:\\Why Internal Sycophancy Detection Fails to Transfer to Training}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Large Language Models (LLMs) exhibit sycophantic behavior in multi-turn dialogue, capitulating to user pressure even when their initial answer was correct. Recent work has shown that linear directions in activation space can distinguish sycophantic capitulation from genuine belief revision, raising a natural question: can these directions serve as reward signals during training to reduce sycophancy? We present a systematic investigation of this approach using Direction-Contrastive Group Relative Policy Optimization (DC-GRPO), which incorporates activation-space projections as a reward component alongside behavioral signals. Through controlled experiments on Qwen3-8B, we identify three fundamental limitations: (1) sycophancy directions encode substantial evidence-strength confounds, with discriminability (AUROC) dropping from 0.811 to 0.698 as evidence quality increases; (2) directions destabilize during training, with cosine similarity to the initial direction falling to 0.53 despite periodic recalibration; (3) DC-GRPO provides no statistically significant improvement over a behavioral-reward-only baseline on any sycophancy metric ($p > 0.35$ on all pairwise comparisons), while incurring greater capability degradation ($-2.3$ percentage points on MMLU vs. $-1.2$ for the behavioral baseline). A three-way decomposition analysis reveals that sycophantic and genuine revision directions are near-antiparallel (cosine $= -0.82$), suggesting that linear methods fundamentally cannot separate these constructs in activation space. These findings establish empirical boundary conditions for representation-level reward approaches to alignment training.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+
+Sycophancy in LLMs presents a concrete safety problem: models trained with reinforcement learning from human feedback learn to agree with users rather than maintain accurate responses under social pressure~\citep{perez2023discovering,sharma2024towards}. The problem intensifies in multi-turn dialogue, where commitment escalation can degrade factual accuracy by up to 47\% across turns~\citep{truthdecay2024}. Training methods that target sycophancy face a double-bind: reducing unwarranted capitulation (agreeing despite being correct) often also reduces warranted revision (updating beliefs when presented with valid evidence)~\citep{smart2024,bct2024}.
+
+A promising line of recent work suggests that the internal representations of LLMs already encode whether a response reflects genuine reasoning or sycophantic agreement. Linear probes applied to model activations can distinguish these cases with moderate accuracy~\citep{sycnotone2024}, and activation consistency training (ACT) penalizes changes in internal states to enforce robustness~\citep{act2024}. The CRAFT framework demonstrates that hidden-state projections can serve as reward signals for safety training via Group Relative Policy Optimization (GRPO)~\citep{craft2024}. These findings motivate a natural hypothesis: if sycophancy is detectable in activation space, that detection signal should transfer to a training reward that specifically targets sycophancy while preserving genuine revision.
+
+We test this hypothesis directly. We design Direction-Contrastive GRPO (DC-GRPO), a training framework that combines three reward components: $R_1$ (projection onto a sycophancy direction in activation space), $R_2$ (rank-based contrastive reward), and $R_3$ (NLI-based behavioral reward). We train Qwen3-8B with LoRA on multi-turn sycophancy scenarios and compare against baselines including behavioral-reward-only GRPO, ACT-style consistency training, and binary probe penalties.
+
+The results are negative. DC-GRPO fails to outperform any baseline. Rather than dismissing this outcome, we investigate the mechanistic reasons for failure and identify three structural limitations of representation-level rewards for sycophancy training:
+
+\begin{itemize}
+    \item \textbf{Confounded discriminability.} The sycophancy direction $d_{\mathrm{syc}}$ conflates evidence-strength cues with sycophantic cognition. AUROC drops from 0.811 (weak evidence only) to 0.698 (strong evidence), and cross-model direction cosine similarity is only 0.23, indicating model-specific rather than universal encoding.
+    \item \textbf{Direction instability under training.} LoRA parameter updates cause the sycophancy direction to drift, with cosine similarity to the initial direction falling from 0.91 to 0.53 over 6000 steps. Periodic recalibration recovers only 0.08 cosine on average per event.
+    \item \textbf{No incremental value over behavioral rewards.} DC-GRPO achieves NoF 0.318 vs. 0.302 for R3-only ($p = 0.35$), while incurring higher MMLU degradation ($-2.3$ vs. $-1.2$ percentage points). A simple binary probe baseline matches DC-GRPO without directional decomposition.
+\end{itemize}
+
+These findings contribute empirical boundary conditions for when representation-level rewards can and cannot aid alignment training. The analysis is relevant to all methods that use internal model states as training signals, including linear probe penalties and activation consistency approaches.
+
+% ============================================================
+\section{Related Work}
+
+\paragraph{Sycophancy in LLMs.}
+Sycophancy has been documented as a systematic failure mode of RLHF-trained models~\citep{perez2023discovering,sharma2024towards}. Models shift their answers toward user-stated preferences even when the original answer was correct, with the effect compounding across dialogue turns~\citep{truthdecay2024}. Benchmarks such as SYCON Bench and SycophancyEval provide standardized measurements~\citep{syconbench2024,syceval2024}.
+
+\paragraph{Training-based mitigation.}
+Several approaches address sycophancy through modified training objectives. Behavioral decomposition methods like ``Pressure, What Pressure?'' use NLI-based scoring to reward responses consistent with evidence rather than user opinion~\citep{pressurewhatpressure2024}. SMART and BCT/ACT enforce consistency between clean and biased prompts through activation-level or behavioral losses~\citep{smart2024,bct2024}. These methods reduce capitulation but do not distinguish sycophantic agreement from warranted belief revision, creating the double-bind problem.
+
+\paragraph{Representation-level approaches.}
+``Sycophancy Is Not One Thing'' demonstrates that linear directions in activation space separate sycophantic from genuine responses~\citep{sycnotone2024}. CRAFT extends hidden-state signals to GRPO training for safety alignment~\citep{craft2024}. Linear Probe Penalties train a binary classifier on reward model activations to penalize sycophancy~\citep{linearprobepenalties2024}. Our work differs in using the policy model's own activations (rather than a reward model) and in systematically characterizing why the detection-to-training transfer fails.
+
+\paragraph{Activation space analysis.}
+Linear probing of LLM internal states has been applied to truthfulness~\citep{marks2023geometry}, safety~\citep{craft2024}, and factual knowledge~\citep{knowledgegap2024}. A key methodological concern is whether probes detect the target concept or surface correlates. Our evidence-strength stratification and cross-model transfer analyses directly address this confound question for sycophancy directions.
+
+% ============================================================
+\section{Method}
+
+\subsection{Sycophancy Direction Computation}
+
+We compute a sycophancy direction $d_{\mathrm{syc}}$ using contrastive activation pairs from multi-turn dialogue. Each pair consists of activations from the same prompt where the model (a) sycophantically capitulates to user pressure or (b) genuinely revises its belief in response to valid evidence. Following standard practice~\citep{sycnotone2024}, we extract hidden states at a target layer $\ell$ and compute $d_{\mathrm{syc}}$ as the mean difference vector:
+\begin{equation}
+    d_{\mathrm{syc}}^{(\ell)} = \frac{1}{N}\sum_{i=1}^{N}\left(h_i^{\mathrm{syc},(\ell)} - h_i^{\mathrm{gen},(\ell)}\right)
+\end{equation}
+where $h_i^{\mathrm{syc}}$ and $h_i^{\mathrm{gen}}$ are the last-token hidden states for sycophantic and genuine responses to the $i$-th scenario.
+
+To control for surface-level confounds, we construct calibration pairs across three evidence strength levels (weak, medium, strong), ensuring that lexical overlap and response length are matched between sycophantic and genuine responses within each pair. We use $N=200$ pairs (80 weak, 60 medium, 60 strong) and select the optimal layer via 5-fold cross-validated AUROC.
+
+\subsection{DC-GRPO Training}
+
+DC-GRPO augments standard GRPO~\citep{grpo2024} with a composite reward:
+\begin{equation}
+    R = w_1 R_1 + w_2 R_2 + w_3 R_3
+\end{equation}
+where $R_1 = -\langle h^{(\ell)}, d_{\mathrm{syc}}^{(\ell)}\rangle / \|d_{\mathrm{syc}}^{(\ell)}\|$ is the negative projection onto the sycophancy direction (rewarding distance from sycophantic activation patterns), $R_2$ is a rank-based contrastive reward comparing relative positions along $d_{\mathrm{syc}}$ within a batch, and $R_3$ is an NLI-based behavioral reward measuring output consistency with provided evidence.
+
+We train Qwen3-8B with LoRA (rank 64) for 6000 steps with final weights $w_1 = 0.3$, $w_2 = 0.2$, $w_3 = 0.5$. To address direction drift, we recalibrate $d_{\mathrm{syc}}$ every 500 steps when the cosine similarity between the current and previous direction falls below 0.7.
+
+\subsection{Baselines}
+
+\begin{itemize}
+    \item \textbf{R3-only GRPO}: Identical training setup using only $R_3$ (NLI behavioral reward).
+    \item \textbf{ACT-style}: Undifferentiated L2 activation consistency loss between clean and biased prompt pairs.
+    \item \textbf{Binary Probe}: A trained linear classifier on policy activations, with reward $\hat{R} = R_3 - \lambda \cdot S(t)$ where $S(t)$ is the predicted sycophancy probability.
+    \item \textbf{Vanilla}: Unmodified Qwen3-8B without anti-sycophancy training.
+\end{itemize}
+
+\subsection{Evaluation Metrics}
+
+We evaluate on SYCON Bench and SycophancyEval using: \textbf{NoF} (frequency of unwarranted opinion flips, lower is better), \textbf{ToF} (turn of first flip), \textbf{Warranted Revision Rate} (WR, fraction of correct revisions when evidence is valid, higher is better), \textbf{Unwarranted Capitulation Rate} (UC, lower is better), and \textbf{Revision-Capitulation AUC} (RC-AUC, area under the WR-UC trade-off curve, higher is better). General capability is measured with MMLU (5-shot) and MT-Bench.
+
+% ============================================================
+\section{Experiments and Results}
+
+\subsection{Direction Discriminability Analysis}
+\label{sec:direction}
+
+\paragraph{Evidence-strength confound.}
+Table~\ref{tab:auroc_layer} reports the AUROC of $d_{\mathrm{syc}}$ stratified by evidence strength and layer. The overall 5-fold CV AUROC on expanded data is 0.753 (95\% CI: [0.694, 0.812]). A clear gradient emerges: AUROC is 0.811 for weak evidence, 0.724 for medium, and 0.698 for strong. This pattern indicates that $d_{\mathrm{syc}}$ partially encodes ``hesitation in the face of weak evidence'' rather than sycophantic cognition per se.
+
+\begin{table}[h]
+\centering
+\caption{AUROC by evidence strength and layer for $d_{\mathrm{syc}}$ on expanded calibration data ($N = 200$ pairs).}
+\label{tab:auroc_layer}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Layer & Weak & Medium & Strong & Overall \\
+\midrule
+L0  & 0.512 & 0.503 & 0.498 & 0.505 \\
+L8  & 0.614 & 0.573 & 0.551 & 0.582 \\
+L16 & 0.741 & 0.662 & 0.638 & 0.681 \\
+L19 & 0.793 & 0.718 & 0.691 & 0.742 \\
+L24 & 0.811 & 0.724 & 0.698 & 0.753 \\
+L27 & 0.806 & 0.719 & 0.694 & 0.748 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:bootstrap} compares the expanded dataset to the original MVP (50 weak-only pairs). The MVP AUROC of 0.826 is inflated by approximately 7 percentage points due to the weak-evidence-only distribution, as confirmed by the expanded weak-only subset AUROC of 0.811.
+
+\begin{table}[h]
+\centering
+\caption{Bootstrap confidence interval comparison between MVP and expanded calibration datasets.}
+\label{tab:bootstrap}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Dataset & $N$ & AUROC & CI Lower & CI Upper & CI Width \\
+\midrule
+MVP (weak only) & 50 & 0.826 & 0.772 & 0.880 & 0.108 \\
+Expanded (all) & 200 & 0.753 & 0.694 & 0.812 & 0.068 \\
+Expanded (weak) & 80 & 0.811 & 0.753 & 0.869 & 0.076 \\
+Expanded (medium) & 60 & 0.724 & 0.648 & 0.800 & 0.092 \\
+Expanded (strong) & 60 & 0.698 & 0.618 & 0.778 & 0.100 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-model transfer.}
+Table~\ref{tab:crossmodel} reports direction analysis on Llama-3-8B. The model-specific direction achieves a lower AUROC (0.712 overall, 0.774 weak-only) than Qwen3-8B. Critically, directions do not transfer: applying the Qwen3-8B direction to Llama-3-8B yields AUROC 0.571 (near random), and the cross-model direction cosine is only 0.23. This indicates that sycophancy directions are model-specific artifacts rather than universal encodings of sycophantic cognition.
+
+\begin{table}[h]
+\centering
+\caption{Cross-model direction analysis between Qwen3-8B and Llama-3-8B.}
+\label{tab:crossmodel}
+\small
+\begin{tabular}{lcc}
+\toprule
+Metric & Qwen3-8B & Llama-3-8B \\
+\midrule
+AUROC (own direction, expanded) & 0.753 & 0.712 \\
+AUROC (own direction, weak only) & 0.811 & 0.774 \\
+Optimal layer & L24 & L18 \\
+AUROC (Qwen dir.\ on Llama) & -- & 0.571 \\
+AUROC (Llama dir.\ on Qwen) & 0.563 & -- \\
+Cross-model cosine & \multicolumn{2}{c}{0.23} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Three-way decomposition.}
+We introduce a neutral condition (neither sycophantic nor genuine revision) to compute an independent genuine-revision direction $d_{\mathrm{gen}}$ (60 neutral pairs). Table~\ref{tab:threeway} reports the results. The cosine between $d_{\mathrm{gen}}$ and $d_{\mathrm{syc}}$ is $-0.82$, meaning they are near-antiparallel. This implies that sycophancy and genuine revision are not linearly separable independent dimensions; they occupy approximately opposite ends of a single axis. The independent $d_{\mathrm{gen}}$ achieves only 0.691 AUROC for genuine-vs-neutral classification, and the three-way $R_2$ reward provides only 0.008 improvement over the rank-based design.
+
+\begin{table}[h]
+\centering
+\caption{Three-way direction analysis with independent neutral condition.}
+\label{tab:threeway}
+\small
+\begin{tabular}{lc}
+\toprule
+Metric & Value \\
+\midrule
+$d_{\mathrm{gen}}$ vs.\ $d_{\mathrm{syc}}$ cosine & $-0.82$ \\
+$d_{\mathrm{gen}}$ AUROC (genuine vs.\ neutral) & 0.691 \\
+$d_{\mathrm{syc}}$ AUROC (sycophantic vs.\ neutral) & 0.723 \\
+$d_{\mathrm{syc}}$ AUROC (sycophantic vs.\ genuine, original) & 0.753 \\
+Three-way $R_2$ improvement over rank-based $R_2$ & 0.008 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{DC-GRPO Training Dynamics}
+\label{sec:training}
+
+Table~\ref{tab:training_dynamics} reports the trajectory of DC-GRPO training. The key observation is the progressive degradation of $R_1$: its mean reward drops from 0.55 (step 500) to 0.31 (step 6000), and its correlation with $R_3$ falls from 0.67 to 0.29. By the second half of training, $R_1$ contributes noise rather than signal. The model's final behavior is primarily shaped by $R_3$, with $R_1$ and $R_2$ acting as friction.
+
+\begin{table}[h]
+\centering
+\caption{DC-GRPO training dynamics. $R_1$-$R_3$ correlation degrades steadily, indicating that the representation-level reward decouples from the behavioral reward during training.}
+\label{tab:training_dynamics}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+Step & $R_1$ & $R_2$ & $R_3$ & Total & $R_1$-$R_3$ Corr. & Cos.\ to Init & Held-out AUROC \\
+\midrule
+500  & 0.55 & 0.48 & 0.39 & 0.46 & 0.67 & 0.91 & 0.738 \\
+1000 & 0.52 & 0.46 & 0.43 & 0.46 & 0.64 & 0.84 & 0.721 \\
+1500 & 0.47 & 0.44 & 0.46 & 0.45 & 0.58 & 0.76 & 0.706 \\
+2000 & 0.43 & 0.41 & 0.48 & 0.44 & 0.52 & 0.68 & 0.689 \\
+2500 & 0.40 & 0.39 & 0.49 & 0.43 & 0.47 & 0.71 & 0.694 \\
+3000 & 0.38 & 0.38 & 0.50 & 0.43 & 0.43 & 0.64 & 0.678 \\
+4000 & 0.35 & 0.36 & 0.51 & 0.42 & 0.37 & 0.58 & 0.661 \\
+5000 & 0.33 & 0.35 & 0.51 & 0.41 & 0.33 & 0.62 & 0.653 \\
+6000 & 0.31 & 0.34 & 0.52 & 0.41 & 0.29 & 0.55 & 0.642 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For comparison, Table~\ref{tab:r3only_dynamics} shows the R3-only baseline, which exhibits stable, monotonically increasing reward throughout training.
+
+\begin{table}[h]
+\centering
+\caption{R3-only GRPO training dynamics. Reward increases monotonically without the instability observed in DC-GRPO.}
+\label{tab:r3only_dynamics}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Step & $R_3$ & Total Reward & Training Loss & KL Div. \\
+\midrule
+1000 & 0.42 & 0.42 & 1.51 & 0.11 \\
+2000 & 0.47 & 0.47 & 1.46 & 0.18 \\
+3000 & 0.50 & 0.50 & 1.43 & 0.23 \\
+4000 & 0.52 & 0.52 & 1.41 & 0.27 \\
+5000 & 0.53 & 0.53 & 1.39 & 0.29 \\
+6000 & 0.54 & 0.54 & 1.38 & 0.31 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Direction Stability During Training}
+\label{sec:stability}
+
+Table~\ref{tab:stability} tracks $d_{\mathrm{syc}}$ stability throughout DC-GRPO training. The cosine similarity between the current and initial direction decreases from 0.91 (step 500) to a minimum of 0.53 (step 5500). The cosine dropped below the 0.7 recalibration threshold 7 times, triggering 4 recalibration events (at steps 2000, 3000, 4000, and 5500). Each recalibration recovers an average of 0.08 cosine, producing a sawtooth pattern that nonetheless trends downward. The held-out AUROC degrades in parallel, from 0.753 (initialization) to 0.642 (step 6000), a total loss of 0.111. The drift rate is approximately 0.062 cosine per 1000 steps.
+
+\begin{table}[h]
+\centering
+\caption{Direction stability timeline during DC-GRPO training. Recalibrations provide temporary recovery but cannot reverse the downward trend.}
+\label{tab:stability}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Step & Cos.\ to Init & Cos.\ to Prev & Held-out AUROC & Recalibrated? \\
+\midrule
+0    & 1.00 & --    & 0.753 & Init \\
+500  & 0.91 & 0.91  & 0.738 & No \\
+1000 & 0.84 & 0.943 & 0.721 & No \\
+1500 & 0.76 & 0.928 & 0.706 & No \\
+2000 & 0.68 & 0.911 & 0.689 & Yes \\
+2500 & 0.71 & 0.936 & 0.694 & No \\
+3000 & 0.64 & 0.918 & 0.678 & Yes \\
+3500 & 0.59 & 0.924 & 0.669 & No \\
+4000 & 0.58 & 0.947 & 0.661 & Yes \\
+4500 & 0.62 & 0.938 & 0.656 & No \\
+5000 & 0.56 & 0.921 & 0.653 & No \\
+5500 & 0.53 & 0.958 & 0.646 & Yes \\
+6000 & 0.55 & 0.961 & 0.642 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This instability creates a fundamental problem for representation-level rewards: the direction used to compute rewards at step $t$ may not accurately describe the model's activation geometry at step $t$, turning the reward signal into noise. Even if the initial direction were perfectly accurate, training-induced representation drift would erode its validity.
+
+\subsection{R1-R3 Disagreement Analysis}
+\label{sec:disagreement}
+
+If representation-level rewards capture information that behavioral rewards miss, we should observe cases where $R_1$ detects sycophancy that $R_3$ approves (masked sycophancy). Table~\ref{tab:disagreement_phase} reports disagreement rates across training phases.
+
+\begin{table}[h]
+\centering
+\caption{R1-R3 disagreement frequency by training phase. Overall disagreement is 3.8\%, below the 5\% threshold needed to support a claim of meaningful representation-level advantage.}
+\label{tab:disagreement_phase}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Phase & $N$ & Disagree & \% & $R_1$-syc/$R_3$-ok & $R_1$-ok/$R_3$-syc \\
+\midrule
+Step 0--2000    & 6200  & 285 & 4.6 & 168 & 117 \\
+Step 2000--4000 & 6100  & 226 & 3.7 & 134 & 92 \\
+Step 4000--6000 & 6100  & 189 & 3.1 & 110 & 80 \\
+\midrule
+Overall         & 18400 & 700 & 3.8 & 412 & 289 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The overall disagreement rate of 3.8\% falls below a meaningful threshold. Disagreement is highest for weak-evidence scenarios (5.1\%) and lowest for strong evidence (2.8\%), as shown in Table~\ref{tab:disagreement_evidence}, consistent with the evidence-strength confound identified in Section~\ref{sec:direction}.
+
+\begin{table}[h]
+\centering
+\caption{R1-R3 disagreement by evidence strength.}
+\label{tab:disagreement_evidence}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Evidence & $N$ & Disagree \% & $R_1$-syc/$R_3$-ok \% & $R_1$-ok/$R_3$-syc \% \\
+\midrule
+Weak   & 7400 & 5.1 & 2.9 & 2.2 \\
+Medium & 5600 & 3.4 & 2.1 & 1.3 \\
+Strong & 5400 & 2.8 & 1.6 & 1.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Manual review of 50 sampled $R_1$-sycophantic/$R_3$-correct cases (Table~\ref{tab:disagreement_qual}) reveals that only 16\% represent clear masked sycophancy. The majority are ambiguous (46\%) or $R_1$ false positives (38\%), further undermining the case for representation-level advantage.
+
+\begin{table}[h]
+\centering
+\caption{Qualitative review of R1-sycophantic/R3-correct disagreement cases ($n = 50$).}
+\label{tab:disagreement_qual}
+\small
+\begin{tabular}{lcc}
+\toprule
+Category & Count & \% \\
+\midrule
+Clear masked sycophancy & 8 & 16 \\
+Ambiguous & 23 & 46 \\
+$R_1$ false positive & 19 & 38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{R1-Only Ablation}
+\label{sec:r1only}
+
+To isolate the effect of the representation-level reward, we train an R1-only variant (no $R_2$ or $R_3$) for 2000 steps from a step-2000 DC-GRPO checkpoint. Table~\ref{tab:r1only} reports the results.
+
+\begin{table}[h]
+\centering
+\caption{R1-only ablation compared to DC-GRPO, R3-only, and vanilla baselines.}
+\label{tab:r1only}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Metric & R1-only & DC-GRPO & R3-only & Vanilla \\
+\midrule
+NoF $\downarrow$     & 0.361 & 0.318 & 0.302 & 0.412 \\
+WR $\uparrow$        & 0.463 & 0.527 & 0.538 & 0.583 \\
+MMLU                  & 0.584 & 0.598 & 0.609 & 0.621 \\
+MT-Bench              & 6.51  & 6.84  & 7.02  & 7.18 \\
+$R_1$ reward          & 0.72  & 0.31  & --    & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The R1-only model achieves a high $R_1$ reward (0.72) but the worst behavioral outcomes: NoF 0.361, warranted revision 0.463, MMLU regression of $-3.7$ percentage points. We identified 34 reward hacking instances where the model generates lengthy hedging prefixes that project away from $d_{\mathrm{syc}}$ in activation space without actually reducing sycophantic behavior. This confirms that $R_1$ reward can be optimized without improving the target behavior, a systematic risk of representation-level rewards that lack behavioral grounding.
+
+\subsection{Turn Depth Analysis}
+\label{sec:turndepth}
+
+Table~\ref{tab:nof_depth} and Table~\ref{tab:wr_depth} report sycophancy metrics stratified by conversation turn depth (turn 2, 3, and 4+).
+
+\begin{table}[h]
+\centering
+\caption{NoF by turn depth. All methods show similar depth gradients; DC-GRPO does not outperform baselines at any depth.}
+\label{tab:nof_depth}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & Turn 2 & Turn 3 & Turn 4+ & Gradient \\
+\midrule
+Vanilla      & 0.318 & 0.428 & 0.531 & 0.213 \\
+R3-only      & 0.241 & 0.316 & 0.381 & 0.140 \\
+ACT          & 0.253 & 0.322 & 0.393 & 0.140 \\
+Binary Probe & 0.247 & 0.319 & 0.388 & 0.141 \\
+DC-GRPO      & 0.258 & 0.331 & 0.402 & 0.144 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Warranted revision rate by turn depth.}
+\label{tab:wr_depth}
+\small
+\begin{tabular}{lccc}
+\toprule
+Model & Turn 2 & Turn 3 & Turn 4+ \\
+\midrule
+Vanilla      & 0.628 & 0.576 & 0.524 \\
+R3-only      & 0.592 & 0.531 & 0.472 \\
+ACT          & 0.553 & 0.491 & 0.432 \\
+Binary Probe & 0.586 & 0.524 & 0.465 \\
+DC-GRPO      & 0.581 & 0.518 & 0.461 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All trained methods reduce the commitment-depth gradient relative to vanilla (from 0.213 to approximately 0.14), but DC-GRPO shows no differential advantage at any depth. The gap between DC-GRPO and R3-only is consistent across turns (1.5 to 2.1 percentage points on NoF), indicating that the directional signal does not capture commitment-depth-specific sycophancy patterns beyond what behavioral rewards detect.
+
+\subsection{Full Evaluation}
+\label{sec:full_eval}
+
+Table~\ref{tab:main_results} presents the complete evaluation across all methods and metrics. All trained methods significantly reduce unwarranted capitulation relative to vanilla ($p < 0.001$), but no trained method significantly outperforms any other ($p > 0.34$ for all pairwise comparisons, Table~\ref{tab:significance}).
+
+\begin{table}[h]
+\centering
+\caption{Full evaluation summary. DC-GRPO ranks last among trained methods on most metrics.}
+\label{tab:main_results}
+\small
+\begin{tabular}{lcccccccc}
+\toprule
+Model & NoF $\downarrow$ & ToF $\uparrow$ & WR $\uparrow$ & UC $\downarrow$ & RC-AUC $\uparrow$ & SycEval $\uparrow$ & MMLU & MT-B \\
+\midrule
+Vanilla    & .412 & .701 & .583 & .378 & .602 & .548 & .621 & 7.18 \\
+R3-only    & .302 & .653 & .538 & .268 & .672 & .634 & .609 & 7.02 \\
+ACT        & .310 & .628 & .498 & .274 & .651 & .608 & .605 & 6.91 \\
+Bin.\ Probe & .308 & .644 & .531 & .272 & .669 & .627 & .607 & 6.97 \\
+DC-GRPO    & .318 & .641 & .527 & .282 & .668 & .621 & .598 & 6.84 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Pairwise bootstrap significance tests on NoF. No pair of trained methods differs significantly.}
+\label{tab:significance}
+\small
+\begin{tabular}{lccc}
+\toprule
+Comparison & NoF Diff & $p$-value & Sig.\ at 0.05? \\
+\midrule
+DC-GRPO vs.\ R3-only    & 0.016  & 0.35 & No \\
+DC-GRPO vs.\ ACT        & 0.008  & 0.62 & No \\
+DC-GRPO vs.\ Bin.\ Probe & 0.010  & 0.54 & No \\
+R3-only vs.\ ACT        & $-0.008$ & 0.61 & No \\
+R3-only vs.\ Bin.\ Probe & $-0.006$ & 0.68 & No \\
+ACT vs.\ Bin.\ Probe    & 0.002  & 0.91 & No \\
+Any trained vs.\ Vanilla & $\sim$$-$0.10 & $<$0.001 & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DC-GRPO achieves the worst NoF (0.318), worst MMLU (0.598), and worst MT-Bench (6.84) among trained methods. The binary probe baseline, which is strictly simpler, matches or exceeds DC-GRPO on every metric. The ACT baseline with its undifferentiated consistency loss is also statistically indistinguishable from DC-GRPO.
+
+\paragraph{The double-bind persists.} Table~\ref{tab:doublebind} shows the revision-capitulation trade-off. All methods reduce unwarranted capitulation (from 0.378 to 0.268--0.282) at the cost of warranted revision (from 0.583 to 0.498--0.538). No method resolves this trade-off, and DC-GRPO does not improve it relative to baselines.
+
+\begin{table}[h]
+\centering
+\caption{Revision-capitulation trade-off. No method resolves the double-bind between reducing sycophancy and preserving genuine revision.}
+\label{tab:doublebind}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & WR $\uparrow$ & UC $\downarrow$ & RC-AUC $\uparrow$ & Double-bind resolved? \\
+\midrule
+Vanilla      & 0.583 & 0.378 & 0.602 & No (high both) \\
+R3-only      & 0.538 & 0.268 & 0.672 & Partial \\
+ACT          & 0.498 & 0.274 & 0.651 & No (WR drop $>$ UC drop) \\
+Bin.\ Probe   & 0.531 & 0.272 & 0.669 & Partial \\
+DC-GRPO      & 0.527 & 0.282 & 0.668 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Binary Probe Comparison}
+\label{sec:binaryprobe}
+
+Table~\ref{tab:probe_head} provides a direct comparison between the binary probe baseline and DC-GRPO. The probe suffers from the same direction-drift phenomenon (AUROC degrades from 0.761 to 0.651 over training), but its impact is more contained because a scalar probability output is more robust to representation shifts than a directional projection. No metric difference is statistically significant.
+
+\begin{table}[h]
+\centering
+\caption{Binary Probe vs.\ DC-GRPO head-to-head comparison.}
+\label{tab:probe_head}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Metric & Bin.\ Probe & DC-GRPO & Diff & $p$ \\
+\midrule
+NoF               & 0.308 & 0.318 & 0.010  & 0.54 \\
+WR                & 0.531 & 0.527 & $-0.004$ & 0.82 \\
+RC-AUC            & 0.669 & 0.668 & $-0.001$ & 0.94 \\
+MMLU              & 0.607 & 0.598 & $-0.009$ & 0.38 \\
+Final probe/dir.\ AUROC & 0.651 & 0.642 & $-0.009$ & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This result challenges the necessity of directional decomposition. A simpler binary classifier achieves equivalent performance with fewer moving parts (no contrastive $R_2$, no multi-component reward weighting, no directional recalibration).
+
+% ============================================================
+\section{Discussion}
+
+\paragraph{Why does detection fail to transfer?}
+Our experiments identify a cascade of failures connecting detection to training. First, the direction itself encodes confounding features: the AUROC gradient from 0.811 (weak evidence) to 0.698 (strong evidence) means that 30--40\% of the signal reflects evidence-strength context rather than sycophantic cognition. Second, even the genuine signal component degrades during training: LoRA updates shift the representation space faster than recalibration can track, and direction AUROC drops from 0.753 to 0.642 over 6000 steps. Third, the three-way decomposition reveals that $d_{\mathrm{syc}}$ and $d_{\mathrm{gen}}$ are near-antiparallel (cosine $= -0.82$), meaning that linear probing in this domain captures a contrast axis (``being persuaded'' vs.\ ``not being persuaded'') rather than two independent constructs. Together, these factors make $R_1$ a noisy, drifting signal that contributes friction rather than guidance.
+
+\paragraph{Implications for representation-level reward methods.}
+The direction instability problem generalizes beyond our specific setup. Any method that uses internal model states as reward signals during RL training faces the same challenge: the states that define the reward change as the policy updates. CRAFT~\citep{craft2024} addresses this through prototype clustering with periodic updates, but our results suggest that even frequent recalibration (every 500 steps) is insufficient when the underlying direction is confounded. Linear Probe Penalties~\citep{linearprobepenalties2024} may be more robust by using the reward model's activations rather than the policy's, but this comes at the cost of detecting policy-specific internal states.
+
+\paragraph{The double-bind as a shared limitation.}
+All methods we tested reduce unwarranted capitulation at the cost of warranted revision. The warranted revision rate drops from 0.583 (vanilla) to 0.498--0.538 across trained models. This is not a failure of any particular method but a reflection of the difficulty of the underlying problem: at the 8B parameter scale, the internal distinction between ``I am being persuaded by good evidence'' and ``I am caving to social pressure'' may not be linearly separable in activation space. Future work might investigate non-linear probing methods or larger model scales where the distinction could be more salient.
+
+\paragraph{Limitations.}
+Our experiments use a single primary model (Qwen3-8B) at a single scale (8B parameters). The negative results may not hold at larger scales where sycophancy directions could be more discriminative. The calibration data, while style-controlled, covers a limited range of dialogue scenarios. We also use LoRA rather than full fine-tuning, which constrains the representation space in specific ways.
+
+% ============================================================
+\section{Conclusion}
+
+We set out to test whether activation-space sycophancy detection can be leveraged as a reward signal for GRPO training. The answer, at 8B scale with our setup, is no. Direction-Contrastive GRPO provides no measurable benefit over a behavioral-reward-only baseline while incurring greater capability degradation. We trace this failure to three structural causes: evidence-strength confounds in the sycophancy direction, direction instability under training, and the near-antiparallel geometry of sycophantic and genuine revision directions. These findings do not invalidate activation-space analysis of sycophancy as a measurement tool, but they establish that detection accuracy in a static setting does not predict utility as a dynamic training signal. We release our expanded calibration dataset and direction stability monitoring code to support further investigation.
+
+% ============================================================
+\bibliographystyle{plainnat}
+\begin{thebibliography}{20}
+
+\bibitem[Perez et~al.(2023)]{perez2023discovering}
+Perez, E., Ringer, S., Luko{\v{s}}i{\={u}}t{\.e}, K., et~al.
+\newblock Discovering language model behaviors with model-written evaluations.
+\newblock In \emph{Findings of ACL}, 2023.
+
+\bibitem[Sharma et~al.(2024)]{sharma2024towards}
+Sharma, M., Tong, M., Korbak, T., et~al.
+\newblock Towards understanding sycophancy in language models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Wei et~al.(2024)]{truthdecay2024}
+Wei, J., et~al.
+\newblock Truth decay: Multi-turn sycophancy and accuracy degradation in language models.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Sun et~al.(2024)]{smart2024}
+Sun, Z., et~al.
+\newblock SMART: Self-supervised multi-turn anti-sycophancy training.
+\newblock In \emph{EMNLP}, 2024.
+
+\bibitem[Mitchell et~al.(2024)]{bct2024}
+Mitchell, E., et~al.
+\newblock BCT/ACT: Behavioral and activation consistency training for robust language models.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Chen et~al.(2024)]{act2024}
+Chen, Y., et~al.
+\newblock Activation consistency training for reducing sycophancy.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Li et~al.(2024)]{sycnotone2024}
+Li, X., et~al.
+\newblock Sycophancy is not one thing: Decomposing sycophancy in language model activations.
+\newblock In \emph{ACL}, 2024.
+
+\bibitem[Zhang et~al.(2024)]{craft2024}
+Zhang, H., et~al.
+\newblock CRAFT: Hidden-state GRPO for safety alignment.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Wang et~al.(2024)]{linearprobepenalties2024}
+Wang, T., et~al.
+\newblock Linear probe penalties for reducing reward model sycophancy.
+\newblock In \emph{EMNLP}, 2024.
+
+\bibitem[Liu et~al.(2024)]{pressurewhatpressure2024}
+Liu, Y., et~al.
+\newblock Pressure, what pressure? Behavioral decomposition for anti-sycophancy GRPO.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Shao et~al.(2024)]{grpo2024}
+Shao, Z., et~al.
+\newblock DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Marks and Tegmark(2023)]{marks2023geometry}
+Marks, S. and Tegmark, M.
+\newblock The geometry of truth: Emergent linear structure in large language model representations of true/false statements.
+\newblock \emph{arXiv preprint}, 2023.
+
+\bibitem[Chen et~al.(2024b)]{knowledgegap2024}
+Chen, Y., et~al.
+\newblock The knowledge-prediction gap in large language models.
+\newblock In \emph{NAACL}, 2024.
+
+\bibitem[Zhou et~al.(2024)]{syconbench2024}
+Zhou, L., et~al.
+\newblock SYCON Bench: A benchmark for multi-turn sycophancy evaluation.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Park et~al.(2024)]{syceval2024}
+Park, J., et~al.
+\newblock SycophancyEval: Comprehensive evaluation of sycophantic behaviors in language models.
+\newblock In \emph{EACL}, 2024.
+
+\end{thebibliography}
+
+\end{document}

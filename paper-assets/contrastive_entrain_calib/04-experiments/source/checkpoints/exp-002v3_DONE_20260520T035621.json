@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp-002v3",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-19T07:55:19.922Z",
+    "updated_at": "2026-05-20T03:56:21.600Z",
+    "hypothesis": "DC-GRPO with scaled cosine R1 (scale_factor=5, r1_weight=0.4, r3_weight=0.6). Cosine similarity in 4096-dim space is inherently small (gap ~0.098), contributing only ~8% of combined reward at default scale. Scaling by 5x amplifies R1 gap to ~0.49, making R1 contribute ~45% of combined reward alongside R3. If scaled R1 shows learning trend and improves sycophancy reduction over R3-only (exp-003), this validates that direction-projection provides meaningful training signal when properly scaled.",
+    "reproduce": {
+      "finished_at": "2026-05-19T18:07:42.194Z"
+    },
+    "failure_reason": "TypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given. run_exp002v3_dcgrpo_scaled_cosine.py:77 的 Exp002v3Trainer.compute_rewards() 向 super().compute_rewards() 传了 r1_ema 和 ema_alpha 两个额外参数，但 dcgrpo_trainer.py 的 compute_rewards() 签名已移除这两个参数。代码版本不同步导致第一个训练步就崩溃。不可直接重试，需修改 run_exp002v3 的 super() 调用去掉 r1_ema/ema_alpha 参数。",
+    "completed_at": "2026-05-19T18:05:38.717Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T18:05:40.450010+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T18:07:45.103363+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "D028 retry #2 失败诊断 (2026-05-20):\n\n## 错误\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\n\n## Traceback (rank0)\n```\nFile \"run_exp002v3_dcgrpo_scaled_cosine.py\", line 195, in main\n    trainer.train()\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\n```\n\n## 根因\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\n\n## 修复方案\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\n\n## 不可直接重试，需修代码。"
+      }
+    },
+    "notes": "D028 retry #2 失败诊断 (2026-05-20):\n\n## 错误\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\n\n## Traceback (rank0)\n```\nFile \"run_exp002v3_dcgrpo_scaled_cosine.py\", line 195, in main\n    trainer.train()\n→ transformers/trainer.py:2674 _inner_training_loop → training_step\n→ trl/trainer/grpo_trainer.py:1129 training_step → super().training_step\n→ transformers/trainer.py:4014 training_step → _prepare_inputs\n→ trl/trainer/grpo_trainer.py:1158 _prepare_inputs → _generate_and_score_completions\n→ trl/trainer/grpo_trainer.py:2140 _generate_and_score_completions → _calculate_rewards\n→ trl/trainer/grpo_trainer.py:1241 _calculate_rewards → reward_func()\n→ run_exp002v3_dcgrpo_scaled_cosine.py:64 _StrengthAwareReward.__call__ → self._inner()\n→ dcgrpo_trainer.py:185 _DCRewardCallable.__call__ → t.compute_rewards()\n→ run_exp002v3_dcgrpo_scaled_cosine.py:77 Exp002v3Trainer.compute_rewards → super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)\nTypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given\n```\n\n## 根因\nrun_exp002v3_dcgrpo_scaled_cosine.py 的 Exp002v3Trainer.compute_rewards() 在 super() 调用时传了 r1_ema 和 ema_alpha 两个额外参数。但 dcgrpo_trainer.py 的 DCGRPOTrainer.compute_rewards() 签名为 (self, completions, conditions, pair_ids, batch_activations)，只接受 4 个参数。代码版本不同步。\n\n## 修复方案\n修改 run_exp002v3_dcgrpo_scaled_cosine.py:77，将 super().compute_rewards() 调用改为只传 4 个参数（去掉 r1_ema, ema_alpha）。同时检查 _DCRewardCallable.__call__（dcgrpo_trainer.py:185）的调用是否也传了多余参数。\n\n## 不可直接重试，需修代码。",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && unset CUDA_VISIBLE_DEVICES && export NCCL_P2P_DISABLE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && /root/miniconda3/bin/deepspeed --include localhost:0,3 --master_port 29501 training/run_exp002v3_dcgrpo_scaled_cosine.py\"",
+      "server": "westd-28034",
+      "gpu": "cuda:0,cuda:3",
+      "pid": "154537",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "training_from_base",
+      "eval_data": "N/A",
+      "log_path": "/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/train.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/",
+      "notes": "D028 retry #3 SUCCESS: fixed compute_rewards signature + master_port 29501. scale_factor=5.0, r1_weight=0.4, r3_weight=0.6. DeepSpeed ZeRO-2 on GPU 0+3. PID updated: 154537/154538."
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T03:56:21.638601+00:00",
+  "trigger": "update_registry"
+}

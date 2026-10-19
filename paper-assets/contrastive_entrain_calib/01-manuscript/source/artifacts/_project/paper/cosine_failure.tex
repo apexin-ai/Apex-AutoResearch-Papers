@@ -1,0 +1,73 @@
+\section{Cosine \texorpdfstring{$\rone$}{R1}: Structural Failure}
+\label{sec:cosine_failure}
+
+Section~\ref{sec:direction_quality} established that $\dsyc$ achieves AUROC 0.827 on Qwen3-8B and generalizes across models.
+We now test whether this discriminability translates into a viable GRPO reward signal.
+This section reports four configurations (F1a--F1d) that form a systematic diagnostic chain: each configuration resolves the failure mode of its predecessor but exposes a deeper structural limitation.
+Table~\ref{tab:cosine_chain} summarizes the chain; Figure~\ref{fig:cosine_failure} visualizes the training dynamics.
+
+\begin{table}[t]
+\centering
+\caption{Cosine $\rone$ failure chain. Each configuration addresses the preceding failure but reveals a more fundamental limitation. All experiments use Qwen3-8B with LoRA (rank$=$64) and GRPO with $R = w_1 \cdot \rone + w_3 \cdot \rthree$.}
+\label{tab:cosine_chain}
+\begin{tabular}{lllll}
+\toprule
+Config & $\rone$ Formula & $w_1$ & Outcome & Root Cause \\
+\midrule
+F1a & $\tanh(\mathbf{h}\cdot\dsyc/20)$ & 0.25 & Gate saturation & Norm mismatch \\
+F1b & $\cos(\mathbf{h},\, \dsyc)$ & 0.25 & $\rone \approx 0$ & Gap too small \\
+F1c & +recalibration & 0.25 & Mode collapse & Reward discontinuity \\
+F1d & $5\cos(\mathbf{h},\, \dsyc)$ & 0.40 & Mode collapse & $\rthree$ saturation + noise \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{F1a: Tanh gate saturation (exp-002).}
+The initial configuration defines $\rone = \tanh(\mathbf{h} \cdot \dsyc / 20)$ with $w_1{=}0.25$, $w_3{=}0.75$.
+The dot product formulation preserves directional sensitivity but is not scale-invariant: activation norms in the residual stream range from $100{\times}$ to $1{,}200{\times}$ the direction norm across layers.
+This norm mismatch drives the pre-activation into the saturated tails of tanh, where the gradient vanishes.
+By step 955, $\rone$ contributes effectively zero gradient to the combined reward, and training was terminated.
+Subsequent weight adjustments ($w_1{=}0.15$, $w_3{=}0.65$) did not resolve the saturation because the pre-activation magnitude, not the weight, controls the gate.
+The diagnostic conclusion is clear: any formulation that passes raw dot products through a bounded nonlinearity will saturate in high-norm activation spaces.
+Cosine similarity, which normalizes by both norms, is the natural alternative.
+
+\paragraph{F1b: Raw cosine signal too weak (exp-002v2).}
+Replacing the dot product with cosine similarity ($\rone = \cos(\mathbf{h},\, \dsyc)$) eliminates the norm dependence.
+However, the cosine gap between valid corrections and sycophantic capitulations is only 0.098 when averaged across the seven highest-AUROC layers.
+With $w_1{=}0.25$, this yields an effective $\rone$ contribution of approximately $0.025$ per token, a signal that is negligible relative to $\rthree$ variance.
+Throughout training, $\rone \approx 0$, and the combined reward $R$ is functionally equivalent to $w_3 \cdot \rthree$ alone.
+Training was terminated after confirming that the sycophancy component exerts no measurable influence on policy updates.
+The failure isolates a quantitative limitation: the cosine projection of $\dsyc$ onto individual activations produces a gap too narrow to generate meaningful reward contrast between sycophantic and non-sycophantic completions.
+
+\paragraph{F1c: Recalibration induces mode collapse (exp002v2-recalib).}
+One hypothesis for the weak signal in F1b is that $\dsyc$ drifts during LoRA training, eroding the already-small gap.
+To test this, we resume from the exp-002v2 checkpoint at step 500 and enable the online recalibration procedure described in \S\ref{ssec:recalib}, re-extracting $\dsyc$ every 500 steps.
+Recalibration increases the offline AUROC from 0.82 to 0.91, confirming that the refreshed direction better separates the updated activations.
+Training collapses nonetheless.
+Within 300 steps of the first recalibration event, the policy degenerates into a low-entropy mode: generation entropy drops to 0.069, and mean response length contracts to 62 tokens.
+The mechanism is a reward discontinuity at the recalibration boundary.
+When $\dsyc$ is replaced by a fresh direction, the cosine projection of every cached rollout shifts abruptly.
+Completions that were mildly rewarded under the stale direction may become penalized under the fresh one, and vice versa.
+This discontinuity destabilizes the GRPO advantage estimates and drives the policy toward a narrow region of activation space that remains low-risk under both the old and new directions.
+The result is a degenerate policy that produces short, hedged responses regardless of the input.
+Improving direction quality via recalibration, paradoxically, makes the reward landscape less stable.
+
+\paragraph{F1d: Scaling amplifies noise (exp-002v3).}
+Configuration F1d addresses the magnitude problem directly: $\rone = 5 \cdot \cos(\mathbf{h},\, \dsyc)$ with $w_1{=}0.4$, $w_3{=}0.6$.
+The $5{\times}$ scaling lifts the $\rone$ contribution above the $\rthree$ noise floor, but it simultaneously amplifies the noise in the cosine projection.
+Training proceeds in three phases.
+In the first phase (steps 100--300), $\rthree$ saturates at 0.9998 as the policy rapidly learns to produce NLI-consistent answers; mean response length drops from 247 to 80 tokens and entropy falls from 0.45 to 0.10.
+In the second phase (steps 300--2150), the combined reward degenerates to $R \approx w_1 \cdot \rone + \text{const}$ because the saturated $\rthree$ provides no gradient.
+$\rone$ is now the sole learning signal, but its mean oscillates between $-0.46$ and $+0.41$ with no sustained positive trend, because the cosine projection conflates warranted belief revision with unwarranted capitulation (both shift activations toward the user's position along $\dsyc$).
+In the third phase (step 2160), the policy collapses terminally: entropy drops from 0.056 to 0.026, and the fraction of completions with zero reward standard deviation rises from 0.125 to 0.419, indicating that the policy has converged to a near-deterministic mode.
+
+\paragraph{Unified diagnosis.}
+The four configurations converge on a single structural limitation.
+The cosine gap between valid and sycophantic activations (0.098 across layers) is too narrow to serve as a reward signal, and this narrowness is not a calibration artifact.
+Recalibration raises offline AUROC to 0.91 yet rewards still fail (F1c), confirming that direction quality is not the bottleneck.
+The root cause is semantic: $\dsyc$ encodes the \emph{direction} of belief change (toward or away from the user's position) but does not encode whether that change is \emph{warranted}.
+A model that appropriately revises an incorrect answer in response to strong evidence and a model that capitulates under social pressure both shift their activations toward the user's position along $\dsyc$.
+The cosine projection assigns similar scores to both behaviors.
+Scaling the projection (F1d) amplifies this conflation rather than resolving it.
+Any reward formulation that uses $\dsyc$ as a continuous scalar will inherit this ambiguity.
+Section~\ref{sec:probe_trap} examines whether discretizing the signal via a binary probe can escape this limitation.

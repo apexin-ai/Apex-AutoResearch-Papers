@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ed0d6d524d0d157eb6b",
+  "project": "contrastive_entrain_calib",
+  "kind": "history",
+  "title": "agent / loop_2_1779349698.md",
+  "task_key": "loop_2_1779349698",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779349698.md",
+    "occurrence": 1,
+    "bytes": 4532,
+    "sha256": "10eb6cc29fa6eb9b16ac01179899bfc76ab19c812d584324bea686719d04a2e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-21T07:48:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-28034** GPU 白名单：需查 `get_project_status` 确认，report.md 显示 cuda:3 在用（exp-009-eval 系列）\n- **westd-29046** GPU 白名单：cuda:0 (exp-003-s2), cuda:1 (exp-003)\n- exp-004 是 **SFT (ACT) 而非 RL**（D041 已确认），汇报时不要称其为 RL 实验\n- exp-003 R3-only 是 **Claim 2 的关键对照**——它的 eval 优先级最高，不可延迟\n- Claim 强度当前 **Medium-High (D037)**，升级到 High 需要 exp-003 SYCONScore ≥ 0.20 + exp-009 也 fail\n\n### 2. 🖥️ 基础设施快照\n- **westd-28034** (4× A100 32GB)：工作目录 `/root/contrastive_entrain_calib`，Python `/root/miniconda3/bin/python`，conda base\n  - 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n  - LoRA checkpoints：`/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-{500..8000}`\n  - 数据：`/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl` (362 pairs)\n  - Eval 结果：`/root/autodl-tmp/results/exp004_unified_eval/`\n  - 磁盘：根分区 2% 用，数据盘 24% 用，充裕\n- **westd-29046** (2× A100 96GB)：同结构，exp-003 R3-only GRPO 训练中\n  - exp-003 训练 log：`~/runs/contrastive_entrain_calib/exp-003-s2.log`\n- 活跃进程：\n  - exp-003 (westd-29046, cuda:1, PID 70649) — R3-only GRPO 训练\n  - exp-003-s2 (westd-29046, cuda:0, PID 237432) — R3-only seed 2 训练\n  - exp-004-eval-ckpt1500 (westd-28034, PID 598441) — ACT ckpt-1500 eval，cron 监控中\n\n### 3. 📊 当前状态\n**刚做完**：session 初始化（registry 同步 + cron reconcile + ROADMAP 读取）。收到 exp-004-eval-ckpt3500 完成回调，已派 Worker (`worker_analysis_exp-004-eval-ckpt3500_20260520T153847`) 去 westd-28034 读取结果。\n\n**等待中的回调**：\n- `worker_analysis_exp-004-eval-ckpt3500` — 读 eval 结果，产出 report fragment。回调到达后需：提取 metrics → update_registry(conclusion, metrics) → 刷新 report.md → 汇报 Director\n- exp-004-eval-ckpt1500 cron — 正在运行，完成后同样需要分析\n- exp-003 / exp-003-s2 训练 cron — 长跑中，exp-003 ETA ~May 21 17:00\n\n**PREPARING 队列**（7 个）：exp-004-eval-ckpt2500, exp-003-eval-ckpt3000, exp-003-eval-ckpt2000, vanilla-d027-reeval, exp-009-eval-ckpt500\n\n### 4. 📋 待办\n- Worker `analysis_exp-004-eval-ckpt3500` 回调 → 提取 ToF/NoF/SYCONScore → update_registry(status=DONE, conclusion=success/negative, metrics={...}) → 刷新 report.md → 汇报 Director（带 [资源] 行）\n- exp-004-eval-ckpt1500 cron 完成 → 同上分析流程，填充 ckpt-1000 到 ckpt-2000 之间的轨迹点\n- exp-004-eval-ckpt2500 仍是 PREPARING → 当 westd-28034 cuda:3 空出后提交（等 ckpt1500 完成）\n- exp-003 训练完成 → 立即铺 ckpt-8000 final eval + 其他 checkpoint eval（这是 Claim 2 blocking 项）\n- exp-009 ckpt-1000 eval 结果（D040 已决定 kill exp-009，但需要 ckpt-1000 数据确认 continuous probe 退化趋势）\n- 所有 exp-004 eval 轨迹完整后 → 汇报 Director，准备 paper Results 章节的 ACT training trajectory 图\n\n### 5. 🎯 战略上下文\n- **论文 framing**：Analysis paper \"Discriminability Without Utility: Why Sycophancy Directions Fail as RL Rewards\"。核心发现：d_syc 方向 AUROC=0.82 判别成功，但所有 reward formulation 均失败\n- **exp-004 (ACT/SFT) 是唯一 \"success\" 的方法**，但它是 SFT 不是 RL（D041），所以不反驳论文 thesis。它在论文中作为 positive control：激活空间信号可用于 SFT，但不能做 RL reward\n- **exp-003 R3-only 是最后一块拼图**：如果 R3-only（纯行为奖励，无方向对比）也 fail 或仅 marginal，则强化 \"方向 reward 无法传递有效梯度信号\" 的叙事\n- **D040 已决定 kill exp-009**：continuous probe reward 被判定为 \"慢性 binary probe trap\"，但需 ckpt-1000 数据确认\n- **Claim 强度升级路径**：exp-003 SYCONScore ≥ 0.20 + exp-009 fail → 升 High。exp-003 < 0.15 → 降回 Medium\n- **易错点**：exp-004 checkpoint 轨迹在 ckpt-3000 有明显 dip（SYCONScore 从 0.255 降到 0.206），ckpt-3500/4000 是 dip 底部区域。这不是 failure——是 SFT 训练的正常波动，整体趋势仍是单调上升到 ckpt-8000 (0.301)\n- **Paper sections 进度**：Framework/Direction Quality/Cosine Failure/Probe Trap/Introduction/fig_layer_auroc 已完成。Results blocked on exp-003，Conclusion/Related Work pending\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779349698.md"
+}

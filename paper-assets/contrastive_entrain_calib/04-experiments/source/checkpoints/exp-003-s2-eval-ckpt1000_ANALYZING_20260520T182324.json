@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-003-s2-eval-ckpt1000",
+  "project": "contrastive_entrain_calib",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:08:54.425Z",
+    "updated_at": "2026-05-20T18:23:23.915Z",
+    "spec": {
+      "command": "eval_unified_preset.py exp003_s2 ckpt-1000",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "607932",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log",
+      "submitted_at": "2026-05-20T17:08:54.282Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B + exp-003-s2 LoRA ckpt-1000",
+      "seed": 43,
+      "checkpoint_source": "exp-003-s2",
+      "eval_data": "calibration_v2_1_expanded.jsonl (362 pairs)"
+    },
+    "hypothesis": "Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).",
+    "parent": "exp-003-s2",
+    "reproduce": {
+      "finished_at": "2026-05-20T18:23:22.992Z"
+    }
+  },
+  "timestamp": "2026-05-20T18:23:24.269416+00:00",
+  "trigger": "update_registry"
+}

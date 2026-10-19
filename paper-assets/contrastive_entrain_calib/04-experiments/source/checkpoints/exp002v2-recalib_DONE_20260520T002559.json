@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp002v2-recalib",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:40:31.395Z",
+    "updated_at": "2026-05-20T00:25:59.000Z",
+    "spec": {
+      "checkpoint_path": "/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/recalib/",
+      "log_path": "~/runs/contrastive_entrain_calib/exp002v2-recalib.log"
+    },
+    "hypothesis": "DC-GRPO with cosine R1 + periodic d_syc recalibration (every 500 steps). Resume from exp-002v2 checkpoint-500 with recalibrated directions. Tests whether recalibrating d_syc during training enables R1 to provide effective gradient signal, since without recalibration d_syc drifts significantly (cosine=0.28 at step 500) making R1 ineffective.",
+    "parent": "exp-002v2",
+    "reproduce": {
+      "finished_at": "2026-05-19T21:14:43.366Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T21:14:45.118477+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-20T00:25:59.000Z"
+  },
+  "timestamp": "2026-05-20T00:25:59.058855+00:00",
+  "trigger": "update_registry"
+}

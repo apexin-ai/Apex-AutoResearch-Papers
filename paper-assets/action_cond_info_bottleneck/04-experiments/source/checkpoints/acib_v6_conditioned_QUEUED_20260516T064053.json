@@ -1,0 +1,17 @@
+{
+  "exp_id": "acib_v6_conditioned",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:49:13.621Z",
+    "updated_at": "2026-05-16T06:40:53.480Z",
+    "hypothesis": "Fix scorer conditioning bug: 将 condition_source 从 visual_mean（v5 bug：scorer 只看 vision tokens 均值）改为 language（scorer 接收 language embedding），使 scorer 能根据 task instruction 动态选择 task-relevant tokens。与 v5 唯一差异：condition_source=language。",
+    "parent": "acib_v5_div_reg",
+    "notes": "Worker 正在修改代码 + 启动训练。根因：_connector_hook 中 condition=output.mean(dim=1) 用了 visual tokens 均值，language embedding 从未传入。Cross-task probe 证实 cos=1.0（bit-identical）。v5 保留作 \"without proper conditioning\" ablation baseline。"
+  },
+  "timestamp": "2026-05-16T06:40:53.531685+00:00",
+  "trigger": "update_registry"
+}

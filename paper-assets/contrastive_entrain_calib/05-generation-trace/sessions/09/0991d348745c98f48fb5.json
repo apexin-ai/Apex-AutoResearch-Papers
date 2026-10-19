@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0991d348745c98f48fb5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "setup westd28034 model download",
+  "task_key": "worker_setup_westd28034_model_download_20260518T132211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_westd28034_model_download_20260518T132211_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "93b1a76185a54cfb8f1a5f87b3e70b58669d5b00f0046702d4edb81f5a55fa40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进度总结：\n- **已下载**：主分片 2.9GB（model-00005-of-00005.safetensors），共 5 个大分片\n- **速率**：约 2-3MB/s（AutoDL 网络加速代理下）\n- **状态**：偶发超时但 huggingface_hub 自动重试恢复\n- **进程**：PID 2756 正在运行\n- **预计总时间**：~60-90 分钟（从开始算起）\n\n下载在后台稳定运行。你可以先做其他事，我随时可以帮你检查进度。用以下命令查看：\n```bash\n# 在 westd-28034 上执行：\nls -lh /root/autodl-tmp/.hf_cache/models--Qwen--Qwen3-8B/blobs/*.incomplete | grep -v \" 0 \"\nls /root/autodl-tmp/.hf_cache/models--Qwen--Qwen3-8B/blobs/ | grep -cv incomplete\ntail -5 /tmp/model_download.log\nps -p 2756 -o pid= && echo \"RUNNING\" || echo \"DONE\"\n```\n\n下载完成后模型路径为：`/root/autodl-tmp/.hf_cache/models--Qwen--Qwen3-8B/snapshots/<hash>/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-westd28034-model-download.md"
+}

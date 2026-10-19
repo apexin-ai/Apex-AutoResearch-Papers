@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2590e64c1bfad20511a8",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diagnose v6 conditioned crash",
+  "task_key": "worker_diagnose_v6-conditioned-crash_20260516T093057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v6-conditioned-crash_20260516T093057_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "f4ddcdf55d51a17851f94f164d5e710faf0d779f2a20ff66d980c4a3b003645f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程存活：Y**\n\n| 指标 | 值 |\n|------|-----|\n| PID | 866194，状态 Sl，运行时间 2h51m |\n| 当前 step | 10800/20000 (54%) |\n| 速度 | 1.1 steps/s |\n| GPU 0 显存 | 16,227 MiB / 97,887 MiB (16.6%) |\n| GPU 利用率 | 74% |\n| 温度/功耗 | 65°C / 446W |\n| Exit marker | 不存在（未退出） |\n\n**训练健康**：正常运行中。loss 稳定在 0.0~0.05 区间，IB loss ~0.20，diversity loss ~-0.46，β 已完成 warmup 固定在 0.01。checkpoint-10000 已保存。\n\n**Registry 标记 DONE/failed 是误报**——进程从未中断。预计剩余 ~9200 steps ÷ 1.1 steps/s ≈ 2.3 小时完成（约 19:50 UTC）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v6-conditioned-crash.md"
+}

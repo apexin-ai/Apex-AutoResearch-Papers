@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "id": "0fdf064b41d2da4b9a98",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval vanilla baseline real",
+  "task_key": "worker_eval_vanilla-baseline-real_20260519T080014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla-baseline-real_20260519T080014.log",
+    "occurrence": 1,
+    "bytes": 3595521,
+    "sha256": "3ca31f405b2e77703c68266fb73b3908d83e07442d96560fa023f962f274d660"
+  },
+  "statistics": {
+    "messages": 3411,
+    "user_turns": 2,
+    "tool_calls": 1635,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 3,
+      "assistant": 127,
+      "tool_call": 1635,
+      "tool_result": 1635,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 855,
+      "chunks": [
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0005.json",
+          "message_count": 135
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1294,
+      "chunks": [
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0005.json",
+          "message_count": 45
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0012.json",
+          "message_count": 169
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1262,
+      "chunks": [
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0012.json",
+          "message_count": 11
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0016.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0017.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0018.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fdf064b41d2da4b9a98-part-0019.json",
+          "message_count": 171
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-vanilla-baseline-real.md"
+}

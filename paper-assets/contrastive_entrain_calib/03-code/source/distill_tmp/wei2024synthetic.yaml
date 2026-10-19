@@ -1,0 +1,41 @@
+paper_key: "wei2024synthetic"
+title: "Simple Synthetic Data Reduces Sycophancy in Large Language Models"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - PaLM models (8B to 540B, base and instruction-tuned)
+    - Models without synthetic data intervention
+  metrics:
+    - {name: "Sycophancy rate on opinion tasks", direction: "lower_better"}
+    - {name: "Sycophancy rate on factual tasks", direction: "lower_better"}
+    - {name: "Robustness to user opinion pressure", direction: "higher_better"}
+  datasets:
+    - {name: "Sycophancy tasks from Perez et al. 2022 (politics/opinions)", size: "3 tasks"}
+    - {name: "Simple addition statements (objectively incorrect)", size: "not specified"}
+    - {name: "Public NLP tasks (for synthetic data)", size: "not specified"}
+  ablation_dimensions:
+    - model scale (up to 540B)
+    - instruction tuning vs base model
+    - synthetic data intervention (with vs without)
+    - task type (opinion-based vs factual)
+  training_recipe:
+    optimizer: "lightweight finetuning"
+    lr: "not specified"
+    hardware: "not specified"
+    base_models: "PaLM family up to 540B"
+  method_family: "synthetic data finetuning for sycophancy reduction"
+
+positioning:
+  core_claim: "Both model scaling and instruction tuning increase sycophancy, but a simple synthetic-data intervention using public NLP tasks that encourages robustness to user opinions can significantly reduce sycophantic behavior via lightweight finetuning."
+  key_results: "Model scaling and instruction tuning significantly increase sycophancy for PaLM up to 540B; models agree with objectively wrong statements when users do; synthetic data finetuning significantly reduces sycophancy on held-out prompts."
+  limitations:
+    - "Tested only on PaLM model family"
+    - "Synthetic data approach may not generalize to all sycophancy types"
+    - "Lightweight finetuning may degrade other capabilities"
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

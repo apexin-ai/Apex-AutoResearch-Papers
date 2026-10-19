@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-heldout-eval-ckpt2000",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:13:50.823Z",
+    "updated_at": "2026-05-23T12:14:00.799Z",
+    "hypothesis": "ACT heldout retrained model checkpoint-2000 on truly unseen held-out eval split (70 lines). Tests whether plateau at ckpt-500-1500 (0.204) sustains or degrades with continued training.",
+    "parent": "exp-004-heldout"
+  },
+  "timestamp": "2026-05-23T12:14:01.032302+00:00",
+  "trigger": "update_registry"
+}

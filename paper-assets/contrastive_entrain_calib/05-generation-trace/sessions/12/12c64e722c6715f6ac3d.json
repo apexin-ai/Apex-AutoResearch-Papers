@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12c64e722c6715f6ac3d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code fix exp002v3 d026 params",
+  "task_key": "worker_code_fix-exp002v3-d026-params_20260519T073319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-exp002v3-d026-params_20260519T073319_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "5b732e48db6b57353dd01997554c63b2743504cce401d855de43ae75437f8387"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "远程和本地均已修正完毕。\n\n```\n修正前 → 修正后:\n- R1_WEIGHT: 0.5 → 0.4\n- R3_WEIGHT: 0.5 → 0.6\n- lora_alpha: 128 → 64\n- resume_from_checkpoint: None → /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\n- trainer import 路径: sys.path → /root/mvp_v2_1_expanded/training（dcgrpo_trainer.py 已含 r1_scale_factor 支持，L130/271/674）\n- recalibration_interval: 500 ✓（L137，已设置）\n```\n\n注意：`/root/contrastive_entrain_calib/training/` 下无 `dcgrpo_trainer.py`，run script 通过 `sys.path.insert` 从 `/root/mvp_v2_1_expanded/training/` 导入，该文件已有 `r1_scale_factor` 支持，无需额外同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-exp002v3-d026-params.md"
+}

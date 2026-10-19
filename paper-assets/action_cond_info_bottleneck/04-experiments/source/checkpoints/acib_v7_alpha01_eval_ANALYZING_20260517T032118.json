@@ -1,0 +1,30 @@
+{
+  "exp_id": "acib_v7_alpha01_eval",
+  "project": "action_cond_info_bottleneck",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:16:58.665Z",
+    "updated_at": "2026-05-17T03:21:18.285Z",
+    "hypothesis": "Alpha=0.1 低强度 scoring 诊断：scoring weight 为 0.1 时 ACIB 只做轻微干预。如果 spatial SR 接近 baseline(66%)，说明低 alpha 能保持 base policy 性能；如果仍然回退，说明即使最小干预也有害。",
+    "parent": "acib_v7_contrastive",
+    "spec": {
+      "command": "bash /root/acib/scripts/run_alpha_sweep_0.1.sh (libero_spatial only, scoring_alpha=0.1)",
+      "server": "westb-13953",
+      "gpu": "cuda:1",
+      "pid": "751592",
+      "data_path": "LIBERO libero_spatial",
+      "data_count": 500,
+      "model_name": "acib_v7_contrastive checkpoint-20000 (alpha=0.1)",
+      "seed": 42,
+      "checkpoint_source": "/root/acib/outputs/acib_v7_contrastive/checkpoint-20000",
+      "eval_data": "libero_spatial"
+    },
+    "notes": "libero_spatial SR=56.2% (281/500)。baseline spatial=66.0%, 回退 -9.8pp。比 alpha=1.0 seed1 (58.4%, -7.6pp) 还差。Per-task: T0=84%, T1=56%, T2=66%, T3=80%, T4=34%, T5=0%, T6=86%, T7=46%, T8=56%, T9=54%。输出路径: /root/autodl-tmp/v7_alpha_sweep/alpha_0.1/",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T03:21:18.345476+00:00",
+  "trigger": "update_registry"
+}

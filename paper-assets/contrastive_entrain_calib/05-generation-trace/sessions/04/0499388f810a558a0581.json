@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0499388f810a558a0581",
+  "project": "contrastive_entrain_calib",
+  "kind": "history",
+  "title": "agent / loop_2_1779349691.md",
+  "task_key": "loop_2_1779349691",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779349691.md",
+    "occurrence": 1,
+    "bytes": 5389,
+    "sha256": "a0af2710a41c9d1f660785146d8d86dbe43e71950fecb4d1c4402ba79be3ce73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-21T07:34:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-29046:cuda:0,cuda:1 + westd-28034:cuda:0,cuda:1,cuda:2,cuda:3（共 6 张，不可用其他）\n- 所有 eval 必须用 `eval_unified_preset.py`（D027 标准），不能用旧 `eval_pipeline.py`（旧脚本 vanilla SYCONScore 偏高 0.197 vs 真实 0.134）\n- exp-003 训练进程 (PID 70649) 和 exp-003-s2 (PID 237432) 在 29046 上，**不要 kill**——它们在持续产出 checkpoint 供 eval pipeline 消费\n- submit_training_job 的 command 必须自带 `/root/miniconda3/bin/python`（绝对路径），29046 用 conda 环境不是 venv\n- checkpoint 路径是 `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/` 和 `seed2/`，**不是** `/root/contrastive_entrain_calib/outputs/`\n\n### 2. 🖥️ 基础设施快照\n- **westd-29046** (2× A100 96GB)：工作目录 `/root/contrastive_entrain_calib`，Python `/root/miniconda3/bin/python`，conda base\n  - exp-003 seed 1 checkpoints: `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-{step}/`\n  - exp-003-s2 seed 2 checkpoints: `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-{step}/`\n  - HF cache: `/root/autodl-tmp/.hf_cache/`\n  - 磁盘：根分区 400G/439G 可用(4%)，数据盘充足\n- **westd-28034** (4× A100 32GB)：工作目录 `/root/contrastive_entrain_calib`，Python `/root/miniconda3/bin/python`，conda base\n  - eval 结果输出: `/root/contrastive_entrain_calib/results/exp003_d027_eval/`\n  - 模型 base: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n  - LoRA checkpoints 从 29046 SCP 过来存放于 `/root/autodl-tmp/checkpoints/exp003/checkpoint-{step}/`\n  - 磁盘：根分区 819G/879G 可用(2%)\n- **活跃 cron**: exp-003 (PID 70649, 29046:cuda:1), exp-003-s2 (PID 237432, 29046:cuda:0)\n- **活跃进程 (28034)**: ckpt5000-v2 (PID 497834, cuda:0), ckpt6000 (PID 498446, cuda:1), ckpt6500 (PID 498584, cuda:2), ckpt7000-v2 (PID 500589, cuda:3, PREPARING)\n- **29046↔28034 直连 SCP** 可用，通过 `connect.westd.seetacloud.com` 网关\n\n### 3. 📊 当前状态\n**刚完成**: exp-003-eval-ckpt7000 因 stale cron 误杀而 failed，已创建 v2 重跑 (exp-003-eval-ckpt7000-v2, PREPARING on cuda:3)。exp-003-eval-ckpt2000/3000 结果 negative（SYCONScore 0.085/0.095，均远低于 vanilla 0.134）。exp-009-eval-ckpt500 negative。vanilla-d027-reeval success 确认 baseline=0.134。\n\n**RUNNING (5 张 GPU 全忙)**:\n| exp_id | server:gpu | PID | 摘要 |\n|--------|-----------|-----|------|\n| exp-003 | 29046:cuda:1 | 70649 | R3-only seed 1 训练，~step 5900+，持续产 ckpt |\n| exp-003-s2 | 29046:cuda:0 | 237432 | R3-only seed 2 训练 |\n| exp-003-eval-ckpt5000-v2 | 28034:cuda:0 | 497834 | 重跑 ckpt-5000 eval（旧结果 0.114 需确认） |\n| exp-003-eval-ckpt6000 | 28034:cuda:1 | 498446 | ckpt-6000 eval |\n| exp-003-eval-ckpt6500 | 28034:cuda:2 | 498584 | ckpt-6500 eval |\n\n**PREPARING**: exp-003-eval-ckpt7000-v2 (28034:cuda:3, PID 500589)\n\n**QUEUED (等 28034 GPU 腾出)**: exp-003-s2-eval-ckpt2000, ckpt2500, ckpt3000\n\n**活跃 Worker**: `worker_diagnosis_28034-eval-status-check_20260521T073124`（正在诊断 28034 eval 状态）\n\n**等待中**: 无 pending Director 决策。Paper Round 4 = 7/10 收敛中。\n\n### 4. 📋 待办（条件触发式）\n- ckpt5000-v2/6000/6500 eval 完成 → 收集 SYCONScore，更新 registry + report.md，补全 R3-only 轨迹曲线\n- ckpt7000-v2 完成 → 这是 seed 1 最后关键数据点，确认 late-stage regression 趋势\n- 28034 有 GPU 空出 → 立即提交 QUEUED 的 seed 2 eval（s2-ckpt2000/2500/3000），优先 ckpt3000（与 seed 1 同步对比）\n- **所有 seed 1 late-stage eval 完成** → 更新 fig_trajectory 图 + Results 章节 + 向 Director 汇报完整轨迹\n- **seed 2 eval 完成** → 计算 error bars，补充 paper 可靠性论证\n- exp-003 训练达 ckpt-8000 → SCP 到 28034 + 提交 final eval（这是 ROADMAP 里 May 20-21 里程碑）\n- Paper Round 5 → D045 叙事修正完成后提交 Reviewer\n- May 23 → submit_paper_to_review 送审稿团队\n- May 25 → EMNLP 2026 ARR 提交\n\n### 5. 🎯 战略上下文\n**核心论文叙事 (Scheme C dual-layer, D041/D045)**:\n1. d_syc 方向能区分 sycophancy (AUROC 0.82+) 但用作 reward 必然 collapse（8 种 formulation 全败）\n2. R3-only behavioral reward = vanilla ceiling：ckpt-4500 短暂追平 vanilla (0.134) 后回退到 0.114\n3. SFT (ACT exp-004) 唯一成功：0.301 (+126%)，非单调但始终 > vanilla\n\n**D045 关键修正**: 原叙事是 \"never exceeds vanilla\"，ckpt-4500=0.1337 推翻了。改为更强的 \"vanilla ceiling\"——R3-only 最多追平 baseline，无法突破。这实际更强因为它排除了 \"只是训练不够\" 的反驳。\n\n**易错点**:\n- ckpt-4500 SYCONScore=0.1337 ≈ vanilla 0.1335，**差异在噪声范围内**，不要 claim \"超越\"\n- GC4-par (seed 2 parallel) 和 GC4-seq (seed 1 sequential) 绝对值可差 ~14%，只比方向不比数值\n- eval 用 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1` 避免 AutoDL 网络问题\n- exp-003-eval-ckpt7000 第一次因 stale cron 误杀，v2 已用 submit_training_job 正确提交\n\n**DDL 压力**: EMNLP 2026 ARR May 25，还剩 4 天。当前阻塞项是 exp-003 late-stage trajectory 完整数据 + seed 2 error bars。Paper 框架已定，Round 4=7/10，主要是数据补全 + polish。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779349691.md"
+}

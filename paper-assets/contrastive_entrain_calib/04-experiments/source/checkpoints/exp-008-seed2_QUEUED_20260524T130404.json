@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-008-seed2",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T13:02:29.476Z",
+    "updated_at": "2026-05-24T13:04:04.397Z",
+    "hypothesis": "Probe reward trap temporal decoupling (behavioral death at ~step 500, entropy collapse at ~step 1840) is reproducible across seeds. If seed 2 shows similar timing pattern (behavioral death ≪ entropy collapse), this validates C2's claim that the probe reward trap operates through a specific two-phase mechanism, not random training instability.",
+    "parent": "exp-008v3"
+  },
+  "timestamp": "2026-05-24T13:04:04.626033+00:00",
+  "trigger": "update_registry"
+}

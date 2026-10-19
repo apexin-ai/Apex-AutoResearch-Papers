@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67056c3b07bbaf623407",
+  "project": "action_cond_info_bottleneck",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4021,
+    "sha256": "de21c5ed78fe885ceded379f6a841b0d53e96b0c9f87ed4645b17f1d672483ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-16T13:42:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-13953 的 cuda:0 和 cuda:1，不可用其他 GPU\n- 训练输出目录已迁移到 `/root/autodl-tmp/`（根分区曾因满崩溃），所有新实验必须写数据盘\n- v7 训练使用 `--conditioning_mode concat`（不是 FiLM）——config.py 默认值曾被 v8 Worker 改为 \"film\"，已改回 \"concat\"。如果训练 scorer MLP input_dim=960 说明用了 FiLM（错），应为 1920（concat）\n- eval_acib.py 必须有 dtype fix（scorer.to(dtype=target_dtype)），否则 bf16 vs fp32 全部 suite 报错\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13953 (connect.westb.seetacloud.com), account=root\n- 工作目录：/root/acib（代码），/root/autodl-tmp/（训练输出+checkpoint）\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 活跃进程：\n  - v7 log-barrier 训练 PID 960110, cuda:0, tmux=acib_v7_contrastive, step ~6000-7000/20000, 1.8 steps/s\n  - v5 eval PID 970634, cuda:1, libero_spatial rollout（GPU 利用率低是正常的，MUJOCO 仿真主要用 CPU）\n- Cron：v7 训练完成回调 → 自动启动 run_v7_eval.sh\n- Worker 轮询中：step-10000 Probe A 监控\n- 预备脚本：/root/acib/run_v7_eval.sh, /root/acib/run_v7_seed2.sh 已写入服务器\n\n### 3. 📊 当前状态\nv7 log-barrier (lambda_contrastive=0.1, condition_source=language, conditioning_mode=concat) 完整训练在跑，step 5000 Probe A 确认 conditioning 持续有效且增强（cos=0.476-0.894）。β warmup 风险已解除。预计 ~15:00 UTC 完成。\n\nRegistry RUNNING/PREPARING：\n- acib_v7_contrastive: RUNNING（注意 registry 可能仍标 DONE/failed 因为 wrapper PID 误报，实际 PID 960110 活跃）\n- acib_v8_film: PREPARING（暂缓，代码已备好作 fallback，D034 确认不需要 FiLM）\n\n等待中：\n- v7 step-10000 Probe A（Worker 轮询中）\n- v5 eval 完成 → cuda:1 自动启动 v7 seed2\n- v7 训练完成 → cron 触发 run_v7_eval.sh\n\n### 4. 📋 待办\n- v7 step 10000 checkpoint 出现 → Worker 自动跑 Probe A → cos < 0.8 确认（预期通过）；cos > 0.9 → 立即 kill 调参（提高 lambda 或加 contrastive warmup）\n- v5 eval 完成 → cuda:1 空闲 → 自动启动 v7 seed2 (seed=1337, run_v7_seed2.sh)\n- v7 训练完成 (~15:00 UTC) → cron 触发 run_v7_eval.sh（4-suite, 50 eps, cuda:0）\n- v7 eval 完成 → 对比 baseline（std avg=66.1%, plus avg=81.35%），SR ≥ 64% 即 pass\n- v7 eval + perturbation eval 均 pass → complete_mvp() 进入 research 阶段\n- baseline_plus_remaining 和 baseline_std_libero10 registry 需更新为 DONE/success（cron 误报 failed）\n\n### 5. 🎯 战略上下文\n**决策链**：D029（probe 证实 position prior）→ D030（确认实现 bug，启动 v6）→ D032（v6 conditioning 训练后失效，启动 v7 contrastive）→ D033（plain cosine 零梯度 bug，Reviewer 误诊为 shortcut learning 后修正）→ D034（log-barrier 有效，cos=0.70，批准完整训练）\n\n**核心结论**：concat+MLP 架构能产生 condition-dependent output（dry-run cos=0.6051 已证明），关键是 loss 设计——cosine similarity 在 cos=1 处零梯度，log-barrier 解决了这个问题。FiLM 不需要。\n\n**易错点**：\n1. config.py 默认值可能被改为 \"film\"——所有训练必须显式传 `--conditioning_mode concat`\n2. Registry 状态不可靠——多次出现 wrapper PID 死亡导致误报 DONE/failed，实际训练进程活跃。永远用 `ps -p PID` 和 `nvidia-smi` 验证\n3. 根分区 ~30GB 极小，所有输出必须写 `/root/autodl-tmp/`\n4. Reviewer 曾误诊 \"shortcut learning 需要 FiLM\"（后修正为 cosine 零梯度）——如果有人提 FiLM，当前证据不支持需要它\n5. MVP pass 条件：v7 standard SR ≥ 64% + perturbation SR > baseline_std +5pp + Probe A cos < 0.8。Reviewer 评估论文强度为 \"moderate conditioning\"（CoRL poster 级别），不是 \"strong action-conditioning\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

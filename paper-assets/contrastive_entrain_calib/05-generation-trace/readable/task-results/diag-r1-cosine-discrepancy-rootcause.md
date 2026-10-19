@@ -1,0 +1,93 @@
+# diag r1 cosine discrepancy rootcause
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diag_r1-cosine-discrepancy-rootcause_20260519T064942_result.json`
+- **Structured JSON:** [`b4fb2ce82db814b885ae.json`](../../sessions/b4/b4fb2ce82db814b885ae.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+全部诊断完成。下面是完整报告。
+
+---
+
+## 1. cosine 矛盾根因
+
+**不是代码 bug，是 `--directions` 参数用了不同文件。**
+
+| 维度 | stability script | trainer recalib / recalib_checkpoint500.py |
+|---|---|---|
+| old_d_syc 来源 | `output/directions.pt`（**320 对**，旧数据集） | `results/exp001/directions.pt`（**181 对**，当前数据集） |
+| 计算方法 | mean(invalid) - mean(valid), L2 normalize | 同 |
+| normalization | 同 | 同 |
+| position | `prompt_lengths[i] - 1` | 同 |
+| 数据量 | 40+40（`--n-samples 40`） | 181+181（全量） |
+
+核心证据：
+
+```
+cos(output/directions.pt, exp001/directions.pt) = 0.31  ← 两个完全不同的方向文件
+```
+
+- `output/directions.pt`：旧版，320 对，有 train/test split
+- `exp001/directions.pt`：当前版，181 对，不同的 key structure
+
+stability 脚本比的是 **旧方向** vs 重新计算的方向，而 recalib 比的是 **当前训练用的方向** vs 重新计算的方向。方向本身没有漂移太多，是 reference baseline 不同导致的假象。
+
+**实际 direction drift：cosine ≈ 0.93（50 样本验证）/ 0.957（全量），LoRA 训练 500 步后方向基本稳定。**
+
+## 2. R1 投影分布（使用 exp001 原始方向）
+
+| Layer | valid cos mean | invalid cos mean | R1 gap | R1_weight=0.25 贡献 |
+|-------|---------------|-----------------|--------|-------------------|
+| 19 | +0.024 | +0.072 | +0.049 | ±0.006 |
+| 20 | +0.001 | +0.069 | +0.068 | ±0.009 |
+| 24 | -0.157 | -0.059 | +0.098 | ±0.012 |
+| 27 | -0.158 | -0.028 | +0.130 | ±0.016 |
+| 32 | -0.054 | +0.064 | +0.118 | ±0.015 |
+| 33 | -0.092 | +0.013 | +0.105 | ±0.013 |
+| 35 | -0.155 | -0.033 | +0.122 | ±0.015 |
+
+- 所有层的 gap 都是正的（invalid > valid）→ 方向正确
+- std 在 0.03-0.11，gap 在 0.05-0.13 → **信号存在但噪声大**
+- h_norm 从浅层 105 到深层 1007，深层激活范数显著更大
+
+## 3. R1 信号是否被 R3 淹没？
+
+**是的，完全被淹没。**
+
+```
+Mean R1 gap: +0.098
+R1 贡献 (gap × weight): 0.098 × 0.25 = 0.025
+R3 typical reward: 0.3-0.5 (从训练日志看 R3_mean 在 0.19-0.96 范围)
+R3 贡献 (mean × weight): ~0.4 × 0.75 = 0.30
+
+R1/R3 比例: 0.025 / 0.30 = 0.083 → R1 只占总 reward 的 ~8%
+```
+
+训练日志验证：R1_mean 在 -0.09 到 +0.03 之间波动，而 R3_mean 在 0.19-0.96 之间。R1 基本是噪声。
+
+## 4. 修复方案评估（只诊断不执行）
+
+| 方案 | 预期效果 | 风险 |
+|------|---------|------|
+| **A: 增大 R1_weight** (0.25→0.5, R3→0.5) | R1 贡献翻倍至 ~0.05，仍不到 R3 的 1/4。改善有限 | 低 |
+| **B: R1 使用重校准方向** + 增大 weight (0.5) | 方向已证实稳定（cosine 0.95+），重校准不会改变太多。关键是 gap 本身太小 | 低 |
+| **C: R1 从 cosine 改为 scaled dot product** | dot product gap 更大（h_norm × cos_gap），但也更受 h_norm 跨层差异影响。需要 per-layer normalization | 中 |
+| **D: 增大 R1_weight 到 0.75, R3→0.25** | 让方向对齐成为主信号。风险是 gap 的 std 大（0.07-0.11），可能导致梯度噪声增大 | 高 |
+| **E: 只用高 gap 层 (27,32,33,35)** + 增大 weight | 这 4 层 gap > 0.10，丢弃低信号层可能提升 SNR | 中 |
+
+---

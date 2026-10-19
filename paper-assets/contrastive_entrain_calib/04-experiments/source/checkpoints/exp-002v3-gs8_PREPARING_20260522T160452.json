@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp-002v3-gs8",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:33:37.043Z",
+    "updated_at": "2026-05-22T16:04:51.995Z",
+    "hypothesis": "Cosine R1 GRPO group_size=8 消融：如果 gs=8 也 collapse (SYCONScore=0) → d_syc cosine reward 确实不适合做 GRPO reward，即使 group_size 正确；如果 gs=8 不 collapse → gs=2 太小是 cosine R1 failure 的根因。",
+    "parent": "exp-002v3",
+    "notes": "Dry-run OOM on RTX 5090 32GB: PyTorch allocated 26.26 GiB, OOM at generation forward pass (lm_head), needed 2.32 GiB more with only 1.77 GiB free. Even with CPU offload, 8 generations KV cache + logits too large. Options: gs=4, shorter max_completion_length (256→128), dual GPU DeepSpeed, or 4-bit quantization. Awaiting Director decision.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T16:04:52.173444+00:00",
+  "trigger": "update_registry"
+}

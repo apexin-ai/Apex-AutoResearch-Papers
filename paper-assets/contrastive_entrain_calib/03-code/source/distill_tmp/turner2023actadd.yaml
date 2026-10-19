@@ -1,0 +1,39 @@
+paper_key: "turner2023actadd"
+title: "Steering Language Models With Activation Engineering"
+venue: "arXiv 2023 (2308.10248)"
+full_text_available: false
+
+research:
+  baselines:
+    - "unsteered base model"
+    - "prompt engineering"
+    - "fine-tuning approaches"
+  metrics:
+    - {name: "sentiment shift (negative-to-positive)", direction: "higher_better"}
+    - {name: "detoxification rate", direction: "higher_better"}
+    - {name: "off-target task performance", direction: "higher_better"}
+  datasets:
+    - {name: "sentiment evaluation tasks", size: "N/A"}
+    - {name: "toxicity evaluation tasks", size: "N/A"}
+  ablation_dimensions:
+    - "different steering vector contrast pairs (e.g., Love vs Hate)"
+    - "different model architectures (LLaMA-3, OPT)"
+    - "steering strength"
+  training_recipe:
+    optimizer: "N/A (inference-time, no optimization)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "activation addition / steering vectors"
+
+positioning:
+  core_claim: "Activation Addition (ActAdd) computes steering vectors by contrasting intermediate activations on prompt pairs, achieving state-of-the-art sentiment shift and detoxification with no training, requiring only a single data point pair."
+  key_results: "State-of-the-art on sentiment shift and detoxification using LLaMA-3 and OPT; inference-time control with no machine optimization"
+  limitations:
+    - "Steering vectors from single contrast pairs may lack robustness"
+    - "Limited to properties expressible as linear directions"
+    - "May degrade performance on unrelated tasks at high steering strengths"
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bdbf75e4b7d568ad3ad",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops backfill experiment plan registry ids",
+  "task_key": "worker_ops_backfill-experiment-plan-registry-ids_20260519T090637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_backfill-experiment-plan-registry-ids_20260519T090637_result.json",
+    "occurrence": 1,
+    "bytes": 254,
+    "sha256": "97e4b20d62ae12295dce475352b0300111197768cbc328a6c7497e810b16de82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。7 个有 registry 对应的 plan 条目（exp-001, exp-002, exp-003, exp-004, exp-008, exp-014, exp-016）已添加 `registry_id` 字段。其余无 registry 条目的实验（exp-005~007, exp-009~013, exp-015）保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-backfill-experiment-plan-registry-ids.md"
+}

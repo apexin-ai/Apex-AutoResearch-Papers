@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1de7dcebae85efe6a38",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ops rerun baseline plus libero10",
+  "task_key": "worker_ops_rerun-baseline-plus-libero10_20260516T021048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rerun-baseline-plus-libero10_20260516T021048_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "2ca635e11a1129a77fba1ba18b4dfe95c9e791d37b900c10559cf7b95b69ed61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果和当前状态：\n\n## 诊断\n\n1. **无 OOM killer 记录** — `dmesg` 没有 oom/kill 相关日志\n2. **无 error/traceback** — 日志中只有正常的 rollout 进度输出，没有 Python 异常\n3. **可能原因**：进程被外部信号杀死（如 SSH 断连导致的 shell 终止）或 MuJoCo/EGL 渲染段错误（segfault 不留 Python traceback）\n\n## 当前状态\n\n**libero_10 eval 已经在重跑中** — `run_eval_plus_v2.sh` 脚本自动重启了 eval：\n- **PID 675231**，启动于 09:24，cuda:0，GPU 占用 6.6GB\n- libero_10 进度：**64/500 rollouts 完成**（task 0 已完成 50 ep，task 1 进行中约 14/50 ep）\n- 当前 rollout 在 step ~250/520\n- 预估每 rollout ~1min，剩余 ~436 rollouts ≈ **7+ 小时**\n\n## GPU 负载\n\n| GPU | 已用/总量 | 进程 |\n|-----|-----------|------|\n| cuda:0 | 22.8/97.9 GB | PID 675231 (eval, 6.6GB) + PID 682233 (v5_div_reg 训练, 16.2GB) |\n| cuda:1 | 17.9/97.9 GB | PID 508625 (std eval, 2.1GB) + PID 694353 (v5_stopgrad_entropy 训练, 16.3GB) |\n\n**不需要手动重跑** — eval 已在运行，预计今天下午完成。需要我设置定时检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rerun-baseline-plus-libero10.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05831c3505416faadd94",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis server health 28034",
+  "task_key": "worker_diagnosis_server-health-28034_20260520T033334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_server-health-28034_20260520T033334_result.json",
+    "occurrence": 1,
+    "bytes": 1375,
+    "sha256": "a6f796cdf039159b3c53779483b1fee7cbb03d09dd81dd453a60da17b35cafd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 58% | 31376/32607 MiB |\n| 1 | 65% | 31400/32607 MiB |\n| 2 | 58% | 30638/32607 MiB |\n| 3 | 60% | 30614/32607 MiB |\n\n4 块 RTX 5090 全部满载，正常。\n\n### exp-009 (Continuous Probe Probability GRPO) — **ALIVE**\n- **进程**: PID 200283 存活（运行 27 分钟），实际训练 worker PID 200881/200882（DeepSpeed, GPU 1,2）\n- **进度**: step 70/8000 (1%), epoch 3.18, ~22s/step\n- **指标**: reward=0.494, loss=-0.0001, grad_norm=0.046, entropy=0.456, clipped_ratio=77%\n- **注意**: clipped_ratio 偏高（77%），说明大部分生成被 max_length 截断。r2_mean 一直为 0。\n\n### exp-002v3 (DC-GRPO scaled cosine) — **ALIVE**\n- **进程**: PID 153957/154537 存活（运行 9h02m），DeepSpeed, GPU 0,3\n- **进度**: step 2440/8000 (30%), epoch 110.91, ~10.7s/step\n- **指标**: reward=0.641, loss≈0, grad_norm=0.00016, entropy=0.009, frac_reward_zero_std=61%\n- **注意**: entropy 极低（0.009）且 grad_norm 接近 0，模型可能已 collapse 到近乎确定性输出。frac_reward_zero_std=61% 说明多数 batch 内 reward 方差为 0（所有 completion 得到相同 reward），GRPO 梯度失效。\n\n两个实验进程均存活，训练正常推进。但 exp-002v3 的 entropy/grad_norm 指标值得关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-server-health-28034.md"
+}

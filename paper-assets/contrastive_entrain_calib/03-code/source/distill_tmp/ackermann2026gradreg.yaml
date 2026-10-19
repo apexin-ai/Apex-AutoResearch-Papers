@@ -1,0 +1,43 @@
+paper_key: "ackermann2026gradreg"
+title: "Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines:
+    - KL penalty (standard RLHF regularization)
+    - Unregularized RLHF
+  metrics:
+    - {name: "Reward hacking rate", direction: "lower_better"}
+    - {name: "GPT-judged task quality", direction: "higher_better"}
+    - {name: "Rule-based math reward accuracy", direction: "higher_better"}
+    - {name: "LLM-as-a-Judge evaluation", direction: "higher_better"}
+    - {name: "Gradient norm", direction: "lower_better"}
+    - {name: "Reward model accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GPT-judged tasks", size: "not specified"}
+    - {name: "Rule-based math rewards", size: "not specified"}
+    - {name: "LLM-as-a-Judge evaluations", size: "not specified"}
+  ablation_dimensions:
+    - regularization method (GR vs KL penalty vs none)
+    - reward type (learned reward model vs verifiable/rule-based)
+    - gradient norm correlation with reward accuracy
+  training_recipe:
+    optimizer: "RLHF with gradient regularization (GR)"
+    lr: "not specified"
+    hardware: "not specified"
+    key_technique: "bias policy updates towards flatter regions where reward is more accurate"
+  method_family: "gradient regularization for reward hacking prevention"
+
+positioning:
+  core_claim: "Gradient regularization (GR) biases RLHF training towards flatter regions where reward models are more accurate, theoretically grounded in the connection between reward accuracy and optimum flatness, and outperforms KL penalties across GPT-judged, rule-based, and LLM-as-a-Judge evaluations."
+  key_results: "GR outperforms KL penalties across multiple evaluation settings; gradient norm and reward accuracy are empirically correlated; theoretical connection established between reward accuracy and flatness of convergence optimum."
+  limitations:
+    - "Theoretical analysis may rely on simplifying assumptions"
+    - "Flatness-accuracy connection may not hold universally"
+    - "Computational overhead of gradient regularization not discussed in abstract"
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

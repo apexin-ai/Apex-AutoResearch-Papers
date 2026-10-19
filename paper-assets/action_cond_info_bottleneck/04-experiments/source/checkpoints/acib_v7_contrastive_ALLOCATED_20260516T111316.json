@@ -1,0 +1,17 @@
+{
+  "exp_id": "acib_v7_contrastive",
+  "project": "action_cond_info_bottleneck",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:10:51.506Z",
+    "updated_at": "2026-05-16T11:13:16.636Z",
+    "hypothesis": "Contrastive auxiliary loss 强制 language-dependence：对同一图像+不同 instruction 要求 scorer 产生不同 importance map（minimize cosine similarity），解决 v6 训练动力学退化问题。预期 Probe A cos < 0.8。",
+    "parent": "acib_v6_conditioned",
+    "notes": "**Log-barrier contrastive loss 有效！** Plain cosine 在 cos≈1 梯度为零（两档 lambda=0.1/1.0 的 500 step sweep 确认）。改为 log-barrier: -log(1-cos+eps) 后梯度发散。Lambda sweep 结果：\n- λ=0.01: ctr_loss 8.81→5.49（下降但慢），Probe A cos [0.997, 0.999]（不够）\n- λ=0.1: ctr_loss 3.64→1.69（快速下降），**Probe A cos [0.704, 0.951]**，Probe B cos [0.532, 0.706]\nλ=0.1 验证标准：✅ Probe A cos < 0.95（部分 pair 已 < 0.8）✅ scorer_std=0.334 > 0.1 ✅ task_loss=0.12 < 0.15。推荐完整训练用 λ=0.1。"
+  },
+  "timestamp": "2026-05-16T11:13:16.690443+00:00",
+  "trigger": "update_registry"
+}

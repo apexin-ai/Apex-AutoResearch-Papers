@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1027ae644b4b86242ff3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnose exp 004 s2 failure",
+  "task_key": "worker_diagnose_exp-004-s2-failure_20260522T104107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-004-s2-failure_20260522T104107_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "13a0f6ac08e773c93fd7c0c1cbb370ea42b1b5b45b75044c9bfcbf7227d4ac55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/exp-004-s2-diagnosis.md`。\n\n**结论**：根分区 30GB 100% 满，step 2500 保存 checkpoint 时 safetensors 写入失败 (`No space left on device`)。训练本身正常收敛。\n\n**关键数据**：\n- 最后完整 checkpoint: **checkpoint-2000**（682MB，文件完整）\n- checkpoint-2500 不完整（402MB，截断），需删除\n- GPU 1 当前空闲，可立即恢复\n\n**恢复路径**：先把 outputs 目录迁移到数据盘（194GB 可用）做符号链接，删除损坏的 checkpoint-2500，然后从 checkpoint-2000 恢复训练。剩余 5500 步约 14 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-004-s2-failure.md"
+}

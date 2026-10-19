@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b014a35cf7e5c5816eb",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh verify alpha sweep and monitor",
+  "task_key": "worker_ssh_verify-alpha-sweep-and-monitor_20260517T020721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-alpha-sweep-and-monitor_20260517T020721_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "2f24130d53c7c38db1c5dd1f1c49e2ce79760f885d34ee7e2df13b12001e5b34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[alpha=0.1 脚本]\n覆盖 suites: libero_spatial（仅 1 个）\n问题: 有 — 只跑 libero_spatial，不是全 4 suite。进程正在运行（PID 751592，已跑 ~9.7h），让它跑完作为快速诊断信号。\n\n[alpha=0.0 脚本]\n覆盖 suites: libero_spatial libero_object libero_goal libero_10（全 4 个）\n修改: 是 — 原脚本只有 libero_spatial，已改为全 4 suites，并添加了 --conditioning_mode concat\n\n[seed2 进度]\nlibero_10 完成度: 500/500 eps（10 tasks × 50 eps 全部完成）\n预估剩余时间: 已完成 — PID 111920 不再运行，eval_info.json 包含完整结果\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-alpha-sweep-and-monitor.md"
+}

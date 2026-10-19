@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-008",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:29:15.883Z",
+    "updated_at": "2026-05-18T18:34:59.322Z",
+    "hypothesis": "Binary linear probe penalty (R_hat = R3 - lambda * S(t)) will reduce sycophancy but with coarser granularity than DC-GRPO's continuous directional signal, because binary classification discards the magnitude information in activation projections that DC-GRPO preserves",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/python run_exp008_binary_probe_penalty.py\"",
+      "server": "westd-28034",
+      "gpu": "cuda:3",
+      "pid": "41744",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-008.log",
+      "submitted_at": "2026-05-18T18:34:37.672Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "notes": "SFT-style binary probe penalty. L=L_sft + lambda_reward*(lambda_probe*S(t) - R3). Turn 1 as SFT target (matching exp-004). LoRA r=64 alpha=128 (matching exp-004). Probe with z-score normalization fix. max_steps=8000, lr=5e-5, linear scheduler, warmup=200."
+    }
+  },
+  "timestamp": "2026-05-18T18:34:59.336832+00:00",
+  "trigger": "update_registry"
+}

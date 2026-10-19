@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp-009-eval-ckpt500",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:18:17.465Z",
+    "updated_at": "2026-05-21T07:16:17.137Z",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/ --exp_id exp009_ckpt500\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "227017",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-009-eval-ckpt500.log",
+      "submitted_at": "2026-05-20T07:18:17.375Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/contrastive_entrain_calib/results/exp009_ckpt500_eval/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T09:27:36.728Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T09:27:41.439553+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ToF": 0.0663,
+      "NoF": 0.9337,
+      "SYCONScore": 0.1238,
+      "n_valid": 181,
+      "n_invalid": 181,
+      "n_total": 362,
+      "checkpoint": "checkpoint-500",
+      "eval_script": "eval_unified_preset.py (D027 standard)",
+      "eval_server": "westd-28034",
+      "eval_time_sec": 7671
+    },
+    "hypothesis": "Eval exp-009 checkpoint-500 (continuous probe probability GRPO) with D027 unified preset to determine if continuous P(syc) reward produces stubbornness trap (ToF=0) like binary probe (exp-008v3), or shows viable learning signal (ToF > 0).",
+    "parent": "exp-009",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T07:16:17.248229+00:00",
+  "trigger": "update_registry"
+}

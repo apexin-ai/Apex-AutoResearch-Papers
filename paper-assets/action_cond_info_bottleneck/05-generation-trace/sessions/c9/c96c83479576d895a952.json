@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c96c83479576d895a952",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diag mvp1 baseline plus remaining status",
+  "task_key": "worker_diag_mvp1_baseline_plus_remaining_status_20260515T234053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_mvp1_baseline_plus_remaining_status_20260515T234053_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "e6eff36f35b464aaec2d3ee20d8ee821842064b9c86fd92f6daeb1edc26447b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 评测进度报告\n\n### 进程状态\n- **PID 471056**: 存活，已运行 26 分 44 秒\n- 当前命令：`lerobot-eval --env.task=libero_goal`（只跑 libero_goal，非全部 suite）\n\n### 已完成 Suite\n\n| Suite | Success Rate | 状态 |\n|-------|-------------|------|\n| libero_spatial | **81.6%** (408/500) | ✅ 完成 |\n| libero_object | **88.8%** (444/500) | ✅ 完成 |\n\n### 当前进行：libero_goal\n- task 0: ✅ 完成（10 个视频已写入）\n- task 1: ✅ 完成（10 个视频已写入）\n- task 2: 进行中（9/10 个视频已写入，接近完成）\n- task 3-9: 未开始\n- 日志显示当前 rollout 在 step 90/300，running_success_rate=0.0%\n\n**进度**：10 个 task 中完成了约 2.5 个（~125/500 episodes）\n\n### 预估剩余时间\n- **libero_goal 剩余**：~375 episodes，按 ~4.6 eps/min 估算，约 **80 分钟**\n- **libero_10**：尚未启动，当前进程只跑 libero_goal。需要单独启动，预计 ~100 分钟\n\n### 注意\n输出目录是 `baseline_plus_v2`（非 v3）。libero_10 需要在 libero_goal 完成后手动启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-mvp1-baseline-plus-remaining-status.md"
+}

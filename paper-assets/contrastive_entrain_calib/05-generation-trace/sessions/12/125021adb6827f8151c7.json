@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "125021adb6827f8151c7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis eval ckpt7000 check",
+  "task_key": "worker_diagnosis_eval-ckpt7000-check_20260521T072241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_eval-ckpt7000-check_20260521T072241_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "eb51a203ac21b35c18d597dccf80cb6246f916cb68cb8266a080b8b06fdbe83a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部修正为 RUNNING。**不删除 cron**，因为任务仍在运行。\n\n## 结果\n\n**Cron 报告有误** — exp-003-eval-ckpt7000 进程未退出，4 个 eval 全部在 westd-28034 上活跃运行：\n\n| 实验 | GPU | PID | 进度 | 预计完成 |\n|------|-----|-----|------|---------|\n| exp-003-eval-ckpt5000-v2 | cuda:0 | 497834 (nohup) | 20/362 (~5.5%) | ~90 min |\n| exp-003-eval-ckpt6000 | cuda:1 | 498446 (tmux) | 刚启动 | ~90 min |\n| exp-003-eval-ckpt6500 | cuda:2 | 498584 (tmux) | 刚启动 | ~90 min |\n| exp-003-eval-ckpt7000 | cuda:3 | 498666 (tmux) | 刚启动 | ~90 min |\n\n**背景**：之前一批 eval（同名）被 SIGHUP (EXIT_CODE=129) 杀死，cron 检测到的是那次退出。当前批次是 kill-cleanup-restart worker 重启的，约 15:19-15:22 UTC 启动，目前正常运行。\n\n**已执行操作**：\n- 4 个实验的 registry 状态修正为 RUNNING\n- Cron 保留，待实际完成后再清除\n- 无结果 JSON 可输出（尚未产出）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-eval-ckpt7000-check.md"
+}

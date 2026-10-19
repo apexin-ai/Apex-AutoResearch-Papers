@@ -1,0 +1,92 @@
+dreams:
+  dream_20260518T110318:
+    dream_id: dream_20260518T110318
+    project: contrastive_entrain_calib
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 重点关注：(1) Claim 3 的 R1-R3 disagreement 是否在 median/worst case 下仍站得住；(2) AUROC
+      ~0.82 的中等信号强度是否足以支撑 DC-GRPO 有效性的 claim；(3) 只有 Qwen3-8B 的 scale 局限性是否会被 reviewer
+      重度扣分；(4) R2 rank-based 设计是否被视为 hack 而非 principled contribution
+    what_if: []
+    pid: 229628
+    chat_id: oc_c77a380fad2d0408ce92cd1170d46f6f
+    card_message_id: om_x100b6f9b51a358b4c45d11261c40053
+    started_at: '2026-05-18T11:03:18+00:00'
+    updated_at: '2026-05-18T11:54:12+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: c01975d17d06e95ec89c0e648f039bddd2f37fc869e76c75e4289e4623754661
+  dream_20260518T124552:
+    dream_id: dream_20260518T124552
+    project: contrastive_entrain_calib
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 验证更新后的 framing：RepE 定位是否充分、Claim 3 降级后 story 是否连贯、新增实验（continuous probe
+      baseline + weight sensitivity）是否解决 median/worst 的主要 concern
+    what_if: []
+    pid: null
+    chat_id: oc_c77a380fad2d0408ce92cd1170d46f6f
+    card_message_id: om_x100b6f84eec68488c2639fb6f42e1ae
+    started_at: '2026-05-18T12:45:52+00:00'
+    updated_at: '2026-05-18T12:59:10+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 451735cd4307e765995d31226b28b87cec0961aabb12089c7ba789e870cf5df5
+  dream_20260518T125925:
+    dream_id: dream_20260518T125925
+    project: contrastive_entrain_calib
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 验证更新后的 framing：RepE 定位是否充分、Claim 3 降级后 story 是否连贯、新增实验（continuous probe
+      baseline + weight sensitivity）是否解决 median/worst 的主要 concern
+    what_if: []
+    pid: 245209
+    chat_id: oc_c77a380fad2d0408ce92cd1170d46f6f
+    card_message_id: om_x100b6f849c1b9ca8c2d3bc61301db40
+    started_at: '2026-05-18T12:59:25+00:00'
+    updated_at: '2026-05-18T14:02:22+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 94df8f172a4215ee9a0e660ab02a566b5da212a24aada3ab1826d099f2f3a526
+  dream_20260519T201849:
+    dream_id: dream_20260519T201849
+    project: contrastive_entrain_calib
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'D029 narrative pivot: discriminability ≠ reward utility. Cosine R1 fails
+      structurally (4 experiments), binary probe R1 resolves via binarization. Paper
+      arc: discovery→failure→understanding→solution. Core data pending (exp-008v3
+      SYCONScore must > 0.301).'
+    what_if: []
+    pid: 518523
+    chat_id: oc_c77a380fad2d0408ce92cd1170d46f6f
+    card_message_id: om_x100b6ff814072930c4ad331abdf0df4
+    started_at: '2026-05-19T20:18:49+00:00'
+    updated_at: '2026-05-19T21:23:20+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 2caa84e479752327b884ea561791fa734645a31eea4b77c5ee821276dc977667
+    review_quality:
+      best: simulated
+      median: simulated

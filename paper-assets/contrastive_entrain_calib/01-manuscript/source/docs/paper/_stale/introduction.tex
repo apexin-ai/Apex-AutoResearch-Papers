@@ -1,0 +1,52 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Representation engineering \citep{zou2023repe} reveals that large language models encode sycophancy as a linear direction in their residual streams.
+A contrastive sycophancy direction $\dsyc$, extracted from style-controlled pairs of valid belief revision and sycophantic capitulation, achieves cross-validated AUROC $0.827 \pm 0.028$ on Qwen3-8B and $0.779 \pm 0.019$ on Llama-3-8B (\S\ref{sec:direction_quality}).
+The direction captures evidential granularity: discriminability rises monotonically from weak-evidence pairs (AUROC 0.675) through medium (0.883) to strong (0.929), and the signal remains stable under LoRA training with cosine drift of approximately 0.96 at 500 steps.
+These results, replicated across two architecturally distinct model families, point to an appealing possibility: if the model's representations already separate sycophantic from non-sycophantic behavior, that separation should be convertible into a reward signal for reinforcement learning.
+Sycophancy is among the most persistent alignment failures in deployed systems \citep{sharma2023sycophancy}, and a representation-level reward could complement existing behavioral approaches by targeting the internal computation rather than its surface outputs.
+
+This paper shows that the conversion fails, and that the failure runs deeper than the representation signal itself.
+We test three formulations that translate $\dsyc$ into a GRPO \citep{shao2024grpo} training signal (cosine similarity, scaled cosine, and binary probe) across six experimental configurations; every formulation fails.
+Cosine similarity produces a reward gap of just 0.098 between valid and sycophantic activations, too narrow to drive policy updates (\S\ref{sec:cosine_failure}).
+Online recalibration improves the offline AUROC from 0.82 to 0.91 yet triggers mode collapse.
+A binary probe with stopped gradients creates a stubbornness trap: the model learns that never revising its answer reliably collects the probe reward, and the true-positive flip rate ($\tof$) drops to zero within 500 steps while generation entropy remains at 0.70 (\S\ref{sec:probe_trap}).
+These failures might suggest that removing $\dsyc$ in favor of a purely behavioral reward would resolve the problem.
+It does not.
+R3-only GRPO, which uses an NLI-based behavioral reward without any representation component, also fails to calibrate sycophancy: the \sycon{} score starts at 0.074 at checkpoint 1000, briefly matches the vanilla baseline (0.134) at checkpoint 4500, but immediately regresses to 0.114 and plateaus from step 5000 onward (\S\ref{sec:discussion}).
+The ceiling of sparse behavioral reward is the untrained vanilla level---it cannot push calibration beyond the pre-training baseline.
+Two layers of failure emerge: $\dsyc$-based rewards are actively harmful, and GRPO itself is structurally insufficient for sycophancy calibration.
+
+Existing approaches to sycophancy mitigation span three categories.
+Representation-based inference methods, including activation addition \citep{turner2023actadd} and contrastive activation addition \citep{rimsky2024caa}, steer model behavior at test time without modifying weights.
+RL-based training methods use scalar rewards to update policy through reinforcement learning; our $\dsyc$ GRPO variants and R3-only GRPO both fall into this category, as does representation-guided RL more broadly \citep{zhang2026latentgrpo}.
+SFT-based training takes a fundamentally different approach: ACT \citep{consistency2025bctact} applies supervised fine-tuning with an L2 activation consistency loss that provides dense per-token supervision rather than a single scalar per completion.
+ACT achieves a \sycon{} score of 0.301 at checkpoint 8000, more than double the vanilla baseline, while every GRPO variant remains below it (\S\ref{sec:discussion}).
+The contrast is informative.
+Techniques for discovering latent knowledge \citep{burns2023ccs} and representation-guided RL share a premise: a direction with high discriminability in activation space should transfer into a useful training signal.
+For reasoning faithfulness and safety refusal, this premise holds, because the behavior to suppress is geometrically distinct from the behavior to preserve along the relevant direction.
+Sycophancy violates this premise.
+Capitulation under social pressure and revision under valid evidence produce overlapping activation signatures along $\dsyc$, because both involve the model shifting its stated belief toward the user's position.
+
+The root cause is a semantic gap between discriminability and reward utility.
+$\dsyc$ encodes \emph{whether} belief changed, not \emph{whether it should have}.
+A post-hoc classifier can use this signal effectively because it scores labeled examples where the validity of the belief change is already known.
+A reward signal during RL training has no such access to ground truth; it must distinguish warranted revision from unwarranted capitulation using activation geometry alone, and $\dsyc$ collapses exactly this distinction.
+This conflation explains both layers of failure.
+$\dsyc$ rewards penalize all belief change indiscriminately, producing behavioral collapse.
+R3-only GRPO's single scalar per completion cannot compensate because it lacks the per-token resolution to teach which belief changes are warranted and which are not.
+ACT succeeds because its dense supervision operates at the token level, where the valid/invalid distinction can be resolved.
+Sycophancy is defined relative to external evidential warrant \citep{sharma2023sycophancy}, a property that no single activation direction can fully encode.
+The entanglement between helpfulness and sycophancy at the representation level, where the same mechanisms that allow models to track user intent also predispose them to capitulate \citep{wang2025internal}, is amplified by RLHF \citep{shapira2026amplifies}.
+When reward overoptimization \citep{gao2023scaling} operates on a signal that conflates compliance with capitulation, the result is predictable collapse \citep{casper2023openproblems}.
+
+We present three contributions:
+
+\begin{itemize}
+\item \textbf{All GRPO approaches fail for sycophancy calibration} (C1). We extract and validate $\dsyc$ on two model families (Qwen3-8B AUROC $0.827 \pm 0.028$; Llama-3-8B AUROC $0.779 \pm 0.019$), then show that all three $\dsyc$-based reward formulations produce behavioral collapse (\S\ref{sec:cosine_failure}, \S\ref{sec:probe_trap}). R3-only GRPO, which removes $\dsyc$ entirely, also fails: \sycon{} briefly matches vanilla (0.134) at checkpoint 4500 but regresses to 0.114 and plateaus (\S\ref{sec:discussion}). Discriminability does not confer reward utility, and sparse RL rewards are structurally insufficient for this task.
+
+\item \textbf{Probe reward trap with behavioral-before-distributional collapse} (C2). The binary probe reward produces behavioral death ($\tof = 0$ at step 500) while entropy remains at 0.70. The 1,300-step lag before distributional collapse means standard entropy monitoring misses the failure entirely, with the reward averaging $+0.72$ throughout (\S\ref{sec:probe_trap}).
+
+\item \textbf{Sparse RL reward cannot convey the valid/invalid distinction} (C3). We trace all failures to a unified root cause: $\dsyc$ encodes belief-change direction but not evidential warrant. A single scalar reward per completion, whether from representations or behavioral classifiers, cannot teach the model which belief changes are warranted. Dense SFT supervision resolves this: ACT achieves \sycon{} of 0.301, while no GRPO variant surpasses vanilla (\S\ref{sec:discussion}).
+\end{itemize}

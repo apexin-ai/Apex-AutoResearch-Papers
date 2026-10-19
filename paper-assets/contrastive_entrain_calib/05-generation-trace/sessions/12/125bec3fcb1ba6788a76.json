@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "125bec3fcb1ba6788a76",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis gpu3 verify after kill",
+  "task_key": "worker_diagnosis_gpu3-verify-after-kill_20260521T074644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_gpu3-verify-after-kill_20260521T074644_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "f6044ba4bd1fc074cc8117bd67c4f0bfb3367c8c5c3e946096c327db6d62159d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 旧进程 PID 498666 → **已死** ✓\n\n### GPU 3 新进程 PID 500594 → **存活** ✓\n- 命令: `eval_unified_preset.py --model_path Qwen3-8B --lora_path exp003/checkpoint-7000 --exp_id exp003-ckpt7000-v2`\n- VRAM: 12922 MiB / 32607 MiB\n- **GPU 利用率: 0%** — 进程在，但当前没有 GPU 计算。可能处于数据加载/预处理阶段，或已完成推理在写结果。需要关注。\n\n### 全卡状态\n\n| GPU | PID | VRAM | 利用率 | 温度 | 功耗 | 状态 |\n|-----|-----|------|--------|------|------|------|\n| 0 | 497834 | 16884 MiB / 32607 MiB | 39% | 58°C | 222W | 正常运行 |\n| 1 | 498446 | 16884 MiB / 32607 MiB | 39% | 58°C | 236W | 正常运行 |\n| 2 | 498584 | 16884 MiB / 32607 MiB | 45% | 59°C | 254W | 正常运行 |\n| 3 | 500594 | 12922 MiB / 32607 MiB | **0%** | 48°C | 17W | **存活但空闲** |\n\n### 需关注\n\nGPU 3 的 PID 500594 进程存在且占用了 ~13GB VRAM（模型已加载），但利用率 0%、功耗仅 17W。两种可能：\n1. 正在做 CPU 侧的数据预处理/结果写入（刚启动不久的话正常）\n2. 已挂起或卡住\n\n建议等 1-2 分钟后再查一次 GPU 3 利用率，如果仍然是 0% 就需要检查日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-gpu3-verify-after-kill.md"
+}

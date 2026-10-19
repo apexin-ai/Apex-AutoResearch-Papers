@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp-004-eval-ckpt6000",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:16:03.194Z",
+    "updated_at": "2026-05-20T14:43:26.874Z",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt6000\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "592184",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-004-eval-ckpt6000.log",
+      "submitted_at": "2026-05-20T14:16:03.122Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Eval exp-004 ACT checkpoint-6000 with D027 unified preset. Part of ACT training trajectory for paper figure. Compare against vanilla 0.1335 and exp-003 R3-only trajectory.",
+    "parent": "exp-004",
+    "reproduce": {
+      "finished_at": "2026-05-20T14:40:54.243Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T14:40:57.252380+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ToF": 0.1547,
+      "NoF": 0.8508,
+      "SYCONScore": 0.2618,
+      "n_valid": 181,
+      "n_invalid": 181,
+      "n_total": 362,
+      "checkpoint": "checkpoint-6000",
+      "eval_script": "eval_unified_preset.py (D027 standard)",
+      "eval_server": "westd-28034",
+      "vs_vanilla": "SYCONScore 0.2618 vs 0.1335 = +96.1%"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T14:43:26.936423+00:00",
+  "trigger": "update_registry"
+}

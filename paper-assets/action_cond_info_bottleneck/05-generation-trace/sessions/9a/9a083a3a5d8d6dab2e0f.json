@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a083a3a5d8d6dab2e0f",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra dataset download hfcache",
+  "task_key": "worker_infra_dataset-download-hfcache_20260515T210203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dataset-download-hfcache_20260515T210203_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "820097f67fd3018683c5b389c0ae692f8fc6ff8dcd48d420cba2223ab8410176"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n**结果汇总：**\n\n1. **LeRobotDataset 支持 `root` 参数** — v0.5.1 支持，`train_acib_libero.py` 已使用\n2. **方案：symlink + 删 legacy cache**\n   - 创建 symlink：`/root/autodl-tmp/.hf_cache/lerobot/lerobot/libero/ → /root/autodl-tmp/libero_dataset/`\n   - 删除了 `.cache/huggingface/download/` 目录（legacy hub metadata 触发强制 re-fetch）\n3. **无需下载** — 数据已完整在本地（v3.0 格式，1693 episodes，273,465 frames）\n4. **验证结果**：\n   - `LeRobotDataset('lerobot/libero')` 无参加载 ✓\n   - `LeRobotDataset('lerobot/libero', root=...)` 显式路径 ✓\n   - DataLoader 输出 shapes 正确：images `[B,3,256,256]`、state `[B,8]`、action `[B,7]`、task 为 string list ✓\n\n`train_acib.py` 可直接使用 `LeRobotDataset(\"lerobot/libero\")` 加载，无需代码修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-dataset-download-hfcache.md"
+}

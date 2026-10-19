@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "531c65010efa604fc075",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh urgent check alpha sweep status",
+  "task_key": "worker_ssh_urgent-check-alpha-sweep-status_20260517T040422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-check-alpha-sweep-status_20260517T040422_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "972501711925507d06ba7e63623345a54a0006f403ea9c2500cad403bda688c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. 进程存活状态\n| PID | 状态 | 运行时间 | GPU | 任务 |\n|-----|------|----------|-----|------|\n| 837180 | **存活** | 1h06m | GPU 0 (3745 MiB) | alpha=0.0, 全 4 suites |\n| 872669 | **存活** | 44m | GPU 1 (4076 MiB) | alpha=0.3, libero_spatial only |\n\n### 2. GPU 状态\n- GPU 0: 3211 MiB used, 0% util（eval 间歇期）\n- GPU 1: 4636 MiB used, 1% util（eval 间歇期）\n\n### 3. eval_info.json\n- **alpha=0.0**: 无 eval_info.json（尚未完成任何 suite）\n- **alpha=0.3**: 无 eval_info.json（尚未完成）\n\n### 4. 进度估算\n- **alpha=0.0** (PID 837180): libero_spatial 目录有 7/10 task videos → 约 70% spatial 完成，之后还有 object/goal/10 三个 suite\n- **alpha=0.3** (PID 872669): libero_spatial 目录有 5/10 task videos → 约 50% spatial 完成\n\n两个进程都在正常运行中，无异常。alpha=0.0 预计还需 ~2-3h 完成全部 4 suites，alpha=0.3 spatial 预计 ~40min 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-check-alpha-sweep-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eef8c571f0edef205084",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diagnose and restart libero10 eval",
+  "task_key": "worker_diagnose-and-restart_libero10_eval_20260516T032128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose-and-restart_libero10_eval_20260516T032128_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "26567ee757dcedbba8648b130018cd40ccfaf8213fdde2dafaaa8e1255bc2b4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**两个任务都已被重启，无需再次提交。**\n\n| 实验 | 状态 | PID | 说明 |\n|------|------|-----|------|\n| `mvp1_baseline_std_libero10` | 运行中 | 733616 | libero_10 eval，已跑 ~21 分钟，videos 生成中 |\n| `acib_v5_div_reg_seed2` | 运行中 | 744808 | step 200/20000，~0.8 steps/s |\n\n**seed2 失败根因**：`wandb.init()` 认证失败（`maybe_login` 抛异常）。已用 `WANDB_MODE=disabled` 绕过重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-and-restart-libero10-eval.md"
+}

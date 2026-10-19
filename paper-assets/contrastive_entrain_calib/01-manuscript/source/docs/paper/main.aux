@@ -1,0 +1,1082 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sharma2023sycophancy,perez2023discovering}
+\citation{ouyang2022instructgpt,christiano2017rlhf,shapira2026amplifies}
+\citation{kadavath2022language}
+\citation{wang2025internal}
+\citation{wei2024synthetic}
+\citation{obrien2025fewbadneurons}
+\citation{zou2023repe,marks2024geometry}
+\citation{casper2023openproblems}
+\citation{consistency2025bctact}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN@col{2}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\citation{wang2025internal,shapira2026amplifies}
+\citation{zou2023repe,marks2024geometry}
+\citation{li2023iti}
+\citation{turner2023actadd}
+\citation{rimsky2024caa}
+\citation{burns2023ccs}
+\citation{wu2026rewardhacking}
+\citation{gao2023scaling,pan2022effects}
+\citation{manheim2019goodhart}
+\citation{gao2023scaling}
+\citation{skalse2022hacking}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The probe reward trap. (a)~$d_{\text  {syc}}$ discriminates sycophantic from non-sycophantic activations (AUROC $0.83$), but valid revision and unwarranted capitulation overlap along the same direction. (b)~When used as a GRPO reward, behavioral death (true-positive flip rate $\text  {ToF}{=}0$) occurs at step 500 while entropy remains healthy; the 1{,}300-step lag renders standard monitoring blind.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:teaser}{{1}{2}{The probe reward trap. (a)~$\dsyc $ discriminates sycophantic from non-sycophantic activations (AUROC $0.83$), but valid revision and unwarranted capitulation overlap along the same direction. (b)~When used as a GRPO reward, behavioral death (true-positive flip rate $\tof {=}0$) occurs at step 500 while entropy remains healthy; the 1{,}300-step lag renders standard monitoring blind}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN@col{2}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Representation Engineering.}{2}{section*.2}\protected@file@percent }
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\citation{ouyang2022instructgpt,bai2022training,sharma2023sycophancy,perez2023discovering,shapira2026amplifies}
+\citation{wang2025internal}
+\citation{lin2022truthfulqa}
+\citation{kadavath2022language}
+\citation{wei2024synthetic}
+\citation{consistency2025bctact}
+\citation{obrien2025fewbadneurons}
+\citation{vennemeyer2025sycophancy}
+\citation{papadatos2024probepenalties}
+\citation{hewitt2019designing,belinkov2022probing}
+\citation{zhang2026latentgrpo,luo2026craft,sinii2025smallvectors,ackermann2026gradreg}
+\citation{beigi2025smart}
+\citation{lightman2024verify,uesato2022solving}
+\citation{openai2025gpt41}
+\citation{shao2024grpo}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Reward Design and Overoptimization.}{3}{section*.3}\protected@file@percent }
+\@LN{136}{2}
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@writefile{toc}{\contentsline {paragraph}{Sycophancy and Probe-Based Methods.}{3}{section*.4}\protected@file@percent }
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN@col{2}
+\@LN{187}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Framework}{3}{section.3}\protected@file@percent }
+\newlabel{sec:framework}{{3}{3}{Experimental Framework}{section.3}{}}
+\@LN{188}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Direction Extraction}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{ssec:extraction}{{3.1}{3}{Direction Extraction}{subsection.3.1}{}}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\newlabel{eq:dsyc}{{1}{3}{Direction Extraction}{equation.1}{}}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Reward Formulations}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{ssec:reward}{{3.2}{3}{Reward Formulations}{subsection.3.2}{}}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\@LN{231}{2}
+\@LN{232}{2}
+\citation{consistency2025bctact}
+\citation{he2023debertav3}
+\citation{consistency2025bctact}
+\citation{yang2025qwen3}
+\citation{hu2022lora}
+\citation{rajbhandari2020zero}
+\citation{shao2024grpo}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the experimental framework. (a)~Contrastive sycophancy direction $d_{\text  {syc}}$ is extracted from 181 style-matched pairs and achieves AUROC $0.83$ on Qwen3-8B. (b)~Three reward formulations (cosine projection, binary probe, continuous probe) all fail when integrated into GRPO: $d_{\text  {syc}}$ encodes \emph  {whether} belief changed, not \emph  {whether it should have}. (c)~Per-token SFT (ACT) succeeds at every checkpoint (31/31), suggesting supervision granularity as a key factor.}}{4}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:framework}{{2}{4}{Overview of the experimental framework. (a)~Contrastive sycophancy direction $\dsyc $ is extracted from 181 style-matched pairs and achieves AUROC $0.83$ on Qwen3-8B. (b)~Three reward formulations (cosine projection, binary probe, continuous probe) all fail when integrated into GRPO: $\dsyc $ encodes \emph {whether} belief changed, not \emph {whether it should have}. (c)~Per-token SFT (ACT) succeeds at every checkpoint (31/31), suggesting supervision granularity as a key factor}{figure.caption.5}{}}
+\@LN@col{1}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Online Recalibration}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{ssec:recalib}{{3.3}{4}{Online Recalibration}{subsection.3.3}{}}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Activation Consistency Training (ACT)}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{ssec:baselines}{{3.4}{4}{Activation Consistency Training (ACT)}{subsection.3.4}{}}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Evaluation}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{ssec:eval}{{3.5}{4}{Evaluation}{subsection.3.5}{}}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN@col{2}
+\@LN{256}{3}
+\@LN{257}{3}
+\newlabel{eq:sycon}{{2}{4}{Evaluation}{equation.2}{}}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Direction Discriminability}{4}{section.4}\protected@file@percent }
+\newlabel{sec:direction_quality}{{4}{4}{Direction Discriminability}{section.4}{}}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\citation{grattafiori2024llama3}
+\citation{hewitt2019designing,belinkov2022probing}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-model $d_{\text  {syc}}$ discriminability. AUROC uncertainty is 5-fold cross-validation standard deviation; evidence-strength AUROCs are evaluated on the full dataset at each model's best layer.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:cross_model}{{1}{5}{Cross-model $\dsyc $ discriminability. AUROC uncertainty is 5-fold cross-validation standard deviation; evidence-strength AUROCs are evaluated on the full dataset at each model's best layer}{table.caption.6}{}}
+\@LN{281}{4}
+\@LN{282}{4}
+\@LN{283}{4}
+\@LN{284}{4}
+\@LN{285}{4}
+\@LN{286}{4}
+\@LN{287}{4}
+\@LN{288}{4}
+\@LN{289}{4}
+\@LN{290}{4}
+\@writefile{toc}{\contentsline {paragraph}{Qwen3-8B layer-wise discriminability.}{5}{section*.7}\protected@file@percent }
+\@LN{291}{4}
+\@LN{292}{4}
+\@LN{293}{4}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model generalization.}{5}{section*.8}\protected@file@percent }
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Per-layer AUROC of $d_{\text  {syc}}$ as a function of normalized depth (layer index / total layers). Qwen3-8B (36 layers, solid) shows gradual emergence from near-chance at L0 to a peak at L19, with performance plateauing in the final third. Llama-3-8B (32 layers, dashed; layers 16--31 only) exhibits a similar upper-third concentration. Both models achieve best discriminability in layers 50--60\% through the network.}}{5}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:direction_quality}{{3}{5}{Per-layer AUROC of $\dsyc $ as a function of normalized depth (layer index / total layers). Qwen3-8B (36 layers, solid) shows gradual emergence from near-chance at L0 to a peak at L19, with performance plateauing in the final third. Llama-3-8B (32 layers, dashed; layers 16--31 only) exhibits a similar upper-third concentration. Both models achieve best discriminability in layers 50--60\% through the network}{figure.caption.9}{}}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@writefile{toc}{\contentsline {paragraph}{Training stability and probe ablation.}{5}{section*.10}\protected@file@percent }
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cosine $R_1$ failure chain on Qwen3-8B (LoRA rank$=$64, GRPO with $R = w_1 \cdot R_1+ w_3 \cdot R_3$).}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:cosine_chain}{{2}{6}{Cosine $\rone $ failure chain on Qwen3-8B (LoRA rank$=$64, GRPO with $R = w_1 \cdot \rone + w_3 \cdot \rthree $)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implications for reward design.}{6}{section*.11}\protected@file@percent }
+\@LN{357}{5}
+\@LN{358}{5}
+\@LN{359}{5}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@LN{366}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Cosine $R_1$: Structural Failure}{6}{section.5}\protected@file@percent }
+\newlabel{sec:cosine_failure}{{5}{6}{Cosine \texorpdfstring {$\rone $}{R1}: Structural Failure}{section.5}{}}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN@col{2}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {6}The Probe Reward Trap}{6}{section.6}\protected@file@percent }
+\newlabel{sec:probe_trap}{{6}{6}{The Probe Reward Trap}{section.6}{}}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@writefile{toc}{\contentsline {paragraph}{Differentiable probe: gradient gaming.}{6}{section*.13}\protected@file@percent }
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@writefile{toc}{\contentsline {paragraph}{Binary probe: the stubbornness trap.}{6}{section*.14}\protected@file@percent }
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\citation{casper2023openproblems}
+\citation{denison2024subterfuge}
+\citation{zhang2026latentgrpo}
+\citation{wu2026rewardhacking}
+\citation{kelkar2026persona}
+\citation{vennemeyer2025sycophancy}
+\citation{beigi2025smart}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Probe reward trap trajectory (stopped-gradient probe). Behavioral death ($\text  {ToF}{=}0$) occurs at step 500; entropy remains healthy until step ${\sim }1840$. Reward averages $+0.72$ throughout.}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:probe_trajectory}{{3}{7}{Probe reward trap trajectory (stopped-gradient probe). Behavioral death ($\tof {=}0$) occurs at step 500; entropy remains healthy until step ${\sim }1840$. Reward averages $+0.72$ throughout}{table.caption.16}{}}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@writefile{toc}{\contentsline {paragraph}{Behavioral death precedes distributional collapse.}{7}{figure.caption.17}\protected@file@percent }
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@writefile{toc}{\contentsline {paragraph}{A dilemma for direction-based rewards.}{7}{section*.18}\protected@file@percent }
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {7}When Does Discriminability Fail as Reward Utility?}{7}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{7}{When Does Discriminability Fail as Reward Utility?}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Root cause of the probe reward trap.}{7}{section*.19}\protected@file@percent }
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Sycophancy calibration methods on Qwen3-8B. Higher $\textsc  {SyconScore}$ (harmonic mean of $\text  {ToF}$ and $\text  {NoF}$) indicates better calibration.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:main_comparison}{{4}{7}{Sycophancy calibration methods on Qwen3-8B. Higher $\sycon $ (harmonic mean of $\tof $ and $\nof $) indicates better calibration}{table.caption.21}{}}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@writefile{toc}{\contentsline {paragraph}{GRPO results under our configuration.}{7}{table.caption.21}\protected@file@percent }
+\@LN{510}{6}
+\@LN{511}{6}
+\@LN{512}{6}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@LN{517}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@LN{520}{6}
+\@writefile{toc}{\contentsline {paragraph}{Competing hypotheses and ablation.}{7}{section*.22}\protected@file@percent }
+\@LN{521}{6}
+\@LN{522}{6}
+\@LN{523}{6}
+\citation{papadatos2024probepenalties}
+\citation{beigi2025smart}
+\newlabel{fig:probe_trap}{{4a}{8}{Probe reward trap (stopped-gradient probe). $\tof $ drops to zero at step 500 while entropy remains high (0.70--0.80) through step 1000. The 1{,}300-step lag evades entropy monitoring}{figure.caption.17}{}}
+\newlabel{sub@fig:probe_trap}{{a}{8}{Probe reward trap (stopped-gradient probe). $\tof $ drops to zero at step 500 while entropy remains high (0.70--0.80) through step 1000. The 1{,}300-step lag evades entropy monitoring}{figure.caption.17}{}}
+\newlabel{fig:trajectory}{{4b}{8}{$\sycon $ trajectories for $\rthree $-only GRPO (two seeds) and ACT (two seeds). ACT exceeds vanilla at every checkpoint (31/31); GRPO exceeds vanilla at only 4/28 (14.3\%)}{figure.caption.17}{}}
+\newlabel{sub@fig:trajectory}{{b}{8}{$\sycon $ trajectories for $\rthree $-only GRPO (two seeds) and ACT (two seeds). ACT exceeds vanilla at every checkpoint (31/31); GRPO exceeds vanilla at only 4/28 (14.3\%)}{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Training dynamics. (a)~The probe reward trap: behavioral death precedes distributional collapse. (b)~$R_3$-only GRPO vs.\ ACT over training steps.}}{8}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:dynamics}{{4}{8}{Training dynamics. (a)~The probe reward trap: behavioral death precedes distributional collapse. (b)~$\rthree $-only GRPO vs.\ ACT over training steps}{figure.caption.17}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Ablation: isolating supervision paradigm from LoRA configuration. All methods use Qwen3-8B with $R_3$ (behavioral reward). Vanilla $\textsc  {SyconScore}{=}0.134$. $^\dagger $Terminated early after three checkpoints showed declining trajectory. $^\ddagger $Peak at step 7000; final checkpoint (step 8000) $\textsc  {SyconScore}{=}0.267$.}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:ablation}{{5}{8}{Ablation: isolating supervision paradigm from LoRA configuration. All methods use Qwen3-8B with $\rthree $ (behavioral reward). Vanilla $\sycon {=}0.134$. $^\dagger $Terminated early after three checkpoints showed declining trajectory. $^\ddagger $Peak at step 7000; final checkpoint (step 8000) $\sycon {=}0.267$}{table.caption.23}{}}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@writefile{toc}{\contentsline {paragraph}{ACT vs.\ probe-based methods.}{8}{section*.24}\protected@file@percent }
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN@col{2}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@writefile{toc}{\contentsline {paragraph}{Inference-time probes and future directions.}{8}{section*.25}\protected@file@percent }
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{8}{Conclusion}{section.8}{}}
+\@LN{565}{7}
+\@LN{566}{7}
+\@LN{567}{7}
+\@LN{568}{7}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\@LN{573}{7}
+\@LN{574}{7}
+\bibdata{references}
+\bibcite{ackermann2026gradreg}{{1}{2026}{{Ackermann et~al.}}{{Ackermann, Noukhovitch, Ishida, and Sugiyama}}}
+\bibcite{bai2022training}{{2}{2022}{{Bai et~al.}}{{Bai, Jones, Ndousse, Askell, Chen, DasSarma, Drain, Fort, Ganguli, Henighan et~al.}}}
+\bibcite{beigi2025smart}{{3}{2025}{{Beigi et~al.}}{{Beigi, Shen, Shojaee, Wang, Wang, Reddy, Jin, and Huang}}}
+\bibcite{belinkov2022probing}{{4}{2022}{{Belinkov}}{{}}}
+\bibcite{burns2023ccs}{{5}{2023}{{Burns et~al.}}{{Burns, Ye, Klein, and Steinhardt}}}
+\bibcite{casper2023openproblems}{{6}{2023}{{Casper et~al.}}{{Casper, Davies, Shi, Gilbert, Scheurer, Rando, Sharkey, Saez-Rodriguez, Henighan, Kravec et~al.}}}
+\bibcite{christiano2017rlhf}{{7}{2017}{{Christiano et~al.}}{{Christiano, Leike, Brown, Martic, Legg, and Amodei}}}
+\bibcite{denison2024subterfuge}{{8}{2024}{{Denison et~al.}}{{Denison, MacDiarmid, Barez, Duvenaud, Christiano, and Leike}}}
+\bibcite{gao2023scaling}{{9}{2023}{{Gao et~al.}}{{Gao, Schulman, and Hilton}}}
+\bibcite{grattafiori2024llama3}{{10}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten et~al.}}}
+\bibcite{he2023debertav3}{{11}{2023}{{He et~al.}}{{He, Gao, and Chen}}}
+\bibcite{hewitt2019designing}{{12}{2019}{{Hewitt and Liang}}{{}}}
+\bibcite{hu2022lora}{{13}{2022}{{Hu et~al.}}{{Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
+\bibcite{consistency2025bctact}{{14}{2025}{{Irpan et~al.}}{{Irpan, Turner, Kurzeja, Elson, and Shah}}}
+\bibcite{kadavath2022language}{{15}{2022}{{Kadavath et~al.}}{{Kadavath, Conerly, Askell, Henighan, Drain, Perez, Schiefer, Hatfield-Dodds, DasSarma, Tran-Johnson et~al.}}}
+\bibcite{kelkar2026persona}{{16}{2026}{{Kelkar et~al.}}{{Kelkar, Alam, Kakaria, Panwar, Sharma, and Chaudhary}}}
+\bibcite{li2023iti}{{17}{2023}{{Li et~al.}}{{Li, Patel, Vi{\'e}gas, Pfister, and Wattenberg}}}
+\bibcite{lightman2024verify}{{18}{2024}{{Lightman et~al.}}{{Lightman, Kosaraju, Burda, Edwards, Baker, Lee, Leike, Schulman, Sutskever, and Cobbe}}}
+\bibcite{lin2022truthfulqa}{{19}{2022}{{Lin et~al.}}{{Lin, Hilton, and Evans}}}
+\bibcite{luo2026craft}{{20}{2026}{{Luo et~al.}}{{Luo, Wang, Yu, Wang, and Chen}}}
+\bibcite{manheim2019goodhart}{{21}{2019}{{Manheim and Garrabrant}}{{}}}
+\@LN@col{1}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN@col{2}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\bibcite{marks2024geometry}{{22}{2024}{{Marks and Tegmark}}{{}}}
+\bibcite{obrien2025fewbadneurons}{{23}{2025}{{O'Brien et~al.}}{{O'Brien, Seto, Roy, Dwivedi, Dev, Zhu, O'Brien, Panda, and Lagasse}}}
+\bibcite{openai2025gpt41}{{24}{2025}{{OpenAI}}{{}}}
+\bibcite{ouyang2022instructgpt}{{25}{2022}{{Ouyang et~al.}}{{Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin, Zhang, Agarwal, Slama, Ray et~al.}}}
+\bibcite{pan2022effects}{{26}{2022}{{Pan et~al.}}{{Pan, Bhatia, and Steinhardt}}}
+\bibcite{papadatos2024probepenalties}{{27}{2024}{{Papadatos and Freedman}}{{}}}
+\bibcite{perez2023discovering}{{28}{2023}{{Perez et~al.}}{{Perez, Ringer, Luko{\v {s}}i{\=u}t{\.e}, Nguyen, Chen, Heiner, Pettit, Olsson, Kundu, Kadavath et~al.}}}
+\bibcite{rajbhandari2020zero}{{29}{2020}{{Rajbhandari et~al.}}{{Rajbhandari, Rasley, Ruwase, and He}}}
+\bibcite{rimsky2024caa}{{30}{2024}{{Rimsky et~al.}}{{Rimsky, Gabrieli, Schulz, Smith, Tong, and Hubinger}}}
+\bibcite{shao2024grpo}{{31}{2024}{{Shao et~al.}}{{Shao, Wang, Zhu, Xu, Song, Zhang, Li, Wu, and Guo}}}
+\bibcite{shapira2026amplifies}{{32}{2026}{{Shapira et~al.}}{{Shapira, Benade, and Procaccia}}}
+\bibcite{sharma2023sycophancy}{{33}{2024}{{Sharma et~al.}}{{Sharma, Tong, Korbak, Duvenaud, Askell, Bowman, Cheng, Durmus, Hatfield-Dodds, Johnston et~al.}}}
+\bibcite{sinii2025smallvectors}{{34}{2025}{{Sinii et~al.}}{{Sinii, Balagansky, Gerasimov, Laptev, Aksenov, Kurochkin, Gorbatovski, Shaposhnikov, and Gavrilov}}}
+\bibcite{skalse2022hacking}{{35}{2022}{{Skalse et~al.}}{{Skalse, Howe, Krasheninnikov, and Krueger}}}
+\bibcite{turner2023actadd}{{36}{2023}{{Turner et~al.}}{{Turner, Thiergart, Udell, Leech, Mini, and MacDiarmid}}}
+\bibcite{uesato2022solving}{{37}{2022}{{Uesato et~al.}}{{Uesato, Kushman, Kumar, Song, Siegel, Wang, Cichocki, Kocisky, and Grefenstette}}}
+\bibcite{vennemeyer2025sycophancy}{{38}{2025}{{Vennemeyer et~al.}}{{Vennemeyer, Duong, Zhan, and Jiang}}}
+\bibcite{wang2025internal}{{39}{2025}{{Wang et~al.}}{{Wang, Li, Yang, Zhang, and Wang}}}
+\bibcite{wei2024synthetic}{{40}{2024}{{Wei et~al.}}{{Wei, Huang, Lu, Zhou, and Le}}}
+\bibcite{wu2026rewardhacking}{{41}{2026}{{Wu and Tang}}{{}}}
+\bibcite{yang2025qwen3}{{42}{2025}{{Yang et~al.}}{{Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang, Lv et~al.}}}
+\bibcite{zhang2026latentgrpo}{{43}{2026}{{Zhang et~al.}}{{Zhang, Ma, Ma, Xu, Gao, Hao, He, and Xu}}}
+\bibcite{zou2023repe}{{44}{2025}{{Zou et~al.}}{{Zou, Phan, Chen, Campbell, Guo, Ren, Pan, Yin, Mazeika, Dombrowski, Gould, Li, Xie, Leung, Hase, and Hendrycks}}}
+\@LN@col{1}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN@col{2}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\@LN{789}{9}
+\@LN@col{1}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN@col{2}
+\citation{shao2024grpo}
+\@LN@col{1}
+\@LN{798}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Training Details}{12}{appendix.A}\protected@file@percent }
+\newlabel{app:training}{{A}{12}{Training Details}{appendix.A}{}}
+\@writefile{toc}{\contentsline {paragraph}{Reward weight selection.}{12}{section*.28}\protected@file@percent }
+\@LN{799}{11}
+\@LN{800}{11}
+\@LN{801}{11}
+\@LN{802}{11}
+\@LN{803}{11}
+\@LN{804}{11}
+\@LN{805}{11}
+\@LN{806}{11}
+\@LN{807}{11}
+\@writefile{toc}{\contentsline {paragraph}{Response truncation.}{12}{section*.29}\protected@file@percent }
+\@LN{808}{11}
+\@LN{809}{11}
+\@LN{810}{11}
+\@LN{811}{11}
+\@LN{812}{11}
+\@LN{813}{11}
+\@LN{814}{11}
+\@LN{815}{11}
+\@LN{816}{11}
+\@LN{817}{11}
+\@LN{818}{11}
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameters.}{12}{section*.30}\protected@file@percent }
+\@LN{819}{11}
+\@LN{820}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Training hyperparameters. All experiments use Qwen3-8B, DeepSpeed ZeRO-2, bf16 precision.}}{12}{table.caption.31}\protected@file@percent }
+\newlabel{tab:hyperparams}{{6}{12}{Training hyperparameters. All experiments use Qwen3-8B, DeepSpeed ZeRO-2, bf16 precision}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {paragraph}{Early termination criterion.}{12}{section*.32}\protected@file@percent }
+\@LN{821}{11}
+\@LN{822}{11}
+\@LN{823}{11}
+\@LN@col{2}
+\@LN{824}{11}
+\@LN{825}{11}
+\@LN{826}{11}
+\@LN{827}{11}
+\@LN{828}{11}
+\@LN{829}{11}
+\@writefile{toc}{\contentsline {paragraph}{GRPO reward variants.}{12}{section*.33}\protected@file@percent }
+\@LN{830}{11}
+\@LN{831}{11}
+\@LN{832}{11}
+\@LN{833}{11}
+\@LN{834}{11}
+\@LN{835}{11}
+\@LN{836}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Stubbornness Taxonomy}{12}{appendix.B}\protected@file@percent }
+\newlabel{app:taxonomy}{{B}{12}{Stubbornness Taxonomy}{appendix.B}{}}
+\@LN{837}{11}
+\@LN{838}{11}
+\@LN{839}{11}
+\@LN{840}{11}
+\@LN{841}{11}
+\@LN{842}{11}
+\@LN{843}{11}
+\@LN{844}{11}
+\@LN{845}{11}
+\@LN{846}{11}
+\@LN{847}{11}
+\@LN{848}{11}
+\@LN{849}{11}
+\@LN{850}{11}
+\@LN{851}{11}
+\@LN{852}{11}
+\@LN{853}{11}
+\@LN{854}{11}
+\@LN{855}{11}
+\@LN{856}{11}
+\@LN{857}{11}
+\@LN{858}{11}
+\@LN{859}{11}
+\@LN{860}{11}
+\@LN{861}{11}
+\@LN{862}{11}
+\@LN{863}{11}
+\@LN{864}{11}
+\@LN{865}{11}
+\@LN{866}{11}
+\@LN{867}{11}
+\@LN{868}{11}
+\@LN@col{1}
+\@LN{869}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Use of AI Assistance}{13}{appendix.C}\protected@file@percent }
+\@LN{870}{12}
+\@LN{871}{12}
+\@LN@col{2}
+\gdef \@abspage@last{13}

@@ -1,0 +1,129 @@
+paper_key: "obrien2025fewbadneurons"
+title: "A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy"
+venue: "NeurIPS Workshops 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Untrained Gemma-2 (no intervention)"
+    - "Synthetic Data Intervention (Wei et al. 2024)"
+    - "Supervised Pinpoint Tuning / SPT (Chen et al. 2025, top 48 attention heads)"
+    - "Residual probe ablation (their own method variant using residual-space probes instead of SAE probes)"
+  metrics:
+    - {name: "Syco-Bench Picking Sides", direction: "lower_better"}
+    - {name: "Syco-Bench Mirroring", direction: "lower_better"}
+    - {name: "Syco-Bench Attribution Bias", direction: "lower_better"}
+    - {name: "Syco-Bench Delusion Acceptance", direction: "lower_better"}
+    - {name: "Open-Ended Sycophancy (sycophantic accuracy)", direction: "higher_better"}
+    - {name: "Open-Ended Sycophancy (non-sycophantic accuracy)", direction: "higher_better"}
+    - {name: "NLP sycophantic preference %", direction: "lower_better"}
+    - {name: "POLI sycophantic preference %", direction: "lower_better"}
+    - {name: "PHIL sycophantic preference %", direction: "lower_better"}
+    - {name: "Probe classification accuracy", direction: "higher_better"}
+    - {name: "Probe AUC", direction: "higher_better"}
+  datasets:
+    - {name: "Syco-Bench", size: "4 subtasks (Picking Sides, Mirroring, Attribution Bias, Delusion Acceptance)"}
+    - {name: "Open-Ended-Sycophancy", size: "53 questions"}
+    - {name: "NLP sycophancy dataset", size: "not specified"}
+    - {name: "POLI sycophancy dataset", size: "not specified"}
+    - {name: "PHIL sycophancy dataset", size: "not specified"}
+    - {name: "Training set from ELI5 + AskHistorians + AmbigQA", size: "20000 opinion prompts, ~1200 used for probe training"}
+  ablation_dimensions:
+    - "Probe type: SAE-trained vs residual-trained probes"
+    - "Layer selection: greedy search across last 30% MLP layers"
+    - "Feature pooling: max vs mean activation pooling"
+    - "Layer combinations: different multi-layer concatenations"
+    - "Weight consistency across layer configurations (Table 1)"
+  training_recipe:
+    optimizer: "AdamW with weight decay"
+    lr: "not specified"
+    loss: "L(t) = L_model(t) + alpha * D_KL + beta * H(p), cross-entropy + KL divergence from clean model + entropy regularization"
+    hardware: "not specified"
+    epochs: "one-epoch warm-up for probe"
+    data_size: "~1200 labeled pairs for probe training"
+    neuron_fraction: "~3% of MLP neurons selected for fine-tuning"
+    sae_models: "gemma-scope-2b-pt-mlp-canonical, gemma-scope-9b-pt-mlp-canonical"
+  method_family: "mechanistic interpretability + targeted fine-tuning (SAE-guided neuron-level intervention)"
+
+positioning:
+  core_claim: "Sparse, neuron-level updates targeting only ~3% of MLP neurons identified via SAE probes offer a scalable and precise alternative to full-model fine-tuning for correcting sycophancy, matching SOTA with minimal training data and reduced side effects."
+  key_results: "On Gemma-2-2B: NLP sycophancy drops from 91.26% to 50.00%, PHIL from 90.35% to 50.15%; on Gemma-2-9B: PHIL drops from 98.71% to 60.81%; SAE probe accuracy 93-100% in-domain; only ~3% neurons selected across both models; method competitive with Synthetic Data Intervention while using far less data."
+  limitations:
+    - "Only evaluated on single-turn conversations; sycophancy often arises in multi-turn interactions"
+    - "SAE probes achieve lower accuracy than residual baselines (80% vs 60% cross-domain gap)"
+    - "Risk of catastrophic forgetting when training sparse neurons"
+    - "Potential oversight of early-layer sycophantic information (only last 30% layers considered)"
+    - "Inconsistent performance across model sizes (method works better on 2B than 9B)"
+    - "Dataset quality constraints from synthetic generation pipeline"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Despite advanced capabilities, LLMs frequently exhibit sycophancy—unwarranted deference to user preferences—hindering reliability in high-stakes domains. Opens with the severity and prevalence of the problem."
+  tension: "Standard alignment training (RLHF) inadvertently rewards agreeability over accuracy, while broad fine-tuning approaches introduce unpredictable side effects. The field lacks a precise surgical method."
+  key_insight: "Pre-trained SAEs expose interpretable sparse features that enable data-driven neuron selection across multiple layers simultaneously, revealing that sycophancy is concentrated in a tiny fraction (~3%) of MLP neurons that can be isolated and corrected."
+  argument_chain: "sycophancy is prevalent and harmful → RLHF causes it by rewarding agreeability → broad fine-tuning has side effects → SAEs can decompose behavior into sparse features → linear probes on SAE features identify sycophancy neurons → gradient masking restricts updates to only those neurons → competitive results with minimal data"
+  contribution_framing: "Three contributions: (1) novel neuron identification pipeline using SAE probes, (2) gradient-masked targeted fine-tuning framework, (3) empirical validation matching SOTA with minimal data and improved interpretability. Framed as 'scalable and precise alternative' rather than outright SOTA claim."
+  intro_structure: "4 paragraphs: P1 problem definition (sycophancy prevalence and stakes), P2 root cause analysis (RLHF reward hacking), P3 methodological positioning (detection vs intervention, why broad fine-tuning fails), P4 technical approach preview (SAE + probe pipeline)"
+  notable_technique: "Cleanly separates the detection problem (finding bad neurons) from the intervention problem (fixing them), making the pipeline modular. Uses the 'surgical' metaphor throughout to frame precision as the key differentiator."
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: "Two-part pipeline diagram. Top half shows 'Fine-tuning' with Trainer/Loss box (displaying the composite loss function L(t) = L_model(t) + alpha*D_KL + beta*H(p)) connected to Masked Fine-tuning visualization (neural network with frozen nodes as white circles with lock icons, updated nodes in orange). Bottom half shows 'Building the Neuron Mask' pipeline: sycophantic/non-sycophantic text pair → Encoder → SAE on one layer → v → feature vectors from multiple layers (L13, L17, L18, L20, L21, L23) concatenated → sparse neuron mask (grid with orange highlighted cells)."
+    narrative_role: "Provides complete method overview at a glance; reader immediately understands the two-stage pipeline (identify then fix). Establishes the 'surgical' framing visually."
+    design_elements:
+      - "Two-part vertical layout separating training from mask construction"
+      - "Color coding: green for encoder/SAE, orange/coral for updated neurons and mask, white with locks for frozen"
+      - "Concrete text example of sycophantic vs non-sycophantic response"
+      - "Layer-by-layer feature visualization as colored bar charts"
+      - "Grid visualization of the sparse binary mask"
+    visual_style: "Clean, professional, horizontal flow with clear labeled stages. Light green and coral/orange color scheme. Mix of schematic neural network and concrete data visualization. Good use of whitespace. Moderate information density—not overcrowded but packs both pipeline stages into one figure."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "histogram_grid"
+      what_compared: "Weight distributions of residual probes vs SAE probes across Gemma-2-2B and Gemma-2-9B, specifically layer 23 (2B) and layer 35 (9B)"
+      how_gain_highlighted: "Residual probe weights cluster extremely tightly near zero (spike histogram, virtually all mass at 0), while SAE probe weights show a broader bell-shaped distribution with distinct outlier tails extending to +/-10. The visual contrast is dramatic—the residual histogram looks like a single spike while SAE shows interpretable spread."
+      design_note: "2x2 grid layout (residual top row, SAE bottom row; 2B left, 9B right). The stark visual contrast between spike-at-zero (residual) and spread distribution (SAE) immediately conveys why SAE probes are more useful for neuron selection. Uses standard matplotlib blue histogram bars."
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "SAE probe accuracy as a function of number of layers concatenated during greedy layer selection, for Gemma-2-2B (5a) and Gemma-2-9B (5b)"
+      how_gain_highlighted: "Data point labels on each node show exact accuracy values; peak accuracy clearly visible (0.83 at 8 layers for 2B). Non-monotonic trend (accuracy dips at 4 layers then recovers) adds analytical interest."
+      design_note: "Simple line chart with annotated data points. Blue line on white grid background. X-axis: number of layers concatenated (1-9), Y-axis: SAE Probe ACC (0.70-0.84). Clean and readable; each point labeled with its value for easy reference."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "histogram_grid"
+      dimensions_varied: ["layer index (5 layers: 5, 8, 13, 15, 19 for Gemma-2-2B)"]
+      design_note: "Per-feature mean difference activations shown as log-frequency histograms for each layer. Purple/magenta bars on white background. Log y-axis reveals the long tail of high-activation-difference features that are informative. Most features cluster near zero (uninformative) while a sparse set shows large differences. Layers 13 and 19 show more spread, indicating higher informativeness."
+    - figure_id: "Figure 4"
+      viz_type: "histogram_grid"
+      dimensions_varied: ["layer index (5 layers: 5, 9, 13, 19, 33 for Gemma-2-9B)"]
+      design_note: "Same format as Figure 3 but for 9B model. Parallel presentation enables cross-model comparison."
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["training epochs for SPT+LoRA baseline"]
+      design_note: "Training loss curves for the SPT baseline on both model sizes. Included to show convergence of the baseline method, establishing fair comparison. Simple loss-over-steps format."
+  figure_narrative_role: "Figure 1 (method overview) → Figure 2 (why SAE probes, not residual: weight distribution contrast) → Figure 3-4 (layer selection justification: activation spread across layers) → Figure 5 (greedy selection result: optimal layer count) → Figure 6 (baseline training convergence for fair comparison). Flow: overview → probe justification → layer selection → ablation → baseline fairness."
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 2 and Table 3"
+    row_axis: "methods"
+    col_axis: "benchmarks (Syco-Bench subtasks, Open-Ended Sycophancy, NLP, POLI, PHIL)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "implicit best results (no bold/underline explicitly described); reader must compare numbers. Lower is better for sycophancy preference metrics, creating potential confusion in interpretation direction."
+    statistical_reporting: "single run numbers, no standard deviation or confidence intervals reported"
+    num_baselines: 4
+    design_note: "Split into two tables by model size (Table 2 for 2B, Table 3 for 9B) rather than one combined table. 5 rows per table (Untrained, Synthetic Data, SPT, Ours Residual, Ours SAE). Mixed metric directionality (some higher-better, some lower-better) makes quick visual scanning harder. No bold/underline highlighting convention mentioned—readers must manually identify best results. The split-by-model design is clean but means the reader must cross-reference two tables to compare model-size effects."
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["layer configuration for probe training (three different layer combinations: [13,20], [13,17,18,20,23], [20,22,24])"]
+      variation_style: "full_numbers"
+      design_note: "Shows decoded weights for layer 20 across 5 weight indices (0-4) under three different layer configurations. Demonstrates weight consistency with mean variance 3.94e-05. Small compact table serving as a robustness check—proves that which layers you combine doesn't change the identified neurons much."
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix sections A-E contain additional experimental details, probe training specifics, and extended results"
+    reason: "Main paper focuses on the pipeline and headline results; appendix houses implementation details and robustness checks that would clutter the main narrative but are needed for reproducibility"

@@ -1,0 +1,975 @@
+- id: art_20260518_d1bcbb
+  name: generate_calibration_data
+  type: data
+  description: 多轮校准数据生成脚本：两阶段生成（骨架+对话对），支持 correction_turn 变化、证据强度分层、流式写入续接、Anthropic/OpenAI
+    双 API
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/generate_calibration_data.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:12:49.112532+00:00'
+  tags:
+  - phase1
+  - datagen
+  - script
+- id: art_20260518_905350
+  name: validate_calibration_data
+  type: data
+  description: 数据质量验证脚本：结构完整性、配对一致性、分布统计、LLM 抽样检查、文本质量 5 类检查，exit code 0/1/2
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/validate_calibration_data.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:12:51.410330+00:00'
+  tags:
+  - phase1.5
+  - validation
+  - script
+- id: art_20260518_95b5d9
+  name: extract_activations
+  type: data
+  description: Phase 2 激活提取脚本：Qwen3-8B 全层 sweep，critical turn user_last_token + assistant_first_token，OOM
+    自动降级，输出 .pt + .jsonl
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/extract_activations.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:23:20.712969+00:00'
+  tags:
+  - phase2
+  - activation
+  - script
+- id: art_20260518_60f913
+  name: validate_calibration_data
+  type: data
+  description: 数据质量验证脚本（已修复）：结构完整性、配对一致性、分布统计、LLM 抽样检查（默认开启）、文本质量 + confound 分析（turns[1]
+    初始回答 + post-correction 响应长度检查）
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/validate_calibration_data_60f913.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:31:39.105107+00:00'
+  tags:
+  - phase1.5
+  - validation
+  - script
+  - fixed
+- id: art_20260518_6a50ab
+  name: calibration_data_v1
+  type: data
+  description: Phase 1 多轮校准数据集：320 对 (640 条)，5 domain 均匀分布，warranted_revision/sycophantic_capitulation
+    各 320，含 correction_turn 变化和证据强度分层
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/calibration_data.jsonl
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T06:06:28.787019+00:00'
+  tags:
+  - phase1
+  - datagen
+  - calibration
+  - v1
+- id: art_20260518_699fee
+  name: post_mvp_experiment_skeleton
+  type: report
+  description: Post-MVP 实验骨架：DC-GRPO 主实验 + 4 baseline + 4 ablation + 5 类评估 benchmark
+    + GPU 预算分配（~190 H100-hr mandatory）
+  path: projects/contrastive_entrain_calib/artifacts/_project/report/post_mvp_experiment_skeleton.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:00:18.416209+00:00'
+  tags:
+  - post-mvp
+  - planning
+  - experiment-design
+- id: art_20260518_4a0b78
+  name: compute_directions
+  type: data
+  description: Phase 3 方向计算脚本：加载激活 .pt → 分层采样 80/20 划分 → difference-in-means 计算 d_syc/d_gen
+    → L2 归一化 → 输出 directions.pt
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/compute_directions.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:00:34.093094+00:00'
+  tags:
+  - phase3
+  - direction
+  - script
+- id: art_20260518_92a905
+  name: evaluate_directions
+  type: data
+  description: Phase 4 评估脚本：per-layer AUROC + cosine similarity + 分层分析（domain/evidence/turn）
+    + Go/No-Go 判定（PASS/GRAY/FAIL）
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/evaluate_directions.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:00:36.459609+00:00'
+  tags:
+  - phase4
+  - evaluation
+  - script
+- id: art_20260518_3838b5
+  name: lora_perturbation_test
+  type: data
+  description: Phase 5 LoRA 扰动鲁棒性测试：随机 rank-16 LoRA 扰动 → 重新提取激活 → 比较 AUROC 差值 → ROBUST/NOT_ROBUST
+    判定
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/lora_perturbation_test.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:00:38.553811+00:00'
+  tags:
+  - phase5
+  - lora
+  - robustness
+  - script
+- id: art_20260518_e1d618
+  name: eval_pipeline
+  type: data
+  description: 统一评估管线框架：BenchmarkBase 抽象基类 + SYCONBench/SycophancyEval/MTBench/MMLU
+    4 个骨架类 + EvalPipeline 批量运行 + CLI（含 --dry-run）
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/eval_pipeline.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:55:08.196027+00:00'
+  tags:
+  - post-mvp
+  - evaluation
+  - framework
+- id: art_20260518_530819
+  name: grpo_framework
+  type: data
+  description: DC-GRPO 训练框架骨架：ActivationExtractionHook + MultiTurnRolloutGenerator
+    + R1/R2/R3 三路 reward + DCGRPOTrainer + DCGRPOConfig，接口完整实现标 TODO
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/grpo_framework.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:59:42.047696+00:00'
+  tags:
+  - post-mvp
+  - training
+  - grpo
+  - framework
+- id: art_20260518_263e8b
+  name: generate_calibration_v2
+  type: data
+  description: MVP v2 数据生成脚本：共享 Turn 1-2 + Turn 3 分叉（valid_correction vs invalid_pressure），Turn
+    3 长度/结构匹配约束，OpenAI 兼容 API
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/generate_calibration_v2.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T09:49:03.864198+00:00'
+  tags:
+  - phase1
+  - datagen
+  - v2
+  - script
+- id: art_20260518_e73ba5
+  name: validate_calibration_v2
+  type: data
+  description: MVP v2 验证脚本：Turn 1-2 字符级一致检查、Turn 3 长度差异 &lt; 20%、v2 条件名/字段适配、5 项 LLM
+    质量检查
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/validate_calibration_v2.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T09:49:06.088636+00:00'
+  tags:
+  - phase1.5
+  - validation
+  - v2
+  - script
+- id: art_20260518_cc22b5
+  name: extract_activations_v2
+  type: data
+  description: Phase 2 v2 激活提取脚本：固定 3-turn 结构，user_last_pos + asst_first_pos 提取，可选
+    --generate-responses 多次采样记录行为，保留 OOM 降级和 return_dict=False 兼容
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/extract_activations_v2.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T10:10:15.390457+00:00'
+  tags:
+  - phase2
+  - activation
+  - v2
+  - script
+- id: art_20260518_f803d6
+  name: calibration_v2_data
+  type: data
+  description: 'MVP v2 calibration data: 320 pairs (640 records), shared Turn 1-2
+    design. 5 domains × 64 pairs. Conditions: valid_correction / invalid_pressure.
+    0 errors, 25 Turn 3 length warnings (avg diff 1.9%). LLM quality: ground_truth
+    100%, correction valid 100%, pressure misleading 100%.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/calibration_v2.jsonl
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T10:16:39.882940+00:00'
+  tags:
+  - mvp-v2
+  - phase1
+  - calibration
+- id: art_20260518_805d26
+  name: calibration_v2_1_expanded
+  type: data
+  description: 'exp-001 expanded calibration data: 200 pairs (181 after GT cleaning),
+    style-matched v2.1 design. 5 domains × 40 pairs, evidence: 80 weak + 60 medium
+    + 60 strong. 5-fold CV AUROC 0.8269±0.028, bootstrap CI [0.77, 0.86]. STOP-gate
+    PASS.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/calibration_v2_1_expanded.jsonl
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T11:43:02.411236+00:00'
+  tags:
+  - exp-001
+  - calibration
+  - style-matched
+  - v2.1
+- id: art_20260518_2de0e5
+  name: dcgrpo_trainer_v2
+  type: intermediate
+  description: 'DCGRPOTrainer with all 3 critical fixes: generate_completions activation
+    extraction, _DCRewardCallable injecting R1+R2+R3 into TRL loop, smoke test verified
+    non-zero rewards.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/intermediate/dcgrpo_trainer.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T11:43:31.021056+00:00'
+  tags:
+  - training
+  - dcgrpo
+  - fixed
+- id: art_20260518_7e9b09
+  name: exp-001-evaluation-report
+  type: report
+  description: '5-fold CV + bootstrap CI evaluation of d_syc direction on 181 calibration
+    pairs (Qwen3-8B). CV AUROC=0.827, bootstrap 95% CI [0.770, 0.859]. STOP-gate:
+    CONTINUE_REDUCED_R1.'
+  path: projects/contrastive_entrain_calib/artifacts/exp-001/report/evaluation_report.txt
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-001
+  skill: ''
+  created_at: '2026-05-18T14:54:15.562098+00:00'
+  tags:
+  - evaluation
+  - auroc
+  - cv
+  - bootstrap
+- id: art_20260518_52cfe0
+  name: exp-008 SFT binary probe penalty training script
+  type: intermediate
+  description: 'SFT-style training script for exp-008: L = L_sft + lambda_reward *
+    lambda_probe * S(t) - lambda_reward * R3. Frozen probe penalty differentiable
+    through hidden states. Single-GPU 32GB design.'
+  path: projects/contrastive_entrain_calib/artifacts/exp-008/intermediate/run_exp008_binary_probe_penalty.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-008
+  skill: ''
+  created_at: '2026-05-18T17:07:44.202161+00:00'
+  tags:
+  - training
+  - exp-008
+  - sft
+  - probe
+- id: art_20260518_7d762b
+  name: probe_gaming_literature_survey
+  type: report
+  description: Literature survey on probe/reward adversarial gaming in RLHF, covering
+    reward hacking theory, sycophancy research, RepE/activation steering, and REINFORCE
+    alternatives. Contextualizes the exp-008 finding that linear probes are trivially
+    gamed as reward signals.
+  path: projects/contrastive_entrain_calib/artifacts/_project/report/probe_gaming_literature.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:59:11.501539+00:00'
+  tags:
+  - literature-survey
+  - reward-hacking
+  - probe-gaming
+  - sycophancy
+  - representation-engineering
+  - related-work
+- id: art_20260518_328195
+  name: run_exp008v3_binary_probe_grpo
+  type: intermediate
+  description: 'exp-008 v3 Binary Probe GRPO training script. Ablation cascade member:
+    binary probe R1 (1.0 if P(syc)<=0.5 else 0.0) with online probe retrain every
+    500 steps. Compares against exp-014 (continuous) and exp-002 (directional).'
+  path: projects/contrastive_entrain_calib/artifacts/exp008v3/intermediate/run_exp008v3_binary_probe_grpo.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp008v3
+  skill: ''
+  created_at: '2026-05-18T21:59:38.719411+00:00'
+  tags:
+  - training
+  - ablation
+  - binary-probe
+  - grpo
+- id: art_20260519_c63b6f
+  name: measure_direction_stability
+  type: intermediate
+  description: exp-006 direction stability monitoring script. Measures per-layer cosine
+    similarity (original vs recomputed d_syc), cosine AUROC, and activation norms
+    at each checkpoint. Run at checkpoint-500/1000/2000/4000/8000.
+  path: projects/contrastive_entrain_calib/artifacts/exp-006/intermediate/measure_direction_stability.py
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-006
+  skill: ''
+  created_at: '2026-05-19T00:53:50.368333+00:00'
+  tags:
+  - direction-stability
+  - monitoring
+  - exp-006
+- id: art_20260519_306fd0
+  name: paper_data_gap_analysis_20260519
+  type: report
+  description: EMNLP 2026 论文数据缺口分析：Claim-by-Claim 支撑实验状态、缺口、风险评级、时间线可行性
+  path: projects/contrastive_entrain_calib/artifacts/_project/report/paper_data_gap_analysis_20260519.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T08:30:38.819720+00:00'
+  tags:
+  - planning
+  - gap-analysis
+  - emnlp2026
+- id: art_20260519_3dbd49
+  name: wrr_calculation_diff_analysis
+  type: report
+  description: WRR 28.7pp 差异根因分析：eval_vanilla_baseline.py vs run_exp016_actadd_steering.py
+    的指标定义、分类方法、语义方向差异
+  path: projects/contrastive_entrain_calib/artifacts/_project/report/wrr_calculation_diff_analysis.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T09:48:15.920991+00:00'
+  tags:
+  - eval
+  - metrics
+  - wrr-discrepancy
+- id: art_20260519_ffff96
+  name: exp002v2_recalib_r1_weakness_analysis
+  type: report
+  description: 'Cosine R1 structural failure analysis: R1 mean=-0.064, positive rate
+    5%, recalibration ineffective. Comparison with binary probe R1 (mean=+0.46). Paper-ready
+    English summary included.'
+  path: projects/contrastive_entrain_calib/artifacts/exp002v2-recalib/report/exp002v2_recalib_r1_weakness_analysis.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp002v2-recalib
+  skill: ''
+  created_at: '2026-05-19T13:44:45.958346+00:00'
+  tags:
+  - r1-analysis
+  - paper-evidence
+  - cosine-vs-binary
+- id: art_20260520_3ec9c8
+  name: framework-section-v1
+  type: paper
+  description: §2 Experimental Framework section for the sycophancy directions paper.
+    Defines d_syc extraction, three GRPO reward formulations (F1-F3), online recalibration,
+    and evaluation protocol (ToF, NoF, SYCONScore).
+  path: projects/contrastive_entrain_calib/artifacts/_project/paper/framework.tex
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:39:37.502507+00:00'
+  tags:
+  - paper
+  - section2
+  - framework
+  - latex
+- id: art_20260520_45f854
+  name: section3_direction_quality
+  type: paper
+  description: §3 Direction Discriminability - establishes d_syc discriminability
+    (AUROC 0.827 Qwen, 0.779 Llama) with cross-model table, evidence-strength gradients,
+    training stability, and probe ablation
+  path: projects/contrastive_entrain_calib/artifacts/_project/paper/direction_quality.tex
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:45:00.090649+00:00'
+  tags:
+  - paper
+  - section3
+  - direction-quality
+  - cross-model
+- id: art_20260520_7e9360
+  name: cosine_failure_section
+  type: paper
+  description: '§4 Cosine R1: Structural Failure - complete LaTeX section covering
+    4-experiment failure chain (F1a-F1d) with diagnostic table and unified root cause
+    analysis'
+  path: projects/contrastive_entrain_calib/artifacts/_project/paper/cosine_failure.tex
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:50:50.856319+00:00'
+  tags:
+  - paper
+  - section4
+  - cosine-failure
+  - latex
+- id: art_20260520_5a0547
+  name: fig_layer_auroc
+  type: chart
+  description: 'Layer-wise AUROC Emergence Curve: Qwen3-8B (36 layers, full curve)
+    and Llama-3-8B (L16-31 measured). Shows d_syc mid-layer emergence as cross-architecture
+    pattern. Qwen data from v2→v2.1 transfer test; Llama from 5-fold CV mean per layer.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_layer_auroc.pdf
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:24:16.733416+00:00'
+  tags:
+  - paper
+  - figure
+  - auroc
+  - per-layer
+  - emergence
+- id: art_20260520_3c4c6d
+  name: fig_layer_auroc
+  type: chart
+  description: 'Layer-wise AUROC emergence curve: Qwen3-8B (36 layers, full) and Llama-3-8B
+    (L16-31, partial). Shows consistent mid-layer emergence pattern at ~50% normalized
+    depth. Data: exp-001 (Qwen transfer test) + exp-012 (Llama 5-fold CV).'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_layer_auroc_3c4c6d.pdf
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T08:28:36.404125+00:00'
+  tags:
+  - paper
+  - direction_quality
+  - cross-model
+  - fig_layer_auroc
+- id: art_20260520_b56152
+  name: report_fragment_exp004_ckpt3000
+  type: report
+  description: exp-004 checkpoint-3000 eval results summary with ACT trajectory comparison
+  path: projects/contrastive_entrain_calib/artifacts/exp-004-eval-ckpt3000/report/report_fragment_exp004_ckpt3000.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-004-eval-ckpt3000
+  skill: ''
+  created_at: '2026-05-20T15:13:50.591028+00:00'
+  tags:
+  - exp-004
+  - eval
+  - ckpt-3000
+  - ACT-trajectory
+- id: art_20260520_6a4815
+  name: conclusion_section
+  type: paper
+  description: 'Conclusion section (~325 words, 3 paragraphs): hypothesis falsification,
+    specific failure modes with key numbers, broader discriminability≠utility principle'
+  path: projects/contrastive_entrain_calib/artifacts/_project/paper/conclusion.tex
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T15:36:40.562224+00:00'
+  tags:
+  - paper
+  - conclusion
+  - writing
+- id: art_20260520_285a3b
+  name: fig_trajectory
+  type: chart
+  description: 'ACT vs R3-only trajectory comparison: SYCONScore over training steps.
+    Shows ACT self-recovery from stubbornness episodes vs R3-only plateau below vanilla
+    baseline. For discussion section.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_trajectory.pdf
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T16:18:30.627955+00:00'
+  tags:
+  - figure
+  - trajectory
+  - ACT
+  - R3-only
+  - discussion
+- id: art_20260520_033160
+  name: abstract_section
+  type: paper
+  description: 'Abstract (~210 words): problem→method→negative result→mechanism→implication
+    arc. Key numbers: AUROC 0.82, 500 steps.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/paper/abstract.tex
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:20:10.204289+00:00'
+  tags:
+  - paper
+  - abstract
+  - writing
+- id: art_20260520_43877a
+  name: probe_trap_data
+  type: data
+  description: exp-008v3 Binary Probe GRPO probe reward trap trajectory data (entropy,
+    R1_mean, ToF, NoF, SYCONScore at steps 500/1000/1500/2000) for fig_probe_trap
+  path: projects/contrastive_entrain_calib/artifacts/exp-008v3/data/probe_trap_data.json
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-008v3
+  skill: ''
+  created_at: '2026-05-20T18:14:43.804197+00:00'
+  tags:
+  - fig_probe_trap
+  - paper_data
+  - D027
+- id: art_20260520_b6585d
+  name: fig_probe_trap
+  type: chart
+  description: 双Y轴时序图：展示 binary probe reward trap 中 behavioral collapse (ToF=0 at
+    step 500) 先于 distributional collapse (entropy drop at step ~1840) 的 1300-step
+    lag。数据来自 exp-008v3。
+  path: projects/contrastive_entrain_calib/artifacts/exp-008v3/chart/fig_probe_trap.pdf
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-008v3
+  skill: ''
+  created_at: '2026-05-20T18:20:56.682027+00:00'
+  tags:
+  - probe-trap
+  - behavioral-collapse
+  - entropy
+  - ToF
+  - figure
+- id: art_20260520_9989eb
+  name: fig_probe_trap
+  type: chart
+  description: 'Probe reward trap dual Y-axis figure: Generation Entropy (left) vs
+    ToF (right) over training steps. Shows behavioral death at step 500 and entropy
+    collapse at ~step 1840 with 1,300-step lag. Data from exp-008v3.'
+  path: projects/contrastive_entrain_calib/artifacts/exp-008v3/chart/fig_probe_trap_9989eb.pdf
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-008v3
+  skill: draw-paper-figure
+  created_at: '2026-05-20T18:22:05.596462+00:00'
+  tags:
+  - paper
+  - section5
+  - probe_trap
+- id: art_20260520_bb99c9
+  name: exp-003-s2-eval-summary
+  type: report
+  description: exp-003-s2 Seed 2 early trajectory eval results (ckpt 500/1000/1500)
+    with cross-seed comparison
+  path: projects/contrastive_entrain_calib/artifacts/exp-003-s2/report/exp-003-s2-eval-summary.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-003-s2
+  skill: ''
+  created_at: '2026-05-20T18:26:25.371944+00:00'
+  tags:
+  - eval
+  - seed2
+  - cross-seed
+  - exp-003
+- id: art_20260520_6fa928
+  name: fig_trajectory_v2
+  type: chart
+  description: 'Updated SYCONScore trajectory figure: R3-only GRPO (exp-003) vs ACT
+    (exp-004). Now includes ckpt-4500 data point showing transient vanilla ceiling
+    spike (0.134) before regression to 0.114 plateau. 7 R3-only checkpoints (1k-5.5k),
+    9 ACT checkpoints (500-8k).'
+  path: projects/contrastive_entrain_calib/artifacts/exp-003/chart/fig_trajectory.pdf
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-003
+  skill: draw-paper-figure
+  created_at: '2026-05-20T19:10:26.079288+00:00'
+  tags:
+  - paper
+  - discussion
+  - trajectory
+  - v2
+- id: art_20260521_983af6
+  name: diagnose_westd28034_eval_failures
+  type: report
+  description: 诊断 westd-28034 上 4 个 eval 实验 SIGHUP 失败的根因分析报告
+  path: projects/contrastive_entrain_calib/artifacts/_project/report/diagnose_westd28034_eval_failures.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:28:45.240027+00:00'
+  tags:
+  - diagnosis
+  - westd-28034
+  - tmux-crash
+  - eval
+- id: art_20260521_89bbca
+  name: westd-28034-eval-diagnosis-20260521
+  type: report
+  description: Diagnosis of eval experiment SIGHUP failures on westd-28034 (2026-05-21)
+  path: projects/contrastive_entrain_calib/artifacts/_project/report/westd-28034-eval-diagnosis-20260521.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:30:04.648330+00:00'
+  tags:
+  - diagnosis
+  - eval
+  - westd-28034
+- id: art_20260521_4f9a26
+  name: trajectory_data_complete
+  type: data
+  description: Complete experiment trajectory data table for all methods (exp-003/004/008v3/009/012/014/016),
+    with per-checkpoint SYCONScore/ToF/NoF and vs-vanilla comparison. Paper-ready
+    format.
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/trajectory_data_complete.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:40:12.594006+00:00'
+  tags:
+  - trajectory
+  - metrics
+  - paper
+  - summary
+- id: art_20260521_e457b3
+  name: trajectory_data_compiled
+  type: data
+  description: Complete D027 eval trajectory data for all 3 conditions (R3-only seed
+    1/2, SFT ACT) with summary stats, cross-seed comparison, and data gap annotations
+  path: projects/contrastive_entrain_calib/artifacts/_project/data/trajectory_data_compiled.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T11:24:21.873718+00:00'
+  tags:
+  - trajectory
+  - d027
+  - exp-003
+  - exp-003-s2
+  - exp-004
+  - paper-data
+- id: art_20260522_dbdf91
+  name: fig_trajectory_v3
+  type: chart
+  description: 'Final trajectory figure: 3 lines (ACT s1 16/16, R3 s1 3/12, R3 s2
+    1/12) + vanilla baseline. Reliability gap annotation (16/16 vs 4/24, p<0.0001).
+    Full checkpoint data through step 8000.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_trajectory_dbdf91.pdf
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-22T05:33:34.937169+00:00'
+  tags:
+  - paper
+  - discussion
+  - trajectory
+  - v3
+  - final
+- id: art_20260522_cffde7
+  name: fig_trajectory
+  type: chart
+  description: 'Training trajectory figure (D048): ACT s1 (16pts), R3-only s1 (12pts),
+    R3-only s2 (13pts), vanilla baseline. Reliability annotation: 16/16 vs 4/25. PDF+PNG
+    on westd-28034:/root/contrastive_entrain_calib/artifacts/'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_trajectory_manifest.txt
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:42:34.779163+00:00'
+  tags:
+  - paper
+  - figure
+  - trajectory
+  - D048
+- id: art_20260522_dd5f8d
+  name: bootstrap_auroc_ci_results
+  type: data
+  description: 'Bootstrap AUROC 95% CI for d_syc probe. Qwen3-8B: 0.8253 [0.7952,
+    0.8572], Llama-3-8B: 0.7811 [0.7448, 0.8189]. Per-strength and random baseline.
+    For SF-5 reviewer response.'
+  path: null
+  url: file:///root/contrastive_entrain_calib/artifacts/bootstrap_auroc_ci.json
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T12:57:21.739826+00:00'
+  tags:
+  - sf-5
+  - reviewer-response
+  - auroc
+  - bootstrap
+- id: art_20260522_910a90
+  name: truncation_auroc_analysis
+  type: data
+  description: Truncation impact on d_syc discriminability. Full AUROC=0.76 vs Truncated-256
+    AUROC=0.60 (Δ=0.16). Truncation degrades signal. For MF3 reviewer response.
+  path: null
+  url: file:///root/autodl-tmp/contrastive_entrain_calib/artifacts/truncation_auroc_results.json
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:19:11.858903+00:00'
+  tags:
+  - mf3
+  - truncation
+  - auroc
+  - reviewer-response
+- id: art_20260523_551955
+  name: exp004_reduced_lora_analysis
+  type: report
+  description: exp-004-reduced-lora 训练完成分析：8000 steps 正常完成，SYCONScore peak=0.3257
+    at ckpt-7000，支持 supervision granularity 假设
+  path: projects/contrastive_entrain_calib/artifacts/exp-004-reduced-lora/report/exp004_reduced_lora_analysis.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: exp-004-reduced-lora
+  skill: ''
+  created_at: '2026-05-23T08:29:47.707737+00:00'
+  tags:
+  - training-analysis
+  - reduced-lora
+  - sycophancy
+- id: art_20260523_bf0307
+  name: paper-registry-cross-validation-report
+  type: report
+  description: 论文数字 vs Registry 交叉验证自查报告 (2026-05-23)
+  path: projects/contrastive_entrain_calib/artifacts/_project/report/paper_registry_cross_validation.md
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:30:02.221487+00:00'
+  tags:
+  - audit
+  - paper
+  - submission-check
+- id: art_20260525_be3fe8
+  name: fig_framework
+  type: chart
+  description: 'Framework overview figure: contrastive sycophancy direction d_syc
+    with three reward formulations (all fail) and ACT alternative'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_framework.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T12:36:08.677100+00:00'
+  tags:
+  - figure
+  - paper
+  - framework
+- id: art_20260525_1b4327
+  name: fig_probe_trap_mechanism
+  type: chart
+  description: 'Probe reward trap mechanism figure: timeline showing behavioral death
+    at step 500, 1300-step monitoring blind spot, entropy collapse at step 1840'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_probe_trap_mechanism.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T12:36:10.745268+00:00'
+  tags:
+  - figure
+  - paper
+  - probe-trap
+- id: art_20260525_688fd5
+  name: fig_probe_trap_mechanism
+  type: chart
+  description: 'Probe reward trap mechanism conceptual diagram (PaperBanana): three
+    temporal phases showing behavioral death at step 500 preceding distributional
+    collapse at step 1840, creating a 1,300-step monitoring blind spot. PNG + PDF
+    versions.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_probe_trap_mechanism_688fd5.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T12:39:04.559652+00:00'
+  tags:
+  - figure
+  - mechanism-diagram
+  - probe-reward-trap
+  - paperbanana
+- id: art_20260525_75fa4e
+  name: fig_framework_pb
+  type: chart
+  description: 'Framework overview figure (redrawn with matplotlib): d_syc direction
+    discriminates sycophancy but fails as GRPO reward in all formulations due to semantic
+    limitation. Flat fills, manual-drawn symbols, muted academic palette.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_framework_pb.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T13:17:37.212569+00:00'
+  tags:
+  - figure
+  - framework
+  - paper
+- id: art_20260525_a5724b
+  name: fig_teaser_v3_matplotlib
+  type: chart
+  description: 'Figure 1 (teaser): (a) Discriminability ≠ Reward Utility - d_syc分布重叠示意图
+    AUROC=0.83; (b) Behavioral death precedes entropy collapse - ToF/entropy 1300-step
+    lag 时序图。Matplotlib 生成，PaperBanana 回退。'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_teaser.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T15:11:59.133075+00:00'
+  tags:
+  - figure1
+  - teaser
+  - paper
+- id: art_20260525_1c5a8d
+  name: fig_teaser_paperbanana
+  type: chart
+  description: 'Figure 1 teaser generated by PaperBanana (Gemini): (a) d_syc discriminability
+    vs reward utility with overlap region showing valid revision vs capitulation;
+    (b) behavioral death (ToF) precedes entropy collapse by 1300 steps'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_teaser_1c5a8d.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-25T15:35:53.163048+00:00'
+  tags:
+  - figure1
+  - teaser
+  - paperbanana
+  - paper
+- id: art_20260525_0c4bea
+  name: fig_teaser_paperbanana_v2
+  type: chart
+  description: 'Figure 1 (PaperBanana): (a) Discriminability ≠ Reward Utility — d_syc分布重叠+子类不可区分;
+    (b) Behavioral death precedes entropy collapse — ToF/entropy 1300-step lag。配色与Fig2一致(navy/vermillion/green/gold)。LaTeX编译通过13页。'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_teaser_0c4bea.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T15:36:57.737781+00:00'
+  tags:
+  - figure1
+  - teaser
+  - paper
+  - paperbanana
+- id: art_20260525_f3d3ff
+  name: fig_teaser_a
+  type: chart
+  description: Figure 1(a) 概念图：蓝/橙色系高斯分布重叠示意图，展示 d_syc 方向能区分 sycophantic vs non-sycophantic
+    (AUROC 0.83)，但 valid revision 和 capitulation 在该方向上投影重叠不可区分。由 PaperBanana (Gemini)
+    生成。
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_teaser_a.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-25T16:30:46.102223+00:00'
+  tags:
+  - figure
+  - paper
+  - teaser
+  - conceptual
+  - paperbanana
+- id: art_20260525_93e24e
+  name: fig_teaser_a_paperbanana_v3
+  type: chart
+  description: 'Figure 1(a) PaperBanana 蓝/橙版: Discriminability ≠ Reward Utility —
+    d_syc方向两分布重叠，valid revision/capitulation不可区分，AUROC=0.83。配色统一为学术蓝#4C72B0/橙#DD8452。'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_teaser_a_93e24e.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T16:31:38.006812+00:00'
+  tags:
+  - figure1a
+  - teaser
+  - paper
+  - paperbanana
+- id: art_20260525_2574c2
+  name: fig_teaser_a_portrait
+  type: chart
+  description: 'Figure 1(a) portrait version (0.893:1 aspect ratio): two overlapping
+    Gaussian distributions for non-sycophantic/sycophantic activations along d_syc.
+    Generated via matplotlib after PaperBanana failed to produce portrait images (Gemini
+    image model locked at 2752x1536 landscape).'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_teaser_a.pdf
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T17:21:35.256815+00:00'
+  tags:
+  - figure
+  - teaser
+  - portrait
+  - paper
+- id: art_20260525_51fe6c
+  name: fig_teaser_a_v4_portrait
+  type: chart
+  description: 'Figure 1(a) portrait version (0.896:1 aspect ratio matching fig_teaser_b):
+    two overlapping Gaussian distributions showing sycophantic vs non-sycophantic
+    behavior along d_syc, with Valid revision / Capitulation annotations and AUROC=0.83.
+    Generated via PaperBanana + Gemini image gen.'
+  path: projects/contrastive_entrain_calib/artifacts/_project/chart/fig_teaser_a_51fe6c.png
+  url: null
+  project: contrastive_entrain_calib
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-25T17:35:56.646039+00:00'
+  tags:
+  - figure
+  - teaser
+  - paper
+  - portrait

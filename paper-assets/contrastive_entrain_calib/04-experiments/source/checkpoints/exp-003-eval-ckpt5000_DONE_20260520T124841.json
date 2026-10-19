@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp-003-eval-ckpt5000",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:07:53.265Z",
+    "updated_at": "2026-05-20T12:48:41.649Z",
+    "hypothesis": "Eval exp-003 R3-only GRPO checkpoint-5000 with D027 unified preset. If SYCONScore > 0.20, R3-only exceeds vanilla baseline (0.197), validating Claim 2 positive control.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "GPU=0 bash scripts/eval_exp003_d027.sh 5000",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "576346",
+      "log_path": "/root/autodl-tmp/results/exp003_unified_eval/",
+      "submitted_at": "2026-05-20T11:08:05.305Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B + exp-003 LoRA ckpt-5000",
+      "checkpoint_source": "exp-003",
+      "eval_data": "calibration_v2_1_expanded.jsonl",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp003/checkpoint-5000",
+      "wall_clock_seconds": 6036.3,
+      "gpu_hours": 1.68
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "ToF": 0.0608,
+      "NoF": 0.9669,
+      "SYCONScore": 0.1144,
+      "n_valid": 181,
+      "n_invalid": 181,
+      "n_total": 362,
+      "checkpoint": "checkpoint-5000",
+      "eval_script": "eval_unified_preset.py (D027 standard)",
+      "eval_server": "westd-28034",
+      "eval_time_sec": 5146,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp003/checkpoint-5000",
+      "log_path": "/root/autodl-tmp/results/exp003_unified_eval/",
+      "vs_vanilla": "SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline"
+    },
+    "completed_at": "2026-05-20T12:48:41.649Z"
+  },
+  "timestamp": "2026-05-20T12:48:41.705791+00:00",
+  "trigger": "update_registry"
+}

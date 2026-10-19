@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-016",
+  "project": "contrastive_entrain_calib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:30:49.598Z",
+    "updated_at": "2026-05-18T22:48:14.980Z",
+    "hypothesis": "ActAdd inference-time steering (adding d_syc direction to hidden states at target layers during generation) provides a training-free baseline for sycophancy reduction. If ActAdd ≈ DC-GRPO, training-time direction reward adds no value over simple inference steering; if DC-GRPO > ActAdd, the RL training process produces qualitatively different improvements that inference steering cannot achieve."
+  },
+  "timestamp": "2026-05-18T22:48:14.997451+00:00",
+  "trigger": "update_registry"
+}

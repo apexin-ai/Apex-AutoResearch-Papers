@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "76e74549f181c7947134",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh kill duplicate seed2",
+  "task_key": "worker_ssh_kill-duplicate-seed2_20260516T055553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-duplicate-seed2_20260516T055553_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "480e7823f76c49e78ef72c24c04660cee734ec2efc6c3813dac006802d3f3e67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5jQVEfKd3HJ8ZmpZbCY\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "This organization has been disabled."
+              },
+              "request_id": "req_011Cb5jQVEfKd3HJ8ZmpZbCY"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicate-seed2.md"
+}

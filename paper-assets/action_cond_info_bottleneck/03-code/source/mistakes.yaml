@@ -1,0 +1,59 @@
+_next_id: 5
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: communication
+  severity: medium
+  summary: 多次基于 per-task 中间数据向用户报告 suite 级结论，反复修正造成信息混乱
+  root_cause: eval 结构理解错误（50 eps/task 被误认为 50 eps/suite），Agent 和 Reviewer 均基于不完整数据过早下结论。Director
+    未验证数据粒度就转发给用户，导致 "α=0.0=α=1.0=76%" → "6pp gap" → "又是0pp" 的反复翻转。
+  prevention: 1. Eval 结果只在日志出现 suite 级汇总标记（pc_success）后才报告 2. Agent 更新 registry 时必须标注数据粒度（per-task
+    vs per-suite） 3. Director 转发给用户前确认数据是否为最终结果
+  status: active
+  context: D044 基于 per-task 数据报告"IB 无增量贡献"被多次引用，随后 D045 撤回。用户收到至少 3 次矛盾更新。
+  related_decisions:
+  - D044
+  - D045
+- id: M002
+  date: '2026-05-17'
+  category: communication
+  severity: low
+  summary: paper_framing.md 在 v7.2 eval 结果出来前写入，包含与实际数据矛盾的 claims（"without corrupting"、C5
+    预期 positive）
+  root_cause: Agent 写 framing 时 v7.2 eval 尚未完成，基于 Probe A 的正面信号预设了性能保持的 claim。Director
+    未在 eval 结果出来后立即要求修订。
+  prevention: paper_framing.md 中所有涉及实验数据的 claim 必须标注数据来源和完成状态。PENDING 的 claim 在描述中不能使用确定性语言（如"without
+    corrupting"）。eval 结果重大变化后立即触发 framing 审查。
+  status: active
+  context: framing 作为 working draft 有价值，但多处与 v7.2 spatial SR 数据（α=0.0=-6.6pp, α=1.0=-5.0pp）矛盾。等
+    v7.3 LoRA 结果后全面修订。
+- id: M003
+  date: '2026-05-17'
+  category: communication
+  severity: low
+  summary: LIBERO eval 的 GPU 利用率报告 0% 被反复误判为"GPU 空闲/eval 崩溃"，导致 4 次不必要的催促和 Agent 派遣
+  root_cause: LIBERO 环境 rollout 是 CPU 密集型（MuJoCo 物理模拟），GPU 仅在模型推理时短暂使用。nvidia-smi
+    采样间隔（60s）经常捕获到 0% compute utilization，但进程实际正常推进。系统的 GPU 健康检查基于 utilization 判断"空闲"，不适用于
+    CPU-bound simulation + sparse GPU inference 的 eval 场景。
+  prevention: 1. LIBERO eval 期间，判断进程是否活跃应检查 PID 存活 + 日志最近写入时间，而非 GPU utilization。2.
+    收到系统"GPU 空闲"催促时，先 ps aux 确认进程存活再做判断，不要直接假设 eval 崩溃。3. 未来可考虑让 Agent 在 eval 启动时设置
+    cron 监控进程存活而非 GPU 利用率。
+  status: active
+  context: 'Loop #6 期间连续 4 次系统催促报告"GPU 空闲 X 分钟"，每次都派 Agent 检查后发现 eval 仍在正常运行。浪费了 Agent
+    的多个 worker session 做重复确认。'
+- id: M004
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: train_acib.py:177 SyntaxError 导致 v7.3 双实验启动即崩，GPU 空转 8 小时无人发现
+  root_cause: Agent 提交训练前未做 `python -c "import train_acib"` 语法检查。SyntaxError 来自 --lambda_drift
+    参数定义缺少闭合括号。提交后无 cron 在 5 分钟内验证进程存活，导致崩溃静默持续 8h。另外 ablation 脚本的 --gpu 参数硬编码为 0
+    而非 1，与 registry 记录冲突。
+  prevention: 1. 训练提交前必须 `python -c "import scripts.train_acib"` 或 `python train_acib.py
+    --help` 验证无语法错误。2. submit_training_job 后 5 分钟内必须验证进程存活（检查 PID + GPU 占用）。3. 多 GPU
+    并行实验的 --gpu 参数必须在提交前交叉检查，确保不冲突。4. Agent 应设置训练启动后 5min 的 cron 检查作为 safety net。
+  status: active
+  context: v7.3 于 22:49 UTC May 17 提交，SyntaxError 立即退出(EXIT_CODE=1)。直到 06:49 UTC May
+    18 Reviewer 审查才发现。8h GPU 空转直接推迟 MVP 判定 8h，CoRL deadline 余量从 ~12h 缩减到 ~4h（如果还有其他问题）。
+  related_decisions:
+  - D053

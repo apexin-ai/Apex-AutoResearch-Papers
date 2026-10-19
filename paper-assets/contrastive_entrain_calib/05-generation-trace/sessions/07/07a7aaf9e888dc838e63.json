@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07a7aaf9e888dc838e63",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp002v3 deepspeed zero2",
+  "task_key": "worker_code_exp002v3-deepspeed-zero2_20260519T083215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002v3-deepspeed-zero2_20260519T083215_result.json",
+    "occurrence": 1,
+    "bytes": 1811,
+    "sha256": "5c8f997f003cd6ac8bd7801da95471c3c71d6936501872f43689836b3c9f3453"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All prerequisite data files present. Here's the final compatibility report.\n\n---\n\n## exp-002v3 DeepSpeed ZeRO-2 转换完成报告\n\n### 完成的 7 步操作\n\n| 步骤 | 状态 | 说明 |\n|------|------|------|\n| 1. 找到 exp-008v3 DS 参考配置 | ✅ | `/root/contrastive_entrain_calib/training/ds_config_zero2.json` |\n| 2. 创建 exp-002v3 DS 配置 | ✅ | `ds_config_exp002v3.json` (ZeRO-2, bf16, grad_accum=16, micro_batch=1) |\n| 3. 修改 run script | ✅ | `sys.path` → 本地, `deepspeed=`, `report_to=\"none\"` |\n| 4. 创建 launch script | ✅ | `launch_exp002v3.sh`, GPU 0+3, `NCCL_P2P_DISABLE=1` |\n| 5. Dry-run 验证 | ✅ | JSON 语法, Python AST, DCGRPOConfig import 均通过 |\n| 6. DeepSpeed 兼容性 | ✅ | deepspeed 0.19.0, `recalibrate_direction()` 用 `accelerator.unwrap_model()` |\n| 7. 报告 | ✅ | 本报告 |\n\n### dcgrpo_trainer.py 补丁 (8/8 applied)\n\n- 789 → 919 行\n- `r1_scale_factor`, `recalibration_interval`, `calibration_data_path` 添加到 config + init\n- `compute_r1`: dot product → cosine similarity, tanh → `r1_scale_factor * mean`\n- `recalibrate_direction()` 方法已加入, 用 `self.accelerator.unwrap_model()` 兼容 DeepSpeed\n- `r3_model_name` 默认值修正为 `cross-encoder/nli-deberta-v3-base`\n\n### 关键参数确认（未改动）\n\n| 参数 | 值 |\n|------|-----|\n| R1_WEIGHT | 0.4 |\n| R3_WEIGHT | 0.6 |\n| R2_WEIGHT | 0.0 |\n| R1_SCALE_FACTOR | 5.0 |\n| lora_alpha | 64 |\n| lora_r | 64 |\n| recalibration_interval | 500 |\n| max_steps | 8000 |\n| seed | 42 |\n\n### 环境确认\n\n- 4x GPU (GPU 0, 3 可用)\n- DeepSpeed 0.19.0\n- directions.pt, calibration data, Qwen3-8B 模型均存在\n\n### 启动命令\n\n```bash\ncd /root/contrastive_entrain_calib/training\nbash launch_exp002v3.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002v3-deepspeed-zero2.md"
+}

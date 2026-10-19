@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0e1ae683396ed5b6cfc",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code acib h prep",
+  "task_key": "worker_code_acib_h_prep_20260516T195215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_acib_h_prep_20260516T195215_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "8ae6219251369ebcacbf95665e47b67777288961ecd243f3bc7060da94cc3b80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**代码审查**: ACIB-H 实现完整，无需修改。关键路径：\n- `scorer.py:_hard_topk` — 正确的 STE（`mask - soft.detach() + soft`）\n- `config.py` — `mode=\"hard\"`, `top_k_ratio=0.8` 默认值就位\n- `train_acib.py` — `--mode`/`--top_k_ratio` 参数正确传入 ACIBConfig\n- Contrastive/IB/diversity loss 全部兼容 hard mode\n\n**Dry-run**: 10 步完成，checkpoint 正常保存。\n\n**正式训练命令 (ACIB-H@k=0.8, 20000步)**:\n\n```bash\ncd /root/acib && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nnohup python3 -u scripts/train_acib.py \\\n  --model_id lerobot/smolvla_libero \\\n  --dataset_id lerobot/libero \\\n  --data_root /root/autodl-tmp/libero_dataset \\\n  --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 \\\n  --mode hard --top_k_ratio 0.8 \\\n  --condition_source language --conditioning_mode concat \\\n  --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 \\\n  --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 \\\n  --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 \\\n  --gpu 0 --seed 42 \\\n  --output_dir /root/acib/outputs/acib_h_k08_s42 \\\n  --wandb_project acib --wandb_run_name acib_h_k08_s42 \\\n  > /root/acib/outputs/acib_h_k08_s42/train.log 2>&1 &\n```\n\n等 eval 跑完 GPU 空闲后提交即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-acib-h-prep.md"
+}

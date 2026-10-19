@@ -1,0 +1,32 @@
+\section{Cosine \texorpdfstring{$\rone$}{R1}: Structural Failure}
+\label{sec:cosine_failure}
+
+Section~\ref{sec:direction_quality} established that $\dsyc$ achieves AUROC 0.827 on Qwen3-8B.
+We now test whether this discriminability translates into a viable GRPO reward.
+Four configurations form a diagnostic chain (Table~\ref{tab:cosine_chain}): each resolves the failure mode of its predecessor but exposes a deeper limitation.
+
+\begin{table}[t]
+\centering
+\caption{Cosine $\rone$ failure chain on Qwen3-8B (LoRA rank$=$64, GRPO with $R = w_1 \cdot \rone + w_3 \cdot \rthree$).}
+\label{tab:cosine_chain}
+\begin{tabular}{lllll}
+\toprule
+Config &amp; $\rone$ Formula &amp; $w_1$ &amp; Outcome &amp; Root Cause \\
+\midrule
+F1a &amp; $\tanh(\mathbf{h}\cdot\dsyc/20)$ &amp; 0.25 &amp; Gate saturation &amp; Norm mismatch \\
+F1b &amp; $\cos(\mathbf{h},\, \dsyc)$ &amp; 0.25 &amp; $\rone \approx 0$ &amp; Gap too small \\
+F1c &amp; +recalibration &amp; 0.25 &amp; Mode collapse &amp; Reward discontinuity \\
+F1d &amp; $5\cos(\mathbf{h},\, \dsyc)$ &amp; 0.40 &amp; Mode collapse &amp; $\rthree$ saturation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+F1a uses a dot-product formulation ($\rone = \tanh(\mathbf{h} \cdot \dsyc / 20)$), but residual-stream norms exceed the direction norm by $100$--$1{,}200{\times}$, saturating the tanh gate and zeroing the gradient by step 955.
+Switching to cosine similarity (F1b) eliminates norm dependence, yet the cosine gap between valid and sycophantic activations averages only 0.098 across layers---too narrow to generate meaningful reward contrast.
+Online recalibration (F1c, \S\ref{ssec:recalib}) raises offline AUROC from 0.82 to 0.91 but paradoxically triggers mode collapse: the abrupt shift in $\dsyc$ at each recalibration event creates a reward discontinuity that destabilizes GRPO advantage estimates, collapsing entropy to 0.069 within 300 steps.
+Amplifying the signal with $5{\times}$ scaling (F1d) lifts $\rone$ above the noise floor but simultaneously amplifies the conflation between warranted revision and unwarranted capitulation; $\rthree$ saturates at 0.9998 by step 300, leaving the noisy $\rone$ as the sole gradient source until terminal collapse at step 2160.
+
+The four configurations converge on a single conclusion: $\dsyc$ encodes the \emph{direction} of belief change but not whether that change is \emph{warranted}.
+Valid revision and sycophantic capitulation both shift activations toward the user's position along $\dsyc$, so the cosine projection assigns similar scores to both.
+This is not a calibration artifact---recalibration improves discriminability yet rewards still fail---but a semantic limitation of any continuous $\dsyc$-based reward.
+Section~\ref{sec:probe_trap} examines whether discretizing the signal via a binary probe can escape this limitation.

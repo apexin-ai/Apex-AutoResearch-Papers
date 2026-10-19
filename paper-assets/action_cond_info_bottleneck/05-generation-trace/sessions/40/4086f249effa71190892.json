@@ -1,0 +1,809 @@
+{
+  "schema_version": "1.0",
+  "id": "4086f249effa71190892",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "research baseline data consolidation",
+  "task_key": "worker_research_baseline-data-consolidation_20260516T044123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_baseline-data-consolidation_20260516T044123.jsonl",
+    "occurrence": 1,
+    "bytes": 50619,
+    "sha256": "addde70a6a6ba39456d0b669dff99a6190ac32ca2b13c5b996ba233d198861bb"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T04:43:44.829535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T04:43:44.829874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T04:43:44.830033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "cat /root/acib/outputs/baseline_plus_v2/libero_spatial/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T04:43:44.830163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "cat /root/acib/outputs/baseline_plus_v2/libero_object/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T04:43:44.830284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "cat /root/acib/outputs/baseline_plus_v2/libero_goal/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T04:43:44.830471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "cat /root/acib/outputs/baseline_std_v3/libero_spatial/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T04:43:44.830600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "cat /root/acib/outputs/baseline_std_v3/libero_object/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T04:43:44.830716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "cat /root/acib/outputs/baseline_std_v3/libero_goal/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T04:43:44.830965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_group\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"sum_rewards\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"max_rewards\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\n…[truncated 7055 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T04:43:44.831263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_group\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"sum_rewards\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"max_rewards\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"\n…[truncated 7065 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T04:43:44.831605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_group\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"sum_rewards\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"max_rewards\\\\\\\": [\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"su\n…[truncated 7089 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T04:43:44.831894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_group\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"sum_rewards\\\\\\\": [\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\"max_rewards\\\\\\\": [\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0\\\\n        ],\\\\n        \\\\\\\n…[truncated 7065 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T04:43:44.832177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_group\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"sum_rewards\\\\\\\": [\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"max_rewards\\\\\\\": [\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"\n…[truncated 7065 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T04:43:44.832464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_group\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"sum_rewards\\\\\\\": [\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"max_rewards\\\\\\\": [\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          0.0,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"su\n…[truncated 7089 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T04:43:44.832665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "python3 -c \"\nimport json\nfor model, path in [('plus', 'baseline_plus_v2'), ('std', 'baseline_std_v3')]:\n    print(f'=== {model} ===')\n    for suite in ['libero_spatial', 'libero_object', 'libero_goal']:\n        with open(f'/root/acib/outputs/{path}/{suite}/eval_info.json') as f:\n            d = json.load(f)\n        task_srs = []\n        for t in d['per_task']:\n            s = t['metrics']['successes']\n            sr = sum(s)/len(s)\n            n = len(s)\n            task_srs.append((t['task_id'], sr, n))\n        print(f'{suite}:')\n        for tid, sr, n in task_srs:\n            print(f'  task_{tid}: {sr*100:.1f}% ({n} eps)')\n        import statistics\n        srs = [x[1]*100 for x in task_srs]\n        mean = statistics.mean(srs)\n        std = statistics.stdev(srs)\n        se = std / (len(srs)**0.5)\n        print(f'  MEAN={mean:.1f} STD={std:.1f} SE={se:.1f}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T04:43:44.832807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T04:43:44.832947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "tail -100 /root/acib/outputs/baseline_plus_v2/libero_spatial/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T04:43:44.833068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "tail -100 /root/acib/outputs/baseline_plus_v2/libero_object/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T04:43:44.833282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_0/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_0/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_0/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_0/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_0/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_0/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_0/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_0.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_1.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_2.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spatial/videos/libero_spatial_1/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_spat\n…[truncated 6821 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T04:43:44.833491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "tail -100 /root/acib/outputs/baseline_plus_v2/libero_goal/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T04:43:44.833722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_0/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_0/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_0/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_0/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_0/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_0/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_0/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_0.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_1.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_2.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_1/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_object/videos/libero_object_2/eval_epi\n…[truncated 6837 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T04:43:44.833879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "tail -100 /root/acib/outputs/baseline_std_v3/libero_spatial/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T04:43:44.834103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_0/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_0/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_0/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_0/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_0/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_0/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_0/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_0.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_1.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_2.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_1/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_goal/videos/libero_goal_2/eval_episode_0.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_plus_v2/libero_g\n…[truncated 6868 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T04:43:44.834250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "tail -100 /root/acib/outputs/baseline_std_v3/libero_object/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T04:43:44.834397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "tail -100 /root/acib/outputs/baseline_std_v3/libero_goal/eval_info.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T04:43:44.834621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_0/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_0/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_0/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_0/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_0/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_0/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_0/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_0.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_1.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_2.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_spatial_1/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_spatial/videos/libero_\n…[truncated 6837 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T04:43:44.834866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_0/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_0/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_0/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_0/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_0/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_0/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_0/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_0.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_1.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_2.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_1/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_object/videos/libero_object_2/eval_episode_0.mp4\\\\\\\",\\\\n\n…[truncated 6842 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T04:43:44.835121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_0/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_0/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_0/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_0/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_0/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_0/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_0/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_0.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_1.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_2.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_3.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_4.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_5.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_6.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_7.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_8.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_1/eval_episode_9.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_goal_2/eval_episode_0.mp4\\\\\\\",\\\\n      \\\\\\\"/root/acib/outputs/baseline_std_v3/libero_goal/videos/libero_g\n…[truncated 6869 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T04:43:44.835304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T04:43:44.835460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T04:43:44.835588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "python3 -c \"\nimport json, statistics\n\nresults = {}\nfor model, path in [('plus', 'baseline_plus_v2'), ('std', 'baseline_std_v3')]:\n    results[model] = {}\n    for suite in ['libero_spatial', 'libero_object', 'libero_goal']:\n        with open(f'/root/acib/outputs/{path}/{suite}/eval_info.json') as f:\n            d = json.load(f)\n        task_srs = []\n        for t in d['per_task']:\n            s = t['metrics']['successes']\n            sr = sum(s)/len(s) * 100\n            task_srs.append((t['task_id'], sr, len(s)))\n        mean_sr = statistics.mean([x[1] for x in task_srs])\n        std_sr = statistics.stdev([x[1] for x in task_srs])\n        se_sr = std_sr / (len(task_srs)**0.5)\n        results[model][suite] = {\n            'tasks': task_srs,\n            'mean': mean_sr,\n            'std': std_sr,\n            'se': se_sr,\n            'n_tasks': len(task_srs),\n            'total_eps': sum(x[2] for x in task_srs)\n        }\n        print(f'{model} | {suite}: mean={mean_sr:.1f}% std={std_sr:.1f} se={se_sr:.1f}')\n        for tid, sr, n in task_srs:\n            print(f'  task_{tid}: {sr:.1f}% ({n} eps)')\n\n# Check libero_10\nimport os\nfor model, path in [('plus', 'baseline_plus_v2'), ('std', 'baseline_std_v3')]:\n    p = f'/root/acib/outputs/{path}/libero_10/eval_info.json'\n    if os.path.exists(p):\n        with open(p) as f:\n            d = json.load(f)\n        task_srs = []\n        for t in d['per_task']:\n            s = t['metrics']['successes']\n            sr = sum(s)/len(s) * 100\n            task_srs.append((t['task_id'], sr, len(s)))\n        mean_sr = statistics.mean([x[1] for x in task_srs])\n        std_sr = statistics.stdev([x[1] for x in task_srs])\n        se_sr = std_sr / (len(task_srs)**0.5)\n        print(f'{model} | libero_10: mean={mean_sr:.1f}% std={std_sr:.1f} se={se_sr:.1f}')\n        for tid, sr, n in task_srs:\n            print(f'  task_{tid}: {sr:.1f}% ({n} eps)')\n    else:\n        print(f'{model} | libero_10: NOT FOUND')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T04:43:44.835764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json, statistics\\\\\\\\n\\\\\\\\nresults = {}\\\\\\\\nfor model, path in [(\\\\\\\\'plus\\\\\\\\', \\\\\\\\'baseline_plus_v2\\\\\\\\'), (\\\\\\\\'std\\\\\\\\', \\\\\\\\'baseline_std_v3\\\\\\\\')]:\\\\\\\\n    results[model] = {}\\\\\\\\n    for suite in [\\\\\\\\'libero_spatial\\\\\\\\', \\\\\\\\'libero_object\\\\\\\\', \\\\\\\\'libero_goal\\\\\\\\']:\\\\\\\\n        with open(f\\\\\\\\'/root/acib/outputs/{path}/{suite}/eval_info.json\\\\\\\\') as f:\\\\\\\\n            d = json.load(f)\\\\\\\\n        task_srs = []\\\\\\\\n        for t in d[\\\\\\\\'per_task\\\\\\\\']:\\\\\\\\n            s = t[\\\\\\\\'metrics\\\\\\\\'][\\\\\\\\'successes\\\\\\\\']\\\\\\\\n            sr = sum(s)/len(s) * 100\\\\\\\\n            task_srs.append((t[\\\\\\\\'task_id\\\\\\\\'], sr, len(s)))\\\\\\\\n        mean_sr = statistics.mean([x[1] for x in task_srs])\\\\\\\\n        std_sr = statistics.stdev([x[1] for x in task_srs])\\\\\\\\n        se_sr = std_sr / (len(task_srs)**0.5)\\\\\\\\n        results[model][suite] = {\\\\\\\\n            \\\\\\\\'tasks\\\\\\\\': task_srs,\\\\\\\\n            \\\\\\\\'mean\\\\\\\\': mean_sr,\\\\\\\\n            \\\\\\\\'std\\\\\\\\': std_sr,\\\\\\\\n            \\\\\\\\'se\\\\\\\\': se_sr,\\\\\\\\n            \\\\\\\\'n_tasks\\\\\\\\': len(task_srs),\\\\\\\\n            \\\\\\\\'total_eps\\\\\\\\': sum(x[2] for x in task_srs)\\\\\\\\n        }\\\\\\\\n        print(f\\\\\\\\'{model} | {suite}: mean={mean_sr:.1f}% std={std_sr:.1f} se={se_sr:.1f}\\\\\\\\')\\\\\\\\n        for tid, sr, n in task_srs:\\\\\\\\n            print(f\\\\\\\\'  task_{tid}: {sr:.1f}% ({n} eps)\\\\\\\\')\\\\\\\\n\\\\\\\\n# Check libero_10\\\\\\\\nimport os\\\\\\\\nfor model, path in [(\\\\\\\\'plus\\\\\\\\', \\\\\\\\'baseline_plus_v2\\\\\\\\'), (\\\\\\\\'std\\\\\\\\', \\\\\\\\'baseline_std_v3\\\\\\\\')]:\\\\\\\\n    p = f\\\\\\\\'/root/acib/outputs/{path}/libero_10/eval_info.json\\\\\\\\'\\\\\\\\n    if os.path.exists(p):\\\\\\\\n        with open(p) as f:\\\\\\\\n            d = json.load(f)\\\\\\\\n        task_srs = []\\\\\\\\n        for t in d[\\\\\\\\'per_task\\\\\\\\']:\\\\\\\\n            s = t[\\\\\\\\'metrics\\\\\\\\'][\\\\\\\\'successes\\\\\\\\']\\\\\\\\n            sr = sum(s)/len(s) * 100\\\\\\\\n     \n…[truncated 689 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T04:43:44.835948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13953",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json, statistics, os\n\nfor model, path in [('plus', 'baseline_plus_v2'), ('std', 'baseline_std_v3')]:\n    for suite in ['libero_spatial', 'libero_object', 'libero_goal', 'libero_10']:\n        p = f'/root/acib/outputs/{path}/{suite}/eval_info.json'\n        if not os.path.exists(p):\n            print(f'{model} | {suite}: NOT_FOUND')\n            continue\n        with open(p) as f:\n            d = json.load(f)\n        task_srs = []\n        for t in d['per_task']:\n            s = t['metrics']['successes']\n            sr = sum(s)/len(s) * 100\n            task_srs.append((t['task_id'], sr, len(s)))\n        mean_sr = statistics.mean([x[1] for x in task_srs])\n        std_sr = statistics.stdev([x[1] for x in task_srs])\n        se_sr = std_sr / (len(task_srs)**0.5)\n        total_eps = sum(x[2] for x in task_srs)\n        print(f'{model} | {suite}: mean={mean_sr:.1f} std={std_sr:.1f} se={se_sr:.1f} n_tasks={len(task_srs)} total_eps={total_eps}')\n        for tid, sr, n in task_srs:\n            print(f'  task_{tid}: {sr:.1f} ({n}eps)')\nPYEOF\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T04:43:44.836114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"plus | libero_spatial: mean=81.6 std=18.9 se=6.0 n_tasks=10 total_eps=500\\\\n  task_0: 98.0 (50eps)\\\\n  task_1: 82.0 (50eps)\\\\n  task_2: 92.0 (50eps)\\\\n  task_3: 94.0 (50eps)\\\\n  task_4: 74.0 (50eps)\\\\n  task_5: 32.0 (50eps)\\\\n  task_6: 94.0 (50eps)\\\\n  task_7: 86.0 (50eps)\\\\n  task_8: 80.0 (50eps)\\\\n  task_9: 84.0 (50eps)\\\\nplus | libero_object: mean=88.8 std=8.1 se=2.6 n_tasks=10 total_eps=500\\\\n  task_0: 78.0 (50eps)\\\\n  task_1: 92.0 (50eps)\\\\n  task_2: 92.0 (50eps)\\\\n  task_3: 88.0 (50eps)\\\\n  task_4: 92.0 (50eps)\\\\n  task_5: 78.0 (50eps)\\\\n  task_6: 100.0 (50eps)\\\\n  task_7: 80.0 (50eps)\\\\n  task_8: 100.0 (50eps)\\\\n  task_9: 88.0 (50eps)\\\\nplus | libero_goal: mean=87.8 std=12.7 se=4.0 n_tasks=10 total_eps=500\\\\n  task_0: 96.0 (50eps)\\\\n  task_1: 100.0 (50eps)\\\\n  task_2: 94.0 (50eps)\\\\n  task_3: 72.0 (50eps)\\\\n  task_4: 92.0 (50eps)\\\\n  task_5: 86.0 (50eps)\\\\n  task_6: 60.0 (50eps)\\\\n  task_7: 98.0 (50eps)\\\\n  task_8: 94.0 (50eps)\\\\n  task_9: 86.0 (50eps)\\\\nplus | libero_10: NOT_FOUND\\\\nstd | libero_spatial: mean=66.0 std=26.7 se=8.4 n_tasks=10 total_eps=500\\\\n  task_0: 82.0 (50eps)\\\\n  task_1: 74.0 (50eps)\\\\n  task_2: 88.0 (50eps)\\\\n  task_3: 86.0 (50eps)\\\\n  task_4: 52.0 (50eps)\\\\n  task_5: 0.0 (50eps)\\\\n  task_6: 90.0 (50eps)\\\\n  task_7: 66.0 (50eps)\\\\n  task_8: 58.0 (50eps)\\\\n  task_9: 64.0 (50eps)\\\\nstd | libero_object: mean=67.8 std=13.1 se=4.2 n_tasks=10 total_eps=500\\\\n  task_0: 62.0 (50eps)\\\\n  task_1: 58.0 (50eps)\\\\n  task_2: 56.0 (50eps)\\\\n  task_3: 56.0 (50eps)\\\\n  task_4: 86.0 (50eps)\\\\n  task_5: 52.0 (50eps)\\\\n  task_6: 82.0 (50eps)\\\\n  task_7: 64.0 (50eps)\\\\n  task_8: 80.0 (50eps)\\\\n  task_9: 82.0 (50eps)\\\\nstd | libero_goal: mean=76.4 std=13.9 se=4.4 n_tasks=10 total_eps=500\\\\n  task_0: 80.0 (50eps)\\\\n  task_1: 96.0 (50eps)\\\\n  task_2: 84.0 (50eps)\\\\n  task_3: 58.0 (50eps)\\\\n  task_4: 82.0 (50eps)\\\\n  task_5: 64.0 (50eps)\\\\n  task_6: 58.0 (50eps)\\\\n  task_7: 96.0 (50eps)\\\\n  task_8: 76.0 (50\n…[truncated 165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T04:43:44.836321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/artifacts/",
+              "description": "Check artifacts directory exists"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T04:43:44.836471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\ncode\nenv_setup_westb_13953.md\nmanifest.yaml\nmvp1_eval_plan.md\nnext_experiment_plan.md\nresearch_libero_benchmark.md\nresearch_smolvla_lerobot.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T04:43:44.836607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/artifacts/baseline_eval_results.md",
+              "content": "# Baseline Evaluation Results\n\nGenerated: 2026-05-16\n\n## Main Table (Paper Format)\n\n| Model | LIBERO-Spatial | LIBERO-Object | LIBERO-Goal | LIBERO-10 | Average |\n|-------|---------------|---------------|-------------|-----------|---------|\n| SmolVLA (std) | 66.0±8.4 | 67.8±4.2 | 76.4±4.4 | TBD | 70.1 |\n| SmolVLA+ (plus) | 81.6±6.0 | 88.8±2.6 | 87.8±4.0 | TBD | 86.1 |\n\n- Values: Mean SR (%) ± SE across 10 tasks\n- SE = std / sqrt(n_tasks), n_tasks = 10\n- Average = mean of 3 suite means (excludes LIBERO-10 pending completion)\n\n## Per-Task Breakdown (Appendix Format)\n\n### LIBERO-Spatial (10 tasks × 50 episodes each)\n\n| Task | SmolVLA (std) | SmolVLA+ (plus) |\n|------|:------------:|:---------------:|\n| task_0 | 82.0 | 98.0 |\n| task_1 | 74.0 | 82.0 |\n| task_2 | 88.0 | 92.0 |\n| task_3 | 86.0 | 94.0 |\n| task_4 | 52.0 | 74.0 |\n| task_5 | 0.0 | 32.0 |\n| task_6 | 90.0 | 94.0 |\n| task_7 | 66.0 | 86.0 |\n| task_8 | 58.0 | 80.0 |\n| task_9 | 64.0 | 84.0 |\n| **Mean±SE** | **66.0±8.4** | **81.6±6.0** |\n\n### LIBERO-Object (10 tasks × 50 episodes each)\n\n| Task | SmolVLA (std) | SmolVLA+ (plus) |\n|------|:------------:|:---------------:|\n| task_0 | 62.0 | 78.0 |\n| task_1 | 58.0 | 92.0 |\n| task_2 | 56.0 | 92.0 |\n| task_3 | 56.0 | 88.0 |\n| task_4 | 86.0 | 92.0 |\n| task_5 | 52.0 | 78.0 |\n| task_6 | 82.0 | 100.0 |\n| task_7 | 64.0 | 80.0 |\n| task_8 | 80.0 | 100.0 |\n| task_9 | 82.0 | 88.0 |\n| **Mean±SE** | **67.8±4.2** | **88.8±2.6** |\n\n### LIBERO-Goal (10 tasks × 50 episodes each)\n\n| Task | SmolVLA (std) | SmolVLA+ (plus) |\n|------|:------------:|:---------------:|\n| task_0 | 80.0 | 96.0 |\n| task_1 | 96.0 | 100.0 |\n| task_2 | 84.0 | 94.0 |\n| task_3 | 58.0 | 72.0 |\n| task_4 | 82.0 | 92.0 |\n| task_5 | 64.0 | 86.0 |\n| task_6 | 58.0 | 60.0 |\n| task_7 | 96.0 | 98.0 |\n| task_8 | 76.0 | 94.0 |\n| task_9 | 70.0 | 86.0 |\n| **Mean±SE** | **76.4±4.4** | **87.8±4.0** |\n\n### LIBERO-10\n\nEvaluation in progress. Data pending.\n\n## Statistical Summary\n\n| Suite | Model | Mean | Std | SE | 95% CI (t-dist, df=9) |\n|-------|-------|------|-----|-----|----------------------|\n| Spatial | std | 66.0 | 26.7 | 8.4 | [46.9, 85.1] |\n| Spatial | plus | 81.6 | 18.9 | 6.0 | [68.1, 95.1] |\n| Object | std | 67.8 | 13.1 | 4.2 | [58.5, 77.1] |\n| Object | plus | 88.8 | 8.1 | 2.6 | [83.0, 94.6] |\n| Goal | std | 76.4 | 13.9 | 4.4 | [66.5, 86.3] |\n| Goal | plus | 87.8 | 12.7 | 4.0 | [78.7, 96.9] |\n\n- 95% CI = mean ± t_{0.025, 9} × SE, where t_{0.025, 9} = 2.262\n\n## Episode Counts\n\n| Model | Suite | Tasks | Episodes/Task | Total Episodes |\n|-------|-------|-------|--------------|----------------|\n| SmolVLA (std) | Spatial | 10 | 50 | 500 |\n| SmolVLA (std) | Object | 10 | 50 | 500 |\n| SmolVLA (std) | Goal | 10 | 50 | 500 |\n| SmolVLA+ (plus) | Spatial | 10 | 50 | 500 |\n| SmolVLA+ (plus) | Object | 10 | 50 | 500 |\n| SmolVLA+ (plus) | Goal | 10 | 50 | 500 |\n| **Total** | | | | **3000** |\n\n## Data Sources\n\n- SmolVLA+ (plus): `/root/acib/outputs/baseline_plus_v2/{suite}/eval_info.json`\n- SmolVLA (std): `/root/acib/outputs/baseline_std_v3/{suite}/eval_info.json`\n- Server: westb-13953\n"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T04:43:44.836768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/artifacts/baseline_eval_results.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T04:43:44.836924+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/baseline_eval_results.md`。\n\n关键数据：\n\n| Model | Spatial | Object | Goal | Average |\n|-------|---------|--------|------|---------|\n| SmolVLA (std) | 66.0±8.4 | 67.8±4.2 | 76.4±4.4 | 70.1 |\n| SmolVLA+ (plus) | 81.6±6.0 | 88.8±2.6 | 87.8±4.0 | 86.1 |\n\nLIBERO-10 两个模型的 eval_info.json 均未生成，评测仍在进行中。notable 发现：std 的 spatial task_5 成功率为 0%，plus 也仅 32%，是最难的 task。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_baseline-data-consolidation_20260516T044123"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/research-baseline-data-consolidation.md"
+}

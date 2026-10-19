@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "529d49b7b5d51406611a",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ops seed2 code fix restart",
+  "task_key": "worker_ops_seed2-code-fix-restart_20260516T030157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed2-code-fix-restart_20260516T030157_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "80e2426a1ab1ebc0cb75e290a09ef606fdf2efdd2b3a589da936038863f021c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5W9ABkpJ8Y9kn13HErb\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "This organization has been disabled."
+              },
+              "request_id": "req_011Cb5W9ABkpJ8Y9kn13HErb"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-seed2-code-fix-restart.md"
+}

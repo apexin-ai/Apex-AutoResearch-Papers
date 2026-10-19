@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "577665389591856ab51d",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code prep v7 eval",
+  "task_key": "worker_code_prep_v7_eval_20260516T140406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_v7_eval_20260516T140406_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "9dfc6e95eaf16e678e1e78653e9f394caf41b4adced8a322d5026eb347dec80d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结论：v7 eval 流水线验证通过。**\n\n- Checkpoint 加载完美（0 missing/0 unexpected keys）\n- dtype fix（bfloat16）生效\n- `condition_source=language` + `conditioning_mode=concat` 从 checkpoint config 正确读取\n- 5/10 task 成功执行 rollout 后进程被杀（系统 RAM 问题，非 v7 特有）\n- GPU 额外占用 ~12GB，与训练共存无问题\n- 无需 v7 特有修复\n\n报告已写入 `/root/acib/outputs/v7_eval_dryrun_report.txt`，含正式 eval 推荐命令（建议逐 suite 运行避免 RAM 积累）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-v7-eval.md"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "d7daa4e30d468c6a58dd",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ops diagnose seed2 orphan",
+  "task_key": "worker_ops_diagnose-seed2-orphan_20260516T033832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-seed2-orphan_20260516T033832_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "0d4e7212d56fa34bd0ef60a14fd9963955a48e034f3a242c2d3a6eef35244f28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5Z87xdMJmSmrwFwafXz\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "This organization has been disabled."
+              },
+              "request_id": "req_011Cb5Z87xdMJmSmrwFwafXz"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-seed2-orphan.md"
+}

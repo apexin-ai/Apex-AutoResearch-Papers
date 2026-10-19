@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "40c62710554cc748a907",
+  "project": "action_cond_info_bottleneck",
+  "kind": "worker",
+  "title": "code v8 film impl sweep",
+  "task_key": "worker_code_v8-film-impl-sweep_20260516T105359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v8-film-impl-sweep_20260516T105359.log",
+    "occurrence": 1,
+    "bytes": 792380,
+    "sha256": "49795f5fc033c711f56ce2274d142b4f11860c90e112d50f42ac75fba21b303f"
+  },
+  "statistics": {
+    "messages": 412,
+    "user_turns": 0,
+    "tool_calls": 167,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 74,
+      "tool_call": 167,
+      "tool_result": 167,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 412,
+      "chunks": [
+        {
+          "path": "40c62710554cc748a907-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "40c62710554cc748a907-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "40c62710554cc748a907-part-0003.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-v8-film-impl-sweep.md"
+}

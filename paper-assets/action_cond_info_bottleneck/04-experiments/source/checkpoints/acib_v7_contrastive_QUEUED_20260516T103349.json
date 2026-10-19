@@ -1,0 +1,16 @@
+{
+  "exp_id": "acib_v7_contrastive",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:10:51.506Z",
+    "updated_at": "2026-05-16T10:33:49.099Z",
+    "hypothesis": "Contrastive auxiliary loss 强制 language-dependence：对同一图像+不同 instruction 要求 scorer 产生不同 importance map（minimize cosine similarity），解决 v6 训练动力学退化问题。预期 Probe A cos < 0.8。",
+    "parent": "acib_v6_conditioned"
+  },
+  "timestamp": "2026-05-16T10:33:49.149306+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp-008-seed3",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T22:07:17.662Z",
+    "updated_at": "2026-05-25T04:20:14.223Z",
+    "hypothesis": "SFT probe trap verification (GRPO-matched LoRA): run differentiable SFT binary probe penalty with seed=43, LoRA alpha=64, 4 modules (q/k/v/o), dropout=0 — matching exp-008v3 GRPO config for controlled comparison. Multi-seed replication of exp-008-seed2 to verify probe gaming reproducibility across seeds.",
+    "parent": "exp-008v3",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py --seed 43 --max_steps 2000 --output_dir /root/autodl-tmp/checkpoints/exp008_sft_seed43",
+      "server": "westd-29046",
+      "gpu_id": 0,
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 43,
+      "checkpoint_source": "training_from_base",
+      "eval_data": "calibration_v2_1_expanded.jsonl (362 samples, used as SFT training data)",
+      "notes": "SFT differentiable binary probe penalty seed=43. GRPO-matched LoRA: alpha=64, 4 modules (q/k/v/o), dropout=0. Multi-seed replication of exp-008-seed2."
+    },
+    "metrics": {
+      "final_loss": -0.0675,
+      "final_sft_loss": 0.0003,
+      "final_R3": 0.6775,
+      "final_St": 0,
+      "St_collapsed_step": 50,
+      "probe_retrain_count": 20,
+      "probe_final_acc": 1,
+      "probe_final_auroc": 1,
+      "steps_completed": 2000
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/exp008_sft_seed43/",
+    "conclusion": "success",
+    "log_path": "/root/autodl-tmp/checkpoints/exp008_sft_seed43/training.log",
+    "completed_at": "2026-05-25T04:20:14.223Z"
+  },
+  "timestamp": "2026-05-25T04:20:14.433274+00:00",
+  "trigger": "update_registry"
+}

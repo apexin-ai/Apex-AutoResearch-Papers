@@ -1,0 +1,111 @@
+paper_key: "mckinney2023fragility"
+title: "On The Fragility of Learned Reward Functions"
+venue: "NeurIPS Deep RL Workshop 2023"
+full_text_available: true
+
+research:
+  baselines:
+    - "Standard preference-based reward learning (Christiano et al. 2017, single reward network)"
+    - "Reward ensemble (5-member bootstrap ensemble)"
+  metrics:
+    - {name: "Ground truth return (sampler)", direction: "higher_better"}
+    - {name: "Ground truth return (relearner)", direction: "higher_better"}
+    - {name: "EPIC distance to ground truth reward", direction: "lower_better"}
+  datasets:
+    - {name: "HalfCheetah-v3 (SEALS benchmark)", size: "2000 synthetic preference comparisons, segment length 50"}
+    - {name: "Stay Inside (tabular 20x20 grid)", size: "2500 synthetic preference comparisons, fragment length 30"}
+    - {name: "Tiny Room (tabular 10x10 grid)", size: "appendix environment"}
+  ablation_dimensions:
+    - "RL budget (total sampler training timesteps: 0.5M to 8M)"
+    - "Number of ensemble members (1 vs 5)"
+    - "Preference dataset composition (coverage distribution)"
+  training_recipe:
+    optimizer: "Adam"
+    lr: "3e-4 (SAC), 5e-2 (tabular soft Q-learning)"
+    hardware: "not specified"
+    batch_size: "256 (SAC)"
+    discount: "0.99"
+    reward_network: "MLP with hidden dim 256 (continuous) / 32 (tabular), ReLU/LeakyReLU(0.01)"
+    reward_training_epochs: "5 per iteration"
+    iterations: "50"
+    seeds: "10 reward learning runs x 5 relearning runs = 50 per condition"
+  method_family: "preference-based reward learning / RLHF robustness analysis"
+
+positioning:
+  core_claim: "State-of-the-art preference-based reward learning algorithms can produce reward models that appear successful (sampler performs well) but completely fail to train new agents from scratch (relearner fails), revealing that sampler performance alone is an insufficient evaluation of learned reward quality."
+  key_results: "In HalfCheetah, increasing RL budget from 0.5M to 8M improves sampler returns but anti-correlates with relearner ground truth returns; in Stay Inside, 5-member reward ensembles eliminate relearning failures that plague single networks (relearner return variance drops dramatically, median shifts from ~0 to ~1800)."
+  limitations:
+    - "Experiments limited to simple ground truth reward functions (e.g., linear in observation/action for HalfCheetah)"
+    - "Unclear whether the same phenomenon causes failures in complex real-world tasks"
+    - "Design decisions effective at small scale (ensembles, less sampler training) may not transfer to larger-scale problems"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens by stating reward functions for real-world tasks are difficult to specify procedurally, and hand-designed rewards frequently misspecify tasks -- establishing reward learning as essential. Then pivots to reveal a hidden failure mode: sampler success masks reward fragility."
+  tension: "Prior work evaluated reward learning by sampler agent performance, but a well-performing sampler does not guarantee a robust reward function. If a learned reward cannot train a new agent from scratch, it is not truly a reward function -- at most a preference-based policy learning technique with reward as inductive bias."
+  key_insight: "The relearning evaluation protocol (freeze learned reward, train new random agent) exposes that preference dataset imbalance -- caused by the sampler concentrating in high-reward regions -- degrades reward quality in ways invisible to sampler-only evaluation. Ensembles mitigate this by reducing spurious off-distribution rewards."
+  argument_chain: "problem (reward misspecification) → existing solution (preference-based reward learning) → hidden flaw (sampler success != reward robustness) → evidence (HalfCheetah anti-correlation, Stay Inside failures) → diagnosis (dataset imbalance, off-distribution spurious rewards) → partial fix (ensembles) → call for relearning evaluation"
+  contribution_framing: "Three contributions stated as bullet points at end of intro: (1) demonstrate relearning failures in tabular and continuous settings, (2) show severity increases with dataset concentration, (3) demonstrate ensembles as a design fix. Framed as empirical investigation rather than algorithmic contribution."
+  intro_structure: "5 paragraphs: P1 = motivation (reward specification is hard), P2 = existing approach (preference-based reward learning + RLHF applications), P3 = core argument (sampler performance insufficient, relearner evaluation needed, distinction between reward learning vs policy learning), P4 = prior work gap (relearning investigated only briefly in prior papers), P5 = contribution statement with 3 bullet points"
+  notable_technique: "The rhetorical move of redefining what counts as 'learning a reward function' vs merely 'preference-based policy learning' -- this reframing elevates a negative result (relearning failures) into a conceptual contribution about evaluation methodology."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "Three-panel figure showing anti-correlated sampler and relearner performance in HalfCheetah. Panel (a): sampler ground truth return over iterations for different RL budgets (0.5M-8M), showing higher budgets achieve higher sampler returns. Panel (b): relearner ground truth return over timesteps, showing LOWER performance for HIGHER RL budgets -- the anti-correlation. Panel (c): scatterplot of segment pair average return vs number of preference pairs, comparing 1M and 8M budgets, showing 8M concentrates in high-reward regions with poor coverage."
+    narrative_role: "Central evidence figure -- immediately demonstrates the paper's core finding that sampler success anti-correlates with relearner success, and diagnoses the cause (dataset imbalance). Placed prominently as Figure 1 to hook the reader."
+    design_elements:
+      - "Multi-panel layout (a/b/c) telling a causal story: observation → consequence → diagnosis"
+      - "Color-coded RL budget conditions with consistent legend across panels"
+      - "Shaded 90% confidence intervals showing uncertainty"
+      - "Scatterplot with marginal distributions for dataset composition analysis"
+    visual_style: "Standard matplotlib style with clean white background. Line plots in panels (a-b) use 6 distinct colors for RL budgets (blue/orange/green/red/purple/brown gradient). Scatterplot in (c) uses blue vs orange dots for 1M vs 8M budgets with marginal violin/KDE distributions on right axis. Mean lines with shaded 90% CI bands."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "mixed (violin_plot + heatmaps)"
+      what_compared: "Single reward network (1 ensemble member) vs 5-member ensemble on Stay Inside environment. Compares sampler vs relearner returns, ground truth reward heatmap, single learned reward heatmap, ensemble reward heatmap, and maximum reward distribution."
+      how_gain_highlighted: "Violin plot (panel a) shows dramatic variance reduction: single-network relearner has massive spread from -500 to 2200, while 5-member ensemble relearner is tightly concentrated around 1800. Heatmap comparison (panels c vs d) visually contrasts noisy single reward with smooth ensemble reward resembling ground truth."
+      design_note: "5-panel composite figure combining quantitative (violin) and qualitative (heatmap) evidence. The ground truth heatmap (b) serves as visual reference for judging learned reward quality. The max-reward violin (e) provides mechanistic explanation: single networks produce spurious high max rewards (long tail up to 14), while ensembles constrain max rewards to ~2.5. Uses viridis colormap for heatmaps with consistent colorbar. Blue=sampler, orange=relearner in violins."
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar"
+      what_compared: "Effect of RL budget (DRLHP training timesteps: 200K-1M) on sampler return, relearner return, and relearner-minus-sampler gap in tabular Stay Inside environment"
+      how_gain_highlighted: "Shows that increasing RL budget does NOT significantly affect relearning failures in the tabular setting (unlike continuous). Green bars (relearner minus sampler) remain negative across all conditions."
+      design_note: "Three-color grouped bar chart (blue=sampler, orange=relearner, green=gap) with error bars. Clean comparison across 5 RL budget conditions. The green 'difference' bars provide an at-a-glance summary of the relearning gap."
+  ablation_figures:
+    - figure_id: "Figure 2(a)"
+      viz_type: "violin_plot"
+      dimensions_varied: ["Number of ensemble members (1 vs 5)", "Agent type (sampler vs relearner)"]
+      design_note: "Violin plots show full return distribution rather than just mean/std, making the bimodal failure mode of single-network relearners visually obvious. The tight concentration of ensemble relearner violin is the key visual takeaway."
+    - figure_id: "Figure 4 (appendix)"
+      viz_type: "heatmap"
+      dimensions_varied: ["Tiny room environment ground truth reward"]
+      design_note: "Simple 10x10 heatmap with viridis colormap showing reward concentrated in bottom-right corner (target cell = 10). Used as supplementary environment illustration."
+  figure_narrative_role: "Figure 1 (HalfCheetah anti-correlation: problem demonstration + diagnosis) → Figure 2 (Stay Inside ensemble fix: solution demonstration with mechanistic explanation) → Figure 3 (RL budget in tabular: negative result showing budget is NOT the cause here) → Figures 4-5 (appendix: environment details and on-policy distributions for reproducibility)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "hyperparameter names"
+    col_axis: "values"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "none (hyperparameter table, not comparison table)"
+    statistical_reporting: "N/A (configuration table)"
+    num_baselines: 0
+    design_note: "This is a hyperparameter configuration table, not a results comparison table. The paper does NOT have a traditional main result table with method comparisons -- all main results are presented as figures (line plots, violin plots, bar charts). This is consistent with the paper being an empirical analysis paper rather than a method paper."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["SAC hyperparameters (lr, batch_size, discount, learning_starts)"]
+      variation_style: "full_numbers"
+      design_note: "Standard hyperparameter reporting table for SAC algorithm configuration."
+    - table_id: "Table 3"
+      what_varied: ["Tabular experiment hyperparameters (soft-Q discount, lr, temperature, fragment length, comparisons, RL budget)"]
+      variation_style: "full_numbers"
+      design_note: "Tabular setting hyperparameter table. All three tables are configuration tables rather than result tables -- the paper relies entirely on figures for result presentation."
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix contains Tables 1-3 (all hyperparameter configuration tables), plus additional experiments: EPIC distance bar charts under uniform vs expert coverage distributions, tiny room environment results, and on-policy distribution visualizations."
+    reason: "Main paper is figure-heavy for results; appendix holds configuration details and supplementary analyses (EPIC distance metric, additional environments) that support but are not central to the core narrative of sampler-relearner anti-correlation and ensemble fix."

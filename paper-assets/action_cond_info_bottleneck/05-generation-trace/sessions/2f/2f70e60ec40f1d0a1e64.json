@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f70e60ec40f1d0a1e64",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ops fix baseline std eval restart",
+  "task_key": "worker_ops_fix-baseline-std-eval-restart_20260516T032002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-baseline-std-eval-restart_20260516T032002_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "eca465de36accdf62f8e7b258d8fb9da5281c52ee05163e23232c7538ac323a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**1. PID 733616 是 libero_10 eval 进程**\n- 命令：`lerobot-eval --env.task=libero_10 --eval.n_episodes=50 --output_dir=/root/acib/outputs/baseline_std_v3/libero_10`\n- 已运行 ~17 分钟，正在正常产出结果\n- 进度：task `libero_10_0` 已完成 6/50 episodes（`eval_episode_0.mp4` ~ `eval_episode_5.mp4`）\n- 占用 6601 MiB on cuda:1\n\n**2. 无需重启 eval** — 进程存活且正常工作，保留不动。\n\n**3. cuda:1 当前 GPU 使用：**\n\n| PID | 显存 | 身份 |\n|-----|------|------|\n| 733616 | 6601 MiB | baseline_std libero_10 eval（本进程） |\n| 744808 | 16214 MiB | seed2 训练 |\n| **合计** | **~22.8 GB / 96 GB** | 空间充裕 |\n\ncuda:0 上还有两个进程（675231: 5910 MiB, 682233: 16214 MiB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-baseline-std-eval-restart.md"
+}

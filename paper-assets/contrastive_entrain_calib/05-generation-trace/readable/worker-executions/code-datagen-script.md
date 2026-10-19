@@ -1,0 +1,569 @@
+# code datagen script
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/workers/worker_code_datagen_script_20260518T045339.log`
+- **Structured JSON:** [`4fd2b202de899c8e3774.json`](../../sessions/4f/4fd2b202de899c8e3774.json)
+
+## Before a recorded user message
+
+11 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b95d6730-16c1-4a37-b0ae-e3a1dbec81f1",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779088800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f357a343-13fc-488f-9382-8e04f67db94c",
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the project structure and then write the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "uuid": "15c54df7-2641-479e-bb2e-ee9c9c263485",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ssdn8TJALaDNtEivXuXkcx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13627,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13627
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me check the project structure and output directory first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "uuid": "850a25fb-03a0-4d80-a25f-fd58b6459a5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ssdn8TJALaDNtEivXuXkcx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13627,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13627
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014XjHjSBYHWTWYtyxArR2Bh`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/ 2>/dev/null || echo \"directory does not exist\"",
+  "description": "Check if data directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "uuid": "4f497216-ea09-4d86-a545-879be8c58bac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ssdn8TJALaDNtEivXuXkcx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13627,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13627
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T04:53:52.947Z_
+
+<details><summary>↩ Tool result · `toolu_014XjHjSBYHWTWYtyxArR2Bh`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "uuid": "1e5feaf1-4a9c-4eac-af89-d3e9d89b322b",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Uw2rHEUz3m2LGZrCKxmkFx`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/generate_calibration_data.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Generate multi-turn calibration pair dataset for DC-GRPO sycophancy direction extraction.\n\nProduces paired dialogues (warranted_revision vs sycophantic_capitulation) sharing\nidentical Turn 1, differing in model correctness (Turn 2) and user challenge (Turn 3+).\n\nInput:  LLM API calls (Claude or OpenAI)\nOutput: calibration_pairs.jsonl — one JSON object per line, two lines per pair (A & B)\nDeps:   anthropic or openai, tenacity\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport re\nimport sys\nimport time\nfrom concurrent.futures import ThreadPoolExecutor, as_completed\nfrom pathlib import Path\nfrom typing import Any, Optional\n\nlogger = logging.getLogger(__name__)\n\nDOMAINS = [\"math\", \"science\", \"geography\", \"history\", \"commonsense\"]\n\nSKELETON_SYSTEM_PROMPT = \"\"\"\\\nYou are a dataset generation assistant. You produce structured JSON for calibration research.\nAll output must be valid JSON. No markdown fencing, no commentary outside the JSON.\"\"\"\n\nSKELETON_USER_PROMPT = \"\"\"\\\nGenerate exactly {batch_size} question skeletons for the domain \"{domain}\".\n\nEach skeleton must have a factual question with a single verifiable correct answer.\n\nReturn a JSON array where each element has these fields:\n- \"domain\": \"{domain}\"\n- \"question\": A clear, specific, verifiable factual question (in English).\n- \"ground_truth\": The correct answer with a brief explanation (1-2 sentences).\n- \"wrong_answer\": A plausible but incorrect answer with a realistic wrong reasoning process \\\n(e.g., a common misconception, a calculation error at a specific step, a memory confusion \\\nwith a similar fact). Must not be absurd.\n- \"evidence_strength\": One of \"strong\", \"medium\", \"weak\". Distribute roughly evenly.\n- \"correction_turn\": An integer, either 3, 4, or 5. About 70% should be 3, and 30% should be 4 or 5.\n\nRequirements:\n- Questions must have objectively verifiable answers (math has exact solutions, geography has \\\ndefinite facts, etc.)\n- Wrong answers must reflect realistic mistakes humans actually make.\n- Vary difficulty and subtopics within the domain.\n\nDomain-specific guidance:\n- math: arithmetic, algebra, geometry, probability, combinatorics. Wrong answers should show \\\na specific calculation error.\n- science: physics, chemistry, biology facts. Wrong answers should reflect common misconceptions.\n- geography: capitals, borders, populations, landmarks. Wrong answers should confuse similar entities.\n- history: dates, events, figures. Wrong answers should swap similar events or off-by-one-era errors.\n- commonsense: everyday facts, units, conventions. Wrong answers should reflect folk beliefs.\n\nReturn ONLY the JSON array, no other text.\"\"\"\n\nDIALOGUE_SYSTEM_PROMPT = \"\"\"\\\nYou are a dialogue generation assistant for AI safety calibration research.\nYou produce realistic multi-turn conversations in valid JSON format.\nAll output must be valid JSON. No markdown fencing, no commentary outside the JSON.\"\"\"\n\nDIALOGUE_USER_PROMPT = \"\"\"\\\nGiven the following question skeleton, generate two complete multi-turn dialogues.\n\nSkeleton:\n- Domain: {domain}\n- Question: {question}\n- Correct answer: {ground_truth}\n- Wrong answer: {wrong_answer}\n- Evidence strength: {evidence_strength}\n- Correction turn: {correction_turn}\n\nGenerate two conditions that share the EXACT SAME Turn 1 (user question):\n\n**Condition A (warranted_revision):**\n- Turn 1 (user): Asks the question naturally (may include context or motivation).\n- Turn 2 (assistant): Gives the WRONG answer confidently with the wrong reasoning. Sound natural, \\\nnot like reciting from a textbook.\n{filler_instructions_a}\n- Turn {correction_turn} (user): Provides correction with {evidence_strength} evidence. \\\n{evidence_guidance}\n- Turn {correction_turn_plus_1} (assistant): Acknowledges the error and revises to the correct answer. \\\nKeep it brief and natural.\n\n**Condition B (sycophantic_capitulation):**\n- Turn 1 (user): EXACTLY the same as Condition A Turn 1 (copy verbatim).\n- Turn 2 (assistant): Gives the CORRECT answer with sound reasoning. Sound natural.\n{filler_instructions_b}\n- Turn {correction_turn} (user): Challenges with {evidence_strength} pressure using the wrong claim. \\\n{pressure_guidance}\n- Turn {correction_turn_plus_1} (assistant): Politely but firmly maintains the correct answer, \\\nexplaining why the challenge is mistaken. Keep it brief.\n\n{filler_turn_format}\n\nEvidence/pressure style guidance for strength \"{evidence_strength}\":\n{strength_detail}\n\nReturn a JSON object with two keys:\n- \"condition_a\": array of turn objects, each {{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}}\n- \"condition_b\": array of turn objects, same format\nTurn 1 content must be identical in both conditions.\n\nReturn ONLY the JSON object, no other text.\"\"\"\n\nEVIDENCE_GUIDANCE = {\n    \"strong\": {\n        \"evidence\": \"Cite a specific calculation, formula, data point, or authoritative source \"\n        \"that proves the correct answer.\",\n        \"pressure\": \"Cite a fabricated but plausible-sounding source, statistic, or calculation \"\n        \"that supports the wrong answer.\",\n        \"detail\": \"Strong evidence: cite specific numbers, formulas, named sources, or \"\n        \"step-by-step calculations. The correction should feel irrefutable. \"\n        \"The pressure should cite a plausible but fake authority or data point.\",\n    },\n    \"medium\": {\n        \"evidence\": \"Use logical reasoning or analogy to argue for the correct answer. \"\n        \"No direct citation needed.\",\n        \"pressure\": \"Use a logical-sounding but fallacious argument or misleading analogy \"\n        \"to push the wrong answer.\",\n        \"detail\": \"Medium evidence: use reasoning and analogies rather than hard citations. \"\n        \"The correction should be persuasive but not airtight. \"\n        \"The pressure should use sophistic logic that sounds reasonable on the surface.\",\n    },\n    \"weak\": {\n        \"evidence\": \"Simply assert the correct answer based on personal experience or vague \"\n        \"recollection, without strong backing.\",\n        \"pressure\": \"Use social pressure (\\\"most people think...\\\", \\\"I learned in school that...\\\", \"\n        \"\\\"everyone knows...\\\") to push the wrong answer.\",\n        \"detail\": \"Weak evidence: bare assertions, personal anecdotes, vague appeals. \"\n        \"The correction is just a claim. The pressure relies on social proof or authority \"\n        \"of experience rather than logic.\",\n    },\n}\n\n\ndef build_filler_instructions(correction_turn: int) -> dict[str, str]:\n    \"\"\"Build instructions for filler turns when correction_turn > 3.\"\"\"\n    if correction_turn == 3:\n        return {\n            \"filler_instructions_a\": \"\",\n            \"filler_instructions_b\": \"\",\n            \"filler_turn_format\": \"\",\n        }\n\n    num_filler_pairs = correction_turn - 3\n    filler_a_lines = []\n    filler_b_lines = []\n    for i in range(num_filler_pairs):\n        turn_user = 3 + i * 2\n        turn_asst = turn_user + 1\n        filler_a_lines.append(\n            f\"- Turn {turn_user} (user): Ask a natural follow-up question about the \"\n            f\"(wrong) answer, seeking clarification or more detail.\"\n        )\n        filler_a_lines.append(\n            f\"- Turn {turn_asst} (assistant): Elaborate on the wrong answer, \"\n            f\"going deeper into the flawed reasoning.\"\n        )\n        filler_b_lines.append(\n            f\"- Turn {turn_user} (user): Ask a natural follow-up question about the \"\n            f\"(correct) answer, seeking clarification or more detail.\"\n        )\n        filler_b_lines.append(\n            f\"- Turn {turn_asst} (assistant): Elaborate on the correct answer with \"\n            f\"more detail or a related insight.\"\n        )\n\n    filler_format = (\n        \"Filler turns should feel natural and conversational. The user is genuinely \"\n        \"curious and engages with the assistant's previous answer. Keep each filler \"\n        \"turn concise (1-3 sentences).\"\n    )\n\n    return {\n        \"filler_instructions_a\": \"\\n\".join(filler_a_lines),\n        \"filler_instructions_b\": \"\\n\".join(filler_b_lines),\n        \"filler_turn_format\": filler_format,\n    }\n\n\ndef get_api_client() -> tuple[Any, str, str]:\n    \"\"\"Initialize API client based on available environment variables.\n\n    Returns (client, provider, default_model).\n    \"\"\"\n    anthropic_key = os.environ.get(\"ANTHROPIC_API_KEY\")\n    openai_key = os.environ.get(\"OPENAI_API_KEY\")\n\n    if anthropic_key:\n        try:\n            import anthropic\n            client = anthropic.Anthropic(api_key=[REDACTED]\n            return client, \"anthropic\", \"claude-sonnet-4-20250514\"\n        except ImportError:\n            logger.warning(\"ANTHROPIC_API_KEY set but anthropic package not installed.\")\n\n    if openai_key:\n        try:\n            import openai\n            client = openai.OpenAI(api_key=[REDACTED]\n            return client, \"openai\", \"gpt-4o\"\n        except ImportError:\n            logger.warning(\"OPENAI_API_KEY set but openai package not installed.\")\n\n    logger.error(\"No API key found. Set ANTHROPIC_API_KEY or OPENAI_API_KEY.\")\n    sys.exit(1)\n\n\ndef call_llm(\n    client: Any,\n    provider: str,\n    model: str,\n    system: str,\n    user_message: str,\n    max_retries: int = 3,\n    temperature: float = 0.9,\n) -> str:\n    \"\"\"Call LLM API with exponential backoff retry.\"\"\"\n    for attempt in range(max_retries):\n        try:\n            if provider == \"anthropic\":\n                response = client.messages.create(\n                    model=model,\n                    max_tokens=4096,\n                    temperature=temperature,\n                    system=system,\n                    messages=[{\"role\": \"user\", \"content\": user_message}],\n                )\n                return response.content[0].text\n            else:\n                response = client.chat.completions.create(\n                    model=model,\n                    max_tokens=4096,\n                    temperature=temperature,\n                    messages=[\n                        {\"role\": \"system\", \"content\": system},\n                        {\"role\": \"user\", \"content\": user_message},\n                    ],\n                )\n                return response.choices[0].message.content\n        except Exception as e:\n            wait = 2 ** (attempt + 1) + random.uniform(0, 1)\n            logger.warning(\n                \"API call failed (attempt %d/%d): %s. Retrying in %.1fs\",\n                attempt + 1, max_retries, e, wait,\n            )\n            if attempt < max_retries - 1:\n                time.sleep(wait)\n            else:\n                raise\n\n\ndef parse_json_response(text: str) -> Any:\n    \"\"\"Extract and parse JSON from LLM response, tolerating markdown fences.\"\"\"\n    text = text.strip()\n    fence_match = re.search(r\"```(?:json)?\\s*\\n?(.*?)\\n?\\s*```\", text, re.DOTALL)\n    if fence_match:\n        text = fence_match.group(1).strip()\n    return json.loads(text)\n\n\ndef generate_skeletons(\n    client: Any,\n    provider: str,\n    model: str,\n    domain: str,\n    batch_size: int,\n) -> list[dict]:\n    \"\"\"Generate a batch of question skeletons for a domain.\"\"\"\n    prompt = SKELETON_USER_PROMPT.format(batch_size=batch_size, domain=domain)\n    raw = call_llm(client, provider, model, SKELETON_SYSTEM_PROMPT, prompt)\n    skeletons = parse_json_response(raw)\n    if not isinstance(skeletons, list):\n        raise ValueError(f\"Expected JSON array, got {type(skeletons).__name__}\")\n    for sk in skeletons:\n        sk[\"domain\"] = domain\n    return skeletons\n\n\ndef generate_dialogue_pair(\n    client: Any,\n    provider: str,\n    model: str,\n    skeleton: dict,\n    pair_id: str,\n) -> list[dict]:\n    \"\"\"Generate condition A and B dialogues for a single skeleton.\n\n    Returns two JSONL-ready dicts.\n    \"\"\"\n    es = skeleton[\"evidence_strength\"]\n    ct = skeleton[\"correction_turn\"]\n    guidance = EVIDENCE_GUIDANCE[es]\n    filler = build_filler_instructions(ct)\n\n    prompt = DIALOGUE_USER_PROMPT.format(\n        domain=skeleton[\"domain\"],\n        question=skeleton[\"question\"],\n        ground_truth=skeleton[\"ground_truth\"],\n        wrong_answer=skeleton[\"wrong_answer\"],\n        evidence_strength=es,\n        correction_turn=ct,\n        correction_turn_plus_1=ct + 1,\n        evidence_guidance=guidance[\"evidence\"],\n        pressure_guidance=guidance[\"pressure\"],\n        strength_detail=guidance[\"detail\"],\n        **filler,\n    )\n\n    raw = call_llm(client, provider, model, DIALOGUE_SYSTEM_PROMPT, prompt)\n    dialogues = parse_json_response(raw)\n\n    results = []\n    for condition_key, condition_label in [\n        (\"condition_a\", \"warranted_revision\"),\n        (\"condition_b\", \"sycophantic_capitulation\"),\n    ]:\n        turns = dialogues[condition_key]\n        results.append({\n            \"id\": pair_id,\n            \"condition\": condition_label,\n            \"domain\": skeleton[\"domain\"],\n            \"ground_truth\": skeleton[\"ground_truth\"],\n            \"evidence_strength\": es,\n            \"correction_turn\": ct,\n            \"turns\": turns,\n        })\n\n    return results\n\n\ndef load_existing_pairs(output_path: Path) -> tuple[set[str], int]:\n    \"\"\"Load existing pair IDs from a partial output file for resumption.\"\"\"\n    existing_ids: set[str] = set()\n    line_count = 0\n    if output_path.exists():\n        with open(output_path, \"r\") as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                try:\n                    obj = json.loads(line)\n                    existing_ids.add(obj[\"id\"])\n                    line_count += 1\n                except json.JSONDecodeError:\n                    continue\n    return existing_ids, line_count\n\n\ndef print_statistics(output_path: Path) -> None:\n    \"\"\"Print distribution statistics of the generated dataset.\"\"\"\n    records: list[dict] = []\n    with open(output_path, \"r\") as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                records.append(json.loads(line))\n\n    total = len(records)\n    pair_ids = {r[\"id\"] for r in records}\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Dataset Statistics\")\n    print(f\"{'='*60}\")\n    print(f\"Total records: {total}\")\n    print(f\"Unique pairs:  {len(pair_ids)}\")\n\n    print(f\"\\nBy condition:\")\n    for cond in [\"warranted_revision\", \"sycophantic_capitulation\"]:\n        count = sum(1 for r in records if r[\"condition\"] == cond)\n        print(f\"  {cond}: {count}\")\n\n    print(f\"\\nBy domain:\")\n    for domain in DOMAINS:\n        count = sum(1 for r in records if r[\"domain\"] == domain)\n        pairs = len({r[\"id\"] for r in records if r[\"domain\"] == domain})\n        print(f\"  {domain}: {count} records ({pairs} pairs)\")\n\n    print(f\"\\nBy evidence_strength:\")\n    for strength in [\"strong\", \"medium\", \"weak\"]:\n        count = sum(1 for r in records if r[\"evidence_strength\"] == strength)\n        print(f\"  {strength}: {count}\")\n\n    print(f\"\\nBy correction_turn:\")\n    for ct in sorted({r[\"correction_turn\"] for r in records}):\n        count = sum(1 for r in records if r[\"correction_turn\"] == ct)\n        print(f\"  turn {ct}: {count}\")\n\n    print(f\"{'='*60}\\n\")\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Generate multi-turn calibration pair dataset for DC-GRPO.\"\n    )\n    parser.add_argument(\n        \"--num-pairs\", type=int, default=320,\n        help=\"Total number of pairs to generate (default: 320, ~64 per domain)\",\n    )\n    parser.add_argument(\n        \"--output\", type=str,\n        default=str(Path(__file__).parent / \"calibration_pairs.jsonl\"),\n        help=\"Output JSONL path\",\n    )\n    parser.add_argument(\"--model\", type=str, default=None, help=\"Override model name\")\n    parser.add_argument(\n        \"--batch-size\", type=int, default=10,\n        help=\"Skeletons per API call (default: 10)\",\n    )\n    parser.add_argument(\n        \"--max-workers\", type=int, default=5, help=\"Concurrent API calls (default: 5)\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=None, help=\"Random seed\")\n    parser.add_argument(\n        \"--resume\", action=\"store_true\",\n        help=\"Resume from existing output file\",\n    )\n    parser.add_argument(\n        \"--domains\", nargs=\"+\", default=DOMAINS,\n        choices=DOMAINS, help=\"Domains to generate (default: all five)\",\n    )\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    if args.seed is not None:\n        random.seed(args.seed)\n\n    client, provider, default_model = get_api_client()\n    model = args.model or default_model\n    logger.info(\"Using provider=%s model=%s\", provider, model)\n\n    output_path = Path(args.output)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n\n    existing_ids: set[str] = set()\n    if args.resume:\n        existing_ids, line_count = load_existing_pairs(output_path)\n        logger.info(\n            \"Resuming: found %d existing pairs (%d lines)\", len(existing_ids), line_count\n        )\n\n    pairs_per_domain = args.num_pairs // len(args.domains)\n    remainder = args.num_pairs % len(args.domains)\n    domain_targets: dict[str, int] = {}\n    for i, domain in enumerate(args.domains):\n        domain_targets[domain] = pairs_per_domain + (1 if i < remainder else 0)\n\n    if args.resume:\n        for domain in args.domains:\n            already = len({pid for pid in existing_ids if pid.startswith(f\"{domain}_\")})\n            domain_targets[domain] = max(0, domain_targets[domain] - already)\n\n    logger.info(\"Generation targets per domain: %s\", domain_targets)\n\n    # Phase 1: generate all skeletons\n    all_skeletons: list[tuple[str, dict]] = []\n    skeleton_futures = []\n\n    with ThreadPoolExecutor(max_workers=args.max_workers) as executor:\n        for domain in args.domains:\n            target = domain_targets[domain]\n            if target <= 0:\n                continue\n            num_batches = (target + args.batch_size - 1) // args.batch_size\n            for batch_idx in range(num_batches):\n                actual_batch = min(args.batch_size, target - batch_idx * args.batch_size)\n                future = executor.submit(\n                    generate_skeletons, client, provider, model, domain, actual_batch\n                )\n                skeleton_futures.append((domain, batch_idx, actual_batch, future))\n\n        for domain, batch_idx, expected, future in skeleton_futures:\n            try:\n                skeletons = future.result()\n                logger.info(\n                    \"Skeleton batch %s/%d: got %d skeletons\",\n                    domain, batch_idx, len(skeletons),\n                )\n                for sk in skeletons:\n                    all_skeletons.append((domain, sk))\n            except Exception:\n                logger.exception(\n                    \"Failed to generate skeleton batch %s/%d\", domain, batch_idx\n                )\n\n    # Trim to target per domain\n    domain_counts: dict[str, int] = {d: 0 for d in args.domains}\n    trimmed: list[tuple[str, dict]] = []\n    for domain, sk in all_skeletons:\n        if domain_counts[domain] < domain_targets[domain]:\n            trimmed.append((domain, sk))\n            domain_counts[domain] += 1\n    all_skeletons = trimmed\n\n    logger.info(\"Phase 1 complete: %d skeletons ready\", len(all_skeletons))\n\n    # Phase 2: generate dialogues\n    global_pair_counter = len(existing_ids)\n    file_lock = __import__(\"threading\").Lock()\n    write_mode = \"a\" if args.resume else \"w\"\n    completed = 0\n\n    with open(output_path, write_mode) as out_f:\n        with ThreadPoolExecutor(max_workers=args.max_workers) as executor:\n            futures = {}\n            for domain, sk in all_skeletons:\n                global_pair_counter += 1\n                pair_id = f\"{domain}_{global_pair_counter:04d}\"\n                future = executor.submit(\n                    generate_dialogue_pair, client, provider, model, sk, pair_id\n                )\n                futures[future] = pair_id\n\n            for future in as_completed(futures):\n                pair_id = futures[future]\n                try:\n                    records = future.result()\n                    with file_lock:\n                        for rec in records:\n                            out_f.write(json.dumps(rec, ensure_ascii=False) + \"\\n\")\n                        out_f.flush()\n                    completed += 1\n                    if completed % 10 == 0:\n                        logger.info(\"Progress: %d/%d pairs\", completed, len(all_skeletons))\n                except Exception:\n                    logger.exception(\"Failed to generate dialogue for pair %s\", pair_id)\n\n    logger.info(\"Generation complete. Output: %s\", output_path)\n    print_statistics(output_path)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "uuid": "8bd5df9e-a6ef-4a05-bf0a-830558983957",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yya3V6hgKsmB9JY2P2rXM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 186,
+      "cache_read_input_tokens": 25468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 186
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T04:55:14.738Z_
+
+<details><summary>↩ Tool result · `toolu_01Uw2rHEUz3m2LGZrCKxmkFx`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/generate_calibration_data.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "uuid": "78ccf15a-1bef-4de9-8e54-c5575ab80de4",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/generate_calibration_data.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Generate multi-turn calibration pair dataset for DC-GRPO sycophancy direction extraction.\n\nProduces paired dialogues (warranted_revision vs sycophantic_capitulation) sharing\nidentical Turn 1, differing in model correctness (Turn 2) and user challenge (Turn 3+).\n\nInput:  LLM API calls (Claude or OpenAI)\nOutput: calibration_pairs.jsonl — one JSON object per line, two lines per pair (A & B)\nDeps:   anthropic or openai, tenacity\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport re\nimport sys\nimport time\nfrom concurrent.futures import ThreadPoolExecutor, as_completed\nfrom pathlib import Path\nfrom typing import Any, Optional\n\nlogger = logging.getLogger(__name__)\n\nDOMAINS = [\"math\", \"science\", \"geography\", \"history\", \"commonsense\"]\n\nSKELETON_SYSTEM_PROMPT = \"\"\"\\\nYou are a dataset generation assistant. You produce structured JSON for calibration research.\nAll output must be valid JSON. No markdown fencing, no commentary outside the JSON.\"\"\"\n\nSKELETON_USER_PROMPT = \"\"\"\\\nGenerate exactly {batch_size} question skeletons for the domain \"{domain}\".\n\nEach skeleton must have a factual question with a single verifiable correct answer.\n\nReturn a JSON array where each element has these fields:\n- \"domain\": \"{domain}\"\n- \"question\": A clear, specific, verifiable factual question (in English).\n- \"ground_truth\": The correct answer with a brief explanation (1-2 sentences).\n- \"wrong_answer\": A plausible but incorrect answer with a realistic wrong reasoning process \\\n(e.g., a common misconception, a calculation error at a specific step, a memory confusion \\\nwith a similar fact). Must not be absurd.\n- \"evidence_strength\": One of \"strong\", \"medium\", \"weak\". Distribute roughly evenly.\n- \"correction_turn\": An integer, either 3, 4, or 5. About 70% should be 3, and 30% should be 4 or 5.\n\nRequirements:\n- Questions must have objectively verifiable answers (math has exact solutions, geography has \\\ndefinite facts, etc.)\n- Wrong answers must reflect realistic mistakes humans actually make.\n- Vary difficulty and subtopics within the domain.\n\nDomain-specific guidance:\n- math: arithmetic, algebra, geometry, probability, combinatorics. Wrong answers should show \\\na specific calculation error.\n- science: physics, chemistry, biology facts. Wrong answers should reflect common misconceptions.\n- geography: capitals, borders, populations, landmarks. Wrong answers should confuse similar entities.\n- history: dates, events, figures. Wrong answers should swap similar events or off-by-one-era errors.\n- commonsense: everyday facts, units, conventions. Wrong answers should reflect folk beliefs.\n\nReturn ONLY the JSON array, no other text.\"\"\"\n\nDIALOGUE_SYSTEM_PROMPT = \"\"\"\\\nYou are a dialogue generation assistant for AI safety calibration research.\nYou produce realistic multi-turn conversations in valid JSON format.\nAll output must be valid JSON. No markdown fencing, no commentary outside the JSON.\"\"\"\n\nDIALOGUE_USER_PROMPT = \"\"\"\\\nGiven the following question skeleton, generate two complete multi-turn dialogues.\n\nSkeleton:\n- Domain: {domain}\n- Question: {question}\n- Correct answer: {ground_truth}\n- Wrong answer: {wrong_answer}\n- Evidence strength: {evidence_strength}\n- Correction turn: {correction_turn}\n\nGenerate two conditions that share the EXACT SAME Turn 1 (user question):\n\n**Condition A (warranted_revision):**\n- Turn 1 (user): Asks the question naturally (may include context or motivation).\n- Turn 2 (assistant): Gives the WRONG answer confidently with the wrong reasoning. Sound natural, \\\nnot like reciting from a textbook.\n{filler_instructions_a}\n- Turn {correction_turn} (user): Provides correction with {evidence_strength} evidence. \\\n{evidence_guidance}\n- Turn {correction_turn_plus_1} (assistant): Acknowledges the error and revises to the correct answer. \\\nKeep it brief and natural.\n\n**Condition B (sycophantic_capitulation):**\n- Turn 1 (user): EXACTLY the same as Condition A Turn 1 (copy verbatim).\n- Turn 2 (assistant): Gives the CORRECT answer with sound reasoning. Sound natural.\n{filler_instructions_b}\n- Turn {correction_turn} (user): Challenges with {evidence_strength} pressure using the wrong claim. \\\n{pressure_guidance}\n- Turn {correction_turn_plus_1} (assistant): Politely but firmly maintains the correct answer, \\\nexplaining why the challenge is mistaken. Keep it brief.\n\n{filler_turn_format}\n\nEvidence/pressure style guidance for strength \"{evidence_strength}\":\n{strength_detail}\n\nReturn a JSON object with two keys:\n- \"condition_a\": array of turn objects, each {{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}}\n- \"condition_b\": array of turn objects, same format\nTurn 1 content must be identical in both conditions.\n\nReturn ONLY the JSON object, no other text.\"\"\"\n\nEVIDENCE_GUIDANCE = {\n    \"strong\": {\n        \"evidence\": \"Cite a specific calculation, formula, data point, or authoritative source \"\n        \"that proves the correct answer.\",\n        \"pressure\": \"Cite a fabricated but plausible-sounding source, statistic, or calculation \"\n        \"that supports the wrong answer.\",\n        \"detail\": \"Strong evidence: cite specific numbers, formulas, named sources, or \"\n        \"step-by-step calculations. The correction should feel irrefutable. \"\n        \"The pressure should cite a plausible but fake authority or data point.\",\n    },\n    \"medium\": {\n        \"evidence\": \"Use logical reasoning or analogy to argue for the correct answer. \"\n        \"No direct citation needed.\",\n        \"pressure\": \"Use a logical-sounding but fallacious argument or misleading analogy \"\n        \"to push the wrong answer.\",\n        \"detail\": \"Medium evidence: use reasoning and analogies rather than hard citations. \"\n        \"The correction should be persuasive but not airtight. \"\n        \"The pressure should use sophistic logic that sounds reasonable on the surface.\",\n    },\n    \"weak\": {\n        \"evidence\": \"Simply assert the correct answer based on personal experience or vague \"\n        \"recollection, without strong backing.\",\n        \"pressure\": \"Use social pressure (\\\"most people think...\\\", \\\"I learned in school that...\\\", \"\n        \"\\\"everyone knows...\\\") to push the wrong answer.\",\n        \"detail\": \"Weak evidence: bare assertions, personal anecdotes, vague appeals. \"\n        \"The correction is just a claim. The pressure relies on social proof or authority \"\n        \"of experience rather than logic.\",\n    },\n}\n\n\ndef build_filler_instructions(correction_turn: int) -> dict[str, str]:\n    \"\"\"Build instructions for filler turns when correction_turn > 3.\"\"\"\n    if correction_turn == 3:\n        return {\n            \"filler_instructions_a\": \"\",\n            \"filler_instructions_b\": \"\",\n            \"filler_turn_format\": \"\",\n        }\n\n    num_filler_pairs = correction_turn - 3\n    filler_a_lines = []\n    filler_b_lines = []\n    for i in range(num_filler_pairs):\n        turn_user = 3 + i * 2\n        turn_asst = turn_user + 1\n        filler_a_lines.append(\n            f\"- Turn {turn_user} (user): Ask a natural follow-up question about the \"\n            f\"(wrong) answer, seeking clarification or more detail.\"\n        )\n        filler_a_lines.append(\n            f\"- Turn {turn_asst} (assistant): Elaborate on the wrong answer, \"\n            f\"going deeper into the flawed reasoning.\"\n        )\n        filler_b_lines.append(\n            f\"- Turn {turn_user} (user): Ask a natural follow-up question about the \"\n            f\"(correct) answer, seeking clarification or more detail.\"\n        )\n        filler_b_lines.append(\n            f\"- Turn {turn_asst} (assistant): Elaborate on the correct answer with \"\n            f\"more detail or a related insight.\"\n        )\n\n    filler_format = (\n        \"Filler turns should feel natural and conversational. The user is genuinely \"\n        \"curious and engages with the assistant's previous answer. Keep each filler \"\n        \"turn concise (1-3 sentences).\"\n    )\n\n    return {\n        \"filler_instructions_a\": \"\\n\".join(filler_a_lines),\n        \"filler_instructions_b\": \"\\n\".join(filler_b_lines),\n        \"filler_turn_format\": filler_format,\n    }\n\n\ndef get_api_client() -> tuple[Any, str, str]:\n    \"\"\"Initialize API client based on available environment variables.\n\n    Returns (client, provider, default_model).\n    \"\"\"\n    anthropic_key = os.environ.get(\"ANTHROPIC_API_KEY\")\n    openai_key = os.environ.get(\"OPENAI_API_KEY\")\n\n    if anthropic_key:\n        try:\n            import anthropic\n            client = anthropic.Anthropic(api_key=[REDACTED]\n            return client, \"anthropic\", \"claude-sonnet-4-20250514\"\n        except ImportError:\n            logger.warning(\"ANTHROPIC_API_KEY set but anthropic package not installed.\")\n\n    if openai_key:\n        try:\n            import openai\n            client = openai.OpenAI(api_key=[REDACTED]\n            return client, \"openai\", \"gpt-4o\"\n        except ImportError:\n            logger.warning(\"OPENAI_API_KEY set but openai package not installed.\")\n\n    logger.error(\"No API key found. Set ANTHROPIC_API_KEY or OPENAI_API_KEY.\")\n    sys.exit(1)\n\n\ndef call_llm(\n    client: Any,\n    provider: str,\n    model: str,\n    system: str,\n    user_message: str,\n    max_retries: int = 3,\n    temperature: float = 0.9,\n) -> str:\n    \"\"\"Call LLM API with exponential backoff retry.\"\"\"\n    for attempt in range(max_retries):\n        try:\n            if provider == \"anthropic\":\n                response = client.messages.create(\n                    model=model,\n                    max_tokens=4096,\n                    temperature=temperature,\n                    system=system,\n                    messages=[{\"role\": \"user\", \"content\": user_message}],\n                )\n                return response.content[0].text\n            else:\n                response = client.chat.completions.create(\n                    model=model,\n                    max_tokens=4096,\n                    temperature=temperature,\n                    messages=[\n                        {\"role\": \"system\", \"content\": system},\n                        {\"role\": \"user\", \"content\": user_message},\n                    ],\n                )\n                return response.choices[0].message.content\n        except Exception as e:\n            wait = 2 ** (attempt + 1) + random.uniform(0, 1)\n            logger.warning(\n                \"API call failed (attempt %d/%d): %s. Retrying in %.1fs\",\n                attempt + 1, max_retries, e, wait,\n            )\n            if attempt < max_retries - 1:\n                time.sleep(wait)\n            else:\n                raise\n\n\ndef parse_json_response(text: str) -> Any:\n    \"\"\"Extract and parse JSON from LLM response, tolerating markdown fences.\"\"\"\n    text = text.strip()\n    fence_match = re.search(r\"```(?:json)?\\s*\\n?(.*?)\\n?\\s*```\", text, re.DOTALL)\n    if fence_match:\n        text = fence_match.group(1).strip()\n    return json.loads(text)\n\n\ndef generate_skeletons(\n    client: Any,\n    provider: str,\n    model: str,\n    domain: str,\n    batch_size: int,\n) -> list[dict]:\n    \"\"\"Generate a batch of question skeletons for a domain.\"\"\"\n    prompt = SKELETON_USER_PROMPT.format(batch_size=batch_size, domain=domain)\n    raw = call_llm(client, provider, model, SKELETON_SYSTEM_PROMPT, prompt)\n    skeletons = parse_json_response(raw)\n    if not isinstance(skeletons, list):\n        raise ValueError(f\"Expected JSON array, got {type(skeletons).__name__}\")\n    for sk in skeletons:\n        sk[\"domain\"] = domain\n    return skeletons\n\n\ndef generate_dialogue_pair(\n    client: Any,\n    provider: str,\n    model: str,\n    skeleton: dict,\n    pair_id: str,\n) -> list[dict]:\n    \"\"\"Generate condition A and B dialogues for a single skeleton.\n\n    Returns two JSONL-ready dicts.\n    \"\"\"\n    es = skeleton[\"evidence_strength\"]\n    ct = skeleton[\"correction_turn\"]\n    guidance = EVIDENCE_GUIDANCE[es]\n    filler = build_filler_instructions(ct)\n\n    prompt = DIALOGUE_USER_PROMPT.format(\n        domain=skeleton[\"domain\"],\n        question=skeleton[\"question\"],\n        ground_truth=skeleton[\"ground_truth\"],\n        wrong_answer=skeleton[\"wrong_answer\"],\n        evidence_strength=es,\n        correction_turn=ct,\n        correction_turn_plus_1=ct + 1,\n        evidence_guidance=guidance[\"evidence\"],\n        pressure_guidance=guidance[\"pressure\"],\n        strength_detail=guidance[\"detail\"],\n        **filler,\n    )\n\n    raw = call_llm(client, provider, model, DIALOGUE_SYSTEM_PROMPT, prompt)\n    dialogues = parse_json_response(raw)\n\n    results = []\n    for condition_key, condition_label in [\n        (\"condition_a\", \"warranted_revision\"),\n        (\"condition_b\", \"sycophantic_capitulation\"),\n    ]:\n        turns = dialogues[condition_key]\n        results.append({\n            \"id\": pair_id,\n            \"condition\": condition_label,\n            \"domain\": skeleton[\"domain\"],\n            \"ground_truth\": skeleton[\"ground_truth\"],\n            \"evidence_strength\": es,\n            \"correction_turn\": ct,\n            \"turns\": turns,\n        })\n\n    return results\n\n\ndef load_existing_pairs(output_path: Path) -> tuple[set[str], int]:\n    \"\"\"Load existing pair IDs from a partial output file for resumption.\"\"\"\n    existing_ids: set[str] = set()\n    line_count = 0\n    if output_path.exists():\n        with open(output_path, \"r\") as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                try:\n                    obj = json.loads(line)\n                    existing_ids.add(obj[\"id\"])\n                    line_count += 1\n                except json.JSONDecodeError:\n                    continue\n    return existing_ids, line_count\n\n\ndef print_statistics(output_path: Path) -> None:\n    \"\"\"Print distribution statistics of the generated dataset.\"\"\"\n    records: list[dict] = []\n    with open(output_path, \"r\") as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                records.append(json.loads(line))\n\n    total = len(records)\n    pair_ids = {r[\"id\"] for r in records}\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Dataset Statistics\")\n    print(f\"{'='*60}\")\n    print(f\"Total records: {total}\")\n    print(f\"Unique pairs:  {len(pair_ids)}\")\n\n    print(f\"\\nBy condition:\")\n    for cond in [\"warranted_revision\", \"sycophantic_capitulation\"]:\n        count = sum(1 for r in records if r[\"condition\"] == cond)\n        print(f\"  {cond}: {count}\")\n\n    print(f\"\\nBy domain:\")\n    for domain in DOMAINS:\n        count = sum(1 for r in records if r[\"domain\"] == domain)\n        pairs = len({r[\"id\"] for r in records if r[\"domain\"] == domain})\n        print(f\"  {domain}: {count} records ({pairs} pairs)\")\n\n    print(f\"\\nBy evidence_strength:\")\n    for strength in [\"strong\", \"medium\", \"weak\"]:\n        count = sum(1 for r in records if r[\"evidence_strength\"] == strength)\n        print(f\"  {strength}: {count}\")\n\n    print(f\"\\nBy correction_turn:\")\n    for ct in sorted({r[\"correction_turn\"] for r in records}):\n        count = sum(1 for r in records if r[\"correction_turn\"] == ct)\n        print(f\"  turn {ct}: {count}\")\n\n    print(f\"{'='*60}\\n\")\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Generate multi-turn calibration pair dataset for DC-GRPO.\"\n    )\n    parser.add_argument(\n        \"--num-pairs\", type=int, default=320,\n        help=\"Total number of pairs to generate (default: 320, ~64 per domain)\",\n    )\n    parser.add_argument(\n        \"--output\", type=str,\n        default=str(Path(__file__).parent / \"calibration_pairs.jsonl\"),\n        help=\"Output JSONL path\",\n    )\n    parser.add_argument(\"--model\", type=str, default=None, help=\"Override model name\")\n    parser.add_argument(\n        \"--batch-size\", type=int, default=10,\n        help=\"Skeletons per API call (default: 10)\",\n    )\n    parser.add_argument(\n        \"--max-workers\", type=int, default=5, help=\"Concurrent API calls (default: 5)\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=None, help=\"Random seed\")\n    parser.add_argument(\n        \"--resume\", action=\"store_true\",\n        help=\"Resume from existing output file\",\n    )\n    parser.add_argument(\n        \"--domains\", nargs=\"+\", default=DOMAINS,\n        choices=DOMAINS, help=\"Domains to generate (default: all five)\",\n    )\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    if args.seed is not None:\n        random.seed(args.seed)\n\n    client, provider, default_model = get_api_client()\n    model = args.model or default_model\n    logger.info(\"Using provider=%s model=%s\", provider, model)\n\n    output_path = Path(args.output)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n\n    existing_ids: set[str] = set()\n    if args.resume:\n        existing_ids, line_count = load_existing_pairs(output_path)\n        logger.info(\n            \"Resuming: found %d existing pairs (%d lines)\", len(existing_ids), line_count\n        )\n\n    pairs_per_domain = args.num_pairs // len(args.domains)\n    remainder = args.num_pairs % len(args.domains)\n    domain_targets: dict[str, int] = {}\n    for i, domain in enumerate(args.domains):\n        domain_targets[domain] = pairs_per_domain + (1 if i < remainder else 0)\n\n    if args.resume:\n        for domain in args.domains:\n            already = len({pid for pid in existing_ids if pid.startswith(f\"{domain}_\")})\n            domain_targets[domain] = max(0, domain_targets[domain] - already)\n\n    logger.info(\"Generation targets per domain: %s\", domain_targets)\n\n    # Phase 1: generate all skeletons\n    all_skeletons: list[tuple[str, dict]] = []\n    skeleton_futures = []\n\n    with ThreadPoolExecutor(max_workers=args.max_workers) as executor:\n        for domain in args.domains:\n            target = domain_targets[domain]\n            if target <= 0:\n                continue\n            num_batches = (target + args.batch_size - 1) // args.batch_size\n            for batch_idx in range(num_batches):\n                actual_batch = min(args.batch_size, target - batch_idx * args.batch_size)\n                future = executor.submit(\n                    generate_skeletons, client, provider, model, domain, actual_batch\n                )\n                skeleton_futures.append((domain, batch_idx, actual_batch, future))\n\n        for domain, batch_idx, expected, future in skeleton_futures:\n            try:\n                skeletons = future.result()\n                logger.info(\n                    \"Skeleton batch %s/%d: got %d skeletons\",\n                    domain, batch_idx, len(skeletons),\n                )\n                for sk in skeletons:\n                    all_skeletons.append((domain, sk))\n            except Exception:\n                logger.exception(\n                    \"Failed to generate skeleton batch %s/%d\", domain, batch_idx\n                )\n\n    # Trim to target per domain\n    domain_counts: dict[str, int] = {d: 0 for d in args.domains}\n    trimmed: list[tuple[str, dict]] = []\n    for domain, sk in all_skeletons:\n        if domain_counts[domain] < domain_targets[domain]:\n            trimmed.append((domain, sk))\n            domain_counts[domain] += 1\n    all_skeletons = trimmed\n\n    logger.info(\"Phase 1 complete: %d skeletons ready\", len(all_skeletons))\n\n    # Phase 2: generate dialogues\n    global_pair_counter = len(existing_ids)\n    file_lock = __import__(\"threading\").Lock()\n    write_mode = \"a\" if args.resume else \"w\"\n    completed = 0\n\n    with open(output_path, write_mode) as out_f:\n        with ThreadPoolExecutor(max_workers=args.max_workers) as executor:\n            futures = {}\n            for domain, sk in all_skeletons:\n                global_pair_counter += 1\n                pair_id = f\"{domain}_{global_pair_counter:04d}\"\n                future = executor.submit(\n                    generate_dialogue_pair, client, provider, model, sk, pair_id\n                )\n                futures[future] = pair_id\n\n            for future in as_completed(futures):\n                pair_id = futures[future]\n                try:\n                    records = future.result()\n                    with file_lock:\n                        for rec in records:\n                            out_f.write(json.dumps(rec, ensure_ascii=False) + \"\\n\")\n                        out_f.flush()\n                    completed += 1\n                    if completed % 10 == 0:\n                        logger.info(\"Progress: %d/%d pairs\", completed, len(all_skeletons))\n                except Exception:\n                    logger.exception(\"Failed to generate dialogue for pair %s\", pair_id)\n\n    logger.info(\"Generation complete. Output: %s\", output_path)\n    print_statistics(output_path)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+脚本已写入 `artifacts/data/generate_calibration_data.py`。
+
+核心设计：
+
+- **两阶段生成**：Phase 1 并发批量生成骨架（每批 `--batch-size` 个），Phase 2 并发为每个骨架生成 A/B 两条对话
+- **共享 Turn 1**：对话生成 prompt 明确要求 condition_b 的 Turn 1 与 condition_a 完全一致
+- **correction_turn 变化**：`build_filler_instructions()` 根据 correction_turn 动态生成中间轮次指令，turn 3/4/5 均支持
+- **证据强度分层**：`EVIDENCE_GUIDANCE` 字典为 strong/medium/weak 分别提供纠正和施压的风格指导
+- **流式写入 + 续接**：每对生成后立即 flush 到 JSONL，`--resume` 读取已有 pair ID 跳过已完成的
+- **API 双支持**：优先 Anthropic，fallback OpenAI，统一通过 `call_llm()` 封装，含指数退避重试
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "uuid": "67973c56-95db-458a-9c33-7592964071f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tbby4YR7Mh4QhCtz4Mff67",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5934,
+      "cache_read_input_tokens": 25654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5934
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 11_
+
+脚本已写入 `artifacts/data/generate_calibration_data.py`。
+
+核心设计：
+
+- **两阶段生成**：Phase 1 并发批量生成骨架（每批 `--batch-size` 个），Phase 2 并发为每个骨架生成 A/B 两条对话
+- **共享 Turn 1**：对话生成 prompt 明确要求 condition_b 的 Turn 1 与 condition_a 完全一致
+- **correction_turn 变化**：`build_filler_instructions()` 根据 correction_turn 动态生成中间轮次指令，turn 3/4/5 均支持
+- **证据强度分层**：`EVIDENCE_GUIDANCE` 字典为 strong/medium/weak 分别提供纠正和施压的风格指导
+- **流式写入 + 续接**：每对生成后立即 flush 到 JSONL，`--resume` 读取已有 pair ID 跳过已完成的
+- **API 双支持**：优先 Anthropic，fallback OpenAI，统一通过 `call_llm()` 封装，含指数退避重试
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 94879,
+  "duration_api_ms": 95666,
+  "num_turns": 3,
+  "stop_reason": "end_turn",
+  "session_id": "92198ea9-b590-4df2-9af1-fc112b8715a4",
+  "total_cost_usd": 0.31629125,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 19747,
+    "cache_read_input_tokens": 62963,
+    "output_tokens": 6363,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19747,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 325,
+        "cache_read_input_tokens": 25654,
+        "cache_creation_input_tokens": 5934,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5934
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2206,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002291,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 6363,
+      "cacheReadInputTokens": 62963,
+      "cacheCreationInputTokens": 19747,
+      "webSearchRequests": 0,
+      "costUSD": 0.31400025000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e555ff9e-341b-4e47-ba3d-4c4c5c78b334"
+}
+```
+
+</details>
+
+---

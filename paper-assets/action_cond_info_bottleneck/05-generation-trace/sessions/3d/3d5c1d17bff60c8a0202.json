@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d5c1d17bff60c8a0202",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "urgent kill duplicate pid32153",
+  "task_key": "worker_urgent_kill-duplicate-pid32153_20260516T140515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_kill-duplicate-pid32153_20260516T140515_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "925479f3f99ceed9809cacb6dc5ac5c75ee76afb5a129f3c9d18aa2e8e1dbd34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Kill 结果：**\n\n- PID 32153：已终止，GPU 显存已释放\n- PID 21363：正常运行，GPU 0，v7_contrastive seed1，已跑 1h20m\n- PID 27427：正常运行，GPU 1（注：命令行写的 `--gpu 0` 但实际在 GPU 1），v7_seed2，已跑 21m\n- GPU 0：仅 PID 21363 一个训练进程\n- GPU 1：仅 PID 27427 一个训练进程\n\n另外注意到 PID 33047 占用 ~6.5GB 显存，不属于已知训练任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-kill-duplicate-pid32153.md"
+}

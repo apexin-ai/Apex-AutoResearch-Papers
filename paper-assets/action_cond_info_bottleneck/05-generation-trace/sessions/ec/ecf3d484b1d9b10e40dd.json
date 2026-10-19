@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecf3d484b1d9b10e40dd",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diagnose mvp1 baseline plus remaining",
+  "task_key": "worker_diagnose_mvp1_baseline_plus_remaining_20260516T094137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp1_baseline_plus_remaining_20260516T094137_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "ef8d354d941149e2629b808daec3b01769d8f2d292c2995fbc31da2126c17088"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验实际已成功完成，cron 标记 failed 是误报。**\n\n### 状态汇总\n\n| 项目 | 结果 |\n|------|------|\n| PID 675231 | 已退出（正常完成后自行退出） |\n| libero_10 eval | **已完成** — `eval_info.json` 存在 |\n| libero_10 SR | **67.2%**（500 episodes） |\n| 日志尾部 | `2026-05-16 17:22:15 All suites completed.` |\n| GPU 0 | 被 PID 866194 占用（16216 MiB, 99% util），非本实验 |\n\n### 四个 suite 最终结果\n\n| Suite | Success Rate |\n|-------|-------------|\n| libero_spatial | 81.6% |\n| libero_object | 88.8% |\n| libero_goal | 87.8% |\n| libero_10 | 67.2% |\n\n### 原因分析\n\n父进程 PID 471056（shell 脚本）被外部信号杀死，但子进程 PID 675231（实际 eval python 进程）不受影响继续运行并正常完成。Cron 监控只检测父进程存活 + W&B 上报，两者都不满足，所以误判 failed。\n\n### 结论\n\n**不需要重跑。** 所有 4 个 suite 的 eval 结果完整。GPU 0 当前被另一个进程（PID 866194）占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp1-baseline-plus-remaining-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1217c8eef990e38243af",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp004 heldout prep",
+  "task_key": "worker_code_exp004-heldout-prep_20260523T022814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp004-heldout-prep_20260523T022814_result.json",
+    "occurrence": 1,
+    "bytes": 1916,
+    "sha256": "ca86fe3f3d36888c4a1fff64d93f1513eb3b1046cdabc656018ae176210dca0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 脚本路径\n`/root/contrastive_entrain_calib/training/run_exp004_heldout.py` (315 行)\n\n### 2. 数据文件\n- 路径: `/root/contrastive_entrain_calib/data/train_split.jsonl`\n- 行数: **292** (146 pairs)\n- 字段: `pair_id, condition, domain, ground_truth, wrong_answer, pressure_answer, evidence_strength, turns, gt_verified`\n\n### 3. 模型路径\n`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n\n### 4. cuda:1 状态\n**被占用。** PID 553700 正在运行 `run_exp003_len512_r3only.py`，占用 41337 MiB。cuda:0 也被占用（PID 516696, `run_exp003_gs8_r3only.py`）。需要等现有实验完成后才能启动。\n\n### 5. 推荐启动命令\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python training/run_exp004_heldout.py\n```\n\n### 6. 与原始 exp-004s2 脚本的差异\n\n| 项目 | 原始 (run_exp004s2_act.py) | heldout 版 |\n|------|---------------------------|------------|\n| docstring | exp-004-s2 seed 2 | exp-004-heldout train split |\n| `--data-path` | `data/calibration_v2_1_expanded.jsonl` | `data/train_split.jsonl` |\n| `--output-dir` | `outputs/exp-004-act-baseline-s2` | `/root/autodl-tmp/.../exp004_heldout/` |\n| `--seed` | 43 | **42** |\n| parser description | \"exp-004-s2 ACT seed 2\" | \"exp-004-heldout ACT on train split\" |\n\n其余参数完全一致：LoRA r=64/alpha=128/7 modules/dropout=0.05, lr=5e-5, warmup=200, max_steps=8000, grad_accum=16, lambda_l2=0.1, save_steps=500, max_seq_len=1024, AdamW weight_decay=0.01, grad_clip=1.0, bfloat16, gradient_checkpointing.\n\n### 7. 注意事项\n- **两块 GPU 都被占用**，需等 exp003_len512 或 exp003_gs8 完成后腾出 GPU 才能启动\n- 输出目录已创建: `/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp004-heldout-prep.md"
+}

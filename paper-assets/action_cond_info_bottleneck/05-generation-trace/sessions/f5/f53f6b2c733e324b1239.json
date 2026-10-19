@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f53f6b2c733e324b1239",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra fix processor rerun std",
+  "task_key": "worker_infra_fix-processor-rerun-std_20260515T180832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-processor-rerun-std_20260515T180832_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "2f23f6eaaa4fdf7effcbfa743b71a0f5931046bc2e15f14898eb9b5855bf779e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，eval 已成功启动。\n\n**产出汇总：**\n\n1. **Processor 修复** — 成功。`SmolVLMProcessor` 已下载并缓存到 `/root/autodl-tmp/.hf_cache/models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/`。修复关键：eval 脚本必须同时设置 `HF_HUB_CACHE=/root/autodl-tmp/.hf_cache`（之前的脚本已有此设置，所以 v2 脚本保持一致即可）。\n2. **Eval 已启动** — PID 89136，GPU 1 占用 4340 MiB / 8% 利用率，正在跑 `libero_spatial`（第一个 suite）。\n3. **Registry 已更新** — `mvp1_baseline_std` 状态 RUNNING，含修复说明。\n4. **日志路径** — `/root/acib/outputs/baseline_std_v2/main.log`\n\n注意：GPU 0 的 PID 10910（原 baseline_plus）VRAM 已释放（从 5407→1 MiB），可能已结束或崩溃，需要后续确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-processor-rerun-std.md"
+}

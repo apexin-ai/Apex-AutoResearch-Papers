@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-s2-eval-ckpt7500",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:21:03.928Z",
+    "updated_at": "2026-05-23T02:21:40.433Z",
+    "hypothesis": "ACT seed 2 ckpt-7500 eval: cross-seed consistency check, 14th of 16 checkpoints",
+    "parent": "exp-004-s2-v2"
+  },
+  "timestamp": "2026-05-23T02:21:40.628826+00:00",
+  "trigger": "update_registry"
+}

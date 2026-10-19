@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52302cf7982eff153051",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh eval progress check",
+  "task_key": "worker_ssh_eval-progress-check_20260517T172241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-progress-check_20260517T172241_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "2ca0150811e29eff953c325475b35735185f8b2a939e97628c930af1d0a331d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n进程状态: PID 40598 [运行中], PID 44022 [运行中]\nGPU 状态: GPU 0 (PID 40598) 3546MiB, GPU 1 (PID 44022) 3524MiB, 均 1% util\n\nα=0.0 (GPU 0):\n  spatial: 59.4% ✅ (500 ep, 112.8 min)\n  object: 进行中, 26/50 ep (当前 task), running SR=57.7%\n  goal: 未开始\n  libero_10: 未开始\n\nα=1.0 (GPU 1):\n  spatial: 61.0% ✅ (500 ep, 113.3 min)\n  object: 进行中, 15/50 ep (当前 task), running SR=73.3%\n  goal: 未开始\n  libero_10: 未开始\n```\n\n时间估算：每个 suite 约 113 min。object 从 ~23:25 开始已跑约 2h，接近完成。剩余 goal + libero_10 还需约 3.5-4h，预计全部完成时间约 05:00-05:30 (May 18)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-progress-check.md"
+}

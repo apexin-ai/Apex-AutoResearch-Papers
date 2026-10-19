@@ -1,0 +1,7 @@
+# ACIB project dependencies (on top of lerobot[smolvla])
+# Base: pip install "lerobot[smolvla]"
+torch>=2.7
+transformers>=5.4.0
+accelerate>=1.10.0
+einops>=0.8.0
+wandb>=0.24.0

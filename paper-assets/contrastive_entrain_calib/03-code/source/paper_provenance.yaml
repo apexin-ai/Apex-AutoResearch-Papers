@@ -1,0 +1,1398 @@
+paper:
+  title: ''
+  version: 49
+  generated_at: '2026-05-24T23:23:23.283024+00:00'
+claims:
+- id: C001
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: 5-fold cross-validated AUROC 0.827 ± 0.028 on Qwen3-8B at layer 19
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: cv_auroc_mean
+  decisions: []
+  deprecated: true
+- id: C003
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: 362 style-controlled contrastive activations from 181 paired examples
+  type: method
+  evidence:
+  - exp_id: exp-001
+    metric: num_pairs
+  decisions: []
+  deprecated: true
+- id: C006
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: cosine similarity between consecutive d_syc directions ≈ 0.96 at step 500
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: recalibration_cosine
+  decisions: []
+  deprecated: true
+- id: C007
+  location:
+    section: direction_quality
+    paragraph: 0
+    sentence: 0
+  text: Qwen3-8B d_syc 5-fold CV AUROC 0.827 +/- 0.028 at best layer L19
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: cv_auroc_mean
+  decisions: []
+  deprecated: false
+- id: C009
+  location:
+    section: direction_quality
+    paragraph: 0
+    sentence: 0
+  text: 'Evidence strength stratification: weak 0.675, medium 0.883, strong 0.929'
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: auroc_weak,auroc_medium,auroc_strong
+  decisions: []
+  deprecated: false
+- id: C012
+  location:
+    section: direction_quality
+    paragraph: 0
+    sentence: 0
+  text: Llama-3-8B d_syc CV AUROC 0.779 +/- 0.019 at best layer L16
+  type: quantitative
+  evidence:
+  - exp_id: exp-012
+    metric: cv_auroc_mean
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: direction_quality
+    paragraph: 0
+    sentence: 0
+  text: 'Llama-3-8B evidence strength: weak 0.711, medium 0.864, strong 0.911'
+  type: quantitative
+  evidence:
+  - exp_id: exp-012
+    metric: evidence_strength_auroc
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: direction_quality
+    paragraph: 0
+    sentence: 0
+  text: Llama-3-8B style-controlled AUROC 0.923
+  type: quantitative
+  evidence:
+  - exp_id: exp-012
+    metric: style_controlled_auroc
+  decisions: []
+  deprecated: false
+- id: C027
+  location:
+    section: direction_quality
+    paragraph: 0
+    sentence: 0
+  text: Llama-3-8B per-domain AUROC 0.751 (geography) to 0.844 (commonsense)
+  type: quantitative
+  evidence:
+  - exp_id: exp-012
+    metric: domain_auroc
+  decisions: []
+  deprecated: false
+- id: C034
+  location:
+    section: direction_quality
+    paragraph: 0
+    sentence: 0
+  text: d_syc probe AUROC 0.835 vs random direction 0.727 (delta +0.108)
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: probe_ablation
+  decisions: []
+  deprecated: false
+- id: C042
+  location:
+    section: direction_quality
+    paragraph: 0
+    sentence: 0
+  text: Cosine similarity between consecutive d_syc ~0.96 at step 500
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: recalibration_cosine
+  decisions: []
+  deprecated: false
+- id: C043
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: Activation norms 100x to 1200x across layers cause tanh gate saturation
+  type: mechanistic
+  evidence:
+  - exp_id: exp-002
+    metric: activation_norms
+  decisions: []
+  deprecated: true
+- id: C045
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: Cosine gap valid vs invalid ~0.098 (7-layer mean)
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: cosine_gap
+  decisions: []
+  deprecated: true
+- id: C048
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: Recalibration raises AUROC from 0.82 to 0.91 yet reward still fails
+  type: quantitative
+  evidence:
+  - exp_id: exp002v2-recalib
+    metric: recalib_auroc
+  decisions: []
+  deprecated: true
+- id: C052
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: 'Mode collapse: entropy 0.069, response length 62 tokens after recalibration'
+  type: quantitative
+  evidence:
+  - exp_id: exp002v2-recalib
+    metric: entropy,length
+  decisions: []
+  deprecated: true
+- id: C057
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: R3 saturates at 0.9998 by step 100
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v3
+    metric: r3_saturation_step
+  decisions: []
+  deprecated: true
+- id: C063
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: R1 mean oscillates -0.46 to +0.41 with no sustained positive trend
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v3
+    metric: r1_behavior
+  decisions: []
+  deprecated: true
+- id: C070
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: 'Terminal mode collapse at step 2160: entropy 0.056 to 0.026'
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v3
+    metric: collapse_timeline
+  decisions: []
+  deprecated: true
+- id: C078
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: d_syc encodes belief change direction but not change warrant - root cause
+    of cosine failure
+  type: mechanistic
+  evidence:
+  - exp_id: exp-002v3
+    metric: root_cause
+  decisions: []
+  deprecated: true
+- id: C079
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: 'Differentiable probe gamed in ~30 steps: ToF=0.978, NoF=0.006'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008
+    metric: preset_eval_ckpt3000 (actually ~30 steps effective)
+  decisions: []
+  deprecated: true
+- id: C081
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: 'Binary probe: ToF=0.000 at ckpt-500, NoF=0.9945, SYCONScore=0'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: preset_eval_ckpt500
+  decisions: []
+  deprecated: true
+- id: C084
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: Behavioral collapse at step 500 while entropy remains 0.70
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: stubbornness_onset
+  decisions: []
+  deprecated: true
+- id: C088
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: Entropy collapse at ~step 1840, diagnostic lag ~1300 steps
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: trajectory
+  decisions: []
+  deprecated: true
+- id: C093
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: Combined reward R averages +0.72 during behavioral collapse
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: r1_mean_during_collapse
+  decisions: []
+  deprecated: true
+- id: C099
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: '4-checkpoint trajectory: ckpt-500 ToF=0.000, ckpt-1000 ToF=0.006, ckpt-1500
+    ToF=0.000, ckpt-2000 ToF=0.000'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: preset_eval_ckpt500,1000,1500,2000
+  decisions: []
+  deprecated: true
+- id: C106
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: Any d_syc-derived reward without conditioning on input validity exhibits gaming
+    (differentiable) or rigidity trap (non-differentiable)
+  type: mechanistic
+  evidence:
+  - exp_id: exp-008v3
+    metric: root_cause
+  - exp_id: exp-008
+    metric: root_cause
+  decisions: []
+  deprecated: true
+- id: C107
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: d_syc achieves CV AUROC 0.827 ± 0.028 on Qwen3-8B
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: cv_auroc_mean
+    value: 0.8269
+  decisions: []
+  deprecated: true
+- id: C109
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: d_syc achieves CV AUROC 0.779 ± 0.019 on Llama-3-8B
+  type: quantitative
+  evidence:
+  - exp_id: exp-012
+    metric: cv_auroc_mean
+    value: 0.7793
+  decisions: []
+  deprecated: true
+- id: C112
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Evidence strength gradient: weak 0.675, medium 0.883, strong 0.929'
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: auroc_weak/medium/strong
+    value: 0.675/0.883/0.929
+  decisions: []
+  deprecated: true
+- id: C116
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Cosine drift approximately 0.96 at 500 steps
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: direction_stability
+  decisions: []
+  deprecated: true
+- id: C121
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Cosine reward gap 0.098 between valid and sycophantic activations
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: cosine_gap
+  decisions: []
+  deprecated: true
+- id: C127
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Recalibration improves AUROC from 0.82 to 0.91 yet triggers mode collapse
+  type: quantitative
+  evidence:
+  - exp_id: exp002v2-recalib
+    metric: auroc_improvement
+  decisions: []
+  deprecated: true
+- id: C134
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Binary probe: ToF drops to zero within 500 steps, entropy 0.70'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: preset_eval_ckpt500
+    value:
+      ToF: 0
+      entropy: 0.7
+  decisions: []
+  deprecated: true
+- id: C142
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 1300-step lag before distributional collapse
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: collapse_timeline
+  decisions: []
+  deprecated: true
+- id: C151
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Reward averages +0.72 during behavioral collapse
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: reward_during_collapse
+  decisions: []
+  deprecated: true
+- id: C161
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'C1: Qwen3-8B AUROC 0.827 ± 0.028, Llama-3-8B AUROC 0.779 ± 0.019'
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: cv_auroc_mean
+  - exp_id: exp-012
+    metric: cv_auroc_mean
+  decisions: []
+  deprecated: true
+- id: C162
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: d_syc achieves AUROC 0.82 but fails as GRPO reward in all tested formulations
+  type: qualitative
+  evidence:
+  - exp_id: exp-001
+    metric: cv_auroc_mean
+  - exp_id: exp-002
+    note: cosine failure chain
+  - exp_id: exp-008v3
+    note: probe trap
+  decisions: []
+  deprecated: true
+- id: C164
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Probe gamed within 500 training steps, behavioral collapse preceding entropy
+    collapse by ~1300 steps
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: stubbornness_onset
+  decisions: []
+  deprecated: true
+- id: C165
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Llama-3-8B cross-model AUROC 0.779 ± 0.019
+  type: quantitative
+  evidence:
+  - exp_id: exp-012
+    metric: cv_auroc_mean
+    value: 0.7793
+  decisions: []
+  deprecated: false
+- id: C167
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: ~200 H100-equivalent hours compute budget
+  type: quantitative
+  evidence:
+  - exp_id: meta
+    note: compute budget estimate
+  decisions: []
+  deprecated: false
+- id: C168
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: d_syc CV AUROC 0.827 ± 0.028 on Qwen3-8B
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: cv_auroc_mean
+    value: 0.8269
+  decisions: []
+  deprecated: false
+- id: C170
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: d_syc CV AUROC 0.779 ± 0.019 on Llama-3-8B
+  type: quantitative
+  evidence:
+  - exp_id: exp-012
+    metric: cv_auroc_mean
+    value: 0.7793
+  decisions: []
+  deprecated: false
+- id: C173
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Evidence gradient: weak 0.675, medium 0.883, strong 0.929'
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: auroc_weak/medium/strong
+  decisions: []
+  deprecated: false
+- id: C177
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Cosine drift ~0.96 at 500 steps
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: direction_stability
+  decisions: []
+  deprecated: false
+- id: C182
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Cosine reward gap 0.098
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: cosine_gap
+  decisions: []
+  deprecated: false
+- id: C188
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Recalibration AUROC 0.82→0.91 yet mode collapse
+  type: quantitative
+  evidence:
+  - exp_id: exp002v2-recalib
+  decisions: []
+  deprecated: false
+- id: C195
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Binary probe: ToF=0 at step 500, entropy 0.70'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: preset_eval_ckpt500
+  decisions: []
+  deprecated: false
+- id: C203
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'R3-only GRPO SYCONScore: 0.074 (ckpt-1000) → 0.114 (ckpt-5000), never exceeds
+    vanilla 0.134'
+  type: quantitative
+  evidence:
+  - exp_id: exp-003
+    metric: trajectory
+    note: ckpt-1000=0.074, ckpt-2000=0.085, ckpt-3000=0.095, ckpt-5000=0.114
+  decisions: []
+  deprecated: false
+- id: C212
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: U-shaped recovery +0.010/1000steps
+  type: quantitative
+  evidence:
+  - exp_id: exp-003
+    metric: slope
+  decisions: []
+  deprecated: false
+- id: C222
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: ACT SYCONScore 0.301 at ckpt-8000
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: best_SYCONScore
+    value: 0.3013
+  decisions: []
+  deprecated: false
+- id: C233
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Vanilla baseline SYCONScore 0.134
+  type: quantitative
+  evidence:
+  - exp_id: exp-016
+    metric: unified_reeval_D027.alpha_0.0.SYCONScore
+    value: 0.1335
+  decisions: []
+  deprecated: false
+- id: C245
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 1300-step lag before distributional collapse, reward +0.72
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: collapse_timeline
+  decisions: []
+  deprecated: false
+- id: C258
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'C1: All d_syc formulations fail + R3-only fails (0.114 vs vanilla 0.134)'
+  type: qualitative
+  evidence:
+  - exp_id: exp-002
+  - exp_id: exp-008v3
+  - exp_id: exp-003
+  decisions: []
+  deprecated: false
+- id: C272
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'C3: ACT 0.301, all GRPO below vanilla'
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: best_SYCONScore
+  - exp_id: exp-003
+  decisions: []
+  deprecated: false
+- id: C273
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: Qwen3-8B layer 19 AUROC 0.827 ± 0.028
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: cv_auroc_mean
+  decisions: []
+  deprecated: true
+- id: C275
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: 181 contrastive pairs, 362 activations, weak/medium/strong
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: num_pairs
+  decisions: []
+  deprecated: true
+- id: C278
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: Direction cosine similarity ~0.96 at step 500
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: direction_stability
+  decisions: []
+  deprecated: true
+- id: C282
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: ACT uses SFT with L2 activation consistency loss, dense per-token supervision
+  type: qualitative
+  evidence:
+  - exp_id: exp-004
+    note: ACT is SFT-based, not RL
+  decisions: []
+  deprecated: true
+- id: C283
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Llama-3-8B AUROC 0.779 ± 0.019 cross-model confirmation
+  type: quantitative
+  evidence:
+  - exp_id: exp-012
+    metric: cv_auroc_mean
+  decisions: []
+  deprecated: false
+- id: C285
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Vanilla SYCONScore 0.134
+  type: quantitative
+  evidence:
+  - exp_id: exp-016
+    metric: unified_reeval_D027.alpha_0.0.SYCONScore
+    value: 0.1335
+  decisions: []
+  deprecated: false
+- id: C288
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'R3-only GRPO trajectory: 0.074→0.085→0.095→0.114→0.114 (plateau)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-003
+    metric: trajectory_with_plateau
+  decisions: []
+  deprecated: false
+- id: C292
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: R3-only plateaus 15% below vanilla at ckpt-4000/5000
+  type: quantitative
+  evidence:
+  - exp_id: exp-003
+    metric: plateau_at_0.114
+  decisions: []
+  deprecated: false
+- id: C297
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Binary probe SYCONScore 0.000, ToF=0, NoF=0.995
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: preset_eval_ckpt500
+  decisions: []
+  deprecated: false
+- id: C303
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: ActAdd SYCONScore 0.054, ToF=0.028, NoF=0.961
+  type: quantitative
+  evidence:
+  - exp_id: exp-016
+    metric: unified_reeval_D027.alpha_5.0
+  decisions: []
+  deprecated: false
+- id: C310
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: ACT SYCONScore 0.301, ToF=0.182, NoF=0.867 at ckpt-8000
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: preset_eval_ckpt8000
+  decisions: []
+  deprecated: false
+- id: C318
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'ACT non-monotonic: 0.255→0.214 (dip)→0.262→0.301'
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: trajectory
+  decisions: []
+  deprecated: false
+- id: C327
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: ACT ckpt-4000 dip -4.1pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: ckpt4000_dip
+  decisions: []
+  deprecated: false
+- id: C337
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: ACT ckpt-500 SYCONScore 0.170 exceeds R3-only plateau
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: preset_eval_ckpt500
+  decisions: []
+  deprecated: false
+- id: C338
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: d_syc AUROC 0.82 on Qwen3-8B, 0.78 on Llama-3-8B
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+  - exp_id: exp-012
+  decisions: []
+  deprecated: false
+- id: C340
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: All 3 formulations failed across 6 configurations
+  type: qualitative
+  evidence:
+  - exp_id: exp-002
+  - exp_id: exp-002v2
+  - exp_id: exp002v2-recalib
+  - exp_id: exp-002v3
+  - exp_id: exp-008
+  - exp_id: exp-008v3
+  decisions: []
+  deprecated: false
+- id: C343
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: ToF=0 by step 500, entropy collapse 1300 steps later
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+  decisions: []
+  deprecated: false
+- id: C347
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: R3-only plateau at 0.114, below vanilla 0.134
+  type: quantitative
+  evidence:
+  - exp_id: exp-003
+  decisions: []
+  deprecated: false
+- id: C352
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: ACT SYCONScore 0.301
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: best_SYCONScore
+  decisions: []
+  deprecated: false
+- id: C353
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: d_syc achieves cross-validated AUROC above 0.82
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: auroc
+    value: 0.827±0.028
+  decisions: []
+  deprecated: false
+- id: C355
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Three d_syc-based GRPO reward formulations tested across two model families
+  type: methodological
+  evidence:
+  - exp_id: exp-002
+  - exp_id: exp-002v2
+  - exp_id: exp-002v3
+  - exp_id: exp-008
+  - exp_id: exp-012
+  decisions: []
+  deprecated: false
+- id: C358
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Every formulation fails
+  type: qualitative
+  evidence:
+  - exp_id: exp-002
+  - exp_id: exp-002v2
+  - exp_id: exp-002v3
+  - exp_id: exp-008
+  decisions: []
+  deprecated: false
+- id: C362
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Cosine reward cannot separate valid revision from sycophantic capitulation
+    in narrow online activation gap
+  type: qualitative
+  evidence:
+  - exp_id: exp-002
+  - exp_id: exp-002v2
+  decisions: []
+  deprecated: false
+- id: C367
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Probe reward stubbornness trap: true-positive flip rate drops to zero within
+    500 steps'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008
+    metric: tof
+    value: '0.0'
+    step: 500
+  decisions: []
+  deprecated: false
+- id: C373
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'R3-only behavioral reward: sycophancy scores plateau below vanilla baseline'
+  type: quantitative
+  evidence:
+  - exp_id: exp-003
+    metric: sycon
+    value: '0.114'
+  decisions: []
+  deprecated: false
+- id: C380
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Only supervised fine-tuning with dense per-token supervision succeeds
+  type: qualitative
+  evidence:
+  - exp_id: exp-004
+    metric: sycon
+    value: '0.301'
+  decisions: []
+  deprecated: false
+- id: C388
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: d_syc encodes whether belief changed, not whether it should have
+  type: analytical
+  evidence:
+  - exp_id: exp-001
+  - exp_id: exp-002
+  - exp_id: exp-008
+  decisions: []
+  deprecated: false
+- id: C397
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Representation geometry sufficient to detect a behavior is not automatically
+    suitable for optimizing against it
+  type: analytical
+  evidence:
+  - exp_id: exp-002
+  - exp_id: exp-002v2
+  - exp_id: exp-002v3
+  - exp_id: exp-008
+  - exp_id: exp-003
+  decisions: []
+  deprecated: false
+- id: C398
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: d_syc achieves AUROC 0.827 on Qwen3-8B
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: auroc
+    value: '0.827'
+  decisions: []
+  deprecated: false
+- id: C400
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: 'F1a: tanh gate saturates due to 100-1200x norm mismatch, zeroing gradient
+    by step 955'
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+  decisions: []
+  deprecated: false
+- id: C403
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: 'F1b: cosine gap only 0.098 across layers'
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v2
+    metric: cosine_gap
+    value: '0.098'
+  decisions: []
+  deprecated: false
+- id: C407
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: 'F1c: recalibration raises AUROC from 0.82 to 0.91 but triggers mode collapse,
+    entropy to 0.069 within 300 steps'
+  type: quantitative
+  evidence:
+  - exp_id: exp002v2-recalib
+    metric: auroc_recalib
+    value: '0.91'
+  decisions: []
+  deprecated: false
+- id: C412
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: 'F1d: R3 saturates at 0.9998 by step 300, terminal collapse at step 2160'
+  type: quantitative
+  evidence:
+  - exp_id: exp-002v3
+    metric: r3_saturation
+    value: '0.9998'
+  decisions: []
+  deprecated: false
+- id: C418
+  location:
+    section: cosine_failure
+    paragraph: 0
+    sentence: 0
+  text: d_syc encodes direction of belief change but not whether warranted
+  type: analytical
+  evidence:
+  - exp_id: exp-002v2
+  - exp_id: exp-002v3
+  decisions: []
+  deprecated: false
+- id: C419
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: 'Differentiable probe: policy games within ~30 steps, ToF=0.978, NoF=0.006'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008
+    metric: tof
+    value: '0.978'
+  decisions: []
+  deprecated: false
+- id: C421
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: 'Binary probe: ToF drops to 0.000 by step 500, NoF=0.995, SyconScore=0'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: tof
+    value: '0.0'
+    step: 500
+  decisions: []
+  deprecated: false
+- id: C424
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: 1300-step lag between behavioral death and entropy collapse
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+  decisions: []
+  deprecated: false
+- id: C428
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: Entropy at 0.70 when behaviorally dead, reward averages +0.72
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+    metric: entropy
+    value: '0.70'
+    step: 500
+  decisions: []
+  deprecated: false
+- id: C433
+  location:
+    section: probe_trap
+    paragraph: 0
+    sentence: 0
+  text: Entropy collapse at step ~1840
+  type: quantitative
+  evidence:
+  - exp_id: exp-008v3
+  decisions: []
+  deprecated: false
+- id: C434
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: CAA uses same contrastive extraction for inference-time steering
+  type: methodological
+  evidence:
+  - ref: rimsky2024caa
+  decisions: []
+  deprecated: false
+- id: C436
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: High discriminability does not entail reward utility
+  type: analytical
+  evidence:
+  - exp_id: exp-002
+  - exp_id: exp-008
+  decisions: []
+  deprecated: false
+- id: C439
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Probe trap: reward actively reinforces degenerate behavior'
+  type: qualitative
+  evidence:
+  - exp_id: exp-008v3
+  decisions: []
+  deprecated: false
+- id: C443
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Latent-GRPO succeeds because target/suppressed behaviors geometrically distinct
+  type: analytical
+  evidence:
+  - ref: zhang2026latentgrpo
+  decisions: []
+  deprecated: false
+- id: C444
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: 181 paired examples, 362 activations, three evidence-strength levels
+  type: methodological
+  evidence:
+  - exp_id: exp-001
+  decisions: []
+  deprecated: false
+- id: C446
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: Qwen3-8B best layer 19, AUROC 0.827+/-0.028
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    metric: auroc
+    value: '0.827'
+  decisions: []
+  deprecated: false
+- id: C449
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: Cosine similarity between consecutive directions ~0.96 at step 500
+  type: quantitative
+  evidence:
+  - exp_id: exp002v2-recalib
+  decisions: []
+  deprecated: false
+- id: C453
+  location:
+    section: framework
+    paragraph: 0
+    sentence: 0
+  text: LoRA rank=64, alpha=128, DeepSpeed ZeRO-2
+  type: methodological
+  evidence:
+  - exp_id: exp-001
+  decisions: []
+  deprecated: false
+- id: C454
+  location:
+    section: sections/framework
+    paragraph: 0
+    sentence: 0
+  text: ''
+  type: quantitative
+  evidence: 'run_exp008v3_binary_probe_grpo.py: RETRAIN_INTERVAL=500, DCGRPOTrainer'
+  decisions: []
+  deprecated: false
+- id: C455
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: ''
+  type: quantitative
+  evidence: exp-004-s2-eval-ckpt7000
+  decisions: []
+  deprecated: false
+tables:
+- id: tab3_cross_model
+  location:
+    section: direction_quality
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Qwen3-8B
+    col: CV AUROC
+    value: 0.827±0.028
+    source:
+      exp_id: exp-001
+      metric: cv_auroc_mean
+  - row: Llama-3-8B
+    col: CV AUROC
+    value: 0.779±0.019
+    source:
+      exp_id: exp-012
+      metric: cv_auroc_mean
+  - row: Qwen3-8B
+    col: Best Layer
+    value: L19
+    source:
+      exp_id: exp-001
+      metric: best_layer
+  - row: Llama-3-8B
+    col: Best Layer
+    value: L16
+    source:
+      exp_id: exp-012
+      metric: best_layer
+  deprecated: false
+- id: tab2_cosine_chain
+  location:
+    section: cosine_failure
+    table_number: 0
+  caption: ''
+  cells:
+  - row: F1a
+    col: Outcome
+    value: Gate saturation
+    source:
+      exp_id: exp-002
+      metric: r1_saturation
+  - row: F1b
+    col: Outcome
+    value: R1 approx 0
+    source:
+      exp_id: exp-002v2
+      metric: r1_mean
+  - row: F1c
+    col: Outcome
+    value: Mode collapse
+    source:
+      exp_id: exp002v2-recalib
+      metric: entropy
+  - row: F1d
+    col: Outcome
+    value: Mode collapse
+    source:
+      exp_id: exp-002v3
+      metric: collapse_timeline
+  deprecated: true
+- id: tab:main_comparison
+  location:
+    section: discussion
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Vanilla
+    col: SYCONScore
+    value: '0.134'
+    source:
+      exp_id: exp-016
+      metric: unified_reeval_D027.alpha_0.0.SYCONScore
+  - row: R3-only GRPO
+    col: SYCONScore
+    value: '0.114'
+    source:
+      exp_id: exp-003
+      metric: ckpt-5000
+  - row: Binary Probe R1
+    col: SYCONScore
+    value: '0.000'
+    source:
+      exp_id: exp-008v3
+      metric: preset_eval_ckpt500
+  - row: ActAdd
+    col: SYCONScore
+    value: '0.054'
+    source:
+      exp_id: exp-016
+      metric: unified_reeval_D027.alpha_5.0
+  - row: ACT
+    col: SYCONScore
+    value: '0.301'
+    source:
+      exp_id: exp-004
+      metric: preset_eval_ckpt8000
+  deprecated: false
+figures: []
+_completeness:
+  coverage: 69/69
+  claims: 69
+  tables: 2
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 69
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-24T23:23:23.283087+00:00'

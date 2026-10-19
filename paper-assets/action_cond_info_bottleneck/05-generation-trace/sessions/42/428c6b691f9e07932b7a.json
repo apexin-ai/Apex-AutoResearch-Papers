@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "428c6b691f9e07932b7a",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh v73 connector lora",
+  "task_key": "worker_ssh_v73-connector-lora_20260517T165805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_v73-connector-lora_20260517T165805_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "bd639376e6f8ca4c83f99788068f1c3f2c3f334c6458e6730bc93974108e2a03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部测试通过。\n\n## 验证结果汇总\n\n**1. Connector 结构**\n- 单个 Linear 层：`connector.modality_projection.proj` = `nn.Linear(12288, 960, bias=False)`\n- 12288 = vision_hidden_size (3072) * scale_factor^2 (4)\n\n**2. Trainable params：228,993 (0.05%)**\n| 参数 | shape | 数量 |\n|------|-------|------|\n| lora_A | [8, 12288] | 98,304 |\n| lora_B | [960, 8] | 7,680 |\n| scorer MLP | - | 123,009 |\n| **总计** | | **228,993** |\n\n**3. 验证结果：全 PASS**\n- scale=0 时 output 精确等于 baseline（diff=0.00）\n- B=0 初始化时 LoRA 贡献为零（diff=0.00）\n- 非零 LoRA 时有贡献（diff=9.38e-02）\n\n**4. 修改的文件**\n- `acib/config.py`：添加 `connector_lora` freeze mode + `lora_rank`/`lora_scale` 字段\n- `acib/acib_policy.py`：添加 `LoRALinear` 类 + `connector_lora` freeze 分支 + `_apply_lora_to_connector` + select_action 中 alpha=0 时禁用 LoRA\n- `scripts/train_acib.py`：添加 CLI 参数 + config 传递\n- `scripts/run_v73_connector_lora.sh`：训练脚本\n\n**无需讨论的设计决策**：connector 只有一个 Linear，实现直接对应。hook 中 `connector_lora` 与 `connector_scorer` 走同一分支（不 detach），LoRA 梯度可正常回传。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-v73-connector-lora.md"
+}

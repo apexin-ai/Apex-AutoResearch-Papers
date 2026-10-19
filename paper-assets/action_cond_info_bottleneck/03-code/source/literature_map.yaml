@@ -1,0 +1,745 @@
+# Literature Map — ACIB (Action-Conditioned Information Bottleneck)
+# Target venue: CoRL 2026
+# Generated: 2026-05-16, updated: 2026-05-16
+# Scope: Information Bottleneck × VLA / Robot Learning, plus token pruning, VLA robustness, LIBERO
+
+meta:
+  our_method_summary: >
+    Token-level information bottleneck for VLA models. A learned scorer network produces
+    per-token soft masks gating visual tokens consumed by the action expert. The bottleneck is
+    enforced by an aggregate-rate KL (KL on the mean activation across the batch, rather than
+    per-sample) plus a diversity regularizer that prevents the scorer from collapsing to
+    uniform or to a fixed subset. Action loss provides the task-relevance signal — gradients
+    flow back through the soft mask so the scorer learns which tokens are required to predict
+    actions. Backbone: SmolVLA. Benchmark: LIBERO. Positioned as a regularization-based
+    complement to data augmentation.
+  novelty_axes:
+    - token_level_IB        # not representation/feature-level
+    - action_conditioned    # scorer trained by the action loss, not reconstruction or MI on input
+    - aggregate_rate_KL     # KL on batch-mean activation, not per-sample variational KL
+    - explicit_anti_collapse # diversity regularizer with empirical scorer_std as health metric
+    - regularization_not_data # complementary to GenAug/RoCoDA-style augmentation
+    - soft_gating_not_pruning # all tokens flow through; contrast with LightVLA/ATP-LLaVA hard pruning
+
+# =====================================================================
+# Direction 1: Information Bottleneck in RL / Robot Learning
+# =====================================================================
+ib_in_robot_learning:
+  - id: bc_ib_2025
+    title: "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation"
+    authors: [Bai, Zhou, Ding, Zhao, Wang, Chen]
+    year: 2025
+    venue: ICML 2025
+    arxiv: "2502.02853"
+    code: "https://github.com/BaiShuanghao/BC-IB"
+    one_liner: >
+      Adds an IB regularizer to behavior-cloning: minimizes I(X;Z) between fused multimodal
+      input X and policy latent Z via MINE, while preserving action prediction.
+    relation: competitor
+    differences_from_acib:
+      level: "representation-level (single fused latent Z) vs. ACIB's token-level (per visual token gate)"
+      ib_estimator: "MINE-based MI lower bound vs. ACIB's aggregate-rate KL with learned prior"
+      mechanism: "no scorer / no token mask; ACIB outputs an interpretable per-token relevance score"
+      collapse_handling: "BC-IB has no explicit anti-collapse term — single-latent IB does not face the per-token collapse failure mode"
+      benchmark_overlap: "both on LIBERO; BC-IB baseline gains +2-9% per suite, ACIB targets SmolVLA backbone instead"
+    citation_priority: high  # primary related-work anchor; the ICML-25 paper to beat
+
+  - id: vib_rl_skill_2023
+    title: "Variational Information Bottleneck Regularized Deep RL for Efficient Robotic Skill Adaptation"
+    venue: "MDPI Sensors 2023 (Vol 23 Issue 2)"
+    one_liner: VIB on meta-RL latent task representation, 200x-5000x sample-efficiency claim on skill transfer.
+    relation: background
+    note: pre-VLA era; VIB on task embeddings, not visual tokens.
+    citation_priority: medium
+
+  - id: mib_multimodal_2024
+    title: "Multimodal Information Bottleneck for Deep RL with Multiple Sensors"
+    venue: "Neural Networks (Elsevier) 2024"
+    one_liner: MIB compresses joint egocentric-image + proprioception representation, filtering policy-irrelevant info.
+    relation: background
+    note: closest in spirit to ACIB (filter task-irrelevant info) but operates on fused embeddings, not tokens.
+    citation_priority: medium
+
+  - id: ibe_2025
+    title: "Information Bottleneck-Enhanced RL for Solving Operation Research Problems"
+    venue: "MDPI Sensors 2025"
+    one_liner: Two-level IB — state representation bottleneck + policy bottleneck as exploration bonus.
+    relation: background
+    note: combinatorial RL, not robot manipulation; cited only if discussing IB design space.
+    citation_priority: low
+
+  - id: discrete_ib_drl_2023
+    title: "Representation Learning in Deep RL via Discrete Information Bottleneck"
+    venue: PMLR 2023 (Islam et al.)
+    one_liner: Discrete IB on state representation for deep RL.
+    relation: background
+    citation_priority: low
+
+# =====================================================================
+# Direction 2: Token Pruning / Selection for Vision-Language Models
+# =====================================================================
+token_pruning_vlm:
+  - id: lightvla_2025
+    title: "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-Language-Action Models via Differentiable Token Pruning"
+    authors: [Jiang, et al.]
+    year: 2025
+    arxiv: "2509.12594"
+    project_page: "https://liauto-research.github.io/LightVLA/"
+    one_liner: >
+      Differentiable token pruning for VLA: generates dynamic queries to evaluate visual token
+      importance, uses Gumbel softmax for hard selection. 59% FLOPs reduction + 2.9% success
+      rate improvement over OpenVLA-OFT.
+    relation: competitor  # closest VLA-specific token selection work
+    differences_from_acib:
+      goal: "LightVLA = efficiency (reduce FLOPs); ACIB = robustness regularization (encourage task-relevant focus)"
+      selection_type: "LightVLA uses hard Gumbel selection (tokens are dropped); ACIB uses soft gating (all tokens flow through with scaled weights)"
+      bottleneck: "LightVLA has no information-theoretic constraint; ACIB enforces aggregate-rate KL to a prior rate"
+      collapse: "LightVLA has no anti-collapse mechanism; ACIB's diversity regularizer prevents scorer degeneration"
+      backbone: "LightVLA on 7B OpenVLA; ACIB on 0.45B SmolVLA with only 64 visual tokens — different operating regime"
+    citation_priority: high  # most direct VLA token selection competitor
+
+  - id: divprune_2025
+    title: "DivPrune: Diversity-based Visual Token Pruning for Large Multimodal Models"
+    authors: [Alvar, Singh, Akbari, Zhang]
+    year: 2025
+    venue: CVPR 2025
+    arxiv: "2503.02175"
+    one_liner: Formulates token pruning as Max-Min Diversity Problem; selects most diverse token subset; training-free.
+    relation: complementary  # different goal (efficiency) but shares "diversity" motivation
+    differences_from_acib:
+      goal: "DivPrune = inference efficiency under fixed budget; ACIB = robustness regularization, not efficiency"
+      training: "DivPrune is training-free at test time; ACIB trains the scorer end-to-end with action loss"
+      diversity_role: "DivPrune diversity is the *objective*; ACIB diversity is an anti-collapse *regularizer*"
+    citation_priority: high  # closest competing use of 'diversity' in visual token selection
+
+  - id: atp_llava_2025
+    title: "ATP-LLaVA: Adaptive Token Pruning for Large Vision Language Models"
+    venue: CVPR 2025
+    one_liner: Layer-adaptive token pruning module predicting pruning thresholds per-layer and per-instance, removing text-irrelevant visual tokens.
+    relation: competitor  # also learns a scorer-like importance function
+    differences_from_acib:
+      objective: "ATP optimizes for accuracy-under-pruning; ACIB optimizes for action-prediction under IB constraint"
+      action_grounding: "ATP uses text relevance; ACIB uses action relevance (closer to control)"
+      mechanism: "ATP prunes hard tokens; ACIB applies soft mask, all tokens still flow through"
+    citation_priority: high
+
+  - id: sparsevlm_2025
+    title: "SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference"
+    authors: [Zhang, Fan, Ma, Zheng, Huang, Cheng, Gudovskiy, Okuno, Nakata, Keutzer, Zhang]
+    year: 2025
+    venue: ICML 2025
+    arxiv: "2410.04417"
+    code: "https://github.com/Gumpest/SparseVLMs"
+    one_liner: >
+      Training-free token sparsification: uses text-visual attention to rate vision token importance,
+      progressively prunes with rank-based adaptive ratio + token recycling. 54% FLOPs reduction, 97% accuracy retained.
+    relation: background
+    note: Training-free, text-relevance based. No action grounding. General VLM efficiency, not robot-specific.
+    citation_priority: medium
+
+  - id: vla_cache_2025
+    title: "VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching"
+    authors: [Hsu, et al.]
+    year: 2025
+    venue: NeurIPS 2025
+    arxiv: "2502.02175"
+    code: "https://github.com/siyuhsu/vla-cache"
+    one_liner: >
+      Training-free inference acceleration: caches static visual tokens across frames, selectively
+      re-computes task-relevant tokens. 1.7x speedup on LIBERO/SIMPLER.
+    relation: background
+    note: >
+      Temporal token reuse, orthogonal to ACIB. Interesting overlap: both identify "task-relevant" tokens,
+      but VLA-Cache uses attention-based heuristics while ACIB learns relevance end-to-end.
+    citation_priority: medium
+
+  - id: topv_2025
+    title: "TopV: Compatible Token Pruning with Inference Time Optimization for Fast and Low-Memory Multimodal VLM"
+    venue: CVPR 2025
+    one_liner: Training-free token pruning posed as inference-time optimization.
+    relation: background
+    citation_priority: medium
+
+  - id: feather_2025
+    title: "Feather the Throttle: Revisiting Visual Token Pruning for VLMs"
+    venue: ICCV 2025
+    one_liner: Diagnoses attention-based pruning bias (RoPE long-term decay favors bottom-row tokens) and proposes fixes.
+    relation: background
+    note: useful warning when designing scorer input features; cite if discussing attention-based scorers.
+    citation_priority: medium
+
+  - id: prunevid_2025
+    title: "PruneVid: Visual Token Pruning for Efficient Video LLMs"
+    venue: ACL 2025
+    one_liner: Training-free spatial-temporal token merging for video VLMs.
+    relation: background
+    citation_priority: low
+
+  - id: dycoke_2025
+    title: "DyCoke: Dynamic Compression of Tokens for Fast Video LLMs"
+    venue: CVPR 2025
+    one_liner: Dynamic token compression for video LLMs.
+    relation: background
+    citation_priority: low
+
+# =====================================================================
+# Direction 3: VLA Robustness / Generalization / Augmentation
+# =====================================================================
+vla_robustness:
+  - id: robustvla_2025
+    title: "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models"
+    year: 2025
+    arxiv: "2511.01331"
+    one_liner: >
+      RL post-training with Jacobian regularization (observation noise sensitivity) +
+      smoothness regularization (action perturbation stability) for VLA robustness.
+    relation: competitor
+    differences_from_acib:
+      stage: "RobustVLA = post-training RL fine-tuning; ACIB = training-time regularization integrated into BC"
+      mechanism: "RobustVLA uses gradient-based Jacobian/smoothness penalties; ACIB uses information-theoretic bottleneck"
+      interpretability: "RobustVLA is a black-box regularizer; ACIB produces interpretable per-token relevance scores"
+      composability: "potentially complementary — ACIB during training, RobustVLA as post-training hardening"
+    citation_priority: high
+
+  - id: revla_2025
+    title: "ReVLA: Reverting Visual Domain Limitation of Robotic Foundation Models"
+    authors: [Daskalov, et al.]
+    year: 2025
+    arxiv: "2409.15250"
+    project_page: "https://insait-institute.github.io/ReVLA/"
+    one_liner: >
+      Gradual backbone reversal via model merging — restores vision encoder to pretrained state
+      to combat catastrophic forgetting. +77% grasp, +66% lift on OOD visual tasks over OpenVLA.
+    relation: complementary
+    note: >
+      Addresses the same symptom (VLA visual fragility) from a different angle: ReVLA preserves
+      pretrained visual features, ACIB teaches the model which features matter. Could combine.
+    citation_priority: medium
+
+  - id: libero_plus_2025
+    title: "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models"
+    year: 2025
+    arxiv: "2510.13626"
+    one_liner: 7 perturbation dims (object layout, viewpoint, init state, language, light, texture, sensor noise); 10k tasks; shows 95%→<30% drop under modest perturbations.
+    relation: evaluation_benchmark
+    note: >
+      Critical eval target — our ACIB robustness story should be validated here, not on vanilla LIBERO,
+      to avoid the "memorization" critique LIBERO-PRO levels at the field.
+    citation_priority: high
+
+  - id: libero_pro_2025
+    title: "LIBERO-PRO: Towards Robust and Fair Evaluation of VLA Models Beyond Memorization"
+    year: 2025
+    arxiv: "2510.03827"
+    one_liner: Object/position/instruction/task perturbations; SOTA models that report >90% drop to ~0% — exposes rote memorization.
+    relation: evaluation_benchmark
+    citation_priority: high
+
+  - id: eva_vla_2025
+    title: "Eva-VLA: Evaluating VLA Models' Robustness Under Real-World Physical Variations"
+    year: 2025
+    arxiv: "2509.18953"
+    one_liner: Treats perturbations (viewpoint, init state) as a continuous optimization problem to find worst-case.
+    relation: evaluation_benchmark
+    citation_priority: medium
+
+  - id: vla_multimodal_perturb_2025
+    title: "On Robustness of VLA Models against Multi-Modal Perturbations"
+    arxiv: "2510.00037"
+    one_liner: Tests mainstream VLAs against 17 uncertainties across 4 modalities; finds action modality most fragile; π0 > OpenVLA.
+    relation: background
+    citation_priority: medium
+
+  - id: byovla_2025
+    title: "BYOVLA: Removing Model-Sensitive Features via VLM Segmentation + Inpainting"
+    authors: [Hancock, et al.]
+    year: 2025
+    one_liner: At inference, segments and inpaints out task-irrelevant regions to make VLAs robust.
+    relation: competitor  # solves the same problem (irrelevant visual content hurts policy) at test time
+    differences_from_acib:
+      stage: "BYOVLA = test-time pre-processing; ACIB = training-time regularization"
+      mechanism: "BYOVLA modifies the image (segmentation + inpainting); ACIB modifies the token stream (soft gating)"
+      cost: "BYOVLA needs a VLM call per frame; ACIB is a small scorer head, zero extra cost at inference if mask is integrated"
+    citation_priority: high
+
+  - id: gevrm_2025
+    title: "GEVRM: Model-based Planning for Visual Corruptions in VLA"
+    authors: [Zhang, et al.]
+    year: 2025
+    one_liner: Handles color jitter and common visual corruptions via model-based planning.
+    relation: competitor
+    differences_from_acib:
+      mechanism: "augmentation-style robustness vs. ACIB's regularization-style robustness"
+    citation_priority: medium
+
+  - id: rocoda_2024
+    title: "RoCoDA: Counterfactual Data Augmentation for Data-Efficient Robot Learning"
+    year: 2024
+    arxiv: "2411.16959"
+    one_liner: Counterfactual augmentation modifying task-irrelevant subset of environment state; tests distractor generalization.
+    relation: complementary
+    note: ACIB and RoCoDA are *complementary* — ACIB is the regularization analogue of RoCoDA's data-side approach.
+    citation_priority: high
+
+  - id: nice_scene_surgery_2025
+    title: "NICE Scene Surgery: Improving Robotic Manipulation Robustness"
+    year: 2025
+    arxiv: "2511.22777"
+    one_liner: Edits scenes to insert distractors while preserving causal task-relevant features.
+    relation: complementary
+    citation_priority: medium
+
+  - id: genaug_2023
+    title: "GenAug: Scaling Robot Learning with Semantic Data Augmentation"
+    venue: RSS 2023
+    one_liner: Diffusion-based scene augmentation (backgrounds, distractors, textures) for imitation learning.
+    relation: complementary
+    citation_priority: medium
+
+# =====================================================================
+# Direction 4: LIBERO + VLA Baselines
+# =====================================================================
+libero_baselines:
+  - id: openvla_2024
+    title: "OpenVLA: An Open-Source Vision-Language-Action Model"
+    year: 2024
+    one_liner: 7B Llama-based VLA; LIBERO 76.5% avg.
+    relation: backbone_baseline
+    citation_priority: high
+
+  - id: openvla_oft_2025
+    title: "Fine-Tuning VLA Models: Optimizing Speed and Success (OpenVLA-OFT)"
+    authors: [Kim, et al.]
+    year: 2025
+    venue: RSS 2025
+    arxiv: "2502.19645"
+    one_liner: Parallel decoding + action chunking + continuous actions + L1 regression; 76.5%→97.1% on LIBERO; 26× faster.
+    relation: strong_baseline
+    note: Current LIBERO SOTA prior to VLA-0; ACIB must compare against OFT recipe.
+    citation_priority: high
+
+  - id: pi0_2024
+    title: "π0: A Vision-Language-Action Flow Model"
+    authors: [Black, et al.]
+    year: 2024
+    one_liner: 3.3B robotics-pretrained flow-matching VLA; LIBERO 86.0%; most robust under multi-modal perturbations.
+    relation: strong_baseline
+    citation_priority: high
+
+  - id: pi0_fast_2025
+    title: "π0-FAST"
+    authors: [Pertsch, et al.]
+    year: 2025
+    one_liner: Faster autoregressive variant of π0.
+    relation: baseline
+    citation_priority: medium
+
+  - id: smolvla_2025
+    title: "SmolVLA: A VLA Model for Affordable and Efficient Robotics"
+    year: 2025
+    arxiv: "2506.01844"
+    one_liner: 0.45B VLA; PixelShuffle compresses 1024→64 visual tokens; VLM layer-skip; CA/SA interleaved action expert; LIBERO 87.3%.
+    relation: our_backbone
+    note: >
+      Our chosen backbone. Important: SmolVLA already reduces to 64 visual tokens via PixelShuffle,
+      so ACIB's scorer operates on a small token set — must justify why further token-level gating
+      helps when the count is already low (answer: not all 64 are equally task-relevant per scene/timestep).
+    citation_priority: high
+
+  - id: vla_0_2025
+    title: "VLA-0: Building SOTA VLAs with Zero Modification"
+    year: 2025
+    arxiv: "2510.13054"
+    one_liner: Outperforms OpenVLA-OFT, SmolVLA, π0.5-KI on LIBERO with no architectural changes.
+    relation: strong_baseline
+    citation_priority: high
+
+# =====================================================================
+# Novelty Position Statement
+# =====================================================================
+novelty_synthesis:
+  closest_competitors:
+    - bc_ib_2025      # IB for BC, but representation-level
+    - lightvla_2025   # learned token selection for VLA, but efficiency-oriented pruning
+
+  delta_vs_bc_ib:
+    - "BC-IB applies IB at the fused-latent level (one Z); ACIB applies IB at the visual-token level (per-token gate)"
+    - "BC-IB uses MINE for MI estimation; ACIB uses aggregate-rate KL (KL on batch-mean scorer output to a prior rate)"
+    - "BC-IB has no scorer interpretability — Z is opaque; ACIB exposes a per-token relevance score usable for visualization/analysis"
+    - "BC-IB does not face per-token collapse; ACIB introduces an explicit diversity regularizer and tracks scorer_std as a training health metric (0.441 in our successful run)"
+
+  delta_vs_lightvla:
+    - "LightVLA targets efficiency (hard Gumbel pruning, drop tokens); ACIB targets robustness (soft gating, all tokens retained with scaled weights)"
+    - "LightVLA has no information-theoretic framework; ACIB enforces an aggregate-rate KL bottleneck"
+    - "LightVLA has no anti-collapse mechanism; ACIB's diversity regularizer prevents scorer degeneration"
+    - "LightVLA on 7B OpenVLA; ACIB on 0.45B SmolVLA with only 64 visual tokens — different operating regime"
+
+  uniqueness_combination:
+    description: >
+      To our knowledge no prior work combines (a) token-level IB on visual tokens, (b) end-to-end
+      training driven by an action-prediction loss (not reconstruction or text relevance),
+      (c) aggregate-rate KL as the bottleneck term, (d) an explicit anti-collapse diversity
+      regularizer with an empirical health metric, and (e) soft gating rather than hard pruning.
+      The closest competitors each share at most one of these axes:
+        - BC-IB: shares IB-for-policy but at representation level, no token scorer, no collapse issue.
+        - LightVLA: shares learned VLA token selection but for efficiency via hard pruning, no IB framework.
+        - ATP-LLaVA: shares token-level scoring but for text-relevance and pruning, not action-grounded IB.
+        - DivPrune: shares diversity motivation but as the objective (not anti-collapse) and is training-free.
+        - BYOVLA: shares "remove irrelevant visual content" goal but at test time via VLM inpainting.
+        - RobustVLA: shares VLA robustness goal but via gradient-based Jacobian/smoothness penalties, not IB.
+        - RoCoDA / GenAug: shares the underlying problem (distractor invariance) but solves it via data augmentation.
+    framing: >
+      ACIB = regularization-side counterpart to data-augmentation approaches for VLA robustness,
+      with action-conditioned token-level IB as the mechanism. Soft gating under an information
+      constraint, not hard pruning for efficiency.
+
+  positioning_risks:
+    - "BC-IB ICML-25 is the *direct* prior art on IB-for-BC. Differentiation must be airtight; expect reviewers to ask 'why token-level if representation-level already works?'"
+    - "LightVLA does learned token selection *specifically for VLA* — reviewers may conflate it with ACIB. Key defense: ACIB is soft gating under IB for robustness, not hard pruning for efficiency."
+    - "Token-pruning literature (DivPrune, ATP-LLaVA, SparseVLM) may be invoked as similar token-selection work. Need to clarify that ACIB does not prune — it gates softly under an information constraint, and the goal is regularization, not efficiency."
+    - "LIBERO-Plus / LIBERO-PRO show standard LIBERO scores are inflated by memorization. ACIB should report on LIBERO-Plus or analogous perturbation eval to make a credible robustness claim — otherwise the contribution will be perceived as marginal."
+    - "RobustVLA targets the same VLA robustness goal via RL post-training. Must argue why training-time IB regularization is preferable to or complementary with post-training approaches."
+
+  must_cite:
+    - bc_ib_2025
+    - lightvla_2025
+    - divprune_2025
+    - atp_llava_2025
+    - byovla_2025
+    - robustvla_2025
+    - rocoda_2024
+    - libero_plus_2025
+    - openvla_oft_2025
+    - smolvla_2025
+    - pi0_2024
+    - vla_0_2025
+
+  should_cite:
+    - mib_multimodal_2024
+    - vib_rl_skill_2023
+    - sparsevlm_2025
+    - vla_cache_2025
+    - revla_2025
+    - libero_pro_2025
+    - eva_vla_2025
+    - gevrm_2025
+    - genaug_2023
+    - feather_2025
+    - openvla_2024
+
+  open_research_directions:
+    - "Does the learned scorer transfer across task suites (LIBERO-Spatial scorer applied to LIBERO-Goal)?"
+    - "Correlation between scorer mask and object-segmentation masks — does ACIB learn an implicit object detector for free?"
+    - "Combining ACIB with augmentation (RoCoDA/GenAug) — does the regularization-side + data-side gain stack?"
+    - "Robustness on LIBERO-Plus perturbation dims, especially camera viewpoint and distractor objects — where the 95→30% drop lives."
+    - "ACIB + RobustVLA: training-time IB regularization + post-training RL hardening — do they compose?"
+
+# =====================================================================
+# Direction 5: Token Pruning / Importance in Vision Transformers (Classic)
+# =====================================================================
+vit_token_pruning_classic:
+  - id: tome_2023
+    title: "Token Merging: Your ViT But Faster"
+    authors: [Bolya, Fu, Dai, Zhang, Feichtenhofer, Hoffman]
+    year: 2023
+    venue: ICLR 2023 (Oral)
+    arxiv: "2210.09461"
+    code: "https://github.com/facebookresearch/ToMe"
+    one_liner: >
+      Merges similar tokens using a bipartite soft matching algorithm, reducing token count
+      without training. 2x throughput with <0.3% accuracy drop on ViT-L.
+    relation: foundation
+    differences_from_acib:
+      goal: "ToMe = efficiency via similarity-based merging; ACIB = robustness via task-relevance gating"
+      selection_criterion: "ToMe merges by cosine similarity (task-agnostic); ACIB gates by action-conditioned importance"
+      mechanism: "ToMe reduces token count (hard merge); ACIB keeps all tokens with soft weights"
+      training: "ToMe is training-free; ACIB trains a scorer end-to-end with action loss"
+    citation_priority: high  # seminal token reduction work, frequently cited as baseline
+
+  - id: dynamicvit_2021
+    title: "DynamicViT: Efficient Vision Transformers with Dynamic Token Sparsification"
+    authors: [Rao, Zhao, Liu, Lu, Zhou, Hsieh]
+    year: 2021
+    venue: NeurIPS 2021
+    arxiv: "2106.02034"
+    code: "https://github.com/raoyongming/DynamicViT"
+    one_liner: >
+      Learns a lightweight prediction module to estimate token importance and prune hierarchically.
+      66% tokens pruned with 31-37% FLOPs reduction and <0.5% accuracy drop.
+    relation: foundation
+    differences_from_acib:
+      goal: "DynamicViT = efficiency for classification; ACIB = robustness for action prediction"
+      selection: "Learned binary decision (hard prune); ACIB uses soft gating under IB constraint"
+      conditioning: "DynamicViT importance is task-agnostic (classification CLS token); ACIB is action-conditioned"
+      training: "DynamicViT uses attention masking for differentiable pruning; ACIB uses soft mask with KL bottleneck"
+    citation_priority: high  # pioneering learned token pruning
+
+  - id: evit_2022
+    title: "Not All Patches are What You Need: Expediting Vision Transformers via Token Reorganizations"
+    authors: [Liang, Ge, Tong, Song, Wang, Xie]
+    year: 2022
+    venue: ICLR 2022 (Spotlight)
+    arxiv: "2202.07800"
+    code: "https://github.com/youweiliang/evit"
+    one_liner: >
+      Uses CLS token attention to identify attentive tokens; preserves them and fuses inattentive
+      ones. 50% speedup on DeiT-S with 0.3% accuracy drop. No extra parameters.
+    relation: foundation
+    differences_from_acib:
+      importance_signal: "EViT uses CLS attention (heuristic); ACIB learns importance via action loss (end-to-end)"
+      fusion: "EViT fuses inattentive tokens into one; ACIB retains all tokens with scaled weights"
+      conditioning: "EViT is unconditional; ACIB conditions on language instruction via action loss"
+    citation_priority: high  # influential attention-based token selection
+
+  - id: avit_2022
+    title: "A-ViT: Adaptive Tokens for Efficient Vision Transformer"
+    authors: [Yin, Vahdat, et al.]
+    year: 2022
+    venue: CVPR 2022 (Oral)
+    arxiv: "2112.07658"
+    code: "https://github.com/NVlabs/A-ViT"
+    one_liner: >
+      Adaptive Computation Time applied to ViT tokens: each token has a halting probability,
+      discarded once halted. 62% throughput gain on DeiT-Tiny with 0.3% accuracy drop.
+    relation: foundation
+    differences_from_acib:
+      mechanism: "A-ViT uses ACT halting (token stops propagating at different layers); ACIB applies uniform soft gate at input"
+      regularization: "A-ViT uses distributional prior on halting; ACIB uses aggregate-rate KL on gate activation"
+      goal: "A-ViT = per-token adaptive depth for efficiency; ACIB = per-token relevance weighting for robustness"
+    citation_priority: medium
+
+# =====================================================================
+# Direction 6: Information Bottleneck Theory (Foundational)
+# =====================================================================
+ib_theory_foundations:
+  - id: ib_original_1999
+    title: "The Information Bottleneck Method"
+    authors: [Tishby, Pereira, Bialek]
+    year: 2000
+    venue: "37th Allerton Conference on Communication, Control, and Computing, 1999"
+    arxiv: "physics/0004057"
+    one_liner: >
+      Foundational paper defining the information bottleneck: find a compressed representation T
+      of input X that preserves maximal information about target Y, formalized as
+      min I(X;T) - beta * I(T;Y).
+    relation: foundation
+    note: >
+      ACIB's theoretical ancestor. The aggregate-rate KL in ACIB is a practical approximation of the
+      I(X;T) compression term, applied at the token level rather than the representation level.
+    citation_priority: high  # must-cite foundational reference
+
+  - id: deep_vib_2017
+    title: "Deep Variational Information Bottleneck"
+    authors: [Alemi, Fischer, Dillon, Murphy]
+    year: 2017
+    venue: ICLR 2017
+    arxiv: "1612.00410"
+    one_liner: >
+      Variational approximation to the IB objective using reparameterization trick, enabling
+      end-to-end training of neural networks under IB constraint. Improves generalization
+      and adversarial robustness over standard regularization.
+    relation: foundation
+    differences_from_acib:
+      level: "Deep VIB applies IB to the full representation (single bottleneck); ACIB applies per-token gates"
+      approximation: "Deep VIB uses variational bound with Gaussian encoder; ACIB uses aggregate-rate KL on learned gate activations"
+      goal: "Deep VIB targets classification robustness; ACIB targets action-prediction robustness in VLA"
+    note: >
+      ACIB inherits the spirit of Deep VIB (IB as a training regularizer for robustness) but
+      operates at a different granularity (token-level gates vs representation-level bottleneck).
+    citation_priority: high  # must-cite; bridges IB theory to deep learning practice
+
+  - id: tishby_dl_ib_2015
+    title: "Deep Learning and the Information Bottleneck Principle"
+    authors: [Tishby, Zaslavsky]
+    year: 2015
+    venue: "IEEE Information Theory Workshop (ITW) 2015"
+    arxiv: "1503.02406"
+    one_liner: >
+      Analyzes DNNs through IB lens: each layer is a bottleneck, and training exhibits
+      fitting then compression phases. Provides finite-sample generalization bounds via IB.
+    relation: foundation
+    note: >
+      Theoretical motivation for why IB-style regularization helps generalization in deep networks.
+      Supports ACIB's claim that compressing task-irrelevant visual information improves policy generalization.
+    citation_priority: medium  # cite for theoretical grounding
+
+  - id: kawaguchi_ib_dl_2023
+    title: "How Does Information Bottleneck Help Deep Learning?"
+    authors: [Kawaguchi, Deng, Ji, Huang]
+    year: 2023
+    venue: ICML 2023
+    arxiv: "2305.08013"  # approximate
+    one_liner: >
+      Proves that controlling information bottleneck controls generalization error, unlike bounds
+      based on parameter count or VC dimension. Provides theoretical justification for IB regularization.
+    relation: foundation
+    note: >
+      Strongest theoretical support for ACIB's approach: IB regularization provably helps generalization,
+      and ACIB applies this at the visual token level for action prediction.
+    citation_priority: medium
+
+# =====================================================================
+# Direction 7: Visual Token Selection for VLA (Action-Conditioned)
+# =====================================================================
+vla_token_selection:
+  - id: compressor_vla_2025
+    title: "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation"
+    authors: [Unknown]
+    year: 2025
+    arxiv: "2511.18950"
+    one_liner: >
+      Hybrid instruction-conditioned token compression: Semantic Task Compressor (STC) for holistic
+      task-relevant context + Spatial Refinement Compressor (SRC) for fine-grained details.
+      59% FLOPs reduction, 3x token reduction on LIBERO.
+    relation: competitor
+    differences_from_acib:
+      goal: "Compressor-VLA = efficiency (reduce tokens); ACIB = robustness (soft-gate tokens)"
+      mechanism: "Compressor-VLA compresses tokens into fewer tokens; ACIB retains all tokens with soft weights"
+      bottleneck: "Compressor-VLA has no information-theoretic constraint; ACIB enforces aggregate-rate KL"
+      conditioning: "Both are instruction-conditioned, but Compressor-VLA uses explicit language features; ACIB conditions implicitly through action loss gradients"
+    citation_priority: high  # instruction-conditioned VLA token selection, direct competitor
+
+  - id: vla_adp_2025
+    title: "Action-aware Dynamic Pruning for Efficient Vision-Language-Action Manipulation"
+    authors: [Pei, Chen, Xu, Wang, Shi, Xu]
+    year: 2025
+    arxiv: "2509.22093"
+    code: "https://github.com/chen7086/VLA-ADP"
+    one_liner: >
+      Training-free action-aware pruning: combines text-driven token relevance (cross-modal attention)
+      with action trajectory gating signal. Adapts pruning ratio based on manipulation phase
+      (coarse vs fine). 1.35x speedup + 25.8% success improvement on OpenVLA-OFT.
+    relation: competitor
+    differences_from_acib:
+      training: "VLA-ADP is training-free (heuristic); ACIB trains a scorer end-to-end"
+      action_signal: "VLA-ADP uses past action trajectory as gating signal; ACIB uses action prediction loss to train the scorer"
+      mechanism: "VLA-ADP hard-prunes tokens; ACIB soft-gates all tokens"
+      bottleneck: "VLA-ADP has no IB constraint; ACIB enforces aggregate-rate KL"
+    citation_priority: high  # closest in name (action-aware) and spirit
+
+  - id: vla_pruner_2025
+    title: "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference"
+    authors: [Unknown]
+    year: 2025
+    arxiv: "2511.16449"
+    one_liner: >
+      Dual-level token importance: vision-language prefill attention for semantic relevance +
+      action decode attention (temporally smoothed) for action-level importance. Plug-and-play.
+    relation: competitor
+    differences_from_acib:
+      dual_level: "VLA-Pruner separates semantic vs action importance; ACIB uses a single scorer trained by action loss"
+      training: "VLA-Pruner is training-free; ACIB trains the scorer end-to-end"
+      mechanism: "VLA-Pruner hard-prunes; ACIB soft-gates"
+      temporal: "VLA-Pruner exploits temporal smoothing across frames; ACIB operates per-timestep"
+    citation_priority: high
+
+  - id: deepvision_vla_2026
+    title: "Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models (DeepVision-VLA)"
+    authors: [Unknown]
+    year: 2026
+    arxiv: "2603.15618"
+    project_page: "https://deepvision-vla.github.io/"
+    one_liner: >
+      Action-Guided Visual Pruning (AGVP): uses shallow-layer action-to-visual attention to
+      compute saliency map, prunes irrelevant visual tokens in deep layers. Multi-scale vision
+      expert injection. +9% sim, +7.5% real over prior VLAs.
+    relation: competitor
+    differences_from_acib:
+      pruning_source: "DeepVision uses shallow action-token attention as saliency; ACIB uses a dedicated learned scorer"
+      mechanism: "DeepVision prunes in deep layers only; ACIB gates at the visual token input"
+      goal: "DeepVision targets performance via better visual representation; ACIB targets robustness via IB"
+      bottleneck: "DeepVision has no IB constraint; ACIB enforces aggregate-rate KL"
+    citation_priority: high  # very recent, action-guided pruning for VLA
+
+  - id: task_cond_adapt_2024
+    title: "Task-Conditioned Adaptation of Visual Features in Multi-Task Policy Learning"
+    authors: [Marza, et al.]
+    year: 2024
+    venue: CVPR 2024
+    arxiv: "2402.07739"
+    code: "https://github.com/PierreMarza/task_conditioned_adaptation"
+    one_liner: >
+      Task-conditioned adapters modulate ViT features for multi-task robot policy learning.
+      Adapter is a 2-layer MLP conditioned on task embedding, added after each ViT block.
+      Generalizes to unseen tasks with few demonstrations.
+    relation: background
+    differences_from_acib:
+      level: "Task-cond adapters modulate feature channels; ACIB modulates token importance (spatial selection)"
+      conditioning: "Explicit task embedding; ACIB conditions implicitly through action loss"
+      goal: "Multi-task generalization; ACIB targets robustness to visual distractors"
+    citation_priority: medium  # relevant for instruction-conditioned visual processing in robot learning
+
+# =====================================================================
+# Direction 8: Interpretability Methods for VLMs / VLAs
+# =====================================================================
+vlm_interpretability:
+  - id: gradcam_2017
+    title: "Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization"
+    authors: [Selvaraju, Cogswell, Das, Vedantam, Parikh, Batra]
+    year: 2017
+    venue: ICCV 2017
+    arxiv: "1610.02391"
+    one_liner: >
+      Uses gradients flowing into the final convolutional layer to produce coarse localization
+      maps highlighting important image regions. Applicable to any CNN without architecture changes.
+    relation: foundation
+    note: >
+      Classic interpretability baseline. ACIB's learned scorer can be seen as an end-to-end trained
+      alternative to post-hoc Grad-CAM: instead of computing gradients after training, the scorer
+      learns importance during training. Grad-CAM can be used to validate ACIB scorer quality.
+    citation_priority: medium  # cite when discussing interpretability of ACIB's scorer
+
+  - id: attention_rollout_2020
+    title: "Quantifying Attention Flow in Transformers"
+    authors: [Abnar, Zuidema]
+    year: 2020
+    venue: ACL 2020
+    one_liner: >
+      Proposes attention rollout and attention flow methods to approximate token-level importance
+      by recursively multiplying attention matrices across layers. Yields higher correlation with
+      ablation-based importance than raw attention weights.
+    relation: foundation
+    note: >
+      Attention rollout is a standard tool for analyzing what transformers attend to. Relevant for
+      comparing ACIB's learned scorer masks against attention-based importance heuristics.
+    citation_priority: medium
+
+  - id: lvlm_interpret_2024
+    title: "LVLM-Intrepret: An Interpretability Tool for Large Vision-Language Models"
+    authors: [Stan, et al.]
+    year: 2024
+    venue: CVPR 2024 Workshop (XAI4CV)
+    arxiv: "2404.03118"
+    one_liner: >
+      Interactive tool for understanding LVLMs: combines attention knockout, relevancy mapping,
+      and causal graph construction to visualize information flow and identify critical image regions.
+      Adapts relevancy maps to LLaVA-style architectures.
+    relation: background
+    note: >
+      Provides methodology for analyzing what visual regions VLMs attend to. Could be used to
+      benchmark ACIB's scorer against LVLM-Interpret's relevancy maps.
+    citation_priority: low  # cite only if discussing interpretability tools in depth
+
+# =====================================================================
+# Updated must_cite / should_cite lists
+# =====================================================================
+extended_citations:
+  newly_added_must_cite:
+    - tome_2023           # seminal token merging
+    - dynamicvit_2021     # pioneering learned token pruning
+    - evit_2022           # attention-based token selection
+    - ib_original_1999    # foundational IB theory
+    - deep_vib_2017       # IB + deep learning bridge
+    - compressor_vla_2025 # instruction-conditioned VLA token compression
+    - vla_adp_2025        # action-aware VLA pruning
+    - vla_pruner_2025     # dual-level VLA token pruning
+    - deepvision_vla_2026 # action-guided visual pruning
+
+  newly_added_should_cite:
+    - avit_2022           # adaptive token halting
+    - tishby_dl_ib_2015   # IB theory for deep learning
+    - kawaguchi_ib_dl_2023 # IB generalization theory
+    - task_cond_adapt_2024 # task-conditioned visual features for robot policy
+    - gradcam_2017        # classic interpretability baseline
+    - attention_rollout_2020 # attention-based importance analysis
+    - lvlm_interpret_2024 # VLM interpretability tool

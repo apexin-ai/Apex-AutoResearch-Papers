@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-003-eval-ckpt7000",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:34:53.503Z",
+    "updated_at": "2026-05-21T04:44:57.893Z",
+    "hypothesis": "Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "bash -c \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python /root/contrastive_entrain_calib/eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "691498",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log",
+      "submitted_at": "2026-05-21T04:41:14.012Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T04:44:58.068563+00:00",
+  "trigger": "update_registry"
+}

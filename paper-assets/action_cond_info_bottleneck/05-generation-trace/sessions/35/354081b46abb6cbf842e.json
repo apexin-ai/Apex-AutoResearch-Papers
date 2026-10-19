@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "354081b46abb6cbf842e",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diagnose acib v5 div reg failure",
+  "task_key": "worker_diagnose_acib_v5_div_reg_failure_20260516T055254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_acib_v5_div_reg_failure_20260516T055254_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "7b745fe0a40e9526ed859fb022ffdcc265664591c3ebbda7c5f98cd239f5f232"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5jB985WdZKKRPo9bvhS\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "This organization has been disabled."
+              },
+              "request_id": "req_011Cb5jB985WdZKKRPo9bvhS"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-acib-v5-div-reg-failure.md"
+}

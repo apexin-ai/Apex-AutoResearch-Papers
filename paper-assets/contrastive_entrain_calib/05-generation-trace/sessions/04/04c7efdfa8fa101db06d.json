@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04c7efdfa8fa101db06d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnose exp 003 eval failures",
+  "task_key": "worker_diagnose_exp-003-eval-failures_20260521T072341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-003-eval-failures_20260521T072341_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "373d5b1e32df738a13f2d369369988304b796a5f5a2a2b0a6f59632886543d2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已注册为 `art_20260521_983af6`。\n\n**摘要**：\n\n- **根因**：tmux 服务器在 07:19:24 UTC 崩溃，导致所有 session 收到 SIGHUP。不是服务器重启、不是 OOM、不是 GPU 故障。Docker 容器无系统日志，tmux 崩溃的精确触发器无法追溯。\n- **当前状态**：自动恢复系统已在 3 分钟内重启全部 4 个实验，均为 RUNNING 状态，4 GPU 全部在用（48-50% util）。ckpt5000-v2 已处理到 20/362。\n- **无需人工干预**，无脏数据风险（旧 run 未产生结果文件）。\n- 如果 tmux 崩溃频繁复现，建议改用 `nohup` 作为默认后端。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-003-eval-failures.md"
+}

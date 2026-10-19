@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "08f34b89f8430fbefbc9",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval acts2 batch eval pipeline",
+  "task_key": "worker_eval_acts2-batch-eval-pipeline_20260522T180145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-batch-eval-pipeline_20260522T180145.log",
+    "occurrence": 1,
+    "bytes": 943876,
+    "sha256": "cc8096b53e448b3ffbaa184e5eb7b45d0ddbbe81c1236b72ede1fb439d0181ad"
+  },
+  "statistics": {
+    "messages": 774,
+    "user_turns": 1,
+    "tool_calls": 338,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 338,
+      "tool_result": 338,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 763,
+      "chunks": [
+        {
+          "path": "08f34b89f8430fbefbc9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "08f34b89f8430fbefbc9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "08f34b89f8430fbefbc9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "08f34b89f8430fbefbc9-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "08f34b89f8430fbefbc9-part-0005.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "08f34b89f8430fbefbc9-part-0005.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-acts2-batch-eval-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8796959085905b661932",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh monitor alpha00 spatial",
+  "task_key": "worker_ssh_monitor-alpha00-spatial_20260517T032857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_monitor-alpha00-spatial_20260517T032857_result.json",
+    "occurrence": 1,
+    "bytes": 272,
+    "sha256": "009e3b9ed42f6617ec49048be6d7c75eca80a1d4faa447e0a8dc3c96d86fb87f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置。~4.5 分钟后再次检查。当前进度：\n\n| 指标 | 状态 |\n|------|------|\n| alpha=0.0 spatial | 5/10 tasks done |\n| 当前 rollout | task 5, step 59/280, SR=0.0% |\n| eval_info.json | 未生成 |\n| 预计完成 | ~25-30 min |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-monitor-alpha00-spatial.md"
+}

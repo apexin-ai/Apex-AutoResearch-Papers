@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "748a41e2d3e5592cf438",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ops disk cleanup pip cache",
+  "task_key": "worker_ops_disk-cleanup-pip-cache_20260516T033930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-pip-cache_20260516T033930_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "ba2f72f10092cb16e53c1d85d1af94b9f871210ec3d8a48badd1dfcb3acc0ab2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5ZAY6WBCZAtMM6YhJvY\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "This organization has been disabled."
+              },
+              "request_id": "req_011Cb5ZAY6WBCZAtMM6YhJvY"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-pip-cache.md"
+}

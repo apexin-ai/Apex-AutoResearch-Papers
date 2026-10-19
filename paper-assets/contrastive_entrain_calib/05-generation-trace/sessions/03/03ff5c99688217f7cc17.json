@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03ff5c99688217f7cc17",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "audit ref verify B",
+  "task_key": "worker_audit_ref-verify-B_20260526T103523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref-verify-B_20260526T103523_result.json",
+    "occurrence": 1,
+    "bytes": 5515,
+    "sha256": "a615c2aae38c15fb111fb696654c05334d0541c36c6125b85b5063cd120e1c80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 52 entries verified. Here's the full report:\n\n## Verification Results\n\n```\n[1]  zhang2026latentgrpo      | ✓  | Correct\n[2]  zou2023repe              | ⚠️ | Cite key says 2023, but venue is ICLR 2025. Year field \"2025\" is correct; cite key is misleading\n[3]  rimsky2024caa            | ✓  | Correct\n[4]  shao2024grpo             | ⚠️ | Published at COLM 2024, not just arXiv. Consider updating venue\n[5]  li2023iti                | ✓  | Correct\n[6]  turner2023actadd         | ✓  | Correct\n[7]  gao2023scaling           | ✓  | Correct\n[8]  skalse2022hacking        | ✓  | Correct\n[9]  casper2023openproblems   | ✓  | Correct (TMLR 2023)\n[10] denison2024subterfuge    | ✓  | Correct\n[11] sharma2023sycophancy     | ⚠️ | Cite key says 2023, year field 2024 is correct (ICLR 2024). Cite key misleading only\n[12] shapira2026amplifies     | ✗  | WRONG first author name: \"Ori\" → should be \"Itai Shapira\"\n[13] wang2025internal         | ⚠️ | Correct as arXiv 2025; note: accepted at AAAI 2026\n[14] wei2024synthetic         | ✓  | Correct\n[15] ackermann2026gradreg     | ⚠️ | Title abbreviated: \"RLHF\" should be \"Reinforcement Learning from Human Feedback\"\n[16] obrien2025fewbadneurons  | ✓  | Correct (NeurIPS 2025 workshop)\n[17] mckinney2023fragility    | ✗  | WRONG year + WRONG venue: should be 2022, \"NeurIPS ML Safety Workshop\" (not 2023 Deep RL)\n[18] papadatos2024probepenalties | ✗ | TWO wrong first names: \"Harris\" → \"Henry\"; \"Richard Freedman\" → \"Rachel Freedman\"\n[19] burns2023ccs             | ✓  | Correct\n[20] sinii2025smallvectors    | ✓  | Correct\n[21] consistency2025bctact    | ✓  | Correct\n[22] beigi2025smart           | ✓  | Correct\n[23] rafailov2023dpo          | ✓  | Correct\n[24] ethayarajh2024kto        | ✓  | Correct\n[25] luo2026craft             | ✓  | Correct; note: accepted at ICML 2026\n[26] manheim2019goodhart      | ⚠️ | Year 2019 = last arXiv revision; original was 2018. Defensible but be aware\n[27] wu2026rewardhacking      | ✓  | Correct\n[28] he2023debertav3          | ✓  | Correct\n[29] yang2025qwen3            | ✓  | Correct\n[30] grattafiori2024llama3    | ✓  | Correct\n[31] openai2025gpt41          | ✓  | Correct\n[32] kelkar2026persona        | ✗  | WRONG first author name: \"Ameya\" → should be \"Ishaan Kelkar\"\n[33] vennemeyer2025sycophancy | ✓  | Confirmed exists. Title, authors, arXiv ID all correct\n[34] hu2022lora               | ✓  | Correct\n[35] schulman2017ppo          | ✓  | Correct\n[36] rajbhandari2020zero      | ✓  | Correct\n[37] christiano2017rlhf       | ✓  | Correct\n[38] pan2022effects           | ✓  | Correct\n[39] marks2024geometry        | ✗  | WRONG venue: published at COLM 2024, NOT ICLR 2024\n[40] kadavath2022language      | ✓  | Correct\n[41] lin2022truthfulqa        | ✓  | Correct\n[42] lightman2024verify       | ✓  | Correct\n[43] touvron2023llama         | ✓  | Correct\n[44] ouyang2022instructgpt    | ✓  | Correct\n[45] bai2022training          | ✓  | Correct\n[46] stiennon2020summarize    | ⚠️ | Title should be \"...from Human Feedback\" not \"...with Human Feedback\"\n[47] ziegler2019finetuning    | ✓  | Correct\n[48] hubinger2024sleeper      | ✓  | Correct\n[49] perez2023discovering     | ✓  | Correct\n[50] uesato2022solving        | ✓  | Correct (casing difference only, BibTeX handles it)\n[51] hewitt2019designing      | ✓  | Correct\n[52] belinkov2022probing      | ✓  | Correct\n```\n\n## Summary Statistics\n\n| Category | Count |\n|----------|-------|\n| ✓ Correct | 39 |\n| ⚠️ Minor issues | 7 |\n| ✗ Errors requiring fix | 5 |\n\n## Errors Requiring Fix (5)\n\n1. **#12 shapira2026amplifies** — First author wrong: **\"Ori Shapira\" → \"Itai Shapira\"**\n2. **#17 mckinney2023fragility** — Year wrong (**2023 → 2022**) + venue wrong (**\"Deep RL Workshop\" → \"ML Safety Workshop\"**)\n3. **#18 papadatos2024probepenalties** — Two author names wrong: **\"Harris\" → \"Henry\" Papadatos**; **\"Richard\" → \"Rachel\" Freedman**\n4. **#32 kelkar2026persona** — First author wrong: **\"Ameya Kelkar\" → \"Ishaan Kelkar\"**\n5. **#39 marks2024geometry** — Venue wrong: **\"ICLR\" → \"COLM\" (Conference on Language Modeling)**\n\n## Minor Issues Worth Considering (7)\n\n- **#2 zou2023repe**: Cite key implies 2023; actual venue is ICLR 2025\n- **#4 shao2024grpo**: Published at COLM 2024, bib only lists arXiv\n- **#11 sharma2023sycophancy**: Cite key implies 2023; actual ICLR 2024\n- **#13 wang2025internal**: Accepted at AAAI 2026; bib cites arXiv 2025\n- **#15 ackermann2026gradreg**: Title abbreviates \"Reinforcement Learning from Human Feedback\" as \"RLHF\"\n- **#26 manheim2019goodhart**: Year 2019 is last revision; original submission was 2018\n- **#46 stiennon2020summarize**: Title word \"with\" should be \"from\"\n\n## High-Risk Entry Status\n\n- **#12 shapira2026amplifies**: EXISTS, but author name wrong\n- **#15 ackermann2026gradreg**: EXISTS, minor title abbreviation\n- **#25 luo2026craft**: EXISTS and verified ✓\n- **#27 wu2026rewardhacking**: EXISTS and verified ✓\n- **#32 kelkar2026persona**: EXISTS, but author name wrong\n- **#17 mckinney2023fragility**: EXISTS, but year + venue wrong\n- **#18 papadatos2024probepenalties**: EXISTS, but two author names wrong\n- **#33 vennemeyer2025sycophancy**: **EXISTS and verified ✓** (false alarm from prior flag)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ref-verify-b.md"
+}

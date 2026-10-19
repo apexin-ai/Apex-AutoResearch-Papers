@@ -1,0 +1,50 @@
+\section{Experimental Framework}
+\label{sec:framework}
+
+\subsection{Direction Extraction}
+\label{ssec:extraction}
+
+We extract a linear sycophancy direction $\dsyc$ from the residual stream using contrastive activation pairs: a \emph{valid correction} (warranted belief revision under strong evidence) and a \emph{sycophantic capitulation} (unwarranted concession under social pressure), style-controlled to match hedging, politeness, and length.
+From 181 paired examples stratified across three evidence-strength levels (362 activations total), we compute the mean difference at target layer $\ell$:
+\begin{equation}
+\label{eq:dsyc}
+\dsyc = \frac{1}{N}\sum_{i=1}^{N}\left(\mathbf{h}^{+}_i - \mathbf{h}^{-}_i\right)
+\end{equation}
+where $\mathbf{h}^{+}_i$ and $\mathbf{h}^{-}_i$ are residual-stream activations for the $i$-th valid and sycophantic response.
+The target layer is selected by 5-fold cross-validated AUROC; on Qwen3-8B this yields layer 19 with AUROC $0.827 \pm 0.028$.
+
+\subsection{Reward Formulations}
+\label{ssec:reward}
+
+GRPO \citep{shao2024grpo} ranks sampled completions by reward and updates the policy toward higher-reward outputs.
+We define $R = w_1 \cdot \rone + w_3 \cdot \rthree$, where $\rone$ is a direction-based component and $\rthree$ is a behavioral component (DeBERTa NLI classifier scoring consistency with the ground-truth answer).
+Three formulations translate $\dsyc$ into $\rone$:
+\begin{itemize}
+\item[\textbf{F1}] \textbf{Cosine.} $\rone = \cos(\mathbf{h},\, \dsyc)$.
+\item[\textbf{F2}] \textbf{Scaled cosine.} $\rone = \alpha \cdot \cos(\mathbf{h},\, \dsyc)$, amplifying gradient magnitude.
+\item[\textbf{F3}] \textbf{Binary probe.} $\rone = \mathbb{I}[P(\text{syc} \mid \mathbf{h}) &lt; 0.5]$, a frozen logistic probe with stopped gradients.
+\end{itemize}
+As an ablation, R3-only GRPO sets $w_1{=}0$, training with only the behavioral reward.
+
+\subsection{Online Recalibration}
+\label{ssec:recalib}
+
+We re-extract $\dsyc$ every 500 steps to track representation drift under LoRA training.
+Cosine similarity between consecutive directions remains ${\approx}\,0.96$ at step 500.
+
+\subsection{SFT Baseline: Activation Consistency Training}
+\label{ssec:baselines}
+
+ACT \citep{consistency2025bctact} combines SFT loss with an L2 activation consistency loss at target layers, providing dense per-token supervision unlike GRPO's single scalar per completion.
+
+\subsection{Evaluation}
+\label{ssec:eval}
+
+The \emph{True-positive Flip rate} ($\tof$) measures acceptance of valid corrections; the \emph{No-Flip rate} ($\nof$) measures resistance to invalid pressure.
+Their harmonic mean captures the calibration trade-off:
+\begin{equation}
+\label{eq:sycon}
+\sycon = \frac{2 \cdot \tof \cdot \nof}{\tof + \nof}
+\end{equation}
+Flip classification uses NLI following \citet{consistency2025bctact}.
+All experiments use Qwen3-8B with LoRA (rank$=$64, $\alpha{=}128$) and DeepSpeed ZeRO-2.

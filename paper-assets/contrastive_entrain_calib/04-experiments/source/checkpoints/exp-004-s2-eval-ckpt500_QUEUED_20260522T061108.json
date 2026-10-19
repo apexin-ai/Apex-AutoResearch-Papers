@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-004-s2-eval-ckpt500",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:11:08.471Z",
+    "updated_at": "2026-05-22T06:11:08.471Z"
+  },
+  "timestamp": "2026-05-22T06:11:08.627951+00:00",
+  "trigger": "update_registry"
+}

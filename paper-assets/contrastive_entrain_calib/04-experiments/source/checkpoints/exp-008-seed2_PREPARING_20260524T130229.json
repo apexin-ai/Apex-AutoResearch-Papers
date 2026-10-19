@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-008-seed2",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T13:02:29.476Z",
+    "updated_at": "2026-05-24T13:02:29.476Z"
+  },
+  "timestamp": "2026-05-24T13:02:29.679095+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,56 @@
+{
+  "exp_id": "acib_v5_div_reg_seed2",
+  "project": "action_cond_info_bottleneck",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 3,
+    "created_at": "2026-05-16T02:49:24.796Z",
+    "updated_at": "2026-05-16T03:29:00.611Z",
+    "hypothesis": "v5_div_reg seed 2 复现：验证 aggregate rate KL + diversity regularizer 防 scorer collapse 的稳定性，与 seed 1 (seed=42) 一致性检验",
+    "parent": "acib_v5_div_reg",
+    "notes": "First run failed with EXIT_CODE=1: wandb.init() auth error in setup_wandb() (maybe_login failed). Restarted with WANDB_MODE=disabled, now running as PID 744808 on cuda:1, step 200/20000 as of 2026-05-16 11:25.",
+    "reproduce": {
+      "finished_at": "2026-05-16T03:18:51.181Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-16T03:09:59.150Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:09:59.975176+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T03:18:52.158485+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "First run failed with EXIT_CODE=1: wandb.init() auth error in setup_wandb() (maybe_login failed). Restarted with WANDB_MODE=disabled, now running as PID 744808 on cuda:1, step 200/20000 as of 2026-05-16 11:25."
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acib && WANDB_MODE=disabled python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --diversity_lambda 0.1 --lambda_ent 0 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337\"",
+      "server": "westb-13953",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "744808",
+      "log_path": "~/runs/action_cond_info_bottleneck/acib_v5_div_reg_seed2.log",
+      "data_path": "/root/autodl-tmp/libero_dataset",
+      "data_count": 273465,
+      "model_name": "lerobot/smolvla_libero",
+      "seed": 1337,
+      "account": "root",
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (training experiment)"
+    }
+  },
+  "timestamp": "2026-05-16T03:29:00.638561+00:00",
+  "trigger": "update_registry"
+}

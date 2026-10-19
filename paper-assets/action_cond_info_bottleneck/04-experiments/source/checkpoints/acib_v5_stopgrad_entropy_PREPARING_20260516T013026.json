@@ -1,0 +1,14 @@
+{
+  "exp_id": "acib_v5_stopgrad_entropy",
+  "project": "action_cond_info_bottleneck",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:30:26.931Z",
+    "updated_at": "2026-05-16T01:30:26.931Z"
+  },
+  "timestamp": "2026-05-16T01:30:26.950473+00:00",
+  "trigger": "update_registry"
+}

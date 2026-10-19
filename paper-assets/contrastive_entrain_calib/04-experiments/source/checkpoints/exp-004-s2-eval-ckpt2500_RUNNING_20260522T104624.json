@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-004-s2-eval-ckpt2500",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:45:08.061Z",
+    "updated_at": "2026-05-22T10:46:24.280Z",
+    "hypothesis": "Eval exp-004-s2 (ACT seed 2) checkpoint-2500 with D027 unified preset.",
+    "parent": "exp-004-s2",
+    "spec": {
+      "command": "cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp004_s2/checkpoint-2500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp004_s2_d027_eval --exp_id exp004-s2-ckpt2500",
+      "server": "westd-28034",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 0,
+      "model_name": "Qwen3-8B",
+      "seed": 2,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp004_s2/checkpoint-2500",
+      "eval_data": "calibration_v2_1_expanded.jsonl",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp004_s2/checkpoint-2500",
+      "log_path": "/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt2500.log"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T10:46:24.428283+00:00",
+  "trigger": "update_registry"
+}

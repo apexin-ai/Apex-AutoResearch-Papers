@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14194039bb8bbdabb37d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops exp004 eval trim restart",
+  "task_key": "worker_ops_exp004-eval-trim-restart_20260519T133403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp004-eval-trim-restart_20260519T133403_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "724a91325cceda114eaa03ad27ee9d05cfae423ae546044d5143395de994894b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，确认如下：\n\n| 项目 | 状态 |\n|------|------|\n| Kill PID 134070 | DEAD |\n| 脚本修改 | `CHECKPOINTS=(500 2000 8000)` |\n| 残留清理 | 已删除 exp004-ckpt500 不完整结果 |\n| 新进程 PID | **136199**（子进程 python PID 136205） |\n| GPU 0 占用 | PID 136205, 17650MiB / 32607MiB, 42% util |\n| 日志 | 已加载 Qwen3-8B + LoRA ckpt-500，正在 eval 362 pairs |\n\n日志路径：`/tmp/exp004_eval_trimmed.log`。3 个 checkpoint 预计 ~2.5h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp004-eval-trim-restart.md"
+}

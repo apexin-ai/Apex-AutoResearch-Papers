@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1810e0689f4c48e0b52",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "check status ssh readonly",
+  "task_key": "worker_check_status-ssh-readonly_20260516T134324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_status-ssh-readonly_20260516T134324_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "c8d6282287cf63c3a9072556b83e4ea00f06e3b2d3efc9ea18c4b6d120101f7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **V7 训练 (PID 960110)** | 已死。实际运行进程是 **PID 21363**（58 分钟），step **6100/20000**，1.8 steps/s |\n| **V5 eval (PID 970634)** | 已死 |\n| **GPU 0** | 100% 利用率，16.2 GiB / 97.9 GiB（V7 训练中） |\n| **GPU 1 (cuda:1)** | **空闲**，0% 利用率，0 MiB 占用 |\n| **V7 输出目录** | checkpoint-5000 已保存，config.json 存在 |\n\nV7 预计还需 ~(20000-6100)/1.8/3600 ≈ **2.1 小时**完成。cuda:1 完全空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-status-ssh-readonly.md"
+}

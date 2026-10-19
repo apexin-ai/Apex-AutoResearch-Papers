@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad970133c7a8fb719cdd",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "check gpu verify v7 restart",
+  "task_key": "worker_check_gpu-verify-v7-restart_20260516T114840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu-verify-v7-restart_20260516T114840_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "d946124cfc21acd55476c8240db3aac2f15bb81ce39983a256ce280704a25b70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v7 已开始训练，step 100 在跑了。汇总：\n\n**v7 (acib_v7_contrastive) — 正在训练**\n- PID 959184/959189 存活，运行 1m13s\n- GPU 1: 16.2GB 显存，87% 利用率，460W\n- 日志已到 step 100/20000，loss=1.2258，1.7 steps/s\n\n**v6 (acib_v6_conditioned) — 已完成**\n- PID 866194 已退出，exit code 0\n- 20000 步训练完成，耗时 4.3h（完成于 2026-05-16T10:59:27Z）\n- checkpoint-20000/checkpoint.pt 存在\n\n**GPU 状态**\n| GPU | 显存 | 利用率 | 温度 |\n|-----|------|--------|------|\n| GPU 0 | 0MB / 98GB | 0% | 33°C |\n| GPU 1 | 16.2GB / 98GB | 87% | 60°C |\n\nGPU 0 空闲，可用于其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-verify-v7-restart.md"
+}

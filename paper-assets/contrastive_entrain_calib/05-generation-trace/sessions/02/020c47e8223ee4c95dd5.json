@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "020c47e8223ee4c95dd5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper writing probe trap",
+  "task_key": "worker_paper_writing_probe_trap_20260520T075146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_probe_trap_20260520T075146_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "1ddccd951b3864e8ac7b1ee8322d99df9277ce1a3754ee1423aafb3575327d7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `docs/paper/sections/probe_trap.tex`. The section (~660 words) follows the specified narrative arc:\n\n1. **Differentiable probe** (exp-008): gamed in ~30 steps, inverted to ToF=0.978/NoF=0.006\n2. **Binary probe mechanism** (exp-008v3): stubbornness trap where never flipping collects reward\n3. **Behavioral-before-distributional collapse**: ToF=0 at step 500, entropy healthy at 0.70, 1,300-step diagnostic lag; entropy monitoring cannot detect the failure\n4. **Dilemma**: differentiable = gaming, non-differentiable = rigidity trap; both stem from d_syc not encoding warrant\n\nAll custom commands (`\\dsyc`, `\\rone`, `\\rthree`, `\\tof`, `\\nof`, `\\sycon`), figure reference (`fig:probe_trap`), and citation keys used. No em-dashes, no -ing phrase endings."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-probe-trap.md"
+}

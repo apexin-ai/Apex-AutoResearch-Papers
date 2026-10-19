@@ -1,0 +1,155 @@
+paper_key: "gao2023scaling"
+title: "Scaling Laws for Reward Model Overoptimization"
+venue: "ICML 2023"
+full_text_available: true
+
+research:
+  baselines:
+    - "Best-of-n sampling (BoN) with varying n"
+    - "PPO-based reinforcement learning (RL)"
+    - "Proxy reward models of varying sizes (3M to 3B parameters)"
+    - "Gold-standard reward model (6B, from InstructGPT)"
+  metrics:
+    - {name: "Gold RM score (ground truth reward)", direction: "higher_better"}
+    - {name: "Proxy RM score", direction: "higher_better"}
+    - {name: "KL divergence from initial policy", direction: "lower_better"}
+    - {name: "RM validation loss (cross-entropy)", direction: "lower_better"}
+    - {name: "Peak gold RM score", direction: "higher_better"}
+    - {name: "sqrt(KL) at peak gold score (d*)", direction: "context_dependent"}
+  datasets:
+    - {name: "Synthetic comparisons from InstructGPT environment", size: "100,000 comparisons (90k train / 10k validation)"}
+    - {name: "InstructGPT prompts (broad natural language instructions)", size: "not explicitly stated, same as Ouyang et al. 2022"}
+  ablation_dimensions:
+    - "Reward model parameter count (3M, 12M, 25M, 42M, 85M, 300M, 680M, 1.2B, 3B)"
+    - "RM training data size (120 to 90,000 comparisons)"
+    - "Policy parameter count (1.2B vs 6B)"
+    - "KL penalty coefficient (0.0, 0.01, 0.05, 0.1, 0.5)"
+    - "Optimization method (BoN vs RL)"
+  training_recipe:
+    optimizer: "Adam"
+    lr: "1.67e-2 (RM), 4e-3 (RL)"
+    hardware: "Not explicitly stated; uses GPT-3 series models (OpenAI internal infrastructure)"
+    rl_algorithm: "PPO (Proximal Policy Optimization)"
+    rl_batch_size: 256
+    rl_ppo_clip: 0.2
+    rl_timesteps_per_rollout: 256
+    rl_minibatches_per_epoch: 128
+    rl_gae_lambda: 0.95
+    rm_batch_size: 64
+    initial_policy: "GPT-3 series models fine-tuned with SFT on InstructGPT demonstrations for 2 epochs"
+    bon_max_n: "up to 60,000 (validated functional form hypothesized at n=1000)"
+  method_family: "Scaling laws / empirical analysis of RLHF overoptimization"
+
+positioning:
+  core_claim: "Reward model overoptimization follows predictable functional forms -- quadratic for BoN and logarithmic for RL -- whose coefficients scale smoothly with RM size, enabling quantitative prediction of when and how much Goodhart's law degrades true performance during RLHF."
+  key_results: "BoN gold score follows R_BoN(d) = d(alpha - beta*d); RL follows R_RL(d) = d(alpha - beta*log(d)); coefficients scale smoothly (approx. logarithmically) with RM parameter count; larger RMs yield higher peak gold scores and less overoptimization (beta decreases); policy size has weak effect on overoptimization magnitude; KL penalty is equivalent to early stopping with no improvement on KL-gold frontier."
+  limitations:
+    - "Synthetic setup using gold RM instead of real human labels -- may not transfer to real-world settings"
+    - "All experiments use InstructGPT environment only -- generalization to other domains unvalidated"
+    - "Does not capture overoptimization from mismatch between ground truth labels and actual human intent"
+    - "Models not powerful enough to exhibit adversarial Goodhart effects"
+    - "Policy size scaling limited to only two sizes (1.2B and 6B)"
+    - "KL penalty result could be sensitive to hyperparameters"
+    - "Proxy RM score functional form harder to model than gold RM score"
+    - "Multi-iteration RLHF implications based on simplifying assumptions not empirically validated"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with Goodhart's law as a universal adage ('When a measure becomes a target, it ceases to be a good measure'), immediately connecting a well-known social science principle to the ML proxy optimization problem."
+  tension: "Overoptimization has been 'frequently observed, but not carefully measured due to the expense of collecting human preference data.' The inability to quantify Goodhart's law in RLHF blocks both practical safe deployment and theoretical understanding of alignment."
+  key_insight: "The synthetic gold-RM setup decouples the measurement problem from human labeling cost, enabling systematic scaling law analysis. The key discovery is that overoptimization is not chaotic but follows clean, predictable functional forms with smoothly scaling coefficients -- making it forecastable."
+  argument_chain: "Goodhart's law is important but unmeasured in RLHF -> human labels too expensive for systematic study -> synthetic gold-RM setup enables controlled measurement -> discover distinct functional forms for BoN (quadratic decay) and RL (logarithmic decay) -> coefficients scale smoothly with RM parameters -> ablate data size, policy size, KL penalty -> connect to Goodhart taxonomy (regressional/extremal/causal/adversarial) -> derive implications for iterated RLHF and alignment theory"
+  contribution_framing: "Four bullet-pointed findings at end of intro: (1) RL vs BoN differences, (2) smooth coefficient scaling, (3) weak policy size dependence, (4) KL penalty ineffectiveness. Framed as empirically validated scaling laws with alignment implications, not just measurements."
+  intro_structure: "6 paragraphs: P1 = Goodhart's law motivation and importance; P2 = RLHF context and optimization methods; P3 = challenge of human label expense and synthetic solution; P4 = main results (functional forms with equations); P5 = four bullet-pointed additional findings; P6 = forward pointer to discussion implications."
+  notable_technique: "Placing the two functional form equations (R_BoN and R_RL) directly in the introduction with their mathematical forms creates immediate concreteness and testability. The paper front-loads its core empirical result rather than burying it in results section, giving readers the 'punchline' early and making subsequent sections feel like validation rather than discovery."
+
+figures:
+  figure_count: 26
+  figure1:
+    type: "teaser_result"
+    description: "Two-panel plot (BoN top, RL bottom) showing gold RM score vs sqrt(KL) for 9 different proxy RM sizes (3M to 3B). Each panel shows proxy scores (dashed), gold scores (solid), and fitted curves (thin solid). Demonstrates the characteristic rise-then-fall overoptimization pattern, with larger RMs achieving higher peaks and declining less steeply."
+    narrative_role: "Serves as the central empirical result -- readers see the overoptimization phenomenon and the scaling law fits in one glance. Establishes visual credibility of the functional forms before formal description."
+    design_elements:
+      - "Dual-panel layout separating BoN and RL for direct comparison"
+      - "Color gradient from dark (small RM) to bright (large RM) for intuitive size ordering"
+      - "Dashed vs solid lines to distinguish proxy and gold scores"
+      - "Thin fitted curves overlaid on empirical data to show model quality"
+      - "Square-root x-axis scale for visual clarity"
+      - "9 RM sizes creating a dense scaling sweep"
+    visual_style: "Clean matplotlib aesthetic with muted-to-bright sequential colormap (purple to yellow/green). Legends organized by RM Size and RM Type. Grid-free with axis labels. Two vertically stacked panels with different x-axis ranges (0-10 for BoN, 0-100 for RL) reflecting the KL efficiency difference."
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "line_plot"
+      what_compared: "Gold and proxy RM scores across 9 RM sizes for both BoN and RL optimization methods"
+      how_gain_highlighted: "Fitted curves (thin lines) closely track empirical data, visually demonstrating scaling law accuracy. Larger RM sizes clearly achieve higher peaks."
+      design_note: "The rise-then-fall shape is the paper's visual signature -- every reader immediately grasps overoptimization from this plot."
+    - figure_id: "Figure 3"
+      viz_type: "scatter_with_trend"
+      what_compared: "Scaling law coefficients (alpha_BoN, beta_BoN, beta_RL) vs RM parameter count, for both proxy and gold rewards"
+      how_gain_highlighted: "Log-scale x-axis with approximately linear trends demonstrates smooth scaling. Dashed vs solid lines separate proxy and gold coefficients."
+      design_note: "Three sub-panels (a, b, c) isolate each coefficient, making the logarithmic scaling relationship visually obvious. This is the 'scaling law of the scaling law.'"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Gold and proxy RM scores across different RM training data sizes (120 to 90,000)"
+      how_gain_highlighted: "Color-coded lines show clear ordering: more data = higher peak gold score and less overoptimization"
+      design_note: "Same visual format as Figure 1 but sweeping data size instead of model size, maintaining visual consistency across ablations."
+    - figure_id: "Figure 8"
+      viz_type: "scatter_plot"
+      what_compared: "Proxy RM score vs gold RM score for both BoN and RL across all RM sizes"
+      how_gain_highlighted: "Reveals that RL and BoN look more similar when indexed by proxy score rather than KL, challenging the KL-as-optimization-measure assumption"
+      design_note: "Elegant reframing of the data -- same experiments plotted on a different axis to reveal a hidden regularity."
+    - figure_id: "Figure 5"
+      viz_type: "scatter_plot"
+      what_compared: "RM validation loss vs BoN gold RM score at n=1000 across all RM sizes"
+      how_gain_highlighted: "Clear negative correlation suggests validation loss predicts downstream optimization performance"
+      design_note: "Points color-coded by RM size. Tests the hypothesis that validation loss is a sufficient statistic for optimization robustness."
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      what_compared: "Effect of different KL penalty coefficients (0.0, 0.01, 0.05, 0.1, 0.5) on RL gold and proxy scores"
+      how_gain_highlighted: "Shows KL penalty merely acts as early stopping -- all curves follow the same KL-gold frontier"
+      design_note: "Powerful negative result visualized clearly: despite different KL penalties, gold score curves collapse onto the same trajectory."
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["RM training data size (120 to 90,000)"]
+      design_note: "Dual-panel (BoN, RL) with color-coded data sizes. Shows diminishing returns and a critical threshold around 2,000 comparisons below which RMs barely exceed chance."
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["RM data size", "RM parameter count"]
+      design_note: "RM validation losses broken down by both data size and model size, showing that performance depends on the combination of both."
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      dimensions_varied: ["Policy parameter count (1.2B vs 6B)"]
+      design_note: "Dual-panel showing BoN and RL. Asterisks mark peak gold scores in RL plot. Demonstrates larger policies benefit less from optimization but don't overoptimize more."
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      dimensions_varied: ["KL penalty coefficient (0.0, 0.01, 0.05, 0.1, 0.5)"]
+      design_note: "Shows all KL penalty settings trace the same gold-KL frontier, establishing KL penalty as equivalent to early stopping."
+    - figure_id: "Figure 10"
+      viz_type: "heatmap"
+      dimensions_varied: ["RM size (3M to 3B)", "Data size (120 to 90,000)"]
+      design_note: "Appendix heatmap of max gold scores across full RM size x data size grid. Contour lines overlay discrete cells for readability."
+  figure_narrative_role: "Figure 1 (main result: overoptimization curves and fits) -> Figure 2 (methodology: synthetic setup diagram) -> Figure 3 (scaling: coefficient trends) -> Figure 4 (ablation: data size effect) -> Figure 5 (analysis: validation loss as predictor) -> Figure 6 (analysis: RM losses breakdown) -> Figure 7 (ablation: policy size effect) -> Figure 8 (insight: proxy-vs-gold reframing) -> Figure 9 (ablation: KL penalty effect). Flow: result first, then methodology, then systematic ablations, then deeper analysis."
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "hyperparameters"
+    col_axis: "values"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "none (simple listing)"
+    statistical_reporting: "single values (no variance reported for hyperparameters)"
+    num_baselines: 0
+    design_note: "Not a result comparison table -- this is a hyperparameter reference table. The paper is unusual in having no traditional baseline comparison table because it is an empirical scaling law study, not a method-vs-method benchmark. All results are presented as figures (curves and fits), not tables."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["best-of-n sample count (n=1, 3, 10, 30, 100, 300, 1000, 3000, 10000, 30000)"]
+      variation_style: "full_numbers"
+      design_note: "Qualitative illustration table showing actual generated text samples for one question across different n values. Includes proxy and gold scores per sample. Demonstrates that per-question gold scores are noisy even as averages follow clean trends. Serves a narrative/illustrative purpose rather than systematic comparison."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 1 (hyperparameters) is in Appendix C. Table 2 (sample BoN answers) is in the appendix. The appendix also contains 17 additional figures (Figures 10-26) covering: RM size x data size heatmaps, validation losses, coefficient scaling across data sizes, additional BoN/RL curves for different RM sizes, KL growth over RL steps, policy size comparisons, proxy-gold gaps, and extrapolation tests."
+    reason: "Main paper focuses on key scaling law results and ablation trends via figures. Detailed supplementary figures cover all parameter combinations and edge cases, keeping main text focused on the core narrative. No supplementary result tables because this is fundamentally a curve-fitting paper where figures are the natural result format."

@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-004-heldout-vanilla-baseline",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:20:20.787Z",
+    "updated_at": "2026-05-23T07:36:54.925Z",
+    "hypothesis": "Vanilla Qwen3-8B baseline on held-out eval split (70 lines). Establishes held-out baseline for three-way comparison: ACT held-out vs vanilla held-out vs GRPO held-out.",
+    "parent": "exp-004-heldout",
+    "spec": {
+      "command": "python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --data_path /root/contrastive_entrain_calib/data/eval_held_out.jsonl --output_dir eval_results/heldout_vanilla_baseline/ --exp_id heldout_vanilla_baseline",
+      "server": "westd-28034",
+      "gpu": "cuda:2",
+      "pid": 56465,
+      "data_path": "/root/contrastive_entrain_calib/data/eval_held_out.jsonl",
+      "data_count": 70,
+      "model_name": "Qwen3-8B (vanilla, no LoRA)",
+      "seed": 42,
+      "checkpoint_source": "N/A (base model)",
+      "eval_data": "/root/contrastive_entrain_calib/data/eval_held_out.jsonl",
+      "checkpoint_path": "N/A (base model)",
+      "log_path": "/tmp/eval_heldout_vanilla.log"
+    },
+    "metrics": {
+      "sycon_score": 0.0556,
+      "tof": 0.0286,
+      "nof": 1,
+      "n_total": 70
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T07:34:11.846Z"
+  },
+  "timestamp": "2026-05-23T07:36:55.129132+00:00",
+  "trigger": "update_registry"
+}

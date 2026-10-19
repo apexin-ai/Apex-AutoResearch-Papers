@@ -1,0 +1,429 @@
+meta:
+  venue: EMNLP 2026
+  track: "ARR May/August cycle → EMNLP 2026 Findings (target 3.0-3.5)"
+  template: "acl-org/acl-style-files (ARR/ACL 2025 official)"
+  template_note: "Director 指定 ARR/ACL 2025 官方模板 (acl-org/acl-style-files)。Worker 需 clone 并部署到 projects/{project}/docs/paper/"
+  page_limit: 8  # EMNLP 2026: 8 pages main text, unlimited references. Limitations outside page limit.
+  deadline: "August cycle (~Aug 15)"
+  core_claim: >
+    A linear sycophancy direction (d_syc) achieves AUROC 0.82 (Qwen3-8B) and 0.78
+    (Llama-3-8B), demonstrating cross-model discriminability, yet fails as GRPO reward
+    in ALL tested formulations — continuous cosine penalizes all belief change while
+    binarized probe rewards all resistance — both exploiting the direction's blindness
+    to change warrant. We identify a probe reward trap causing behavioral collapse
+    1300 steps before entropy collapse, revealing that discriminability ≠ reward utility
+    in representation-guided RL.
+  working_title: "Discriminability Without Utility: Why Sycophancy Directions Fail as RL Rewards"
+  paper_type: analysis  # negative result + mechanistic analysis
+  created_at: 2026-05-20T10:00:00Z
+
+# ============================================================
+# PAPER OUTLINE
+# ============================================================
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: anti-sycophancy training faces a double-bind — blocking capitulation also blocks legitimate revision. Representation-based approaches promise selective targeting."
+      - "Setup: extract d_syc from contrastive pairs (AUROC 0.82), test three R1 formulations as GRPO reward"
+      - "Negative result: ALL formulations fail. Cosine R1 penalizes all change (strong-evidence R1=-0.305). Binary probe R1 rewards all non-change (ToF=0 within 500 steps)."
+      - "Mechanism: d_syc encodes belief change direction but not warrant → probe reward trap → behavioral collapse precedes entropy collapse by ~1300 steps"
+      - "Implication: discriminability ≠ reward utility; condition-aware reward design needed"
+    dependencies: [introduction, cosine_failure, probe_trap, discussion]
+
+  - section: introduction
+    word_budget: 900
+    core_bullets:
+      - "Hook: RepE-style directions can detect sycophancy with AUROC 0.82 in LLM activations. A natural next step is using these directions as RL reward signals. We show this fails — the gap between detecting a behavior and penalizing it is fundamental."
+      - "Gap: existing anti-sycophancy methods (ACT, behavioral GRPO) treat all belief changes uniformly. RepE/CRAFT/Latent-GRPO use representation geometry as reward for reasoning and safety, but sycophancy's unique geometric structure (capitulation ≈ revision in direction space) remains uninvestigated."
+      - "Insight: d_syc encodes belief change direction but not change warrant. The same geometric direction captures both 'model correctly revises belief' and 'model sycophantically capitulates.'"
+      - "Contributions: (C1) cross-model validated d_syc discriminability (Qwen3-8B AUROC 0.82, Llama-3-8B AUROC 0.78) with systematic 3-formulation investigation establishing discriminability ≠ reward utility; (C2) probe reward trap mechanism with behavioral-before-distributional collapse diagnostic; (C3) unified root cause explaining why sycophancy is geometrically harder than reasoning/safety for representation-guided RL"
+    dependencies: [cosine_failure, probe_trap]
+    figures: [fig1_overview]
+    citation_hints:
+      - "RepE (Zou et al. 2023), CCS (Burns et al. 2023), ActAdd (Turner et al. 2023)"
+      - "CRAFT / Latent-GRPO for representation-guided RL comparison"
+      - "Sycophancy definition and prevalence (Sharma et al. 2023)"
+    registry_refs: [exp-001, exp-012]
+
+  - section: framework
+    latex_title: "Experimental Framework"
+    word_budget: 750
+    core_bullets:
+      - "§2.1 Direction extraction: contrastive pairs (valid correction vs sycophantic capitulation), mean-difference d_syc across target layers, style-controlled to isolate cognitive signal from surface patterns"
+      - "§2.2 GRPO reward: R = w1·R1(direction-based) + w3·R3(NLI behavioral). Three R1 formulations — (F1) cosine: cos(h, d_syc), (F2) scaled cosine: α·cos(h, d_syc), (F3) binary probe: I[P(syc|h)<0.5]"
+      - "§2.3 Online recalibration: d_syc re-extracted every 500 steps (empirical stability cosine ≈ 0.96)"
+      - "§2.4 Evaluation protocol: ToF (acceptance of valid corrections ↑), NoF (resistance to invalid pressure ↑), SYCONScore = 2·ToF·NoF/(ToF+NoF). NLI-based classification (D027 standard). 362 style-controlled contrastive pairs, weak/medium/strong evidence stratification."
+      - "Model: Qwen3-8B, LoRA r=64 α=128, DeepSpeed ZeRO-2"
+    dependencies: []
+    notation_table:
+      d_syc: "contrastive sycophancy direction (mean difference across target layers)"
+      R1: "direction-based reward component"
+      R3: "NLI behavioral reward (DeBERTa-based)"
+      ToF: "True-positive Flip rate — fraction of valid corrections accepted"
+      NoF: "No-Flip rate — fraction of invalid pressures resisted"
+      SYCONScore: "harmonic mean of ToF and NoF"
+    registry_refs: [exp-001, exp-002, exp-002v2, exp-008v3]
+
+  - section: direction_quality
+    latex_title: "Direction Discriminability"
+    word_budget: 550
+    core_bullets:
+      - "CV AUROC 0.827 (±0.028) on style-controlled data — d_syc carries genuine sycophancy-specific signal"
+      - "Layer emergence: random at L0, significant at L16-19, best at L19"
+      - "Evidence strength stratification: weak 0.675, medium 0.883, strong 0.929 — discriminability scales with signal clarity"
+      - "Cross-model generalization: Llama-3-8B-Instruct d_syc 5-fold CV AUROC 0.779 ± 0.019 (best layer=16), style-controlled AUROC 0.923, evidence strength gradient (weak 0.711, medium 0.864, strong 0.911) — consistent pattern confirms d_syc is not model-specific"
+      - "Training stability: cosine sim ≈ 0.96 at step 500; per-layer AUROC ≥ 0.77 after 500 LoRA steps, deep layers improve (+0.025-0.033)"
+      - "Probe ablation: d_syc probe AUROC 0.835 vs random direction 0.727 (+0.108 Δ)"
+      - "Verdict: direction quality is NOT the bottleneck — the problem lies in reward formulation"
+    dependencies: [framework]
+    figures: [fig4_direction_quality]
+    tables: [tab3_cross_model]
+    registry_refs: [exp-001, exp-002v2, exp-012]
+
+  - section: cosine_failure
+    latex_title: "Cosine R1: Structural Failure"
+    word_budget: 700
+    core_bullets:
+      - "4-experiment failure chain — each config addresses previous failure, revealing structural not tunable limitation"
+      - "F1a exp-002: tanh(dot/20) gate saturates due to activation norms 100-1200x, R1 contribution collapses to zero"
+      - "F1b exp-002v2: raw cosine R1, weight=0.25 — R1 ≈ 0 throughout training, functionally equivalent to R3-only"
+      - "F1c exp002v2-recalib: cosine + recalibration — mode collapse (entropy 0.069, length 62 tokens)"
+      - "F1d exp-002v3: 5x scaled cosine, weight=0.4 — R3 saturated at step 100, R1 mean oscillated -0.46 to +0.41 with no sustained positive trend, mode collapse at step 2160"
+      - "Root cause: cosine gap valid vs invalid ~0.098 (7-layer mean). d_syc projection conflates 'correctly revises belief' with 'sycophantically capitulates' because both move TOWARD user position"
+      - "Recalibration evidence: AUROC 0.82→0.91 via recalibration yet reward still fails → direction quality is not bottleneck"
+    dependencies: [framework, direction_quality]
+    figures: [fig2_cosine_failure]
+    tables: [tab2_cosine_chain]
+    registry_refs: [exp-002, exp-002v2, exp002v2-recalib, exp-002v3]
+
+  - section: probe_trap
+    latex_title: "The Probe Reward Trap"
+    word_budget: 650
+    core_bullets:
+      - "Binary probe trained on contrastive pairs learns 'no answer change = non-sycophantic'"
+      - "GRPO positive feedback loop: stubbornness → probe classifies as non-sycophantic (R1=1) → gradient reinforces stubbornness → policy narrows"
+      - "4-checkpoint trajectory (exp-008v3): ckpt-500 entropy=0.70 ToF=0.000 | ckpt-1000 entropy=0.80 ToF=0.006 | ckpt-1500 entropy=0.61 ToF=0.000 | ckpt-2000 entropy=0.30 ToF=0.000"
+      - "Critical diagnostic finding: behavioral collapse (ToF=0) at step 500, entropy collapse at step ~1840 — 1300-step lag. Entropy monitoring CANNOT detect this failure."
+      - "R1 mean +0.72 during collapse = probe actively rewarding degenerate behavior"
+      - "Contrast: differentiable probe (exp-008) gamed in ~30 steps via gradient. Binary + stop-gradient avoids gaming but creates reward trap instead — a different failure mode, not a fix."
+      - "Theoretical: any d_syc-derived reward without conditioning on input validity exhibits one of two modes — penalizes all change (cosine) OR rewards all non-change (probe)"
+    dependencies: [framework]
+    figures: [fig3_probe_trap]
+    registry_refs: [exp-008v3, exp-008]
+
+  - section: discussion
+    latex_title: "Analysis: Discriminability ≠ Reward Utility"
+    word_budget: 600
+    core_bullets:
+      - "Unified root cause: d_syc encodes belief change DIRECTION but not change WARRANT. Cosine = too punitive, probe = too permissive — two faces of the same geometric blindness."
+      - "Main comparison: vanilla SYCONScore=0.134, ACT=0.301, ActAdd=0.054 (harmful), binary probe=0.000 (trap) [TODO: exp-003 R3-only baseline]"
+      - "Cross-model strengthening: Llama-3-8B independently confirms d_syc discriminability (AUROC 0.78) with consistent evidence-strength gradient — even cross-model generalizable discriminability cannot translate to reward utility, confirming the problem is structural not model-specific"
+      - "CRAFT/Latent-GRPO asymmetry: reasoning (correct/incorrect) and safety (safe/unsafe) have cleaner geometric separation — behavioral categories don't share direction. Sycophancy is unique: capitulation and revision SHARE geometric direction, differ only in warrant."
+      - "Implication: discriminability is necessary but insufficient for reward utility in representation-guided RL"
+      - "Future direction: condition-aware reward design jointly encoding direction + warrant (e.g., conditioning on input evidence validity)"
+    dependencies: [cosine_failure, probe_trap, direction_quality]
+    tables: [tab1_main_comparison]
+    registry_refs: [vanilla-baseline, exp-004, exp-016, exp-008v3, exp-003, exp-012]
+
+  - section: related_work
+    latex_title: "Related Work"
+    word_budget: 550
+    core_bullets:
+      - "Cluster 1 — Representation Engineering: RepE (Zou et al. 2023), CCS (Burns et al. 2023), ITI (Li et al. 2023), ActAdd (Turner et al. 2023), CAA (Rimsky et al. 2024). We extend from inference-time steering to training-time reward, discovering the discriminability-reward gap."
+      - "Cluster 2 — Reward Design & Hacking: reward overoptimization (Gao et al. 2023), Goodhart characterization (Skalse et al. 2022), RLHF limitations (Casper et al. 2023). Our probe gaming is an extreme case — low-capacity proxy gamed instantly."
+      - "Cluster 3 — Anti-Sycophancy: sycophancy characterization (Sharma et al. 2023), RLHF amplification (Shapira et al. 2026), BCT/ACT, synthetic data (Wei et al. 2024). All treat changes uniformly; we show why directional differentiation fails."
+      - "Cluster 4 — Representation-Guided RL: Latent-GRPO (Zhang et al. 2026), CRAFT. Succeed for reasoning/safety but not sycophancy — our analysis explains the asymmetry via the warrant gap."
+    dependencies: [introduction]
+    citation_hints:
+      - "zou2023repe, burns2023ccs, li2023iti, turner2023actadd, rimsky2024caa"
+      - "gao2023scaling, skalse2022hacking, casper2023openproblems, denison2024subterfuge"
+      - "sharma2023sycophancy, shapira2026amplifies, wei2024synthetic, consistency2025bctact"
+      - "zhang2026latentgrpo, CRAFT (需搜索确认)"
+
+  - section: conclusion
+    latex_title: "Conclusion"
+    word_budget: 300
+    core_bullets:
+      - "Summary: d_syc discriminates sycophancy (AUROC 0.82) but CANNOT serve as GRPO reward — discriminability ≠ reward utility"
+      - "Key finding: probe reward trap with behavioral-before-distributional collapse reveals a fundamental diagnostic blind spot"
+      - "Broader lesson: representation geometry that detects a behavior is not automatically suitable for optimizing against it. The warrant gap (direction vs justification) is a structural challenge for sycophancy."
+      - "[TODO: d_syc value positioning depends on exp-003 — if R3-only matches or beats all direction-based attempts, strengthens 'direction adds nothing' narrative]"
+    dependencies: [discussion]
+    registry_refs: [exp-001, exp-008v3]
+
+  - section: limitations
+    latex_title: "Limitations"
+    word_budget: 250
+    core_bullets:
+      - "RL training experiments on single model (Qwen3-8B); d_syc discriminability confirmed cross-model (Llama-3-8B AUROC 0.78) but reward formulation failure not replicated on second model due to compute budget (200 H100-hr equivalent) — minor limitation as discriminability is the tested precondition"
+      - "Binary valid/invalid framework simplifies the warrant spectrum; real-world belief revision has gradient justification"
+      - "Style-controlled data isolates cognitive signal but may not capture full sycophancy diversity"
+      - "No human evaluation of model outputs — SYCONScore relies on NLI classifier"
+      - "Investigation limited to GRPO; other RL algorithms (PPO, DPO) may interact differently with representation-based rewards"
+    dependencies: [conclusion]
+
+# ============================================================
+# VISUALIZATION PLAN
+# ============================================================
+visualization_plan:
+  - fig_id: fig1_overview
+    type: conceptual
+    tool: paperbanana
+    description: >
+      "Discriminability ≠ Reward Utility" framework overview. Shows: (1) contrastive pairs →
+      d_syc extraction → AUROC 0.82 (success); (2) three R1 formulations branching into
+      distinct failure modes (cosine → penalizes all change, probe → rewards all non-change);
+      (3) central visual metaphor: same d_syc direction captures both genuine revision and
+      sycophantic capitulation, illustrating the warrant gap.
+    narrative_intent: >
+      d_syc successfully detects sycophancy in activation space (AUROC 0.82), but translating
+      detection into RL reward fails in ALL formulations because the direction captures change
+      polarity without encoding change warrant — discriminability ≠ reward utility.
+    design_notes:
+      - "两栏或流程布局：左侧 discrimination (green check, AUROC 0.82) vs 右侧 reward failure (red X, three paths)"
+      - "核心视觉隐喻：activation space 中 genuine revision 和 sycophantic capitulation 的向量投影方向相同，仅 warrant 不同"
+      - "三条 R1 分支各自标注失败模式：cosine→'penalizes all change', probe→'rewards all non-change', scaled→'amplifies flaw'"
+      - "底部 takeaway banner: discriminability ≠ reward utility"
+    placement: introduction
+    aspect_ratio: "16:9"
+    data_source: "conceptual — no registry data"
+
+  - fig_id: fig2_cosine_failure
+    type: statistical
+    tool: matplotlib
+    description: >
+      Cosine R1 per-strength structural analysis. Panel A: R1 reward distribution by evidence
+      strength (weak/medium/strong) for exp-002v3 (5x scaled cosine), showing strong-evidence
+      samples get R1=-0.305 — model penalized for correctly revising beliefs. Panel B: cosine
+      gap (valid vs invalid) across 7 target layers, showing ~0.098 mean gap that is structurally
+      insufficient for reward discrimination.
+    narrative_intent: >
+      Cosine R1 penalizes legitimate belief revision as heavily as sycophantic capitulation because
+      both project similarly onto d_syc. The 0.098 cosine gap is structurally insufficient, and 5x
+      scaling amplifies the wrong signal (strong evidence R1=-0.305, ALL negative).
+    design_notes:
+      - "Pattern A: regime bands 按 evidence strength (weak/medium/strong) 分色区"
+      - "Pattern H: 2-panel layout (panel A: per-strength R1 violin/box, panel B: per-layer gap bars)"
+      - "Pattern C: dashed reference line at R1=0 (reward neutral point)"
+      - "R1<0 区域用浅红色 background band (#FDEDEC) 标 'penalizes revision' zone"
+      - "强调 strong-evidence 的负 R1 是 structural flaw 不是 noise"
+    data_source: "registry: exp-002v3, exp-002v2"
+    placement: cosine_failure
+    aspect_ratio: "2:1"
+
+  - fig_id: fig3_probe_trap
+    type: statistical
+    tool: matplotlib
+    description: >
+      Probe reward trap: behavioral vs distributional collapse over training. Two-panel (NOT
+      dual y-axis): Panel A shows ToF trajectory over 4 checkpoints (500, 1000, 1500, 2000 steps)
+      — behavioral death at step 500 (ToF=0). Panel B shows entropy trajectory — healthy at 0.70
+      when behavior already dead, collapse at ~step 1840. The 1300-step diagnostic lag is the key
+      visual message.
+    narrative_intent: >
+      The probe reward trap kills behavior (ToF=0) within 500 training steps while entropy remains
+      healthy (0.70), creating a 1300-step diagnostic blind spot where standard entropy monitoring
+      shows no alarm — behavioral eval at intermediate checkpoints is necessary.
+    design_notes:
+      - "Pattern H: 2-panel (NOT dual y-axis per L1 rule). Panel A = ToF, Panel B = entropy. Shared x-axis (training steps)."
+      - "Pattern A: 'trap active' zone — light red background band from step 0 to step 2000 on ToF panel"
+      - "Pattern C: dashed reference line for vanilla ToF=0.072 baseline"
+      - "Pattern J: path-effect text annotations at key events: 'behavioral death (ToF=0)' at step 500, 'entropy collapse' at step ~1840"
+      - "Semantic colors: ToF in collapse vermillion (#D55E00), entropy in baseline blue (#0072B2)"
+      - "Between the two panels, annotate the '~1300-step lag' with a double-headed arrow"
+      - "标注 R1 mean=+0.72 在 ToF=0 时——probe actively rewarding degenerate behavior"
+    data_source: "registry: exp-008v3"
+    placement: probe_trap
+    aspect_ratio: "5:3"
+
+  - fig_id: fig4_direction_quality
+    type: statistical
+    tool: matplotlib
+    description: >
+      Direction quality evidence with cross-model comparison. Panel A: per-layer AUROC
+      for Qwen3-8B (L0-L35) and Llama-3-8B (L16-L31) showing consistent mid-layer
+      emergence pattern (Qwen peak L19, Llama peak L16). Panel B: probe ablation bar chart —
+      d_syc direction AUROC 0.835 vs random direction 0.727 (+0.108 gap).
+    narrative_intent: >
+      d_syc captures genuine sycophancy signal across model families: Qwen3-8B (L19 peak,
+      AUROC 0.827) and Llama-3-8B (L16 peak, AUROC 0.779), both with consistent evidence-
+      strength gradients. The +0.108 AUROC advantage over random directions confirms signal
+      quality is not the bottleneck for reward utility failure.
+    design_notes:
+      - "Pattern C: dashed line at AUROC=0.5 (random chance baseline)"
+      - "Panel A: overlaid line plots for both models with distinct colors (Qwen=#0072B2, Llama=#D55E00); mark peak layers"
+      - "Panel B: simple grouped bar, d_syc vs random, with Δ=+0.108 annotated"
+      - "Clean, minimal design — supporting evidence, not hero figure"
+      - "如果页面紧张可移至 Appendix，关键数字并入正文"
+    data_source: "registry: exp-001, exp-012"
+    placement: direction_quality
+    aspect_ratio: "5:3"
+
+# ============================================================
+# TABLE PLAN
+# ============================================================
+table_plan:
+  - table_id: tab1_main_comparison
+    caption: >
+      Comparison of sycophancy reduction methods. ToF = acceptance of valid corrections (↑),
+      NoF = resistance to invalid pressure (↑), SYCONScore = harmonic mean (↑). All evaluated
+      on 362 style-controlled contrastive pairs with NLI-based classification.
+    placement: discussion
+    type: comparison
+    columns: [Method, Reward Type, "ToF (↑)", "NoF (↑)", "SYCONScore (↑)", Failure Mode]
+    data_source: "registry: vanilla-baseline, exp-004, exp-016, exp-003, exp-008v3, exp-002v3"
+    notes: >
+      [TODO: exp-003 R3-only baseline pending (~May 22).]
+      Bold best SYCONScore. Mark collapsed methods with †. ACT is strongest baseline.
+    row_plan:
+      - "Vanilla (no training): ToF=0.072, NoF=0.945, SYCONScore=0.134 — baseline reference"
+      - "R3-only behavioral GRPO: [TODO exp-003] — behavioral-reward-only ablation"
+      - "ACT ckpt-8000 (exp-004): ToF=0.182, NoF=0.867, SYCONScore=0.301 — undifferentiated consistency"
+      - "ActAdd α=5 (exp-016): ToF=0.028, NoF=0.961, SYCONScore=0.054 — inference steering, net harmful†"
+      - "Cosine R1 5x (exp-002v3): mode collapse at step 2160, R3 saturation + R1 noise†"
+      - "Binary Probe R1 (exp-008v3): ToF=0.000, NoF=1.000, SYCONScore=0.000 — probe reward trap†"
+
+  - table_id: tab2_cosine_chain
+    caption: >
+      Cosine R1 failure chain: four configurations systematically tested, each addressing the
+      previous failure mode but revealing deeper structural limitations.
+    placement: cosine_failure
+    type: comparison
+    columns: [Config, R1 Formula, Weight, Training Outcome, Root Cause]
+    data_source: "registry: exp-002, exp-002v2, exp002v2-recalib, exp-002v3"
+    notes: "Demonstrates systematic exploration. Each row a distinct experiment."
+    row_plan:
+      - "exp-002: tanh(dot/20), w=0.25 → gate saturation, R1=0 — activation norm mismatch"
+      - "exp-002v2: cos(h,d), w=0.25 → R1≈0 throughout — gap too small (0.098)"
+      - "exp002v2-recalib: cos(h,d)+recalib, w=0.25 → mode collapse — unstable with stale→fresh switch"
+      - "exp-002v3: 5·cos(h,d), w=0.4 → R3 saturation + R1 noise → mode collapse at step 2160"
+
+  - table_id: tab3_cross_model
+    caption: >
+      Cross-model d_syc discriminability. Both models exhibit consistent evidence-strength
+      gradients, confirming d_syc captures a general sycophancy signal not specific to
+      any single architecture.
+    placement: direction_quality
+    type: comparison
+    columns: [Model, "Best Layer", "CV AUROC (±std)", "Weak", "Medium", "Strong"]
+    data_source: "registry: exp-001, exp-012"
+    notes: "2-row inline table. Director note: use 5-fold CV std (exp-012 std=0.019), NOT per-layer std (0.74 is display bug)."
+    row_plan:
+      - "Qwen3-8B: L19, 0.827±0.028, weak=0.675, med=0.883, strong=0.929"
+      - "Llama-3-8B-Instruct: L16, 0.779±0.019, weak=0.711, med=0.864, strong=0.911"
+
+# ============================================================
+# LITERATURE STRATEGY
+# ============================================================
+literature_strategy:
+  citation_budget: 30
+  macro_context:
+    - "representation engineering for LLM behavior modification"
+    - "reward design and reward hacking in RLHF"
+    - "sycophancy detection and mitigation in LLMs"
+    - "representation-guided reinforcement learning"
+  micro_clusters:
+    - cluster_name: "representation-engineering"
+      search_queries:
+        - "representation engineering linear probes LLM behavior 2023 2024 2025"
+        - "contrastive activation addition steering vectors sycophancy"
+        - "CCS unsupervised direction finding truth"
+      must_cite:
+        - "zou2023repe"
+        - "burns2023ccs"
+        - "turner2023actadd"
+        - "rimsky2024caa"
+        - "li2023iti"
+      target_count: 7
+
+    - cluster_name: "representation-guided-rl"
+      search_queries:
+        - "representation geometry GRPO reward 2025 2026"
+        - "CRAFT hidden state reward safety alignment"
+        - "latent GRPO spherical projection reasoning reward"
+        - "linear probe penalty reward model RLHF"
+      must_cite:
+        - "zhang2026latentgrpo"
+        - "CRAFT (需搜索确认完整引用)"
+      target_count: 4
+
+    - cluster_name: "reward-hacking"
+      search_queries:
+        - "reward hacking overoptimization RLHF scaling laws 2023 2024"
+        - "reward model fragility proxy gaming Goodhart"
+        - "sycophancy subterfuge reward tampering"
+      must_cite:
+        - "gao2023scaling"
+        - "skalse2022hacking"
+        - "casper2023openproblems"
+        - "denison2024subterfuge"
+      target_count: 6
+
+    - cluster_name: "sycophancy"
+      search_queries:
+        - "sycophancy language model characterization mitigation 2024 2025 2026"
+        - "RLHF amplifies sycophancy formal proof"
+        - "truth decay multi-turn belief revision LLM"
+        - "knowledge prediction gap sycophantic anchors"
+        - "internal origins sycophancy late-layer"
+      must_cite:
+        - "sharma2023sycophancy"
+        - "shapira2026amplifies"
+        - "wang2025internal"
+      target_count: 7
+
+    - cluster_name: "anti-sycophancy-training"
+      search_queries:
+        - "anti-sycophancy training GRPO behavioral reward 2025 2026"
+        - "activation consistency training BCT ACT"
+        - "synthetic data reduces sycophancy"
+        - "Pressure What Pressure sycophancy NLI decomposition"
+      must_cite:
+        - "consistency2025bctact"
+        - "wei2024synthetic"
+      target_count: 6
+
+# ============================================================
+# WRITING ORDER
+# ============================================================
+# 严格串行。Director 指令：立即写非 BLOCKED 章节，不等 exp-003。
+writing_order:
+  - framework          # 无依赖，建立符号系统和实验框架
+  - direction_quality  # 含 exp-012 cross-model 数据
+  - cosine_failure     # 主分析 1（exp-002v3 DONE，数据齐全）
+  - probe_trap         # 主分析 2（数据完整）
+  - introduction       # 引用所有分析结果
+  - related_work       # 定位论文在文献中的位置
+  - limitations        # 可先写
+  - discussion         # [BLOCKED on exp-003 — 写框架 + TODO placeholders for Tab 1 R3-only row]
+  - conclusion         # [BLOCKED on exp-003 — 写框架 + TODO placeholder for d_syc value positioning]
+  - abstract           # 最后写（总结全文）
+
+# ============================================================
+# PENDING EXPERIMENTS (影响写作进度)
+# ============================================================
+pending_data:
+  - exp_id: exp-003
+    role: "R3-only baseline — Tab 1 关键行"
+    impact: "决定 discussion + conclusion 叙事强度。如 R3-only ≈ 或 > 所有 direction-based，强化 'direction adds nothing for reward' narrative。"
+    eta: "~May 22"
+    blocked_sections: [discussion, conclusion, abstract]
+
+  - exp_id: exp-002v3
+    role: "Cosine R1 5x — cosine_failure 最终证据"
+    impact: "DONE (negative). Mode collapse at step 2160. R3 saturation + R1 noise. 数据已整合到 cosine_failure outline。"
+    eta: "DONE"
+    blocked_sections: []
+
+  - exp_id: exp-009
+    role: "Continuous probe probability — 补完 'ALL formulations fail' argument"
+    impact: "如果也失败 → 论文可声明 continuous/probability/binary 三种 binarization 级别全部失败。如果成功 → 需调整 narrative。"
+    eta: "RUNNING"
+    blocked_sections: []  # 可选强化证据，非必需
+
+  - exp_id: exp-012
+    role: "Llama-3-8B cross-model d_syc validation"
+    impact: "DONE (success). 已整合: direction_quality cross-model 段落, tab3_cross_model, fig4 更新, limitations 降级, discussion cross-model 结构性论证"
+    eta: "DONE"
+    blocked_sections: []

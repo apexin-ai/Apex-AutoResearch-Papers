@@ -1,0 +1,10 @@
+Remote path: /root/contrastive_entrain_calib/results/exp001/evaluation_report.json
+
+Summary:
+- 181 pairs (75 weak + 54 medium + 52 strong), target was 200
+- 5-Fold CV: AUROC = 0.8269 +/- 0.0278
+- Full-data best: Layer 19, asst_first, AUROC = 0.8159
+- Bootstrap 95% CI: [0.7698, 0.8589] (n=2000)
+- Per-strength AUROC: weak=0.675, medium=0.883, strong=0.929
+- Top layers: L19, L27, L32, L20, L33 (all asst_first)
+- STOP-gate verdict: CONTINUE_REDUCED_R1

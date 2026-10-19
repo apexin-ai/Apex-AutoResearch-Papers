@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ad7aa5f401483370611",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code v7 1 scorer only contingency",
+  "task_key": "worker_code_v7_1-scorer-only-contingency_20260516T203549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v7_1-scorer-only-contingency_20260516T203549_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "c1367435c41e21b30d311e62071b803edc32a89027198613c89d0a381874113b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，训练正常结束。\n\n## 总结\n\n**修改的文件：**\n1. `/root/acib/scripts/train_acib.py` — 添加 `--train_scorer_only` / `--freeze_action_expert` CLI 参数，传递到 `ACIBConfig`，添加日志\n2. `/root/acib/scripts/run_v7.1_scorer_only.sh` — 新建启动脚本\n\n**冻结逻辑实现：**\n- `ACIBConfig` 的 `train_scorer_only=True` 触发 `_setup_freeze()` 中 `self.base_policy.parameters()` 全部 `requires_grad=False`\n- `freeze_action_expert=True` 额外冻结 `self._vlm_with_expert.lm_expert`\n- 最后强制 `self.scorer.parameters()` 全部 `requires_grad=True`\n- optimizer 已有 `trainable_params = [p for p in policy.parameters() if p.requires_grad]`，自动只优化 scorer\n\n**参数数量：**\n- Total: 450,169,185\n- Trainable (scorer only): 123,009 (0.03%)\n- Frozen: 450,046,176\n\n**Dry-run 结果：** 2 步训练成功完成，checkpoint 正常保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v7-1-scorer-only-contingency.md"
+}

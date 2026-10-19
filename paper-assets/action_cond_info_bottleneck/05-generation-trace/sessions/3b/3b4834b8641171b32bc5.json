@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b4834b8641171b32bc5",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh prepare v73 eval pipeline",
+  "task_key": "worker_ssh_prepare_v73_eval_pipeline_20260518T010927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare_v73_eval_pipeline_20260518T010927_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "b5c5031f5d9479a8a87b3d0d98885c29b98e93df88663d3bebc946b87c9b3c7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇总\n\n### 1. cross_task_probe.py 完整参数\n\n```\n--checkpoint_dir CHECKPOINT_DIR   (必选)\n--base_model BASE_MODEL\n--dataset_id DATASET_ID\n--data_root DATA_ROOT\n--output_dir OUTPUT_DIR           (必选)\n--device DEVICE\n--n_unique_tasks N_UNIQUE_TASKS\n--max_pool_batches MAX_POOL_BATCHES\n```\n\n### 2. eval_acib.py 关键参数名\n\n| 用途 | 参数名 |\n|------|--------|\n| checkpoint 路径 | `--checkpoint_dir` (必选) |\n| 指定 step | `--checkpoint_step` (默认 latest) |\n| alpha | `--scoring_alpha` |\n| suites | `--suites` (多值) |\n| GPU | `--gpu` |\n| episodes | `--n_episodes` |\n| 输出 | `--out_dir` (必选) |\n| 其他 | `--disable_scoring`, `--drop_mode`, `--drop_ratio` |\n\nfreeze_mode **不是** eval 参数，从 checkpoint 的 config.json 自动读取。\n\n### 3. checkpoint config 确认\n\n`config.json` 中 `freeze_mode: \"connector_lora\"`, `lora_rank: 8`, `lora_scale: 1.0`。当前有 checkpoint-5000 和 checkpoint-10000（各含 `checkpoint.pt`），checkpoint-20000 尚未生成。\n\n### 4. 三个脚本（已创建且 chmod +x）\n\n- `/root/acib/run_v73_probe.sh`\n- `/root/acib/run_v73_eval_alpha00_spatial.sh`\n- `/root/acib/run_v73_eval_alpha10_full.sh`\n\n内容已逐字验证，与上方 cat 输出一致。\n\n### 5. LoRA 训练进度\n\n**Step 14500/20000**（72.5%），1.8 steps/s。预计剩余 ~51 min 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-v73-eval-pipeline.md"
+}

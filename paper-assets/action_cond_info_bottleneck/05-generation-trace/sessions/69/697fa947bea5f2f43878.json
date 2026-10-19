@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "697fa947bea5f2f43878",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ops read results and start sweep",
+  "task_key": "worker_ops_read-results-and-start-sweep_20260517T003516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-results-and-start-sweep_20260517T003516_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "19ecda82de518ca451d62ff2025bf7dde92fe9f339681d1396ed193c53baf36f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. Eval 结果（3/4 suites 完成，libero_10 仍在跑）\n\n| Suite | Seed1 (v7_contrastive) | Seed2 (v7_seed2) | Baseline | Δ Seed1 | Δ Seed2 |\n|-------|----------------------:|------------------:|---------:|--------:|--------:|\n| libero_spatial | 58.4% | 51.4% | 66.0% | -7.6pp | -14.6pp |\n| libero_object | 58.6% | 49.4% | 67.8% | -9.2pp | -18.4pp |\n| libero_goal | 72.8% | 63.0% | 76.4% | -3.6pp | -13.4pp |\n| libero_10 | ⏳ running | ⏳ running | 54.2% | — | — |\n| **AVG (3 suites)** | **63.3%** | **54.6%** | **70.1%** | **-6.8pp** | **-15.5pp** |\n\n### 2. GPU 状态：**未空闲**\n\n两个 eval 进程仍在运行（状态 `Rl+`，已运行 ~7h）：\n- GPU 0: PID 104743 (seed1 eval, 6331 MiB)\n- GPU 1: PID 111920 (seed2 eval, 6678 MiB)\n\n正在跑最后一个 suite `libero_10`（500 episodes），估计还需 1-2h。\n\n### 3. Alpha sweep：**无法启动**\n\n根据约束 C003，两个 GPU 都有活跃 eval 进程，禁止在其上启动新任务。需等 libero_10 完成后再启动。\n\n### 初步观察\n\n结果全面低于 baseline，seed2 尤其严重（-15.5pp avg）。v7_contrastive 的 ACIB 机制目前在 inference 阶段反而降低了性能。这使得 alpha sweep（特别是 alpha=0.0 pass-through）更加关键，可以诊断是否是 conditioning 本身引入的退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-results-and-start-sweep.md"
+}

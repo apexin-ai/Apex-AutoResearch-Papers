@@ -1,0 +1,44 @@
+{
+  "experiment": "exp-008v3",
+  "description": "Binary Probe GRPO - Probe Reward Trap trajectory",
+  "checkpoints": [
+    {
+      "step": 500,
+      "entropy": 0.7016,
+      "ToF": 0.0,
+      "NoF": 0.9945,
+      "SYCONScore": 0.0,
+      "R1_mean": 0.0
+    },
+    {
+      "step": 1000,
+      "entropy": 0.8001,
+      "ToF": 0.0055,
+      "NoF": 0.9945,
+      "SYCONScore": 0.011,
+      "R1_mean": 0.875
+    },
+    {
+      "step": 1500,
+      "entropy": 0.6082,
+      "ToF": 0.0,
+      "NoF": 1.0,
+      "SYCONScore": 0.0,
+      "R1_mean": 0.25
+    },
+    {
+      "step": 2000,
+      "entropy": 0.3042,
+      "ToF": 0.0,
+      "NoF": 1.0,
+      "SYCONScore": 0.0,
+      "R1_mean": 1.0
+    }
+  ],
+  "vanilla_baseline": {
+    "ToF": 0.0718,
+    "NoF": 0.9448,
+    "SYCONScore": 0.1335
+  },
+  "note": "Binary probe R1 causes immediate stubbornness trap - ToF drops to 0 within 500 steps and never recovers. R1_mean fluctuates wildly (0.0→0.875→0.25→1.0) as probe is retrained every 500 steps, but behavioral outcome (stubbornness) remains locked. Entropy declines from 0.70 to 0.30 over 2000 steps. Training data sourced from westd-28034:~/runs/contrastive_entrain_calib/exp-008v3.log; D027 eval data from registry."
+}

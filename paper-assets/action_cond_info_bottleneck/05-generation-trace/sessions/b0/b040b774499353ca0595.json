@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b040b774499353ca0595",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh emergency gpu launch",
+  "task_key": "worker_ssh_emergency-gpu-launch_20260517T203117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_emergency-gpu-launch_20260517T203117_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "cd3996fa298d581d36e54a60d7fb8150f561c271817803a62ae5980f0c898319"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态汇总：\n\n## v7.2 Eval 结果（3/4 suites 已完成）\n\n| Suite | α=0.0 | α=1.0 |\n|-------|-------|-------|\n| libero_spatial | 59.4% | 61.0% |\n| libero_object | 65.6% | 66.2% |\n| libero_goal | 78.6% | 78.0% |\n| libero_10 | **进行中 (5/10 tasks)** | **进行中 (5/10 tasks)** |\n\n## 阻塞项\n\n两个 eval 进程仍在占用 GPU（PID 40598 → GPU 0, PID 44022 → GPU 1），已运行约 7 小时，libero_10 各完成 50%。按 C004 约束，不能在有活跃进程的 GPU 上启动新任务。\n\n## v7.3 训练准备\n\n- `scripts/run_v73_connector_lora.sh` 存在\n- `scripts/run_connector_only.sh` 存在\n- 日志目录 `/root/runs/action_cond_info_bottleneck/` 存在\n\n## 需要你确认\n\nlibero_10 eval 预计还需 ~2-3 小时完成。两个选项：\n\n1. **Kill 两个 eval 进程，立即启动训练** — 丢失 libero_10 部分结果，有 3 suite 数据可用\n2. **等 eval 完成后再启动训练** — 完整 4-suite 结果，但延迟 2-3 小时\n\n选哪个？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-emergency-gpu-launch.md"
+}

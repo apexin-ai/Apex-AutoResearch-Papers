@@ -1,0 +1,90 @@
+{
+  "exp_id": "exp-012",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:56:42.346Z",
+    "updated_at": "2026-05-20T07:24:51.823Z",
+    "hypothesis": "If Llama-3-8B hidden states (L16-L33) contain a linear sycophancy direction with AUROC >= 0.75, then discriminability generalizes beyond Qwen3-8B, strengthening the discriminability != reward utility claim.",
+    "parent": "exp-001",
+    "server": "westd-28034",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-28034",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T04:20:36.961Z",
+      "finished_at": "2026-05-20T07:22:36.812Z",
+      "training_hours": 3.03
+    },
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp012_llama_direction.py --model-path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3-8B-Instruct --data-path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output-dir /root/contrastive_entrain_calib/results/exp012_llama_direction/\"",
+      "server": "westd-28034",
+      "gpu": "cuda:0",
+      "pid": "227942",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-012.log",
+      "submitted_at": "2026-05-20T07:21:33.372Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Llama-3-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "inference_only",
+      "eval_data": "N/A",
+      "checkpoint_path": "/root/contrastive_entrain_calib/results/exp012_llama_direction/",
+      "notes": "Phase A cross-model validation. Extract L16-L31 hidden states, compute d_syc direction, 5-fold CV AUROC + style-controlled AUROC. Single GPU inference, ~5h.",
+      "wall_clock_seconds": 198.5,
+      "gpu_hours": 0.06
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T07:22:38.775472+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "cv_auroc_mean": 0.7793,
+      "cv_auroc_std": 0.0189,
+      "full_auroc": 0.7779,
+      "best_layer": 16,
+      "style_controlled_auroc": 0.9227,
+      "per_layer_auroc_top5": {
+        "16": 0.7793,
+        "22": 0.7359,
+        "25": 0.7372,
+        "26": 0.7374,
+        "31": 0.747
+      },
+      "domain_auroc": {
+        "commonsense": 0.8444,
+        "history": 0.818,
+        "math": 0.769,
+        "science": 0.7546,
+        "geography": 0.7507
+      },
+      "evidence_strength_auroc": {
+        "strong": 0.9109,
+        "medium": 0.8635,
+        "weak": 0.7106
+      },
+      "num_pairs": 181,
+      "num_samples": 362,
+      "layer_range": [
+        16,
+        31
+      ]
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T07:24:51.823Z"
+  },
+  "timestamp": "2026-05-20T07:24:51.867511+00:00",
+  "trigger": "update_registry"
+}

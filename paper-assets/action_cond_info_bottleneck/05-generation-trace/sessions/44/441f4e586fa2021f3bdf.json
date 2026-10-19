@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "441f4e586fa2021f3bdf",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code v6 fix and launch",
+  "task_key": "worker_code_v6-fix-and-launch_20260516T055046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v6-fix-and-launch_20260516T055046_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "66030d45b0de0ef619ac5ec169eb5afe50a789aa2b66d5254d5e83db03556104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5j1sdfQQsahv5WyjPCs\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "This organization has been disabled."
+              },
+              "request_id": "req_011Cb5j1sdfQQsahv5WyjPCs"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v6-fix-and-launch.md"
+}

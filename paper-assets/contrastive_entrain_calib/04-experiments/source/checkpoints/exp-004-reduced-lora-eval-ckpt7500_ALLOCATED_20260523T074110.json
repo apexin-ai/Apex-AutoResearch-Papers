@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-reduced-lora-eval-ckpt7500",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:40:57.520Z",
+    "updated_at": "2026-05-23T07:41:10.456Z",
+    "hypothesis": "Eval reduced-lora ACT checkpoint-7500. Confirms whether ckpt-7000 peak (0.3257) is sustained or a noise spike. Critical for paper trajectory reporting.",
+    "parent": "exp-004-reduced-lora"
+  },
+  "timestamp": "2026-05-23T07:41:10.667196+00:00",
+  "trigger": "update_registry"
+}

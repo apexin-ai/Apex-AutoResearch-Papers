@@ -1,0 +1,7 @@
+\section{Limitations}\label{sec:limitations}
+
+Our RL training experiments use Qwen3-8B exclusively with GRPO; cross-model discriminability is confirmed on Llama-3-8B (AUROC $0.779$), but compute constraints (${\sim}200$ H100-equivalent hours) prevented replication of the reward formulation failures on a second architecture. Other RL algorithms (PPO, DPO) may interact differently with representation-based rewards.
+
+Evidence strength for the 181 contrastive pairs was annotated by GPT-4.1 as a single annotator; we did not collect human inter-annotator agreement. The evaluation framework categorizes challenges as binary valid/invalid rather than a continuous spectrum, and flip determination relies on a DeBERTa NLI classifier rather than human judges.
+
+We report GRPO results from two random seeds. Both seeds exhibit qualitatively consistent oscillation patterns (similar amplitude, identical crash depth), but the limited seed count constrains statistical claims about training dynamics. The style-controlled contrastive pairs isolate the cognitive signal from surface confounds but may not capture the full diversity of sycophantic behavior in deployment.

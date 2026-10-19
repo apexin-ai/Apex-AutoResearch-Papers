@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-003-eval-ckpt6000",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:34:51.960Z",
+    "updated_at": "2026-05-21T04:44:56.548Z",
+    "hypothesis": "Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?",
+    "parent": "exp-003",
+    "spec": {
+      "command": "bash -c \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python /root/contrastive_entrain_calib/eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "691280",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log",
+      "submitted_at": "2026-05-21T04:41:10.555Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T04:44:56.685501+00:00",
+  "trigger": "update_registry"
+}

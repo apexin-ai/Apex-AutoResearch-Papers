@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b40dfe2efe95ed336cc",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh check v71 script and monitor spatial",
+  "task_key": "worker_ssh_check-v71-script-and-monitor-spatial_20260517T032340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-v71-script-and-monitor-spatial_20260517T032340_result.json",
+    "occurrence": 1,
+    "bytes": 101,
+    "sha256": "6f9e7c1c1dbe1d36a81a87f00f5409a1509e6c8555001776d597c354c7e07a60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 4.5 分钟后再次检查。完成后会立即报告 spatial success rate。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-v71-script-and-monitor-spatial.md"
+}

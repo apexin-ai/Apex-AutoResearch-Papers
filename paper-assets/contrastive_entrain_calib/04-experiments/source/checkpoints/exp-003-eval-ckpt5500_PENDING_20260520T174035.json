@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp-003-eval-ckpt5500",
+  "project": "contrastive_entrain_calib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:21:54.401Z",
+    "updated_at": "2026-05-20T17:40:35.440Z",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval/ --exp_id exp003-ckpt5500\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "605435",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt5500.log",
+      "submitted_at": "2026-05-20T16:21:54.289Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T17:37:22.627Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T17:37:25.059094+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Eval exp-003 R3-only GRPO checkpoint-5500 with D027 unified preset. Testing whether R3-only plateau (ckpt-4000=ckpt-5000=0.114) extends to ckpt-5500.",
+    "parent": "exp-003"
+  },
+  "timestamp": "2026-05-20T17:40:35.806517+00:00",
+  "trigger": "update_registry"
+}

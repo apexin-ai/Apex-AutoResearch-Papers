@@ -1,0 +1,1273 @@
+{
+  "schema_version": "1.0",
+  "id": "0cc9e5b62502ab4d8acb",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code exp 008 seed2 sft",
+  "task_key": "worker_code_exp-008-seed2-sft_20260524T133010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-008-seed2-sft_20260524T133010.log",
+    "occurrence": 1,
+    "bytes": 156083,
+    "sha256": "37e57df99b970c9b141542996a39bc77d34b116f2b7916d3e964e4364d65f896"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5d213349-3e76-4b1a-aede-505399e0e2af",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779646200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "55399c4b-6551-4847-ac88-e0da0f1abf34",
+                "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the local script file, then upload it to the server.",
+              "signature": "EpECCmMIDhgCKkDMvAksPKFjMitscWhLSH0W0J5+e8FQiiT/StOfgX8DlNdAS95kZ2DeYJ9FykLJ9SyoscCuMtfjbpaN/FFJjRKAMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDBI8q8ay07ttoXYVmBoMLiFLtpjSyHQZi2RzIjBFA7zWV7gsPk4+mFY4tlbauRgk3aGSrMJWQ701d5vwTCHue0Zvng2ia/iJcoFRd3gqXF8lWe8ip3k9J2sIhzu0WPi6zVR5MxGw3bG0pXbgWeyjsXxLfmZoMFOm5lnwlAzSUtLvNccJWdFoG3oEKDiuXNmlzmq02k7xxw8teBM0hdRtTIJ85tKDNP4Nd5iWGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "4f870fa0-12bf-4a51-ae6a-73caa26b0382",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XJsueJrBCr2tNv1SkaUDET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12790,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12790
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取本地脚本文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "533b7fed-f314-4db2-b2f7-b85453761b0f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XJsueJrBCr2tNv1SkaUDET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12790,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12790
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DU9BeRywDdhno5pDHY7iJ7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp008_binary_probe_penalty.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "013394c6-23d3-46b9-bd77-b863bdfaa67f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XJsueJrBCr2tNv1SkaUDET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12790,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12790
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T13:30:24.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DU9BeRywDdhno5pDHY7iJ7",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.\n3\t\n4\tSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\n5\tDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\n6\t\n7\tLoss:\n8\t    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\n9\t      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\n10\t\n11\t    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\n12\t    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\n13\t    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\n14\t\n15\tInput:\n16\t    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\n17\t    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\n18\t    Activations: results/exp001/activations.pt (for probe pretraining)\n19\t\n20\tOutput:\n21\t    LoRA checkpoints every 500 steps + final in output_dir\n22\t\n23\tDependencies: torch, transformers, peft\n24\t\"\"\"\n25\timport argparse\n26\timport json\n27\timport logging\n28\timport os\n29\timport re\n30\timport sys\n31\tfrom dataclasses import dataclass, field\n32\tfrom functools import partial\n33\tfrom pathlib import Path\n34\t\n35\timport torch\n36\timport torch.nn as nn\n37\timport torch.nn.functional as F\n38\tfrom torch.utils.data import DataLoader\n39\tfrom torch.utils.data import Dataset as TorchDataset\n40\t\n41\tfrom peft import LoraConfig, get_peft_model\n42\tfrom transformers import (\n43\t    AutoModelForCausalLM,\n44\t    AutoModelForSequenceClassification,\n45\t    AutoTokenizer,\n46\t    get_linear_schedule_with_warmup,\n47\t)\n48\t\n49\tCONDITION_MAP = {\n50\t    \"warranted_revision\": \"valid_correction\",\n51\t    \"sycophantic_capitulation\": \"invalid_pressure\",\n52\t    \"valid_correction\": \"valid_correction\",\n53\t    \"invalid_pressure\": \"invalid_pressure\",\n54\t}\n55\t\n56\t\n57\t# ---------------------------------------------------------------------------\n58\t# Configuration\n59\t# ---------------------------------------------------------------------------\n60\t@dataclass\n61\tclass TrainConfig:\n62\t    model_path: str = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\n63\t    data_path: str = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\n64\t    activations_path: str = (\n65\t        \"/root/contrastive_entrain_calib/results/exp001/activations.pt\"\n66\t    )\n67\t    output_dir: str = (\n68\t        \"/root/contrastive_entrain_calib/checkpoints/exp008_binary_probe_penalty\"\n69\t    )\n70\t\n71\t    # LoRA\n72\t    lora_rank: int = 64\n73\t    lora_alpha: int = 64\n74\t    lora_targets: list[str] = field(\n75\t        default_factory=lambda: [\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"]\n76\t    )\n77\t    lora_dropout: float = 0.0\n78\t\n79\t    # Training\n80\t    lr: float = 5e-5\n81\t    warmup_steps: int = 200\n82\t    weight_decay: float = 0.01\n83\t    max_steps: int = 8000\n84\t    batch_size: int = 1\n85\t    grad_accum: int = 16\n86\t    max_seq_len: int = 1024\n87\t    gradient_checkpointing: bool = True\n88\t    bf16: bool = True\n89\t    seed: int = 42\n90\t    max_grad_norm: float = 1.0\n91\t\n92\t    # Loss weights\n93\t    lambda_reward: float = 0.1\n94\t    lambda_probe: float = 1.0\n95\t\n96\t    # Probe / hidden state extraction\n97\t    reward_layers: list[int] = field(\n98\t        default_factory=lambda: [19, 20, 24, 27, 32, 33, 35]\n99\t    )\n100\t    probe_position_idx: int = 1  # 1 = asst_first in (num_layers, 2, hidden) layout\n101\t\n102\t    # NLI\n103\t    nli_model_name: str = \"cross-encoder/nli-deberta-v3-base\"\n104\t\n105\t    # Logging / checkpointing\n106\t    log_steps: int = 10\n107\t    save_steps: int = 500\n108\t    retrain_interval: int = 100\n109\t\n110\t\n111\tdef parse_args() -> TrainConfig:\n112\t    p = argparse.ArgumentParser(description=\"exp-008 Binary Probe Penalty baseline\")\n113\t    p.add_argument(\"--lr\", type=float, default=5e-5)\n114\t    p.add_argument(\"--lambda_reward\", type=float, default=0.1)\n115\t    p.add_argument(\"--lambda_probe\", type=float, default=1.0)\n116\t    p.add_argument(\"--max_steps\", type=int, default=8000)\n117\t    p.add_argument(\"--lora_rank\", type=int, default=64)\n118\t    p.add_argument(\"--lora_alpha\", type=int, default=64)\n119\t    p.add_argument(\"--batch_size\", type=int, default=1)\n120\t    p.add_argument(\"--grad_accum\", type=int, default=16)\n121\t    p.add_argument(\"--seed\", type=int, default=42)\n122\t    p.add_argument(\"--log_steps\", type=int, default=None)\n123\t    p.add_argument(\"--retrain_interval\", type=int, default=None)\n124\t    p.add_argument(\"--model_path\", type=str, default=None)\n125\t    p.add_argument(\"--data_path\", type=str, default=None)\n126\t    p.add_argument(\"--output_dir\", type=str, default=None)\n127\t    args = p.parse_args()\n128\t\n129\t    cfg = TrainConfig()\n130\t    for k, v in vars(args).items():\n131\t        if v is not None and hasattr(cfg, k):\n132\t            setattr(cfg, k, v)\n133\t    return cfg\n134\t\n135\t\n136\t# ---------------------------------------------------------------------------\n137\t# Dataset\n138\t# ---------------------------------------------------------------------------\n139\tclass CalibrationSFTDataset(TorchDataset):\n140\t    \"\"\"Loads 3-turn calibration conversations for SFT (aligned with exp-004).\n141\t\n142\t    Format per record: user -> assistant(Turn 1) -> user(correction/pressure).\n143\t    Input: full 3-turn conversation + generation_prompt.\n144\t    SFT target: Turn 1 (assistant first reply) only; cross-entropy on those tokens,\n145\t    all others masked with -100.\n146\t    \"\"\"\n147\t\n148\t    def __init__(self, data_path: str, tokenizer, max_seq_len: int = 1024):\n149\t        self.tokenizer = tokenizer\n150\t        self.max_seq_len = max_seq_len\n151\t        self.samples: list[dict] = []\n152\t\n153\t        im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n154\t\n155\t        with open(data_path) as f:\n156\t            for line in f:\n157\t                rec = json.loads(line)\n158\t                turns = rec[\"turns\"]\n159\t                if len(turns) < 2:\n160\t                    continue\n161\t\n162\t                condition = CONDITION_MAP.get(rec[\"condition\"], rec[\"condition\"])\n163\t                pair_id = str(rec.get(\"pair_id\", rec.get(\"id\", \"\")))\n164\t                response_text = turns[1][\"content\"]\n165\t\n166\t                msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns]\n167\t\n168\t                try:\n169\t                    full_ids = tokenizer.apply_chat_template(\n170\t                        msgs, tokenize=True, add_generation_prompt=True,\n171\t                        enable_thinking=False,\n172\t                    )\n173\t                except TypeError:\n174\t                    full_ids = tokenizer.apply_chat_template(\n175\t                        msgs, tokenize=True, add_generation_prompt=True,\n176\t                    )\n177\t\n178\t                try:\n179\t                    pre_asst_ids = tokenizer.apply_chat_template(\n180\t                        msgs[:1], tokenize=True, add_generation_prompt=True,\n181\t                        enable_thinking=False,\n182\t                    )\n183\t                except TypeError:\n184\t                    pre_asst_ids = tokenizer.apply_chat_template(\n185\t                        msgs[:1], tokenize=True, add_generation_prompt=True,\n186\t                    )\n187\t\n188\t                asst_start = len(pre_asst_ids)\n189\t                asst_end = asst_start\n190\t                while asst_end < len(full_ids) and full_ids[asst_end] != im_end_id:\n191\t                    asst_end += 1\n192\t                asst_end += 1  # include <|im_end|>\n193\t\n194\t                if len(full_ids) > max_seq_len:\n195\t                    full_ids = full_ids[:max_seq_len]\n196\t\n197\t                labels = [-100] * len(full_ids)\n198\t                for i in range(asst_start, min(asst_end, len(full_ids))):\n199\t                    labels[i] = full_ids[i]\n200\t\n201\t                resp_pos = len(full_ids) - 1\n202\t\n203\t                self.samples.append(\n204\t                    {\n205\t                        \"full_ids\": full_ids,\n206\t                        \"labels\": labels,\n207\t                        \"resp_pos\": resp_pos,\n208\t                        \"condition\": condition,\n209\t                        \"pair_id\": pair_id,\n210\t                        \"response_text\": response_text,\n211\t                        \"r3\": 0.0,\n212\t                    }\n213\t                )\n214\t\n215\t    def __len__(self):\n216\t        return len(self.samples)\n217\t\n218\t    def __getitem__(self, idx):\n219\t        return self.samples[idx]\n220\t\n221\t\n222\tdef sft_collate(batch: list[dict], pad_token_id: int) -> dict:\n223\t    max_len = max(len(item[\"full_ids\"]) for item in batch)\n224\t    input_ids, masks, labels = [], [], []\n225\t    resp_positions, conditions, r3_scores = [], [], []\n226\t\n227\t    for item in batch:\n228\t        ids = item[\"full_ids\"]\n229\t        lab = item[\"labels\"]\n230\t        pad_n = max_len - len(ids)\n231\t\n232\t        input_ids.append(ids + [pad_token_id] * pad_n)\n233\t        masks.append([1] * len(ids) + [0] * pad_n)\n234\t        labels.append(lab + [-100] * pad_n)\n235\t        resp_positions.append(item[\"resp_pos\"])\n236\t        conditions.append(item[\"condition\"])\n237\t        r3_scores.append(item[\"r3\"])\n238\t\n239\t    return {\n240\t        \"input_ids\": torch.tensor(input_ids, dtype=torch.long),\n241\t        \"attention_mask\": torch.tensor(masks, dtype=torch.long),\n242\t        \"labels\": torch.tensor(labels, dtype=torch.long),\n243\t        \"resp_positions\": resp_positions,\n244\t        \"conditions\": conditions,\n245\t        \"r3_scores\": r3_scores,\n246\t    }\n247\t\n248\t\n249\t# ---------------------------------------------------------------------------\n250\t# Binary Probe\n251\t# ---------------------------------------------------------------------------\n252\tclass LinearProbe(nn.Module):\n253\t    \"\"\"Frozen logistic regression probe: h -> P(sycophantic).\"\"\"\n254\t\n255\t    def __init__(self, input_dim: int):\n256\t        super().__init__()\n257\t        self.linear = nn.Linear(input_dim, 1)\n258\t        self.register_buffer(\"feat_mean\", torch.zeros(input_dim))\n259\t        self.register_buffer(\"feat_std\", torch.ones(input_dim))\n260\t\n261\t    def forward(self, x: torch.Tensor) -> torch.Tensor:\n262\t        x_norm = (x - self.feat_mean) / (self.feat_std + 1e-8)\n263\t        return torch.sigmoid(self.linear(x_norm)).squeeze(-1)\n264\t\n265\t\n266\tdef train_probe(\n267\t    activations_path: str,\n268\t    layers: list[int],\n269\t    position_idx: int = 1,\n270\t    seed: int = 42,\n271\t    epochs: int = 200,\n272\t    lr: float = 1e-2,\n273\t) -> tuple[LinearProbe, float]:\n274\t    \"\"\"Train binary probe from exp-001 pre-extracted activations.\n275\t\n276\t    Labels: invalid_pressure (sycophantic context) -> 1, valid_correction -> 0.\n277\t    Returns (frozen_probe, accuracy).\n278\t    \"\"\"\n279\t    torch.manual_seed(seed)\n280\t    data = torch.load(activations_path, map_location=\"cpu\", weights_only=False)\n281\t\n282\t    features, labels = [], []\n283\t    for sample in data:\n284\t        acts = sample[\"activations\"]  # (num_layers, 2, hidden_dim)\n285\t        mean_h = torch.stack([acts[l, position_idx] for l in layers]).mean(0)\n286\t        features.append(mean_h)\n287\t        cond = CONDITION_MAP.get(sample[\"condition\"], sample[\"condition\"])\n288\t        labels.append(1.0 if cond == \"invalid_pressure\" else 0.0)\n289\t\n290\t    X = torch.stack(features)\n291\t    y = torch.tensor(labels)\n292\t\n293\t    feat_mean = X.mean(dim=0)\n294\t    feat_std = X.std(dim=0)\n295\t\n296\t    probe = LinearProbe(X.shape[1])\n297\t    probe.feat_mean.copy_(feat_mean)\n298\t    probe.feat_std.copy_(feat_std)\n299\t\n300\t    opt = torch.optim.Adam(probe.parameters(), lr=lr, weight_decay=1e-4)\n301\t    criterion = nn.BCELoss()\n302\t\n303\t    probe.train()\n304\t    for epoch in range(epochs):\n305\t        loss = criterion(probe(X), y)\n306\t        opt.zero_grad()\n307\t        loss.backward()\n308\t        opt.step()\n309\t        if (epoch + 1) % 50 == 0:\n310\t            with torch.no_grad():\n311\t                acc = ((probe(X) > 0.5).float() == y).float().mean().item()\n312\t            logging.getLogger(\"exp008\").info(\n313\t                \"Probe epoch %d/%d: loss=%.4f acc=%.4f\", epoch + 1, epochs, loss.item(), acc\n314\t            )\n315\t\n316\t    probe.eval()\n317\t    with torch.no_grad():\n318\t        acc = ((probe(X) > 0.5).float() == y).float().mean().item()\n319\t\n320\t    for p in probe.parameters():\n321\t        p.requires_grad_(False)\n322\t\n323\t    return probe, acc\n324\t\n325\t\n326\tdef save_probe(probe: LinearProbe, path: str) -> None:\n327\t    Path(path).parent.mkdir(parents=True, exist_ok=True)\n328\t    torch.save(\n329\t        {\"state_dict\": probe.state_dict(), \"input_dim\": probe.linear.in_features},\n330\t        path,\n331\t    )\n332\t\n333\t\n334\tdef load_probe(path: str) -> LinearProbe:\n335\t    ckpt = torch.load(path, map_location=\"cpu\")\n336\t    probe = LinearProbe(ckpt[\"input_dim\"])\n337\t    probe.load_state_dict(ckpt[\"state_dict\"])\n338\t    probe.eval()\n339\t    for p in probe.parameters():\n340\t        p.requires_grad_(False)\n341\t    return probe\n342\t\n343\t\n344\t# ---------------------------------------------------------------------------\n345\t# Online Probe Retraining\n346\t# ---------------------------------------------------------------------------\n347\tdef retrain_probe_online(model, dataset, input_dim, config, log):\n348\t    \"\"\"Retrain probe using current model's activations on calibration data.\"\"\"\n349\t    model.eval()\n350\t    device = next(model.parameters()).device\n351\t\n352\t    features = []\n353\t    labels = []\n354\t\n355\t    with torch.no_grad():\n356\t        for i, sample in enumerate(dataset.samples):\n357\t            ids = torch.tensor([sample[\"full_ids\"]], dtype=torch.long, device=device)\n358\t            mask = torch.ones_like(ids)\n359\t\n360\t            out = model(\n361\t                input_ids=ids,\n362\t                attention_mask=mask,\n363\t                output_hidden_states=True,\n364\t            )\n365\t            hs = out.hidden_states\n366\t            pos = sample[\"resp_pos\"]\n367\t\n368\t            layer_h = [hs[l + 1][0, pos] for l in config.reward_layers]\n369\t            mean_h = torch.stack(layer_h).mean(0).float().cpu()\n370\t            features.append(mean_h)\n371\t\n372\t            label = 1.0 if sample[\"condition\"] == \"invalid_pressure\" else 0.0\n373\t            labels.append(label)\n374\t\n375\t    torch.cuda.empty_cache()\n376\t\n377\t    X = torch.stack(features)\n378\t    y = torch.tensor(labels)\n379\t    log.info(\n380\t        \"[RETRAIN] Extracted %d activations (%.1f%% positive)\",\n381\t        len(y), y.mean().item() * 100,\n382\t    )\n383\t\n384\t    feat_mean = X.mean(dim=0)\n385\t    feat_std = X.std(dim=0)\n386\t\n387\t    new_probe = LinearProbe(input_dim)\n388\t    new_probe.feat_mean.copy_(feat_mean)\n389\t    new_probe.feat_std.copy_(feat_std)\n390\t\n391\t    opt = torch.optim.Adam(new_probe.parameters(), lr=1e-2, weight_decay=1e-4)\n392\t    criterion = nn.BCELoss()\n393\t\n394\t    new_probe.train()\n395\t    for epoch in range(200):\n396\t        loss = criterion(new_probe(X), y)\n397\t        opt.zero_grad()\n398\t        loss.backward()\n399\t        opt.step()\n400\t\n401\t    new_probe.eval()\n402\t    with torch.no_grad():\n403\t        preds = new_probe(X)\n404\t        acc = ((preds > 0.5).float() == y).float().mean().item()\n405\t\n406\t    try:\n407\t        from sklearn.metrics import roc_auc_score\n408\t        auroc = roc_auc_score(y.numpy(), preds.numpy())\n409\t    except ImportError:\n410\t        sorted_pairs = sorted(zip(preds.tolist(), y.tolist()), reverse=True)\n411\t        tp, auc_sum = 0, 0.0\n412\t        p_total = int(y.sum().item())\n413\t        n_total = len(y) - p_total\n414\t        for _, label in sorted_pairs:\n415\t            if label == 1.0:\n416\t                tp += 1\n417\t            else:\n418\t                auc_sum += tp\n419\t        auroc = auc_sum / (p_total * n_total) if (p_total * n_total) > 0 else 0.0\n420\t\n421\t    for p in new_probe.parameters():\n422\t        p.requires_grad_(False)\n423\t    new_probe.to(device)\n424\t\n425\t    model.train()\n426\t    return new_probe, acc, auroc\n427\t\n428\t\n429\t# ---------------------------------------------------------------------------\n430\t# NLI / R3 Scoring\n431\t# ---------------------------------------------------------------------------\n432\tdef _extract_last_response(text: str) -> str:\n433\t    \"\"\"Strip chat template markers and return last assistant response.\"\"\"\n434\t    clean = re.sub(\n435\t        r\"<\\|im_start\\|>|<\\|im_end\\|>|<think>|</think>|<\\|endoftext\\|>\", \"\", text\n436\t    )\n437\t    parts = clean.split(\"assistant\")\n438\t    response = parts[-1].strip() if len(parts) > 1 else clean.strip()\n439\t    if len(response) > 1000:\n440\t        response = response[:1000]\n441\t    return response if response else text[:500]\n442\t\n443\t\n444\t@torch.no_grad()\n445\tdef precompute_r3(\n446\t    samples: list[dict], nli_model_name: str, batch_size: int = 16\n447\t) -> list[float]:\n448\t    \"\"\"Compute R3 for every sample using a frozen NLI model, then free GPU memory.\n449\t\n450\t    R3 = P(entailment) for valid_correction (changing answer is correct),\n451\t    R3 = 1 - P(entailment) for invalid_pressure (not changing is correct).\n452\t    \"\"\"\n453\t    log = logging.getLogger(\"exp008\")\n454\t\n455\t    try:\n456\t        from transformers import DebertaV2Tokenizer\n457\t\n458\t        tok = DebertaV2Tokenizer.from_pretrained(nli_model_name)\n459\t    except Exception:\n460\t        tok = AutoTokenizer.from_pretrained(nli_model_name)\n461\t\n462\t    nli = AutoModelForSequenceClassification.from_pretrained(nli_model_name)\n463\t    nli.eval().cuda()\n464\t    ent_idx = next(\n465\t        int(k) for k, v in nli.config.id2label.items() if \"entail\" in v.lower()\n466\t    )\n467\t    log.info(\"NLI model loaded: %s (entailment_idx=%d)\", nli_model_name, ent_idx)\n468\t\n469\t    hypothesis = \"The response changes or corrects the previous answer.\"\n470\t    premises = [_extract_last_response(s[\"response_text\"]) for s in samples]\n471\t    conditions = [s[\"condition\"] for s in samples]\n472\t\n473\t    scores: list[float] = []\n474\t    for i in range(0, len(premises), batch_size):\n475\t        bp = premises[i : i + batch_size]\n476\t        bc = conditions[i : i + batch_size]\n477\t        inputs = tok(\n478\t            bp,\n479\t            [hypothesis] * len(bp),\n480\t            padding=True,\n481\t            truncation=True,\n482\t            max_length=512,\n483\t            return_tensors=\"pt\",\n484\t        ).to(nli.device)\n485\t        probs = F.softmax(nli(**inputs).logits, dim=-1)\n486\t        raw = probs[:, ent_idx].tolist()\n487\t        for r, c in zip(raw, bc):\n488\t            scores.append(1.0 - r if c == \"invalid_pressure\" else r)\n489\t\n490\t    del nli, tok\n491\t    torch.cuda.empty_cache()\n492\t    return scores\n493\t\n494\t\n495\t# ---------------------------------------------------------------------------\n496\t# Training\n497\t# ---------------------------------------------------------------------------\n498\tdef main():\n499\t    config = parse_args()\n500\t    os.makedirs(config.output_dir, exist_ok=True)\n501\t\n502\t    logging.basicConfig(\n503\t        level=logging.INFO,\n504\t        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n505\t        handlers=[\n506\t            logging.StreamHandler(),\n507\t            logging.FileHandler(os.path.join(config.output_dir, \"train.log\")),\n508\t        ],\n509\t    )\n510\t    log = logging.getLogger(\"exp008\")\n511\t    torch.manual_seed(config.seed)\n512\t\n513\t    if \"HF_ENDPOINT\" not in os.environ:\n514\t        os.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n515\t\n516\t    log.info(\"=== exp-008: Binary Probe Penalty Baseline ===\")\n517\t    log.info(\"Config: lr=%s lambda_reward=%s lambda_probe=%s max_steps=%d retrain_interval=%d\",\n518\t             config.lr, config.lambda_reward, config.lambda_probe, config.max_steps,\n519\t             config.retrain_interval)\n520\t\n521\t    # --- Resolve model path ---\n522\t    model_path = config.model_path\n523\t    if not Path(model_path).exists():\n524\t        model_path = \"Qwen/Qwen3-8B\"\n525\t        log.info(\"Local model not found, using HF hub: %s\", model_path)\n526\t\n527\t    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n528\t    if tokenizer.pad_token_id is None:\n529\t        tokenizer.pad_token_id = tokenizer.eos_token_id\n530\t\n531\t    # --- Dataset ---\n532\t    dataset = CalibrationSFTDataset(config.data_path, tokenizer, config.max_seq_len)\n533\t    log.info(\"Dataset: %d samples from %s\", len(dataset), config.data_path)\n534\t    if not dataset.samples:\n535\t        log.error(\n536\t            \"No valid samples. Data must have at least 2 turns \"\n537\t            \"(user + assistant).\"\n538\t        )\n539\t        sys.exit(1)\n540\t\n541\t    # --- Probe: train or load ---\n542\t    probe_path = os.path.join(config.output_dir, \"probe.pt\")\n543\t    if Path(probe_path).exists():\n544\t        probe = load_probe(probe_path)\n545\t        log.info(\"Loaded existing probe from %s\", probe_path)\n546\t    else:\n547\t        if not Path(config.activations_path).exists():\n548\t            log.error(\"activations.pt not found at %s\", config.activations_path)\n549\t            sys.exit(1)\n550\t        log.info(\"Training probe from %s\", config.activations_path)\n551\t        probe, acc = train_probe(\n552\t            config.activations_path,\n553\t            config.reward_layers,\n554\t            config.probe_position_idx,\n555\t            config.seed,\n556\t        )\n557\t        log.info(\"Probe accuracy: %.4f\", acc)\n558\t        save_probe(probe, probe_path)\n559\t        log.info(\"Probe saved to %s\", probe_path)\n560\t\n561\t    # --- Precompute R3 ---\n562\t    log.info(\"Precomputing R3 scores with %s ...\", config.nli_model_name)\n563\t    r3_scores = precompute_r3(dataset.samples, config.nli_model_name)\n564\t    for i, r3 in enumerate(r3_scores):\n565\t        dataset.samples[i][\"r3\"] = r3\n566\t    r3_mean = sum(r3_scores) / len(r3_scores)\n567\t    log.info(\n568\t        \"R3: mean=%.4f min=%.4f max=%.4f\", r3_mean, min(r3_scores), max(r3_scores)\n569\t    )\n570\t\n571\t    # --- Load model + LoRA ---\n572\t    log.info(\"Loading model: %s\", model_path)\n573\t    model = AutoModelForCausalLM.from_pretrained(\n574\t        model_path,\n575\t        torch_dtype=torch.bfloat16 if config.bf16 else torch.float32,\n576\t        trust_remote_code=True,\n577\t    ).cuda()\n578\t\n579\t    if config.gradient_checkpointing:\n580\t        model.gradient_checkpointing_enable(\n581\t            gradient_checkpointing_kwargs={\"use_reentrant\": False}\n582\t        )\n583\t\n584\t    lora_cfg = LoraConfig(\n585\t        r=config.lora_rank,\n586\t        lora_alpha=config.lora_alpha,\n587\t        target_modules=config.lora_targets,\n588\t        lora_dropout=config.lora_dropout,\n589\t        bias=\"none\",\n590\t        task_type=\"CAUSAL_LM\",\n591\t    )\n592\t    model = get_peft_model(model, lora_cfg)\n593\t    model.print_trainable_parameters()\n594\t\n595\t    probe.cuda()\n596\t\n597\t    # --- Dataloader ---\n598\t    loader = DataLoader(\n599\t        dataset,\n600\t        batch_size=config.batch_size,\n601\t        shuffle=True,\n602\t        collate_fn=partial(sft_collate, pad_token_id=tokenizer.pad_token_id),\n603\t        drop_last=False,\n604\t    )\n605\t\n606\t    # --- Optimizer + scheduler ---\n607\t    optimizer = torch.optim.AdamW(\n608\t        [p for p in model.parameters() if p.requires_grad],\n609\t        lr=config.lr,\n610\t        weight_decay=config.weight_decay,\n611\t    )\n612\t    scheduler = get_linear_schedule_with_warmup(\n613\t        optimizer, config.warmup_steps, config.max_steps\n614\t    )\n615\t\n616\t    # --- Training loop ---\n617\t    log.info(\n618\t        \"Starting training: max_steps=%d, batch=%d, grad_accum=%d, effective_batch=%d\",\n619\t        config.max_steps, config.batch_size, config.grad_accum,\n620\t        config.batch_size * config.grad_accum,\n621\t    )\n622\t    step = 0\n623\t    acc_loss, acc_sft, acc_probe, acc_r3, acc_n = 0.0, 0.0, 0.0, 0.0, 0\n624\t    model.train()\n625\t\n626\t    while step < config.max_steps:\n627\t        for batch in loader:\n628\t            if step >= config.max_steps:\n629\t                break\n630\t\n631\t            ids = batch[\"input_ids\"].cuda()\n632\t            mask = batch[\"attention_mask\"].cuda()\n633\t            lab = batch[\"labels\"].cuda()\n634\t            resp_positions = batch[\"resp_positions\"]\n635\t            batch_r3 = batch[\"r3_scores\"]\n636\t\n637\t            # Forward: SFT loss + hidden states for probe\n638\t            out = model(\n639\t                input_ids=ids,\n640\t                attention_mask=mask,\n641\t                labels=lab,\n642\t                output_hidden_states=True,\n643\t            )\n644\t            sft_loss = out.loss\n645\t            hs = out.hidden_states  # tuple[Tensor], index 0=embedding, i+1=layer i\n646\t\n647\t            # S(t): mean probe score across batch at sequence-end position\n648\t            probe_vals = []\n649\t            for b in range(ids.size(0)):\n650\t                pos = resp_positions[b]\n651\t                layer_h = [hs[l + 1][b, pos] for l in config.reward_layers]\n652\t                mean_h = torch.stack(layer_h).mean(0).float()\n653\t                probe_vals.append(probe(mean_h.unsqueeze(0)))\n654\t            s_t = torch.stack(probe_vals).mean()\n655\t\n656\t            r3_val = sum(batch_r3) / len(batch_r3)\n657\t\n658\t            # L = L_sft - lambda_reward * R3 + lambda_reward * lambda_probe * S(t)\n659\t            loss = (\n660\t                sft_loss\n661\t                - config.lambda_reward * r3_val\n662\t                + config.lambda_reward * config.lambda_probe * s_t\n663\t            )\n664\t            (loss / config.grad_accum).backward()\n665\t\n666\t            acc_loss += loss.item()\n667\t            acc_sft += sft_loss.item()\n668\t            acc_probe += s_t.item()\n669\t            acc_r3 += r3_val\n670\t            acc_n += 1\n671\t\n672\t            if acc_n >= config.grad_accum:\n673\t                torch.nn.utils.clip_grad_norm_(\n674\t                    model.parameters(), config.max_grad_norm\n675\t                )\n676\t                optimizer.step()\n677\t                scheduler.step()\n678\t                optimizer.zero_grad()\n679\t                step += 1\n680\t\n681\t                if step % config.log_steps == 0:\n682\t                    log.info(\n683\t                        \"step=%d loss=%.4f sft=%.4f R3=%.4f S(t)=%.4f lr=%.2e\",\n684\t                        step,\n685\t                        acc_loss / acc_n,\n686\t                        acc_sft / acc_n,\n687\t                        acc_r3 / acc_n,\n688\t                        acc_probe / acc_n,\n689\t                        scheduler.get_last_lr()[0],\n690\t                    )\n691\t                acc_loss, acc_sft, acc_probe, acc_r3, acc_n = (\n692\t                    0.0,\n693\t                    0.0,\n694\t                    0.0,\n695\t                    0.0,\n696\t                    0,\n697\t                )\n698\t\n699\t                if step % config.retrain_interval == 0:\n700\t                    log.info(\"[RETRAIN] Retraining probe at step %d ...\", step)\n701\t                    probe, rt_acc, rt_auroc = retrain_probe_online(\n702\t                        model, dataset, probe.linear.in_features, config, log\n703\t                    )\n704\t                    log.info(\n705\t                        \"[INFO] Probe retrained at step %d: acc=%.4f, auroc=%.4f\",\n706\t                        step, rt_acc, rt_auroc,\n707\t                    )\n708\t\n709\t                if step % config.save_steps == 0:\n710\t                    ckpt_dir = os.path.join(\n711\t                        config.output_dir, f\"checkpoint-{step}\"\n712\t                    )\n713\t                    model.save_pretrained(ckpt_dir)\n714\t                    tokenizer.save_pretrained(ckpt_dir)\n715\t                    save_probe(probe, os.path.join(ckpt_dir, \"probe.pt\"))\n716\t                    log.info(\"Saved checkpoint: %s\", ckpt_dir)\n717\t\n718\t    # --- Final save ---\n719\t    final_dir = os.path.join(config.output_dir, \"final\")\n720\t    model.save_pretrained(final_dir)\n721\t    tokenizer.save_pretrained(final_dir)\n722\t    save_probe(probe, os.path.join(final_dir, \"probe.pt\"))\n723\t    log.info(\"Training complete. Final checkpoint: %s\", final_dir)\n724\t\n725\t\n726\tif __name__ == \"__main__\":\n727\t    main()\n728\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "020d3457-2c90-4b9f-b4c7-bdb2d05d097e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp008_binary_probe_penalty.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.\n\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\n\nLoss:\n    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\n      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\n\n    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\n    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\n    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\n\nInput:\n    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\n    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\n    Activations: results/exp001/activations.pt (for probe pretraining)\n\nOutput:\n    LoRA checkpoints every 500 steps + final in output_dir\n\nDependencies: torch, transformers, peft\n\"\"\"\nimport argparse\nimport json\nimport logging\nimport os\nimport re\nimport sys\nfrom dataclasses import dataclass, field\nfrom functools import partial\nfrom pathlib import Path\n\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom torch.utils.data import DataLoader\nfrom torch.utils.data import Dataset as TorchDataset\n\nfrom peft import LoraConfig, get_peft_model\nfrom transformers import (\n    AutoModelForCausalLM,\n    AutoModelForSequenceClassification,\n    AutoTokenizer,\n    get_linear_schedule_with_warmup,\n)\n\nCONDITION_MAP = {\n    \"warranted_revision\": \"valid_correction\",\n    \"sycophantic_capitulation\": \"invalid_pressure\",\n    \"valid_correction\": \"valid_correction\",\n    \"invalid_pressure\": \"invalid_pressure\",\n}\n\n\n# ---------------------------------------------------------------------------\n# Configuration\n# ---------------------------------------------------------------------------\n@dataclass\nclass TrainConfig:\n    model_path: str = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\n    data_path: str = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\n    activations_path: str = (\n        \"/root/contrastive_entrain_calib/results/exp001/activations.pt\"\n    )\n    output_dir: str = (\n        \"/root/contrastive_entrain_calib/checkpoints/exp008_binary_probe_penalty\"\n    )\n\n    # LoRA\n    lora_rank: int = 64\n    lora_alpha: int = 64\n    lora_targets: list[str] = field(\n        default_factory=lambda: [\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"]\n    )\n    lora_dropout: float = 0.0\n\n    # Training\n    lr: float = 5e-5\n    warmup_steps: int = 200\n    weight_decay: float = 0.01\n    max_steps: int = 8000\n    batch_size: int = 1\n    grad_accum: int = 16\n    max_seq_len: int = 1024\n    gradient_checkpointing: bool = True\n    bf16: bool = True\n    seed: int = 42\n    max_grad_norm: float = 1.0\n\n    # Loss weights\n    lambda_reward: float = 0.1\n    lambda_probe: float = 1.0\n\n    # Probe / hidden state extraction\n    reward_layers: list[int] = field(\n        default_factory=lambda: [19, 20, 24, 27, 32, 33, 35]\n    )\n    probe_position_idx: int = 1  # 1 = asst_first in (num_layers, 2, hidden) layout\n\n    # NLI\n    nli_model_name: str = \"cross-encoder/nli-deberta-v3-base\"\n\n    # Logging / checkpointing\n    log_steps: int = 10\n    save_steps: int = 500\n    retrain_interval: int = 100\n\n\ndef parse_args() -> TrainConfig:\n    p = argparse.ArgumentParser(description=\"exp-008 Binary Probe Penalty baseline\")\n    p.add_argument(\"--lr\", type=float, default=5e-5)\n    p.add_argument(\"--lambda_reward\", type=float, default=0.1)\n    p.add_argument(\"--lambda_probe\", type=float, default=1.0)\n    p.add_argument(\"--max_steps\", type=int, default=8000)\n    p.add_argument(\"--lora_rank\", type=int, default=64)\n    p.add_argument(\"--lora_alpha\", type=int, default=64)\n    p.add_argument(\"--batch_size\", type=int, default=1)\n    p.add_argument(\"--grad_accum\", type=int, default=16)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--log_steps\", type=int, default=None)\n    p.add_argument(\"--retrain_interval\", type=int, default=None)\n    p.add_argument(\"--model_path\", type=str, default=None)\n    p.add_argument(\"--data_path\", type=str, default=None)\n    p.add_argument(\"--output_dir\", type=str, default=None)\n    args = p.parse_args()\n\n    cfg = TrainConfig()\n    for k, v in vars(args).items():\n        if v is not None and hasattr(cfg, k):\n            setattr(cfg, k, v)\n    return cfg\n\n\n# ---------------------------------------------------------------------------\n# Dataset\n# ---------------------------------------------------------------------------\nclass CalibrationSFTDataset(TorchDataset):\n    \"\"\"Loads 3-turn calibration conversations for SFT (aligned with exp-004).\n\n    Format per record: user -> assistant(Turn 1) -> user(correction/pressure).\n    Input: full 3-turn conversation + generation_prompt.\n    SFT target: Turn 1 (assistant first reply) only; cross-entropy on those tokens,\n    all others masked with -100.\n    \"\"\"\n\n    def __init__(self, data_path: str, tokenizer, max_seq_len: int = 1024):\n        self.tokenizer = tokenizer\n        self.max_seq_len = max_seq_len\n        self.samples: list[dict] = []\n\n        im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n\n        with open(data_path) as f:\n            for line in f:\n                rec = json.loads(line)\n                turns = rec[\"turns\"]\n                if len(turns) < 2:\n                    continue\n\n                condition = CONDITION_MAP.get(rec[\"condition\"], rec[\"condition\"])\n                pair_id = str(rec.get(\"pair_id\", rec.get(\"id\", \"\")))\n                response_text = turns[1][\"content\"]\n\n                msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns]\n\n                try:\n                    full_ids = tokenizer.apply_chat_template(\n                        msgs, tokenize=True, add_generation_prompt=True,\n                        enable_thinking=False,\n                    )\n                except TypeError:\n                    full_ids = tokenizer.apply_chat_template(\n                        msgs, tokenize=True, add_generation_prompt=True,\n                    )\n\n                try:\n                    pre_asst_ids = tokenizer.apply_chat_template(\n                        msgs[:1], tokenize=True, add_generation_prompt=True,\n                        enable_thinking=False,\n                    )\n                except TypeError:\n                    pre_asst_ids = tokenizer.apply_chat_template(\n                        msgs[:1], tokenize=True, add_generation_prompt=True,\n                    )\n\n                asst_start = len(pre_asst_ids)\n                asst_end = asst_start\n                while asst_end < len(full_ids) and full_ids[asst_end] != im_end_id:\n                    asst_end += 1\n                asst_end += 1  # include <|im_end|>\n\n                if len(full_ids) > max_seq_len:\n                    full_ids = full_ids[:max_seq_len]\n\n                labels = [-100] * len(full_ids)\n                for i in range(asst_start, min(asst_end, len(full_ids))):\n                    labels[i] = full_ids[i]\n\n                resp_pos = len(full_ids) - 1\n\n                self.samples.append(\n                    {\n                        \"full_ids\": full_ids,\n                        \"labels\": labels,\n                        \"resp_pos\": resp_pos,\n                        \"condition\": condition,\n                        \"pair_id\": pair_id,\n                        \"response_text\": response_text,\n                        \"r3\": 0.0,\n                    }\n                )\n\n    def __len__(self):\n        return len(self.samples)\n\n    def __getitem__(self, idx):\n        return self.samples[idx]\n\n\ndef sft_collate(batch: list[dict], pad_token_id: int) -> dict:\n    max_len = max(len(item[\"full_ids\"]) for item in batch)\n    input_ids, masks, labels = [], [], []\n    resp_positions, conditions, r3_scores = [], [], []\n\n    for item in batch:\n        ids = item[\"full_ids\"]\n        lab = item[\"labels\"]\n        pad_n = max_len - len(ids)\n\n        input_ids.append(ids + [pad_token_id] * pad_n)\n        masks.append([1] * len(ids) + [0] * pad_n)\n        labels.append(lab + [-100] * pad_n)\n        resp_positions.append(item[\"resp_pos\"])\n        conditions.append(item[\"condition\"])\n        r3_scores.append(item[\"r3\"])\n\n    return {\n        \"input_ids\": torch.tensor(input_ids, dtype=torch.long),\n        \"attention_mask\": torch.tensor(masks, dtype=torch.long),\n        \"labels\": torch.tensor(labels, dtype=torch.long),\n        \"resp_positions\": resp_positions,\n        \"conditions\": conditions,\n        \"r3_scores\": r3_scores,\n    }\n\n\n# ---------------------------------------------------------------------------\n# Binary Probe\n# ---------------------------------------------------------------------------\nclass LinearProbe(nn.Module):\n    \"\"\"Frozen logistic regression probe: h -> P(sycophantic).\"\"\"\n\n    def __init__(self, input_dim: int):\n        super().__init__()\n        self.linear = nn.Linear(input_dim, 1)\n        self.register_buffer(\"feat_mean\", torch.zeros(input_dim))\n        self.register_buffer(\"feat_std\", torch.ones(input_dim))\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        x_norm = (x - self.feat_mean) / (self.feat_std + 1e-8)\n        return torch.sigmoid(self.linear(x_norm)).squeeze(-1)\n\n\ndef train_probe(\n    activations_path: str,\n    layers: list[int],\n    position_idx: int = 1,\n    seed: int = 42,\n    epochs: int = 200,\n    lr: float = 1e-2,\n) -> tuple[LinearProbe, float]:\n    \"\"\"Train binary probe from exp-001 pre-extracted activations.\n\n    Labels: invalid_pressure (sycophantic context) -> 1, valid_correction -> 0.\n    Returns (frozen_probe, accuracy).\n    \"\"\"\n    torch.manual_seed(seed)\n    data = torch.load(activations_path, map_location=\"cpu\", weights_only=False)\n\n    features, labels = [], []\n    for sample in data:\n        acts = sample[\"activations\"]  # (num_layers, 2, hidden_dim)\n        mean_h = torch.stack([acts[l, position_idx] for l in layers]).mean(0)\n        features.append(mean_h)\n        cond = CONDITION_MAP.get(sample[\"condition\"], sample[\"condition\"])\n        labels.append(1.0 if cond == \"invalid_pressure\" else 0.0)\n\n    X = torch.stack(features)\n    y = torch.tensor(labels)\n\n    feat_mean = X.mean(dim=0)\n    feat_std = X.std(dim=0)\n\n    probe = LinearProbe(X.shape[1])\n    probe.feat_mean.copy_(feat_mean)\n    probe.feat_std.copy_(feat_std)\n\n    opt = torch.optim.Adam(probe.parameters(), lr=lr, weight_decay=1e-4)\n    criterion = nn.BCELoss()\n\n    probe.train()\n    for epoch in range(epochs):\n        loss = criterion(probe(X), y)\n        opt.zero_grad()\n        loss.backward()\n        opt.step()\n        if (epoch + 1) % 50 == 0:\n            with torch.no_grad():\n                acc = ((probe(X) > 0.5).float() == y).float().mean().item()\n            logging.getLogger(\"exp008\").info(\n                \"Probe epoch %d/%d: loss=%.4f acc=%.4f\", epoch + 1, epochs, loss.item(), acc\n            )\n\n    probe.eval()\n    with torch.no_grad():\n        acc = ((probe(X) > 0.5).float() == y).float().mean().item()\n\n    for p in probe.parameters():\n        p.requires_grad_(False)\n\n    return probe, acc\n\n\ndef save_probe(probe: LinearProbe, path: str) -> None:\n    Path(path).parent.mkdir(parents=True, exist_ok=True)\n    torch.save(\n        {\"state_dict\": probe.state_dict(), \"input_dim\": probe.linear.in_features},\n        path,\n    )\n\n\ndef load_probe(path: str) -> LinearProbe:\n    ckpt = torch.load(path, map_location=\"cpu\")\n    probe = LinearProbe(ckpt[\"input_dim\"])\n    probe.load_state_dict(ckpt[\"state_dict\"])\n    probe.eval()\n    for p in probe.parameters():\n        p.requires_grad_(False)\n    return probe\n\n\n# ---------------------------------------------------------------------------\n# Online Probe Retraining\n# ---------------------------------------------------------------------------\ndef retrain_probe_online(model, dataset, input_dim, config, log):\n    \"\"\"Retrain probe using current model's activations on calibration data.\"\"\"\n    model.eval()\n    device = next(model.parameters()).device\n\n    features = []\n    labels = []\n\n    with torch.no_grad():\n        for i, sample in enumerate(dataset.samples):\n            ids = torch.tensor([sample[\"full_ids\"]], dtype=torch.long, device=device)\n            mask = torch.ones_like(ids)\n\n            out = model(\n                input_ids=ids,\n                attention_mask=mask,\n                output_hidden_states=True,\n            )\n            hs = out.hidden_states\n            pos = sample[\"resp_pos\"]\n\n            layer_h = [hs[l + 1][0, pos] for l in config.reward_layers]\n            mean_h = torch.stack(layer_h).mean(0).float().cpu()\n            features.append(mean_h)\n\n            label = 1.0 if sample[\"condition\"] == \"invalid_pressure\" else 0.0\n            labels.append(label)\n\n    torch.cuda.empty_cache()\n\n    X = torch.stack(features)\n    y = torch.tensor(labels)\n    log.info(\n        \"[RETRAIN] Extracted %d activations (%.1f%% positive)\",\n        len(y), y.mean().item() * 100,\n    )\n\n    feat_mean = X.mean(dim=0)\n    feat_std = X.std(dim=0)\n\n    new_probe = LinearProbe(input_dim)\n    new_probe.feat_mean.copy_(feat_mean)\n    new_probe.feat_std.copy_(feat_std)\n\n    opt = torch.optim.Adam(new_probe.parameters(), lr=1e-2, weight_decay=1e-4)\n    criterion = nn.BCELoss()\n\n    new_probe.train()\n    for epoch in range(200):\n        loss = criterion(new_probe(X), y)\n        opt.zero_grad()\n        loss.backward()\n        opt.step()\n\n    new_probe.eval()\n    with torch.no_grad():\n        preds = new_probe(X)\n        acc = ((preds > 0.5).float() == y).float().mean().item()\n\n    try:\n        from sklearn.metrics import roc_auc_score\n        auroc = roc_auc_score(y.numpy(), preds.numpy())\n    except ImportError:\n        sorted_pairs = sorted(zip(preds.tolist(), y.tolist()), reverse=True)\n        tp, auc_sum = 0, 0.0\n        p_total = int(y.sum().item())\n        n_total = len(y) - p_total\n        for _, label in sorted_pairs:\n            if label == 1.0:\n                tp += 1\n            else:\n                auc_sum += tp\n        auroc = auc_sum / (p_total * n_total) if (p_total * n_total) > 0 else 0.0\n\n    for p in new_probe.parameters():\n        p.requires_grad_(False)\n    new_probe.to(device)\n\n    model.train()\n    return new_probe, acc, auroc\n\n\n# ---------------------------------------------------------------------------\n# NLI / R3 Scoring\n# ---------------------------------------------------------------------------\ndef _extract_last_response(text: str) -> str:\n    \"\"\"Strip chat template markers and return last assistant response.\"\"\"\n    clean = re.sub(\n        r\"<\\|im_start\\|>|<\\|im_end\\|>|<think>|</think>|<\\|endoftext\\|>\", \"\", text\n    )\n    parts = clean.split(\"assistant\")\n    response = parts[-1].strip() if len(parts) > 1 else clean.strip()\n    if len(response) > 1000:\n        response = response[:1000]\n    return response if response else text[:500]\n\n\n@torch.no_grad()\ndef precompute_r3(\n    samples: list[dict], nli_model_name: str, batch_size: int = 16\n) -> list[float]:\n    \"\"\"Compute R3 for every sample using a frozen NLI model, then free GPU memory.\n\n    R3 = P(entailment) for valid_correction (changing answer is correct),\n    R3 = 1 - P(entailment) for invalid_pressure (not changing is correct).\n    \"\"\"\n    log = logging.getLogger(\"exp008\")\n\n    try:\n        from transformers import DebertaV2Tokenizer\n\n        tok = DebertaV2Tokenizer.from_pretrained(nli_model_name)\n    except Exception:\n        tok = AutoTokenizer.from_pretrained(nli_model_name)\n\n    nli = AutoModelForSequenceClassification.from_pretrained(nli_model_name)\n    nli.eval().cuda()\n    ent_idx = next(\n        int(k) for k, v in nli.config.id2label.items() if \"entail\" in v.lower()\n    )\n    log.info(\"NLI model loaded: %s (entailment_idx=%d)\", nli_model_name, ent_idx)\n\n    hypothesis = \"The response changes or corrects the previous answer.\"\n    premises = [_extract_last_response(s[\"response_text\"]) for s in samples]\n    conditions = [s[\"condition\"] for s in samples]\n\n    scores: list[float] = []\n    for i in range(0, len(premises), batch_size):\n        bp = premises[i : i + batch_size]\n        bc = conditions[i : i + batch_size]\n        inputs = tok(\n            bp,\n            [hypothesis] * len(bp),\n            padding=True,\n            truncation=True,\n            max_length=512,\n            return_tensors=\"pt\",\n        ).to(nli.device)\n        probs = F.softmax(nli(**inputs).logits, dim=-1)\n        raw = probs[:, ent_idx].tolist()\n        for r, c in zip(raw, bc):\n            scores.append(1.0 - r if c == \"invalid_pressure\" else r)\n\n    del nli, tok\n    torch.cuda.empty_cache()\n    return scores\n\n\n# ---------------------------------------------------------------------------\n# Training\n# ---------------------------------------------------------------------------\ndef main():\n    config = parse_args()\n    os.makedirs(config.output_dir, exist_ok=True)\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n        handlers=[\n            logging.StreamHandler(),\n            logging.FileHandler(os.path.join(config.output_dir, \"train.log\")),\n        ],\n    )\n    log = logging.getLogger(\"exp008\")\n    torch.manual_seed(config.seed)\n\n    if \"HF_ENDPOINT\" not in os.environ:\n        os.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\n    log.info(\"=== exp-008: Binary Probe Penalty Baseline ===\")\n    log.info(\"Config: lr=%s lambda_reward=%s lambda_probe=%s max_steps=%d retrain_interval=%d\",\n             config.lr, config.lambda_reward, config.lambda_probe, config.max_steps,\n             config.retrain_interval)\n\n    # --- Resolve model path ---\n    model_path = config.model_path\n    if not Path(model_path).exists():\n        model_path = \"Qwen/Qwen3-8B\"\n        log.info(\"Local model not found, using HF hub: %s\", model_path)\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    # --- Dataset ---\n    dataset = CalibrationSFTDataset(config.data_path, tokenizer, config.max_seq_len)\n    log.info(\"Dataset: %d samples from %s\", len(dataset), config.data_path)\n    if not dataset.samples:\n        log.error(\n            \"No valid samples. Data must have at least 2 turns \"\n            \"(user + assistant).\"\n        )\n        sys.exit(1)\n\n    # --- Probe: train or load ---\n    probe_path = os.path.join(config.output_dir, \"probe.pt\")\n    if Path(probe_path).exists():\n        probe = load_probe(probe_path)\n        log.info(\"Loaded existing probe from %s\", probe_path)\n    else:\n        if not Path(config.activations_path).exists():\n            log.error(\"activations.pt not found at %s\", config.activations_path)\n            sys.exit(1)\n        log.info(\"Training probe from %s\", config.activations_path)\n        probe, acc = train_probe(\n            config.activations_path,\n            config.reward_layers,\n            config.probe_position_idx,\n            config.seed,\n        )\n        log.info(\"Probe accuracy: %.4f\", acc)\n        save_probe(probe, probe_path)\n        log.info(\"Probe saved to %s\", probe_path)\n\n    # --- Precompute R3 ---\n    log.info(\"Precomputing R3 scores with %s ...\", config.nli_model_name)\n    r3_scores = precompute_r3(dataset.samples, config.nli_model_name)\n    for i, r3 in enumerate(r3_scores):\n        dataset.samples[i][\"r3\"] = r3\n    r3_mean = sum(r3_scores) / len(r3_scores)\n    log.info(\n        \"R3: mean=%.4f min=%.4f max=%.4f\", r3_mean, min(r3_scores), max(r3_scores)\n    )\n\n    # --- Load model + LoRA ---\n    log.info(\"Loading model: %s\", model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_path,\n        torch_dtype=torch.bfloat16 if config.bf16 else torch.float32,\n        trust_remote_code=True,\n    ).cuda()\n\n    if config.gradient_checkpointing:\n        model.gradient_checkpointing_enable(\n            gradient_checkpointing_kwargs={\"use_reentrant\": False}\n        )\n\n    lora_cfg = LoraConfig(\n        r=config.lora_rank,\n        lora_alpha=config.lora_alpha,\n        target_modules=config.lora_targets,\n        lora_dropout=config.lora_dropout,\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n    model = get_peft_model(model, lora_cfg)\n    model.print_trainable_parameters()\n\n    probe.cuda()\n\n    # --- Dataloader ---\n    loader = DataLoader(\n        dataset,\n        batch_size=config.batch_size,\n        shuffle=True,\n        collate_fn=partial(sft_collate, pad_token_id=tokenizer.pad_token_id),\n        drop_last=False,\n    )\n\n    # --- Optimizer + scheduler ---\n    optimizer = torch.optim.AdamW(\n        [p for p in model.parameters() if p.requires_grad],\n        lr=config.lr,\n        weight_decay=config.weight_decay,\n    )\n    scheduler = get_linear_schedule_with_warmup(\n        optimizer, config.warmup_steps, config.max_steps\n    )\n\n    # --- Training loop ---\n    log.info(\n        \"Starting training: max_steps=%d, batch=%d, grad_accum=%d, effective_batch=%d\",\n        config.max_steps, config.batch_size, config.grad_accum,\n        config.batch_size * config.grad_accum,\n    )\n    step = 0\n    acc_loss, acc_sft, acc_probe, acc_r3, acc_n = 0.0, 0.0, 0.0, 0.0, 0\n    model.train()\n\n    while step < config.max_steps:\n        for batch in loader:\n            if step >= config.max_steps:\n                break\n\n            ids = batch[\"input_ids\"].cuda()\n            mask = batch[\"attention_mask\"].cuda()\n            lab = batch[\"labels\"].cuda()\n            resp_positions = batch[\"resp_positions\"]\n            batch_r3 = batch[\"r3_scores\"]\n\n            # Forward: SFT loss + hidden states for probe\n            out = model(\n                input_ids=ids,\n                attention_mask=mask,\n                labels=lab,\n                output_hidden_states=True,\n            )\n            sft_loss = out.loss\n            hs = out.hidden_states  # tuple[Tensor], index 0=embedding, i+1=layer i\n\n            # S(t): mean probe score across batch at sequence-end position\n            probe_vals = []\n            for b in range(ids.size(0)):\n                pos = resp_positions[b]\n                layer_h = [hs[l + 1][b, pos] for l in config.reward_layers]\n                mean_h = torch.stack(layer_h).mean(0).float()\n                probe_vals.append(probe(mean_h.unsqueeze(0)))\n            s_t = torch.stack(probe_vals).mean()\n\n            r3_val = sum(batch_r3) / len(batch_r3)\n\n            # L = L_sft - lambda_reward * R3 + lambda_reward * lambda_probe * S(t)\n            loss = (\n                sft_loss\n                - config.lambda_reward * r3_val\n                + config.lambda_reward * config.lambda_probe * s_t\n            )\n            (loss / config.grad_accum).backward()\n\n            acc_loss += loss.item()\n            acc_sft += sft_loss.item()\n            acc_probe += s_t.item()\n            acc_r3 += r3_val\n            acc_n += 1\n\n            if acc_n >= config.grad_accum:\n                torch.nn.utils.clip_grad_norm_(\n                    model.parameters(), config.max_grad_norm\n                )\n                optimizer.step()\n                scheduler.step()\n                optimizer.zero_grad()\n                step += 1\n\n                if step % config.log_steps == 0:\n                    log.info(\n                        \"step=%d loss=%.4f sft=%.4f R3=%.4f S(t)=%.4f lr=%.2e\",\n                        step,\n                        acc_loss / acc_n,\n                        acc_sft / acc_n,\n                        acc_r3 / acc_n,\n                        acc_probe / acc_n,\n                        scheduler.get_last_lr()[0],\n                    )\n                acc_loss, acc_sft, acc_probe, acc_r3, acc_n = (\n                    0.0,\n                    0.0,\n                    0.0,\n                    0.0,\n                    0,\n                )\n\n                if step % config.retrain_interval == 0:\n                    log.info(\"[RETRAIN] Retraining probe at step %d ...\", step)\n                    probe, rt_acc, rt_auroc = retrain_probe_online(\n                        model, dataset, probe.linear.in_features, config, log\n                    )\n                    log.info(\n                        \"[INFO] Probe retrained at step %d: acc=%.4f, auroc=%.4f\",\n                        step, rt_acc, rt_auroc,\n                    )\n\n                if step % config.save_steps == 0:\n                    ckpt_dir = os.path.join(\n                        config.output_dir, f\"checkpoint-{step}\"\n                    )\n                    model.save_pretrained(ckpt_dir)\n                    tokenizer.save_pretrained(ckpt_dir)\n                    save_probe(probe, os.path.join(ckpt_dir, \"probe.pt\"))\n                    log.info(\"Saved checkpoint: %s\", ckpt_dir)\n\n    # --- Final save ---\n    final_dir = os.path.join(config.output_dir, \"final\")\n    model.save_pretrained(final_dir)\n    tokenizer.save_pretrained(final_dir)\n    save_probe(probe, os.path.join(final_dir, \"probe.pt\"))\n    log.info(\"Training complete. Final checkpoint: %s\", final_dir)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 728,
+                "startLine": 1,
+                "totalLines": 728
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I've read the file. Now I need to:\n1. Verify it's an SFT script (has L_sft cross-entropy loss) - confirmed at line 638 `sft_loss = out.loss` and line 659-663\n2. Verify LoRA config: alpha=64 (line 118/75), 4 modules q/k/v/o_proj (line 74-76), dropout=0 (line 77) - confirmed\n3. Base64 encode it and upload via ssh_execute\n\nLet me base64 encode the file content and upload it.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "7d4da55c-89b5-4290-817d-95f6ddc3fca2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DGzBnoDhqcMCFkRPuBDkoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9597,
+                "cache_read_input_tokens": 24631,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9597
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本确认：SFT loss（line 638），LoRA alpha=64, 4 modules, dropout=0。现在 base64 编码并上传。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "98ac7ebb-3fa1-4570-8c7e-6de4dffdd43c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DGzBnoDhqcMCFkRPuBDkoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9597,
+                "cache_read_input_tokens": 24631,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9597
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0174yA7yA8QrUHUFs57sv352",
+              "name": "Bash",
+              "input": {
+                "command": "base64 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp008_binary_probe_penalty.py | wc -c",
+                "description": "Check base64 encoded size"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "38b0c95b-1f9d-4c1f-a920-3bf6016cd904",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DGzBnoDhqcMCFkRPuBDkoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9597,
+                "cache_read_input_tokens": 24631,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9597
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T13:30:35.556Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0174yA7yA8QrUHUFs57sv352",
+              "type": "tool_result",
+              "content": "33909",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "322347a3-fef4-4916-8f7b-1562fadb7eae",
+            "tool_use_result": {
+              "stdout": "33909",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HAt7aEbU9qhvzd74Hr1rN1",
+              "name": "Bash",
+              "input": {
+                "command": "base64 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp008_binary_probe_penalty.py",
+                "description": "Base64 encode the script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "c5467b9f-cfa9-41b2-a886-80d78ff62562",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016PaesyWk8VsbyddZCre3Hf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 343,
+                "cache_read_input_tokens": 34228,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 343
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T13:30:38.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HAt7aEbU9qhvzd74Hr1rN1",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (33.1KB). Full output saved to: /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2e8a23fc-32a9-4c3e-a046-be124a4678d4/tool-results/bmx1in0zc.txt\n\nPreview (first 2KB):\nIyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDA4OiBCaW5hcnkgUHJvYmUgUGVuYWx0eSBi\nYXNlbGluZSBmb3Igc3ljb3BoYW5jeSBjYWxpYnJhdGlvbi4KClNGVC1zdHlsZSBMb1JBIHRyYWlu\naW5nIG9uIFF3ZW4zLThCIHdpdGggYSBmcm96ZW4gYmluYXJ5IHByb2JlIHBlbmFsdHkuCkRlc2ln\nbmVkIHRvIHJ1biBvbiBhIHNpbmdsZSBSVFggNTA5MCAoMzIgR0IpIHdpdGhvdXQgR1JQTydzIG1l\nbW9yeSBvdmVyaGVhZC4KCkxvc3M6CiAgICBMID0gTF9zZnQgLSBsYW1iZGFfcmV3YXJkICogKFIz\nIC0gbGFtYmRhX3Byb2JlICogUyh0KSkKICAgICAgPSBMX3NmdCArIGxhbWJkYV9yZXdhcmQgKiBs\nYW1iZGFfcHJvYmUgKiBTKHQpIC0gbGFtYmRhX3Jld2FyZCAqIFIzCgogICAgTF9zZnQ6ICBjcm9z\ncy1lbnRyb3B5IG9uIGxhc3QtYXNzaXN0YW50LXR1cm4gdG9rZW5zIChzdGFuZGFyZCBTRlQpCiAg\nICBTKHQpOiAgIGZyb3plbiBsb2dpc3RpYyBwcm9iZSBzeWNvcGhhbmN5IHNjb3JlLCBkaWZmZXJl\nbnRpYWJsZSB0aHJvdWdoIGhpZGRlbiBzdGF0ZXMKICAgIFIzOiAgICAgTkxJIGJlaGF2aW9yYWwg\ncmV3YXJkLCBwcmVjb21wdXRlZCBvbiB0cmFpbmluZyBkYXRhIChjb25zdGFudCwgZm9yIG1vbml0\nb3JpbmcpCgpJbnB1dDoKICAgIE1vZGVsOiAgICAgICAvcm9vdC9hdXRvZGwtdG1wLy5oZl9jYWNo\nZS9Rd2VuL1F3ZW4zLThCCiAgICBEYXRhOiAgICAgICAgY2FsaWJyYXRpb25fdjJfMV9leHBhbmRl\nZC5qc29ubCAoMzYyIHNhbXBsZXMsIHYyLjEgc3R5bGUtY29udHJvbGxlZCkKICAgIEFjdGl2YXRp\nb25zOiByZXN1bHRzL2V4cDAwMS9hY3RpdmF0aW9ucy5wdCAoZm9yIHByb2JlIHByZXRyYWluaW5n\nKQoKT3V0cHV0OgogICAgTG9SQSBjaGVja3BvaW50cyBldmVyeSA1MDAgc3RlcHMgKyBmaW5hbCBp\nbiBvdXRwdXRfZGlyCgpEZXBlbmRlbmNpZXM6IHRvcmNoLCB0cmFuc2Zvcm1lcnMsIHBlZnQKIiIi\nCmltcG9ydCBhcmdwYXJzZQppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MKaW1w\nb3J0IHJlCmltcG9ydCBzeXMKZnJvbSBkYXRhY2xhc3NlcyBpbXBvcnQgZGF0YWNsYXNzLCBmaWVs\nZApmcm9tIGZ1bmN0b29scyBpbXBvcnQgcGFydGlhbApmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgK\nCmltcG9ydCB0b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KaW1wb3J0IHRvcmNoLm5uLmZ1bmN0\naW9uYWwgYXMgRgpmcm9tIHRvcmNoLnV0aWxzLmRhdGEgaW1wb3J0IERhdGFMb2FkZXIKZnJvbSB0\nb3JjaC51dGlscy5kYXRhIGltcG9ydCBEYXRhc2V0IGFzIFRvcmNoRGF0YXNldAoKZnJvbSBwZWZ0\nIGltcG9ydCBMb3JhQ29uZmlnLCBnZXRfcGVmdF9tb2RlbApmcm9tIHRyYW5zZm9ybWVycyBpbXBv\ncnQgKAogICAgQXV0b01vZGVsRm9yQ2F1c2FsTE0sCiAgICBBdXRvTW9kZWxGb3JTZXF1ZW5jZUNs\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "2d1e73dd-dc3f-4dc6-abd7-e332d00ca341",
+            "tool_use_result": {
+              "stdout": "IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDA4OiBCaW5hcnkgUHJvYmUgUGVuYWx0eSBi\nYXNlbGluZSBmb3Igc3ljb3BoYW5jeSBjYWxpYnJhdGlvbi4KClNGVC1zdHlsZSBMb1JBIHRyYWlu\naW5nIG9uIFF3ZW4zLThCIHdpdGggYSBmcm96ZW4gYmluYXJ5IHByb2JlIHBlbmFsdHkuCkRlc2ln\nbmVkIHRvIHJ1biBvbiBhIHNpbmdsZSBSVFggNTA5MCAoMzIgR0IpIHdpdGhvdXQgR1JQTydzIG1l\nbW9yeSBvdmVyaGVhZC4KCkxvc3M6CiAgICBMID0gTF9zZnQgLSBsYW1iZGFfcmV3YXJkICogKFIz\nIC0gbGFtYmRhX3Byb2JlICogUyh0KSkKICAgICAgPSBMX3NmdCArIGxhbWJkYV9yZXdhcmQgKiBs\nYW1iZGFfcHJvYmUgKiBTKHQpIC0gbGFtYmRhX3Jld2FyZCAqIFIzCgogICAgTF9zZnQ6ICBjcm9z\ncy1lbnRyb3B5IG9uIGxhc3QtYXNzaXN0YW50LXR1cm4gdG9rZW5zIChzdGFuZGFyZCBTRlQpCiAg\nICBTKHQpOiAgIGZyb3plbiBsb2dpc3RpYyBwcm9iZSBzeWNvcGhhbmN5IHNjb3JlLCBkaWZmZXJl\nbnRpYWJsZSB0aHJvdWdoIGhpZGRlbiBzdGF0ZXMKICAgIFIzOiAgICAgTkxJIGJlaGF2aW9yYWwg\ncmV3YXJkLCBwcmVjb21wdXRlZCBvbiB0cmFpbmluZyBkYXRhIChjb25zdGFudCwgZm9yIG1vbml0\nb3JpbmcpCgpJbnB1dDoKICAgIE1vZGVsOiAgICAgICAvcm9vdC9hdXRvZGwtdG1wLy5oZl9jYWNo\nZS9Rd2VuL1F3ZW4zLThCCiAgICBEYXRhOiAgICAgICAgY2FsaWJyYXRpb25fdjJfMV9leHBhbmRl\nZC5qc29ubCAoMzYyIHNhbXBsZXMsIHYyLjEgc3R5bGUtY29udHJvbGxlZCkKICAgIEFjdGl2YXRp\nb25zOiByZXN1bHRzL2V4cDAwMS9hY3RpdmF0aW9ucy5wdCAoZm9yIHByb2JlIHByZXRyYWluaW5n\nKQoKT3V0cHV0OgogICAgTG9SQSBjaGVja3BvaW50cyBldmVyeSA1MDAgc3RlcHMgKyBmaW5hbCBp\nbiBvdXRwdXRfZGlyCgpEZXBlbmRlbmNpZXM6IHRvcmNoLCB0cmFuc2Zvcm1lcnMsIHBlZnQKIiIi\nCmltcG9ydCBhcmdwYXJzZQppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MKaW1w\nb3J0IHJlCmltcG9ydCBzeXMKZnJvbSBkYXRhY2xhc3NlcyBpbXBvcnQgZGF0YWNsYXNzLCBmaWVs\nZApmcm9tIGZ1bmN0b29scyBpbXBvcnQgcGFydGlhbApmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgK\nCmltcG9ydCB0b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KaW1wb3J0IHRvcmNoLm5uLmZ1bmN0\naW9uYWwgYXMgRgpmcm9tIHRvcmNoLnV0aWxzLmRhdGEgaW1wb3J0IERhdGFMb2FkZXIKZnJvbSB0\nb3JjaC51dGlscy5kYXRhIGltcG9ydCBEYXRhc2V0IGFzIFRvcmNoRGF0YXNldAoKZnJvbSBwZWZ0\nIGltcG9ydCBMb3JhQ29uZmlnLCBnZXRfcGVmdF9tb2RlbApmcm9tIHRyYW5zZm9ybWVycyBpbXBv\ncnQgKAogICAgQXV0b01vZGVsRm9yQ2F1c2FsTE0sCiAgICBBdXRvTW9kZWxGb3JTZXF1ZW5jZUNs\nYXNzaWZpY2F0aW9uLAogICAgQXV0b1Rva2VuaXplciwKICAgIGdldF9saW5lYXJfc2NoZWR1bGVf\nd2l0aF93YXJtdXAsCikKCkNPTkRJVElPTl9NQVAgPSB7CiAgICAid2FycmFudGVkX3JldmlzaW9u\nIjogInZhbGlkX2NvcnJlY3Rpb24iLAogICAgInN5Y29waGFudGljX2NhcGl0dWxhdGlvbiI6ICJp\nbnZhbGlkX3ByZXNzdXJlIiwKICAgICJ2YWxpZF9jb3JyZWN0aW9uIjogInZhbGlkX2NvcnJlY3Rp\nb24iLAogICAgImludmFsaWRfcHJlc3N1cmUiOiAiaW52YWxpZF9wcmVzc3VyZSIsCn0KCgojIC0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLQojIENvbmZpZ3VyYXRpb24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KQGRh\ndGFjbGFzcwpjbGFzcyBUcmFpbkNvbmZpZzoKICAgIG1vZGVsX3BhdGg6IHN0ciA9ICIvcm9vdC9h\ndXRvZGwtdG1wLy5oZl9jYWNoZS9Rd2VuL1F3ZW4zLThCIgogICAgZGF0YV9wYXRoOiBzdHIgPSAi\nL3Jvb3QvbXZwX3YyXzFfZXhwYW5kZWQvZGF0YS9jYWxpYnJhdGlvbl92Ml8xX2V4cGFuZGVkLmpz\nb25sIgogICAgYWN0aXZhdGlvbnNfcGF0aDogc3RyID0gKAogICAgICAgICIvcm9vdC9jb250cmFz\ndGl2ZV9lbnRyYWluX2NhbGliL3Jlc3VsdHMvZXhwMDAxL2FjdGl2YXRpb25zLnB0IgogICAgKQog\nICAgb3V0cHV0X2Rpcjogc3RyID0gKAogICAgICAgICIvcm9vdC9jb250cmFzdGl2ZV9lbnRyYWlu\nX2NhbGliL2NoZWNrcG9pbnRzL2V4cDAwOF9iaW5hcnlfcHJvYmVfcGVuYWx0eSIKICAgICkKCiAg\nICAjIExvUkEKICAgIGxvcmFfcmFuazogaW50ID0gNjQKICAgIGxvcmFfYWxwaGE6IGludCA9IDY0\nCiAgICBsb3JhX3RhcmdldHM6IGxpc3Rbc3RyXSA9IGZpZWxkKAogICAgICAgIGRlZmF1bHRfZmFj\ndG9yeT1sYW1iZGE6IFsicV9wcm9qIiwgInZfcHJvaiIsICJrX3Byb2oiLCAib19wcm9qIl0KICAg\nICkKICAgIGxvcmFfZHJvcG91dDogZmxvYXQgPSAwLjAKCiAgICAjIFRyYWluaW5nCiAgICBscjog\nZmxvYXQgPSA1ZS01CiAgICB3YXJtdXBfc3RlcHM6IGludCA9IDIwMAogICAgd2VpZ2h0X2RlY2F5\nOiBmbG9hdCA9IDAuMDEKICAgIG1heF9zdGVwczogaW50ID0gODAwMAogICAgYmF0Y2hfc2l6ZTog\naW50ID0gMQogICAgZ3JhZF9hY2N1bTogaW50ID0gMTYKICAgIG1heF9zZXFfbGVuOiBpbnQgPSAx\nMDI0CiAgICBncmFkaWVudF9jaGVja3BvaW50aW5nOiBib29sID0gVHJ1ZQogICAgYmYxNjogYm9v\nbCA9IFRydWUKICAgIHNlZWQ6IGludCA9IDQyCiAgICBtYXhfZ3JhZF9ub3JtOiBmbG9hdCA9IDEu\nMAoKICAgICMgTG9zcyB3ZWlnaHRzCiAgICBsYW1iZGFfcmV3YXJkOiBmbG9hdCA9IDAuMQogICAg\nbGFtYmRhX3Byb2JlOiBmbG9hdCA9IDEuMAoKICAgICMgUHJvYmUgLyBoaWRkZW4gc3RhdGUgZXh0\ncmFjdGlvbgogICAgcmV3YXJkX2xheWVyczogbGlzdFtpbnRdID0gZmllbGQoCiAgICAgICAgZGVm\nYXVsdF9mYWN0b3J5PWxhbWJkYTogWzE5LCAyMCwgMjQsIDI3LCAzMiwgMzMsIDM1XQogICAgKQog\nICAgcHJvYmVfcG9zaXRpb25faWR4OiBpbnQgPSAxICAjIDEgPSBhc3N0X2ZpcnN0IGluIChudW1f\nbGF5ZXJzLCAyLCBoaWRkZW4pIGxheW91dAoKICAgICMgTkxJCiAgICBubGlfbW9kZWxfbmFtZTog\nc3RyID0gImNyb3NzLWVuY29kZXIvbmxpLWRlYmVydGEtdjMtYmFzZSIKCiAgICAjIExvZ2dpbmcg\nLyBjaGVja3BvaW50aW5nCiAgICBsb2dfc3RlcHM6IGludCA9IDEwCiAgICBzYXZlX3N0ZXBzOiBp\nbnQgPSA1MDAKICAgIHJldHJhaW5faW50ZXJ2YWw6IGludCA9IDEwMAoKCmRlZiBwYXJzZV9hcmdz\nKCkgLT4gVHJhaW5Db25maWc6CiAgICBwID0gYXJncGFyc2UuQXJndW1lbnRQYXJzZXIoZGVzY3Jp\ncHRpb249ImV4cC0wMDggQmluYXJ5IFByb2JlIFBlbmFsdHkgYmFzZWxpbmUiKQogICAgcC5hZGRf\nYXJndW1lbnQoIi0tbHIiLCB0eXBlPWZsb2F0LCBkZWZhdWx0PTVlLTUpCiAgICBwLmFkZF9hcmd1\nbWVudCgiLS1sYW1iZGFfcmV3YXJkIiwgdHlwZT1mbG9hdCwgZGVmYXVsdD0wLjEpCiAgICBwLmFk\nZF9hcmd1bWVudCgiLS1sYW1iZGFfcHJvYmUiLCB0eXBlPWZsb2F0LCBkZWZhdWx0PTEuMCkKICAg\nIHAuYWRkX2FyZ3VtZW50KCItLW1heF9zdGVwcyIsIHR5cGU9aW50LCBkZWZhdWx0PTgwMDApCiAg\nICBwLmFkZF9hcmd1bWVudCgiLS1sb3JhX3JhbmsiLCB0eXBlPWludCwgZGVmYXVsdD02NCkKICAg\nIHAuYWRkX2FyZ3VtZW50KCItLWxvcmFfYWxwaGEiLCB0eXBlPWludCwgZGVmYXVsdD02NCkKICAg\nIHAuYWRkX2FyZ3VtZW50KCItLWJhdGNoX3NpemUiLCB0eXBlPWludCwgZGVmYXVsdD0xKQogICAg\ncC5hZGRfYXJndW1lbnQoIi0tZ3JhZF9hY2N1bSIsIHR5cGU9aW50LCBkZWZhdWx0PTE2KQogICAg\ncC5hZGRfYXJndW1lbnQoIi0tc2VlZCIsIHR5cGU9aW50LCBkZWZhdWx0PTQyKQogICAgcC5hZGRf\nYXJndW1lbnQoIi0tbG9nX3N0ZXBzIiwgdHlwZT1pbnQsIGRlZmF1bHQ9Tm9uZSkKICAgIHAuYWRk\nX2FyZ3VtZW50KCItLXJldHJhaW5faW50ZXJ2YWwiLCB0eXBlPWludCwgZGVmYXVsdD1Ob25lKQog\nICAgcC5hZGRfYXJndW1lbnQoIi0tbW9kZWxfcGF0aCIsIHR5cGU9c3RyLCBkZWZhdWx0PU5vbmUp\nCiAgICBwLmFkZF9hcmd1bWVudCgiLS1kYXRhX3BhdGgiLCB0eXBlPXN0ciwgZGVmYXVsdD1Ob25l\nKQogICAgcC5hZGRfYXJndW1lbnQoIi0tb3V0cHV0X2RpciIsIHR5cGU9c3RyLCBkZWZhdWx0PU5v\nbmUpCiAgICBhcmdzID0gcC5wYXJzZV9hcmdzKCkKCiAgICBjZmcgPSBUcmFpbkNvbmZpZygpCiAg\nICBmb3IgaywgdiBpbiB2YXJzKGFyZ3MpLml0ZW1zKCk6CiAgICAgICAgaWYgdiBpcyBub3QgTm9u\nZSBhbmQgaGFzYXR0cihjZmcsIGspOgogICAgICAgICAgICBzZXRhdHRyKGNmZywgaywgdikKICAg\nIHJldHVybiBjZmcKCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIERhdGFzZXQKIyAtLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0KY2xhc3MgQ2FsaWJyYXRpb25TRlREYXRhc2V0KFRvcmNoRGF0YXNldCk6CiAgICAi\nIiJMb2FkcyAzLXR1cm4gY2FsaWJyYXRpb24gY29udmVyc2F0aW9ucyBmb3IgU0ZUIChhbGlnbmVk\nIHdpdGggZXhwLTAwNCkuCgogICAgRm9ybWF0IHBlciByZWNvcmQ6IHVzZXIgLT4gYXNzaXN0YW50\nKFR1cm4gMSkgLT4gdXNlcihjb3JyZWN0aW9uL3ByZXNzdXJlKS4KICAgIElucHV0OiBmdWxsIDMt\ndHVybiBjb252ZXJzYXRpb24gKyBnZW5lcmF0aW9uX3Byb21wdC4KICAgIFNGVCB0YXJnZXQ6IFR1\ncm4gMSAoYXNzaXN0YW50IGZpcnN0IHJlcGx5KSBvbmx5OyBjcm9zcy1lbnRyb3B5IG9uIHRob3Nl\nIHRva2VucywKICAgIGFsbCBvdGhlcnMgbWFza2VkIHdpdGggLTEwMC4KICAgICIiIgoKICAgIGRl\nZiBfX2luaXRfXyhzZWxmLCBkYXRhX3BhdGg6IHN0ciwgdG9rZW5pemVyLCBtYXhfc2VxX2xlbjog\naW50ID0gMTAyNCk6CiAgICAgICAgc2VsZi50b2tlbml6ZXIgPSB0b2tlbml6ZXIKICAgICAgICBz\nZWxmLm1heF9zZXFfbGVuID0gbWF4X3NlcV9sZW4KICAgICAgICBzZWxmLnNhbXBsZXM6IGxpc3Rb\nZGljdF0gPSBbXQoKICAgICAgICBpbV9lbmRfaWQgPSB0b2tlbml6ZXIuY29udmVydF90b2tlbnNf\ndG9faWRzKCI8fGltX2VuZHw+IikKCiAgICAgICAgd2l0aCBvcGVuKGRhdGFfcGF0aCkgYXMgZjoK\nICAgICAgICAgICAgZm9yIGxpbmUgaW4gZjoKICAgICAgICAgICAgICAgIHJlYyA9IGpzb24ubG9h\nZHMobGluZSkKICAgICAgICAgICAgICAgIHR1cm5zID0gcmVjWyJ0dXJucyJdCiAgICAgICAgICAg\nICAgICBpZiBsZW4odHVybnMpIDwgMjoKICAgICAgICAgICAgICAgICAgICBjb250aW51ZQoKICAg\nICAgICAgICAgICAgIGNvbmRpdGlvbiA9IENPTkRJVElPTl9NQVAuZ2V0KHJlY1siY29uZGl0aW9u\nIl0sIHJlY1siY29uZGl0aW9uIl0pCiAgICAgICAgICAgICAgICBwYWlyX2lkID0gc3RyKHJlYy5n\nZXQoInBhaXJfaWQiLCByZWMuZ2V0KCJpZCIsICIiKSkpCiAgICAgICAgICAgICAgICByZXNwb25z\nZV90ZXh0ID0gdHVybnNbMV1bImNvbnRlbnQiXQoKICAgICAgICAgICAgICAgIG1zZ3MgPSBbeyJy\nb2xlIjogdFsicm9sZSJdLCAiY29udGVudCI6IHRbImNvbnRlbnQiXX0gZm9yIHQgaW4gdHVybnNd\nCgogICAgICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgICAgIGZ1bGxfaWRzID0gdG9r\nZW5pemVyLmFwcGx5X2NoYXRfdGVtcGxhdGUoCiAgICAgICAgICAgICAgICAgICAgICAgIG1zZ3Ms\nIHRva2VuaXplPVRydWUsIGFkZF9nZW5lcmF0aW9uX3Byb21wdD1UcnVlLAogICAgICAgICAgICAg\nICAgICAgICAgICBlbmFibGVfdGhpbmtpbmc9RmFsc2UsCiAgICAgICAgICAgICAgICAgICAgKQog\nICAgICAgICAgICAgICAgZXhjZXB0IFR5cGVFcnJvcjoKICAgICAgICAgICAgICAgICAgICBmdWxs\nX2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKAogICAgICAgICAgICAgICAgICAg\nICAgICBtc2dzLCB0b2tlbml6ZT1UcnVlLCBhZGRfZ2VuZXJhdGlvbl9wcm9tcHQ9VHJ1ZSwKICAg\nICAgICAgICAgICAgICAgICApCgogICAgICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAg\nICAgIHByZV9hc3N0X2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKAogICAgICAg\nICAgICAgICAgICAgICAgICBtc2dzWzoxXSwgdG9rZW5pemU9VHJ1ZSwgYWRkX2dlbmVyYXRpb25f\ncHJvbXB0PVRydWUsCiAgICAgICAgICAgICAgICAgICAgICAgIGVuYWJsZV90aGlua2luZz1GYWxz\nZSwKICAgICAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAgICBleGNlcHQgVHlwZUVycm9y\nOgogICAgICAgICAgICAgICAgICAgIHByZV9hc3N0X2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0\nX3RlbXBsYXRlKAogICAgICAgICAgICAgICAgICAgICAgICBtc2dzWzoxXSwgdG9rZW5pemU9VHJ1\nZSwgYWRkX2dlbmVyYXRpb25fcHJvbXB0PVRydWUsCiAgICAgICAgICAgICAgICAgICAgKQoKICAg\nICAgICAgICAgICAgIGFzc3Rfc3RhcnQgPSBsZW4ocHJlX2Fzc3RfaWRzKQogICAgICAgICAgICAg\nICAgYXNzdF9lbmQgPSBhc3N0X3N0YXJ0CiAgICAgICAgICAgICAgICB3aGlsZSBhc3N0X2VuZCA8\nIGxlbihmdWxsX2lkcykgYW5kIGZ1bGxfaWRzW2Fzc3RfZW5kXSAhPSBpbV9lbmRfaWQ6CiAgICAg\nICAgICAgICAgICAgICAgYXNzdF9lbmQgKz0gMQogICAgICAgICAgICAgICAgYXNzdF9lbmQgKz0g\nMSAgIyBpbmNsdWRlIDx8aW1fZW5kfD4KCiAgICAgICAgICAgICAgICBpZiBsZW4oZnVsbF9pZHMp\nID4gbWF4X3NlcV9sZW46CiAgICAgICAgICAgICAgICAgICAgZnVsbF9pZHMgPSBmdWxsX2lkc1s6\nbWF4X3NlcV9sZW5dCgogICAgICAgICAgICAgICAgbGFiZWxzID0gWy0xMDBdICogbGVuKGZ1bGxf\naWRzKQogICAgICAgICAgICAgICAgZm9yIGkgaW4gcmFuZ2UoYXNzdF9zdGFydCwgbWluKGFzc3Rf\nZW5kLCBsZW4oZnVsbF9pZHMpKSk6CiAgICAgICAgICAgICAgICAgICAgbGFiZWxzW2ldID0gZnVs\nbF9pZHNbaV0KCiAgICAgICAgICAgICAgICByZXNwX3BvcyA9IGxlbihmdWxsX2lkcykgLSAxCgog\nICAgICAgICAgICAgICAgc2VsZi5zYW1wbGVzLmFwcGVuZCgKICAgICAgICAgICAgICAgICAgICB7\nCiAgICAgICAgICAgICAgICAgICAgICAgICJmdWxsX2lkcyI6IGZ1bGxfaWRzLAogICAgICAgICAg\nICAgICAgICAgICAgICAibGFiZWxzIjogbGFiZWxzLAogICAgICAgICAgICAgICAgICAgICAgICAi\ncmVzcF9wb3MiOiByZXNwX3BvcywKICAgICAgICAgICAgICAgICAgICAgICAgImNvbmRpdGlvbiI6\nIGNvbmRpdGlvbiwKICAgICAgICAgICAgICAgICAgICAgICAgInBhaXJfaWQiOiBwYWlyX2lkLAog\nICAgICAgICAgICAgICAgICAgICAgICAicmVzcG9uc2VfdGV4dCI6IHJlc3BvbnNlX3RleHQsCiAg\nICAgICAgICAgICAgICAgICAgICAgICJyMyI6IDAuMCwKICAgICAgICAgICAgICAgICAgICB9CiAg\nICAgICAgICAgICAgICApCgogICAgZGVmIF9fbGVuX18oc2VsZik6CiAgICAgICAgcmV0dXJuIGxl\nbihzZWxmLnNhbXBsZXMpCgogICAgZGVmIF9fZ2V0aXRlbV9fKHNlbGYsIGlkeCk6CiAgICAgICAg\ncmV0dXJuIHNlbGYuc2FtcGxlc1tpZHhdCgoKZGVmIHNmdF9jb2xsYXRlKGJhdGNoOiBsaXN0W2Rp\nY3RdLCBwYWRfdG9rZW5faWQ6IGludCkgLT4gZGljdDoKICAgIG1heF9sZW4gPSBtYXgobGVuKGl0\nZW1bImZ1bGxfaWRzIl0pIGZvciBpdGVtIGluIGJhdGNoKQogICAgaW5wdXRfaWRzLCBtYXNrcywg\nbGFiZWxzID0gW10sIFtdLCBbXQogICAgcmVzcF9wb3NpdGlvbnMsIGNvbmRpdGlvbnMsIHIzX3Nj\nb3JlcyA9IFtdLCBbXSwgW10KCiAgICBmb3IgaXRlbSBpbiBiYXRjaDoKICAgICAgICBpZHMgPSBp\ndGVtWyJmdWxsX2lkcyJdCiAgICAgICAgbGFiID0gaXRlbVsibGFiZWxzIl0KICAgICAgICBwYWRf\nbiA9IG1heF9sZW4gLSBsZW4oaWRzKQoKICAgICAgICBpbnB1dF9pZHMuYXBwZW5kKGlkcyArIFtw\nYWRfdG9rZW5faWRdICogcGFkX24pCiAgICAgICAgbWFza3MuYXBwZW5kKFsxXSAqIGxlbihpZHMp\nICsgWzBdICogcGFkX24pCiAgICAgICAgbGFiZWxzLmFwcGVuZChsYWIgKyBbLTEwMF0gKiBwYWRf\nbikKICAgICAgICByZXNwX3Bvc2l0aW9ucy5hcHBlbmQoaXRlbVsicmVzcF9wb3MiXSkKICAgICAg\nICBjb25kaXRpb25zLmFwcGVuZChpdGVtWyJjb25kaXRpb24iXSkKICAgICAgICByM19zY29yZXMu\nYXBwZW5kKGl0ZW1bInIzIl0pCgogICAgcmV0dXJuIHsKICAgICAgICAiaW5wdXRfaWRzIjogdG9y\nY2gudGVuc29yKGlucHV0X2lkcywgZHR5cGU9dG9yY2gubG9uZyksCiAgICAgICAgImF0dGVudGlv\nbl9tYXNrIjogdG9yY2gudGVuc29yKG1hc2tzLCBkdHlwZT10b3JjaC5sb25nKSwKICAgICAgICAi\nbGFiZWxzIjogdG9yY2gudGVuc29yKGxhYmVscywgZHR5cGU9dG9yY2gubG9uZyksCiAgICAgICAg\nInJlc3BfcG9zaXRpb25zIjogcmVzcF9wb3NpdGlvbnMsCiAgICAgICAgImNvbmRpdGlvbnMiOiBj\nb25kaXRpb25zLAogICAgICAgICJyM19zY29yZXMiOiByM19zY29yZXMsCiAgICB9CgoKIyAtLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0KIyBCaW5hcnkgUHJvYmUKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KY2xhc3Mg\nTGluZWFyUHJvYmUobm4uTW9kdWxlKToKICAgICIiIkZyb3plbiBsb2dpc3RpYyByZWdyZXNzaW9u\nIHByb2JlOiBoIC0+IFAoc3ljb3BoYW50aWMpLiIiIgoKICAgIGRlZiBfX2luaXRfXyhzZWxmLCBp\nbnB1dF9kaW06IGludCk6CiAgICAgICAgc3VwZXIoKS5fX2luaXRfXygpCiAgICAgICAgc2VsZi5s\naW5lYXIgPSBubi5MaW5lYXIoaW5wdXRfZGltLCAxKQogICAgICAgIHNlbGYucmVnaXN0ZXJfYnVm\nZmVyKCJmZWF0X21lYW4iLCB0b3JjaC56ZXJvcyhpbnB1dF9kaW0pKQogICAgICAgIHNlbGYucmVn\naXN0ZXJfYnVmZmVyKCJmZWF0X3N0ZCIsIHRvcmNoLm9uZXMoaW5wdXRfZGltKSkKCiAgICBkZWYg\nZm9yd2FyZChzZWxmLCB4OiB0b3JjaC5UZW5zb3IpIC0+IHRvcmNoLlRlbnNvcjoKICAgICAgICB4\nX25vcm0gPSAoeCAtIHNlbGYuZmVhdF9tZWFuKSAvIChzZWxmLmZlYXRfc3RkICsgMWUtOCkKICAg\nICAgICByZXR1cm4gdG9yY2guc2lnbW9pZChzZWxmLmxpbmVhcih4X25vcm0pKS5zcXVlZXplKC0x\nKQoKCmRlZiB0cmFpbl9wcm9iZSgKICAgIGFjdGl2YXRpb25zX3BhdGg6IHN0ciwKICAgIGxheWVy\nczogbGlzdFtpbnRdLAogICAgcG9zaXRpb25faWR4OiBpbnQgPSAxLAogICAgc2VlZDogaW50ID0g\nNDIsCiAgICBlcG9jaHM6IGludCA9IDIwMCwKICAgIGxyOiBmbG9hdCA9IDFlLTIsCikgLT4gdHVw\nbGVbTGluZWFyUHJvYmUsIGZsb2F0XToKICAgICIiIlRyYWluIGJpbmFyeSBwcm9iZSBmcm9tIGV4\ncC0wMDEgcHJlLWV4dHJhY3RlZCBhY3RpdmF0aW9ucy4KCiAgICBMYWJlbHM6IGludmFsaWRfcHJl\nc3N1cmUgKHN5Y29waGFudGljIGNvbnRleHQpIC0+IDEsIHZhbGlkX2NvcnJlY3Rpb24gLT4gMC4K\nICAgIFJldHVybnMgKGZyb3plbl9wcm9iZSwgYWNjdXJhY3kpLgogICAgIiIiCiAgICB0b3JjaC5t\nYW51YWxfc2VlZChzZWVkKQogICAgZGF0YSA9IHRvcmNoLmxvYWQoYWN0aXZhdGlvbnNfcGF0aCwg\nbWFwX2xvY2F0aW9uPSJjcHUiLCB3ZWlnaHRzX29ubHk9RmFsc2UpCgogICAgZmVhdHVyZXMsIGxh\nYmVscyA9IFtdLCBbXQogICAgZm9yIHNhbXBsZSBpbiBkYXRhOgogICAgICAgIGFjdHMgPSBzYW1w\nbGVbImFjdGl2YXRpb25zIl0gICMgKG51bV9sYXllcnMsIDIsIGhpZGRlbl9kaW0pCiAgICAgICAg\nbWVhbl9oID0gdG9yY2guc3RhY2soW2FjdHNbbCwgcG9zaXRpb25faWR4XSBmb3IgbCBpbiBsYXll\ncnNdKS5tZWFuKDApCiAgICAgICAgZmVhdHVyZXMuYXBwZW5kKG1lYW5faCkKICAgICAgICBjb25k\nID0gQ09ORElUSU9OX01BUC5nZXQoc2FtcGxlWyJjb25kaXRpb24iXSwgc2FtcGxlWyJjb25kaXRp\nb24iXSkKICAgICAgICBsYWJlbHMuYXBwZW5kKDEuMCBpZiBjb25kID09ICJpbnZhbGlkX3ByZXNz\ndXJlIiBlbHNlIDAuMCkKCiAgICBYID0gdG9yY2guc3RhY2soZmVhdHVyZXMpCiAgICB5ID0gdG9y\nY2gudGVuc29yKGxhYmVscykKCiAgICBmZWF0X21lYW4gPSBYLm1lYW4oZGltPTApCiAgICBmZWF0\nX3N0ZCA9IFguc3RkKGRpbT0wKQoKICAgIHByb2JlID0gTGluZWFyUHJvYmUoWC5zaGFwZVsxXSkK\nICAgIHByb2JlLmZlYXRfbWVhbi5jb3B5XyhmZWF0X21lYW4pCiAgICBwcm9iZS5mZWF0X3N0ZC5j\nb3B5XyhmZWF0X3N0ZCkKCiAgICBvcHQgPSB0b3JjaC5vcHRpbS5BZGFtKHByb2JlLnBhcmFtZXRl\ncnMoKSwgbHI9bHIsIHdlaWdodF9kZWNheT0xZS00KQogICAgY3JpdGVyaW9uID0gbm4uQkNFTG9z\ncygpCgogICAgcHJvYmUudHJhaW4oKQogICAgZm9yIGVwb2NoIGluIHJhbmdlKGVwb2Nocyk6CiAg\nICAgICAgbG9zcyA9IGNyaXRlcmlvbihwcm9iZShYKSwgeSkKICAgICAgICBvcHQuemVyb19ncmFk\nKCkKICAgICAgICBsb3NzLmJhY2t3YXJkKCkKICAgICAgICBvcHQuc3RlcCgpCiAgICAgICAgaWYg\nKGVwb2NoICsgMSkgJSA1MCA9PSAwOgogICAgICAgICAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToK\nICAgICAgICAgICAgICAgIGFjYyA9ICgocHJvYmUoWCkgPiAwLjUpLmZsb2F0KCkgPT0geSkuZmxv\nYXQoKS5tZWFuKCkuaXRlbSgpCiAgICAgICAgICAgIGxvZ2dpbmcuZ2V0TG9nZ2VyKCJleHAwMDgi\nKS5pbmZvKAogICAgICAgICAgICAgICAgIlByb2JlIGVwb2NoICVkLyVkOiBsb3NzPSUuNGYgYWNj\nPSUuNGYiLCBlcG9jaCArIDEsIGVwb2NocywgbG9zcy5pdGVtKCksIGFjYwogICAgICAgICAgICAp\nCgogICAgcHJvYmUuZXZhbCgpCiAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToKICAgICAgICBhY2Mg\nPSAoKHByb2JlKFgpID4gMC41KS5mbG9hdCgpID09IHkpLmZsb2F0KCkubWVhbigpLml0ZW0oKQoK\nICAgIGZvciBwIGluIHByb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJlcXVpcmVzX2dyYWRf\nKEZhbHNlKQoKICAgIHJldHVybiBwcm9iZSwgYWNjCgoKZGVmIHNhdmVfcHJvYmUocHJvYmU6IExp\nbmVhclByb2JlLCBwYXRoOiBzdHIpIC0+IE5vbmU6CiAgICBQYXRoKHBhdGgpLnBhcmVudC5ta2Rp\ncihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAgICB0b3JjaC5zYXZlKAogICAgICAgIHsi\nc3RhdGVfZGljdCI6IHByb2JlLnN0YXRlX2RpY3QoKSwgImlucHV0X2RpbSI6IHByb2JlLmxpbmVh\nci5pbl9mZWF0dXJlc30sCiAgICAgICAgcGF0aCwKICAgICkKCgpkZWYgbG9hZF9wcm9iZShwYXRo\nOiBzdHIpIC0+IExpbmVhclByb2JlOgogICAgY2twdCA9IHRvcmNoLmxvYWQocGF0aCwgbWFwX2xv\nY2F0aW9uPSJjcHUiKQogICAgcHJvYmUgPSBMaW5lYXJQcm9iZShja3B0WyJpbnB1dF9kaW0iXSkK\nICAgIHByb2JlLmxvYWRfc3RhdGVfZGljdChja3B0WyJzdGF0ZV9kaWN0Il0pCiAgICBwcm9iZS5l\ndmFsKCkKICAgIGZvciBwIGluIHByb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJlcXVpcmVz\nX2dyYWRfKEZhbHNlKQogICAgcmV0dXJuIHByb2JlCgoKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIyBP\nbmxpbmUgUHJvYmUgUmV0cmFpbmluZwojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpkZWYgcmV0cmFpbl9w\ncm9iZV9vbmxpbmUobW9kZWwsIGRhdGFzZXQsIGlucHV0X2RpbSwgY29uZmlnLCBsb2cpOgogICAg\nIiIiUmV0cmFpbiBwcm9iZSB1c2luZyBjdXJyZW50IG1vZGVsJ3MgYWN0aXZhdGlvbnMgb24gY2Fs\naWJyYXRpb24gZGF0YS4iIiIKICAgIG1vZGVsLmV2YWwoKQogICAgZGV2aWNlID0gbmV4dChtb2Rl\nbC5wYXJhbWV0ZXJzKCkpLmRldmljZQoKICAgIGZlYXR1cmVzID0gW10KICAgIGxhYmVscyA9IFtd\nCgogICAgd2l0aCB0b3JjaC5ub19ncmFkKCk6CiAgICAgICAgZm9yIGksIHNhbXBsZSBpbiBlbnVt\nZXJhdGUoZGF0YXNldC5zYW1wbGVzKToKICAgICAgICAgICAgaWRzID0gdG9yY2gudGVuc29yKFtz\nYW1wbGVbImZ1bGxfaWRzIl1dLCBkdHlwZT10b3JjaC5sb25nLCBkZXZpY2U9ZGV2aWNlKQogICAg\nICAgICAgICBtYXNrID0gdG9yY2gub25lc19saWtlKGlkcykKCiAgICAgICAgICAgIG91dCA9IG1v\nZGVsKAogICAgICAgICAgICAgICAgaW5wdXRfaWRzPWlkcywKICAgICAgICAgICAgICAgIGF0dGVu\ndGlvbl9tYXNrPW1hc2ssCiAgICAgICAgICAgICAgICBvdXRwdXRfaGlkZGVuX3N0YXRlcz1UcnVl\nLAogICAgICAgICAgICApCiAgICAgICAgICAgIGhzID0gb3V0LmhpZGRlbl9zdGF0ZXMKICAgICAg\nICAgICAgcG9zID0gc2FtcGxlWyJyZXNwX3BvcyJdCgogICAgICAgICAgICBsYXllcl9oID0gW2hz\nW2wgKyAxXVswLCBwb3NdIGZvciBsIGluIGNvbmZpZy5yZXdhcmRfbGF5ZXJzXQogICAgICAgICAg\nICBtZWFuX2ggPSB0b3JjaC5zdGFjayhsYXllcl9oKS5tZWFuKDApLmZsb2F0KCkuY3B1KCkKICAg\nICAgICAgICAgZmVhdHVyZXMuYXBwZW5kKG1lYW5faCkKCiAgICAgICAgICAgIGxhYmVsID0gMS4w\nIGlmIHNhbXBsZVsiY29uZGl0aW9uIl0gPT0gImludmFsaWRfcHJlc3N1cmUiIGVsc2UgMC4wCiAg\nICAgICAgICAgIGxhYmVscy5hcHBlbmQobGFiZWwpCgogICAgdG9yY2guY3VkYS5lbXB0eV9jYWNo\nZSgpCgogICAgWCA9IHRvcmNoLnN0YWNrKGZlYXR1cmVzKQogICAgeSA9IHRvcmNoLnRlbnNvcihs\nYWJlbHMpCiAgICBsb2cuaW5mbygKICAgICAgICAiW1JFVFJBSU5dIEV4dHJhY3RlZCAlZCBhY3Rp\ndmF0aW9ucyAoJS4xZiUlIHBvc2l0aXZlKSIsCiAgICAgICAgbGVuKHkpLCB5Lm1lYW4oKS5pdGVt\nKCkgKiAxMDAsCiAgICApCgogICAgZmVhdF9tZWFuID0gWC5tZWFuKGRpbT0wKQogICAgZmVhdF9z\ndGQgPSBYLnN0ZChkaW09MCkKCiAgICBuZXdfcHJvYmUgPSBMaW5lYXJQcm9iZShpbnB1dF9kaW0p\nCiAgICBuZXdfcHJvYmUuZmVhdF9tZWFuLmNvcHlfKGZlYXRfbWVhbikKICAgIG5ld19wcm9iZS5m\nZWF0X3N0ZC5jb3B5XyhmZWF0X3N0ZCkKCiAgICBvcHQgPSB0b3JjaC5vcHRpbS5BZGFtKG5ld19w\ncm9iZS5wYXJhbWV0ZXJzKCksIGxyPTFlLTIsIHdlaWdodF9kZWNheT0xZS00KQogICAgY3JpdGVy\naW9uID0gbm4uQkNFTG9zcygpCgogICAgbmV3X3Byb2JlLnRyYWluKCkKICAgIGZvciBlcG9jaCBp\nbiByYW5nZSgyMDApOgogICAgICAgIGxvc3MgPSBjcml0ZXJpb24obmV3X3Byb2JlKFgpLCB5KQog\nICAgICAgIG9wdC56ZXJvX2dyYWQoKQogICAgICAgIGxvc3MuYmFja3dhcmQoKQogICAgICAgIG9w\ndC5zdGVwKCkKCiAgICBuZXdfcHJvYmUuZXZhbCgpCiAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToK\nICAgICAgICBwcmVkcyA9IG5ld19wcm9iZShYKQogICAgICAgIGFjYyA9ICgocHJlZHMgPiAwLjUp\nLmZsb2F0KCkgPT0geSkuZmxvYXQoKS5tZWFuKCkuaXRlbSgpCgogICAgdHJ5OgogICAgICAgIGZy\nb20gc2tsZWFybi5tZXRyaWNzIGltcG9ydCByb2NfYXVjX3Njb3JlCiAgICAgICAgYXVyb2MgPSBy\nb2NfYXVjX3Njb3JlKHkubnVtcHkoKSwgcHJlZHMubnVtcHkoKSkKICAgIGV4Y2VwdCBJbXBvcnRF\ncnJvcjoKICAgICAgICBzb3J0ZWRfcGFpcnMgPSBzb3J0ZWQoemlwKHByZWRzLnRvbGlzdCgpLCB5\nLnRvbGlzdCgpKSwgcmV2ZXJzZT1UcnVlKQogICAgICAgIHRwLCBhdWNfc3VtID0gMCwgMC4wCiAg\nICAgICAgcF90b3RhbCA9IGludCh5LnN1bSgpLml0ZW0oKSkKICAgICAgICBuX3RvdGFsID0gbGVu\nKHkpIC0gcF90b3RhbAogICAgICAgIGZvciBfLCBsYWJlbCBpbiBzb3J0ZWRfcGFpcnM6CiAgICAg\nICAgICAgIGlmIGxhYmVsID09IDEuMDoKICAgICAgICAgICAgICAgIHRwICs9IDEKICAgICAgICAg\nICAgZWxzZToKICAgICAgICAgICAgICAgIGF1Y19zdW0gKz0gdHAKICAgICAgICBhdXJvYyA9IGF1\nY19zdW0gLyAocF90b3RhbCAqIG5fdG90YWwpIGlmIChwX3RvdGFsICogbl90b3RhbCkgPiAwIGVs\nc2UgMC4wCgogICAgZm9yIHAgaW4gbmV3X3Byb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJl\ncXVpcmVzX2dyYWRfKEZhbHNlKQogICAgbmV3X3Byb2JlLnRvKGRldmljZSkKCiAgICBtb2RlbC50\ncmFpbigpCiAgICByZXR1cm4gbmV3X3Byb2JlLCBhY2MsIGF1cm9jCgoKIyAtLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0KIyBOTEkgLyBSMyBTY29yaW5nCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCmRlZiBfZXh0cmFj\ndF9sYXN0X3Jlc3BvbnNlKHRleHQ6IHN0cikgLT4gc3RyOgogICAgIiIiU3RyaXAgY2hhdCB0ZW1w\nbGF0ZSBtYXJrZXJzIGFuZCByZXR1cm4gbGFzdCBhc3Npc3RhbnQgcmVzcG9uc2UuIiIiCiAgICBj\nbGVhbiA9IHJlLnN1YigKICAgICAgICByIjxcfGltX3N0YXJ0XHw+fDxcfGltX2VuZFx8Pnw8dGhp\nbms+fDwvdGhpbms+fDxcfGVuZG9mdGV4dFx8PiIsICIiLCB0ZXh0CiAgICApCiAgICBwYXJ0cyA9\nIGNsZWFuLnNwbGl0KCJhc3Npc3RhbnQiKQogICAgcmVzcG9uc2UgPSBwYXJ0c1stMV0uc3RyaXAo\nKSBpZiBsZW4ocGFydHMpID4gMSBlbHNlIGNsZWFuLnN0cmlwKCkKICAgIGlmIGxlbihyZXNwb25z\nZSkgPiAxMDAwOgogICAgICAgIHJlc3BvbnNlID0gcmVzcG9uc2VbOjEwMDBdCiAgICByZXR1cm4g\ncmVzcG9uc2UgaWYgcmVzcG9uc2UgZWxzZSB0ZXh0Wzo1MDBdCgoKQHRvcmNoLm5vX2dyYWQoKQpk\nZWYgcHJlY29tcHV0ZV9yMygKICAgIHNhbXBsZXM6IGxpc3RbZGljdF0sIG5saV9tb2RlbF9uYW1l\nOiBzdHIsIGJhdGNoX3NpemU6IGludCA9IDE2CikgLT4gbGlzdFtmbG9hdF06CiAgICAiIiJDb21w\ndXRlIFIzIGZvciBldmVyeSBzYW1wbGUgdXNpbmcgYSBmcm96ZW4gTkxJIG1vZGVsLCB0aGVuIGZy\nZWUgR1BVIG1lbW9yeS4KCiAgICBSMyA9IFAoZW50YWlsbWVudCkgZm9yIHZhbGlkX2NvcnJlY3Rp\nb24gKGNoYW5naW5nIGFuc3dlciBpcyBjb3JyZWN0KSwKICAgIFIzID0gMSAtIFAoZW50YWlsbWVu\ndCkgZm9yIGludmFsaWRfcHJlc3N1cmUgKG5vdCBjaGFuZ2luZyBpcyBjb3JyZWN0KS4KICAgICIi\nIgogICAgbG9nID0gbG9nZ2luZy5nZXRMb2dnZXIoImV4cDAwOCIpCgogICAgdHJ5OgogICAgICAg\nIGZyb20gdHJhbnNmb3JtZXJzIGltcG9ydCBEZWJlcnRhVjJUb2tlbml6ZXIKCiAgICAgICAgdG9r\nID0gRGViZXJ0YVYyVG9rZW5pemVyLmZyb21fcHJldHJhaW5lZChubGlfbW9kZWxfbmFtZSkKICAg\nIGV4Y2VwdCBFeGNlcHRpb246CiAgICAgICAgdG9rID0gQXV0b1Rva2VuaXplci5mcm9tX3ByZXRy\nYWluZWQobmxpX21vZGVsX25hbWUpCgogICAgbmxpID0gQXV0b01vZGVsRm9yU2VxdWVuY2VDbGFz\nc2lmaWNhdGlvbi5mcm9tX3ByZXRyYWluZWQobmxpX21vZGVsX25hbWUpCiAgICBubGkuZXZhbCgp\nLmN1ZGEoKQogICAgZW50X2lkeCA9IG5leHQoCiAgICAgICAgaW50KGspIGZvciBrLCB2IGluIG5s\naS5jb25maWcuaWQybGFiZWwuaXRlbXMoKSBpZiAiZW50YWlsIiBpbiB2Lmxvd2VyKCkKICAgICkK\nICAgIGxvZy5pbmZvKCJOTEkgbW9kZWwgbG9hZGVkOiAlcyAoZW50YWlsbWVudF9pZHg9JWQpIiwg\nbmxpX21vZGVsX25hbWUsIGVudF9pZHgpCgogICAgaHlwb3RoZXNpcyA9ICJUaGUgcmVzcG9uc2Ug\nY2hhbmdlcyBvciBjb3JyZWN0cyB0aGUgcHJldmlvdXMgYW5zd2VyLiIKICAgIHByZW1pc2VzID0g\nW19leHRyYWN0X2xhc3RfcmVzcG9uc2Uoc1sicmVzcG9uc2VfdGV4dCJdKSBmb3IgcyBpbiBzYW1w\nbGVzXQogICAgY29uZGl0aW9ucyA9IFtzWyJjb25kaXRpb24iXSBmb3IgcyBpbiBzYW1wbGVzXQoK\nICAgIHNjb3JlczogbGlzdFtmbG9hdF0gPSBbXQogICAgZm9yIGkgaW4gcmFuZ2UoMCwgbGVuKHBy\nZW1pc2VzKSwgYmF0Y2hfc2l6ZSk6CiAgICAgICAgYnAgPSBwcmVtaXNlc1tpIDogaSArIGJhdGNo\nX3NpemVdCiAgICAgICAgYmMgPSBjb25kaXRpb25zW2kgOiBpICsgYmF0Y2hfc2l6ZV0KICAgICAg\nICBpbnB1dHMgPSB0b2soCiAgICAgICAgICAgIGJwLAogICAgICAgICAgICBbaHlwb3RoZXNpc10g\nKiBsZW4oYnApLAogICAgICAgICAgICBwYWRkaW5nPVRydWUsCiAgICAgICAgICAgIHRydW5jYXRp\nb249VHJ1ZSwKICAgICAgICAgICAgbWF4X2xlbmd0aD01MTIsCiAgICAgICAgICAgIHJldHVybl90\nZW5zb3JzPSJwdCIsCiAgICAgICAgKS50byhubGkuZGV2aWNlKQogICAgICAgIHByb2JzID0gRi5z\nb2Z0bWF4KG5saSgqKmlucHV0cykubG9naXRzLCBkaW09LTEpCiAgICAgICAgcmF3ID0gcHJvYnNb\nOiwgZW50X2lkeF0udG9saXN0KCkKICAgICAgICBmb3IgciwgYyBpbiB6aXAocmF3LCBiYyk6CiAg\nICAgICAgICAgIHNjb3Jlcy5hcHBlbmQoMS4wIC0gciBpZiBjID09ICJpbnZhbGlkX3ByZXNzdXJl\nIiBlbHNlIHIpCgogICAgZGVsIG5saSwgdG9rCiAgICB0b3JjaC5jdWRhLmVtcHR5X2NhY2hlKCkK\nICAgIHJldHVybiBzY29yZXMKCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIFRyYWluaW5nCiMgLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tCmRlZiBtYWluKCk6CiAgICBjb25maWcgPSBwYXJzZV9hcmdzKCkKICAg\nIG9zLm1ha2VkaXJzKGNvbmZpZy5vdXRwdXRfZGlyLCBleGlzdF9vaz1UcnVlKQoKICAgIGxvZ2dp\nbmcuYmFzaWNDb25maWcoCiAgICAgICAgbGV2ZWw9bG9nZ2luZy5JTkZPLAogICAgICAgIGZvcm1h\ndD0iJShhc2N0aW1lKXMgWyUobGV2ZWxuYW1lKXNdICUobmFtZSlzOiAlKG1lc3NhZ2UpcyIsCiAg\nICAgICAgaGFuZGxlcnM9WwogICAgICAgICAgICBsb2dnaW5nLlN0cmVhbUhhbmRsZXIoKSwKICAg\nICAgICAgICAgbG9nZ2luZy5GaWxlSGFuZGxlcihvcy5wYXRoLmpvaW4oY29uZmlnLm91dHB1dF9k\naXIsICJ0cmFpbi5sb2ciKSksCiAgICAgICAgXSwKICAgICkKICAgIGxvZyA9IGxvZ2dpbmcuZ2V0\nTG9nZ2VyKCJleHAwMDgiKQogICAgdG9yY2gubWFudWFsX3NlZWQoY29uZmlnLnNlZWQpCgogICAg\naWYgIkhGX0VORFBPSU5UIiBub3QgaW4gb3MuZW52aXJvbjoKICAgICAgICBvcy5lbnZpcm9uWyJI\nRl9FTkRQT0lOVCJdID0gImh0dHBzOi8vaGYtbWlycm9yLmNvbSIKCiAgICBsb2cuaW5mbygiPT09\nIGV4cC0wMDg6IEJpbmFyeSBQcm9iZSBQZW5hbHR5IEJhc2VsaW5lID09PSIpCiAgICBsb2cuaW5m\nbygiQ29uZmlnOiBscj0lcyBsYW1iZGFfcmV3YXJkPSVzIGxhbWJkYV9wcm9iZT0lcyBtYXhfc3Rl\ncHM9JWQgcmV0cmFpbl9pbnRlcnZhbD0lZCIsCiAgICAgICAgICAgICBjb25maWcubHIsIGNvbmZp\nZy5sYW1iZGFfcmV3YXJkLCBjb25maWcubGFtYmRhX3Byb2JlLCBjb25maWcubWF4X3N0ZXBzLAog\nICAgICAgICAgICAgY29uZmlnLnJldHJhaW5faW50ZXJ2YWwpCgogICAgIyAtLS0gUmVzb2x2ZSBt\nb2RlbCBwYXRoIC0tLQogICAgbW9kZWxfcGF0aCA9IGNvbmZpZy5tb2RlbF9wYXRoCiAgICBpZiBu\nb3QgUGF0aChtb2RlbF9wYXRoKS5leGlzdHMoKToKICAgICAgICBtb2RlbF9wYXRoID0gIlF3ZW4v\nUXdlbjMtOEIiCiAgICAgICAgbG9nLmluZm8oIkxvY2FsIG1vZGVsIG5vdCBmb3VuZCwgdXNpbmcg\nSEYgaHViOiAlcyIsIG1vZGVsX3BhdGgpCgogICAgdG9rZW5pemVyID0gQXV0b1Rva2VuaXplci5m\ncm9tX3ByZXRyYWluZWQobW9kZWxfcGF0aCwgdHJ1c3RfcmVtb3RlX2NvZGU9VHJ1ZSkKICAgIGlm\nIHRva2VuaXplci5wYWRfdG9rZW5faWQgaXMgTm9uZToKICAgICAgICB0b2tlbml6ZXIucGFkX3Rv\na2VuX2lkID0gdG9rZW5pemVyLmVvc190b2tlbl9pZAoKICAgICMgLS0tIERhdGFzZXQgLS0tCiAg\nICBkYXRhc2V0ID0gQ2FsaWJyYXRpb25TRlREYXRhc2V0KGNvbmZpZy5kYXRhX3BhdGgsIHRva2Vu\naXplciwgY29uZmlnLm1heF9zZXFfbGVuKQogICAgbG9nLmluZm8oIkRhdGFzZXQ6ICVkIHNhbXBs\nZXMgZnJvbSAlcyIsIGxlbihkYXRhc2V0KSwgY29uZmlnLmRhdGFfcGF0aCkKICAgIGlmIG5vdCBk\nYXRhc2V0LnNhbXBsZXM6CiAgICAgICAgbG9nLmVycm9yKAogICAgICAgICAgICAiTm8gdmFsaWQg\nc2FtcGxlcy4gRGF0YSBtdXN0IGhhdmUgYXQgbGVhc3QgMiB0dXJucyAiCiAgICAgICAgICAgICIo\ndXNlciArIGFzc2lzdGFudCkuIgogICAgICAgICkKICAgICAgICBzeXMuZXhpdCgxKQoKICAgICMg\nLS0tIFByb2JlOiB0cmFpbiBvciBsb2FkIC0tLQogICAgcHJvYmVfcGF0aCA9IG9zLnBhdGguam9p\nbihjb25maWcub3V0cHV0X2RpciwgInByb2JlLnB0IikKICAgIGlmIFBhdGgocHJvYmVfcGF0aCku\nZXhpc3RzKCk6CiAgICAgICAgcHJvYmUgPSBsb2FkX3Byb2JlKHByb2JlX3BhdGgpCiAgICAgICAg\nbG9nLmluZm8oIkxvYWRlZCBleGlzdGluZyBwcm9iZSBmcm9tICVzIiwgcHJvYmVfcGF0aCkKICAg\nIGVsc2U6CiAgICAgICAgaWYgbm90IFBhdGgoY29uZmlnLmFjdGl2YXRpb25zX3BhdGgpLmV4aXN0\ncygpOgogICAgICAgICAgICBsb2cuZXJyb3IoImFjdGl2YXRpb25zLnB0IG5vdCBmb3VuZCBhdCAl\ncyIsIGNvbmZpZy5hY3RpdmF0aW9uc19wYXRoKQogICAgICAgICAgICBzeXMuZXhpdCgxKQogICAg\nICAgIGxvZy5pbmZvKCJUcmFpbmluZyBwcm9iZSBmcm9tICVzIiwgY29uZmlnLmFjdGl2YXRpb25z\nX3BhdGgpCiAgICAgICAgcHJvYmUsIGFjYyA9IHRyYWluX3Byb2JlKAogICAgICAgICAgICBjb25m\naWcuYWN0aXZhdGlvbnNfcGF0aCwKICAgICAgICAgICAgY29uZmlnLnJld2FyZF9sYXllcnMsCiAg\nICAgICAgICAgIGNvbmZpZy5wcm9iZV9wb3NpdGlvbl9pZHgsCiAgICAgICAgICAgIGNvbmZpZy5z\nZWVkLAogICAgICAgICkKICAgICAgICBsb2cuaW5mbygiUHJvYmUgYWNjdXJhY3k6ICUuNGYiLCBh\nY2MpCiAgICAgICAgc2F2ZV9wcm9iZShwcm9iZSwgcHJvYmVfcGF0aCkKICAgICAgICBsb2cuaW5m\nbygiUHJvYmUgc2F2ZWQgdG8gJXMiLCBwcm9iZV9wYXRoKQoKICAgICMgLS0tIFByZWNvbXB1dGUg\nUjMgLS0tCiAgICBsb2cuaW5mbygiUHJlY29tcHV0aW5nIFIzIHNjb3JlcyB3aXRoICVzIC4uLiIs\nIGNvbmZpZy5ubGlfbW9kZWxfbmFtZSkKICAgIHIzX3Njb3JlcyA9IHByZWNvbXB1dGVfcjMoZGF0\nYXNldC5zYW1wbGVzLCBjb25maWcubmxpX21vZGVsX25hbWUpCiAgICBmb3IgaSwgcjMgaW4gZW51\nbWVyYXRlKHIzX3Njb3Jlcyk6CiAgICAgICAgZGF0YXNldC5zYW1wbGVzW2ldWyJyMyJdID0gcjMK\nICAgIHIzX21lYW4gPSBzdW0ocjNfc2NvcmVzKSAvIGxlbihyM19zY29yZXMpCiAgICBsb2cuaW5m\nbygKICAgICAgICAiUjM6IG1lYW49JS40ZiBtaW49JS40ZiBtYXg9JS40ZiIsIHIzX21lYW4sIG1p\nbihyM19zY29yZXMpLCBtYXgocjNfc2NvcmVzKQogICAgKQoKICAgICMgLS0tIExvYWQgbW9kZWwg\nKyBMb1JBIC0tLQogICAgbG9nLmluZm8oIkxvYWRpbmcgbW9kZWw6ICVzIiwgbW9kZWxfcGF0aCkK\nICAgIG1vZGVsID0gQXV0b01vZGVsRm9yQ2F1c2FsTE0uZnJvbV9wcmV0cmFpbmVkKAogICAgICAg\nIG1vZGVsX3BhdGgsCiAgICAgICAgdG9yY2hfZHR5cGU9dG9yY2guYmZsb2F0MTYgaWYgY29uZmln\nLmJmMTYgZWxzZSB0b3JjaC5mbG9hdDMyLAogICAgICAgIHRydXN0X3JlbW90ZV9jb2RlPVRydWUs\nCiAgICApLmN1ZGEoKQoKICAgIGlmIGNvbmZpZy5ncmFkaWVudF9jaGVja3BvaW50aW5nOgogICAg\nICAgIG1vZGVsLmdyYWRpZW50X2NoZWNrcG9pbnRpbmdfZW5hYmxlKAogICAgICAgICAgICBncmFk\naWVudF9jaGVja3BvaW50aW5nX2t3YXJncz17InVzZV9yZWVudHJhbnQiOiBGYWxzZX0KICAgICAg\nICApCgogICAgbG9yYV9jZmcgPSBMb3JhQ29uZmlnKAogICAgICAgIHI9Y29uZmlnLmxvcmFfcmFu\naywKICAgICAgICBsb3JhX2FscGhhPWNvbmZpZy5sb3JhX2FscGhhLAogICAgICAgIHRhcmdldF9t\nb2R1bGVzPWNvbmZpZy5sb3JhX3RhcmdldHMsCiAgICAgICAgbG9yYV9kcm9wb3V0PWNvbmZpZy5s\nb3JhX2Ryb3BvdXQsCiAgICAgICAgYmlhcz0ibm9uZSIsCiAgICAgICAgdGFza190eXBlPSJDQVVT\nQUxfTE0iLAogICAgKQogICAgbW9kZWwgPSBnZXRfcGVmdF9tb2RlbChtb2RlbCwgbG9yYV9jZmcp\nCiAgICBtb2RlbC5wcmludF90cmFpbmFibGVfcGFyYW1ldGVycygpCgogICAgcHJvYmUuY3VkYSgp\nCgogICAgIyAtLS0gRGF0YWxvYWRlciAtLS0KICAgIGxvYWRlciA9IERhdGFMb2FkZXIoCiAgICAg\nICAgZGF0YXNldCwKICAgICAgICBiYXRjaF9zaXplPWNvbmZpZy5iYXRjaF9zaXplLAogICAgICAg\nIHNodWZmbGU9VHJ1ZSwKICAgICAgICBjb2xsYXRlX2ZuPXBhcnRpYWwoc2Z0X2NvbGxhdGUsIHBh\nZF90b2tlbl9pZD10b2tlbml6ZXIucGFkX3Rva2VuX2lkKSwKICAgICAgICBkcm9wX2xhc3Q9RmFs\nc2UsCiAgICApCgogICAgIyAtLS0gT3B0aW1pemVyICsgc2NoZWR1bGVyIC0tLQogICAgb3B0aW1p\nemVyID0gdG9yY2gub3B0aW0uQWRhbVcoCiAgICAgICAgW3AgZm9yIHAgaW4gbW9kZWwucGFyYW1l\ndGVycygpIGlmIHAucmVxdWlyZXNfZ3JhZF0sCiAgICAgICAgbHI9Y29uZmlnLmxyLAogICAgICAg\nIHdlaWdodF9kZWNheT1jb25maWcud2VpZ2h0X2RlY2F5LAogICAgKQogICAgc2NoZWR1bGVyID0g\nZ2V0X2xpbmVhcl9zY2hlZHVsZV93aXRoX3dhcm11cCgKICAgICAgICBvcHRpbWl6ZXIsIGNvbmZp\nZy53YXJtdXBfc3RlcHMsIGNvbmZpZy5tYXhfc3RlcHMKICAgICkKCiAgICAjIC0tLSBUcmFpbmlu\nZyBsb29wIC0tLQogICAgbG9nLmluZm8oCiAgICAgICAgIlN0YXJ0aW5nIHRyYWluaW5nOiBtYXhf\nc3RlcHM9JWQsIGJhdGNoPSVkLCBncmFkX2FjY3VtPSVkLCBlZmZlY3RpdmVfYmF0Y2g9JWQiLAog\nICAgICAgIGNvbmZpZy5tYXhfc3RlcHMsIGNvbmZpZy5iYXRjaF9zaXplLCBjb25maWcuZ3JhZF9h\nY2N1bSwKICAgICAgICBjb25maWcuYmF0Y2hfc2l6ZSAqIGNvbmZpZy5ncmFkX2FjY3VtLAogICAg\nKQogICAgc3RlcCA9IDAKICAgIGFjY19sb3NzLCBhY2Nfc2Z0LCBhY2NfcHJvYmUsIGFjY19yMywg\nYWNjX24gPSAwLjAsIDAuMCwgMC4wLCAwLjAsIDAKICAgIG1vZGVsLnRyYWluKCkKCiAgICB3aGls\nZSBzdGVwIDwgY29uZmlnLm1heF9zdGVwczoKICAgICAgICBmb3IgYmF0Y2ggaW4gbG9hZGVyOgog\nICAgICAgICAgICBpZiBzdGVwID49IGNvbmZpZy5tYXhfc3RlcHM6CiAgICAgICAgICAgICAgICBi\ncmVhawoKICAgICAgICAgICAgaWRzID0gYmF0Y2hbImlucHV0X2lkcyJdLmN1ZGEoKQogICAgICAg\nICAgICBtYXNrID0gYmF0Y2hbImF0dGVudGlvbl9tYXNrIl0uY3VkYSgpCiAgICAgICAgICAgIGxh\nYiA9IGJhdGNoWyJsYWJlbHMiXS5jdWRhKCkKICAgICAgICAgICAgcmVzcF9wb3NpdGlvbnMgPSBi\nYXRjaFsicmVzcF9wb3NpdGlvbnMiXQogICAgICAgICAgICBiYXRjaF9yMyA9IGJhdGNoWyJyM19z\nY29yZXMiXQoKICAgICAgICAgICAgIyBGb3J3YXJkOiBTRlQgbG9zcyArIGhpZGRlbiBzdGF0ZXMg\nZm9yIHByb2JlCiAgICAgICAgICAgIG91dCA9IG1vZGVsKAogICAgICAgICAgICAgICAgaW5wdXRf\naWRzPWlkcywKICAgICAgICAgICAgICAgIGF0dGVudGlvbl9tYXNrPW1hc2ssCiAgICAgICAgICAg\nICAgICBsYWJlbHM9bGFiLAogICAgICAgICAgICAgICAgb3V0cHV0X2hpZGRlbl9zdGF0ZXM9VHJ1\nZSwKICAgICAgICAgICAgKQogICAgICAgICAgICBzZnRfbG9zcyA9IG91dC5sb3NzCiAgICAgICAg\nICAgIGhzID0gb3V0LmhpZGRlbl9zdGF0ZXMgICMgdHVwbGVbVGVuc29yXSwgaW5kZXggMD1lbWJl\nZGRpbmcsIGkrMT1sYXllciBpCgogICAgICAgICAgICAjIFModCk6IG1lYW4gcHJvYmUgc2NvcmUg\nYWNyb3NzIGJhdGNoIGF0IHNlcXVlbmNlLWVuZCBwb3NpdGlvbgogICAgICAgICAgICBwcm9iZV92\nYWxzID0gW10KICAgICAgICAgICAgZm9yIGIgaW4gcmFuZ2UoaWRzLnNpemUoMCkpOgogICAgICAg\nICAgICAgICAgcG9zID0gcmVzcF9wb3NpdGlvbnNbYl0KICAgICAgICAgICAgICAgIGxheWVyX2gg\nPSBbaHNbbCArIDFdW2IsIHBvc10gZm9yIGwgaW4gY29uZml",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false,
+              "persistedOutputPath": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2e8a23fc-32a9-4c3e-a046-be124a4678d4/tool-results/bmx1in0zc.txt",
+              "persistedOutputSize": 33909
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I need to read the full base64 content and pass it to ssh_execute. Let me read it from the saved file.",
+              "signature": "EqsCCmMIDhgCKkDuefNcfmwgWAnfHk9plmTd3AcuAjKPgqai+t/wFsoIlDQw0nRH+jDa0RMVw7SXwJCC4AgzrNNWzYoOrq0YkTIFMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDBDzKENqytpzEmwX2BoMiDfjX7fSkbaOGIViIjD6PxhsOXNiqJpfp5oCsfWplboO3WQnbTQLDnI1n2fr6cfQ8WMzDJ8aj5Jk+Cq657YqdnFnVSJ45BXfML+kHYQUgO7tuv+dgJkZz+Fpnc3b5/fKemJDQ9lN2HoAwTJgd3QXMKAWiY4bzR1Maemckip0PENiTpsTOg9p1M+kvISONDeVtHEg+ASEc1WEtpvqBDbyWC+Wduh6ZORbBge0CPyQQ2alcfKzp3UYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "ff36c2fa-a4be-418f-b7ae-c5699b3f3083",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WHhuFx2e25XN7NgwZXynxP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1952,
+                "cache_read_input_tokens": 34571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1952
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JuvLas5uvmuPxE8bQnMxWW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2e8a23fc-32a9-4c3e-a046-be124a4678d4/tool-results/bmx1in0zc.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "5872109e-0fa2-446a-ad68-f7d901a4c175",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WHhuFx2e25XN7NgwZXynxP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1952,
+                "cache_read_input_tokens": 34571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1952
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T13:30:46.482Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (27576 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01JuvLas5uvmuPxE8bQnMxWW"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "9b86c175-ed37-4e0c-97f6-d325f5c951e2",
+            "tool_use_result": "Error: File content (27576 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QyzeTrhX2ZNZG83Ctp8vT5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2e8a23fc-32a9-4c3e-a046-be124a4678d4/tool-results/bmx1in0zc.txt",
+                "limit": 250
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "e9dd1a86-b59a-4f72-8ca8-1f6297994a93",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MyU8KNnS94qaPCym4Vx12",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 241,
+                "cache_read_input_tokens": 36523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 241
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T13:30:49.950Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QyzeTrhX2ZNZG83Ctp8vT5",
+              "type": "tool_result",
+              "content": "1\tIyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDA4OiBCaW5hcnkgUHJvYmUgUGVuYWx0eSBi\n2\tYXNlbGluZSBmb3Igc3ljb3BoYW5jeSBjYWxpYnJhdGlvbi4KClNGVC1zdHlsZSBMb1JBIHRyYWlu\n3\taW5nIG9uIFF3ZW4zLThCIHdpdGggYSBmcm96ZW4gYmluYXJ5IHByb2JlIHBlbmFsdHkuCkRlc2ln\n4\tbmVkIHRvIHJ1biBvbiBhIHNpbmdsZSBSVFggNTA5MCAoMzIgR0IpIHdpdGhvdXQgR1JQTydzIG1l\n5\tbW9yeSBvdmVyaGVhZC4KCkxvc3M6CiAgICBMID0gTF9zZnQgLSBsYW1iZGFfcmV3YXJkICogKFIz\n6\tIC0gbGFtYmRhX3Byb2JlICogUyh0KSkKICAgICAgPSBMX3NmdCArIGxhbWJkYV9yZXdhcmQgKiBs\n7\tYW1iZGFfcHJvYmUgKiBTKHQpIC0gbGFtYmRhX3Jld2FyZCAqIFIzCgogICAgTF9zZnQ6ICBjcm9z\n8\tcy1lbnRyb3B5IG9uIGxhc3QtYXNzaXN0YW50LXR1cm4gdG9rZW5zIChzdGFuZGFyZCBTRlQpCiAg\n9\tICBTKHQpOiAgIGZyb3plbiBsb2dpc3RpYyBwcm9iZSBzeWNvcGhhbmN5IHNjb3JlLCBkaWZmZXJl\n10\tbnRpYWJsZSB0aHJvdWdoIGhpZGRlbiBzdGF0ZXMKICAgIFIzOiAgICAgTkxJIGJlaGF2aW9yYWwg\n11\tcmV3YXJkLCBwcmVjb21wdXRlZCBvbiB0cmFpbmluZyBkYXRhIChjb25zdGFudCwgZm9yIG1vbml0\n12\tb3JpbmcpCgpJbnB1dDoKICAgIE1vZGVsOiAgICAgICAvcm9vdC9hdXRvZGwtdG1wLy5oZl9jYWNo\n13\tZS9Rd2VuL1F3ZW4zLThCCiAgICBEYXRhOiAgICAgICAgY2FsaWJyYXRpb25fdjJfMV9leHBhbmRl\n14\tZC5qc29ubCAoMzYyIHNhbXBsZXMsIHYyLjEgc3R5bGUtY29udHJvbGxlZCkKICAgIEFjdGl2YXRp\n15\tb25zOiByZXN1bHRzL2V4cDAwMS9hY3RpdmF0aW9ucy5wdCAoZm9yIHByb2JlIHByZXRyYWluaW5n\n16\tKQoKT3V0cHV0OgogICAgTG9SQSBjaGVja3BvaW50cyBldmVyeSA1MDAgc3RlcHMgKyBmaW5hbCBp\n17\tbiBvdXRwdXRfZGlyCgpEZXBlbmRlbmNpZXM6IHRvcmNoLCB0cmFuc2Zvcm1lcnMsIHBlZnQKIiIi\n18\tCmltcG9ydCBhcmdwYXJzZQppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MKaW1w\n19\tb3J0IHJlCmltcG9ydCBzeXMKZnJvbSBkYXRhY2xhc3NlcyBpbXBvcnQgZGF0YWNsYXNzLCBmaWVs\n20\tZApmcm9tIGZ1bmN0b29scyBpbXBvcnQgcGFydGlhbApmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgK\n21\tCmltcG9ydCB0b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KaW1wb3J0IHRvcmNoLm5uLmZ1bmN0\n22\taW9uYWwgYXMgRgpmcm9tIHRvcmNoLnV0aWxzLmRhdGEgaW1wb3J0IERhdGFMb2FkZXIKZnJvbSB0\n23\tb3JjaC51dGlscy5kYXRhIGltcG9ydCBEYXRhc2V0IGFzIFRvcmNoRGF0YXNldAoKZnJvbSBwZWZ0\n24\tIGltcG9ydCBMb3JhQ29uZmlnLCBnZXRfcGVmdF9tb2RlbApmcm9tIHRyYW5zZm9ybWVycyBpbXBv\n25\tcnQgKAogICAgQXV0b01vZGVsRm9yQ2F1c2FsTE0sCiAgICBBdXRvTW9kZWxGb3JTZXF1ZW5jZUNs\n26\tYXNzaWZpY2F0aW9uLAogICAgQXV0b1Rva2VuaXplciwKICAgIGdldF9saW5lYXJfc2NoZWR1bGVf\n27\td2l0aF93YXJtdXAsCikKCkNPTkRJVElPTl9NQVAgPSB7CiAgICAid2FycmFudGVkX3JldmlzaW9u\n28\tIjogInZhbGlkX2NvcnJlY3Rpb24iLAogICAgInN5Y29waGFudGljX2NhcGl0dWxhdGlvbiI6ICJp\n29\tbnZhbGlkX3ByZXNzdXJlIiwKICAgICJ2YWxpZF9jb3JyZWN0aW9uIjogInZhbGlkX2NvcnJlY3Rp\n30\tb24iLAogICAgImludmFsaWRfcHJlc3N1cmUiOiAiaW52YWxpZF9wcmVzc3VyZSIsCn0KCgojIC0t\n31\tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\n32\tLS0tLS0tLS0tLS0tLS0tLQojIENvbmZpZ3VyYXRpb24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t\n33\tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KQGRh\n34\tdGFjbGFzcwpjbGFzcyBUcmFpbkNvbmZpZzoKICAgIG1vZGVsX3BhdGg6IHN0ciA9ICIvcm9vdC9h\n35\tdXRvZGwtdG1wLy5oZl9jYWNoZS9Rd2VuL1F3ZW4zLThCIgogICAgZGF0YV9wYXRoOiBzdHIgPSAi\n36\tL3Jvb3QvbXZwX3YyXzFfZXhwYW5kZWQvZGF0YS9jYWxpYnJhdGlvbl92Ml8xX2V4cGFuZGVkLmpz\n37\tb25sIgogICAgYWN0aXZhdGlvbnNfcGF0aDogc3RyID0gKAogICAgICAgICIvcm9vdC9jb250cmFz\n38\tdGl2ZV9lbnRyYWluX2NhbGliL3Jlc3VsdHMvZXhwMDAxL2FjdGl2YXRpb25zLnB0IgogICAgKQog\n39\tICAgb3V0cHV0X2Rpcjogc3RyID0gKAogICAgICAgICIvcm9vdC9jb250cmFzdGl2ZV9lbnRyYWlu\n40\tX2NhbGliL2NoZWNrcG9pbnRzL2V4cDAwOF9iaW5hcnlfcHJvYmVfcGVuYWx0eSIKICAgICkKCiAg\n41\tICAjIExvUkEKICAgIGxvcmFfcmFuazogaW50ID0gNjQKICAgIGxvcmFfYWxwaGE6IGludCA9IDY0\n42\tCiAgICBsb3JhX3RhcmdldHM6IGxpc3Rbc3RyXSA9IGZpZWxkKAogICAgICAgIGRlZmF1bHRfZmFj\n43\tdG9yeT1sYW1iZGE6IFsicV9wcm9qIiwgInZfcHJvaiIsICJrX3Byb2oiLCAib19wcm9qIl0KICAg\n44\tICkKICAgIGxvcmFfZHJvcG91dDogZmxvYXQgPSAwLjAKCiAgICAjIFRyYWluaW5nCiAgICBscjog\n45\tZmxvYXQgPSA1ZS01CiAgICB3YXJtdXBfc3RlcHM6IGludCA9IDIwMAogICAgd2VpZ2h0X2RlY2F5\n46\tOiBmbG9hdCA9IDAuMDEKICAgIG1heF9zdGVwczogaW50ID0gODAwMAogICAgYmF0Y2hfc2l6ZTog\n47\taW50ID0gMQogICAgZ3JhZF9hY2N1bTogaW50ID0gMTYKICAgIG1heF9zZXFfbGVuOiBpbnQgPSAx\n48\tMDI0CiAgICBncmFkaWVudF9jaGVja3BvaW50aW5nOiBib29sID0gVHJ1ZQogICAgYmYxNjogYm9v\n49\tbCA9IFRydWUKICAgIHNlZWQ6IGludCA9IDQyCiAgICBtYXhfZ3JhZF9ub3JtOiBmbG9hdCA9IDEu\n50\tMAoKICAgICMgTG9zcyB3ZWlnaHRzCiAgICBsYW1iZGFfcmV3YXJkOiBmbG9hdCA9IDAuMQogICAg\n51\tbGFtYmRhX3Byb2JlOiBmbG9hdCA9IDEuMAoKICAgICMgUHJvYmUgLyBoaWRkZW4gc3RhdGUgZXh0\n52\tcmFjdGlvbgogICAgcmV3YXJkX2xheWVyczogbGlzdFtpbnRdID0gZmllbGQoCiAgICAgICAgZGVm\n53\tYXVsdF9mYWN0b3J5PWxhbWJkYTogWzE5LCAyMCwgMjQsIDI3LCAzMiwgMzMsIDM1XQogICAgKQog\n54\tICAgcHJvYmVfcG9zaXRpb25faWR4OiBpbnQgPSAxICAjIDEgPSBhc3N0X2ZpcnN0IGluIChudW1f\n55\tbGF5ZXJzLCAyLCBoaWRkZW4pIGxheW91dAoKICAgICMgTkxJCiAgICBubGlfbW9kZWxfbmFtZTog\n56\tc3RyID0gImNyb3NzLWVuY29kZXIvbmxpLWRlYmVydGEtdjMtYmFzZSIKCiAgICAjIExvZ2dpbmcg\n57\tLyBjaGVja3BvaW50aW5nCiAgICBsb2dfc3RlcHM6IGludCA9IDEwCiAgICBzYXZlX3N0ZXBzOiBp\n58\tbnQgPSA1MDAKICAgIHJldHJhaW5faW50ZXJ2YWw6IGludCA9IDEwMAoKCmRlZiBwYXJzZV9hcmdz\n59\tKCkgLT4gVHJhaW5Db25maWc6CiAgICBwID0gYXJncGFyc2UuQXJndW1lbnRQYXJzZXIoZGVzY3Jp\n60\tcHRpb249ImV4cC0wMDggQmluYXJ5IFByb2JlIFBlbmFsdHkgYmFzZWxpbmUiKQogICAgcC5hZGRf\n61\tYXJndW1lbnQoIi0tbHIiLCB0eXBlPWZsb2F0LCBkZWZhdWx0PTVlLTUpCiAgICBwLmFkZF9hcmd1\n62\tbWVudCgiLS1sYW1iZGFfcmV3YXJkIiwgdHlwZT1mbG9hdCwgZGVmYXVsdD0wLjEpCiAgICBwLmFk\n63\tZF9hcmd1bWVudCgiLS1sYW1iZGFfcHJvYmUiLCB0eXBlPWZsb2F0LCBkZWZhdWx0PTEuMCkKICAg\n64\tIHAuYWRkX2FyZ3VtZW50KCItLW1heF9zdGVwcyIsIHR5cGU9aW50LCBkZWZhdWx0PTgwMDApCiAg\n65\tICBwLmFkZF9hcmd1bWVudCgiLS1sb3JhX3JhbmsiLCB0eXBlPWludCwgZGVmYXVsdD02NCkKICAg\n66\tIHAuYWRkX2FyZ3VtZW50KCItLWxvcmFfYWxwaGEiLCB0eXBlPWludCwgZGVmYXVsdD02NCkKICAg\n67\tIHAuYWRkX2FyZ3VtZW50KCItLWJhdGNoX3NpemUiLCB0eXBlPWludCwgZGVmYXVsdD0xKQogICAg\n68\tcC5hZGRfYXJndW1lbnQoIi0tZ3JhZF9hY2N1bSIsIHR5cGU9aW50LCBkZWZhdWx0PTE2KQogICAg\n69\tcC5hZGRfYXJndW1lbnQoIi0tc2VlZCIsIHR5cGU9aW50LCBkZWZhdWx0PTQyKQogICAgcC5hZGRf\n70\tYXJndW1lbnQoIi0tbG9nX3N0ZXBzIiwgdHlwZT1pbnQsIGRlZmF1bHQ9Tm9uZSkKICAgIHAuYWRk\n71\tX2FyZ3VtZW50KCItLXJldHJhaW5faW50ZXJ2YWwiLCB0eXBlPWludCwgZGVmYXVsdD1Ob25lKQog\n72\tICAgcC5hZGRfYXJndW1lbnQoIi0tbW9kZWxfcGF0aCIsIHR5cGU9c3RyLCBkZWZhdWx0PU5vbmUp\n73\tCiAgICBwLmFkZF9hcmd1bWVudCgiLS1kYXRhX3BhdGgiLCB0eXBlPXN0ciwgZGVmYXVsdD1Ob25l\n74\tKQogICAgcC5hZGRfYXJndW1lbnQoIi0tb3V0cHV0X2RpciIsIHR5cGU9c3RyLCBkZWZhdWx0PU5v\n75\tbmUpCiAgICBhcmdzID0gcC5wYXJzZV9hcmdzKCkKCiAgICBjZmcgPSBUcmFpbkNvbmZpZygpCiAg\n76\tICBmb3IgaywgdiBpbiB2YXJzKGFyZ3MpLml0ZW1zKCk6CiAgICAgICAgaWYgdiBpcyBub3QgTm9u\n77\tZSBhbmQgaGFzYXR0cihjZmcsIGspOgogICAgICAgICAgICBzZXRhdHRyKGNmZywgaywgdikKICAg\n78\tIHJldHVybiBjZmcKCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\n79\tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIERhdGFzZXQKIyAtLS0tLS0tLS0t\n80\tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\n81\tLS0tLS0tLS0KY2xhc3MgQ2FsaWJyYXRpb25TRlREYXRhc2V0KFRvcmNoRGF0YXNldCk6CiAgICAi\n82\tIiJMb2FkcyAzLXR1cm4gY2FsaWJyYXRpb24gY29udmVyc2F0aW9ucyBmb3IgU0ZUIChhbGlnbmVk\n83\tIHdpdGggZXhwLTAwNCkuCgogICAgRm9ybWF0IHBlciByZWNvcmQ6IHVzZXIgLT4gYXNzaXN0YW50\n84\tKFR1cm4gMSkgLT4gdXNlcihjb3JyZWN0aW9uL3ByZXNzdXJlKS4KICAgIElucHV0OiBmdWxsIDMt\n85\tdHVybiBjb252ZXJzYXRpb24gKyBnZW5lcmF0aW9uX3Byb21wdC4KICAgIFNGVCB0YXJnZXQ6IFR1\n86\tcm4gMSAoYXNzaXN0YW50IGZpcnN0IHJlcGx5KSBvbmx5OyBjcm9zcy1lbnRyb3B5IG9uIHRob3Nl\n87\tIHRva2VucywKICAgIGFsbCBvdGhlcnMgbWFza2VkIHdpdGggLTEwMC4KICAgICIiIgoKICAgIGRl\n88\tZiBfX2luaXRfXyhzZWxmLCBkYXRhX3BhdGg6IHN0ciwgdG9rZW5pemVyLCBtYXhfc2VxX2xlbjog\n89\taW50ID0gMTAyNCk6CiAgICAgICAgc2VsZi50b2tlbml6ZXIgPSB0b2tlbml6ZXIKICAgICAgICBz\n90\tZWxmLm1heF9zZXFfbGVuID0gbWF4X3NlcV9sZW4KICAgICAgICBzZWxmLnNhbXBsZXM6IGxpc3Rb\n91\tZGljdF0gPSBbXQoKICAgICAgICBpbV9lbmRfaWQgPSB0b2tlbml6ZXIuY29udmVydF90b2tlbnNf\n92\tdG9faWRzKCI8fGltX2VuZHw+IikKCiAgICAgICAgd2l0aCBvcGVuKGRhdGFfcGF0aCkgYXMgZjoK\n93\tICAgICAgICAgICAgZm9yIGxpbmUgaW4gZjoKICAgICAgICAgICAgICAgIHJlYyA9IGpzb24ubG9h\n94\tZHMobGluZSkKICAgICAgICAgICAgICAgIHR1cm5zID0gcmVjWyJ0dXJucyJdCiAgICAgICAgICAg\n95\tICAgICBpZiBsZW4odHVybnMpIDwgMjoKICAgICAgICAgICAgICAgICAgICBjb250aW51ZQoKICAg\n96\tICAgICAgICAgICAgIGNvbmRpdGlvbiA9IENPTkRJVElPTl9NQVAuZ2V0KHJlY1siY29uZGl0aW9u\n97\tIl0sIHJlY1siY29uZGl0aW9uIl0pCiAgICAgICAgICAgICAgICBwYWlyX2lkID0gc3RyKHJlYy5n\n98\tZXQoInBhaXJfaWQiLCByZWMuZ2V0KCJpZCIsICIiKSkpCiAgICAgICAgICAgICAgICByZXNwb25z\n99\tZV90ZXh0ID0gdHVybnNbMV1bImNvbnRlbnQiXQoKICAgICAgICAgICAgICAgIG1zZ3MgPSBbeyJy\n100\tb2xlIjogdFsicm9sZSJdLCAiY29udGVudCI6IHRbImNvbnRlbnQiXX0gZm9yIHQgaW4gdHVybnNd\n101\tCgogICAgICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgICAgIGZ1bGxfaWRzID0gdG9r\n102\tZW5pemVyLmFwcGx5X2NoYXRfdGVtcGxhdGUoCiAgICAgICAgICAgICAgICAgICAgICAgIG1zZ3Ms\n103\tIHRva2VuaXplPVRydWUsIGFkZF9nZW5lcmF0aW9uX3Byb21wdD1UcnVlLAogICAgICAgICAgICAg\n104\tICAgICAgICAgICBlbmFibGVfdGhpbmtpbmc9RmFsc2UsCiAgICAgICAgICAgICAgICAgICAgKQog\n105\tICAgICAgICAgICAgICAgZXhjZXB0IFR5cGVFcnJvcjoKICAgICAgICAgICAgICAgICAgICBmdWxs\n106\tX2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKAogICAgICAgICAgICAgICAgICAg\n107\tICAgICBtc2dzLCB0b2tlbml6ZT1UcnVlLCBhZGRfZ2VuZXJhdGlvbl9wcm9tcHQ9VHJ1ZSwKICAg\n108\tICAgICAgICAgICAgICAgICApCgogICAgICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAg\n109\tICAgIHByZV9hc3N0X2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKAogICAgICAg\n110\tICAgICAgICAgICAgICAgICBtc2dzWzoxXSwgdG9rZW5pemU9VHJ1ZSwgYWRkX2dlbmVyYXRpb25f\n111\tcHJvbXB0PVRydWUsCiAgICAgICAgICAgICAgICAgICAgICAgIGVuYWJsZV90aGlua2luZz1GYWxz\n112\tZSwKICAgICAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAgICBleGNlcHQgVHlwZUVycm9y\n113\tOgogICAgICAgICAgICAgICAgICAgIHByZV9hc3N0X2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0\n114\tX3RlbXBsYXRlKAogICAgICAgICAgICAgICAgICAgICAgICBtc2dzWzoxXSwgdG9rZW5pemU9VHJ1\n115\tZSwgYWRkX2dlbmVyYXRpb25fcHJvbXB0PVRydWUsCiAgICAgICAgICAgICAgICAgICAgKQoKICAg\n116\tICAgICAgICAgICAgIGFzc3Rfc3RhcnQgPSBsZW4ocHJlX2Fzc3RfaWRzKQogICAgICAgICAgICAg\n117\tICAgYXNzdF9lbmQgPSBhc3N0X3N0YXJ0CiAgICAgICAgICAgICAgICB3aGlsZSBhc3N0X2VuZCA8\n118\tIGxlbihmdWxsX2lkcykgYW5kIGZ1bGxfaWRzW2Fzc3RfZW5kXSAhPSBpbV9lbmRfaWQ6CiAgICAg\n119\tICAgICAgICAgICAgICAgYXNzdF9lbmQgKz0gMQogICAgICAgICAgICAgICAgYXNzdF9lbmQgKz0g\n120\tMSAgIyBpbmNsdWRlIDx8aW1fZW5kfD4KCiAgICAgICAgICAgICAgICBpZiBsZW4oZnVsbF9pZHMp\n121\tID4gbWF4X3NlcV9sZW46CiAgICAgICAgICAgICAgICAgICAgZnVsbF9pZHMgPSBmdWxsX2lkc1s6\n122\tbWF4X3NlcV9sZW5dCgogICAgICAgICAgICAgICAgbGFiZWxzID0gWy0xMDBdICogbGVuKGZ1bGxf\n123\taWRzKQogICAgICAgICAgICAgICAgZm9yIGkgaW4gcmFuZ2UoYXNzdF9zdGFydCwgbWluKGFzc3Rf\n124\tZW5kLCBsZW4oZnVsbF9pZHMpKSk6CiAgICAgICAgICAgICAgICAgICAgbGFiZWxzW2ldID0gZnVs\n125\tbF9pZHNbaV0KCiAgICAgICAgICAgICAgICByZXNwX3BvcyA9IGxlbihmdWxsX2lkcykgLSAxCgog\n126\tICAgICAgICAgICAgICAgc2VsZi5zYW1wbGVzLmFwcGVuZCgKICAgICAgICAgICAgICAgICAgICB7\n127\tCiAgICAgICAgICAgICAgICAgICAgICAgICJmdWxsX2lkcyI6IGZ1bGxfaWRzLAogICAgICAgICAg\n128\tICAgICAgICAgICAgICAibGFiZWxzIjogbGFiZWxzLAogICAgICAgICAgICAgICAgICAgICAgICAi\n129\tcmVzcF9wb3MiOiByZXNwX3BvcywKICAgICAgICAgICAgICAgICAgICAgICAgImNvbmRpdGlvbiI6\n130\tIGNvbmRpdGlvbiwKICAgICAgICAgICAgICAgICAgICAgICAgInBhaXJfaWQiOiBwYWlyX2lkLAog\n131\tICAgICAgICAgICAgICAgICAgICAgICAicmVzcG9uc2VfdGV4dCI6IHJlc3BvbnNlX3RleHQsCiAg\n132\tICAgICAgICAgICAgICAgICAgICAgICJyMyI6IDAuMCwKICAgICAgICAgICAgICAgICAgICB9CiAg\n133\tICAgICAgICAgICAgICApCgogICAgZGVmIF9fbGVuX18oc2VsZik6CiAgICAgICAgcmV0dXJuIGxl\n134\tbihzZWxmLnNhbXBsZXMpCgogICAgZGVmIF9fZ2V0aXRlbV9fKHNlbGYsIGlkeCk6CiAgICAgICAg\n135\tcmV0dXJuIHNlbGYuc2FtcGxlc1tpZHhdCgoKZGVmIHNmdF9jb2xsYXRlKGJhdGNoOiBsaXN0W2Rp\n136\tY3RdLCBwYWRfdG9rZW5faWQ6IGludCkgLT4gZGljdDoKICAgIG1heF9sZW4gPSBtYXgobGVuKGl0\n137\tZW1bImZ1bGxfaWRzIl0pIGZvciBpdGVtIGluIGJhdGNoKQogICAgaW5wdXRfaWRzLCBtYXNrcywg\n138\tbGFiZWxzID0gW10sIFtdLCBbXQogICAgcmVzcF9wb3NpdGlvbnMsIGNvbmRpdGlvbnMsIHIzX3Nj\n139\tb3JlcyA9IFtdLCBbXSwgW10KCiAgICBmb3IgaXRlbSBpbiBiYXRjaDoKICAgICAgICBpZHMgPSBp\n140\tdGVtWyJmdWxsX2lkcyJdCiAgICAgICAgbGFiID0gaXRlbVsibGFiZWxzIl0KICAgICAgICBwYWRf\n141\tbiA9IG1heF9sZW4gLSBsZW4oaWRzKQoKICAgICAgICBpbnB1dF9pZHMuYXBwZW5kKGlkcyArIFtw\n142\tYWRfdG9rZW5faWRdICogcGFkX24pCiAgICAgICAgbWFza3MuYXBwZW5kKFsxXSAqIGxlbihpZHMp\n143\tICsgWzBdICogcGFkX24pCiAgICAgICAgbGFiZWxzLmFwcGVuZChsYWIgKyBbLTEwMF0gKiBwYWRf\n144\tbikKICAgICAgICByZXNwX3Bvc2l0aW9ucy5hcHBlbmQoaXRlbVsicmVzcF9wb3MiXSkKICAgICAg\n145\tICBjb25kaXRpb25zLmFwcGVuZChpdGVtWyJjb25kaXRpb24iXSkKICAgICAgICByM19zY29yZXMu\n146\tYXBwZW5kKGl0ZW1bInIzIl0pCgogICAgcmV0dXJuIHsKICAgICAgICAiaW5wdXRfaWRzIjogdG9y\n147\tY2gudGVuc29yKGlucHV0X2lkcywgZHR5cGU9dG9yY2gubG9uZyksCiAgICAgICAgImF0dGVudGlv\n148\tbl9tYXNrIjogdG9yY2gudGVuc29yKG1hc2tzLCBkdHlwZT10b3JjaC5sb25nKSwKICAgICAgICAi\n149\tbGFiZWxzIjogdG9yY2gudGVuc29yKGxhYmVscywgZHR5cGU9dG9yY2gubG9uZyksCiAgICAgICAg\n150\tInJlc3BfcG9zaXRpb25zIjogcmVzcF9wb3NpdGlvbnMsCiAgICAgICAgImNvbmRpdGlvbnMiOiBj\n151\tb25kaXRpb25zLAogICAgICAgICJyM19zY29yZXMiOiByM19zY29yZXMsCiAgICB9CgoKIyAtLS0t\n152\tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\n153\tLS0tLS0tLS0tLS0tLS0KIyBCaW5hcnkgUHJvYmUKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\n154\tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KY2xhc3Mg\n155\tTGluZWFyUHJvYmUobm4uTW9kdWxlKToKICAgICIiIkZyb3plbiBsb2dpc3RpYyByZWdyZXNzaW9u\n156\tIHByb2JlOiBoIC0+IFAoc3ljb3BoYW50aWMpLiIiIgoKICAgIGRlZiBfX2luaXRfXyhzZWxmLCBp\n157\tbnB1dF9kaW06IGludCk6CiAgICAgICAgc3VwZXIoKS5fX2luaXRfXygpCiAgICAgICAgc2VsZi5s\n158\taW5lYXIgPSBubi5MaW5lYXIoaW5wdXRfZGltLCAxKQogICAgICAgIHNlbGYucmVnaXN0ZXJfYnVm\n159\tZmVyKCJmZWF0X21lYW4iLCB0b3JjaC56ZXJvcyhpbnB1dF9kaW0pKQogICAgICAgIHNlbGYucmVn\n160\taXN0ZXJfYnVmZmVyKCJmZWF0X3N0ZCIsIHRvcmNoLm9uZXMoaW5wdXRfZGltKSkKCiAgICBkZWYg\n161\tZm9yd2FyZChzZWxmLCB4OiB0b3JjaC5UZW5zb3IpIC0+IHRvcmNoLlRlbnNvcjoKICAgICAgICB4\n162\tX25vcm0gPSAoeCAtIHNlbGYuZmVhdF9tZWFuKSAvIChzZWxmLmZlYXRfc3RkICsgMWUtOCkKICAg\n163\tICAgICByZXR1cm4gdG9yY2guc2lnbW9pZChzZWxmLmxpbmVhcih4X25vcm0pKS5zcXVlZXplKC0x\n164\tKQoKCmRlZiB0cmFpbl9wcm9iZSgKICAgIGFjdGl2YXRpb25zX3BhdGg6IHN0ciwKICAgIGxheWVy\n165\tczogbGlzdFtpbnRdLAogICAgcG9zaXRpb25faWR4OiBpbnQgPSAxLAogICAgc2VlZDogaW50ID0g\n166\tNDIsCiAgICBlcG9jaHM6IGludCA9IDIwMCwKICAgIGxyOiBmbG9hdCA9IDFlLTIsCikgLT4gdHVw\n167\tbGVbTGluZWFyUHJvYmUsIGZsb2F0XToKICAgICIiIlRyYWluIGJpbmFyeSBwcm9iZSBmcm9tIGV4\n168\tcC0wMDEgcHJlLWV4dHJhY3RlZCBhY3RpdmF0aW9ucy4KCiAgICBMYWJlbHM6IGludmFsaWRfcHJl\n169\tc3N1cmUgKHN5Y29waGFudGljIGNvbnRleHQpIC0+IDEsIHZhbGlkX2NvcnJlY3Rpb24gLT4gMC4K\n170\tICAgIFJldHVybnMgKGZyb3plbl9wcm9iZSwgYWNjdXJhY3kpLgogICAgIiIiCiAgICB0b3JjaC5t\n171\tYW51YWxfc2VlZChzZWVkKQogICAgZGF0YSA9IHRvcmNoLmxvYWQoYWN0aXZhdGlvbnNfcGF0aCwg\n172\tbWFwX2xvY2F0aW9uPSJjcHUiLCB3ZWlnaHRzX29ubHk9RmFsc2UpCgogICAgZmVhdHVyZXMsIGxh\n173\tYmVscyA9IFtdLCBbXQogICAgZm9yIHNhbXBsZSBpbiBkYXRhOgogICAgICAgIGFjdHMgPSBzYW1w\n174\tbGVbImFjdGl2YXRpb25zIl0gICMgKG51bV9sYXllcnMsIDIsIGhpZGRlbl9kaW0pCiAgICAgICAg\n175\tbWVhbl9oID0gdG9yY2guc3RhY2soW2FjdHNbbCwgcG9zaXRpb25faWR4XSBmb3IgbCBpbiBsYXll\n176\tcnNdKS5tZWFuKDApCiAgICAgICAgZmVhdHVyZXMuYXBwZW5kKG1lYW5faCkKICAgICAgICBjb25k\n177\tID0gQ09ORElUSU9OX01BUC5nZXQoc2FtcGxlWyJjb25kaXRpb24iXSwgc2FtcGxlWyJjb25kaXRp\n178\tb24iXSkKICAgICAgICBsYWJlbHMuYXBwZW5kKDEuMCBpZiBjb25kID09ICJpbnZhbGlkX3ByZXNz\n179\tdXJlIiBlbHNlIDAuMCkKCiAgICBYID0gdG9yY2guc3RhY2soZmVhdHVyZXMpCiAgICB5ID0gdG9y\n180\tY2gudGVuc29yKGxhYmVscykKCiAgICBmZWF0X21lYW4gPSBYLm1lYW4oZGltPTApCiAgICBmZWF0\n181\tX3N0ZCA9IFguc3RkKGRpbT0wKQoKICAgIHByb2JlID0gTGluZWFyUHJvYmUoWC5zaGFwZVsxXSkK\n182\tICAgIHByb2JlLmZlYXRfbWVhbi5jb3B5XyhmZWF0X21lYW4pCiAgICBwcm9iZS5mZWF0X3N0ZC5j\n183\tb3B5XyhmZWF0X3N0ZCkKCiAgICBvcHQgPSB0b3JjaC5vcHRpbS5BZGFtKHByb2JlLnBhcmFtZXRl\n184\tcnMoKSwgbHI9bHIsIHdlaWdodF9kZWNheT0xZS00KQogICAgY3JpdGVyaW9uID0gbm4uQkNFTG9z\n185\tcygpCgogICAgcHJvYmUudHJhaW4oKQogICAgZm9yIGVwb2NoIGluIHJhbmdlKGVwb2Nocyk6CiAg\n186\tICAgICAgbG9zcyA9IGNyaXRlcmlvbihwcm9iZShYKSwgeSkKICAgICAgICBvcHQuemVyb19ncmFk\n187\tKCkKICAgICAgICBsb3NzLmJhY2t3YXJkKCkKICAgICAgICBvcHQuc3RlcCgpCiAgICAgICAgaWYg\n188\tKGVwb2NoICsgMSkgJSA1MCA9PSAwOgogICAgICAgICAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToK\n189\tICAgICAgICAgICAgICAgIGFjYyA9ICgocHJvYmUoWCkgPiAwLjUpLmZsb2F0KCkgPT0geSkuZmxv\n190\tYXQoKS5tZWFuKCkuaXRlbSgpCiAgICAgICAgICAgIGxvZ2dpbmcuZ2V0TG9nZ2VyKCJleHAwMDgi\n191\tKS5pbmZvKAogICAgICAgICAgICAgICAgIlByb2JlIGVwb2NoICVkLyVkOiBsb3NzPSUuNGYgYWNj\n192\tPSUuNGYiLCBlcG9jaCArIDEsIGVwb2NocywgbG9zcy5pdGVtKCksIGFjYwogICAgICAgICAgICAp\n193\tCgogICAgcHJvYmUuZXZhbCgpCiAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToKICAgICAgICBhY2Mg\n194\tPSAoKHByb2JlKFgpID4gMC41KS5mbG9hdCgpID09IHkpLmZsb2F0KCkubWVhbigpLml0ZW0oKQoK\n195\tICAgIGZvciBwIGluIHByb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJlcXVpcmVzX2dyYWRf\n196\tKEZhbHNlKQoKICAgIHJldHVybiBwcm9iZSwgYWNjCgoKZGVmIHNhdmVfcHJvYmUocHJvYmU6IExp\n197\tbmVhclByb2JlLCBwYXRoOiBzdHIpIC0+IE5vbmU6CiAgICBQYXRoKHBhdGgpLnBhcmVudC5ta2Rp\n198\tcihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAgICB0b3JjaC5zYXZlKAogICAgICAgIHsi\n199\tc3RhdGVfZGljdCI6IHByb2JlLnN0YXRlX2RpY3QoKSwgImlucHV0X2RpbSI6IHByb2JlLmxpbmVh\n200\tci5pbl9mZWF0dXJlc30sCiAgICAgICAgcGF0aCwKICAgICkKCgpkZWYgbG9hZF9wcm9iZShwYXRo\n201\tOiBzdHIpIC0+IExpbmVhclByb2JlOgogICAgY2twdCA9IHRvcmNoLmxvYWQocGF0aCwgbWFwX2xv\n202\tY2F0aW9uPSJjcHUiKQogICAgcHJvYmUgPSBMaW5lYXJQcm9iZShja3B0WyJpbnB1dF9kaW0iXSkK\n203\tICAgIHByb2JlLmxvYWRfc3RhdGVfZGljdChja3B0WyJzdGF0ZV9kaWN0Il0pCiAgICBwcm9iZS5l\n204\tdmFsKCkKICAgIGZvciBwIGluIHByb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJlcXVpcmVz\n205\tX2dyYWRfKEZhbHNlKQogICAgcmV0dXJuIHByb2JlCgoKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t\n206\tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIyBP\n207\tbmxpbmUgUHJvYmUgUmV0cmFpbmluZwojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\n208\tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpkZWYgcmV0cmFpbl9w\n209\tcm9iZV9vbmxpbmUobW9kZWwsIGRhdGFzZXQsIGlucHV0X2RpbSwgY29uZmlnLCBsb2cpOgogICAg\n210\tIiIiUmV0cmFpbiBwcm9iZSB1c2luZyBjdXJyZW50IG1vZGVsJ3MgYWN0aXZhdGlvbnMgb24gY2Fs\n211\taWJyYXRpb24gZGF0YS4iIiIKICAgIG1vZGVsLmV2YWwoKQogICAgZGV2aWNlID0gbmV4dChtb2Rl\n212\tbC5wYXJhbWV0ZXJzKCkpLmRldmljZQoKICAgIGZlYXR1cmVzID0gW10KICAgIGxhYmVscyA9IFtd\n213\tCgogICAgd2l0aCB0b3JjaC5ub19ncmFkKCk6CiAgICAgICAgZm9yIGksIHNhbXBsZSBpbiBlbnVt\n214\tZXJhdGUoZGF0YXNldC5zYW1wbGVzKToKICAgICAgICAgICAgaWRzID0gdG9yY2gudGVuc29yKFtz\n215\tYW1wbGVbImZ1bGxfaWRzIl1dLCBkdHlwZT10b3JjaC5sb25nLCBkZXZpY2U9ZGV2aWNlKQogICAg\n216\tICAgICAgICBtYXNrID0gdG9yY2gub25lc19saWtlKGlkcykKCiAgICAgICAgICAgIG91dCA9IG1v\n217\tZGVsKAogICAgICAgICAgICAgICAgaW5wdXRfaWRzPWlkcywKICAgICAgICAgICAgICAgIGF0dGVu\n218\tdGlvbl9tYXNrPW1hc2ssCiAgICAgICAgICAgICAgICBvdXRwdXRfaGlkZGVuX3N0YXRlcz1UcnVl\n219\tLAogICAgICAgICAgICApCiAgICAgICAgICAgIGhzID0gb3V0LmhpZGRlbl9zdGF0ZXMKICAgICAg\n220\tICAgICAgcG9zID0gc2FtcGxlWyJyZXNwX3BvcyJdCgogICAgICAgICAgICBsYXllcl9oID0gW2hz\n221\tW2wgKyAxXVswLCBwb3NdIGZvciBsIGluIGNvbmZpZy5yZXdhcmRfbGF5ZXJzXQogICAgICAgICAg\n222\tICBtZWFuX2ggPSB0b3JjaC5zdGFjayhsYXllcl9oKS5tZWFuKDApLmZsb2F0KCkuY3B1KCkKICAg\n223\tICAgICAgICAgZmVhdHVyZXMuYXBwZW5kKG1lYW5faCkKCiAgICAgICAgICAgIGxhYmVsID0gMS4w\n224\tIGlmIHNhbXBsZVsiY29uZGl0aW9uIl0gPT0gImludmFsaWRfcHJlc3N1cmUiIGVsc2UgMC4wCiAg\n225\tICAgICAgICAgIGxhYmVscy5hcHBlbmQobGFiZWwpCgogICAgdG9yY2guY3VkYS5lbXB0eV9jYWNo\n226\tZSgpCgogICAgWCA9IHRvcmNoLnN0YWNrKGZlYXR1cmVzKQogICAgeSA9IHRvcmNoLnRlbnNvcihs\n227\tYWJlbHMpCiAgICBsb2cuaW5mbygKICAgICAgICAiW1JFVFJBSU5dIEV4dHJhY3RlZCAlZCBhY3Rp\n228\tdmF0aW9ucyAoJS4xZiUlIHBvc2l0aXZlKSIsCiAgICAgICAgbGVuKHkpLCB5Lm1lYW4oKS5pdGVt\n229\tKCkgKiAxMDAsCiAgICApCgogICAgZmVhdF9tZWFuID0gWC5tZWFuKGRpbT0wKQogICAgZmVhdF9z\n230\tdGQgPSBYLnN0ZChkaW09MCkKCiAgICBuZXdfcHJvYmUgPSBMaW5lYXJQcm9iZShpbnB1dF9kaW0p\n231\tCiAgICBuZXdfcHJvYmUuZmVhdF9tZWFuLmNvcHlfKGZlYXRfbWVhbikKICAgIG5ld19wcm9iZS5m\n232\tZWF0X3N0ZC5jb3B5XyhmZWF0X3N0ZCkKCiAgICBvcHQgPSB0b3JjaC5vcHRpbS5BZGFtKG5ld19w\n233\tcm9iZS5wYXJhbWV0ZXJzKCksIGxyPTFlLTIsIHdlaWdodF9kZWNheT0xZS00KQogICAgY3JpdGVy\n234\taW9uID0gbm4uQkNFTG9zcygpCgogICAgbmV3X3Byb2JlLnRyYWluKCkKICAgIGZvciBlcG9jaCBp\n235\tbiByYW5nZSgyMDApOgogICAgICAgIGxvc3MgPSBjcml0ZXJpb24obmV3X3Byb2JlKFgpLCB5KQog\n236\tICAgICAgIG9wdC56ZXJvX2dyYWQoKQogICAgICAgIGxvc3MuYmFja3dhcmQoKQogICAgICAgIG9w\n237\tdC5zdGVwKCkKCiAgICBuZXdfcHJvYmUuZXZhbCgpCiAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToK\n238\tICAgICAgICBwcmVkcyA9IG5ld19wcm9iZShYKQogICAgICAgIGFjYyA9ICgocHJlZHMgPiAwLjUp\n239\tLmZsb2F0KCkgPT0geSkuZmxvYXQoKS5tZWFuKCkuaXRlbSgpCgogICAgdHJ5OgogICAgICAgIGZy\n240\tb20gc2tsZWFybi5tZXRyaWNzIGltcG9ydCByb2NfYXVjX3Njb3JlCiAgICAgICAgYXVyb2MgPSBy\n241\tb2NfYXVjX3Njb3JlKHkubnVtcHkoKSwgcHJlZHMubnVtcHkoKSkKICAgIGV4Y2VwdCBJbXBvcnRF\n242\tcnJvcjoKICAgICAgICBzb3J0ZWRfcGFpcnMgPSBzb3J0ZWQoemlwKHByZWRzLnRvbGlzdCgpLCB5\n243\tLnRvbGlzdCgpKSwgcmV2ZXJzZT1UcnVlKQogICAgICAgIHRwLCBhdWNfc3VtID0gMCwgMC4wCiAg\n244\tICAgICAgcF90b3RhbCA9IGludCh5LnN1bSgpLml0ZW0oKSkKICAgICAgICBuX3RvdGFsID0gbGVu\n245\tKHkpIC0gcF90b3RhbAogICAgICAgIGZvciBfLCBsYWJlbCBpbiBzb3J0ZWRfcGFpcnM6CiAgICAg\n246\tICAgICAgIGlmIGxhYmVsID09IDEuMDoKICAgICAgICAgICAgICAgIHRwICs9IDEKICAgICAgICAg\n247\tICAgZWxzZToKICAgICAgICAgICAgICAgIGF1Y19zdW0gKz0gdHAKICAgICAgICBhdXJvYyA9IGF1\n248\tY19zdW0gLyAocF90b3RhbCAqIG5fdG90YWwpIGlmIChwX3RvdGFsICogbl90b3RhbCkgPiAwIGVs\n249\tc2UgMC4wCgogICAgZm9yIHAgaW4gbmV3X3Byb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJl\n250\tcXVpcmVzX2dyYWRfKEZhbHNlKQogICAgbmV3X3Byb2JlLnRvKGRldmljZSkKCiAgICBtb2RlbC50"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "9e110af4-f3ff-49fd-b409-49ad7d5e9080",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2e8a23fc-32a9-4c3e-a046-be124a4678d4/tool-results/bmx1in0zc.txt",
+                "content": "IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDA4OiBCaW5hcnkgUHJvYmUgUGVuYWx0eSBi\nYXNlbGluZSBmb3Igc3ljb3BoYW5jeSBjYWxpYnJhdGlvbi4KClNGVC1zdHlsZSBMb1JBIHRyYWlu\naW5nIG9uIFF3ZW4zLThCIHdpdGggYSBmcm96ZW4gYmluYXJ5IHByb2JlIHBlbmFsdHkuCkRlc2ln\nbmVkIHRvIHJ1biBvbiBhIHNpbmdsZSBSVFggNTA5MCAoMzIgR0IpIHdpdGhvdXQgR1JQTydzIG1l\nbW9yeSBvdmVyaGVhZC4KCkxvc3M6CiAgICBMID0gTF9zZnQgLSBsYW1iZGFfcmV3YXJkICogKFIz\nIC0gbGFtYmRhX3Byb2JlICogUyh0KSkKICAgICAgPSBMX3NmdCArIGxhbWJkYV9yZXdhcmQgKiBs\nYW1iZGFfcHJvYmUgKiBTKHQpIC0gbGFtYmRhX3Jld2FyZCAqIFIzCgogICAgTF9zZnQ6ICBjcm9z\ncy1lbnRyb3B5IG9uIGxhc3QtYXNzaXN0YW50LXR1cm4gdG9rZW5zIChzdGFuZGFyZCBTRlQpCiAg\nICBTKHQpOiAgIGZyb3plbiBsb2dpc3RpYyBwcm9iZSBzeWNvcGhhbmN5IHNjb3JlLCBkaWZmZXJl\nbnRpYWJsZSB0aHJvdWdoIGhpZGRlbiBzdGF0ZXMKICAgIFIzOiAgICAgTkxJIGJlaGF2aW9yYWwg\ncmV3YXJkLCBwcmVjb21wdXRlZCBvbiB0cmFpbmluZyBkYXRhIChjb25zdGFudCwgZm9yIG1vbml0\nb3JpbmcpCgpJbnB1dDoKICAgIE1vZGVsOiAgICAgICAvcm9vdC9hdXRvZGwtdG1wLy5oZl9jYWNo\nZS9Rd2VuL1F3ZW4zLThCCiAgICBEYXRhOiAgICAgICAgY2FsaWJyYXRpb25fdjJfMV9leHBhbmRl\nZC5qc29ubCAoMzYyIHNhbXBsZXMsIHYyLjEgc3R5bGUtY29udHJvbGxlZCkKICAgIEFjdGl2YXRp\nb25zOiByZXN1bHRzL2V4cDAwMS9hY3RpdmF0aW9ucy5wdCAoZm9yIHByb2JlIHByZXRyYWluaW5n\nKQoKT3V0cHV0OgogICAgTG9SQSBjaGVja3BvaW50cyBldmVyeSA1MDAgc3RlcHMgKyBmaW5hbCBp\nbiBvdXRwdXRfZGlyCgpEZXBlbmRlbmNpZXM6IHRvcmNoLCB0cmFuc2Zvcm1lcnMsIHBlZnQKIiIi\nCmltcG9ydCBhcmdwYXJzZQppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MKaW1w\nb3J0IHJlCmltcG9ydCBzeXMKZnJvbSBkYXRhY2xhc3NlcyBpbXBvcnQgZGF0YWNsYXNzLCBmaWVs\nZApmcm9tIGZ1bmN0b29scyBpbXBvcnQgcGFydGlhbApmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgK\nCmltcG9ydCB0b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KaW1wb3J0IHRvcmNoLm5uLmZ1bmN0\naW9uYWwgYXMgRgpmcm9tIHRvcmNoLnV0aWxzLmRhdGEgaW1wb3J0IERhdGFMb2FkZXIKZnJvbSB0\nb3JjaC51dGlscy5kYXRhIGltcG9ydCBEYXRhc2V0IGFzIFRvcmNoRGF0YXNldAoKZnJvbSBwZWZ0\nIGltcG9ydCBMb3JhQ29uZmlnLCBnZXRfcGVmdF9tb2RlbApmcm9tIHRyYW5zZm9ybWVycyBpbXBv\ncnQgKAogICAgQXV0b01vZGVsRm9yQ2F1c2FsTE0sCiAgICBBdXRvTW9kZWxGb3JTZXF1ZW5jZUNs\nYXNzaWZpY2F0aW9uLAogICAgQXV0b1Rva2VuaXplciwKICAgIGdldF9saW5lYXJfc2NoZWR1bGVf\nd2l0aF93YXJtdXAsCikKCkNPTkRJVElPTl9NQVAgPSB7CiAgICAid2FycmFudGVkX3JldmlzaW9u\nIjogInZhbGlkX2NvcnJlY3Rpb24iLAogICAgInN5Y29waGFudGljX2NhcGl0dWxhdGlvbiI6ICJp\nbnZhbGlkX3ByZXNzdXJlIiwKICAgICJ2YWxpZF9jb3JyZWN0aW9uIjogInZhbGlkX2NvcnJlY3Rp\nb24iLAogICAgImludmFsaWRfcHJlc3N1cmUiOiAiaW52YWxpZF9wcmVzc3VyZSIsCn0KCgojIC0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLQojIENvbmZpZ3VyYXRpb24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KQGRh\ndGFjbGFzcwpjbGFzcyBUcmFpbkNvbmZpZzoKICAgIG1vZGVsX3BhdGg6IHN0ciA9ICIvcm9vdC9h\ndXRvZGwtdG1wLy5oZl9jYWNoZS9Rd2VuL1F3ZW4zLThCIgogICAgZGF0YV9wYXRoOiBzdHIgPSAi\nL3Jvb3QvbXZwX3YyXzFfZXhwYW5kZWQvZGF0YS9jYWxpYnJhdGlvbl92Ml8xX2V4cGFuZGVkLmpz\nb25sIgogICAgYWN0aXZhdGlvbnNfcGF0aDogc3RyID0gKAogICAgICAgICIvcm9vdC9jb250cmFz\ndGl2ZV9lbnRyYWluX2NhbGliL3Jlc3VsdHMvZXhwMDAxL2FjdGl2YXRpb25zLnB0IgogICAgKQog\nICAgb3V0cHV0X2Rpcjogc3RyID0gKAogICAgICAgICIvcm9vdC9jb250cmFzdGl2ZV9lbnRyYWlu\nX2NhbGliL2NoZWNrcG9pbnRzL2V4cDAwOF9iaW5hcnlfcHJvYmVfcGVuYWx0eSIKICAgICkKCiAg\nICAjIExvUkEKICAgIGxvcmFfcmFuazogaW50ID0gNjQKICAgIGxvcmFfYWxwaGE6IGludCA9IDY0\nCiAgICBsb3JhX3RhcmdldHM6IGxpc3Rbc3RyXSA9IGZpZWxkKAogICAgICAgIGRlZmF1bHRfZmFj\ndG9yeT1sYW1iZGE6IFsicV9wcm9qIiwgInZfcHJvaiIsICJrX3Byb2oiLCAib19wcm9qIl0KICAg\nICkKICAgIGxvcmFfZHJvcG91dDogZmxvYXQgPSAwLjAKCiAgICAjIFRyYWluaW5nCiAgICBscjog\nZmxvYXQgPSA1ZS01CiAgICB3YXJtdXBfc3RlcHM6IGludCA9IDIwMAogICAgd2VpZ2h0X2RlY2F5\nOiBmbG9hdCA9IDAuMDEKICAgIG1heF9zdGVwczogaW50ID0gODAwMAogICAgYmF0Y2hfc2l6ZTog\naW50ID0gMQogICAgZ3JhZF9hY2N1bTogaW50ID0gMTYKICAgIG1heF9zZXFfbGVuOiBpbnQgPSAx\nMDI0CiAgICBncmFkaWVudF9jaGVja3BvaW50aW5nOiBib29sID0gVHJ1ZQogICAgYmYxNjogYm9v\nbCA9IFRydWUKICAgIHNlZWQ6IGludCA9IDQyCiAgICBtYXhfZ3JhZF9ub3JtOiBmbG9hdCA9IDEu\nMAoKICAgICMgTG9zcyB3ZWlnaHRzCiAgICBsYW1iZGFfcmV3YXJkOiBmbG9hdCA9IDAuMQogICAg\nbGFtYmRhX3Byb2JlOiBmbG9hdCA9IDEuMAoKICAgICMgUHJvYmUgLyBoaWRkZW4gc3RhdGUgZXh0\ncmFjdGlvbgogICAgcmV3YXJkX2xheWVyczogbGlzdFtpbnRdID0gZmllbGQoCiAgICAgICAgZGVm\nYXVsdF9mYWN0b3J5PWxhbWJkYTogWzE5LCAyMCwgMjQsIDI3LCAzMiwgMzMsIDM1XQogICAgKQog\nICAgcHJvYmVfcG9zaXRpb25faWR4OiBpbnQgPSAxICAjIDEgPSBhc3N0X2ZpcnN0IGluIChudW1f\nbGF5ZXJzLCAyLCBoaWRkZW4pIGxheW91dAoKICAgICMgTkxJCiAgICBubGlfbW9kZWxfbmFtZTog\nc3RyID0gImNyb3NzLWVuY29kZXIvbmxpLWRlYmVydGEtdjMtYmFzZSIKCiAgICAjIExvZ2dpbmcg\nLyBjaGVja3BvaW50aW5nCiAgICBsb2dfc3RlcHM6IGludCA9IDEwCiAgICBzYXZlX3N0ZXBzOiBp\nbnQgPSA1MDAKICAgIHJldHJhaW5faW50ZXJ2YWw6IGludCA9IDEwMAoKCmRlZiBwYXJzZV9hcmdz\nKCkgLT4gVHJhaW5Db25maWc6CiAgICBwID0gYXJncGFyc2UuQXJndW1lbnRQYXJzZXIoZGVzY3Jp\ncHRpb249ImV4cC0wMDggQmluYXJ5IFByb2JlIFBlbmFsdHkgYmFzZWxpbmUiKQogICAgcC5hZGRf\nYXJndW1lbnQoIi0tbHIiLCB0eXBlPWZsb2F0LCBkZWZhdWx0PTVlLTUpCiAgICBwLmFkZF9hcmd1\nbWVudCgiLS1sYW1iZGFfcmV3YXJkIiwgdHlwZT1mbG9hdCwgZGVmYXVsdD0wLjEpCiAgICBwLmFk\nZF9hcmd1bWVudCgiLS1sYW1iZGFfcHJvYmUiLCB0eXBlPWZsb2F0LCBkZWZhdWx0PTEuMCkKICAg\nIHAuYWRkX2FyZ3VtZW50KCItLW1heF9zdGVwcyIsIHR5cGU9aW50LCBkZWZhdWx0PTgwMDApCiAg\nICBwLmFkZF9hcmd1bWVudCgiLS1sb3JhX3JhbmsiLCB0eXBlPWludCwgZGVmYXVsdD02NCkKICAg\nIHAuYWRkX2FyZ3VtZW50KCItLWxvcmFfYWxwaGEiLCB0eXBlPWludCwgZGVmYXVsdD02NCkKICAg\nIHAuYWRkX2FyZ3VtZW50KCItLWJhdGNoX3NpemUiLCB0eXBlPWludCwgZGVmYXVsdD0xKQogICAg\ncC5hZGRfYXJndW1lbnQoIi0tZ3JhZF9hY2N1bSIsIHR5cGU9aW50LCBkZWZhdWx0PTE2KQogICAg\ncC5hZGRfYXJndW1lbnQoIi0tc2VlZCIsIHR5cGU9aW50LCBkZWZhdWx0PTQyKQogICAgcC5hZGRf\nYXJndW1lbnQoIi0tbG9nX3N0ZXBzIiwgdHlwZT1pbnQsIGRlZmF1bHQ9Tm9uZSkKICAgIHAuYWRk\nX2FyZ3VtZW50KCItLXJldHJhaW5faW50ZXJ2YWwiLCB0eXBlPWludCwgZGVmYXVsdD1Ob25lKQog\nICAgcC5hZGRfYXJndW1lbnQoIi0tbW9kZWxfcGF0aCIsIHR5cGU9c3RyLCBkZWZhdWx0PU5vbmUp\nCiAgICBwLmFkZF9hcmd1bWVudCgiLS1kYXRhX3BhdGgiLCB0eXBlPXN0ciwgZGVmYXVsdD1Ob25l\nKQogICAgcC5hZGRfYXJndW1lbnQoIi0tb3V0cHV0X2RpciIsIHR5cGU9c3RyLCBkZWZhdWx0PU5v\nbmUpCiAgICBhcmdzID0gcC5wYXJzZV9hcmdzKCkKCiAgICBjZmcgPSBUcmFpbkNvbmZpZygpCiAg\nICBmb3IgaywgdiBpbiB2YXJzKGFyZ3MpLml0ZW1zKCk6CiAgICAgICAgaWYgdiBpcyBub3QgTm9u\nZSBhbmQgaGFzYXR0cihjZmcsIGspOgogICAgICAgICAgICBzZXRhdHRyKGNmZywgaywgdikKICAg\nIHJldHVybiBjZmcKCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIERhdGFzZXQKIyAtLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0KY2xhc3MgQ2FsaWJyYXRpb25TRlREYXRhc2V0KFRvcmNoRGF0YXNldCk6CiAgICAi\nIiJMb2FkcyAzLXR1cm4gY2FsaWJyYXRpb24gY29udmVyc2F0aW9ucyBmb3IgU0ZUIChhbGlnbmVk\nIHdpdGggZXhwLTAwNCkuCgogICAgRm9ybWF0IHBlciByZWNvcmQ6IHVzZXIgLT4gYXNzaXN0YW50\nKFR1cm4gMSkgLT4gdXNlcihjb3JyZWN0aW9uL3ByZXNzdXJlKS4KICAgIElucHV0OiBmdWxsIDMt\ndHVybiBjb252ZXJzYXRpb24gKyBnZW5lcmF0aW9uX3Byb21wdC4KICAgIFNGVCB0YXJnZXQ6IFR1\ncm4gMSAoYXNzaXN0YW50IGZpcnN0IHJlcGx5KSBvbmx5OyBjcm9zcy1lbnRyb3B5IG9uIHRob3Nl\nIHRva2VucywKICAgIGFsbCBvdGhlcnMgbWFza2VkIHdpdGggLTEwMC4KICAgICIiIgoKICAgIGRl\nZiBfX2luaXRfXyhzZWxmLCBkYXRhX3BhdGg6IHN0ciwgdG9rZW5pemVyLCBtYXhfc2VxX2xlbjog\naW50ID0gMTAyNCk6CiAgICAgICAgc2VsZi50b2tlbml6ZXIgPSB0b2tlbml6ZXIKICAgICAgICBz\nZWxmLm1heF9zZXFfbGVuID0gbWF4X3NlcV9sZW4KICAgICAgICBzZWxmLnNhbXBsZXM6IGxpc3Rb\nZGljdF0gPSBbXQoKICAgICAgICBpbV9lbmRfaWQgPSB0b2tlbml6ZXIuY29udmVydF90b2tlbnNf\ndG9faWRzKCI8fGltX2VuZHw+IikKCiAgICAgICAgd2l0aCBvcGVuKGRhdGFfcGF0aCkgYXMgZjoK\nICAgICAgICAgICAgZm9yIGxpbmUgaW4gZjoKICAgICAgICAgICAgICAgIHJlYyA9IGpzb24ubG9h\nZHMobGluZSkKICAgICAgICAgICAgICAgIHR1cm5zID0gcmVjWyJ0dXJucyJdCiAgICAgICAgICAg\nICAgICBpZiBsZW4odHVybnMpIDwgMjoKICAgICAgICAgICAgICAgICAgICBjb250aW51ZQoKICAg\nICAgICAgICAgICAgIGNvbmRpdGlvbiA9IENPTkRJVElPTl9NQVAuZ2V0KHJlY1siY29uZGl0aW9u\nIl0sIHJlY1siY29uZGl0aW9uIl0pCiAgICAgICAgICAgICAgICBwYWlyX2lkID0gc3RyKHJlYy5n\nZXQoInBhaXJfaWQiLCByZWMuZ2V0KCJpZCIsICIiKSkpCiAgICAgICAgICAgICAgICByZXNwb25z\nZV90ZXh0ID0gdHVybnNbMV1bImNvbnRlbnQiXQoKICAgICAgICAgICAgICAgIG1zZ3MgPSBbeyJy\nb2xlIjogdFsicm9sZSJdLCAiY29udGVudCI6IHRbImNvbnRlbnQiXX0gZm9yIHQgaW4gdHVybnNd\nCgogICAgICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgICAgIGZ1bGxfaWRzID0gdG9r\nZW5pemVyLmFwcGx5X2NoYXRfdGVtcGxhdGUoCiAgICAgICAgICAgICAgICAgICAgICAgIG1zZ3Ms\nIHRva2VuaXplPVRydWUsIGFkZF9nZW5lcmF0aW9uX3Byb21wdD1UcnVlLAogICAgICAgICAgICAg\nICAgICAgICAgICBlbmFibGVfdGhpbmtpbmc9RmFsc2UsCiAgICAgICAgICAgICAgICAgICAgKQog\nICAgICAgICAgICAgICAgZXhjZXB0IFR5cGVFcnJvcjoKICAgICAgICAgICAgICAgICAgICBmdWxs\nX2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKAogICAgICAgICAgICAgICAgICAg\nICAgICBtc2dzLCB0b2tlbml6ZT1UcnVlLCBhZGRfZ2VuZXJhdGlvbl9wcm9tcHQ9VHJ1ZSwKICAg\nICAgICAgICAgICAgICAgICApCgogICAgICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAg\nICAgIHByZV9hc3N0X2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKAogICAgICAg\nICAgICAgICAgICAgICAgICBtc2dzWzoxXSwgdG9rZW5pemU9VHJ1ZSwgYWRkX2dlbmVyYXRpb25f\ncHJvbXB0PVRydWUsCiAgICAgICAgICAgICAgICAgICAgICAgIGVuYWJsZV90aGlua2luZz1GYWxz\nZSwKICAgICAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAgICBleGNlcHQgVHlwZUVycm9y\nOgogICAgICAgICAgICAgICAgICAgIHByZV9hc3N0X2lkcyA9IHRva2VuaXplci5hcHBseV9jaGF0\nX3RlbXBsYXRlKAogICAgICAgICAgICAgICAgICAgICAgICBtc2dzWzoxXSwgdG9rZW5pemU9VHJ1\nZSwgYWRkX2dlbmVyYXRpb25fcHJvbXB0PVRydWUsCiAgICAgICAgICAgICAgICAgICAgKQoKICAg\nICAgICAgICAgICAgIGFzc3Rfc3RhcnQgPSBsZW4ocHJlX2Fzc3RfaWRzKQogICAgICAgICAgICAg\nICAgYXNzdF9lbmQgPSBhc3N0X3N0YXJ0CiAgICAgICAgICAgICAgICB3aGlsZSBhc3N0X2VuZCA8\nIGxlbihmdWxsX2lkcykgYW5kIGZ1bGxfaWRzW2Fzc3RfZW5kXSAhPSBpbV9lbmRfaWQ6CiAgICAg\nICAgICAgICAgICAgICAgYXNzdF9lbmQgKz0gMQogICAgICAgICAgICAgICAgYXNzdF9lbmQgKz0g\nMSAgIyBpbmNsdWRlIDx8aW1fZW5kfD4KCiAgICAgICAgICAgICAgICBpZiBsZW4oZnVsbF9pZHMp\nID4gbWF4X3NlcV9sZW46CiAgICAgICAgICAgICAgICAgICAgZnVsbF9pZHMgPSBmdWxsX2lkc1s6\nbWF4X3NlcV9sZW5dCgogICAgICAgICAgICAgICAgbGFiZWxzID0gWy0xMDBdICogbGVuKGZ1bGxf\naWRzKQogICAgICAgICAgICAgICAgZm9yIGkgaW4gcmFuZ2UoYXNzdF9zdGFydCwgbWluKGFzc3Rf\nZW5kLCBsZW4oZnVsbF9pZHMpKSk6CiAgICAgICAgICAgICAgICAgICAgbGFiZWxzW2ldID0gZnVs\nbF9pZHNbaV0KCiAgICAgICAgICAgICAgICByZXNwX3BvcyA9IGxlbihmdWxsX2lkcykgLSAxCgog\nICAgICAgICAgICAgICAgc2VsZi5zYW1wbGVzLmFwcGVuZCgKICAgICAgICAgICAgICAgICAgICB7\nCiAgICAgICAgICAgICAgICAgICAgICAgICJmdWxsX2lkcyI6IGZ1bGxfaWRzLAogICAgICAgICAg\nICAgICAgICAgICAgICAibGFiZWxzIjogbGFiZWxzLAogICAgICAgICAgICAgICAgICAgICAgICAi\ncmVzcF9wb3MiOiByZXNwX3BvcywKICAgICAgICAgICAgICAgICAgICAgICAgImNvbmRpdGlvbiI6\nIGNvbmRpdGlvbiwKICAgICAgICAgICAgICAgICAgICAgICAgInBhaXJfaWQiOiBwYWlyX2lkLAog\nICAgICAgICAgICAgICAgICAgICAgICAicmVzcG9uc2VfdGV4dCI6IHJlc3BvbnNlX3RleHQsCiAg\nICAgICAgICAgICAgICAgICAgICAgICJyMyI6IDAuMCwKICAgICAgICAgICAgICAgICAgICB9CiAg\nICAgICAgICAgICAgICApCgogICAgZGVmIF9fbGVuX18oc2VsZik6CiAgICAgICAgcmV0dXJuIGxl\nbihzZWxmLnNhbXBsZXMpCgogICAgZGVmIF9fZ2V0aXRlbV9fKHNlbGYsIGlkeCk6CiAgICAgICAg\ncmV0dXJuIHNlbGYuc2FtcGxlc1tpZHhdCgoKZGVmIHNmdF9jb2xsYXRlKGJhdGNoOiBsaXN0W2Rp\nY3RdLCBwYWRfdG9rZW5faWQ6IGludCkgLT4gZGljdDoKICAgIG1heF9sZW4gPSBtYXgobGVuKGl0\nZW1bImZ1bGxfaWRzIl0pIGZvciBpdGVtIGluIGJhdGNoKQogICAgaW5wdXRfaWRzLCBtYXNrcywg\nbGFiZWxzID0gW10sIFtdLCBbXQogICAgcmVzcF9wb3NpdGlvbnMsIGNvbmRpdGlvbnMsIHIzX3Nj\nb3JlcyA9IFtdLCBbXSwgW10KCiAgICBmb3IgaXRlbSBpbiBiYXRjaDoKICAgICAgICBpZHMgPSBp\ndGVtWyJmdWxsX2lkcyJdCiAgICAgICAgbGFiID0gaXRlbVsibGFiZWxzIl0KICAgICAgICBwYWRf\nbiA9IG1heF9sZW4gLSBsZW4oaWRzKQoKICAgICAgICBpbnB1dF9pZHMuYXBwZW5kKGlkcyArIFtw\nYWRfdG9rZW5faWRdICogcGFkX24pCiAgICAgICAgbWFza3MuYXBwZW5kKFsxXSAqIGxlbihpZHMp\nICsgWzBdICogcGFkX24pCiAgICAgICAgbGFiZWxzLmFwcGVuZChsYWIgKyBbLTEwMF0gKiBwYWRf\nbikKICAgICAgICByZXNwX3Bvc2l0aW9ucy5hcHBlbmQoaXRlbVsicmVzcF9wb3MiXSkKICAgICAg\nICBjb25kaXRpb25zLmFwcGVuZChpdGVtWyJjb25kaXRpb24iXSkKICAgICAgICByM19zY29yZXMu\nYXBwZW5kKGl0ZW1bInIzIl0pCgogICAgcmV0dXJuIHsKICAgICAgICAiaW5wdXRfaWRzIjogdG9y\nY2gudGVuc29yKGlucHV0X2lkcywgZHR5cGU9dG9yY2gubG9uZyksCiAgICAgICAgImF0dGVudGlv\nbl9tYXNrIjogdG9yY2gudGVuc29yKG1hc2tzLCBkdHlwZT10b3JjaC5sb25nKSwKICAgICAgICAi\nbGFiZWxzIjogdG9yY2gudGVuc29yKGxhYmVscywgZHR5cGU9dG9yY2gubG9uZyksCiAgICAgICAg\nInJlc3BfcG9zaXRpb25zIjogcmVzcF9wb3NpdGlvbnMsCiAgICAgICAgImNvbmRpdGlvbnMiOiBj\nb25kaXRpb25zLAogICAgICAgICJyM19zY29yZXMiOiByM19zY29yZXMsCiAgICB9CgoKIyAtLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0KIyBCaW5hcnkgUHJvYmUKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KY2xhc3Mg\nTGluZWFyUHJvYmUobm4uTW9kdWxlKToKICAgICIiIkZyb3plbiBsb2dpc3RpYyByZWdyZXNzaW9u\nIHByb2JlOiBoIC0+IFAoc3ljb3BoYW50aWMpLiIiIgoKICAgIGRlZiBfX2luaXRfXyhzZWxmLCBp\nbnB1dF9kaW06IGludCk6CiAgICAgICAgc3VwZXIoKS5fX2luaXRfXygpCiAgICAgICAgc2VsZi5s\naW5lYXIgPSBubi5MaW5lYXIoaW5wdXRfZGltLCAxKQogICAgICAgIHNlbGYucmVnaXN0ZXJfYnVm\nZmVyKCJmZWF0X21lYW4iLCB0b3JjaC56ZXJvcyhpbnB1dF9kaW0pKQogICAgICAgIHNlbGYucmVn\naXN0ZXJfYnVmZmVyKCJmZWF0X3N0ZCIsIHRvcmNoLm9uZXMoaW5wdXRfZGltKSkKCiAgICBkZWYg\nZm9yd2FyZChzZWxmLCB4OiB0b3JjaC5UZW5zb3IpIC0+IHRvcmNoLlRlbnNvcjoKICAgICAgICB4\nX25vcm0gPSAoeCAtIHNlbGYuZmVhdF9tZWFuKSAvIChzZWxmLmZlYXRfc3RkICsgMWUtOCkKICAg\nICAgICByZXR1cm4gdG9yY2guc2lnbW9pZChzZWxmLmxpbmVhcih4X25vcm0pKS5zcXVlZXplKC0x\nKQoKCmRlZiB0cmFpbl9wcm9iZSgKICAgIGFjdGl2YXRpb25zX3BhdGg6IHN0ciwKICAgIGxheWVy\nczogbGlzdFtpbnRdLAogICAgcG9zaXRpb25faWR4OiBpbnQgPSAxLAogICAgc2VlZDogaW50ID0g\nNDIsCiAgICBlcG9jaHM6IGludCA9IDIwMCwKICAgIGxyOiBmbG9hdCA9IDFlLTIsCikgLT4gdHVw\nbGVbTGluZWFyUHJvYmUsIGZsb2F0XToKICAgICIiIlRyYWluIGJpbmFyeSBwcm9iZSBmcm9tIGV4\ncC0wMDEgcHJlLWV4dHJhY3RlZCBhY3RpdmF0aW9ucy4KCiAgICBMYWJlbHM6IGludmFsaWRfcHJl\nc3N1cmUgKHN5Y29waGFudGljIGNvbnRleHQpIC0+IDEsIHZhbGlkX2NvcnJlY3Rpb24gLT4gMC4K\nICAgIFJldHVybnMgKGZyb3plbl9wcm9iZSwgYWNjdXJhY3kpLgogICAgIiIiCiAgICB0b3JjaC5t\nYW51YWxfc2VlZChzZWVkKQogICAgZGF0YSA9IHRvcmNoLmxvYWQoYWN0aXZhdGlvbnNfcGF0aCwg\nbWFwX2xvY2F0aW9uPSJjcHUiLCB3ZWlnaHRzX29ubHk9RmFsc2UpCgogICAgZmVhdHVyZXMsIGxh\nYmVscyA9IFtdLCBbXQogICAgZm9yIHNhbXBsZSBpbiBkYXRhOgogICAgICAgIGFjdHMgPSBzYW1w\nbGVbImFjdGl2YXRpb25zIl0gICMgKG51bV9sYXllcnMsIDIsIGhpZGRlbl9kaW0pCiAgICAgICAg\nbWVhbl9oID0gdG9yY2guc3RhY2soW2FjdHNbbCwgcG9zaXRpb25faWR4XSBmb3IgbCBpbiBsYXll\ncnNdKS5tZWFuKDApCiAgICAgICAgZmVhdHVyZXMuYXBwZW5kKG1lYW5faCkKICAgICAgICBjb25k\nID0gQ09ORElUSU9OX01BUC5nZXQoc2FtcGxlWyJjb25kaXRpb24iXSwgc2FtcGxlWyJjb25kaXRp\nb24iXSkKICAgICAgICBsYWJlbHMuYXBwZW5kKDEuMCBpZiBjb25kID09ICJpbnZhbGlkX3ByZXNz\ndXJlIiBlbHNlIDAuMCkKCiAgICBYID0gdG9yY2guc3RhY2soZmVhdHVyZXMpCiAgICB5ID0gdG9y\nY2gudGVuc29yKGxhYmVscykKCiAgICBmZWF0X21lYW4gPSBYLm1lYW4oZGltPTApCiAgICBmZWF0\nX3N0ZCA9IFguc3RkKGRpbT0wKQoKICAgIHByb2JlID0gTGluZWFyUHJvYmUoWC5zaGFwZVsxXSkK\nICAgIHByb2JlLmZlYXRfbWVhbi5jb3B5XyhmZWF0X21lYW4pCiAgICBwcm9iZS5mZWF0X3N0ZC5j\nb3B5XyhmZWF0X3N0ZCkKCiAgICBvcHQgPSB0b3JjaC5vcHRpbS5BZGFtKHByb2JlLnBhcmFtZXRl\ncnMoKSwgbHI9bHIsIHdlaWdodF9kZWNheT0xZS00KQogICAgY3JpdGVyaW9uID0gbm4uQkNFTG9z\ncygpCgogICAgcHJvYmUudHJhaW4oKQogICAgZm9yIGVwb2NoIGluIHJhbmdlKGVwb2Nocyk6CiAg\nICAgICAgbG9zcyA9IGNyaXRlcmlvbihwcm9iZShYKSwgeSkKICAgICAgICBvcHQuemVyb19ncmFk\nKCkKICAgICAgICBsb3NzLmJhY2t3YXJkKCkKICAgICAgICBvcHQuc3RlcCgpCiAgICAgICAgaWYg\nKGVwb2NoICsgMSkgJSA1MCA9PSAwOgogICAgICAgICAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToK\nICAgICAgICAgICAgICAgIGFjYyA9ICgocHJvYmUoWCkgPiAwLjUpLmZsb2F0KCkgPT0geSkuZmxv\nYXQoKS5tZWFuKCkuaXRlbSgpCiAgICAgICAgICAgIGxvZ2dpbmcuZ2V0TG9nZ2VyKCJleHAwMDgi\nKS5pbmZvKAogICAgICAgICAgICAgICAgIlByb2JlIGVwb2NoICVkLyVkOiBsb3NzPSUuNGYgYWNj\nPSUuNGYiLCBlcG9jaCArIDEsIGVwb2NocywgbG9zcy5pdGVtKCksIGFjYwogICAgICAgICAgICAp\nCgogICAgcHJvYmUuZXZhbCgpCiAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToKICAgICAgICBhY2Mg\nPSAoKHByb2JlKFgpID4gMC41KS5mbG9hdCgpID09IHkpLmZsb2F0KCkubWVhbigpLml0ZW0oKQoK\nICAgIGZvciBwIGluIHByb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJlcXVpcmVzX2dyYWRf\nKEZhbHNlKQoKICAgIHJldHVybiBwcm9iZSwgYWNjCgoKZGVmIHNhdmVfcHJvYmUocHJvYmU6IExp\nbmVhclByb2JlLCBwYXRoOiBzdHIpIC0+IE5vbmU6CiAgICBQYXRoKHBhdGgpLnBhcmVudC5ta2Rp\ncihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAgICB0b3JjaC5zYXZlKAogICAgICAgIHsi\nc3RhdGVfZGljdCI6IHByb2JlLnN0YXRlX2RpY3QoKSwgImlucHV0X2RpbSI6IHByb2JlLmxpbmVh\nci5pbl9mZWF0dXJlc30sCiAgICAgICAgcGF0aCwKICAgICkKCgpkZWYgbG9hZF9wcm9iZShwYXRo\nOiBzdHIpIC0+IExpbmVhclByb2JlOgogICAgY2twdCA9IHRvcmNoLmxvYWQocGF0aCwgbWFwX2xv\nY2F0aW9uPSJjcHUiKQogICAgcHJvYmUgPSBMaW5lYXJQcm9iZShja3B0WyJpbnB1dF9kaW0iXSkK\nICAgIHByb2JlLmxvYWRfc3RhdGVfZGljdChja3B0WyJzdGF0ZV9kaWN0Il0pCiAgICBwcm9iZS5l\ndmFsKCkKICAgIGZvciBwIGluIHByb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJlcXVpcmVz\nX2dyYWRfKEZhbHNlKQogICAgcmV0dXJuIHByb2JlCgoKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIyBP\nbmxpbmUgUHJvYmUgUmV0cmFpbmluZwojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t\nLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpkZWYgcmV0cmFpbl9w\ncm9iZV9vbmxpbmUobW9kZWwsIGRhdGFzZXQsIGlucHV0X2RpbSwgY29uZmlnLCBsb2cpOgogICAg\nIiIiUmV0cmFpbiBwcm9iZSB1c2luZyBjdXJyZW50IG1vZGVsJ3MgYWN0aXZhdGlvbnMgb24gY2Fs\naWJyYXRpb24gZGF0YS4iIiIKICAgIG1vZGVsLmV2YWwoKQogICAgZGV2aWNlID0gbmV4dChtb2Rl\nbC5wYXJhbWV0ZXJzKCkpLmRldmljZQoKICAgIGZlYXR1cmVzID0gW10KICAgIGxhYmVscyA9IFtd\nCgogICAgd2l0aCB0b3JjaC5ub19ncmFkKCk6CiAgICAgICAgZm9yIGksIHNhbXBsZSBpbiBlbnVt\nZXJhdGUoZGF0YXNldC5zYW1wbGVzKToKICAgICAgICAgICAgaWRzID0gdG9yY2gudGVuc29yKFtz\nYW1wbGVbImZ1bGxfaWRzIl1dLCBkdHlwZT10b3JjaC5sb25nLCBkZXZpY2U9ZGV2aWNlKQogICAg\nICAgICAgICBtYXNrID0gdG9yY2gub25lc19saWtlKGlkcykKCiAgICAgICAgICAgIG91dCA9IG1v\nZGVsKAogICAgICAgICAgICAgICAgaW5wdXRfaWRzPWlkcywKICAgICAgICAgICAgICAgIGF0dGVu\ndGlvbl9tYXNrPW1hc2ssCiAgICAgICAgICAgICAgICBvdXRwdXRfaGlkZGVuX3N0YXRlcz1UcnVl\nLAogICAgICAgICAgICApCiAgICAgICAgICAgIGhzID0gb3V0LmhpZGRlbl9zdGF0ZXMKICAgICAg\nICAgICAgcG9zID0gc2FtcGxlWyJyZXNwX3BvcyJdCgogICAgICAgICAgICBsYXllcl9oID0gW2hz\nW2wgKyAxXVswLCBwb3NdIGZvciBsIGluIGNvbmZpZy5yZXdhcmRfbGF5ZXJzXQogICAgICAgICAg\nICBtZWFuX2ggPSB0b3JjaC5zdGFjayhsYXllcl9oKS5tZWFuKDApLmZsb2F0KCkuY3B1KCkKICAg\nICAgICAgICAgZmVhdHVyZXMuYXBwZW5kKG1lYW5faCkKCiAgICAgICAgICAgIGxhYmVsID0gMS4w\nIGlmIHNhbXBsZVsiY29uZGl0aW9uIl0gPT0gImludmFsaWRfcHJlc3N1cmUiIGVsc2UgMC4wCiAg\nICAgICAgICAgIGxhYmVscy5hcHBlbmQobGFiZWwpCgogICAgdG9yY2guY3VkYS5lbXB0eV9jYWNo\nZSgpCgogICAgWCA9IHRvcmNoLnN0YWNrKGZlYXR1cmVzKQogICAgeSA9IHRvcmNoLnRlbnNvcihs\nYWJlbHMpCiAgICBsb2cuaW5mbygKICAgICAgICAiW1JFVFJBSU5dIEV4dHJhY3RlZCAlZCBhY3Rp\ndmF0aW9ucyAoJS4xZiUlIHBvc2l0aXZlKSIsCiAgICAgICAgbGVuKHkpLCB5Lm1lYW4oKS5pdGVt\nKCkgKiAxMDAsCiAgICApCgogICAgZmVhdF9tZWFuID0gWC5tZWFuKGRpbT0wKQogICAgZmVhdF9z\ndGQgPSBYLnN0ZChkaW09MCkKCiAgICBuZXdfcHJvYmUgPSBMaW5lYXJQcm9iZShpbnB1dF9kaW0p\nCiAgICBuZXdfcHJvYmUuZmVhdF9tZWFuLmNvcHlfKGZlYXRfbWVhbikKICAgIG5ld19wcm9iZS5m\nZWF0X3N0ZC5jb3B5XyhmZWF0X3N0ZCkKCiAgICBvcHQgPSB0b3JjaC5vcHRpbS5BZGFtKG5ld19w\ncm9iZS5wYXJhbWV0ZXJzKCksIGxyPTFlLTIsIHdlaWdodF9kZWNheT0xZS00KQogICAgY3JpdGVy\naW9uID0gbm4uQkNFTG9zcygpCgogICAgbmV3X3Byb2JlLnRyYWluKCkKICAgIGZvciBlcG9jaCBp\nbiByYW5nZSgyMDApOgogICAgICAgIGxvc3MgPSBjcml0ZXJpb24obmV3X3Byb2JlKFgpLCB5KQog\nICAgICAgIG9wdC56ZXJvX2dyYWQoKQogICAgICAgIGxvc3MuYmFja3dhcmQoKQogICAgICAgIG9w\ndC5zdGVwKCkKCiAgICBuZXdfcHJvYmUuZXZhbCgpCiAgICB3aXRoIHRvcmNoLm5vX2dyYWQoKToK\nICAgICAgICBwcmVkcyA9IG5ld19wcm9iZShYKQogICAgICAgIGFjYyA9ICgocHJlZHMgPiAwLjUp\nLmZsb2F0KCkgPT0geSkuZmxvYXQoKS5tZWFuKCkuaXRlbSgpCgogICAgdHJ5OgogICAgICAgIGZy\nb20gc2tsZWFybi5tZXRyaWNzIGltcG9ydCByb2NfYXVjX3Njb3JlCiAgICAgICAgYXVyb2MgPSBy\nb2NfYXVjX3Njb3JlKHkubnVtcHkoKSwgcHJlZHMubnVtcHkoKSkKICAgIGV4Y2VwdCBJbXBvcnRF\ncnJvcjoKICAgICAgICBzb3J0ZWRfcGFpcnMgPSBzb3J0ZWQoemlwKHByZWRzLnRvbGlzdCgpLCB5\nLnRvbGlzdCgpKSwgcmV2ZXJzZT1UcnVlKQogICAgICAgIHRwLCBhdWNfc3VtID0gMCwgMC4wCiAg\nICAgICAgcF90b3RhbCA9IGludCh5LnN1bSgpLml0ZW0oKSkKICAgICAgICBuX3RvdGFsID0gbGVu\nKHkpIC0gcF90b3RhbAogICAgICAgIGZvciBfLCBsYWJlbCBpbiBzb3J0ZWRfcGFpcnM6CiAgICAg\nICAgICAgIGlmIGxhYmVsID09IDEuMDoKICAgICAgICAgICAgICAgIHRwICs9IDEKICAgICAgICAg\nICAgZWxzZToKICAgICAgICAgICAgICAgIGF1Y19zdW0gKz0gdHAKICAgICAgICBhdXJvYyA9IGF1\nY19zdW0gLyAocF90b3RhbCAqIG5fdG90YWwpIGlmIChwX3RvdGFsICogbl90b3RhbCkgPiAwIGVs\nc2UgMC4wCgogICAgZm9yIHAgaW4gbmV3X3Byb2JlLnBhcmFtZXRlcnMoKToKICAgICAgICBwLnJl\ncXVpcmVzX2dyYWRfKEZhbHNlKQogICAgbmV3X3Byb2JlLnRvKGRldmljZSkKCiAgICBtb2RlbC50",
+                "numLines": 250,
+                "startLine": 1,
+                "totalLines": 442
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The base64 content is very long. Let me use a different approach - I'll use ssh_execute to transfer the file directly. Let me use a heredoc approach with the local file, or better yet, use the ssh tools to write the file in chunks.\n\nActually, the best approach would be to use the local file and pipe it through base64 encoding, then pass it via ssh_execute. But since I need to use the MCP tools, let me first load the tool schemas.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "404530a5-aba9-4b2d-ad09-0e5a68f7ca28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A6KCqG2vXLkQLsKDJTs2JZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16446,
+                "cache_read_input_tokens": 36764,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 16446
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要加载 SSH 工具的 schema。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "ee062698-c5ef-497b-a96f-fa8706bb2d86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A6KCqG2vXLkQLsKDJTs2JZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16446,
+                "cache_read_input_tokens": 36764,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 16446
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E8dk7Gx84PAhZubW35zYz5",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "c87f701b-84fb-4aa9-850f-eecd46a20a03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A6KCqG2vXLkQLsKDJTs2JZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16446,
+                "cache_read_input_tokens": 36764,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 16446
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T13:30:59.066Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01E8dk7Gx84PAhZubW35zYz5",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "b7c3695b-2c75-4734-a72b-3fe9f67a3cd7",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to upload the file. The base64 content is about 33KB. I'll read it in chunks and construct the ssh_execute command. Let me use a different approach - I'll use bash to create the full command locally, reading the file and base64 encoding it, then pass it to ssh_execute.\n\nActually, the simplest approach: I'll use bash to base64 encode the file, store it in a variable, then pass it to ssh_execute. But ssh_execute takes a command string. Let me just read the base64 content and pass it directly.\n\n\nI need to pull in the rest of the base64 encoded content to have the complete file ready.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "56b53806-68a5-420d-8a3d-3f0fe6db8a57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P83AiN5oSScms8LPpZHr2V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1003,
+                "cache_read_input_tokens": 53210,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1003
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "用 bash 构造完整的 base64 字符串，然后通过 ssh_execute 上传。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "32a46f5f-3f18-4349-8532-91fcb4541d94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P83AiN5oSScms8LPpZHr2V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1003,
+                "cache_read_input_tokens": 53210,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1003
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xg5tBhJ2dg63m7jv4vAPNf",
+              "name": "Bash",
+              "input": {
+                "command": "base64 -w0 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp008_binary_probe_penalty.py > /tmp/exp008_b64.txt && wc -c /tmp/exp008_b64.txt",
+                "description": "Base64 encode file without line breaks"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "a944e00d-a1e8-44ed-96cb-88f788d0f84b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P83AiN5oSScms8LPpZHr2V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1003,
+                "cache_read_input_tokens": 53210,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1003
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T13:31:08.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xg5tBhJ2dg63m7jv4vAPNf",
+              "type": "tool_result",
+              "content": "33468 /tmp/exp008_b64.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "0986dd7c-7e94-4a91-9f91-a9a6fca1797b",
+            "tool_use_result": {
+              "stdout": "33468 /tmp/exp008_b64.txt",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CzRVQhGqAEWVhPzpkRmgPi",
+              "name": "Bash",
+              "input": {
+                "command": "cat /tmp/exp008_b64.txt",
+                "description": "Read base64 content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "34c6d386-6bd3-416c-94f2-b9a609250f06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GzBihduwo4tAhBAfMhiCEa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 477,
+                "cache_read_input_tokens": 54213,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 477
+                },
+                "output_tokens": 57,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T13:31:12.056Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CzRVQhGqAEWVhPzpkRmgPi",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (32.7KB). Full output saved to: /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2e8a23fc-32a9-4c3e-a046-be124a4678d4/tool-results/bxudpq0fm.txt\n\nPreview (first 2KB):\nIyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDA4OiBCaW5hcnkgUHJvYmUgUGVuYWx0eSBiYXNlbGluZSBmb3Igc3ljb3BoYW5jeSBjYWxpYnJhdGlvbi4KClNGVC1zdHlsZSBMb1JBIHRyYWluaW5nIG9uIFF3ZW4zLThCIHdpdGggYSBmcm96ZW4gYmluYXJ5IHByb2JlIHBlbmFsdHkuCkRlc2lnbmVkIHRvIHJ1biBvbiBhIHNpbmdsZSBSVFggNTA5MCAoMzIgR0IpIHdpdGhvdXQgR1JQTydzIG1lbW9yeSBvdmVyaGVhZC4KCkxvc3M6CiAgICBMID0gTF9zZnQgLSBsYW1iZGFfcmV3YXJkICogKFIzIC0gbGFtYmRhX3Byb2JlICogUyh0KSkKICAgICAgPSBMX3NmdCArIGxhbWJkYV9yZXdhcmQgKiBsYW1iZGFfcHJvYmUgKiBTKHQpIC0gbGFtYmRhX3Jld2FyZCAqIFIzCgogICAgTF9zZnQ6ICBjcm9zcy1lbnRyb3B5IG9uIGxhc3QtYXNzaXN0YW50LXR1cm4gdG9rZW5zIChzdGFuZGFyZCBTRlQpCiAgICBTKHQpOiAgIGZyb3plbiBsb2dpc3RpYyBwcm9iZSBzeWNvcGhhbmN5IHNjb3JlLCBkaWZmZXJlbnRpYWJsZSB0aHJvdWdoIGhpZGRlbiBzdGF0ZXMKICAgIFIzOiAgICAgTkxJIGJlaGF2aW9yYWwgcmV3YXJkLCBwcmVjb21wdXRlZCBvbiB0cmFpbmluZyBkYXRhIChjb25zdGFudCwgZm9yIG1vbml0b3JpbmcpCgpJbnB1dDoKICAgIE1vZGVsOiAgICAgICAvcm9vdC9hdXRvZGwtdG1wLy5oZl9jYWNoZS9Rd2VuL1F3ZW4zLThCCiAgICBEYXRhOiAgICAgICAgY2FsaWJyYXRpb25fdjJfMV9leHBhbmRlZC5qc29ubCAoMzYyIHNhbXBsZXMsIHYyLjEgc3R5bGUtY29udHJvbGxlZCkKICAgIEFjdGl2YXRpb25zOiByZXN1bHRzL2V4cDAwMS9hY3RpdmF0aW9ucy5wdCAoZm9yIHByb2JlIHByZXRyYWluaW5nKQoKT3V0cHV0OgogICAgTG9SQSBjaGVja3BvaW50cyBldmVyeSA1MDAgc3RlcHMgKyBmaW5hbCBpbiBvdXRwdXRfZGlyCgpEZXBlbmRlbmNpZXM6IHRvcmNoLCB0cmFuc2Zvcm1lcnMsIHBlZnQKIiIiCmltcG9ydCBhcmdwYXJzZQppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MKaW1wb3J0IHJlCmltcG9ydCBzeXMKZnJvbSBkYXRhY2xhc3NlcyBpbXBvcnQgZGF0YWNsYXNzLCBmaWVsZApmcm9tIGZ1bmN0b29scyBpbXBvcnQgcGFydGlhbApmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgKCmltcG9ydCB0b3JjaAppbXBvcnQgdG9yY2gubm4gYXMgbm4KaW1wb3J0IHRvcmNoLm5uLmZ1bmN0aW9uYWwgYXMgRgpmcm9tIHRvcmNoLnV0aWxzLmRhdGEgaW1wb3J0IERhdGFMb2FkZXIKZnJvbSB0b3JjaC51dGlscy5kYXRhIGltcG9ydCBEYXRhc2V0IGFzIFRvcmNoRGF0YXNldAoKZnJvbSBwZWZ0IGltcG9ydCBMb3JhQ29uZmlnLCBnZXRfcGVmdF9tb2RlbApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgKAogICAgQXV0b01vZGVsRm9yQ2F1c2FsTE0sCiAgICBBdXRvTW9kZWxGb3JTZXF1ZW5jZUNsYXNzaWZpY2F0aW9uLAogICAgQXV0b1Rva2VuaXplciwKICAgIGdldF9saW5lYXJfc2NoZWR1bGVfd2l0aF93YXJtdXAsCikKCkNP\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "7a923623-3ed6-4808-bc8c-0c928349c3ef",
+            "tool_use_result": {
+              "stdout": "[ATTACHMENT_DATA_REDACTED]",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false,
+              "persistedOutputPath": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/2e8a23fc-32a9-4c3e-a046-be124a4678d4/tool-results/bxudpq0fm.txt",
+              "persistedOutputSize": 33468
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The base64 content is too large to read directly. Let me try a different approach - I'll split the file into smaller chunks and upload them, or I can construct the ssh command directly in bash by reading the local file.\n\nActually, let me try passing the base64 content directly in the ssh_execute command. I'll construct the command using bash to read the file and embed it.\n\nWait, I need to pass a command string to ssh_execute. Let me construct it locally.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "014bd27a-2f8a-43c1-9db8-c842d07aa003",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YJMRusLZWeLTCKSsVe2EQZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1970,
+                "cache_read_input_tokens": 54690,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1970
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "base64 内容太长无法直接读取。换个方式：本地构造完整命令字符串传给 ssh_execute。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e8a23fc-32a9-4c3e-a046-be124a4678d4",
+            "uuid": "b4f5618c-8399-4959-aa16-f40253b5ec70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YJMRusLZWeLTCKSsVe2EQZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1970,
+                "cache_read_input_tokens": 54690,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1970
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-008-seed2-sft.md"
+}

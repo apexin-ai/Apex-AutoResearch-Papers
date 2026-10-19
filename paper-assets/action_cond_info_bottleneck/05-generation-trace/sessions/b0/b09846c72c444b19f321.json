@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b09846c72c444b19f321",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code perturbation eval update",
+  "task_key": "worker_code_perturbation-eval-update_20260516T203524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_perturbation-eval-update_20260516T203524_result.json",
+    "occurrence": 1,
+    "bytes": 1284,
+    "sha256": "53e1a98569c031b70f4f6940a7b07d051ef6f44543ccb582114d22222b5e1913"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n### 1. 现有代码完整性\n- 原有 4 种扰动中，`gaussian_noise` 和 `color_jitter` 直接匹配需求\n- `spatial_jitter`（平移+旋转）≠ 任务要求的 \"random crop + resize\"\n- `sensor_noise`（Poisson噪声）≠ 任务要求的 \"sensor dropout（像素置零）\"\n\n### 2. 新增/修改内容\n\n**`scripts/perturbation_wrapper.py`** — 新增：\n- `random_crop_resize()`：按 border_frac 裁剪边界，cv2 resize 回原尺寸\n- `sensor_dropout()`：按 rate 将随机像素置零\n\n**`scripts/eval_acib_perturbed.py`** — 完全重写，新增：\n- `--scoring_alpha` (default=0.3)\n- `--disable_scoring`\n- `--conditioning_mode`\n- 个别扰动 flags：`--noise_std`、`--jitter_strength`、`--crop_border`、`--dropout_rate`\n- 支持多扰动同时生效（MultiPerturbedWrapper）\n- `patch_make_policy` 正确传递 scoring/conditioning 参数\n\n**`scripts/run_perturbation_eval.sh`** — 新建运行脚本\n\n### 3. scoring_alpha 兼容性\n已确认：`patch_make_policy` 接收并设置 `scoring_alpha`、`disable_scoring`、`conditioning_mode_override`，逻辑与 `eval_acib.py` 一致。\n\n### 4. Dry-run\n`--help` 输出正确，所有 6 种扰动函数通过 shape/dtype 验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-perturbation-eval-update.md"
+}

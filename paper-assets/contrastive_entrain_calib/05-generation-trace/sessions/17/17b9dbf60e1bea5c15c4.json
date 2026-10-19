@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17b9dbf60e1bea5c15c4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp003 ckpt4500 or 3500 scp eval",
+  "task_key": "worker_eval_exp003-ckpt4500-or-3500-scp-eval_20260520T174409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp003-ckpt4500-or-3500-scp-eval_20260520T174409_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "6a057ca0727217e0b570d1b9e2f1f8aecef5884ed4ae1d4034b8af05037ceeb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n- **选定 checkpoint**: ckpt-4500（优先级更高，且存在）\n- **SCP**: 从 westd-29046 成功传输到 westd-28034，排除 optimizer.pt（250MB），路径 `/root/autodl-tmp/checkpoints/exp003/checkpoint-4500/`\n- **Eval 已启动**: westd-28034 GPU 0，PID `611296`，tmux session `exp-003-eval-ckpt4500`，日志 `~/runs/contrastive_entrain_calib/exp-003-eval-ckpt4500.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp003-ckpt4500-or-3500-scp-eval.md"
+}

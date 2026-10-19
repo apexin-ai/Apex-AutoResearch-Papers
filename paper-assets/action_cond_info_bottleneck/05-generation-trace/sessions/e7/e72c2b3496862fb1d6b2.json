@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e72c2b3496862fb1d6b2",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code prepare 4suite eval",
+  "task_key": "worker_code_prepare-4suite-eval_20260515T211447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-4suite-eval_20260515T211447_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "5b556533e800f4d569ee38b3ce568096c98b1632ea4eaa16c1a011077261e0bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法检查通过。汇报：\n\n### Suite 参数机制\n- `lerobot-eval` 通过 `--env.task=$suite` 指定 suite\n- 每个 suite 独立跑，输出到 `$OUTPUT_DIR/$suite/`\n\n### Suite 名称\n项目中使用的 4 个 suite（注意：**不是 `libero_long`，而是 `libero_10`**）：\n\n| Suite | 说明 |\n|-------|------|\n| `libero_spatial` | 空间推理任务 |\n| `libero_object` | 物体操作任务 |\n| `libero_goal` | 目标导向任务 |\n| `libero_10` | 长horizon任务（LIBERO 原始命名为 libero_long） |\n\n### 当前完成状态\n- `baseline_std` (v1): 4 suite 全部完成\n- `baseline_std_v3`: 只完成 `libero_spatial`，剩余 3 个待跑\n- `baseline_plus_v2`: 只完成 `libero_spatial`，剩余 3 个待跑\n\n### 脚本使用\n```bash\n# baseline_std_v3 补跑（GPU 1）\nbash /root/acib/scripts/run_remaining_suites_eval.sh lerobot/smolvla_libero 1 \"libero_object libero_goal libero_10\" /root/acib/outputs/baseline_std_v3\n\n# baseline_plus_v2 补跑（GPU 0）\nbash /root/acib/scripts/run_remaining_suites_eval.sh lerobot/smolvla_libero_plus 0 \"libero_object libero_goal libero_10\" /root/acib/outputs/baseline_plus_v2\n```\n\n脚本已创建于 `/root/acib/scripts/run_remaining_suites_eval.sh`，风格与 `run_eval_std_v3.sh` 一致（含 `--policy.empty_cameras=1`、`--rename_map`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-4suite-eval.md"
+}

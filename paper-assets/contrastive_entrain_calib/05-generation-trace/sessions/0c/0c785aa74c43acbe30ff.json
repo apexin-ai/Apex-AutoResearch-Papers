@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c785aa74c43acbe30ff",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops westd 28034 deploy",
+  "task_key": "worker_ops_westd-28034-deploy_20260518T223126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-28034-deploy_20260518T223126_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "ecce239d480ddbb2f055da5488f3403ef79f1b25772fb9b4a74cb9b68441fcec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 步完成。\n\n### 执行结果汇总\n\n| Step | 结果 |\n|------|------|\n| **1. Kill exp-008 v2** | PID 45993/45997/45998 已终止，GPU 3 释放至 4 MiB |\n| **2. exp-016 启动** | PID 74242 运行中，GPU 3 占用 16374 MiB (61% util)。已加载 362 eval pairs，正在进行 alpha sweep (0.0, 0.5, 1.0, 2.0, 5.0) |\n| **3. 磁盘清理** | 清除 exp008_binary_probe_penalty (2.0G) + 6个 dry-run 目录 (~3.4G)，共释放 ~5.4G。清理后可用 20G (36% used) |\n| **4. exp-008 v3 dry-run** | Import OK，`BinaryProbeTrainer` 就绪，`RETRAIN_SAMPLES=362`，`RETRAIN_INTERVAL=500` 确认正确 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-28034-deploy.md"
+}

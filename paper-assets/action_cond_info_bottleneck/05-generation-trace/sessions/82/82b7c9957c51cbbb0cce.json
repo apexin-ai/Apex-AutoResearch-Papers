@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "82b7c9957c51cbbb0cce",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "ops seed2 kill fix restart",
+  "task_key": "worker_ops_seed2-kill-fix-restart_20260516T032717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_seed2-kill-fix-restart_20260516T032717.jsonl",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "ea4ab5df7ba0de5f975f08701716ac5550ac43590f17ff319f49cd419b1b6564"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:27:29.275971+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5Y5NyKKj9B6EZWHb6XL\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_seed2-kill-fix-restart_20260516T032717"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-seed2-kill-fix-restart.md"
+}

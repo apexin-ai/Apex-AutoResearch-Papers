@@ -1,0 +1,127 @@
+paper_key: "rimsky2024caa"
+title: "Steering Llama 2 via Contrastive Activation Addition"
+venue: "ACL 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "No intervention (zero multiplier)"
+    - "System prompting (positive and negative variants)"
+    - "Supervised finetuning (positive and negative training)"
+  metrics:
+    - {name: "Average token probability for behavior-matching answer (multiple-choice)", direction: "higher_better"}
+    - {name: "GPT-4 behavioral evaluation score (0-10, open-ended)", direction: "higher_better"}
+    - {name: "MMLU accuracy", direction: "higher_better"}
+    - {name: "TruthfulQA accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "AI Coordination", size: "360 generation / 50 test"}
+    - {name: "Corrigibility", size: "290 generation / 50 test"}
+    - {name: "Hallucination", size: "1000 generation / 50 test"}
+    - {name: "Myopic Reward", size: "950 generation / 50 test"}
+    - {name: "Survival Instinct", size: "903 generation / 50 test"}
+    - {name: "Sycophancy", size: "1000 generation / 50 test"}
+    - {name: "Refusal", size: "408 generation / 50 test"}
+    - {name: "MMLU (sampled)", size: "570 questions"}
+    - {name: "TruthfulQA", size: "not specified"}
+  ablation_dimensions:
+    - "Layer selection (sweep across all layers)"
+    - "Steering multiplier magnitude (-2, -1, 0, +1, +2)"
+    - "Model size (7B vs 13B)"
+    - "Base model vs Chat model (vector transfer)"
+    - "Intervention combination (CAA + system prompting, CAA + finetuning)"
+    - "Token position for vector application"
+    - "Cross-layer vector transfer (layer 13 vector applied at other layers)"
+  training_recipe:
+    optimizer: "N/A (inference-time method, no training; finetuning baseline uses supervised finetuning but hyperparams not fully specified)"
+    lr: "N/A"
+    hardware: "Not explicitly stated"
+  method_family: "Activation Engineering / Representation Engineering"
+
+positioning:
+  core_claim: "Averaging activation differences over hundreds of contrastive prompt pairs yields steering vectors that reliably shift LLM behavior across seven safety-relevant dimensions, composing additively with system prompts and finetuning while preserving general capabilities."
+  key_results: "CAA steers all 7 behaviors in both multiple-choice and open-ended settings; combines with system prompts (e.g., Refusal: 0.95 with CAA+prompt vs 0.82 prompt-only); adds on top of finetuning for 3/7 behaviors (Myopic Reward: 6.16 vs 3.50); MMLU drops minimally (0.63 baseline, 0.57-0.65 under steering); finetuning on MC questions fails to generalize to open-ended for sycophancy while CAA generalizes"
+  limitations:
+    - "GPT-4 evaluation scores are sensitive to scoring prompt wording, introducing potential noise"
+    - "Finetuning baseline hyperparameters (learning rate, epochs, loss function) were not fully optimized, making comparison potentially unfair"
+    - "Difficult to exhaustively search all prompting alternatives; better steering might be achievable through prompting alone with more effort"
+    - "Steering vector magnitude normalization across behaviors could skew layer optimality assessments"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Opens with the growing capabilities of LLMs and the urgent need for alignment ('helpful, honest, and harmless'), framing the safety concern as timely and critical. Leverages the reader's existing anxiety about misaligned AI to motivate the work."
+  tension: "Existing activation engineering approaches (Turner et al.) use single contrastive pairs, which are noisy and unreliable. Traditional alignment methods (RLHF, finetuning) are expensive, opaque, and may not generalize across contexts. System prompts can be circumvented. There is no method that is simultaneously cheap, effective, composable, and interpretable."
+  key_insight: "Revealed in method section and validated empirically: simply averaging activation differences across hundreds of diverse contrastive pairs (Mean Difference) produces stable steering vectors that live in the residual stream and transfer across layers, model variants, and evaluation contexts. The insight is that behavioral concepts have a linear representation in activation space that can be extracted via contrastive averaging."
+  argument_chain: "LLM safety is critical -> existing steering methods are costly/brittle -> activation engineering offers a lightweight alternative but prior work used noisy single-pair vectors -> CAA averages over hundreds of pairs for robust vectors -> validate on 7 behaviors in MC + open-ended -> show composability with prompting and finetuning -> show minimal capability degradation -> mechanistic analysis reveals linear concept representations"
+  contribution_framing: "No explicit numbered contribution list. Contributions are implicitly framed through the abstract's four claims: (1) introduces CAA method, (2) demonstrates significant behavioral steering, (3) shows composability with existing methods, (4) shows minimal capability reduction. The framing is results-oriented rather than methodology-oriented."
+  intro_structure: "4 paragraphs. Para 1: Motivates LLM alignment and safety as urgent research need. Para 2: Introduces activation engineering as emerging approach, identifies gap in prior work (noisy single-pair vectors). Para 3: Presents CAA as the proposed solution and scopes the evaluation (Llama 2, 7 behaviors). Para 4: Outlines paper structure and previews main findings."
+  notable_technique: "The composability argument is the strongest narrative move. Rather than positioning CAA as a replacement for existing methods, the paper shows it stacks on top of system prompts and finetuning. This reframes the contribution from 'yet another steering method' to 'a complementary tool that enhances any existing alignment pipeline.' This makes the paper harder to dismiss and broader in appeal."
+
+figures:
+  figure_count: 10
+  figure1:
+    type: "method_overview"
+    description: "Two-panel diagram showing (1a) CAA steering vector generation process: forward passes on contrastive A/B answer pairs, extracting residual stream activations at a specific layer, computing mean difference; (1b) steering vector application: adding the vector during inference with adjustable multiplier at all token positions after user prompt."
+    narrative_role: "Establishes the method's simplicity upfront. The reader understands the full pipeline in one glance before encountering any results. Serves as the reference diagram that anchors all subsequent experiments."
+    design_elements: ["Two-panel split (generation vs application)", "Neural network layer diagram", "Mathematical notation inline", "Contrastive pair visualization", "Arrow-based flow"]
+    visual_style: "Clean schematic with horizontal flow. Left panel shows paired forward passes with color-coded positive/negative examples. Right panel shows inference-time addition. Minimal decoration, emphasis on process clarity. Uses standard ML architecture diagram conventions."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "CAA effect magnitude across all layers for 7B and 13B models, per behavior"
+      how_gain_highlighted: "Peak at layer 13 (7B) and layers 14-15 (13B) is visually prominent; shows consistent pattern across behaviors"
+      design_note: "Layer sweep as line plot rather than table allows immediate identification of optimal intervention point. Two panels (7B/13B) enable cross-scale comparison."
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "CAA effect on multiple-choice evaluation across all 7 behaviors for both model sizes"
+      how_gain_highlighted: "Positive and negative steering shown as symmetric bars, making bidirectional control visually obvious"
+      design_note: "Grouped bars by behavior allow cross-behavior comparison at a glance."
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "GPT-4 behavioral evaluation scores on open-ended questions across multiplier values"
+      how_gain_highlighted: "Monotonic increase/decrease with multiplier magnitude demonstrates dose-response relationship"
+      design_note: "Line plot with error bands shows both effect and confidence. Multiplier on x-axis creates intuitive 'dial turning' metaphor."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["Layer index (1 through ~32)", "Model size (7B vs 13B)"]
+      design_note: "Layer sweep is the core ablation. Line plot per behavior makes it easy to see that layer 13 is consistently optimal for 7B. Two-panel layout enables scale comparison without clutter."
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      dimensions_varied: ["Target layer for vector transfer", "Behavior type"]
+      design_note: "Tests whether vectors from optimal layer 13 transfer to other layers. Shows broad effectiveness across middle layers, supporting the linear representation hypothesis."
+    - figure_id: "Figure 7"
+      viz_type: "heatmap"
+      dimensions_varied: ["Source layer", "Target layer"]
+      design_note: "Inter-layer cosine similarity heatmap between 7B and 13B steering vectors. Reveals that representations align across model scales, visualized as warm diagonal band."
+    - figure_id: "Figure 9"
+      viz_type: "heatmap"
+      dimensions_varied: ["Base model layers", "Chat model layers"]
+      design_note: "Cosine similarity heatmap showing vector transferability between base and chat models. Warm off-diagonal regions indicate shared but shifted representations."
+  figure_narrative_role: "Figure 1 (method overview) -> Figure 2 (PCA motivation showing linear separability) -> Figure 3 (layer sweep ablation) -> Figure 4 (MC results) -> Figure 5 (open-ended results) -> Figure 6 (token-level mechanistic analysis) -> Figure 7 (cross-model similarity) -> Figure 8 (cross-layer transfer) -> Figure 9 (base-chat similarity) -> Figure 10 (base-to-chat transfer). The narrative arc goes: method -> evidence it works -> why it works -> how general it is."
+
+tables:
+  table_count: 15
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods (7 behaviors)"
+    col_axis: "System prompt type (None/Positive/Negative) x Steering multiplier (-1/0/+1)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "Blue for highest probability per row, red for lowest per row (color-based rather than bold/underline)"
+    statistical_reporting: "Average token probabilities, single evaluation (no std reported for this table)"
+    num_baselines: 3
+    design_note: "3x3 grid per behavior creates a comprehensive interaction matrix between prompting and CAA. Color highlighting makes max/min immediately scannable. The grid structure demonstrates composability visually: readers can compare across both axes independently."
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["Finetuning type (None/Positive/Negative)", "Steering multiplier (-1/0/+1)"]
+      variation_style: "full_numbers"
+      design_note: "Same 3x3 grid structure as Table 3 but for finetuning interaction. GPT-4 scores (0-10) replace token probabilities. Parallel structure with Table 3 allows readers to compare prompting vs finetuning composability at a glance."
+    - table_id: "Table 5"
+      what_varied: ["Behavior type", "Steering multiplier (0/+1/-1)"]
+      variation_style: "full_numbers"
+      design_note: "Compact table showing MMLU preservation. The narrow score range (0.57-0.65 around 0.63 baseline) is the key message: steering does not break general capabilities. Deliberately simple presentation to convey 'nothing bad happened.'"
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 6-15 in appendices contain: qualitative generation examples (Tables 1, 6, 10, 11), dataset examples (Tables 2, 7, 8), dataset sizes (Table 9), TruthfulQA category breakdown (Table 12), finetuning accuracy (Table 13), system prompts used (Table 14), GPT-4 evaluation prompts (Table 15)"
+    reason: "Main text keeps only quantitative result tables (Tables 3-5) and minimal qualitative examples (Table 1). All reproducibility details (prompts, dataset specs, per-category breakdowns) and extensive qualitative examples move to appendix to maintain narrative flow while supporting verification."

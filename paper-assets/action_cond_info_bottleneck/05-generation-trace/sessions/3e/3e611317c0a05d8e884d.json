@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e611317c0a05d8e884d",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra check eval output",
+  "task_key": "worker_infra_check-eval-output_20260515T180127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-eval-output_20260515T180127_result.json",
+    "occurrence": 1,
+    "bytes": 2892,
+    "sha256": "7a783c5adc03eeb5023b2b86aab209bdb888b6e88aa9fb58195fc99df13d07bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整诊断结果如下：\n\n---\n\n## 诊断报告\n\n### 1. baseline_std (GPU 1) — 全部失败，零结果\n\n**两次运行都失败了：**\n- **第 1 次运行**（main.log 记录）：4 个 suite 全部 `ModuleNotFoundError: No module named 'robosuite'`\n- **第 2 次运行**（per-suite .log 记录，tee 覆写了 1st run 日志）：4 个 suite 全部 `OSError: Can't load processor for 'HuggingFaceTB/SmolVLM2-500M-Video-Instruct'`，根因是 `[Errno 101] Network is unreachable`\n\n**所有输出目录为空**（libero_spatial/, libero_object/, libero_goal/, libero_10/ 下均无文件）。GPU 1 完全空闲（1 MiB, 0%）。\n\n### 2. baseline_plus (GPU 0) — 前 3 个 suite 失败，libero_10 刚启动\n\n| Suite | 状态 | 说明 |\n|-------|------|------|\n| libero_spatial | FAILED | `OSError: Can't load processor` (网络不可达) |\n| libero_object | FAILED | 同上 |\n| libero_goal | FAILED | 同上，结束于 02:04:21 |\n| libero_10 | **正在启动** | PID 85315，GPU 5.4GB，已建好 10 个 env + 加载完 weights，正在加载 processor |\n\n**所有输出目录也为空**。libero_10 很可能也会因同样的 processor 下载错误而崩溃。\n\n### 3. 数据集下载\n- 正在下载 `lerobot/libero`，目前 570 MB（进度 ~84%/457 files），有间歇超时但在重试\n\n### 4. GPU 利用率\n- **GPU 0**: RTX PRO 6000 Blackwell, 5407 MiB / 97887 MiB, 0% util（刚加载完 weights）\n- **GPU 1**: RTX PRO 6000 Blackwell, 1 MiB / 97887 MiB, 0% util（完全空闲）\n\n### 5. 根因分析\n\n**两个 eval 脚本都缺少 AutoDL 网络配置**：\n```bash\n# 缺少这些关键行：\nsource /etc/network_turbo\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\nexport HF_HUB_DISABLE_XET=1\n```\n\neval 过程中 transformers 尝试从 HF Hub 下载 `SmolVLM2-500M-Video-Instruct` 的 `chat_template.jinja` 和 processor_config → 网络不可达 → 崩溃。模型权重能加载是因为已在本地缓存，但 processor 的额外文件缺失。\n\n### 6. 建议修复\n\n**方案 A（推荐）**：先用一个有网络的脚本把 processor 缓存到本地，然后离线跑 eval：\n```bash\n# 预缓存 processor\nsource /etc/network_turbo\nexport HF_HOME=/root/autodl-tmp/.hf_cache\npython3 -c \"from transformers import AutoProcessor; AutoProcessor.from_pretrained('HuggingFaceTB/SmolVLM2-500M-Video-Instruct', cache_dir='/root/autodl-tmp/.hf_cache')\"\n\n# 然后在 eval 脚本中加：\nexport HF_HUB_OFFLINE=1\n```\n\n**方案 B**：直接在 eval 脚本开头加 `source /etc/network_turbo` + SSL 证书环境变量。\n\n**需要重跑**：baseline_std 全部 4 个 suite + baseline_plus 的 spatial/object/goal（共 7 个 suite），libero_10 是否需要重跑取决于当前这次是否存活。\n\n是否现在执行修复？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-eval-output.md"
+}

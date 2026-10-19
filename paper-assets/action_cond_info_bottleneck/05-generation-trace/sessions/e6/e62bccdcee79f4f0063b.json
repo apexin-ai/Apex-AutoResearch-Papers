@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e62bccdcee79f4f0063b",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code v5 div reg eval prep",
+  "task_key": "worker_code_v5_div_reg_eval_prep_20260516T022906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v5_div_reg_eval_prep_20260516T022906_result.json",
+    "occurrence": 1,
+    "bytes": 104,
+    "sha256": "7f9546fcff9cb4e192b7dfb3d55304656bf1894920a836803d7b4ac7eb9d5679"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The dry-run is loading the SmolVLA backbone — I'll let it run and check back in ~4 min."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v5-div-reg-eval-prep.md"
+}

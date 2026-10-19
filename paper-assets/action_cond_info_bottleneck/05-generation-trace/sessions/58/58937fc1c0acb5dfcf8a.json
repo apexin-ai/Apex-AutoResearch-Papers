@@ -1,0 +1,1732 @@
+{
+  "schema_version": "1.0",
+  "id": "58937fc1c0acb5dfcf8a",
+  "project": "action_cond_info_bottleneck",
+  "kind": "worker",
+  "title": "ssh kill duplicate seed1 urgent 20260516T055054 retry1",
+  "task_key": "worker_ssh_kill-duplicate-seed1-urgent_20260516T055054_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-duplicate-seed1-urgent_20260516T055054_retry1.log",
+    "occurrence": 1,
+    "bytes": 108911,
+    "sha256": "6abc062c53f9ba673a607a679bb0c61598a6ee796ef3cdaad3768f88aaf9d8ed"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck",
+                "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-7[1m]",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a41ea425-e64c-40a7-81e7-21e8c7252d4e",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-action-cond-info-bottleneck/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778922000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "147eb8aa-fa4e-403a-af91-382187194080",
+                "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "EqYCClkIDRgCKkA0vK4OTpD595ggFolwW/RsxHKLKeIIyoQjgrMyw7cglY0136Xyp++WMTey5XPsuHdHSFFC6u8mkOR0hZNoRBLzMg9jbGF1ZGUtb3B1cy00LTc4ABIMraHSDA0wOKzDAJ7pGgw1LBVkNXytAHAU6AoiMP0Xuii92pNiNtazIZgLiYBo3/F4Inr+In5AlZncPS6bo+GiIYn6utMULxReY5snSyp7HsEjzXgFPL6UVP7rz20BStxLa7+Nbh3LSsvH0m7Tnb+herN/WzmuKuPXYxfcsKpXRxSgZeeVIqpz/3WQOAwWpJlfWR4/vTWijunLNFV1YPzSM/Mo3tSqXaANUR+Plq26V/peLyTKWXZggF1yaRtuLRKxN9vEChzaRK0gGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "7cb1055c-9893-461f-ae1b-46c1db27d0bc",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UamRr7J57HeFmfufuk4UTW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 14606,
+                "cache_read_input_tokens": 16241,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14606
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mfn5rii9VDBfX1SDfm1QGc",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__kill_job",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "bdbce771-0615-41bb-8291-5415724ae200",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UamRr7J57HeFmfufuk4UTW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 14606,
+                "cache_read_input_tokens": 16241,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14606
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T05:51:16.659Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Mfn5rii9VDBfX1SDfm1QGc",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__kill_job"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "8ab004c4-ec01-4e3e-bc26-37339d9c82df",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__kill_job"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__kill_job",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "EpoCClkIDRgCKkCd56MqTFO6BVXLtf3YpfavImGnMLkRQf77aNn/f5x0s/Vud/wYNs0GK+Ljm3ykWsjDQl7L3HGbPX6kCxvbyZ+vMg9jbGF1ZGUtb3B1cy00LTc4ABIM+IKMPuEkj2sexd4KGgyINaOWqdXqNV1BGsQiMBzJ6pk46UQ8auCQJ82n9CSJBaNo1Yc9Its2pTh9jm9EHKkkWkwkSv/FYWEOp4OE3ypvShZ/k5eW+1hUjvyYqblU2n4PMj5X+TakWiZdJgP1cH6vAnnNuTqf/ubHJorn/oDlMz/yD5pbXEd4X1x6qvRub//iTcjS+vpOFbyDFlqk7L+8lgMm+1O8q3+BHQ6Ub/DFrvge17rPn07/jy7UVyGPGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "ff722776-e032-4b63-9c10-da1e12330620",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_019nyTRgyQ9Yv5xUL4pfTRUc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 15838,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15838
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "tools_changed",
+                  "cache_missed_input_tokens": 28624
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ujj8DU52EFLcP4m87Erbu3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "ps -p 804479,804489,804490,804491 -o pid,lstart,args --no-headers",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "ffaae56d-de00-474f-8d16-f087648959eb",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_019nyTRgyQ9Yv5xUL4pfTRUc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 15838,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15838
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "tools_changed",
+                  "cache_missed_input_tokens": 28624
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T05:51:24.088Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ujj8DU52EFLcP4m87Erbu3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"804479 Sat May 16 13:43:02 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\n804489 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\n804490 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\n804491 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "7718cd8b-7535-41da-9650-90a4749beac2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"804479 Sat May 16 13:43:02 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\n804489 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\n804490 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\n804491 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"804479 Sat May 16 13:43:02 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\n804489 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\n804490 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\n804491 Sat May 16 13:43:03 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.32}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "de0e049c-215c-4d21-bef9-5b6b741c3c73",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01T3LCjxfCTEw6M3v2fT7fvp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1397,
+                "cache_read_input_tokens": 32172,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1397
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed 4 duplicates started at 13:43:02-03 on May 16, all writing to same `acib_v5_div_reg` output_dir. Killing now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "9bec6215-511e-4979-aa97-c8809266de3e",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01T3LCjxfCTEw6M3v2fT7fvp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1397,
+                "cache_read_input_tokens": 32172,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1397
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TPhhSAPRpvzxfCECJwLN9w",
+              "name": "mcp__agent-ml-research__kill_job",
+              "input": {
+                "server": "westb-13953",
+                "pid": "804479",
+                "reason": "Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "78503b66-5bb4-4016-8e21-9a8255982a25",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01T3LCjxfCTEw6M3v2fT7fvp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1397,
+                "cache_read_input_tokens": 32172,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1397
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HBvULHLjJHhuKtVz8wTSMH",
+              "name": "mcp__agent-ml-research__kill_job",
+              "input": {
+                "server": "westb-13953",
+                "pid": "804489",
+                "reason": "Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "6deb4cc9-2638-482d-a51d-b5dd0597894f",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01T3LCjxfCTEw6M3v2fT7fvp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1397,
+                "cache_read_input_tokens": 32172,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1397
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T05:51:32.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TPhhSAPRpvzxfCECJwLN9w",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"804479\\\", \\\"reason\\\": \\\"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "720f30ca-1a44-4133-9cd9-e15faaa5ae14",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"804479\\\", \\\"reason\\\": \\\"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.85}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"804479\", \"reason\": \"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.85}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U5B96W46Pp4HWTi4F2mc8k",
+              "name": "mcp__agent-ml-research__kill_job",
+              "input": {
+                "server": "westb-13953",
+                "pid": "804490",
+                "reason": "Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "beae5cc1-69d5-4995-9663-97ee31c6b1ff",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01T3LCjxfCTEw6M3v2fT7fvp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1397,
+                "cache_read_input_tokens": 32172,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1397
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016VSaRfZ5BjQjRCoo8XqG8D",
+              "name": "mcp__agent-ml-research__kill_job",
+              "input": {
+                "server": "westb-13953",
+                "pid": "804491",
+                "reason": "Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "fb5f3ae0-e75d-4f02-be5a-f38ae68742e5",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01T3LCjxfCTEw6M3v2fT7fvp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1397,
+                "cache_read_input_tokens": 32172,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1397
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T05:51:34.957Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HBvULHLjJHhuKtVz8wTSMH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"804489\\\", \\\"reason\\\": \\\"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "f42c3ff2-f114-427b-bcfc-9da80293be1f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"804489\\\", \\\"reason\\\": \\\"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.18}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"804489\", \"reason\": \"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.18}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T05:51:36.975Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U5B96W46Pp4HWTi4F2mc8k",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"804490\\\", \\\"reason\\\": \\\"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "ec07f52d-ff2f-41c3-8195-22f1690bc3ca",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"804490\\\", \\\"reason\\\": \\\"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.01}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"804490\", \"reason\": \"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T05:51:39.074Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016VSaRfZ5BjQjRCoo8XqG8D",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"804491\\\", \\\"reason\\\": \\\"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "ffd748fb-a76c-4368-9719-365888decbf8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"804491\\\", \\\"reason\\\": \\\"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.08}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"804491\", \"reason\": \"Duplicate seed1 process writing to acib_v5_div_reg, risk corrupting original checkpoint\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.08}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MSBtcSBtpioxFmNuAujP88",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "ps -eo pid,lstart,args --no-headers",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "ebc0c699-4197-4702-b619-7cae2c7232dc",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01K36kzgPFcf1rgQBZa1nbhT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1558,
+                "cache_read_input_tokens": 33569,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1558
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pqp5XqzPakkZQrVfYvUZRF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "ls -la /root/acib/outputs/acib_v5_div_reg/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "73564854-ae3d-4a2a-b5b8-1dc02648a9cd",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01K36kzgPFcf1rgQBZa1nbhT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1558,
+                "cache_read_input_tokens": 33569,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1558
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T05:51:43.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MSBtcSBtpioxFmNuAujP88",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1 Fri May 15 22:10:46 2026 bash /init/boot/boot.sh\\\\n   893 Fri May 15 22:10:49 2026 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\n   908 Fri May 15 22:10:49 2026 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\n   913 Fri May 15 22:10:49 2026 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\n   916 Fri May 15 22:10:49 2026 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\n   917 Fri May 15 22:10:49 2026 proxy -c /init/proxy/proxy.ini\\\\n   918 Fri May 15 22:10:49 2026 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\n   919 Fri May 15 22:10:49 2026 proxy -c /init/proxy/proxy-hot-backup.ini\\\\n  1014 Fri May 15 22:10:50 2026 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vcwlrgn4/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vcwlrgn4/startup_error\\\\n  2582 Fri May 15 22:53:41 2026 sshd: root@notty\\\\n109494 Sat May 16 03:38:32 2026 bash /root/acib/scripts/run_eval_plus_v2.sh\\\\n675231 Sat May 16 09:24:54 2026 /root/miniconda3/bin/python /root/miniconda3/bin/lerobot-eval --policy.path=lerobot/smolvla_libero_plus --env.type=libero --env.task=libero_10 --eval.n_episodes=50 --eval.batch_size=1 --env.max_parallel_tasks=1 --policy.empty_cameras=1 --rename_map={\\\\\\\"observation.images.image\\\\\\\": \\\\\\\"observation.images.camera1\\\\\\\", \\\\\\\"observation.images.image2\\\\\\\": \\\\\\\"observation.images.camera2\\\\\\\"} --output_dir=/root/acib/outputs/baseline_plus_v2/libero_10\\\\n682227 Sat May 16 09:30:25 2026 tmux new-session -d -s acib_v5_div_reg rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=0 && timeout 28800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && cd /root/acib && python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\\\\"'; } > ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log 2>&1\\\\n733603 Sat May 16 11:04:39 2026 bash -c rm -f /tmp/agent-ml-exit/mvp1_baseline_std_libero10.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/action_cond_info_bottleneck/mvp1_baseline_std_libero10.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/mvp1_baseline_std_libero10.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/acib && echo \\\\\\\\\\\\\\\"$(\\\\n\\\\n... [截断: 输出过长，省略 4532 字符] ...\\\\n\\\\neps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\\\\"\\\\n755664 Sat May 16 11:33:57 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n779136 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n779139 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n779140 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n779141 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n806816 Sat May 16 13:45:29 2026 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000 && cd /root/acib && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000' > /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/eval.log 2>&1 & echo \\\\\\\"EVAL_PID=$!\\\\\\\"\\\\n806823 Sat May 16 13:45:29 2026 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000\\\\n815828 Sat May 16 13:51:21 2026 sshd: root@notty\\\\n815830 Sat May 16 13:51:21 2026 sshd: root@notty\\\\n816555 Sat May 16 13:51:42 2026 ps -eo pid,lstart,args --no-headers\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "b191ab22-77a9-4e17-a330-d300691d1ad1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1 Fri May 15 22:10:46 2026 bash /init/boot/boot.sh\\\\n   893 Fri May 15 22:10:49 2026 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\n   908 Fri May 15 22:10:49 2026 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\n   913 Fri May 15 22:10:49 2026 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\n   916 Fri May 15 22:10:49 2026 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\n   917 Fri May 15 22:10:49 2026 proxy -c /init/proxy/proxy.ini\\\\n   918 Fri May 15 22:10:49 2026 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\n   919 Fri May 15 22:10:49 2026 proxy -c /init/proxy/proxy-hot-backup.ini\\\\n  1014 Fri May 15 22:10:50 2026 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vcwlrgn4/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vcwlrgn4/startup_error\\\\n  2582 Fri May 15 22:53:41 2026 sshd: root@notty\\\\n109494 Sat May 16 03:38:32 2026 bash /root/acib/scripts/run_eval_plus_v2.sh\\\\n675231 Sat May 16 09:24:54 2026 /root/miniconda3/bin/python /root/miniconda3/bin/lerobot-eval --policy.path=lerobot/smolvla_libero_plus --env.type=libero --env.task=libero_10 --eval.n_episodes=50 --eval.batch_size=1 --env.max_parallel_tasks=1 --policy.empty_cameras=1 --rename_map={\\\\\\\"observation.images.image\\\\\\\": \\\\\\\"observation.images.camera1\\\\\\\", \\\\\\\"observation.images.image2\\\\\\\": \\\\\\\"observation.images.camera2\\\\\\\"} --output_dir=/root/acib/outputs/baseline_plus_v2/libero_10\\\\n682227 Sat May 16 09:30:25 2026 tmux new-session -d -s acib_v5_div_reg rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=0 && timeout 28800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && cd /root/acib && python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\\\\\"'; } > ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log 2>&1\\\\n733603 Sat May 16 11:04:39 2026 bash -c rm -f /tmp/agent-ml-exit/mvp1_baseline_std_libero10.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/action_cond_info_bottleneck/mvp1_baseline_std_libero10.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/mvp1_baseline_std_libero10.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/acib && echo \\\\\\\\\\\\\\\"$(\\\\n\\\\n... [截断: 输出过长，省略 4532 字符] ...\\\\n\\\\neps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\\\\"\\\\n755664 Sat May 16 11:33:57 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n779136 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n779139 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n779140 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n779141 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\\n806816 Sat May 16 13:45:29 2026 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000 && cd /root/acib && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000' > /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/eval.log 2>&1 & echo \\\\\\\"EVAL_PID=$!\\\\\\\"\\\\n806823 Sat May 16 13:45:29 2026 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000\\\\n815828 Sat May 16 13:51:21 2026 sshd: root@notty\\\\n815830 Sat May 16 13:51:21 2026 sshd: root@notty\\\\n816555 Sat May 16 13:51:42 2026 ps -eo pid,lstart,args --no-headers\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"     1 Fri May 15 22:10:46 2026 bash /init/boot/boot.sh\\n   893 Fri May 15 22:10:49 2026 /bin/supervisord -c /init/supervisor/supervisor.ini\\n   908 Fri May 15 22:10:49 2026 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\n   913 Fri May 15 22:10:49 2026 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\n   916 Fri May 15 22:10:49 2026 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\n   917 Fri May 15 22:10:49 2026 proxy -c /init/proxy/proxy.ini\\n   918 Fri May 15 22:10:49 2026 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\n   919 Fri May 15 22:10:49 2026 proxy -c /init/proxy/proxy-hot-backup.ini\\n  1014 Fri May 15 22:10:50 2026 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vcwlrgn4/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vcwlrgn4/startup_error\\n  2582 Fri May 15 22:53:41 2026 sshd: root@notty\\n109494 Sat May 16 03:38:32 2026 bash /root/acib/scripts/run_eval_plus_v2.sh\\n675231 Sat May 16 09:24:54 2026 /root/miniconda3/bin/python /root/miniconda3/bin/lerobot-eval --policy.path=lerobot/smolvla_libero_plus --env.type=libero --env.task=libero_10 --eval.n_episodes=50 --eval.batch_size=1 --env.max_parallel_tasks=1 --policy.empty_cameras=1 --rename_map={\\\"observation.images.image\\\": \\\"observation.images.camera1\\\", \\\"observation.images.image2\\\": \\\"observation.images.camera2\\\"} --output_dir=/root/acib/outputs/baseline_plus_v2/libero_10\\n682227 Sat May 16 09:30:25 2026 tmux new-session -d -s acib_v5_div_reg rm -f /tmp/agent-ml-exit/acib_v5_div_reg.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/acib_v5_div_reg.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=0 && timeout 28800 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && cd /root/acib && python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg --seed 42 --diversity_lambda 0.1 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg\\\"'; } > ~/runs/action_cond_info_bottleneck/acib_v5_div_reg.log 2>&1\\n733603 Sat May 16 11:04:39 2026 bash -c rm -f /tmp/agent-ml-exit/mvp1_baseline_std_libero10.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/action_cond_info_bottleneck/mvp1_baseline_std_libero10.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/mvp1_baseline_std_libero10.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acib && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/acib && echo \\\\\\\"$(\\n\\n... [截断: 输出过长，省略 4532 字符] ...\\n\\neps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\\"\\n755664 Sat May 16 11:33:57 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\n779136 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\n779139 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\n779140 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\n779141 Sat May 16 13:03:44 2026 python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --top_k_ratio 0.8 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --gpu 0 --data_root /root/autodl-tmp/libero_dataset --output_dir /root/acib/outputs/acib_v5_div_reg_seed2 --seed 1337 --diversity_lambda 0.1 --lambda_ent 0 --wandb_project acib_mvp --wandb_run_name acib_v5_div_reg_seed2\\n806816 Sat May 16 13:45:29 2026 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000 && cd /root/acib && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000' > /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000/eval.log 2>&1 & echo \\\"EVAL_PID=$!\\\"\\n806823 Sat May 16 13:45:29 2026 python3 -u scripts/eval_acib.py --checkpoint_dir /root/acib/outputs/acib_v5_div_reg --checkpoint_step 10000 --base_model lerobot/smolvla_libero --suites libero_spatial libero_object libero_goal libero_10 --n_episodes 50 --gpu 0 --seed 42 --out_dir /root/acib/outputs/acib_v5_div_reg_eval_ckpt10000\\n815828 Sat May 16 13:51:21 2026 sshd: root@notty\\n815830 Sat May 16 13:51:21 2026 sshd: root@notty\\n816555 Sat May 16 13:51:42 2026 ps -eo pid,lstart,args --no-headers\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T05:51:44.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pqp5XqzPakkZQrVfYvUZRF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  4 root root   88 May 16 12:43 .\\\\ndrwxr-xr-x 17 root root 4096 May 16 13:45 ..\\\\ndrwxr-xr-x  2 root root   35 May 16 12:43 checkpoint-10000\\\\ndrwxr-xr-x  2 root root   35 May 16 11:02 checkpoint-5000\\\\n-rw-r--r--  1 root root  649 May 16 09:30 config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "c7911fb2-e86f-4d88-b4f0-84dd8e0c3089",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  4 root root   88 May 16 12:43 .\\\\ndrwxr-xr-x 17 root root 4096 May 16 13:45 ..\\\\ndrwxr-xr-x  2 root root   35 May 16 12:43 checkpoint-10000\\\\ndrwxr-xr-x  2 root root   35 May 16 11:02 checkpoint-5000\\\\n-rw-r--r--  1 root root  649 May 16 09:30 config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  4 root root   88 May 16 12:43 .\\ndrwxr-xr-x 17 root root 4096 May 16 13:45 ..\\ndrwxr-xr-x  2 root root   35 May 16 12:43 checkpoint-10000\\ndrwxr-xr-x  2 root root   35 May 16 11:02 checkpoint-5000\\n-rw-r--r--  1 root root  649 May 16 09:30 config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "5ee13434-4583-4eb0-a8c6-6cfb77977b7e",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_012K76HrUn4tzb2w2YRCvapG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5373,
+                "cache_read_input_tokens": 35127,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5373
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 seed1 duplicates killed. But I found **5 duplicate seed2 processes also running** — same pattern. Need user decision before killing those too."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "97a1cf42-a4dc-48d8-a027-4da6257a3105",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_012K76HrUn4tzb2w2YRCvapG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5373,
+                "cache_read_input_tokens": 35127,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5373
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RbsASwAHg16EYLzptNEG9m",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "ls -la /root/acib/outputs/acib_v5_div_reg_seed2/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "f9cbf96b-d37c-46ad-bc8c-68e72064f840",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_012K76HrUn4tzb2w2YRCvapG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5373,
+                "cache_read_input_tokens": 35127,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5373
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T05:52:02.586Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RbsASwAHg16EYLzptNEG9m",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 3 root root  60 May 16 13:18 .\\\\ndrwxr-xr-x 6 root root 130 May 16 11:40 ..\\\\ndrwxr-xr-x 2 root root  35 May 16 13:18 checkpoint-5000\\\\n-rw-r--r-- 1 root root 684 May 16 11:34 config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "8d631df0-8877-4958-9549-0f9961f15f50",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 3 root root  60 May 16 13:18 .\\\\ndrwxr-xr-x 6 root root 130 May 16 11:40 ..\\\\ndrwxr-xr-x 2 root root  35 May 16 13:18 checkpoint-5000\\\\n-rw-r--r-- 1 root root 684 May 16 11:34 config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 3 root root  60 May 16 13:18 .\\ndrwxr-xr-x 6 root root 130 May 16 11:40 ..\\ndrwxr-xr-x 2 root root  35 May 16 13:18 checkpoint-5000\\n-rw-r--r-- 1 root root 684 May 16 11:34 config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WbF1uUEf4HPGwu8WTtVvVC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "find /root/acib/outputs/acib_v5_div_reg/checkpoint-10000 -type f -printf \"%T@ %p %s\\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "7f475134-2457-483c-9051-654ad500b74f",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_012K76HrUn4tzb2w2YRCvapG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5373,
+                "cache_read_input_tokens": 35127,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5373
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T05:52:03.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WbF1uUEf4HPGwu8WTtVvVC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1778906603.6253604420 /root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt 1321117990\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "8fc87e18-e4d2-4e2f-b75c-31920d1c89f7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1778906603.6253604420 /root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt 1321117990\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"1778906603.6253604420 /root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt 1321117990\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fkse9nuJjBDXrmD9HdhmV2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "ls -la /root/runs/action_cond_info_bottleneck/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "ebda0c2c-c543-4cf8-b64a-1086234cfa6b",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_012K76HrUn4tzb2w2YRCvapG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5373,
+                "cache_read_input_tokens": 35127,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5373
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T05:52:04.977Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fkse9nuJjBDXrmD9HdhmV2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8252\\\\ndrwxr-xr-x 2 root root    4096 May 16 11:14 .\\\\ndrwxr-xr-x 3 root root      49 May 16 05:31 ..\\\\n-rw-r--r-- 1 root root    3297 May 16 08:04 acib_v3_train.log\\\\n-rw-r--r-- 1 root root    4891 May 16 09:48 acib_v4_agg_kl.log\\\\n-rw-r--r-- 1 root root   18787 May 16 13:51 acib_v5_div_reg.log\\\\n-rw-r--r-- 1 root root    8970 May 16 13:51 acib_v5_div_reg_seed2.log\\\\n-rw-r--r-- 1 root root    2013 May 16 11:14 acib_v5_div_reg_seed2_recovered.log\\\\n-rw-r--r-- 1 root root    2548 May 16 10:12 acib_v5_stopgrad_entropy.log\\\\n-rw-r--r-- 1 root root 7106249 May 16 13:52 mvp1_baseline_std_libero10.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "7576f4c3-7ea0-4153-a2aa-738dff314d5d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8252\\\\ndrwxr-xr-x 2 root root    4096 May 16 11:14 .\\\\ndrwxr-xr-x 3 root root      49 May 16 05:31 ..\\\\n-rw-r--r-- 1 root root    3297 May 16 08:04 acib_v3_train.log\\\\n-rw-r--r-- 1 root root    4891 May 16 09:48 acib_v4_agg_kl.log\\\\n-rw-r--r-- 1 root root   18787 May 16 13:51 acib_v5_div_reg.log\\\\n-rw-r--r-- 1 root root    8970 May 16 13:51 acib_v5_div_reg_seed2.log\\\\n-rw-r--r-- 1 root root    2013 May 16 11:14 acib_v5_div_reg_seed2_recovered.log\\\\n-rw-r--r-- 1 root root    2548 May 16 10:12 acib_v5_stopgrad_entropy.log\\\\n-rw-r--r-- 1 root root 7106249 May 16 13:52 mvp1_baseline_std_libero10.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8252\\ndrwxr-xr-x 2 root root    4096 May 16 11:14 .\\ndrwxr-xr-x 3 root root      49 May 16 05:31 ..\\n-rw-r--r-- 1 root root    3297 May 16 08:04 acib_v3_train.log\\n-rw-r--r-- 1 root root    4891 May 16 09:48 acib_v4_agg_kl.log\\n-rw-r--r-- 1 root root   18787 May 16 13:51 acib_v5_div_reg.log\\n-rw-r--r-- 1 root root    8970 May 16 13:51 acib_v5_div_reg_seed2.log\\n-rw-r--r-- 1 root root    2013 May 16 11:14 acib_v5_div_reg_seed2_recovered.log\\n-rw-r--r-- 1 root root    2548 May 16 10:12 acib_v5_stopgrad_entropy.log\\n-rw-r--r-- 1 root root 7106249 May 16 13:52 mvp1_baseline_std_libero10.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "56fde507-bcd8-4b57-adb2-66d107e4491d",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01YcAtXgUVN6uZ3DKa62QRpi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2438,
+                "cache_read_input_tokens": 40500,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2438
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JFUgyS1ALq5N2fnmha5p4H",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "tail -50 /root/runs/action_cond_info_bottleneck/acib_v5_div_reg_seed2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "21de8741-84bb-4005-8ac8-5bcffdbed390",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01YcAtXgUVN6uZ3DKa62QRpi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2438,
+                "cache_read_input_tokens": 40500,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2438
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T05:52:17.170Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JFUgyS1ALq5N2fnmha5p4H",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Step 1600/20000 | loss=0.0645 task=0.1013 ib=0.1464 div=-0.4219 β=0.0060 | 0.8 steps/s scorer_mean=0.562 std=0.422\\\\nStep 1700/20000 | loss=0.0563 task=0.0937 ib=0.1496 div=-0.4238 β=0.0070 | 0.8 steps/s scorer_mean=0.559 std=0.422\\\\nStep 1800/20000 | loss=0.0549 task=0.0935 ib=0.1427 div=-0.4277 β=0.0080 | 0.8 steps/s scorer_mean=0.566 std=0.428\\\\nStep 1900/20000 | loss=0.0487 task=0.0884 ib=0.1528 div=-0.4238 β=0.0090 | 0.8 steps/s scorer_mean=0.555 std=0.424\\\\nStep 2000/20000 | loss=0.0154 task=0.0541 ib=0.1565 div=-0.4297 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.430\\\\nStep 2100/20000 | loss=0.0429 task=0.0802 ib=0.1530 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.424\\\\nStep 2200/20000 | loss=0.0195 task=0.0581 ib=0.1558 div=-0.4316 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.430\\\\nStep 2300/20000 | loss=0.0441 task=0.0788 ib=0.1398 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.566 std=0.424\\\\nStep 2400/20000 | loss=0.0503 task=0.0909 ib=0.1497 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.434\\\\nStep 2500/20000 | loss=0.0569 task=0.0980 ib=0.1543 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\\\nStep 2600/20000 | loss=0.0466 task=0.0866 ib=0.1322 div=-0.4238 β=0.0100 | 0.8 steps/s scorer_mean=0.574 std=0.422\\\\nStep 2700/20000 | loss=0.0285 task=0.0700 ib=0.1594 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\nStep 2800/20000 | loss=0.0389 task=0.0772 ib=0.1469 div=-0.4277 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.426\\\\nStep 2900/20000 | loss=0.0308 task=0.0689 ib=0.1475 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.432\\\\nStep 3000/20000 | loss=0.0368 task=0.0748 ib=0.1434 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.434\\\\nStep 3100/20000 | loss=0.0320 task=0.0723 ib=0.1499 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\\\nStep 3200/20000 | loss=0.0231 task=0.0628 ib=0.1462 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.434\\\\nStep 3300/20000 | loss=0.0419 task=0.0835 ib=0.1561 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\nStep 3400/20000 | loss=0.0317 task=0.0699 ib=0.1401 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.566 std=0.424\\\\nStep 3500/20000 | loss=0.0033 task=0.0441 ib=0.1529 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.438\\\\nStep 3600/20000 | loss=0.0466 task=0.0872 ib=0.1594 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\nStep 3700/20000 | loss=0.0333 task=0.0748 ib=0.1535 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\\\nStep 3800/20000 | loss=0.0412 task=0.0801 ib=0.1528 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.436\\\\nStep 3900/20000 | loss=0.0657 task=0.1081 ib=0.1571 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\\\nStep 4000/20000 | loss=0.0066 task=0.0483 ib=0.1529 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\\\nStep 4100/20000 | loss=0.0400 task=0.0812 ib=0.1461 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.436\\\\nStep 4200/20000 | loss=0.0288 task=0.0676 ib=0.1487 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\\\nStep 4300/20000 | loss=0.0514 task=0.0930 ib=0.1502 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\\\nStep 4400/20000 | loss=0.0394 task=0.0801 ib=0.1497 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.438\\\\nStep 4500/20000 | loss=0.0436 task=0.0840 ib=0.1483 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\\\nStep 4600/20000 | loss=0.0401 task=0.0805 ib=0.1559 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\\\nStep 4700/20000 | loss=0.0107 task=0.0527 ib=0.1571 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\\\nStep 4800/20000 | loss=0.0294 task=0.0706 ib=0.1482 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.432\\\\nStep 4900/20000 | loss=0.0519 task=0.0934 ib=0.1556 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\\\nStep 5000/20000 | loss=0.0528 task=0.0936 ib=0.1600 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\n  Saved checkpoint to /root/acib/outputs/acib_v5_div_reg_seed2/checkpoint-5000\\\\nStep 5100/20000 | loss=0.0378 task=0.0790 ib=0.1584 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\\\nStep 5200/20000 | loss=0.0177 task=0.0593 ib=0.1512 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.439\\\\nStep 5300/20000 | loss=0.0259 task=0.0656 ib=0.1526 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.438\\\\nStep 5400/20000 | loss=0.0185 task=0.0570 ib=0.1578 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\\\nStep 5500/20000 | loss=0.0027 task=0.0427 ib=0.1570 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\nStep 5600/20000 | loss=0.0291 task=0.0716 ib=0.1537 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\\\nStep 5700/20000 | loss=0.0338 task=0.0748 ib=0.1623 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.447\\\\nStep 5800/20000 | loss=0.0386 task=0.0805 ib=0.1549 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\\\nStep 5900/20000 | loss=0.0148 task=0.0566 ib=0.1581 div=-0.4453 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.443\\\\nStep 6000/20000 | loss=0.0274 task=0.0695 ib=0.1599 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\\\nStep 6100/20000 | loss=0.0523 task=0.0935 ib=0.1535 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\\\nStep 6200/20000 | loss=0.0385 task=0.0812 ib=0.1608 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\\\nStep 6300/20000 | loss=0.0336 task=0.0748 ib=0.1567 div=-0.4453 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.443\\\\nStep 6400/20000 | loss=0.0205 task=0.0622 ib=0.1503 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.438\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "145e5c15-97da-46bc-b9a6-dd4de2f343d9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Step 1600/20000 | loss=0.0645 task=0.1013 ib=0.1464 div=-0.4219 β=0.0060 | 0.8 steps/s scorer_mean=0.562 std=0.422\\\\nStep 1700/20000 | loss=0.0563 task=0.0937 ib=0.1496 div=-0.4238 β=0.0070 | 0.8 steps/s scorer_mean=0.559 std=0.422\\\\nStep 1800/20000 | loss=0.0549 task=0.0935 ib=0.1427 div=-0.4277 β=0.0080 | 0.8 steps/s scorer_mean=0.566 std=0.428\\\\nStep 1900/20000 | loss=0.0487 task=0.0884 ib=0.1528 div=-0.4238 β=0.0090 | 0.8 steps/s scorer_mean=0.555 std=0.424\\\\nStep 2000/20000 | loss=0.0154 task=0.0541 ib=0.1565 div=-0.4297 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.430\\\\nStep 2100/20000 | loss=0.0429 task=0.0802 ib=0.1530 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.424\\\\nStep 2200/20000 | loss=0.0195 task=0.0581 ib=0.1558 div=-0.4316 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.430\\\\nStep 2300/20000 | loss=0.0441 task=0.0788 ib=0.1398 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.566 std=0.424\\\\nStep 2400/20000 | loss=0.0503 task=0.0909 ib=0.1497 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.434\\\\nStep 2500/20000 | loss=0.0569 task=0.0980 ib=0.1543 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\\\nStep 2600/20000 | loss=0.0466 task=0.0866 ib=0.1322 div=-0.4238 β=0.0100 | 0.8 steps/s scorer_mean=0.574 std=0.422\\\\nStep 2700/20000 | loss=0.0285 task=0.0700 ib=0.1594 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\nStep 2800/20000 | loss=0.0389 task=0.0772 ib=0.1469 div=-0.4277 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.426\\\\nStep 2900/20000 | loss=0.0308 task=0.0689 ib=0.1475 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.432\\\\nStep 3000/20000 | loss=0.0368 task=0.0748 ib=0.1434 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.434\\\\nStep 3100/20000 | loss=0.0320 task=0.0723 ib=0.1499 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\\\nStep 3200/20000 | loss=0.0231 task=0.0628 ib=0.1462 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.434\\\\nStep 3300/20000 | loss=0.0419 task=0.0835 ib=0.1561 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\nStep 3400/20000 | loss=0.0317 task=0.0699 ib=0.1401 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.566 std=0.424\\\\nStep 3500/20000 | loss=0.0033 task=0.0441 ib=0.1529 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.438\\\\nStep 3600/20000 | loss=0.0466 task=0.0872 ib=0.1594 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\nStep 3700/20000 | loss=0.0333 task=0.0748 ib=0.1535 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\\\nStep 3800/20000 | loss=0.0412 task=0.0801 ib=0.1528 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.436\\\\nStep 3900/20000 | loss=0.0657 task=0.1081 ib=0.1571 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\\\nStep 4000/20000 | loss=0.0066 task=0.0483 ib=0.1529 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\\\nStep 4100/20000 | loss=0.0400 task=0.0812 ib=0.1461 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.436\\\\nStep 4200/20000 | loss=0.0288 task=0.0676 ib=0.1487 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\\\nStep 4300/20000 | loss=0.0514 task=0.0930 ib=0.1502 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\\\nStep 4400/20000 | loss=0.0394 task=0.0801 ib=0.1497 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.438\\\\nStep 4500/20000 | loss=0.0436 task=0.0840 ib=0.1483 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\\\nStep 4600/20000 | loss=0.0401 task=0.0805 ib=0.1559 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\\\nStep 4700/20000 | loss=0.0107 task=0.0527 ib=0.1571 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\\\nStep 4800/20000 | loss=0.0294 task=0.0706 ib=0.1482 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.432\\\\nStep 4900/20000 | loss=0.0519 task=0.0934 ib=0.1556 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\\\nStep 5000/20000 | loss=0.0528 task=0.0936 ib=0.1600 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\n  Saved checkpoint to /root/acib/outputs/acib_v5_div_reg_seed2/checkpoint-5000\\\\nStep 5100/20000 | loss=0.0378 task=0.0790 ib=0.1584 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\\\nStep 5200/20000 | loss=0.0177 task=0.0593 ib=0.1512 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.439\\\\nStep 5300/20000 | loss=0.0259 task=0.0656 ib=0.1526 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.438\\\\nStep 5400/20000 | loss=0.0185 task=0.0570 ib=0.1578 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\\\nStep 5500/20000 | loss=0.0027 task=0.0427 ib=0.1570 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\\\nStep 5600/20000 | loss=0.0291 task=0.0716 ib=0.1537 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\\\nStep 5700/20000 | loss=0.0338 task=0.0748 ib=0.1623 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.447\\\\nStep 5800/20000 | loss=0.0386 task=0.0805 ib=0.1549 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\\\nStep 5900/20000 | loss=0.0148 task=0.0566 ib=0.1581 div=-0.4453 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.443\\\\nStep 6000/20000 | loss=0.0274 task=0.0695 ib=0.1599 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\\\nStep 6100/20000 | loss=0.0523 task=0.0935 ib=0.1535 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\\\nStep 6200/20000 | loss=0.0385 task=0.0812 ib=0.1608 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\\\nStep 6300/20000 | loss=0.0336 task=0.0748 ib=0.1567 div=-0.4453 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.443\\\\nStep 6400/20000 | loss=0.0205 task=0.0622 ib=0.1503 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.438\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Step 1600/20000 | loss=0.0645 task=0.1013 ib=0.1464 div=-0.4219 β=0.0060 | 0.8 steps/s scorer_mean=0.562 std=0.422\\nStep 1700/20000 | loss=0.0563 task=0.0937 ib=0.1496 div=-0.4238 β=0.0070 | 0.8 steps/s scorer_mean=0.559 std=0.422\\nStep 1800/20000 | loss=0.0549 task=0.0935 ib=0.1427 div=-0.4277 β=0.0080 | 0.8 steps/s scorer_mean=0.566 std=0.428\\nStep 1900/20000 | loss=0.0487 task=0.0884 ib=0.1528 div=-0.4238 β=0.0090 | 0.8 steps/s scorer_mean=0.555 std=0.424\\nStep 2000/20000 | loss=0.0154 task=0.0541 ib=0.1565 div=-0.4297 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.430\\nStep 2100/20000 | loss=0.0429 task=0.0802 ib=0.1530 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.424\\nStep 2200/20000 | loss=0.0195 task=0.0581 ib=0.1558 div=-0.4316 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.430\\nStep 2300/20000 | loss=0.0441 task=0.0788 ib=0.1398 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.566 std=0.424\\nStep 2400/20000 | loss=0.0503 task=0.0909 ib=0.1497 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.434\\nStep 2500/20000 | loss=0.0569 task=0.0980 ib=0.1543 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\nStep 2600/20000 | loss=0.0466 task=0.0866 ib=0.1322 div=-0.4238 β=0.0100 | 0.8 steps/s scorer_mean=0.574 std=0.422\\nStep 2700/20000 | loss=0.0285 task=0.0700 ib=0.1594 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\nStep 2800/20000 | loss=0.0389 task=0.0772 ib=0.1469 div=-0.4277 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.426\\nStep 2900/20000 | loss=0.0308 task=0.0689 ib=0.1475 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.432\\nStep 3000/20000 | loss=0.0368 task=0.0748 ib=0.1434 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.434\\nStep 3100/20000 | loss=0.0320 task=0.0723 ib=0.1499 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\nStep 3200/20000 | loss=0.0231 task=0.0628 ib=0.1462 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.434\\nStep 3300/20000 | loss=0.0419 task=0.0835 ib=0.1561 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\nStep 3400/20000 | loss=0.0317 task=0.0699 ib=0.1401 div=-0.4258 β=0.0100 | 0.8 steps/s scorer_mean=0.566 std=0.424\\nStep 3500/20000 | loss=0.0033 task=0.0441 ib=0.1529 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.438\\nStep 3600/20000 | loss=0.0466 task=0.0872 ib=0.1594 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\nStep 3700/20000 | loss=0.0333 task=0.0748 ib=0.1535 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\nStep 3800/20000 | loss=0.0412 task=0.0801 ib=0.1528 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.436\\nStep 3900/20000 | loss=0.0657 task=0.1081 ib=0.1571 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\nStep 4000/20000 | loss=0.0066 task=0.0483 ib=0.1529 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\nStep 4100/20000 | loss=0.0400 task=0.0812 ib=0.1461 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.562 std=0.436\\nStep 4200/20000 | loss=0.0288 task=0.0676 ib=0.1487 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\nStep 4300/20000 | loss=0.0514 task=0.0930 ib=0.1502 div=-0.4375 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\nStep 4400/20000 | loss=0.0394 task=0.0801 ib=0.1497 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.438\\nStep 4500/20000 | loss=0.0436 task=0.0840 ib=0.1483 div=-0.4355 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.436\\nStep 4600/20000 | loss=0.0401 task=0.0805 ib=0.1559 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.439\\nStep 4700/20000 | loss=0.0107 task=0.0527 ib=0.1571 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\nStep 4800/20000 | loss=0.0294 task=0.0706 ib=0.1482 div=-0.4336 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.432\\nStep 4900/20000 | loss=0.0519 task=0.0934 ib=0.1556 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\nStep 5000/20000 | loss=0.0528 task=0.0936 ib=0.1600 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\n  Saved checkpoint to /root/acib/outputs/acib_v5_div_reg_seed2/checkpoint-5000\\nStep 5100/20000 | loss=0.0378 task=0.0790 ib=0.1584 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.441\\nStep 5200/20000 | loss=0.0177 task=0.0593 ib=0.1512 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.439\\nStep 5300/20000 | loss=0.0259 task=0.0656 ib=0.1526 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.438\\nStep 5400/20000 | loss=0.0185 task=0.0570 ib=0.1578 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\nStep 5500/20000 | loss=0.0027 task=0.0427 ib=0.1570 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.439\\nStep 5600/20000 | loss=0.0291 task=0.0716 ib=0.1537 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\nStep 5700/20000 | loss=0.0338 task=0.0748 ib=0.1623 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.447\\nStep 5800/20000 | loss=0.0386 task=0.0805 ib=0.1549 div=-0.4434 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\nStep 5900/20000 | loss=0.0148 task=0.0566 ib=0.1581 div=-0.4453 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.443\\nStep 6000/20000 | loss=0.0274 task=0.0695 ib=0.1599 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\nStep 6100/20000 | loss=0.0523 task=0.0935 ib=0.1535 div=-0.4414 β=0.0100 | 0.8 steps/s scorer_mean=0.555 std=0.441\\nStep 6200/20000 | loss=0.0385 task=0.0812 ib=0.1608 div=-0.4473 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.445\\nStep 6300/20000 | loss=0.0336 task=0.0748 ib=0.1567 div=-0.4453 β=0.0100 | 0.8 steps/s scorer_mean=0.551 std=0.443\\nStep 6400/20000 | loss=0.0205 task=0.0622 ib=0.1503 div=-0.4395 β=0.0100 | 0.8 steps/s scorer_mean=0.559 std=0.438\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dp4opZiRjXEhSwHwpvB1sf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "tail -50 /root/runs/action_cond_info_bottleneck/acib_v5_div_reg.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "fbff1e9f-ffde-44d2-8722-32dd764ac1d6",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01YcAtXgUVN6uZ3DKa62QRpi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2438,
+                "cache_read_input_tokens": 40500,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2438
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BGFtqNUmR7tWwAe17Y9z95",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13953",
+                "command": "find /root/acib/outputs/acib_v5_div_reg_seed2/checkpoint-5000 -type f -printf \"%T@ %p %s\\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "3aa10aa6-bd33-43c6-9bc9-3d9295cb5f7f",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01YcAtXgUVN6uZ3DKa62QRpi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2438,
+                "cache_read_input_tokens": 40500,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2438
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T05:52:18.771Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dp4opZiRjXEhSwHwpvB1sf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Step 11100/20000 | loss=0.0077 task=0.0491 ib=0.1602 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\\\nStep 11200/20000 | loss=0.0026 task=0.0450 ib=0.1574 div=-0.4453 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.443\\\\nStep 11300/20000 | loss=0.0188 task=0.0609 ib=0.1560 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\\\nStep 11400/20000 | loss=-0.0029 task=0.0396 ib=0.1597 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\\\nStep 11500/20000 | loss=0.0222 task=0.0653 ib=0.1656 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.449\\\\nStep 11600/20000 | loss=-0.0038 task=0.0385 ib=0.1574 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\\\nStep 11700/20000 | loss=0.0010 task=0.0440 ib=0.1680 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.451\\\\nStep 11800/20000 | loss=0.0085 task=0.0513 ib=0.1630 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\\\nStep 11900/20000 | loss=0.0287 task=0.0703 ib=0.1620 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.449\\\\nStep 12000/20000 | loss=-0.0011 task=0.0421 ib=0.1676 div=-0.4531 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.451\\\\nStep 12100/20000 | loss=-0.0124 task=0.0303 ib=0.1614 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\\\nStep 12200/20000 | loss=0.0186 task=0.0613 ib=0.1571 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\\\nStep 12300/20000 | loss=-0.0073 task=0.0353 ib=0.1589 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\\\nStep 12400/20000 | loss=0.0241 task=0.0673 ib=0.1661 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.449\\\\nStep 12500/20000 | loss=-0.0081 task=0.0345 ib=0.1631 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\\\nStep 12600/20000 | loss=0.0207 task=0.0620 ib=0.1612 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\\\nStep 12700/20000 | loss=-0.0010 task=0.0418 ib=0.1581 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\\\nStep 12800/20000 | loss=0.0100 task=0.0514 ib=0.1636 div=-0.4512 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.449\\\\nStep 12900/20000 | loss=-0.0168 task=0.0241 ib=0.1638 div=-0.4512 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.449\\\\nStep 13000/20000 | loss=-0.0130 task=0.0302 ib=0.1676 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\\\nStep 13100/20000 | loss=-0.0094 task=0.0340 ib=0.1657 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\\\nStep 13200/20000 | loss=-0.0056 task=0.0377 ib=0.1677 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/acib/scripts/train_acib.py\\\\\\\", line 374, in <module>\\\\n    }, ckpt_dir / \\\\\\\"checkpoint.pt\\\\\\\")\\\\n^^^^^^^\\\\n  File \\\\\\\"/root/acib/scripts/train_acib.py\\\\\\\", line 295, in train\\\\n    \\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1776, in _wrapped_call_impl\\\\n    return self._call_impl(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1787, in _call_impl\\\\n    return forward_call(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/acib/acib/acib_policy.py\\\\\\\", line 58, in forward\\\\n    scores_perturbed = self._score_perturbed(batch)\\\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\\\\\", line 379, in forward\\\\n    losses = self.model.forward(images, img_masks, lang_tokens, lang_masks, state, actions, noise, time)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\\\\\", line 776, in forward\\\\n    prefix_embs, prefix_pad_masks, prefix_att_masks = self.embed_prefix(\\\\n                                                      ^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\\\\\", line 659, in embed_prefix\\\\n    img_emb = img_emb * torch.tensor(img_emb_dim**0.5, dtype=img_emb.dtype, device=img_emb.device)\\\\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/utils/data/_utils/signal_handling.py\\\\\\\", line 73, in handler\\\\n    _error_if_any_worker_fails()\\\\nRuntimeError: DataLoader worker (pid 804479) is killed by signal: Terminated. \\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "9d863d8c-9357-4f91-b76a-855102115828",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Step 11100/20000 | loss=0.0077 task=0.0491 ib=0.1602 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\\\nStep 11200/20000 | loss=0.0026 task=0.0450 ib=0.1574 div=-0.4453 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.443\\\\nStep 11300/20000 | loss=0.0188 task=0.0609 ib=0.1560 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\\\nStep 11400/20000 | loss=-0.0029 task=0.0396 ib=0.1597 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\\\nStep 11500/20000 | loss=0.0222 task=0.0653 ib=0.1656 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.449\\\\nStep 11600/20000 | loss=-0.0038 task=0.0385 ib=0.1574 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\\\nStep 11700/20000 | loss=0.0010 task=0.0440 ib=0.1680 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.451\\\\nStep 11800/20000 | loss=0.0085 task=0.0513 ib=0.1630 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\\\nStep 11900/20000 | loss=0.0287 task=0.0703 ib=0.1620 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.449\\\\nStep 12000/20000 | loss=-0.0011 task=0.0421 ib=0.1676 div=-0.4531 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.451\\\\nStep 12100/20000 | loss=-0.0124 task=0.0303 ib=0.1614 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\\\nStep 12200/20000 | loss=0.0186 task=0.0613 ib=0.1571 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\\\nStep 12300/20000 | loss=-0.0073 task=0.0353 ib=0.1589 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\\\nStep 12400/20000 | loss=0.0241 task=0.0673 ib=0.1661 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.449\\\\nStep 12500/20000 | loss=-0.0081 task=0.0345 ib=0.1631 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\\\nStep 12600/20000 | loss=0.0207 task=0.0620 ib=0.1612 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\\\nStep 12700/20000 | loss=-0.0010 task=0.0418 ib=0.1581 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\\\nStep 12800/20000 | loss=0.0100 task=0.0514 ib=0.1636 div=-0.4512 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.449\\\\nStep 12900/20000 | loss=-0.0168 task=0.0241 ib=0.1638 div=-0.4512 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.449\\\\nStep 13000/20000 | loss=-0.0130 task=0.0302 ib=0.1676 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\\\nStep 13100/20000 | loss=-0.0094 task=0.0340 ib=0.1657 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\\\nStep 13200/20000 | loss=-0.0056 task=0.0377 ib=0.1677 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/acib/scripts/train_acib.py\\\\\\\", line 374, in <module>\\\\n    }, ckpt_dir / \\\\\\\"checkpoint.pt\\\\\\\")\\\\n^^^^^^^\\\\n  File \\\\\\\"/root/acib/scripts/train_acib.py\\\\\\\", line 295, in train\\\\n    \\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1776, in _wrapped_call_impl\\\\n    return self._call_impl(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1787, in _call_impl\\\\n    return forward_call(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/acib/acib/acib_policy.py\\\\\\\", line 58, in forward\\\\n    scores_perturbed = self._score_perturbed(batch)\\\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\\\\\", line 379, in forward\\\\n    losses = self.model.forward(images, img_masks, lang_tokens, lang_masks, state, actions, noise, time)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\\\\\", line 776, in forward\\\\n    prefix_embs, prefix_pad_masks, prefix_att_masks = self.embed_prefix(\\\\n                                                      ^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\\\\\", line 659, in embed_prefix\\\\n    img_emb = img_emb * torch.tensor(img_emb_dim**0.5, dtype=img_emb.dtype, device=img_emb.device)\\\\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/utils/data/_utils/signal_handling.py\\\\\\\", line 73, in handler\\\\n    _error_if_any_worker_fails()\\\\nRuntimeError: DataLoader worker (pid 804479) is killed by signal: Terminated. \\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Step 11100/20000 | loss=0.0077 task=0.0491 ib=0.1602 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\nStep 11200/20000 | loss=0.0026 task=0.0450 ib=0.1574 div=-0.4453 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.443\\nStep 11300/20000 | loss=0.0188 task=0.0609 ib=0.1560 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\nStep 11400/20000 | loss=-0.0029 task=0.0396 ib=0.1597 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\nStep 11500/20000 | loss=0.0222 task=0.0653 ib=0.1656 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.449\\nStep 11600/20000 | loss=-0.0038 task=0.0385 ib=0.1574 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\nStep 11700/20000 | loss=0.0010 task=0.0440 ib=0.1680 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.451\\nStep 11800/20000 | loss=0.0085 task=0.0513 ib=0.1630 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\nStep 11900/20000 | loss=0.0287 task=0.0703 ib=0.1620 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.449\\nStep 12000/20000 | loss=-0.0011 task=0.0421 ib=0.1676 div=-0.4531 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.451\\nStep 12100/20000 | loss=-0.0124 task=0.0303 ib=0.1614 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\nStep 12200/20000 | loss=0.0186 task=0.0613 ib=0.1571 div=-0.4473 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.445\\nStep 12300/20000 | loss=-0.0073 task=0.0353 ib=0.1589 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\nStep 12400/20000 | loss=0.0241 task=0.0673 ib=0.1661 div=-0.4512 β=0.0100 | 0.9 steps/s scorer_mean=0.543 std=0.449\\nStep 12500/20000 | loss=-0.0081 task=0.0345 ib=0.1631 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\nStep 12600/20000 | loss=0.0207 task=0.0620 ib=0.1612 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.547 std=0.447\\nStep 12700/20000 | loss=-0.0010 task=0.0418 ib=0.1581 div=-0.4492 β=0.0100 | 0.9 steps/s scorer_mean=0.551 std=0.447\\nStep 12800/20000 | loss=0.0100 task=0.0514 ib=0.1636 div=-0.4512 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.449\\nStep 12900/20000 | loss=-0.0168 task=0.0241 ib=0.1638 div=-0.4512 β=0.0100 | 0.8 steps/s scorer_mean=0.547 std=0.449\\nStep 13000/20000 | loss=-0.0130 task=0.0302 ib=0.1676 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\nStep 13100/20000 | loss=-0.0094 task=0.0340 ib=0.1657 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\nStep 13200/20000 | loss=-0.0056 task=0.0377 ib=0.1677 div=-0.4531 β=0.0100 | 0.8 steps/s scorer_mean=0.543 std=0.451\\nTraceback (most recent call last):\\n  File \\\"/root/acib/scripts/train_acib.py\\\", line 374, in <module>\\n    }, ckpt_dir / \\\"checkpoint.pt\\\")\\n^^^^^^^\\n  File \\\"/root/acib/scripts/train_acib.py\\\", line 295, in train\\n    \\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1776, in _wrapped_call_impl\\n    return self._call_impl(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1787, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/acib/acib/acib_policy.py\\\", line 58, in forward\\n    scores_perturbed = self._score_perturbed(batch)\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\", line 379, in forward\\n    losses = self.model.forward(images, img_masks, lang_tokens, lang_masks, state, actions, noise, time)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\", line 776, in forward\\n    prefix_embs, prefix_pad_masks, prefix_att_masks = self.embed_prefix(\\n                                                      ^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lerobot/policies/smolvla/modeling_smolvla.py\\\", line 659, in embed_prefix\\n    img_emb = img_emb * torch.tensor(img_emb_dim**0.5, dtype=img_emb.dtype, device=img_emb.device)\\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/utils/data/_utils/signal_handling.py\\\", line 73, in handler\\n    _error_if_any_worker_fails()\\nRuntimeError: DataLoader worker (pid 804479) is killed by signal: Terminated. \\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T05:52:19.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BGFtqNUmR7tWwAe17Y9z95",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1778908712.6744789910 /root/acib/outputs/acib_v5_div_reg_seed2/checkpoint-5000/checkpoint.pt 1321118054\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "2949a6fc-d6c7-493d-a34d-5fe14b6ba5e3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1778908712.6744789910 /root/acib/outputs/acib_v5_div_reg_seed2/checkpoint-5000/checkpoint.pt 1321118054\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"1778908712.6744789910 /root/acib/outputs/acib_v5_div_reg_seed2/checkpoint-5000/checkpoint.pt 1321118054\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "41495290-1050-4c45-9b4d-4313a6aecfc0",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01VbNLv9i4xraVuuuBNcpL6M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8131,
+                "cache_read_input_tokens": 42938,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8131
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**严重发现：我可能误杀了正常运行的 seed1 训练，那 4 个不是重复进程而是 DataLoader workers。**\n\n## 关键证据\n\n1. **日志显示 seed1 训练在被 kill 之前正常进行到 step 13200**（`acib_v5_div_reg.log` 最后 50 行）\n2. **崩溃错误明确说明 PID 804479 是 DataLoader worker**：\n   ```\n   RuntimeError: DataLoader worker (pid 804479) is killed by signal: Terminated.\n   EXIT_CODE=1\n   ```\n3. **4 个 PID 在 1 秒内启动**（13:43:02-03），符合 PyTorch DataLoader spawn workers 的模式（每 epoch 重新创建非 persistent workers）\n4. **命令行完全一致**正是 fork DataLoader workers 继承父进程 argv 的典型表现\n\n## 当前状态\n\n- ✅ **Checkpoint 完整**：`/root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt` mtime 12:43，在我 kill 之前已写完；checkpoint-5000 也完整\n- ❌ **Seed1 训练已死**：因 DataLoader workers 被 kill 而 RuntimeError 退出，已无 train_acib 主进程\n- 训练进度损失：step 13200/20000，但有 checkpoint-10000 可恢复\n- 评估进程 806823（基于 ckpt-10000）仍在跑，不受影响\n\n## ⚠️ Seed2 同样模式，先不要 kill\n\n```\nPID 755664（11:33 启动） — seed2 主进程\nPID 779136/779139/779140/779141（13:03 启动）— 几乎肯定是 seed2 的 DataLoader workers\n```\n\nseed2 日志显示训练正常进行到 step 6400（最后修改 13:51），主进程 755664 活着。如果按 seed1 同样逻辑 kill 那 4 个 PID，会再次杀掉一个正常训练。\n\n## 根因推测\n\n- DataLoader 使用 `num_workers=3-4` 且 `persistent_workers=False`，每个 epoch 结束时重新 spawn workers，新 worker PID 看起来像\"重复进程\"\n- 之前 Worker 误判过 v4/v5 overlap、seed2 first duplicate 等\"重复进程\"问题，很可能都是同样的误判\n\n## 建议\n\n1. **不要 kill seed2 的 779136/779139/779140/779141**，否则 seed2 也会死\n2. 从 checkpoint-10000 恢复 seed1 训练（继续跑剩余 10000 步）\n3. 修订 C001 约束：检查\"重复进程\"前必须先看进程父子关系（`ps -o pid,ppid,args`），区分 DataLoader workers 和真正的 duplicate runs\n\n需要我执行恢复 seed1 训练吗？还是先核实进程关系？"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "uuid": "b36c1107-65bf-4559-8727-947f3b7a5057",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01VbNLv9i4xraVuuuBNcpL6M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8131,
+                "cache_read_input_tokens": 42938,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8131
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**严重发现：我可能误杀了正常运行的 seed1 训练，那 4 个不是重复进程而是 DataLoader workers。**\n\n## 关键证据\n\n1. **日志显示 seed1 训练在被 kill 之前正常进行到 step 13200**（`acib_v5_div_reg.log` 最后 50 行）\n2. **崩溃错误明确说明 PID 804479 是 DataLoader worker**：\n   ```\n   RuntimeError: DataLoader worker (pid 804479) is killed by signal: Terminated.\n   EXIT_CODE=1\n   ```\n3. **4 个 PID 在 1 秒内启动**（13:43:02-03），符合 PyTorch DataLoader spawn workers 的模式（每 epoch 重新创建非 persistent workers）\n4. **命令行完全一致**正是 fork DataLoader workers 继承父进程 argv 的典型表现\n\n## 当前状态\n\n- ✅ **Checkpoint 完整**：`/root/acib/outputs/acib_v5_div_reg/checkpoint-10000/checkpoint.pt` mtime 12:43，在我 kill 之前已写完；checkpoint-5000 也完整\n- ❌ **Seed1 训练已死**：因 DataLoader workers 被 kill 而 RuntimeError 退出，已无 train_acib 主进程\n- 训练进度损失：step 13200/20000，但有 checkpoint-10000 可恢复\n- 评估进程 806823（基于 ckpt-10000）仍在跑，不受影响\n\n## ⚠️ Seed2 同样模式，先不要 kill\n\n```\nPID 755664（11:33 启动） — seed2 主进程\nPID 779136/779139/779140/779141（13:03 启动）— 几乎肯定是 seed2 的 DataLoader workers\n```\n\nseed2 日志显示训练正常进行到 step 6400（最后修改 13:51），主进程 755664 活着。如果按 seed1 同样逻辑 kill 那 4 个 PID，会再次杀掉一个正常训练。\n\n## 根因推测\n\n- DataLoader 使用 `num_workers=3-4` 且 `persistent_workers=False`，每个 epoch 结束时重新 spawn workers，新 worker PID 看起来像\"重复进程\"\n- 之前 Worker 误判过 v4/v5 overlap、seed2 first duplicate 等\"重复进程\"问题，很可能都是同样的误判\n\n## 建议\n\n1. **不要 kill seed2 的 779136/779139/779140/779141**，否则 seed2 也会死\n2. 从 checkpoint-10000 恢复 seed1 训练（继续跑剩余 10000 步）\n3. 修订 C001 约束：检查\"重复进程\"前必须先看进程父子关系（`ps -o pid,ppid,args`），区分 DataLoader workers 和真正的 duplicate runs\n\n需要我执行恢复 seed1 训练吗？还是先核实进程关系？"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 164290,
+            "duration_api_ms": 154687,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "713c5c84-b77e-4c24-8762-c354dfc568d9",
+            "total_cost_usd": 0.67830375,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 49341,
+              "cache_read_input_tokens": 216881,
+              "output_tokens": 10398,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 49341,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 6477,
+                  "cache_read_input_tokens": 42938,
+                  "cache_creation_input_tokens": 8131,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 8131
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1372,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001447,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-7[1m]": {
+                "inputTokens": 17,
+                "outputTokens": 10398,
+                "cacheReadInputTokens": 216881,
+                "cacheCreationInputTokens": 49341,
+                "webSearchRequests": 0,
+                "costUSD": 0.67685675,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "1ab3ba7c-facb-4408-afd3-7e917834b425"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-kill-duplicate-seed1-urgent-20260516t055054-retry1.md"
+}

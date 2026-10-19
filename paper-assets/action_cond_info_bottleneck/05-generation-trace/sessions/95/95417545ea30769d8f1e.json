@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95417545ea30769d8f1e",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code fix data root argparse",
+  "task_key": "worker_code_fix_data_root_argparse_20260515T212741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_data_root_argparse_20260515T212741_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "ddd8e5e7af7a5fdc8cb354d736c5191658056379fb45b80b4cb0457783dc8fa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n### 结果\n\n**问题确认**：`train_acib.py` 的 argparse 确实没有定义 `--data_root`，而 `run_acib_v3_train.sh` 第30行传了 `--data_root=/root/autodl-tmp/libero_dataset`，启动会直接崩溃。\n\n**修复内容**（两处改动）：\n\n1. **第56-57行** — `parse_args()` 中新增参数定义：\n   ```python\n   parser.add_argument(\"--data_root\", type=str, default=None,\n                       help=\"Root directory for dataset cache/storage\")\n   ```\n\n2. **第137行** — `build_dataloader()` 中将 `data_root` 传递给 `LeRobotDataset` 的 `root` 参数：\n   ```python\n   dataset = LeRobotDataset(args.dataset_id, root=args.data_root)\n   ```\n\n**`--help` 验证**：`--data_root DATA_ROOT` 正常出现，全部参数解析无错误。阻塞项已消除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-data-root-argparse.md"
+}

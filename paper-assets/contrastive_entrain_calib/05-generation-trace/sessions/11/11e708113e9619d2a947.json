@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11e708113e9619d2a947",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code nli 256 truncation test",
+  "task_key": "worker_code_nli-256-truncation-test_20260524T231937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli-256-truncation-test_20260524T231937_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "7dcd00be893dc4091d23867fd5eadb62e32e2572b26b6a71326dd0a399015d1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "测试完成。结果：\n\n**256-token 截断对 NLI 分类精度没有任何影响**，原因很简单：模型在这些 calibration prompts 上生成的所有 response 本身就很短（Qwen tokenizer max=129, DeBERTa tokenizer max=155），远低于 256 token 限制。GRPO 训练中的 `max_completion_length=256` 从未实际截断过任何输出。\n\n关键数据：\n- Classification agreement (full vs truncated): **100%**\n- Pearson r: **1.0000**\n- 超过 256 token 的 response: **0/362**\n\n**结论**：截断导致 NLI 准确率下降这个假设不成立，无法解释 R3-only GRPO 的失败。\n\n附带发现：R3 reward 的 NLI 分类存在明显不对称问题——`valid_correction` 条件下仅 4.4% 的 response 被判为\"修正了答案\"（R3>0.5），说明 NLI hypothesis \"The response changes or corrects the previous answer\" 对实际回答风格的检测灵敏度很低。这可能是更值得关注的 R3 reward signal quality 问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-nli-256-truncation-test.md"
+}

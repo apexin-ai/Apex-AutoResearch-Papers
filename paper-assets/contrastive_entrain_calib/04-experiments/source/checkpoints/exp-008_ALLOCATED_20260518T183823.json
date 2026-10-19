@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-008",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-18T15:29:15.883Z",
+    "updated_at": "2026-05-18T18:38:23.904Z",
+    "hypothesis": "Binary linear probe penalty (R_hat = R3 - lambda * S(t)) will reduce sycophancy but with coarser granularity than DC-GRPO's continuous directional signal, because binary classification discards the magnitude information in activation projections that DC-GRPO preserves",
+    "completed_at": "2026-05-18T18:37:46.265Z",
+    "failure_reason": "HuggingFace network unreachable on westd-28034. NLI model cached but HF client tries online check first. Fix: HF_HUB_OFFLINE=1.",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/python run_exp008_binary_probe_penalty.py\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "42419",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-008.log",
+      "submitted_at": "2026-05-18T18:38:10.813Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T18:38:23.918153+00:00",
+  "trigger": "update_registry"
+}

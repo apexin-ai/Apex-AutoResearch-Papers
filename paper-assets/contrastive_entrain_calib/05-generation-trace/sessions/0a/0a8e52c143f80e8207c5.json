@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "0a8e52c143f80e8207c5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper fig1a aspect ratio fix",
+  "task_key": "worker_paper_fig1a-aspect-ratio-fix_20260525T165254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1a-aspect-ratio-fix_20260525T165254_result.json",
+    "occurrence": 1,
+    "bytes": 2134543,
+    "sha256": "d5f0d17784d0d25c46b6a910106781d071569b71efcc6dea96896207fe3ddf34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "0a8e52c143f80e8207c5-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1a-aspect-ratio-fix.md"
+}

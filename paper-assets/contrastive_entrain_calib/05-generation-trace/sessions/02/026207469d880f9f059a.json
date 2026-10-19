@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "026207469d880f9f059a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis act activation drift",
+  "task_key": "worker_analysis_act-activation-drift_20260520T234652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_act-activation-drift_20260520T234652_result.json",
+    "occurrence": 1,
+    "bytes": 1439,
+    "sha256": "cca03eae535ec8f2ccf5755082246a035f0994d00997311b06564fb0e2633546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出已生成。结果摘要：\n\n### exp-004 ACT Activation Drift 结果\n\n| 指标 | ckpt-4000 (dip) | ckpt-5000 (recovery) | Δ |\n|---|---|---|---|\n| proj_user AUROC | 0.3189 | 0.3203 | **+0.0014** |\n| proj_asst AUROC | 0.3337 | 0.3467 | **+0.0130** |\n| proj_user mean_diff | -2.525 | -2.423 | +0.103 |\n| proj_asst mean_diff | -0.410 | -0.304 | +0.106 |\n\n### ACT vs GRPO 对比\n\n| | ACT (exp-004) | GRPO (exp-003) |\n|---|---|---|\n| proj_user AUROC shift | **+0.0014** (恢复) | **-0.0073** (继续退化) |\n| proj_asst AUROC shift | **+0.0130** (恢复) | **-0.0038** (继续退化) |\n| AUROC 恢复? | **Yes** | **No** |\n\n### 关键发现\n\n1. **ACT 的 d_syc 方向投影 AUROC 在 dip→recovery 过程中轻微恢复**（+0.0014 user, +0.0130 asst），而 GRPO 持续下降（-0.0073, -0.0038）。这与 SYCONScore 的行为一致。\n\n2. **ACT 的 AUROC 绝对值远高于 GRPO**（0.32-0.35 vs 0.16-0.23），说明 ACT 训练后模型在 L19 对 valid/invalid 的表征分离度比 GRPO 更强。\n\n3. **Drift 幅度较小**：Wasserstein 距离仅 0.15-0.22，说明 ACT 的 ckpt-4000→5000 之间激活变化平缓，不像 GRPO 那样发生剧烈表征漂移。\n\n产出文件：\n- `projection_stats.json` — 完整统计\n- `comparison_with_grpo.json` — ACT vs GRPO 对比\n- `projection_histogram.png` — 4-panel 可视化\n- `raw_projections.json` — 原始投影数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-act-activation-drift.md"
+}

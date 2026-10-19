@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8b783ed507d04b8888e",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh v72 status and probe a",
+  "task_key": "worker_ssh_v72-status-and-probe-a_20260517T124629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_v72-status-and-probe-a_20260517T124629_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "ab9d89b268e2dd48855eb274d9768d4787796587ae797283014b162d03aac0fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态：仍在跑\n\n| | Seed 1 | Seed 2 |\n|---|---|---|\n| **当前 step** | 16000/20000 | 16000/20000 |\n| **速度** | 1.8 steps/s | 1.8 steps/s |\n| **已有 checkpoints** | 5000, 10000, 15000 | 5000, 10000, 15000 |\n| **checkpoint-20000** | 不存在 | 不存在 |\n\n**ETA**：剩余 4000 steps ÷ 1.8 steps/s ≈ **37 分钟**（约 21:24 UTC 完成）。\n\n训练指标看着正常：scorer_mean ~0.39-0.43，std ~0.31-0.34，loss 稳定在 0.2-0.35 区间。\n\n训练完成后需要立即启动 Probe A。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-v72-status-and-probe-a.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "5437d2c764c1ebf828d3",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "code restart seed2 noent",
+  "task_key": "worker_code_restart_seed2_noent_20260516T030219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_restart_seed2_noent_20260516T030219.jsonl",
+    "occurrence": 1,
+    "bytes": 314,
+    "sha256": "3e28f0da98c82195fe73f5130f880396870585fd2c4746ee5adeb390f3f2f678"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:02:31.728911+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5WAwZ3ciL28cfL2eGa7\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restart_seed2_noent_20260516T030219"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-restart-seed2-noent.md"
+}

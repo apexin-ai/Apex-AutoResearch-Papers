@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-004-s2-v2",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:45:57.799Z",
+    "updated_at": "2026-05-23T02:07:14.197Z",
+    "hypothesis": "ACT (SFT) seed 2 训练恢复：从 ckpt-2000 resume，验证 ACT 跨 seed 稳定性。原 exp-004-s2 因磁盘满在 step 2500 崩溃，现已迁移 output_dir 到数据盘恢复训练。",
+    "parent": "exp-004-s2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python training/run_exp004s2_act_resume.py --resume-from-checkpoint /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-2000 --device cuda:0",
+      "server": "westd-29046",
+      "gpu": "cuda:1",
+      "pid": "494017",
+      "data_path": "/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 0,
+      "model_name": "Qwen3-8B",
+      "seed": 43,
+      "log_path": "/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/exp-004-s2-resume.log",
+      "checkpoint_source": "/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-2000",
+      "eval_data": "N/A (training, not eval)"
+    },
+    "notes": "PID 502516 killed at 15:55 UTC. PID 494017 continues. Checkpoint integrity: ckpt-2000=OK, ckpt-2500=uncertain, ckpt-3000=CONTAMINATED, ckpt-3500=OK, ckpt-4000=OK. train_log.jsonl deduped (598→412). **Actual output_dir: /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/ (not exp-004-s2-v2).** Worker at 17:54 UTC reports step=3360/8000 at ~10s/step. Step discrepancy with earlier report (4610) may be due to log reading differences.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T02:07:14.408577+00:00",
+  "trigger": "update_registry"
+}

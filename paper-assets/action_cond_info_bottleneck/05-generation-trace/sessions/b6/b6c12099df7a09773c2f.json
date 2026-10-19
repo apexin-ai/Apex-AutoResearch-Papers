@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6c12099df7a09773c2f",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diag libero object partial data",
+  "task_key": "worker_diag_libero_object_partial_data_20260515T213244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_libero_object_partial_data_20260515T213244_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "7f11caa6376f466612e5c73ea161f754bd23d164d9cbd09181e72c16ee9cabf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 新进程状态：正常运行\n\n- **PID 294229** 存活，已运行 ~11 分 36 秒\n- **当前位置**：`libero_object` suite，task 1，episode 4/5 正在跑 rollout（step ~167/280）\n- **已完成**：`libero_object_0` 全部 10 episodes，`libero_object_1` 已完成 4 episodes\n- 日志显示之前 `libero_spatial` 已完成（10 tasks 全部跑完），现在进入 `libero_object`\n- 后续还有 `libero_goal` 和 `libero_10` 两个 suites\n\n### 2. libero_object 旧数据：无冲突风险\n\n- 输出目录 `baseline_plus_v2/libero_object/` 下**没有 `eval_info.json`**（只在所有 tasks 跑完后才生成）\n- 当前只有 `videos/` 目录，包含 `libero_object_0`（10 episodes）和 `libero_object_1`（4 episodes in progress）\n- 这些都是当前新进程产生的，不是旧残留数据——新进程从 task 0 开始重跑了整个 suite\n\n### 3. GPU 使用\n\n| PID | 显存 | 用途 |\n|-----|------|------|\n| 294229 | 5480 MiB | baseline_plus remaining suites (cuda:0) |\n| 308788 | 5476 MiB | baseline_std (cuda:1) |\n\n两个进程各占 ~5.5GB，RTX PRO 6000 96GB 资源充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-libero-object-partial-data.md"
+}

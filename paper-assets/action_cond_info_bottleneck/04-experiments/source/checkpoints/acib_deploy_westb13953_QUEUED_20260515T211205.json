@@ -1,0 +1,27 @@
+{
+  "exp_id": "acib_deploy_westb13953",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:20:56.460Z",
+    "updated_at": "2026-05-15T21:12:05.838Z",
+    "spec": {
+      "command": "python scripts/train_acib.py --model_id /root/autodl-tmp/models/smolvla_base --dataset_id /root/autodl-tmp/libero_dataset --mode soft --hidden_dim 64 --alpha 0.01 --beta 0.1",
+      "server": "westb-13953",
+      "data_path": "/root/autodl-tmp/libero_dataset",
+      "data_count": 273465,
+      "model_name": "smolvla_base + ACIB-soft-h64",
+      "seed": 42,
+      "gpu": "2x NVIDIA RTX PRO 6000 Blackwell 96GB",
+      "phase": "dataset_download",
+      "notes": "Environment ready, ACIB sanity check passed (fwd+bwd OK), SmolVLM2 downloaded via ModelScope, LIBERO dataset downloading via parallel curl (377 parquet files ~30GB)"
+    },
+    "notes": "已被 ACIB v3 流程替代，Director 指令取消。2026-05-15T21:11",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T21:12:05.846974+00:00",
+  "trigger": "update_registry"
+}

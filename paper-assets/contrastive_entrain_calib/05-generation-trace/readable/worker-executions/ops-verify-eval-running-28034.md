@@ -1,0 +1,4700 @@
+# ops verify eval running 28034
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 96
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/workers/worker_ops_verify-eval-running-28034_20260521T072314.log`
+- **Structured JSON:** [`92733b9d46cabff53009.json`](../../sessions/92/92733b9d46cabff53009.json)
+
+## Before a recorded user message
+
+96 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d9f5e553-1d1d-4d28-88fd-b37d8f3e5648",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779364200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f6601d01-9e5e-434c-9dd5-dffa272956e0",
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to diagnose and fix eval jobs on westd-28034. Let me start by checking the actual state on the server.
+
+Let me first load the MCP tools I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "733346c6-7f9d-4293-b03e-34563be60236",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3HqTAeqPMJecPuU2orGP3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12468,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12468
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始诊断 westd-28034 上的 eval 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "f63aea78-5a2d-4882-9a9d-9a44bb3d0d04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3HqTAeqPMJecPuU2orGP3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12468,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12468
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018EMtdBe4nNpQ6X5Uum4ti1`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "9aeaff11-1b17-46a3-aa45-a4da6c0b188e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3HqTAeqPMJecPuU2orGP3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12468,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12468
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T07:23:26.384Z_
+
+<details><summary>↩ Tool result · `toolu_018EMtdBe4nNpQ6X5Uum4ti1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "237be55f-e175-462d-852d-d19772475eff",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the actual state on westd-28034 - GPU processes, tmux sessions, and eval processes. I'll also read the registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "0fa01a58-a5ae-481c-bc6c-90776eddb235",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VGS6AzrHBho4nWGYj9E9o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 24309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+同时检查服务器状态和 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "73eaad01-4ad4-4d68-bbce-1cbaa68cbedb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VGS6AzrHBho4nWGYj9E9o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 24309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014ECgqAMFXUNTpUc3hsD6cY`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "a5ef20b9-2e44-4a91-95db-fa3c4596ab36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VGS6AzrHBho4nWGYj9E9o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 24309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RQir9QhSiXwMw69zL46iBe`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ps aux | grep eval_unified_preset",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "4f20e679-5b43-4f4a-b7e2-a099ed4a68d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VGS6AzrHBho4nWGYj9E9o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 24309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017oAHbco1R1uEF4w7soBSrL`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "7add3bb0-e20d-490c-8066-8bc9f5ce2089",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VGS6AzrHBho4nWGYj9E9o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 24309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01XPwjx6mGoj8VCE5a7LZrEc`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "status": "RUNNING"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "3834a57e-4da1-4f68-aed9-4dc443f2d8f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VGS6AzrHBho4nWGYj9E9o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 24309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T07:23:33.232Z_
+
+<details><summary>↩ Tool result · `toolu_014ECgqAMFXUNTpUc3hsD6cY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Thu May 21 15:23:33 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\n| 50%   61C    P1            272W /  575W |   16864MiB /  32607MiB |     48%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\n| 43%   53C    P1            255W /  575W |   16844MiB /  32607MiB |     48%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\n| 43%   53C    P1            258W /  575W |   16844MiB /  32607MiB |     49%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\n| 45%   58C    P1            266W /  575W |   16844MiB /  32607MiB |     50%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          497834      C   /root/miniconda3/bin/python           16854MiB |\\n|    1   N/A  N/A          498446      C   /root/miniconda3/bin/python           16834MiB |\\n|    2   N/A  N/A          498584      C   /root/miniconda3/bin/python           16834MiB |\\n|    3   N/A  N/A          498666      C   /root/miniconda3/bin/python           16834MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "979d45b3-0c73-47fa-b32e-405f1ad3b842",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 21 15:23:33 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\\\n| 50%   61C    P1            272W /  575W |   16864MiB /  32607MiB |     48%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\\\n| 43%   53C    P1            255W /  575W |   16844MiB /  32607MiB |     48%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\\\n| 43%   53C    P1            258W /  575W |   16844MiB /  32607MiB |     49%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\\\n| 45%   58C    P1            266W /  575W |   16844MiB /  32607MiB |     50%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          497834      C   /root/miniconda3/bin/python           16854MiB |\\\\n|    1   N/A  N/A          498446      C   /root/miniconda3/bin/python           16834MiB |\\\\n|    2   N/A  N/A          498584      C   /root/miniconda3/bin/python           16834MiB |\\\\n|    3   N/A  N/A          498666      C   /root/miniconda3/bin/python           16834MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Thu May 21 15:23:33 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\n| 50%   61C    P1            272W /  575W |   16864MiB /  32607MiB |     48%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\n| 43%   53C    P1            255W /  575W |   16844MiB /  32607MiB |     48%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\n| 43%   53C    P1            258W /  575W |   16844MiB /  32607MiB |     49%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\n| 45%   58C    P1            266W /  575W |   16844MiB /  32607MiB |     50%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          497834      C   /root/miniconda3/bin/python           16854MiB |\\n|    1   N/A  N/A          498446      C   /root/miniconda3/bin/python           16834MiB |\\n|    2   N/A  N/A          498584      C   /root/miniconda3/bin/python           16834MiB |\\n|    3   N/A  N/A          498666      C   /root/miniconda3/bin/python           16834MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T07:23:33.259Z_
+
+<details><summary>↩ Tool result · `toolu_01RQir9QhSiXwMw69zL46iBe`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "738bf4bd-c1b8-4126-b689-f774ee710449",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T07:23:33.289Z_
+
+<details><summary>↩ Tool result · `toolu_017oAHbco1R1uEF4w7soBSrL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "8ff217d1-6f23-4832-80d5-099ae472ad01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T07:23:33.647Z_
+
+<details><summary>↩ Tool result · `toolu_01XPwjx6mGoj8VCE5a7LZrEc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-003-s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:29:19.747Z\", \"updated_at\": \"2026-05-20T00:22:36.455Z\", \"hypothesis\": \"R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp003s2_r3only.py\\\"\", \"server\": \"westd-29046\", \"gpu\": \"cuda:0\", \"pid\": \"237432\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 43, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2.log\", \"notes\": \"R3-only GRPO seed 2 (seed=43). 3rd attempt after disk-full crash. Root partition freed 3.8G (pip cache purge). PID 237432.\"}, \"parent\": \"exp-003\"}, \"exp-003\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:42:11.934Z\", \"updated_at\": \"2026-05-19T18:09:08.991Z\", \"hypothesis\": \"R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)\", \"spec\": {\"server\": \"westd-29046\", \"gpu\": \"cuda:1\", \"pid\": 70649, \"command\": \"python training/run_exp003_r3only.py\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"v2.1 restart: R3 logging fix (d_syc=None branch now logs R3 mean/std/min/max every 10 steps). R3-only mode (r1=0,r2=0,r3=1.0). Speed opt (num_gen=2, max_completion_length=256).\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.329}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "165382b7-5134-426c-8887-4f68bdebf46c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-003-s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:29:19.747Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:22:36.455Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp003s2_r3only.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-29046\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"237432\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"training_from_base\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2.log\\\", \\\"notes\\\": \\\"R3-only GRPO seed 2 (seed=43). 3rd attempt after disk-full crash. Root partition freed 3.8G (pip cache purge). PID 237432.\\\"}, \\\"parent\\\": \\\"exp-003\\\"}, \\\"exp-003\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:42:11.934Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:09:08.991Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-29046\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 70649, \\\"command\\\": \\\"python training/run_exp003_r3only.py\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"notes\\\": \\\"v2.1 restart: R3 logging fix (d_syc=None branch now logs R3 mean/std/min/max every 10 steps). R3-only mode (r1=0,r2=0,r3=1.0). Speed opt (num_gen=2, max_completion_length=256).\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.329}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-003-s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:29:19.747Z\", \"updated_at\": \"2026-05-20T00:22:36.455Z\", \"hypothesis\": \"R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp003s2_r3only.py\\\"\", \"server\": \"westd-29046\", \"gpu\": \"cuda:0\", \"pid\": \"237432\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 43, \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2.log\", \"notes\": \"R3-only GRPO seed 2 (seed=43). 3rd attempt after disk-full crash. Root partition freed 3.8G (pip cache purge). PID 237432.\"}, \"parent\": \"exp-003\"}, \"exp-003\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:42:11.934Z\", \"updated_at\": \"2026-05-19T18:09:08.991Z\", \"hypothesis\": \"R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)\", \"spec\": {\"server\": \"westd-29046\", \"gpu\": \"cuda:1\", \"pid\": 70649, \"command\": \"python training/run_exp003_r3only.py\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"notes\": \"v2.1 restart: R3 logging fix (d_syc=None branch now logs R3 mean/std/min/max every 10 steps). R3-only mode (r1=0,r2=0,r3=1.0). Speed opt (num_gen=2, max_completion_length=256).\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.329}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so the server state shows:
+- GPU 0: PID 497834, ~16.8GB, 48% util
+- GPU 1: PID 498446, ~16.8GB, 48% util
+- GPU 2: PID 498584, ~16.8GB, 49% util
+- GPU 3: PID 498666, ~16.8GB, 50% util
+
+All 4 GPUs are actively running Python processes. Now I need to check:
+1. Which eval each PID corresponds to (check /proc/PID/cmdline or similar)
+
+
+2. The tmux sessions and eval processes
+
+The registry shows only 2 RUNNING experiments, both on westd-29046 rather than 28034, so I need to look at the eval-specific registry entries. I'll use ssh_execute to get the process details since ssh_read_only doesn't support pipes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "4471b2ce-6fe5-4edb-81e6-a9f6da51331b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kmyam2ViBCBUJZGB7N9VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2517,
+      "cache_read_input_tokens": 26509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+4 个 GPU 都有进程在跑。需要确认每个 PID 对应的 eval。用 ssh_execute 获取详细进程信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "09bc71e3-bc7d-4ad1-8e16-97bc11d34d7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kmyam2ViBCBUJZGB7N9VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2517,
+      "cache_read_input_tokens": 26509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Q8AhjC78DQ41vxT7KkQiaF`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ps aux | grep eval_unified_preset | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "1d355322-a8f6-47d2-8827-dca1f6317722",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kmyam2ViBCBUJZGB7N9VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2517,
+      "cache_read_input_tokens": 26509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T07:23:42.313Z_
+
+<details><summary>↩ Tool result · `toolu_01Q8AhjC78DQ41vxT7KkQiaF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     497833  0.0  0.0   4364  1956 ?        S    15:19   0:00 bash -c cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2 > /tmp/eval_ckpt5000v2.log 2>&1 & echo \\\"ckpt-5000-v2 PID: $!\\\"\\nroot     497834  241  0.3 57325592 2713112 ?    Rl   15:19   9:35 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\nroot     498440  0.0  0.0   6088  3876 ?        Ss   15:22   0:00 tmux new-session -d -s exp-003-eval-ckpt6000 rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=1 && timeout 10800 env bash -c 'bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log 2>&1\\nroot     498441  0.0  0.0   4496  3596 pts/0    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=1 && timeout 10800 env bash -c 'bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log 2>&1\\nroot     498445  0.0  0.0   2800  1120 pts/0    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"\\nroot     498446  260  0.3 57253516 2667232 pts/0 Rl  15:22   4:18 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\nroot     498579  0.0  0.0   4496  3576 pts/1    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6500.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6500.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=2 && timeout 10800 env bash -c 'bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log 2>&1\\nroot     498583  0.0  0.0   2800   996 pts/1    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\"\\nroot     498584  276  0.3 57196672 2608656 pts/1 Rl  15:22   4:25 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\nroot     498661  0.0  0.0   4496  3636 pts/2    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt7000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt7000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=3 && timeout 10800 env bash -c 'bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log 2>&1\\nroot     498665  0.0  0.0   2800  1028 pts/2    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\"\\nroot     498666  278  0.3 57226324 2655132 pts/2 Rl  15:22   4:21 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "fbee99d5-6105-4b75-be96-b42602ed92c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     497833  0.0  0.0   4364  1956 ?        S    15:19   0:00 bash -c cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2 > /tmp/eval_ckpt5000v2.log 2>&1 & echo \\\\\\\"ckpt-5000-v2 PID: $!\\\\\\\"\\\\nroot     497834  241  0.3 57325592 2713112 ?    Rl   15:19   9:35 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\\\nroot     498440  0.0  0.0   6088  3876 ?        Ss   15:22   0:00 tmux new-session -d -s exp-003-eval-ckpt6000 rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=1 && timeout 10800 env bash -c 'bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\\\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log 2>&1\\\\nroot     498441  0.0  0.0   4496  3596 pts/0    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=1 && timeout 10800 env bash -c 'bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\\\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log 2>&1\\\\nroot     498445  0.0  0.0   2800  1120 pts/0    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\\\\\"\\\\nroot     498446  260  0.3 57253516 2667232 pts/0 Rl  15:22   4:18 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\\nroot     498579  0.0  0.0   4496  3576 pts/1    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6500.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6500.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=2 && timeout 10800 env bash -c 'bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\\\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log 2>&1\\\\nroot     498583  0.0  0.0   2800   996 pts/1    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\\\\\"\\\\nroot     498584  276  0.3 57196672 2608656 pts/1 Rl  15:22   4:25 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\\nroot     498661  0.0  0.0   4496  3636 pts/2    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt7000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt7000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=3 && timeout 10800 env bash -c 'bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\\\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log 2>&1\\\\nroot     498665  0.0  0.0   2800  1028 pts/2    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\\\\\"\\\\nroot     498666  278  0.3 57226324 2655132 pts/2 Rl  15:22   4:21 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     497833  0.0  0.0   4364  1956 ?        S    15:19   0:00 bash -c cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2 > /tmp/eval_ckpt5000v2.log 2>&1 & echo \\\"ckpt-5000-v2 PID: $!\\\"\\nroot     497834  241  0.3 57325592 2713112 ?    Rl   15:19   9:35 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\nroot     498440  0.0  0.0   6088  3876 ?        Ss   15:22   0:00 tmux new-session -d -s exp-003-eval-ckpt6000 rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=1 && timeout 10800 env bash -c 'bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log 2>&1\\nroot     498441  0.0  0.0   4496  3596 pts/0    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=1 && timeout 10800 env bash -c 'bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log 2>&1\\nroot     498445  0.0  0.0   2800  1120 pts/0    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"\\nroot     498446  260  0.3 57253516 2667232 pts/0 Rl  15:22   4:18 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\nroot     498579  0.0  0.0   4496  3576 pts/1    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt6500.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt6500.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=2 && timeout 10800 env bash -c 'bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log 2>&1\\nroot     498583  0.0  0.0   2800   996 pts/1    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\"\\nroot     498584  276  0.3 57196672 2608656 pts/1 Rl  15:22   4:25 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\nroot     498661  0.0  0.0   4496  3636 pts/2    Ss+  15:22   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt7000.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-003-eval-ckpt7000.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contrastive_entrain_calib && export CUDA_VISIBLE_DEVICES=3 && timeout 10800 env bash -c 'bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\"'; } > ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log 2>&1\\nroot     498665  0.0  0.0   2800  1028 pts/2    S    15:22   0:00 timeout 10800 env bash -c bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\"\\nroot     498666  278  0.3 57226324 2655132 pts/2 Rl  15:22   4:21 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HUz1KdayLDRb2P6WaLM5DU`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tmux ls 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "ecd8a426-4e57-40c5-8c6f-e459bf1742f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kmyam2ViBCBUJZGB7N9VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2517,
+      "cache_read_input_tokens": 26509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T07:23:43.010Z_
+
+<details><summary>↩ Tool result · `toolu_01HUz1KdayLDRb2P6WaLM5DU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp-003-eval-ckpt6000: 1 windows (created Thu May 21 15:22:03 2026)\\nexp-003-eval-ckpt6500: 1 windows (created Thu May 21 15:22:05 2026)\\nexp-003-eval-ckpt7000: 1 windows (created Thu May 21 15:22:07 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "36247f94-3283-4b9b-838a-19b8a1650f2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp-003-eval-ckpt6000: 1 windows (created Thu May 21 15:22:03 2026)\\\\nexp-003-eval-ckpt6500: 1 windows (created Thu May 21 15:22:05 2026)\\\\nexp-003-eval-ckpt7000: 1 windows (created Thu May 21 15:22:07 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp-003-eval-ckpt6000: 1 windows (created Thu May 21 15:22:03 2026)\\nexp-003-eval-ckpt6500: 1 windows (created Thu May 21 15:22:05 2026)\\nexp-003-eval-ckpt7000: 1 windows (created Thu May 21 15:22:07 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013EYyDyoNn5nvCNW2W1hpbc`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat /proc/497834/cmdline | tr '\\0' ' ' 2>/dev/null; echo \"---\"; cat /proc/498446/cmdline | tr '\\0' ' ' 2>/dev/null; echo \"---\"; cat /proc/498584/cmdline | tr '\\0' ' ' 2>/dev/null; echo \"---\"; cat /proc/498666/cmdline | tr '\\0' ' ' 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "847d1702-e58d-4f13-a58d-5660905b6797",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kmyam2ViBCBUJZGB7N9VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2517,
+      "cache_read_input_tokens": 26509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T07:23:44.530Z_
+
+<details><summary>↩ Tool result · `toolu_013EYyDyoNn5nvCNW2W1hpbc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2 ---\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000 ---\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500 ---\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000 \", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "7ef9ee59-7be3-45aa-946f-62c7a9b7a8f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2 ---\\\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000 ---\\\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500 ---\\\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000 \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2 ---\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000 ---\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500 ---\\n/root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000 \", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01W54ErnkxM7LAbuWPqrqiH1`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "exp_id": "exp-003-eval-ckpt5000-v2"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "8fca1b4f-dd92-4131-9046-53a7df2cf255",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kmyam2ViBCBUJZGB7N9VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2517,
+      "cache_read_input_tokens": 26509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T07:23:45.441Z_
+
+<details><summary>↩ Tool result · `toolu_01W54ErnkxM7LAbuWPqrqiH1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5245}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "553c15a6-bdaa-4f85-8f9b-e99d53792b15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5245}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5245}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+**Server state (westd-28034):**
+- GPU 0: PID 497834 — eval_unified_preset ckpt-5000, exp_id=exp003-ckpt5000-v2 (running via nohup, NOT in tmux)
+- GPU 1: PID 498446 — eval_unified_preset ckpt-6000, exp_id=exp003-ckpt6000 (running in tmux session exp-003-eval-ckpt6000)
+
+
+- GPU 2: PID 498584 — eval_unified_preset ckpt-6500, exp_id=exp003-ckpt6500 (running in tmux session exp-003-eval-ckpt6500)
+- GPU 3: PID 498666 — eval_unified_preset ckpt-7000, exp_id=exp003-ckpt7000 (running in tmux session exp-003-eval-ckpt7000)
+
+All four evaluations are active across the GPUs, and the kill-cleanup-restart worker successfully replaced the old process IDs.
+
+Now I'm checking the registry to see if these eval experiments are actually registered—the initial filter by exp_id came back empty, so I need to verify whether they exist at all and then update the registry entries for each one before setting up the cron jobs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "ca914eb9-dfaa-4320-b33c-9b4564b041be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012CX69jGTAwRMpfqNJoLHYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 29026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+4 个 eval 全部在跑。现在查 registry 中这些 eval 的当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "40bfb576-0aac-44fa-afe1-526a68a8add1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012CX69jGTAwRMpfqNJoLHYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 29026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Jg6LKtKAWJsEoTPK2aA8iW`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "exp_id": "exp-003-eval-ckpt5000-v2"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "2a56e7f2-fb18-4a2b-87d3-0d6f8f0cfddb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012CX69jGTAwRMpfqNJoLHYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 29026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T07:23:57.025Z_
+
+<details><summary>↩ Tool result · `toolu_01Jg6LKtKAWJsEoTPK2aA8iW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.284}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "f2f2a847-4ac6-47c7-bdf4-1683e8096164",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.284}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.284}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01HS3w8pw3uxBxch8npmhoKw`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "exp_id": "exp-003-eval-ckpt6000"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "19d265d7-9d0e-4ef8-ba4f-459cf6b65f87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012CX69jGTAwRMpfqNJoLHYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 29026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T07:23:57.842Z_
+
+<details><summary>↩ Tool result · `toolu_01HS3w8pw3uxBxch8npmhoKw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2353}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "af1eee37-676c-4174-9c1b-58c83034f731",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2353}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2353}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01RGgTfdcQ8TP5rMGYSf3xZn`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "exp_id": "exp-003-eval-ckpt6500"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "1b7bcd61-413f-4fbc-9636-b17c78519a69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012CX69jGTAwRMpfqNJoLHYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 29026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T07:23:58.818Z_
+
+<details><summary>↩ Tool result · `toolu_01RGgTfdcQ8TP5rMGYSf3xZn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.221}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "400ff47a-5363-43b4-be4b-0269768d5ad9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.221}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.221}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01EjhVxK6P8wTBT9r8UM3RUY`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "filters": {
+    "exp_id": "exp-003-eval-ckpt7000"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "4c9610c9-ecca-4420-b1e5-841bb99b697e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012CX69jGTAwRMpfqNJoLHYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 29026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T07:23:59.115Z_
+
+<details><summary>↩ Tool result · `toolu_01EjhVxK6P8wTBT9r8UM3RUY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1922}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "f93bc888-9003-4b46-90d6-d3bef6448ab6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1922}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1922}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+None of the 4 eval experiments exist in the registry. Let me also check with different naming conventions - the exp_id might be slightly different.
+
+Let me search the registry more broadly for any eval-related entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "2b9fafbe-586a-4da5-8dfb-45da2ce6d55f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Srg2mxcMFVoNgGAcLFu4XT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1264,
+      "cache_read_input_tokens": 34580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+4 个 eval 在 registry 里都不存在。搜索更广泛的 eval 记录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "544510f7-6d92-44a1-a783-c5725c56f32b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Srg2mxcMFVoNgGAcLFu4XT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1264,
+      "cache_read_input_tokens": 34580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01DdYbFUCbEsjBuFKXMTxkXY`</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "limit": 20,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "5f117179-2697-45fb-bbd5-91e0d19c0d94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Srg2mxcMFVoNgGAcLFu4XT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1264,
+      "cache_read_input_tokens": 34580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T07:24:03.779Z_
+
+<details><summary>↩ Tool result · `toolu_01DdYbFUCbEsjBuFKXMTxkXY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-003-eval-ckpt7000\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:34:53.503Z\", \"updated_at\": \"2026-05-21T07:22:08.344Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"498661\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log\", \"submitted_at\": \"2026-05-21T07:22:08.089Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-21T04:45:38.832Z\"}}, \"exp-003-eval-ckpt6500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:22:06.593Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"498579\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log\", \"submitted_at\": \"2026-05-21T07:22:06.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}]}}, \"exp-003-eval-ckpt6000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:22:04.433Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"498441\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log\", \"submitted_at\": \"2026-05-21T07:22:03.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}]}}, \"exp-003-eval-ckpt5000-v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:21:50.053Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"495833\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt5000-v2.log\", \"submitted_at\": \"2026-05-21T07:18:55.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 174.5, \"gpu_hours\": 0.05}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}]}}, \"exp-003-eval-ckpt2000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:59.763Z\", \"updated_at\": \"2026-05-21T07:17:28.466Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-2000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/results/exp003_unified_eval/checkpoint-2000/\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt2000.log\", \"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=2 bash scripts/eval_exp003_d027.sh 2000\\\"\", \"server\": \"westd-28034\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:07:37.952Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:07:42.397773+00:00\"}]}, \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9834, \"SYCONScore\": 0.0846, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T07:17:28.466Z\"}, \"exp-003-eval-ckpt3000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:46:00.760Z\", \"updated_at\": \"2026-05-21T07:17:27.723Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-3000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/results/exp003_unified_eval/checkpoint-3000/\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt3000.log\", \"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=3 bash scripts/eval_exp003_d027.sh 3000\\\"\", \"server\": \"westd-28034\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:07:15.861Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:07:18.007239+00:00\"}]}, \"metrics\": {\"ToF\": 0.0497, \"NoF\": 0.9724, \"SYCONScore\": 0.0946, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T07:17:27.723Z\"}, \"exp-009-eval-ckpt500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:18:17.465Z\", \"updated_at\": \"2026-05-21T07:16:51.037Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/ --exp_id exp009_ckpt500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"227017\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-009-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T07:18:17.375Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/results/exp009_ckpt500_eval/\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-009/checkpoint-500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 86313.7, \"gpu_hours\": 23.98}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:27:36.728Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T09:27:41.439553+00:00\"}]}, \"metrics\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 7671}, \"hypothesis\": \"Eval exp-009 checkpoint-500 (continuous probe probability GRPO) with D027 unified preset to determine if continuous P(syc) reward produces stubbornness trap (ToF=0) like binary probe (exp-008v3), or shows viable learning signal (ToF > 0).\", \"parent\": \"exp-009\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T07:16:51.038Z\"}, \"exp-003-s2-eval-ckpt2500\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:37:56.853Z\", \"updated_at\": \"2026-05-21T04:46:02.802Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-2500 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for trajectory alignment.\", \"parent\": \"exp-003-s2\"}, \"vanilla-d027-reeval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:32:50.801Z\", \"updated_at\": \"2026-05-21T04:45:20.440Z\", \"hypothesis\": \"Re-run vanilla Qwen3-8B D027 eval with eval_unified_preset.py to ensure data consistency across all experiments. Previous vanilla eval used eval_pipeline.py which may differ in preprocessing.\", \"parent\": \"vanilla-baseline\", \"spec\": {\"command\": \"eval_unified_preset.py vanilla Qwen3-8B\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"234327\", \"log_path\": \"~/runs/contrastive_entrain_calib/vanilla-d027-reeval.log\", \"submitted_at\": \"2026-05-20T09:33:02.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (base model)\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"N/A (base model)\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 69137.7, \"gpu_hours\": 19.2}, \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335, \"n_total\": 362, \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"note\": \"D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T04:45:20.440Z\"}, \"exp-003-s2-eval-ckpt3000\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:37:57.768Z\", \"updated_at\": \"2026-05-21T04:45:00.240Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-3000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for exact step match.\", \"parent\": \"exp-003-s2\"}, \"exp-003-s2-eval-ckpt2000\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:37:55.835Z\", \"updated_at\": \"2026-05-21T04:44:58.756Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-2000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-2000 (SYCONScore=0.085).\", \"parent\": \"exp-003-s2\"}, \"exp-003-eval-ckpt4500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:50:34.664Z\", \"updated_at\": \"2026-05-20T19:06:13.570Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval/ --exp_id exp003-ckpt4500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"611296\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt4500.log\", \"submitted_at\": \"2026-05-20T17:50:34.506Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003 LoRA ckpt-4500\", \"seed\": 42, \"checkpoint_source\": \"exp-003\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-4500\", \"wall_clock_seconds\": 4539.1, \"gpu_hours\": 1.26}, \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-4500 with D027 unified preset. Pinpoint plateau onset: if ckpt-4500 SYCONScore=0.114 (same as ckpt-4000/5000/5500), plateau starts at step 4000; if lower, plateau onset is between step 4500-5000.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-20T19:03:52.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:03:54.596389+00:00\"}]}, \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9613, \"SYCONScore\": 0.1337, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4280, \"vs_vanilla\": \"SYCONScore 0.1337 vs 0.1335 = +0.1%, essentially EQUAL to baseline\", \"note\": \"Surprising: ckpt-4500 peaks near vanilla baseline (0.1337), HIGHER than ckpt-4000/5000/5500 (0.1144). Non-monotonic trajectory — peak at 4500 then regression.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T19:06:13.570Z\"}, \"exp-003-s2-eval-ckpt1500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:26:08.158Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4631.4, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:08.158Z\"}, \"exp-003-s2-eval-ckpt1000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:26:07.632Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4633.4, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:07.632Z\"}, \"exp-003-s2-eval-ckpt500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:26:06.677Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4635.2, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:06.677Z\"}, \"exp-003-eval-ckpt5500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:21:54.401Z\", \"updated_at\": \"2026-05-20T17:41:06.305Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"605435\", \"log_path\": \"/root/contrastive_entrain_calib/results/exp003_d027_eval/\", \"submitted_at\": \"2026-05-20T16:21:54.289Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003 checkpoint-5500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-5500\", \"wall_clock_seconds\": 4752.0, \"gpu_hours\": 1.32}, \"reproduce\": {\"finished_at\": \"2026-05-20T17:37:22.627Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T17:37:25.059094+00:00\"}]}, \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-5500 with D027 unified preset. Testing whether R3-only plateau (ckpt-4000=ckpt-5000=0.114) extends to ckpt-5500.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9724, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4484, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-4000/5000 — plateau confirmed at 3 consecutive checkpoints\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T17:41:06.305Z\"}, \"exp-004-eval-ckpt5500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:41.309Z\", \"updated_at\": \"2026-05-20T16:13:14.157Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt5500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"601752\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt5500.log\", \"submitted_at\": \"2026-05-20T15:41:41.207Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500\", \"eval_data\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 1893.0, \"gpu_hours\": 0.53}, \"hypothesis\": \"ACT training at checkpoint-5500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:05:21.000Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:05:23.628739+00:00\"}]}, \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.8674, \"SYCONScore\": 0.2383, \"n_samples\": 362}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:13:14.157Z\"}, \"exp-004-eval-ckpt4500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:38.504Z\", \"updated_at\": \"2026-05-20T16:13:13.687Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt4500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"601614\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt4500.log\", \"submitted_at\": \"2026-05-20T15:41:38.408Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500\", \"eval_data\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 1895.3, \"gpu_hours\": 0.53}, \"hypothesis\": \"ACT training at checkpoint-4500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:05:42.866Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:05:48.013680+00:00\"}]}, \"metrics\": {\"ToF\": 0.105, \"NoF\": 0.8785, \"SYCONScore\": 0.1875, \"n_samples\": 362}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:13:13.687Z\"}, \"exp-004-eval-ckpt7500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:46.107Z\", \"updated_at\": \"2026-05-20T16:06:13.253Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"601971\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:41:45.920Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-7500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-7500\", \"wall_clock_seconds\": 1467.3, \"gpu_hours\": 0.41}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-7500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:02:41.719Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:02:43.538907+00:00\"}]}, \"metrics\": {\"ToF\": 0.1657, \"NoF\": 0.8453, \"SYCONScore\": 0.2771, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2771 vs 0.1335 = +107.6%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:06:13.253Z\"}, \"exp-004-eval-ckpt6500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:43.690Z\", \"updated_at\": \"2026-05-20T16:06:12.150Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"601831\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:41:43.589Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-6500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-6500\", \"wall_clock_seconds\": 1468.6, \"gpu_hours\": 0.41}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-6500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:03:09.294Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:03:13.894332+00:00\"}]}, \"metrics\": {\"ToF\": 0.1492, \"NoF\": 0.8232, \"SYCONScore\": 0.2526, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2526 vs 0.1335 = +89.1%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:06:12.150Z\"}}, \"count\": 20, \"total\": 48, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4448}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "d057eb40-0d12-4876-9978-0aedf86d51bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-003-eval-ckpt7000\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:34:53.503Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:22:08.344Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"498661\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:22:08.089Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:38.832Z\\\"}}, \\\"exp-003-eval-ckpt6500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:34:52.934Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:22:06.593Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"498579\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:22:06.257Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:22:00.484Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T07:22:03.528Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:22:07.737419+00:00\\\"}]}}, \\\"exp-003-eval-ckpt6000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:34:51.960Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:22:04.433Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"498441\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:22:03.393Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:36.843Z\\\", \\\"finished_at\\\": \\\"2026-05-21T07:21:54.331Z\\\", \\\"training_hours\\\": 2.6}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:55.749Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:58.429707+00:00\\\"}]}}, \\\"exp-003-eval-ckpt5000-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:44:31.338Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:21:50.053Z\\\", \\\"hypothesis\\\": \\\"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"495833\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt5000-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:55.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 174.5, \\\"gpu_hours\\\": 0.05}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:21:49.272Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:50.053Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:52.534161+00:00\\\"}]}}, \\\"exp-003-eval-ckpt2000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:59.763Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:17:28.466Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-2000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/results/exp003_unified_eval/checkpoint-2000/\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt2000.log\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=2 bash scripts/eval_exp003_d027.sh 2000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"data_count\\\": 362, \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:07:37.952Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:07:42.397773+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9834, \\\"SYCONScore\\\": 0.0846, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-2000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T07:17:28.466Z\\\"}, \\\"exp-003-eval-ckpt3000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:46:00.760Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:17:27.723Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-3000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/results/exp003_unified_eval/checkpoint-3000/\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt3000.log\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=3 bash scripts/eval_exp003_d027.sh 3000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"data_count\\\": 362, \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:07:15.861Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:07:18.007239+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0497, \\\"NoF\\\": 0.9724, \\\"SYCONScore\\\": 0.0946, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-3000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T07:17:27.723Z\\\"}, \\\"exp-009-eval-ckpt500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T07:18:17.465Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:16:51.037Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/ --exp_id exp009_ckpt500\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"227017\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-009-eval-ckpt500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:18:17.375Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/results/exp009_ckpt500_eval/\\\", \\\"data_count\\\": 362, \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-009/checkpoint-500\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"wall_clock_seconds\\\": 86313.7, \\\"gpu_hours\\\": 23.98}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:27:36.728Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T09:27:41.439553+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0663, \\\"NoF\\\": 0.9337, \\\"SYCONScore\\\": 0.1238, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 7671}, \\\"hypothesis\\\": \\\"Eval exp-009 checkpoint-500 (continuous probe probability GRPO) with D027 unified preset to determine if continuous P(syc) reward produces stubbornness trap (ToF=0) like binary probe (exp-008v3), or shows viable learning signal (ToF > 0).\\\", \\\"parent\\\": \\\"exp-009\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T07:16:51.038Z\\\"}, \\\"exp-003-s2-eval-ckpt2500\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:37:56.853Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:46:02.802Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-2500 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for trajectory alignment.\\\", \\\"parent\\\": \\\"exp-003-s2\\\"}, \\\"vanilla-d027-reeval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:32:50.801Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:45:20.440Z\\\", \\\"hypothesis\\\": \\\"Re-run vanilla Qwen3-8B D027 eval with eval_unified_preset.py to ensure data consistency across all experiments. Previous vanilla eval used eval_pipeline.py which may differ in preprocessing.\\\", \\\"parent\\\": \\\"vanilla-baseline\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py vanilla Qwen3-8B\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"234327\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/vanilla-d027-reeval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T09:33:02.767Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A (base model)\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (base model)\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"wall_clock_seconds\\\": 69137.7, \\\"gpu_hours\\\": 19.2}, \\\"metrics\\\": {\\\"ToF\\\": 0.0718, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.1335, \\\"n_total\\\": 362, \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"note\\\": \\\"D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T04:45:20.440Z\\\"}, \\\"exp-003-s2-eval-ckpt3000\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:37:57.768Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:45:00.240Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-3000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for exact step match.\\\", \\\"parent\\\": \\\"exp-003-s2\\\"}, \\\"exp-003-s2-eval-ckpt2000\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:37:55.835Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:44:58.756Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-2000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-2000 (SYCONScore=0.085).\\\", \\\"parent\\\": \\\"exp-003-s2\\\"}, \\\"exp-003-eval-ckpt4500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:50:34.664Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:06:13.570Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval/ --exp_id exp003-ckpt4500\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"611296\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt4500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:50:34.506Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003 LoRA ckpt-4500\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003/checkpoint-4500\\\", \\\"wall_clock_seconds\\\": 4539.1, \\\"gpu_hours\\\": 1.26}, \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-4500 with D027 unified preset. Pinpoint plateau onset: if ckpt-4500 SYCONScore=0.114 (same as ckpt-4000/5000/5500), plateau starts at step 4000; if lower, plateau onset is between step 4500-5000.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T19:03:52.084Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T19:03:54.596389+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0718, \\\"NoF\\\": 0.9613, \\\"SYCONScore\\\": 0.1337, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-4500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 4280, \\\"vs_vanilla\\\": \\\"SYCONScore 0.1337 vs 0.1335 = +0.1%, essentially EQUAL to baseline\\\", \\\"note\\\": \\\"Surprising: ckpt-4500 peaks near vanilla baseline (0.1337), HIGHER than ckpt-4000/5000/5500 (0.1144). Non-monotonic trajectory — peak at 4500 then regression.\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T19:06:13.570Z\\\"}, \\\"exp-003-s2-eval-ckpt1500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:56.843Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:08.158Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"608013\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:56.727Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"wall_clock_seconds\\\": 4631.4, \\\"gpu_hours\\\": 1.29}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:30.755Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:34.179573+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0552, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.1044, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T18:26:08.158Z\\\"}, \\\"exp-003-s2-eval-ckpt1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:54.425Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:07.632Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-1000\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"607932\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:54.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"wall_clock_seconds\\\": 4633.4, \\\"gpu_hours\\\": 1.29}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:22.992Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:28.674192+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0844, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T18:26:07.632Z\\\"}, \\\"exp-003-s2-eval-ckpt500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:08:51.630Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:26:06.677Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py exp003_s2 ckpt-500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"607796\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:08:51.515Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp-003-s2 LoRA ckpt-500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"exp-003-s2\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl (362 pairs)\\\", \\\"wall_clock_seconds\\\": 4635.2, \\\"gpu_hours\\\": 1.29}, \\\"hypothesis\\\": \\\"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\\\", \\\"parent\\\": \\\"exp-003-s2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T18:23:18.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T18:23:20.484671+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0442, \\\"NoF\\\": 0.9503, \\\"SYCONScore\\\": 0.0845, \\\"samples\\\": 362}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T18:26:06.677Z\\\"}, \\\"exp-003-eval-ckpt5500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T16:21:54.401Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:41:06.305Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"605435\\\", \\\"log_path\\\": \\\"/root/contrastive_entrain_calib/results/exp003_d027_eval/\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:21:54.289Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003 checkpoint-5500\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp003/checkpoint-5500\\\", \\\"wall_clock_seconds\\\": 4752.0, \\\"gpu_hours\\\": 1.32}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T17:37:22.627Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T17:37:25.059094+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-5500 with D027 unified preset. Testing whether R3-only plateau (ckpt-4000=ckpt-5000=0.114) extends to ckpt-5500.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"metrics\\\": {\\\"ToF\\\": 0.0608, \\\"NoF\\\": 0.9724, \\\"SYCONScore\\\": 0.1144, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-5500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"eval_time_sec\\\": 4484, \\\"vs_vanilla\\\": \\\"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\\\", \\\"note\\\": \\\"Identical to ckpt-4000/5000 — plateau confirmed at 3 consecutive checkpoints\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T17:41:06.305Z\\\"}, \\\"exp-004-eval-ckpt5500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:41:41.309Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:13:14.157Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt5500\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"601752\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt5500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T15:41:41.207Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_count\\\": 362, \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500\\\", \\\"eval_data\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"wall_clock_seconds\\\": 1893.0, \\\"gpu_hours\\\": 0.53}, \\\"hypothesis\\\": \\\"ACT training at checkpoint-5500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T16:05:21.000Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T16:05:23.628739+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.1381, \\\"NoF\\\": 0.8674, \\\"SYCONScore\\\": 0.2383, \\\"n_samples\\\": 362}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T16:13:14.157Z\\\"}, \\\"exp-004-eval-ckpt4500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:41:38.504Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:13:13.687Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt4500\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"601614\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt4500.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T15:41:38.408Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_count\\\": 362, \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500\\\", \\\"eval_data\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"wall_clock_seconds\\\": 1895.3, \\\"gpu_hours\\\": 0.53}, \\\"hypothesis\\\": \\\"ACT training at checkpoint-4500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T16:05:42.866Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T16:05:48.013680+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.105, \\\"NoF\\\": 0.8785, \\\"SYCONScore\\\": 0.1875, \\\"n_samples\\\": 362}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T16:13:13.687Z\\\"}, \\\"exp-004-eval-ckpt7500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:41:46.107Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:06:13.253Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"601971\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/results/exp004_unified_eval/\\\", \\\"submitted_at\\\": \\\"2026-05-20T15:41:45.920Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-004 checkpoint-7500\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-7500\\\", \\\"wall_clock_seconds\\\": 1467.3, \\\"gpu_hours\\\": 0.41}, \\\"hypothesis\\\": \\\"Eval exp-004 ACT checkpoint-7500 with D027 unified preset. Part of ACT training trajectory for paper figure.\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T16:02:41.719Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T16:02:43.538907+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.1657, \\\"NoF\\\": 0.8453, \\\"SYCONScore\\\": 0.2771, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-7500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2771 vs 0.1335 = +107.6%\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T16:06:13.253Z\\\"}, \\\"exp-004-eval-ckpt6500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:41:43.690Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:06:12.150Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_unified_preset.py\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"601831\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/results/exp004_unified_eval/\\\", \\\"submitted_at\\\": \\\"2026-05-20T15:41:43.589Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-004 checkpoint-6500\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-6500\\\", \\\"wall_clock_seconds\\\": 1468.6, \\\"gpu_hours\\\": 0.41}, \\\"hypothesis\\\": \\\"Eval exp-004 ACT checkpoint-6500 with D027 unified preset. Part of ACT training trajectory for paper figure.\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T16:03:09.294Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T16:03:13.894332+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.1492, \\\"NoF\\\": 0.8232, \\\"SYCONScore\\\": 0.2526, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"checkpoint\\\": \\\"checkpoint-6500\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\", \\\"vs_vanilla\\\": \\\"SYCONScore 0.2526 vs 0.1335 = +89.1%\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T16:06:12.150Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 48, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4448}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-003-eval-ckpt7000\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:34:53.503Z\", \"updated_at\": \"2026-05-21T07:22:08.344Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"498661\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log\", \"submitted_at\": \"2026-05-21T07:22:08.089Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-21T04:45:38.832Z\"}}, \"exp-003-eval-ckpt6500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:22:06.593Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"498579\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log\", \"submitted_at\": \"2026-05-21T07:22:06.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}]}}, \"exp-003-eval-ckpt6000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:22:04.433Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"498441\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log\", \"submitted_at\": \"2026-05-21T07:22:03.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}]}}, \"exp-003-eval-ckpt5000-v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:21:50.053Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"495833\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt5000-v2.log\", \"submitted_at\": \"2026-05-21T07:18:55.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 174.5, \"gpu_hours\": 0.05}, \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}]}}, \"exp-003-eval-ckpt2000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:59.763Z\", \"updated_at\": \"2026-05-21T07:17:28.466Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-2000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/results/exp003_unified_eval/checkpoint-2000/\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt2000.log\", \"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=2 bash scripts/eval_exp003_d027.sh 2000\\\"\", \"server\": \"westd-28034\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:07:37.952Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:07:42.397773+00:00\"}]}, \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9834, \"SYCONScore\": 0.0846, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-2000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0846 vs 0.1335 = -36.6%, BELOW baseline\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T07:17:28.466Z\"}, \"exp-003-eval-ckpt3000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:46:00.760Z\", \"updated_at\": \"2026-05-21T07:17:27.723Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-3000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/results/exp003_unified_eval/checkpoint-3000/\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt3000.log\", \"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=3 bash scripts/eval_exp003_d027.sh 3000\\\"\", \"server\": \"westd-28034\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:07:15.861Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:07:18.007239+00:00\"}]}, \"metrics\": {\"ToF\": 0.0497, \"NoF\": 0.9724, \"SYCONScore\": 0.0946, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-3000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.0946 vs 0.1335 = -29.1%, BELOW baseline\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T07:17:27.723Z\"}, \"exp-009-eval-ckpt500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:18:17.465Z\", \"updated_at\": \"2026-05-21T07:16:51.037Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp009_ckpt500_eval/ --exp_id exp009_ckpt500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"227017\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-009-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T07:18:17.375Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/results/exp009_ckpt500_eval/\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-009/checkpoint-500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 86313.7, \"gpu_hours\": 23.98}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:27:36.728Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T09:27:41.439553+00:00\"}]}, \"metrics\": {\"ToF\": 0.0663, \"NoF\": 0.9337, \"SYCONScore\": 0.1238, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 7671}, \"hypothesis\": \"Eval exp-009 checkpoint-500 (continuous probe probability GRPO) with D027 unified preset to determine if continuous P(syc) reward produces stubbornness trap (ToF=0) like binary probe (exp-008v3), or shows viable learning signal (ToF > 0).\", \"parent\": \"exp-009\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T07:16:51.038Z\"}, \"exp-003-s2-eval-ckpt2500\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:37:56.853Z\", \"updated_at\": \"2026-05-21T04:46:02.802Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-2500 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for trajectory alignment.\", \"parent\": \"exp-003-s2\"}, \"vanilla-d027-reeval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:32:50.801Z\", \"updated_at\": \"2026-05-21T04:45:20.440Z\", \"hypothesis\": \"Re-run vanilla Qwen3-8B D027 eval with eval_unified_preset.py to ensure data consistency across all experiments. Previous vanilla eval used eval_pipeline.py which may differ in preprocessing.\", \"parent\": \"vanilla-baseline\", \"spec\": {\"command\": \"eval_unified_preset.py vanilla Qwen3-8B\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"234327\", \"log_path\": \"~/runs/contrastive_entrain_calib/vanilla-d027-reeval.log\", \"submitted_at\": \"2026-05-20T09:33:02.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (base model)\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"N/A (base model)\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 69137.7, \"gpu_hours\": 19.2}, \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9448, \"SYCONScore\": 0.1335, \"n_total\": 362, \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"note\": \"D027 unified preset baseline. Previous eval_pipeline.py gave ToF=0.1105, NoF=0.9227, SYCONScore=0.1974 — discrepancy due to different eval scripts.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T04:45:20.440Z\"}, \"exp-003-s2-eval-ckpt3000\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:37:57.768Z\", \"updated_at\": \"2026-05-21T04:45:00.240Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-3000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for exact step match.\", \"parent\": \"exp-003-s2\"}, \"exp-003-s2-eval-ckpt2000\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:37:55.835Z\", \"updated_at\": \"2026-05-21T04:44:58.756Z\", \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-2000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-2000 (SYCONScore=0.085).\", \"parent\": \"exp-003-s2\"}, \"exp-003-eval-ckpt4500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:50:34.664Z\", \"updated_at\": \"2026-05-20T19:06:13.570Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval/ --exp_id exp003-ckpt4500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"611296\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt4500.log\", \"submitted_at\": \"2026-05-20T17:50:34.506Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003 LoRA ckpt-4500\", \"seed\": 42, \"checkpoint_source\": \"exp-003\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-4500\", \"wall_clock_seconds\": 4539.1, \"gpu_hours\": 1.26}, \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-4500 with D027 unified preset. Pinpoint plateau onset: if ckpt-4500 SYCONScore=0.114 (same as ckpt-4000/5000/5500), plateau starts at step 4000; if lower, plateau onset is between step 4500-5000.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-20T19:03:52.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:03:54.596389+00:00\"}]}, \"metrics\": {\"ToF\": 0.0718, \"NoF\": 0.9613, \"SYCONScore\": 0.1337, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-4500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4280, \"vs_vanilla\": \"SYCONScore 0.1337 vs 0.1335 = +0.1%, essentially EQUAL to baseline\", \"note\": \"Surprising: ckpt-4500 peaks near vanilla baseline (0.1337), HIGHER than ckpt-4000/5000/5500 (0.1144). Non-monotonic trajectory — peak at 4500 then regression.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T19:06:13.570Z\"}, \"exp-003-s2-eval-ckpt1500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:56.843Z\", \"updated_at\": \"2026-05-20T18:26:08.158Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"608013\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"submitted_at\": \"2026-05-20T17:08:56.727Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4631.4, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-2000 (SYCONScore=0.085) to verify R3-only early trajectory.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:30.755Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:34.179573+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1500.log\", \"metrics\": {\"ToF\": 0.0552, \"NoF\": 0.9503, \"SYCONScore\": 0.1044, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:08.158Z\"}, \"exp-003-s2-eval-ckpt1000\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:54.425Z\", \"updated_at\": \"2026-05-20T18:26:07.632Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-1000\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"607932\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T17:08:54.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-1000\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4633.4, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-1000 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074).\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:22.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:28.674192+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-1000\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt1000.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9448, \"SYCONScore\": 0.0844, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:07.632Z\"}, \"exp-003-s2-eval-ckpt500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:08:51.630Z\", \"updated_at\": \"2026-05-20T18:26:06.677Z\", \"spec\": {\"command\": \"eval_unified_preset.py exp003_s2 ckpt-500\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"607796\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"submitted_at\": \"2026-05-20T17:08:51.515Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp-003-s2 LoRA ckpt-500\", \"seed\": 43, \"checkpoint_source\": \"exp-003-s2\", \"eval_data\": \"calibration_v2_1_expanded.jsonl (362 pairs)\", \"wall_clock_seconds\": 4635.2, \"gpu_hours\": 1.29}, \"hypothesis\": \"Eval exp-003-s2 (R3-only seed 2) checkpoint-500 with D027 unified preset. Cross-seed reproducibility check: compare with seed 1 ckpt-1000 (SYCONScore=0.074) to verify R3-only trajectory is reproducible.\", \"parent\": \"exp-003-s2\", \"reproduce\": {\"finished_at\": \"2026-05-20T18:23:18.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:23:20.484671+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-500\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt500.log\", \"metrics\": {\"ToF\": 0.0442, \"NoF\": 0.9503, \"SYCONScore\": 0.0845, \"samples\": 362}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T18:26:06.677Z\"}, \"exp-003-eval-ckpt5500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:21:54.401Z\", \"updated_at\": \"2026-05-20T17:41:06.305Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"605435\", \"log_path\": \"/root/contrastive_entrain_calib/results/exp003_d027_eval/\", \"submitted_at\": \"2026-05-20T16:21:54.289Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003 checkpoint-5500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp003/checkpoint-5500\", \"wall_clock_seconds\": 4752.0, \"gpu_hours\": 1.32}, \"reproduce\": {\"finished_at\": \"2026-05-20T17:37:22.627Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T17:37:25.059094+00:00\"}]}, \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-5500 with D027 unified preset. Testing whether R3-only plateau (ckpt-4000=ckpt-5000=0.114) extends to ckpt-5500.\", \"parent\": \"exp-003\", \"metrics\": {\"ToF\": 0.0608, \"NoF\": 0.9724, \"SYCONScore\": 0.1144, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-5500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"eval_time_sec\": 4484, \"vs_vanilla\": \"SYCONScore 0.1144 vs 0.1335 = -14.3%, BELOW baseline\", \"note\": \"Identical to ckpt-4000/5000 — plateau confirmed at 3 consecutive checkpoints\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T17:41:06.305Z\"}, \"exp-004-eval-ckpt5500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:41.309Z\", \"updated_at\": \"2026-05-20T16:13:14.157Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt5500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:2\"], \"pid\": \"601752\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt5500.log\", \"submitted_at\": \"2026-05-20T15:41:41.207Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-5500\", \"eval_data\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 1893.0, \"gpu_hours\": 0.53}, \"hypothesis\": \"ACT training at checkpoint-5500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:05:21.000Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:05:23.628739+00:00\"}]}, \"metrics\": {\"ToF\": 0.1381, \"NoF\": 0.8674, \"SYCONScore\": 0.2383, \"n_samples\": 362}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:13:14.157Z\"}, \"exp-004-eval-ckpt4500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:38.504Z\", \"updated_at\": \"2026-05-20T16:13:13.687Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/autodl-tmp/results/exp004_unified_eval/ --exp_id exp004_ckpt4500\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:0\"], \"pid\": \"601614\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-004-eval-ckpt4500.log\", \"submitted_at\": \"2026-05-20T15:41:38.408Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 362, \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4500\", \"eval_data\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"wall_clock_seconds\": 1895.3, \"gpu_hours\": 0.53}, \"hypothesis\": \"ACT training at checkpoint-4500 produces better sycophancy calibration than vanilla baseline, as part of the training trajectory analysis for exp-004\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:05:42.866Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:05:48.013680+00:00\"}]}, \"metrics\": {\"ToF\": 0.105, \"NoF\": 0.8785, \"SYCONScore\": 0.1875, \"n_samples\": 362}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:13:13.687Z\"}, \"exp-004-eval-ckpt7500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:46.107Z\", \"updated_at\": \"2026-05-20T16:06:13.253Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"601971\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:41:45.920Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-7500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-7500\", \"wall_clock_seconds\": 1467.3, \"gpu_hours\": 0.41}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-7500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:02:41.719Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:02:43.538907+00:00\"}]}, \"metrics\": {\"ToF\": 0.1657, \"NoF\": 0.8453, \"SYCONScore\": 0.2771, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-7500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2771 vs 0.1335 = +107.6%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:06:13.253Z\"}, \"exp-004-eval-ckpt6500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:41:43.690Z\", \"updated_at\": \"2026-05-20T16:06:12.150Z\", \"spec\": {\"command\": \"eval_unified_preset.py\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:3\"], \"pid\": \"601831\", \"log_path\": \"/root/autodl-tmp/results/exp004_unified_eval/\", \"submitted_at\": \"2026-05-20T15:41:43.589Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-004 checkpoint-6500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-6500\", \"wall_clock_seconds\": 1468.6, \"gpu_hours\": 0.41}, \"hypothesis\": \"Eval exp-004 ACT checkpoint-6500 with D027 unified preset. Part of ACT training trajectory for paper figure.\", \"parent\": \"exp-004\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:03:09.294Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:03:13.894332+00:00\"}]}, \"metrics\": {\"ToF\": 0.1492, \"NoF\": 0.8232, \"SYCONScore\": 0.2526, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"checkpoint\": \"checkpoint-6500\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\", \"vs_vanilla\": \"SYCONScore 0.2526 vs 0.1335 = +89.1%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T16:06:12.150Z\"}}, \"count\": 20, \"total\": 48, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4448}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. The 4 target eval experiments exist in the registry:
+
+1. **exp-003-eval-ckpt5000-v2**: status=DONE, conclusion=failed, failure_reason="EXIT_CODE=129 (non-zero)", PID=495833 (old)
+   - Actual: PID 497834 RUNNING on GPU 0
+   
+2. **exp-003-eval-ckpt6000**: status=DONE, conclusion=failed, failure_reason="EXIT_CODE=129 (non-zero)", PID=498441 (tmux wrapper)
+   - Actual: PID 498446 RUNNING on GPU 1
+   
+3. **exp-003-eval-ckpt6500**: status=DONE, conclusion=failed, failure_reason="EXIT_CODE=129 (non-zero)", PID=498579 (tmux wrapper)
+   - Actual: PID 498584 RUNNING on GPU 2
+
+4. **exp-003-eval-ckpt7000**: status=ALLOCATED, PID=498661 (tmux wrapper)
+   - Actual: PID 498666 RUNNING on GPU 3
+
+So the pattern is clear—the registry shows failed statuses but the processes are actually running across all four GPUs. I need to kill these processes and clean up the registry entries before restarting them properly. worker killed the old processes (EXIT_CODE=129 = SIGHUP), marked 3 of them as DONE/failed, then resubmitted. The ckpt5000-v2 was submitted via nohup (not tmux), while the others were submitted via submit_training_job (tmux).
+
+Now I need to update all 4 to status=RUNNING with correct PIDs. For the tmux-based jobs, the registry has the wrapper shell PIDs (498441 for ckpt6000, 498579 for ckpt6500, 498661 for ckpt7000), but the actual Python processes are running under different PIDs (498446, 498584, 498666 respectively). The ckpt5000-v2 was submitted via nohup with PID 497834 on GPU 0, though the registry still shows the old PID 495833.
+
+Looking at the timestamps, ckpt6000 shows completed_at before the resubmission, which is suspicious and suggests the registry wasn't properly updated when the job was restarted. I see the issue now—the old process got killed but a new one started with a different PID, yet the spec still references the old one. I need to update all four jobs to RUNNING status with the correct PIDs in their specs, then set up monitoring crons. Let me check what tools are available for killing jobs and creating crons.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "4dba3014-19f3-4a7d-a3dd-66683d7095e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0116SPhxxeZ16cw2aau2Zs3j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12988,
+      "cache_read_input_tokens": 35844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+全部找到了。Registry 状态总结：
+- ckpt5000-v2: DONE(failed), 旧 PID 495833 — 实际 PID 497834 在跑
+- ckpt6000: DONE(failed), PID 498441 — 实际 PID 498446 在跑
+- ckpt6500: DONE(failed), PID 498579 — 实际 PID 498584 在跑
+- ckpt7000: ALLOCATED, PID 498661 — 实际 PID 498666 在跑
+
+需要加载 CronCreate 来注册 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "6eab8c85-6f61-4832-ad5e-394ec98ca230",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0116SPhxxeZ16cw2aau2Zs3j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12988,
+      "cache_read_input_tokens": 35844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ujc3WEENyRY7PCxQpuZxVf`</summary>
+
+```json
+{
+  "query": "select:CronCreate,CronList",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "12814a92-d647-4e36-b85c-ed61aa16fcfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0116SPhxxeZ16cw2aau2Zs3j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12988,
+      "cache_read_input_tokens": 35844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T07:24:32.325Z_
+
+<details><summary>↩ Tool result · `toolu_01Ujc3WEENyRY7PCxQpuZxVf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronCreate"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronList"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "056687fd-4ef7-4fff-8de5-92b1cb9dcb67",
+  "tool_use_result": {
+    "matches": [
+      "CronCreate",
+      "CronList"
+    ],
+    "query": "select:CronCreate,CronList",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to fix the registry for all 4 experiments. The key issue is:
+
+1. **exp-003-eval-ckpt5000-v2**: DONE(failed) → needs to go back to RUNNING, PID=497834, GPU=cuda:0
+2. **exp-003-eval-ckpt6000**: DONE(failed) → needs to go back to RUNNING, PID=498446, GPU=cuda:1
+
+
+3. **exp-003-eval-ckpt6500**: DONE(failed) → needs to go back to RUNNING, PID=498584, GPU=cuda:2
+4. **exp-003-eval-ckpt7000**: ALLOCATED → needs to go to RUNNING, PID=498666, GPU=cuda:3
+
+I'll update the registry for all four experiments in parallel, setting each to RUNNING status with the proper spec including command, server, data path, data count, model name, seed, checkpoint source, eval data, and their respective PID and GPU assignments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "fe74e12a-df1a-4c0d-b52a-749efbef7274",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKzjtnQuRULWDSUewcXtBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2710,
+      "cache_read_input_tokens": 48832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2710
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+修复 registry：把 4 个 eval 全部更新为 RUNNING，使用实际 PID。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "f6f762d8-7c50-4bae-b6f0-590539a39cf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKzjtnQuRULWDSUewcXtBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2710,
+      "cache_read_input_tokens": 48832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2710
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Q7fCiJqk4BzTQVYYrp8Li9`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt5000-v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\"",
+    "server": "westd-28034",
+    "gpu": "cuda:0",
+    "pid": "497834",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-5000",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "/tmp/eval_ckpt5000v2.log",
+    "account": "root",
+    "notes": "Restarted via nohup by batch-submit worker. Old PID 495833 killed (EXIT_CODE=129). New PID 497834."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "1039c3c2-f3b3-40ed-89ac-e84180169186",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKzjtnQuRULWDSUewcXtBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2710,
+      "cache_read_input_tokens": 48832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2710
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T07:24:46.704Z_
+
+<details><summary>↩ Tool result · `toolu_01Q7fCiJqk4BzTQVYYrp8Li9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.1649}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "71efc7d4-a42c-4310-85c6-ce19909870e4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1649}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.1649}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Heo4q5EQ97cQ4cHcRcjTjB`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6000",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\"",
+    "server": "westd-28034",
+    "gpu": "cuda:1",
+    "pid": "498446",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-6000",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log",
+    "account": "root",
+    "backend": "tmux",
+    "notes": "Resubmitted by kill-cleanup-restart worker. Old process killed (EXIT_CODE=129). New PID 498446."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "de2a61a3-f45b-4cb2-8735-3c5f13ca3d4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKzjtnQuRULWDSUewcXtBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2710,
+      "cache_read_input_tokens": 48832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2710
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T07:24:50.836Z_
+
+<details><summary>↩ Tool result · `toolu_01Heo4q5EQ97cQ4cHcRcjTjB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.1418}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "b04e1ba9-1379-40a7-94eb-960fe627482a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1418}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.1418}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YEWuUZ4DtQ8RykzHZYiBtE`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6500",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\"",
+    "server": "westd-28034",
+    "gpu": "cuda:2",
+    "pid": "498584",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-6500",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log",
+    "account": "root",
+    "backend": "tmux",
+    "notes": "Resubmitted by kill-cleanup-restart worker. Old process killed (EXIT_CODE=129). New PID 498584."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "eac236b7-fa8e-4d7a-9e96-53267619e6d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKzjtnQuRULWDSUewcXtBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2710,
+      "cache_read_input_tokens": 48832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2710
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T07:24:54.718Z_
+
+<details><summary>↩ Tool result · `toolu_01YEWuUZ4DtQ8RykzHZYiBtE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.1899}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "40757e63-5d19-4a80-8e98-6892df27dc37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1899}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.1899}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FW2LefEqzjAwVr1LRRdap7`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt7000",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\"",
+    "server": "westd-28034",
+    "gpu": "cuda:3",
+    "pid": "498666",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-7000",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log",
+    "account": "root",
+    "backend": "tmux",
+    "notes": "Resubmitted by kill-cleanup-restart worker. New PID 498666."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "5a606bed-925e-43e3-915a-6917bbbbd49d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKzjtnQuRULWDSUewcXtBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2710,
+      "cache_read_input_tokens": 48832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2710
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T07:24:58.916Z_
+
+<details><summary>↩ Tool result · `toolu_01FW2LefEqzjAwVr1LRRdap7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt7000\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:34:53.503Z\", \"updated_at\": \"2026-05-21T07:24:58.319Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"pid\": \"498666\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log\", \"submitted_at\": \"2026-05-21T07:22:08.089Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-7000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"notes\": \"Resubmitted by kill-cleanup-restart worker. New PID 498666.\"}, \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-21T04:45:38.832Z\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8047}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "4617be0d-1eb2-4a1e-bf6f-2172e6f8fe3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt7000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:34:53.503Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:24:58.319Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"498666\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:22:08.089Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003/checkpoint-7000\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"notes\\\": \\\"Resubmitted by kill-cleanup-restart worker. New PID 498666.\\\"}, \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:38.832Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8047}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt7000\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:34:53.503Z\", \"updated_at\": \"2026-05-21T07:24:58.319Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"pid\": \"498666\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log\", \"submitted_at\": \"2026-05-21T07:22:08.089Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-7000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"notes\": \"Resubmitted by kill-cleanup-restart worker. New PID 498666.\"}, \"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-21T04:45:38.832Z\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8047}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so DONE → RUNNING is not a valid transition. ckpt7000 (ALLOCATED → RUNNING) worked fine. For the 3 DONE ones, I need to go through DONE → PREPARING → RUNNING, or maybe I can set `retry_count` and use a different path. Let me try DONE → PREPARING first.
+
+Actually, looking at the allowed transitions from DONE: DEPLOYING, PREPARING. So I need to go DONE → PREPARING → RUNNING.
+
+Let me update all 3 to PREPARING first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "bccfe523-1663-4efd-9844-4a7d3eff7846",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DDyYKdYY6WXSrR82u26hQh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3566,
+      "cache_read_input_tokens": 51542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+ckpt7000 成功。其他 3 个需要走 DONE → PREPARING → RUNNING 路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "7c923a6d-f2ca-456d-a979-4293d39b7732",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DDyYKdYY6WXSrR82u26hQh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3566,
+      "cache_read_input_tokens": 51542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012vr74DdcBZuzb6eSySQ4j1`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt5000-v2",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "64b767ea-4f99-4bec-8c8e-8bc0d46fb21a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DDyYKdYY6WXSrR82u26hQh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3566,
+      "cache_read_input_tokens": 51542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MK1ZvjsmKSdRPUFHUG5AwP`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6000",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "56100583-2887-46fb-a6fb-94dc31be8297",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DDyYKdYY6WXSrR82u26hQh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3566,
+      "cache_read_input_tokens": 51542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015ajp7m3u4dcf3ZC9mNdk56`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6500",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "089f7086-9b27-4dab-b998-ad52a333ca4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DDyYKdYY6WXSrR82u26hQh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3566,
+      "cache_read_input_tokens": 51542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T07:25:06.863Z_
+
+<details><summary>↩ Tool result · `toolu_012vr74DdcBZuzb6eSySQ4j1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt5000-v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:25:05.452Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6856}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "cbeb01d7-9fce-4408-933b-f4aab07205f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt5000-v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:44:31.338Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:05.452Z\\\", \\\"hypothesis\\\": \\\"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:21:49.272Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:50.053Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:52.534161+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6856}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt5000-v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:25:05.452Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6856}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T07:25:09.271Z_
+
+<details><summary>↩ Tool result · `toolu_01MK1ZvjsmKSdRPUFHUG5AwP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6000\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:25:07.683Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3772}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "8e4f2e3d-695f-48a8-baf4-7ce9d45a434a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:34:51.960Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:07.683Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:36.843Z\\\", \\\"finished_at\\\": \\\"2026-05-21T07:21:54.331Z\\\", \\\"training_hours\\\": 2.6}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:55.749Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:58.429707+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3772}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6000\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:25:07.683Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3772}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-21T07:25:11.114Z_
+
+<details><summary>↩ Tool result · `toolu_015ajp7m3u4dcf3ZC9mNdk56`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6500\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:25:10.007Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7965}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "32eacc00-dd45-4b64-b84b-b3f35e11626d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:34:52.934Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:10.007Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:22:00.484Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\\\", \\\"completed_at\\\": \\\"2026-05-21T07:22:03.528Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:22:07.737419+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7965}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6500\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:25:10.007Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7965}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+PREPARING 成功。现在转 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "0b6ce1e3-b478-4d24-8268-dc87b5285d35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkjovNzBZ5eR13QWHvr3WH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1868,
+      "cache_read_input_tokens": 55108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1868
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QshAWadCnAN1677w5AUhHx`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt5000-v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\"",
+    "server": "westd-28034",
+    "gpu": "cuda:0",
+    "pid": "497834",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-5000",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "/tmp/eval_ckpt5000v2.log",
+    "account": "root",
+    "backend": "nohup",
+    "notes": "Retry #1. Restarted via nohup. PID 497834 on cuda:0."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "f35e660f-c7a0-4acb-9bc0-54ef4c48d418",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkjovNzBZ5eR13QWHvr3WH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1868,
+      "cache_read_input_tokens": 55108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1868
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T07:25:18.950Z_
+
+<details><summary>↩ Tool result · `toolu_01QshAWadCnAN1677w5AUhHx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1478}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "056b177c-3c10-47d0-8426-2b7b6726f328",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1478}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1478}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012VKcLe3bRTc1yiCNZi75ug`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6000",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\"",
+    "server": "westd-28034",
+    "gpu": "cuda:1",
+    "pid": "498446",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-6000",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log",
+    "account": "root",
+    "backend": "tmux",
+    "notes": "Retry #1. Resubmitted via tmux. PID 498446 on cuda:1."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "3b472782-c975-49ec-9e20-1cadcb4ef9c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkjovNzBZ5eR13QWHvr3WH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1868,
+      "cache_read_input_tokens": 55108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1868
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T07:25:23.059Z_
+
+<details><summary>↩ Tool result · `toolu_012VKcLe3bRTc1yiCNZi75ug`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1464}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "df102424-cde3-4767-8c5a-eacfc5f93294",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1464}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1464}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014zVch7h4LD8zCYPJovbjBW`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6500",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\"",
+    "server": "westd-28034",
+    "gpu": "cuda:2",
+    "pid": "498584",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-6500",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log",
+    "account": "root",
+    "backend": "tmux",
+    "notes": "Retry #1. Resubmitted via tmux. PID 498584 on cuda:2."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "019a102f-58f0-4f99-8dcf-7d71b9af4be6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkjovNzBZ5eR13QWHvr3WH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1868,
+      "cache_read_input_tokens": 55108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1868
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-21T07:25:26.804Z_
+
+<details><summary>↩ Tool result · `toolu_014zVch7h4LD8zCYPJovbjBW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1514}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "5141f2c9-387e-402b-90f2-9c0a00248199",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1514}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1514}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the state machine is: PREPARING → QUEUED → ... → RUNNING? Let me try PREPARING → QUEUED → ALLOCATED → RUNNING. Or maybe PREPARING → PENDING → QUEUED → ALLOCATED → RUNNING.
+
+Let me try PREPARING → QUEUED first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "19d46979-72db-43c9-abf0-0862144fec3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kkp2K5uHzGVZfKutDfBBB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1882,
+      "cache_read_input_tokens": 56976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+需要走完整状态链。PREPARING → QUEUED → ALLOCATED → RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "81648ae0-916a-46a9-8040-06f9686f5470",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kkp2K5uHzGVZfKutDfBBB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1882,
+      "cache_read_input_tokens": 56976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QyU1ya56BnN2FdymbbywmB`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt5000-v2",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "cea6f9bf-aefe-4eed-94bd-088673cd6337",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kkp2K5uHzGVZfKutDfBBB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1882,
+      "cache_read_input_tokens": 56976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T07:25:32.372Z_
+
+<details><summary>↩ Tool result · `toolu_01QyU1ya56BnN2FdymbbywmB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt5000-v2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:25:31.975Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5396}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "6148d209-18aa-4240-b6e0-4fbf03d8afbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt5000-v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:44:31.338Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:31.975Z\\\", \\\"hypothesis\\\": \\\"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:21:49.272Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:50.053Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:52.534161+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5396}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt5000-v2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:25:31.975Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5396}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JUGLrwMcf2v6XyBRkKgUrk`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6000",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "5dd798f4-4227-4232-852c-9f6849c20b90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kkp2K5uHzGVZfKutDfBBB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1882,
+      "cache_read_input_tokens": 56976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T07:25:33.339Z_
+
+<details><summary>↩ Tool result · `toolu_01JUGLrwMcf2v6XyBRkKgUrk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6000\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:25:32.896Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5893}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "6ce2ce11-cf70-4042-bd57-86d01232b0af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:34:51.960Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:32.896Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:36.843Z\\\", \\\"finished_at\\\": \\\"2026-05-21T07:21:54.331Z\\\", \\\"training_hours\\\": 2.6}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:55.749Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:58.429707+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5893}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6000\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:25:32.896Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5893}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UWjAKSUyvbwUhZPsRYURLS`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6500",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "1755e118-0753-4e9c-a6f9-f796b18cb39f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kkp2K5uHzGVZfKutDfBBB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1882,
+      "cache_read_input_tokens": 56976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T07:25:33.960Z_
+
+<details><summary>↩ Tool result · `toolu_01UWjAKSUyvbwUhZPsRYURLS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6500\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:25:33.512Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6053}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "e81fad4f-b632-4607-93f8-55873ccc0f18",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:34:52.934Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:33.512Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:22:00.484Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\\\", \\\"completed_at\\\": \\\"2026-05-21T07:22:03.528Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:22:07.737419+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6053}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6500\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:25:33.512Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6053}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PxwmpXaawsrMcUvtgFBZVB`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt5000-v2",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "bd325636-5d82-4f46-92eb-f3e3b686f271",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wkyYmKMsbVBYLYUEeyX9t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1907,
+      "cache_read_input_tokens": 58858,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1907
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-21T07:25:37.975Z_
+
+<details><summary>↩ Tool result · `toolu_01PxwmpXaawsrMcUvtgFBZVB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt5000-v2\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:25:37.565Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5592}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "c2666d83-b788-4d20-94ea-c6fcaf914817",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt5000-v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:44:31.338Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:37.565Z\\\", \\\"hypothesis\\\": \\\"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:21:49.272Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:50.053Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:52.534161+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5592}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt5000-v2\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:25:37.565Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5592}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013nfi9jpEjBKB7gFPG1qKRc`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6000",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "8cdeb8c8-f500-4c58-86c2-ce4eec7ec5ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wkyYmKMsbVBYLYUEeyX9t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1907,
+      "cache_read_input_tokens": 58858,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1907
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AbnNaFUtst528dPVbNf6Xu`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6500",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "82f95e9c-f564-45e5-9693-0e04aea1a9f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wkyYmKMsbVBYLYUEeyX9t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1907,
+      "cache_read_input_tokens": 58858,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1907
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T07:25:38.967Z_
+
+<details><summary>↩ Tool result · `toolu_013nfi9jpEjBKB7gFPG1qKRc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6000\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:25:38.499Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6109}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "a4845f74-bb05-4f32-be65-a7413e92a1e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:34:51.960Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:38.499Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:36.843Z\\\", \\\"finished_at\\\": \\\"2026-05-21T07:21:54.331Z\\\", \\\"training_hours\\\": 2.6}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:55.749Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:58.429707+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6109}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6000\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:25:38.499Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6109}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-21T07:25:39.516Z_
+
+<details><summary>↩ Tool result · `toolu_01AbnNaFUtst528dPVbNf6Xu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6500\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:25:39.140Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5337}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "0ecce00c-7883-4882-aad7-44b852ccf620",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:34:52.934Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:39.140Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:22:00.484Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\\\", \\\"completed_at\\\": \\\"2026-05-21T07:22:03.528Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:22:07.737419+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5337}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6500\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:25:39.140Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5337}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+现在 ALLOCATED → RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "12e0dc7d-7ab0-4975-84d6-89f329a1ebc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K2wuMWerBzEu8cmTwhKX2R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1696,
+      "cache_read_input_tokens": 60765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1696
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AY91Ncb69vqZC3GiYC3WpS`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt5000-v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\"",
+    "server": "westd-28034",
+    "gpu": "cuda:0",
+    "pid": "497834",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-5000",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "/tmp/eval_ckpt5000v2.log",
+    "account": "root",
+    "backend": "nohup",
+    "notes": "Retry #1. PID 497834 on cuda:0. Started ~15:19 UTC."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "ad2a1d88-95ee-4688-a062-81c005511065",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K2wuMWerBzEu8cmTwhKX2R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1696,
+      "cache_read_input_tokens": 60765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1696
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-21T07:25:49.799Z_
+
+<details><summary>↩ Tool result · `toolu_01AY91Ncb69vqZC3GiYC3WpS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt5000-v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:25:49.395Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:0\", \"pid\": \"497834\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-5000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"log_path\": \"/tmp/eval_ckpt5000v2.log\", \"account\": \"root\", \"backend\": \"nohup\", \"notes\": \"Retry #1. PID 497834 on cuda:0. Started ~15:19 UTC.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5625}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "a10cc625-8162-4f83-aac0-72f3799fed1e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt5000-v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:44:31.338Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:49.395Z\\\", \\\"hypothesis\\\": \\\"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:21:49.272Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:50.053Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:52.534161+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"497834\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003/checkpoint-5000\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"log_path\\\": \\\"/tmp/eval_ckpt5000v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"backend\\\": \\\"nohup\\\", \\\"notes\\\": \\\"Retry #1. PID 497834 on cuda:0. Started ~15:19 UTC.\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5625}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt5000-v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:44:31.338Z\", \"updated_at\": \"2026-05-21T07:25:49.395Z\", \"hypothesis\": \"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:21:49.272Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-21T07:21:50.053Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:52.534161+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:0\", \"pid\": \"497834\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-5000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"log_path\": \"/tmp/eval_ckpt5000v2.log\", \"account\": \"root\", \"backend\": \"nohup\", \"notes\": \"Retry #1. PID 497834 on cuda:0. Started ~15:19 UTC.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5625}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UQDY9GZP9GRLdukzUgK4LT`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6000",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\"",
+    "server": "westd-28034",
+    "gpu": "cuda:1",
+    "pid": "498446",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-6000",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log",
+    "account": "root",
+    "backend": "tmux",
+    "notes": "Retry #1. PID 498446 on cuda:1. Started ~15:22 UTC."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "afbea413-0378-4a04-b144-7a1bf5aecafd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K2wuMWerBzEu8cmTwhKX2R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1696,
+      "cache_read_input_tokens": 60765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1696
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-21T07:25:53.416Z_
+
+<details><summary>↩ Tool result · `toolu_01UQDY9GZP9GRLdukzUgK4LT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6000\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:25:52.998Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"pid\": \"498446\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-6000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log\", \"account\": \"root\", \"backend\": \"tmux\", \"notes\": \"Retry #1. PID 498446 on cuda:1. Started ~15:22 UTC.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5721}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "356c7f26-7149-4b8b-aa34-74ef06db06ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:34:51.960Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:52.998Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:36.843Z\\\", \\\"finished_at\\\": \\\"2026-05-21T07:21:54.331Z\\\", \\\"training_hours\\\": 2.6}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\\\", \\\"completed_at\\\": \\\"2026-05-21T07:21:55.749Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:21:58.429707+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"498446\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003/checkpoint-6000\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log\\\", \\\"account\\\": \\\"root\\\", \\\"backend\\\": \\\"tmux\\\", \\\"notes\\\": \\\"Retry #1. PID 498446 on cuda:1. Started ~15:22 UTC.\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5721}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6000\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:51.960Z\", \"updated_at\": \"2026-05-21T07:25:52.998Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\", \"parent\": \"exp-003\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T04:45:36.843Z\", \"finished_at\": \"2026-05-21T07:21:54.331Z\", \"training_hours\": 2.6}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:21:55.749Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:21:58.429707+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:1\", \"pid\": \"498446\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-6000\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log\", \"account\": \"root\", \"backend\": \"tmux\", \"notes\": \"Retry #1. PID 498446 on cuda:1. Started ~15:22 UTC.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5721}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CzPgbtQnwE16KrQWTWomHP`</summary>
+
+```json
+{
+  "exp_id": "exp-003-eval-ckpt6500",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": {
+    "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\"",
+    "server": "westd-28034",
+    "gpu": "cuda:2",
+    "pid": "498584",
+    "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+    "data_count": 362,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "checkpoint_source": "exp-003/checkpoint-6500",
+    "eval_data": "calibration_v2_1_expanded.jsonl",
+    "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log",
+    "account": "root",
+    "backend": "tmux",
+    "notes": "Retry #1. PID 498584 on cuda:2. Started ~15:22 UTC."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "0e43425b-6694-4044-8099-92a084792451",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K2wuMWerBzEu8cmTwhKX2R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1696,
+      "cache_read_input_tokens": 60765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1696
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-21T07:25:57.376Z_
+
+<details><summary>↩ Tool result · `toolu_01CzPgbtQnwE16KrQWTWomHP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6500\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:25:56.961Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:2\", \"pid\": \"498584\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-6500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log\", \"account\": \"root\", \"backend\": \"tmux\", \"notes\": \"Retry #1. PID 498584 on cuda:2. Started ~15:22 UTC.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5701}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "443f065f-6227-422f-bf63-4c1e329dfb34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:34:52.934Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:25:56.961Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:22:00.484Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\\\", \\\"completed_at\\\": \\\"2026-05-21T07:22:03.528Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:22:07.737419+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"498584\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003/checkpoint-6500\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log\\\", \\\"account\\\": \\\"root\\\", \\\"backend\\\": \\\"tmux\\\", \\\"notes\\\": \\\"Retry #1. PID 498584 on cuda:2. Started ~15:22 UTC.\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5701}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt6500\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T04:34:52.934Z\", \"updated_at\": \"2026-05-21T07:25:56.961Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\", \"parent\": \"exp-003\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:22:00.484Z\"}, \"failure_reason\": \"EXIT_CODE=129 (SIGHUP) — batch failure on westd-28034, all 3 concurrent evals killed simultaneously. Likely server restart or tmux crash. Diagnosing.\", \"completed_at\": \"2026-05-21T07:22:03.528Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:22:07.737419+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\"\", \"server\": \"westd-28034\", \"gpu\": \"cuda:2\", \"pid\": \"498584\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"exp-003/checkpoint-6500\", \"eval_data\": \"calibration_v2_1_expanded.jsonl\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log\", \"account\": \"root\", \"backend\": \"tmux\", \"notes\": \"Retry #1. PID 498584 on cuda:2. Started ~15:22 UTC.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5701}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92_
+
+4 个 eval 全部更新为 RUNNING。现在注册 cron 监控。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "5e1d2d55-2d5a-40e3-9715-2754cff2a82c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CThpRKWFhWNTqoE8eeFrUa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4147,
+      "cache_read_input_tokens": 62461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4147
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — CronCreate · `toolu_01Kr749ctt9bXUXrhk6S5bfY`</summary>
+
+```json
+{
+  "cron": "*/8 * * * *",
+  "prompt": "Check eval status on westd-28034 for contrastive_entrain_calib project. SSH to westd-28034 (account=root) and check if these PIDs are still running: 497834 (exp-003-eval-ckpt5000-v2, cuda:0), 498446 (exp-003-eval-ckpt6000, cuda:1), 498584 (exp-003-eval-ckpt6500, cuda:2), 498666 (exp-003-eval-ckpt7000, cuda:3). For each: if PID is gone, check results in /root/contrastive_entrain_calib/results/exp003_d027_eval/ for the corresponding exp_id. If results exist, read metrics and update registry to DONE with metrics. If no results and process died, mark DONE(failed). Report status briefly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "5a42517a-ec67-4c1e-adeb-3acf125b04e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CThpRKWFhWNTqoE8eeFrUa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4147,
+      "cache_read_input_tokens": 62461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4147
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-21T07:26:05.336Z_
+
+<details><summary>↩ Tool result · `toolu_01Kr749ctt9bXUXrhk6S5bfY`</summary>
+
+```text
+Scheduled recurring job eba2e700 (Every 8 minutes). Session-only (not written to disk, dies when Claude exits). Auto-expires after 7 days. Use CronDelete to cancel sooner.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "fd07d01d-03ed-4276-bdfc-78f48529050e",
+  "tool_use_result": {
+    "id": "eba2e700",
+    "humanSchedule": "Every 8 minutes",
+    "recurring": true,
+    "durable": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+全部完成。汇报：
+
+```
+实际 GPU 状态:
+  cuda:0: PID 497834 running exp-003-eval-ckpt5000-v2 (16.8GB, 48% util)
+  cuda:1: PID 498446 running exp-003-eval-ckpt6000 (16.8GB, 48% util)
+  cuda:2: PID 498584 running exp-003-eval-ckpt6500 (16.8GB, 49% util)
+  cuda:3: PID 498666 running exp-003-eval-ckpt7000 (16.8GB, 50% util)
+
+Registry 修复:
+  exp-003-eval-ckpt5000-v2: DONE(failed) → RUNNING, PID=497834 (nohup, 无 tmux)
+  exp-003-eval-ckpt6000:    DONE(failed) → RUNNING, PID=498446 (tmux session)
+  exp-003-eval-ckpt6500:    DONE(failed) → RUNNING, PID=498584 (tmux session)
+  exp-003-eval-ckpt7000:    ALLOCATED    → RUNNING, PID=498666 (tmux session)
+
+Cron 注册:
+  全部 4 个 eval: cron eba2e700 (每8分钟), 监控 PID 存活 + 自动收割结果
+```
+
+**根因**：kill-cleanup-restart worker 用 SIGHUP 杀掉了 batch-submit worker 提交的旧进程（PID 495833/495906/496116/496266），触发 cron 将 3 个 eval 标记为 DONE(failed, EXIT_CODE=129)。随后重新提交了新进程，但 registry 状态未从 DONE 恢复到 RUNNING。ckpt7000 卡在 ALLOCATED 是因为提交后未完成状态转换。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "uuid": "f55a4a9d-e59e-4ce4-8bc8-ce590d52e71e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PzVWueW8YkpMrkvmuoFXnB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 368,
+      "cache_read_input_tokens": 66608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 368
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 96_
+
+全部完成。汇报：
+
+```
+实际 GPU 状态:
+  cuda:0: PID 497834 running exp-003-eval-ckpt5000-v2 (16.8GB, 48% util)
+  cuda:1: PID 498446 running exp-003-eval-ckpt6000 (16.8GB, 48% util)
+  cuda:2: PID 498584 running exp-003-eval-ckpt6500 (16.8GB, 49% util)
+  cuda:3: PID 498666 running exp-003-eval-ckpt7000 (16.8GB, 50% util)
+
+Registry 修复:
+  exp-003-eval-ckpt5000-v2: DONE(failed) → RUNNING, PID=497834 (nohup, 无 tmux)
+  exp-003-eval-ckpt6000:    DONE(failed) → RUNNING, PID=498446 (tmux session)
+  exp-003-eval-ckpt6500:    DONE(failed) → RUNNING, PID=498584 (tmux session)
+  exp-003-eval-ckpt7000:    ALLOCATED    → RUNNING, PID=498666 (tmux session)
+
+Cron 注册:
+  全部 4 个 eval: cron eba2e700 (每8分钟), 监控 PID 存活 + 自动收割结果
+```
+
+**根因**：kill-cleanup-restart worker 用 SIGHUP 杀掉了 batch-submit worker 提交的旧进程（PID 495833/495906/496116/496266），触发 cron 将 3 个 eval 标记为 DONE(failed, EXIT_CODE=129)。随后重新提交了新进程，但 registry 状态未从 DONE 恢复到 RUNNING。ckpt7000 卡在 ALLOCATED 是因为提交后未完成状态转换。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 175011,
+  "duration_api_ms": 166642,
+  "num_turns": 36,
+  "stop_reason": "end_turn",
+  "session_id": "99fd8901-7bba-4233-a85d-a3e945daa0cc",
+  "total_cost_usd": 0.9525102500000001,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 55135,
+    "cache_read_input_tokens": 623259,
+    "output_tokens": 11774,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55135,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 518,
+        "cache_read_input_tokens": 66608,
+        "cache_creation_input_tokens": 368,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 368
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1732,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001842,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 11774,
+      "cacheReadInputTokens": 623259,
+      "cacheCreationInputTokens": 55135,
+      "webSearchRequests": 0,
+      "costUSD": 0.95066825,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c6f0b036-48d7-4e46-bc6f-af48cc284d22"
+}
+```
+
+</details>
+
+---

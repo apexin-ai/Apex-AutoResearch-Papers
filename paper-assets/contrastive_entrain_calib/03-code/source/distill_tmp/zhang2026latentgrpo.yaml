@@ -1,0 +1,107 @@
+paper_key: "zhang2026latentgrpo"
+title: "Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering (Latent-GRPO)"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "LLM-as-Judge (GPT-4o)"
+    - "Rule-based verification"
+  metrics:
+    - {name: "Task Accuracy", direction: "higher_better"}
+    - {name: "Training Time per Epoch (minutes)", direction: "lower_better"}
+  datasets:
+    - {name: "GSM8K", size: "elementary math word problems"}
+    - {name: "MATH", size: "high school and competition-level math"}
+    - {name: "Open-Platypus", size: "diverse reasoning: physics, logic, math"}
+    - {name: "AIME24", size: "competition math (eval only)"}
+    - {name: "AIME25", size: "competition math (eval only)"}
+    - {name: "MATH-500", size: "math subset (eval only)"}
+    - {name: "MMLU", size: "general knowledge (eval only)"}
+    - {name: "BBH", size: "BIG-Bench Hard (eval only)"}
+  ablation_dimensions:
+    - "Hidden state extraction method (Last Token vs Mean Pooling vs Weighted Mean)"
+    - "Centroid estimation algorithm (Mean Pool vs K-Means vs Eigen Centrality vs IRCE)"
+    - "Model scale (0.6B, 1.7B, 4B)"
+    - "Model family (Qwen3 vs Llama3.2)"
+    - "Capability preservation on unseen benchmarks"
+  training_recipe:
+    optimizer: "not explicitly stated in main text (Appendix F referenced)"
+    lr: "not explicitly stated in main text (Appendix F referenced)"
+    hardware: "single GPU (specific type in Appendix F)"
+    group_size: "G=8"
+    irce_iterations: "T=5"
+    reward_normalization: "Min-Max to [0,1]"
+    spherical_normalization: "L2 unit hypersphere projection"
+    models: "Qwen3-0.6B, Qwen3-1.7B, Qwen3-4B, Llama3.2-3B"
+  method_family: "GRPO / Verifier-free RL for LLM reasoning"
+
+positioning:
+  core_claim: "LLM latent spaces encode reasoning correctness as geometric clustering — correct trajectories cluster densely while incorrect ones scatter — enabling intrinsic dense rewards that replace expensive external verifiers with ~2x training speedup."
+  key_results: "GSM8K Qwen3-4B: 82.34% (Latent-GRPO) vs 72.12% (LLM-Judge) vs 79.87% (Rule-based); MATH Qwen3-4B: 77.53% vs 77.44% vs 62.63%; Open-Platypus Qwen3-4B: 78.06% vs 65.21% (no rule-based); Training time ~2x faster than LLM-as-Judge across all settings; Llama3.2-3B GSM8K: 78.62% vs 71.34% (LLM-Judge)"
+  limitations:
+    - "Scaling uncertainty: effective up to 8B parameters, but behavior at 70B+ and open-ended generation unexplored"
+    - "Theoretical framework gap: strong empirical evidence but formal mathematical framework for latent clustering still nascent"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with LLM reasoning achievements via RLHF/GRPO, then immediately identifies the bottleneck: GRPO's heavy reliance on external verifiers creates a fundamental efficiency-accuracy tradeoff."
+  tension: "Three interconnected problems with existing verifiers: (1) rule-based confined to deterministic tasks, (2) LLM judges incur substantial computational overhead and latency, (3) sparse discrete rewards miss continuous semantic nuances and invite reward hacking. The ideal mechanism should be 'intrinsic, dense, and training-free.'"
+  key_insight: "Revealed in paragraph 3 of intro: terminal token hidden states of correct reasoning trajectories form dense clusters while incorrect paths scatter — because transformer attention progressively aggregates reasoning context into final representations, and pre-training discriminative capabilities create inherent geometric consistency where 'logical consistency manifests as semantic convergence.'"
+  argument_chain: "GRPO depends on verifiers → verifiers are expensive/limited → discovery that latent space encodes correctness geometrically → IRCE algorithm to extract dense rewards from clustering → comprehensive validation across scales and model families → capability preservation on unseen benchmarks"
+  contribution_framing: "Contributions not explicitly numbered; framed as a unified discovery-to-framework narrative. Key claims: geometric property discovery, IRCE algorithm, 2x speedup, maintained/improved accuracy, cross-model generalization."
+  intro_structure: "4 paragraphs: P1=context (RLHF/GRPO foundation), P2=problem (three verifier bottlenecks), P3=key discovery (geometric clustering), P4=proposed framework and claims"
+  notable_technique: "The 'silence the judge' metaphor creates a vivid antagonist (expensive external verifiers) that the method elegantly eliminates. The paper builds credibility by first establishing the geometric property empirically (Section 3) before presenting the framework (Section 4), making the method feel like a natural consequence of discovery rather than an arbitrary design choice."
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "Side-by-side comparison of Latent-GRPO training pipeline vs traditional LLM-as-Judge reward. Left panel shows the full Latent-GRPO pipeline: input text → embedding layer → language model → last hidden states → latent reward function → rollout rewards → update training LLM. Right panel shows two boxes: (top) traditional reward with GPT logo producing binary Score:1/Score:0, (bottom) latent reward using hidden states through LRF block producing Score:High/Score:Low with a scatter plot showing green/red clustering. Three advantage badges: Dynamic rewards, Faster rewards, Continuous rewards."
+    narrative_role: "Establishes the core architectural difference at a glance — positions the method as replacing the external judge with an internal geometric mechanism, while highlighting three key advantages."
+    design_elements: ["side-by-side comparison layout", "color-coded pipeline flow", "3D transformer visualization", "advantage badges with icons", "scatter plot preview of clustering", "GPT logo as recognizable baseline anchor"]
+    visual_style: "Rounded-corner panels with pastel background colors (light blue for main pipeline, light orange for traditional, light green for latent reward). Colorful flow arrows connecting components. Mix of schematic diagrams and small illustrative elements (clipboard icon, question mark). Dense information layout with multiple visual channels."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter_plot"
+      what_compared: "2D PCA projection of 1,000 rollouts showing correct (green) vs incorrect (red) trajectory clustering, with truth centroid (gold star) and reward distribution heatmap"
+      how_gain_highlighted: "Correct trajectories form a visually obvious dense green cluster around the gold star centroid, while incorrect trajectories scatter widely as red outliers — the separation is striking at a glance. Right panel adds a gradient heatmap showing reward distribution on the latent manifold."
+      design_note: "Two-panel layout: left is PCA scatter with color coding, right shows same space with continuous reward gradient. The dual view reinforces both the discrete (correct/incorrect) and continuous (reward magnitude) interpretations of the geometric property."
+    - figure_id: "Figure 4"
+      viz_type: "multi_panel (box_plot + dual_axis_line_bar)"
+      what_compared: "Panel (a): Global reward distribution across quality levels (correct, partial, incorrect). Panels (b-d): Group-level micro-ranking consistency in representative 8-trajectory groups."
+      how_gain_highlighted: "Box plots show clear separation between quality levels. Dual-axis charts overlay bar charts (geometric scores) with line plots (external verifier scores) showing strong rank correlation."
+      design_note: "4-panel grid validates the method at two granularities: global distribution separability and group-level ranking fidelity. Color-coded background regions (green/yellow/red) map to quality levels. Dual-axis overlay elegantly shows correlation between internal geometric scores and external verification without needing a separate correlation plot."
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (method overview + comparison) → Figure 2 (empirical evidence: clustering visualization) → Figure 3 (detailed framework pipeline) → Figure 4 (validation: scoring quality at global and group levels). The flow moves from 'what we propose' → 'why it works' → 'how it works in detail' → 'proof that it works at fine granularity.'"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods × model scales"
+    col_axis: "datasets (GSM8K, MATH, Open-Platypus) × metrics (Accuracy, Time/epoch)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best (Latent-GRPO consistently highlighted)"
+    statistical_reporting: "single run numbers, no std reported"
+    num_baselines: 2
+    design_note: "Clean 3-dataset × 3-model-scale layout. Each dataset column pair shows accuracy + time. Rule-based absent for Open-Platypus (inapplicable to non-deterministic tasks) — this absence itself argues for Latent-GRPO's generality. Time column makes efficiency gain immediately visible alongside accuracy. Note on simulated QPS=2 for LLM-as-Judge contextualizes the timing comparison."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["hidden state extraction method: Last Token vs Mean Pooling vs Weighted Mean"]
+      variation_style: "full_numbers"
+      design_note: "Simple 3-method × 3-scale grid on GSM8K. Clearly shows Last Token dominance. Accompanied by mechanistic explanation for why each alternative fails (noise from intermediate tokens, reasoning not localized at lexical markers)."
+    - table_id: "Table 3"
+      what_varied: ["centroid estimation algorithm: Mean Pool vs K-Means vs Eigen Centrality vs IRCE"]
+      variation_style: "full_numbers"
+      design_note: "4-method × 3-scale grid on GSM8K. Progressive improvement from simple to sophisticated methods. IRCE wins on both accuracy and computational efficiency — the dual-win argument is rare and compelling."
+    - table_id: "Table 4"
+      what_varied: ["capability preservation: base model vs LLM-Judge GRPO vs Latent-GRPO on unseen benchmarks"]
+      variation_style: "full_numbers"
+      design_note: "Tests on 5 unseen benchmarks (AIME24, AIME25, MATH-500, MMLU, BBH) to show no task-specific overfitting. Includes training time comparison. Demonstrates that Latent-GRPO preserves or improves base capabilities while being faster than LLM-Judge."
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix F contains detailed hyperparameter tables for GRPO training configuration, IRCE algorithm configuration, and hardware specifications"
+    reason: "Main text focuses on method-level comparisons and insights; implementation details deferred to appendix to maintain narrative flow and stay within page limits"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "090781b3bc80e6fcb88f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "check westd28034 model and exp004",
+  "task_key": "worker_check_westd28034_model_and_exp004_20260518T150449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd28034_model_and_exp004_20260518T150449_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "0bfea5513e6ffbb999e330616eb22edb69198b5ddb3cbf497983568badd7639f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 模型下载状态：失败，需要重新下载\n\n下载进程 (PID 2756) 已终止，因多次网络超时导致下载不完整：\n\n| 文件 | 状态 |\n|------|------|\n| model-00002-of-00005.safetensors (3.8G) | 完成 |\n| model-00001-of-00005 (~190M downloaded) | `.incomplete` |\n| model-00003-of-00005 (~160M downloaded) | `.incomplete` |\n| model-00004-of-00005 (~70M downloaded) | `.incomplete` |\n| model-00005-of-00005 (~40M downloaded) | `.incomplete` |\n| tokenizer + config 等小文件 | 完成 |\n\n**5 个 shard 中只有 1 个完整**，其余 4 个因 HuggingFace 连接超时中断，仅下载了极小部分（每个 shard 约 3.8G，但 incomplete 文件只有 40-190M）。\n\n### exp-004 就绪情况：未就绪\n\n- `run_exp004_act_baseline.py` — **不存在**\n- `calibration_v2_1_expanded.jsonl` — **不存在**\n- 无 exp-004 相关进程或 tmux session\n\n### 需要的操作\n\n1. 重启模型下载（HF 支持断点续传，直接重跑即可）\n2. 将 exp-004 训练脚本和数据文件部署到 westd-28034"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd28034-model-and-exp004.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0584255874228c14bc02",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis r3 reward collect results",
+  "task_key": "worker_analysis_r3-reward-collect-results_20260520T202501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3-reward-collect-results_20260520T202501_result.json",
+    "occurrence": 1,
+    "bytes": 391,
+    "sha256": "1592169d7473fc85a1036193c596540ad8ba9b89a64b323c40d7fd76728aa3df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本仍在活跃运行：\n- **进度**：ckpt_4500 生成阶段，260/362 样本已完成\n- **状态**：Python 进程 State=R，337 线程，正常工作\n- **已运行**：~33 分钟\n\n后续流程：生成剩余 102 样本 → NLI 评分 → 加载 ckpt_5000 → 生成 362 → NLI 评分 → 统计分析。预计还需 15-25 分钟。4 分钟后自动回查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r3-reward-collect-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d474bd54303b10a5a597",
+  "project": "action_cond_info_bottleneck",
+  "kind": "history",
+  "title": "agent / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3689,
+    "sha256": "41732148a170d318551847356d597796632877b0735e56c123f75229e06576c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-16T19:49:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-13953 的 cuda:0 和 cuda:1（`get_project_resource_usage` 白名单）\n- 根分区只有 ~30GB，所有 outputs/checkpoints 必须写 `/root/autodl-tmp/` 或通过 symlink（v7 已因根分区满崩溃过一次）\n- v7 训练命令必须指定 `--output_dir /root/acib/outputs/acib_v7_contrastive`（这是 symlink 到数据盘）\n- conda 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- 训练脚本 GPU 参数始终 `--gpu 0`（框架通过 CUDA_VISIBLE_DEVICES 映射物理卡）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13953，2× NVIDIA RTX PRO 6000 Blackwell 96GB\n- 工作目录：`/root/acib/`\n- Python：`/root/miniconda3/bin/python3`（conda base 环境）\n- 模型：`lerobot/smolvla_libero`（HF hub，已缓存）\n- 数据集：`/root/autodl-tmp/libero_dataset`（273465 samples）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B：项目 `acib_mvp`，部分实验 WANDB_MODE=disabled\n- Outputs：`/root/acib/outputs/`（symlink 到 `/root/autodl-tmp/`）\n- 活跃进程：**未确认**——诊断 Worker 正在查（见第 3 节）\n\n### 3. 📊 当前状态\n收到 CRON 回调：`acib_v7_contrastive` EXIT_CODE=129 (SIGHUP) 失败。已派 Worker `worker_diagnose_acib_v7_contrastive_fail_20260516T134642` 去服务器诊断（查日志尾、磁盘、GPU、checkpoint、seed2 进程状态）。**Worker 尚未回调。**\n\nRegistry 关键状态：\n- `acib_v7_contrastive`: DONE/failed — 最有价值实验，step 5000 时 Probe A cos [0.476, 0.894]，训练从 step 0 重启后在某个 step 被 SIGHUP kill\n- `acib_v7_seed2`: PREPARING — 有 PID 27422，是否存活待诊断 Worker 确认\n- `acib_v8_film`: PREPARING/暂缓 — 500 步 sweep Probe A cos≈1.0 无效，v7 contrastive 更优先\n- 两张 GPU 均空闲，零 Worker 在跑 ⚠️\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 根据根因决定：\n  - 若磁盘满再次 → 清理空间 + 从最新 checkpoint resume（`--resume_from`）\n  - 若外部 kill/SSH 断连 → 直接从 checkpoint resume 重启\n  - 若 OOM → 降 batch_size 或 gradient accumulation\n- v7 恢复后 → 确认 v7_seed2 状态，若 dead 也重启（cuda:1）\n- 两实验稳定 RUNNING 后 → 汇报 Director（附 [资源] 行）\n- v7 完成 20000 步 → 跑 4-suite eval（libero_spatial/object/goal/libero_10，50 eps/task）\n- eval 完成 → 与 baseline 对比（std: avg=66.1%, plus: avg=81.4%）\n\n### 5. 🎯 战略上下文\n**核心突破**：v7 log-barrier contrastive loss 解决了 v5/v6 的 scorer collapse 和 conditioning 退化问题。Probe A cos 从 v5 的 1.0 / v6 的 0.9999 降到 v7 的 [0.476, 0.894]——scorer 终于依赖 language 了。\n\n**决策链**：v3(IB collapse) → v4(agg-KL 无分化) → v5(div-reg 有效但 position-only) → v6(language conditioning 训练退化) → v7(contrastive 成功强制 language-dependence) → 当前目标: 完成 20k 步全训练 + eval\n\n**CoRL 2026 deadline**：abstract 5/26（距今 10 天），paper 5/29（13 天）。时间极紧。\n\n**易错点**：\n- Cron EXIT_CODE=129 不一定是程序 bug，常见是 SSH 断连或 tmux 异常导致 SIGHUP\n- v7 之前因根分区满崩溃过，重启时从 step 0 开始而非 resume——检查这次是否有 checkpoint 可 resume\n- `acib_v7_seed2` 虽然 registry 显示 PREPARING，但有 PID 且走了 submit_training_job，可能实际在跑（registry 状态未正确推进到 RUNNING）\n- v8_film 已确认在无 contrastive loss 情况下无效，不要再投入 GPU 时间\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-2.md"
+}

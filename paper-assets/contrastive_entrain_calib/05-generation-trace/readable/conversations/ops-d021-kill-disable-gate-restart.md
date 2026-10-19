@@ -1,0 +1,2598 @@
+# ops d021 kill disable gate restart
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 87
+- **Recorded user turns:** 0
+- **Tool calls:** 43
+- **Original source:** `logs/chats/worker_ops_d021-kill-disable-gate-restart_20260519T020137.jsonl`
+- **Structured JSON:** [`1d9ca58aeb1bff3dfda7.json`](../../sessions/1d/1d9ca58aeb1bff3dfda7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+87 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T02:15:57.041817+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T02:15:57.042172+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T02:15:57.042375+00:00_
+
+called mcp__agent-ml-research__kill_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__kill_job</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "pid": "122450",
+  "reason": "D021: adaptive gate 导致 weak R1 归零，训练部分退化为 R3-only，需禁用 gate 后从头重启",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__kill_job",
+  "tool_args": {
+    "server": "westd-29046",
+    "pid": "122450",
+    "reason": "D021: adaptive gate 导致 weak R1 归零，训练部分退化为 R3-only，需禁用 gate 后从头重启",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T02:15:57.042518+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "cat /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "cat /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T02:15:57.042664+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"122450\", \"reason\": \"D021: adaptive gate 导致 weak R1 归零，训练部分退化为 R3-only，需禁用 gate 后从头重启\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__kill_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T02:15:57.042912+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-002v2: DC-GRPO with cosine R1 fix (M012 tanh saturation fix).\\n\\nParent: exp-002 (killed due to tanh saturation in R1)\\nKey change: compute_r1 now uses cosine similarity instead of dot product + tanh(raw/20).\\nThis eliminates the R1 saturation to +/-1 observed in exp-002.\\n\\nConfig identical to exp-002 except:\\n  - output_dir changed to exp002v2_dcgrpo_cosine\\n  - recalibration_interval=0 (no recalibration)\\n\\\"\\\"\\\"\\nimport json\\nimport logging\\nimport os\\nimport statistics\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig\\nfrom transformers import AutoTokenizer\\n\\nsys.path.insert(0, \\\"/root/mvp_v2_1_expanded/training\\\")\\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\n\\nOUTPUT_DIR = \\\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine\\\"\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n    handlers=[\\n        logging.StreamHandler(),\\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \\\"train.log\\\")),\\n    ],\\n)\\nlogger = logging.getLogger(\\\"exp002v2\\\")\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\"\\nDATA_PATH = \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\"\\nDIRECTION_PATH = \\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\"\\n\\nR1_WEIGHT = 0.25\\nR2_WEIGHT = 0.0\\nR3_WEIGHT = 0.75\\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\nSEED = 42\\n\\nGATE_WARMUP_STEPS = 10\\nGATE_ACTIVATE_STEP = 100\\n\\n\\nclass _StrengthAwareReward:\\n    \\\"\\\"\\\"Thin wrapper that captures evidence_strength before delegating.\\\"\\\"\\\"\\n\\n    __name__ = \\\"dc_grpo_reward\\\"\\n\\n    def __init__(self, trainer, inner):\\n        
+…[truncated 6429 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T02:15:57.043180+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/tmp_run_exp002v2.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"exp-002v2: DC-GRPO with cosine R1 fix (M012 tanh saturation fix).\n\nParent: exp-002 (killed due to tanh saturation in R1)\nKey change: compute_r1 now uses cosine similarity instead of dot product + tanh(raw/20).\nThis eliminates the R1 saturation to +/-1 observed in exp-002.\n\nConfig identical to exp-002 except:\n  - output_dir changed to exp002v2_dcgrpo_cosine\n  - recalibration_interval=0 (no recalibration)\n  - D021: adaptive gate removed — all evidence_strength levels participate in R1\n\"\"\"\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v2\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.25\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.75\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    \"\"\"Thin wrapper that captures evidence_strength before delegating.\"\"\"\n\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v2Trainer(DCGRPOTrainer):\n    \"\"\"DCGRPOTrainer with per-strength R1 logging.\"\"\"\n\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n        )\n\n        self._log_step += 1\n        if self._log_step % 10 == 0:\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    r1_vals = [components[\"r1\"][i] for i in indices if i < len(components[\"r1\"])]\n                    if r1_vals:\n                        logger.info(\"reward/r1_%s_mean=%.4f n=%d\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v2: DC-GRPO Cosine R1 (no adaptive gate) ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=0,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=8000,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=2,\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v2Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train()\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/tmp_run_exp002v2.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"exp-002v2: DC-GRPO with cosine R1 fix (M012 tanh saturation fix).\n\nParent: exp-002 (killed due to tanh saturation in R1)\nKey change: compute_r1 now uses cosine similarity instead of dot product + tanh(raw/20).\nThis eliminates the R1 saturation to +/-1 observed in exp-002.\n\nConfig identical to exp-002 except:\n  - output_dir changed to exp002v2_dcgrpo_cosine\n  - recalibration_interval=0 (no recalibration)\n  - D021: adaptive gate removed — all evidence_strength levels participate in R1\n\"\"\"\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v2\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.25\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.75\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    \"\"\"Thin wrapper that captures evidence_strength before delegating.\"\"\"\n\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v2Trainer(DCGRPOTrainer):\n    \"\"\"DCGRPOTrainer with per-strength R1 logging.\"\"\"\n\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n        )\n\n        self._log_step += 1\n        if self._log_step % 10 == 0:\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    r1_vals = [components[\"r1\"][i] for i in indices if i < len(components[\"r1\"])]\n                    if r1_vals:\n                        logger.info(\"reward/r1_%s_mean=%.4f n=%d\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v2: DC-GRPO Cosine R1 (no adaptive gate) ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=0,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=8000,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=2,\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v2Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train()\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T02:15:57.043415+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/tmp_run_exp002v2.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T02:15:57.043579+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "base64 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/tmp_run_exp002v2.py",
+  "description": "Base64 encode the new run script for transfer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "base64 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/tmp_run_exp002v2.py",
+    "description": "Base64 encode the new run script for transfer"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T02:15:57.043743+00:00_
+
+IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDAydjI6IERDLUdSUE8gd2l0aCBjb3NpbmUg
+UjEgZml4IChNMDEyIHRhbmggc2F0dXJhdGlvbiBmaXgpLgoKUGFyZW50OiBleHAtMDAyIChraWxs
+ZWQgZHVlIHRvIHRhbmggc2F0dXJhdGlvbiBpbiBSMSkKS2V5IGNoYW5nZTogY29tcHV0ZV9yMSBu
+b3cgdXNlcyBjb3NpbmUgc2ltaWxhcml0eSBpbnN0ZWFkIG9mIGRvdCBwcm9kdWN0ICsgdGFuaChy
+YXcvMjApLgpUaGlzIGVsaW1pbmF0ZXMgdGhlIFIxIHNhdHVyYXRpb24gdG8gKy8tMSBvYnNlcnZl
+ZCBpbiBleHAtMDAyLgoKQ29uZmlnIGlkZW50aWNhbCB0byBleHAtMDAyIGV4Y2VwdDoKICAtIG91
+dHB1dF9kaXIgY2hhbmdlZCB0byBleHAwMDJ2Ml9kY2dycG9fY29zaW5lCiAgLSByZWNhbGlicmF0
+aW9uX2ludGVydmFsPTAgKG5vIHJlY2FsaWJyYXRpb24pCiAgLSBEMDIxOiBhZGFwdGl2ZSBnYXRl
+IHJlbW92ZWQg4oCUIGFsbCBldmlkZW5jZV9zdHJlbmd0aCBsZXZlbHMgcGFydGljaXBhdGUgaW4g
+UjEKIiIiCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgc3lzCmZy
+b20gcGF0aGxpYiBpbXBvcnQgUGF0aAoKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0
+IERhdGFzZXQKZnJvbSBwZWZ0IGltcG9ydCBMb3JhQ29uZmlnCmZyb20gdHJhbnNmb3JtZXJzIGlt
+cG9ydCBBdXRvVG9rZW5pemVyCgpzeXMucGF0aC5pbnNlcnQoMCwgIi9yb290L212cF92Ml8xX2V4
+cGFuZGVkL3RyYWluaW5nIikKZnJvbSBkY2dycG9fdHJhaW5lciBpbXBvcnQgRENHUlBPQ29uZmln
+LCBEQ0dSUE9UcmFpbmVyCgpPVVRQVVRfRElSID0gIi9yb290L2NvbnRyYXN0aXZlX2VudHJhaW5f
+Y2FsaWIvY2hlY2twb2ludHMvZXhwMDAydjJfZGNncnBvX2Nvc2luZSIKb3MubWFrZWRpcnMoT1VU
+UFVUX0RJUiwgZXhpc3Rfb2s9VHJ1ZSkKCmxvZ2dpbmcuYmFzaWNDb25maWcoCiAgICBsZXZlbD1s
+b2dnaW5nLklORk8sCiAgICBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG5h
+bWUpczogJShtZXNzYWdlKXMiLAogICAgaGFuZGxlcnM9WwogICAgICAgIGxvZ2dpbmcuU3RyZWFt
+SGFuZGxlcigpLAogICAgICAgIGxvZ2dpbmcuRmlsZUhhbmRsZXIob3MucGF0aC5qb2luKE9VVFBV
+VF9ESVIsICJ0cmFpbi5sb2ciKSksCiAgICBdLAopCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2Vy
+KCJleHAwMDJ2MiIpCgpNT0RFTF9QQVRIID0gIi9yb290L2F1dG9kbC10bXAvLmhmX2NhY2hlL1F3
+ZW4vUXdlbjMtOEIiCkRBVEFfUEFUSCA9ICIvcm9vdC9tdnBfdjJfMV9leHBhbmRlZC9kYXRhL2Nh
+bGlicmF0aW9uX3YyXzFfZXhwYW5kZWQuanNvbmwiCkRJUkVDVElPTl9QQVRIID0gIi9yb290L2Nv
+bnRyYXN0aXZlX2VudHJhaW5fY2FsaWIvcmVzdWx0cy9leHAwMDEvZGlyZWN0aW9ucy5wdCIKClIx
+X1dFSUdIVCA9IDAuMjUKUjJfV0VJR0hUID0gMC4wClIzX1dFSUdIVCA9IDAuNzUKUkVXQVJEX0x
+…[truncated 6271 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T02:15:57.043923+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "echo 'IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDAydjI6IERDLUdSUE8gd2l0aCBjb3NpbmUgUjEgZml4IChNMDEyIHRhbmggc2F0dXJhdGlvbiBmaXgpLgoKUGFyZW50OiBleHAtMDAyIChraWxsZWQgZHVlIHRvIHRhbmggc2F0dXJhdGlvbiBpbiBSMSkKS2V5IGNoYW5nZTogY29tcHV0ZV9yMSBub3cgdXNlcyBjb3NpbmUgc2ltaWxhcml0eSBpbnN0ZWFkIG9mIGRvdCBwcm9kdWN0ICsgdGFuaChyYXcvMjApLgpUaGlzIGVsaW1pbmF0ZXMgdGhlIFIxIHNhdHVyYXRpb24gdG8gKy8tMSBvYnNlcnZlZCBpbiBleHAtMDAyLgoKQ29uZmlnIGlkZW50aWNhbCB0byBleHAtMDAyIGV4Y2VwdDoKICAtIG91dHB1dF9kaXIgY2hhbmdlZCB0byBleHAwMDJ2Ml9kY2dycG9fY29zaW5lCiAgLSByZWNhbGlicmF0aW9uX2ludGVydmFsPTAgKG5vIHJlY2FsaWJyYXRpb24pCiAgLSBEMDIxOiBhZGFwdGl2ZSBnYXRlIHJlbW92ZWQg4oCUIGFsbCBldmlkZW5jZV9zdHJlbmd0aCBsZXZlbHMgcGFydGljaXBhdGUgaW4gUjEKIiIiCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgc3lzCmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAoKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IERhdGFzZXQKZnJvbSBwZWZ0IGltcG9ydCBMb3JhQ29uZmlnCmZyb20gdHJhbnNmb3JtZXJzIGltcG9ydCBBdXRvVG9rZW5pemVyCgpzeXMucGF0aC5pbnNlcnQoMCwgIi9yb290L212cF92Ml8xX2V4cGFuZGVkL3RyYWluaW5nIikKZnJvbSBkY2dycG9fdHJhaW5lciBpbXBvcnQgRENHUlBPQ29uZmlnLCBEQ0dSUE9UcmFpbmVyCgpPVVRQVVRfRElSID0gIi9yb290L2NvbnRyYXN0aXZlX2VudHJhaW5fY2FsaWIvY2hlY2twb2ludHMvZXhwMDAydjJfZGNncnBvX2Nvc2luZSIKb3MubWFrZWRpcnMoT1VUUFVUX0RJUiwgZXhpc3Rfb2s9VHJ1ZSkKCmxvZ2dpbmcuYmFzaWNDb25maWcoCiAgICBsZXZlbD1sb2dnaW5nLklORk8sCiAgICBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG5hbWUpczogJShtZXNzYWdlKXMiLAogICAgaGFuZGxlcnM9WwogICAgICAgIGxvZ2dpbmcuU3RyZWFtSGFuZGxlcigpLAogICAgICAgIGxvZ2dpbmcuRmlsZUhhbmRsZXIob3MucGF0aC5qb2luKE9VVFBVVF9ESVIsICJ0cmFpbi5sb2ciKSksCiAgICBdLAopCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKCJleHAwMDJ2MiIpCgpNT0RFTF9QQVRIID0gIi9yb290L2F1dG9kbC10bXAvLmhmX2NhY2hlL1F3ZW4vUXdlbjMtOEIiCkRBVEFfUEFUSCA9ICIvcm9vdC9tdnBfdjJfMV9leHBhbmRlZC9kYXRhL2NhbGlicmF0aW9uX3YyXzFfZXhwYW5kZWQuanNvbmwiCkRJUkVDVElPTl9QQVRIID0gIi9yb290L2NvbnRyYXN0aXZlX2VudHJhaW5fY2FsaWIvcmVzdWx0cy9leHAwMDEvZGlyZWN0aW9ucy5wdCIKClIxX1dFSUdIVCA9IDAuMjUKUjJfV0VJR0hUID0gMC4wClIzX1dFSUdIVCA9IDAuNzUKUkVXQVJEX0xBWUVSUyA9IFsxOSwgMjAsIDI0LCAyNywgMzIsIDMzLCAzNV0KU0VFRCA9IDQyCgoKY2xhc3MgX1N0cmVuZ3RoQXdhcmVSZXdhcmQ6CiAgICAiIiJUaGluIHdyYXBwZXIgdGhhdCBjYXB0dXJlcyBldmlkZW5jZV9zdHJlbmd0aCBiZWZvcmUgZGVsZWdhdGluZy4iIiIKCiAgICBfX25hbWVfXyA9ICJkY19ncnBvX3Jld2FyZCIKCiAgICBkZWYgX19pbml0X18oc2VsZiwgdHJhaW5lciwgaW5uZXIpOgogICAgICAgIHNlbGYudHJhaW5lciA9IHRyYWluZXIKICAgICAgICBzZWxmLl9pbm5lciA9IGlubmVyCgogICAgZGVmIF9fY2FsbF9fKHNlbGYsIHByb21wdHMsIGNvbXBsZXRpb25zLCAqKmt3YXJncyk6CiAgICAgICAgc2VsZi50cmFpbmVyLl9jdXJyZW50X3N0cmVuZ3RocyA9IGt3YXJncy5nZXQoCiAgICAgICAgICAgICJldmlkZW5jZV9zdHJlbmd0aCIsIFsidW5rbm93biJdICogbGVuKGNvbXBsZXRpb25zKQogICAgICAgICkKICAgICAgICByZXR1cm4gc2VsZi5faW5uZXIocHJvbXB0cywgY29tcGxldGlvbnMsICoqa3dhcmdzKQoKCmNsYXNzIEV4cDAwMnYyVHJhaW5lcihEQ0dSUE9UcmFpbmVyKToKICAgICIiIkRDR1JQT1RyYWluZXIgd2l0aCBwZXItc3RyZW5ndGggUjEgbG9nZ2luZy4iIiIKCiAgICBkZWYgX19pbml0X18oc2VsZiwgKmFyZ3MsICoqa3dhcmdzKToKICAgICAgICBzdXBlcigpLl9faW5pdF9fKCphcmdzLCAqKmt3YXJncykKICAgICAgICBzZWxmLl9jdXJyZW50X3N0cmVuZ3RocyA9IFtdCiAgICAgICAgc2VsZi5fbG9nX3N0ZXAgPSAwCiAgICAgICAgc2VsZi5yZXdhcmRfZnVuY3MgPSBbX1N0cmVuZ3RoQXdhcmVSZXdhcmQoc2VsZiwgc2VsZi5yZXdhcmRfZnVuY3NbMF0pXQogICAgICAgIGlmIGhhc2F0dHIoc2VsZiwgInJld2FyZF9mdW5jX25hbWVzIik6CiAgICAgICAgICAgIHNlbGYucmV3YXJkX2Z1bmNfbmFtZXMgPSBbImRjX2dycG9fcmV3YXJkIl0KCiAgICBkZWYgY29tcHV0ZV9yZXdhcmRzKHNlbGYsIGNvbXBsZXRpb25zLCBjb25kaXRpb25zLCBwYWlyX2lkcywgYmF0Y2hfYWN0aXZhdGlvbnMsIHIxX2VtYT1Ob25lLCBlbWFfYWxwaGE9MC4zKToKICAgICAgICByZXdhcmRzLCBjb21wb25lbnRzID0gc3VwZXIoKS5jb21wdXRlX3Jld2FyZHMoCiAgICAgICAgICAgIGNvbXBsZXRpb25zLCBjb25kaXRpb25zLCBwYWlyX2lkcywgYmF0Y2hfYWN0aXZhdGlvbnMsIHIxX2VtYSwgZW1hX2FscGhhCiAgICAgICAgKQoKICAgICAgICBzZWxmLl9sb2dfc3RlcCArPSAxCiAgICAgICAgaWYgc2VsZi5fbG9nX3N0ZXAgJSAxMCA9PSAwOgogICAgICAgICAgICBzdHJlbmd0aHMgPSBzZWxmLl9jdXJyZW50X3N0cmVuZ3RocyBvciBbXQogICAgICAgICAgICBmb3Igc3RyZW5ndGggaW4gWyJ3ZWFrIiwgIm1lZGl1bSIsICJzdHJvbmciXToKICAgICAgICAgICAgICAgIGluZGljZXMgPSBbaSBmb3IgaSwgcyBpbiBlbnVtZXJhdGUoc3RyZW5ndGhzKSBpZiBzID09IHN0cmVuZ3RoXQogICAgICAgICAgICAgICAgaWYgaW5kaWNlczoKICAgICAgICAgICAgICAgICAgICByMV92YWxzID0gW2NvbXBvbmVudHNbInIxIl1baV0gZm9yIGkgaW4gaW5kaWNlcyBpZiBpIDwgbGVuKGNvbXBvbmVudHNbInIxIl0pXQogICAgICAgICAgICAgICAgICAgIGlmIHIxX3ZhbHM6CiAgICAgICAgICAgICAgICAgICAgICAgIGxvZ2dlci5pbmZvKCJyZXdhcmQvcjFfJXNfbWVhbj0lLjRmIG49JWQiLCBzdHJlbmd0aCwgc3VtKHIxX3ZhbHMpIC8gbGVuKHIxX3ZhbHMpLCBsZW4ocjFfdmFscykpCgogICAgICAgIHJldHVybiByZXdhcmRzLCBjb21wb25lbnRzCgoKZGVmIGxvYWRfZGF0YXNldCh0b2tlbml6ZXIpOgogICAgcmVjb3JkcyA9IFtdCiAgICB3aXRoIG9wZW4oREFUQV9QQVRIKSBhcyBmOgogICAgICAgIGZvciBsaW5lIGluIGY6CiAgICAgICAgICAgIHJlYyA9IGpzb24ubG9hZHMobGluZSkKICAgICAgICAgICAgbXNncyA9IFt7InJvbGUiOiB0WyJyb2xlIl0sICJjb250ZW50IjogdFsiY29udGVudCJdfSBmb3IgdCBpbiByZWNbInR1cm5zIl1dCiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHByb21wdCA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKAogICAgICAgICAgICAgICAgICAgIG1zZ3MsIHRva2VuaXplPUZhbHNlLCBhZGRfZ2VuZXJhdGlvbl9wcm9tcHQ9VHJ1ZSwgZW5hYmxlX3RoaW5raW5nPUZhbHNlCiAgICAgICAgICAgICAgICApCiAgICAgICAgICAgIGV4Y2VwdCBUeXBlRXJyb3I6CiAgICAgICAgICAgICAgICBwcm9tcHQgPSB0b2tlbml6ZXIuYXBwbHlfY2hhdF90ZW1wbGF0ZSgKICAgICAgICAgICAgICAgICAgICBtc2dzLCB0b2tlbml6ZT1GYWxzZSwgYWRkX2dlbmVyYXRpb25fcHJvbXB0PVRydWUKICAgICAgICAgICAgICAgICkKICAgICAgICAgICAgcmVjb3Jkcy5hcHBlbmQoewogICAgICAgICAgICAgICAgInByb21wdCI6IHByb21wdCwKICAgICAgICAgICAgICAgICJjb25kaXRpb24iOiByZWNbImNvbmRpdGlvbiJdLAogICAgICAgICAgICAgICAgInBhaXJfaWQiOiBzdHIocmVjWyJwYWlyX2lkIl0pLAogICAgICAgICAgICAgICAgImV2aWRlbmNlX3N0cmVuZ3RoIjogcmVjLmdldCgiZXZpZGVuY2Vfc3RyZW5ndGgiLCAidW5rbm93biIpLAogICAgICAgICAgICB9KQogICAgbG9nZ2VyLmluZm8oIkxvYWRlZCAlZCByZWNvcmRzIGZyb20gJXMiLCBsZW4ocmVjb3JkcyksIERBVEFfUEFUSCkKICAgIHJldHVybiBEYXRhc2V0LmZyb21fbGlzdChyZWNvcmRzKQoKCmRlZiBtYWluKCk6CiAgICB0b3JjaC5tYW51YWxfc2VlZChTRUVEKQoKICAgIGxvZ2dlci5pbmZvKCI9PT0gZXhwLTAwMnYyOiBEQy1HUlBPIENvc2luZSBSMSAobm8gYWRhcHRpdmUgZ2F0ZSkgPT09IikKICAgIGxvZ2dlci5pbmZvKCJXZWlnaHRzOiBSMT0lLjJmLCBSMj0lLjJmLCBSMz0lLjJmIiwgUjFfV0VJR0hULCBSMl9XRUlHSFQsIFIzX1dFSUdIVCkKICAgIGxvZ2dlci5pbmZvKCJSZXdhcmQgbGF5ZXJzOiAlcyIsIFJFV0FSRF9MQVlFUlMpCgogICAgbW9kZWxfcGF0aCA9IE1PREVMX1BBVEggaWYgUGF0aChNT0RFTF9QQVRIKS5leGlzdHMoKSBlbHNlICJRd2VuL1F3ZW4zLThCIgoKICAgIHRva2VuaXplciA9IEF1dG9Ub2tlbml6ZXIuZnJvbV9wcmV0cmFpbmVkKG1vZGVsX3BhdGgsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUpCiAgICBpZiB0b2tlbml6ZXIucGFkX3Rva2VuX2lkIGlzIE5vbmU6CiAgICAgICAgdG9rZW5pemVyLnBhZF90b2tlbl9pZCA9IHRva2VuaXplci5lb3NfdG9rZW5faWQKCiAgICBkYXRhc2V0ID0gbG9hZF9kYXRhc2V0KHRva2VuaXplcikKCiAgICBjb25maWcgPSBEQ0dSUE9Db25maWcoCiAgICAgICAgb3V0cHV0X2Rpcj1PVVRQVVRfRElSLAogICAgICAgIGRpcmVjdGlvbl9wYXRoPURJUkVDVElPTl9QQVRILAogICAgICAgIHJld2FyZF9sYXllcnM9UkVXQVJEX0xBWUVSUywKICAgICAgICByZXdhcmRfcG9zaXRpb249ImFzc3RfZmlyc3QiLAogICAgICAgIHIxX3dlaWdodD1SMV9XRUlHSFQsCiAgICAgICAgcjJfd2VpZ2h0PVIyX1dFSUdIVCwKICAgICAgICByM193ZWlnaHQ9UjNfV0VJR0hULAogICAgICAgIHIzX21vZGVsX25hbWU9ImNyb3NzLWVuY29kZXIvbmxpLWRlYmVydGEtdjMtYmFzZSIsCiAgICAgICAgcmVjYWxpYnJhdGlvbl9pbnRlcnZhbD0wLAogICAgICAgIG51bV90cmFpbl9lcG9jaHM9MTAsCiAgICAgICAgcGVyX2RldmljZV90cmFpbl9iYXRjaF9zaXplPTEsCiAgICAgICAgZ3JhZGllbnRfYWNjdW11bGF0aW9uX3N0ZXBzPTE2LAogICAgICAgIGdyYWRpZW50X2NoZWNrcG9pbnRpbmc9VHJ1ZSwKICAgICAgICBsZWFybmluZ19yYXRlPTVlLTUsCiAgICAgICAgd2FybXVwX3N0ZXBzPTIwMCwKICAgICAgICBsb2dnaW5nX3N0ZXBzPTEwLAogICAgICAgIHNhdmVfc3RlcHM9NTAwLAogICAgICAgIG1heF9zdGVwcz04MDAwLAogICAgICAgIGJmMTY9VHJ1ZSwKICAgICAgICBzZWVkPVNFRUQsCiAgICAgICAgbWF4X2NvbXBsZXRpb25fbGVuZ3RoPTI1NiwKICAgICAgICBudW1fZ2VuZXJhdGlvbnM9MiwKICAgICkKCiAgICBwZWZ0X2NvbmZpZyA9IExvcmFDb25maWcoCiAgICAgICAgcj02NCwKICAgICAgICBsb3JhX2FscGhhPTY0LAogICAgICAgIHRhcmdldF9tb2R1bGVzPVsicV9wcm9qIiwgInZfcHJvaiIsICJrX3Byb2oiLCAib19wcm9qIl0sCiAgICAgICAgYmlhcz0ibm9uZSIsCiAgICAgICAgdGFza190eXBlPSJDQVVTQUxfTE0iLAogICAgKQoKICAgIHRyYWluZXIgPSBFeHAwMDJ2MlRyYWluZXIoCiAgICAgICAgbW9kZWw9bW9kZWxfcGF0aCwKICAgICAgICBhcmdzPWNvbmZpZywKICAgICAgICB0cmFpbl9kYXRhc2V0PWRhdGFzZXQsCiAgICAgICAgcHJvY2Vzc2luZ19jbGFzcz10b2tlbml6ZXIsCiAgICAgICAgcGVmdF9jb25maWc9cGVmdF9jb25maWcsCiAgICApCgogICAgbG9nZ2VyLmluZm8oIlN0YXJ0aW5nIHRyYWluaW5nLi4uIikKICAgIHRyYWluZXIudHJhaW4oKQogICAgdHJhaW5lci5zYXZlX21vZGVsKG9zLnBhdGguam9pbihPVVRQVVRfRElSLCAiZmluYWwiKSkKICAgIHRyYWluZXIuY2xlYW51cCgpCiAgICBsb2dnZXIuaW5mbygiVHJhaW5pbmcgY29tcGxldGUuIENoZWNrcG9pbnQ6ICVzL2ZpbmFsIiwgT1VUUFVUX0RJUikKCgppZiBfX25hbWVfXyA9PSAiX19tYWluX18iOgogICAgbWFpbigpCg==' | base64 -d > /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py && echo \"WRITE OK\" && wc -l /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "echo 'IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDAydjI6IERDLUdSUE8gd2l0aCBjb3NpbmUgUjEgZml4IChNMDEyIHRhbmggc2F0dXJhdGlvbiBmaXgpLgoKUGFyZW50OiBleHAtMDAyIChraWxsZWQgZHVlIHRvIHRhbmggc2F0dXJhdGlvbiBpbiBSMSkKS2V5IGNoYW5nZTogY29tcHV0ZV9yMSBub3cgdXNlcyBjb3NpbmUgc2ltaWxhcml0eSBpbnN0ZWFkIG9mIGRvdCBwcm9kdWN0ICsgdGFuaChyYXcvMjApLgpUaGlzIGVsaW1pbmF0ZXMgdGhlIFIxIHNhdHVyYXRpb24gdG8gKy8tMSBvYnNlcnZlZCBpbiBleHAtMDAyLgoKQ29uZmlnIGlkZW50aWNhbCB0byBleHAtMDAyIGV4Y2VwdDoKICAtIG91dHB1dF9kaXIgY2hhbmdlZCB0byBleHAwMDJ2Ml9kY2dycG9fY29zaW5lCiAgLSByZWNhbGlicmF0aW9uX2ludGVydmFsPTAgKG5vIHJlY2FsaWJyYXRpb24pCiAgLSBEMDIxOiBhZGFwdGl2ZSBnYXRlIHJlbW92ZWQg4oCUIGFsbCBldmlkZW5jZV9zdHJlbmd0aCBsZXZlbHMgcGFydGljaXBhdGUgaW4gUjEKIiIiCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgc3lzCmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAoKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IERhdGFzZXQKZnJvbSBwZWZ0IGltcG9ydCBMb3JhQ29uZmlnCmZyb20gdHJhbnNmb3JtZXJzIGltcG9ydCBBdXRvVG9rZW5pemVyCgpzeXMucGF0aC5pbnNlcnQoMCwgIi9yb290L212cF92Ml8xX2V4cGFuZGVkL3RyYWluaW5nIikKZnJvbSBkY2dycG9fdHJhaW5lciBpbXBvcnQgRENHUlBPQ29uZmlnLCBEQ0dSUE9UcmFpbmVyCgpPVVRQVVRfRElSID0gIi9yb290L2NvbnRyYXN0aXZlX2VudHJhaW5fY2FsaWIvY2hlY2twb2ludHMvZXhwMDAydjJfZGNncnBvX2Nvc2luZSIKb3MubWFrZWRpcnMoT1VUUFVUX0RJUiwgZXhpc3Rfb2s9VHJ1ZSkKCmxvZ2dpbmcuYmFzaWNDb25maWcoCiAgICBsZXZlbD1sb2dnaW5nLklORk8sCiAgICBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG5hbWUpczogJShtZXNzYWdlKXMiLAogICAgaGFuZGxlcnM9WwogICAgICAgIGxvZ2dpbmcuU3RyZWFtSGFuZGxlcigpLAogICAgICAgIGxvZ2dpbmcuRmlsZUhhbmRsZXIob3MucGF0aC5qb2luKE9VVFBVVF9ESVIsICJ0cmFpbi5sb2ciKSksCiAgICBdLAopCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKCJleHAwMDJ2MiIpCgpNT0RFTF9QQVRIID0gIi9yb290L2F1dG9kbC10bXAvLmhmX2NhY2hlL1F3ZW4vUXdlbjMtOEIiCkRBVEFfUEFUSCA9ICIvcm9vdC9tdnBfdjJfMV9leHBhbmRlZC9kYXRhL2NhbGlicmF0aW9uX3YyXzFfZXhwYW5kZWQuanNvbmwiCkRJUkVDVElPTl9QQVRIID0gIi9yb290L2NvbnRyYXN0aXZlX2VudHJhaW5fY2FsaWIvcmVzdWx0cy9leHAwMDEvZGlyZWN0aW9ucy5wdCIKClIxX1dFSUdIVCA9IDAuMjUKUjJfV0VJR0hUID0gMC4wClIzX1dFSUdIVCA9IDAuNzUKUkVXQVJEX0xBWUVSUyA9IFsxOSwgMjAsIDI0LCAyNywgMzIsIDMzLCAzNV0KU0VFRCA9IDQyCgoKY2xhc3MgX1N0cmVuZ3RoQXdhcmVSZXdhcmQ6CiAgICAiIiJUaGluIHdyYXBwZXIgdGhhdCBjYXB0dXJlcyBldmlkZW5jZV9zdHJlbmd0aCBiZWZvcmUgZGVsZWdhdGluZy4iIiIKCiAgICBfX25hbWVfXyA9ICJkY19ncnBvX3Jld2FyZCIKCiAgICBkZWYgX19pbml0X18oc2VsZiwgdHJhaW5lciwgaW5uZXIpOgogICAgICAgIHNlbGYudHJhaW5lciA9IHRyYWluZXIKICAgICAgICBzZWxmLl9pbm5lciA9IGlubmVyCgogICAgZGVmIF9fY2FsbF9fKHNlbGYsIHByb21wdHMsIGNvbXBsZXRpb25zLCAqKmt3YXJncyk6CiAgICAgICAgc2VsZi50cmFpbmVyLl9jdXJyZW50X3N0cmVuZ3RocyA9IGt3YXJncy5nZXQoCiAgICAgICAgICAgICJldmlkZW5jZV9zdHJlbmd0aCIsIFsidW5rbm93biJdICogbGVuKGNvbXBsZXRpb25zKQogICAgICAgICkKICAgICAgICByZXR1cm4gc2VsZi5faW5uZXIocHJvbXB0cywgY29tcGxldGlvbnMsICoqa3dhcmdzKQoKCmNsYXNzIEV4cDAwMnYyVHJhaW5lcihEQ0dSUE9UcmFpbmVyKToKICAgICIiIkRDR1JQT1RyYWluZXIgd2l0aCBwZXItc3RyZW5ndGggUjEgbG9nZ2luZy4iIiIKCiAgICBkZWYgX19pbml0X18oc2VsZiwgKmFyZ3MsICoqa3dhcmdzKToKICAgICAgICBzdXBlcigpLl9faW5pdF9fKCphcmdzLCAqKmt3YXJncykKICAgICAgICBzZWxmLl9jdXJyZW50X3N0cmVuZ3RocyA9IFtdCiAgICAgICAgc2VsZi5fbG9nX3N0ZXAgPSAwCiAgICAgICAgc2VsZi5yZXdhcmRfZnVuY3MgPSBbX1N0cmVuZ3RoQXdhcmVSZXdhcmQoc2VsZiwgc2VsZi5yZXdhcmRfZnVuY3NbMF0pXQogICAgICAgIGlmIGhhc2F0dHIoc2VsZiwgInJld2FyZF9mdW5jX25hbWVzIik6CiAgICAgICAgICAgIHNlbGYucmV3YXJkX2Z1bmNfbmFtZXMgPSBbImRjX2dycG9fcmV3YXJkIl0KCiAgICBkZWYgY29tcHV0ZV9yZXdhcmRzKHNlbGYsIGNvbXBsZXRpb25zLCBjb25kaXRpb25zLCBwYWlyX2lkcywgYmF0Y2hfYWN0aXZhdGlvbnMsIHIxX2VtYT1Ob25lLCBlbWFfYWxwaGE9MC4zKToKICAgICAgICByZXdhcmRzLCBjb21wb25lbnRzID0gc3VwZXIoKS5jb21wdXRlX3Jld2FyZHMoCiAgICAgICAgICAgIGNvbXBsZXRpb25zLCBjb25kaXRpb25zLCBwYWlyX2lkcywgYmF0Y2hfYWN0aXZhdGlvbnMsIHIxX2VtYSwgZW1hX2FscGhhCiAgICAgICAgKQoKICAgICAgICBzZWxmLl9sb2dfc3RlcCArPSAxCiAgICAgICAgaWYgc2VsZi5fbG9nX3N0ZXAgJSAxMCA9PSAwOgogICAgICAgICAgICBzdHJlbmd0aHMgPSBzZWxmLl9jdXJyZW50X3N0cmVuZ3RocyBvciBbXQogICAgICAgICAgICBmb3Igc3RyZW5ndGggaW4gWyJ3ZWFrIiwgIm1lZGl1bSIsICJzdHJvbmciXToKICAgICAgICAgICAgICAgIGluZGljZXMgPSBbaSBmb3IgaSwgcyBpbiBlbnVtZXJhdGUoc3RyZW5ndGhzKSBpZiBzID09IHN0cmVuZ3RoXQogICAgICAgICAgICAgICAgaWYgaW5kaWNlczoKICAgICAgICAgICAgICAgICAgICByMV92YWxzID0gW2NvbXBvbmVudHNbInIxIl1baV0gZm9yIGkgaW4gaW5kaWNlcyBpZiBpIDwgbGVuKGNvbXBvbmVudHNbInIxIl0pXQogICAgICAgICAgICAgICAgICAgIGlmIHIxX3ZhbHM6CiAgICAgICAgICAgICAgICAgICAgICAgIGxvZ2dlci5pbmZvKCJyZXdhcmQvcjFfJXNfbWVhbj0lLjRmIG49JWQiLCBzdHJlbmd0aCwgc3VtKHIxX3ZhbHMpIC8gbGVuKHIxX3ZhbHMpLCBsZW4ocjFfdmFscykpCgogICAgICAgIHJldHVybiByZXdhcmRzLCBjb21wb25lbnRzCgoKZGVmIGxvYWRfZGF0YXNldCh0b2tlbml6ZXIpOgogICAgcmVjb3JkcyA9IFtdCiAgICB3aXRoIG9wZW4oREFUQV9QQVRIKSBhcyBmOgogICAgICAgIGZvciBsaW5lIGluIGY6CiAgICAgICAgICAgIHJlYyA9IGpzb24ubG9hZHMobGluZSkKICAgICAgICAgICAgbXNncyA9IFt7InJvbGUiOiB0WyJyb2xlIl0sICJjb250ZW50IjogdFsiY29udGVudCJdfSBmb3IgdCBpbiByZWNbInR1cm5zIl1dCiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHByb21wdCA9IHRva2VuaXplci5hcHBseV9jaGF0X3RlbXBsYXRlKAogICAgICAgICAgICAgICAgICAgIG1zZ3MsIHRva2VuaXplPUZhbHNlLCBhZGRfZ2VuZXJhdGlvbl9wcm9tcHQ9VHJ1ZSwgZW5hYmxlX3RoaW5raW5nPUZhbHNlCiAgICAgICAgICAgICAgICApCiAgICAgICAgICAgIGV4Y2VwdCBUeXBlRXJyb3I6CiAgICAgICAgICAgICAgICBwcm9tcHQgPSB0b2tlbml6ZXIuYXBwbHlfY2hhdF90ZW1wbGF0ZSgKICAgICAgICAgICAgICAgICAgICBtc2dzLCB0b2tlbml6ZT1GYWxzZSwgYWRkX2dlbmVyYXRpb25fcHJvbXB0PVRydWUKICAgICAgICAgICAgICAgICkKICAgICAgICAgICAgcmVjb3Jkcy5hcHBlbmQoewogICAgICAgICAgICAgICAgInByb21wdCI6IHByb21wdCwKICAgICAgICAgICAgICAgICJjb25kaXRpb24iOiByZWNbImNvbmRpdGlvbiJdLAogICAgICAgICAgICAgICAgInBhaXJfaWQiOiBzdHIocmVjWyJwYWlyX2lkIl0pLAogICAgICAgICAgICAgICAgImV2aWRlbmNlX3N0cmVuZ3RoIjogcmVjLmdldCgiZXZpZGVuY2Vfc3RyZW5ndGgiLCAidW5rbm93biIpLAogICAgICAgICAgICB9KQogICAgbG9nZ2VyLmluZm8oIkxvYWRlZCAlZCByZWNvcmRzIGZyb20gJXMiLCBsZW4ocmVjb3JkcyksIERBVEFfUEFUSCkKICAgIHJldHVybiBEYXRhc2V0LmZyb21fbGlzdChyZWNvcmRzKQoKCmRlZiBtYWluKCk6CiAgICB0b3JjaC5tYW51YWxfc2VlZChTRUVEKQoKICAgIGxvZ2dlci5pbmZvKCI9PT0gZXhwLTAwMnYyOiBEQy1HUlBPIENvc2luZSBSMSAobm8gYWRhcHRpdmUgZ2F0ZSkgPT09IikKICAgIGxvZ2dlci5pbmZvKCJXZWlnaHRzOiBSMT0lLjJmLCBSMj0lLjJmLCBSMz0lLjJmIiwgUjFfV0VJR0hULCBSMl9XRUlHSFQsIFIzX1dFSUdIVCkKICAgIGxvZ2dlci5pbmZvKCJSZXdhcmQgbGF5ZXJzOiAlcyIsIFJFV0FSRF9MQVlFUlMpCgogICAgbW9kZWxfcGF0aCA9IE1PREVMX1BBVEggaWYgUGF0aChNT0RFTF9QQVRIKS5leGlzdHMoKSBlbHNlICJRd2VuL1F3ZW4zLThCIgoKICAgIHRva2VuaXplciA9IEF1dG9Ub2tlbml6ZXIuZnJvbV9wcmV0cmFpbmVkKG1vZGVsX3BhdGgsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUpCiAgICBpZiB0b2tlbml6ZXIucGFkX3Rva2VuX2lkIGlzIE5vbmU6CiAgICAgICAgdG9rZW5pemVyLnBhZF90b2tlbl9pZCA9IHRva2VuaXplci5lb3NfdG9rZW5faWQKCiAgICBkYXRhc2V0ID0gbG9hZF9kYXRhc2V0KHRva2VuaXplcikKCiAgICBjb25maWcgPSBEQ0dSUE9Db25maWcoCiAgICAgICAgb3V0cHV0X2Rpcj1PVVRQVVRfRElSLAogICAgICAgIGRpcmVjdGlvbl9wYXRoPURJUkVDVElPTl9QQVRILAogICAgICAgIHJld2FyZF9sYXllcnM9UkVXQVJEX0xBWUVSUywKICAgICAgICByZXdhcmRfcG9zaXRpb249ImFzc3RfZmlyc3QiLAogICAgICAgIHIxX3dlaWdodD1SMV9XRUlHSFQsCiAgICAgICAgcjJfd2VpZ2h0PVIyX1dFSUdIVCwKICAgICAgICByM193ZWlnaHQ9UjNfV0VJR0hULAogICAgICAgIHIzX21vZGVsX25hbWU9ImNyb3NzLWVuY29kZXIvbmxpLWRlYmVydGEtdjMtYmFzZSIsCiAgICAgICAgcmVjYWxpYnJhdGlvbl9pbnRlcnZhbD0wLAogICAgICAgIG51bV90cmFpbl9lcG9jaHM9MTAsCiAgICAgICAgcGVyX2RldmljZV90cmFpbl9iYXRjaF9zaXplPTEsCiAgICAgICAgZ3JhZGllbnRfYWNjdW11bGF0aW9uX3N0ZXBzPTE2LAogICAgICAgIGdyYWRpZW50X2NoZWNrcG9pbnRpbmc9VHJ1ZSwKICAgICAgICBsZWFybmluZ19yYXRlPTVlLTUsCiAgICAgICAgd2FybXVwX3N0ZXBzPTIwMCwKICAgICAgICBsb2dnaW5nX3N0ZXBzPTEwLAogICAgICAgIHNhdmVfc3RlcHM9NTAwLAogICAgICAgIG1heF9zdGVwcz04MDAwLAogICAgICAgIGJmMTY9VHJ1ZSwKICAgICAgICBzZWVkPVNFRUQsCiAgICAgICAgbWF4X2NvbXBsZXRpb25fbGVuZ3RoPTI1NiwKICAgICAgICBudW1fZ2VuZXJhdGlvbnM9MiwKICAgICkKCiAgICBwZWZ0X2NvbmZpZyA9IExvcmFDb25maWcoCiAgICAgICAgcj02NCwKICAgICAgICBsb3JhX2FscGhhPTY0LAogICAgICAgIHRhcmdldF9tb2R1bGVzPVsicV9wcm9qIiwgInZfcHJvaiIsICJrX3Byb2oiLCAib19wcm9qIl0sCiAgICAgICAgYmlhcz0ibm9uZSIsCiAgICAgICAgdGFza190eXBlPSJDQVVTQUxfTE0iLAogICAgKQoKICAgIHRyYWluZXIgPSBFeHAwMDJ2MlRyYWluZXIoCiAgICAgICAgbW9kZWw9bW9kZWxfcGF0aCwKICAgICAgICBhcmdzPWNvbmZpZywKICAgICAgICB0cmFpbl9kYXRhc2V0PWRhdGFzZXQsCiAgICAgICAgcHJvY2Vzc2luZ19jbGFzcz10b2tlbml6ZXIsCiAgICAgICAgcGVmdF9jb25maWc9cGVmdF9jb25maWcsCiAgICApCgogICAgbG9nZ2VyLmluZm8oIlN0YXJ0aW5nIHRyYWluaW5nLi4uIikKICAgIHRyYWluZXIudHJhaW4oKQogICAgdHJhaW5lci5zYXZlX21vZGVsKG9zLnBhdGguam9pbihPVVRQVVRfRElSLCAiZmluYWwiKSkKICAgIHRyYWluZXIuY2xlYW51cCgpCiAgICBsb2dnZXIuaW5mbygiVHJhaW5pbmcgY29tcGxldGUuIENoZWNrcG9pbnQ6ICVzL2ZpbmFsIiwgT1VUUFVUX0RJUikKCgppZiBfX25hbWVfXyA9PSAiX19tYWluX18iOgogICAgbWFpbigpCg==' | base64 -d > /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py && echo \"WRITE OK\" && wc -l /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T02:15:57.044120+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WRITE OK\\n184 /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T02:15:57.044248+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "rm -rf /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/* && echo \"CLEANUP OK\" && ls -la /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "rm -rf /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/* && echo \"CLEANUP OK\" && ls -la /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T02:15:57.044377+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CLEANUP OK\\ntotal 0\\ndrwxr-xr-x 2 root root  10 May 19 10:05 .\\ndrwxr-xr-x 6 root root 128 May 19 08:00 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T02:15:57.044527+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "grep -n -i \"gate\\|GATE\\|_weak_r1\\|_gate_step\\|statistics\\|defaultdict\" /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py || echo \"NO GATE CODE FOUND - CLEAN\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "grep -n -i \"gate\\|GATE\\|_weak_r1\\|_gate_step\\|statistics\\|defaultdict\" /root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py || echo \"NO GATE CODE FOUND - CLEAN\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T02:15:57.044668+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11:  - D021: adaptive gate removed — all evidence_strength levels participate in R1\\n123:    logger.info(\\\"=== exp-002v2: DC-GRPO Cosine R1 (no adaptive gate) ===\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T02:15:57.044831+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "tmux kill-session -t exp002v2 2>/dev/null; tmux new-session -d -s exp002v2 \"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\" && echo \"TMUX SESSION STARTED\" && sleep 2 && tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "tmux kill-session -t exp002v2 2>/dev/null; tmux new-session -d -s exp002v2 \"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\" && echo \"TMUX SESSION STARTED\" && sleep 2 && tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T02:15:57.044985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"TMUX SESSION STARTED\\nexp003: 1 windows (created Tue May 19 00:51:24 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T02:15:57.045138+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | head -50",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | head -50",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T02:15:57.045267+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T02:15:57.045424+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "which python3 && python3 --version",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "which python3 && python3 --version",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T02:15:57.045552+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/python3\\nPython 3.10.12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T02:15:57.045669+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "tmux new-session -d -s exp002v2 \"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python3 training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\" && echo \"TMUX SESSION STARTED\" && sleep 2 && tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "tmux new-session -d -s exp002v2 \"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python3 training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\" && echo \"TMUX SESSION STARTED\" && sleep 2 && tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T02:15:57.045801+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"TMUX SESSION STARTED\\nexp002v2: 1 windows (created Tue May 19 10:06:22 2026)\\nexp003: 1 windows (created Tue May 19 00:51:24 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T02:15:57.045970+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 40 && tail -80 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null || echo \"LOG NOT YET AVAILABLE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 40 && tail -80 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null || echo \"LOG NOT YET AVAILABLE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T02:15:57.046109+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 40 && tail -80 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null || echo \\\"LOG NOT YET AVAILABLE\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T02:15:57.046243+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "tail -80 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null || echo \"LOG NOT YET AVAILABLE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "tail -80 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null || echo \"LOG NOT YET AVAILABLE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T02:15:57.046371+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n  File \\\"/root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py\\\", line 25, in &lt;module>\\n    from dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\n  File \\\"/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py\\\", line 27, in &lt;module>\\n    from trl import GRPOConfig, GRPOTrainer\\nModuleNotFoundError: No module named 'trl'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T02:15:57.046522+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "find /root -maxdepth 4 -name \"python3\" -o -name \"python\" 2>/dev/null | head -20 && echo \"---\" && ls /root/miniconda*/envs/ 2>/dev/null && ls /root/anaconda*/envs/ 2>/dev/null && conda info --envs 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "find /root -maxdepth 4 -name \"python3\" -o -name \"python\" 2>/dev/null | head -20 && echo \"---\" && ls /root/miniconda*/envs/ 2>/dev/null && ls /root/anaconda*/envs/ 2>/dev/null && conda info --envs 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T02:15:57.046652+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'find /root -maxdepth 4 -name \\\"python3\\\" -o -name \\\"python\\\" 2>/dev/null | head -20 && echo \\\"---\\\" && ls /root/miniconda*/envs/ 2>/dev/null && ls /root/anaconda*/envs/ 2>/dev/null && conda info --envs 2>/dev/null | head -20'\\n\\nExit code: 2\\n\\nStdout:\\n\\n/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n---\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T02:15:57.046779+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "ls /root/miniconda3/envs/ && /root/miniconda3/bin/conda info --envs 2>/dev/null | head -20",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "ls /root/miniconda3/envs/ && /root/miniconda3/bin/conda info --envs 2>/dev/null | head -20",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T02:15:57.046925+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# conda environments:\\n#\\nbase                     /root/miniconda3\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T02:15:57.047049+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "/root/miniconda3/bin/python -c \"import trl; print(trl.__version__)\" 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "/root/miniconda3/bin/python -c \"import trl; print(trl.__version__)\" 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T02:15:57.047171+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.4.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T02:15:57.047316+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "tmux kill-session -t exp002v2 2>/dev/null; rm -f /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log; tmux new-session -d -s exp002v2 \"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\" && echo \"RESTARTED\" && sleep 2 && tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "tmux kill-session -t exp002v2 2>/dev/null; rm -f /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log; tmux new-session -d -s exp002v2 \"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\" && echo \"RESTARTED\" && sleep 2 && tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T02:15:57.047443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"RESTARTED\\nexp002v2: 1 windows (created Tue May 19 10:07:33 2026)\\nexp003: 1 windows (created Tue May 19 00:51:24 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T02:15:57.047590+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && wc -l /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null && tail -30 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null || echo \"LOG NOT YET AVAILABLE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && wc -l /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null && tail -30 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null || echo \"LOG NOT YET AVAILABLE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T02:15:57.047742+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log\\n2026-05-19 10:07:37,944 [INFO] exp002v2: === exp-002v2: DC-GRPO Cosine R1 (no adaptive gate) ===\\n2026-05-19 10:07:37,944 [INFO] exp002v2: Weights: R1=0.25, R2=0.00, R3=0.75\\n2026-05-19 10:07:37,944 [INFO] exp002v2: Reward layers: [19, 20, 24, 27, 32, 33, 35]\\n2026-05-19 10:07:38,283 [INFO] exp002v2: Loaded 362 records from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-19 10:07:38,711 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.18it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.23it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.26it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.39it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.83it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.54it/s]\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\n2026-05-19 10:07:43,595 [INFO] dcgrpo_trainer: Loaded d_syc shape=torch.Size([36, 2, 4096]) from /root/contrastive_entrain_calib/results/exp001/directions.pt\\n2026-05-19 10:07:43,595 [INFO] dcgrpo_trainer: Activation hooks registered on layers [19, 20, 24, 27, 32, 33, 35]\\n2026-05-19 10:07:43,595 [INFO] exp002v2: Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\
+…[truncated 241 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T02:15:57.047943+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && tail -50 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && tail -50 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T02:15:57.048132+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 10:07:37,944 [INFO] exp002v2: === exp-002v2: DC-GRPO Cosine R1 (no adaptive gate) ===\\n2026-05-19 10:07:37,944 [INFO] exp002v2: Weights: R1=0.25, R2=0.00, R3=0.75\\n2026-05-19 10:07:37,944 [INFO] exp002v2: Reward layers: [19, 20, 24, 27, 32, 33, 35]\\n2026-05-19 10:07:38,283 [INFO] exp002v2: Loaded 362 records from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-19 10:07:38,711 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.18it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.23it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.26it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.39it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.83it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.54it/s]\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\n2026-05-19 10:07:43,595 [INFO] dcgrpo_trainer: Loaded d_syc shape=torch.Size([36, 2, 4096]) from /root/contrastive_entrain_calib/results/exp001/directions.pt\\n2026-05-19 10:07:43,595 [INFO] dcgrpo_trainer: Activation hooks registered on layers [19, 20, 24, 27, 32, 33, 35]\\n2026-05-19 10:07:43,595 [INFO] exp002v2: Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]`use_cache=True` is incompatible with
+…[truncated 4454 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T02:15:57.048322+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "find /root -maxdepth 5 -path \"*/nli-deberta*\" -type d 2>/dev/null | head -10 && echo \"---\" && find /root -maxdepth 5 -path \"*/cross-encoder*\" -type d 2>/dev/null | head -10 && echo \"---\" && ls /root/.cache/huggingface/hub/ 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "find /root -maxdepth 5 -path \"*/nli-deberta*\" -type d 2>/dev/null | head -10 && echo \"---\" && find /root -maxdepth 5 -path \"*/cross-encoder*\" -type d 2>/dev/null | head -10 && echo \"---\" && ls /root/.cache/huggingface/hub/ 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T02:15:57.048459+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n---\\nCACHEDIR.TAG\\ndatasets--HuggingFaceH4--ultrachat_200k\\ndatasets--anon8231489123--ShareGPT_Vicuna_unfiltered\\nmodels--cross-encoder--nli-deberta-v3-base\\nmodels--microsoft--deberta-v3-base\\nmodels--mistralai--Mistral-7B-Instruct-v0.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T02:15:57.048609+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "tail -20 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null && echo \"---\" && tmux list-sessions 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "tail -20 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null && echo \"---\" && tmux list-sessions 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T02:15:57.048778+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f2e126e8bc0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: ccbf9d93-9cca-4046-979d-4a74ef949765)')' thrown while requesting HEAD https://huggingface.co/cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json\\n2026-05-19 10:08:14,400 [WARNING] huggingface_hub.utils._http: '(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f2e126e8bc0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: ccbf9d93-9cca-4046-979d-4a74ef949765)')' thrown while requesting HEAD https://huggingface.co/cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json\\nRetrying in 1s [Retry 1/5].\\n2026-05-19 10:08:14,400 [WARNING] huggingface_hub.utils._http: Retrying in 1s [Retry 1/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f2b5037e840>: Failed to establish a new
+…[truncated 4223 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T02:15:57.048980+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && tail -10 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && tail -10 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T02:15:57.049140+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 10:08:51,614 [WARNING] huggingface_hub.utils._http: '(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f2414157da0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 8abe67fa-3e76-4706-8194-288e63166cd8)')' thrown while requesting HEAD https://huggingface.co/cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json\\nRetrying in 8s [Retry 4/5].\\n2026-05-19 10:08:51,614 [WARNING] huggingface_hub.utils._http: Retrying in 8s [Retry 4/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f2414157cb0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 6109fc95-f46a-4b90-be00-3be375dfc4c1)')' thrown while requesting HEAD https://huggingface.co/cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json\\n2026-05-19 10:09:09,679 [WARNING] huggingface_hub.utils._http: '(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f2414157cb0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 6109fc95-f46a-4b90-be00-3be375dfc4c1)')' thrown while requesting HEAD https://huggingface.co/cross-encoder/nli-deberta-v3-base/resolve/main/tokenizer_config.json\\nRetrying in 8s [Retry 5/5].\\n2026-05-19 10:09:09,679 [WARNING] huggingface_hub.utils._http: Retrying in 8s 
+…[truncated 1833 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T02:15:57.049314+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "tmux kill-session -t exp002v2 2>/dev/null; rm -f /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log; tmux new-session -d -s exp002v2 \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\" && echo \"RESTARTED WITH HF_HUB_OFFLINE=1\" && sleep 2 && tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "tmux kill-session -t exp002v2 2>/dev/null; rm -f /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log; tmux new-session -d -s exp002v2 \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\" && echo \"RESTARTED WITH HF_HUB_OFFLINE=1\" && sleep 2 && tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T02:15:57.049469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"RESTARTED WITH HF_HUB_OFFLINE=1\\nexp002v2: 1 windows (created Tue May 19 10:09:46 2026)\\nexp003: 1 windows (created Tue May 19 00:51:24 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T02:15:57.049595+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 20 && tail -30 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 20 && tail -30 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T02:15:57.049746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 10:09:51,105 [INFO] exp002v2: === exp-002v2: DC-GRPO Cosine R1 (no adaptive gate) ===\\n2026-05-19 10:09:51,105 [INFO] exp002v2: Weights: R1=0.25, R2=0.00, R3=0.75\\n2026-05-19 10:09:51,106 [INFO] exp002v2: Reward layers: [19, 20, 24, 27, 32, 33, 35]\\n2026-05-19 10:09:51,446 [INFO] exp002v2: Loaded 362 records from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-19 10:09:51,834 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.17it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.23it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.26it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.39it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.82it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.53it/s]\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\n2026-05-19 10:09:56,681 [INFO] dcgrpo_trainer: Loaded d_syc shape=torch.Size([36, 2, 4096]) from /root/contrastive_entrain_calib/results/exp001/directions.pt\\n2026-05-19 10:09:56,681 [INFO] dcgrpo_trainer: Activation hooks registered on layers [19, 20, 24, 27, 32, 33, 35]\\n2026-05-19 10:09:56,681 [INFO] exp002v2: Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\", \"stderr\": \"\", \"return_code\"
+…[truncated 68 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T02:15:57.049940+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && tail -20 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && tail -20 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T02:15:57.050105+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 10:09:51,834 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.17it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.23it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.26it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.39it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.82it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.53it/s]\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\n2026-05-19 10:09:56,681 [INFO] dcgrpo_trainer: Loaded d_syc shape=torch.Size([36, 2, 4096]) from /root/contrastive_entrain_calib/results/exp001/directions.pt\\n2026-05-19 10:09:56,681 [INFO] dcgrpo_trainer: Activation hooks registered on layers [19, 20, 24, 27, 32, 33, 35]\\n2026-05-19 10:09:56,681 [INFO] exp002v2: Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n2026-05-19 10:10:17,611 [INFO] dcgrpo_trainer: Loaded NLI model: cross-encoder/nli-deberta-v3-base (entailment_idx=1)\\n2026-05-19 10:10:21,249 [INFO] dcgrpo_trainer: [step 1] reward/r1  mean=-0.0026  std=0.0753  min=-0.1022  max=0.1139\\n2026-05-19 10:10:21,249 [INFO] dcgrpo_trainer: [step 1] reward/r2  mean=0.0000  std=0.0000  min=0.0
+…[truncated 1067 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T02:15:57.050291+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && tail -20 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && tail -20 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T02:15:57.050444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 10:09:56,681 [INFO] dcgrpo_trainer: Loaded d_syc shape=torch.Size([36, 2, 4096]) from /root/contrastive_entrain_calib/results/exp001/directions.pt\\n2026-05-19 10:09:56,681 [INFO] dcgrpo_trainer: Activation hooks registered on layers [19, 20, 24, 27, 32, 33, 35]\\n2026-05-19 10:09:56,681 [INFO] exp002v2: Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n2026-05-19 10:10:17,611 [INFO] dcgrpo_trainer: Loaded NLI model: cross-encoder/nli-deberta-v3-base (entailment_idx=1)\\n2026-05-19 10:10:21,249 [INFO] dcgrpo_trainer: [step 1] reward/r1  mean=-0.0026  std=0.0753  min=-0.1022  max=0.1139\\n2026-05-19 10:10:21,249 [INFO] dcgrpo_trainer: [step 1] reward/r2  mean=0.0000  std=0.0000  min=0.0000  max=0.0000\\n2026-05-19 10:10:21,249 [INFO] dcgrpo_trainer: [step 1] reward/r3  mean=0.2775  std=0.4425  min=0.0002  max=0.9997\\n2026-05-19 10:10:21,249 [INFO] dcgrpo_trainer: [step 1] reward/combined  mean=0.2075  std=0.3470\\nCould not estimate the number of tokens of the input, floating-point operations will not be computed\\n\\r  0%|          | 1/8000 [00:28<63:21:14, 28.51s/it]2026-05-19 10:10:47,826 [INFO] dcgrpo_trainer: [step 2] reward/r1  mean=-0.0544  std=0.0924  min=-0.1607  max=0.0749\\n2026-05-19 10:10:47,826 [INFO] dcgrpo_trainer: [step 2] reward/r2  mean=0.0000  std=0.0000  min=0.0000  max=0.0000\\n2026-05-19 10:10:47,826 [INFO] dcgrpo_trainer: [step 2] reward/r3  mean=0.5686  std=0.5015  min=0.0004  max=0.9995\\n2026-05-19 10:10:47,826 [INFO] dcgrpo_trainer: [step 2] reward/combined  mean=0.4128  std=0.3911\\n\\r  0%|         
+…[truncated 713 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T02:15:57.050624+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "ps aux | grep \"run_exp002v2\" | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "ps aux | grep \"run_exp002v2\" | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T02:15:57.050758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     130464  0.0  0.0   4364  3160 pts/2    Ss+  10:09   0:00 bash -c cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py 2>&1 | tee checkpoints/exp002v2_dcgrpo_cosine/train.log\\nroot     130467  648  0.3 91361040 3220540 pts/2 Rl+ 10:09  11:40 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T02:15:57.050926+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && grep -n \"r1_.*_mean\\|ADAPTIVE GATE\\|step 10\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null && echo \"---\" && tail -5 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && grep -n \"r1_.*_mean\\|ADAPTIVE GATE\\|step 10\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null && echo \"---\" && tail -5 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T02:15:57.051067+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'sleep 25 && grep -n \\\"r1_.*_mean\\\\\\\\|ADAPTIVE GATE\\\\\\\\|step 10\\\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null && echo \\\"---\\\" && tail -5 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 25.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T02:15:57.051203+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "tail -5 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "tail -5 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T02:15:57.051331+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/r2  mean=0.0000  std=0.0000  min=0.0000  max=0.0000\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/r3  mean=0.6256  std=0.4971  min=0.0004  max=0.9997\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/combined  mean=0.4653  std=0.3956\\n.0004  max=0.9997\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/combined  mean=0.4653  std=0.3956\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T02:15:57.051487+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && tail -10 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && tail -10 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T02:15:57.051625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 10:11:42,338 [INFO] dcgrpo_trainer: [step 4] reward/combined  mean=0.3700  std=0.3962\\n\\r  0%|          | 4/8000 [01:49<60:14:32, 27.12s/it]2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/r1  mean=-0.0155  std=0.1103  min=-0.2212  max=0.1575\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/r2  mean=0.0000  std=0.0000  min=0.0000  max=0.0000\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/r3  mean=0.6256  std=0.4971  min=0.0004  max=0.9997\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/combined  mean=0.4653  std=0.3956\\n\\r  0%|          | 5/8000 [02:17<60:54:39, 27.43s/it]2026-05-19 10:12:35,663 [INFO] dcgrpo_trainer: [step 6] reward/r1  mean=-0.0161  std=0.0783  min=-0.1340  max=0.0881\\n2026-05-19 10:12:35,664 [INFO] dcgrpo_trainer: [step 6] reward/r2  mean=-0.0138  std=0.0247  min=-0.0553  max=0.0000\\n2026-05-19 10:12:35,664 [INFO] dcgrpo_trainer: [step 6] reward/r3  mean=0.8092  std=0.4012  min=0.0004  max=0.9999\\n2026-05-19 10:12:35,664 [INFO] dcgrpo_trainer: [step 6] reward/combined  mean=0.6028  std=0.3138\\n\\r  0%|          | 6/8000 [02:42<59:11:33, 26.66s/it]cgrpo_trainer: [step 6] reward/combined  mean=0.6028  std=0.3138\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T02:15:57.051766+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && tail -15 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && tail -15 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T02:15:57.051918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 10:11:42,338 [INFO] dcgrpo_trainer: [step 4] reward/r3  mean=0.4979  std=0.5125  min=0.0005  max=0.9995\\n2026-05-19 10:11:42,338 [INFO] dcgrpo_trainer: [step 4] reward/combined  mean=0.3700  std=0.3962\\n\\r  0%|          | 4/8000 [01:49<60:14:32, 27.12s/it]2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/r1  mean=-0.0155  std=0.1103  min=-0.2212  max=0.1575\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/r2  mean=0.0000  std=0.0000  min=0.0000  max=0.0000\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/r3  mean=0.6256  std=0.4971  min=0.0004  max=0.9997\\n2026-05-19 10:12:10,173 [INFO] dcgrpo_trainer: [step 5] reward/combined  mean=0.4653  std=0.3956\\n\\r  0%|          | 5/8000 [02:17<60:54:39, 27.43s/it]2026-05-19 10:12:35,663 [INFO] dcgrpo_trainer: [step 6] reward/r1  mean=-0.0161  std=0.0783  min=-0.1340  max=0.0881\\n2026-05-19 10:12:35,664 [INFO] dcgrpo_trainer: [step 6] reward/r2  mean=-0.0138  std=0.0247  min=-0.0553  max=0.0000\\n2026-05-19 10:12:35,664 [INFO] dcgrpo_trainer: [step 6] reward/r3  mean=0.8092  std=0.4012  min=0.0004  max=0.9999\\n2026-05-19 10:12:35,664 [INFO] dcgrpo_trainer: [step 6] reward/combined  mean=0.6028  std=0.3138\\n\\r  0%|          | 6/8000 [02:42<59:11:33, 26.66s/it]2026-05-19 10:13:01,969 [INFO] dcgrpo_trainer: [step 7] reward/r1  mean=-0.0352  std=0.1031  min=-0.1816  max=0.1552\\n2026-05-19 10:13:01,969 [INFO] dcgrpo_trainer: [step 7] reward/r2  mean=-0.0096  std=0.0263  min=-0.0771  max=0.0000\\n2026-05-19 10:13:01,969 [INFO] dcgrpo_trainer: [step 7] reward/r3  mean=0.3788  std=0.4936  min=0.0005  max=0.9997\\n2026-05-19 10:13:01,970 [INFO] dcgrpo_trainer: [step 7] reward/combined  mean=0.2753  std=0.3917\\n\\r  0%|          | 7/8000 [03:09<59:14:21, 26.68s/it]  std=0.3917\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T02:15:57.052078+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && grep -n \"r1_.*_mean\\|ADAPTIVE GATE\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null; echo \"---\"; tail -10 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && grep -n \"r1_.*_mean\\|ADAPTIVE GATE\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null; echo \"---\"; tail -10 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T02:15:57.052215+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n2026-05-19 10:12:35,664 [INFO] dcgrpo_trainer: [step 6] reward/combined  mean=0.6028  std=0.3138\\n\\r  0%|          | 6/8000 [02:42<59:11:33, 26.66s/it]2026-05-19 10:13:01,969 [INFO] dcgrpo_trainer: [step 7] reward/r1  mean=-0.0352  std=0.1031  min=-0.1816  max=0.1552\\n2026-05-19 10:13:01,969 [INFO] dcgrpo_trainer: [step 7] reward/r2  mean=-0.0096  std=0.0263  min=-0.0771  max=0.0000\\n2026-05-19 10:13:01,969 [INFO] dcgrpo_trainer: [step 7] reward/r3  mean=0.3788  std=0.4936  min=0.0005  max=0.9997\\n2026-05-19 10:13:01,970 [INFO] dcgrpo_trainer: [step 7] reward/combined  mean=0.2753  std=0.3917\\n\\r  0%|          | 7/8000 [03:09<59:14:21, 26.68s/it]2026-05-19 10:13:28,835 [INFO] dcgrpo_trainer: [step 8] reward/r1  mean=-0.0668  std=0.0755  min=-0.2195  max=0.0171\\n2026-05-19 10:13:28,835 [INFO] dcgrpo_trainer: [step 8] reward/r2  mean=-0.0097  std=0.0208  min=-0.0435  max=0.0187\\n2026-05-19 10:13:28,835 [INFO] dcgrpo_trainer: [step 8] reward/r3  mean=0.3140  std=0.4743  min=0.0002  max=0.9993\\n2026-05-19 10:13:28,835 [INFO] dcgrpo_trainer: [step 8] reward/combined  mean=0.2188  std=0.3645\\n\\r  0%|          | 8/8000 [03:35<59:12:57, 26.67s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T02:15:57.052360+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && grep \"r1_.*_mean\\|ADAPTIVE GATE\\|step 10\\]\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null; echo \"===\"; tail -10 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && grep \"r1_.*_mean\\|ADAPTIVE GATE\\|step 10\\]\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null; echo \"===\"; tail -10 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T02:15:57.052495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===\\n2026-05-19 10:13:01,970 [INFO] dcgrpo_trainer: [step 7] reward/combined  mean=0.2753  std=0.3917\\n\\r  0%|          | 7/8000 [03:09<59:14:21, 26.68s/it]2026-05-19 10:13:28,835 [INFO] dcgrpo_trainer: [step 8] reward/r1  mean=-0.0668  std=0.0755  min=-0.2195  max=0.0171\\n2026-05-19 10:13:28,835 [INFO] dcgrpo_trainer: [step 8] reward/r2  mean=-0.0097  std=0.0208  min=-0.0435  max=0.0187\\n2026-05-19 10:13:28,835 [INFO] dcgrpo_trainer: [step 8] reward/r3  mean=0.3140  std=0.4743  min=0.0002  max=0.9993\\n2026-05-19 10:13:28,835 [INFO] dcgrpo_trainer: [step 8] reward/combined  mean=0.2188  std=0.3645\\n\\r  0%|          | 8/8000 [03:35<59:12:57, 26.67s/it]2026-05-19 10:13:56,632 [INFO] dcgrpo_trainer: [step 9] reward/r1  mean=-0.0338  std=0.0735  min=-0.1388  max=0.0596\\n2026-05-19 10:13:56,632 [INFO] dcgrpo_trainer: [step 9] reward/r2  mean=0.0015  std=0.0040  min=0.0000  max=0.0116\\n2026-05-19 10:13:56,632 [INFO] dcgrpo_trainer: [step 9] reward/r3  mean=0.5644  std=0.5069  min=0.0002  max=0.9999\\n2026-05-19 10:13:56,632 [INFO] dcgrpo_trainer: [step 9] reward/combined  mean=0.4149  std=0.3963\\n\\r  0%|          | 9/8000 [04:03<60:04:06, 27.06s/it]rpo_trainer: [step 9] reward/combined  mean=0.4149  std=0.3963\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T02:15:57.052641+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29046",
+  "command": "sleep 25 && grep \"r1_.*_mean\\|ADAPTIVE GATE\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null; echo \"===\"; tail -15 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29046",
+    "command": "sleep 25 && grep \"r1_.*_mean\\|ADAPTIVE GATE\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null; echo \"===\"; tail -15 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T02:15:57.052784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r  0%|          | 9/8000 [04:03<60:04:06, 27.06s/it]2026-05-19 10:14:23,042 [INFO] exp002v2: reward/r1_weak_mean=0.0420 n=10\\n2026-05-19 10:14:23,043 [INFO] exp002v2: reward/r1_medium_mean=-0.1060 n=2\\n2026-05-19 10:14:23,043 [INFO] exp002v2: reward/r1_strong_mean=-0.0683 n=4\\n===\\n2026-05-19 10:13:56,632 [INFO] dcgrpo_trainer: [step 9] reward/r2  mean=0.0015  std=0.0040  min=0.0000  max=0.0116\\n2026-05-19 10:13:56,632 [INFO] dcgrpo_trainer: [step 9] reward/r3  mean=0.5644  std=0.5069  min=0.0002  max=0.9999\\n2026-05-19 10:13:56,632 [INFO] dcgrpo_trainer: [step 9] reward/combined  mean=0.4149  std=0.3963\\n\\r  0%|          | 9/8000 [04:03<60:04:06, 27.06s/it]2026-05-19 10:14:23,042 [INFO] exp002v2: reward/r1_weak_mean=0.0420 n=10\\n2026-05-19 10:14:23,043 [INFO] exp002v2: reward/r1_medium_mean=-0.1060 n=2\\n2026-05-19 10:14:23,043 [INFO] exp002v2: reward/r1_strong_mean=-0.0683 n=4\\n2026-05-19 10:14:23,043 [INFO] dcgrpo_trainer: [step 10] reward/r1  mean=-0.0041  std=0.1007  min=-0.1357  max=0.1372\\n2026-05-19 10:14:23,043 [INFO] dcgrpo_trainer: [step 10] reward/r2  mean=-0.0249  std=0.0332  min=-0.0678  max=0.0000\\n2026-05-19 10:14:23,043 [INFO] dcgrpo_trainer: [step 10] reward/r3  mean=0.3749  std=0.4984  min=0.0002  max=0.9997\\n2026-05-19 10:14:23,043 [INFO] dcgrpo_trainer: [step 10] reward/combined  mean=0.2802  std=0.3951\\n\\r  0%|          | 10/8000 [04:30<59:39:07, 26.88s/it]\\r                                                    \\r\\r  0%|          | 10/8000 [04:30<59:39:07, 26.88s/it]2026-05-19 10:14:48,834 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0806\\n2026-05-19 10:14:48,834 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0018\\n2026-05-19 10:14:48,834 [INFO] dcgrpo_trainer: reward/r3_mean=0.4577\\n2026-05-19 10:14:48,834 [INFO] dcgrpo_trainer: reward/combined_mean=0.3231\\n2026-05-19 10:14:48,834 [INFO] dcgrpo_trainer: reward/combined_mean=0.3231\\n\", \"stderr\": \"\", \"return_code\": 0}, \
+…[truncated 61 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-19T02:15:57.052996+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-002v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": "{'command': 'cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py', 'server': 'westd-29046', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen/Qwen3-8B', 'seed': 42, 'pid': 130467, 'checkpoint_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/', 'log_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log', 'notes': 'D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-002v2",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "contrastive_entrain_calib",
+    "spec": "{'command': 'cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py', 'server': 'westd-29046', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen/Qwen3-8B', 'seed': 42, 'pid': 130467, 'checkpoint_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/', 'log_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log', 'notes': 'D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T02:15:57.053158+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.0426}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T02:15:57.053288+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "rm -f /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/tmp_run_exp002v2.py",
+  "description": "Remove temporary file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "rm -f /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/tmp_run_exp002v2.py",
+    "description": "Remove temporary file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T02:15:57.053420+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-19T02:15:57.053565+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'exp-002v2'}",
+  "project": "contrastive_entrain_calib",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'exp-002v2'}",
+    "project": "contrastive_entrain_calib",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T02:15:57.053691+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0186}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T02:15:57.053821+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "fields": "['*']",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "fields": "['*']",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T02:15:57.054123+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-002v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T02:10:27.620Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"spec\": {\"command\": \"cd /root/contrastive_entrain_calib && python training/run_exp002v2_dcgrpo_cosine.py\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log\", \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"gpu\": \"cuda:0\", \"pid\": \"122450\", \"notes\": \"Cosine R1 fix (D020/M012): replaced tanh(dot/20) with cosine similarity. R1 ∈ [-0.2,+0.2], no tanh saturation. Config: R1=0.25, R2=0, R3=0.75, LoRA r=64, max_steps=8000, num_gen=2, max_completion_length=256. recalibration_interval=0.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T02:10:27.513Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T02:10:27.621Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T02:10:29.397992+00:00\"}]}}, \"exp-016\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\
+…[truncated 11020 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-19T02:15:57.054309+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-002v2",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-002v2",
+    "field": "status",
+    "value": "PREPARING",
+    "project": "contrastive_entrain_calib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-19T02:15:57.054464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-002v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T02:15:27.382Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-19T02:10:27.513Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T02:10:27.621Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T02:10:29.397992+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1527}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-19T02:15:57.054610+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-002v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": "{'command': 'cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py', 'server': 'westd-29046', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen/Qwen3-8B', 'seed': 42, 'pid': '130467', 'checkpoint_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/', 'log_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log', 'checkpoint_source': 'training_from_base', 'eval_data': 'N/A', 'notes': 'D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-002v2",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "contrastive_entrain_calib",
+    "spec": "{'command': 'cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py', 'server': 'westd-29046', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen/Qwen3-8B', 'seed': 42, 'pid': '130467', 'checkpoint_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/', 'log_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log', 'checkpoint_source': 'training_from_base', 'eval_data': 'N/A', 'notes': 'D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-19T02:15:57.054770+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0223}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-19T02:15:57.054938+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-002v2",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-002v2",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "contrastive_entrain_calib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-19T02:15:57.055094+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-002v2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T02:15:40.328Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-19T02:10:27.513Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T02:10:27.621Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T02:10:29.397992+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1477}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-19T02:15:57.055241+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-002v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contrastive_entrain_calib",
+  "spec": "{'command': 'cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py', 'server': 'westd-29046', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen/Qwen3-8B', 'seed': 42, 'pid': '130467', 'checkpoint_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/', 'log_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log', 'checkpoint_source': 'training_from_base', 'eval_data': 'N/A', 'notes': 'D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-002v2",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "contrastive_entrain_calib",
+    "spec": "{'command': 'cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py', 'server': 'westd-29046', 'data_path': '/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl', 'data_count': 362, 'model_name': 'Qwen/Qwen3-8B', 'seed': 42, 'pid': '130467', 'checkpoint_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/', 'log_path': '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log', 'checkpoint_source': 'training_from_base', 'eval_data': 'N/A', 'notes': 'D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-19T02:15:57.055422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-002v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T02:15:47.696Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"reproduce\": {\"finished_at\": \"2026-05-19T02:10:27.513Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T02:10:27.621Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T02:10:29.397992+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python training/run_exp002v2_dcgrpo_cosine.py\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"pid\": \"130467\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log\", \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"notes\": \"D021: adaptive gate 已禁用，从头重启。所有 evidence_strength 的 R1 均参与训练。HF_HUB_OFFLINE=1 避免网络重试延迟。per-strength R1 logging 每 10 步输出。\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1603}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-19T02:15:57.055608+00:00_
+
+D021 执行完毕。
+
+**汇总：**
+
+| 步骤 | 状态 |
+|------|------|
+| Kill PID 122450 | 成功 |
+| 删除 gate 代码 | 已删除 `GATE_WARMUP_STEPS`/`GATE_ACTIVATE_STEP`、`_weak_r1_gated`、gate 判定/执行逻辑、`import statistics`/`defaultdict` |
+| 添加 per-strength R1 日志 | 每 10 步输出 weak/medium/strong 的 R1 mean |
+| 清理旧 checkpoint | 已清空 |
+| 重启训练 | PID 130467，tmux session `exp002v2`，`HF_HUB_OFFLINE=1` |
+| Sanity check (step 10) | **通过** — weak R1=0.0420, medium R1=-0.1060, strong R1=-0.0683，无 ADAPTIVE GATE |
+| Registry | RUNNING，spec 已更新 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_d021-kill-disable-gate-restart_20260519T020137"
+}
+```
+
+</details>
+
+---

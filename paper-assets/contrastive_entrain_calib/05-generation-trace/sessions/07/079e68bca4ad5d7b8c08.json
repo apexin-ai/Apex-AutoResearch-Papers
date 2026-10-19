@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "079e68bca4ad5d7b8c08",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh check 29046 steps",
+  "task_key": "worker_ssh_check-29046-steps_20260522T163927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-29046-steps_20260522T163927_result.json",
+    "occurrence": 1,
+    "bytes": 548,
+    "sha256": "f3314c8b8174f574e7141a4099a30795e1bfdcc26501f340da9b655011ef1b19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp-003-gs8:  step 72/8000, PID=516691, step_time=~65s/step, ETA=~143h (6天)\nexp-004-s2-v2: step 4290/8000, PID=494017, step_time=~9.3s/step, ETA=~9.5h\n\nGPU0: 55140/97887 MiB, 100%\nGPU1: 40222/97887 MiB, 100%\n```\n\n**注意：两张卡上各有一个 eval 任务在抢资源**\n- GPU0: exp-003-gs8 训练 + exp003-s2-ckpt7500 eval (PID 517336)\n- GPU1: exp-004-s2 训练 + exp003-s2-ckpt8000 eval (PID 517417)\n\nexp-003-gs8 每步 65s 极慢，很可能是 eval 争 GPU 导致的。eval 跑完后速度应该会恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-29046-steps.md"
+}

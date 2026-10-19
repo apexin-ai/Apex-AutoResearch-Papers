@@ -1,0 +1,112 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{perez2023discovering,sharma2024towards}
+\citation{wei2024measuring}
+\citation{zou2023representation}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{perez2023discovering,sharma2024towards,wei2024measuring}
+\citation{chen2024truth}
+\citation{mitchell2024act}
+\citation{stengel2024pressure}
+\citation{bai2022training}
+\citation{zou2023representation}
+\citation{burns2023discovering}
+\citation{turner2023activation}
+\citation{zhang2026latent}
+\citation{wang2025craft}
+\citation{burns2024linear}
+\citation{kadavath2022language}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sycophancy in LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation Engineering.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation-Based Rewards.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background and Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Sycophancy Direction Extraction}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}DC-GRPO Framework}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R1 Formulations Tested:}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R3 Behavioral Reward.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SYCONScore.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RC-AUC.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Direction Discriminability (Calibration)}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cosine R1 Failure Chain}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces $d_\text  {syc}$ direction discriminability (5-fold CV, Qwen3-8B). The direction achieves AUROC 0.82 overall but only 0.675 on weak-evidence cases---precisely the regime where reward utility matters most.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:discriminability}{{1}{4}{$d_\text {syc}$ direction discriminability (5-fold CV, Qwen3-8B). The direction achieves AUROC 0.82 overall but only 0.675 on weak-evidence cases---precisely the regime where reward utility matters most}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Experiment 1: Cosine + Tanh Gate.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 2: Raw Cosine (No Gate).}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 3: Recalibrated Cosine.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experiment 4: 5x Scaled Cosine.}{4}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-evidence-strength R1 distribution under 5$\times $ scaled cosine. Strong-evidence samples---where the model \emph  {should} revise---receive the most negative reward, revealing structural sign inversion.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:scaled_cosine}{{2}{4}{Per-evidence-strength R1 distribution under 5$\times $ scaled cosine. Strong-evidence samples---where the model \emph {should} revise---receive the most negative reward, revealing structural sign inversion}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Binary Probe R1}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Baselines}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{R3-only (Behavioral Reward).}{4}{section*.15}\protected@file@percent }
+\citation{kadavath2022language}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Binary probe R1 (exp-008v3) training trajectory. R1 mean declines from 0.72 to 0.35 as distribution shift degrades probe accuracy. SYCONScore peaks at 0.22 (ckpt-4000) then deteriorates.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:probe_r1}{{3}{5}{Binary probe R1 (exp-008v3) training trajectory. R1 mean declines from 0.72 to 0.35 as distribution shift degrades probe accuracy. SYCONScore peaks at 0.22 (ckpt-4000) then deteriorates}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces R3-only baseline. Stable training, peak SYCONScore 0.33 at ckpt-6000. No mode collapse, healthy entropy.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:r3_only}{{4}{5}{R3-only baseline. Stable training, peak SYCONScore 0.33 at ckpt-6000. No mode collapse, healthy entropy}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{ACT (Undifferentiated Consistency).}{5}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces ACT baseline results. Monotonically increasing SYCONScore reaching 0.301 by ckpt-8000.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:act}{{5}{5}{ACT baseline results. Monotonically increasing SYCONScore reaching 0.301 by ckpt-8000}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Full Benchmark Comparison}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Direction Stability Analysis}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}R1-R3 Disagreement Analysis}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Full benchmark comparison. R3-only Pareto-dominates all representation-augmented methods. Binary Probe R1 underperforms even vanilla on RC-AUC (0.35 vs 0.38).}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:full_eval}{{6}{6}{Full benchmark comparison. R3-only Pareto-dominates all representation-augmented methods. Binary Probe R1 underperforms even vanilla on RC-AUC (0.35 vs 0.38)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Direction stability during GRPO training. Cosine similarity with initial direction drops to 0.69 by step 5000. Recalibration provides only marginal recovery ($+$0.01--0.02 AUROC).}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:stability}{{7}{6}{Direction stability during GRPO training. Cosine similarity with initial direction drops to 0.69 by step 5000. Recalibration provides only marginal recovery ($+$0.01--0.02 AUROC)}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Ablation Studies}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.1}R1-Only (No Behavioral Safety Net)}{6}{subsubsection.4.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.2}R1+R2 Without R3}{6}{subsubsection.4.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.3}Continuous Probe}{6}{subsubsection.4.8.3}\protected@file@percent }
+\citation{turner2023activation}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces R1-R3 disagreement frequency. Only 2.1\% disagreement---far below the 13--29\% reported in single-turn literature---indicating R3 behavioral reward is already a sufficient statistic.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:disagreement}{{8}{7}{R1-R3 disagreement frequency. Only 2.1\% disagreement---far below the 13--29\% reported in single-turn literature---indicating R3 behavioral reward is already a sufficient statistic}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces R1-only ablation. Mode collapse onset at $\sim $1500 steps. The model learns a spurious policy of rigid refusal, with both ToF and NoF degrading.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:r1_only}{{9}{7}{R1-only ablation. Mode collapse onset at $\sim $1500 steps. The model learns a spurious policy of rigid refusal, with both ToF and NoF degrading}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.4}Random Direction Probe}{7}{subsubsection.4.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.5}Reward Weight Sensitivity}{7}{subsubsection.4.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Inference-Time Steering (ActAdd)}{7}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Turn Depth Analysis}{7}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Cross-Model Replication (Llama-3-8B)}{7}{subsection.4.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Continuous probe baseline (exp-014). Complete mode collapse: the model flips on every pressure (ToF 0.978) while never resisting (NoF 0.006). The smooth probability gradient enables reward hacking.}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:continuous_probe}{{10}{8}{Continuous probe baseline (exp-014). Complete mode collapse: the model flips on every pressure (ToF 0.978) while never resisting (NoF 0.006). The smooth probability gradient enables reward hacking}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces $d_\text  {syc}$ vs random direction probe. A 0.24 AUROC advantage translates to only 0.03 SYCONScore improvement---discriminability does not transfer to reward utility.}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:random_probe}{{11}{8}{$d_\text {syc}$ vs random direction probe. A 0.24 AUROC advantage translates to only 0.03 SYCONScore improvement---discriminability does not transfer to reward utility}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Neutral Baseline (Three-Way Design)}{8}{subsection.4.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis and Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Discriminability $\neq  $ Reward Utility}{8}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Direction vs.\ Warrant.}{8}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Non-Stationarity.}{8}{section*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Reward weight sensitivity. SYCONScore is monotonically negatively correlated with R1 weight. The optimal R1 weight is zero (R3-only). Even at $w_1=0.1$, R1's presence still harms performance.}}{9}{table.caption.25}\protected@file@percent }
+\newlabel{tab:weight_sensitivity}{{12}{9}{Reward weight sensitivity. SYCONScore is monotonically negatively correlated with R1 weight. The optimal R1 weight is zero (R3-only). Even at $w_1=0.1$, R1's presence still harms performance}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces ActAdd inference steering with $d_\text  {syc}$. Increasing $\alpha $ improves NoF marginally but destroys ToF, resulting in net-negative SYCONScore. The direction conflates revision with capitulation at inference time as well.}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:actadd}{{13}{9}{ActAdd inference steering with $d_\text {syc}$. Increasing $\alpha $ improves NoF marginally but destroys ToF, resulting in net-negative SYCONScore. The direction conflates revision with capitulation at inference time as well}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Redundancy.}{9}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implications for the RepE$\to $RL Pipeline}{9}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{perez2023discovering}{{1}{2023}{{Perez et~al.}}{{}}}
+\bibcite{sharma2024towards}{{2}{2024}{{Sharma et~al.}}{{}}}
+\bibcite{wei2024measuring}{{3}{2024}{{Wei et~al.}}{{}}}
+\bibcite{chen2024truth}{{4}{2024}{{Chen et~al.}}{{}}}
+\bibcite{zou2023representation}{{5}{2023}{{Zou et~al.}}{{}}}
+\bibcite{burns2023discovering}{{6}{2023}{{Burns et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Warranted revision rate by turn depth. Probe R1 shows the steepest decay (60\%) as multi-turn context compounds distribution shift, making the probe increasingly inaccurate at deeper turns.}}{10}{table.caption.27}\protected@file@percent }
+\newlabel{tab:turn_depth}{{14}{10}{Warranted revision rate by turn depth. Probe R1 shows the steepest decay (60\%) as multi-turn context compounds distribution shift, making the probe increasingly inaccurate at deeper turns}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Cross-model comparison. The failure pattern replicates on Llama-3-8B with nearly identical $\Delta $ ($-0.12$ vs $-0.11$). The direction itself does not transfer (cosine 0.12), but the failure mode is universal.}}{10}{table.caption.28}\protected@file@percent }
+\newlabel{tab:cross_model}{{15}{10}{Cross-model comparison. The failure pattern replicates on Llama-3-8B with nearly identical $\Delta $ ($-0.12$ vs $-0.11$). The direction itself does not transfer (cosine 0.12), but the failure mode is universal}{table.caption.28}{}}
+\bibcite{turner2023activation}{{7}{2023}{{Turner et~al.}}{{}}}
+\bibcite{zhang2026latent}{{8}{2026}{{Zhang et~al.}}{{}}}
+\bibcite{wang2025craft}{{9}{2025}{{Wang et~al.}}{{}}}
+\bibcite{burns2024linear}{{10}{2024}{{Burns et~al.}}{{}}}
+\bibcite{kadavath2022language}{{11}{2022}{{Kadavath et~al.}}{{}}}
+\bibcite{mitchell2024act}{{12}{2024}{{Mitchell et~al.}}{{}}}
+\bibcite{stengel2024pressure}{{13}{2024}{{Stengel-Eskin et~al.}}{{}}}
+\bibcite{bai2022training}{{14}{2022}{{Bai et~al.}}{{}}}
+\gdef \@abspage@last{11}

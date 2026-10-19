@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "13c85bb9b9f26f6fb02e",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "ssh seed1 check and eval launch",
+  "task_key": "worker_ssh_seed1-check-and-eval-launch_20260516T054211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_seed1-check-and-eval-launch_20260516T054211.jsonl",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "3851567f8f1bf3ce02edb61b7cb8941fdf5044696ffb7b558ab52b15ad328fec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:42:22.276123+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5iMxY2zrLPs2TWPWVKq\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_seed1-check-and-eval-launch_20260516T054211"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-seed1-check-and-eval-launch.md"
+}

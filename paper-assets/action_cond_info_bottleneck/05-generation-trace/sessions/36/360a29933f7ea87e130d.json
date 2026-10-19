@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "360a29933f7ea87e130d",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "train acib v5 div reg seed2",
+  "task_key": "worker_train_acib_v5_div_reg_seed2_20260516T024952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_train_acib_v5_div_reg_seed2_20260516T024952.jsonl",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "deeae519080b678874e3534cfb62c9fbb6d621d1a8e9eca61699d70dccfb9b72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:50:02.220436+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5VDk7S1CFK9NkirgjkR\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_train_acib_v5_div_reg_seed2_20260516T024952"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/train-acib-v5-div-reg-seed2.md"
+}

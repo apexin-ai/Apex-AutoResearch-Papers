@@ -1,0 +1,16 @@
+{
+  "exp_id": "acib_v7_alpha03_eval",
+  "project": "action_cond_info_bottleneck",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:21:20.143Z",
+    "updated_at": "2026-05-17T03:21:24.566Z",
+    "hypothesis": "Alpha=0.3 中等强度 scoring 诊断：scoring weight 0.3 时 ACIB 做中等干预。与 alpha=0.1(-9.8pp) 和 alpha=1.0(-7.6pp) 对比，确认 scoring 强度与回退的关系是否单调。",
+    "parent": "acib_v7_contrastive"
+  },
+  "timestamp": "2026-05-17T03:21:24.611567+00:00",
+  "trigger": "update_registry"
+}

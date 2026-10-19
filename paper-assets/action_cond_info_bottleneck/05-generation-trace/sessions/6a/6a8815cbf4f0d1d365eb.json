@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a8815cbf4f0d1d365eb",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh fetch heatmaps and prep seed2",
+  "task_key": "worker_ssh_fetch-heatmaps-and-prep-seed2_20260517T133632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fetch-heatmaps-and-prep-seed2_20260517T133632_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "93e2baa5f2e75b521c7b59440167457c8476cf60508dcf83c90838ffeef1c3a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n### Phase 1: Heatmap 下载 ✓\n\n4 个 PNG 已下载到本地：\n```\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/artifacts/v72_heatmaps/\n├── seed1_probe_A.png  (257 KB)\n├── seed1_probe_B.png  (256 KB)\n├── seed2_probe_A.png  (257 KB)\n└── seed2_probe_B.png  (256 KB)\n```\n\n### Phase 2: Eval 进度\n\n两个 eval 均为 **seed1** (`acib_v7.2_connector_scorer`)，都还在第一个 suite `libero_spatial`（共 4 个 suite）：\n\n| Eval | PID | GPU | 当前 suite | Episodes | Success Rate |\n|------|-----|-----|-----------|----------|-------------|\n| alpha=0.0 | 40598 | GPU 0 (6581 MiB) | libero_spatial | ~47/50 (94%) | 74.5% |\n| alpha=1.0 | 44022 | GPU 1 (6021 MiB) | libero_spatial | ~41/50 (82%) | 80.5% |\n\n尚无已完成的 suite 结果文件。按 4 个 suite × 50 episodes 的节奏，预计还需较长时间。\n\n### Phase 3: Seed2 eval 脚本 ✓\n\n```\nartifacts/run_v72_eval_seed2_alpha00.sh  (GPU 0, alpha=0.0, seed2 checkpoint)\nartifacts/run_v72_eval_seed2_alpha10.sh  (GPU 1, alpha=1.0, seed2 checkpoint)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fetch-heatmaps-and-prep-seed2.md"
+}

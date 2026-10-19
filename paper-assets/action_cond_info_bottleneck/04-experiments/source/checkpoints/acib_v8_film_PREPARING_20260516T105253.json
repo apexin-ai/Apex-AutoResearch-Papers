@@ -1,0 +1,14 @@
+{
+  "exp_id": "acib_v8_film",
+  "project": "action_cond_info_bottleneck",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:52:53.455Z",
+    "updated_at": "2026-05-16T10:52:53.455Z"
+  },
+  "timestamp": "2026-05-16T10:52:53.487037+00:00",
+  "trigger": "update_registry"
+}

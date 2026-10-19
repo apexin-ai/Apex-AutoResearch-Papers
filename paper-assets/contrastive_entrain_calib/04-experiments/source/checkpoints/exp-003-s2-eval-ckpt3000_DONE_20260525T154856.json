@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp-003-s2-eval-ckpt3000",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:37:57.768Z",
+    "updated_at": "2026-05-25T15:48:56.240Z",
+    "hypothesis": "Eval exp-003-s2 (R3-only seed 2) checkpoint-3000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for exact step match.",
+    "parent": "exp-003-s2",
+    "conclusion": "success",
+    "notes": "ckpt-3000 eval 在跑 (PID 38838, cuda:0, westd-29046)。完成后 cuda:0 队列：act-256 → seed2 关键 ckpt re-eval (8个: 1k/2k/3k/4k/5k/6k/7k/8k) → gs8。",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-3000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003s2_d027_eval/ --exp_id exp003s2-ckpt3000",
+      "server": "westd-29046",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "38838",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-3000",
+      "eval_data": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl"
+    },
+    "metrics": {
+      "ToF": 0.0387,
+      "NoF": 0.9503,
+      "SYCONScore": 0.0743,
+      "n_valid": 181,
+      "n_invalid": 181,
+      "n_total": 362,
+      "elapsed_seconds": 4346
+    },
+    "completed_at": "2026-05-25T15:48:55.133Z"
+  },
+  "timestamp": "2026-05-25T15:48:56.456275+00:00",
+  "trigger": "update_registry"
+}

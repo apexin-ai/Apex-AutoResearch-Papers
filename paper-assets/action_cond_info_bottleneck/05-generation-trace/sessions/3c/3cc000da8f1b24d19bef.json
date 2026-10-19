@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "3cc000da8f1b24d19bef",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra env setup baseline",
+  "task_key": "worker_infra_env-setup-baseline_20260515T113557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-baseline_20260515T113557_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "32e4d51acd38c122ac891a8795fab3f5605998e3dd7c85849263636f4338ccb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Identity verification is required to continue.\"},\"request_id\":\"req_011Cb4HXZnfrssHTaBnpjH7Q\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Identity verification is required to continue."
+              },
+              "request_id": "req_011Cb4HXZnfrssHTaBnpjH7Q"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-baseline.md"
+}

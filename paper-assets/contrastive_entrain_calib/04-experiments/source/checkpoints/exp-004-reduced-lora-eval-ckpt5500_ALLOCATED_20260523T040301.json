@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-reduced-lora-eval-ckpt5500",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:02:30.145Z",
+    "updated_at": "2026-05-23T04:03:01.421Z",
+    "hypothesis": "Reduced LoRA ACT ckpt-5500 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 5500, tracking post-peak trend after ckpt-4500",
+    "parent": "exp-004-reduced-lora"
+  },
+  "timestamp": "2026-05-23T04:03:01.604418+00:00",
+  "trigger": "update_registry"
+}

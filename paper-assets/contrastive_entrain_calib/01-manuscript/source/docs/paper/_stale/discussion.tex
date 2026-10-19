@@ -1,0 +1,61 @@
+\section{Analysis: Discriminability $\neq$ Reward Utility}\label{sec:discussion}
+
+\paragraph{Unified root cause.}
+The failures in Sections~\ref{sec:cosine_failure} and~\ref{sec:probe_trap} trace to a single geometric limitation.
+$\dsyc$ encodes the \emph{direction} of belief change but not its \emph{evidential warrant}: valid revision and sycophantic capitulation both shift activations toward the user's position along the same direction.
+The two reward families expose complementary faces of this blindness.
+Cosine $\rone$ penalizes all belief change indiscriminately; the resulting mode collapse (F1c, F1d) reflects excessive punishment of any activation shift along $\dsyc$.
+The binary probe $\rone$ rewards all resistance regardless of input validity; the stubbornness trap ($\tof = 0$ by step 500) reflects excessive permissiveness toward activation stasis.
+These are not independent design flaws but dual consequences of a direction that conflates the target behavior (resisting invalid challenges) with its complement (refusing valid corrections).
+Cross-model evidence confirms the limitation extends beyond Qwen3-8B: Llama-3-8B independently achieves AUROC $0.779 \pm 0.019$ on the same contrastive pairs with the same monotonic evidence gradient, so discriminability generalizes across architectures while the semantic gap between discriminability and reward utility persists.
+This pattern contrasts with reasoning faithfulness and safety directions~\citep{zhang2026latentgrpo}, where the behavior to suppress is geometrically distinct from the behavior to preserve along the relevant direction.
+For sycophancy, the target and its complement occupy the same activation region; they differ only in whether external evidence warrants the belief change.
+
+\paragraph{GRPO stubbornness across all formulations.}
+
+\begin{table}[t]
+\centering
+\caption{Comparison of all sycophancy calibration methods on Qwen3-8B. $\sycon$ is the harmonic mean of $\tof$ and $\nof$; higher indicates better calibration. Best result in \textbf{bold}. $^\dagger$Peak at step 4500; regresses to 0.114 by step 5000.}
+\label{tab:main_comparison}
+\begin{tabular}{llcccc}
+\toprule
+Method & Type & $\sycon$ $\uparrow$ & $\tof$ $\uparrow$ & $\nof$ $\uparrow$ & Step \\
+\midrule
+Vanilla & -- & 0.134 & 0.072 & 0.945 & -- \\
+$\rthree$-only GRPO & RL & 0.134$^\dagger$ & 0.072 & 0.961 & 4500 \\
+Cosine $\rone$ (F1d) & RL & collapse & -- & -- & -- \\
+Binary Probe $\rone$ & RL & 0.000 & 0.000 & 0.995 & 500 \\
+ActAdd ($\alpha{=}5$) & Inference & 0.054 & 0.028 & 0.961 & -- \\
+\textbf{ACT} & SFT & \textbf{0.301} & \textbf{0.182} & 0.867 & 8000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:main_comparison} summarizes all methods evaluated on Qwen3-8B.
+$\rthree$-only GRPO removes $\dsyc$ entirely and relies on the NLI-based behavioral reward alone.
+If the failures in Sections~\ref{sec:cosine_failure} and~\ref{sec:probe_trap} stemmed solely from the representation reward, this ablation should recover calibration quality.
+It does not.
+The $\sycon$ trajectory shows partial recovery that peaks at vanilla: 0.074 at checkpoint 1000, 0.085 at checkpoint 2000, 0.095 at checkpoint 3000, 0.114 at checkpoint 4000, a transient spike to 0.134 at checkpoint 4500---approximately matching vanilla in $\sycon$---followed by regression to 0.114 at checkpoints 5000 and 5500.
+The best performance $\rthree$-only GRPO achieves is recovery to the untrained vanilla level; behavioral reward alone cannot push the model beyond its pre-training baseline.
+ActAdd~\citep{turner2023actadd}, the inference-time baseline, achieves only $\sycon = 0.054$, confirming that activation-level intervention without weight updates cannot resolve the calibration problem.
+$\rthree$-only GRPO exhibits the same stubbornness pattern as the $\dsyc$ approaches (high $\nof$, near-zero $\tof$) at milder severity.
+The sparse scalar reward per completion cannot teach the model \emph{which} belief changes are warranted: it collapses an entire multi-turn exchange into one number that does not distinguish legitimate resistance from stubborn refusal.
+
+\paragraph{Why SFT succeeds where GRPO fails.}
+ACT~\citep{consistency2025bctact} achieves $\sycon = 0.301$ at checkpoint 8000, more than $2{\times}$ the vanilla baseline and above every RL and inference-time variant (Table~\ref{tab:main_comparison}).
+The ACT trajectory is not monotonic: $\sycon = 0.255$ at checkpoint 2000, dips to 0.214 at checkpoint 4000 ($-4.1$ percentage points as $\tof$ drops and $\nof$ rises), recovers to 0.262 at checkpoint 6000, and reaches 0.301 at checkpoint 8000.
+ACT also experiences stubbornness episodes, yet it recovers from them.
+The critical difference is supervision density.
+SFT provides a corrective gradient at every token position in every training example: when the model begins to resist valid corrections, per-token cross-entropy loss immediately penalizes the incorrect tokens and supplies gradient information about \emph{which} outputs need to change.
+GRPO provides one scalar per completion; once the policy locks into stubbornness, that scalar reinforces the behavior because consistent non-flipping collects high reward from both $\rone$ and $\rthree$.
+Dense per-token loss can break out of stubbornness equilibria that sparse per-completion reward cannot escape.
+This recovery capacity is the practical signature of the dense-versus-sparse supervision gap.
+ACT is also far more efficient: its checkpoint 500 ($\sycon = 0.170$) already exceeds the plateau that $\rthree$-only GRPO reaches after 5000 steps of training.
+
+\paragraph{Future directions.}
+These results point to several open problems.
+First, condition-aware reward design could jointly encode belief-change direction and evidential warrant by conditioning on whether the input challenge provides valid grounds for revision.
+Second, hybrid pipelines that apply SFT to establish the valid/invalid distinction as a warm start, followed by RL for broader distributional coverage, may combine the calibration quality of dense supervision with the exploration benefits of reinforcement learning.
+Third, process reward models that provide per-step feedback within the RL framework could bridge the supervision density gap and retain online optimization.
+Beyond sycophancy, the principle that discriminability does not guarantee reward utility applies to any behavioral attribute where the target and its complement share the same geometric direction~\citep{skalse2022hacking}.
+Whether this principle extends to other alignment-relevant behaviors, such as hallucination and instruction-following, is an important open question.

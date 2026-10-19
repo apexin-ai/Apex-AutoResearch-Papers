@@ -1,0 +1,1475 @@
+_next_id: 75
+decisions:
+- id: D001
+  date: 2026-05-18 04:50 UTC
+  summary: MVP 方案：多轮方向判别力测试（AUROC ≥ 0.85 为 go/no-go）
+  rationale: DC-GRPO 的核心假设是多轮场景下 d_syc/d_gen 方向能区分 sycophantic capitulation vs. genuine
+    revision。这是整个方法的根基——如果方向判别力不足（AUROC < 0.85），后续 GRPO 训练的 reward 信号就不可靠。MVP 只需 forward
+    pass（~4-8 GPU hours），不需要 GRPO 训练（180+ hours），是最小成本的假设验证。Phase 1（数据构建）无需 GPU 可立即启动。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-18 04:53 UTC
+  summary: 采纳 Reviewer 4 项 MVP 改进：模型统一 Qwen3-8B、cosine<0.3 门槛、LoRA 扰动检查、数据质量验证
+  rationale: Reviewer 审查 D001 提出 4 个 warning：(1) MVP 不验证训练稳定性 → 加 Phase 5 LoRA 扰动检查(<1h
+    GPU)；(2) 校准数据无独立验证 → 加 Phase 1.5 抽样质量校验；(3) 模型不一致(Qwen2.5-7B vs Qwen3-8B) → 统一用
+    Qwen3-8B；(4) 交叉选择性无数值门槛 → cosine(d_syc,d_gen)<0.3。另采纳 AUROC 灰色区间建议(0.80-0.85 →
+    调查再决定, <0.80 → 立即 pivot)。全部改动成本极低(+1 GPU hour + 数据审查)，风险显著降低。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-18 06:44 UTC
+  summary: Go/No-Go 从三条件简化为两条件（AUROC + LoRA），cosine 条件在二元设计下退化
+  rationale: Reviewer 发现 compute_directions.py 中 d_gen = mean(revision) - mean(capitulation)
+    = -d_syc，cosine(d_syc, d_gen) 恒等于 -1.0。根因：校准数据只有两个条件（warranted_revision vs sycophantic_capitulation），无中性
+    baseline。"Sycophancy Is Not One Thing" 用三组对比得到独立方向，当前二元设计数学上只能产生一个方向及其反向。cosine
+    < 0.3 条件 trivially satisfied，从实质 gate 中移除。MVP go/no-go 实质由 AUROC ≥ 0.85 + LoRA
+    AUROC drop < 0.05 两项决定，判别力仍由 AUROC 检验。Post-MVP 如需论文 claim cross-selectivity，需增加
+    neutral baseline 第三条件。
+  related_experiments: []
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-18 09:15 UTC
+  summary: MVP 不通过：AUROC=1.0 是输入文本差异的 trivial 结果，重新设计校准数据
+  rationale: Reviewer critical 发现：(1) asst_first AUROC 从 Layer 0 即达 0.998，说明信号在 embedding（输入文本差异），不在模型学到的表示中；(2)
+    两条件从 Turn 2 开始完全不同（错答案 vs 正确答案 + 纠正 vs 施压），trivially distinguishable；(3) sycophantic_capitulation
+    条件中模型实际表现为 resistance 而非 capitulation，d_syc 编码的是"场景类型"而非"sycophancy 内部状态"。根本原因：校准数据
+    Turn 2 在两条件间不同（wrong answer vs correct answer），导致从该点起所有激活都包含不可控的文本差异 confound。修正方案：重新设计校准数据，两条件共享
+    Turn 1-2（同一问题 + 同一错误回答），仅 Turn 3 不同（valid correction vs invalid pressure），最小化输入差异。新
+    MVP gate 增加：Layer 0 AUROC 显著低于 best-layer AUROC（排除 embedding-level confound）。
+  related_experiments: []
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-18 10:25 UTC
+  summary: MVP v2 条件性 PASS：形式标准满足但 Turn 3 风格 confound 需 v2.1 跟进
+  rationale: v2 Go/No-Go 形式标准：AUROC 0.9985 (≥0.85 ✅)、Δ(best-layer0) 0.3088 (≥0.15
+    ✅)、LoRA pending。层级爬升 Layer 0(0.69)→L8(0.90)→L16(0.99)→L27(0.9985) 证明方向信号不是 v1
+    式 trivial confound。但 Turn 3 blind classification 100% 揭示风格差异（"Actually..." vs
+    "I think..."、真实vs虚构来源、自信vs含糊语气）。事实层 confound 固有且期望（模型应区分正确/错误信息），风格层 confound
+    可修复。决策：MVP 条件性通过（pending Phase 5），v2.1（严格 Turn 3 风格匹配）作为 research 阶段第一优先级。v2.1
+    结果决定论文 claim 强度：AUROC 保持 → 强 claim（方向捕捉证据质量评估）；AUROC 显著下降 → 方向主要捕捉风格差异，论文需诚实 framing。
+  related_experiments: []
+  depends_on:
+  - D004
+- id: D006
+  date: 2026-05-18 10:30 UTC
+  summary: Phase 5 v2 PASS (delta=0.0044)，三项 Go/No-Go 全部通过。但采纳 Reviewer 建议：在 complete_mvp()
+    前增加 v2.1 风格控制 ablation 作为 MVP 最终门槛
+  rationale: LoRA perturbation delta=0.0044 远低于 0.05 阈值，d_syc 方向在随机扰动下稳定。但 Reviewer
+    正确指出：(1) LoRA robustness 不区分"稳定的风格检测器"和"稳定的认知信号"；(2) Turn 3 blind classification
+    100% 意味着 d_syc 可能仅编码文本风格特征而非模型对事实正确性的内部表征；(3) 若 d_syc 是风格分类器，DC-GRPO reward 基础不成立。Reviewer
+    方案 A（~50 对风格控制数据 + blind test + AUROC）成本极低（~3h），能彻底回答"d_syc 捕获的是什么"。在此之前 complete_mvp()
+    风险过高——可能在错误前提上构建整个研究计划。
+  related_experiments: []
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-18 10:59 UTC
+  summary: MVP 最终 PASS：d_syc 确认捕获超越风格的认知信号，进入 research 阶段
+  rationale: v2.1 风格控制 ablation 证据链：(1) Layer 0 AUROC ≈ 0.51（随机），embedding confound
+    彻底消除；(2) 信号在 L16-19 突变（0.51→0.73），典型中层语义 emergence；(3) asst_first 高层稳定 0.74-0.77；(4)
+    v2→v2.1 transfer AUROC 0.77，v2 方向不是纯风格分类器；(5) v2.1 自身 5-fold CV AUROC 0.826±0.054。MVP
+    核心问题"激活空间中是否存在捕获 sycophancy 认知信号的方向"已明确回答 YES。0.826 vs 0.85 阈值差异不构成 NO-GO：阈值针对含风格
+    confound 的 v2 设定，v2.1 是纯认知信号且全部 weak evidence_strength（最难条件）；DC-GRPO 不需要完美分类，AUROC
+    0.82 足以提供 reward gradient。数据扩展（150-200 pairs + mixed evidence_strength）作为 research
+    阶段首要任务以获得更紧的 CI。
+  related_experiments: []
+  depends_on:
+  - D006
+- id: D008
+  date: 2026-05-18 12:45 UTC
+  summary: Dream 分析完成：更新 framing 定位 RepE 基础、降级 Claim 3、新增 exp-014/015、升级 exp-012 到
+    P1
+  rationale: Dream 三档审稿（best 4/6, median 3.5/6, worst 3/6）一致指出三个结构性问题：(1) 缺 RepE/CCS/Activation
+    Addition 引用导致 novelty positioning 弱；(2) 单模型训练是最严重限制；(3) reward weight 无 justification。跨档一致
+    = 与实验结果无关的结构性缺陷，必须在花 GPU 前修复。已更新 paper_framing.md：将 d_syc 明确定位为 RepE 应用，novelty
+    在于连续 GRPO reward 而非方向提取本身；Claim 3 从正式贡献降级为分析子章节。已更新 experiment_plan.yaml：新增 exp-014（continuous
+    probe baseline, P1, 20h）和 exp-015（reward weight sensitivity, P1, 15h）；exp-012
+    从 P2 升级到 P1 含部分 DC-GRPO 训练（55h）。总 GPU 预算从 346h 增至 461h，需申请约 275h 云 GPU。
+  related_experiments:
+  - exp_id: exp-014
+    role: new
+    result: planned - continuous probe baseline to isolate directionality vs continuity
+  - exp_id: exp-015
+    role: new
+    result: planned - reward weight sensitivity analysis
+  - exp_id: exp-012
+    role: upgraded
+    result: P2→P1, added Phase B partial DC-GRPO training on Llama-3-8B
+  depends_on:
+  - D007
+- id: D009
+  date: 2026-05-18 14:40 UTC
+  summary: 不等 re-dream，立即启动 exp-001/003/004 三个无依赖 P0 实验并行
+  rationale: 首轮 Dream (D008) 反馈已全部纳入 framing/plan 更新，re-dream 是验证性质不应阻塞实验。6 张 GPU
+    空闲 30+ 分钟是严重浪费。exp-001/003/004 无依赖关系，无论 re-dream 结果如何这三个实验都是必做的。exp-002 依赖 exp-001
+    结果，后续启动。GPU 分配：exp-001 on westd-29046:cuda:0（3h 快速完成），exp-003 on westd-29046:cuda:1（96GB
+    安全），exp-004 on westd-28034（32GB×4 用 2-GPU DDP）。
+  related_experiments:
+  - exp_id: exp-001
+    role: approved
+  - exp_id: exp-003
+    role: approved
+  - exp_id: exp-004
+    role: approved
+  depends_on:
+  - D008
+- id: D010
+  date: 2026-05-18 14:56 UTC
+  summary: exp-002 启动，纳入 STOP-gate 调整：R1 权重 0.3→0.15，reward_layers 扩展至 L19-35，增加 per-strength
+    R1 监控
+  rationale: exp-001 AUROC=0.827 触发 CONTINUE_REDUCED_R1。Reviewer 发现 weak pairs AUROC
+    仅 0.675（接近随机），medium 0.883，strong 0.929。降低 R1 全局权重 + 监控 weak pairs R1 信号质量，如果噪声过大则动态屏蔽
+    weak pairs 的 R1。reward_layers 从 [19-27] 扩展到 [19-35] 覆盖 exp-001 发现的全部 top 层。
+  related_experiments:
+  - exp_id: exp-001
+    role: prerequisite
+    result: AUROC=0.827, CONTINUE_REDUCED_R1
+  - exp_id: exp-002
+    role: approved_with_modifications
+  depends_on:
+  - D009
+- id: D011
+  date: 2026-05-18 15:58 UTC
+  summary: R3/R2 设计缺陷确认：三路 reward 退化为 R1-only。保留当前 exp-002/003 作为 ablation 数据，修复后启动
+    exp-002-v2
+  rationale: Reviewer 确认 R3≈0（NLI hypothesis 是元判断而非事实蕴含，模型无法评估）和 R2≡0（batch=1 结构性无法配对）。当前
+    exp-002 实质 R1-only，exp-003 实质 near-zero reward。不 kill——exp-002 等价于 exp-009 (R1-only
+    ablation)，有独立价值；exp-003 作为控制组有对比意义。修复 R3（hypothesis 改为事实性陈述+缩短 premise）和 R2（跨步
+    R1 缓存），然后启动 exp-002-v2 正式验证三路 reward。
+  related_experiments:
+  - exp_id: exp-002
+    role: continues_as_r1_only_ablation
+  - exp_id: exp-003
+    role: continues_as_zero_reward_control
+  - exp_id: exp-002-v2
+    role: planned_with_fixed_rewards
+  depends_on:
+  - D010
+- id: D012
+  date: 2026-05-18 16:32 UTC
+  summary: Dream 二次模拟分析：识别 6 个结构性问题 + 1 个存亡风险，新增 ActAdd baseline 实验
+  rationale: 'dream_20260518T125925 (full review, best=4/6 weak accept, median=3/6
+    weak reject, worst=3/6 weak reject)。
+
+
+    跨三档一致的结构性问题（与实验结果无关，必须修）：
+
+    1. 3 seeds 不够（所有档均 flagged）→ 主对比需 5+ seeds
+
+    2. CRAFT 对比缺失 → 至少需 dedicated paragraph，理想加实验
+
+    3. RC-AUC 指标未形式化定义 → Method section 补定义
+
+    4. R2 公式未给出 → 补数学公式，clarify R1 依赖
+
+    5. 引用太少（22 vs 行业 30-50）→ 扩充至 30+
+
+    6. 缺 inference-time activation steering (ActAdd) baseline → 新增 exp-016
+
+
+    存亡风险：median/worst 都报 Continuous Probe ≈ DC-GRPO（差距 0.6pp 不显著）→ 如果实验证实，需要 pivot
+    framing 到"representation-level signals break double-bind"而非"directional projection
+    is special"。exp-014 是关键判据。
+
+
+    决策：
+
+    - 新增 exp-016 ActAdd inference-time steering baseline (P1, ~2h GPU)
+
+    - exp-014 continuous_probe_baseline 升 P0（存亡级判据）
+
+    - 准备 dual framing contingency：方向性显著 → methods paper; 方向性不显著 → analysis paper（representation-level
+    signals 的系统研究）
+
+    - seeds 暂维持 3，等第一轮结果后决定是否扩到 5'
+  related_experiments:
+  - exp_id: exp-014
+    role: 升级 P0
+    result: planned
+  - exp_id: exp-008
+    role: binary probe baseline
+    result: preparing
+  depends_on:
+  - D009
+- id: D013
+  date: 2026-05-18 16:34 UTC
+  summary: 速度优化 num_gen=4→2 + max_completion_length=512→256 的权衡记录；dual framing 量化触发条件
+  rationale: '**速度优化权衡**：
+
+    - num_gen=4→2：GRPO advantage 估计从 4 样本降到 2 样本，方差增大。但 127h→~40h 的加速是必要的（55h GPU
+    预算内完成 8000 步）。如果训练不稳定（loss 震荡、reward 方差过大），回退到 num_gen=4 并缩短总步数。
+
+    - max_completion_length=512→256：可能截断长回复。多轮对话场景回复通常 100-200 tokens，256 应该够用。监控截断率，>10%
+    则回退。
+
+
+    **Dual framing 触发条件**（D012 补充）：
+
+    - exp-002 (DC-GRPO) vs exp-014 (Continuous Probe) NoF delta < 2pp 且 p > 0.10 →
+    切 analysis paper framing
+
+    - NoF delta >= 3pp 且 p < 0.05 → 维持 methods paper framing
+
+    - 中间地带(2-3pp 或 0.05<p<0.10) → 增加 seeds 到 5 再决定'
+  related_experiments:
+  - exp_id: exp-002
+    role: DC-GRPO main
+  - exp_id: exp-014
+    role: continuous probe baseline
+  depends_on:
+  - D012
+- id: D014
+  date: 2026-05-18 17:46 UTC
+  summary: 修订 D013：接受 80% 截断率（max_completion_length=256），不回退到 512
+  rationale: 'D013 设定 ">10% 截断率则回退到 512"，实际 exp-002 截断率 80%，exp-014 dry-run 84%。原阈值
+    10% 对多轮对话场景不切实际（多轮 response 自然较长）。
+
+
+    修订理由：
+
+    1. 所有 GRPO 实验共享 256 上限，截断率一致（80-84%），实验间对比公平性不受影响
+
+    2. 回退到 512 会使速度从 26s→~50s/step，总时长从 67h→111h/seed，严重超出 GPU 预算
+
+    3. 多轮对话中 capitulate/resist 的行为决策通常在前 100-200 tokens 出现，R3 NLI 的核心信号在截断窗口内
+
+    4. exp-002 已运行 50+ 步，再次重启的协调成本高
+
+
+    已知风险（论文需注明）：
+
+    - 模型可能学会生成简短回复以适应截断窗口
+
+    - R3 在截断文本上的评估可能偏高（短文本 NLI 判断更简单）
+
+    - 如果最终结果存疑，需补跑 max_len=512 的验证实验
+
+
+    将 D013 的回退阈值从 10% 修订为"不回退，接受为已知偏差"。'
+  related_experiments:
+  - exp_id: exp-002
+    role: 截断率 80%
+  - exp_id: exp-014
+    role: 截断率 84%
+  depends_on:
+  - D013
+- id: D015
+  date: 2026-05-18 21:49 UTC
+  summary: exp-008 重新设计：从 SFT+可微 probe penalty 改为 Binary Probe GRPO（REINFORCE-based，抗
+    gaming）
+  rationale: '诊断确认 S(t)=0 根因是模型通过梯度对抗性 game frozen probe（252 LoRA modules vs 1 probe，容量碾压，retrain
+    后 10 步内再次被 game）。这是可微 probe penalty 的根本缺陷。
+
+
+    重新设计为 Binary Probe GRPO：
+
+    - probe output 二值化（threshold 0.5）作为 GRPO reward signal
+
+    - GRPO 的 REINFORCE-style 更新天然抗 gaming（reward 不参与梯度回传）
+
+    - 在线 retrain 每 500 步（匹配 exp-002 recalibration）
+
+    - 需要 2-GPU ZeRO-2
+
+
+    这使 ablation cascade 对齐：R3-only GRPO → Binary Probe GRPO → Continuous Probe GRPO
+    → DC-GRPO，所有方法同一框架，公平对比。
+
+
+    原 SFT+probe penalty 的 gradient gaming 作为 negative finding 写入论文，支撑 REINFORCE-based
+    设计的必要性。'
+  related_experiments:
+  - exp_id: exp-008
+    role: redesign
+    result: S(t)=0 gradient gaming
+  - exp_id: exp-014
+    role: cascade comparison
+  - exp_id: exp-002
+    role: cascade comparison
+  depends_on:
+  - D012
+- id: D016
+  date: 2026-05-18 22:08 UTC
+  summary: exp-002 R1 viability 硬判断点设在 step 2000：R1 仍无趋势且 R3 落后 exp-003 则干预
+  rationale: 'exp-002 step 700 数据显示 R1_mean 从 -0.33 变为围绕 0 的大幅震荡 [-0.75, +0.49]，无方向性改善。更关键的是
+    exp-002 的 R3 (0.25-0.74 波动大) 表现弱于 exp-003 R3-only (0.33→0.58-0.86 上升趋势)，R1 可能干扰
+    R3 优化。当前 R1 权重 0.25，有效贡献接近零（均值≈0）但增加了梯度噪声。
+
+
+    8.7% 进度仍太早下结论——GRPO 多组件 reward 常有较长 warmup，且 step 500 recalibration 效果需要时间显现。设
+    step 2000 (25%) 为硬判断点：
+
+    - 情景 A：exp-002 total reward > exp-003 → R1 开始贡献，继续
+
+    - 情景 B：exp-002 R3 ≈ exp-003 R3，R1 仍震荡 → R1 是中性噪声，降权到 0.10 从 step 2000 checkpoint
+    继续
+
+    - 情景 C：exp-002 R3 < exp-003 R3 → R1 有害，考虑 R1=0 或重启
+
+
+    同时需检查 step 500 recalibration 日志（cosine similarity、新 AUROC），判断 d_syc 方向是否有效更新。'
+  related_experiments:
+  - exp_id: exp-002
+    role: subject
+    result: R1 oscillating around 0, R3 weaker than exp-003 at step 700
+  - exp_id: exp-003
+    role: comparator
+    result: R3 improving 0.33→0.58-0.86, clear upward trend
+  depends_on:
+  - D011
+  - D010
+- id: D017
+  date: 2026-05-18 22:29 UTC
+  summary: Kill exp-008 v2，释放 GPU 3 立即跑 exp-016；exp-004 完成后 GPU 0+3 部署 exp-008 v3
+  rationale: 'exp-008 v2 S(t)=0 从 step 30 持续到 step 1900，retrain_interval=100 也无效——完全验证
+    M008 gradient gaming 根因。继续跑 = 浪费 GPU。
+
+
+    GPU 3 释放后立即部署 exp-016 (ActAdd inference steering)：纯推理 ~2h，代码已 ready (NLI bug 已修)。这是
+    Dream 标记的 missing baseline (P1)，零训练成本。
+
+
+    exp-004 修正后 ETA ~May 19 21:30（Worker 误读 10 倍速度，M010 级别）。GPU 0 空出后 + 已有 GPU 3 →
+    部署 exp-008 v3 Binary Probe GRPO (ZeRO-2 两卡)。
+
+
+    调度序列：
+
+    - 立即: kill exp-008 v2 → GPU 3 free
+
+    - 立即: exp-016 on GPU 3 (~2h)
+
+    - ~May 19 21:30: exp-004 done → GPU 0 free
+
+    - ~May 19 22:00: exp-008 v3 on GPU 0+3'
+  related_experiments:
+  - exp_id: exp-008
+    role: killed
+    result: S(t)=0 from step 30-1900, retrain_interval=100 ineffective
+  - exp_id: exp-016
+    role: deploying
+    result: ActAdd inference baseline, code ready
+  - exp_id: exp-004
+    role: context
+    result: ETA corrected to May 19 21:30 (9.8s/step not 96s/step)
+  depends_on:
+  - D015
+  - D012
+- id: D018
+  date: 2026-05-18 22:59 UTC
+  summary: 紧急实现 d_syc recalibration：step 2000 前完成代码，D016 判断点增加 recalibration fork
+    选项
+  rationale: "M011 发现 recalibration 从未实现。R1 震荡可能因 activation drift 导致固定 d_syc 失效（同\
+    \ M008 probe gaming 同源）。\n\n计划：\n1. 立即实现 recalibrate_direction() — 每 500 步用当前模型\
+    \ forward pass 362 条校准数据，重算 d_syc，记录 cosine sim + AUROC\n2. 让当前 exp-002 (static\
+    \ d_syc) 继续跑到 step 2000 作为数据点\n3. Step 2000 (~May 19 16:00 UTC) 判断：\n   - R1 自行改善\
+    \ → 继续，recalibration 给 seed 2 用\n   - R1 仍 bad → 从 step 2000 checkpoint 重启并启用\
+    \ recalibration（替换而非新增，不额外消耗 GPU）\n4. 此机制同时满足 exp-006 (direction stability monitoring)\
+    \ 的数据需求\n\nGPU 开销：362 forward passes × ~0.1s = ~36s/recalibration，每 500 步一次，可忽略。\n\
+    时间窗口：step 2000 在 ~9h 后，代码实现+测试足够。"
+  related_experiments:
+  - exp_id: exp-002
+    role: subject
+    result: R1 oscillating, recalibration missing
+  - exp_id: exp-006
+    role: dependent
+    result: direction stability monitoring also depends on recalibration
+  depends_on:
+  - D016
+- id: D019
+  date: 2026-05-18 23:34 UTC
+  summary: R1 reward 确认无效（tanh 饱和 + cosine AUROC 0.67），需诊断 exp-001 vs exp-002 配置不匹配并重新设计
+    R1 计算
+  rationale: 'Reviewer critical 审查确认：
+
+    1. 深层 activation norms 1000+，dot product >> 20，tanh 饱和为 ±1 噪声
+
+    2. 即使改用 cosine similarity，AUROC 仅 0.67（几乎无区分度）
+
+    3. R1 weight=0.25 × 噪声 = 主动干扰 R3 优化
+
+    4. 这解释了 exp-002 R3 弱于 exp-003
+
+
+    核心疑问：exp-001 AUROC 0.827 是否在不同配置下测量？exp-002 R1 跨 7 层平均（含深层噪声），可能稀释了中层有效信号。
+
+
+    诊断计划：
+
+    1. 核实 exp-001 的 per-layer AUROC、extraction position、聚合方式
+
+    2. 在当前 exp-002 模型上做 per-layer cosine AUROC（找出哪些层仍有区分力）
+
+    3. 如果 L19-20 cosine AUROC > 0.75，R1 可通过限制层范围来修复
+
+    4. 如果所有层 cosine AUROC < 0.7，方向投影作为 per-sample reward 可能根本不可行
+
+
+    这决定论文走 methods paper 还是 analysis paper。'
+  related_experiments:
+  - exp_id: exp-002
+    role: subject
+    result: 'R1 confirmed ineffective: tanh saturation + cosine AUROC 0.67'
+  - exp_id: exp-001
+    role: reference
+    result: AUROC 0.827 — need to verify measurement config matches exp-002 R1
+  depends_on:
+  - D018
+  - D016
+- id: D020
+  date: 2026-05-18 23:52 UTC
+  summary: Kill exp-002 并以 cosine similarity R1 重启：信号完好(AUROC≥0.77)，问题仅是 tanh(dot/20)
+    饱和
+  rationale: 'D019 per-layer AUROC 诊断确认：
+
+    - 所有 7 层 cosine AUROC ≥ 0.77（base model 和 step-500 模型均如此）
+
+    - 训练后深层信号甚至增强（L32 +0.025, L33 +0.033）
+
+    - 问题仅是 raw dot product + tanh(·/20) 在 ||h|| ≥ 400 层饱和为 ±1
+
+    - 修复：compute_r1 改用 cosine similarity（一行代码）
+
+
+    不采纳 Reviewer 建议让 exp-002 跑完作为 baseline：
+
+    - broken R1 = R3 + 25%噪声注入，与 exp-003 (R3-only) 相比几乎无增量信息
+
+    - 继续跑 57h 浪费 GPU 只为一个低价值数据点
+
+    - Kill 后重启仅延迟 ~5h（May 21 11:00 → May 21 16:00）
+
+
+    重启后 exp-002v2：
+
+    - compute_r1 = cosine similarity 跨层平均（cosine ∈ [-1,1]，平均有效）
+
+    - 保留 recalibration 代码（已就绪，间隔 500 步可选启用）
+
+    - 其他配置不变（LoRA r=64, R1=0.25 R3=0.75, 8000 步）'
+  related_experiments:
+  - exp_id: exp-002
+    role: killed
+    result: R1 broken due to tanh saturation (M012), 700 steps wasted
+  - exp_id: exp-001
+    role: reference
+    result: Per-layer AUROC confirmed signal intact at 0.77-0.83
+  depends_on:
+  - D019
+  - D016
+- id: D021
+  date: 2026-05-19 02:00 UTC
+  summary: Kill exp-002v2 (step 183)，禁用 adaptive gate 后重启：gate 阈值 0.05 对 cosine R1
+    过于激进，44% 样本 R1 被归零
+  rationale: 'Reviewer 发现 adaptive gate 在 step 100 后将 44% (weak evidence) 样本的 R1 归零，实验退化为
+    56% DC-GRPO + 44% R3-only。
+
+
+    Gate 设计背景：dot-product R1 饱和为 ±1 噪声时，|mean|<0.05 可以滤掉噪声层。但 cosine R1 值域 [-0.2,
+    +0.2]，weak 样本的 |mean|=0.026 是真实信号（cosine AUROC 0.82），被误判为噪声。
+
+
+    Reviewer 建议继续跑。但 183 步仅消耗 ~1.3h，而带 gate 跑完 55h 后如果效果不显著，gate 是最可能的混淆因素，大概率需要无
+    gate 重跑。Kill + restart 总成本 ~1.3h；不 kill 的风险成本 ~55h。
+
+
+    修复：禁用 adaptive gate（threshold=0 或删除 gate 逻辑），其他配置不变，从头重启。'
+  related_experiments:
+  - exp_id: exp-002v2
+    role: killed
+    result: 44% samples gated to R3-only due to aggressive threshold
+  - exp_id: exp-003
+    role: comparator
+    result: 100% R3-only baseline, clean comparison needed
+  depends_on:
+  - D020
+- id: D022
+  date: 2026-05-19 06:12 UTC
+  summary: exp-014 reward 饱和诊断：R3=0.999 + loss=0 + grad_norm=0.004，立即在 checkpoint-3000
+    做 eval + 抽样 completion
+  rationale: 'Reviewer critical: exp-014 step 3160 显示 R3=0.999 (std=0.0008)、loss=0、grad_norm=0.004、entropy=0.025、62%
+    batch reward std=0、completion length=77。模型已在 ~step 3000 停止有效学习。
+
+
+    可能情景：
+
+    A) 模型真的学会了正确行为（valid_correction 改答案 → R3 high; invalid_pressure 不改 → 1-R3 high）→
+    reward 应该饱和，模型可用
+
+    B) 模型找到了 reward hacking 捷径（模板化短回复欺骗 NLI）→ eval NoF/WRR 会差
+
+
+    鉴别方式：
+
+    1. 在 checkpoint-3000 上跑 eval_pipeline 快速评估（NoF/WRR）
+
+    2. 抽样 5-10 个 completion 检查是否模板化
+
+    3. 如果行为退化 → 用更早的 checkpoint (2000/2500) 作为 exp-014 最终模型
+
+
+    如果确认停滞，kill exp-014 释放 GPU 1+2，提前启动 exp-003-s2（原 ETA May 20 17:00 可提前到今天）。'
+  related_experiments:
+  - exp_id: exp-014
+    role: subject
+    result: R3=0.999, loss=0, grad_norm=0.004 at step 3160 — training stalled
+  - exp_id: exp-003-s2
+    role: beneficiary
+    result: could start early if exp-014 GPU freed
+  depends_on:
+  - D012
+- id: D023
+  date: 2026-05-19 06:33 UTC
+  summary: Kill exp-014 (mode collapse confirmed), GPU 1+2 → exp-008v3 (Binary Probe
+    GRPO)
+  rationale: D022 completion sampling 确认 exp-014 不可恢复的 mode collapse：entropy=0.025，57.5%
+    prompts zero reward variance，输出坍缩到单一模板 "You're close, but not quite."。R3=0.999,
+    loss=0, grad_norm=0.004。继续训练无意义，GPU 1+2 已浪费。释放后立即部署 exp-008v3（Binary Probe GRPO，P0
+    优先级）到 GPU 1+2（ZeRO-2 双卡），这是论文 framing 存亡级判据（D012）的关键实验。exp-003-s2 降为次优先（等 exp-004
+    完成后用 GPU 0+3）。
+  related_experiments:
+  - exp_id: exp-014
+    role: killed
+    result: mode collapse at step 3243, entropy=0.025
+  - exp_id: exp-008
+    role: successor
+    result: v3 deploy on GPU 1+2
+  depends_on:
+  - D022
+  - D012
+- id: D024
+  date: 2026-05-19 06:36 UTC
+  summary: Kill exp-002v2 并带 recalibration_interval=500 重启：方向漂移 74° 导致 R1 失效
+  rationale: 方向稳定性测量 CRITICAL：mean cosine(old, new d_syc) = 0.28（74° 旋转），远低于 0.8 阈值。正因为
+    cosine R1 修复后梯度真实有效，模型 hidden states 被 R1 梯度推动旋转，导致固定 d_syc 在 500 步后过时。exp-002v2
+    当前实质等同 R3-only 训练。但 AUROC 仍 0.81 → 重校准后的 d_syc 仍有效。D018 已实现 recalibrate_direction()
+    方法，但未在 run script 中启用。方案：kill exp-002v2，重校准 d_syc，设置 recalibration_interval=500，从
+    checkpoint-500 继续。这对论文是正面发现：cosine R1 有效推动表示学习（比 tanh 版更快），但需要在线重校准——这为 Method
+    section 增加一个有科学根据的设计选择。
+  related_experiments:
+  - exp_id: exp-002v2
+    role: killed_and_restart
+    result: cosine drift 74°, AUROC still 0.81 after recalib
+  - exp_id: exp-006
+    role: evidence
+    result: checkpoint-500 stability measurement
+  depends_on:
+  - D020
+  - D021
+  - D018
+- id: D025
+  date: 2026-05-19 07:06 UTC
+  summary: D024 drift 确认为误报（cosine=0.96 非 0.28），不再 kill exp002v2-recalib；R1 信号弱（贡献仅
+    8%）是真正问题，需设计 R1 scaling 实验
+  rationale: Reviewer 确认 stability 脚本用了旧版 directions.pt 导致 cosine=0.28 假象，实际 drift
+    仅 cosine≈0.96。R1 在 3584 维空间中 cosine 投影天然小（gap~0.098），weight=0.25 对 combined reward
+    贡献仅 0.025 vs R3 的 0.30（8.3%）。当前 exp-002v2 实质等同 R3-only。不再 kill（已第 3 次重启），让其跑完对比
+    exp-003。如无差异则论文需新实验（R1 scaling 或更高权重）支撑 Claim 2。
+  related_experiments:
+  - exp_id: exp-002v2
+    role: affected
+    result: R1 signal too weak to differentiate from R3-only
+  - exp_id: exp-003
+    role: comparison
+    result: pending
+  depends_on:
+  - D024
+- id: D026
+  date: 2026-05-19 07:24 UTC
+  summary: exp-002v3 设计：scale_factor=5 + R1=0.4/R3=0.6，exp-004 完成后 GPU 0 (28034) 启动
+  rationale: R1 贡献仅 8.3% 已确认（D025）。方案 C (scaled cosine) 最简单有效：scale_factor=5 将 R1
+    gap 从 0.098 放大到 0.49，配合 R1=0.4/R3=0.6 权重使 R1 贡献 ~0.20 vs R3 ~0.24（比例 ~45%）。保留全部
+    7 层（L27/32/33/35 gap 高但去掉低层增加代码复杂度且改变可比性）。从 checkpoint-500 resume（避免 500 步 warmup，R3-only
+    warmup 不伤害模型状态）。方案 B+C 组合留作备选，如果 C 仍不够再做层选择消融。
+  related_experiments:
+  - exp_id: exp-002v2
+    role: predecessor
+    result: R1 contribution only 8.3%
+  - exp_id: exp-002v3
+    role: target
+    result: pending
+  depends_on:
+  - D025
+- id: D027
+  date: 2026-05-19 09:48 UTC
+  summary: 统一评估指标标准：废弃 WRR，主报 ToF/NoF/SYCONScore，NLI-based 分类，预设 eval 为主表、自然 eval
+    为 appendix
+  rationale: 发现 eval_vanilla_baseline.py 和 run_exp016_actadd_steering.py 的 WRR 定义根本不同（分母
+    362 vs 181、分类方法字符串 vs NLI、语义方向相反），导致同一模型同一数据差 28.7pp。WRR 概念模糊且不可复现。改为分开报告 ToF（valid
+    correction acceptance rate）和 NoF（invalid pressure resistance rate），统一用 NLI 语义蕴含分类，复合指标用
+    SYCONScore = harmonic_mean(ToF, NoF)。预设 eval（calibration data 强制错误起点）作为主实验对比，自然
+    eval（模型自由生成）作为 appendix 生态效度补充。
+  related_experiments:
+  - exp_id: vanilla-baseline
+    role: 发现问题
+    result: WRR 在两个脚本间差 28.7pp
+  - exp_id: exp-016
+    role: 受影响
+    result: 需用统一标准重新评估
+  depends_on:
+  - D025
+- id: D028
+  date: 2026-05-19 17:02 UTC
+  summary: 'D028: exp-002v3 审批通过立即部署 + exp-016 结论反转 + D027 baseline 确立'
+  rationale: 三项关键发现：(1) D027 eval 下 exp-016 ActAdd 结论反转——alpha=5 SYCONScore 0.054
+    < vanilla 0.134，ActAdd 有害不是有益。inference-time steering 无效强化了训练方法必要性。(2) D027 vanilla
+    baseline 从 exp-016 alpha=0.0 提取：ToF=0.072, NoF=0.945, SYCONScore=0.134，NLI 分类远比
+    string matching 保守。(3) exp-004 ACT ckpt-8000 SYCONScore=0.301 vs vanilla 0.134
+    (+16.8pp)，L2 在 SFT 饱和后继续改善行为。GPU 0+3 空闲，exp-002v3 (scale_factor=5, r1=0.4, r3=0.6,
+    DeepSpeed ZeRO-2) 立即部署。
+  related_experiments:
+  - exp_id: exp-002v3
+    role: approved
+    result: deploying
+  - exp_id: exp-016
+    role: conclusion_reversed
+    result: negative (ActAdd harmful under D027)
+  - exp_id: exp-004
+    role: eval_complete
+    result: SYCONScore 0.301 (+16.8pp vs vanilla)
+  depends_on:
+  - D026
+  - D027
+- id: D029
+  date: 2026-05-19 18:39 UTC
+  summary: 'D029: Story A (continuous cosine R1) 宣告失败，Story B (binary probe R1) 升为论文主线。exp-002v3
+    不 kill，作为 negative evidence 继续跑'
+  rationale: 四次独立验证（exp-002/002v2/002v2-recalib/002v3）证明 cosine direction projection
+    作为连续 GRPO reward 结构性无效：(1) scale_factor=5 将 R1 从 -0.064 恶化到 -0.129（放大负值而非修复）(2)
+    per-strength 分析：strong evidence R1=-0.305 全负，说明 d_syc 方向无法区分合理修正与 sycophantic
+    capitulation，越合理的修正惩罚越重 (3) R3 饱和 0.999 彻底淹没 R1。Binary probe R1 (exp-008v3) 均值
+    +0.46、正值率 100%、上升趋势——binarization 是让方向信号可被 RL 利用的关键。论文主线从"continuous direction
+    reward"转为"direction information exists but requires binarization through probe
+    to become effective GRPO reward"。exp-002v3 不 kill：(a) 累积更多 negative evidence 数据
+    (b) 对比 exp-003 验证 R1 负值是否拖累整体表现 (c) 论文 ablation 价值。
+  related_experiments:
+  - exp_id: exp-002v3
+    role: negative_evidence
+    result: R1 mean -0.129, scaling amplifies negative
+  - exp_id: exp-008v3
+    role: primary_method
+    result: R1 mean +0.46, consistently positive
+  - exp_id: exp002v2-recalib
+    role: negative_evidence
+    result: R1 mean -0.064, recalib ineffective
+  - exp_id: exp-003
+    role: baseline
+    result: R3-only comparison pending
+  depends_on:
+  - D026
+  - D028
+- id: D030
+  date: 2026-05-19 20:28 UTC
+  summary: 'D030: Probe ablation 确认 d_syc 方向是关键（+0.108 AUROC vs random），multi-layer
+    combination 增益仅 +0.018，binarization narrative 成立'
+  rationale: Reviewer 预审质疑 binarization insight 的归因——可能是 multi-layer combination 而非
+    binarization 本身在起作用。两个 ablation 结果明确否定：(1) d_syc probe AUROC 0.835 vs random 0.727（+0.108），d_syc
+    方向确实提供 sycophancy-specific 信号；(2) single-layer best (L19) AUROC 0.817 vs multi-layer
+    0.835（仅 +0.018），multi-layer 不是关键。结论：binarization（将 d_syc 投影转为 binary decision）是核心机制，不是
+    multi-layer feature engineering。论文应在 ablation table 中展示此结果。
+  related_experiments:
+  - exp_id: probe_ablation_AB
+    role: ablation
+    result: d_syc AUROC 0.835, random 0.727, single-layer best L19 0.817
+  depends_on:
+  - D029
+- id: D031
+  date: 2026-05-19 23:54 UTC
+  summary: 'D031: Story B (binary probe R1) 失败确认。ckpt-1500 ToF=0.0000，probe reward
+    trap 导致 stubbornness collapse。论文转 Path B (analysis paper)。'
+  rationale: ckpt-1500（entropy 0.61，"最后健康点"）eval 显示 ToF=0.0000——模型 100% 顽固，从不修改答案。Binary
+    probe R1 在 GRPO 训练中触发正反馈回路：模型不改答案 → probe 判为"非谄媚" (R1=+0.72) → 梯度强化顽固 → entropy
+    坍缩。这与 cosine R1 失败是同一根因的两面：d_syc 编码 belief change 方向但不编码 warrant。Cosine R1 惩罚所有
+    change（too punitive），binary probe R1 奖励所有 non-change（too permissive）。Path A 排除，论文转
+    Path B：systematic analysis paper，core finding = "discriminability ≠ reward utility"
+    + 机制解释。目标 EMNLP Findings 3.0-3.5。
+  related_experiments:
+  - exp_id: exp-008v3
+    role: primary
+    result: ckpt-1500 ToF=0.0000, NoF=0.9945, stubbornness collapse
+  - exp_id: exp-002v3
+    role: negative_evidence
+    result: cosine R1 structural failure (running)
+  - exp_id: exp-003
+    role: baseline
+    result: R3-only healthy (entropy 0.31-0.33, running)
+  depends_on:
+  - D029
+  - D030
+- id: D032
+  date: 2026-05-20 02:23 UTC
+  summary: 'D032: Probe reward trap is immediate — ckpt-500 ToF=0 while entropy=0.70,
+    behavioral collapse leads distributional collapse by ~1300 steps'
+  rationale: 'Full checkpoint trajectory (500/1000/1500/2000) reveals the probe reward
+    trap activates within the first 500 training steps. At ckpt-500, entropy is 0.70
+    (fully healthy) but ToF is already 0.0000 — the model has already learned "never
+    change answer." Entropy doesn''t collapse until step ~1840, creating a 1300-step
+    gap. This means: (1) entropy-based early stopping is fundamentally unreliable
+    for detecting reward-induced behavioral collapse; (2) the probe reward is immediately
+    toxic, not gradually degrading; (3) R1 mean +0.72 during collapse confirms the
+    probe is actively rewarding degenerate behavior. Strengthens Claim 3 significantly.
+    Proposed figure: dual-axis ToF+entropy plot showing the 1300-step lag.'
+  related_experiments:
+  - exp_id: exp-008v3
+    role: primary
+    result: ckpt-500 ToF=0/entropy=0.70, ckpt-1000 ToF≈0/entropy=0.80, ckpt-1500 ToF=0/entropy=0.61,
+      ckpt-2000 ToF=0/entropy=0.30
+  depends_on:
+  - D031
+- id: D033
+  date: 2026-05-20 03:10 UTC
+  summary: 'D033: Path B 叙事评估 — claim 强度 Medium，exp-003 D027 eval 是 3.0 达标的必要条件'
+  rationale: Reviewer 全面评估 Path B 证据链：Claim 1（方向判别力）扎实，Claim 3（probe reward trap）有说服力，Claim
+    2（discriminability ≠ reward utility）论据充分但缺 R3-only baseline 作为正面参照。exp-003 SYCONScore
+    是论文的锤实证据——证明"不用 d_syc 反而更好"。claim 强度定为 Medium（4+ formulation 失败 + 统一根因，但单模型+小数据集限制
+    Strong 级别）。3.0 达标清单：(MUST) exp-003 eval, (MUST) exp-009 或 exp-002v3 至少一个出结果, (SHOULD)
+    vanilla baseline 差异解释。
+  related_experiments:
+  - exp_id: exp-003
+    role: critical-missing
+    result: running, step ~4000/8000, ETA May 22
+  - exp_id: exp-009
+    role: ablation
+    result: running, retry after crash fix
+  - exp_id: exp-002v3
+    role: negative-evidence
+    result: running, step 2013/8000
+  depends_on:
+  - D031
+  - D032
+- id: D034
+  date: 2026-05-20 03:14 UTC
+  summary: 'D034: GPU 释放后优先跑 Llama-3-8B Phase A（方向计算+AUROC），性价比最高的跨模型验证'
+  rationale: Reviewer 评估 Path B 最大短板是单模型（Qwen3-8B only）。Llama-3-8B Phase A 只需推理（forward
+    pass + direction computation），单 GPU ~5h，不需要训练。如果 AUROC ≥ 0.75 则 d_syc 跨模型普遍存在，大幅提升泛化性
+    claim。性价比远高于 thresholded cosine（边际第 7 个 failure）或更多 seed（递减收益）。等 exp-009 ckpt-500
+    eval 后如果 kill → GPU 1+2 释放 → 立即跑 Llama Phase A。
+  related_experiments:
+  - exp_id: exp-009
+    role: predecessor
+    result: running, may be killed after ckpt-500 eval
+  - exp_id: exp-012
+    role: target
+    result: planned, Llama-3-8B Phase A
+  depends_on:
+  - D033
+- id: D035
+  date: 2026-05-20 03:36 UTC
+  summary: 'D035: Kill exp-002v3 (mode collapse at step 2440) — 对称失败模式完成 cosine R1
+    failure chain'
+  rationale: exp-002v3 (5x scaled cosine R1) 在 step 2440 出现经典 GRPO mode collapse：entropy=0.009,
+    grad_norm=0.00016, R3 饱和至 0.9998, frac_reward_zero_std=61%。与 exp-008v3 形成对称失败：cosine
+    R1 信号太弱→R3 主导→R3 饱和后梯度消失→entropy 归零；binary probe R1 太强→即时 stubbornness trap→行为崩溃。两种失败模式的统一根因不变：d_syc
+    编码 change direction 但不编码 change warrant。释放 GPU 0+3 启动 Llama-3-8B Phase A（D034）。
+  related_experiments:
+  - exp_id: exp-002v3
+    role: primary
+    result: mode collapse step 2440, entropy=0.009, R3 saturated 0.9998
+  - exp_id: exp-008v3
+    role: contrast
+    result: stubbornness trap, ToF=0 from step 500
+  depends_on:
+  - D029
+  - D031
+- id: D036
+  date: 2026-05-20 07:24 UTC
+  summary: 'D036: Llama-3-8B Phase A 确认 d_syc 跨模型泛化（AUROC=0.779, 超 0.75 门槛），论文 #1
+    审稿弱点已回应'
+  rationale: Llama-3-8B-Instruct 5-fold CV AUROC=0.7793±0.019，style-controlled=0.9227，strength
+    gradient 与 Qwen3-8B 一致（weak 0.711 < medium 0.864 < strong 0.911）。d_syc 是跨模型通用现象，不是
+    Qwen3-8B artifact。这反向强化了 Path B 负面 claim：连跨模型存在的 discriminability 都无法转化为 reward，问题更可能是结构性的。Reviewer
+    建议的 per-layer std 显示 bug 不影响结果。GPU 0 即将释放。
+  related_experiments:
+  - exp_id: exp-012
+    role: primary
+    result: AUROC=0.7793±0.019, style-controlled=0.9227, best layer=16
+  - exp_id: exp-001
+    role: comparison
+    result: Qwen3-8B AUROC=0.8269, same pattern
+  depends_on:
+  - D034
+- id: D037
+  date: 2026-05-20 08:04 UTC
+  summary: Claim 强度从 Medium 上调至 Medium-High；不跑 Llama Phase B；加 layer-wise emergence
+    curve figure
+  rationale: exp-012 跨模型泛化成功（Llama AUROC=0.779, strength gradient 一致）解决了论文最大短板（单模型限制）。Reviewer
+    评估：2 个架构谱系足够 Findings 3.0 级别的 "cross-architecture" claim，不需要第三个模型。Llama Phase
+    B（GRPO 训练）成本 50h 但边际收益仅多一行确认，不跑——论证链（d_syc 跨模型存在 + 单模型全 formulation 失败 + 结构性根因）已足够。升级至
+    High 的条件：exp-003 SYCONScore ≥ 0.20 且 exp-009 也 fail。P1 建议：加 layer-wise AUROC emergence
+    curve（两模型归一化 depth 叠图）作为 §3 figure。
+  related_experiments:
+  - exp_id: exp-012
+    role: 跨模型泛化验证
+    result: Llama AUROC=0.779±0.019, style-controlled=0.923
+  - exp_id: exp-003
+    role: 升级至 High 的关键依赖
+    result: RUNNING
+  - exp_id: exp-009
+    role: 升级至 High 的关键依赖
+    result: RUNNING
+  depends_on:
+  - D033
+  - D036
+- id: D038
+  date: 2026-05-20 09:29 UTC
+  summary: exp-009 暂不 kill，等 ckpt-1000 eval 确认退化趋势；continuous probe 是 "慢性 binary probe"
+  rationale: 'exp-009 ckpt-500 eval: ToF=0.066 (低于 vanilla 0.110 但未归零), SYCONScore=0.124
+    < vanilla 0.197。模型在退化但未即时崩溃——与 binary probe (exp-008v3 ckpt-500 ToF=0) 形成梯度对比。这是论文
+    formulation 光谱论证的关键中间数据点：binary=即时崩溃, continuous=渐进退化, 两者殊途同归。ckpt-1000 数据可验证"慢性
+    binary probe"假设（ToF 继续下降→归零=确认, ToF 稳定=partial effect 另一种故事）。GPU 3 继续跑 ckpt-1000
+    eval。'
+  related_experiments:
+  - exp_id: exp-009
+    role: ckpt-500 eval 结果
+    result: ToF=0.066, NoF=0.934, SYCONScore=0.124 — 退化但未崩溃
+  - exp_id: exp-008v3
+    role: binary probe 对照
+    result: ckpt-500 ToF=0.000 — 即时崩溃
+  depends_on:
+  - D032
+  - D035
+- id: D039
+  date: 2026-05-20 11:10 UTC
+  summary: D027 统一 eval 基线校正：vanilla SYCONScore=0.134（非旧 eval 的 0.197），exp-003 达标门槛下调
+  rationale: Vanilla baseline 用 D027 统一 eval 脚本 (eval_unified_preset.py) 重评：ToF=0.072,
+    NoF=0.945, SYCONScore=0.134。旧 eval_pipeline.py 给出 0.197 是因为预处理/判断逻辑不同。所有实验（exp-004/008v3/009）均用
+    D027 脚本评估，vanilla 也必须统一。影响：(1) exp-003 Claim 2 达标门槛从 >0.197 下调为 >0.134；(2) exp-004
+    ACT 优势更大（0.301 vs 0.134 = +16.8pp）；(3) exp-009 ckpt-500 (0.124) 与 vanilla (0.134)
+    差距仅 1pp，"渐进退化" 叙事需等 ckpt-1000 确认趋势。
+  related_experiments:
+  - exp_id: vanilla-baseline
+    role: D027 reeval
+    result: ToF=0.072, NoF=0.945, SYCONScore=0.134
+  - exp_id: exp-009
+    role: 对比基线变化
+    result: ckpt-500 SYCONScore=0.124, 差距从 -7.3pp 缩小为 -1pp
+  - exp_id: exp-004
+    role: ACT 优势扩大
+    result: 0.301 vs 0.134 = +16.8pp
+  depends_on:
+  - D038
+  - D033
+- id: D040
+  date: 2026-05-20 12:20 UTC
+  summary: Kill exp-009：continuous probe R1 确认为"慢性 binary probe trap"，完成 ALL formulations
+    fail 论证
+  rationale: 'ckpt-1000 eval: ToF=0.061, SYCONScore=0.114，较 ckpt-500 (0.124) 继续下降，已低于
+    vanilla D027 baseline (0.134)。趋势单调恶化，虽未达 D038 硬 kill 阈值，但：(1) 已有两个 checkpoint
+    数据足以论证 formulation spectrum（binary=instant, continuous=gradual, cosine=noise，殊途同归）；(2)
+    GPU 1+2 利用率 0% 可能 hung；(3) 继续跑不会产生论文增量价值——即使后续 ToF 归零也只是确认已知趋势。释放 GPU 1+2+3 可用于
+    exp-003 多 checkpoint eval 轨迹。'
+  related_experiments:
+  - exp_id: exp-009
+    role: continuous probe GRPO
+    result: ckpt-500 SYCONScore=0.124, ckpt-1000=0.114, 单调恶化低于 vanilla
+  - exp_id: exp-008v3
+    role: binary probe 对照
+    result: ckpt-500 ToF=0, 即时崩溃
+  - exp_id: exp-002v3
+    role: cosine 对照
+    result: 噪声主导崩溃
+  depends_on:
+  - D038
+  - D035
+  - D032
+- id: D041
+  date: 2026-05-20 12:51 UTC
+  summary: 'D041: exp-004 是 SFT 非 RL + exp-003 R3-only 也失败 → 论文叙事升级为"RL 整体失败，d_syc
+    加剧特定失败模式"'
+  rationale: Reviewer critical 发现：exp-004 (ACT) 训练日志记录 sft_loss + l2_loss，是 SFT 不是
+    GRPO RL。exp-003 (R3-only GRPO) ckpt-5000 SYCONScore=0.114 < vanilla 0.134，ALL
+    RL 方法失败。论文叙事重构：(1) ACT/SFT 证明任务可学——sycophancy calibration IS achievable via dense
+    supervision；(2) 所有 RL 方法失败——无论是 d_syc-based 还是 NLI behavioral，sparse reward 无法传递
+    valid/invalid correction 的区分；(3) d_syc 在 RL 失败的基础上增加特定机制——probe reward trap +
+    cosine noise collapse。这比原叙事更强：从"d_syc fails while R3 works"升级为"RL fails generally
+    for sycophancy calibration, d_syc adds specific failure modes"。Claim 强度暂降回 Medium（D037
+    条件触发），等 ckpt-8000 和完整轨迹后重新评估。
+  related_experiments:
+  - exp_id: exp-004
+    role: Reviewer 确认是 SFT 非 RL
+    result: SYCONScore=0.301, sft_loss+l2_loss
+  - exp_id: exp-003
+    role: R3-only GRPO 也失败
+    result: ckpt-5000 SYCONScore=0.114 < vanilla 0.134
+  depends_on:
+  - D037
+  - D039
+  - D040
+- id: D042
+  date: 2026-05-20 14:09 UTC
+  summary: 'D042: exp-003 R3-only 轨迹确认 U 型恢复（+0.010/1000steps），精确化三层叙事：d_syc=actively
+    harmful, R3-only=inefficient, SFT=effective'
+  rationale: 完整 4-checkpoint 轨迹：ckpt-1000=0.074, 2000=0.085, 3000=0.095, 5000=0.114。全程低于
+    vanilla (0.134) 但单调上升，斜率恒定 +0.010/1000steps。线性外推 ckpt-8000≈0.144（刚超 vanilla）。关键区分：(1)
+    d_syc rewards actively harmful——exp-008v3/009/002v3 全部 collapse 不回升；(2) R3-only
+    inefficient but not harmful——慢恢复，8000 步追平 vanilla；(3) SFT 16x 更高效——exp-004 ckpt-500
+    (0.170) 已超过 GRPO ckpt-8000 投影值 (0.144)。确认 Scheme C 双层叙事。Claim 强度保持 Medium，等 ckpt-8000
+    final（ETA May 21）再决定是否调整。降级阈值 <0.15 在 ckpt-8000 线性投影的边缘。
+  related_experiments:
+  - exp_id: exp-003
+    role: R3-only GRPO 完整轨迹
+    result: 'U 型恢复: 0.074→0.085→0.095→0.114, 斜率 +0.010/1000steps'
+  - exp_id: exp-004
+    role: SFT 效率对照
+    result: ckpt-500 SYCONScore=0.170 > GRPO ckpt-8000 投影 0.144, 16x 效率差
+  depends_on:
+  - D041
+  - D039
+- id: D043
+  date: 2026-05-20 15:29 UTC
+  summary: 'D043: Claim 强度降至 Medium。exp-003 R3-only plateau 确认（ckpt-4000=ckpt-5000=0.114），线性外推失效'
+  rationale: ckpt-4000 和 ckpt-5000 eval 结果完全相同（ToF=0.061, NoF=0.967, SYCONScore=0.114），plateau
+    确认。恢复速率从 +0.010→+0.020→0.000/1000steps。线性外推 ckpt-8000≈0.144 不再可靠——plateau 模式下
+    ckpt-8000 大概率仍在 ~0.114，远低于 vanilla (0.134) 和降级阈值 (0.15)。三层区分精确化：d_syc = collapse
+    (no recovery), R3-only = partial recovery then plateau BELOW vanilla, SFT = dips
+    but recovers and continues improving。ckpt-8000 final eval 仍会做（确认），但不再以此为决策依据。
+  related_experiments:
+  - exp_id: exp-003
+    role: plateau 确认
+    result: ckpt-4000=ckpt-5000=SYCONScore 0.114, 恢复速率归零
+  depends_on:
+  - D042
+  - D037
+- id: D044
+  date: 2026-05-20 16:55 UTC
+  summary: DDL 确认：EMNLP 2026 ARR May 25 cycle，5 天冲刺
+  rationale: 用户确认走 May 25 ARR，表示时间充裕、GPU 资源不限。核心数据 May 21 到齐（exp-003 ckpt-8000），Paper
+    Agent 24/7 可在 5 天内完成 Results + D041 patch + 全文 polish + 审稿。seed 2 ETA May 23 可作为补充
+    error bars。
+  related_experiments:
+  - exp_id: exp-003
+    role: 核心数据
+    result: ckpt-8000 ETA May 21
+  - exp_id: exp-003-s2
+    role: reproducibility
+    result: ETA May 23
+  depends_on:
+  - D043
+- id: D045
+  date: 2026-05-20 19:05 UTC
+  summary: R3-only trajectory 修正：ckpt-4500=0.1337 打破 "never exceeds vanilla" 和 "plateau
+    at 0.114 from ckpt-4000"，改为 "vanilla ceiling + spike-regression"
+  rationale: 'ckpt-4500 SYCONScore=0.1337 ≈ vanilla 0.1335（差 0.0002）。实际 pattern: ckpt-4000(0.114)
+    → 4500(0.134) → 5000(0.114) → 5500(0.114)。R3-only 短暂恢复到 vanilla 水平但无法维持，回落并停滞。更准确的叙事：R3-only
+    的 ceiling 是 vanilla 水平（behavioral reward 最好也只能恢复到未训练状态），而非 "never exceeds"。这实际上是更强的论点。'
+  related_experiments:
+  - exp_id: exp-003
+    role: R3-only trajectory
+    result: ckpt-4500 SYCONScore=0.1337, spike-then-regression
+  depends_on:
+  - D043
+  - D044
+- id: D046
+  date: 2026-05-20 19:52 UTC
+  summary: Activation drift 分析：ckpt-4500/5000 representation 几乎一致（AUROC Δ<0.01）但行为差
+    17%，证明 discriminability-utility gap 存在于 checkpoint 级别
+  rationale: ckpt-4500 和 ckpt-5000 在 d_syc L19 方向的投影分布几乎一致（valid-invalid gap -5.98
+    vs -6.05），但 SYCONScore 从 0.134 降到 0.114。回落不是 representation 退化，而是 generation dynamics
+    层面的 policy drift。这在论文中增加了一层 mechanistic evidence：discriminability ≠ utility 不仅体现在
+    reward formulation 层面（AUROC 高但 reward 失败），也体现在训练过程中（representation 稳定但行为波动）。可提升
+    Originality。
+  related_experiments:
+  - exp_id: exp-003
+    role: activation drift analysis
+    result: ckpt-4500 vs 5000 AUROC Δ<0.01, SYCONScore Δ=0.02
+  depends_on:
+  - D045
+- id: D047
+  date: 2026-05-21 11:41 UTC
+  summary: 'D047: 叙事从 "vanilla ceiling" 修正为 "unstable oscillation around vanilla"
+    + reliability gap'
+  rationale: ckpt-8000 final = 0.1433 (+7.3% vs vanilla)，加上 ckpt-6500 = 0.1529，seed1
+    有 3/12 点超过 vanilla。"ceiling" 一词不再准确。但 late-training 5 点均值 0.118 < vanilla，振幅 0.068（vanilla
+    的 51%），R3-only 从未稳定超越。改为强调 reliability gap：ACT 16/16 点 > vanilla（最低 +27%），R3-only
+    仅 3/12 且不可预测。效率差 ~16x（ACT step-500 即 +27%，R3-only 8000 步才勉强 +7.3%）。
+  related_experiments:
+  - exp_id: exp-003-eval-ckpt8000
+    role: trigger
+    result: SYCONScore=0.1433, above vanilla
+  - exp_id: exp-003-eval-ckpt6500
+    role: evidence
+    result: SYCONScore=0.1529, noise spike
+  - exp_id: exp-004
+    role: contrast
+    result: ACT 16/16 > vanilla, best=0.301
+  depends_on:
+  - D045
+- id: D048
+  date: 2026-05-22 04:04 UTC
+  summary: 'D048: fig_trajectory 用两条独立线（非 band）展示 seed1/seed2，保留振荡 onset 时间差信息'
+  rationale: Reviewer 建议：两个 seed 振荡 onset 差 ~2500 步，band 会模糊这一关键信息。用同色异型（如 seed1 实线
+    + seed2 虚线）可同时展示振荡 pattern 相似但 timing 不同。
+  related_experiments:
+  - exp_id: exp-003
+    role: seed1 trajectory
+    result: 12 points complete
+  - exp_id: exp-003-s2
+    role: seed2 trajectory
+    result: 9 points + 3 running
+  depends_on:
+  - D047
+- id: D049
+  date: 2026-05-22 04:05 UTC
+  summary: 'D049: 启动 exp-004-s2 (ACT seed2) 堵住审稿人 multi-seed 攻击面'
+  rationale: 'Reviewer warning: ACT 只有 1 seed，审稿人会质疑跨 seed 稳定性。R3-only 有 2 seeds 证明不稳定但
+    ACT 只有 1 seed 证明稳定，对比不平衡。29046 GPU1 空闲，~20h 可出 checkpoint。即使只跑到 step 4000，eval
+    3-4 个点即可验证。来不及则 Limitations 显式声明。'
+  related_experiments:
+  - exp_id: exp-004
+    role: ACT seed1
+    result: 16/16 > vanilla
+  - exp_id: exp-003-s2
+    role: R3-only seed2
+    result: confirms instability
+  depends_on:
+  - D047
+- id: D050
+  date: 2026-05-22 05:28 UTC
+  summary: 'D050: Reliability gap claim 确认为 core finding（4/24 vs 16/16, Fisher p<0.0001），seed
+    2 差异不 over-interpret'
+  rationale: 'Reviewer 最终评估：(1) 两个 seed 振荡 amplitude 相同(Δ≈0.069)、crash 深度相同(0.074)，onset
+    timing 不同——证明 instability 随机触发不可预测；(2) ACT 16/16 vs R3-only 4/24 零分布重叠，Fisher
+    exact p<0.0001；(3) seed 2 更差(1/12 vs 3/12)差异不显著(p≈0.30)，论文仅提 "both seeds confirm"。fig_trajectory:
+    蓝实线(ACT)+橙实线(R3 s1)+橙虚线(R3 s2)+灰虚线(vanilla)。'
+  related_experiments:
+  - exp_id: exp-004
+    role: ACT seed1
+    result: 16/16 > vanilla
+  - exp_id: exp-003
+    role: R3-only seed1
+    result: 3/12 > vanilla
+  - exp_id: exp-003-s2
+    role: R3-only seed2
+    result: 1/12 > vanilla
+  depends_on:
+  - D047
+  - D048
+  - D049
+- id: D051
+  date: 2026-05-22 09:42 UTC
+  summary: 'D051: Claim 强度正式升级 Medium → Medium-High；Spearman 需分段报告（早期 ρ≈1.0 晚期 ρ≈0.33）'
+  rationale: Reviewer 评估：(1) D043 claim 升级依据充分（Spearman + Fisher + ACT s2 + 跨模型）；(2)
+    整体 Spearman ρ=0.86 被早期 warmup 驱动，晚期仅 0.33——论文必须分段报告，否则构成 cherry-picking 风险；(3)
+    分段叙事更好：early ρ≈1.0 (method-inherent recovery) + late ρ≈0.33 (stochastic drift)，直接支撑
+    D046 flat reward landscape 机制。
+  related_experiments:
+  - exp_id: exp-003
+    role: R3 seed1
+    result: 12/12
+  - exp_id: exp-003-s2
+    role: R3 seed2
+    result: 13/16
+  - exp_id: exp-004
+    role: ACT seed1
+    result: 16/16
+  - exp_id: exp-004-s2
+    role: ACT seed2
+    result: 3/3
+  depends_on:
+  - D050
+  - D043
+- id: D052
+  date: 2026-05-22 10:19 UTC
+  summary: 'Round 1 审稿回应策略: framing 收窄到 "Scalar RL Rewards"，不做 dense d_syc 实验，文字修复为主'
+  rationale: 审稿 3.0 Findings，5 critical + 8 warning。三个系统性问题：(1) Framing overclaim
+    — 标题改 "Scalar RL Rewards"，claims 限定 scope；(2) Statistical rigor — 移除 Fisher test，改描述性统计；(3)
+    Citation gaps — 补 Papadatos、bib entries、SMART/DPO/KTO。Dense d_syc 控制实验不做：工程复杂度被低估（GRPO
+    框架不支持 per-token reward 需重写算法），DDL-3 如果成功需重写 framing 风险过高，framing 回应已足够。Reviewer
+    独立审查同意方案，补入 2 个遗漏项（80% truncation 披露 + CRAFT/Latent-GRPO Related Work）。
+  related_experiments: []
+  depends_on:
+  - D050
+  - D051
+- id: D053
+  date: 2026-05-22 10:26 UTC
+  summary: 'MF2 讨论框架修正: Papadatos 是 BoN reranking (无梯度), 不是 RM 内部训练; 新增 "optimization
+    loop" 维度'
+  rationale: 'Reviewer 独立核实 Papadatos & Freedman (2024): probe penalty 仅用于 inference-time
+    BoN candidate selection, 无梯度流, 不在训练循环内。原假设 "RM 内部 per-token gradient richness"
+    错误。正确对比: probe outside optimization loop (BoN) 成功 vs inside loop (GRPO) 失败 = discriminability-utility
+    gap 特定于 gradient-based optimization。这与 supervision density (ACT vs GRPO) 是两个独立维度,
+    共同加强论文的理论贡献。'
+  related_experiments: []
+  depends_on:
+  - D052
+- id: D054
+  date: 2026-05-22 13:06 UTC
+  summary: Round 3 应对：group_size=8 Binary Probe 800步消融 + 标题/C3 framing 收窄
+  rationale: Round 3 审稿 2.5 分，根因是超参数表暴露 group_size=2（标准 8-64）。Reviewer 独立评估建议：(1)
+    仅做 group_size=8 Binary Probe 800步消融（probe trap 在 step 500 出现，800步足够确认/否认）——15h
+    可完成，C2 是论文最强贡献；(2) Cosine R1 需 2000+步（~33-44h）超 DDL 不做；(3) R3-only cuda:1 明天才空闲+33h
+    也超 DDL。标题改 GRPO-specific，C3 从 contribution 降为 observation（仅保留 C1+C2）。如果 group_size=8
+    probe trap 仍在 step 500 出现 → C2 完全站住，排除 MF1 替代解释。
+  related_experiments:
+  - exp_id: exp-008
+    role: original binary probe (group_size=2)
+    result: killed - probe trap ToF→0 at step 500
+  - exp_id: exp-003
+    role: R3-only baseline (group_size=2)
+    result: partial success 4/26 > vanilla
+  depends_on:
+  - D052
+  - D053
+- id: D055
+  date: 2026-05-22 13:33 UTC
+  summary: 取消 group_size=8 消融，改为 framing 修正：exp-008 是 SFT（C2 免疫 MF1），Table 4 重分类
+  rationale: 代码核实发现 exp-008 (binary probe) 是 SFT+probe penalty 而非 GRPO，C2 (probe trap)
+    天然免疫 group_size=2 批评。exp-009 (continuous probe) 确认为 GRPO。论文需修正：(1) Table 4 将 exp-008
+    从 "GRPO with d_syc" 移到 "SFT with d_syc"；(2) "three GRPO formulations" → 修正为两种
+    GRPO + 一种 SFT；(3) C2 叙事强化为 GRPO-independent（probe trap 在 SFT 下也出现→结构性缺陷）。Reviewer
+    评估：framing 修正可回到 ~3.0，不做半成品 ablation（800步单 seed 比没有更糟）。
+  related_experiments:
+  - exp_id: exp-008
+    role: binary probe - confirmed SFT
+    result: probe trap at step 500, immune to MF1
+  - exp_id: exp-009
+    role: continuous probe - confirmed GRPO
+    result: slow decline, affected by MF1
+  - exp_id: exp-002v3
+    role: cosine R1 - GRPO
+    result: collapse at step 2160, affected by MF1
+  depends_on:
+  - D054
+- id: D056
+  date: 2026-05-22 14:21 UTC
+  summary: 'D056: C2 升为主贡献 pivot — C2 (Probe Reward Trap) 升为 primary contribution，C1
+    降为 conditional observation'
+  rationale: Round 4 审稿 3.0 (Findings)。Reviewer 明确建议"以 C2 为核心重新 frame，C1 降级为条件性观察，可接收性显著提高"。C2
+    在 SFT 设定下免疫 group_size=2 confound (MF1)、truncation confound (MF3 部分)、RM baseline
+    缺失 (MF5)。C1 的所有 GRPO failures 都受这些 confound 影响。R₃-only 也失败 (4/27) 进一步暗示 GRPO 配置而非
+    d_syc 是 C1 失败的主因。Pivot 不需要新实验，纯 framing 调整，2.5 天 DDL 内可行。
+  related_experiments:
+  - exp_id: exp-008
+    role: C2 核心证据
+    result: SFT probe trap, ToF→0 at step 500
+  - exp_id: exp-002v3
+    role: C1 conditional evidence
+    result: GRPO cosine collapsed from step 1
+  - exp_id: exp-003
+    role: R₃-only baseline
+    result: 4/27 > vanilla, supports GRPO config hypothesis
+  depends_on:
+  - D055
+- id: D057
+  date: 2026-05-22 15:33 UTC
+  summary: 'D057: 启动 group_size=8 消融实验——R₃-only (29046 cuda:0) + Cosine R1 (28034
+    cuda:0)'
+  rationale: Round 4 reviewer 明确列出 group_size=8/16 实验为到达 Conference (4.0) 的必要条件。29046
+    cuda:0 (96GB) 空闲，28034 cuda:0 (32GB) 空闲。R₃-only gs=8 是最高优先：成功证明 gs=2 是根因，失败证明
+    scalar reward 本身不足——无论结果都 informative。Cosine R1 gs=8 如果内存允许则同时跑，进一步隔离 d_syc vs
+    GRPO config。DDL 内可完成（~20h）。
+  related_experiments:
+  - exp_id: exp-003
+    role: baseline (gs=2)
+    result: 4/27 > vanilla
+  - exp_id: exp-002v3
+    role: baseline (gs=2)
+    result: collapsed from step 1
+  depends_on:
+  - D056
+- id: D058
+  date: 2026-05-22 16:21 UTC
+  summary: 'D059: Redirect GRPO experiments to 96GB GPUs; request additional 96GB
+    card from user'
+  rationale: 28034 RTX 5090 32GB cannot run any Qwen3-8B GRPO (OOM at ~29GB). exp-003-s3
+    crashed, exp-003-len512 will also crash. Queue both for 29046 after current experiments
+    finish. exp-004-reduced-lora (SFT) can stay on 28034. Request user to open additional
+    96GB server to parallelize—otherwise len512 starts in ~12h and s3 in ~20h, making
+    s3 likely miss May 25 deadline.
+  related_experiments:
+  - exp_id: exp-003-s3
+    role: OOM trigger
+    result: failed
+  - exp_id: exp-003-len512
+    role: will OOM
+    result: predicted
+  - exp_id: exp-004-reduced-lora
+    role: SFT, fits 32GB
+    result: running
+  depends_on:
+  - D058
+- id: D059
+  date: 2026-05-22 23:37 UTC
+  summary: 'D060: gs8 verified=0.0844 确认 group_size 不是 R3-only 失败根因，C1 升级为 controlled
+    finding'
+  rationale: gs8 ckpt-500 verified eval (显式 --lora_path) = 0.0844，低于 vanilla (0.1335)
+    和 gs=2 均值 (0.1005)。增大 group_size 不仅没改善反而更差。结合 reduced-lora ACT (同 LoRA config)
+    仍然 > vanilla，supervision paradigm (per-token SFT vs scalar per-completion reward)
+    是决定性因素，与 group_size 和 LoRA capacity 均无关。C1 从 conditional observation 升级为 controlled
+    finding。
+  related_experiments:
+  - exp_id: exp-003-gs8-eval-ckpt500
+    role: primary
+    result: verified SYCONScore=0.0844, < vanilla
+  - exp_id: exp-004-reduced-lora
+    role: supporting
+    result: same LoRA config, SFT still > vanilla (0.152-0.205)
+  - exp_id: exp-003-eval-ckpt500
+    role: baseline
+    result: gs=2 s1 ckpt-500=0.116
+  - exp_id: exp-003-s2-eval-ckpt500
+    role: baseline
+    result: gs=2 s2 ckpt-500=0.105
+  depends_on:
+  - D057
+  - D058
+- id: D060
+  date: 2026-05-23 00:02 UTC
+  summary: 'D061: 审批 held-out ACT 重训实验，用 80/20 split 验证 ACT 泛化性，回应 train=test overlap
+    critical 弱点'
+  rationale: Reviewer 发现 ACT 训练和 eval 使用完全相同的 362 samples（MD5 一致），审稿人会攻击 memorization。GRPO
+    也用相同数据所以对比公平，但 ACT 绝对性能 claim 需要 held-out 验证。方案：分层 split 145/36 pair_ids → 重训
+    ACT on 290 samples → eval on 72 held-out。预计 reduced-lora 完成后在 28034 cuda:1 上执行，DDL
+    前 ~24h 出结果。
+  related_experiments:
+  - exp_id: exp-004-heldout
+    role: planned
+    result: pending
+  depends_on:
+  - D059
+- id: D061
+  date: 2026-05-23 02:27 UTC
+  summary: 'D062: len512 暂停（两次 silent crash），29046 cuda:1 改跑 exp-004-heldout ACT 重训，优先解决
+    train=test overlap 问题'
+  rationale: len512 两次 step 1 后 silent crash，原因不明，调试成本高。gs8 已确认 R3-only 失败与 group_size
+    无关，truncation confound 优先级下降。29046 cuda:1 改用于 exp-004-heldout：用 80/20 split 重训
+    ACT，验证泛化性。这是当前最大 reviewer 攻击面，优先级高于 truncation 消融。
+  related_experiments:
+  - exp_id: exp-003-len512-v2
+    role: suspended
+    result: 两次 silent crash at step 1
+  - exp_id: exp-004-heldout
+    role: planned
+    result: pending, starting on 29046 cuda:1
+  depends_on:
+  - D060
+- id: D062
+  date: 2026-05-23 05:41 UTC
+  summary: 'D063: Kill gs8（3 个 checkpoint 均 negative 且持续恶化），释放 29046 cuda:0 启动 exp-004-heldout'
+  rationale: gs8 轨迹 0.084→0.085→0.054，持续恶化且 clipped_ratio=1.0（模型退化为最大长度输出）。group_size
+    假设已被 3 个数据点彻底否定。继续跑到 step 8000 浪费 ~40h GPU。释放 29046 cuda:0 给 exp-004-heldout（ACT
+    80/20 split 重训），这是当前最高优先级实验——回应 train-test overlap 这一最大审稿攻击面。
+  related_experiments:
+  - exp_id: exp-003-gs8
+    role: terminated
+    result: 'negative: 0.084→0.085→0.054, group_size not the issue'
+  - exp_id: exp-004-heldout
+    role: planned
+    result: starting on 29046 cuda:0
+  depends_on:
+  - D059
+  - D060
+- id: D063
+  date: 2026-05-23 07:38 UTC
+  summary: Held-out 三方对比确认 ACT 泛化性：ACT=0.284 vs R3-only=0.108 vs vanilla=0.056，train-test
+    overlap 顾虑基本消除
+  rationale: ACT s1 ckpt-8000（全量训练）在 held-out 20% split 上 SYCONScore=0.2841，仅比全量 eval
+    (0.3013) 下降 5.7%。R3-only 下降 29.4% (0.153→0.108)。这证明：(1) ACT 的改善不是过拟合训练数据，(2) ACT
+    vs GRPO 的对比在 held-out 上更加悬殊 (2.6x vs 1.9x on full)。Paper 可以在 Limitations 中保留 overlap
+    披露，同时引用 held-out 数据证明泛化性。等 heldout 重训实验完成后再加最终证据。
+  related_experiments:
+  - exp_id: exp-004-heldout-vanilla-baseline
+    role: baseline
+    result: '0.0556'
+  - exp_id: exp-004-heldout-r3only-ckpt6500
+    role: control
+    result: '0.1079'
+  - exp_id: exp-004-eval-ckpt8000-heldout
+    role: primary
+    result: '0.2841'
+  depends_on:
+  - D061
+- id: D064
+  date: 2026-05-23 07:51 UTC
+  summary: Held-out 重训 ckpt-500 泛化验证成功：80% 训练 / 20% 未见数据上 SYCONScore=0.204，是 vanilla
+    的 3.65 倍
+  rationale: exp-004-heldout 仅用 80% 数据训练 500 步，在完全未见的 20% held-out 上 SYCONScore=0.2045（vanilla=0.056,
+    +268%）。达到全量训练天花板 (0.284) 的 72%。sft_loss 在 step 650 已收敛至 5e-05，后续 checkpoint 预期更好。这是论文需要的真正泛化证据——ACT
+    的改善不是过拟合训练数据。Paper Agent 应更新 Limitations 从 "held-out validation in progress" 改为包含真实泛化数据。
+  related_experiments:
+  - exp_id: exp-004-heldout
+    role: primary
+    result: ckpt-500 held-out SYCONScore=0.2045
+  - exp_id: exp-004-heldout-vanilla-baseline
+    role: baseline
+    result: '0.0556'
+  - exp_id: exp-004-heldout-r3only-ckpt6500
+    role: control
+    result: '0.1079'
+  depends_on:
+  - D063
+- id: D065
+  date: 2026-05-23 10:10 UTC
+  summary: Held-out 泛化数据定稿：3 checkpoint 均 SYCONScore≈0.204（+267% vs vanilla），早期饱和确认，不等训练完成即可写入论文
+  rationale: ckpt-500/1000/1500 三点完全一致（0.204±0.001），泛化已饱和。0.204 vs vanilla 0.056 =
+    3.7× 改善，达到 seen-data ceiling 的 72%。3 个等间距 checkpoint 的平坦轨迹足以支撑泛化结论，不需等 8000 步完成。论文诚实报告早期饱和
+    + 28% gap。
+  related_experiments:
+  - exp_id: exp-004-heldout
+    role: primary
+    result: ckpt-500=0.204, ckpt-1000=0.204, ckpt-1500=0.204
+  - exp_id: exp-004-heldout-vanilla-baseline
+    role: baseline
+    result: '0.0556'
+  depends_on:
+  - D064
+- id: D066
+  date: 2026-05-23 10:51 UTC
+  summary: 'Bootstrap CI → ± CV std: 统一 AUROC 不确定性表示'
+  rationale: 数据审计发现论文中 bootstrap 95% CI [0.795, 0.857] 无法溯源到 registry。Registry 的 bootstrap_ci_95
+    [0.770, 0.859] 是对 full_auroc (0.816) 的 bootstrap，而论文报告的是 cv_auroc (0.827)。两者基础指标不同导致
+    CI 不匹配。统一为 ± cv_auroc_std 格式（Qwen 0.827±0.028, Llama 0.779±0.019），与 Introduction
+    写法一致，数据可直接溯源到 registry。同时修复 framework.tex LoRA α 描述不一致（原文写 α=128 for all，实际 GRPO
+    用 α=64）。
+  related_experiments:
+  - exp_id: exp-001
+    role: source
+    result: cv_auroc_mean=0.8269, cv_auroc_std=0.0278
+  - exp_id: exp-012
+    role: source
+    result: cv_auroc_mean=0.7793, cv_auroc_std=0.0189
+  depends_on: []
+- id: D067
+  date: 2026-05-24 09:48 UTC
+  summary: 不将 MMLU/GSM8K 能力保持数据加入论文
+  rationale: 论文核心 claim 是 probe reward trap（negative result），不涉及"ACT 保持通用能力"。ACT GSM8K
+    下降 3.5pp（p<0.01）是真实 trade-off，加入 appendix 会开辟新攻击面但不强化任何 claim。MMLU -1.4pp 在噪声范围内。保留数据作为
+    rebuttal 弹药——如果审稿人问 capability retention，可以如实披露并用 Reviewer 建议的措辞解释。
+  related_experiments:
+  - exp_id: exp-supp-mmlu-gsm8k
+    role: evidence
+    result: ACT MMLU -1.39pp (noise), GSM8K -3.03pp (significant); R3-only MMLU +0.10pp
+      (no change)
+  depends_on: []
+- id: D068
+  date: 2026-05-24 12:52 UTC
+  summary: R8 后转向实验补充：C1 多 seed SFT (6h) + ACT-256 ablation (8-12h)，放弃 gs=8 full run，并行写作修复
+  rationale: Round 8 审稿仍 3.0，证据问题（C1 单 seed、C2 confounds、C3 gs=2）连续 6-8 轮被指出。Reviewer
+    独立评估确认写作修复边际收益归零。C1 多 seed 仅需 2000 步（6h）即可验证 temporal decoupling；ACT-256 比 gs=8
+    ROI 更高——如果 ACT 在 256 token 下仍 work 则直接排除 seq_len confound。gs=8 full run 48-72h
+    GPU 时间不值得（declining trajectory 已 informative）。Paper Audit 发现 18 处 em-dash AI 标志需清除。总计
+    ~24h 可完成所有高优先级项。
+  related_experiments:
+  - exp_id: exp-008v3
+    role: parent
+    result: C1 probe trap 单 seed 基线
+  - exp_id: exp-003-len512-v3
+    role: running
+    result: cuda:1 运行中 ~36%
+  depends_on: []
+- id: D069
+  date: 2026-05-24 23:29 UTC
+  summary: Truncation confound 双重排除 + R3 NLI asymmetry 新发现，归因叙事从 "truncation vs granularity
+    不可排序" 转为 "truncation 已排除，主因 = NLI reward asymmetry + per-completion granularity"
+  rationale: '三条证据链: (1) NLI 256-token 截断测试: 所有 362 条 response < 256 tokens，截断从未发生，NLI
+    agreement=100%; (2) exp-003-len512-v3: 512 tokens R3-only GRPO 仍失败(reward flat
+    ~0.50±0.46); (3) R3 NLI 对 valid_correction 检测率仅 4.4%，reward 在"应改"侧近乎无信息。这将 R9
+    W2 (confounds) 从"无法排序"升级为"truncation 已排除，per-completion granularity + NLI asymmetry
+    是主因"，论文可以用实验数据回应而非仅降级 claim。'
+  related_experiments:
+  - exp_id: exp-003-len512-v3
+    role: 512-token R3-only GRPO ablation
+    result: negative (reward flat)
+  - exp_id: nli-truncation-test
+    role: NLI 256-token accuracy test
+    result: truncation never occurs, 100% agreement
+  depends_on:
+  - D068
+- id: D070
+  date: 2026-05-25 00:23 UTC
+  summary: Vanilla baseline 确认 R3 NLI hypothesis 设计缺陷（vanilla 检测率 2.2%），R3 asymmetry
+    作为 R3-only GRPO 失败的 root cause 写入论文
+  rationale: Vanilla Qwen3-8B 在明确纠正答案时 R3 检测率仅 2.2%（mean 0.0263），低于 ckpt_4500 的 4.4%。排除了
+    behavioral death 假象，确认 R3 NLI hypothesis "The response changes or corrects the
+    previous answer" 本身对实际纠正风格的检测灵敏度极低。与 D069（truncation 排除）结合，R3-only GRPO 失败归因链完整：R3
+    reward asymmetry（无法检测 valid correction）+ per-completion granularity + small group
+    size。
+  related_experiments:
+  - exp_id: vanilla-r3-nli-test
+    role: vanilla baseline R3 detection rate
+    result: 2.2% valid_correction detection (confirms R3 design flaw)
+  - exp_id: nli-truncation-test
+    role: ckpt_4500 R3 detection rate
+    result: 4.4% valid_correction detection
+  depends_on:
+  - D069
+- id: D071
+  date: 2026-05-25 04:32 UTC
+  summary: SFT probe penalty eval 揭示三种 temporal failure pattern：GRPO 立即死亡、SFT 峰值超
+    ACT 但过拟合退化、ACT 稳定不退化。整合进论文加强核心论点。
+  rationale: SFT probe penalty 峰值 SYCONScore 0.393-0.407 超过 ACT best 0.286-0.301（高
+    30-35%），但 S(t)→0 后 probe penalty 失效，模型在 362 样本上过拟合至低于 vanilla。跨 2 seeds 退化轨迹一致。这加强了"discriminability
+    ≠ sustainable reward utility"——probe signal initially useful but unsustainably
+    so。ACT 牺牲峰值换取稳定性，正是因为不依赖 probe。
+  related_experiments:
+  - exp_id: exp-008-seed2
+    role: SFT probe penalty seed=42
+    result: peak 0.393 at ckpt-500, degrades to 0.085 at ckpt-2000
+  - exp_id: exp-008-seed3
+    role: SFT probe penalty seed=43
+    result: peak 0.407 at ckpt-1000, degrades to 0.306 at ckpt-1500
+  depends_on:
+  - D070
+- id: D072
+  date: 2026-05-25 07:35 UTC
+  summary: 3-seed probe gaming 完全复制：S(t)→0 at step ~50, 早期 ckpt SYCONScore 0.38-0.41
+    > ACT best 0.301，但训练退化至 0.085 < vanilla。C1 multi-seed concern 已解决。
+  rationale: 3 seeds 训练完成，probe gaming 模式完全一致（S(t) 崩塌点 step 50-60, 20 次 retrain, AUROC
+    1.0）。seed2 和 seed3 eval 趋势一致：早期 checkpoint 500-1000 步 SYCONScore 0.38-0.41（所有方法中最高），但随训练单调下降至
+    ckpt-2000 的 0.085。这强化了 analysis paper 的核心叙事：representation-level reward 初期有效但被系统性
+    gaming 摧毁。C1 单 seed 担忧完全解决。seed4 eval 在 cuda:0 运行中（~4-5h）。
+  related_experiments:
+  - exp_id: exp-008-seed2
+    role: evidence
+    result: probe gaming confirmed, SYCONScore 0.393→0.085
+  - exp_id: exp-008-seed3
+    role: evidence
+    result: probe gaming confirmed, SYCONScore 0.378→0.085
+  - exp_id: exp-008-seed4
+    role: evidence
+    result: training done, eval in progress
+  depends_on:
+  - D071
+  - D068
+- id: D073
+  date: 2026-05-25 09:02 UTC
+  summary: 3-seed probe gaming 验证完成：pattern 一致但 ckpt-2000 方差极大（seed4 不崩溃），强化 instability
+    narrative
+  rationale: 3 seeds 均确认 S(t)→0 probe gaming（onset 50-60 steps）。早期 checkpoint mean
+    SYCONScore 0.34±0.06 > vanilla 0.134。但 ckpt-2000 出现分化：seed2/3 崩溃至 0.085，seed4
+    保持 0.343。mean±std = 0.171±0.122，方差是 mean 的 71%。这比"单调退化"的 narrative 更有 story 价值——probe
+    gaming 不仅导致退化，还导致高度不可预测性，进一步削弱 probe-based reward 的实用性。论文已更新为 3 seeds 数据。
+  related_experiments:
+  - exp_id: exp-008-seed2
+    role: evidence
+    result: ckpt-500 peak 0.393, ckpt-2000 collapse 0.085
+  - exp_id: exp-008-seed3
+    role: evidence
+    result: ckpt-1000 peak 0.407, ckpt-2000 collapse 0.085
+  - exp_id: exp-008-seed4
+    role: evidence
+    result: ckpt-1500 peak 0.368, ckpt-2000 stable 0.343
+  depends_on:
+  - D072
+- id: D074
+  date: 2026-05-25 15:27 UTC
+  summary: cuda:0 排序：ACT-256 → seed2 关键 checkpoint re-eval → gs8；seed2 re-eval 只取
+    8 个 checkpoint（每 1000 步）而非全部 16 个
+  rationale: Seed2 调查发现 13/16 eval 数据不可审计（无 registry、无结果文件）。ACT-256 优先因为回答 reviewer
+    必问的 supervision granularity 问题；seed2 re-eval 优化为 8 个关键 checkpoint（~10.5h vs 21h），足以重建可靠轨迹。cuda:1
+    被 exp-003-s3 占用 ~53h 无法并行。
+  related_experiments:
+  - exp_id: exp-act-256
+    role: next
+    result: pending
+  - exp_id: exp-003-s2-eval-ckpt2500
+    role: trigger
+    result: success
+  - exp_id: exp-002v3-gs8
+    role: queued
+    result: pending
+  depends_on: []

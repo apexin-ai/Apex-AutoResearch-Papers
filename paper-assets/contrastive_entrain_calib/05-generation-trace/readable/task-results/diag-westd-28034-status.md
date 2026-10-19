@@ -1,0 +1,104 @@
+# diag westd 28034 status
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diag_westd-28034-status_20260518T222456_result.json`
+- **Structured JSON:** [`568d443efefd7ec52822.json`](../../sessions/56/568d443efefd7ec52822.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+全部数据已获取。以下是汇总报告。
+
+---
+
+## 实验状态汇报 (westd-28034, 2026-05-19 06:25 UTC)
+
+### GPU 概览
+
+| GPU | 利用率 | 显存 | 温度 | 实验 |
+|-----|--------|------|------|------|
+| 0 | 43% | 21.8 / 32.6 GiB | 61°C | exp-004 |
+| 1 | 65% | 31.4 / 32.6 GiB | 64°C | exp-014 |
+| 2 | 67% | 30.6 / 32.6 GiB | 62°C | exp-014 |
+| 3 | 48% | 22.3 / 32.6 GiB | 64°C | exp-008 |
+
+### 磁盘
+
+- **总量**: 30G，已用 16G，**剩余 15G (46%)**
+- 主要 checkpoint 占用: exp008_binary_probe_penalty 2.0G, exp014 相关 ~3.0G, exp008 dryruns ~1.4G
+
+---
+
+### 1. exp-004 — ACT baseline (GPU 0, PID 18204)
+
+| 项目 | 值 |
+|------|-----|
+| **当前 step** | **2500 / 8000** (31.3%) |
+| **per-step 时间** | ~96s |
+| **预计剩余** | 5500 steps × 96s ≈ **146h ≈ 6.1 天** |
+| **预计完成** | ~5月25日 |
+| **SFT loss** | **0.0000** (已完全归零，自 step ~850 起) |
+| **L2 loss** | 0.0022 (持续缓慢下降) |
+| **Total loss** | ~0.0003 |
+| **异常** | 无 OOM/NaN/Error |
+
+**趋势**: SFT loss 在 step 600 后稳定在 0.0000，L2 regularization loss 从 0.007 降至 0.002，仍在缓慢收敛。刚保存了 checkpoint-2500。
+
+---
+
+### 2. exp-014 — Continuous probe baseline (GPU 1+2, DeepSpeed ZeRO-2)
+
+| 项目 | 值 |
+|------|-----|
+| **当前 step** | **~690 / 8000** (8.6%) |
+| **per-step 时间** | ~17s (双卡 DeepSpeed) |
+| **预计剩余** | 7310 steps × 17s ≈ **34.5h ≈ 1.4 天** |
+| **预计完成** | ~5月20日下午 |
+| **R1 mean** | 0.52 (range 0.37–1.00，波动大) |
+| **R3 mean** | 0.88 |
+| **Combined mean** | 0.79 |
+| **R2** | 0.0000 (始终) |
+| **异常** | HuggingFace 连接 warning (预期行为，无外网)；无 OOM/NaN |
+
+**趋势**: R1 分布 [0.37, 1.00] 波动较大，R3 稳定在 0.8+ 区间。启动于 02:26 UTC，仍处于早期阶段。
+
+---
+
+### 3. exp-008 — SFT+R3 binary probe penalty v2 (GPU 3, PID 45998)
+
+| 项目 | 值 |
+|------|-----|
+| **当前 step** | **1900 / 8000** (23.8%) |
+| **per-step 时间** | ~52s |
+| **预计剩余** | 6100 steps × 52s ≈ **88h ≈ 3.7 天** |
+| **预计完成** | ~5月23日 |
+| **R3** | 0.40 (波动范围 0.25–0.77) |
+| **S(t)** | **0.0000** (始终为零，probe penalty 被 game 掉了) |
+| **SFT loss** | ~0.0000 (已归零) |
+| **Probe retrain** | 每 100 步，acc=1.0000, auroc=1.0000 |
+| **异常** | 无 OOM/NaN/Error |
+
+**趋势**: 核心问题确认 — S(t) 从头到尾恒为 0.0000，尽管 probe 每次 retrain 后都达到完美分类 (acc=1.0, auroc=1.0)。模型成功规避了 probe penalty，R3 在 0.3–0.7 间无明显上升趋势。**v3 部署仍有必要**。
+
+---
+
+### 关键判断
+
+1. **exp-004**: 正常运行，但 SFT loss 归零意味着模型已完全记忆训练集，L2 在做的只是 weight decay。需评估是否有必要跑完全部 8000 步。
+2. **exp-014**: 刚启动 4h，最快的实验 (~1.4 天完成)。早期指标正常。
+3. **exp-008**: 确认 probe penalty gamed。S(t)=0 说明模型在 probe 能看到的表征空间中没有留下可检测的校准信号。部署 v3 前磁盘有 **15G 余量**，足够。
+
+---

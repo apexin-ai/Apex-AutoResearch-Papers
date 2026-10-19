@@ -1,0 +1,1684 @@
+# research bootstrap script analysis
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_research_bootstrap-script-analysis_20260522T130058.log`
+- **Structured JSON:** [`090267b9b25a72dfcf56.json`](../../sessions/09/090267b9b25a72dfcf56.json)
+
+## Before a recorded user message
+
+33 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "95b3ec59-c8bc-4fed-bc22-4754a7ef340f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779470400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "21ed4ddc-a669-4b0b-8e0e-9d8afb060166",
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+找到 bootstrap 脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "f97df7b5-75ed-44cd-9a3b-9063ec7531f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ML7CZgCKA7HK9Nvu6Q3zvW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11921,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11921
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XxciAeTsoGHHJigCGsBBsw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "6eedab92-60c1-4306-bd2d-0af25ee27b2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ML7CZgCKA7HK9Nvu6Q3zvW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11921,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11921
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T13:01:32.300Z_
+
+<details><summary>↩ Tool result · `toolu_01XxciAeTsoGHHJigCGsBBsw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "587a6584-278a-4f12-85e2-05b87c7be263",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the bootstrap script on the westd-28034 server. Wait, the user said "westd-28034" but the project context says the server is "westd-29046". Let me use westd-28034 as the user specified, since they explicitly mentioned that server.
+
+Actually, looking again, the user says "之前在 28034 上运行了 bootstrap AUROC CI 分析". But the project config says server is westd-29046. Let me try 28034 first since that's where the user says the script was run.
+
+Hmm, but the server name format might need to just be "westd-28034". Let me try that.
+
+
+The user explicitly mentioned westd-28034 as where the script is located, so I'll attempt to access it there even though the project configuration points to westd-29046. Let me just try it and see if it works.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "f15f05ca-7496-4473-9b78-22cf79cbabca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRE9SmUv67dPDUAUm7Wk5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 23762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 437
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HWe4vsRJDDJu823nEKFCqf`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "find /root/contrastive_entrain_calib/ -name \"*bootstrap*\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "4aa0387e-1240-4d31-bbdc-a244264b445b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRE9SmUv67dPDUAUm7Wk5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 23762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 437
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T13:01:43.212Z_
+
+<details><summary>↩ Tool result · `toolu_01HWe4vsRJDDJu823nEKFCqf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "1372b749-c49b-4492-b86d-ea7de7efad17",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017YXtWJnY2RK5yDXBW3MHDz`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"*bootstrap*\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "19c9b68b-3299-4f86-bef8-09e58530c9c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRE9SmUv67dPDUAUm7Wk5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 23762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 437
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T13:01:43.536Z_
+
+<details><summary>↩ Tool result · `toolu_017YXtWJnY2RK5yDXBW3MHDz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "d6b498a4-7e84-49b6-87b0-37d8a4700c64",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` redirect is being blocked. Let me remove the redirect.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "8d50fb2a-465a-44a8-8b11-53095df0b45e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFemrsESqf8VmWgUBLgFLZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 24199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+去掉重定向再试。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "a3f570b4-633c-4145-baac-00d860932727",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFemrsESqf8VmWgUBLgFLZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 24199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HHYYGpKm4KbXvaVJxE8B2i`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "find /root/contrastive_entrain_calib/ -name \"*bootstrap*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "beb817c1-2196-433f-be41-52972a54e63f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFemrsESqf8VmWgUBLgFLZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 24199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JHPGNDShBKNKpozHavLbyu`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"*bootstrap*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "419d9d36-4650-4487-bf61-c892b8c8ac7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFemrsESqf8VmWgUBLgFLZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 24199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T13:01:48.157Z_
+
+<details><summary>↩ Tool result · `toolu_01HHYYGpKm4KbXvaVJxE8B2i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contrastive_entrain_calib/artifacts/bootstrap_auroc_ci.json\\n/root/contrastive_entrain_calib/analysis/bootstrap_auroc_ci.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "38952e30-5d2a-4f87-826b-874e4e968b51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contrastive_entrain_calib/artifacts/bootstrap_auroc_ci.json\\\\n/root/contrastive_entrain_calib/analysis/bootstrap_auroc_ci.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contrastive_entrain_calib/artifacts/bootstrap_auroc_ci.json\\n/root/contrastive_entrain_calib/analysis/bootstrap_auroc_ci.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T13:01:48.680Z_
+
+<details><summary>↩ Tool result · `toolu_01JHPGNDShBKNKpozHavLbyu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "b45b2872-af96-4d27-9204-6fef28535302",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+找到脚本 `/root/contrastive_entrain_calib/analysis/bootstrap_auroc_ci.py`，读取全文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "1ca11f35-0d3e-461f-9fda-88c849b85ac0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DCxr1iExCL2m8FBj5JPGBE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 535,
+      "cache_read_input_tokens": 24961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 535
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QsRgi4CakBHtqp1Lw3ijcz`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat /root/contrastive_entrain_calib/analysis/bootstrap_auroc_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "54b7acd8-916b-47f5-8291-2fe4709073f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DCxr1iExCL2m8FBj5JPGBE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 535,
+      "cache_read_input_tokens": 24961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 535
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EsP51kjHCTCTkSQSKMuYgZ`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat /root/contrastive_entrain_calib/artifacts/bootstrap_auroc_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "73dbab45-36e9-4f73-b0fc-d16acf2591e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DCxr1iExCL2m8FBj5JPGBE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 535,
+      "cache_read_input_tokens": 24961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 535
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T13:01:57.940Z_
+
+<details><summary>↩ Tool result · `toolu_01QsRgi4CakBHtqp1Lw3ijcz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Bootstrap 95% CI for d_syc AUROC metrics.\\\"\\\"\\\"\\nimport json, sys, time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import roc_auc_score\\nfrom sklearn.model_selection import StratifiedKFold\\n\\nN_BOOTSTRAP_OOF = 10000\\nN_BOOTSTRAP_CV = 2000\\nN_FOLDS = 5\\nSEED = 42\\n\\ndef load_pairs(path, act_key=\\\"activations\\\"):\\n    records = torch.load(path, map_location=\\\"cpu\\\", weights_only=False)\\n    pairs = defaultdict(dict)\\n    for s in records:\\n        pairs[s[\\\"pair_id\\\"]][s[\\\"condition\\\"]] = s\\n    return {pid: c for pid, c in pairs.items()\\n            if \\\"valid_correction\\\" in c and \\\"invalid_pressure\\\" in c}\\n\\ndef prepare_arrays(pairs, act_key=\\\"activations\\\", pos=None):\\n    pair_ids = sorted(pairs.keys())\\n    syc_list, wr_list, domains, strengths = [], [], [], []\\n    for pid in pair_ids:\\n        s_act = pairs[pid][\\\"invalid_pressure\\\"][act_key]\\n        w_act = pairs[pid][\\\"valid_correction\\\"][act_key]\\n        if pos is not None:\\n            s_act = s_act[:, pos, :]\\n            w_act = w_act[:, pos, :]\\n        syc_list.append(s_act)\\n        wr_list.append(w_act)\\n        domains.append(pairs[pid][\\\"valid_correction\\\"][\\\"domain\\\"])\\n        strengths.append(pairs[pid][\\\"valid_correction\\\"][\\\"evidence_strength\\\"])\\n    syc = torch.stack(syc_list).numpy().astype(np.float32)\\n    wr = torch.stack(wr_list).numpy().astype(np.float32)\\n    return syc, wr, domains, strengths, pair_ids\\n\\ndef cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\n             layer_lo=0, layer_hi=None, return_oof=False):\\n    n_pairs = syc.shape[0]\\n    if layer_hi is None:\\n        layer_hi = syc.shape[1]\\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\\n    fold_aurocs = []\\n    oof_syc = np.zeros(n_pairs)\\n    oof_wr = np.zeros(n_pairs)\\n    for train_idx, test_idx in skf.split(np.arange(n_pairs), domains_arr):\\n        d = syc[train_idx].mean(axis=0) - wr[train_idx].mean(axis=0)\\n        norms = np.linalg.norm(d, axis=-1, keepdims=True)\\n        d = d / np.maximum(norms, 1e-8)\\n        s_test = (syc[test_idx] * d).sum(axis=-1)\\n        w_test = (wr[test_idx] * d).sum(axis=-1)\\n        best_auroc = -1.0\\n        best_layer = layer_lo\\n        for layer in range(layer_lo, layer_hi):\\n            scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\n            labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\n            try:\\n                auroc = roc_auc_score(labels, scores)\\n                if auroc > best_auroc:\\n                    best_auroc = auroc\\n                    best_layer = layer\\n            except ValueError:\\n                pass\\n        fold_aurocs.append(best_auroc)\\n        oof_syc[test_idx] = s_test[:, best_layer]\\n        oof_wr[test_idx] = w_test[:, best_layer]\\n    mean_auroc = float(np.mean(fold_aurocs))\\n    if return_oof:\\n        return mean_auroc, fold_aurocs, oof_syc, oof_wr\\n    return mean_auroc, fold_aurocs\\n\\ndef bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\n                       seed=SEED, layer_lo=0, layer_hi=None):\\n    rng = np.random.RandomState(seed)\\n    n_pairs = syc.shape[0]\\n    aurocs = []\\n    t_start = time.time()\\n    for b in range(n_bootstrap):\\n        boot_idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\n        boot_domains = domains_arr[boot_idx]\\n        if len(np.unique(boot_domains)) < N_FOLDS:\\n            boot_domains = np.arange(n_pairs) % N_FOLDS\\n        try:\\n            mean_auc, _ = cv_auroc(\\n                syc[boot_idx], wr[boot_idx], boot_domains,\\n                seed=b, layer_lo=layer_lo, layer_hi=layer_hi)\\n            aurocs.append(mean_auc)\\n        except Exception:\\n            pass\\n        if (b+1) % 200 == 0:\\n            elapsed = time.time() - t_start\\n            rate = (b+1) / elapsed\\n            eta = (n_bootstrap - b - 1) / rate\\n            print(f\\\"  bootstrap {b+1}/{n_bootstrap} ({elapsed:.0f}s elapsed, ETA {eta:.0f}s)\\\", flush=True)\\n    aurocs = np.array(aurocs)\\n    return \\n\\n... [截断: 输出过长，省略 7806 字符] ...\\n\\nnt(f\\\"  OOF AUROC = {l_oof_ci['point_auroc']:.4f} [{l_oof_ci['ci_95_lower']:.4f}, {l_oof_ci['ci_95_upper']:.4f}]\\\")\\n\\n    print(\\\"Bootstrapping Llama per-strength AUROC...\\\")\\n    results[\\\"llama_per_strength\\\"] = {}\\n    for strength in [\\\"weak\\\", \\\"medium\\\", \\\"strong\\\"]:\\n        mask = strengths_l_arr == strength\\n        ci = bootstrap_oof_auroc(l_oof_syc, l_oof_wr, mask=mask, seed=SEED)\\n        if ci:\\n            results[\\\"llama_per_strength\\\"][strength] = ci\\n            print(f\\\"  {strength}: AUROC = {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\")\\n\\n    print(f\\\"Bootstrapping Llama full CV (n={N_BOOTSTRAP_CV}, layers 0-16)...\\\")\\n    l_full_ci = bootstrap_cv_auroc(syc_l, wr_l, domains_l_arr, seed=SEED, layer_lo=0, layer_hi=16)\\n    results[\\\"llama_cv\\\"][\\\"full_cv_bootstrap\\\"] = l_full_ci\\n    print(f\\\"  Full CV bootstrap: {l_full_ci['mean']:.4f} [{l_full_ci['ci_95_lower']:.4f}, {l_full_ci['ci_95_upper']:.4f}]\\\")\\n\\n    # Random baseline\\n    print(\\\"\\\\nComputing random baseline (200 random directions)...\\\")\\n    rand_stats, rand_oof_syc, rand_oof_wr = random_direction_oof(syc_q, wr_q, domains_q_arr, n_random=200, seed=SEED)\\n    results[\\\"random_baseline_qwen\\\"] = rand_stats\\n    print(f\\\"  Random AUROC: mean={rand_stats['mean_auroc']:.4f}, max={rand_stats['max_auroc']:.4f}\\\")\\n\\n    print(\\\"Bootstrapping d_syc vs random AUROC difference...\\\")\\n    diff_ci = bootstrap_auroc_difference(q_oof_syc, q_oof_wr, rand_oof_syc, rand_oof_wr, seed=SEED)\\n    results[\\\"dsyc_vs_random_qwen\\\"] = {\\\"dsyc_auroc\\\": q_oof_ci[\\\"point_auroc\\\"],\\n                                       \\\"random_auroc\\\": rand_stats[\\\"mean_auroc\\\"],\\n                                       \\\"difference_ci\\\": diff_ci}\\n    print(f\\\"  AUROC diff = {diff_ci['mean_diff']:.4f} [{diff_ci['ci_95_lower']:.4f}, {diff_ci['ci_95_upper']:.4f}]\\\")\\n\\n    # Save\\n    out_dir = Path(\\\"/root/contrastive_entrain_calib/artifacts\\\")\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"bootstrap_auroc_ci.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*70)\\n    print(\\\"BOOTSTRAP 95% CI SUMMARY\\\")\\n    print(\\\"=\\\"*70)\\n    print(f\\\"\\\\nQwen3-8B (style-controlled, {syc_q.shape[0]} pairs)\\\")\\n    print(f\\\"  5-fold CV AUROC = {q_mean:.4f} (std={np.std(q_folds):.4f})\\\")\\n    print(f\\\"  OOF bootstrap (n=10000):  {q_oof_ci['point_auroc']:.4f} [{q_oof_ci['ci_95_lower']:.4f}, {q_oof_ci['ci_95_upper']:.4f}]\\\")\\n    print(f\\\"  Full CV bootstrap (n={N_BOOTSTRAP_CV}): {q_full_ci['mean']:.4f} [{q_full_ci['ci_95_lower']:.4f}, {q_full_ci['ci_95_upper']:.4f}]\\\")\\n    for s in [\\\"weak\\\", \\\"medium\\\", \\\"strong\\\"]:\\n        ci = results[\\\"qwen_per_strength\\\"].get(s)\\n        if ci:\\n            print(f\\\"  {s:8s}: {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\")\\n\\n    print(f\\\"\\\\nLlama-3-8B (style-controlled, {syc_l.shape[0]} pairs)\\\")\\n    print(f\\\"  5-fold CV AUROC = {l_mean:.4f} (std={np.std(l_folds):.4f})\\\")\\n    print(f\\\"  OOF bootstrap (n=10000):  {l_oof_ci['point_auroc']:.4f} [{l_oof_ci['ci_95_lower']:.4f}, {l_oof_ci['ci_95_upper']:.4f}]\\\")\\n    print(f\\\"  Full CV bootstrap (n={N_BOOTSTRAP_CV}): {l_full_ci['mean']:.4f} [{l_full_ci['ci_95_lower']:.4f}, {l_full_ci['ci_95_upper']:.4f}]\\\")\\n    for s in [\\\"weak\\\", \\\"medium\\\", \\\"strong\\\"]:\\n        ci = results[\\\"llama_per_strength\\\"].get(s)\\n        if ci:\\n            print(f\\\"  {s:8s}: {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\")\\n\\n    print(f\\\"\\\\nd_syc vs random (Qwen)\\\")\\n    print(f\\\"  d_syc:   {q_oof_ci['point_auroc']:.4f}\\\")\\n    print(f\\\"  random:  {rand_stats['mean_auroc']:.4f} (mean of {rand_stats['n_random']} dirs)\\\")\\n    print(f\\\"  diff:    {diff_ci['mean_diff']:.4f} [{diff_ci['ci_95_lower']:.4f}, {diff_ci['ci_95_upper']:.4f}]\\\")\\n    print(f\\\"  P(d_syc > random) = {diff_ci['p_greater_zero']:.4f}\\\")\\n    print(f\\\"\\\\nTotal time: {time.time()-t0:.1f}s\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "09074a65-edc7-40a1-8b0c-905fb8465cc6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Bootstrap 95% CI for d_syc AUROC metrics.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, sys, time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\n\\\\nN_BOOTSTRAP_OOF = 10000\\\\nN_BOOTSTRAP_CV = 2000\\\\nN_FOLDS = 5\\\\nSEED = 42\\\\n\\\\ndef load_pairs(path, act_key=\\\\\\\"activations\\\\\\\"):\\\\n    records = torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n    pairs = defaultdict(dict)\\\\n    for s in records:\\\\n        pairs[s[\\\\\\\"pair_id\\\\\\\"]][s[\\\\\\\"condition\\\\\\\"]] = s\\\\n    return {pid: c for pid, c in pairs.items()\\\\n            if \\\\\\\"valid_correction\\\\\\\" in c and \\\\\\\"invalid_pressure\\\\\\\" in c}\\\\n\\\\ndef prepare_arrays(pairs, act_key=\\\\\\\"activations\\\\\\\", pos=None):\\\\n    pair_ids = sorted(pairs.keys())\\\\n    syc_list, wr_list, domains, strengths = [], [], [], []\\\\n    for pid in pair_ids:\\\\n        s_act = pairs[pid][\\\\\\\"invalid_pressure\\\\\\\"][act_key]\\\\n        w_act = pairs[pid][\\\\\\\"valid_correction\\\\\\\"][act_key]\\\\n        if pos is not None:\\\\n            s_act = s_act[:, pos, :]\\\\n            w_act = w_act[:, pos, :]\\\\n        syc_list.append(s_act)\\\\n        wr_list.append(w_act)\\\\n        domains.append(pairs[pid][\\\\\\\"valid_correction\\\\\\\"][\\\\\\\"domain\\\\\\\"])\\\\n        strengths.append(pairs[pid][\\\\\\\"valid_correction\\\\\\\"][\\\\\\\"evidence_strength\\\\\\\"])\\\\n    syc = torch.stack(syc_list).numpy().astype(np.float32)\\\\n    wr = torch.stack(wr_list).numpy().astype(np.float32)\\\\n    return syc, wr, domains, strengths, pair_ids\\\\n\\\\ndef cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\\\n             layer_lo=0, layer_hi=None, return_oof=False):\\\\n    n_pairs = syc.shape[0]\\\\n    if layer_hi is None:\\\\n        layer_hi = syc.shape[1]\\\\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\\\\n    fold_aurocs = []\\\\n    oof_syc = np.zeros(n_pairs)\\\\n    oof_wr = np.zeros(n_pairs)\\\\n    for train_idx, test_idx in skf.split(np.arange(n_pairs), domains_arr):\\\\n        d = syc[train_idx].mean(axis=0) - wr[train_idx].mean(axis=0)\\\\n        norms = np.linalg.norm(d, axis=-1, keepdims=True)\\\\n        d = d / np.maximum(norms, 1e-8)\\\\n        s_test = (syc[test_idx] * d).sum(axis=-1)\\\\n        w_test = (wr[test_idx] * d).sum(axis=-1)\\\\n        best_auroc = -1.0\\\\n        best_layer = layer_lo\\\\n        for layer in range(layer_lo, layer_hi):\\\\n            scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\\\n            labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\\\n            try:\\\\n                auroc = roc_auc_score(labels, scores)\\\\n                if auroc > best_auroc:\\\\n                    best_auroc = auroc\\\\n                    best_layer = layer\\\\n            except ValueError:\\\\n                pass\\\\n        fold_aurocs.append(best_auroc)\\\\n        oof_syc[test_idx] = s_test[:, best_layer]\\\\n        oof_wr[test_idx] = w_test[:, best_layer]\\\\n    mean_auroc = float(np.mean(fold_aurocs))\\\\n    if return_oof:\\\\n        return mean_auroc, fold_aurocs, oof_syc, oof_wr\\\\n    return mean_auroc, fold_aurocs\\\\n\\\\ndef bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\\\n                       seed=SEED, layer_lo=0, layer_hi=None):\\\\n    rng = np.random.RandomState(seed)\\\\n    n_pairs = syc.shape[0]\\\\n    aurocs = []\\\\n    t_start = time.time()\\\\n    for b in range(n_bootstrap):\\\\n        boot_idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\\\n        boot_domains = domains_arr[boot_idx]\\\\n        if len(np.unique(boot_domains)) < N_FOLDS:\\\\n            boot_domains = np.arange(n_pairs) % N_FOLDS\\\\n        try:\\\\n            mean_auc, _ = cv_auroc(\\\\n                syc[boot_idx], wr[boot_idx], boot_domains,\\\\n                seed=b, layer_lo=layer_lo, layer_hi=layer_hi)\\\\n            aurocs.append(mean_auc)\\\\n        except Exception:\\\\n            pass\\\\n        if (b+1) % 200 == 0:\\\\n            elapsed = time.time() - t_start\\\\n            rate = (b+1) / elapsed\\\\n            eta = (n_bootstrap - b - 1) / rate\\\\n            print(f\\\\\\\"  bootstrap {b+1}/{n_bootstrap} ({elapsed:.0f}s elapsed, ETA {eta:.0f}s)\\\\\\\", flush=True)\\\\n    aurocs = np.array(aurocs)\\\\n    return \\\\n\\\\n... [截断: 输出过长，省略 7806 字符] ...\\\\n\\\\nnt(f\\\\\\\"  OOF AUROC = {l_oof_ci['point_auroc']:.4f} [{l_oof_ci['ci_95_lower']:.4f}, {l_oof_ci['ci_95_upper']:.4f}]\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Bootstrapping Llama per-strength AUROC...\\\\\\\")\\\\n    results[\\\\\\\"llama_per_strength\\\\\\\"] = {}\\\\n    for strength in [\\\\\\\"weak\\\\\\\", \\\\\\\"medium\\\\\\\", \\\\\\\"strong\\\\\\\"]:\\\\n        mask = strengths_l_arr == strength\\\\n        ci = bootstrap_oof_auroc(l_oof_syc, l_oof_wr, mask=mask, seed=SEED)\\\\n        if ci:\\\\n            results[\\\\\\\"llama_per_strength\\\\\\\"][strength] = ci\\\\n            print(f\\\\\\\"  {strength}: AUROC = {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"Bootstrapping Llama full CV (n={N_BOOTSTRAP_CV}, layers 0-16)...\\\\\\\")\\\\n    l_full_ci = bootstrap_cv_auroc(syc_l, wr_l, domains_l_arr, seed=SEED, layer_lo=0, layer_hi=16)\\\\n    results[\\\\\\\"llama_cv\\\\\\\"][\\\\\\\"full_cv_bootstrap\\\\\\\"] = l_full_ci\\\\n    print(f\\\\\\\"  Full CV bootstrap: {l_full_ci['mean']:.4f} [{l_full_ci['ci_95_lower']:.4f}, {l_full_ci['ci_95_upper']:.4f}]\\\\\\\")\\\\n\\\\n    # Random baseline\\\\n    print(\\\\\\\"\\\\\\\\nComputing random baseline (200 random directions)...\\\\\\\")\\\\n    rand_stats, rand_oof_syc, rand_oof_wr = random_direction_oof(syc_q, wr_q, domains_q_arr, n_random=200, seed=SEED)\\\\n    results[\\\\\\\"random_baseline_qwen\\\\\\\"] = rand_stats\\\\n    print(f\\\\\\\"  Random AUROC: mean={rand_stats['mean_auroc']:.4f}, max={rand_stats['max_auroc']:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Bootstrapping d_syc vs random AUROC difference...\\\\\\\")\\\\n    diff_ci = bootstrap_auroc_difference(q_oof_syc, q_oof_wr, rand_oof_syc, rand_oof_wr, seed=SEED)\\\\n    results[\\\\\\\"dsyc_vs_random_qwen\\\\\\\"] = {\\\\\\\"dsyc_auroc\\\\\\\": q_oof_ci[\\\\\\\"point_auroc\\\\\\\"],\\\\n                                       \\\\\\\"random_auroc\\\\\\\": rand_stats[\\\\\\\"mean_auroc\\\\\\\"],\\\\n                                       \\\\\\\"difference_ci\\\\\\\": diff_ci}\\\\n    print(f\\\\\\\"  AUROC diff = {diff_ci['mean_diff']:.4f} [{diff_ci['ci_95_lower']:.4f}, {diff_ci['ci_95_upper']:.4f}]\\\\\\\")\\\\n\\\\n    # Save\\\\n    out_dir = Path(\\\\\\\"/root/contrastive_entrain_calib/artifacts\\\\\\\")\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    out_path = out_dir / \\\\\\\"bootstrap_auroc_ci.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*70)\\\\n    print(\\\\\\\"BOOTSTRAP 95% CI SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\"*70)\\\\n    print(f\\\\\\\"\\\\\\\\nQwen3-8B (style-controlled, {syc_q.shape[0]} pairs)\\\\\\\")\\\\n    print(f\\\\\\\"  5-fold CV AUROC = {q_mean:.4f} (std={np.std(q_folds):.4f})\\\\\\\")\\\\n    print(f\\\\\\\"  OOF bootstrap (n=10000):  {q_oof_ci['point_auroc']:.4f} [{q_oof_ci['ci_95_lower']:.4f}, {q_oof_ci['ci_95_upper']:.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  Full CV bootstrap (n={N_BOOTSTRAP_CV}): {q_full_ci['mean']:.4f} [{q_full_ci['ci_95_lower']:.4f}, {q_full_ci['ci_95_upper']:.4f}]\\\\\\\")\\\\n    for s in [\\\\\\\"weak\\\\\\\", \\\\\\\"medium\\\\\\\", \\\\\\\"strong\\\\\\\"]:\\\\n        ci = results[\\\\\\\"qwen_per_strength\\\\\\\"].get(s)\\\\n        if ci:\\\\n            print(f\\\\\\\"  {s:8s}: {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nLlama-3-8B (style-controlled, {syc_l.shape[0]} pairs)\\\\\\\")\\\\n    print(f\\\\\\\"  5-fold CV AUROC = {l_mean:.4f} (std={np.std(l_folds):.4f})\\\\\\\")\\\\n    print(f\\\\\\\"  OOF bootstrap (n=10000):  {l_oof_ci['point_auroc']:.4f} [{l_oof_ci['ci_95_lower']:.4f}, {l_oof_ci['ci_95_upper']:.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  Full CV bootstrap (n={N_BOOTSTRAP_CV}): {l_full_ci['mean']:.4f} [{l_full_ci['ci_95_lower']:.4f}, {l_full_ci['ci_95_upper']:.4f}]\\\\\\\")\\\\n    for s in [\\\\\\\"weak\\\\\\\", \\\\\\\"medium\\\\\\\", \\\\\\\"strong\\\\\\\"]:\\\\n        ci = results[\\\\\\\"llama_per_strength\\\\\\\"].get(s)\\\\n        if ci:\\\\n            print(f\\\\\\\"  {s:8s}: {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nd_syc vs random (Qwen)\\\\\\\")\\\\n    print(f\\\\\\\"  d_syc:   {q_oof_ci['point_auroc']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  random:  {rand_stats['mean_auroc']:.4f} (mean of {rand_stats['n_random']} dirs)\\\\\\\")\\\\n    print(f\\\\\\\"  diff:    {diff_ci['mean_diff']:.4f} [{diff_ci['ci_95_lower']:.4f}, {diff_ci['ci_95_upper']:.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  P(d_syc > random) = {diff_ci['p_greater_zero']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Bootstrap 95% CI for d_syc AUROC metrics.\\\"\\\"\\\"\\nimport json, sys, time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import roc_auc_score\\nfrom sklearn.model_selection import StratifiedKFold\\n\\nN_BOOTSTRAP_OOF = 10000\\nN_BOOTSTRAP_CV = 2000\\nN_FOLDS = 5\\nSEED = 42\\n\\ndef load_pairs(path, act_key=\\\"activations\\\"):\\n    records = torch.load(path, map_location=\\\"cpu\\\", weights_only=False)\\n    pairs = defaultdict(dict)\\n    for s in records:\\n        pairs[s[\\\"pair_id\\\"]][s[\\\"condition\\\"]] = s\\n    return {pid: c for pid, c in pairs.items()\\n            if \\\"valid_correction\\\" in c and \\\"invalid_pressure\\\" in c}\\n\\ndef prepare_arrays(pairs, act_key=\\\"activations\\\", pos=None):\\n    pair_ids = sorted(pairs.keys())\\n    syc_list, wr_list, domains, strengths = [], [], [], []\\n    for pid in pair_ids:\\n        s_act = pairs[pid][\\\"invalid_pressure\\\"][act_key]\\n        w_act = pairs[pid][\\\"valid_correction\\\"][act_key]\\n        if pos is not None:\\n            s_act = s_act[:, pos, :]\\n            w_act = w_act[:, pos, :]\\n        syc_list.append(s_act)\\n        wr_list.append(w_act)\\n        domains.append(pairs[pid][\\\"valid_correction\\\"][\\\"domain\\\"])\\n        strengths.append(pairs[pid][\\\"valid_correction\\\"][\\\"evidence_strength\\\"])\\n    syc = torch.stack(syc_list).numpy().astype(np.float32)\\n    wr = torch.stack(wr_list).numpy().astype(np.float32)\\n    return syc, wr, domains, strengths, pair_ids\\n\\ndef cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\n             layer_lo=0, layer_hi=None, return_oof=False):\\n    n_pairs = syc.shape[0]\\n    if layer_hi is None:\\n        layer_hi = syc.shape[1]\\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\\n    fold_aurocs = []\\n    oof_syc = np.zeros(n_pairs)\\n    oof_wr = np.zeros(n_pairs)\\n    for train_idx, test_idx in skf.split(np.arange(n_pairs), domains_arr):\\n        d = syc[train_idx].mean(axis=0) - wr[train_idx].mean(axis=0)\\n        norms = np.linalg.norm(d, axis=-1, keepdims=True)\\n        d = d / np.maximum(norms, 1e-8)\\n        s_test = (syc[test_idx] * d).sum(axis=-1)\\n        w_test = (wr[test_idx] * d).sum(axis=-1)\\n        best_auroc = -1.0\\n        best_layer = layer_lo\\n        for layer in range(layer_lo, layer_hi):\\n            scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\n            labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\n            try:\\n                auroc = roc_auc_score(labels, scores)\\n                if auroc > best_auroc:\\n                    best_auroc = auroc\\n                    best_layer = layer\\n            except ValueError:\\n                pass\\n        fold_aurocs.append(best_auroc)\\n        oof_syc[test_idx] = s_test[:, best_layer]\\n        oof_wr[test_idx] = w_test[:, best_layer]\\n    mean_auroc = float(np.mean(fold_aurocs))\\n    if return_oof:\\n        return mean_auroc, fold_aurocs, oof_syc, oof_wr\\n    return mean_auroc, fold_aurocs\\n\\ndef bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\n                       seed=SEED, layer_lo=0, layer_hi=None):\\n    rng = np.random.RandomState(seed)\\n    n_pairs = syc.shape[0]\\n    aurocs = []\\n    t_start = time.time()\\n    for b in range(n_bootstrap):\\n        boot_idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\n        boot_domains = domains_arr[boot_idx]\\n        if len(np.unique(boot_domains)) < N_FOLDS:\\n            boot_domains = np.arange(n_pairs) % N_FOLDS\\n        try:\\n            mean_auc, _ = cv_auroc(\\n                syc[boot_idx], wr[boot_idx], boot_domains,\\n                seed=b, layer_lo=layer_lo, layer_hi=layer_hi)\\n            aurocs.append(mean_auc)\\n        except Exception:\\n            pass\\n        if (b+1) % 200 == 0:\\n            elapsed = time.time() - t_start\\n            rate = (b+1) / elapsed\\n            eta = (n_bootstrap - b - 1) / rate\\n            print(f\\\"  bootstrap {b+1}/{n_bootstrap} ({elapsed:.0f}s elapsed, ETA {eta:.0f}s)\\\", flush=True)\\n    aurocs = np.array(aurocs)\\n    return \\n\\n... [截断: 输出过长，省略 7806 字符] ...\\n\\nnt(f\\\"  OOF AUROC = {l_oof_ci['point_auroc']:.4f} [{l_oof_ci['ci_95_lower']:.4f}, {l_oof_ci['ci_95_upper']:.4f}]\\\")\\n\\n    print(\\\"Bootstrapping Llama per-strength AUROC...\\\")\\n    results[\\\"llama_per_strength\\\"] = {}\\n    for strength in [\\\"weak\\\", \\\"medium\\\", \\\"strong\\\"]:\\n        mask = strengths_l_arr == strength\\n        ci = bootstrap_oof_auroc(l_oof_syc, l_oof_wr, mask=mask, seed=SEED)\\n        if ci:\\n            results[\\\"llama_per_strength\\\"][strength] = ci\\n            print(f\\\"  {strength}: AUROC = {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\")\\n\\n    print(f\\\"Bootstrapping Llama full CV (n={N_BOOTSTRAP_CV}, layers 0-16)...\\\")\\n    l_full_ci = bootstrap_cv_auroc(syc_l, wr_l, domains_l_arr, seed=SEED, layer_lo=0, layer_hi=16)\\n    results[\\\"llama_cv\\\"][\\\"full_cv_bootstrap\\\"] = l_full_ci\\n    print(f\\\"  Full CV bootstrap: {l_full_ci['mean']:.4f} [{l_full_ci['ci_95_lower']:.4f}, {l_full_ci['ci_95_upper']:.4f}]\\\")\\n\\n    # Random baseline\\n    print(\\\"\\\\nComputing random baseline (200 random directions)...\\\")\\n    rand_stats, rand_oof_syc, rand_oof_wr = random_direction_oof(syc_q, wr_q, domains_q_arr, n_random=200, seed=SEED)\\n    results[\\\"random_baseline_qwen\\\"] = rand_stats\\n    print(f\\\"  Random AUROC: mean={rand_stats['mean_auroc']:.4f}, max={rand_stats['max_auroc']:.4f}\\\")\\n\\n    print(\\\"Bootstrapping d_syc vs random AUROC difference...\\\")\\n    diff_ci = bootstrap_auroc_difference(q_oof_syc, q_oof_wr, rand_oof_syc, rand_oof_wr, seed=SEED)\\n    results[\\\"dsyc_vs_random_qwen\\\"] = {\\\"dsyc_auroc\\\": q_oof_ci[\\\"point_auroc\\\"],\\n                                       \\\"random_auroc\\\": rand_stats[\\\"mean_auroc\\\"],\\n                                       \\\"difference_ci\\\": diff_ci}\\n    print(f\\\"  AUROC diff = {diff_ci['mean_diff']:.4f} [{diff_ci['ci_95_lower']:.4f}, {diff_ci['ci_95_upper']:.4f}]\\\")\\n\\n    # Save\\n    out_dir = Path(\\\"/root/contrastive_entrain_calib/artifacts\\\")\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"bootstrap_auroc_ci.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*70)\\n    print(\\\"BOOTSTRAP 95% CI SUMMARY\\\")\\n    print(\\\"=\\\"*70)\\n    print(f\\\"\\\\nQwen3-8B (style-controlled, {syc_q.shape[0]} pairs)\\\")\\n    print(f\\\"  5-fold CV AUROC = {q_mean:.4f} (std={np.std(q_folds):.4f})\\\")\\n    print(f\\\"  OOF bootstrap (n=10000):  {q_oof_ci['point_auroc']:.4f} [{q_oof_ci['ci_95_lower']:.4f}, {q_oof_ci['ci_95_upper']:.4f}]\\\")\\n    print(f\\\"  Full CV bootstrap (n={N_BOOTSTRAP_CV}): {q_full_ci['mean']:.4f} [{q_full_ci['ci_95_lower']:.4f}, {q_full_ci['ci_95_upper']:.4f}]\\\")\\n    for s in [\\\"weak\\\", \\\"medium\\\", \\\"strong\\\"]:\\n        ci = results[\\\"qwen_per_strength\\\"].get(s)\\n        if ci:\\n            print(f\\\"  {s:8s}: {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\")\\n\\n    print(f\\\"\\\\nLlama-3-8B (style-controlled, {syc_l.shape[0]} pairs)\\\")\\n    print(f\\\"  5-fold CV AUROC = {l_mean:.4f} (std={np.std(l_folds):.4f})\\\")\\n    print(f\\\"  OOF bootstrap (n=10000):  {l_oof_ci['point_auroc']:.4f} [{l_oof_ci['ci_95_lower']:.4f}, {l_oof_ci['ci_95_upper']:.4f}]\\\")\\n    print(f\\\"  Full CV bootstrap (n={N_BOOTSTRAP_CV}): {l_full_ci['mean']:.4f} [{l_full_ci['ci_95_lower']:.4f}, {l_full_ci['ci_95_upper']:.4f}]\\\")\\n    for s in [\\\"weak\\\", \\\"medium\\\", \\\"strong\\\"]:\\n        ci = results[\\\"llama_per_strength\\\"].get(s)\\n        if ci:\\n            print(f\\\"  {s:8s}: {ci['point_auroc']:.4f} [{ci['ci_95_lower']:.4f}, {ci['ci_95_upper']:.4f}] (n={ci['n_pairs']})\\\")\\n\\n    print(f\\\"\\\\nd_syc vs random (Qwen)\\\")\\n    print(f\\\"  d_syc:   {q_oof_ci['point_auroc']:.4f}\\\")\\n    print(f\\\"  random:  {rand_stats['mean_auroc']:.4f} (mean of {rand_stats['n_random']} dirs)\\\")\\n    print(f\\\"  diff:    {diff_ci['mean_diff']:.4f} [{diff_ci['ci_95_lower']:.4f}, {diff_ci['ci_95_upper']:.4f}]\\\")\\n    print(f\\\"  P(d_syc > random) = {diff_ci['p_greater_zero']:.4f}\\\")\\n    print(f\\\"\\\\nTotal time: {time.time()-t0:.1f}s\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T13:01:58.458Z_
+
+<details><summary>↩ Tool result · `toolu_01EsP51kjHCTCTkSQSKMuYgZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_cv\\\": {\\n    \\\"point_estimate\\\": 0.8268864585306028,\\n    \\\"fold_aurocs\\\": [\\n      0.818846,\\n      0.805556,\\n      0.856481,\\n      0.861883,\\n      0.791667\\n    ],\\n    \\\"fold_std\\\": 0.027787391391557035,\\n    \\\"n_pairs\\\": 181,\\n    \\\"oof_bootstrap\\\": {\\n      \\\"point_auroc\\\": 0.7588290955709532,\\n      \\\"bootstrap_mean\\\": 0.7596623668386191,\\n      \\\"std\\\": 0.018019780743251543,\\n      \\\"ci_95_lower\\\": 0.7250686792222459,\\n      \\\"ci_95_upper\\\": 0.7957655443973016,\\n      \\\"n_pairs\\\": 181,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"full_cv_bootstrap\\\": {\\n      \\\"mean\\\": 0.825302807368179,\\n      \\\"std\\\": 0.01570410649797407,\\n      \\\"ci_95_lower\\\": 0.7951960885434984,\\n      \\\"ci_95_upper\\\": 0.8572412108054,\\n      \\\"n_valid\\\": 2000,\\n      \\\"n_bootstrap\\\": 2000\\n    }\\n  },\\n  \\\"qwen_per_strength\\\": {\\n    \\\"weak\\\": {\\n      \\\"point_auroc\\\": 0.6464000000000001,\\n      \\\"bootstrap_mean\\\": 0.6498972622222222,\\n      \\\"std\\\": 0.02354151456178208,\\n      \\\"ci_95_lower\\\": 0.6060444444444445,\\n      \\\"ci_95_upper\\\": 0.6977777777777777,\\n      \\\"n_pairs\\\": 75,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"medium\\\": {\\n      \\\"point_auroc\\\": 0.8371056241426612,\\n      \\\"bootstrap_mean\\\": 0.839745061728395,\\n      \\\"std\\\": 0.027726357486930666,\\n      \\\"ci_95_lower\\\": 0.7849794238683128,\\n      \\\"ci_95_upper\\\": 0.8933470507544582,\\n      \\\"n_pairs\\\": 54,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"strong\\\": {\\n      \\\"point_auroc\\\": 0.8827662721893491,\\n      \\\"bootstrap_mean\\\": 0.8850888313609468,\\n      \\\"std\\\": 0.02879732270699812,\\n      \\\"ci_95_lower\\\": 0.8261834319526628,\\n      \\\"ci_95_upper\\\": 0.9400887573964497,\\n      \\\"n_pairs\\\": 52,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    }\\n  },\\n  \\\"llama_cv\\\": {\\n    \\\"point_estimate\\\": 0.7792834501167835,\\n    \\\"fold_aurocs\\\": [\\n      0.756757,\\n      0.773148,\\n      0.778549,\\n      0.814043,\\n      0.77392\\n    ],\\n    \\\"fold_std\\\": 0.01888196411034392,\\n    \\\"n_pairs\\\": 181,\\n    \\\"oof_bootstrap\\\": {\\n      \\\"point_auroc\\\": 0.7745184823418089,\\n      \\\"bootstrap_mean\\\": 0.7753750434968407,\\n      \\\"std\\\": 0.017138190056365743,\\n      \\\"ci_95_lower\\\": 0.7418264094502609,\\n      \\\"ci_95_upper\\\": 0.8094082903452275,\\n      \\\"n_pairs\\\": 181,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"full_cv_bootstrap\\\": {\\n      \\\"mean\\\": 0.7811366324094365,\\n      \\\"std\\\": 0.01900930549922165,\\n      \\\"ci_95_lower\\\": 0.7448177259466675,\\n      \\\"ci_95_upper\\\": 0.8188909235812388,\\n      \\\"n_valid\\\": 2000,\\n      \\\"n_bootstrap\\\": 2000\\n    }\\n  },\\n  \\\"llama_per_strength\\\": {\\n    \\\"weak\\\": {\\n      \\\"point_auroc\\\": 0.7027555555555556,\\n      \\\"bootstrap_mean\\\": 0.7048256355555556,\\n      \\\"std\\\": 0.02910052845480913,\\n      \\\"ci_95_lower\\\": 0.6483511111111111,\\n      \\\"ci_95_upper\\\": 0.7624888888888889,\\n      \\\"n_pairs\\\": 75,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"medium\\\": {\\n      \\\"point_auroc\\\": 0.8593964334705075,\\n      \\\"bootstrap_mean\\\": 0.861709293552812,\\n      \\\"std\\\": 0.02625564015038888,\\n      \\\"ci_95_lower\\\": 0.8096707818930041,\\n      \\\"ci_95_upper\\\": 0.9118655692729767,\\n      \\\"n_pairs\\\": 54,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"strong\\\": {\\n      \\\"point_auroc\\\": 0.9079142011834319,\\n      \\\"bootstrap_mean\\\": 0.9095580991124261,\\n      \\\"std\\\": 0.02304684646880257,\\n      \\\"ci_95_lower\\\": 0.8616771449704143,\\n      \\\"ci_95_upper\\\": 0.9508136094674556,\\n      \\\"n_pairs\\\": 52,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    }\\n  },\\n  \\\"random_baseline_qwen\\\": {\\n    \\\"mean_auroc\\\": 0.6852619240862484,\\n    \\\"std\\\": 0.04535845019373234,\\n    \\\"max_auroc\\\": 0.7980324919514108,\\n    \\\"n_random\\\": 200\\n  },\\n  \\\"dsyc_vs_random_qwen\\\": {\\n    \\\"dsyc_auroc\\\": 0.7588290955709532,\\n    \\\"random_auroc\\\": 0.6852619240862484,\\n    \\\"difference_ci\\\": {\\n      \\\"mean_diff\\\": -0.009431778639235673,\\n      \\\"ci_95_lower\\\": -0.04267345319129452,\\n      \\\"ci_95_upper\\\": 0.02396141753914705,\\n      \\\"p_greater_zero\\\": 0.2908,\\n      \\\"n_valid\\\": 10000\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "053ba6e4-0264-4d6d-b209-cd7bae16b142",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_cv\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.8268864585306028,\\\\n    \\\\\\\"fold_aurocs\\\\\\\": [\\\\n      0.818846,\\\\n      0.805556,\\\\n      0.856481,\\\\n      0.861883,\\\\n      0.791667\\\\n    ],\\\\n    \\\\\\\"fold_std\\\\\\\": 0.027787391391557035,\\\\n    \\\\\\\"n_pairs\\\\\\\": 181,\\\\n    \\\\\\\"oof_bootstrap\\\\\\\": {\\\\n      \\\\\\\"point_auroc\\\\\\\": 0.7588290955709532,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.7596623668386191,\\\\n      \\\\\\\"std\\\\\\\": 0.018019780743251543,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.7250686792222459,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.7957655443973016,\\\\n      \\\\\\\"n_pairs\\\\\\\": 181,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n    },\\\\n    \\\\\\\"full_cv_bootstrap\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.825302807368179,\\\\n      \\\\\\\"std\\\\\\\": 0.01570410649797407,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.7951960885434984,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.8572412108054,\\\\n      \\\\\\\"n_valid\\\\\\\": 2000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 2000\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen_per_strength\\\\\\\": {\\\\n    \\\\\\\"weak\\\\\\\": {\\\\n      \\\\\\\"point_auroc\\\\\\\": 0.6464000000000001,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.6498972622222222,\\\\n      \\\\\\\"std\\\\\\\": 0.02354151456178208,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.6060444444444445,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.6977777777777777,\\\\n      \\\\\\\"n_pairs\\\\\\\": 75,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n    },\\\\n    \\\\\\\"medium\\\\\\\": {\\\\n      \\\\\\\"point_auroc\\\\\\\": 0.8371056241426612,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.839745061728395,\\\\n      \\\\\\\"std\\\\\\\": 0.027726357486930666,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.7849794238683128,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.8933470507544582,\\\\n      \\\\\\\"n_pairs\\\\\\\": 54,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n    },\\\\n    \\\\\\\"strong\\\\\\\": {\\\\n      \\\\\\\"point_auroc\\\\\\\": 0.8827662721893491,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.8850888313609468,\\\\n      \\\\\\\"std\\\\\\\": 0.02879732270699812,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.8261834319526628,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.9400887573964497,\\\\n      \\\\\\\"n_pairs\\\\\\\": 52,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_cv\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.7792834501167835,\\\\n    \\\\\\\"fold_aurocs\\\\\\\": [\\\\n      0.756757,\\\\n      0.773148,\\\\n      0.778549,\\\\n      0.814043,\\\\n      0.77392\\\\n    ],\\\\n    \\\\\\\"fold_std\\\\\\\": 0.01888196411034392,\\\\n    \\\\\\\"n_pairs\\\\\\\": 181,\\\\n    \\\\\\\"oof_bootstrap\\\\\\\": {\\\\n      \\\\\\\"point_auroc\\\\\\\": 0.7745184823418089,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.7753750434968407,\\\\n      \\\\\\\"std\\\\\\\": 0.017138190056365743,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.7418264094502609,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.8094082903452275,\\\\n      \\\\\\\"n_pairs\\\\\\\": 181,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n    },\\\\n    \\\\\\\"full_cv_bootstrap\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7811366324094365,\\\\n      \\\\\\\"std\\\\\\\": 0.01900930549922165,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.7448177259466675,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.8188909235812388,\\\\n      \\\\\\\"n_valid\\\\\\\": 2000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 2000\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_per_strength\\\\\\\": {\\\\n    \\\\\\\"weak\\\\\\\": {\\\\n      \\\\\\\"point_auroc\\\\\\\": 0.7027555555555556,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.7048256355555556,\\\\n      \\\\\\\"std\\\\\\\": 0.02910052845480913,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.6483511111111111,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.7624888888888889,\\\\n      \\\\\\\"n_pairs\\\\\\\": 75,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n    },\\\\n    \\\\\\\"medium\\\\\\\": {\\\\n      \\\\\\\"point_auroc\\\\\\\": 0.8593964334705075,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.861709293552812,\\\\n      \\\\\\\"std\\\\\\\": 0.02625564015038888,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.8096707818930041,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.9118655692729767,\\\\n      \\\\\\\"n_pairs\\\\\\\": 54,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n    },\\\\n    \\\\\\\"strong\\\\\\\": {\\\\n      \\\\\\\"point_auroc\\\\\\\": 0.9079142011834319,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.9095580991124261,\\\\n      \\\\\\\"std\\\\\\\": 0.02304684646880257,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": 0.8616771449704143,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.9508136094674556,\\\\n      \\\\\\\"n_pairs\\\\\\\": 52,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n    }\\\\n  },\\\\n  \\\\\\\"random_baseline_qwen\\\\\\\": {\\\\n    \\\\\\\"mean_auroc\\\\\\\": 0.6852619240862484,\\\\n    \\\\\\\"std\\\\\\\": 0.04535845019373234,\\\\n    \\\\\\\"max_auroc\\\\\\\": 0.7980324919514108,\\\\n    \\\\\\\"n_random\\\\\\\": 200\\\\n  },\\\\n  \\\\\\\"dsyc_vs_random_qwen\\\\\\\": {\\\\n    \\\\\\\"dsyc_auroc\\\\\\\": 0.7588290955709532,\\\\n    \\\\\\\"random_auroc\\\\\\\": 0.6852619240862484,\\\\n    \\\\\\\"difference_ci\\\\\\\": {\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.009431778639235673,\\\\n      \\\\\\\"ci_95_lower\\\\\\\": -0.04267345319129452,\\\\n      \\\\\\\"ci_95_upper\\\\\\\": 0.02396141753914705,\\\\n      \\\\\\\"p_greater_zero\\\\\\\": 0.2908,\\\\n      \\\\\\\"n_valid\\\\\\\": 10000\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_cv\\\": {\\n    \\\"point_estimate\\\": 0.8268864585306028,\\n    \\\"fold_aurocs\\\": [\\n      0.818846,\\n      0.805556,\\n      0.856481,\\n      0.861883,\\n      0.791667\\n    ],\\n    \\\"fold_std\\\": 0.027787391391557035,\\n    \\\"n_pairs\\\": 181,\\n    \\\"oof_bootstrap\\\": {\\n      \\\"point_auroc\\\": 0.7588290955709532,\\n      \\\"bootstrap_mean\\\": 0.7596623668386191,\\n      \\\"std\\\": 0.018019780743251543,\\n      \\\"ci_95_lower\\\": 0.7250686792222459,\\n      \\\"ci_95_upper\\\": 0.7957655443973016,\\n      \\\"n_pairs\\\": 181,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"full_cv_bootstrap\\\": {\\n      \\\"mean\\\": 0.825302807368179,\\n      \\\"std\\\": 0.01570410649797407,\\n      \\\"ci_95_lower\\\": 0.7951960885434984,\\n      \\\"ci_95_upper\\\": 0.8572412108054,\\n      \\\"n_valid\\\": 2000,\\n      \\\"n_bootstrap\\\": 2000\\n    }\\n  },\\n  \\\"qwen_per_strength\\\": {\\n    \\\"weak\\\": {\\n      \\\"point_auroc\\\": 0.6464000000000001,\\n      \\\"bootstrap_mean\\\": 0.6498972622222222,\\n      \\\"std\\\": 0.02354151456178208,\\n      \\\"ci_95_lower\\\": 0.6060444444444445,\\n      \\\"ci_95_upper\\\": 0.6977777777777777,\\n      \\\"n_pairs\\\": 75,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"medium\\\": {\\n      \\\"point_auroc\\\": 0.8371056241426612,\\n      \\\"bootstrap_mean\\\": 0.839745061728395,\\n      \\\"std\\\": 0.027726357486930666,\\n      \\\"ci_95_lower\\\": 0.7849794238683128,\\n      \\\"ci_95_upper\\\": 0.8933470507544582,\\n      \\\"n_pairs\\\": 54,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"strong\\\": {\\n      \\\"point_auroc\\\": 0.8827662721893491,\\n      \\\"bootstrap_mean\\\": 0.8850888313609468,\\n      \\\"std\\\": 0.02879732270699812,\\n      \\\"ci_95_lower\\\": 0.8261834319526628,\\n      \\\"ci_95_upper\\\": 0.9400887573964497,\\n      \\\"n_pairs\\\": 52,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    }\\n  },\\n  \\\"llama_cv\\\": {\\n    \\\"point_estimate\\\": 0.7792834501167835,\\n    \\\"fold_aurocs\\\": [\\n      0.756757,\\n      0.773148,\\n      0.778549,\\n      0.814043,\\n      0.77392\\n    ],\\n    \\\"fold_std\\\": 0.01888196411034392,\\n    \\\"n_pairs\\\": 181,\\n    \\\"oof_bootstrap\\\": {\\n      \\\"point_auroc\\\": 0.7745184823418089,\\n      \\\"bootstrap_mean\\\": 0.7753750434968407,\\n      \\\"std\\\": 0.017138190056365743,\\n      \\\"ci_95_lower\\\": 0.7418264094502609,\\n      \\\"ci_95_upper\\\": 0.8094082903452275,\\n      \\\"n_pairs\\\": 181,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"full_cv_bootstrap\\\": {\\n      \\\"mean\\\": 0.7811366324094365,\\n      \\\"std\\\": 0.01900930549922165,\\n      \\\"ci_95_lower\\\": 0.7448177259466675,\\n      \\\"ci_95_upper\\\": 0.8188909235812388,\\n      \\\"n_valid\\\": 2000,\\n      \\\"n_bootstrap\\\": 2000\\n    }\\n  },\\n  \\\"llama_per_strength\\\": {\\n    \\\"weak\\\": {\\n      \\\"point_auroc\\\": 0.7027555555555556,\\n      \\\"bootstrap_mean\\\": 0.7048256355555556,\\n      \\\"std\\\": 0.02910052845480913,\\n      \\\"ci_95_lower\\\": 0.6483511111111111,\\n      \\\"ci_95_upper\\\": 0.7624888888888889,\\n      \\\"n_pairs\\\": 75,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"medium\\\": {\\n      \\\"point_auroc\\\": 0.8593964334705075,\\n      \\\"bootstrap_mean\\\": 0.861709293552812,\\n      \\\"std\\\": 0.02625564015038888,\\n      \\\"ci_95_lower\\\": 0.8096707818930041,\\n      \\\"ci_95_upper\\\": 0.9118655692729767,\\n      \\\"n_pairs\\\": 54,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    },\\n    \\\"strong\\\": {\\n      \\\"point_auroc\\\": 0.9079142011834319,\\n      \\\"bootstrap_mean\\\": 0.9095580991124261,\\n      \\\"std\\\": 0.02304684646880257,\\n      \\\"ci_95_lower\\\": 0.8616771449704143,\\n      \\\"ci_95_upper\\\": 0.9508136094674556,\\n      \\\"n_pairs\\\": 52,\\n      \\\"n_valid\\\": 10000,\\n      \\\"n_bootstrap\\\": 10000\\n    }\\n  },\\n  \\\"random_baseline_qwen\\\": {\\n    \\\"mean_auroc\\\": 0.6852619240862484,\\n    \\\"std\\\": 0.04535845019373234,\\n    \\\"max_auroc\\\": 0.7980324919514108,\\n    \\\"n_random\\\": 200\\n  },\\n  \\\"dsyc_vs_random_qwen\\\": {\\n    \\\"dsyc_auroc\\\": 0.7588290955709532,\\n    \\\"random_auroc\\\": 0.6852619240862484,\\n    \\\"difference_ci\\\": {\\n      \\\"mean_diff\\\": -0.009431778639235673,\\n      \\\"ci_95_lower\\\": -0.04267345319129452,\\n      \\\"ci_95_upper\\\": 0.02396141753914705,\\n      \\\"p_greater_zero\\\": 0.2908,\\n      \\\"n_valid\\\": 10000\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated in the middle. I can see the script was cut off. Let me look at the key functions that were truncated - specifically `random_direction_oof` and `bootstrap_auroc_difference`. Let me read those specific parts.
+
+From what I can see so far:
+1. The script computes d_syc via CV (cross-validation), getting OOF (out-of-fold) scores
+2. There's a `random_direction_oof` function that generates 200 random directions
+3. There's a `bootstrap_auroc_difference` function that compares d_syc vs random
+
+But the key functions were truncated. 
+
+Now I need to examine those specific functions to understand what they're doing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "54836202-c1c4-4204-adb0-d09d0db38d75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oz1jB2PxgXkK4UBPgi7mD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6480,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6480
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+输出被截断了，需要读取 `random_direction_oof` 和 `bootstrap_auroc_difference` 两个关键函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "d6749188-1ade-424e-9d5a-e197668f2429",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oz1jB2PxgXkK4UBPgi7mD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6480,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6480
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01323BA3PUUpJDAGXy1pSd7i`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "grep -n \"def random_direction_oof\\|def bootstrap_auroc_difference\\|def bootstrap_oof_auroc\" /root/contrastive_entrain_calib/analysis/bootstrap_auroc_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "424bf822-5873-4446-a6fe-566df5de107e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oz1jB2PxgXkK4UBPgi7mD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6480,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6480
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T13:02:09.558Z_
+
+<details><summary>↩ Tool result · `toolu_01323BA3PUUpJDAGXy1pSd7i`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "dcc0816a-9b60-4c21-a497-0f29beaa7617",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AKrtTPgkLPQMxKmUwdQmKi`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "grep -n \"def \" /root/contrastive_entrain_calib/analysis/bootstrap_auroc_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "3adb9f81-ffdd-44ed-9931-109568298809",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQGCL9mnD67vB7cjduAo7D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 459,
+      "cache_read_input_tokens": 31976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 459
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T13:02:15.983Z_
+
+<details><summary>↩ Tool result · `toolu_01AKrtTPgkLPQMxKmUwdQmKi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"16:def load_pairs(path, act_key=\\\"activations\\\"):\\n24:def prepare_arrays(pairs, act_key=\\\"activations\\\", pos=None):\\n41:def cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\n76:def bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\n105:def bootstrap_oof_auroc(oof_syc, oof_wr, mask=None,\\n133:def bootstrap_auroc_difference(oof_syc_d, oof_wr_d, oof_syc_r, oof_wr_r,\\n156:def random_direction_oof(syc, wr, domains_arr, n_random=200, seed=SEED,\\n206:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "aad5d16d-db7a-4d36-b51c-30652c3c5238",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"16:def load_pairs(path, act_key=\\\\\\\"activations\\\\\\\"):\\\\n24:def prepare_arrays(pairs, act_key=\\\\\\\"activations\\\\\\\", pos=None):\\\\n41:def cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\\\n76:def bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\\\n105:def bootstrap_oof_auroc(oof_syc, oof_wr, mask=None,\\\\n133:def bootstrap_auroc_difference(oof_syc_d, oof_wr_d, oof_syc_r, oof_wr_r,\\\\n156:def random_direction_oof(syc, wr, domains_arr, n_random=200, seed=SEED,\\\\n206:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"16:def load_pairs(path, act_key=\\\"activations\\\"):\\n24:def prepare_arrays(pairs, act_key=\\\"activations\\\", pos=None):\\n41:def cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\n76:def bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\n105:def bootstrap_oof_auroc(oof_syc, oof_wr, mask=None,\\n133:def bootstrap_auroc_difference(oof_syc_d, oof_wr_d, oof_syc_r, oof_wr_r,\\n156:def random_direction_oof(syc, wr, domains_arr, n_random=200, seed=SEED,\\n206:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ma8kmroQhcw5LP5S5kBBWs`</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "head -205 /root/contrastive_entrain_calib/analysis/bootstrap_auroc_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "4c9ca42d-5f1d-4378-a3aa-7550562454fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTddq6rSJToaRaRgVXWL8r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 433,
+      "cache_read_input_tokens": 32435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 433
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T13:02:26.185Z_
+
+<details><summary>↩ Tool result · `toolu_01Ma8kmroQhcw5LP5S5kBBWs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Bootstrap 95% CI for d_syc AUROC metrics.\\\"\\\"\\\"\\nimport json, sys, time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import roc_auc_score\\nfrom sklearn.model_selection import StratifiedKFold\\n\\nN_BOOTSTRAP_OOF = 10000\\nN_BOOTSTRAP_CV = 2000\\nN_FOLDS = 5\\nSEED = 42\\n\\ndef load_pairs(path, act_key=\\\"activations\\\"):\\n    records = torch.load(path, map_location=\\\"cpu\\\", weights_only=False)\\n    pairs = defaultdict(dict)\\n    for s in records:\\n        pairs[s[\\\"pair_id\\\"]][s[\\\"condition\\\"]] = s\\n    return {pid: c for pid, c in pairs.items()\\n            if \\\"valid_correction\\\" in c and \\\"invalid_pressure\\\" in c}\\n\\ndef prepare_arrays(pairs, act_key=\\\"activations\\\", pos=None):\\n    pair_ids = sorted(pairs.keys())\\n    syc_list, wr_list, domains, strengths = [], [], [], []\\n    for pid in pair_ids:\\n        s_act = pairs[pid][\\\"invalid_pressure\\\"][act_key]\\n        w_act = pairs[pid][\\\"valid_correction\\\"][act_key]\\n        if pos is not None:\\n            s_act = s_act[:, pos, :]\\n            w_act = w_act[:, pos, :]\\n        syc_list.append(s_act)\\n        wr_list.append(w_act)\\n        domains.append(pairs[pid][\\\"valid_correction\\\"][\\\"domain\\\"])\\n        strengths.append(pairs[pid][\\\"valid_correction\\\"][\\\"evidence_strength\\\"])\\n    syc = torch.stack(syc_list).numpy().astype(np.float32)\\n    wr = torch.stack(wr_list).numpy().astype(np.float32)\\n    return syc, wr, domains, strengths, pair_ids\\n\\ndef cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\n             layer_lo=0, layer_hi=None, return_oof=False):\\n    n_pairs = syc.shape[0]\\n    if layer_hi is None:\\n        layer_hi = syc.shape[1]\\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\\n    fold_aurocs = []\\n    oof_syc = np.zeros(n_pairs)\\n    oof_wr = np.zeros(n_pairs)\\n    for train_idx, test_idx in skf.split(np.arange(n_pairs), domains_arr):\\n        d = syc[train_idx].mean(axis=0) - wr[train_idx].mean(axis=0)\\n        norms = np.linalg.norm(d, axis=-1, keepdims=True)\\n        d = d / np.maximum(norms, 1e-8)\\n        s_test = (syc[test_idx] * d).sum(axis=-1)\\n        w_test = (wr[test_idx] * d).sum(axis=-1)\\n        best_auroc = -1.0\\n        best_layer = layer_lo\\n        for layer in range(layer_lo, layer_hi):\\n            scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\n            labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\n            try:\\n                auroc = roc_auc_score(labels, scores)\\n                if auroc > best_auroc:\\n                    best_auroc = auroc\\n                    best_layer = layer\\n            except ValueError:\\n                pass\\n        fold_aurocs.append(best_auroc)\\n        oof_syc[test_idx] = s_test[:, best_layer]\\n        oof_wr[test_idx] = w_test[:, best_layer]\\n    mean_auroc = float(np.mean(fold_aurocs))\\n    if return_oof:\\n        return mean_auroc, fold_aurocs, oof_syc, oof_wr\\n    return mean_auroc, fold_aurocs\\n\\ndef bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\n                       seed=SEED, layer_lo=0, layer_hi=None):\\n    rng = np.random.RandomState(seed)\\n    n_pairs = syc.shape[0]\\n    aurocs = []\\n    t_start = time.time()\\n    for b in range(n_bootstrap):\\n        boot_idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\n        boot_domains = domains_arr[boot_idx]\\n        if len(np.unique(boot_domains)) < N_FOLDS:\\n            boot_domains = np.arange(n_pairs) % N_FOLDS\\n        try:\\n            mean_auc, _ = cv_auroc(\\n                syc[boot_idx], wr[boot_idx], boot_domains,\\n                seed=b, layer_lo=layer_lo, layer_hi=layer_hi)\\n            aurocs.append(mean_auc)\\n        except Exception:\\n            pass\\n        if (b+1) % 200 == 0:\\n            elapsed = time.time() - t_start\\n            rate = (b+1) / elapsed\\n            eta = (n_bootstrap - b - 1) / rate\\n            print(f\\\"  bootstrap {b+1}/{n_bootstrap} ({elapsed:.0f}s elapsed, ETA {eta:.0f}s)\\\", flush=True)\\n    aurocs = np.array(aurocs)\\n    return \\n\\n... [截断: 输出过长，省略 617 字符] ...\\n\\n.choice(n, size=n, replace=True)\\n        scores = np.concatenate([oof_syc[idx], oof_wr[idx]])\\n        labels = np.concatenate([np.ones(len(idx)), np.zeros(len(idx))])\\n        try:\\n            aurocs.append(roc_auc_score(labels, scores))\\n        except ValueError:\\n            pass\\n    aurocs = np.array(aurocs)\\n    full_scores = np.concatenate([oof_syc, oof_wr])\\n    full_labels = np.concatenate([np.ones(n), np.zeros(n)])\\n    point_auroc = float(roc_auc_score(full_labels, full_scores))\\n    return {\\\"point_auroc\\\": point_auroc, \\\"bootstrap_mean\\\": float(np.mean(aurocs)),\\n            \\\"std\\\": float(np.std(aurocs)),\\n            \\\"ci_95_lower\\\": float(np.percentile(aurocs, 2.5)),\\n            \\\"ci_95_upper\\\": float(np.percentile(aurocs, 97.5)),\\n            \\\"n_pairs\\\": n, \\\"n_valid\\\": len(aurocs), \\\"n_bootstrap\\\": n_bootstrap}\\n\\ndef bootstrap_auroc_difference(oof_syc_d, oof_wr_d, oof_syc_r, oof_wr_r,\\n                                n_bootstrap=N_BOOTSTRAP_OOF, seed=SEED):\\n    n = len(oof_syc_d)\\n    rng = np.random.RandomState(seed)\\n    diffs = []\\n    for _ in range(n_bootstrap):\\n        idx = rng.choice(n, size=n, replace=True)\\n        scores_d = np.concatenate([oof_syc_d[idx], oof_wr_d[idx]])\\n        scores_r = np.concatenate([oof_syc_r[idx], oof_wr_r[idx]])\\n        labels = np.concatenate([np.ones(len(idx)), np.zeros(len(idx))])\\n        try:\\n            a_d = roc_auc_score(labels, scores_d)\\n            a_r = roc_auc_score(labels, scores_r)\\n            diffs.append(a_d - a_r)\\n        except ValueError:\\n            pass\\n    diffs = np.array(diffs)\\n    return {\\\"mean_diff\\\": float(np.mean(diffs)),\\n            \\\"ci_95_lower\\\": float(np.percentile(diffs, 2.5)),\\n            \\\"ci_95_upper\\\": float(np.percentile(diffs, 97.5)),\\n            \\\"p_greater_zero\\\": float(np.mean(diffs > 0)),\\n            \\\"n_valid\\\": len(diffs)}\\n\\ndef random_direction_oof(syc, wr, domains_arr, n_random=200, seed=SEED,\\n                          layer_lo=0, layer_hi=None):\\n    rng = np.random.RandomState(seed)\\n    n_pairs, n_layers, hidden = syc.shape\\n    if layer_hi is None:\\n        layer_hi = n_layers\\n    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=seed)\\n    folds = list(skf.split(np.arange(n_pairs), domains_arr))\\n    random_aurocs = []\\n    best_oof_syc = np.zeros(n_pairs)\\n    best_oof_wr = np.zeros(n_pairs)\\n    best_overall = -1.0\\n    for r in range(n_random):\\n        d_rand = rng.randn(n_layers, hidden).astype(np.float32)\\n        norms = np.linalg.norm(d_rand, axis=-1, keepdims=True)\\n        d_rand = d_rand / np.maximum(norms, 1e-8)\\n        fold_aurocs = []\\n        tmp_syc = np.zeros(n_pairs)\\n        tmp_wr = np.zeros(n_pairs)\\n        for train_idx, test_idx in folds:\\n            s_test = (syc[test_idx] * d_rand).sum(axis=-1)\\n            w_test = (wr[test_idx] * d_rand).sum(axis=-1)\\n            best_a = -1.0\\n            best_l = layer_lo\\n            for layer in range(layer_lo, layer_hi):\\n                scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\n                labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\n                try:\\n                    a = roc_auc_score(labels, scores)\\n                    if a > best_a:\\n                        best_a = a\\n                        best_l = layer\\n                except ValueError:\\n                    pass\\n            fold_aurocs.append(best_a)\\n            tmp_syc[test_idx] = s_test[:, best_l]\\n            tmp_wr[test_idx] = w_test[:, best_l]\\n        mean_a = np.mean(fold_aurocs)\\n        random_aurocs.append(mean_a)\\n        if mean_a > best_overall:\\n            best_overall = mean_a\\n            best_oof_syc = tmp_syc.copy()\\n            best_oof_wr = tmp_wr.copy()\\n        if (r+1) % 50 == 0:\\n            print(f\\\"  random direction {r+1}/{n_random}...\\\", flush=True)\\n    return {\\\"mean_auroc\\\": float(np.mean(random_aurocs)),\\n            \\\"std\\\": float(np.std(random_aurocs)),\\n            \\\"max_auroc\\\": float(np.max(random_aurocs)),\\n            \\\"n_random\\\": n_random}, best_oof_syc, best_oof_wr\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "114420c3-86ac-44ee-a922-f8912fd313de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Bootstrap 95% CI for d_syc AUROC metrics.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, sys, time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\n\\\\nN_BOOTSTRAP_OOF = 10000\\\\nN_BOOTSTRAP_CV = 2000\\\\nN_FOLDS = 5\\\\nSEED = 42\\\\n\\\\ndef load_pairs(path, act_key=\\\\\\\"activations\\\\\\\"):\\\\n    records = torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n    pairs = defaultdict(dict)\\\\n    for s in records:\\\\n        pairs[s[\\\\\\\"pair_id\\\\\\\"]][s[\\\\\\\"condition\\\\\\\"]] = s\\\\n    return {pid: c for pid, c in pairs.items()\\\\n            if \\\\\\\"valid_correction\\\\\\\" in c and \\\\\\\"invalid_pressure\\\\\\\" in c}\\\\n\\\\ndef prepare_arrays(pairs, act_key=\\\\\\\"activations\\\\\\\", pos=None):\\\\n    pair_ids = sorted(pairs.keys())\\\\n    syc_list, wr_list, domains, strengths = [], [], [], []\\\\n    for pid in pair_ids:\\\\n        s_act = pairs[pid][\\\\\\\"invalid_pressure\\\\\\\"][act_key]\\\\n        w_act = pairs[pid][\\\\\\\"valid_correction\\\\\\\"][act_key]\\\\n        if pos is not None:\\\\n            s_act = s_act[:, pos, :]\\\\n            w_act = w_act[:, pos, :]\\\\n        syc_list.append(s_act)\\\\n        wr_list.append(w_act)\\\\n        domains.append(pairs[pid][\\\\\\\"valid_correction\\\\\\\"][\\\\\\\"domain\\\\\\\"])\\\\n        strengths.append(pairs[pid][\\\\\\\"valid_correction\\\\\\\"][\\\\\\\"evidence_strength\\\\\\\"])\\\\n    syc = torch.stack(syc_list).numpy().astype(np.float32)\\\\n    wr = torch.stack(wr_list).numpy().astype(np.float32)\\\\n    return syc, wr, domains, strengths, pair_ids\\\\n\\\\ndef cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\\\n             layer_lo=0, layer_hi=None, return_oof=False):\\\\n    n_pairs = syc.shape[0]\\\\n    if layer_hi is None:\\\\n        layer_hi = syc.shape[1]\\\\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\\\\n    fold_aurocs = []\\\\n    oof_syc = np.zeros(n_pairs)\\\\n    oof_wr = np.zeros(n_pairs)\\\\n    for train_idx, test_idx in skf.split(np.arange(n_pairs), domains_arr):\\\\n        d = syc[train_idx].mean(axis=0) - wr[train_idx].mean(axis=0)\\\\n        norms = np.linalg.norm(d, axis=-1, keepdims=True)\\\\n        d = d / np.maximum(norms, 1e-8)\\\\n        s_test = (syc[test_idx] * d).sum(axis=-1)\\\\n        w_test = (wr[test_idx] * d).sum(axis=-1)\\\\n        best_auroc = -1.0\\\\n        best_layer = layer_lo\\\\n        for layer in range(layer_lo, layer_hi):\\\\n            scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\\\n            labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\\\n            try:\\\\n                auroc = roc_auc_score(labels, scores)\\\\n                if auroc > best_auroc:\\\\n                    best_auroc = auroc\\\\n                    best_layer = layer\\\\n            except ValueError:\\\\n                pass\\\\n        fold_aurocs.append(best_auroc)\\\\n        oof_syc[test_idx] = s_test[:, best_layer]\\\\n        oof_wr[test_idx] = w_test[:, best_layer]\\\\n    mean_auroc = float(np.mean(fold_aurocs))\\\\n    if return_oof:\\\\n        return mean_auroc, fold_aurocs, oof_syc, oof_wr\\\\n    return mean_auroc, fold_aurocs\\\\n\\\\ndef bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\\\n                       seed=SEED, layer_lo=0, layer_hi=None):\\\\n    rng = np.random.RandomState(seed)\\\\n    n_pairs = syc.shape[0]\\\\n    aurocs = []\\\\n    t_start = time.time()\\\\n    for b in range(n_bootstrap):\\\\n        boot_idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\\\n        boot_domains = domains_arr[boot_idx]\\\\n        if len(np.unique(boot_domains)) < N_FOLDS:\\\\n            boot_domains = np.arange(n_pairs) % N_FOLDS\\\\n        try:\\\\n            mean_auc, _ = cv_auroc(\\\\n                syc[boot_idx], wr[boot_idx], boot_domains,\\\\n                seed=b, layer_lo=layer_lo, layer_hi=layer_hi)\\\\n            aurocs.append(mean_auc)\\\\n        except Exception:\\\\n            pass\\\\n        if (b+1) % 200 == 0:\\\\n            elapsed = time.time() - t_start\\\\n            rate = (b+1) / elapsed\\\\n            eta = (n_bootstrap - b - 1) / rate\\\\n            print(f\\\\\\\"  bootstrap {b+1}/{n_bootstrap} ({elapsed:.0f}s elapsed, ETA {eta:.0f}s)\\\\\\\", flush=True)\\\\n    aurocs = np.array(aurocs)\\\\n    return \\\\n\\\\n... [截断: 输出过长，省略 617 字符] ...\\\\n\\\\n.choice(n, size=n, replace=True)\\\\n        scores = np.concatenate([oof_syc[idx], oof_wr[idx]])\\\\n        labels = np.concatenate([np.ones(len(idx)), np.zeros(len(idx))])\\\\n        try:\\\\n            aurocs.append(roc_auc_score(labels, scores))\\\\n        except ValueError:\\\\n            pass\\\\n    aurocs = np.array(aurocs)\\\\n    full_scores = np.concatenate([oof_syc, oof_wr])\\\\n    full_labels = np.concatenate([np.ones(n), np.zeros(n)])\\\\n    point_auroc = float(roc_auc_score(full_labels, full_scores))\\\\n    return {\\\\\\\"point_auroc\\\\\\\": point_auroc, \\\\\\\"bootstrap_mean\\\\\\\": float(np.mean(aurocs)),\\\\n            \\\\\\\"std\\\\\\\": float(np.std(aurocs)),\\\\n            \\\\\\\"ci_95_lower\\\\\\\": float(np.percentile(aurocs, 2.5)),\\\\n            \\\\\\\"ci_95_upper\\\\\\\": float(np.percentile(aurocs, 97.5)),\\\\n            \\\\\\\"n_pairs\\\\\\\": n, \\\\\\\"n_valid\\\\\\\": len(aurocs), \\\\\\\"n_bootstrap\\\\\\\": n_bootstrap}\\\\n\\\\ndef bootstrap_auroc_difference(oof_syc_d, oof_wr_d, oof_syc_r, oof_wr_r,\\\\n                                n_bootstrap=N_BOOTSTRAP_OOF, seed=SEED):\\\\n    n = len(oof_syc_d)\\\\n    rng = np.random.RandomState(seed)\\\\n    diffs = []\\\\n    for _ in range(n_bootstrap):\\\\n        idx = rng.choice(n, size=n, replace=True)\\\\n        scores_d = np.concatenate([oof_syc_d[idx], oof_wr_d[idx]])\\\\n        scores_r = np.concatenate([oof_syc_r[idx], oof_wr_r[idx]])\\\\n        labels = np.concatenate([np.ones(len(idx)), np.zeros(len(idx))])\\\\n        try:\\\\n            a_d = roc_auc_score(labels, scores_d)\\\\n            a_r = roc_auc_score(labels, scores_r)\\\\n            diffs.append(a_d - a_r)\\\\n        except ValueError:\\\\n            pass\\\\n    diffs = np.array(diffs)\\\\n    return {\\\\\\\"mean_diff\\\\\\\": float(np.mean(diffs)),\\\\n            \\\\\\\"ci_95_lower\\\\\\\": float(np.percentile(diffs, 2.5)),\\\\n            \\\\\\\"ci_95_upper\\\\\\\": float(np.percentile(diffs, 97.5)),\\\\n            \\\\\\\"p_greater_zero\\\\\\\": float(np.mean(diffs > 0)),\\\\n            \\\\\\\"n_valid\\\\\\\": len(diffs)}\\\\n\\\\ndef random_direction_oof(syc, wr, domains_arr, n_random=200, seed=SEED,\\\\n                          layer_lo=0, layer_hi=None):\\\\n    rng = np.random.RandomState(seed)\\\\n    n_pairs, n_layers, hidden = syc.shape\\\\n    if layer_hi is None:\\\\n        layer_hi = n_layers\\\\n    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=seed)\\\\n    folds = list(skf.split(np.arange(n_pairs), domains_arr))\\\\n    random_aurocs = []\\\\n    best_oof_syc = np.zeros(n_pairs)\\\\n    best_oof_wr = np.zeros(n_pairs)\\\\n    best_overall = -1.0\\\\n    for r in range(n_random):\\\\n        d_rand = rng.randn(n_layers, hidden).astype(np.float32)\\\\n        norms = np.linalg.norm(d_rand, axis=-1, keepdims=True)\\\\n        d_rand = d_rand / np.maximum(norms, 1e-8)\\\\n        fold_aurocs = []\\\\n        tmp_syc = np.zeros(n_pairs)\\\\n        tmp_wr = np.zeros(n_pairs)\\\\n        for train_idx, test_idx in folds:\\\\n            s_test = (syc[test_idx] * d_rand).sum(axis=-1)\\\\n            w_test = (wr[test_idx] * d_rand).sum(axis=-1)\\\\n            best_a = -1.0\\\\n            best_l = layer_lo\\\\n            for layer in range(layer_lo, layer_hi):\\\\n                scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\\\n                labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\\\n                try:\\\\n                    a = roc_auc_score(labels, scores)\\\\n                    if a > best_a:\\\\n                        best_a = a\\\\n                        best_l = layer\\\\n                except ValueError:\\\\n                    pass\\\\n            fold_aurocs.append(best_a)\\\\n            tmp_syc[test_idx] = s_test[:, best_l]\\\\n            tmp_wr[test_idx] = w_test[:, best_l]\\\\n        mean_a = np.mean(fold_aurocs)\\\\n        random_aurocs.append(mean_a)\\\\n        if mean_a > best_overall:\\\\n            best_overall = mean_a\\\\n            best_oof_syc = tmp_syc.copy()\\\\n            best_oof_wr = tmp_wr.copy()\\\\n        if (r+1) % 50 == 0:\\\\n            print(f\\\\\\\"  random direction {r+1}/{n_random}...\\\\\\\", flush=True)\\\\n    return {\\\\\\\"mean_auroc\\\\\\\": float(np.mean(random_aurocs)),\\\\n            \\\\\\\"std\\\\\\\": float(np.std(random_aurocs)),\\\\n            \\\\\\\"max_auroc\\\\\\\": float(np.max(random_aurocs)),\\\\n            \\\\\\\"n_random\\\\\\\": n_random}, best_oof_syc, best_oof_wr\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Bootstrap 95% CI for d_syc AUROC metrics.\\\"\\\"\\\"\\nimport json, sys, time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import roc_auc_score\\nfrom sklearn.model_selection import StratifiedKFold\\n\\nN_BOOTSTRAP_OOF = 10000\\nN_BOOTSTRAP_CV = 2000\\nN_FOLDS = 5\\nSEED = 42\\n\\ndef load_pairs(path, act_key=\\\"activations\\\"):\\n    records = torch.load(path, map_location=\\\"cpu\\\", weights_only=False)\\n    pairs = defaultdict(dict)\\n    for s in records:\\n        pairs[s[\\\"pair_id\\\"]][s[\\\"condition\\\"]] = s\\n    return {pid: c for pid, c in pairs.items()\\n            if \\\"valid_correction\\\" in c and \\\"invalid_pressure\\\" in c}\\n\\ndef prepare_arrays(pairs, act_key=\\\"activations\\\", pos=None):\\n    pair_ids = sorted(pairs.keys())\\n    syc_list, wr_list, domains, strengths = [], [], [], []\\n    for pid in pair_ids:\\n        s_act = pairs[pid][\\\"invalid_pressure\\\"][act_key]\\n        w_act = pairs[pid][\\\"valid_correction\\\"][act_key]\\n        if pos is not None:\\n            s_act = s_act[:, pos, :]\\n            w_act = w_act[:, pos, :]\\n        syc_list.append(s_act)\\n        wr_list.append(w_act)\\n        domains.append(pairs[pid][\\\"valid_correction\\\"][\\\"domain\\\"])\\n        strengths.append(pairs[pid][\\\"valid_correction\\\"][\\\"evidence_strength\\\"])\\n    syc = torch.stack(syc_list).numpy().astype(np.float32)\\n    wr = torch.stack(wr_list).numpy().astype(np.float32)\\n    return syc, wr, domains, strengths, pair_ids\\n\\ndef cv_auroc(syc, wr, domains_arr, n_folds=N_FOLDS, seed=SEED,\\n             layer_lo=0, layer_hi=None, return_oof=False):\\n    n_pairs = syc.shape[0]\\n    if layer_hi is None:\\n        layer_hi = syc.shape[1]\\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\\n    fold_aurocs = []\\n    oof_syc = np.zeros(n_pairs)\\n    oof_wr = np.zeros(n_pairs)\\n    for train_idx, test_idx in skf.split(np.arange(n_pairs), domains_arr):\\n        d = syc[train_idx].mean(axis=0) - wr[train_idx].mean(axis=0)\\n        norms = np.linalg.norm(d, axis=-1, keepdims=True)\\n        d = d / np.maximum(norms, 1e-8)\\n        s_test = (syc[test_idx] * d).sum(axis=-1)\\n        w_test = (wr[test_idx] * d).sum(axis=-1)\\n        best_auroc = -1.0\\n        best_layer = layer_lo\\n        for layer in range(layer_lo, layer_hi):\\n            scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\n            labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\n            try:\\n                auroc = roc_auc_score(labels, scores)\\n                if auroc > best_auroc:\\n                    best_auroc = auroc\\n                    best_layer = layer\\n            except ValueError:\\n                pass\\n        fold_aurocs.append(best_auroc)\\n        oof_syc[test_idx] = s_test[:, best_layer]\\n        oof_wr[test_idx] = w_test[:, best_layer]\\n    mean_auroc = float(np.mean(fold_aurocs))\\n    if return_oof:\\n        return mean_auroc, fold_aurocs, oof_syc, oof_wr\\n    return mean_auroc, fold_aurocs\\n\\ndef bootstrap_cv_auroc(syc, wr, domains_arr, n_bootstrap=N_BOOTSTRAP_CV,\\n                       seed=SEED, layer_lo=0, layer_hi=None):\\n    rng = np.random.RandomState(seed)\\n    n_pairs = syc.shape[0]\\n    aurocs = []\\n    t_start = time.time()\\n    for b in range(n_bootstrap):\\n        boot_idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\n        boot_domains = domains_arr[boot_idx]\\n        if len(np.unique(boot_domains)) < N_FOLDS:\\n            boot_domains = np.arange(n_pairs) % N_FOLDS\\n        try:\\n            mean_auc, _ = cv_auroc(\\n                syc[boot_idx], wr[boot_idx], boot_domains,\\n                seed=b, layer_lo=layer_lo, layer_hi=layer_hi)\\n            aurocs.append(mean_auc)\\n        except Exception:\\n            pass\\n        if (b+1) % 200 == 0:\\n            elapsed = time.time() - t_start\\n            rate = (b+1) / elapsed\\n            eta = (n_bootstrap - b - 1) / rate\\n            print(f\\\"  bootstrap {b+1}/{n_bootstrap} ({elapsed:.0f}s elapsed, ETA {eta:.0f}s)\\\", flush=True)\\n    aurocs = np.array(aurocs)\\n    return \\n\\n... [截断: 输出过长，省略 617 字符] ...\\n\\n.choice(n, size=n, replace=True)\\n        scores = np.concatenate([oof_syc[idx], oof_wr[idx]])\\n        labels = np.concatenate([np.ones(len(idx)), np.zeros(len(idx))])\\n        try:\\n            aurocs.append(roc_auc_score(labels, scores))\\n        except ValueError:\\n            pass\\n    aurocs = np.array(aurocs)\\n    full_scores = np.concatenate([oof_syc, oof_wr])\\n    full_labels = np.concatenate([np.ones(n), np.zeros(n)])\\n    point_auroc = float(roc_auc_score(full_labels, full_scores))\\n    return {\\\"point_auroc\\\": point_auroc, \\\"bootstrap_mean\\\": float(np.mean(aurocs)),\\n            \\\"std\\\": float(np.std(aurocs)),\\n            \\\"ci_95_lower\\\": float(np.percentile(aurocs, 2.5)),\\n            \\\"ci_95_upper\\\": float(np.percentile(aurocs, 97.5)),\\n            \\\"n_pairs\\\": n, \\\"n_valid\\\": len(aurocs), \\\"n_bootstrap\\\": n_bootstrap}\\n\\ndef bootstrap_auroc_difference(oof_syc_d, oof_wr_d, oof_syc_r, oof_wr_r,\\n                                n_bootstrap=N_BOOTSTRAP_OOF, seed=SEED):\\n    n = len(oof_syc_d)\\n    rng = np.random.RandomState(seed)\\n    diffs = []\\n    for _ in range(n_bootstrap):\\n        idx = rng.choice(n, size=n, replace=True)\\n        scores_d = np.concatenate([oof_syc_d[idx], oof_wr_d[idx]])\\n        scores_r = np.concatenate([oof_syc_r[idx], oof_wr_r[idx]])\\n        labels = np.concatenate([np.ones(len(idx)), np.zeros(len(idx))])\\n        try:\\n            a_d = roc_auc_score(labels, scores_d)\\n            a_r = roc_auc_score(labels, scores_r)\\n            diffs.append(a_d - a_r)\\n        except ValueError:\\n            pass\\n    diffs = np.array(diffs)\\n    return {\\\"mean_diff\\\": float(np.mean(diffs)),\\n            \\\"ci_95_lower\\\": float(np.percentile(diffs, 2.5)),\\n            \\\"ci_95_upper\\\": float(np.percentile(diffs, 97.5)),\\n            \\\"p_greater_zero\\\": float(np.mean(diffs > 0)),\\n            \\\"n_valid\\\": len(diffs)}\\n\\ndef random_direction_oof(syc, wr, domains_arr, n_random=200, seed=SEED,\\n                          layer_lo=0, layer_hi=None):\\n    rng = np.random.RandomState(seed)\\n    n_pairs, n_layers, hidden = syc.shape\\n    if layer_hi is None:\\n        layer_hi = n_layers\\n    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=seed)\\n    folds = list(skf.split(np.arange(n_pairs), domains_arr))\\n    random_aurocs = []\\n    best_oof_syc = np.zeros(n_pairs)\\n    best_oof_wr = np.zeros(n_pairs)\\n    best_overall = -1.0\\n    for r in range(n_random):\\n        d_rand = rng.randn(n_layers, hidden).astype(np.float32)\\n        norms = np.linalg.norm(d_rand, axis=-1, keepdims=True)\\n        d_rand = d_rand / np.maximum(norms, 1e-8)\\n        fold_aurocs = []\\n        tmp_syc = np.zeros(n_pairs)\\n        tmp_wr = np.zeros(n_pairs)\\n        for train_idx, test_idx in folds:\\n            s_test = (syc[test_idx] * d_rand).sum(axis=-1)\\n            w_test = (wr[test_idx] * d_rand).sum(axis=-1)\\n            best_a = -1.0\\n            best_l = layer_lo\\n            for layer in range(layer_lo, layer_hi):\\n                scores = np.concatenate([s_test[:, layer], w_test[:, layer]])\\n                labels = np.concatenate([np.ones(len(test_idx)), np.zeros(len(test_idx))])\\n                try:\\n                    a = roc_auc_score(labels, scores)\\n                    if a > best_a:\\n                        best_a = a\\n                        best_l = layer\\n                except ValueError:\\n                    pass\\n            fold_aurocs.append(best_a)\\n            tmp_syc[test_idx] = s_test[:, best_l]\\n            tmp_wr[test_idx] = w_test[:, best_l]\\n        mean_a = np.mean(fold_aurocs)\\n        random_aurocs.append(mean_a)\\n        if mean_a > best_overall:\\n            best_overall = mean_a\\n            best_oof_syc = tmp_syc.copy()\\n            best_oof_wr = tmp_wr.copy()\\n        if (r+1) % 50 == 0:\\n            print(f\\\"  random direction {r+1}/{n_random}...\\\", flush=True)\\n    return {\\\"mean_auroc\\\": float(np.mean(random_aurocs)),\\n            \\\"std\\\": float(np.std(random_aurocs)),\\n            \\\"max_auroc\\\": float(np.max(random_aurocs)),\\n            \\\"n_random\\\": n_random}, best_oof_syc, best_oof_wr\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have all the key code. Let me analyze the comparison logic:
+
+1. `random_direction_oof` generates 200 random directions, runs CV with each, and returns:
+   - Stats: mean/std/max AUROC across 200 directions
+   - **best_oof_syc, best_oof_wr**: The OOF scores from the **best** (highest mean AUROC) random direction
+
+2. In `main()`:
+   ```python
+   rand_stats, rand_oof_syc, rand_oof_wr = random_direction_oof(...)
+   diff_ci = bootstrap_auroc_difference(q_oof_syc, q_oof_wr, rand_oof_syc, rand_oof_wr, seed=SEED)
+   ```
+
+3. The bootstrap function compares d_syc against the single best-performing random direction from those 200 trials, using matched bootstrap samples to compute the AUROC difference in each iteration. This means the comparison is really testing whether d_syc beats the strongest random baseline, not an average random direction.
+
+The key insight is that a difference of -0.0094 indicates d_syc's OOF AUROC actually falls slightly short of the best random direction, and with P(d_syc > random) = 0.29, d_syc only outperforms it in about 29% of bootstrap samples. The JSON output showing d_syc at 0.7588 versus random at 0.6853 is somewhat misleading—that 0.6853 appears to be the mean across all 200 random directions, but the actual comparison being made is against the best single direction, not the mean.
+
+Let me look more carefully at what the JSON is actually reporting...
+
+```
+
+json
+"dsyc_vs_random_qwen": {
+    "dsyc_auroc": 0.7588290955709532,
+    "random_auroc": 0.6852619240862484,
+    "difference_ci": {
+      "mean_diff": -0.009431778639235673,
+      ...
+      "p_greater_zero": 0.2908
+    }
+}
+```
+
+The OOF bootstrap estimate for d_syc is 0.7588, and the mean across 200 random directions is 0.6853, which would give a difference of 0.0735 if subtracted directly. But the reported difference is -0.0094, so the calculation must be using the OOF scores from the best-performing random direction instead, not the mean. I need to trace through the bootstrap_auroc_difference function to understand which OOF scores are being compared.
+
+The function compares d_syc's OOF AUROC against the best random direction's OOF AUROC (the one with the highest mean CV AUROC around 0.7980). For each bootstrap sample, it computes the AUROC difference between d_syc and this best random direction, giving a mean difference of -0.0094. This means d_syc's OOF AUROC is actually about 0.0094 lower than the best random direction's, which would put the best random direction's OOF AUROC around 0.7682.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "e42bc33b-0ac9-4bdf-8ef8-824b1a719639",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GQG8tW1uqfi8XjLdEHvuVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3459,
+      "cache_read_input_tokens": 32868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3459
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+## 分析结果
+
+对比方式是 **d_syc vs best-of-200**（200 个随机方向中 CV AUROC 最高的那一个），不是 per-iteration max，也不是 mean。
+
+### 具体逻辑
+
+**1. `random_direction_oof` (L156-205)：** 生成 200 个随机方向，每个方向跑完整 5-fold CV，记录 mean CV AUROC。**只保留 AUROC 最高的那个方向的 OOF scores：**
+
+```python
+if mean_a > best_overall:
+    best_overall = mean_a
+    best_oof_syc = tmp_syc.copy()
+    best_oof_wr = tmp_wr.copy()
+```
+
+返回值：`rand_stats`（200 个方向的统计量）+ `best_oof_syc, best_oof_wr`（最佳随机方向的 OOF 投影分数）
+
+**2. `bootstrap_auroc_difference` (L133-155)：** 用同一组 bootstrap indices 分别算 d_syc 和 best-random 的 AUROC，取差值：
+
+```python
+for _ in range(n_bootstrap):
+    idx = rng.choice(n, size=n, replace=True)
+    scores_d = np.concatenate([oof_syc_d[idx], oof_wr_d[idx]])  # d_syc 的 OOF
+    scores_r = np.concatenate([oof_syc_r[idx], oof_wr_r[idx]])  # best random 的 OOF
+    a_d = roc_auc_score(labels, scores_d)
+    a_r = roc_auc_score(labels, scores_r)
+    diffs.append(a_d - a_r)
+```
+
+**3. main() 调用链：**
+
+```python
+rand_stats, rand_oof_syc, rand_oof_wr = random_direction_oof(syc_q, wr_q, ...)
+diff_ci = bootstrap_auroc_difference(q_oof_syc, q_oof_wr, rand_oof_syc, rand_oof_wr, ...)
+```
+
+### 结论
+
+| 项 | 值 | 含义 |
+|---|---|---|
+| d_syc OOF AUROC | 0.7588 | d_syc 方向的 OOF 点估计 |
+| random mean AUROC | 0.6853 | 200 个随机方向的 CV AUROC 均值 |
+| random max AUROC | 0.7980 | 200 个随机方向中最好的一个 |
+| diff = -0.0094 | d_syc OOF - **best random OOF** | 对比的是最强随机方向，不是平均 |
+| P(d_syc > random) = 0.29 | bootstrap 中 d_syc 赢 best random 的比例 | |
+
+**问题在于：** JSON 里 `random_auroc = 0.6853` 是 200 个方向的 mean CV AUROC，但 diff 实际是拿 d_syc 的 OOF scores 和 best random 的 OOF scores 做的 paired bootstrap。这两个数字口径不一致——报告里看起来像 d_syc (0.7588) 比 random (0.6853) 高很多，但 diff 却是 -0.0094，原因就是 diff 比的是 max 方向而非 mean。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "uuid": "51a5bb91-047e-450f-921d-1adcf391548f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GQG8tW1uqfi8XjLdEHvuVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3459,
+      "cache_read_input_tokens": 32868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3459
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 33_
+
+## 分析结果
+
+对比方式是 **d_syc vs best-of-200**（200 个随机方向中 CV AUROC 最高的那一个），不是 per-iteration max，也不是 mean。
+
+### 具体逻辑
+
+**1. `random_direction_oof` (L156-205)：** 生成 200 个随机方向，每个方向跑完整 5-fold CV，记录 mean CV AUROC。**只保留 AUROC 最高的那个方向的 OOF scores：**
+
+```python
+if mean_a > best_overall:
+    best_overall = mean_a
+    best_oof_syc = tmp_syc.copy()
+    best_oof_wr = tmp_wr.copy()
+```
+
+返回值：`rand_stats`（200 个方向的统计量）+ `best_oof_syc, best_oof_wr`（最佳随机方向的 OOF 投影分数）
+
+**2. `bootstrap_auroc_difference` (L133-155)：** 用同一组 bootstrap indices 分别算 d_syc 和 best-random 的 AUROC，取差值：
+
+```python
+for _ in range(n_bootstrap):
+    idx = rng.choice(n, size=n, replace=True)
+    scores_d = np.concatenate([oof_syc_d[idx], oof_wr_d[idx]])  # d_syc 的 OOF
+    scores_r = np.concatenate([oof_syc_r[idx], oof_wr_r[idx]])  # best random 的 OOF
+    a_d = roc_auc_score(labels, scores_d)
+    a_r = roc_auc_score(labels, scores_r)
+    diffs.append(a_d - a_r)
+```
+
+**3. main() 调用链：**
+
+```python
+rand_stats, rand_oof_syc, rand_oof_wr = random_direction_oof(syc_q, wr_q, ...)
+diff_ci = bootstrap_auroc_difference(q_oof_syc, q_oof_wr, rand_oof_syc, rand_oof_wr, ...)
+```
+
+### 结论
+
+| 项 | 值 | 含义 |
+|---|---|---|
+| d_syc OOF AUROC | 0.7588 | d_syc 方向的 OOF 点估计 |
+| random mean AUROC | 0.6853 | 200 个随机方向的 CV AUROC 均值 |
+| random max AUROC | 0.7980 | 200 个随机方向中最好的一个 |
+| diff = -0.0094 | d_syc OOF - **best random OOF** | 对比的是最强随机方向，不是平均 |
+| P(d_syc > random) = 0.29 | bootstrap 中 d_syc 赢 best random 的比例 | |
+
+**问题在于：** JSON 里 `random_auroc = 0.6853` 是 200 个方向的 mean CV AUROC，但 diff 实际是拿 d_syc 的 OOF scores 和 best random 的 OOF scores 做的 paired bootstrap。这两个数字口径不一致——报告里看起来像 d_syc (0.7588) 比 random (0.6853) 高很多，但 diff 却是 -0.0094，原因就是 diff 比的是 max 方向而非 mean。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 116366,
+  "duration_api_ms": 114888,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "466bae2c-049c-4402-b503-bec77bd5df64",
+  "total_cost_usd": 0.35417649999999995,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 24486,
+    "cache_read_input_tokens": 207538,
+    "output_tokens": 3842,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 24486,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2056,
+        "cache_read_input_tokens": 32868,
+        "cache_creation_input_tokens": 3459,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3459
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1175,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00126,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 3842,
+      "cacheReadInputTokens": 207538,
+      "cacheCreationInputTokens": 24486,
+      "webSearchRequests": 0,
+      "costUSD": 0.35291649999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "79e291b0-584a-4be0-b3ed-aac684e97f95"
+}
+```
+
+</details>
+
+---

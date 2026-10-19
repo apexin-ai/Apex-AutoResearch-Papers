@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-004",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T14:42:12.234Z",
+    "updated_at": "2026-05-19T13:00:18.034Z",
+    "hypothesis": "ACT (Activation Consistency Training) with L2 loss on hidden states at target layers between valid_correction and invalid_pressure pairs forces the model to develop consistent internal representations regardless of pressure type, reducing sycophantic capitulation by preventing the model from developing divergent processing paths for valid vs invalid user pushback.",
+    "completed_at": "2026-05-18T16:03:27.349Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "server": "westd-28034",
+      "gpu": "cuda:0",
+      "pid": 18204,
+      "command": "python training/run_exp004_act_baseline.py",
+      "data_path": "/root/contrastive_entrain_calib/data",
+      "data_count": 200,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "notes": "Reviewer核实: 实际在运行 step 220/8000, loss健康。之前registry错误标记DONE(failed)已修正。",
+      "checkpoint_path": "/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/final",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-004.log",
+      "wall_clock_seconds": 75722,
+      "gpu_hours": 21,
+      "final_step": 8000,
+      "final_loss": {
+        "sft": 0,
+        "l2": 0.00098,
+        "total": 0.0001
+      },
+      "trainable_params": "174M / 8.4B (2.09%)",
+      "checkpoints_available": "500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500,6000,6500,7000,7500,8000,final"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T13:00:18.084077+00:00",
+  "trigger": "update_registry"
+}

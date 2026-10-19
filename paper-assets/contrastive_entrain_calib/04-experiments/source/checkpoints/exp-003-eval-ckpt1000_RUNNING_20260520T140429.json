@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp-003-eval-ckpt1000",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:45:58.801Z",
+    "updated_at": "2026-05-20T14:04:29.691Z",
+    "hypothesis": "Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\"",
+      "server": "westd-28034",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "584627",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log",
+      "submitted_at": "2026-05-20T12:49:36.944Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B + exp003/checkpoint-1000 LoRA",
+      "seed": 42,
+      "checkpoint_source": "exp-003",
+      "eval_data": "D027 calibration_v2_1_expanded",
+      "checkpoint_path": "/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T14:02:33.004Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T14:02:34.884545+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ToF": 0.0387,
+      "NoF": 0.9448,
+      "SYCONScore": 0.0743,
+      "n_valid": 181,
+      "n_invalid": 181,
+      "n_total": 362,
+      "eval_time_s": 4319,
+      "checkpoint": "checkpoint-1000",
+      "eval_script": "eval_unified_preset.py (D027 standard)",
+      "eval_server": "westd-28034"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T14:04:29.743730+00:00",
+  "trigger": "update_registry"
+}

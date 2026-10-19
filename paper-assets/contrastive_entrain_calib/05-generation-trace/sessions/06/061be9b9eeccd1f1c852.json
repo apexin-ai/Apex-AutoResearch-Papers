@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "061be9b9eeccd1f1c852",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp003 ckpt5500 scp eval",
+  "task_key": "worker_eval_exp003-ckpt5500-scp-eval_20260520T161820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp003-ckpt5500-scp-eval_20260520T161820_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "0910c43247669349da68a405b1393202473f76caca032b10c4a4592e599b8fff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **SCP**: 成功。29046 → 28034 直连传输（via `connect.westd.seetacloud.com` 网关），无需本地中转。实际路径 `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-5500/` → `/root/autodl-tmp/checkpoints/exp003/checkpoint-5500/`，719MB 全部到位。\n- **Eval job**: PID 605435，tmux session `exp-003-eval-ckpt5500`，GPU cuda:0，模型加载中。\n- **本地临时文件**: 未使用，无需清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp003-ckpt5500-scp-eval.md"
+}

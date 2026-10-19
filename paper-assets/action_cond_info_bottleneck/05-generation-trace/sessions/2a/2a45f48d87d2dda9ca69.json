@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a45f48d87d2dda9ca69",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh verify v73 training",
+  "task_key": "worker_ssh_verify_v73_training_20260517T225549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_v73_training_20260517T225549_result.json",
+    "occurrence": 1,
+    "bytes": 1290,
+    "sha256": "5d5c1f7b53e0172e6556d0d7a56789288f21c3acd3615a5f090063565f3cae63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 1. GPU 占用\n| GPU | PID | 显存 | 利用率 |\n|-----|-----|------|--------|\n| 0 | 745668 | 15276MiB / 97887MiB | 99% |\n| 1 | 745746 | 13550MiB / 97887MiB | 94% |\n\n### 2. 训练日志（最后 10 行）\n\n**v7.3 Connector+LoRA** — 仍在初始化阶段，显示配置信息：\n```\n[FREEZE-MODE] connector_lora\nSteps: 20000, Batch size: 64, Device: cuda:0, dtype: bfloat16\nalpha=0.01, beta=0.01, diversity_lambda=0.1, lambda_contrastive=0.1\n```\n\n**Connector-only ablation** — 同样处于初始化阶段：\n```\n[FREEZE-MODE] connector_only\nSteps: 20000, Batch size: 64, Device: cuda:0, dtype: bfloat16\nalpha=0.01, beta=0.01, diversity_lambda=0.0, lambda_contrastive=0.0\n```\n\n### 3. 进程状态\n- PID 747024: `train_acib.py --freeze_mode connector_lora` (22.8% CPU, 活跃)\n- PID 747115-747118: `train_acib.py --freeze_mode connector_only` (37-38% CPU each, 活跃，含 DataLoader workers)\n\n### 4. 判断：训练正在正常启动中 — **是**\n\n两个训练均已成功启动，进程存活，GPU 占用正常（99%/94%）。当前处于模型加载/数据预处理阶段（启动约 1 分钟），尚未输出 training step。这是正常行为，预计再等 1-2 分钟即可看到 step 输出。无错误信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-v73-training.md"
+}

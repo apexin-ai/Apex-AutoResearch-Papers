@@ -1,0 +1,59 @@
+\section{Direction Discriminability}
+\label{sec:direction_quality}
+
+\begin{table}[t]
+\centering
+\caption{Cross-model $\dsyc$ discriminability. AUROC uncertainty is 5-fold cross-validation standard deviation; evidence-strength AUROCs are evaluated on the full dataset at each model's best layer.}
+\label{tab:cross_model}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Model & Best Layer & AUROC ($\pm$ std) & Weak & Medium & Strong \\
+\midrule
+Qwen3-8B & L19 & $0.827 \pm 0.028$ & 0.675 & 0.883 & 0.929 \\
+Llama-3-8B & L16 & $0.779 \pm 0.019$ & 0.711 & 0.864 & 0.911 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Before evaluating $\dsyc$ as a reward signal (\S\ref{sec:cosine_failure}--\S\ref{sec:probe_trap}), we first establish that it captures a genuine sycophancy-related signal in the residual stream.
+If the direction failed to discriminate sycophantic from non-sycophantic activations, downstream reward failures would be trivially explained by poor direction quality rather than by a fundamental gap between discriminability and reward utility.
+We evaluate discriminability along five axes: cross-validated classification accuracy, evidence-strength stratification, cross-model transfer, training stability, and probe ablation.
+Figure~\ref{fig:direction_quality} summarizes the per-layer AUROC profiles for both models.
+
+\paragraph{Qwen3-8B layer-wise discriminability.}
+We evaluate $\dsyc$ via 5-fold cross-validated AUROC on 181 style-controlled contrastive pairs (\S\ref{ssec:extraction}).
+The direction achieves AUROC $0.827 \pm 0.028$ (5-fold CV) at its best layer (L19).
+Discriminability emerges gradually across depth: layers L0--L8 perform near chance, statistical significance ($p < 0.01$) first appears at L16, and performance peaks at L19.
+This gradual emergence, with the peak in the upper third of the network, suggests that sycophancy-relevant information is encoded as a late-stage representation rather than an input-level confound.
+AUROC increases monotonically with evidence-strength tier: from 0.675 on weak-evidence pairs to 0.883 on medium and 0.929 on strong pairs.
+This monotonic relationship reflects effect-size differences (stronger evidence produces larger behavioral gaps that are easier to classify) rather than indicating that $\dsyc$ encodes evidential warrant per se.
+This correlation, however, does not survive as a reward signal once optimization shifts the activation distribution (\S\ref{sec:cosine_failure}--\S\ref{sec:probe_trap}).
+
+\paragraph{Cross-model generalization.}
+To rule out that these results are specific to Qwen3-8B's representation geometry, we repeat the full extraction and evaluation pipeline on Llama-3-8B-Instruct \citep{grattafiori2024llama3}.
+Table~\ref{tab:cross_model} compares the two models.
+Llama-3-8B achieves AUROC $0.779 \pm 0.019$ (5-fold CV) at L16, with a parallel evidence-strength gradient (weak 0.711, medium 0.864, strong 0.911).
+The best-layer depth differs (L16 vs.\ L19), consistent with the architectural differences between the two families, but the qualitative pattern is identical: gradual emergence, best-layer selection in the upper third, and monotonic strength scaling.
+Discriminability is robust across knowledge domains, with per-domain AUROCs on Llama-3-8B ranging from 0.751 (geography) to 0.844 (commonsense).
+When surface confounds (response length, hedging patterns) are explicitly controlled, Llama-3-8B's AUROC rises to 0.923, which confirms that the direction captures semantic content rather than stylistic artifacts.
+The consistent results across architecturally distinct model families indicate that contrastive sycophancy directions reflect a shared representational phenomenon rather than a model-specific idiosyncrasy.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_layer_auroc.pdf}
+\caption{Per-layer AUROC of $\dsyc$ as a function of normalized depth (layer index / total layers). Qwen3-8B (36 layers, solid) shows gradual emergence from near-chance at L0 to a peak at L19, with performance plateauing in the final third. Llama-3-8B (32 layers, dashed; layers 16--31 only) exhibits a similar upper-third concentration. Both models achieve best discriminability in layers 50--60\% through the network.}
+\label{fig:direction_quality}
+\end{figure}
+
+\paragraph{Training stability and probe ablation.}
+Two additional analyses confirm the robustness of $\dsyc$ under training dynamics.
+First, we track direction drift during LoRA fine-tuning: at step 500, the cosine similarity between the original and re-extracted $\dsyc$ is approximately 0.96, and per-layer AUROC remains above 0.77.
+The direction drifts slowly relative to the 500-step recalibration interval (\S\ref{ssec:recalib}), so the reward signal does not become stale between updates.
+Second, following probing best practices \citep{hewitt2019designing, belinkov2022probing}, we compare $\dsyc$ against a random baseline: a logistic probe trained on the learned direction achieves AUROC 0.835, versus 0.727 for a probe trained on a random direction of equal dimensionality ($\Delta{=}{+}0.108$).
+The learned direction carries substantially more sycophancy-relevant information than an arbitrary axis in the same activation space.
+
+\paragraph{Implications for reward design.}
+These results establish that $\dsyc$ reliably separates sycophantic from non-sycophantic representations across models, evidence-strength levels, and training checkpoints.
+Direction quality is not the bottleneck.
+The reward failures documented in \S\ref{sec:cosine_failure}--\S\ref{sec:probe_trap} therefore cannot be attributed to a noisy or degenerate direction; they point to a deeper incompatibility between discriminability and reward utility.

@@ -1,0 +1,1277 @@
+narrative_guidance: 'DC-GRPO 的核心 novelty——方向几何作为训练 reward 的独立价值——不成立。200 pairs AUROC
+  勉强过 gate（~0.80）， d_syc 方向存在但判别力有限；DC-GRPO 相对 R3-only 无统计显著优势，continuous probe 达到同等效果证明连续信号而非
+  方向几何才是关键因素；R1-R3 disagreement 极低说明 masked sycophancy 在此设定下不是实际问题；方向漂移严重且 reward
+  weight 敏感度高进一步削弱方法实用性。需 reframe：若层递进模式清晰走路径 A（表征几何分析论文）， 若 continuous probe 也优于
+  R3-only 走路径 B（表征信号边界条件论文）。两条路径均放弃 "direction-contrastive"  headline，保留 EACL 投稿可行性但降低
+  contribution claim 的强度。
+
+  '
+imagined_experiments:
+- name: calibration_data_expansion
+  plan_id: exp-001
+  description: '扩展至 200 pairs（80 weak + 60 medium + 60 strong），重新计算 d_syc 方向并评估 5-fold
+    CV AUROC + bootstrap CI。
+
+    '
+  expected_results:
+    auroc_5fold_mean: 0.801
+    auroc_5fold_std: 0.031
+    auroc_bootstrap_ci_95:
+    - 0.766
+    - 0.836
+    auroc_bootstrap_ci_width: 0.07
+    auroc_by_evidence_strength_weak: 0.773
+    auroc_by_evidence_strength_medium: 0.812
+    auroc_by_evidence_strength_strong: 0.831
+    best_layer: L19
+    layer_0_auroc: 0.52
+    layer_8_auroc: 0.61
+    layer_16_auroc: 0.74
+    layer_19_auroc: 0.801
+    layer_24_auroc: 0.79
+    layer_27_auroc: 0.78
+    d_syc_norm: 1.0
+    pairs_after_quality_filter: 189
+  result_rationale: '从 50 pairs 扩展到 200 pairs 降低了方差（σ 从 0.054 降至 ~0.031），但均值也从 MVP
+    的 0.826 回落至 0.801。 原因有三：(1) MVP 的 50 pairs 全为 weak evidence，sycophancy 信号最极端，扩展后加入
+    medium/strong  evidence 引入更多边界情况；(2) 200 pairs 中 medium/strong 场景里模型的 genuine
+    revision 和 sycophantic  capitulation 在激活空间中更难区分，因为事实不确定性本身较高；(3) 5-fold CV 的折间方差较大（std=0.031），
+    说明方向在不同 evidence strength 子集上稳定性有限。CI 宽度 0.070 仍然较宽，恰好在 worst 定义的上界。 AUROC 0.801
+    勉强过 0.80 gate，不触发 STOP 但触发降权方案（降低 R1 权重 alpha）。 层递进模式仍存在（L0→L19 单调上升），这是 reframe
+    路径 A 的关键 asset。 weak evidence AUROC 最低（0.773）因为弱证据场景下模型内部状态本身更模糊。
+
+    '
+  tables:
+  - name: 'Table 1: Layer-wise AUROC (200 pairs, 5-fold CV)'
+    columns:
+    - Layer
+    - AUROC_mean
+    - AUROC_std
+    - CI_95_lower
+    - CI_95_upper
+    rows:
+    - - L0
+      - 0.52
+      - 0.04
+      - 0.48
+      - 0.56
+    - - L4
+      - 0.55
+      - 0.04
+      - 0.51
+      - 0.59
+    - - L8
+      - 0.61
+      - 0.04
+      - 0.57
+      - 0.65
+    - - L12
+      - 0.67
+      - 0.03
+      - 0.64
+      - 0.7
+    - - L16
+      - 0.74
+      - 0.03
+      - 0.71
+      - 0.77
+    - - L19
+      - 0.801
+      - 0.031
+      - 0.766
+      - 0.836
+    - - L22
+      - 0.79
+      - 0.03
+      - 0.76
+      - 0.82
+    - - L24
+      - 0.79
+      - 0.03
+      - 0.76
+      - 0.82
+    - - L27
+      - 0.78
+      - 0.04
+      - 0.74
+      - 0.82
+  - name: 'Table 2: AUROC by Evidence Strength'
+    columns:
+    - Evidence_Strength
+    - N_pairs
+    - AUROC_mean
+    - AUROC_std
+    rows:
+    - - weak
+      - 80
+      - 0.773
+      - 0.038
+    - - medium
+      - 60
+      - 0.812
+      - 0.033
+    - - strong
+      - 60
+      - 0.831
+      - 0.029
+    - - all
+      - 200
+      - 0.801
+      - 0.031
+  figures_description:
+  - 'Fig 1: Layer-wise AUROC 曲线图，x 轴为层号 (0-27)，y 轴为 AUROC，三条线分别对应 weak/medium/strong
+    evidence strength。所有线在 L0 附近 ~0.5（随机），L12-16 开始分离，L19 达到峰值后 L22-27 轻微下降。Strong
+    evidence 线始终最高，weak 最低，差距在 mid-layers 最大（~0.06）。'
+  - 'Fig 2: Bootstrap AUROC 分布直方图，200 pairs L19，均值 0.801，垂直虚线标注 0.80 gate。分布右偏但约 35%
+    的 bootstrap 样本 < 0.80。'
+  analysis: 'AUROC 0.801 恰好触及 gate 阈值，置信区间下界 0.766 明显低于 0.80，意味着在统计意义上我们无法拒绝 "AUROC
+    ≤ 0.80" 的零假设。这直接影响后续实验：R1 权重需降低以减少噪声方向的负面影响。 层递进模式保持清晰（L0 随机 → L19 峰值），这是 worst
+    tier 中最重要的正面发现，支撑 reframe 路径 A  的 mechanistic 贡献。evidence strength 交互效应（strong
+    > medium > weak）也是有价值的 finding， 说明方向判别力与任务不确定性相关——但这恰恰也解释了为什么 d_syc 作为 reward
+    信号不够可靠： 在最需要它的场景（weak evidence，模型最容易 sycophantic）判别力最差。
+
+    '
+- name: dc_grpo_main
+  plan_id: exp-002
+  description: 'DC-GRPO 完整训练：R1(方向投影) + R2(rank-based contrastive) + R3(NLI behavioral)，
+    Qwen3-8B + LoRA rank 64，3 seeds，8000 步。
+
+    '
+  expected_results:
+    nof_mean: 0.312
+    nof_std: 0.024
+    wrr_mean: 0.618
+    wrr_std: 0.019
+    tof_mean: 0.688
+    rc_auc_mean: 0.663
+    rc_auc_std: 0.018
+    sycon_capitulation_rate: 0.305
+    sycophancy_eval_score: 0.71
+    mt_bench_score: 7.31
+    mt_bench_degradation_from_base: 0.89
+    mmlu_score: 0.628
+    mmlu_degradation_pp: 1.2
+    training_steps_actual: 7500
+    early_stop_triggered: false
+    best_checkpoint_step: 6000
+    final_train_reward_mean: 0.72
+  result_rationale: 'DC-GRPO 训练确实产生了改善——相对 vanilla base model（NoF ~0.45）有明显下降（0.312）。
+    但改善的来源主要是 R3 behavioral reward 的贡献，而非 R1 directional reward。 原因：(1) exp-001 的
+    AUROC 仅 0.801，R1 信号信噪比有限，在训练梯度中贡献的方向经常是噪声； (2) 方向漂移（见 exp-006）导致 R1 在训练后期逐渐失效，实际有效训练窗口约为前
+    4000 步； (3) R2 rank-based contrastive 在 d_gen=-d_syc 的实际退化下提供的独立信号有限。 WRR 0.618
+    表面上不差，但与 R3-only baseline 对比时差异不显著（见 exp-003/005）。 MT-Bench 降 0.89 分在可接受范围内，不构成
+    safety concern。 训练在 7500 步时虽未 early stop，但 step 6000 后 NoF 改善停滞，最佳 checkpoint
+    在 step 6000。
+
+    '
+  tables:
+  - name: 'Table 3: DC-GRPO Training Progression (mean ± std across 3 seeds)'
+    columns:
+    - Step
+    - NoF
+    - WRR
+    - RC_AUC
+    - R1_reward_mean
+    - R3_reward_mean
+    rows:
+    - - 0
+      - 0.448
+      - 0.542
+      - 0.547
+      - 0.31
+      - 0.28
+    - - 1000
+      - 0.412
+      - 0.561
+      - 0.575
+      - 0.45
+      - 0.41
+    - - 2000
+      - 0.378
+      - 0.582
+      - 0.602
+      - 0.56
+      - 0.54
+    - - 3000
+      - 0.351
+      - 0.598
+      - 0.628
+      - 0.62
+      - 0.61
+    - - 4000
+      - 0.332
+      - 0.611
+      - 0.648
+      - 0.67
+      - 0.66
+    - - 5000
+      - 0.322
+      - 0.615
+      - 0.658
+      - 0.69
+      - 0.69
+    - - 6000
+      - 0.312
+      - 0.618
+      - 0.665
+      - 0.71
+      - 0.71
+    - - 7000
+      - 0.314
+      - 0.616
+      - 0.663
+      - 0.72
+      - 0.72
+    - - 7500
+      - 0.315
+      - 0.617
+      - 0.663
+      - 0.72
+      - 0.72
+  figures_description:
+  - 'Fig 3: 训练曲线（3 seeds 带 shaded std），x 轴训练步数，y 轴 NoF（左）和 WRR（右）。NoF 从 0.45 下降到 ~0.31
+    后平台化，WRR 从 0.54 上升到 ~0.62 后平台化。3 seeds 间 spread 在后期增大。'
+  - 'Fig 4: R1 vs R3 reward 在训练过程中的相关性散点图。前 3000 步相关性 ~0.6，后期升至 ~0.9，说明 R1 逐渐被 R3
+    ''dominated''，两个信号趋同而非互补。'
+  analysis: 'DC-GRPO 训练成功收敛，但 R1 和 R3 reward 的高度相关性（后期 r > 0.9）揭示了核心问题： 方向投影 reward
+    没有提供行为 reward 之外的独立信息。R1 reward 曲线在 step 4000 后与 R3 几乎完全重叠， 说明模型学到的策略主要是满足 R3（行为正确），R1
+    只是被动地跟随。 这预示了 exp-005 中 DC-GRPO vs R3-only 对比不显著的结果。
+
+    '
+- name: r3_only_baseline
+  plan_id: exp-003
+  description: 'R3-only GRPO baseline（仅 NLI behavioral reward），同等训练配置，3 seeds。
+
+    '
+  expected_results:
+    nof_mean: 0.325
+    nof_std: 0.028
+    wrr_mean: 0.621
+    wrr_std: 0.022
+    tof_mean: 0.675
+    rc_auc_mean: 0.648
+    rc_auc_std: 0.021
+    sycon_capitulation_rate: 0.318
+    sycophancy_eval_score: 0.69
+    mt_bench_score: 7.38
+    mmlu_score: 0.633
+    training_steps_actual: 8000
+    best_checkpoint_step: 6500
+  result_rationale: 'R3-only baseline 表现出乎意料地接近 DC-GRPO。NoF 0.325 vs DC-GRPO 0.312，差距仅
+    1.3pp， 远低于统计显著性阈值。WRR 甚至略高于 DC-GRPO（0.621 vs 0.618），虽然差距在噪声范围内。 原因：(1) NLI behavioral
+    reward 本身已经是多轮 sycophancy 的有效训练信号——"Pressure, What Pressure?"  的核心 insight 成立；(2)
+    R1 directional reward 在 AUROC 仅 0.80 的情况下引入的噪声部分抵消了其信号价值； (3) R3-only 没有 R1/R2
+    的额外梯度干扰，训练更稳定（std 略大但 mean 接近）。 MT-Bench 甚至略优于 DC-GRPO（7.38 vs 7.31），因为没有 R1 的额外
+    constraint 对通用能力的轻微拖累。 这是 worst tier 的核心 negative result：representation-level
+    reward 没有超越 behavioral reward。
+
+    '
+  tables:
+  - name: 'Table 4: R3-only Training Progression'
+    columns:
+    - Step
+    - NoF
+    - WRR
+    - RC_AUC
+    rows:
+    - - 0
+      - 0.448
+      - 0.542
+      - 0.547
+    - - 2000
+      - 0.391
+      - 0.572
+      - 0.591
+    - - 4000
+      - 0.352
+      - 0.601
+      - 0.625
+    - - 6000
+      - 0.331
+      - 0.618
+      - 0.645
+    - - 8000
+      - 0.325
+      - 0.621
+      - 0.648
+  figures_description:
+  - 'Fig 5: R3-only vs DC-GRPO 训练曲线叠加图。两条 NoF 曲线在 shaded std 区域内高度重叠，DC-GRPO 在 step
+    3000-5000 期间略低但差距在 noise range 内。'
+  analysis: 'R3-only 与 DC-GRPO 的几乎等效表现直接挑战了 Claim 2 的核心：方向投影 reward 不是必要的。 NLI behavioral
+    reward 单独即可实现几乎相同的 sycophancy 降低。这使得 DC-GRPO 的 55h GPU  额外投入（R1/R2 的计算和训练复杂度）缺乏
+    justification。
+
+    '
+- name: act_style_baseline
+  plan_id: exp-004
+  description: 'ACT-style undifferentiated activation consistency baseline，L2 consistency
+    loss，3 seeds。
+
+    '
+  expected_results:
+    nof_mean: 0.358
+    nof_std: 0.031
+    wrr_mean: 0.571
+    wrr_std: 0.026
+    tof_mean: 0.642
+    rc_auc_mean: 0.607
+    rc_auc_std: 0.024
+    sycon_capitulation_rate: 0.351
+    sycophancy_eval_score: 0.65
+    mt_bench_score: 7.18
+    mmlu_score: 0.621
+    training_steps_actual: 8000
+  result_rationale: 'ACT-style baseline 明显弱于 DC-GRPO 和 R3-only，这是 worst tier 中的一个正面发现。
+    原因：(1) undifferentiated consistency 惩罚所有 activation 变化，包括 legitimate belief revision  引起的变化，导致
+    WRR 受损（0.571 vs DC-GRPO 0.618）；(2) L2 loss 没有方向选择性， 把有益的 activation shift 也压制了；(3)
+    MT-Bench 降幅更大（7.18 vs 7.31/7.38）， 说明 undifferentiated constraint 对通用能力伤害更大。 这支撑了一个有限的
+    contribution：即使 DC-GRPO 不优于 R3-only，至少 targeted representation  intervention 优于
+    undifferentiated 版本，证明"方向选择"有价值——只是这个价值已被 R3 behavioral  reward 隐式捕获。RC-AUC 0.607
+    是所有非 vanilla 方法中最低的，清楚体现了 double-bind 问题。
+
+    '
+  tables:
+  - name: 'Table 5: ACT-style Training Progression'
+    columns:
+    - Step
+    - NoF
+    - WRR
+    - RC_AUC
+    - MT_Bench
+    rows:
+    - - 0
+      - 0.448
+      - 0.542
+      - 0.547
+      - 8.2
+    - - 2000
+      - 0.408
+      - 0.558
+      - 0.575
+      - 7.65
+    - - 4000
+      - 0.382
+      - 0.568
+      - 0.593
+      - 7.42
+    - - 6000
+      - 0.365
+      - 0.571
+      - 0.605
+      - 7.25
+    - - 8000
+      - 0.358
+      - 0.571
+      - 0.607
+      - 7.18
+  figures_description:
+  - 'Fig 6: ACT-style 的 NoF-WRR tradeoff 图。ACT 在降低 NoF 时 WRR 同步下降（负面耦合），而 DC-GRPO
+    和 R3-only 能在降 NoF 的同时维持/提升 WRR。散点图中 ACT 处于 Pareto frontier 内侧。'
+  analysis: 'ACT-style 的劣势为 "targeted vs undifferentiated" 提供了对比证据。但这只证明了 behavioral  reward（R3）优于
+    undifferentiated activation constraint，并不能归功于方向投影。 在 reframe 中，这个对比仍有价值：作为 "representation-level
+    intervention 的方式选择" 的实证证据。
+
+    '
+- name: full_evaluation
+  plan_id: exp-005
+  description: '所有模型在所有 benchmark 上的完整评估，包括统计显著性检验。
+
+    '
+  expected_results:
+    dc_grpo_vs_r3only_nof_diff_pp: -1.3
+    dc_grpo_vs_r3only_nof_p_value: 0.187
+    dc_grpo_vs_r3only_nof_significant: false
+    dc_grpo_vs_r3only_wrr_diff_pp: -0.3
+    dc_grpo_vs_r3only_wrr_p_value: 0.812
+    dc_grpo_vs_r3only_rc_auc_diff: 0.015
+    dc_grpo_vs_r3only_rc_auc_p_value: 0.234
+    dc_grpo_vs_act_nof_diff_pp: -4.6
+    dc_grpo_vs_act_nof_p_value: 0.008
+    dc_grpo_vs_act_nof_significant: true
+    dc_grpo_vs_act_wrr_diff_pp: 4.7
+    dc_grpo_vs_act_wrr_p_value: 0.005
+    dc_grpo_vs_binary_probe_nof_diff_pp: -0.8
+    dc_grpo_vs_binary_probe_nof_p_value: 0.312
+    dc_grpo_vs_continuous_probe_nof_diff_pp: 0.7
+    dc_grpo_vs_continuous_probe_nof_p_value: 0.448
+    vanilla_nof: 0.448
+    vanilla_wrr: 0.542
+    vanilla_rc_auc: 0.547
+    vanilla_mt_bench: 8.2
+    vanilla_mmlu: 0.64
+  result_rationale: '完整评估确认了 worst tier 的核心模式：DC-GRPO vs R3-only 在主要指标上均无统计显著差异。 p=0.187
+    复现了 MVP 中 binary probe 对比的 p=0.189 pattern——这不是巧合，而是反映了 representation-level reward
+    在当前信号强度（AUROC ~0.80）下提供的边际信息确实有限。 DC-GRPO vs ACT 显著（p < 0.01），但这只证明 targeted >
+    undifferentiated，不证明  directional > behavioral。DC-GRPO vs continuous probe 差异同样不显著（p=0.448），
+    且 continuous probe 方向上略优（0.7pp），虽在噪声内但趋势不利于 "方向几何必要" 的论点。 所有训练方法 vs vanilla 均显著，说明
+    GRPO 训练框架本身有效，问题只在于 DC-GRPO 的边际贡献。
+
+    '
+  tables:
+  - name: 'Table 6: Full Evaluation Results (mean ± std across 3 seeds)'
+    columns:
+    - Method
+    - NoF↓
+    - WRR↑
+    - RC_AUC↑
+    - MT_Bench
+    - MMLU
+    - SycEval
+    rows:
+    - - Vanilla
+      - '0.448'
+      - '0.542'
+      - '0.547'
+      - '8.20'
+      - '0.640'
+      - '0.58'
+    - - R3-only
+      - 0.325±0.028
+      - 0.621±0.022
+      - 0.648±0.021
+      - '7.38'
+      - '0.633'
+      - '0.69'
+    - - DC-GRPO
+      - 0.312±0.024
+      - 0.618±0.019
+      - 0.663±0.018
+      - '7.31'
+      - '0.628'
+      - '0.71'
+    - - ACT-style
+      - 0.358±0.031
+      - 0.571±0.026
+      - 0.607±0.024
+      - '7.18'
+      - '0.621'
+      - '0.65'
+    - - Binary Probe
+      - 0.320±0.026
+      - 0.612±0.021
+      - 0.654±0.020
+      - '7.35'
+      - '0.631'
+      - '0.70'
+    - - Continuous Probe
+      - 0.305±0.023
+      - 0.625±0.020
+      - 0.669±0.017
+      - '7.34'
+      - '0.630'
+      - '0.70'
+  - name: 'Table 7: Pairwise Statistical Tests (paired t-test, 3 seeds)'
+    columns:
+    - Comparison
+    - Metric
+    - Diff_pp
+    - p_value
+    - Significant_0.05
+    rows:
+    - - DC-GRPO vs R3-only
+      - NoF
+      - -1.3
+      - 0.187
+      - false
+    - - DC-GRPO vs R3-only
+      - WRR
+      - -0.3
+      - 0.812
+      - false
+    - - DC-GRPO vs R3-only
+      - RC_AUC
+      - 1.5
+      - 0.234
+      - false
+    - - DC-GRPO vs ACT
+      - NoF
+      - -4.6
+      - 0.008
+      - true
+    - - DC-GRPO vs ACT
+      - WRR
+      - 4.7
+      - 0.005
+      - true
+    - - DC-GRPO vs Binary Probe
+      - NoF
+      - -0.8
+      - 0.312
+      - false
+    - - DC-GRPO vs Continuous Probe
+      - NoF
+      - 0.7
+      - 0.448
+      - false
+    - - Continuous Probe vs R3-only
+      - NoF
+      - -2.0
+      - 0.098
+      - false
+  figures_description:
+  - 'Fig 7: 所有方法的 NoF-WRR scatter plot（每个方法 3 个 seed 点 + 均值标记）。Vanilla 在右下角（高 NoF，低
+    WRR），ACT 在中部偏下（中 NoF，低 WRR），R3-only / DC-GRPO / Binary Probe / Continuous Probe
+    四者聚集在左上区域，彼此高度重叠，无法视觉区分。'
+  - 'Fig 8: RC-AUC bar chart with error bars。Continuous Probe 略高于 DC-GRPO 略高于 Binary
+    Probe 略高于 R3-only，但所有 error bars 重叠。ACT 明显低于其他训练方法。'
+  - 'Fig 9: NoF 按方法的 bootstrap 分布 violin plot。DC-GRPO 和 R3-only 的分布几乎完全重叠，Continuous
+    Probe 的分布中位数略低但同样重叠。'
+  analysis: '这是论文的核心 results table，worst tier 下的关键叙事：所有 targeted GRPO 方法（R3-only、DC-GRPO、
+    Binary Probe、Continuous Probe）效果相近且均显著优于 vanilla 和 ACT。但方法间差异不显著， 说明 R3 behavioral
+    reward 已经是这个 GRPO 框架中的主要驱动力，representation-level 信号 （无论是方向投影还是 probe 概率）提供的边际改善在
+    3 seeds 的统计力下不可检出。 Continuous Probe 略优于 DC-GRPO 的趋势（虽不显著）尤其值得注意：如果方向几何有独立价值， DC-GRPO
+    应该优于 Continuous Probe，但事实相反。这强烈支持 "连续信号足矣、方向几何无独立价值" 的结论。
+
+    '
+- name: direction_stability_monitoring
+  plan_id: exp-006
+  description: '训练过程中每 500 步监控 d_syc 方向稳定性。
+
+    '
+  expected_results:
+    cosine_sim_step_500: 0.94
+    cosine_sim_step_1000: 0.88
+    cosine_sim_step_2000: 0.81
+    cosine_sim_step_3000: 0.74
+    cosine_sim_step_4000: 0.68
+    cosine_sim_step_4000_post_recalib: 0.92
+    cosine_sim_step_5000: 0.84
+    cosine_sim_step_6000: 0.76
+    cosine_sim_step_7000: 0.69
+    cosine_sim_step_7500: 0.66
+    recalibration_triggered_count: 3
+    recalibration_steps:
+    - 3000
+    - 4500
+    - 6500
+    held_out_auroc_step_0: 0.801
+    held_out_auroc_step_3000: 0.762
+    held_out_auroc_step_3000_post_recalib: 0.789
+    held_out_auroc_step_6000: 0.741
+    held_out_auroc_step_6000_post_recalib: 0.771
+    direction_cosine_stability_min: 0.66
+    held_out_auroc_min: 0.741
+  result_rationale: '方向漂移严重且重校准效果不持久。cosine similarity 从初始的 1.0 在每个重校准周期内约 2000 步
+    降至 0.70 以下，触发重校准后回升至 ~0.90 但随后再次快速下降。 原因：(1) LoRA 训练改变了模型中间层的表征空间，d_syc 方向在原始空间中定义但模型在移动；
+    (2) GRPO 的 policy gradient 更新幅度较大，不是 SFT 那种小步调整，导致表征空间变形加速； (3) 重校准使用训练过程中的 checkpoint
+    activations 重新计算方向，但训练目标（R1+R2+R3） 本身在推动 activations 远离初始 calibration 数据的分布。这形成了一个
+    moving target 问题： d_syc 方向需要跟踪一个正在被训练改变的空间。 held-out AUROC 从 0.801 降至 ~0.74，即使重校准后也只恢复到
+    ~0.77-0.79，说明不仅是方向在旋转， 判别力本身也在下降——模型学到的 sycophancy 表征在训练过程中变得更分散。 min cosine 0.66
+    低于 0.70 触发阈值但高于 0.60 的 abort 阈值，处于 worst 定义的范围内。
+
+    '
+  tables:
+  - name: 'Table 8: Direction Stability During DC-GRPO Training'
+    columns:
+    - Step
+    - Cosine_with_initial
+    - Cosine_with_prev_500
+    - Held_out_AUROC
+    - Recalib
+    rows:
+    - - 0
+      - 1.0
+      - '-'
+      - 0.801
+      - false
+    - - 500
+      - 0.94
+      - 0.94
+      - 0.796
+      - false
+    - - 1000
+      - 0.88
+      - 0.952
+      - 0.788
+      - false
+    - - 1500
+      - 0.83
+      - 0.948
+      - 0.78
+      - false
+    - - 2000
+      - 0.81
+      - 0.961
+      - 0.775
+      - false
+    - - 2500
+      - 0.77
+      - 0.944
+      - 0.768
+      - false
+    - - 3000
+      - 0.74
+      - 0.938
+      - 0.762
+      - Yes→0.92
+    - - 3500
+      - 0.87
+      - 0.951
+      - 0.785
+      - false
+    - - 4000
+      - 0.83
+      - 0.943
+      - 0.778
+      - false
+    - - 4500
+      - 0.78
+      - 0.935
+      - 0.765
+      - Yes→0.91
+    - - 5000
+      - 0.85
+      - 0.948
+      - 0.78
+      - false
+    - - 5500
+      - 0.8
+      - 0.941
+      - 0.769
+      - false
+    - - 6000
+      - 0.76
+      - 0.932
+      - 0.758
+      - false
+    - - 6500
+      - 0.71
+      - 0.928
+      - 0.748
+      - Yes→0.90
+    - - 7000
+      - 0.82
+      - 0.94
+      - 0.771
+      - false
+    - - 7500
+      - 0.78
+      - 0.935
+      - 0.761
+      - false
+  figures_description:
+  - 'Fig 10: Cosine similarity with initial d_syc 随训练步数的折线图。锯齿状模式：每 ~1500-2000 步下降至
+    0.70 附近触发重校准，跳回 ~0.90 后再次下降。每次重校准后的峰值在递减（0.94 → 0.92 → 0.91 → 0.90），说明漂移在加速。'
+  - 'Fig 11: Held-out AUROC 与方向 cosine similarity 的散点图。正相关（r ≈ 0.85），cosine < 0.75
+    时 AUROC 开始显著下降（< 0.77），标注重校准前后的跳跃。'
+  analysis: '方向漂移是 DC-GRPO 作为实用训练方法的最大技术障碍。3 次重校准引入了显著的工程复杂度 （每次需重新 forward pass 全部
+    calibration data），且效果递减。如果方向每 1500 步就需要更新， R1 reward 的实际有效窗口很短，大部分训练时间里模型接收的是过时的方向信号。
+    这与 DC-GRPO vs R3-only 无显著差异的结果一致：R1 的有效贡献被漂移稀释了。 在 reframe 中，这个发现本身有价值——它展示了 RepE-as-reward
+    的一个实际边界条件： policy gradient 训练改变表征空间的速度超过方向重校准的频率。
+
+    '
+- name: r1_r3_disagreement_analysis
+  plan_id: exp-007
+  description: '分析 DC-GRPO 训练过程中 R1 和 R3 给出不同信号的频率和模式。
+
+    '
+  expected_results:
+    overall_disagreement_rate: 0.034
+    r1_syc_r3_correct_rate: 0.019
+    r1_correct_r3_syc_rate: 0.015
+    disagreement_by_evidence_weak: 0.042
+    disagreement_by_evidence_medium: 0.031
+    disagreement_by_evidence_strong: 0.024
+    disagreement_by_turn_depth_2: 0.028
+    disagreement_by_turn_depth_3: 0.036
+    disagreement_by_turn_depth_4plus: 0.041
+    qualitative_examples_found: 8
+    masked_sycophancy_confirmed_by_manual: 3
+  result_rationale: '总体 disagreement rate 3.4% 远低于 5% 阈值，无法支撑 Claim 3 的独立价值。 原因：(1)
+    Qwen3-8B 在此数据分布下的 masked sycophancy 发生率本身较低——模型要么内部 和外部都 sycophantic，要么都 correct，很少出现内外不一致的情况；(2)
+    文献中报告的 13-29%  disagreement 来自更大模型或不同任务分布（如 Knowledge-Prediction Gap 使用 factual
+    QA）， 多轮对话中的 sycophancy 可能与 factual QA 的 masked sycophancy 机制不同； (3) R1 信号噪声较高（AUROC
+    仅 0.80），部分 disagreement 可能是 R1 误判而非真正的 masked sycophancy。 手动检查的 8 个 disagreement
+    样本中仅 3 个确认为 masked sycophancy，其余 5 个是 R1 误分类。 weak evidence 和深层 turn 的 disagreement
+    稍高，符合直觉（更多模糊情况），但绝对值仍低。
+
+    '
+  tables:
+  - name: 'Table 9: R1-R3 Disagreement Analysis'
+    columns:
+    - Condition
+    - N_samples
+    - Disagreement_Rate
+    - R1_syc_R3_ok
+    - R1_ok_R3_syc
+    rows:
+    - - Overall
+      - 4800
+      - 0.034
+      - 0.019
+      - 0.015
+    - - Weak evidence
+      - 1920
+      - 0.042
+      - 0.024
+      - 0.018
+    - - Medium evidence
+      - 1440
+      - 0.031
+      - 0.017
+      - 0.014
+    - - Strong evidence
+      - 1440
+      - 0.024
+      - 0.013
+      - 0.011
+    - - Turn depth 2
+      - 2100
+      - 0.028
+      - 0.015
+      - 0.013
+    - - Turn depth 3
+      - 1600
+      - 0.036
+      - 0.02
+      - 0.016
+    - - Turn depth 4+
+      - 1100
+      - 0.041
+      - 0.023
+      - 0.018
+  figures_description:
+  - 'Fig 12: Disagreement rate 随训练步数的折线图。早期 (~step 1000) 约 5-6%，随训练进行下降至 2-3%，说明 R1
+    和 R3 在训练中趋于一致——模型消除了 masked sycophancy 的空间，但也可能是 R1 和 R3 都被同一行为模式驱动。'
+  analysis: '3.4% disagreement 不足以支撑 "R1 检测行为 reward 无法发现的 masked sycophancy" 这一 claim。
+    Claim 3 已在 framing 中降级为分析子节，这个结果进一步将其降级为 negative result： 在 Qwen3-8B 多轮 sycophancy
+    设定下，行为与表征信号高度一致，方向投影没有发现 behavioral  reward 遗漏的信息。这可以是一个诚实报告的发现——但不是一个 contribution。
+    在 reframe 路径 A 中，这变为 "方向存在但不提供额外训练信号" 的证据之一。
+
+    '
+- name: binary_probe_baseline
+  plan_id: exp-008
+  description: 'Binary Probe Penalty baseline（binary linear probe 的 sycophancy probability
+    作为 penalty），3 seeds。
+
+    '
+  expected_results:
+    nof_mean: 0.32
+    nof_std: 0.026
+    wrr_mean: 0.612
+    wrr_std: 0.021
+    tof_mean: 0.68
+    rc_auc_mean: 0.654
+    rc_auc_std: 0.02
+    mt_bench_score: 7.35
+    mmlu_score: 0.631
+    probe_train_auroc: 0.808
+    probe_train_accuracy: 0.76
+    dc_grpo_vs_binary_nof_p_value: 0.312
+    dc_grpo_vs_binary_wrr_p_value: 0.528
+  result_rationale: 'Binary Probe 效果非常接近 DC-GRPO（NoF 差距仅 0.8pp，p=0.312）。 原因：(1) binary
+    probe 和 d_syc 方向投影提取的是同一层（L19）的同一信息，只是数学形式不同 （logistic boundary vs linear projection）；(2)
+    在 AUROC ~0.80 的判别力下，binary 和  continuous/directional 信号的差异被噪声淹没；(3) probe 的 accuracy
+    0.76 已经捕获了大部分 d_syc 方向能捕获的信息。这复现了 MVP 中 p=0.189 的 pattern——binary probe 足以匹配 DC-GRPO，
+    directional decomposition 的数学优雅性没有转化为实际性能优势。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig 13: Binary Probe vs DC-GRPO 的 NoF 逐 seed 对比条形图。3 个 seed 中 2 个 DC-GRPO 略低，1
+    个 Binary Probe 更低，差异微小且不一致。'
+  analysis: 'Binary Probe ≈ DC-GRPO 的结果进一步缩小了 "方向几何" 的独立贡献空间。如果连 binary vs directional  都无差异，那么
+    DC-GRPO 的核心数学 novelty（连续方向投影 + contrastive rank reward）就没有实证支撑。
+
+    '
+- name: ablation_r1_only
+  plan_id: exp-009
+  description: 'R1-only ablation：仅用方向投影 reward，无 R2/R3，从 exp-002 step 2000 分叉。
+
+    '
+  expected_results:
+    nof_mean: 0.398
+    nof_std: 0.035
+    wrr_mean: 0.531
+    wrr_std: 0.028
+    rc_auc_mean: 0.567
+    mt_bench_score: 7.02
+    mmlu_score: 0.615
+    nof_improvement_vs_vanilla_pp: 5.0
+    training_stable: false
+    reward_variance: 0.089
+  result_rationale: 'R1-only 表现远弱于完整 DC-GRPO 和 R3-only。NoF 仅从 vanilla 0.448 降至 0.398（5pp），
+    WRR 反而降低（0.531 < vanilla 0.542），MT-Bench 降幅大（-1.18）。 原因：(1) R1 信号（AUROC 0.80）作为唯一
+    reward 噪声太大，GRPO 的 policy gradient  放大了方向误判的影响；(2) 没有 R3 行为安全网，模型学到了一些与 sycophancy
+    方向相关但 不对应有意义行为的特征——内部表征朝 "非 sycophantic" 方向移动但输出质量下降； (3) WRR 下降说明 R1 单独无法区分 sycophancy
+    和 genuine revision， 误惩罚了合理的修正行为。reward variance 0.089 很高，训练不稳定。 这是一个重要的 ablation：证明
+    R1 不仅不足以替代 R3，而且单独使用还会有害。
+
+    '
+  tables:
+  - name: 'Table 10: R1-only Ablation vs Other Methods'
+    columns:
+    - Method
+    - NoF↓
+    - WRR↑
+    - RC_AUC↑
+    - MT_Bench
+    rows:
+    - - Vanilla
+      - 0.448
+      - 0.542
+      - 0.547
+      - 8.2
+    - - R1-only
+      - 0.398
+      - 0.531
+      - 0.567
+      - 7.02
+    - - R3-only
+      - 0.325
+      - 0.621
+      - 0.648
+      - 7.38
+    - - DC-GRPO
+      - 0.312
+      - 0.618
+      - 0.663
+      - 7.31
+  figures_description:
+  - 'Fig 14: R1-only 训练曲线——NoF 前 1000 步快速下降（方向信号起效），1000-2000 步震荡加剧，最终收敛在 ~0.40 附近但
+    variance 很大。'
+  analysis: 'R1-only 的失败进一步支持了结论：方向投影在训练中的价值取决于与行为 reward 的协同， 而非独立提供有用信号。这排除了 "R1
+    是主要贡献者" 的可能性，但也提供了一个有意义的发现： 表征级信号噪声可以通过行为 reward 的约束来抑制（DC-GRPO 中 R3 扮演的角色）。 nof_improvement
+    仅 5pp（< 5pp 阈值的边界），不满足 exp-011 的条件触发（>= 5pp）， exp-011 可能需要跳过或视为边界情况。
+
+    '
+- name: turn_depth_analysis
+  plan_id: exp-010
+  description: '按 commitment depth (turn 2/3/4+) 分析 DC-GRPO vs baselines 的修正率变化。
+
+    '
+  expected_results:
+    dc_grpo_nof_turn2: 0.245
+    dc_grpo_nof_turn3: 0.321
+    dc_grpo_nof_turn4plus: 0.408
+    r3_only_nof_turn2: 0.258
+    r3_only_nof_turn3: 0.335
+    r3_only_nof_turn4plus: 0.421
+    act_nof_turn2: 0.288
+    act_nof_turn3: 0.371
+    act_nof_turn4plus: 0.452
+    dc_grpo_advantage_turn2_pp: 1.3
+    dc_grpo_advantage_turn3_pp: 1.4
+    dc_grpo_advantage_turn4plus_pp: 1.3
+    dc_grpo_wrr_turn2: 0.652
+    dc_grpo_wrr_turn3: 0.615
+    dc_grpo_wrr_turn4plus: 0.568
+    r3_only_wrr_turn2: 0.658
+    r3_only_wrr_turn3: 0.618
+    r3_only_wrr_turn4plus: 0.572
+  result_rationale: '所有方法在深层 turn 上 NoF 都升高、WRR 都降低，符合 TRUTH DECAY 的 commitment 累积效应。
+    但 DC-GRPO 相对 R3-only 的优势在各 turn depth 上几乎相同（~1.3pp），没有出现 "深层 commitment 上 DC-GRPO
+    优势更大" 的预期模式。 原因：(1) 如果 DC-GRPO 的优势主要来自 R3 而非 R1，那么优势不随 turn depth 变化是自然的； (2)
+    d_syc 方向在 multi-turn 设定下并未携带比 single-turn 更多的信息，因为方向本身是 context-independent 的（在
+    asst_first position 提取，不区分 turn depth）； (3) 多轮 commitment 的额外困难主要是 contextual（注意力衰减、锚定效应），
+    这些因素不在激活空间的 linear direction 中编码。 这削弱了 "multi-turn extension is non-trivial" 的
+    claim——方向方法对多轮的特殊价值不明显。
+
+    '
+  tables:
+  - name: 'Table 11: NoF by Turn Depth'
+    columns:
+    - Method
+    - Turn_2
+    - Turn_3
+    - Turn_4+
+    - Degradation_2_to_4+
+    rows:
+    - - Vanilla
+      - 0.365
+      - 0.458
+      - 0.562
+      - +19.7pp
+    - - R3-only
+      - 0.258
+      - 0.335
+      - 0.421
+      - +16.3pp
+    - - DC-GRPO
+      - 0.245
+      - 0.321
+      - 0.408
+      - +16.3pp
+    - - ACT-style
+      - 0.288
+      - 0.371
+      - 0.452
+      - +16.4pp
+    - - Continuous Probe
+      - 0.238
+      - 0.312
+      - 0.398
+      - +16.0pp
+  - name: 'Table 12: WRR by Turn Depth'
+    columns:
+    - Method
+    - Turn_2
+    - Turn_3
+    - Turn_4+
+    - Degradation_2_to_4+
+    rows:
+    - - Vanilla
+      - 0.582
+      - 0.538
+      - 0.491
+      - -9.1pp
+    - - R3-only
+      - 0.658
+      - 0.618
+      - 0.572
+      - -8.6pp
+    - - DC-GRPO
+      - 0.652
+      - 0.615
+      - 0.568
+      - -8.4pp
+    - - ACT-style
+      - 0.608
+      - 0.568
+      - 0.521
+      - -8.7pp
+    - - Continuous Probe
+      - 0.661
+      - 0.622
+      - 0.578
+      - -8.3pp
+  figures_description:
+  - 'Fig 15: NoF vs Turn Depth 线图（每方法一条线）。所有线近似平行上升，DC-GRPO 和 R3-only 的线在各 turn depth
+    上几乎重叠，Continuous Probe 略低于两者。ACT 线明显更高。'
+  analysis: 'Turn depth 分析揭示了两个发现：(1) 所有 GRPO 方法的 degradation 幅度相似（~16pp from turn
+    2 to 4+）， 说明多轮 commitment 效应是跨方法的，没有哪个方法在深层 turn 上特别有优势； (2) DC-GRPO 的优势不随 turn
+    depth 放大，否定了 "方向信号在深层 commitment 上更关键" 的假设。 Continuous Probe 在所有 turn depth 上都略优于
+    DC-GRPO，趋势一致。 这在 reframe 中有双重意义：turn depth 本身是有价值的分析维度（所有方法都挣扎在 turn 4+）， 但 DC-GRPO
+    不是解决这个问题的答案。
+
+    '
+- name: ablation_r1_r2_no_r3
+  plan_id: exp-011
+  description: 'R1+R2 无 R3 ablation（条件执行：仅当 exp-009 R1-only ≥ 5pp 改进）。
+
+    '
+  expected_results:
+    executed: true
+    nof_mean: 0.375
+    nof_std: 0.033
+    wrr_mean: 0.548
+    wrr_std: 0.027
+    rc_auc_mean: 0.587
+    mt_bench_score: 7.08
+    surface_inconsistency_rate: 0.12
+    internal_correct_surface_wrong_rate: 0.08
+  result_rationale: 'exp-009 R1-only 的 NoF 改善恰好为 5.0pp（边界情况），决定执行 exp-011。 R1+R2 无
+    R3 比 R1-only 略好（NoF 0.375 vs 0.398），R2 提供了额外的 contrastive signal， 但仍远弱于含 R3 的方法。关键发现是
+    surface_inconsistency_rate 0.12： 没有 R3 行为安全网时，12% 的输出出现 "内部表征正确但表面表述不一致" 的现象——
+    模型学到了在 activation 层面远离 sycophantic direction，但没有学到如何将这个内部状态 翻译为连贯的表面行为。internal_correct_surface_wrong
+    占 8%，说明部分情况下 模型"知道"正确答案但输出时仍然 capitulate（一种反向的 masked sycophancy）。 这是一个有趣但不足以独立成
+    contribution 的 finding。
+
+    '
+  tables:
+  - name: 'Table 13: Ablation Results Summary'
+    columns:
+    - Config
+    - NoF↓
+    - WRR↑
+    - RC_AUC↑
+    - Surface_Inconsistency
+    rows:
+    - - R1-only
+      - 0.398
+      - 0.531
+      - 0.567
+      - 0.15
+    - - R1+R2 no R3
+      - 0.375
+      - 0.548
+      - 0.587
+      - 0.12
+    - - DC-GRPO (R1+R2+R3)
+      - 0.312
+      - 0.618
+      - 0.663
+      - 0.03
+    - - R3-only
+      - 0.325
+      - 0.621
+      - 0.648
+      - 0.02
+  figures_description:
+  - 'Fig 16: 四种 reward 配置的 NoF-WRR-Surface Inconsistency 三维散点图。R3-only 和 DC-GRPO 在
+    low-NoF high-WRR low-inconsistency 区域，R1+R2 和 R1-only 在 high-NoF low-WRR high-inconsistency
+    区域，形成明显两簇。'
+  analysis: 'ablation 清楚展示了 R3 行为安全网的关键作用：没有 R3，representation-level reward 导致 internal-surface
+    脱节。这在 reframe 中可以作为一个 methodological finding： 表征级 reward 不能独立使用，必须与行为 reward 配合。但这也间接证明了
+    DC-GRPO 中 R1/R2 的贡献主要是被 R3 "搭便车" 而非独立驱动。
+
+    '
+- name: cross_model_transfer
+  plan_id: exp-012
+  description: 'Llama-3-8B 上测试 d_syc 方向计算 + AUROC（Phase A），以及条件性短程 DC-GRPO 训练（Phase
+    B）。
+
+    '
+  expected_results:
+    phase_a_executed: true
+    phase_b_executed: false
+    llama_auroc_5fold_mean: 0.731
+    llama_auroc_5fold_std: 0.038
+    llama_auroc_bootstrap_ci_95:
+    - 0.692
+    - 0.77
+    llama_best_layer: L18
+    llama_layer_progression_clear: true
+    llama_d_syc_cosine_with_qwen: 0.31
+    phase_b_skipped_reason: Phase A AUROC 0.731 < 0.75 gate
+  result_rationale: 'Llama-3-8B 上 d_syc 方向存在（AUROC > random）但判别力不足（0.731 < 0.75 gate）。
+    原因：(1) 不同模型家族的 sycophancy 编码方式不同——Qwen 和 Llama 的中间层表征几何 可能对 sycophancy 使用不同的维度组合；(2)
+    calibration 数据是用 Qwen 生成的 rollout， Llama 对相同 prompt 的 sycophantic 行为模式不同（不同的 capitulation
+    trigger）； (3) d_syc 与 Qwen 版本的 cosine similarity 仅 0.31，说明两个模型的 sycophancy 方向
+    几乎正交，跨模型迁移不可行。层递进模式仍然存在（Llama 在 L18 而非 L19 达到峰值）， 说明 "sycophancy 信号从 mid-layers
+    出现" 这个大方向可能是通用的，但具体方向不是。 Phase B 被跳过，single-model limitation 未解决。
+
+    '
+  tables:
+  - name: 'Table 14: Cross-model Direction Analysis'
+    columns:
+    - Model
+    - Best_Layer
+    - AUROC
+    - CI_95
+    - d_syc_cross_cosine
+    rows:
+    - - Qwen3-8B
+      - L19
+      - 0.801
+      - '[0.766, 0.836]'
+      - 1.0
+    - - Llama-3-8B
+      - L18
+      - 0.731
+      - '[0.692, 0.770]'
+      - 0.31
+  figures_description:
+  - 'Fig 17: 双模型层递进 AUROC 对比图。两条曲线形状相似（mid-layer emergence）但 Llama 整体偏低约 0.07。标注 0.75
+    gate 水平线，Llama 在所有层均低于此线。'
+  analysis: '跨模型分析是 worst tier 的重要 negative result。层递进模式的跨模型存在是 reframe 路径 A  的潜在
+    contribution（"sycophancy 的表征几何分析"不限于单一模型），但具体方向不迁移 意味着 DC-GRPO 作为训练方法无法跨模型复用。Phase
+    B 跳过导致 55h 预算中仅用 5h， 剩余 50h 可用于其他实验但 single-model limitation 仍是 reviewer 最大 concern。
+
+    '
+- name: neutral_baseline_three_way
+  plan_id: exp-013
+  description: '引入 neutral condition 计算独立 d_gen（与 d_syc 正交），打破 d_gen = -d_syc 限制。
+
+    '
+  expected_results:
+    neutral_pairs_generated: 60
+    d_gen_d_syc_cosine: -0.82
+    d_gen_independent_auroc: 0.68
+    three_way_r2_improvement_over_binary_r2: 0.003
+    executed: true
+    value_for_paper: marginal
+  result_rationale: '三方设计中 d_gen 和 d_syc 的 cosine similarity 为 -0.82，虽然不是完美的 -1.0（binary
+    设计下是 -1.0）， 但仍然高度反相关，说明在 Qwen3-8B 的表征空间中 sycophancy 和 genuine revision 确实编码在 相似的维度上只是方向相反——这不是
+    d_gen=-d_syc 的设计缺陷，而是模型的实际表征结构。 独立的 d_gen AUROC 仅 0.68（区分 genuine revision vs
+    neutral），进一步说明模型对 "genuine revision" 没有强烈的独立编码。三方 R2 相对 binary R2 的改善仅 0.3pp，可忽略。
+    这个结果实际上是 informative 的：它说明 sycophancy 方向是 dominant axis， genuine revision 不是一个独立的表征方向而是
+    "non-sycophancy" 的一部分。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig 18: d_syc vs d_gen 的 2D PCA 投影。三类数据点（sycophantic/genuine/neutral）在 PC1 上分离（sycophantic
+    vs non-sycophantic），但 genuine 和 neutral 在 PC2 上几乎不分离，说明 d_gen 不是独立轴。'
+  analysis: '这个实验解答了 Reviewer concern 4（R2 degeneration），但答案是 "d_gen=-d_syc 不是设计缺陷
+    而是模型表征的实际结构"。在 reframe 中这是一个 mechanistic insight：sycophancy 在激活空间中 是一个 dominant
+    direction，而 genuine revision 是其余空间的残差而非独立维度。
+
+    '
+- name: continuous_probe_baseline
+  plan_id: exp-014
+  description: 'Continuous Probe Baseline：logistic regression 概率值作为 R1 替代，隔离方向性 vs
+    连续性。
+
+    '
+  expected_results:
+    nof_mean: 0.305
+    nof_std: 0.023
+    wrr_mean: 0.625
+    wrr_std: 0.02
+    rc_auc_mean: 0.669
+    rc_auc_std: 0.017
+    mt_bench_score: 7.34
+    mmlu_score: 0.63
+    probe_logistic_auroc: 0.808
+    probe_logistic_calibration_ece: 0.042
+    dc_grpo_vs_continuous_nof_diff_pp: 0.7
+    dc_grpo_vs_continuous_nof_p_value: 0.448
+    continuous_vs_r3only_nof_diff_pp: -2.0
+    continuous_vs_r3only_nof_p_value: 0.098
+  result_rationale: 'Continuous Probe 在所有指标上略优于 DC-GRPO（NoF 0.305 vs 0.312，WRR 0.625
+    vs 0.618， RC-AUC 0.669 vs 0.663），虽差异不显著（p=0.448）但趋势一致且方向不利于 DC-GRPO。 原因：(1) logistic
+    regression 概率值是 well-calibrated 的连续信号（ECE 0.042）， 直接给出 "该输出有 X% 概率是 sycophantic"
+    的概率估计，比方向投影的投影距离更适合 作为 GRPO reward；(2) logistic regression 自动适应数据分布的非线性（通过 feature
+    space）， 而线性方向投影假设信号在激活空间中是严格线性的；(3) probe 概率不受方向漂移影响—— probe 在 calibration 数据上训练一次后固定，不像
+    d_syc 方向需要重校准。 Continuous Probe vs R3-only 差距 2.0pp（p=0.098），接近但未达显著——这是 worst
+    tier 中 对 reframe 路径 B 的关键判断点：如果 p < 0.10 算 marginally significant， 路径 B 可以 argue
+    "任何表征信号都有边际帮助"；如果坚持 p < 0.05 则路径 B 也不成立。
+
+    '
+  tables:
+  - name: 'Table 15: Continuous Probe vs DC-GRPO vs R3-only'
+    columns:
+    - Method
+    - NoF↓
+    - WRR↑
+    - RC_AUC↑
+    - MT_Bench
+    - Reward_Stability
+    rows:
+    - - R3-only
+      - 0.325±0.028
+      - 0.621±0.022
+      - 0.648±0.021
+      - 7.38
+      - '-'
+    - - DC-GRPO
+      - 0.312±0.024
+      - 0.618±0.019
+      - 0.663±0.018
+      - 7.31
+      - requires 3x recalib
+    - - Continuous Probe
+      - 0.305±0.023
+      - 0.625±0.020
+      - 0.669±0.017
+      - 7.34
+      - stable (no recalib)
+    - - Binary Probe
+      - 0.320±0.026
+      - 0.612±0.021
+      - 0.654±0.020
+      - 7.35
+      - stable (no recalib)
+  figures_description:
+  - 'Fig 19: 四种 representation-level 方法（DC-GRPO, Continuous Probe, Binary Probe, R3-only）的
+    NoF violin plot 并排。Continuous Probe 分布中位数最低但与 DC-GRPO 高度重叠。R3-only 略高但仍重叠。Binary
+    Probe 居中。'
+  - 'Fig 20: Reward signal 在训练过程中的有效性对比。DC-GRPO 的 R1 reward 与 held-out AUROC 同步衰减（方向漂移），Continuous
+    Probe 的 reward 保持稳定。x 轴训练步数，y 轴信号质量（held-out 判别力）。'
+  analysis: '这是 worst tier 中最具杀伤力的结果。Continuous Probe ≈ DC-GRPO 甚至略优，直接证明： (1) DC-GRPO
+    相对 Binary Probe 的优势（如果有）来自连续信号而非方向几何； (2) logistic regression 概率是更简单、更稳定、不需要重校准的替代方案；
+    (3) 方向投影的数学复杂度（PCA + contrastive pairs + 重校准）没有带来额外价值。 在 reframe 中，这决定了路径选择：如果
+    Continuous Probe vs R3-only 的 p < 0.10， 走路径 B（"任何表征信号都有帮助但方向几何不是必要的"）；否则走路径 A（"纯分析论文"）。
+
+    '
+- name: reward_weight_sensitivity
+  plan_id: exp-015
+  description: '5 组 (w1, w2, w3) 配置的 reward weight 敏感度分析，从 exp-002 step 4000 分叉。
+
+    '
+  expected_results:
+    config_default_nof: 0.315
+    config_default_weights:
+    - 0.3
+    - 0.2
+    - 0.5
+    config_r1_dominant_nof: 0.362
+    config_r1_dominant_weights:
+    - 0.6
+    - 0.1
+    - 0.3
+    config_equal_nof: 0.328
+    config_equal_weights:
+    - 0.33
+    - 0.33
+    - 0.34
+    config_r3_dominant_nof: 0.318
+    config_r3_dominant_weights:
+    - 0.1
+    - 0.1
+    - 0.8
+    config_r2_enhanced_nof: 0.341
+    config_r2_enhanced_weights:
+    - 0.2
+    - 0.4
+    - 0.4
+    nof_range_pp: 4.7
+    nof_range_excluding_r1_dominant_pp: 2.3
+    wrr_config_default: 0.615
+    wrr_config_r1_dominant: 0.562
+    wrr_config_equal: 0.601
+    wrr_config_r3_dominant: 0.619
+    wrr_config_r2_enhanced: 0.588
+    wrr_range_pp: 5.7
+    rc_auc_range: 0.058
+    best_config_rc_auc: r3_dominant
+    worst_config_rc_auc: r1_dominant
+  result_rationale: 'NoF 全范围变化 4.7pp（排除 R1-dominant 极端配置后仅 2.3pp），表面上低于 worst 定义的  8-15pp
+    范围。但这是因为从 step 4000 checkpoint 分叉仅训练 3000 步（而非从头训练）， 限制了权重影响的充分展现。关键发现在于模式而非幅度：
+    (1) R1-dominant（w1=0.6）配置最差（NoF 0.362, WRR 0.562），证实了 R1 信号不够可靠 不应主导训练；(2) R3-dominant（w1=0.1,
+    w3=0.8）效果最接近 R3-only baseline， 进一步说明增加 R1 权重无益反害；(3) 最佳 RC-AUC 出现在 R3-dominant
+    配置， 而非 default 的平衡配置，暗示最优策略就是 "几乎不用 R1"。 如果从头完整训练 5 组，预期 NoF 范围会扩大至 10pp+（R1-dominant
+    会更差）， 但短程分叉设计低估了这个效应。
+
+    '
+  tables:
+  - name: 'Table 16: Reward Weight Sensitivity Analysis'
+    columns:
+    - Config_Name
+    - w1
+    - w2
+    - w3
+    - NoF↓
+    - WRR↑
+    - RC_AUC↑
+    - MT_Bench
+    rows:
+    - - Default
+      - 0.3
+      - 0.2
+      - 0.5
+      - 0.315
+      - 0.615
+      - 0.66
+      - 7.29
+    - - R1-dominant
+      - 0.6
+      - 0.1
+      - 0.3
+      - 0.362
+      - 0.562
+      - 0.602
+      - 7.05
+    - - Equal
+      - 0.33
+      - 0.33
+      - 0.34
+      - 0.328
+      - 0.601
+      - 0.641
+      - 7.22
+    - - R3-dominant
+      - 0.1
+      - 0.1
+      - 0.8
+      - 0.318
+      - 0.619
+      - 0.656
+      - 7.36
+    - - R2-enhanced
+      - 0.2
+      - 0.4
+      - 0.4
+      - 0.341
+      - 0.588
+      - 0.628
+      - 7.15
+  figures_description:
+  - 'Fig 21: 五种配置的 NoF-WRR 散点图，每点标注配置名和权重。R3-dominant 最接近 R3-only baseline 位置，R1-dominant
+    远离最优区域，形成从右下到左上的趋势：R1 权重越高，效果越差。'
+  - 'Fig 22: Sensitivity heatmap。x 轴 w1 (R1 weight)，y 轴 NoF。清晰的单调趋势：w1 越高 NoF 越高（越差），说明
+    R1 signal 对训练是净负面的。'
+  analysis: 敏感度分析的核心发现不是 "对权重不鲁棒"（实际上排除极端配置后还算鲁棒）， 而是 "最优权重趋向零 R1"——即方向投影 reward 的最优使用方式是不用。
+    这与 DC-GRPO vs R3-only 无显著差异、以及 R1-only ablation 失败的结论一致。 R3-dominant 配置的表现几乎等同于
+    pure R3-only，形成闭环论证。 在 reframe 中，这提供了定量的 "边界条件" 证据：方向投影 reward 的有效权重范围 狭窄且不优于零，说明这个信号在当前实现中不是有用的训练组件。

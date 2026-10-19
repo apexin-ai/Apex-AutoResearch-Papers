@@ -1,0 +1,27 @@
+{
+  "exp_id": "acib-mvp0-libero-v1",
+  "project": "action_cond_info_bottleneck",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:56:09.023Z",
+    "updated_at": "2026-05-15T17:47:01.908Z",
+    "spec": {
+      "command": "python3 /root/acib/scripts/train_acib_libero.py --model_id /root/autodl-tmp/models/smolvla_base --data_root /root/autodl-tmp/libero_clean --hidden_dim 64 --alpha 0.01 --beta 0.1 --mode soft --steps 5000 --batch_size 8 --lr 1e-4 --warmup_steps 500 --save_freq 2500 --gpu 0 --output_dir /root/autodl-tmp/outputs/acib_libero_v1",
+      "server": "westb-13953",
+      "data_path": "/root/autodl-tmp/libero_clean",
+      "data_count": 8072,
+      "model_name": "smolvla_base + ACIB-SOFT (h64, a=0.01, b=0.1)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/outputs/acib_libero_v1/checkpoint-5000",
+      "log_path": "/tmp/train_acib.log",
+      "notes": "Scorer collapsed to trivial solution (mean≈0.8, sparsity=0) due to β=0.1 too strong. batch_size=8 too small (4.8% VRAM). NOT valid for MVP."
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-15T17:47:01.908Z"
+  },
+  "timestamp": "2026-05-15T17:47:01.920622+00:00",
+  "trigger": "update_registry"
+}

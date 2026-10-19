@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0806ac69179ab7eb84aa",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper writing disc",
+  "task_key": "worker_paper_writing_disc_20260520T144740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_disc_20260520T144740_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "81a638b2e9841005c914214575e4bbd4f9a709f59f721b6009b134a741d756b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion section written to `docs/paper/sections/discussion.tex`. ~680 words across 4 paragraphs:\n\n1. **Unified root cause** — cosine too punitive, probe too permissive; both are dual symptoms of $d_{\\text{syc}}$ conflating target and complement. Cross-model (Llama-3-8B AUROC 0.779) confirms generalizability of the gap.\n2. **GRPO stubbornness** — Table 2 comparing all 6 methods. R3-only GRPO trajectory (0.074→0.114 over 5000 steps) stays below vanilla 0.134. ActAdd also included.\n3. **Why SFT succeeds** — ACT non-monotonic trajectory (dip at ckpt-4000, recovery at ckpt-6000/8000). Dense per-token loss breaks stubbornness equilibria that sparse reward reinforces. 16x efficiency over GRPO.\n4. **Future directions** — condition-aware rewards, hybrid SFT+RL, process reward models, generalization beyond sycophancy."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-disc.md"
+}

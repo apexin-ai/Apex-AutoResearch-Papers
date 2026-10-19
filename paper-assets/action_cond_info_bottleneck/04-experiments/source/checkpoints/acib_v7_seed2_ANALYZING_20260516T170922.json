@@ -1,0 +1,50 @@
+{
+  "exp_id": "acib_v7_seed2",
+  "project": "action_cond_info_bottleneck",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:44:57.051Z",
+    "updated_at": "2026-05-16T17:09:22.869Z",
+    "spec": {
+      "command": "python3 -u scripts/train_acib.py --model_id lerobot/smolvla_libero --dataset_id lerobot/libero --data_root /root/autodl-tmp/libero_dataset --hidden_dim 64 --alpha 0.01 --beta 0.01 --beta_warmup_steps 1000 --mode soft --condition_source language --conditioning_mode concat --lambda_contrastive 0.1 --diversity_lambda 0.1 --lambda_ent 0.0 --steps 20000 --batch_size 64 --lr 1e-4 --warmup_steps 1000 --grad_clip 1.0 --save_freq 5000 --dtype bfloat16 --gpu 0 --output_dir /root/acib/outputs/acib_v7_seed2 --seed 1337",
+      "server": "westb-13953",
+      "gpu": "cuda:1",
+      "pid": "27427",
+      "log_path": "~/runs/action_cond_info_bottleneck/acib_v7_seed2.log",
+      "submitted_at": "2026-05-16T13:44:57.009Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 1337,
+      "model_name": "lerobot/smolvla_libero",
+      "data_path": "/root/autodl-tmp/libero_dataset",
+      "data_count": 273465,
+      "checkpoint_path": "/root/acib/outputs/acib_v7_seed2",
+      "contrastive_loss": "log-barrier: -log(1-cos+eps)",
+      "lambda_contrastive": 0.1,
+      "conditioning_mode": "concat",
+      "checkpoint_source": "lerobot/smolvla_libero (pretrained, training run not eval)",
+      "eval_data": "N/A — training run, parent field is research lineage not eval relationship"
+    },
+    "hypothesis": "v7 log-barrier contrastive seed 2 复现：验证 language-conditioned scoring 的稳定性。seed1 step-5000 Probe A cos [0.476, 0.894]，seed2 应收敛到相似范围。",
+    "parent": "acib_v7_contrastive",
+    "notes": "Status check 2026-05-16T22:03Z: PID 27427 alive (18min elapsed), step 1600/20000 (8%), GPU 1 util 100%, 16218MiB VRAM, 1.6 steps/s. Loss decreasing (1.22→0.30), β warmup started at step 1000 (now 0.006). IB term dropping as expected. ETA ~3.2h remaining.",
+    "reproduce": {
+      "finished_at": "2026-05-16T17:04:11.715Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T17:04:12.907308+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T17:09:22.905588+00:00",
+  "trigger": "update_registry"
+}

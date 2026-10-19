@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01fff8c917530df51a55",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code eval pipeline verify",
+  "task_key": "worker_code_eval-pipeline-verify_20260518T215238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-pipeline-verify_20260518T215238_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "e284d381c5027326e2191186035a67aa3f848e3e8eeecfe43c48010495aa60c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 步验证完成：\n\n| 步骤 | 状态 |\n|------|------|\n| 1. 文件存在性 | nli_utils.py, eval_pipeline.py, run_exp016_actadd_steering.py 均在服务器 |\n| 2. eval_pipeline.py 同步 | 70585 bytes, MD5 `50b89348...` 匹配 |\n| 3. Import 测试 | nli_utils + eval_pipeline 均正常导入，BENCHMARK_REGISTRY 包含 4 个 benchmark |\n| 4. argparse --help | 正常输出所有参数 |\n| 5. NLI 动态索引 | `entailment_idx=1`, `contradiction_idx=0`，与 `id2label={0:'contradiction', 1:'entailment', 2:'neutral'}` 一致 |\n\nNLI label fix 验证通过，动态索引替代硬编码 `probs[2]` 工作正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline-verify.md"
+}

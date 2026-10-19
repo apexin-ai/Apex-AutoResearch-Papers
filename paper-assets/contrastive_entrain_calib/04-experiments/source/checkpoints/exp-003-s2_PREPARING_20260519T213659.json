@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp-003-s2",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:29:19.747Z",
+    "updated_at": "2026-05-19T21:36:59.756Z",
+    "hypothesis": "R3-only GRPO baseline (seed 2): training with only the external DeBERTa reward (r3_weight=1.0, r1=r2=0) provides a lower bound for ablation, isolating the contribution of contrastive direction-based rewards (R1+R2). Seed 2 (seed=43) verifies reproducibility of seed 1 results.",
+    "spec": {
+      "command": "bash -c \"cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python training/run_exp003s2_r3only.py\"",
+      "server": "westd-29046",
+      "gpu": "cuda:0",
+      "pid": "226076",
+      "log_path": "~/runs/contrastive_entrain_calib/exp-003-s2.log",
+      "submitted_at": "2026-05-19T21:17:01.631Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 43,
+      "checkpoint_source": "training_from_base",
+      "eval_data": "N/A",
+      "notes": "R3-only GRPO seed 2 (seed=43). Reproducibility run of exp-003 (seed=42). Killed at step 12 to free GPU for exp-008v3 checkpoint eval, will restart after eval."
+    }
+  },
+  "timestamp": "2026-05-19T21:36:59.788393+00:00",
+  "trigger": "update_registry"
+}

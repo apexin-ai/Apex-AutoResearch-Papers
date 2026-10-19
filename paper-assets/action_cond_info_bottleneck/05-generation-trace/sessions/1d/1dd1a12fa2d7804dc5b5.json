@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dd1a12fa2d7804dc5b5",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ops fix seed2 stale log",
+  "task_key": "worker_ops_fix-seed2-stale-log_20260516T032439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-seed2-stale-log_20260516T032439_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "9b0f0240203aa8c78461c654791c74b56a5a3265633bce19f4297876ef6bb89a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n- **EXIT_CODE sentinel**: log 文件中**已经不存在** `EXIT_CODE` 行（grep 无匹配）。无需清理。\n- **PID 744808**: 存活，运行时间 7h40m，在 cuda:0 上训练 `acib_v5_div_reg_seed2`\n- **训练进度**: Step 300/20000（~1.5%），速度 ~0.8-0.9 steps/s\n- **log 文件**: 24 行，最后一条是 Step 300 的输出\n\nlog 文件是干净的，不需要任何操作。注意训练用的是 `cuda:0`（不是任务描述中的 `cuda:1`），`--gpu 0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-seed2-stale-log.md"
+}

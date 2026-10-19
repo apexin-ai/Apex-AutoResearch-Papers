@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "id": "0669a91485183f4252af",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval gs8 ckpt500 scp and eval",
+  "task_key": "worker_eval_gs8-ckpt500-scp-and-eval_20260522T195237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-scp-and-eval_20260522T195237.log",
+    "occurrence": 1,
+    "bytes": 1933932,
+    "sha256": "8de11cd1986c1b36280c8db98fdc0830c935910d36bb548335549b4530173cb6"
+  },
+  "statistics": {
+    "messages": 1968,
+    "user_turns": 2,
+    "tool_calls": 939,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 2,
+      "assistant": 71,
+      "tool_call": 939,
+      "tool_result": 939,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "0669a91485183f4252af-part-0001.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1309,
+      "chunks": [
+        {
+          "path": "0669a91485183f4252af-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "0669a91485183f4252af-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669a91485183f4252af-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669a91485183f4252af-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669a91485183f4252af-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669a91485183f4252af-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669a91485183f4252af-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669a91485183f4252af-part-0008.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 631,
+      "chunks": [
+        {
+          "path": "0669a91485183f4252af-part-0008.json",
+          "message_count": 103
+        },
+        {
+          "path": "0669a91485183f4252af-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669a91485183f4252af-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669a91485183f4252af-part-0011.json",
+          "message_count": 168
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-gs8-ckpt500-scp-and-eval.md"
+}

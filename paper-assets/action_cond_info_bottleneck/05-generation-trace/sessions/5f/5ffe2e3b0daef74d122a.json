@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ffe2e3b0daef74d122a",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code prepare passthrough eval",
+  "task_key": "worker_code_prepare-passthrough-eval_20260516T194703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-passthrough-eval_20260516T194703_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "9db7396e242dbef1b12f579ce98097cd648277ac96c7a6ed1b9a1a1808701d20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修改文件：** `/root/acib/scripts/eval_acib.py`\n\n**实现方式：** 利用已有的 `ACIBPolicy.toggle_acib(enabled)` 机制。当 `acib_enabled=False` 时，`_connector_hook` 直接 return 原始 output，不经过 scorer reweighting。无需 monkey-patch scorer forward，零额外代码侵入。\n\n**改动点：**\n- L58-59: 添加 `--disable_scoring` argparse flag\n- L86: `patch_make_policy` 签名加 `disable_scoring=False`\n- L138-139: `toggle_acib(not disable_scoring)` + 提示 print\n- L218: 启动日志打印 disable_scoring 状态\n- L229: run_info.json 记录该参数\n- L233: main() 传参\n\n**新建文件：** `/root/acib/scripts/run_passthrough_eval.sh`（已 chmod +x）\n\n**dry-run 验证：** `--help` 成功��示 `--disable_scoring` 参数，argparse 正常工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-passthrough-eval.md"
+}

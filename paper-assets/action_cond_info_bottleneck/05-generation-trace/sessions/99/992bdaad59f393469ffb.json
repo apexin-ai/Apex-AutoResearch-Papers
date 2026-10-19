@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "992bdaad59f393469ffb",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "check fix verify and eval status",
+  "task_key": "worker_check_fix-verify-and-eval-status_20260516T172455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_fix-verify-and-eval-status_20260516T172455_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "6e9bea035d25d6d20a12cdf290126b4319a21ad4f8158e3977c22fbda7d9b62f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n### 1. 代码修复确认 ✓\n\n`select_action` 已正确包含 language conditioning 修复：\n```python\ndef select_action(self, batch, **kwargs):\n    if self.acib_config.condition_source == \"language\":\n        self._cached_lang_condition = self._compute_lang_condition(batch)\n    return self.base_policy.select_action(batch, **kwargs)\n```\n\n### 2. 当前 GPU 进程\n\n| PID | GPU | 显存 | 运行时间 | 用途 |\n|-----|-----|------|----------|------|\n| 104743 | GPU 1 | 6004 MiB | ~4 min | **fixed eval seed1** (v7_contrastive, ckpt-20000, 4 suites, seed=42) |\n\n- PID 46186（buggy seed1 eval）和 PID 101853（buggy seed2 eval）均已自行终止，无需手动 kill\n- GPU 0 空闲，GPU 1 仅 fixed eval 占用（6GB / 98GB）\n\n### 3. Fixed eval 运行状态 ✓\n\n- **PID 104743 正在运行**，正在跑 libero_spatial 第一个 suite\n- 进度：4/50 episodes（8%），running_success_rate=75%\n- 日志确认 `[EVAL] Using language conditioning, shape=torch.Size([1, 960])` 每步都在输出 — **修复生效**\n\n### 4. 无需重新启动\n\nFixed eval 已在运行，无需操作。\n\n### 5. 预计完成时间\n\n当前速率 ~31s/episode。每 suite 50 episodes ≈ 26 min。4 suites (spatial/object/goal/10) ≈ **1.7-2.5 小时**（libero_10 可能更慢因 episode 更长）。预计完成时间约 **03:30-04:00 UTC**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-fix-verify-and-eval-status.md"
+}

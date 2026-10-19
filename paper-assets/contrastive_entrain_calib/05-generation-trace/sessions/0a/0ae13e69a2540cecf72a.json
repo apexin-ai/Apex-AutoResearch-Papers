@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "0ae13e69a2540cecf72a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnose exp 003 training health",
+  "task_key": "worker_diagnose_exp-003-training-health_20260521T101552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-003-training-health_20260521T101552_result.json",
+    "occurrence": 1,
+    "bytes": 1722,
+    "sha256": "2d3943c8cfca0007a16e272bb23058aec66561f02b3762755e320c17cb92a9b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。结果如下：\n\n```json\n{\n  \"exp003_alive\": false,\n  \"last_step\": 8000,\n  \"last_timestamp\": \"2026-05-21T18:12:00+08:00\",\n  \"exp003_s2_alive\": true,\n  \"issue\": \"exp-003 (seed 1) 已正常完成全部 8000 步训练，进程自然退出，不是崩溃。checkpoint-8000 和 final 目录均已于 18:12 写入。Cron 误判为异常是因为进程完成后消失但没有 sentinel 文件（exp-003 未通过 agent-ml 框架启动，所以无 sentinel/log 记录）。exp-003-s2 (seed 2) 健康运行中，当前 step 3905/8000 (49%)，GPU 0 利用率 95%，预计约 29 小时后完成。\",\n  \"action_needed\": \"none\"\n}\n```\n\n**要点：**\n- **exp-003 seed 1**：训练已完成，8000/8000 步，checkpoint 完整（500-8000 每 500 步 + final）。Cron 报警是误报——进程正常结束，非崩溃。\n- **exp-003-s2 seed 2**：健康，step 3905/8000，~27s/step，ETA 约 29 小时（5月22日 23:00 左右），DDL 前可完成。\n- **建议**：在 cron 监控中将 exp-003 标记为已完成，避免继续报警。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "exp003_alive": false,
+              "last_step": 8000,
+              "last_timestamp": "2026-05-21T18:12:00+08:00",
+              "exp003_s2_alive": true,
+              "issue": "exp-003 (seed 1) 已正常完成全部 8000 步训练，进程自然退出，不是崩溃。checkpoint-8000 和 final 目录均已于 18:12 写入。Cron 误判为异常是因为进程完成后消失但没有 sentinel 文件（exp-003 未通过 agent-ml 框架启动，所以无 sentinel/log 记录）。exp-003-s2 (seed 2) 健康运行中，当前 step 3905/8000 (49%)，GPU 0 利用率 95%，预计约 29 小时后完成。",
+              "action_needed": "none"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-003-training-health.md"
+}

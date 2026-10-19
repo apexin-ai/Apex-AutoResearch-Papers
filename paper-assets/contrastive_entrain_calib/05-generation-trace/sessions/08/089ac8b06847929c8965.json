@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "089ac8b06847929c8965",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "ops d023 kill exp014 deploy exp008v3",
+  "task_key": "worker_ops_d023-kill-exp014-deploy-exp008v3_20260519T063452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d023-kill-exp014-deploy-exp008v3_20260519T063452.log",
+    "occurrence": 1,
+    "bytes": 535109,
+    "sha256": "f4152bf46fb57df7c5be6ac65f6d5e6fbd75b1fd82a6ba1d5e672d738f60e2fe"
+  },
+  "statistics": {
+    "messages": 256,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "089ac8b06847929c8965-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "089ac8b06847929c8965-part-0002.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-d023-kill-exp014-deploy-exp008v3.md"
+}

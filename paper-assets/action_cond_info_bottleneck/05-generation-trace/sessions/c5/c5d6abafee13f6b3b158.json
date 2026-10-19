@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5d6abafee13f6b3b158",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diag gpu utilization check",
+  "task_key": "worker_diag_gpu_utilization_check_20260515T222621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gpu_utilization_check_20260515T222621_result.json",
+    "occurrence": 1,
+    "bytes": 1933,
+    "sha256": "a921627e5e28b491cd1f81426ede64e67f5a3da33ce3ce0e30a302ab713d0470"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 进程存活状态\n\n| PID | 进程 | 状态 | 运行时间 | RSS |\n|-----|------|------|----------|-----|\n| 294229 | baseline_plus | **ALIVE** (Rl) | 1h05m | 15.4GB |\n| 308788 | baseline_std | **ALIVE** (Rl) | 56m | 15.4GB |\n\n### 2. nvidia-smi\n\n| GPU | 利用率 | 显存占用 | 总显存 |\n|-----|--------|---------|--------|\n| 0 | 1% | 3112 MiB | 97887 MiB |\n| 1 | 0% | 3591 MiB | 97887 MiB |\n\n**GPU 利用率低是正常的** — robosuite simulation 是 CPU-bound，模型推理只占 rollout 每步的极小比例。\n\n### 3. Eval 进度\n\n| 进程 | 已完成 suite | 当前 suite | 剩余 |\n|------|-------------|-----------|------|\n| baseline_plus | libero_spatial (**81.6%** success) | libero_object (rollout中) | libero_goal, libero_10 |\n| baseline_std | libero_spatial (**66.0%** success) | libero_object (rollout中) | libero_goal, libero_10 |\n\n每个 suite = 10 tasks × 50 episodes。当前均在 libero_object 执行 rollout，进度条显示单 episode 步数 ~50%。\n\n### 4. ACIB v3 Dry-Run — 失败\n\n数据加载成功（273465 frames），`--data_root` argparse 修复有效。**前向传播报错：image feature key mismatch。**\n\n```\nValueError: All image features are missing from the batch.\n  batch keys:    observation.images.image, observation.images.image2\n  model expects: observation.images.camera1, observation.images.camera2, observation.images.camera3\n```\n\n**根因**：数据集用 `image/image2` 命名，但 pretrained SmolVLA 模型的 config 中 image_features 注册的是 `camera1/camera2/camera3`。需要在训练脚本中添加 key 重映射，或修改数据集 metadata 使 key 匹配模型定义。\n\n附带发现：首次 dry-run 卡住是因为 `LeRobotDataset` 初始化时默认联网校验 HF Hub metadata（2+ min 无响应），加 `HF_HUB_OFFLINE=1` 后正常。训练脚本应默认设置此环境变量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu-utilization-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0e4f38f867b4aeabc38",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "code v7 log barrier sweep",
+  "task_key": "worker_code_v7-log-barrier-sweep_20260516T105158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v7-log-barrier-sweep_20260516T105158_result.json",
+    "occurrence": 1,
+    "bytes": 2430,
+    "sha256": "d017fd69c8b1ddb544be633d6c4e04931fd703c35e7775455aca53adaa4d979e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n---\n\n## 1. losses.py 修改确认\n\n```python\n# 旧: cos_sim.mean() — 平坦梯度\n# 新: -log(1 - cos_sim + eps).mean() — log-barrier，cos→1时梯度发散\n```\n\n## 2. 单元测试\n\n| 场景 | loss 值 |\n|------|---------|\n| near-identical (w1 ≈ w2) | **9.72** |\n| different (w1 vs random) | **-0.08** |\n| exactly-same (w1 vs w1) | **13.78** (≈-log(eps)) |\n\n## 3. 训练指标演化\n\n### Lambda=0.01\n\n| Step | total_loss | task_loss | ctr_loss | scorer_mean | scorer_std |\n|------|-----------|-----------|----------|-------------|------------|\n| 100 | 0.1324 | 0.0621 | **8.81** | 0.398 | 0.240 |\n| 200 | 0.1309 | 0.0915 | **6.36** | 0.480 | 0.287 |\n| 300 | 0.1377 | 0.1049 | **5.85** | 0.459 | 0.295 |\n| 400 | 0.0855 | 0.0501 | **5.69** | 0.426 | 0.303 |\n| 500 | 0.1277 | 0.0950 | **5.49** | 0.420 | 0.299 |\n\n### Lambda=0.1\n\n| Step | total_loss | task_loss | ctr_loss | scorer_mean | scorer_std |\n|------|-----------|-----------|----------|-------------|------------|\n| 100 | 0.4704 | 0.1163 | **3.64** | 0.318 | 0.268 |\n| 200 | 0.3419 | 0.1289 | **2.25** | 0.271 | 0.316 |\n| 300 | 0.3387 | 0.1119 | **2.26** | 0.190 | 0.281 |\n| 400 | 0.2935 | 0.1096 | **1.92** | 0.208 | 0.299 |\n| 500 | 0.2765 | 0.1207 | **1.69** | 0.289 | 0.334 |\n\nctr_loss 趋势：log-barrier 两档都在持续下降（cos_sim 在远离 1），λ=0.1 下降更快更低。\n\n## 4. Probe A 结果（关键判据）\n\n| | Lambda=0.01 | Lambda=0.1 |\n|---|---|---|\n| Probe A cos range | **[0.9977, 0.9999]** | **[0.7043, 0.9514]** |\n| Verdict | scorer barely depends on language | **scorer is language-condition-dependent** |\n| Probe B cos range | [0.9026, 0.9335] | **[0.5320, 0.7058]** |\n| Probe B verdict | position prior + mild variation | **task-dependent importance maps** |\n\n## 5. 推荐\n\n**Lambda=0.1** 是明确的赢家：\n- Probe A cos 降到 0.70~0.95，scorer 已经开始对 language instruction 产生不同 importance map\n- Probe B cos 降到 0.53~0.71，importance map 开始 task-dependent（不再是纯 position prior）\n- task_loss（0.12）仍在合理范围，没有被 contrastive loss 压垮\n\nLambda=0.01 的 ctr_loss 虽然在下降，但 500 steps 后 Probe A cos 仍 >0.997，效果不足。\n\n完整训练建议用 **lambda=0.1**，可以跑更长（如 5k~10k steps）观察 Probe A cos 是否继续下探到 <0.8。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v7-log-barrier-sweep.md"
+}

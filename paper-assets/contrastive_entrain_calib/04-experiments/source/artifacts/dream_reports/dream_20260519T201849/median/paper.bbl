@@ -1,0 +1,74 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Anonymous(2025{\natexlab{a}})}]{act2025}
+Anonymous. 2025{\natexlab{a}}.
+\newblock Activation consistency training for reducing sycophancy.
+\newblock \emph{NeurIPS}.
+
+\bibitem[{Anonymous(2025{\natexlab{b}})}]{craft2025}
+Anonymous. 2025{\natexlab{b}}.
+\newblock {CRAFT}: Hidden-state guided {GRPO} for safe language generation.
+\newblock \emph{ICML}.
+
+\bibitem[{Anonymous(2025{\natexlab{c}})}]{lpp2025}
+Anonymous. 2025{\natexlab{c}}.
+\newblock Linear probe penalties for reward model alignment.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Anonymous(2025{\natexlab{d}})}]{pwwp2025}
+Anonymous. 2025{\natexlab{d}}.
+\newblock Pressure, what pressure? decomposing anti-sycophancy rewards for
+  {GRPO}.
+\newblock \emph{EMNLP}.
+
+\bibitem[{Anonymous(2025{\natexlab{e}})}]{sycon2025}
+Anonymous. 2025{\natexlab{e}}.
+\newblock {SYCON-Bench}: A benchmark for evaluating sycophancy with evidence
+  stratification.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Anonymous(2025{\natexlab{f}})}]{truthdecay2025}
+Anonymous. 2025{\natexlab{f}}.
+\newblock Truth decay: Multi-turn sycophancy and belief erosion in {LLMs}.
+\newblock \emph{ACL}.
+
+\bibitem[{Burns et~al.(2023)Burns, Ye, Klein, and
+  Steinhardt}]{burns2023discovering}
+Collin Burns, Haotian Ye, Dan Klein, and Jacob Steinhardt. 2023.
+\newblock Discovering latent knowledge in language models without supervision.
+\newblock \emph{ICLR}.
+
+\bibitem[{Perez et~al.(2023)Perez, Ringer, Luko{\v{s}}i{\=u}t{\.e}
+  et~al.}]{perez2023discovering}
+Ethan Perez, Sam Ringer, Kamil{\.e} Luko{\v{s}}i{\=u}t{\.e}, and 1 others.
+  2023.
+\newblock Discovering language model behaviors with model-written evaluations.
+\newblock \emph{Findings of ACL}.
+
+\bibitem[{Sharma et~al.(2024)Sharma, Tong, Korbak et~al.}]{sharma2024towards}
+Mrinank Sharma, Meg Tong, Tomasz Korbak, and 1 others. 2024.
+\newblock Towards understanding sycophancy in language models.
+\newblock \emph{ICLR}.
+
+\bibitem[{Turner et~al.(2023)Turner, Thiergart et~al.}]{turner2023activation}
+Alexander~Matt Turner, Lisa Thiergart, and 1 others. 2023.
+\newblock Activation addition: Steering language models without optimization.
+\newblock \emph{arXiv preprint arXiv:2308.10248}.
+
+\bibitem[{Wei et~al.(2024)}]{wei2024simple}
+Jerry Wei and 1 others. 2024.
+\newblock Simple synthetic data reduces sycophancy in large language models.
+\newblock \emph{arXiv preprint arXiv:2402.13220}.
+
+\bibitem[{Zhang et~al.(2026)}]{zhang2026latent}
+Anonymous Zhang and 1 others. 2026.
+\newblock Latent-{GRPO}: Spherical projections for reasoning reward.
+\newblock \emph{ICLR}.
+
+\bibitem[{Zou et~al.(2023)Zou, Phan, Chen et~al.}]{zou2023representation}
+Andy Zou, Long Phan, Sarah Chen, and 1 others. 2023.
+\newblock Representation engineering: A top-down approach to {AI} transparency.
+\newblock \emph{arXiv preprint arXiv:2310.01405}.
+
+\end{thebibliography}

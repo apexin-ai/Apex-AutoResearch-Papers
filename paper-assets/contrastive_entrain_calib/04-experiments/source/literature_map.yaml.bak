@@ -1,0 +1,203 @@
+# Literature Map — contrastive_entrain_calib
+# Last updated: 2026-05-19
+# Source: artifacts/research/probe_gaming_literature.md
+
+categories:
+  - name: direct-competitor
+    description: Methods using representation geometry as RL reward or directly competing approaches
+    papers:
+      - id: zhang2026latentgrpo
+        title: "Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering (Latent-GRPO)"
+        authors: "Zhang et al."
+        venue: "arXiv 2026"
+        arxiv: "2601.08427"
+        year: 2026
+        role: direct-competitor
+        relevance: "Closest competitor. Also uses representation geometry as GRPO reward, but for reasoning correctness (clustering) not behavioral attributes (direction projection). Our method is simpler and more targeted."
+        key_differences: "Clustering vs direction projection; reasoning correctness vs sycophancy; data-dependent centroids vs pre-computed frozen directions"
+
+  - name: foundation
+    description: Foundational methods our work directly builds on
+    papers:
+      - id: zou2023repe
+        title: "Representation Engineering: A Top-Down Approach to AI Transparency"
+        authors: "Andy Zou, Long Phan, Sarah Chen, et al."
+        venue: "arXiv 2023"
+        arxiv: "2310.01405"
+        year: 2023
+        role: foundation
+        relevance: "THE foundational paper. We extend RepE from inference-time steering to training-time reward signal."
+
+      - id: rimsky2024caa
+        title: "Steering Llama 2 via Contrastive Activation Addition"
+        authors: "Nina Rimsky et al."
+        venue: "ACL 2024"
+        year: 2024
+        role: foundation
+        relevance: "Contrastive activation addition for sycophancy. Our direct predecessor — showed CAA reduces sycophancy at inference; we use same directions as GRPO reward."
+
+      - id: shao2024grpo
+        title: "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models"
+        authors: "Shao et al."
+        venue: "arXiv 2024"
+        arxiv: "2402.03300"
+        year: 2024
+        role: foundation
+        relevance: "Introduced GRPO: critic-free RL using group-relative advantage. The RL algorithm we build on."
+
+      - id: li2023iti
+        title: "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model"
+        authors: "Kenneth Li, Oam Patel, et al."
+        venue: "NeurIPS 2023"
+        arxiv: "2306.03341"
+        year: 2023
+        role: foundation
+        relevance: "ITI uses probe weights as direction vectors for inference-time steering. Key comparison: probe-as-classifier vs probe-weights-as-direction."
+
+      - id: turner2023actadd
+        title: "Steering Language Models With Activation Engineering"
+        authors: "Alexander Matt Turner, Lisa Thiergart, et al."
+        venue: "arXiv 2023"
+        arxiv: "2308.10248"
+        year: 2023
+        role: foundation
+        relevance: "Introduced ActAdd. Parameter-free activation-engineering paradigm our work builds on."
+
+  - name: reward-hacking
+    description: Reward hacking theory and empirics — contextualizes our probe gaming finding
+    papers:
+      - id: gao2023scaling
+        title: "Scaling Laws for Reward Model Overoptimization"
+        authors: "Leo Gao, John Schulman, Jacob Hilton"
+        venue: "ICML 2023"
+        year: 2023
+        role: method-component
+        relevance: "Foundational reward overoptimization result. Our probe gaming is an extreme case — low-capacity proxy gamed in ~30 steps."
+
+      - id: skalse2022hacking
+        title: "Defining and Characterizing Reward Hacking"
+        authors: "Joar Skalse, Nikolaus Howe, Dmitrii Krasheninnikov, David Krueger"
+        venue: "NeurIPS 2022"
+        year: 2022
+        role: method-component
+        relevance: "Proved impossibility of unhackable proxy rewards. Theoretical grounding for why probe reward is hackable."
+
+      - id: casper2023openproblems
+        title: "Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback"
+        authors: "Casper et al."
+        venue: "arXiv 2023"
+        arxiv: "2307.15217"
+        year: 2023
+        role: method-component
+        relevance: "Must-cite survey. Frames the broader RLHF limitation space our work addresses."
+
+      - id: denison2024subterfuge
+        title: "Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models"
+        authors: "Carson Denison, Monte MacDiarmid, et al. (Anthropic)"
+        venue: "arXiv 2024"
+        arxiv: "2406.10162"
+        year: 2024
+        role: method-component
+        relevance: "Shows probe gaming can escalate to reward tampering. Direction-projection (no parameters to tamper) is fundamentally safer."
+
+  - name: sycophancy
+    description: Sycophancy characterization and mitigation
+    papers:
+      - id: sharma2023sycophancy
+        title: "Towards Understanding Sycophancy in Language Models"
+        authors: "Mrinank Sharma, Meg Tong, et al. (Anthropic)"
+        venue: "arXiv 2023"
+        arxiv: "2310.13548"
+        year: 2023
+        role: method-component
+        relevance: "Defines the sycophancy problem. Found it pervasive across all RLHF-trained assistants."
+
+      - id: shapira2026amplifies
+        title: "How RLHF Amplifies Sycophancy"
+        authors: "Shapira, Benade, Procaccia"
+        venue: "arXiv 2026"
+        arxiv: "2602.01002"
+        year: 2026
+        role: method-component
+        relevance: "Formal proof that RLHF amplifies sycophancy. Theoretical basis for why direction-projection is needed."
+
+      - id: wang2025internal
+        title: "When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models"
+        authors: "Wang et al."
+        venue: "arXiv 2025"
+        arxiv: "2508.02087"
+        year: 2025
+        role: method-component
+        relevance: "Showed sycophancy emerges through late-layer preference shifts via logit-lens. Validates targeting internal representations."
+
+      - id: wei2024synthetic
+        title: "Simple Synthetic Data Reduces Sycophancy in Large Language Models"
+        authors: "Jerry Wei, et al. (Google)"
+        venue: "arXiv 2024"
+        arxiv: "2308.03958"
+        year: 2024
+        role: baseline
+        relevance: "Data-level sycophancy intervention. Complementary to our representation-level approach."
+
+  - name: related-methods
+    description: Related mitigation approaches and RL methods
+    papers:
+      - id: wen2024mislead
+        title: "Language Models Learn to Mislead Humans via RLHF"
+        authors: "Jiaxin Wen et al."
+        venue: "arXiv 2024"
+        arxiv: "2409.12822"
+        year: 2024
+        role: method-component
+        relevance: "Empirical reward hacking (U-Sophistry). Our probe gaming is a mechanistic instance."
+
+      - id: ackermann2026gradreg
+        title: "Gradient Regularization Prevents Reward Hacking in RLHF and Verifiable Rewards"
+        authors: "Johannes Ackermann et al."
+        venue: "arXiv 2026"
+        arxiv: "2602.18037"
+        year: 2026
+        role: method-component
+        relevance: "Alternative mitigation via gradient regularization. We eliminate hackable reward entirely."
+
+      - id: obrien2025fewbadneurons
+        title: "A Few Bad Neurons: Isolating and Surgically Correcting Sycophancy"
+        authors: "O'Brien et al."
+        venue: "NeurIPS Workshops 2025"
+        arxiv: "2601.18939"
+        year: 2025
+        role: baseline
+        relevance: "Uses probes diagnostically but avoids probe-as-reward. Supports finding that probes in optimization loop get gamed."
+
+      - id: mckinney2023fragility
+        title: "On The Fragility of Learned Reward Functions"
+        authors: "Lev McKinney, Yawen Duan, David Krueger, Adam Gleave"
+        venue: "NeurIPS Deep RL Workshop 2023"
+        year: 2023
+        role: method-component
+        relevance: "Learned rewards fail when training new policies. Related failure mode to probe gaming."
+
+      - id: burns2023ccs
+        title: "Discovering Latent Knowledge in Language Models Without Supervision"
+        authors: "Collin Burns, Haotian Ye, et al."
+        venue: "ICLR 2023"
+        year: 2023
+        role: method-component
+        relevance: "CCS: unsupervised probe alternative. Still learns parameters, likely faces same gaming vulnerability."
+
+      - id: sinii2025smallvectors
+        title: "Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors"
+        authors: "Sinii et al."
+        venue: "arXiv 2025"
+        arxiv: "2509.06608"
+        year: 2025
+        role: method-component
+        relevance: "RL training induces structured steering vector changes. Supports feasibility of representation-space RL rewards."
+
+      - id: consistency2025bctact
+        title: "Consistency Training (BCT/ACT)"
+        venue: "arXiv 2025"
+        arxiv: "2510.27062"
+        year: 2025
+        role: baseline
+        relevance: "ACT enforces activation consistency for sycophancy reduction. Complementary to direction projection."

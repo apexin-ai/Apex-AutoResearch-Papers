@@ -1,0 +1,11 @@
+Probe A (fixed image, swap instruction) cos similarity:
+  bbq_sauce vs black_bowl_cookie: 0.566
+  bbq_sauce vs black_bowl_cabinet: 0.524
+  black_bowl_cookie vs black_bowl_cabinet: 0.749
+
+Probe B (natural cross-task) cos similarity:
+  bbq_sauce vs black_bowl_cookie: 0.536
+  bbq_sauce vs black_bowl_cabinet: 0.618
+  black_bowl_cookie vs black_bowl_cabinet: 0.626
+
+Verdict: language-condition-dependent scorer, task-dependent importance maps

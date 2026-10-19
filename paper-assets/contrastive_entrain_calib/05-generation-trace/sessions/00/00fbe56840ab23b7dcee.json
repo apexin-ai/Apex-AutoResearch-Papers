@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00fbe56840ab23b7dcee",
+  "project": "contrastive_entrain_calib",
+  "kind": "history",
+  "title": "agent / loop_2_1779347639.md",
+  "task_key": "loop_2_1779347639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779347639.md",
+    "occurrence": 1,
+    "bytes": 5539,
+    "sha256": "ab7f00af976fc824c417cc52845b47bd99fb348d9867f45c200c58adddd83ae2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-21T07:13:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-28034 GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（4× A100 32GB）\n- westd-29046 GPU 白名单：cuda:0, cuda:1（2× A100 96GB）\n- exp-004 是 SFT/ACT 非 RL——汇报和论文中不要把它归类为 RL 方法（D041 决策）\n- exp-009 已被 D040 kill，continuous probe R1 确认为\"慢性 binary probe trap\"，不要重启\n- exp-003 R3-only 是论文 Claim 2 的关键正面对照——训练完成前不能 kill\n- Vanilla D027 baseline SYCONScore=0.1335（不是旧 eval_pipeline.py 的 0.1974），所有对比必须用这个数字\n\n### 2. 🖥️ 基础设施快照\n- **westd-28034**（4× A100 32GB）\n  - 工作目录：/root/contrastive_entrain_calib\n  - Python：/root/miniconda3/bin/python（conda base env，不用 venv）\n  - 模型：/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\n  - Llama：/root/autodl-tmp/models/LLM-Research/Meta-Llama-3-8B-Instruct\n  - 数据：/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl（362 pairs）\n  - Eval 输出：/root/autodl-tmp/results/exp004_unified_eval/（ACT），/root/autodl-tmp/results/exp003_unified_eval/（R3-only）\n  - 方向文件：/root/contrastive_entrain_calib/results/exp001/directions.pt\n  - 磁盘：根分区 22%，数据盘 23%，充裕\n  - 活跃进程：exp-003-eval-ckpt4000 (PID 591330, cuda:0)，exp-004-eval-ckpt3000 (PID 595107, cuda:2)，exp-009-eval-ckpt1000 (PID 234111, cuda:3)\n- **westd-29046**（2× A100 96GB）\n  - 同样工作目录 /root/contrastive_entrain_calib\n  - 活跃进程：exp-003 训练 (PID 70649, cuda:1)，exp-003-s2 训练 (PID 237432, cuda:0)\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp-004-eval-ckpt7000 cron 回调，已 spawn Worker（worker_eval_exp004-ckpt7000-ckpt5000-results）去读 ckpt-7000 和 ckpt-5000 结果并更新 registry。Worker 尚未回调。\n\n**RUNNING 实验**：\n| exp_id | server | GPU | 摘要 |\n|--------|--------|-----|------|\n| exp-003 | westd-29046 | cuda:1 | R3-only GRPO seed 1 训练（Claim 2 正面对照）|\n| exp-003-s2 | westd-29046 | cuda:0 | R3-only GRPO seed 2（可复现性验证）|\n| exp-009-eval-ckpt1000 | westd-28034 | cuda:3 | Continuous probe ckpt-1000 eval（已有结果 SYCONScore=0.1141 写入 metrics，但状态仍 RUNNING——可能是 stale cron，需确认进程是否已退出）|\n\n**PREPARING（已完成等待处理）**：\n- exp-004-eval-ckpt7000：进程已退 finished_at=15:07:37，Worker 正在读结果\n- exp-004-eval-ckpt5000：进程已退 finished_at=15:07:33，同一 Worker 一并处理\n- exp-004-eval-ckpt3000：PID 595107 仍在跑（reconcile 确认）\n- exp-003-eval-ckpt3000, ckpt2000：已有 metrics（negative），但状态卡在 PREPARING——需要推进到 DONE\n- exp-003-eval-ckpt4000：PID 591330 仍在跑\n\n**等待中**：\n- Worker worker_eval_exp004-ckpt7000-ckpt5000-results 回调\n- exp-003-eval-ckpt4000 完成回调\n- exp-004-eval-ckpt3000 完成回调\n- exp-009-eval-ckpt1000 需要确认是否已完成（registry 说 RUNNING 但可能 stale）\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调（ckpt7000+5000 结果）→ 更新 registry DONE + 汇报 Director 完整 ACT 轨迹（8 个点全齐：500/1000/2000/3000/4000/5000/6000/7000/8000）\n- exp-004-eval-ckpt3000 完成 → 读结果更新 registry → ACT 轨迹补全 ckpt-3000 数据点\n- exp-003-eval-ckpt4000 完成 → 这是 R3-only 轨迹关键点，SYCONScore > 0.20 则升级 Claim 强度到 High（D037 升级条件）\n- exp-003 训练完成（ETA May 21 ~17:00）→ 立即 eval ckpt-8000（final eval），这是 Claim 2 最终数据\n- exp-003-s2 训练完成（ETA May 23）→ 种子间一致性检验\n- exp-003-eval-ckpt2000 和 ckpt3000 已有 metrics 但状态 PREPARING → 需推进到 DONE（negative）\n- exp-009-eval-ckpt1000 状态 RUNNING 但可能已完成 → 确认后推进 DONE\n- ACT 轨迹全齐后 → 汇报 Director，Paper Agent 可画 training trajectory figure\n- Paper sections pending：Results（blocked on exp-003 final），Conclusion，Related Work（in progress）\n\n### 5. 🎯 战略上下文\n**核心论文叙事**（Path B analysis paper）：\"Discriminability Without Utility: Why Sycophancy Directions Fail as RL Rewards\"。d_syc 方向成功判别 sycophancy（AUROC 0.82 Qwen, 0.81 Llama），但所有 reward formulation 均失败。\n\n**决策链关键节点**：\n- D037：Claim 强度 Medium-High。升级到 High 需 exp-003 SYCONScore ≥ 0.20\n- D039：D027 统一 eval 基线校正，vanilla=0.1335\n- D040：Kill exp-009，continuous probe = 慢性 binary trap\n- D041：exp-004 ACT 是 SFT 非 RL，论文中作为 positive control（\"behavioral reward works, representation reward doesn't\"）\n- D042：exp-003 R3-only 轨迹 U 型恢复趋势（+0.010/1000steps）\n\n**易错点**：\n- exp-003 R3-only 各 checkpoint 到 ckpt-5000 都 BELOW vanilla（best SYCONScore=0.1144）——如果 ckpt-8000 final eval 也 negative，则 R3-only 也 fail，论文叙事需要调整（R3-only 从\"positive control\"变为\"another failure mode\"，但 ACT 仍然 success）\n- 不要把 exp-004 ACT ckpt-8000 的 SYCONScore=0.3013 和旧 eval 的 vanilla 0.1974 比——必须用 D027 unified baseline 0.1335\n- exp-003-eval-ckpt2000 和 ckpt3000 有 metrics 但状态是 PREPARING 不是 DONE——registry 状态不一致需要修复\n- 6/6 GPU 满载但 westd-28034 上 3 个 eval 即将陆续完成，完成后 GPU 会空闲——需要及时安排下一批任务或通知 Director\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779347639.md"
+}

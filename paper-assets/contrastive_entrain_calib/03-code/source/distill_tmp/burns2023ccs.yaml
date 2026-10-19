@@ -1,0 +1,126 @@
+paper_key: "burns2023ccs"
+title: "Discovering Latent Knowledge in Language Models Without Supervision"
+venue: "ICLR 2023"
+full_text_available: true
+
+research:
+  baselines:
+    - "Zero-shot prompting"
+    - "Calibrated zero-shot (contextual calibration)"
+    - "CRC-TPC (Top Principal Component clustering)"
+    - "CRC-BSS (Bimodal Salience Search clustering)"
+    - "Logistic Regression on hidden states (supervised ceiling)"
+  metrics:
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Prompt sensitivity (std across prompts)", direction: "lower_better"}
+  datasets:
+    - {name: "IMDB", size: "1000 examples used"}
+    - {name: "Amazon", size: "1000 examples used"}
+    - {name: "AG-News", size: "1000 examples used"}
+    - {name: "DBpedia", size: "1000 examples used"}
+    - {name: "RTE", size: "1000 examples used"}
+    - {name: "QNLI", size: "1000 examples used"}
+    - {name: "COPA", size: "500 examples used"}
+    - {name: "Story-Cloze", size: "1000 examples used"}
+    - {name: "BoolQ", size: "1000 examples used"}
+    - {name: "PIQA", size: "1000 examples used"}
+  ablation_dimensions:
+    - "Probe type (linear vs nonlinear)"
+    - "Number of training samples (k=1,2,4,...,512)"
+    - "Layer selection (final vs intermediate hidden states)"
+    - "Transfer across datasets"
+    - "Normalization strategy"
+    - "Misleading prefix robustness"
+    - "Alternative unsupervised methods (PCA/TPC, BSS)"
+    - "Encoder vs decoder representations (for encoder-decoder models)"
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "0.01"
+    runs: "10 independent random restarts, select lowest unsupervised loss"
+    train_test_split: "60/40"
+    prompts_per_dataset: "8-13 (avg 9)"
+    hardware: "not explicitly specified"
+  method_family: "Unsupervised probing of internal representations / Contrast-consistent representation learning"
+
+positioning:
+  core_claim: "Language models encode latent truth-related knowledge in their hidden states that can be extracted without any supervision via logical consistency constraints (negation consistency + confidence), outperforming zero-shot outputs even under adversarial prompting."
+  key_results: "CCS 71.2% avg accuracy vs calibrated zero-shot 67.2% (+4%); prompt sensitivity halved (3.2% std vs 6.1%); under misleading prefix, zero-shot drops 9.5% while CCS maintains/improves accuracy (82.1% -> 83.8% on UnifiedQA)"
+  limitations:
+    - "Requires model to internally represent and evaluate truth of inputs — unclear when this condition holds precisely"
+    - "Not evaluated on active deception/lying scenarios"
+    - "Restricted to binary (yes/no) classification"
+    - "12.5% gap remains to supervised logistic regression ceiling (71.2% vs 83.7%)"
+    - "Normalization and random restarts add fragility to the pipeline"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Language models don't always output true text — training objectives (imitation learning, RLHF) are fundamentally misaligned with truth. Opens with AI safety framing: 'raises the stakes of AI research and presents new risks.'"
+  tension: "All existing approaches to truthfulness rely on human supervision (labels or evaluator ratings), but humans themselves can be fooled or make mistakes. This creates a fundamental ceiling on truth extraction. 'If we try to reward model outputs that look true, a model may still learn to output false text if human raters can't evaluate the correctness.'"
+  key_insight: "Revealed in paragraph 3 of intro: internal model representations may encode truth independently of what the model outputs. The key logical insight is that truth satisfies negation consistency (a statement and its negation have opposite truth values), and this constraint alone — without any labels — is sufficient to recover knowledge. Formalized as two-loss objective: consistency + confidence."
+  argument_chain: "LMs output untruthful text → existing fixes rely on supervision → supervision is insufficient for hard-to-verify claims → instead look inside the model → truth has logical structure (negation consistency) → exploit this structure unsupervised → CCS finds truth directions in activation space → validates across 6 models / 10 datasets → robust to misleading prompts → transfers across tasks (suggesting genuine truth representation) → initial step toward supervision-free knowledge elicitation"
+  contribution_framing: "Framed as 4 claims: (1) method description (CCS), (2) quantitative improvement (+4% over zero-shot, half prompt sensitivity), (3) robustness to adversarial prompts, (4) broader significance as 'initial step toward discovering what language models know, distinct from what they say.' Hedged with 'initial step' — presents as proof-of-concept."
+  intro_structure: "5 paragraphs: P1 — AI safety risk framing (LMs output false text); P2 — why training objectives cause untruthfulness (imitation, reward hacking, evaluator limitations); P3 — proposed solution (bypass outputs, look at internal representations, use logical consistency); P4 — method overview (CCS specifics, contrast pairs, consistency+confidence loss); P5 — results summary and significance framing"
+  notable_technique: "Uses AI safety/alignment framing to motivate a fundamentally technical contribution (unsupervised probing). The 'misleading prefix' experiment is narratively powerful — demonstrates the method works even when the model is actively prompted to lie, which directly validates the safety motivation from the intro. Also notable: the supervised LR ceiling is presented upfront as 'LR (Ceiling)' rather than hidden, establishing intellectual honesty."
+
+figures:
+  figure_count: 6  # 4 main-body referenced (Figures 1-4), plus Figures 5-6 in appendix; Figure 10 in appendix
+  figure1:
+    type: "method_overview"
+    description: "Left-to-right pipeline diagram showing 5 stages of CCS: (1) construct contrast pairs from yes-no questions, (2) extract internal activations phi(x), (3) map to probabilities via learned projection p_theta, (4) optimize for consistency (p_i+ ≈ 1 - p_i-) and confidence (p_i+ ≉ p_i-), (5) estimate final probability. Right panel shows a bimodal histogram of learned 'Yes' probabilities on COPA/UnifiedQA, colored by true/false labels (blue=True, orange=False), with clear separation."
+    narrative_role: "Serves as the single method overview figure — reader can grasp the full pipeline from this one image. The histogram on the right provides immediate empirical evidence that the unsupervised method actually works (bimodal separation without labels)."
+    design_elements:
+      - "Left-to-right pipeline flow with arrows"
+      - "Mathematical notation inline (phi, p_theta, consistency/confidence constraints)"
+      - "Concrete examples ('Is 22+59=237? Yes/No', 'Are cats mammals?')"
+      - "Blue/orange color coding for Yes/No and True/False"
+      - "Bimodal histogram as proof-of-concept visualization"
+      - "Bottom row of text captions explaining each pipeline stage"
+    visual_style: "Clean black-on-white pipeline diagram. Rounded rectangle boxes for text/math. Two-color scheme (blue for positive/true, orange for negative/false). Right panel uses standard matplotlib histogram style with fitted curve overlay. Minimal, information-dense layout."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "heatmap"
+      what_compared: "Transfer accuracy of CCS across 10 datasets for 3 models (UnifiedQA, T0, DeBERTa). Rows = training dataset, columns = test dataset. Bottom row = no-transfer baseline."
+      how_gain_highlighted: "Color intensity (yellow-green = high, dark blue = low). The overall pattern of mostly high values (70s-90s) across off-diagonal cells demonstrates successful transfer. Bottom 'No Transfer' row provides within-dataset reference."
+      design_note: "Three side-by-side heatmaps allow model comparison at a glance. Numeric values printed in each cell provide exact numbers. Dark background with light-colored number annotations. Effective for showing that cross-dataset transfer is broadly successful rather than cherry-picked."
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "CCS accuracy vs zero-shot accuracy under misleading prefix condition (UnifiedQA). Each point = one dataset × one prompt combination. y=x line as reference."
+      how_gain_highlighted: "Points above y=x line indicate CCS superiority. Separate blue (CCS) and orange (zero-shot) point clouds with fitted regression lines show CCS maintaining high accuracy while zero-shot degrades."
+      design_note: "Scatter plot with fitted regression lines and y=x reference line effectively shows the distribution of per-dataset-per-prompt effects rather than just averages. Light confidence bands around regression lines."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["Number of training samples (k=1 to 512)", "Model (UQA, T0, DeBERTa)"]
+      design_note: "Three colored lines (red=UQA, green=T0, blue=DeBERTa) on log-scale x-axis. Shows diminishing returns — most gain happens by k=8-16. UQA starts lowest at k=1 but climbs highest, suggesting different models have different sample efficiency profiles. Clean, minimal style with square markers."
+    - figure_id: "Figure 10 (Appendix F)"
+      viz_type: "line_plot"
+      dimensions_varied: ["Hidden layer index", "Model (T5, UnifiedQA)"]
+      design_note: "Shows intermediate layers outperform final layers for encoder-decoder models — a key finding that CCS is not simply recovering output-level information."
+  figure_narrative_role: "Figure 1 (method overview + proof-of-concept histogram) → Figure 2 (transfer heatmaps proving task-agnostic truth) → Figure 3 (sample complexity showing truth is salient) → Figure 4 (robustness to adversarial prompting, the safety payoff). Flow: understand method → see it works → see it generalizes → see it's robust. Appendix figures (5-6, 10) provide supporting details."
+
+tables:
+  table_count: 3  # 2 main body + 1 appendix (Table 3)
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "models"
+    row_organization: "by_category"  # grouped as: zero-shot baselines, CCS variants, supervised ceiling
+    col_organization: "flat"  # 6 individual models + Mean column
+    highlight_strategy: "No explicit bold/underline — relies on reader comparing numbers. Supervised LR labeled as 'Ceiling' to set expectations. Parenthetical std values show prompt sensitivity reduction."
+    statistical_reporting: "mean accuracy across prompts and datasets, with standard deviation of accuracy across prompts in parentheses"
+    num_baselines: 4  # 0-shot, calibrated 0-shot, CRC-TPC, CRC-BSS (Table 2), plus LR ceiling
+    design_note: "Compact 5×7 table. Notably includes 'CCS (All Data)' variant using full dataset. The std in parentheses serves double duty — both showing variance and supporting the 'halves prompt sensitivity' claim. LR ceiling row establishes upper bound, framing the 12.5% gap as future work rather than weakness. Six diverse models (RoBERTa, DeBERTa, GPT-J, T5, UnifiedQA, T0) spanning encoder-only, encoder-decoder, decoder-only architectures."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Unsupervised method: CCS vs CRC-TPC vs CRC-BSS"]
+      variation_style: "full_numbers"
+      design_note: "Same format as Table 1, directly comparable. Shows CCS is best but simpler PCA-based methods are surprisingly competitive (70.1-70.2% vs 71.2%), supporting the claim that truth is a salient/high-variance feature in activation space."
+    - table_id: "Table 3 (Appendix B)"
+      what_varied: ["Prefix condition (regular vs misleading)", "Method (calibrated zero-shot vs CCS)"]
+      variation_style: "full_numbers"
+      design_note: "Extends Table 1 with prefix condition dimension. Key comparison: CCS regular 71.2% vs CCS prefix 71.2% (unchanged), while calibrated zero-shot drops from 67.2% to 65.4%. Demonstrates robustness numerically."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 3 shows full results with misleading prefix conditions across all models. Additional per-dataset breakdowns, statistical significance tests (Appendix H), and dataset setup details (Appendix I) are in appendix."
+    reason: "Main body keeps Tables 1-2 for core results and method comparison. Appendix houses the misleading prefix full results (more detailed version of the scatter plot in Figure 4) and statistical rigor details that would interrupt the narrative flow."

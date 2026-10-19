@@ -1,0 +1,83 @@
+\section{Experimental Framework}
+\label{sec:framework}
+
+This section establishes the notation, experimental components, and evaluation protocol used throughout the paper.
+We first describe how the contrastive sycophancy direction $\dsyc$ is extracted (\S\ref{ssec:extraction}), then define three reward formulations that incorporate $\dsyc$ into GRPO training (\S\ref{ssec:reward}), explain the online recalibration procedure (\S\ref{ssec:recalib}), and finally specify the evaluation metrics (\S\ref{ssec:eval}).
+
+\subsection{Direction Extraction}
+\label{ssec:extraction}
+
+We extract a linear sycophancy direction $\dsyc$ from the residual stream of a target model using contrastive activation pairs.
+Each pair consists of two model responses to the same user challenge: a \emph{valid correction}, in which the model appropriately revises its earlier answer upon receiving well-supported counter-evidence, and a \emph{sycophantic capitulation}, in which the model abandons a correct answer under social pressure without adequate evidential warrant.
+
+To isolate the cognitive signal from surface-level linguistic variation, we apply style control: both responses in each pair are generated with matched hedging patterns, politeness markers, and response length, so that $\dsyc$ reflects the distinction between warranted and unwarranted belief change rather than stylistic differences.
+Concretely, we construct 362 style-controlled contrastive activations from 181 paired examples stratified across three evidence-strength levels (weak, medium, strong).
+
+Given a target layer $\ell$, let $\mathbf{h}^{+}_i$ denote the residual-stream activation for the $i$-th valid correction and $\mathbf{h}^{-}_i$ for the corresponding sycophantic capitulation.
+The sycophancy direction is the mean difference:
+\begin{equation}
+\label{eq:dsyc}
+\dsyc = \frac{1}{N}\sum_{i=1}^{N}\left(\mathbf{h}^{+}_i - \mathbf{h}^{-}_i\right)
+\end{equation}
+where $N{=}181$ is the number of contrastive pairs.
+We select the target layer by 5-fold cross-validated AUROC over a linear classifier trained on the projection $\mathbf{h} \cdot \dsyc$; on Qwen3-8B this yields layer 19 with AUROC $0.827 \pm 0.028$ (exp-001).
+Section~\ref{sec:direction_quality} presents detailed discriminability analyses, including cross-model validation on Llama-3-8B.
+
+\subsection{GRPO Reward Formulation}
+\label{ssec:reward}
+
+Group Relative Policy Optimization \citep[GRPO;][]{shao2024grpo} uses a reward signal to rank sampled completions and update the policy toward higher-reward outputs.
+We define a combined reward:
+\begin{equation}
+\label{eq:reward}
+R = w_1 \cdot \rone + w_3 \cdot \rthree
+\end{equation}
+where $\rone$ is a direction-based component derived from $\dsyc$ and $\rthree$ is a behavioral component.
+
+\paragraph{Direction-based reward ($\rone$).}
+We investigate three formulations that translate $\dsyc$ into a scalar training signal.
+Let $\mathbf{h}$ denote the model's residual-stream activation at a designated token position during a training rollout.
+
+\begin{itemize}
+\item[\textbf{F1}] \textbf{Cosine.} $\rone = \cos(\mathbf{h},\, \dsyc)$, the cosine similarity between the activation and the sycophancy direction.
+\item[\textbf{F2}] \textbf{Scaled cosine.} $\rone = \alpha \cdot \cos(\mathbf{h},\, \dsyc)$, where $\alpha$ amplifies the gradient signal to compete with $\rthree$ in magnitude.
+\item[\textbf{F3}] \textbf{Binary probe.} $\rone = \mathbb{I}[P(\text{syc} \mid \mathbf{h}) < 0.5]$, a binary indicator derived from a logistic probe trained on the same contrastive data. The probe is frozen during GRPO training and gradients are stopped at its input.
+\end{itemize}
+
+\paragraph{Behavioral reward ($\rthree$).}
+$\rthree$ is computed by a DeBERTa-based natural language inference (NLI) classifier that scores whether the model's response is consistent with the ground-truth answer.
+This component provides a task-level behavioral signal independent of internal representations.
+The weight configuration ($w_1$, $w_3$) varies across experiments and is specified in the corresponding sections (\S\ref{sec:cosine_failure}, \S\ref{sec:probe_trap}).
+
+\subsection{Online Recalibration}
+\label{ssec:recalib}
+
+LoRA fine-tuning progressively shifts the model's internal representations, which could cause $\dsyc$ to become misaligned with the current activation geometry.
+To address this, we re-extract $\dsyc$ every 500 training steps by re-running the contrastive pairs through the updated model and recomputing Equation~\ref{eq:dsyc}.
+Empirically, the cosine similarity between consecutive directions remains high (${\approx}\,0.96$ at step 500), indicating that the direction drifts slowly relative to the recalibration frequency.
+This procedure ensures that $\rone$ tracks the evolving representation space throughout training rather than scoring against a stale direction.
+
+\subsection{Evaluation Protocol}
+\label{ssec:eval}
+
+We evaluate sycophancy mitigation along two complementary axes: the model's willingness to accept valid corrections and its resistance to invalid pressure.
+
+\paragraph{Metrics.}
+We define two primary rates.
+The \emph{True-positive Flip rate} ($\tof$) measures the fraction of valid corrections that the model accepts, i.e., cases where the model appropriately revises an incorrect initial answer when presented with well-supported counter-evidence.
+The \emph{No-Flip rate} ($\nof$) measures the fraction of invalid challenges that the model resists, i.e., cases where the model maintains a correct initial answer despite unsupported social pressure.
+Both rates range from 0 to 1 with higher values indicating better performance.
+
+A model that accepts all challenges (including invalid ones) achieves high $\tof$ but low $\nof$; a model that rejects all challenges achieves the opposite.
+We capture this trade-off with $\sycon$, the harmonic mean of the two rates:
+\begin{equation}
+\label{eq:sycon}
+\sycon = \frac{2 \cdot \tof \cdot \nof}{\tof + \nof}
+\end{equation}
+
+$\sycon$ is analogous to the $F_1$ score: it penalizes models that sacrifice one axis for the other, and a high $\sycon$ requires balanced performance on both.
+Classification of each response (flip vs.\ no-flip) is determined by an NLI-based procedure following the protocol of \citet{consistency2025bctact}.
+
+\paragraph{Test set and model configuration.}
+Evaluation uses the same 362 style-controlled contrastive instances (181 pairs, weak/medium/strong stratification) described in \S\ref{ssec:extraction}, with a held-out split not used during direction extraction.
+All training experiments use Qwen3-8B with LoRA (rank$=$64, $\alpha{=}128$) and DeepSpeed ZeRO-2 for memory-efficient optimization.

@@ -1,0 +1,14 @@
+{
+  "exp_id": "acib_v5_div_reg",
+  "project": "action_cond_info_bottleneck",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:26:54.785Z",
+    "updated_at": "2026-05-16T01:26:54.785Z"
+  },
+  "timestamp": "2026-05-16T01:26:54.825832+00:00",
+  "trigger": "update_registry"
+}

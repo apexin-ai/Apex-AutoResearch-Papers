@@ -1,0 +1,37 @@
+paper_key: "sinii2025smallvectors"
+title: "Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - "full fine-tuning (RL-based reasoning training)"
+    - "base model (no steering)"
+  metrics:
+    - {name: "reasoning task accuracy", direction: "higher_better"}
+    - {name: "token substitution analysis", direction: "N/A"}
+    - {name: "attention pattern preservation", direction: "N/A"}
+  datasets:
+    - {name: "reasoning benchmarks (not specified in abstract)", size: "N/A"}
+  ablation_dimensions:
+    - "layer position of steering vector (last vs penultimate)"
+    - "transfer across model family members"
+    - "MLP vs attention pathway contribution"
+  training_recipe:
+    optimizer: "RL objective (not specified)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "steering vectors / activation engineering"
+
+positioning:
+  core_claim: "Lightweight steering vectors trained with RL replicate much of full fine-tuning's reasoning performance gains while remaining interpretable, with last-layer vectors acting as token-substitution bias and penultimate-layer vectors operating through MLP/unembedding pathways."
+  key_results: "Steering vectors recover large portion of full fine-tuning performance; vectors transfer across models in the same family"
+  limitations:
+    - "Analysis limited to models within the same family"
+    - "Mechanistic understanding focused on last two layers only"
+    - "Specific RL training details and model names not disclosed in abstract"
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

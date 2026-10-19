@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43161d5133b57e8c70d0",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh urgent collect and launch v73",
+  "task_key": "worker_ssh_urgent-collect-and-launch-v73_20260517T183729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-collect-and-launch-v73_20260517T183729_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "31cb56a785972cb797ca3e54b1aae6cf0fe663de79582c59a091ee5164bb0b31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练脚本都存在。现在的情况：\n\n## 当前状态\n\n### v7.2 Eval 已有结果（2/4 suites 完成）\n\n| Suite | α=0.0 | α=1.0 |\n|-------|-------|-------|\n| libero_spatial | 59.4% | 61.0% |\n| libero_object | 65.6% | 66.2% |\n| libero_goal | **进行中** (α=0.0 在 task 8/10 ep38/50, 97.4% SR) | **进行中** |\n| libero_10 | 未开始 | 未开始 |\n\n### 训练启动：**被阻塞**\n\n两个 eval 进程（PID 40598 / 44022）仍占用 GPU 0 和 GPU 1。按 C004 约束不能在占用的 GPU 上启动训练。\n\n**估算剩余时间**：\n- α=0.0 goal 还剩约 15 分钟完成，然后 libero_10 大约需要 2 小时\n- α=1.0 进度稍慢，总计可能还需 2.5-3 小时\n\n**两个选择**：\n1. **等 eval 全部跑完** (~2.5-3h)，然后启动训练\n2. **Kill eval 进程，立即启动训练**，goal/libero_10 的结果丢失（spatial 和 object 的结果已保存）\n\n你要哪个方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-collect-and-launch-v73.md"
+}

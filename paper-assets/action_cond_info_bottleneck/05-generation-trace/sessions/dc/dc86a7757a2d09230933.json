@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc86a7757a2d09230933",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra fast eval launch",
+  "task_key": "worker_infra_fast-eval-launch_20260515T164645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fast-eval-launch_20260515T164645_result.json",
+    "occurrence": 1,
+    "bytes": 1538,
+    "sha256": "0fb279589b58d5796005e75b1b636b80728dc85c5730c1e88c8bffcd648b87bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 已完成\n- **环境就绪**: lerobot 0.5.1, torch 2.10.0+cu128, mujoco 3.8.1, libero/robomimic/bddl 已装\n- **EGL 渲染验证通过**: `MUJOCO_GL=egl PYOPENGL_PLATFORM=egl`\n- **lerobot-eval pipeline 验证通过**: 用 smolvla_base 做了 dry run，命令语法正确\n- **实验已注册**: `mvp1_baseline_std` (RUNNING), `mvp1_baseline_plus` (RUNNING)\n- **eval 脚本已创建**: `/root/acib/scripts/run_eval_std.sh`, `run_eval_plus.sh`\n- **自动启动 watcher 运行中**: 各自独立监控模型下载，完成后立即启动 eval\n\n### 当前阻塞：模型下载\nHuggingFace 代理下载速度 ~15MB/min：\n\n| 模型 | 进度 | 预计完成 |\n|------|------|----------|\n| `lerobot/smolvla_libero` (865MB) | 650M (75%) | ~15 min |\n| `lerobot/smolvla_libero_plus` (865MB) | 310M (36%) | ~37 min |\n\n### 自动流程\n- **PID 28824**: 下载进程（两个模型并行下载）\n- **PID 33094**: watcher → libero 下载完成后自动启动 `run_eval_std.sh`（GPU 0）\n- **PID 33095**: watcher → libero_plus 下载完成后自动启动 `run_eval_plus.sh`（GPU 1）\n- **Cron 61e0cba1**: 每 10 分钟自动检查 eval 进度\n\n### eval 命令（每个模型跑 4 个 suite × 50 episodes）\n```\nlerobot-eval --policy.path=lerobot/smolvla_libero --env.type=libero \\\n  --env.task={libero_spatial,libero_object,libero_goal,libero_10} \\\n  --eval.n_episodes=50 --eval.batch_size=1\n```\n\nGPU 0 的 eval 预计 ~15 分钟后开始运行，GPU 1 约 37 分钟后开始。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fast-eval-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b4099e0f58a22bb6bb8",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops 28034 disk cleanup phase2",
+  "task_key": "worker_ops_28034-disk-cleanup-phase2_20260520T103058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_28034-disk-cleanup-phase2_20260520T103058_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "e473bcdc174c4f88fce3929c118c624ef7bf933a033ff5c7d9aa108a0012374e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n## 清理报告\n\n| 指标 | 清理前 | 清理后 | 变化 |\n|------|--------|--------|------|\n| 根分区使用 | 29G/30G (97%) | **6.6G/30G (22%)** | **释放 22.4G** |\n| 数据盘使用 | 69G/350G (20%) | 80G/350G (23%) | +11G (迁入 exp-004) |\n\n### 执行明细\n- **已删除**: `checkpoints/exp008v3_binary_probe_grpo/` (5.6G) + `checkpoints/exp014_probe_baseline/` (5.6G)\n- **已迁移**: `outputs/exp-004-act-baseline/` (12G) → 数据盘，原路径已创建软链接\n- **验证通过**: 文件数 172=172，大小 12G=12G，软链接指向正确，exp008v3/exp014 checkpoint 已不存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-28034-disk-cleanup-phase2.md"
+}

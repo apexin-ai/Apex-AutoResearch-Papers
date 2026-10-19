@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-003",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:42:11.934Z",
+    "updated_at": "2026-05-21T10:20:22.494Z",
+    "hypothesis": "R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)",
+    "spec": {
+      "server": "westd-29046",
+      "gpu": "cuda:1",
+      "pid": 70649,
+      "command": "python training/run_exp003_r3only.py",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "notes": "v2.1 restart: R3 logging fix (d_syc=None branch now logs R3 mean/std/min/max every 10 steps). R3-only mode (r1=0,r2=0,r3=1.0). Speed opt (num_gen=2, max_completion_length=256)."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T10:20:20.812Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T10:20:22.494Z"
+  },
+  "timestamp": "2026-05-21T10:20:22.632702+00:00",
+  "trigger": "update_registry"
+}

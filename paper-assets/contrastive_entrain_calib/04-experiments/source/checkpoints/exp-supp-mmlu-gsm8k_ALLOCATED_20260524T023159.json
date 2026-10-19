@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-supp-mmlu-gsm8k",
+  "project": "contrastive_entrain_calib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T02:31:49.613Z",
+    "updated_at": "2026-05-24T02:31:59.265Z",
+    "hypothesis": "Capability retention test: verify ACT and GRPO training do not degrade MMLU/GSM8K performance compared to vanilla Qwen3-8B baseline. Addresses reviewer concern about general capability loss from sycophancy interventions.",
+    "parent": "exp-004-heldout"
+  },
+  "timestamp": "2026-05-24T02:31:59.490122+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,64 @@
+\section{The Probe Reward Trap}
+\label{sec:probe_trap}
+
+The cosine formulations fail on signal magnitude; a natural response is to discretize.
+Training a logistic probe on $\dsyc$ and thresholding its output yields $\rone = \mathbb{I}[P(\text{syc} \mid \mathbf{h}) < 0.5]$ (F2 in \S\ref{ssec:reward}).
+We show that this discretization sidesteps the magnitude problem but creates a qualitatively worse failure.
+Both probe experiments use the probe as a non-differentiable reward component within GRPO (\S\ref{ssec:reward}); the trap therefore reflects a semantic limitation of the probe rather than gradient-based exploitation.
+
+\paragraph{Differentiable probe: gradient gaming.}
+Without stop-gradient, the policy discovers within tens of steps that shifting activations away from the sycophancy cluster maximizes $\rone$ regardless of response content, producing a fully inverted behavioral profile.
+Replication across three seeds confirms determinism: all collapse within the first training epoch, with each probe retraining immediately re-gamed.
+This motivates the stopped-gradient design below.
+
+\paragraph{Binary probe: the stubbornness trap.}
+With stop-gradient, the policy cannot game the boundary but instead exploits a deeper flaw: $\dsyc$ does not condition on input validity, so refusing to revise a wrong answer receives the same $\rone = 1$ as correctly resisting invalid pressure.
+By step 500, $\tof$ drops to zero while $\nof$ remains near-perfect, yielding $\sycon = 0$.
+Qualitative analysis of 181 valid-correction responses reveals five failure modes: \emph{deliberation traps} (28.7\%), where the model identifies the correct answer but cannot commit; \emph{surface compliance / sycophantic stubbornness} (24.3\%), where the model verbally agrees but does not change its answer; \emph{acknowledge-but-maintain} (23.8\%); \emph{genuine-accept-missed} (18.8\%); and refute/ignore/other (4.5\%). Full taxonomy in Appendix~\ref{app:taxonomy}.
+
+\paragraph{Behavioral death precedes distributional collapse.}
+
+\begin{table}[t]
+\centering
+\caption{Probe reward trap trajectory (stopped-gradient probe). Behavioral death ($\tof{=}0$) occurs at step 500; entropy remains healthy until step ${\sim}1840$. Reward averages $+0.72$ throughout.}
+\label{tab:probe_trajectory}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Step & $\tof$ & $\nof$ & $\sycon$ & Entropy & Reward \\
+\midrule
+500 & 0.000 & 0.995 & 0.000 & 0.702 & +0.72 \\
+1000 & 0.006 & 0.995 & 0.011 & 0.800 & +0.71 \\
+1500 & 0.000 & 1.000 & 0.000 & 0.608 & +0.69 \\
+2000 & 0.000 & 1.000 & 0.000 & 0.304 & +0.69 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_probe_trap.pdf}
+\caption{Probe reward trap (stopped-gradient probe). $\tof$ drops to zero at step 500 while entropy remains high (0.70--0.80) through step 1000. The 1{,}300-step lag evades entropy monitoring.}
+\label{fig:probe_trap}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_trajectory.pdf}
+\caption{$\sycon$ trajectories for $\rthree$-only GRPO (two seeds) and ACT (two seeds). ACT exceeds vanilla at every checkpoint (31/31); GRPO exceeds vanilla at only 4/28 (14.3\%).}
+\label{fig:trajectory}
+\end{subfigure}
+\caption{Training dynamics. (a)~The probe reward trap: behavioral death precedes distributional collapse. (b)~$\rthree$-only GRPO vs.\ ACT over training steps.}
+\label{fig:dynamics}
+\end{figure*}
+
+Table~\ref{tab:probe_trajectory} and Figure~\ref{fig:probe_trap} reveal a 1{,}300-step lag: the model is behaviorally dead ($\tof = 0$) at step 500, yet entropy stays healthy (0.70--0.80) through step 1000 and does not collapse until step ${\sim}1840$, while reward averages $+0.72$.
+Entropy-based early stopping, the most common safeguard~\citep{casper2023openproblems}, would miss the failure; detecting probe reward traps requires periodic $\tof$ evaluation.
+
+\paragraph{A dilemma for direction-based rewards.}
+The differentiable and binary failures bracket the design space.
+With gradients, the policy games the boundary; without gradients, it exploits the fact that stubbornness and genuine resistance are indistinguishable along $\dsyc$.
+Any reward conditioned only on $\dsyc$ (continuous or discrete, differentiable or frozen) will either be gamed or will reward rigidity.
+Escaping requires a signal encoding the evidential warrant of the user's challenge, a dimension absent from $\dsyc$~\citep{denison2024subterfuge}.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2002f243f1a4b87572f2",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh poll alpha00 result v2",
+  "task_key": "worker_ssh_poll-alpha00-result-v2_20260517T040901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_poll-alpha00-result-v2_20260517T040901_result.json",
+    "occurrence": 1,
+    "bytes": 57,
+    "sha256": "68d7887ecf30042f09955f87486fa2d85cc1cbdd20fd5e87197abefe43e83945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60 秒后自动检查文件是否生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-poll-alpha00-result-v2.md"
+}

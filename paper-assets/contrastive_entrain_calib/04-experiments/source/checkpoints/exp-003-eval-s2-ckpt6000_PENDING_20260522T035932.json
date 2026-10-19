@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-003-eval-s2-ckpt6000",
+  "project": "contrastive_entrain_calib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:57:15.649Z",
+    "updated_at": "2026-05-22T03:59:32.564Z",
+    "hypothesis": "Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-6000 with D027 unified preset. Seed 2 later-stage eval to compare with seed 1 ckpt-6000 trajectory.",
+    "parent": "exp-003-s2"
+  },
+  "timestamp": "2026-05-22T03:59:32.692402+00:00",
+  "trigger": "update_registry"
+}

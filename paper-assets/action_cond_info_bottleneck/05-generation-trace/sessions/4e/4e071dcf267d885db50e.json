@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e071dcf267d885db50e",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "ssh check running status",
+  "task_key": "worker_ssh_check_running_status_20260518T010625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_running_status_20260518T010625_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "bac3d2da847d36f7c2972d823bbf165a81d05ec81420f31678549c10c84e26b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. PID 745668 (LoRA 训练) — **存活**\n- GPU 0，15276 MiB 占用\n\n### 2. LoRA 训练进度\n- **Step 14200 / 20000**（71%）\n- loss ≈ 0.25，task_loss ≈ 0.07，ib ≈ 0.50，β=0.01\n- **1.8 steps/s**，scorer_mean ≈ 0.365\n- 剩余 5800 steps → **预估 ~54 分钟**\n\n### 3. Eval 进程 — **存活**\n- nvidia-smi 显示 GPU 1 上 PID **759167**（可能是 759162 的子进程），6533 MiB\n\n### 4. Eval 进度\n- Checkpoint: `acib_connector_only_seed42/checkpoint-20000`，scoring_alpha=0.0\n- 4 个 suite：`libero_spatial` → `libero_object` → `libero_goal` → `libero_10`\n- 当前：**libero_spatial**（第 1/4 个），rollout 进度 176/280（63%），running_success_rate=0.0%\n- 刚启动不久（09:03 开始），大部分评估还在前面\n\n### 5. GPU 状态\n\n| GPU | 显存 | 利用率 | 温度 | 功耗 |\n|-----|------|--------|------|------|\n| 0 | 15287 / 97887 MiB | 74% | 68°C | 504W/600W |\n| 1 | 6552 / 97887 MiB | 1% | 35°C | 87W/600W |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-running-status.md"
+}

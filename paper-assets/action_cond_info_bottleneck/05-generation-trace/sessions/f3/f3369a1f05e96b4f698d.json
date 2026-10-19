@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "f3369a1f05e96b4f698d",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "infra full deploy v7",
+  "task_key": "worker_infra_full-deploy-v7_20260515T150145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_full-deploy-v7_20260515T150145_result.json",
+    "occurrence": 1,
+    "bytes": 2379409,
+    "sha256": "8efda01a1886cb096c939024a5c750e2057d619a190284b2a46cd288d010274f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "f3369a1f05e96b4f698d-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/infra-full-deploy-v7.md"
+}

@@ -1,0 +1,1170 @@
+# code exp002v3 gs8 dryrun
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_code_exp002v3-gs8-dryrun_20260522T153430.jsonl`
+- **Structured JSON:** [`efc30c38011a58b3c8d3.json`](../../sessions/ef/efc30c38011a58b3c8d3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T15:37:39.598563+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__submit_training_job",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__submit_training_job",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T15:37:39.598953+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T15:37:39.599139+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T15:37:39.599271+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "ls /root/contrastive_entrain_calib/training/run_exp002v3*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "ls /root/contrastive_entrain_calib/training/run_exp002v3*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T15:37:39.599400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 2 MiB, 32607 MiB\\n1, 0 %, 2 MiB, 32607 MiB\\n2, 61 %, 16348 MiB, 32607 MiB\\n3, 0 %, 2 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T15:37:39.599527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contrastive_entrain_calib/training/run_exp002v3_dcgrpo_scaled_cosine.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T15:37:39.599662+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat /root/contrastive_entrain_calib/training/run_exp002v3_dcgrpo_scaled_cosine.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "cat /root/contrastive_entrain_calib/training/run_exp002v3_dcgrpo_scaled_cosine.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T15:37:39.599937+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-002v3: DC-GRPO with scaled cosine R1 (DeepSpeed ZeRO-2, GPU 0+3).\\n\\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to R1=0.4, R3=0.6.\\n\\\"\\\"\\\"\\n\\n# MONITORING: step 0-50 异常阈值\\n# - grad_norm > 1.0 → 立即汇报\\n# - entropy < 0.1 → 立即汇报\\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\\n\\nimport json\\nimport logging\\nimport os\\nimport sys\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig\\nfrom transformers import AutoTokenizer\\n\\nsys.path.insert(0, \\\"/root/contrastive_entrain_calib/training\\\")\\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\n\\nOUTPUT_DIR = \\\"/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine\\\"\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n    handlers=[\\n        logging.StreamHandler(),\\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \\\"train.log\\\")),\\n    ],\\n)\\nlogger = logging.getLogger(\\\"exp002v3\\\")\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\"\\nDATA_PATH = \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\"\\nDIRECTION_PATH = \\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\"\\n\\nR1_WEIGHT = 0.4\\nR2_WEIGHT = 0.0\\nR3_WEIGHT = 0.6\\nR1_SCALE_FACTOR = 5.0\\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\nSEED = 42\\n\\n\\nclass _StrengthAwareReward:\\n    __name__ = \\\"dc_grpo_reward\\\"\\n\\n    def __init__(self, trainer, inner):\\n        self.trainer = trainer\\n        self._inner = inner\\n\\n    def __call__(self, prompts, completions, **kwargs):\\n        self.trainer._current_strengths = kwargs
+…[truncated 5947 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T15:37:39.600166+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat /root/contrastive_entrain_calib/training/ds_config_exp002v3.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "cat /root/contrastive_entrain_calib/training/ds_config_exp002v3.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T15:37:39.600321+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"bf16\\\": {\\n    \\\"enabled\\\": true\\n  },\\n  \\\"zero_optimization\\\": {\\n    \\\"stage\\\": 2,\\n    \\\"allgather_partitions\\\": true,\\n    \\\"allgather_bucket_size\\\": 200000000.0,\\n    \\\"reduce_scatter\\\": true,\\n    \\\"reduce_bucket_size\\\": 200000000.0,\\n    \\\"overlap_comm\\\": true\\n  },\\n  \\\"gradient_accumulation_steps\\\": 16,\\n  \\\"gradient_clipping\\\": 1.0,\\n  \\\"train_micro_batch_size_per_gpu\\\": 1,\\n  \\\"wall_clock_breakdown\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T15:37:39.600515+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "cat > /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp-002v3-gs8: DC-GRPO Cosine R1 with group_size=8 ablation.\n\nParent: exp-002v3 (num_generations=2)\nKey change: num_generations=2 -> 8 to study effect of larger group size.\nAll other hyperparams identical to exp-002v3.\n\"\"\"\n\n# MONITORING: step 0-50 异常阈值\n# - grad_norm > 1.0 → 立即汇报\n# - entropy < 0.1 → 立即汇报\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\n\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/contrastive_entrain_calib/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp002v3_gs8_cosine/\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v3_gs8\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.4\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.6\nR1_SCALE_FACTOR = 5.0\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v3GS8Trainer(DCGRPOTrainer):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations\n        )\n\n        self._log_step += 1\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\n        if log_this:\n            import statistics\n            r1_vals = list(components.get(\"r1\", []))\n            r3_vals = list(components.get(\"r3\", []))\n            combined = [float(r) for r in rewards]\n            if r1_vals:\n                r1_m = sum(r1_vals) / len(r1_vals)\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\n                logger.info(\"step=%d R1 mean=%.4f std=%.4f\", self._log_step, r1_m, r1_s)\n            if r3_vals:\n                r3_m = sum(r3_vals) / len(r3_vals)\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\n                logger.info(\"step=%d R3 mean=%.4f std=%.4f\", self._log_step, r3_m, r3_s)\n            if combined:\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\n                logger.info(\"step=%d combined_reward std=%.4f\", self._log_step, c_s)\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\n                    if sv:\n                        logger.info(\"step=%d reward/r1_%s_mean=%.4f n=%d\", self._log_step, strength, sum(sv) / len(sv), len(sv))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v3-gs8: DC-GRPO Cosine R1 group_size=8 ablation (DeepSpeed ZeRO-2) ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r1_scale_factor=R1_SCALE_FACTOR,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=500,\n        calibration_data_path=DATA_PATH,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=2,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=8,\n        deepspeed=\"/root/contrastive_entrain_calib/training/ds_config_exp002v3.json\",\n        report_to=\"none\",\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v3GS8Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train()\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"SCRIPT_CREATED: $?\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "cat > /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp-002v3-gs8: DC-GRPO Cosine R1 with group_size=8 ablation.\n\nParent: exp-002v3 (num_generations=2)\nKey change: num_generations=2 -> 8 to study effect of larger group size.\nAll other hyperparams identical to exp-002v3.\n\"\"\"\n\n# MONITORING: step 0-50 异常阈值\n# - grad_norm > 1.0 → 立即汇报\n# - entropy < 0.1 → 立即汇报\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\n\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/contrastive_entrain_calib/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp002v3_gs8_cosine/\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v3_gs8\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.4\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.6\nR1_SCALE_FACTOR = 5.0\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v3GS8Trainer(DCGRPOTrainer):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations\n        )\n\n        self._log_step += 1\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\n        if log_this:\n            import statistics\n            r1_vals = list(components.get(\"r1\", []))\n            r3_vals = list(components.get(\"r3\", []))\n            combined = [float(r) for r in rewards]\n            if r1_vals:\n                r1_m = sum(r1_vals) / len(r1_vals)\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\n                logger.info(\"step=%d R1 mean=%.4f std=%.4f\", self._log_step, r1_m, r1_s)\n            if r3_vals:\n                r3_m = sum(r3_vals) / len(r3_vals)\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\n                logger.info(\"step=%d R3 mean=%.4f std=%.4f\", self._log_step, r3_m, r3_s)\n            if combined:\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\n                logger.info(\"step=%d combined_reward std=%.4f\", self._log_step, c_s)\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\n                    if sv:\n                        logger.info(\"step=%d reward/r1_%s_mean=%.4f n=%d\", self._log_step, strength, sum(sv) / len(sv), len(sv))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v3-gs8: DC-GRPO Cosine R1 group_size=8 ablation (DeepSpeed ZeRO-2) ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r1_scale_factor=R1_SCALE_FACTOR,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=500,\n        calibration_data_path=DATA_PATH,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=2,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=8,\n        deepspeed=\"/root/contrastive_entrain_calib/training/ds_config_exp002v3.json\",\n        report_to=\"none\",\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v3GS8Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train()\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"SCRIPT_CREATED: $?\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T15:37:39.600728+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "mkdir -p /root/autodl-tmp/contrastive_entrain_calib/outputs/exp002v3_gs8_cosine/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "mkdir -p /root/autodl-tmp/contrastive_entrain_calib/outputs/exp002v3_gs8_cosine/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T15:37:39.600863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SCRIPT_CREATED: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T15:37:39.601071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T15:37:39.601216+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 nohup /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py > /tmp/exp002v3_gs8_dryrun.log 2>&1 & echo PID=\\$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 nohup /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py > /tmp/exp002v3_gs8_dryrun.log 2>&1 & echo PID=\\$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T15:37:39.601349+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=19279\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T15:37:39.601512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -30 /tmp/exp002v3_gs8_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "tail -30 /tmp/exp002v3_gs8_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T15:37:39.601677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 23:35:54,769 [INFO] exp002v3_gs8: === exp-002v3-gs8: DC-GRPO Cosine R1 group_size=8 ablation (DeepSpeed ZeRO-2) ===\\n2026-05-22 23:35:54,769 [INFO] exp002v3_gs8: Weights: R1=0.40, R2=0.00, R3=0.60 | R1 scale_factor=5.0\\n2026-05-22 23:35:54,769 [INFO] exp002v3_gs8: Reward layers: [19, 20, 24, 27, 32, 33, 35]\\n2026-05-22 23:35:55,115 [INFO] exp002v3_gs8: Loaded 362 records from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-22 23:35:55,405 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:01<00:07,  1.88s/it]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:03<00:05,  1.90s/it]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:05<00:03,  1.91s/it]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:06<00:01,  1.57s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:06<00:00,  1.06s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:06<00:00,  1.38s/it]\\n2026-05-22 23:36:02,384 [WARNING] accelerate.big_modeling: Some parameters are on the meta device because they were offloaded to the cpu.\\n2026-05-22 23:36:03,580 [INFO] dcgrpo_trainer: Loaded d_syc shape=torch.Size([36, 2, 4096]) from /root/contrastive_entrain_calib/results/exp001/directions.pt\\n2026-05-22 23:36:03,580 [INFO] dcgrpo_trainer: Activation hooks registered on layers [19, 20, 24, 27, 32, 33, 35]\\n2026-05-22 23:36:03,581 [INFO] exp002v3_gs8: Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id'
+…[truncated 1427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T15:37:39.601825+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T15:37:39.602058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 2 MiB, 32607 MiB\\n1, 2 MiB, 32607 MiB\\n2, 16456 MiB, 32607 MiB\\n3, 2 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T15:37:39.602226+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "sed -i 's|        deepspeed=\"/root/contrastive_entrain_calib/training/ds_config_exp002v3.json\",|        # deepspeed removed: single-GPU run, ZeRO-2 not needed|' /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "sed -i 's|        deepspeed=\"/root/contrastive_entrain_calib/training/ds_config_exp002v3.json\",|        # deepspeed removed: single-GPU run, ZeRO-2 not needed|' /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T15:37:39.602363+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T15:37:39.602500+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "grep -n \"deepspeed\\|max_steps\\|num_generations\" /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "grep -n \"deepspeed\\|max_steps\\|num_generations\" /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T15:37:39.602622+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T15:37:39.602800+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "grep -n \"deepspeed\" /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "grep -n \"deepspeed\" /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T15:37:39.602991+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"174:        # deepspeed removed: single-GPU run, ZeRO-2 not needed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T15:37:39.603122+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "grep -n \"num_generations\" /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "grep -n \"num_generations\" /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T15:37:39.603243+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "grep -n \"max_steps\" /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "grep -n \"max_steps\" /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T15:37:39.603363+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4:Parent: exp-002v3 (num_generations=2)\\n5:Key change: num_generations=2 -> 8 to study effect of larger group size.\\n173:        num_generations=8,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T15:37:39.603481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"169:        max_steps=2,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T15:37:39.603621+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 nohup /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py > /tmp/exp002v3_gs8_dryrun.log 2>&1 & echo PID=\\$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 nohup /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py > /tmp/exp002v3_gs8_dryrun.log 2>&1 & echo PID=\\$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T15:37:39.603747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=19773\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T15:37:39.603908+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "tail -40 /tmp/exp002v3_gs8_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "tail -40 /tmp/exp002v3_gs8_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T15:37:39.604074+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/generation/utils.py\\\", line 2789, in _sample\\n    outputs = model_forward(**model_inputs, return_dict=True)\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1773, in _wrapped_call_impl\\n    return self._call_impl(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1784, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/accelerate/hooks.py\\\", line 192, in new_forward\\n    output = module._old_forward(*args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/generic.py\\\", line 918, in wrapper\\n    output = func(self, *args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\\\", line 494, in forward\\n    logits = self.lm_head(hidden_states[:, slice_indices, :])\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1773, in _wrapped_call_impl\\n    return self._call_impl(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1784, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/accelerate/hooks.py\\\", line 187, in new_forward\\n    args, kwargs = module._hf_hook.pre_forward(module, *args, **kwargs)\\n       
+…[truncated 1565 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T15:37:39.604214+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T15:37:39.604345+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 2 MiB, 32607 MiB\\n1, 2 MiB, 32607 MiB\\n2, 16350 MiB, 32607 MiB\\n3, 2 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T15:37:39.604579+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-28034",
+  "command": "head -30 /tmp/exp002v3_gs8_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-28034",
+    "command": "head -30 /tmp/exp002v3_gs8_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T15:37:39.604771+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 23:36:48,440 [INFO] exp002v3_gs8: === exp-002v3-gs8: DC-GRPO Cosine R1 group_size=8 ablation (DeepSpeed ZeRO-2) ===\\n2026-05-22 23:36:48,441 [INFO] exp002v3_gs8: Weights: R1=0.40, R2=0.00, R3=0.60 | R1 scale_factor=5.0\\n2026-05-22 23:36:48,441 [INFO] exp002v3_gs8: Reward layers: [19, 20, 24, 27, 32, 33, 35]\\n2026-05-22 23:36:48,770 [INFO] exp002v3_gs8: Loaded 362 records from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-22 23:36:49,050 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:01<00:07,  1.81s/it]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:03<00:05,  1.87s/it]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:05<00:03,  1.89s/it]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:06<00:01,  1.54s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:06<00:00,  1.04s/it]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:06<00:00,  1.36s/it]\\n2026-05-22 23:36:55,926 [WARNING] accelerate.big_modeling: Some parameters are on the meta device because they were offloaded to the cpu.\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\n2026-05-22 23:36:56,825 [INFO] dcgrpo_trainer: Loaded d_syc shape=torch.Size([36, 2, 4096]) from /root/contrastive_entrain_calib/results/exp001/directions.pt\\n2026-05-22 23:36:56,825 [INFO] dcgrpo_trainer: Activation hooks registered on layers [19, 20, 24, 27, 32, 33, 35]\\n2026-05-22 23:36:56,825 [INFO] exp002v3_gs8: Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were al
+…[truncated 1582 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-22T15:37:39.605023+00:00_
+
+## Dry-run 结果：OOM
+
+**RTX 5090 32GB 无法支撑 Qwen3-8B + num_generations=8。**
+
+### 详情
+
+| 指标 | 数值 |
+|------|------|
+| GPU 总显存 | 31.36 GiB |
+| PyTorch allocated | 26.26 GiB |
+| PyTorch reserved | 2.72 GiB |
+| OOM 时 free | 1.77 GiB |
+| OOM 时请求 | 2.32 GiB |
+| 缺口 | ~0.55 GiB |
+
+### 失败点
+- **Generation forward pass**（lm_head 投影层），还没到 backward
+- Accelerate 已自动做了部分 CPU offload（`Some parameters on meta device because offloaded to cpu`），仍然不够
+- 瓶颈是 8 个 generation 的 KV cache + logits 同时在 GPU 上
+
+### 可能的解决路径（待 Director 决策）
+1. **降 num_generations 到 4** — 介于 2 和 8 之间的折中
+2. **降 max_completion_length**（256→128）— 减少 KV cache
+3. **用双卡**（cuda:0+3 都空闲）+ DeepSpeed ZeRO-2（跟原 exp-002v3 一样）
+4. **4-bit 量化推理**（QLoRA 方式）— 但会改变实验条件
+
+脚本已创建在 `/root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py`，max_steps 仍为 2（dry-run 状态），等你定方案后我改参数启动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_exp002v3-gs8-dryrun_20260522T153430"
+}
+```
+
+</details>
+
+---

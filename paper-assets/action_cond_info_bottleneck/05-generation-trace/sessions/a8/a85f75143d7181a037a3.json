@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a85f75143d7181a037a3",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "research smolvla lerobot",
+  "task_key": "worker_research_smolvla-lerobot_20260515T111122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_smolvla-lerobot_20260515T111122_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "0ee14edf1f748ee7673e3f4ae252d76f6cdb7259f9e2f87c47cea413f4c63530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成，写入到 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/action_cond_info_bottleneck/artifacts/research_smolvla_lerobot.md`。\n\n核心发现：\n\n**SmolVLA 架构**: SigLIP-Base (768-dim, 1024 tokens → PixelShuffle → 64 tokens) + SmolLM2-360M (960-dim, 只用前 16/32 层) + Action Expert (~100M, hidden=720, flow matching 10步推理, chunk=50)\n\n**LeRobot 框架**: `lerobot-train` CLI 入口，draccus dataclass 配置，policy 类为 `lerobot.policies.smolvla.SmolVLAPolicy`，默认冻结 VLM 只训练 expert，支持 LoRA\n\n**依赖**: Python >=3.12, PyTorch >=2.7, transformers >=5.4.0（注意是 5.x），总安装约 5GB\n\n**对 information bottleneck 项目的切入点**: VLM layer-16 输出到 action expert 的 cross-attention 接口是最自然的约束位置；PixelShuffle 后的 64 tokens 也是天然 bottleneck。\n\n有 3 处标注了 `[UNVERIFIED]`（`num_expert_layers=0` 的确切含义、action expert 的精确层数、配置类名），需要阅读源码确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-smolvla-lerobot.md"
+}

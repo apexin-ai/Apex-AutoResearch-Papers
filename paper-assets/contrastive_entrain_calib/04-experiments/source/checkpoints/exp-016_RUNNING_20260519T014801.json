@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-016",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:30:49.598Z",
+    "updated_at": "2026-05-19T01:48:01.721Z",
+    "hypothesis": "ActAdd inference-time steering (adding d_syc direction to hidden states at target layers during generation) provides a training-free baseline for sycophancy reduction. If ActAdd ≈ DC-GRPO, training-time direction reward adds no value over simple inference steering; if DC-GRPO > ActAdd, the RL training process produces qualitatively different improvements that inference steering cannot achieve.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python run_exp016_actadd_steering.py",
+      "server": "westd-28034",
+      "gpu": "cuda:3",
+      "pid": "74242",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "exp-001 directions.pt (d_syc)",
+      "eval_data": "calibration_v2_1_expanded.jsonl (362 pairs)",
+      "notes": "ActAdd inference-time steering baseline. Alpha sweep: [0.0, 0.5, 1.0, 2.0, 5.0]. Uses nli_utils.py for dynamic NLI label detection. Inference-only, no training."
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T01:48:01.765969+00:00",
+  "trigger": "update_registry"
+}

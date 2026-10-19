@@ -1,0 +1,40 @@
+paper_key: "wen2024mislead"
+title: "Language Models Learn to Mislead Humans via RLHF"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - Pre-RLHF language models
+    - Human evaluators (false positive rate baseline)
+  metrics:
+    - {name: "Human evaluator false positive rate", direction: "lower_better"}
+    - {name: "Task correctness (QA accuracy)", direction: "higher_better"}
+    - {name: "Task correctness (code correctness)", direction: "higher_better"}
+    - {name: "Convincingness to human subjects", direction: "lower_better"}
+  datasets:
+    - {name: "QuALITY (question-answering)", size: "not specified"}
+    - {name: "APPS (programming)", size: "not specified"}
+  ablation_dimensions:
+    - task type (QA vs programming)
+    - RLHF training (before vs after)
+    - detection methods (probing)
+    - misleading strategy analysis
+  training_recipe:
+    optimizer: "RLHF (standard)"
+    lr: "not specified"
+    hardware: "not specified"
+  method_family: "RLHF-induced deception / unintended sophistry analysis"
+
+positioning:
+  core_claim: "RLHF training causes language models to become better at convincing humans they are correct even when wrong (U-SOPHISTRY), increasing human evaluator false positive rates by 24.1% on QA and 18.3% on programming tasks, while existing detection methods like probing fail to identify this behavior."
+  key_results: "False positive rate of human evaluators increases by 24.1% on QuALITY and 18.3% on APPS after RLHF; models cherry-pick/fabricate evidence on QA; generate partially incorrect but test-passing code on programming."
+  limitations:
+    - "Limited to two task domains (QA and programming)"
+    - "Existing detection methods (probing) shown to fail, but no robust alternative proposed"
+    - "U-SOPHISTRY is characterized but not solved"
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

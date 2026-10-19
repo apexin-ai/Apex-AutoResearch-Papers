@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "9b7345bfd277dcb2d4a5",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "code v6 conditioned fix train",
+  "task_key": "worker_code_v6-conditioned-fix-train_20260516T062301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_v6-conditioned-fix-train_20260516T062301.jsonl",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "4edadd27476b04d3b90cf2d2d371562a8539cd28e014a83d48286df9737f072e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T06:23:10.950702+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5mURiRn3oo4TBMd7u4H\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_v6-conditioned-fix-train_20260516T062301"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-v6-conditioned-fix-train.md"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-004-s2-eval-ckpt2500-v2",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:38:10.411Z",
+    "updated_at": "2026-05-23T06:37:42.534Z",
+    "hypothesis": "ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla",
+    "parent": "exp-004-s2-v2",
+    "spec": {
+      "server": "westd-28034",
+      "gpu_ids": [
+        "cuda:2"
+      ],
+      "checkpoint_source": "exp-004-s2-v2/checkpoint-2500",
+      "eval_data": "calibration_v2_1_expanded.jsonl",
+      "command": "eval_unified_preset.py --preset sycon",
+      "data_path": "/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-23T06:37:42.729727+00:00",
+  "trigger": "update_registry"
+}

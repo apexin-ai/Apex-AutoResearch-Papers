@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp-004-s2-eval-ckpt8000",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:56:32.325Z",
+    "updated_at": "2026-05-23T02:57:02.676Z",
+    "hypothesis": "ACT seed 2 ckpt-8000 eval: final checkpoint, completes 16/16 s2 trajectory",
+    "parent": "exp-004-s2-v2",
+    "spec": {
+      "server": "westd-28034",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "checkpoint_source": "exp-004-s2-v2/checkpoint-8000",
+      "eval_data": "calibration_v2_1_expanded.jsonl",
+      "command": "eval_unified_preset.py --preset sycon",
+      "data_path": "/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42
+    },
+    "metrics": {
+      "SYCONScore": 0.2465,
+      "ToF": 0.1436,
+      "NoF": 0.8674,
+      "n_valid": 181,
+      "n_total": 362
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-8000",
+    "log_path": "/root/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/eval_ckpt8000",
+    "completed_at": "2026-05-23T02:57:02.676Z"
+  },
+  "timestamp": "2026-05-23T02:57:02.855050+00:00",
+  "trigger": "update_registry"
+}

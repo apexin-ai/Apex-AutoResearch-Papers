@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-004-heldout-vanilla-baseline",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:20:20.787Z",
+    "updated_at": "2026-05-23T07:20:20.787Z"
+  },
+  "timestamp": "2026-05-23T07:20:21.023907+00:00",
+  "trigger": "update_registry"
+}

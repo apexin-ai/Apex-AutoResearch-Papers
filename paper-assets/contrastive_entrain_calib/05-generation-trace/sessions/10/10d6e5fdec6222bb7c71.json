@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "10d6e5fdec6222bb7c71",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "run phase2 activation extraction",
+  "task_key": "worker_run_phase2_activation_extraction_20260518T080446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase2_activation_extraction_20260518T080446.log",
+    "occurrence": 1,
+    "bytes": 1203958,
+    "sha256": "c13359b013ce55378019a165bf0c8d3769c0592696d0d80bbe965e13d3d77a30"
+  },
+  "statistics": {
+    "messages": 772,
+    "user_turns": 1,
+    "tool_calls": 295,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 170,
+      "tool_call": 295,
+      "tool_result": 295,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 292,
+      "chunks": [
+        {
+          "path": "10d6e5fdec6222bb7c71-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "10d6e5fdec6222bb7c71-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 480,
+      "chunks": [
+        {
+          "path": "10d6e5fdec6222bb7c71-part-0002.json",
+          "message_count": 68
+        },
+        {
+          "path": "10d6e5fdec6222bb7c71-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "10d6e5fdec6222bb7c71-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "10d6e5fdec6222bb7c71-part-0005.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-phase2-activation-extraction.md"
+}

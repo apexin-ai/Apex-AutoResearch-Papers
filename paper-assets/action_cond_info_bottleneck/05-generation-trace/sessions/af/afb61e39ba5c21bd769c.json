@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afb61e39ba5c21bd769c",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "prep v7 eval script",
+  "task_key": "worker_prep_v7-eval-script_20260516T123140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_v7-eval-script_20260516T123140_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "efdd1c851378e2fa7fc61ca552a2dcb699d142680966088171743599da428d77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。总结：\n\n---\n\n## 确认结果\n\n| 项目 | 状态 |\n|------|------|\n| dtype fix (`target_dtype` + `scorer.to(dtype=...)`) | ✅ 已在 eval_acib.py:138-141 |\n| conditioning_mode 从 checkpoint config 加载 | ✅ 刚加入 eval_acib.py:119 |\n| `run_v7_eval.sh` | ✅ 已写入 `/root/acib/scripts/run_v7_eval.sh` |\n| `run_v7_seed2.sh` | ✅ 已写入 `/root/acib/scripts/run_v7_seed2.sh` |\n\n## 注意：eval_acib.py 的 CLI 参数\n\n实际参数与你模板中的不同：\n- `--checkpoint_dir`（不是 `--checkpoint`）\n- `--base_model`（不是 `--model_id`）\n- `--out_dir`（不是 `--output_dir`）\n\n脚本已用正确参数写好。\n\n## 启动命令（训练完成后直接执行）\n\n**v7 eval（checkpoint-20000 就绪后）：**\n```bash\ntmux new-session -d -s v7_eval \"bash /root/acib/scripts/run_v7_eval.sh 2>&1 | tee ~/runs/action_cond_info_bottleneck/v7_eval_ckpt20000.log\"\n```\n\n**v7 seed2（Probe A < 0.8 确认后，GPU 0 空闲时）：**\n```bash\ntmux new-session -d -s v7_seed2 \"bash /root/acib/scripts/run_v7_seed2.sh 2>&1 | tee ~/runs/action_cond_info_bottleneck/acib_v7_seed2.log\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-v7-eval-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "129491e273112fac325c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "check 29046 training progress",
+  "task_key": "worker_check_29046-training-progress_20260520T022035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_29046-training-progress_20260520T022035_result.json",
+    "occurrence": 1,
+    "bytes": 1184,
+    "sha256": "1af4475492924ab98ade68724c5e3a54a499abc45b392799b8a19ee1032e1141"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n### exp-003 (GPU 1, PID 70649)\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **3760 / 8000 (47%)** |\n| 已运行 | 1天9小时29分 (~33.5h) |\n| 步速 | ~45-47s/step |\n| 预计剩余 | ~55h |\n| reward/r3_mean | 0.6972 (std=0.4051) |\n| 最新 checkpoint | checkpoint-4000 (`/root/autodl-tmp/checkpoints/exp003_r3only_seed1/`) |\n| 状态 | **健康** — CPU 596%, 持续出 step |\n\n### exp-003-s2 (GPU 0, PID 237437 via bash→timeout)\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **136 / 8000 (2%)** |\n| 已运行 | 2小时3分 |\n| 步速 | ~55-70s/step（波动中，warmup 阶段） |\n| 预计剩余 | ~120-140h |\n| reward_mean | 0.47-0.55 |\n| checkpoint | 尚无（首个在 step 500） |\n| 状态 | **健康** — CPU 426%, 持续出 step |\n\n注意：s2 的 `completions/clipped_ratio=1.0`，所有生成都达到 max_length 256，terminated_length 全为 0 — 模型尚未学会终止生成。\n\n### GPU 使用\n| GPU | 型号 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 | RTX PRO 6000 Blackwell | 76094 / 97887 MiB (78%) | 99% |\n| 1 | RTX PRO 6000 Blackwell | 38161 / 97887 MiB (39%) | 83% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-29046-training-progress.md"
+}

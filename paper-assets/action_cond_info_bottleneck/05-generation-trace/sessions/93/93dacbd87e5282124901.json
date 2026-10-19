@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "93dacbd87e5282124901",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "research seed2 checkpoint5000 verify",
+  "task_key": "worker_research_seed2-checkpoint5000-verify_20260516T052838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_seed2-checkpoint5000-verify_20260516T052838.jsonl",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "db6072336051bde763450be3152056234d9d93360cb192293445566e2e082861"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:28:44.994738+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5hKiJ6tSB7TjzKuKxTs\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_seed2-checkpoint5000-verify_20260516T052838"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/research-seed2-checkpoint5000-verify.md"
+}

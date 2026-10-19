@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "97f875b894e2db0bd306",
+  "project": "action_cond_info_bottleneck",
+  "kind": "conversation",
+  "title": "research next experiment prep",
+  "task_key": "worker_research_next-experiment-prep_20260516T032018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_next-experiment-prep_20260516T032018.jsonl",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "e74279210a5b77486396d6d956391706c7e9fa57c732210f70d8a6b8a44641db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:20:27.136909+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5XYGbENYMzwcpMFxPUF\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_next-experiment-prep_20260516T032018"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/research-next-experiment-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2a78d2b4272b3826bb8",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "diag acib v3 scorer verify and kill",
+  "task_key": "worker_diag_acib_v3_scorer_verify_and_kill_20260516T000340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_acib_v3_scorer_verify_and_kill_20260516T000340_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "0027e28c83817a69ac2f3dabca8238ce628b78668e9496639a876b7d39421656"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 497308 已死。GPU 0 显存 4459 MiB 可能是缓存还未释放，utilization 已经是 0%。\n\n---\n\n## 结果\n\n**1. Scorer 统计（从日志 IB loss 推断）：**\n\n| Step 区间 | β | IB loss | 状态 |\n|-----------|------|---------|------|\n| 100-1000 | 0.0 | 0.06→0.02 | 正常（warmup 阶段） |\n| 1100-1200 | 0.001-0.002 | 0.015→**0.001** | 急剧下降 |\n| 1500-2400 | 0.005-0.01 | **-0.0002~0.001** | Collapsed |\n\n**2. Collapse 确认：是。** β ramp 启动后 IB loss 在 ~200 步内从 0.015 骤降到 ~0，之后持续为 0（含负值）。Scorer 退化为 pass-through，信息瓶颈完全失效。Task loss 无恶化进一步证实模型绕过了 bottleneck。\n\n**3. PID 497308：已 kill（SIGTERM 成功）。**\n\n**4. GPU 状态：** GPU 0 utilization 0%，显存 4459 MiB（缓存残留，会逐步释放）。GPU 1 被其他任务占用（21612 MiB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-acib-v3-scorer-verify-and-kill.md"
+}

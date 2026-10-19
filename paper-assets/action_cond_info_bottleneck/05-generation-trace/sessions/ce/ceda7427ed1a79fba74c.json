@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ceda7427ed1a79fba74c",
+  "project": "action_cond_info_bottleneck",
+  "kind": "result",
+  "title": "monitor acib v4 early check v2",
+  "task_key": "worker_monitor_acib_v4_early_check_v2_20260516T010414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_acib_v4_early_check_v2_20260516T010414_result.json",
+    "occurrence": 1,
+    "bytes": 110,
+    "sha256": "c56cd46e8ebcf00daf3c28c88c47850abbc00f7f19d34c49b9a5d439ed229ff3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(后台等待任务已完成，不需要额外操作——报告已在上条消息中给出。)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-acib-v4-early-check-v2.md"
+}

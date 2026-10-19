@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-003-eval-s2-ckpt4500",
+  "project": "contrastive_entrain_calib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:36:34.293Z",
+    "updated_at": "2026-05-22T03:56:39.920Z",
+    "parent": "exp-003-s2",
+    "hypothesis": "Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-4500 with D027 unified preset. Seed 2 at this step should show whether seed 2 trajectory tracks seed 1 pattern (seed 1 ckpt-4500=0.134=vanilla peak).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-4500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-s2-ckpt4500",
+      "server": "westd-28034",
+      "gpu": "cuda:3",
+      "pid": 948943,
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-4500",
+      "eval_data": "calibration_v2_1_expanded",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-4500",
+      "log_path": "/root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-s2-ckpt4500_preset_eval.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T03:56:39.920Z"
+  },
+  "timestamp": "2026-05-22T03:56:40.317784+00:00",
+  "trigger": "update_registry"
+}

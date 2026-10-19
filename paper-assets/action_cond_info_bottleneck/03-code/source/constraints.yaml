@@ -1,0 +1,21 @@
+_next_id: 5
+constraints:
+- id: C001
+  added: 2026-05-16 03:10 UTC
+  summary: 启动训练/eval 进程前，必须先 ps aux | grep output_dir 检查是否已有同目录进程在跑，有则 kill 旧进程并等待确认死亡后再启动新进程
+  scope: worker
+  reason: GPU 1 重复进程问题已发生三次（v4/v5 overlap → seed2 第一次 duplicate → seed2+std eval 双重
+    duplicate），旧进程未 kill 导致多进程写同一 output 目录，数据损坏风险
+- id: C002
+  added: 2026-05-16 13:51 UTC
+  summary: cron failed 报告不可直接信任——收到 on_failed 回调后，Worker 必须先 ssh_read_only 验证进程存活（ps
+    -p PID + nvidia-smi），确认进程确实死亡后才能执行重启。禁止基于 cron 报告直接 kill 进程或启动新训练。
+  scope: all
+  reason: wrapper PID 死亡会触发 cron 误报 failed，但训练子进程不受影响。已连续 5 次发生此误报，差点导致活跃训练被 kill。
+- id: C004
+  added: 2026-05-17 02:56 UTC
+  summary: 启动任何 eval/训练前必须 nvidia-smi 确认目标 GPU 无占用进程。当前 alpha sweep 正在运行：GPU 0 alpha=0.0（刚启动），GPU
+    1 alpha=0.1（即将完成）→ 后续接 alpha=0.3。禁止在有活跃进程的 GPU 上启动新任务。
+  scope: worker
+  reason: 替代旧 C003（已过期 PID 引用）。训练/eval 阶段 GPU 管理规则不变，但 PID 信息需要实时验证而非硬编码。
+  decision_id: D035

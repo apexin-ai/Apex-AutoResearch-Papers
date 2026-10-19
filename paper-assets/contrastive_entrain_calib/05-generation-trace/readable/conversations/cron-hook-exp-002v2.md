@@ -1,0 +1,958 @@
+# cron hook exp 002v2
+
+**The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/cron_hook_exp-002v2.jsonl`
+- **Structured JSON:** [`8ad0ae8a155856def531.json`](../../sessions/8a/8ad0ae8a155856def531.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+32 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T02:10:29.663191+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: exp-002v2
+- project: contrastive_entrain_calib
+- server: westd-29046
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp-002v2",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-19T02:10:43.786940+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-19T02:10:43.787490+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T02:10:46.598938+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T02:10:47.109147+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T02:10:47.110182+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-002v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:53:52.831Z\", \"updated_at\": \"2026-05-19T02:10:27.620Z\", \"hypothesis\": \"DC-GRPO with cosine similarity R1 (replacing tanh(dot/20) which saturated due to activation norms 100-1200x across layers). Cosine R1 ∈ [-1,1] is norm-invariant, giving equal weight to all reward layers. Same config as exp-002 (R1=0.25, R3=0.75, R2=0, LoRA r=64, 8000 steps). If cosine R1 shows stable training signal (no ±1 oscillation) and improves sycophancy reduction over R3-only (exp-003), this validates the direction-projection mechanism with proper normalization.\", \"parent\": \"exp-002\", \"spec\": {\"command\": \"cd /root/contrastive_entrain_calib && python training/run_exp002v2_dcgrpo_cosine.py\", \"server\": \"westd-29046\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine\", \"log_path\": \"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log\", \"checkpoint_source\": \"training_from_base\", \"eval_data\": \"N/A\", \"gpu\": \"cuda:0\", \"pid\": \"122450\", \"notes\": \"Cosine R1 fix (D020/M012): replaced tanh(dot/20) with cosine similarity. R1 ∈ [-0.2,+0.2], no tanh saturation. Config: R1=0.25, R2=0, R3=0.75, LoRA r=64, max_steps=8000, num_gen=2, max_completion_length=256. recalibration_interval=0.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T02:10:27.513Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T02:10:27.621Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T02:10:29.397992+00:00\"}]}}, \"exp-016\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\
+…[truncated 11021 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 511
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T02:10:47.511725+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T02:10:47.512200+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contrastive_entrain_calib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T02:10:52.184911+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"exp-003\", \"success\": true, \"actions\": [\"Job still running (pid=70649)\"]}, {\"exp_id\": \"exp-004\", \"success\": true, \"actions\": [\"Job still running (pid=18204)\"]}, {\"exp_id\": \"exp-014\", \"success\": true, \"actions\": [\"Job still running (pid=exp-014)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5075
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T02:10:52.235738+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T02:10:28Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 9 个实验 — DONE 4, PREPARING 1, RUNNING 4\\n**DONE 分布**: failed 1, killed 2, success 1\\n\\n### GPU 占用\\n- **实际运行**: 5 张 — westd-29046:cuda:1(exp-003), westd-28034:cuda:0(exp-004), westd-28034:cuda:1(exp-014), westd-28034:cuda:2(exp-014), westd-28034:cuda:3(exp-016)\\n\\n### 💾 磁盘余量\\n- **westd-29046**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n- **westd-28034**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 819G/879G 可用（已用 2%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp-003` | westd-29046 | cuda:1 | 70649 | `—` |\\n| `exp-004` | westd-28034 | cuda:0 | 18204 | `—` |\\n| `exp-014` | westd-28034 | cuda:1,cuda:2 | 39734 | `~/runs/contrastive_entrain_calib/exp-014.log` |\\n| `exp-016` | westd-28034 | cuda:3 | 85457 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp-002v2` [failed] — 2026-05-19T02:10:27 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp-002` [killed] — 2026-05-19T00:07:57 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp-008` [killed] — 2026-05-18T22:48:02 — EXIT_CODE=143 (SIGTERM — graceful kill)\\n- `exp-001` [success] — 2026-05-18T15:02:41\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp-002v2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp-002`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp-008`: EXIT_CODE=143 (SIGTERM — graceful kill)\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n#
+…[truncated 3176 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4724
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T02:10:52.236264+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md\", \"content\": \"# contrastive_entrain_calib — Research Dashboard\\n\\n> 最后更新: 2026-05-19 01:55 UTC | 更新原因: exp-016 失败 (hooks 未生效), exp-002 killed→exp-002v2 cosine R1 运行中\\n\\n> 详见 paper_framing.md (story/claims) 和 experiment_plan.yaml (完整实验列表)\\n\\n## 核心方向\\nRepE-style d_syc 方向分解作为连续 GRPO reward 信号，打破多轮对话中的 sycophancy-revision 双重困境。\\n\\n## 当前阶段\\n**Research Phase** — 5/6 GPU 在用。4 个训练实验运行中，**GPU 3 (28034) 空闲待分配**。\\n\\n## 实验状态\\n| exp_id | 状态 | 服务器 | 进展 | 预计完成 |\\n|--------|------|--------|------|----------|\\n| exp-001 | ✅ DONE | — | AUROC 0.827 | — |\\n| exp-002 | ⛔ KILLED | — | D020: tanh(dot/20) 饱和，step 955 终止 | — |\\n| exp-002v2 | 🟢 RUNNING | 29046 GPU 0 | step ~183/8000, ~30s/step | ~May 21 18:00 |\\n| exp-003 | 🟢 RUNNING | 29046 GPU 1 | step ~900/8000, ~26s/step | ~May 21 16:00 |\\n| exp-004 | 🟢 RUNNING | 28034 GPU 0 | step ~3500/8000, ~10s/step | ~May 19 12:00 |\\n| exp-014 | 🟢 RUNNING | 28034 GPU 1+2 | step ~1000/8000, ~25s/step | ~May 21 02:00 |\\n| exp-016 | ❌ FAILED | — | Hooks 未生效，所有 alpha 产出相同 | — |\\n| exp-008 | ⛔ KILLED | — | probe gaming S(t)→0 | — |\\n| exp-008 v3 | ⏳ PREPARED | 28034 GPU 0+3 | Binary Probe GRPO 代码就绪 | 等 exp-004 完成 |\\n| exp-003-s2 | ⏳ QUEUED | 28034 GPU 1+2 | 等 exp-014 完成 | ~May 21 02:00 启动 |\\n\\n## ⚠️ 关键风险\\n- **exp-002v2 R1 系统性负偏**: step 183 R1 mean=-0.041，cosine 信号稳定但持续偏负。需 checkpoint-500 分析 per-condition 分离度。\\n- **存亡级判据 (D012)**: exp-014 (Continuous Probe) vs exp-002v2 (DC-GRPO cosine) NoF delta <2pp → pivot analysis paper。\\n- **GPU 3 空闲**: exp-016 失败后 westd-28034 GPU 3 空闲，已向 Director 请求分配决策。\\n\\n## GPU 调度时间线\\n| 时间 (UTC) | 事件 | GPU 变化 |\\n|------------|------|----------|\\n| NOW | exp-016 失败 | GPU 3 (28034) 空闲 ⚠️ |\\n| ~May 19 12:00 | exp-004 完成 | GPU 0 (28034) 空闲 → 与 GPU 3 启动 exp-008 v3 |\\n| ~May 21 02:00 | exp-014 完成 | GPU 1+2 (28034) → exp-003-s2 |\\n| ~May 21 16:00 |
+…[truncated 1819 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4724
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T02:11:03.538726+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T02:11:03.940918+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_aebd929a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Read",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T02:11:04.343009+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T02:11:04.343450+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T02:11:05.096346+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T02:11:05.147000+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T02:11:32.194316+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:exp-002v2",
+  "project": "contrastive_entrain_calib",
+  "task_prompt": "## 任务：诊断 exp-002v2 训练失败原因\n\nexp-002v2 (DC-GRPO cosine similarity R1) 在 westd-29046 上异常退出，cron 系统报告 \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"。\n\n### 背景\n- 实验：DC-GRPO with cosine similarity R1（替代 tanh(dot/20)）\n- 服务器：westd-29046\n- GPU：cuda:0，PID：122450\n- 命令：`cd /root/contrastive_entrain_calib && python training/run_exp002v2_dcgrpo_cosine.py`\n- Checkpoint 路径：`/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine`\n- Log 路径：`/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log`\n- 启动时间：2026-05-18T23:53，退出确认时间：2026-05-19T02:10\n- ROADMAP 里有 D021 决策：\"Kill exp-002v2 (step 183)，禁用 adaptive gate 后重启\"\n\n### 诊断步骤\n\n1. SSH 到 westd-29046，检查以下内容：\n   - `cat /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log` 的最后 200 行（查看最后运行到哪一步、是否有 error/traceback）\n   - `dmesg | tail -50` 检查是否有 OOM kill 记录\n   - `ls -la /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/` 查看 checkpoint 文件（确认训练到第几步）\n   - 检查是否有 core dump 或 Python traceback\n   - `ps aux | grep exp002v2` 确认进程确实已死\n   - 检查 GPU 0 当前状态：`nvidia-smi`\n\n2. 判断失败原因：\n   - 是否被手动 kill（对应 D021 决策）？\n   - 是否 OOM？\n   - 是否代码 bug（Python exception）？\n   - 是否 CUDA error？\n\n3. 检查 GPU 0 当前是否空闲可用\n\n### 产出\n用 save_project_file 写一份简短诊断报告到 memory.md 的追加段（不要覆盖已有内容，用 read_project_file 先读再追加）。\n\n报告格式：\n```\n## exp-002v2 失败诊断 (2026-05-19)\n- 失败原因：{具体原因}\n- 最后训练步数：{step}\n- 是否有可用 checkpoint：{是/否，路径}\n- GPU 0 当前状态：{空闲/占用}\n- 日志关键片段：{最后几行 error/warning}\n```",
+  "tool_groups": "['ssh', 'knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:exp-002v2",
+    "project": "contrastive_entrain_calib",
+    "task_prompt": "## 任务：诊断 exp-002v2 训练失败原因\n\nexp-002v2 (DC-GRPO cosine similarity R1) 在 westd-29046 上异常退出，cron 系统报告 \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"。\n\n### 背景\n- 实验：DC-GRPO with cosine similarity R1（替代 tanh(dot/20)）\n- 服务器：westd-29046\n- GPU：cuda:0，PID：122450\n- 命令：`cd /root/contrastive_entrain_calib && python training/run_exp002v2_dcgrpo_cosine.py`\n- Checkpoint 路径：`/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine`\n- Log 路径：`/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log`\n- 启动时间：2026-05-18T23:53，退出确认时间：2026-05-19T02:10\n- ROADMAP 里有 D021 决策：\"Kill exp-002v2 (step 183)，禁用 adaptive gate 后重启\"\n\n### 诊断步骤\n\n1. SSH 到 westd-29046，检查以下内容：\n   - `cat /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log` 的最后 200 行（查看最后运行到哪一步、是否有 error/traceback）\n   - `dmesg | tail -50` 检查是否有 OOM kill 记录\n   - `ls -la /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/` 查看 checkpoint 文件（确认训练到第几步）\n   - 检查是否有 core dump 或 Python traceback\n   - `ps aux | grep exp002v2` 确认进程确实已死\n   - 检查 GPU 0 当前状态：`nvidia-smi`\n\n2. 判断失败原因：\n   - 是否被手动 kill（对应 D021 决策）？\n   - 是否 OOM？\n   - 是否代码 bug（Python exception）？\n   - 是否 CUDA error？\n\n3. 检查 GPU 0 当前是否空闲可用\n\n### 产出\n用 save_project_file 写一份简短诊断报告到 memory.md 的追加段（不要覆盖已有内容，用 read_project_file 先读再追加）。\n\n报告格式：\n```\n## exp-002v2 失败诊断 (2026-05-19)\n- 失败原因：{具体原因}\n- 最后训练步数：{step}\n- 是否有可用 checkpoint：{是/否，路径}\n- GPU 0 当前状态：{空闲/占用}\n- 日志关键片段：{最后几行 error/warning}\n```",
+    "tool_groups": "['ssh', 'knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T02:11:32.557178+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T02:11:35.084916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_exp-002v2_20260519T021132\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_diagnose_exp-002v2_20260519T021132.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_exp-002v2_20260519T021132 started. Use get_worker_status('worker_diagnose_exp-002v2_20260519T021132') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2890
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T02:11:35.135757+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_aebd929a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Read",
+  "elapsed_ms": 2578
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T02:11:37.952061+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T02:11:38.002734+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T02:11:40.664594+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T02:11:40.816179+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T02:11:43.026139+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T02:11:43.127377+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T02:11:55.995914+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__get_gpu_health",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__get_gpu_health",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T02:11:56.096598+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-002v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T02:11:58.906982+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "contrastive_entrain_calib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T02:11:59.007856+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "contrastive_entrain_calib",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-002v2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "contrastive_entrain_calib",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-19T02:30:30.079809+00:00_
+
+exp-002v2 在 westd-29046 上进程异常退出。ROADMAP D021 提到要 kill 并重启，需要确认是主动 kill 还是自然崩溃。派 Worker 诊断日志，同时读 resource-saturation skill。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp-002v2"
+}
+```
+
+</details>
+
+---
