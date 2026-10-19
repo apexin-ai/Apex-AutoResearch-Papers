@@ -238,7 +238,7 @@ REDACT_PATTERNS.extend([
     (re.compile(r'\bASIA[A-Z0-9]{16}\b'), '[REDACTED_AWS_KEY]'),
     (re.compile(r'\bgithub_pat_[A-Za-z0-9_]{30,}\b'), '[REDACTED_GITHUB_TOKEN]'),
     (re.compile(r'\bsk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{24,}\b'), '[REDACTED_API_TOKEN]'),
-    (re.compile(r'(?i)((?:AWS_SECRET_ACCESS_KEY|AWS_ACCESS_KEY_ID|[A-Z_]*(?:API_KEY|ACCESS_TOKEN|SECRET_KEY|AUTH_TOKEN|PASSWORD))\s*[\"\x27]?\s*[:=]\s*[\"\x27]?)[^\s\"\x27,;}]+'), r'\1[REDACTED]'),
+    (re.compile(r'(?i)((?:AWS_SECRET_ACCESS_KEY|AWS_ACCESS_KEY_ID|(?<![A-Z_])[A-Z_]*(?:API_KEY|ACCESS_TOKEN|SECRET_KEY|AUTH_TOKEN|PASSWORD))\s*[\"\x27]?\s*[:=]\s*[\"\x27]?)[^\s\"\x27,;}]+'), r'\1[REDACTED]'),
     (re.compile(r'(?i)(https?://)[^\s/@:]+:[^\s/@]+@'), r'\1[REDACTED]@'),
 ])
 CATEGORIES = {
