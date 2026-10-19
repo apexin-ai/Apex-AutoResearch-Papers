@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef8a487a141072100c74",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra comprehensive status check",
+  "task_key": "worker_infra_comprehensive-status-check_20260522T064705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_comprehensive-status-check_20260522T064705_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "8da844b512d731a470964df378cb4866f72d2cb2085ba0ff18ae866017b5912b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/status_check_20260522.md`。摘要如下：\n\n---\n\n### 1. XNLI MLP 探针 — 结果已生成\n\n| 模型 | EN→EN | ZH→ZH | EN→ZH | ZH→EN |\n|------|-------|-------|-------|-------|\n| Qwen3 | 0.966 (L23) | 0.910 (L26) | 0.884 (L30) | **0.975** (L22) |\n| Llama31 | 0.930 (L15) | 0.885 (L15) | 0.885 (L19) | **0.947** (L13) |\n\n两模型 ZH→EN 均高于 EN→ZH，与线性探针一致。MLP 进程仍在运行但结果 JSON 已完整。\n\n### 2. Gemma translate ZH — 40.8% (520/1274)\ntmux 运行中，~2h 后完成。\n\n### 3. Bootstrap n=2000 (plan_111) — 未启动\n`data/qwen3/` 和 `data/llama31/` 下无 bootstrap n=2000 文件，无相关进程。XNLI 目录下的 bootstrap 是线性探针的，两模型不对称性均显著（CI 不含零）。\n\n### 4. COMET 验证 — 反向翻译进行中\n- Qwen train: 660/798 back-translated (82.7%)\n- Llama train: 660/1096 back-translated (60.2%)\n- test split 已完成但通过率很低：Qwen 18.5%, Llama 27.9% (threshold=0.8, mean COMET ~0.70)\n\n### 5. GPU\n3/4 GPU 在用（GPU 0/1/2 各 ~16.5GB），GPU 3 完全空闲，利用率整体偏低（9-18%）。MLP 跑在 CPU 上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-comprehensive-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "steering_gemma_v2_L18_138",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:22:28.018Z",
+    "updated_at": "2026-05-24T11:27:23.186Z",
+    "hypothesis": "Gemma-2-9B-IT L18 (43% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89.5% and N=171.",
+    "parent": "steering_gemma_L18_132",
+    "spec": {
+      "command": "python steering_experiment.py --model-path /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it/ --activations-path data/gemma2_v2/en_activations.pt --test-data data/gemma2_v2/en_conflict_test_verified.jsonl --layer 18 --alphas -20 -10 -5 5 10 20 --position last",
+      "server": "westd-14391",
+      "data_path": "data/gemma2_v2/en_conflict_test_verified.jsonl",
+      "data_count": 171,
+      "model_name": "gemma-2-9b-it",
+      "seed": 42,
+      "checkpoint_source": "logistic regression probe on en_activations.pt layer 18",
+      "eval_data": "data/gemma2_v2/en_conflict_test_verified.jsonl (N=171 conflict samples)"
+    },
+    "checkpoint_path": "westd-14391:/root/clkc_mech_interp/data/gemma2_v2/steering_results_L18_last.json",
+    "log_path": "westd-14391:/root/clkc_mech_interp/data/gemma2_v2/steering_results_L18_last.json",
+    "metrics": {
+      "probe_balanced_acc": 89.5,
+      "best_fisher_p": 0.219,
+      "N_conflict": 171,
+      "directional_flips": 0,
+      "bonferroni_sig_alphas": "0/6",
+      "alphas_tested": [
+        -20,
+        -10,
+        -5,
+        5,
+        10,
+        20
+      ]
+    },
+    "notes": "v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 89.5% validates data quality. Best p=0.219, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.",
+    "conclusion": "negative",
+    "completed_at": "2026-05-24T11:27:23.186Z"
+  },
+  "timestamp": "2026-05-24T11:27:23.298745+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb35612cf6c136047cc9",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code steering diagnostic variants 107v2",
+  "task_key": "worker_code_steering-diagnostic-variants-107v2_20260522T112822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_steering-diagnostic-variants-107v2_20260522T112822_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "54d3c40ca4f262650526ece620cf6472c673da12ce6693cd6e9ab0aaea02786c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**脚本修改**（6 处）：\n1. 添加 `--output_suffix` 参数\n2. `run_steering_experiment` 新增 `position` 参数\n3. Steering `SteeringHook` 传入 `position`\n4. Control `SteeringHook` 传入 `position`\n5. `main()` 调用时传递 `args.position`\n6. 输出文件名使用 `steering_results{suffix}.json`\n\n（`--peak_layer` 和 `--position` 已有，且 `load_steering_direction` 已经在指定层重新训练 probe，逻辑正确）\n\n**两个诊断变体已启动**：\n\n| 变体 | exp_id | GPU | PID | 层 | 位置 |\n|------|--------|-----|-----|---|------|\n| V1: L13/last | `steering_107_L13` | cuda:1 | 479381 | 13 | last |\n| V2: L18/last | `steering_107_L18` | cuda:2 | 479644 | 18 | last |\n\n**预计运行时间**：Steering v1 (L28) 在 136 samples × 10 alphas 约 1-2 小时，这两个变体配置相同应类似。变体 3 (L28/all-position) 等 cuda 释放后再跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-steering-diagnostic-variants-107v2.md"
+}

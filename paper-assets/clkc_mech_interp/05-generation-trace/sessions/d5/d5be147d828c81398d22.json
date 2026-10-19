@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5be147d828c81398d22",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code gemma adaptation 102",
+  "task_key": "worker_code_gemma-adaptation-102_20260522T030538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma-adaptation-102_20260522T030538_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "bcca85825b2ac7d0c5efecb085b45fe9a3decdacd416a0cc83f1a71ce407fa6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。兼容性检查结果：\n\n**三个脚本均无需代码修改**，直接通过命令行参数切换即可用于 Gemma-2-9B-IT。\n\n| 脚本 | 状态 | 说明 |\n|------|------|------|\n| verify_parametric_knowledge.py | ✅ 兼容 | `enable_thinking=False` 被 Gemma 静默接受；`strip_think_tags` 无副作用 |\n| collect_activations.py | ✅ 兼容 | `model.model.layers` 结构一致（42层 Gemma2DecoderLayer）；padding_side=left 一致 |\n| train_probe.py | ✅ 兼容 | 无硬编码维度，自动适配 hidden_size=3584 |\n\nGemma-2-9B 关键参数：42层、hidden_size=3584、GQA(16h/8kv)、无 thinking mode、专用 pad_token。数据目录 `data/gemma2/` 已创建。报告已写入 `memory.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma-adaptation-102.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b998a783c741c7076a21",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig5 steering",
+  "task_key": "worker_code_fix-fig5-steering_20260525T184912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig5-steering_20260525T184912_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "09209e536f31fba1506d60c148538e9c76e7c842adc2473774b12855f9322dad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 5 is now rendering at full double-column width on page 8. All labels, p-values, and titles are clearly readable. The figure floated from page 7 to the top of page 8, which is fine — it's still adjacent to its reference text.\n\n**Summary:**\n- **Script** (`plot_fig5_fig6.py`): font → sans-serif, annotation fonts 6.5pt → 8pt, legend 8.5pt → 9pt\n- **LaTeX** (`experiments.tex`): `figure` → `figure*`, removed `height=3cm,keepaspectratio`, `\\columnwidth` → `\\textwidth`\n- **Figure size**: 14 × 4.2 inches, 300 DPI (PNG: 139K, PDF: 29K)\n- **Page count**: 12 pages (unchanged)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig5-steering.md"
+}

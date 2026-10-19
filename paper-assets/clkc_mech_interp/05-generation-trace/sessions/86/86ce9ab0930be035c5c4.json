@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "86ce9ab0930be035c5c4",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "analysis xnli mlp probe collect",
+  "task_key": "worker_analysis_xnli-mlp-probe-collect_20260522T062653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_xnli-mlp-probe-collect_20260522T062653.log",
+    "occurrence": 1,
+    "bytes": 949383,
+    "sha256": "e064da47d5bacbd7fb1be87c8d4fd126ee62f867790dc6ccbbf19d4ec3126cb2"
+  },
+  "statistics": {
+    "messages": 641,
+    "user_turns": 0,
+    "tool_calls": 288,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 288,
+      "tool_result": 288,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 641,
+      "chunks": [
+        {
+          "path": "86ce9ab0930be035c5c4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "86ce9ab0930be035c5c4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "86ce9ab0930be035c5c4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "86ce9ab0930be035c5c4-part-0004.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-xnli-mlp-probe-collect.md"
+}

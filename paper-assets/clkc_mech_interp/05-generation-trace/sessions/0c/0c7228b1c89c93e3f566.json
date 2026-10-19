@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c7228b1c89c93e3f566",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra llama en activations",
+  "task_key": "worker_infra_llama_en_activations_20260521T160439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llama_en_activations_20260521T160439_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "5a8268400237b27d838f90717a1f8b2ae4c204cb04292e40ddce440783dca812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务正常运行中：\n\n- **PID**: 16398\n- **tmux session**: `llama31_en_activations`\n- **GPU**: cuda:2\n- **状态**: 数据已加载（1096 train + 272 test），模型权重加载中（291 shards）\n- **日志**: `logs/collect_en_activations_llama.log`\n- **预估耗时**: 模型加载 ~1 分钟，1368 条样本激活收集约 10-20 分钟（取决于 batch size 和序列长度），总计约 15-25 分钟\n- **产出**: `data/llama31/en_activations.pt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llama-en-activations.md"
+}

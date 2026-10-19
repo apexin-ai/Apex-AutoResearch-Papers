@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9252e68f98e19350b26a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis steering L13 all results",
+  "task_key": "worker_analysis_steering-L13-all-results_20260522T151732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_steering-L13-all-results_20260522T151732_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "abbe10a13baaf4916f2914b3f59e8f81cb59e51ef1af469b31ad9b612bd7ea40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## Llama L13 All-Position Steering 结果\n\n| Alpha | Steer Flips | Control Flips | p→c | c→p | Fisher p | Sig? |\n|-------|------------|--------------|-----|-----|----------|------|\n| **-20** | 49 (36.0%) | 24 (17.6%) | 1 | 5 | **0.0009** | **YES** |\n| -10 | 31 (22.8%) | 25 (18.4%) | 2 | 1 | 0.4536 | No |\n| -5 | 22 (16.2%) | 17 (12.5%) | 2 | 1 | 0.4893 | No |\n| **+5** | 27 (19.9%) | 9 (6.6%) | 4 | 0 | **0.0020** | **YES** |\n| +10 | 31 (22.8%) | 20 (14.7%) | 2 | 0 | 0.1197 | No |\n| +20 | 28 (20.6%) | 43 (31.6%) | 2 | 2 | 0.0528 | Marginal |\n\n### 关键发现\n\n**All-position 与 last-token 结果完全一致**——每个 alpha 的 flip counts 和 Fisher p 数值完全相同。这意味着：\n1. L13 的因果信号**完全集中在 last token position**\n2. 对 non-last tokens 施加 steering 零额外效应\n3. 排除了冲突信号在 token positions 间分布式编码的假设\n\n### Gemma L17 状态\n\n- 进程 493756 仍在运行（已 38 分钟），结果文件尚未生成\n- GPU 2: 18.6GB 显存占用，13% 利用率"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-steering-l13-all-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a64d9a8660484fe5fee4",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp gemma xnli 113",
+  "task_key": "worker_exp_gemma_xnli_113_20260522T182644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma_xnli_113_20260522T182644_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "9007991f47ed26ba0a67eddb1a5694541de6d5a612dee31b3c42e207d781c38b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态总结：\n\n**已完成：**\n- Step 1: EN/ZH 激活采集完成，各 shape=[1000, 42, 3584]\n\n**进行中：**\n- `bootstrap_n2000.py` (PID 507351): 2000 bootstrap × 4 方向，EN→EN 方向进行中\n- `train_probe.py` (PID 512737): 基础探针训练，EN→EN 方向进行中\n\n**瓶颈：**\n服务器 load average ~700-860（208 核），主要因已有的 llama31 3-lang bootstrap 任务 (PID 496671) 占用大量 CPU。CPU 严重竞争导致进度缓慢。\n\n两个任务都在后台 nohup 运行中，不会因 SSH 断连丢失。预计：\n- 基础探针：~1h 完成（4 方向 × ~15min/方向）\n- n=2000 bootstrap：可能需要数小时\n\n获取到的参考数据：\n- **Llama XNLI**: Δ_asym = +5.97pp [0.92, 11.33]\n- **Qwen XNLI**: Δ_asym = +6.72pp [2.36, 11.73]\n- 冲突任务 Gemma: Δ_asym = +6.6pp [1.9, 11.1]\n\n任务将自行完成。需要我继续定期轮询进度，还是你稍后再来检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-xnli-113.md"
+}

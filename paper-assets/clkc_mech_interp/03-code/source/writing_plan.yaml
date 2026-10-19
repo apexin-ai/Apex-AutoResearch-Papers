@@ -1,0 +1,278 @@
+meta:
+  venue: EMNLP 2026
+  track: main (via ARR)
+  template: ""
+  template_note: "需要下载 ACL/EMNLP 2026 ARR LaTeX 模板（acl_latex style）"
+  page_limit: 8
+  deadline: 2026-05-25
+  core_claim: >-
+    跨语言知识冲突信号可在多语言 LLM 残差流中被线性探针检测（3模型 75-77% balanced acc），
+    其跨语言迁移不对称性（ZH→EN > EN→ZH ~7pp）与非冲突语义任务(XNLI)无异——
+    冲突信号编码在模型通用跨语言表征空间中，继承其方向性偏置。
+    因果 steering 揭示 architecture-dependent causal window：Llama L13 (~40% depth) steering 成功 (Fisher p=0.002)，
+    但 Qwen L14 (N=131, best p=0.785) 和 Gemma L17 (N=171, 88.9% probe acc, best p=0.448) 均 negative——
+    因果节点的位置和可操控性是 architecture-dependent 的。
+    方法论贡献：严格的 confound exclusion pipeline（COMET ablation + token overlap 排除 + 非冲突基线对照）。
+  title_draft: >-
+    Cross-Lingual Knowledge Conflict Signals Inherit Directional Asymmetries
+    from General Multilingual Representations
+  created_at: 2026-05-22T13:00:00Z
+  updated_at: 2026-05-24T14:30:00Z
+  update_reason: "Qwen/Gemma matched-condition steering negative — 3模型完整故事，architecture-dependent causal window"
+
+paper_outline:
+  - section: abstract
+    word_budget: 150
+    core_bullets:
+      - "问题：多语言 LLM 在跨语言知识冲突时的内部机制未知——CLEAR 发现 linguistic affinity 决定冲突解决行为，但未解释信号编码机制"
+      - "方法：残差流线性探针 + 跨语言迁移 + XNLI 基线对照 + confound exclusion + representation steering"
+      - "结果：2模型 balanced acc 75-77%；ZH→EN > EN→ZH ~7pp 与 XNLI 一致；mid-layer (L13) steering 成功因果改变冲突解决(Fisher p=0.002)而 late-layer (L28) 不成功"
+      - "贡献：(1) 跨语言冲突检测 + 不对称性继承通用跨语言对齐 (2) Detection ≠ Decision 层分离 (3) confound exclusion pipeline"
+    dependencies: [experiments, method, introduction]
+
+  - section: introduction
+    word_budget: 900
+    core_bullets:
+      - "Hook: 多语言 LLM 面对跨语言知识冲突时表现出 language-dependent 解决偏好(CLEAR)，但冲突信号在模型内部如何编码？可检测性是否等于因果性？"
+      - "Gap: 现有 probing 工作仅限单语（Zhao et al. 2024; Boer et al. 2026），跨语言扩展面临 confound 问题；probing 只证明 detectability 不证明 causality"
+      - "Insight: 冲突信号可线性检测且迁移呈方向不对称(~7pp)，但该不对称性与 XNLI 无异——冲突信号 piggyback 通用跨语言对齐。更关键的是，因果 steering 揭示 detection 和 decision 发生在不同层"
+      - "Detection ≠ Decision: probe peak 在 late-layer (L28, ~88% depth) 但因果 steering 仅在 mid-layer (L13, ~40% depth) 成功"
+      - "Contributions: [C1: cross-lingual detectability + asymmetry as general property, C2: detection-decision layer dissociation via steering, C3: confound exclusion pipeline]"
+    dependencies: [experiments]
+    citation_hints:
+      - "CLEAR (Zhao et al. 2026)"
+      - "Zhao et al. (2024) — 单语冲突 probing"
+      - "Boer et al. (2026) — 单语 knowledge attribution probing"
+      - "ConflictQA 原始论文"
+      - "Wang et al. (2025) Lost in Multilinguality"
+      - "Basu et al. (2026) — interpretability without actionability (对比 steering 结果)"
+    figures: [fig1_pipeline]
+
+  - section: related_work
+    word_budget: 550
+    core_bullets:
+      - "Cluster 1: Knowledge conflict detection — 单语 probing 与 activation analysis → 我们扩展至跨语言 + confound controls"
+      - "Cluster 2: Cross-lingual representations — mid-layer language-independent encoding + final-layer language transition → 我们的 steering 结果与 mid-layer 跨语言对齐位置一致"
+      - "Cluster 3: Representation steering — SpARE 在单语冲突场景成功, Basu 在临床场景失败 → 我们发现层选择是关键：mid-layer 成功而 late-layer 失败"
+    dependencies: [introduction]
+
+  - section: method
+    word_budget: 1200
+    core_bullets:
+      - "3.1 Task formulation: 残差流二分类(contextual vs parametric) across languages"
+      - "3.2 Data construction: ConflictQA → parametric verification → translation → COMET validation"
+      - "3.3 Activation extraction: last-token residual stream h_l at all L layers"
+      - "3.4 Probing: per-layer logistic regression + bootstrap CI(n=2000)"
+      - "3.5 Cross-lingual transfer: 4 directions + asymmetry quantification"
+      - "3.6 Confound exclusion: COMET tercile + token overlap + XNLI baseline"
+      - "3.7 Representation steering: 沿探针权重方向注入 α·w_probe 到 last-token residual stream; 测量 flip rate(parametric↔contextual answer switch) vs random-direction control; Fisher exact test; 在 L13/L18/L28 三层分别测试以定位因果决策节点"
+    dependencies: []
+    notation_table:
+      h_l: "layer-l residual stream representation"
+      f_theta: "logistic regression probe"
+      w_probe: "probe weight vector (steering direction)"
+      Delta_asym: "transfer asymmetry = acc(ZH→EN) - acc(EN→ZH)"
+    figures: [fig1_pipeline]
+    registry_refs: [mvp_probe_v1, mvp_probe_llama_v1, steering_107, steering_107_L13]
+
+  - section: experiments
+    word_budget: 1800
+    core_bullets:
+      - "4.1 Setup: Llama-3.1-8B-Instruct(32层, 1368 samples) + Qwen3-8B(36层, 966 samples); bootstrap n=2000; balanced accuracy"
+      - "4.2 Within-language detection (C1): Llama EN 77.6%, Qwen EN 75.3%; peak layers Llama L28(88% depth) vs Qwen L22(61% depth)"
+      - "4.3 Cross-lingual transfer & asymmetry: all 4 directions above chance; Llama Δ=+7.22pp CI[1.1,13.6]; Qwen Δ=+7.18pp CI[-1.2,13.4]"
+      - "4.4 XNLI non-conflict baseline: Llama Δ=+5.97pp CI[0.92,11.33]; Qwen Δ=+6.72pp CI[2.36,11.73] — 与冲突任务 CI 大幅重叠 → asymmetry is general"
+      - "4.5 Confound analysis: COMET tercile not significant; Token overlap no positive correlation"
+      - "4.6 Causal steering (C2): L13 SUCCESS — α=+5 Fisher p=0.002, flip 19.9% vs control 6.6%, directional flips all p→c; α=-20 Fisher p=0.0009, flip 36.0% vs control 17.6%, c→p direction. L28 and L18 both NEGATIVE (all Fisher p>0.3). Detection-Decision dissociation: detectable signal peaks late (L28) but causal node is mid (L13)"
+      - "4.7 Cross-model steering (RESOLVED): Qwen L14 (39% depth, N=131, probe 71.0%) all 6 alphas negative (best p=0.785), 0 directional flips. Gemma L17 (40% depth, N=171, probe 88.9%) all 6 alphas negative (best p=0.448), 0 directional flips. Architecture-dependent causal window — Llama-specific positive + Qwen/Gemma negative is the complete story"
+      - "4.8 Gemma within-language detection (C1): EN 76.2%, peak L21 (50% depth); 3-panel fig2 with steering annotations"
+    dependencies: []
+    registry_refs:
+      - mvp_probe_v1
+      - mvp_probe_llama_v1
+      - xnli_baseline_110
+      - steering_107
+      - steering_107_L13
+      - steering_107_L18
+      - steering_107_L28_all
+      - bootstrap_n2000_111
+      - gemma_full_pipeline_102
+      - steering_qwen_L13_133
+      - steering_qwen_L14_134
+      - steering_qwen_L15_135
+      - steering_gemma_v2_L16_136
+      - steering_gemma_v2_L17_137
+      - steering_gemma_v2_L18_138
+    tables: [tab1_main_results, tab2_confound, tab3_steering]
+    figures: [fig2_layer_probe, fig3_asymmetry_forest]
+
+  - section: discussion
+    word_budget: 500
+    core_bullets:
+      - "Detection ≠ Decision: 模型在 late-layer 编码可检测冲突信号(probe peak L28)，但因果决策在 mid-layer(L13, ~40% depth)已形成。与 Wang et al. (2025) 一致——mid-layer 是跨语言对齐发生的层，也是冲突信号获得因果力的位置"
+      - "冲突信号编码在通用跨语言空间: XNLI 对照证明不对称性非冲突特有，冲突信号 piggyback 通用表征"
+      - "Steering 层选择的方法论启示: probing peak ≠ causal layer; 基于探针的干预实验应测试多层而非仅 peak layer"
+      - "与 Basu et al. (2026) 对比: 他们在临床任务中 steering 失败(despite 98.2% probe AUROC)，我们在冲突任务中 mid-layer 成功 → 任务特性和层选择共同决定 steering 有效性"
+      - "MLP trend observation: 冲突 MLP gains 正而 XNLI 负, CI 含零, 作为 suggestive trend"
+    dependencies: [experiments]
+
+  - section: conclusion
+    word_budget: 250
+    core_bullets:
+      - "Summary: 跨语言冲突信号可线性检测、跨架构一致、继承通用跨语言表征偏置; mid-layer steering 提供因果证据"
+      - "Key insight: Detection ≠ Decision — 可检测性和因果性在不同层，对 probing-based intervention 研究有重要方法论启示"
+      - "Future work: 跨模型 steering 验证, 更多语言对, SAE feature-level 分析"
+    dependencies: [experiments, discussion]
+
+  - section: limitations
+    word_budget: 150
+    core_bullets:
+      - "1. 仅 EN-ZH 一个语言对，typological diversity 有限"
+      - "2. Steering 因果证据仅限 Llama L13——Qwen (N=131) 和 Gemma (N=171, 88.9% probe acc) 均 negative，因果节点 architecture-dependent"
+      - "3. 数据规模受 parametric knowledge verification 约束(966-1368 samples/model)"
+    dependencies: [experiments]
+
+visualization_plan:
+  - fig_id: fig1_pipeline
+    type: conceptual
+    tool: matplotlib
+    description: "Cross-lingual conflict probing pipeline: Data Construction → Probing Framework → Confound Exclusion"
+    narrative_intent: "完整方法论闭环——数据构建到探针训练到 confound 排除，XNLI 基线对照是关键创新"
+    design_notes:
+      - "三大 block: Data Construction | Probing Framework | Confound Exclusion"
+      - "颜色: EN 蓝色, ZH 橙色, confound 绿色对勾"
+    placement: method
+    aspect_ratio: "16:6"
+    status: done
+
+  - fig_id: fig2_layer_probe
+    type: statistical
+    tool: matplotlib
+    description: "Layer-wise probe balanced accuracy + steering result overlay"
+    narrative_intent: "冲突信号 peak 在 late-layer 但因果 steering 仅在 mid-layer 成功——Detection ≠ Decision 的视觉证据"
+    design_notes:
+      - "Pattern H: 2-panel (Llama | Qwen)"
+      - "EN/ZH within-language probe curves"
+      - "标注 L13 steering success (star/arrow) vs L28 steering failure (×)"
+      - "这张图现在承载 Detection ≠ Decision 的核心信息，升级为 key figure"
+    data_source: "registry: mvp_probe_v1, mvp_probe_llama_v1, steering_107_L13, steering_107"
+    placement: experiments
+    aspect_ratio: "8:3"
+    status: done
+
+  - fig_id: fig3_asymmetry_forest
+    type: statistical
+    tool: matplotlib
+    description: "Forest plot: conflict vs XNLI asymmetry comparison"
+    narrative_intent: "冲突和 XNLI 不对称性量级一致(CI 重叠)——不对称性是通用跨语言属性"
+    design_notes:
+      - "Pattern L: forest plot, 4 rows"
+      - "Conflict vermillion, XNLI blue"
+    data_source: "registry: mvp_probe_v1, mvp_probe_llama_v1, xnli_baseline_110"
+    placement: experiments
+    aspect_ratio: "5:3"
+    status: done
+
+table_plan:
+  - table_id: tab1_main_results
+    caption: "Cross-lingual probe results. Balanced accuracy (\\%) with bootstrap 95\\% CIs."
+    placement: experiments
+    type: comparison
+    columns: [Direction, "Llama-3.1-8B", "Qwen3-8B"]
+    data_source: "registry: mvp_probe_v1, mvp_probe_llama_v1, bootstrap_n2000_111"
+    notes: "行: EN→EN, ZH→ZH, EN→ZH, ZH→EN, Δ_asym. Gemma-2-9B-IT 列已添加。"
+
+  - table_id: tab2_confound
+    caption: "Confound exclusion results."
+    placement: experiments
+    type: statistics
+    columns: [Control, Model, Metric, Value, "p-value"]
+    data_source: "registry: mvp_probe_v1, mvp_probe_llama_v1"
+    notes: "COMET tercile + Token overlap, both not significant."
+
+  - table_id: tab3_steering
+    caption: "Representation steering results across layers. Flip rate = proportion of samples switching answer category. Fisher exact test against random-direction control."
+    placement: experiments
+    type: comparison
+    columns: [Layer, "Depth (%)", "Best α", "Flip Rate", "Control Flip", "Fisher p", "Direction"]
+    data_source: "registry: steering_107, steering_107_L13, steering_107_L18, steering_107_L28_all"
+    notes: >-
+      行: Llama L13 (α=+5, α=-20) + Qwen L14 + Gemma L17，每模型 ~40% depth 代表层。
+      L13 行加粗(significant). Qwen/Gemma negative with matched-condition data.
+      关键对比: Llama mid-layer success vs Qwen/Gemma negative → architecture-dependent causal window.
+
+literature_strategy:
+  citation_budget: 30
+  macro_context:
+    - "knowledge conflict in LLMs"
+    - "cross-lingual representations in multilingual models"
+    - "probing and mechanistic interpretability"
+    - "representation steering and causal intervention"
+  micro_clusters:
+    - cluster_name: "Knowledge Conflict Detection"
+      search_queries:
+        - "knowledge conflict detection LLM probing residual stream 2024 2025 2026"
+        - "context-parametric conflict resolution language model"
+        - "ConflictQA dataset knowledge conflict"
+      must_cite:
+        - "ConflictQA (Xie et al. 2024)"
+        - "zhao2024analysing (residual stream conflict probing)"
+        - "boer2026probing (knowledge attribution probing)"
+        - "pham2026where (intra-memory conflict mechanism)"
+      target_count: 6
+
+    - cluster_name: "Cross-lingual Conflict"
+      search_queries:
+        - "cross-lingual knowledge conflict multilingual LLM 2025 2026"
+        - "CLEAR benchmark multilingual conflict evaluation"
+      must_cite:
+        - "zhao2026when (CLEAR)"
+      target_count: 3
+
+    - cluster_name: "Cross-lingual Representations"
+      search_queries:
+        - "cross-lingual representation alignment multilingual transformer layers 2024 2025"
+        - "language-independent concept space multilingual LLM"
+        - "English-centric bias multilingual model representations"
+      must_cite:
+        - "wang2025lost (Lost in Multilinguality)"
+        - "Conneau et al. 2020 (cross-lingual alignment)"
+      target_count: 5
+
+    - cluster_name: "Probing Methodology"
+      search_queries:
+        - "probing classifier representations survey 2022 2024"
+        - "linear probe limitations expressiveness"
+      must_cite:
+        - "Belinkov 2022 (probing survey)"
+      target_count: 4
+
+    - cluster_name: "Steering & Causal Intervention"
+      search_queries:
+        - "representation steering LLM causal intervention 2025 2026"
+        - "activation steering knowledge conflict"
+        - "probe direction steering residual stream"
+      must_cite:
+        - "zhao2025steering (SpARE)"
+        - "basu2026interpretability (interpretability without actionability)"
+        - "Li et al. 2024 (inference-time intervention)"
+      target_count: 5
+
+    - cluster_name: "Datasets & Evaluation Tools"
+      search_queries:
+        - "COMET translation evaluation metric"
+        - "XNLI cross-lingual NLI benchmark"
+      must_cite:
+        - "XNLI (Conneau et al. 2018)"
+        - "COMET (Rei et al. 2020 or 2022)"
+      target_count: 4
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - discussion
+  - abstract
+  - conclusion
+  - limitations

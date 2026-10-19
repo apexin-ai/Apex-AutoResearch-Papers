@@ -1,0 +1,25 @@
+paper_key: "kialy2026universal"
+title: "A Universal Vibe? Finding and Controlling Language-Agnostic Informal Register with SAEs"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "Causal shift in formality", direction: "descriptive"}
+    - {name: "Zero-shot cross-lingual transfer", direction: "higher_better"}
+  datasets:
+    - {name: "Polysemous-term dataset", size: "literal vs informal contexts"}
+  ablation_dimensions: [language, SAE_feature_selection]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "SAE-based cross-lingual feature discovery"
+
+positioning:
+  core_claim: "SAEs discover language-agnostic informal register features that transfer zero-shot across 6 unseen languages"
+  key_results: "Features found in English/Hebrew/Russian transfer to 6 unseen languages"
+  limitations: ["Limited to register/formality dimension"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

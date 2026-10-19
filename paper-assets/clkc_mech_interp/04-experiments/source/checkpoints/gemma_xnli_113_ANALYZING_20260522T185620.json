@@ -1,0 +1,26 @@
+{
+  "exp_id": "gemma_xnli_113",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:25:55.128Z",
+    "updated_at": "2026-05-22T18:56:20.094Z",
+    "hypothesis": "Gemma-2-9B-IT 在 XNLI entailment/contradiction 任务上的跨语言探针迁移不对称性（ZH→EN > EN→ZH）与冲突任务一致（~6-7pp），证明该不对称性是英语主导模型的通用跨语言属性而非冲突特有。若成立，C2 从两模型扩展到三模型跨架构验证，显著增强论文 significance。parent=xnli_baseline_110",
+    "parent": "xnli_baseline_110",
+    "spec": {
+      "command": "python -u src/collect_activations.py --model gemma-2-9b-it + bootstrap_n2000.py",
+      "server": "westd-41302",
+      "data_path": "data/xnli/",
+      "data_count": 2000,
+      "model_name": "gemma-2-9b-it",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/gemma-2-9b-it",
+      "eval_data": "data/xnli/{en,zh}_xnli_{train,test}.jsonl"
+    }
+  },
+  "timestamp": "2026-05-22T18:56:20.213717+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0efed0219ffae372295c",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra kill orphan de bootstrap",
+  "task_key": "worker_infra_kill-orphan-de-bootstrap_20260523T045955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-orphan-de-bootstrap_20260523T045955_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "95ebf6c7da8b05043a2be64515b1d682f52a4f764f61b59dea80a6521ce9431c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 清理报告\n\n| 步骤 | 结果 |\n|------|------|\n| **Step 1** | 发现 65 个孤儿进程（PPID=1，PID 538825-538889 范围，v1 残留，运行约 58 分钟）+ v2 进程组（主进程 550508 + 64 子进程） |\n| **Step 2** | 已杀死 **65 个孤儿进程**，全部成功 |\n| **Step 3** | v2 进程组存活：主进程 550508 + **64 个子进程**，正常运行 |\n| **Step 4** | 输出文件 `de_bootstrap_n2000_results.json` **不存在** — 正常，v2 还在计算中，无 v1 污染文件 |\n| **Step 5** | v2 日志显示正在执行 `[EN->EN] Bootstrap (2000 seeds, 64 workers)...`，刚进入第一阶段 |\n| **Step 6** | Load average 从 682→397 显著下降（清掉 65 个进程的效果），内存 110Gi/1Ti 使用，充足 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-orphan-de-bootstrap.md"
+}

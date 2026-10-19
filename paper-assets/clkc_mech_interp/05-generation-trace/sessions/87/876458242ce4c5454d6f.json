@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "876458242ce4c5454d6f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code xnli data prep 110",
+  "task_key": "worker_code_xnli-data-prep-110_20260522T035858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_xnli-data-prep-110_20260522T035858_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "09f0a5bb7cbd5e608465e90d1890ba456c25bc3ecdd5514e1591fcf6696ece4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已完成的工作：**\n\n1. **读取现有代码**：理解了 `collect_activations.py` 期望的 JSONL 格式（`context`/`question`/`label` 字段，label 为 \"conflict\"/\"no_conflict\"）和 `build_prompt()` 的模板结构\n\n2. **编写 `src/prepare_xnli.py`**：\n   - 从 hf-mirror.com 下载 XNLI validation parquet（绕过 `datasets` 库 4.8.5 不支持 loading script 的问题）\n   - 提取 EN/ZH 平行语料，过滤 neutral，保留 entailment+contradiction\n   - 映射 label：entailment→\"conflict\"(1)，contradiction→\"no_conflict\"(0)\n   - 80/20 split，输出到 `data/xnli/`\n\n3. **验证**：脚本已运行成功，输出 4 个 JSONL 文件（EN/ZH × train/test），字段结构与 `collect_activations.py` 完全兼容\n\n4. **产出报告**：写入 `artifacts/plan_110_xnli_baseline_report.md`，含数据统计、命令模板、兼容性说明\n\n**数据规模**：EN 800 train + 200 test，ZH 800 train + 200 test，label 分布约 50/50。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-xnli-data-prep-110.md"
+}

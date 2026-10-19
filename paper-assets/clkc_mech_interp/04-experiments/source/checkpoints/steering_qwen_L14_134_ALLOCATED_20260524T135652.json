@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_qwen_L14_134",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:01:11.100Z",
+    "updated_at": "2026-05-24T13:56:52.378Z",
+    "hypothesis": "Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound.",
+    "parent": "steering_107_qwen_L14"
+  },
+  "timestamp": "2026-05-24T13:56:52.495385+00:00",
+  "trigger": "update_registry"
+}

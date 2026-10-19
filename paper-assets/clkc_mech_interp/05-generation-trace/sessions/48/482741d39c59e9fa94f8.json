@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "482741d39c59e9fa94f8",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260522T142727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260522T142727_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "d22562122d235f258b6933cb10abbd51bf71f1896b8e587e32de0735bbdfcf58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex` 并注册为 artifact。\n\n内容概要:\n- **6 个子章节**: Setup, Within-Language Detection, Cross-Lingual Transfer, XNLI Baseline, Confound Exclusion, Causal Steering\n- **3 个表格**: Table 1 (主结果, 含 Conflict + XNLI 共 10 行), Table 2 (confound exclusion), Table 3 (steering results, L13 加粗)\n- **所有数值均来自 registry/artifacts**, 无编造数据\n- **Placeholders**: Qwen L13 steering (pending `steering_107_qwen_L23`), Figure 2 layer-wise curves (仅 `\\ref` 引用, 无 `\\includegraphics`)\n- **风格检查通过**: 无 em-dash, 无 -ing 短语结尾, 无 AI 词汇, 无 `\\hline`/竖线, booktabs 规范, 1 位小数统一"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

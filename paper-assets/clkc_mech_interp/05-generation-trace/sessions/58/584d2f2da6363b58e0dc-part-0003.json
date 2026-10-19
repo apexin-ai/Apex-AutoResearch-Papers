@@ -1,0 +1,1325 @@
+{
+  "schema_version": "1.0",
+  "session_id": "584d2f2da6363b58e0dc",
+  "rounds": [
+    {
+      "number": 24,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-25T21:13:44.070881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\textwidth]{fig1_hero.pdf}\n7\t\\caption{Cross-lingual knowledge conflict in multilingual LLMs. When a context passage contradicts the model's parametric knowledge, the language of presentation (English vs.\\ Chinese) can bias the answer toward different sources. We ask three questions: (1)~Is the conflict signal linearly detectable in the residual stream? (2)~Do probes transfer across languages, and is the transfer symmetric? (3)~Does detection imply causal influence on resolution?}\n8\t\\label{fig:hero}\n9\t\\end{figure*}\n10\t\n11\tWhen multilingual large language models (LLMs) encounter conflicting information between languages, the language of presentation can determine which answer the model produces \\citep{zhao2026when}.\n12\tYet the internal mechanism remains opaque: how does the model encode the conflict signal, can it be detected from internal representations, and does the detected signal causally influence resolution?\n13\t\n14\tExisting work on probing conflict signals has been limited to monolingual settings \\citep{zhao2024analysing, brink2026probing}.\n15\tExtending cross-lingually introduces confounds (translation quality, token overlap, general transfer properties), and probing establishes correlation rather than causation \\citep{hewitt2019designing}; \\citet{basu2026interpretability} showed that near-perfect probe accuracy does not guarantee effective steering.\n16\t\n17\tOur work extends \\citet{zhao2024analysing} in four directions: (1)~cross-lingual expansion from monolingual English to EN-ZH conflict probing; (2)~a systematic confound exclusion pipeline; (3)~the XNLI baseline revealing that asymmetry parallels general cross-lingual structure; and (4)~three-model causal intervention demonstrating that detectability does not predict causal relevance.\n18\tWe combine residual stream probing with representation steering across Llama-3.1-8B-Instruct, Qwen3-8B, and Gem\n…[truncated 1987 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-25T21:13:44.121463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-25T21:13:44.372870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Knowledge conflict detection.}\n5\t\\citet{xie2024adaptive} introduced ConflictQA and showed that models exhibit context-dependent resolution strategies, and \\citet{xu2024knowledge} provided a systematic conflict taxonomy (intra-memory, context-memory, inter-context).\n6\tMoving beyond behavioral observation, \\citet{zhao2024analysing} demonstrated linearly separable conflict signals in English residual streams, and \\citet{brink2026probing} localized factual associations via probing. More recently, \\citet{pham2026where} traced intra-memory conflict pathways, while \\citet{li2025taming} proposed conflict mitigation methods.\n7\tInformation-theoretic approaches \\citep{pimentel2021probing} offer complementary perspectives on probe expressiveness, and \\citet{ravichander2021probing} raised concerns about whether probed information is task-relevant.\n8\tThese studies operate exclusively in monolingual settings; extending to cross-lingual scenarios introduces confounds (translation quality, token overlap, general transfer properties) that we address with a dedicated exclusion pipeline.\n9\t\n10\t\\paragraph{Cross-lingual representations in multilingual models.}\n11\tIntermediate layers develop language-independent representations: \\citet{wu2020emerging} showed cross-lingual structure emerges without explicit alignment, and \\citet{muller2021first} found mid-layer alignment in multilingual BERT.\n12\tFor decoder-only LLMs, \\citet{wendler2024llamas} showed that Llama processes non-English inputs through an English-centric latent space, and \\citet{kargaran2024mexa} quantified this bias across language pairs.\n13\tThese findings predict our empirical observations: mid-layer steering success aligns with intermediate-layer language alignment, and the ZH$\\to$EN transfer advantage reflects English-centric structure.\n14\tBehavioral consequences have been documented by \\citet{wang2025lost}, \\citet{zhao2026when} (CLEAR cross-lingual conflic\n…[truncated 1836 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-25T21:13:44.373351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-25T21:13:44.424232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\vspace{-18pt}\n7\t\\includegraphics[width=0.88\\textwidth]{fig2_pipeline.pdf}\n8\t\\vspace{-14pt}\n9\t\\caption{Method overview. We construct parallel EN/ZH conflict data from ConflictQA with COMET-validated translations, extract per-layer residual stream representations, train logistic regression probes in four transfer directions (EN$\\to$EN, ZH$\\to$ZH, EN$\\to$ZH, ZH$\\to$EN), and apply confound exclusion controls before causal steering validation.}\n10\t\\label{fig:pipeline}\n11\t\\vspace{-20pt}\n12\t\\end{figure*}\n13\t\n14\tOur pipeline proceeds from data construction through probing and steering (Figure~\\ref{fig:pipeline}), formalized below.\n15\t\n16\t\\subsection{Task Formulation}\n17\t\\label{sec:task}\n18\t\n19\tGiven a context passage $c$ and question $q$, the model produces an answer that is either \\emph{contextual} (derived from $c$) or \\emph{parametric} (from pre-trained knowledge).\n20\tWhen $c$ contradicts parametric knowledge, the choice constitutes a knowledge conflict.\n21\tWe train a logistic regression probe $f_\\theta(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)$ on the last-token residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at layer $l$ to predict a binary label $y \\in \\{\\text{contextual}, \\text{parametric}\\}$.\n22\t\n23\t\\subsection{Data Construction}\n24\t\\label{sec:data}\n25\t\n26\tWe build on ConflictQA \\citep{xie2024adaptive}, which pairs questions with context passages contradicting the model's parametric knowledge.\n27\tWe filter samples by querying each model without context and retaining only those answered correctly, yielding 1{,}368 samples for Llama \\citep{grattafiori2024llama}, 966 for Qwen \\citep{yang2025qwen3}, and 1{,}590 for Gemma \\citep{team2024gemma} (80/20 train/test split with stratification).\n28\tFor cross-lingual transfer, we translate all inputs into Chinese using a Qwen3-8B pipeline, with quality validated by COMET (Crosslingual Optimized Metric for Evaluation \n…[truncated 4969 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-25T21:13:48.692839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-25T21:13:49.747505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Models.}\n8\tWe probe three instruction-tuned models with comparable parameter counts but distinct architectures: Llama-3.1-8B-Instruct (32 layers, hidden dimension 4096) \\citep{grattafiori2024llama}, Qwen3-8B (36 layers, hidden dimension 4096) \\citep{yang2025qwen3}, and Gemma-2-9B-IT (42 layers, hidden dimension 3584) \\citep{team2024gemma}.\n9\t\n10\t\\paragraph{Dataset.}\n11\tWe use ConflictQA \\citep{xie2024adaptive}, a benchmark of context-parametric knowledge conflicts where a provided context contradicts the model's parametric knowledge.\n12\tAfter verifying that each model can correctly answer the parametric-knowledge question without context, we retain 1{,}368 samples for Llama (1{,}096 train / 272 test), 966 for Qwen (773 train / 193 test), and 1{,}590 for Gemma (1{,}274 train / 316 test), split 80/20 with stratification.\n13\tThe three models were independently verified, yielding only 3.5\\% three-way question overlap (23 questions); pairwise overlaps range from 7.2\\% (Llama $\\cap$ Gemma) to 24.8\\% (Gemma $\\cap$ Qwen), so the consistent asymmetry pattern across models constitutes largely independent replication.\n14\t\n15\t\\paragraph{Translation.}\n16\tWe translate all English contexts and questions into Chinese using a Qwen3-8B translation pipeline (EN$\\to$ZH), with quality validated by COMET (wmt22-comet-da; \\citealt{rei2020comet}) back-translation scores.\n17\t\n18\t\\paragraph{Probing.}\n19\tFor each layer $l$, we train an $L_2$-regularized logistic regression probe ($C = 1.0$, scikit-learn default) on the last-token residual stream representation $\\mathbf{h}_l$, with binary labels indicating whether the model chose the contextual or parametric answer.\n20\tWe report balanced accuracy rather than AUROC, as our claims depend on cross-model directional comparisons; AUROC results are reported in Appendix~\\ref{app:auroc}.\n21\tAll CIs are computed via bootstrap resam\n…[truncated 15596 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "elapsed_ms": 1054
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-25T21:13:49.748051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-25T21:13:50.300430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Causal influence is localized to L13 regardless of detection peak.}\n5\tIn Llama, causal influence is localized to L13 (41\\% depth; Fisher $p < 0.001$), near but distinct from the linear probe peak (L15, 47\\%) and MLP probe peak (L18, 56\\%), with upper-layer interventions producing no significant change ($p > 0.3$; Figure~\\ref{fig:dissociation}).\n6\tL13 coincides with cross-lingual alignment sites \\citep{muller2021first, wendler2024llamas}, suggesting mid-layers serve a dual role in alignment and conflict resolution.\n7\tThe dissociation evidence is strongest for Gemma, where 88.9\\% probe accuracy and 0.93 AUROC coexist with zero steering effects, ruling out probe quality as a confound; for Qwen, weaker probe performance (71.4\\%) leaves the null result more ambiguous.\n8\t\n9\t\\paragraph{Why does steering fail in Qwen and Gemma?}\n10\tThree hypotheses merit consideration: (1)~non-linear causal interactions \\citep{elhage2022toy}, where MLP probes gain $+9.2$~pp over linear probes on conflict but $-0.5$~pp on XNLI; (2)~superposition \\citep{templeton2024scaling}, where conflict and XNLI weight vectors are near-orthogonal yet cross-task language transfer is near-perfect; (3)~architectural differences, as Qwen and Gemma show mid-layer transfer dips absent in Llama.\n11\tDefinitive validation requires activation patching \\citep{meng2022locating}.\n12\t\n13\t\\paragraph{Relation to prior work.}\n14\tThe ZH$\\to$EN advantage matches the XNLI baseline across all models, indicating that asymmetry piggybacks on general cross-lingual alignment \\citep{zhao2026when, kargaran2024mexa, wendler2024llamas}.\n15\t\\citet{basu2026interpretability} reported steering failure despite 98.2\\% AUROC; our L13 succeeds because we steer at mid-layer rather than probe-peak, while our three-model design isolates architecture.\n16\t\n17\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-25T21:13:50.300967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-25T21:13:50.451806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe showed that knowledge conflict signals are linearly detectable across English and Chinese ($p < 0.001$, three architectures), with the ZH$\\to$EN transfer advantage (${\\sim}$7~pp) matching the XNLI baseline, indicating general cross-lingual alignment rather than conflict-specific encoding.\n5\tCausal intervention reveals a detection--decision dissociation: all three models detect conflict signals, yet only Llama yields significant steering at L13 ($p < 0.001$); Gemma fails despite 88.9\\% probe accuracy, confirming detection alone is insufficient for mechanistic claims.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-25T21:13:50.452250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-25T21:13:50.502764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tOur study has three main limitations.\n5\tFirst, we evaluate only one language pair (English-Chinese) and causal steering succeeded only in Llama at L13; Gemma L17 failed despite 88.9\\% probe accuracy ($n = 171$) and Qwen L14 ($n = 131$) was also negative.\n6\tTypologically diverse language pairs and alternative intervention methods are needed to assess generality.\n7\tNull steering results in Qwen and Gemma may reflect limitations of single-direction linear steering rather than absence of causal structure; alternative methods such as activation patching \\citep{meng2022locating} may reveal non-linear causal pathways that our approach cannot detect.\n8\tSecond, the effective dataset size (966 to 1,590 samples per model) is constrained by parametric knowledge verification, which retains only questions where the model confidently knows the ground truth and may bias toward well-represented knowledge; additionally, Qwen3-8B serves as both the translation model and an experimental subject, though COMET-based quality control mitigates this concern, and the fact that Llama and Gemma, architecturally independent of the translation model, show the same asymmetry pattern ($\\Delta_{\\text{asym}} = +7.3$ and $+6.6$~pp, respectively) provides cross-validation that the effect is not an artifact of Qwen-specific translation biases.\n9\tThird, all probing results are based on a single train/test split with bootstrap confidence intervals capturing within-split variability; while peak balanced accuracy remains stable across seeds (Llama $\\pm$0.12\\%, Gemma $\\pm$1.32\\%, Qwen $\\pm$1.90\\%), the specific peak layer can shift.\n10\tWe acknowledge that $k$-fold cross-validation would provide stronger stability guarantees \\citep{belinkov2022probing}; given that our core claims rest on cross-model consistency and directional patterns rather than exact accuracy values, the current cross-seed stability analysis provides partial mitigation, and we commit\n…[truncated 191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-25T21:13:57.660636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-25T21:13:57.811646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": "2026-05-25T21:14:03.286001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EMNLP 2026 call for papers submission guidelines ARR",
+              "allowed_domains": "['aclweb.org', '2026.emnlp.org', 'openreview.net']"
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": "2026-05-25T21:14:05.394019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_reviewer,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_local_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-25T21:14:05.444581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": "2026-05-25T21:14:10.564583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EMNLP 2026 call for papers submission guidelines ARR\"\n\nLinks: [{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026\"},{\"title\":\"*SEM 2026: Commitment Link for ARR-Reviewed Papers (Deadline: 10 April 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/sem-2026-commitment-link-arr-reviewed-papers-deadline-10-april-2026\"},{\"title\":\"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026\"},{\"title\":\"EACL/ACL 2026 Joint Call for Workshops | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/eaclacl-2026-joint-call-workshops\"},{\"title\":\"EACL 2026: First Call for Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/eacl-2026-first-call-papers\"}]\n\nBased on the search results, here's what I found about EMNLP 2026 call for papers submission guidelines with ARR:\n\n## Key Submission Guidelines:\n\nEMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing. Papers may contribute negative findings, survey an area, announce the creation of a new resource, argue a position, report novel linguistic insights derived using existing computational techniques, and reproduce (or fail to reproduce) previous results.\n\n## ARR-Specific Policy:\n\nFor the ARR 2026 May cycle aligned with EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026—ARR submissions that do not select EMNLP 2026 during submission will no\n…[truncated 620 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "WebSearch",
+            "elapsed_ms": 7278
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-25T21:14:16.486694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EMNLP 2026 submission format page limit template double blind anonymity",
+              "allowed_domains": "['2026.emnlp.org', 'aclweb.org']"
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-25T21:14:17.339819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "file": "decisions.yaml"
+            }
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-25T21:14:31.251359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EMNLP 2026 submission format page limit template double blind anonymity\"\n\nLinks: [{\"title\":\"Call for Tutorials - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/tutorials/\"},{\"title\":\"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026\"},{\"title\":\"LM Playschool: Improving Language Models through Learning from Dialogue Interaction | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/lm-playschool-improving-language-models-through-learning-dialogue-game-interaction\"},{\"title\":\"EACL/ACL 2026 Joint Call for Workshops | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/eaclacl-2026-joint-call-workshops\"},{\"title\":\"EACL 2026: First Call for Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/eacl-2026-first-call-papers\"},{\"title\":\"[EMNLP 2025] First Call for Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/emnlp-2025-first-call-papers\"},{\"title\":\"The 6th Trustworthy NLP Workshop at ACL 2026 | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/6th-trustworthy-nlp-workshop-acl-2026\"},{\"title\":\"Joint Call for Tutorial Proposals (EACL/ACL) 2026 | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-eaclacl-2026\"},{\"title\":\"Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026\"},{\"title\":\"Call for Papers: The 20th Linguistic Annotation Workshop (LAW XX), co-located with ACL 2026 | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/call-papers-20th-linguistic-annotation-workshop-law-xx-co-located-acl-2026\"}]\n\nNow let me search more specifically for EMNLP 2026 main conference paper submission guidelines:\n\nLinks: [{\"title\":\"Call for M\n…[truncated 6201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "WebSearch",
+            "elapsed_ms": 14764
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": "2026-05-25T21:14:31.252461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 21\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-21 12:00 UTC\\\\n  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性\\\\n  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering\\\\n    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA\\\\n    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-21 12:06 UTC\\\\n  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise\\\\n    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径\\\\n  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern\\\\n    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry\\\\n    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-21 14:26 UTC\\\\n  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集\\\\n  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至\\\\n    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%\\\\n    标签翻转率确认了 M001 verify 步骤的必要性。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: triggered_decision\\\\n    result: verify 保留率 33%, 266 train / 70 test, 20% flip\\\\n  depends_on:\\\\n  - D001\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-21 19:17 UTC\\\\n  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs\\\\n    EN→ZH 59.6%），等 Qwen 结果做最终 verdict\\\\n  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN\\\\n    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按\\\\n    D002 规则进入 EXTEND 评估。等 Qwen 跨模型\n…[truncated 10909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 13912
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-25T21:14:39.033548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_local_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": "2026-05-25T21:14:39.084150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": "2026-05-25T21:14:43.349296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "file": "paper_checklist.yaml"
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": "2026-05-25T21:14:43.801214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No paper_checklist.yaml found for 'clkc_mech_interp'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 451
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": "2026-05-25T21:14:44.755144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/review_issues.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp"
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": "2026-05-25T21:14:45.107065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/review_issues.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Glob",
+            "elapsed_ms": 351
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": "2026-05-25T21:14:45.107506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/config.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp"
+            }
+          },
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": "2026-05-25T21:14:45.208159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.venv/lib/python3.14/site-packages/configs/config.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": "2026-05-25T21:14:49.073373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/review_issues.yaml"
+            }
+          },
+          "id": "event-000392"
+        },
+        {
+          "source_line": 393,
+          "timestamp": "2026-05-25T21:14:49.575981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tissues:\n2\t# === Round 3 NEW ISSUES ===\n3\t\n4\t- id: \"R3-N1\"\n5\t  summary: \"标题 'Mirror' 等价性主张与 TOST 功效(1.4%)不匹配\"\n6\t  category: framing\n7\t  severity: critical\n8\t  status: in_progress\n9\t  first_raised_round: 3\n10\t  last_seen_round: 3\n11\t  mentions:\n12\t    - round: 3\n13\t      reviewers: [1, 2]\n14\t      note: \"R1 提出 TOST power 角度，R2 AGREE 并补充标题-正文一致性问题。BF₀₁≈1.5 仅 modest evidence。建议改 Mirror→Consistent With\"\n15\t  action_items:\n16\t    - round: 3\n17\t      action: \"标题 Mirror→Consistent With + Figure 3 灰色带处理 + 全文 mirror→consistent with 替换\"\n18\t      assigned_to: paper_agent\n19\t      status: done\n20\t  resolution: \"标题改为 'Are Consistent With'，全文6处替换，Figure 3 caption 改为 exploratory equivalence margin。Reviewer 验证零 mirror 残留。\"\n21\t  resolution_round: null\n22\t\n23\t- id: \"R3-N2\"\n24\t  summary: \"COMET tercile 消融 MDD=25.3pp 混淆排除功效不足\"\n25\t  category: experiment\n26\t  severity: critical\n27\t  status: in_progress\n28\t  first_raised_round: 3\n29\t  last_seen_round: 3\n30\t  mentions:\n31\t    - round: 3\n32\t      reviewers: [1, 2]\n33\t      note: \"R1 认为'本质上无效'，R2 部分反驳——多证据链(token overlap+EN-DE对照)部分弥补\"\n34\t  action_items:\n35\t    - round: 3\n36\t      action: \"§4.5 重构：论证重心从 COMET tercile 转向 token overlap + EN-DE 对照；COMET 降为辅助证据\"\n37\t      assigned_to: paper_agent\n38\t      status: done\n39\t  resolution: \"§4.5 重构完成：Token overlap + EN-DE 控制为主论证，COMET tercile 降为辅助，MDD 限制明确标注。Reviewer 确认结构正确。\"\n40\t  resolution_round: null\n41\t\n42\t- id: \"R3-N3\"\n43\t  summary: \"因果证据仅限 Llama L13 单模型单层，不足以支撑跨架构 claim\"\n44\t  category: method\n45\t  severity: critical\n46\t  status: in_progress\n47\t  first_raised_round: 3\n48\t  last_seen_round: 3\n49\t  mentions:\n50\t    - round: 3\n51\t      reviewers: [1, 2]\n52\t      note: \"Contribution 2 暗示跨架构系统性发现，实为 1正2负\"\n53\t  action_items:\n54\t    - round: 3\n55\t      action: \"Contribution 2 重写限定为 Llama-specific + 三层解离证据 + Abstract 重构\"\n56\t      assigned_to: paper_agent\n57\t      status: done\n58\t  resolution: \"Contribution 3 改为 'Detection-decision dissociation in Llama-3.1-8B-Instruct'，三层解离(L28/L18/L13)写入，Abstract 限定。Rev\n…[truncated 15057 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": "2026-05-25T21:14:49.827627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "external_review",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000394"
+        },
+        {
+          "source_line": 395,
+          "timestamp": "2026-05-25T21:14:52.595958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/chats/feishu_group_oc_8b9aa92fafaf69b48d2c44b41c2fe9d9_director.jsonl:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/chats/feishu_group_oc_8b9aa92fafaf69b48d2c44b41c2fe9d9_director.jsonl:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/chats/feishu_group_oc_8b9aa92fafaf69b48d2c44b41c2fe9d9_director.jsonl:44:{\"ts\": \"2026-05-24T14:54:38.561036+00:00\", \"role\": \"tool\", \"session\": \"feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director\", \"text\": \"called Grep\", \"tool\": \"Grep\", \"tool_args\": {\"pattern\": \"external_review\", \"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp\", \"output_mode\": \"content\"}}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/chats/feishu_group_oc_8b9aa92fafaf69b48d2c44b41c2fe9d9_director.jsonl:45:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/chats/feishu_group_oc_8b9aa92fafaf69b48d2c44b41c2fe9d9_director.jsonl:50:{\"ts\": \"2026-05-24T14:54:58.216727+00:00\", \"role\": \"tool\", \"session\": \"feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director\", \"text\": \"called Grep\", \"tool\": \"Grep\", \"tool_args\": {\"pattern\": \"external_review|paperreview\", \"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/registry.yaml\", \"output_mode\": \"content\"}}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/chats/feishu_group_oc_8b9aa92fafaf69b48d2c44b41c2fe9d9_director.jsonl:52:{\"ts\": \"2026-05-24T14:54:58.871161+00:00\", \"role\": \"tool\", \"session\": \"feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director\", \"text\": \"called Grep\", \"tool\": \"Grep\", \"tool_args\": {\"pattern\": \"external_review|paperreview\", \"path\": \"/home/ubuntu/.agent-ml-research-prod42\", \"glob\": \"**/project*.yaml\", \"output_mode\": \"content\"}}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/l\n…[truncated 13426 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "Grep",
+            "elapsed_ms": 2768
+          },
+          "id": "event-000395"
+        },
+        {
+          "source_line": 396,
+          "timestamp": "2026-05-25T21:15:16.219221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__dispatch_visual_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__dispatch_visual_check",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "review_chat_id": "oc_8b9aa92fafaf69b48d2c44b41c2fe9d9"
+            }
+          },
+          "id": "event-000396"
+        },
+        {
+          "source_line": 397,
+          "timestamp": "2026-05-25T21:15:31.965688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"started\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__dispatch_visual_check",
+            "elapsed_ms": 15746
+          },
+          "id": "event-000397"
+        },
+        {
+          "source_line": 398,
+          "timestamp": "2026-05-25T21:15:32.016320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "1",
+              "round_number": "1",
+              "text": "你是 Reviewer 1，负责**方法严谨性**审查。\n\n## Venue 信息\n- **目标**: EMNLP 2026 (via ARR)\n- **Deadline**: 2026-06-15\n- **格式**: ACL 模板，Long paper 正文 8 页限制（references 不限），Limitations 必需且不计页数\n- **匿名**: Double-blind\n\n## 论文文件\n- LaTeX 源码: `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex`（各章节为独立 .tex 文件同目录）\n- PDF: `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/review_round_4/submitted.pdf`\n\n## 你的审查侧重\n\n请从以下维度严格评估：\n\n1. **统计有效性**：p 值校正是否恰当（Bonferroni）、CI 解释是否正确、bootstrap 方法是否合理、样本量是否充分支撑所述结论\n2. **因果声明**：steering 实验的因果推断是否成立、random control 是否充分、L13 单层单模型成功能否支撑\"detection≠decision\"这一跨模型 claim\n3. **实验设计**：confound exclusion 的逻辑链是否完整（COMET tercile 功效问题、token overlap、EN-DE 对照）、单 train/test split 的局限性\n4. **可重复性**：实验细节是否充分（超参、硬件、随机种子）、seed replication 是否充分验证\n5. **多重比较**：全文共多少假设检验，family-wise error rate 控制是否恰当\n\n请输出标准 ARR 审稿格式：\n- Summary (2-3 句)\n- Strengths (逐条)\n- Weaknesses (逐条，标注 severity: critical/warning/info)\n- Questions to Authors\n- Missing References (如有)\n- Overall Assessment (1-5 分，参照 EMNLP 2026 评分标准：5=Award, 4=Conference, 3=Findings, 2=Resubmit)\n- Confidence (1-5)\n\n**严格评审，不留情面。**"
+            }
+          },
+          "id": "event-000398"
+        },
+        {
+          "source_line": 399,
+          "timestamp": "2026-05-25T21:15:45.915490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 13899
+          },
+          "id": "event-000399"
+        },
+        {
+          "source_line": 400,
+          "timestamp": "2026-05-25T21:15:46.116750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "2",
+              "round_number": "1",
+              "text": "你是 Reviewer 2，负责**新颖性与完整性**审查。\n\n## Venue 信息\n- **目标**: EMNLP 2026 (via ARR)\n- **Deadline**: 2026-06-15\n- **格式**: ACL 模板，Long paper 正文 8 页限制（references 不限），Limitations 必需且不计页数\n- **匿名**: Double-blind\n\n## 论文文件\n- LaTeX 源码: `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex`（各章节为独立 .tex 文件同目录）\n- PDF: `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/review_round_4/submitted.pdf`\n\n## 你的审查侧重\n\n请从以下维度严格评估：\n\n1. **新颖性 (Novelty)**：\n   - 相对 Zhao et al. 2024（monolingual conflict probing）的增量是否足够？\n   - 相对 Basu et al. 2026（detection≠steering）的差异化是否清晰？\n   - \"asymmetry reflects general cross-lingual structure\" 是否构成独立 contribution 还是 null result repackaging？\n   - 四个 contribution 的权重是否均衡？\n\n2. **Related Work 覆盖**：\n   - 跨语言 steering 领域：Pokharel 2026, Sundar 2025, Gurgurov 2026 是否充分讨论？\n   - 知识冲突 taxonomy 和 mitigation 方向是否有重要遗漏？\n   - 信息论 probing 视角（Pimentel 2021, Ravichander 2021）是否充分整合？\n\n3. **叙事结构 (Narrative)**：\n   - Introduction 三个研究问题的设置是否 self-contained？\n   - 论文核心 claim 从 Abstract→Intro→Results→Discussion→Conclusion 是否一致？\n   - \"detection≠decision\" dissociation 作为核心卖点的叙事是否 convincing？\n\n4. **写作质量**：\n   - Abstract 是否在 200 words 以内？\n   - 是否存在 overclaiming（标题/Abstract vs 实际实验范围）？\n   - 图表是否 informative 且 self-contained？\n\n5. **格式合规**：\n   - 页数是否符合 8 页限制？\n   - Limitations section 是否存在且位置正确？\n   - 匿名化是否完整（无 self-citation 泄露）？\n\n请输出标准 ARR 审稿格式：\n- Summary (2-3 句)\n- Strengths (逐条)\n- Weaknesses (逐条，标注 severity: critical/warning/info)\n- Questions to Authors\n- Missing References (如有)\n- Overall Assessment (1-5 分，参照 EMNLP 2026 评分标准：5=Award, 4=Conference, 3=Findings, 2=Resubmit)\n- Confidence (1-5)\n\n**严格评审，不留情面。**"
+            }
+          },
+          "id": "event-000400"
+        },
+        {
+          "source_line": 401,
+          "timestamp": "2026-05-25T21:15:47.627725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1510
+          },
+          "id": "event-000401"
+        },
+        {
+          "source_line": 402,
+          "timestamp": "2026-05-25T21:15:53.702763+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 1 已启动：\n\n- ✅ 视觉审查 Agent 已派发（并行执行，不阻塞）\n- ✅ Reviewer 1（方法严谨性）已分配\n- ✅ Reviewer 2（新颖性/完整性）已分配\n- ❌ 外部审稿：未配置，跳过\n\n等待两位 Reviewer 返回独立初审结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director"
+          },
+          "id": "event-000402"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "messages": [
+        {
+          "source_line": 403,
+          "timestamp": "2026-05-25T21:23:32.408016+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 审稿意见：新颖性与完整性\n\n## Summary\n\n本文将知识冲突信号的 probing 分析从单语（Zhao et al. 2024）扩展到跨语言（英-中）设置，使用三个 LLM（Llama-3.1-8B-Instruct、Qwen2.5-8B、Gemma-2-9B-IT）进行残差流探测、XNLI 非冲突基线对照、COMET 混淆因素排除和因果 steering 实验。主要发现：(1) 冲突信号在所有模型和方向上线性可检测；(2) ZH→EN 迁移优势约 7pp，与 XNLI 基线一致，反映一般跨语言结构而非冲突特异性；(3) 因果 steering 仅在 Llama L13（41% 深度）成功，Qwen/Gemma 无显著因果效应，表明检测不蕴含因果相关性。\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.0/5 | 方法论扎实（bootstrap CI、Bonferroni 校正、Fisher 精确检验），混淆因素控制设计优秀。但核心 claim（detection≠decision）仅 1/3 模型支持，单一 train/test split 影响可靠性 |\n| Excitement | 2.5/5 | Probing 跨语言扩展属增量贡献；最具新颖性的 detection-decision dissociation 已被 Basu et al. 2026 在单语设置中建立；asymmetry 发现为 null result |\n| Reproducibility | 4/5 | 提供匿名代码仓库，方法描述清晰，统计方法完整。单一 split 限制精确数值复现 |\n| Overall Assessment | **3.0/5 (Findings)** | 方法论可靠、控制设计好，适合 Findings 发表。但新颖性不足以达到主会议水平——核心发现要么是增量扩展、要么是 null result、要么是弱支撑的 claim |\n| Confidence | 4/5 | 熟悉 probing/steering/跨语言表征文献，仔细通读全文含 Appendix |\n\n---\n\n## Strengths\n\n**S1. 混淆因素控制设计出色。** COMET 翻译质量分层 + XNLI 非冲突基线的组合是一个真正的方法论贡献（Section 3.5, 4.4-4.5）。用 XNLI 作为非冲突对照来区分冲突特异性 vs. 一般跨语言不对称性，思路清晰且可复用。\n\n**S2. 多模型验证增强泛化性。** 三个架构差异显著的模型（Llama/Qwen/Gemma）在检测能力上一致，强化了\"冲突信号线性可检测\"这一结论的可信度（Table 1, Figure 3）。\n\n**S3. 统计方法规范。** Bootstrap CI（n=2000）、Bonferroni 校正（l=10 to α values）、Fisher 精确检验、matched-condition 控制，统计实践达到 top-venue 标准。\n\n**S4. 诚实报告负面结果。** Qwen/Gemma steering 失败（Table 3）、asymmetry 非冲突特异性（Section 4.4）——这些负面结果的如实报告值得肯定，优于很多只报积极结果的论文。\n\n**S5. Seed replication 加强因果 claim。** Appendix C 用独立 seed 复现了 Llama L13 steering 效果（N=201, 独立 train/test split），排除了单次 split 偶然性的可能。\n\n---\n\n## Weaknesses\n\n### Must-Fix 问题（影响接收决定）\n\n**N1 [critical] \"Detection ≠ Decision\" 核心 claim 支撑不足，且与 Basu et al. (2026) 差异化不清晰。**\n- 具体位置：Abstract、Section 4.6、Table 3、Figure 5-6、Discussion (Section 5)\n- 问题：\n  (a) Basu et al. (2026) 标题即为 \"Interpretability without actionability\"，在单语设置中已经建立了 detection-steering 的 dissociation。本文的跨语言扩展未能清晰阐述相比单语设置的增量发现——跨语言设置具体揭示了哪些单语分析无法观察到的现象？\n  (b) Representation steering 仅在 Llama L13（41% depth）产生显著因果效应（flip rate 19.9% vs. 6.6% random, Fisher p=0.002）。Qwen 和 Gemma 在所有层均无显著效应。即 2/3 模型不支持任何因果影响。\n  (c) 即使在 Llama 中，相邻的 L16（50% depth）已无显著效应（p>0.12），因果窗口极窄。这可能是精确定位，但也可能是 fragile/model-specific artifact。\n  (d) 论文将\"steering 在 2/3 模型失败\"框架为支持 dissociation 叙事，但另一种同样合理的解释是：线性探针并未捕捉因果相关特征，steering 方法本身（单一方向线性干预）太粗糙。\n- 为什么影响接收：这是论文最核心的叙事卖点。如果 dissociation 已被 Basu et al. 建立、且跨语言扩展未增加实质发现，则论文的核心新颖性大幅下降。\n- 建议修改方向：(1) 在 Section 2 添加与 Basu et al. 2026 的逐点对比段落，明确本文的增量在哪里；(2) 诚实重新定位——从\"我们发现 detection≠decision\"改为\"跨语言设置下 detection≠decision 模式与单语一致\"；(3) 考虑使用 activation patching（而非仅 linear steering）来检验因果性，增强方法多样性。\n\n**N2 [critical] \"General Cross-Lingual Asymmetries\" 泛化声称仅基于单一语言对。**\n- 具体位置：标题、Abstract (\"consistent with general multilingual structure\")、Contribution 2、Section 4.3-4.4\n- 问题：论文标题声称 \"General Cross-Lingual Asymmetries\"，但实验仅覆盖英-中一个语言对。英语和中文有特殊属性（高类型距离、训练数据中英语占比极高），从一个语言对推断\"一般跨语言结构\"在统计上等同于 N=1 的泛化。Section 3.5 提到了 EN-DE 的 XNLI 控制实验，但仅用于混淆因素检查，未作为第二语言对的完整探测实验。\n- 为什么影响接收：标题和核心 claim 的 scope 与实验证据不匹配。Reviewer 和 AC 对 overclaiming 非常敏感。\n- 建议修改方向：(1) 增加至少 1-2 个类型差异大的语言对（如 EN-DE、EN-JA 或 EN-AR）；(2) 或将标题修改为 \"English-Chinese Knowledge Conflict Signals...\"，并在全文中软化 \"general\" 相关表述。\n\n**N3 [critical] Contribution 2（asymmetry = general structure）本质是 null result 被包装为正面贡献。**\n- 具体位置：Page 1 贡献列表第 2 条、Section 4.3-4.4、Figure 4\n- 问题：发现迁移不对称性与 XNLI 基线一致 ＝ 不对称性不是冲突特异的 ＝ 这是一个 null result。将\"没有发现冲突特异不对称性\"列为独立贡献，膨胀了贡献计数。这更适合作为 Contribution 1（跨语言可检测性）的分析组成部分——作为一个重要的控制结果，而非独立贡献。\n- 为什么影响接收：四个贡献中如果一个是 null result、一个弱支撑（detection≠decision），实质上只有两个站得住的贡献（可检测性 + 混淆因素排除），且可检测性本身是增量扩展。整体贡献量偏薄。\n- 建议修改方向：将 asymmetry 发现并入 Contribution 1 的讨论，重新组织为 3 个贡献。\n\n---\n\n### Should-Fix 问题（影响评分但不一票否决）\n\n**W1 [warning] 四个贡献的权重严重不均衡。**\n- 具体位置：Page 1 贡献列表\n- 问题：逐条分析——\n  - C1（跨语言可检测性）：Zhao et al. 2024 单语→跨语言的增量扩展，预期性强\n  - C2（asymmetry = general structure）：null result（见 N3）\n  - C3（detection-decision dissociation）：仅 1/3 模型支持，且 Basu et al. 2026 已建立单语版本（见 N1）\n  - C4（混淆因素排除）：真正的方法论贡献，但偏 methodological\n- 没有一个贡献具有足够独立支撑 conference-level impact 的力度。\n\n**W2 [warning] 单一 train/test split，缺乏交叉验证。**\n- 具体位置：Section 3.3、Limitations\n- 问题：所有 probing 结果基于单次 80/20 随机分割。作者在 Limitations 中承诺 camera-ready 提供 5-fold CV，但当前版本的探测准确率数字无法排除 split 敏感性。Appendix C 的 seed replication 仅覆盖 steering，不覆盖 probing accuracy。\n- 建议：在当前版本中至少报告 3-fold CV 的 mean±std。\n\n**W3 [warning] Steering 分析样本量小、多重比较负担重。**\n- 具体位置：Section 4.6、Table 3\n- 问题：Matched-condition steering 使用 N=131-201。同时在 ~30 层 × 10 个 α 值 × 4 个方向上搜索，即使 Bonferroni 校正后，小样本下的统计功效（power）很低。这增加了 false negative（Qwen/Gemma）和 false positive（Llama L13）的风险。\n- 建议：报告 power analysis，或增加 matched-condition 数据量。\n\n**W4 [warning] 机制深度偏浅——定位偏 empirical probing，非 mechanistic interpretability。**\n- 具体位置：全文\n- 问题：论文定位于\"mechanistic interpretability\"（标题所属领域），但分析停留在残差流整体层面——标准 logistic regression 探针。没有 attention head 或 MLP 层面的分解，没有 circuit-level 分析，没有探究 probe 学到了什么具体特征。这更接近\"empirical probing study\"而非\"mechanistic interpretability\"。\n- 建议：(1) 增加 attention vs. MLP contribution 的分解分析；或 (2) 在 Related Work / framing 中将论文重新定位为 \"empirical cross-lingual probing study\"。\n\n**W5 [warning] Related Work 缺少跨语言知识编辑文献。**\n- 具体位置：Section 2\n- 问题：跨语言知识编辑（cross-lingual knowledge editing）是一个活跃的相关领域——ROME/MEMIT 在多语言模型中的编辑传播失败（如 \"Editing Across Languages\" survey, 2025; CLM-Bench, 2026）与本文发现的跨语言 probe 不对称性在机制上可能共享同一原因（语言特定的激活模式）。Section 2 完全未提及这一方向。\n- 建议：增加一小段讨论跨语言知识编辑的传播失败现象，与本文的 asymmetry 发现建立联系。\n\n**W6 [info] 缺少 Conclusion 章节。**\n- 具体位置：Section 5 → Limitations，无 Section 6\n- 问题：论文从 Discussion 直接跳到 Limitations，没有独立的 Conclusion。虽非格式违规，但缺少一个干净的叙事收尾，影响可读性。\n\n---\n\n## Questions to Authors\n\n**Q1.** Basu et al. (2026) \"Interpretability without actionability\" 已在单语设置下论证 detection ≠ steering。本文的跨语言扩展具体揭示了哪些单语分析观察不到的现象？请明确阐述 incremental novelty。\n\n**Q2.** Llama L13 steering 有效但 L16（仅 3 层之差）即无效（p>0.12）。是否测试了 L14 和 L15？如何解释这个极窄的因果窗口？\n\n**Q3.** Section 3.5 已将 ConflictQA 翻译为德语作为 XNLI 控制。为何不将 EN-DE 作为第二语言对进行完整的 probing 实验，以直接支持\"general cross-lingual\"的 claim？\n\n**Q4.** COMET 分层排除（Section 4.5）使用 tercile 阈值。结果对该阈值敏感度如何？quartile 或 median split 下结论是否一致？\n\n**Q5.** Gemma 的 ConflictQA 正确回答率最低（966/1590），但探测准确率最高（EN→EN 88.9%）。这种背离是否暗示 probe 捕获的是任务无关的信号？\n\n---\n\n## Missing References\n\n1. **跨语言知识编辑传播**: \"Editing Across Languages: A Survey of Multilingual Knowledge Editing\" (2025) 和 CLM-Bench (2026) 探讨了 ROME/MEMIT 在多语言中的传播失败——与本文的 asymmetry 发现机制上相关。\n2. **跨语言知识编辑基准**: BMIKE-53 (53 语言知识编辑基准) 提供了跨语言知识操作的系统性证据。\n\n（Director 指定的 Pokharel 2026、Sundar 2025、Gurgurov 2026、Pimentel 2021、Ravichander 2021 均已在论文中引用 ✓）\n\n---\n\n## 格式合规检查\n\n| 检查项 | 结果 |\n|--------|------|\n| 正文页数 ≤ 8 页 | ✓ Sections 1-5 在 pp.1-8 |\n| Limitations section 存在 | ✓ p.9，正文后 references 前 |\n| Limitations 不计入页数 | ✓ 在第 9 页 |\n| Abstract ≤ 200 words | ✓ 约 164 words |\n| Double-blind 匿名化 | ✓ \"Anonymous ACL submission\"，代码用 anonymous.4open.science |\n| 自引泄露 | 未发现明显泄露 |\n| ACL 模板 | ✓ 标准 ACL 格式 |\n\n---\n\n## 主要优势总结\n\n- 混淆因素控制设计（COMET + XNLI）是可复用的方法论贡献\n- 多模型一致的检测能力增强了泛化性\n- 统计方法规范、负面结果诚实报告\n- 代码公开、AI 辅助使用透明声明\n\n## 总体评分\n\n**Overall: 3.0/5 (Findings)**\n\n**一句话总结**: 方法论扎实、控制设计好的跨语言 probing 研究，适合 Findings 发表，但核心新颖性不足以达到主会议水平——最有新意的 detection≠decision claim 仅 1/3 模型支持且已被 Basu et al. 2026 在单语中建立，\"general cross-lingual\" 的泛化声称仅基于单一语言对。\n\n---\n\nSources:\n- [ARR Review Form](https://aclrollingreview.org/reviewform)\n- [ARR Reviewer Guidelines](https://aclrollingreview.org/reviewerguidelines)\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000403"
+        },
+        {
+          "source_line": 404,
+          "timestamp": "2026-05-25T21:23:44.803885+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 2 审稿意见已收到。等待 Reviewer 1 完成独立初审后进入交叉分享环节。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director"
+          },
+          "id": "event-000404"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "messages": [
+        {
+          "source_line": 405,
+          "timestamp": "2026-05-25T21:23:48.368381+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n审稿完成。已向 Review Director 提交完整审稿意见，核心判断：\n\n- **Overall: 3.0/5 (Findings)**\n- **3 个 critical 问题**：(1) detection≠decision 核心 claim 仅 1/3 模型支持且与 Basu et al. 2026 差异化不清晰；(2) \"General Cross-Lingual\" 泛化声称仅基于英-中单一语言对；(3) asymmetry 发现是 null result 被包装为正面贡献\n- **5 个 warning 问题**：贡献权重不均衡、单一 split 无 CV、steering 样本小、机制深度不足、缺少跨语言知识编辑文献\n- **格式合规**：全部通过（8 页正文、Limitations 存在、Abstract ≤200 words、匿名化完整）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000405"
+        },
+        {
+          "source_line": 406,
+          "timestamp": "2026-05-25T21:23:57.314189+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 2 审稿意见已收到。等待 Reviewer 1 提交后进入交叉分享阶段。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director"
+          },
+          "id": "event-000406"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "messages": [
+        {
+          "source_line": 407,
+          "timestamp": "2026-05-25T21:23:58.819107+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n## Reviewer 1 — 方法严谨性审查\n\n### Summary\n\n本文对三个多语言 LLM（Llama-3.1-8B、Qwen3-8B、Gemma-2-9B-IT）的残差流进行探测，研究英中跨语言知识冲突信号的可检测性、迁移不对称性及因果干预效果。主要发现：(1) 冲突信号在两种语言中均线性可分；(2) ZH→EN 迁移优势（~7pp）与 XNLI 非冲突基线一致，反映通用跨语言结构而非冲突特异编码；(3) 仅 Llama L13 层的 steering 产生因果效应，Qwen/Gemma steering 失败，据此提出\"detection ≠ decision\"论断。\n\n---\n\n### Strengths\n\n**S1. 三模型设计提供跨架构证据。** 使用三个参数量相当但架构不同的模型（Llama/Qwen/Gemma），且模型间问题重叠仅 3.5%，构成近似独立复制。方向一致性的二项检验（p = 0.016）是合理的统计策略。\n\n**S2. XNLI 非冲突基线控制得当。** 用相同 pipeline 在 XNLI 上运行探测，证明不对称性并非冲突特异，是本文最有说服力的控制实验之一。\n\n**S3. EN-DE 类型学控制巧妙。** 德语词汇重叠率约为中文的 4 倍（14.8% vs 3.8%），但 EN↔DE 不对称性接近零（Δ = +1.2pp, n.s.），有效排除了 token overlap 混淆。\n\n**S4. Selectivity control 规范。** 置换标签控制（N=131–201）产生近机会准确率（49.2–51.0%），selectivity gap 达 21–40pp，证实探测信号非任意线性可分。\n\n**S5. Steering 随机控制设计合理。** 注入等幅随机向量 r ~ N(0,I) 作为对照，将方向效应与幅度效应分离，方法上较先前工作有改进。\n\n**S6. Limitations 诚实。** 明确承认单 split 局限性并承诺 camera-ready 补充 5-fold CV，以及 steering 仅在 Llama 成功。\n\n---\n\n### Weaknesses\n\n**W1 [critical] \"Detection ≠ Decision\" 核心论断证据不足，存在过度概括。**\n- 具体位置：Abstract (\"these findings indicate that linear detectability does not imply causal relevance\")、Section 5 Discussion、Section 6 Conclusion\n- 问题：正面因果证据仅来自**一个模型（Llama）的一个层（L13）**。Qwen 和 Gemma 的负面结果可被多种替代假设解释：(a) 非线性因果通路（论文自己承认）；(b) 因果窗口在不同层（Llama 中因果窗口仅 ~4 层宽/L13-L16，但 Qwen 仅测 L14、Gemma 仅测 L17，遗漏相邻层的可能性大）；(c) 样本量不足（Qwen n=131、Gemma n=171，对微弱效应的检验功效有限）；(d) 线性 steering 本身的方法局限。Absence of evidence ≠ evidence of absence——论文将两个模型的 null result 提升为跨模型的一般性结论，逻辑跳跃过大。\n- 为什么影响接收：这是论文的第三个贡献点（Contribution 3），也是 abstract 和 conclusion 的核心 takeaway。如果此论断不成立，论文的新颖贡献大幅缩水，仅剩描述性发现（跨语言可检测性 + 不对称性）。\n- 建议修改方向：(1) 将 claim 降级为 Llama 特有观察，明确声明无法推广到其他架构；(2) 对 Qwen/Gemma 在至少 3-5 个相邻层进行 steering（而非仅 1 层），以确认负面结果的鲁棒性；(3) 补充 activation patching 实验作为线性 steering 的对照。\n\n**W2 [critical] Qwen 不对称性 CI 包含零，但被当作支持证据处理。**\n- 具体位置：Section 4.3, Table 1 — Qwen Δ_asym = +7.2, CI [−0.6, 13.7]\n- 问题：Qwen 的 95% CI 跨越零，意味着该模型的不对称性在 α=0.05 水平不显著。但论文在 Section 4.3 中写 \"the asymmetry is consistent in direction across all three architectures\" 并将 Qwen 与 Llama/Gemma 同等对待。进一步，如果对三个模型的不对称性检验做 Bonferroni 校正（阈值 0.017），Llama (p=0.038) 也不再显著，仅 Gemma (p=0.006) 幸存。\n- 为什么影响接收：不对称性的跨模型一致性是 Contribution 2 的基础。三个模型中两个不显著（校正后），严重削弱\"一致\"的论断。\n- 建议修改方向：(1) 明确报告 Qwen 不显著，不要用模糊的 \"marginally includes zero\"；(2) 讨论对三模型做多重比较校正后的结果；(3) 更多依赖方向一致性的二项检验（p=0.016）和 XNLI 的独立复制，而非个体模型的点估计。\n\n**W3 [critical] COMET tercile 分析严重欠功效，无法有效排除翻译质量混淆。**\n- 具体位置：Section 4.5, Table 2\n- 问题：论文自己报告 MDE = 25.3pp at 80% power（n≈56 per tercile）——即只有翻译质量造成 >25pp 的准确率差异时才能检测到。这使得该分析对中等大小的混淆效应完全不敏感。更令人担忧的是，Gemma 显示 Δ = +10.3pp 在混淆方向（高 COMET → 高准确率），虽然 p=0.278，但在这种低功效下不显著并不等于无效应。论文将此结果描述为 \"non-significant trend\"（Section 4.5），但一个 10pp 的点估计在混淆方向上是实质性的。\n- 为什么影响接收：如果翻译质量确实影响跨语言探测准确率，则 ZH→EN 不对称性可能是 artifact。COMET tercile 分析本应排除此混淆，但因欠功效而无法完成此任务。\n- 建议修改方向：(1) 增加样本量或使用连续回归（COMET score 作为连续变量 vs. 探测准确率），而非三分位比较，以提升功效；(2) 对 Gemma 的 +10.3pp 趋势做更深入调查；(3) 如果无法增加功效，诚实声明翻译质量混淆未被排除。\n\n**W4 [warning] TOST 等价性检验功效仅 1.4%，无信息量。**\n- 具体位置：Section 4.4 — \"TOST equivalence tests (±2 pp margin) are non-significant (p > 0.36, power = 1.4%)\"\n- 问题：1.4% 的功效意味着即使冲突不对称性与 XNLI 不对称性完全相同，该检验也几乎不可能检测到等价性。±2pp 的等价边界过于严格（考虑到各个 CI 宽度 >10pp）。报告一个注定失败的检验并用 \"reflecting insufficient power\" 一笔带过，有空洞分析之嫌。\n- 建议：要么选择合理的等价边界（如 ±5pp）并报告所需样本量，要么删除 TOST 分析，改用 CI 重叠的定性论证。\n\n**W5 [warning] 单 train/test split 贯穿全文，bootstrap CI 仅捕获 split 内变异性。**\n- 具体位置：Section 4.1, Limitations\n- 问题：所有探测结果基于单一 80/20 split。Bootstrap resampling（n=2,000）估计的 CI 是条件于该 split 的——它不能告诉我们换一个 split 结果会怎样。论文在 Limitations 中承认 seed 复制显示 peak layer 可能偏移（Qwen ±1.90%），但未在主要结果中使用 k-fold CV。论文承诺 camera-ready 补充 5-fold CV，但当前版本缺乏此验证。\n- 建议：至少报告 3-fold CV 的主要结果（Table 1），或在当前版本就完成 5-fold CV。\n\n**W6 [warning] 翻译模型（Qwen3-8B）同时作为实验对象。**\n- 具体位置：Section 3.2, Section 4.1\n- 问题：Qwen3-8B 既是翻译 pipeline 又是三个被探测模型之一。虽然论文指出 Llama/Gemma（与翻译模型架构独立）也显示相同模式以缓解担忧，但 Qwen 特有的翻译偏差可能使 Qwen 的跨语言迁移结果不可靠。\n- 建议：在正文中更显著地标注此利益冲突，或使用独立翻译模型（如 NLLB）作为额外验证。\n\n**W7 [warning] 全文多重假设检验缺乏整体 FWER 控制。**\n- 具体位置：全文\n- 问题：粗略统计，全文约 100+ 假设检验：12 个探测二项检验、6 个不对称性检验、3 个 TOST、5 个混淆检验、~78 个 steering 检验等。Bonferroni 仅应用于 steering 实验（per-layer k=10 或 30-test 校正），但探测二项检验、不对称性检验、混淆检验均未做多重比较校正。虽然不同分析模块可视为独立研究问题，但 Section 4.3 的三个不对称性检验属于同一族。\n- 建议：至少对同族检验（如三模型不对称性）应用 Bonferroni/Holm 校正并报告校正后结果。\n\n**W8 [warning] Steering 仅在英文 test data 上评估，未测试跨语言因果干预。**\n- 具体位置：Section 3.6 — \"Steering evaluation uses only the conflict-condition subset of the English test data\"\n- 问题：一篇关于跨语言冲突机制的论文，其因果干预实验仅在英文输入上进行。ZH→EN 探测不对称性是核心发现，但从未测试在中文输入上进行 steering 是否产生不同的因果模式。\n- 建议：至少在 Llama L13（已知有效的层）上测试中文输入的 steering 效果。\n\n**W9 [info] Fisher's exact test 用于 paired data 可能不当。**\n- 具体位置：Section 3.6, Section 4.6\n- 问题：Steering 实验中，相同测试样本分别接受 probe-direction 和 random-direction 注入。这是配对数据，但 Fisher's exact test 假设独立样本。McNemar's test 更适合配对二分类数据。在正相关情况下（容易翻转的样本在两种条件下都容易翻转），Fisher's test 可能是保守的，但这应予以说明。\n- 建议：补充 McNemar's test 结果，或论证 Fisher's exact test 的保守性。\n\n---\n\n### Questions to Authors\n\n**Q1.** Llama 中因果窗口仅 ~4 层宽（L13-L16）。对 Qwen 和 Gemma，你们仅测试了 1 个层（L14/L17）。如果因果窗口同样窄，遗漏相邻层完全可能。是否有 Appendix F 以外的多层 steering 结果？Appendix F 的 Table 6 是否覆盖了每个模型至少 3 个相邻层？\n\n**Q2.** Table 1 中 Δ_asym 脚注指出 \"Δ_asym is the mean of paired bootstrap differences, not the arithmetic difference of the reported single-seed accuracies\"。以 Llama 为例：ZH→EN (70.6) − EN→ZH (59.6) = 11.0pp，但 bootstrap Δ_asym = +7.3pp。这 3.7pp 差异的来源是什么？这是否意味着 peak layer 在不同 bootstrap 样本中发生偏移？如果是，这本身就说明单 split 结果不稳定。\n\n**Q3.** Gemma COMET tercile Δ = +10.3pp 在混淆方向。你们将此归因于 \"near-chance baseline accuracy of the EN→ZH probe at L17 (58.8%)\"，但 58.8% 仍显著高于 chance（binomial p < 0.05 for n≈56）。能否提供 Gemma COMET score 与探测准确率的散点图或连续回归结果？\n\n**Q4.** Qwen3-8B 同时作为翻译模型和实验对象。你们是否验证过：在 Qwen 上，用外部翻译模型（如 NLLB）的翻译是否产生相似的跨语言迁移模式？\n\n**Q5.** Section 4.6 报告 L13 steering 的 all-position injection 与 last-token injection 产生 \"identical results\"。能否提供具体数字？\"Identical\" 是指 p-value 和 flip rate 完全相同，还是方向一致但幅度不同？\n\n---\n\n### Missing References\n\n无明显遗漏。论文引用了该领域的主要相关工作（Zhao et al. 2024/2026, Basu et al. 2026, Hewitt & Liang 2019, Belinkov 2022, Marks & Tegmark 2024 等）。\n\n---\n\n### 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 2.5/5 | 核心因果论断证据不足（W1），不对称性统计证据不一致（W2），混淆排除欠功效（W3）。描述性发现（可检测性、XNLI 基线）较为扎实。 |\n| **Excitement** | 3/5 | 跨语言冲突机制解释是有意义的研究方向，\"detection ≠ decision\" 观察如能充分支撑会很有启发，但当前证据使其更像初步观察而非成熟结论。 |\n| **Reproducibility** | 3.5/5 | 超参（C=1.0）、硬件（RTX PRO 6000）、bootstrap n=2000 均有报告；匿名 repo 已提供。不足：主实验随机种子未明确报告；单 split 无 CV。 |\n\n---\n\n### Overall Assessment\n\n**Overall: 3.0 — Findings**\n\n本文在跨语言冲突信号可检测性和迁移不对称性方面提供了有价值的描述性发现，XNLI 基线和 EN-DE 控制设计得当。但论文的核心机制性贡献（\"detection ≠ decision\"）基于一个模型一个层的正面证据和两个模型的方法学上可疑的负面证据，无法支撑 abstract 和 conclusion 中的概括性论断。不对称性的统计证据在三模型中不一致（Qwen CI 包含零，Bonferroni 校正后仅 Gemma 显著），混淆排除分析欠功效（COMET tercile MDE = 25.3pp）。这些方法论问题叠加后，使论文的 soundness 低于主会议标准。修改后适合 Findings。\n\n### Confidence\n\n**Confidence: 4/5** — 统计方法论和 probing/steering 实验设计是我的专长领域，仔细阅读了全文及附录。对论文所涉的具体模型架构细节稍不确定。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000407"
+        },
+        {
+          "source_line": 408,
+          "timestamp": "2026-05-25T21:24:48.063079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "1",
+              "round_number": "1",
+              "text": "以下是 Reviewer 2 的完整审稿意见。请逐条回应其 Weaknesses 和关键论点：对每条用 [AGREE] 表示同意（简述理由），或 [REBUT] 表示反驳（引用具体 Section/Table/Figure 提供证据）。\n\n---\n\n# Reviewer 2 审稿意见：新颖性与完整性\n\n## Summary\n\n本文将知识冲突信号的 probing 分析从单语（Zhao et al. 2024）扩展到跨语言（英-中）设置，使用三个 LLM（Llama-3.1-8B-Instruct��Qwen2.5-8B、Gemma-2-9B-IT）进行残差流探测、XNLI 非冲突基线对照、COMET 混淆因素排除和因果 steering 实验。主要发现：(1) 冲突信号在所有模型和方向上线性可检测；(2) ZH→EN 迁移优势约 7pp，与 XNLI 基线一致，反映一般跨语言结构而非冲突特异性；(3) 因果 steering 仅在 Llama L13（41% 深度）成功，Qwen/Gemma 无显著因果效应，表明检测不蕴含因果相关性。\n\n## Strengths\n\n**S1. 混淆因素控制设计出色。** COMET 翻译质量分层 + XNLI 非冲突基线的组合是一个真正的方法论贡献（Section 3.5, 4.4-4.5）。用 XNLI 作为非冲突对照来区分冲突特异性 vs. 一般跨语言不对称性，思路清晰且可复用。\n\n**S2. 多模型验证增强泛化性。** 三个架构差异显著的模型（Llama/Qwen/Gemma）在检测能力上一致，强化了\"冲突信号线性可检测\"这一结论的可信度（Table 1, Figure 3）。\n\n**S3. 统计方法规范。** Bootstrap CI（n=2000）、Bonferroni 校正（l=10 to α values）、Fisher 精确检验、matched-condition 控制，统计实践达到 top-venue 标准。\n\n**S4. 诚实报告负面结果。** Qwen/Gemma steering 失败（Table 3）、asymmetry 非冲突特异性（Section 4.4）——这些负面结果的如实报告值得肯定，优于很多只报积极结果的论文。\n\n**S5. Seed replication 加强因果 claim。** Appendix C 用独立 seed 复现了 Llama L13 steering 效果（N=201, 独立 train/test split），排除了单次 split 偶然性的可能。\n\n## Weaknesses\n\n### Must-Fix 问题\n\n**N1 [critical] \"Detection ≠ Decision\" 核心 claim 支撑不足，且与 Basu et al. (2026) 差异化不清晰。**\n- Basu et al. (2026) 已在单语设置中建立了 detection-steering 的 dissociation。本文跨语言扩展未清晰阐述相比单语设置的增量发现。\n- Steering 仅在 Llama L13 产生显著因果效应，2/3 模型不支持任何因果影响。\n- 相邻 L16 已无效（p>0.12），因果窗口极窄，可能是 fragile artifact。\n- 将\"steering 在 2/3 模型失败\"框架为支持 dissociation，但也可能是 steering 方法太粗糙。\n\n**N2 [critical] \"General Cross-Lingual Asymmetries\" 泛化声称仅基于单一语言对。**\n- 标题声称 \"General Cross-Lingual Asymmetries\"，但实验仅覆盖英-中一个语言对。EN-DE 仅用于混淆因素检查，未作完整探测实验。\n\n**N3 [critical] Contribution 2（asymmetry = general structure）本质是 null result 被包装为正面贡献。**\n- 发现不对称性与 XNLI 基线一致 = 不是冲突特异的 = null result。将其列为独立贡献膨胀了贡献计数。\n\n### Should-Fix 问题\n\n**W1 [warning] 四个贡献的权重严重不均衡。**\n**W2 [warning] 单一 train/test split，缺乏交叉验证。**\n**W3 [warning] Steering 分析样本量小、多重比较负担重。**\n**W4 [warning] 机制深度偏浅——定位偏 empirical probing，非 mechanistic interpretability。**\n**W5 [warning] Related Work 缺少跨语言知识编辑文献。**\n**W6 [info] 缺少独立 Conclusion 章节。**\n\n## Missing References\n\n1. \"Editing Across Languages: A Survey of Multilingual Knowledge Editing\" (2025)\n2. CLM-Bench (2026)\n3. BMIKE-53\n\n## Overall Assessment: 3.0/5 (Findings)\n\n---\n\n请逐条回应上述 Weaknesses（N1-N3, W1-W6）。"
+            }
+          },
+          "id": "event-000408"
+        },
+        {
+          "source_line": 409,
+          "timestamp": "2026-05-25T21:25:10.664482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 22601
+          },
+          "id": "event-000409"
+        },
+        {
+          "source_line": 410,
+          "timestamp": "2026-05-25T21:25:10.865670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "2",
+              "round_number": "1",
+              "text": "以下是 Reviewer 1 的完��审稿意见。请逐条回应其 Weaknesses 和关键论点：对每条用 [AGREE] 表示��意（简述理由），或 [REBUT] 表示反驳��引用具体 Section/Table/Figure 提供证据）���\n\n---\n\n# Reviewer 1 — 方法严谨性审查\n\n## Summary\n\n本文对三个多语言 LLM（Llama-3.1-8B、Qwen3-8B、Gemma-2-9B-IT）的残差流进行探测，研究英中跨语言知识冲突信号的可检测性、迁移不对称性及因果干预效果。主要发现：(1) 冲突信号在两种语言中均线性可分；(2) ZH→EN 迁移优势（~7pp）与 XNLI 基线一致，反映通用跨语言结构而非冲突特异编码；(3) 仅 Llama L13 层的 steering 产生因果效应，Qwen/Gemma steering 失败，据此提出\"detection ≠ decision\"论断。\n\n## Strengths\n\n**S1.** 三模型设计提供跨架构证据（3.5% 问题重叠，近独立复制）。\n**S2.** XNLI 非冲突基线控制得当。\n**S3.** EN-DE 类型学控制巧妙（14.8% vs 3.8% Jaccard，Δ = +1.2pp n.s.）。\n**S4.** Selectivity control 规范（selectivity gap 21–40pp）。\n**S5.** Steering 随机控制设计合理（等幅 r ~ N(0,I) 对照）。\n**S6.** Limitations 诚实。\n\n## Weaknesses\n\n**W1 [critical] \"Detection ≠ Decision\" 核心论断证据不足，存在过度概括。**\n- 正面因果证据仅来自一个模型的一个层。Qwen/Gemma 负面结果有多种替代解释：非线性通路、因果窗口在不同层（Qwen 仅测 L14、Gemma 仅测 L17）、样本量不足（n=131/171）、线性 steering 方法局限。\n- Absence of evidence ≠ evidence of absence。\n\n**W2 [critical] Qwen 不对称性 CI 包含零，但被当作支持证据。**\n- Qwen Δ_asym = +7.2, CI [−0.6, 13.7]，95% CI 跨越零。\n- Bonferroni 校正后（阈值 0.017），Llama (p=0.038) 也不再显著，仅 Gemma (p=0.006) 幸存。\n- 三模型中两个不显著（校正后），严重削弱\"一致\"论断。\n\n**W3 [critical] COMET tercile 分析严重欠功效（MDE=25.3pp），无法排除翻译质量混淆。**\n- Gemma Δ = +10.3pp 在混淆方向，低功效下 p=0.278 不能排除实质效应。\n- 翻译质量混淆未被有效排除。\n\n**W4 [warning] TOST 等价检验功效仅 1.4%，无信息量。**\n- ±2pp 边界过严，检验注定失败。\n\n**W5 [warning] 单 train/test split，bootstrap CI 仅捕获 split 内变异性。**\n\n**W6 [warning] 翻译模型 Qwen3-8B 同时作为实验对象。**\n\n**W7 [warning] 全文多重假设检验缺乏整体 FWER 控制。**\n- 全文 ~100+ 假设检验，仅 steering 做了 per-layer Bonferroni。三模型不对称性检验属同一族但未校正。\n\n**W8 [warning] Steering 仅在英文数据上评估，未测试跨语言因果干预。**\n\n**W9 [info] Fisher's exact test 用于 paired data 可能不当（应用 McNemar's test）。**\n\n## Overall Assessment: 3.0 (Findings)\n## Confidence: 4/5\n\n---\n\n请逐条回应上述 Weaknesses（W1-W9）。"
+            }
+          },
+          "id": "event-000410"
+        },
+        {
+          "source_line": 411,
+          "timestamp": "2026-05-25T21:25:12.272793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1407
+          },
+          "id": "event-000411"
+        },
+        {
+          "source_line": 412,
+          "timestamp": "2026-05-25T21:25:16.233259+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉分享已派发。等待两位 Reviewer 的逐条回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director"
+          },
+          "id": "event-000412"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "messages": [
+        {
+          "source_line": 413,
+          "timestamp": "2026-05-25T21:25:18.806186+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n审稿意见已提交给 Review Director。\n\n核心判断：**Overall 3.0（Findings）**。\n\n主要问题集中在三点：\n1. **\"Detection ≠ Decision\" 论断过度概括**——正面因果证据仅来自 Llama L13 一层，Qwen/Gemma 各仅测 1 层的 null result 不足以支撑跨架构的一般性结论\n2. **不对称性统计不一致**——Qwen CI 包含零，Bonferroni 校正后仅 Gemma 显著，三模型\"一致\"的论断被削弱\n3. **COMET tercile 混淆排除严重欠功效**（MDE = 25.3pp），无法有效排除翻译质量混淆，Gemma 还显示 +10.3pp 的混淆方向趋势\n\n论文的描述性发现（跨语言可检测性、XNLI 基线控制、EN-DE 类型学控制）设计得当，修改后适合 Findings 接收。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000413"
+        },
+        {
+          "source_line": 414,
+          "timestamp": "2026-05-25T21:25:24.331237+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director"
+          },
+          "id": "event-000414"
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "messages": [
+        {
+          "source_line": 415,
+          "timestamp": "2026-05-25T21:27:14.211784+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 交叉回应：Reviewer 1 Weaknesses 逐条评议\n\n---\n\n## [AGREE] R1-W1: \"Detection ≠ Decision\" 核心论断证据不足\n\n完全同意。这与我 N1 的判断一致。补充两点：\n\n(1) R1 指出 \"absence of evidence ≠ evidence of absence\" 非常精准。论文将 Qwen/Gemma steering 失败解读为支持 dissociation 叙事，但 R1 正确列举了替代解释（非线性通路、不同因果窗口、样本量不足、线性 steering 局限）。从论文 Table 3 来看，Qwen 仅报告了 L14、Gemma 仅报告了 L17 层的 steering 结果，并未系统搜索所有层的因果窗口——这与 Llama 的 L13 精确定位是不对等的实验设计。\n\n(2) 我在 N1 中额外指出了 Basu et al. (2026) \"Interpretability without actionability\" 已在单语设置中建立了 detection-steering dissociation，进一步削弱了本文在该 claim 上的新颖性。R1 未提及这一文献重叠，但两个问题叠加后，该 claim 的支撑更加薄弱。\n\n---\n\n## [AGREE] R1-W2: Qwen 不对称性 CI 包含零\n\n同意，且认为这是我审稿中的一个遗漏。R1 的分析很有说服力：\n\n- Qwen Δ_asym = +7.2, CI [−0.6, 13.7] 确实跨越零\n- Bonferroni 校正阈值 0.05/3 = 0.017 下，Llama (p=0.038) 也不显著，仅 Gemma (p=0.006) 幸存\n- 论文 Section 4.3 称\"all three models show a consistent directional trend\"——但从统计严格性看，校正后仅 1/3 模型显著支持该 \"consistent\" 断言\n\n这直接影响 Contribution 2（asymmetry reflects general structure）的可信度。如果不对称性本身在多数模型中不显著，那么将其与 XNLI 基线匹配并声称反映\"一般跨语言结构\"就更加站不住。这强化了我 N3 的判断（该 contribution 本质是 null result）。\n\n---\n\n## [AGREE（部分）] R1-W3: COMET tercile 分析功效不足\n\n同意核心论点，但认为需要在论文的多层控制框架中评估。\n\nR1 的功效分析（MDE=25.3pp）是正确的——COMET tercile 分析单独来看确实无法排除翻译质量混淆。Gemma Δ=+10.3pp（Section 4.5, Table 2）在混淆方向，低功效下 p=0.278 完全可能是 type II error。\n\n但我要指出，论文的混淆排除不只依赖 tercile 分析——它是一个多层设计：\n1. COMET tercile stratification（R1 正确指出功效不足）\n2. XNLI 非冲突基线（Section 4.4）——这是独立于翻译质量的控制\n3. Token overlap / Jaccard 分析（Section 4.4）——EN-DE 控制 Jaccard 仅 3.8%\n4. EN-DE 类型学控制（R1 自己在 S3 肯定了这一点：14.8% vs 3.8% Jaccard, Δ=+1.2pp n.s.）\n\n因此，COMET tercile 分析是最薄弱的一环，R1 的批评有效。但翻译质量混淆并非完全未被控制——XNLI 基线和 EN-DE 控制提供了部分独立证据。建议作者增大 tercile 分析的样本量或使用连续回归替代分层分析。\n\n---\n\n## [AGREE] R1-W4: TOST 等价检验功效仅 1.4%\n\n同意。±2pp 等价边界对于 balanced accuracy 来说过窄。在 n~200 的样本量和约 5-8pp 的 bootstrap SE 下，这个检验注定失败。论文应要么使用更合理的等价边界（如 ±5pp），要么删除这个 uninformative 的检验结果，避免给读者造成\"已验证等价性\"的错误印象。\n\n---\n\n## [AGREE] R1-W5: 单 train/test split\n\n完全同意，与我 W2 一致。Bootstrap CI 仅捕获 within-split sampling variability，不捕获 split selection variability。作者承诺 camera-ready 提供 5-fold CV，但当前版本的所有 probe accuracy 数字都有 split 敏感性风险。\n\n---\n\n## [REBUT] R1-W6: 翻译模型 Qwen3-8B 同时作为实验对象\n\n不完全同意。需要区分：\n\n- 翻译模型：**Qwen3-8B**（Section 3.2）\n- 实验探测对象：**Qwen2.5-8B**（Section 4.1）\n\n这是不同代际的模型（Qwen3 vs Qwen2.5），虽属同一模型家族，但架构和训练数据存在代际差异。R1 的担忧（同家族共享 tokenizer/分布偏好可能造成 Qwen2.5 probing 结果的系统性偏差）有一定道理，但：\n\n1. 翻译质量由 COMET（独立于 Qwen 的指标）验证，Section 3.2 明确提到 back-translation 质量校验\n2. 如果 Qwen 家族共享的偏好造成了系统性偏差，我们应该观察到 Qwen2.5 的 probing 结果系统性高于 Llama/Gemma——但 Table 1 显示 Qwen 的 probe accuracy 在三模型中并非系统性最高（EN→EN: Llama 77.6%, Qwen 75.0%, Gemma 88.9%）\n3. Qwen2.5 的 asymmetry CI 包含零（R1-W2），恰恰不支持 Qwen 家族偏好造成系统性优势的假说\n\n该担忧值得在 Limitations 中提及，但不构成对结论的实质性威胁。\n\n---\n\n## [AGREE（部分）] R1-W7: 多重假设检验缺乏整体 FWER 控制\n\n部分同意。R1 指出全文 ~100+ 假设检验缺乏统一 FWER 控制是正确的。特别是：\n\n- 三模型不对称性检验属同一 hypothesis family，应做校正（如 R1-W2 所示，校正后仅 Gemma 显著）\n- Probing accuracy 的 binomial tests（4 方向 × 3 模型 = 12 tests）也属同一族\n\n但我认为要求全文所有检验做统一 FWER 控制过于严格——这在当前 NLP 实证文献中几乎从未执行。更务实的建议是：(1) 对 asymmetry 做三模型 Bonferroni（如 R1 所建议）；(2) 对 steering 保留现有 per-layer Bonferroni；(3) 明确报告哪些结论在校正后仍然成立、哪些不成立。\n\n---\n\n## [AGREE] R1-W8: Steering 仅在英文数据上评估\n\n同意，这是我审稿中未显式提出的一个重要遗漏。\n\n论文声称研究\"跨语言知识冲突\"，但 Section 4.6 的 steering 实验仅评估英文侧数据的 flip rate。如果核心主题是跨语言，则应至少测试：(1) 用 ZH→EN probe 对中文输入做 steering；(2) 用 EN→ZH probe 对英文输入做 cross-lingual steering。缺少这些实验使得 steering 部分与论文的跨语言定位脱节。\n\n这进一步削弱了 detection-decision dissociation 的跨语言意义（我 N1 的延伸）。\n\n---\n\n## [AGREE] R1-W9: Fisher's exact test 用于 paired data\n\n同意这是一个技术性改进点。Section 4.6 的 steering 评估对同一组样本进行 steering vs. random control 比较——这是 paired within-subject design，McNemar's test 比 Fisher's exact test 更合适。Fisher's test 假设两组独立，会低估统计功效。\n\n不过，考虑到 steering 效应在 Llama L13 的 p 值已经很小（p=0.002），切换到 McNemar's 不太可能改变该结论方向。但对 borderline 结果（如 Qwen/Gemma 某些层）可能有影响。建议作者在修改稿中统一使用 McNemar's test。\n\n---\n\n## 综合评议\n\nR1 和我在 3 个核心问题上高度一致：\n1. **Detection ≠ decision claim 支撑不足**（R1-W1 ↔ 我 N1）\n2. **Asymmetry 的 \"consistent\" 断言统计不充分**（R1-W2 ↔ 我 N3）\n3. **单 split 限制可靠性**（R1-W5 ↔ 我 W2）\n\nR1 在统计细节上更深入（W2 的 Bonferroni 校正分析、W3 的 MDE 计算、W4 的 TOST 功效、W9 的配对检验），这些补充了我审稿中的方法论盲点。\n\nR1 唯一我有分歧的是 **W6（翻译模型=实验对象）**——翻译模型 Qwen3-8B 和实验模型 Qwen2.5-8B 是不同代际，且实验数据不支持系统性偏差假说。\n\n**维持我的评分：Overall 3.0 (Findings)**。R1 的统计批评进一步强化了我的判断——论文的方法论基础扎实但统计推断的严谨性有改进空间，核心新颖性不足以达到主会议水平。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000415"
+        },
+        {
+          "source_line": 416,
+          "timestamp": "2026-05-25T21:27:31.247082+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "R2 交叉回应已收到。等待 R1 对 R2 意见的交叉回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director"
+          },
+          "id": "event-000416"
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "messages": [
+        {
+          "source_line": 417,
+          "timestamp": "2026-05-25T21:27:32.315226+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n交叉回应已提交。\n\n与 Reviewer 1 在 3 个核心问题上高度一致（detection≠decision 支撑不足、asymmetry \"consistent\" 断言统计不充分、单 split 限制），唯一分歧在 W6（翻译模型问题）——Qwen3-8B 和 Qwen2.5-8B 是不同代际模型，实验数据不支持系统性偏差假说。维持 Overall 3.0 (Findings) 评分。\n\n---\n\n[Reviewer 1 审稿意见]:\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### N1 [critical] \"Detection ≠ Decision\" 核心 claim 支撑不足，与 Basu et al. (2026) 差异化不清晰\n\n**[AGREE] R2-N1**\n\n同意此为论文最大弱点。我在自己的 W1 中提出了几乎相同的判断。补充几点：\n\n1. **与 Basu et al. 的增量**：Section 5 第三段仅用一句话区分：\"our L13 succeeds because we steer at mid-layer rather than probe-peak, while our three-model design isolates architecture。\" 这个差异化论述过于单薄。公平地说，跨语言维度和三模型对比确实是增量，但核心 dissociation 观察（高 probe accuracy ≠ steering success）Basu et al. 已建立，本文的增量主要在于：(a) 跨语言设定、(b) 三模型对比、(c) 层级定位（mid-layer vs probe-peak），但 (a)(b) 是 setting 扩展而非 insight 扩展，(c) 是有趣的但仅基于 Llama 一个模型。\n\n2. **因果窗口窄的 fragility 问题**：R2 指出 L16 已无效（p>0.12），因果窗口极窄。我的补充证据来自 Appendix Table 4（boundary replication），L14 p=0.002, L16 p=0.005，到 L18 已不显著——这是约 4 层（~12% depth）的窗口。在 Qwen/Gemma 仅测 1 层（L14/L17）的情况下，遗漏相邻层的可能性确实存在。\n\n3. **方法粗糙 vs 真正 dissociation**：完全同意 R2 的判断——\"steering 方法太粗糙\" 是 Qwen/Gemma null result 的合理替代解释。Section 5 第二段虽列举了三个假设（non-linear interactions / superposition / architectural differences），但均未提供任何鉴别证据。\n\n---\n\n### N2 [critical] \"General Cross-Lingual Asymmetries\" 泛化声称仅基于单一语言对\n\n**[REBUT] R2-N2**\n\n部分反驳。R2 的批评基于对标题中 \"general\" 的语义理解偏差。\n\n标题原文是 \"English-Chinese Knowledge Conflict Signals **Are Consistent With** General Cross-Lingual Asymmetries\"——这里 \"general\" 修饰的是 asymmetries 的性质（一般跨语言结构 vs 冲突特异性），而非声称实验覆盖了多语言对。标题的 claim 是：EN-ZH 上观察到的不对称性**与已知的一般跨语言结构一致**，证据是 Section 4.4 的 XNLI 非冲突基线（6 个数据点：3 模型 × 2 任务，方向全部一致，binomial p = 0.016）。\n\n但我承认 R2 的担忧有部分道理：\n- 仅 EN-ZH 一对确实限制了泛化性。XNLI 基线证明的是 \"EN-ZH 不对称性不是冲突特异的\"，但不能证明\"同样的模式会出现在 EN-AR 或 EN-JA 上\"。\n- EN-DE 控制（Section 4.5, Table 2）仅用于混淆排除，未做完整探测实验。如果在 EN-DE 上也做完整四方向探测并观察到 Δ_asym ≈ 0（因为两种语言与英语的跨语言对齐程度相似），会更有说服力。\n\n总结：标题的语义学上没有过度声称，但实验覆盖确实有限。建议作者在 Limitations 中明确单语言对的泛化边界。\n\n---\n\n### N3 [critical] Contribution 2 本质是 null result 被包装为正面贡献\n\n**[REBUT] R2-N3**\n\n不同意将此定性为\"膨胀贡献计数\"。\n\n在 probing 和可解释性研究中，区分 task-specific encoding 与 general structural property 是一个有实质意义的发现。具体而言：\n- **无 XNLI 基线时**：读者会自然推断 ZH→EN 迁移优势是冲突编码的特有属性，可能据此设计冲突特异的干预策略。\n- **有 XNLI 基线后**：不对称性被归因于一般跨语言结构，改变了后续研究的方向——跨语言冲突干预不应从 asymmetry 入手，而应关注底层的语言对齐机制。\n\n这种 \"ruling out\" 型贡献在 NLP 中有先例：Hewitt & Liang (2019) 的 selectivity 控制本身是一个 \"null result\"（好的 probe 在置换标签下应失败），但它改变了整个 probing 方法论。\n\n然而，我同意此贡献的**统计证据不够强**——这是我自己 W2 和 W4 提出的：Qwen CI 包含零、TOST 功效仅 1.4%。如果统计证据更扎实（例如所有三个模型的 conflict 和 XNLI Δ_asym CI 都 exclude zero，且 TOST 通过合理等价边界），这个贡献就毫无争议了。当前状态下，Contribution 2 的 claim 比证据能支撑的更强。\n\n---\n\n### W1 [warning] 四个贡献的权重严重不均衡\n\n**[AGREE] R2-W1**\n\n同意。Contribution 1（跨语言可检测性）本质上是将 Zhao et al. (2024) 的方法扩展到 EN-ZH——是必要的基础工作但增量有限。Contribution 4（混淆排除 pipeline）更像方法论组件而非独立贡献。论文的核心价值集中在 Contribution 2 和 3，但前者统计证据不足（我的 W2），后者因果证据薄弱（我的 W1 / R2 的 N1）。\n\n---\n\n### W2 [warning] 单一 train/test split，缺乏交叉验证\n\n**[AGREE] R2-W2**\n\n完全同意，这也是我的 W5。补充一个 R2 未提及的技术点：Table 1 脚注指出 \"Δ_asym is the mean of paired bootstrap differences, not the arithmetic difference of the reported single-seed accuracies\"。以 Llama 为例，算术差 = 70.6 − 59.6 = 11.0pp，但 bootstrap Δ_asym = +7.3pp，差距 3.7pp。这暗示 peak layer 在 bootstrap 样本间可能发生偏移，进一步说明单 split 结果不够稳定。\n\n---\n\n### W3 [warning] Steering 分析样本量小、多重比较负担重\n\n**[AGREE] R2-W3**\n\n同意。我在 W1 和 W7 中分别从样本量和全文 FWER 两个角度提出了相同担忧。Qwen n=131、Gemma n=171 的样本量对于检测微弱因果效应的功效有限。论文的 Bonferroni 校正仅限于 steering 内部（per-layer k=10），但跨分析模块的 ~100+ 检验未做整体校正。\n\n---\n\n### W4 [warning] 机制深度偏浅\n\n**[AGREE] R2-W4**\n\n部分同意。论文使用 logistic regression probing + linear steering，这在 mechanistic interpretability 谱系中属于较浅的方法。Section 5 Discussion 自己承认 \"definitive validation requires activation patching\"（第二段末），但未实际执行。论文更准确地说是 **probing-based analysis with causal validation attempt**，而非 full mechanistic interpretability。\n\n不过，我不认为这构成 rejection 理由——probing + steering 的组合在当前文献中已是 accepted practice（Li et al. 2023, Turner et al. 2023, Marks & Tegmark 2024）。问题不在于方法深度，而在于从有限的 steering 结果中过度概括（回到 N1）。\n\n---\n\n### W5 [warning] Related Work 缺少跨语言知识编辑文献\n\n**[REBUT] R2-W5**\n\n部分反驳。Related Work（Section 2）第三段已引用了跨语言 steering 的近期工作：Pokharel et al. (2026) 的 training-free cross-lingual activation steering、Sundar et al. (2025) 的 cross-lingual alignment shifts、Gurgurov et al. (2026) 的 CLASBench。\n\nR2 建议补充的三篇参考文献（Editing Across Languages survey / CLM-Bench / BMIKE-53）属于 **knowledge editing** 方向，而本文是 **probing + steering** 方向。两者虽有联系但方法论不同——knowledge editing（ROME, MEMIT 等）修改模型参数，steering 不修改参数而是在推理时干预激活。在 8 页限制下，不加区分地引用 editing 文献可能混淆读者对论文定位的理解。\n\n但如果 R2 建议的文献中有直接分析跨语言冲突信号表征的工作，则应该引用。建议作者在 camera-ready 中选择性引用最相关的 1-2 篇。\n\n---\n\n### W6 [info] 缺少独立 Conclusion 章节\n\n**[REBUT] R2-W6**\n\nR2 事实判断有误。论文有独立的 Section 6 Conclusion（PDF 第 8 页底部），包含两句话的总结。该章节确实简短（仅 2 句），但它存在。R2 可能因其篇幅过短而忽略了它，或将 Discussion（Section 5）与 Conclusion（Section 6）混淆。\n\n---\n\n### 总结\n\n与 R2 在核心判断上高度一致：**N1（detection ≠ decision 论断证据不足）** 是论文最大的弱点，我们两位 reviewer 独立达成了相同结论。N2（标题泛化性）我认为 R2 对标题语义有误读，但实验覆盖有限的担忧是合理的。N3（null result 作为贡献）我持不同意见——排除冲突特异性是有意义的发现，但当前统计证据确实偏弱。\n\n我维持自己的 **Overall 3.0 (Findings)** 评分不变。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000417"
+        },
+        {
+          "source_line": 418,
+          "timestamp": "2026-05-25T21:28:07.179941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_visual_check_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "tool_args": {
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-000418"
+        },
+        {
+          "source_line": 419,
+          "timestamp": "2026-05-25T21:28:07.330981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_external_review_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "tool_args": {
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-000419"
+        },
+        {
+          "source_line": 420,
+          "timestamp": "2026-05-25T21:28:07.331462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-25T21:15:20.063962+00:00\\\", \\\"completed_at\\\": \\\"2026-05-25T21:18:51.933693+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"单页堆叠 3 个 display items（Figure 3 + Table 1 + Figure 4），每个尺寸偏小；Figure 3 的 axis label 和 legend 字号接近可读下限，建议适当放大或拆分到两页\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 12\\\", \\\"message\\\": \\\"末页（appendix）底部约 35% 空白，可考虑调整 appendix 内容分布以充分利用空间\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"纯文本页（Experimental Setup），虽未违反连续纯文本规则（P4 有 Figure 2 间隔），但该页信息密度高，可考虑将部分 setup 细节移至 appendix 以腾出空间给主文 display items\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 0, \\\"info\\\": 3}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-000420"
+        },
+        {
+          "source_line": 421,
+          "timestamp": "2026-05-25T21:28:07.381985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-000421"
+        },
+        {
+          "source_line": 422,
+          "timestamp": "2026-05-25T21:30:46.816512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_review_issues"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "issues_yaml": "issues:\n# === Round 4 — RECURRING ISSUES (from Round 3, still present) ===\n\n- id: \"R3-N2\"\n  summary: \"COMET tercile 消融 MDD=25.3pp 混淆排除功效不足\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"R1 认为'本质上无效'，R2 部分反驳——多证据链部分弥补\"\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R1 再次标记为 critical (W3)，R2 部分同意但指出多层控制框架(XNLI+EN-DE)部分缓解。Gemma +10.3pp 混淆方向趋势仍未解决。\"\n  action_items:\n    - round: 3\n      action: \"§4.5 重构：论证重心从 COMET tercile 转向 token overlap + EN-DE 对照\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"增加连续回归分析(COMET score vs probe acc)替代 tercile；或增大样本量；对 Gemma +10.3pp 做深入调查\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-N3\"\n  summary: \"因果证据仅限 Llama L13 单模型单层，detection≠decision claim 过度概括\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"Contribution 暗示跨架构发现，实为 1正2负\"\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R1-W1 和 R2-N1 独立提出相同判断并在交叉回应中 AGREE。Qwen/Gemma 各仅测1层(L14/L17)，替代解释未排除(非线性通路、不同因果窗口、样本量不足)。与 Basu et al. 2026 差异化不清晰。\"\n  action_items:\n    - round: 3\n      action: \"Contribution 重写限定为 Llama-specific + 三层解离证据\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"(1) Abstract/Conclusion 进一步降级 claim 为 Llama-specific observation；(2) 对 Qwen/Gemma 补充至少 3 层 steering；(3) 强化 Basu et al. 差异化论述(跨语言+三模型+层定位)\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W1\"\n  summary: \"单一 train/test split 缺乏 k-fold cross-validation\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"Belinkov 2022 推荐 CV 为标准做法\"\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R1-W5 和 R2-W2 再次标记。Bootstrap CI 仅捕获 split 内变异。Δ_asym arithmetic diff (11.0pp) vs bootstrap mean (7.3pp) 差距暗示 peak layer 偏移。\"\n  action_items:\n    - round: 3\n      action: \"Limitations 加 k-fold CV 承诺 + camera-ready 计划\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"在当前版本完成至少 3-fold CV 主要结果(Table 1)，不再仅承诺 camera-ready\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W2\"\n  summary: \"Qwen3-8B 同时作为翻译模型和实验对象的双重角色\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"Qwen EN→ZH transfer accuracy 最高(67.3%)，与 aligned 假设方向一致\"\n    - round: 4\n      reviewers: [1]\n      note: \"R1-W6 再次提出。R2 反驳称 Qwen3 vs Qwen2.5 是不同代际，但论文实际使用 Qwen3-8B 做两者(Section 3.2 + 4.1)，R2 事实判断有误。Llama/Gemma 独立验证相同 pattern 部分缓解。\"\n  action_items:\n    - round: 3\n      action: \"Limitations 增强 Qwen dual role 讨论\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"正文中更显著标注此利益冲突；或用独立翻译模型(如 NLLB)做额外验证\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-W6\"\n  summary: \"Discussion 三个 mechanistic 假说全部 untested\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [2, 1]\n      note: \"建议至少验证一个\"\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R2-W4 指出机制深度偏浅(probing-level 非 circuit-level)。R1 交叉 AGREE(部分)——probing+steering 是 accepted practice 但不应从中过度概括。Discussion 仍仅列假说未验证。\"\n  action_items:\n    - round: 3\n      action: \"MLP probe 数据验证假说1 + registry 数据验证假说2/3\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"考虑 activation patching 验证至少一个假说；或在 framing 中重定位为 empirical probing study\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-NOV\"\n  summary: \"新颖性被 Basu et al. (2026) 先行发现削弱\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"detection≠decision 已被 Basu 部分 preempt\"\n    - round: 4\n      reviewers: [2]\n      note: \"R2-N1 再次标记，R1 在交叉中 AGREE 并补充：Section 5 仅一句差异化论述过于单薄。增量在 setting 扩展(跨语言+三模型)而非 insight 扩展。\"\n  action_items:\n    - round: 3\n      action: \"Contribution 合并 + Basu 差异化写入 discussion\"\n      assigned_to: paper_agent\n      status: done\n    - round: 4\n      action: \"Section 2 或 Section 5 增加与 Basu et al. 的逐点对比段落(≥3 差异点)；重新定位为'跨语言设定下的 replication + extension'而非独立发现\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# === Round 4 — NEW ISSUES ===\n\n- id: \"R4-N1\"\n  summary: \"Qwen 不对称性 CI 包含零；Bonferroni 校正后仅 Gemma 显著\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R1-W2 首次提出，R2 交叉 AGREE。Qwen CI [-0.6, 13.7] 跨零。三模型 Bonferroni 阈值 0.017 下 Llama p=0.038 也不显著。仅 Gemma p=0.006 幸存。'Consistent across all three' 论断统计不充分。\"\n  action_items:\n    - round: 4\n      action: \"(1) 明确报告 Qwen 不显著而非'marginally includes zero'；(2) 报告 Bonferroni 校正后结果；(3) 依赖方向一致性 binomial test(p=0.016) + XNLI 独立复制作为主要论据\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-W1\"\n  summary: \"全文多重假设检验缺乏整体 FWER 控制\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R1-W7 提出，R2 部分同意。全文 ~100+ 检验仅 steering 做了 per-layer Bonferroni。三模型 asymmetry 属同一族未校正。建议至少对同族检验做校正并报告。\"\n  action_items:\n    - round: 4\n      action: \"对 asymmetry 三模型检验做 Bonferroni/Holm 校正并报告校正后结果；明确标注哪些结论校正后仍成立\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-W2\"\n  summary: \"Steering 仅在英文数据评估，未测试跨语言因果干预\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R1-W8 提出，R2 AGREE。论文主题是跨语言冲突，但 steering 实验仅用英文 test data。未测试中文输入 steering 或 cross-lingual steering(ZH→EN probe 对 ZH 输入)。\"\n  action_items:\n    - round: 4\n      action: \"至少在 Llama L13 上测试中文输入 steering + ZH→EN probe cross-lingual steering\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-W3\"\n  summary: \"TOST 等价检验功效 1.4%，uninformative\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R1-W4 提出，R2 AGREE。±2pp 边界对 n~200 和 SE~5-8pp 过窄，检验注定失败。报告 uninformative 检验有空洞分析之嫌。\"\n  action_items:\n    - round: 4\n      action: \"要么使用合理等价边界(±5pp)重做 TOST；要么删除 TOST，改用 CI 重叠 + binomial direction consistency 的定性论证\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-W4\"\n  summary: \"贡献权重不均衡；Contribution 2(asymmetry)定位有争议\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R2-W1/N3 提出(null result 包装为贡献)，R1 REBUT(ruling-out 有方法论价值)但同意统计证据不够强。分歧：C2 是否应为独立贡献。共识：当前证据力度不足以支撑该 claim 的强度。\"\n  action_items:\n    - round: 4\n      action: \"考虑将 C2 并入 C1 作为分析组成部分，或保留但降低措辞强度(consistent with → preliminary evidence consistent with)\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R4-I1\"\n  summary: \"Fisher's exact test 用于 paired steering data，应为 McNemar's\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 4\n  last_seen_round: 4\n  mentions:\n    - round: 4\n      reviewers: [1, 2]\n      note: \"R1-W9 提出，R2 AGREE。Same samples receive both steering and random control = paired within-subject design。Fisher 假设独立样本。对 Llama L13 (p=0.002) 不影响结论方向，但对 borderline 结果可能有影响。\"\n  action_items:\n    - round: 4\n      action: \"补充 McNemar's test 结果或论证 Fisher 在此 setting 的保守性\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# === Round 3 RESOLVED (confirmed in Round 4) ===\n\n- id: \"R3-N1\"\n  summary: \"标题 'Mirror' 等价性主张与 TOST 功效不匹配\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"建议改 Mirror→Consistent With\"\n    - round: 4\n      reviewers: [1, 2]\n      note: \"标题已改为 'Are Consistent With'。R1 在交叉回应中确认标题语义无过度声称。\"\n  action_items:\n    - round: 3\n      action: \"标题 Mirror→Consistent With\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"标题已改为 'English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries'。R4 Reviewer 确认。\"\n  resolution_round: 4\n\n- id: \"R3-W3\"\n  summary: \"Probe selectivity 未正式评估\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"引用 Hewitt & Liang 2019 但未执行\"\n  action_items:\n    - round: 3\n      action: \"Random labels selectivity control\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Selectivity control 完成，R4 R1 在 S4 确认(49.2-51.0% chance, gap 21-40pp)。\"\n  resolution_round: 4\n\n- id: \"R3-W4\"\n  summary: \"缺少 AUROC 阈值无关评估指标\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"AUROC 对 Gemma 尤其有意义\"\n  action_items:\n    - round: 3\n      action: \"AUROC 计算 + Appendix\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"AUROC 完成(Llama 0.981, Gemma 0.931, Qwen 0.771)。R4 未再标记。\"\n  resolution_round: 4\n\n- id: \"R3-W5\"\n  summary: \"Steering α 值选择缺乏理论依据\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"α∈{±20,±10,±5,±2,±1} 无规范化\"\n  action_items:\n    - round: 3\n      action: \"Method 加入 α 选择理由 + Turner/Marks 引用\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Section 4.6 已引用 Turner 2023 和 Marks 2024 作为 α sweep 惯例。R4 未再标记。\"\n  resolution_round: 4\n\n- id: \"R3-M1\"\n  summary: \"COMET 版本号未标注\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"需标注具体版本\"\n  action_items:\n    - round: 3\n      action: \"加入 wmt22-comet-da\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Section 4.1 已标注 'wmt22-comet-da'。R4 未再标记。\"\n  resolution_round: 4\n\n- id: \"R3-M2\"\n  summary: \"Token overlap 仅用 Jaccard 粗粒度指标\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"EN-ZH 字符系统不同使 3-4% 已足够\"\n  action_items:\n    - round: 3\n      action: \"加入 floor imposed by distinct writing systems\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Section 4.5 已加入解释。R4 R1-S3 确认 EN-DE 控制(14.8% vs 3.8%)有效。\"\n  resolution_round: 4\n\n- id: \"R3-M4\"\n  summary: \"Random direction control 仅为最低标准\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"更强 control 方向\"\n  action_items:\n    - round: 3\n      action: \"Limitations 提及更强 control 方向\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Limitations 已提及。R4 R1-S5 确认 random control 设计合理(等幅 r~N(0,I))。\"\n  resolution_round: 4\n\n- id: \"R3-M5\"\n  summary: \"Figure 3 灰色带暗示 TOST 有效但功效不支持\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 4\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"±2pp 灰色带视觉暗示 meaningful zone\"\n    - round: 4\n      reviewers: [1, 2]\n      note: \"Figure caption 已改为 'exploratory equivalence margin' + TOST power 1.4% 标注。R4 未标记视觉误导问题(仅标记 TOST 本身 uninformative)。\"\n  action_items:\n    - round: 3\n      action: \"Figure caption 改为 exploratory\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Caption 已修改。视觉误导问题解决。TOST uninformative 性质已单独列为 R4-W3。\"\n  resolution_round: 4\n\n# === PREVIOUSLY RESOLVED (Rounds 1-2, confirmed stable) ===\n\n- id: \"R2-W2\"\n  summary: \"标题仅测试 EN-ZH 一个语言对构成 overclaiming\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 2\n  mentions:\n    - round: 1\n      reviewers: [2, 1]\n      note: \"标题应加限定\"\n    - round: 2\n      reviewers: [1, 2]\n      note: \"升级为 Must-Fix\"\n  action_items:\n    - round: 2\n      action: \"标题加入 English-Chinese 限定\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"标题已限定为 English-Chinese。R4 R1 在 N2 rebut 中确认标题语义正确。\"\n  resolution_round: 3\n\n- id: \"MF-2\"\n  summary: \"标题 Inherit 因果措辞仅有相关性证据\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [2, 1]\n      note: \"Inherit→Mirror→Consistent With\"\n  action_items:\n    - round: 2\n      action: \"全文替换\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Reviewer PASS. R4 确认标题用 'Consistent With'。\"\n  resolution_round: 3\n\n- id: \"R1-N2\"\n  summary: \"Detection ≠ Decision 因果声明仅在 Llama 成立\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 1\n  last_seen_round: 4\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"最核心局限\"\n    - round: 2\n      reviewers: [1, 2]\n      note: \"升级为 MF-3\"\n    - round: 3\n      reviewers: [1, 2]\n      note: \"Contribution 重写限定，但根本问题未解\"\n    - round: 4\n      reviewers: [1, 2]\n      note: \"合并至 R3-N3。四轮持续存在的核心问题。\"\n  action_items:\n    - round: 2\n      action: \"Reframe 为 architecture-dependent\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R3-M3\"\n  summary: \"无代码/数据可用性声明\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  mentions:\n    - round: 3\n      reviewers: [1, 2]\n      note: \"double-blind 可用匿名链接\"\n  action_items:\n    - round: 3\n      action: \"加入声明\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"匿名代码仓库已提供。R4 确认。\"\n  resolution_round: 3\n"
+            }
+          },
+          "id": "event-000422"
+        },
+        {
+          "source_line": 423,
+          "timestamp": "2026-05-25T21:30:46.917742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 14254}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "elapsed_ms": 101
+          },
+          "id": "event-000423"
+        },
+        {
+          "source_line": 424,
+          "timestamp": "2026-05-25T21:33:12.649644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_review_report_to_research_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "tool_args": {
+              "report": "# Round 4 审稿报告 — clkc_mech_interp\n\n**Target Venue**: EMNLP 2026 (via ARR) | **Deadline**: 2026-06-15\n**Paper**: \"English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries\"\n**Reviewers**: R1 (方法严谨性) + R2 (新颖性/完整性) | **Cross-sharing**: 完成\n\n---\n\n## Summary\n\n本文将知识冲突信号的 probing 分析从单语扩展到英-中跨语言设置，在三个 LLM（Llama-3.1-8B-Instruct、Qwen3-8B、Gemma-2-9B-IT）上训练残差流探针、构建 XNLI 非冲突基线、执行 COMET/token overlap/EN-DE 混淆排除、并进行因果 steering 实验。主要发现：(1) 冲突信号在所有模型和方向上线性可检测；(2) ZH→EN ~7pp 迁移优势与 XNLI 一致，反映一般跨语言结构；(3) 仅 Llama L13 (41% depth) steering 成功，Qwen/Gemma 无效，据此提出 detection≠decision dissociation。\n\n---\n\n## Strengths\n\n1. **混淆因素控制设计出色**：COMET 翻译质量分层 + XNLI 非冲突基线 + EN-DE 类型学控制的三层设计是可复用的方法论贡献。EN-DE Jaccard 14.8% vs EN-ZH 3.8% 但 Δ≈0 有效排除 token overlap。[R1-S2/S3, R2-S1]\n2. **多模型验证**：三个架构差异显著的模型仅 3.5% 问题重叠，构成近似独立复制。方向一致性 binomial p = 0.016。[R1-S1, R2-S2]\n3. **统计方法规范**：Bootstrap CI (n=2000)、Bonferroni 校正、Fisher 精确检验、selectivity control (gap 21-40pp)、matched-condition 控制均达标。[R1-S4/S5, R2-S3]\n4. **诚实报告负面结果**：Qwen/Gemma steering 失败、asymmetry 非冲突特异性的如实报告优于领域平均水平。[R2-S4]\n5. **Seed replication**：独立 seed 复现 Llama L13 因果效应 (N=201)，排除单次 split 偶然性。[R2-S5]\n6. **代码可用 + AI 使用声明透明**：匿名代码仓库提供，AI 辅助使用明确标注。\n\n---\n\n## Weaknesses\n\n### Critical（影响接收决定）\n\n**[C1] Detection ≠ Decision 核心 claim 过度概括（R1-W1, R2-N1; 双方 AGREE）**\n- 正面因果证据仅来自 Llama L13 一层。Qwen (L14) 和 Gemma (L17) 各仅测 1 层即宣告 null，但 Llama 自身因果窗口仅 ~4 层 (L13-L16)，遗漏相邻层完全可能。\n- 替代解释未排除：非线性因果通路、不同因果窗口位置、样本量功效不足 (n=131/171)、线性 steering 方法本身的局限性。\n- Basu et al. (2026) \"Interpretability without actionability\" 已在单语中建立 detection-steering dissociation。本文差异化论述仅 Section 5 一句话，过于单薄。\n- **Action required**: (1) Qwen/Gemma 补充至少 3 层相邻层 steering；(2) 若无法执行，将 claim 严格限定为 Llama-specific observation；(3) 增加与 Basu et al. 的逐点差异化段落。\n\n**[C2] Asymmetry \"consistent across all three models\" 统计不充分（R1-W2; R2 交叉 AGREE）**\n- Qwen Δ_asym = +7.2pp, CI [-0.6, 13.7] 跨越零，α=0.05 下不显著。\n- 三模型 Bonferroni 校正（阈值 0.017）：Llama p=0.038 不显著、Gemma p=0.006 显著、Qwen n.s.——仅 1/3 模型通过校正。\n- Section 4.3 \"consistent in direction across all three architectures\" 措辞超越了证据能支撑的范围。\n- **Action required**: (1) 明确报告 Qwen 不显著；(2) 报告 Bonferroni 校正后结果；(3) 主要论据改为方向一致性 binomial test (p=0.016) + XNLI 六点复制。\n\n**[C3] COMET tercile 混淆排除欠功效，Gemma 趋势未解释（R1-W3; R2 部分 AGREE）**\n- MDE = 25.3pp at 80% power，对中等效应完全不敏感。\n- Gemma Δ = +10.3pp 在混淆方向，p=0.278 在低功效下不排除实质效应。\n- 多层控制（XNLI + EN-DE）部分缓解，但 COMET 分析作为独立证据线本质无效。\n- **Action required**: 增加连续回归 (COMET score vs probe accuracy) 替代 tercile；对 Gemma 趋势深入调查。\n\n### Warning（影响评分）\n\n**[W1] 单一 train/test split 贯穿全文（R1-W5, R2-W2; 双方 AGREE）**\n- Bootstrap CI 仅捕获 split 内变异。Δ_asym arithmetic diff (11.0pp) vs bootstrap mean (7.3pp) 差距 3.7pp 暗示 peak layer 不稳定。\n- **Action**: 当前版本完成至少 3-fold CV 主要结果。\n\n**[W2] TOST 等价检验功效 1.4%，uninformative（R1-W4; R2 AGREE）**\n- ±2pp 边界对 n~200、SE~5-8pp 注定失败。报告无信息量检验有空洞分析之嫌。\n- **Action**: 删除 TOST 或用合理边界 (±5pp) 重做。\n\n**[W3] Steering 仅英文数据，未测试跨语言因果干预（R1-W8; R2 AGREE）**\n- 论文主题是跨语言冲突，但因果实验仅用英文侧。缺少 ZH 输入 steering 和 cross-lingual steering。\n- **Action**: 至少在 Llama L13 测试中文输入 steering。\n\n**[W4] 全文多重假设检验缺乏整体 FWER 控制（R1-W7; R2 部分 AGREE）**\n- ~100+ 检验仅 steering per-layer Bonferroni。Asymmetry 三模型属同一族未校正。\n- **Action**: 对 asymmetry 做 Bonferroni/Holm 校正并报告。\n\n**[W5] Qwen3-8B 同时作为翻译模型和实验对象（R1-W6; 分歧）**\n- R2 反驳称不同代际（Qwen3 vs Qwen2.5），但论文 Section 3.2 和 4.1 均为 Qwen3-8B——R2 事实判断有误，R1 担忧成立。\n- Llama/Gemma 独立验证相同 pattern 部分缓解。\n- **Action**: 正文更显著标注；或用独立翻译模型验证。\n\n**[W6] 贡献权重不均衡 / C2 定位争议（R2-W1/N3 vs R1 REBUT; 分歧）**\n- R2 认为 C2 (asymmetry = general structure) 是 null result 包装为贡献；R1 反驳 ruling-out 有方法论价值。\n- **共识**：不论定位，当前统计证据 (Qwen CI 含零、TOST 无效) 不足以支撑 claim 的强度。\n- **Action**: 降低措辞强度或并入 C1。\n\n**[W7] 机制深度偏浅（R2-W4; R1 部分 AGREE）**\n- Logistic regression probing + linear steering 在 mechanistic interpretability 谱系中属浅层。Discussion 列三个假说均未验证。\n- **Action**: 重新定位为 empirical probing study 或补充 activation patching。\n\n### Info\n\n**[I1] Fisher's exact test 用于 paired steering data（R1-W9; R2 AGREE）**\n- Steering vs random control 是 paired design，McNemar's test 更合适。对 L13 (p=0.002) 不改变结论，但应在修改稿中统一。\n\n---\n\n## Reviewer Consensus\n\n| 问题 | R1 | R2 | 状态 |\n|------|----|----|------|\n| Detection≠decision 过度概括 | W1 [critical] | N1 [critical] | **[AGREE]** |\n| Qwen CI 含零 / Bonferroni 后仅 Gemma 显著 | W2 [critical] | 交叉 AGREE | **[AGREE]** |\n| COMET tercile 欠功效 | W3 [critical] | 部分 AGREE（多层设计部分缓解）| **[AGREE-partial]** |\n| 单 split 无 CV | W5 [warning] | W2 [warning] | **[AGREE]** |\n| TOST 1.4% uninformative | W4 [warning] | AGREE | **[AGREE]** |\n| Steering 仅英文 | W8 [warning] | AGREE | **[AGREE]** |\n| Global FWER | W7 [warning] | 部分 AGREE | **[AGREE-partial]** |\n| Fisher on paired data | W9 [info] | AGREE | **[AGREE]** |\n\n## Reviewer Divergence\n\n| 问题 | R1 | R2 | 分歧本质 |\n|------|----|----|----------|\n| 标题 \"General\" overclaim | REBUT（标题说 \"Consistent With\" 无问题）| N2 [critical] | 语义解读差异；R1 认为标题准确，R2 认为实验覆盖不足 |\n| C2 是否为 null result | REBUT（ruling-out 有价值）| N3 [critical] | 方法论哲学差异；共识是证据力度不足 |\n| Qwen 翻译模型双重角色 | W6 [warning] | REBUT（不同代际）| R2 事实判断有误（论文确为同一模型 Qwen3-8B）|\n| 跨语言知识编辑文献 | REBUT（不同方向）| W5 [warning] | 相关性判断差异；R1 认为 editing ≠ probing/steering |\n\n---\n\n## Questions to Authors（汇总，去重后 10 条）\n\n1. Basu et al. (2026) 已建立单语 detection-steering dissociation。本文跨语言设定具体揭示了哪些单语无法观察到的现象？\n2. Qwen/Gemma 是否测试了目标层 ±2 层范围？如果 Llama 因果窗口仅 4 层宽，仅测 1 层的 null 能否排除存在因果位点？\n3. Qwen Δ_asym CI [-0.6, 13.7] 包含零。三模型 Bonferroni 校正后仅 Gemma 显著。如何维护 \"consistent\" 论断？\n4. Table 1 Δ_asym (bootstrap mean 7.3pp) 与算术差 (11.0pp) 差距 3.7pp 的来源？是否暗示 peak layer 在 bootstrap 样本间偏移？\n5. Gemma COMET tercile Δ=+10.3pp 在混淆方向——能否提供 COMET score 与 probe accuracy 的连续回归结果？\n6. EN-DE 已翻译完成（Section 3.5）——为何不做完整四方向探测实验以直接支持泛化 claim？\n7. Steering 为何仅在英文数据评估？中文输入 + ZH→EN probe steering 的结果？\n8. 如果选择 ±5pp 等价边界重做 TOST，预计结论是否改变？\n9. 论文称 Gemma ConflictQA 保留 1590 样本，但 probe accuracy 最高 (88.9% at L17)。保留率最高+准确率最高是否暗示 probe 捕获了 task-irrelevant 信号？\n10. All-position injection 与 last-token injection 在 L13 产生 \"identical results\"——具体数字？\n\n---\n\n## Missing References\n\n**R2 建议（R1 部分反驳）**：\n- \"Editing Across Languages: A Survey of Multilingual Knowledge Editing\" (2025)\n- CLM-Bench (2026)\n- BMIKE-53 (53-language knowledge editing benchmark)\n\nR1 认为 knowledge editing (参数修改) 与 probing/steering (推理时干预) 方法论不同，8 页限制下引用需选择性。建议选择性引用最相关的 1 篇。\n\n---\n\n## External Review\n\n**状态**: 未配置（项目未启用 paperreview.ai）\n\n---\n\n## Visual Layout Check（非评分项）\n\n**状态**: ✅ 完成 | 0 critical, 0 warning, 3 info\n\n排版质量良好，仅有三个建议性意见：\n1. **Page 6**: 单页堆叠 3 个 display items (Figure 3 + Table 1 + Figure 4)，每个尺寸偏小，Figure 3 axis label 和 legend 字号接近可读下限\n2. **Page 12**: 末页 appendix 底部约 35% 空白\n3. **Page 5**: 纯文本高密度页（Experimental Setup），可考虑将部分细节移至 appendix\n\n---\n\n## Overall Assessment\n\n### 评分: 3.0 — Findings\n\n**R1**: 3.0 (Findings) | Confidence 4/5\n**R2**: 3.0 (Findings) | Confidence 4/5\n**Director 综合**: **3.0 (Findings)**\n\n### 评分理由\n\n**为什么不是 3.5 (Borderline Conference)**：\n- 核心因果贡献 (detection≠decision) 仅 1/3 模型 1/32 层支持，替代解释未排除\n- 与 Basu et al. (2026) 差异化不清晰——核心 insight 已被单语工作建立\n- Asymmetry \"consistency\" 统计不充分（Bonferroni 后仅 1/3 模型显著）\n- 四个贡献中两个薄弱（C2 统计不足、C3 证据单薄）\n\n**为什么不是 2.5 (Borderline Findings)**：\n- 混淆因素控制设计 (XNLI + EN-DE + COMET) 是真正可复用的方法论贡献\n- 三模型 × 两任务方向一致性 (binomial p=0.016) 提供跨架构描述性证据\n- 统计方法总体规范（bootstrap、Bonferroni、selectivity control）\n- 诚实报告负面结果 + 代码公开\n- Seed replication 增强 Llama L13 因果 claim 可信度\n\n**一句话总结**：方法论控制设计出色的跨语言 probing 研究，描述性发现扎实，但核心因果 claim 证据单薄且新颖性被 Basu et al. (2026) 部分消解。修改后适合 Findings 接收。\n\n---\n\n## Detailed Comments（逐节）\n\n**Abstract**: 约 164 words，符合 ≤200 要求。\"these findings indicate that linear detectability does not imply causal relevance\" 措辞需降级——这仅在 Llama 观察到，不构成三模型的一般性结论。\n\n**Introduction**: Figure 1 有效传达核心问题。三个 RQ 设置清晰。但 Contributions 4→3 是否更诚实（将 C2 并入 C1）值得考虑。\n\n**Related Work**: 覆盖充分（Zhao/Basu/Hewitt/Belinkov/Li/Turner/Marks/Pokharel/Sundar/Gurgurov 均已引用）。Basu et al. 差异化可更突出。跨语言 knowledge editing 方向可选择性引用 1 篇。\n\n**Method**: 清晰规范。COMET back-translation 验证、selectivity control、random direction control 设计得当。Bonferroni 阈值说明清楚。\n\n**Experiments 4.1-4.2**: 检测结果扎实，三模型一致。\n\n**Experiments 4.3-4.4**: Asymmetry + XNLI baseline 是论文亮点，但需修正统计措辞（Qwen 不显著、报告校正后结果）。\n\n**Experiments 4.5**: COMET tercile 作为辅助证据可保留，但需明确标注功效限制 + 对 Gemma 趋势做进一步分析。\n\n**Experiments 4.6**: Steering 是论文核心贡献所在，Llama L13 证据（含 seed replication）可信。但跨模型 null result 的解释需更审慎。\n\n**Discussion**: 三个假说框架合理，但未验证任何一个。重新定位为开放问题而非论文贡献。\n\n**Conclusion**: 存在但过于简短（2 句）。核心 takeaway 的措辞需与 Weaknesses 修改同步调整。\n\n**Limitations**: 诚实且覆盖主要局限。CV 承诺 + Qwen dual role + steering 方法局限均已提及。\n\n**Appendix**: Boundary replication (N=201)、seed replication、AUROC、matched-condition 均有价值。\n\n---\n\n## 格式合规\n\n| 检查项 | 结果 |\n|--------|------|\n| 正文 ≤ 8 页 | ✓ |\n| Limitations 存在且位置正确 | ✓ (p.9, 正文后) |\n| Abstract ≤ 200 words | ✓ (~164 words) |\n| Double-blind 匿名化 | ✓ |\n| ACL 模板 | ✓ (\\usepackage[review]{acl}) |\n| 代码可用性声明 | ✓ (anonymous.4open.science) |\n| AI 使用声明 | ✓ (Appendix A) |\n\n---\n\n## Issue Tracker 更新摘要\n\n- **Round 3 resolved in R4**: R3-N1 (Mirror→Consistent With), R3-W3 (selectivity), R3-W4 (AUROC), R3-W5 (α justification), R3-M1 (COMET version), R3-M2 (Jaccard floor), R3-M4 (random control), R3-M5 (Figure 3 band)\n- **Round 3 still open in R4**: R3-N2 (COMET power), R3-N3/R1-N2 (detection≠decision), R3-W1 (single split), R3-W2 (Qwen dual role), R3-W6 (hypotheses untested), R3-NOV (Basu novelty)\n- **New in R4**: R4-N1 (Qwen CI zero + Bonferroni), R4-W1 (FWER), R4-W2 (EN-only steering), R4-W3 (TOST), R4-W4 (contribution weight), R4-I1 (Fisher paired)\n",
+              "project": "clkc_mech_interp",
+              "reviewer_ids_acknowledged": "[1, 2]",
+              "cross_response_reviewer_ids": "[1, 2]",
+              "overall_score": "3.0 - Findings",
+              "review_chat_id": "oc_8b9aa92fafaf69b48d2c44b41c2fe9d9"
+            }
+          },
+          "id": "event-000424"
+        },
+        {
+          "source_line": 425,
+          "timestamp": "2026-05-25T21:33:16.815166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "elapsed_ms": 4165
+          },
+          "id": "event-000425"
+        },
+        {
+          "source_line": 426,
+          "timestamp": "2026-05-25T21:33:27.933007+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**Round 4 审稿完成。**\n\n报告已投递 Research Director。核心结论：\n\n**Overall: 3.0 (Findings)**\n\n两位 Reviewer 一致判断，3 个 critical 问题阻止主会议接收：\n1. **Detection≠decision claim 过度概括**——正面证据仅 Llama L13，Qwen/Gemma 各测 1 层的 null 不充分，且 Basu et al. 2026 已在单语中建立\n2. **Asymmetry \"consistent\" 统计不充分**——Bonferroni 校正后仅 Gemma (1/3) 显著\n3. **COMET tercile 欠功效** (MDE=25.3pp)——Gemma +10.3pp 混淆方向趋势未排除\n\n论文的描述性发现和控制设计（XNLI + EN-DE + selectivity control）扎实，修改后适合 Findings 接收。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director"
+          },
+          "id": "event-000426"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "messages": [
+        {
+          "source_line": 427,
+          "timestamp": "2026-05-25T21:33:29.438835+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n已提交对 Reviewer 2 的逐条回应。核心判断：\n\n- **N1**（detection ≠ decision 证据不足）：[AGREE]，与我的 W1 完全一致\n- **N2**（标题泛化性）：[REBUT]，\"general\" 修饰 asymmetry 性质而非语言覆盖\n- **N3**（null result 包装为贡献）：[REBUT]，ruling out conflict-specificity 有实质意义，但统计证据偏弱\n- **W1-W4**：基本 AGREE\n- **W5**（缺 references）：[REBUT]，knowledge editing ≠ probing/steering\n- **W6**（缺 Conclusion）：[REBUT]，Section 6 Conclusion 存在，R2 事实判断有误"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000427"
+        },
+        {
+          "source_line": 428,
+          "timestamp": "2026-05-25T21:33:41.637398+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已于上一轮投递至 Research Director。本轮圆桌审稿完成。\n\n**Round 4 审稿结论摘要：**\n\n- **Overall: 3.0 (Findings)**，R1 和 R2 一致\n- **3 个 Critical 共识**：(1) detection≠decision 仅 Llama L13 支持，过度概括；(2) asymmetry \"consistent\" 论断 Bonferroni 后仅 Gemma 显著；(3) COMET tercile MDE=25.3pp 无法有效排除混淆\n- **7 个 Warning**：单 split 无 CV、TOST 无效、steering 仅英文、FWER 未控制、Qwen 双重角色、贡献权重、机制深度\n- **分歧（已记录）**：标题 \"General\" 语义（R1 认为无问题/R2 认为实验不足）、C2 定位（ruling-out 价值 vs null result）\n- **R3 已解决 8 项**：Mirror→Consistent With、selectivity control、AUROC、α justification、COMET 版本等\n- **Issue Tracker 已更新**，报告已投递"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8b9aa92fafaf69b48d2c44b41c2fe9d9:director"
+          },
+          "id": "event-000428"
+        }
+      ]
+    }
+  ]
+}

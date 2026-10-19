@@ -1,0 +1,15 @@
+{
+  "exp_id": "xnli_baseline_110",
+  "project": "clkc_mech_interp",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:55:49.066Z",
+    "updated_at": "2026-05-22T03:56:04.525Z",
+    "hypothesis": "跨语言探针迁移不对称性（ZH→EN > EN→ZH ~7pp）是知识冲突信号特有的，而非一般性跨语言属性。在非冲突语义任务（XNLI entailment vs contradiction）上，同pipeline的残差流线性探针不应展现类似幅度的迁移不对称性（预期 <2pp）。若非冲突任务也展现 ≥5pp 不对称性，则 C2 需 reframe 为 general cross-lingual property。"
+  },
+  "timestamp": "2026-05-22T03:56:04.581724+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d500c4e977792d252cbc",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra westd41302 connectivity check",
+  "task_key": "worker_infra_westd41302-connectivity-check_20260523T220200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd41302-connectivity-check_20260523T220200_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "f27966ebd1a04ec785f75e5344c300d1775ebc87b0f6ea26d4179d0875087e1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 连通性\n- **westd-41302**: UNREACHABLE（Connection refused，端口 41302 不通）\n\n## westd-14391 资源\n- **匿名 repo clone**: 成功（clone 到 `/tmp/anon_check/`）\n- **steering_experiment.py**: 存在\n- **collect_activations.py**: 存在\n- **数据文件 (.jsonl/.pt/.pkl)**: 无（repo 中不含数据文件）\n- **模型 (Meta-Llama-3.1-8B-Instruct)**: 存在\n\nwestd-41302 连接被拒，可能实例已关机或端口已变更，需去控制台确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd41302-connectivity-check.md"
+}

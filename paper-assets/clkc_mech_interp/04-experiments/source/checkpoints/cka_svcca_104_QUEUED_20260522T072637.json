@@ -1,0 +1,23 @@
+{
+  "exp_id": "cka_svcca_104",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:16:25.262Z",
+    "updated_at": "2026-05-22T07:26:37.450Z",
+    "spec": {
+      "command": "python src/compute_cka.py (custom script, CKA + SVCCA per layer)",
+      "server": "westd-41302",
+      "data_path": "data/{llama31,qwen3}/{en,zh}_activations.pt + data/xnli/{llama31,qwen3}/{en,zh}_activations.pt",
+      "data_count": 4728,
+      "model_name": "Llama-3.1-8B-Instruct + Qwen3-8B (CPU-only, activation analysis)",
+      "seed": 42
+    },
+    "hypothesis": "冲突任务的 EN-ZH 逐层 CKA/SVCCA 相似度在中后层（探针检测冲突信号的 peak layers 附近）显著低于 XNLI 的对应层，表明冲突信号导致语言间表征出现特有的分叉（divergence），而非冲突语义任务中 EN-ZH 表征保持较高对齐。这将从表征几何角度强化 C3（冲突信号需要非线性解码是因为跨语言表征在冲突条件下发生了非线性分叉）。"
+  },
+  "timestamp": "2026-05-22T07:26:37.577472+00:00",
+  "trigger": "update_registry"
+}

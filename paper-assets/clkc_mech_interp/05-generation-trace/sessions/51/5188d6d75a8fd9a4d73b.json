@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "5188d6d75a8fd9a4d73b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fig1 premium v4",
+  "task_key": "worker_code_fig1-premium-v4_20260525T124015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-premium-v4_20260525T124015_result.json",
+    "occurrence": 1,
+    "bytes": 2116896,
+    "sha256": "b75290139fe152372bd45386784295b1da84c9afffa2ec9e0285ffde3b306999"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "5188d6d75a8fd9a4d73b-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-premium-v4.md"
+}

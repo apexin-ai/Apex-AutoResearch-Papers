@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "f36c9235b73019574d5a",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "infra mvp phase a",
+  "task_key": "worker_infra_mvp_phase_a_20260521T134053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_phase_a_20260521T134053.log",
+    "occurrence": 1,
+    "bytes": 1368039,
+    "sha256": "ad78da26d6747d0d5c2a3631b4b363bd467cdd73b5c7be47991c99f4c6509b0a"
+  },
+  "statistics": {
+    "messages": 944,
+    "user_turns": 1,
+    "tool_calls": 357,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 1,
+      "assistant": 201,
+      "tool_call": 357,
+      "tool_result": 357,
+      "user": 1,
+      "result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 696,
+      "chunks": [
+        {
+          "path": "f36c9235b73019574d5a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f36c9235b73019574d5a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f36c9235b73019574d5a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f36c9235b73019574d5a-part-0004.json",
+          "message_count": 156
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 248,
+      "chunks": [
+        {
+          "path": "f36c9235b73019574d5a-part-0004.json",
+          "message_count": 24
+        },
+        {
+          "path": "f36c9235b73019574d5a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f36c9235b73019574d5a-part-0006.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-mvp-phase-a.md"
+}

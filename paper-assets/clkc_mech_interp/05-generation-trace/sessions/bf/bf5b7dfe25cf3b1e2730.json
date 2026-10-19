@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "bf5b7dfe25cf3b1e2730",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp gemma comet confound",
+  "task_key": "worker_exp_gemma-comet-confound_20260524T152738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-comet-confound_20260524T152738.log",
+    "occurrence": 1,
+    "bytes": 1237116,
+    "sha256": "56ab9ece2933adcb3ecc80ff6666322bc16a73996d86c0d19901907e7232ae0f"
+  },
+  "statistics": {
+    "messages": 929,
+    "user_turns": 2,
+    "tool_calls": 389,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 3,
+      "assistant": 131,
+      "tool_call": 389,
+      "tool_result": 389,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "bf5b7dfe25cf3b1e2730-part-0001.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 775,
+      "chunks": [
+        {
+          "path": "bf5b7dfe25cf3b1e2730-part-0001.json",
+          "message_count": 66
+        },
+        {
+          "path": "bf5b7dfe25cf3b1e2730-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf5b7dfe25cf3b1e2730-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf5b7dfe25cf3b1e2730-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf5b7dfe25cf3b1e2730-part-0005.json",
+          "message_count": 169
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "bf5b7dfe25cf3b1e2730-part-0005.json",
+          "message_count": 11
+        },
+        {
+          "path": "bf5b7dfe25cf3b1e2730-part-0006.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-comet-confound.md"
+}

@@ -1,0 +1,714 @@
+{
+  "schema_version": "1.0",
+  "id": "59184ec552a1018f9961",
+  "project": "clkc_mech_interp",
+  "kind": "conversation",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260522T132715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_research_20260522T132715.jsonl",
+    "occurrence": 1,
+    "bytes": 48514,
+    "sha256": "6c5eff25e2565486a7a72fcae53279f7a80b66b9f9d54c7fce808121ae8cc5b7"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T13:30:14.413818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T13:30:14.414369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: reference-audit\n3\tdescription: 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- submission\n8\t- writing\n9\t- quality\n10\tpriority: 6\n11\tversion: 2\n12\troles:\n13\t- agent\n14\t- paper_agent\n15\t- review_reviewer\n16\t- worker\n17\t---\n18\t\n19\t# 引用验证与审计（Reference Audit）\n20\t\n21\t## 核心原则\n22\t\n23\t**写时验证，而非写后检查。** 每添加一条引用，立即验证真实性。AI 生成的引用约 40% 存在错误——绝不信任记忆中的引用信息。\n24\t\n25\t## 触发条件\n26\t\n27\t- 写论文时添加引用\n28\t- Review Reviewer 审查论文引用质量\n29\t- 提交前最终检查\n30\t- 发现可疑引用（年份不对、作者不存在、找不到原文）\n31\t\n32\t## 验证流程\n33\t\n34\t### 1. 单条引用验证（写论文时）\n35\t\n36\t每次需要引用时：\n37\t\n38\t1. **WebSearch 查找**：搜索论文标题 + 第一作者\n39\t2. **Google Scholar 确认**：`site:scholar.google.com [论文标题] [作者]`\n40\t3. **核对关键信息**：标题、第一作者、年份（±1 年）、venue\n41\t4. **获取 BibTeX**：从 Google Scholar 或 DBLP 获取标准格式\n42\t5. **验证 claim**（如果引用了具体结论）：确认该 claim 确实出现在原文中\n43\t\n44\t### 2. 全文引用审计（批量检查）\n45\t\n46\t**Step 1：调用 `verify_references(paper_dir)`**\n47\t\n48\t这是首选方式。该工具自动完成：\n49\t- 解析所有 .bib 文件，提取结构化条目\n50\t- 解析所有 .tex 文件，提取 `\\cite{}`/`\\citep{}`/`\\citet{}` 引用\n51\t- 交叉检查：找出 orphan（.bib 有但未引用）和 missing（引用了但 .bib 没有）\n52\t- 调 OpenAlex API 在线验证每条引用是否存在（返回 verified/not_found/mismatch）\n53\t\n54\t如果只需快速离线检查，传 `skip_online=True`。\n55\t\n56\t**Step 2：人工复核工具报告中的问题条目**\n57\t\n58\t重点关注：\n59\t- `status: not_found` — 可能是幻觉引用，用 WebSearch 二次验证\n60\t- `status: mismatch` — 年份等信息不一致，检查 preprint vs published 版本\n61\t- `missing_bib` — 正文引用了但 .bib 中不存在，编译会报错\n62\t- `orphan_bib` — .bib 中有但正文未引用，清理或补引用\n63\t\n64\t**Step 3：语义验证**（优先级排序）\n65\t1. 首先验证 Introduction 和 Related Work 中的高频引用\n66\t2. 然后验证 Method 中支撑技术 claim 的引用\n67\t3. 最后验证其余引用\n68\t\n69\t对于 OpenAlex 未找到的条目，用 WebSearch 补充验证（arXiv、DOI、DBLP）。\n70\t\n71\t### 3. 验证失败处理\n72\t\n73\t**找不到论文时**：\n74\t1. 检查拼写——标题或作者名是否有误？\n75\t2. 尝试不同查询组合（WebSearch + Google Scholar + DBLP）\n76\t3. 标记为 `[CITATION NEEDED]`\n77\t4. 明确告知——说明哪条引用无法验证\n78\t\n79\t**信息不匹配时**：\n80\t1. 确认是否找对了论文\n81\t2. 检查版本——preprint vs published 版本\n82\t3. 用最准确的版本更新信息\n83\t\n84\t**绝不做的事**：\n85\t- 从记忆生成 BibTeX——AI 生成引用 40% 错误率\n86\t- 跳过验证步骤\n87\t- 假设论文存在\n88\t- 对无法验证的引用不做标记\n…[truncated 888 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T13:30:14.414547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/literature_map.yaml"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T13:30:14.414764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tmeta:\n2\t  last_updated: '2026-05-21T12:04:50.276Z'\n3\t  total_papers: 10\n4\tcategories: []\n5\tpapers:\n6\t  zhao2026when:\n7\t    title: 'When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models'\n8\t    authors:\n9\t    - Zhao, J.\n10\t    - et al.\n11\t    year: 2026\n12\t    venue: arXiv\n13\t    url: https://arxiv.org/abs/2601.07041\n14\t    doi: ''\n15\t    bibtex_key: zhao2026when\n16\t    category: cross-lingual-conflict\n17\t    role: direct-competitor\n18\t    relevance: 'CLEAR benchmark: 10-language cross-lingual conflict evaluation. Behavioral\n19\t      finding that linguistic similarity governs entity-centric conflict resolution.\n20\t      Our work provides mechanistic explanation.'\n21\t    abstract: ''\n22\t    semantic_scholar_id: ''\n23\t    verified: true\n24\t    added_by: director-bootstrap\n25\t    added_at: '2026-05-21T12:04:50.273Z'\n26\t  zhao2025steering:\n27\t    title: Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation\n28\t      Engineering\n29\t    authors:\n30\t    - Zhao, Y.\n31\t    - Devoto, A.\n32\t    - Hong, G.\n33\t    - et al.\n34\t    year: 2025\n35\t    venue: NAACL 2025 Oral\n36\t    url: https://arxiv.org/abs/2410.15999\n37\t    doi: ''\n38\t    bibtex_key: zhao2025steering\n39\t    category: sae-steering\n40\t    role: direct-competitor\n41\t    relevance: 'SpARE: SAE-based conflict feature selection + steering. Core methodology\n42\t      we extend to cross-lingual setting. MI-based feature selection, constraint-aware\n43\t      activation editing.'\n44\t    abstract: ''\n45\t    semantic_scholar_id: ''\n46\t    verified: true\n47\t    added_by: director-bootstrap\n48\t    added_at: '2026-05-21T12:04:50.273Z'\n49\t  boer2026probing:\n50\t    title: Probing for Knowledge Attribution in Large Language Models\n51\t    authors:\n52\t    - Boer, A.\n53\t    - Brink, I.\n54\t    - Ulmer, D.\n55\t    year: 2026\n56\t    venue: arXiv\n57\t    url: https://arxiv.org/abs/2602.22787\n58\t    doi: ''\n59\t    bibtex_key: boer2026probing\n60\t    category: probing\n61\t    role: direct-competitor\n62\t \n…[truncated 5879 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T13:30:14.414990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T13:30:14.415127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T13:30:14.415258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ConflictQA dataset Xie et al. knowledge conflict LLM paper",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T13:30:14.415379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "context-parametric knowledge conflict detection resolution LLM 2023 2024 2025",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T13:30:14.415497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "cross-lingual knowledge conflict multilingual LLM 2024 2025 2026",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T13:30:14.415649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ConflictQA dataset Xie et al. knowledge conflict LLM paper\"\n\nLinks: [{\"title\":\"Accommodate Knowledge Conflicts in Retrieval-augmented LLMs: Towards Robust Response Generation in the Wild\",\"url\":\"https://arxiv.org/html/2504.12982\"},{\"title\":\"Exploring Knowledge Conflicts for Faithful LLM Reasoning: Benchmark and Method\",\"url\":\"https://arxiv.org/html/2604.11209v1\"},{\"title\":\"Accommodate Knowledge Conflicts in Retrieval-augmented LLMs: Towards Reliable Response Generation in the Wild\",\"url\":\"https://arxiv.org/html/2504.12982v1\"},{\"title\":\"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models\",\"url\":\"https://arxiv.org/html/2601.07041v1\"},{\"title\":\"Analysing the Residual Stream of Language Models Under Knowledge Conflicts\",\"url\":\"https://arxiv.org/html/2410.16090v2\"},{\"title\":\"KCR: RESOLVING LONG-CONTEXT KNOWLEDGE CONFLICTS VIA REASONING IN LLMS\",\"url\":\"https://www.arxiv.org/pdf/2508.01273\"},{\"title\":\"Who’s Who: Large Language Models Meet Knowledge Conflicts in Practice\",\"url\":\"https://arxiv.org/html/2410.15737v1\"},{\"title\":\"ConflictBank: A Benchmark for Evaluating Knowledge Conflicts in Large Language Models\",\"url\":\"https://arxiv.org/html/2408.12076v1\"},{\"title\":\"Knowledge Conflicts for LLMs: A Survey\",\"url\":\"https://arxiv.org/html/2403.08319v1\"},{\"title\":\"Analysing the Residual Stream of Language Models Under Knowledge   Conflicts\",\"url\":\"https://arxiv.org/pdf/2410.16090\"}]\n\nBased on the search results, I found information about the ConflictQA dataset and the Xie et al. work on knowledge conflicts in LLMs:\n\n## Overview\n\nConflictQA (Xie et al. 2023) is a benchmark for studying knowledge conflicts. The dataset was created to examine how Large Language Models handle conflicts between their internal parametric knowledge and external contextual information.\n\n## Dataset Construction\n\nXie et al. (2023) analyze conflicts between parametric knowledge and external evidence by introducing LLM-generated coherent counter-memory t\n…[truncated 992 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T13:30:14.415828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"cross-lingual knowledge conflict multilingual LLM 2024 2025 2026\"\n\nLinks: [{\"title\":\"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models\",\"url\":\"https://arxiv.org/pdf/2601.07041\"},{\"title\":\"Mitigating Cross-Lingual Cultural Inconsistencies in LLMs via Consensus-Driven Preference Optimisation\",\"url\":\"https://arxiv.org/html/2605.12515\"},{\"title\":\"Crosslingual Capabilities and Knowledge Barriers in Multilingual Large   Language Models\",\"url\":\"https://arxiv.org/pdf/2406.16135\"},{\"title\":\"Mechanistic Understanding and Mitigation of Language Confusion in English-Centric Large Language Models\",\"url\":\"https://arxiv.org/html/2505.16538v2\"},{\"title\":\"1 Cross-linguistic disagreement as a conflict of semantic alignment norms in\",\"url\":\"https://arxiv.org/pdf/2503.04792\"},{\"title\":\"Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge   Representation Sharing in LLMs\",\"url\":\"https://arxiv.org/pdf/2408.10646\"},{\"title\":\"[2406.16135] Crosslingual Capabilities and Knowledge Barriers in Multilingual Large Language Models\",\"url\":\"https://arxiv.org/abs/2406.16135\"},{\"title\":\"Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language   Models\",\"url\":\"https://arxiv.org/pdf/2407.01358\"},{\"title\":\"Measuring Multilingual LLM Consistency as Simple as ...\",\"url\":\"https://aclanthology.org/2025.ijcnlp-long.185.pdf\"}]\n\nI found several relevant research papers on cross-lingual knowledge conflict in multilingual LLMs from 2024-2026. Here's what the search revealed:\n\n## Key Research Areas\n\nKnowledge conflict occurs when a model's internally stored belief contradicts information presented in context, and how LLMs react to and resolve such conflicts is central to system robustness and faithfulness.\n\nDespite the increasing multilingual nature of real-world systems, existing studies remain largely English-centric, leaving the mechanisms underlying Cross-Lingual Knowledge Conflict (CLKC) largely unexplored.\n\n## Main Cha\n…[truncated 1013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T13:30:14.416039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"context-parametric knowledge conflict detection resolution LLM 2023 2024 2025\"\n\nLinks: [{\"title\":\"Taming Knowledge Conflicts in Language Models\",\"url\":\"https://arxiv.org/pdf/2503.10996\"},{\"title\":\"PROBING LATENT KNOWLEDGE CONFLICT FOR FAITHFUL RETRIEVAL-AUGMENTED GENERATION\",\"url\":\"https://arxiv.org/pdf/2510.12460\"},{\"title\":\"Resolving Knowledge Conflicts in Large Language Models\",\"url\":\"https://arxiv.org/html/2310.00935v3\"},{\"title\":\"Knowledge Conflicts for LLMs: A Survey\",\"url\":\"https://arxiv.org/html/2403.08319v2\"},{\"title\":\"Analysing the Residual Stream of Language Models Under Knowledge   Conflicts\",\"url\":\"https://arxiv.org/pdf/2410.16090\"},{\"title\":\"Task Matters: Knowledge Requirements Shape LLM Responses to Context–Memory Conflict\",\"url\":\"https://arxiv.org/html/2506.06485\"},{\"title\":\"Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts\",\"url\":\"https://arxiv.org/pdf/2509.10663\"},{\"title\":\"Understanding the Interplay between LLMs’ Utilisation of Parametric and Contextual Knowledge: A keynote at ECIR 2025\",\"url\":\"https://arxiv.org/html/2603.09654v1\"},{\"title\":\"Steering Knowledge Selection Behaviours in LLMs via SAE-Based   Representation Engineering\",\"url\":\"https://arxiv.org/pdf/2410.15999\"}]\n\nI've found several highly relevant research papers on this topic. Here's what the search revealed:\n\n## Context-Parametric Knowledge Conflicts in LLMs\n\nContext-parametric conflicts occur when LLMs exhibit ambiguity when contextual knowledge contradicts their parametric knowledge. This is a critical issue in modern LLM applications.\n\n### Overview of the Problem\n\nThese conflicts are particularly prevalent in real-world applications, especially in context-heavy LLM systems like retrieval-augmented generation (RAG), LLM agents, and tool-augmented LLMs. Such contextual knowledge can include information that conflicts with the parametric knowledge of the model, which may result in undesire\n…[truncated 1159 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T13:30:14.416218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Xie Jian \"Adaptive Chameleon or Stubborn Sloth\" ConflictQA arxiv 2023",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T13:30:14.416385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Knowledge Conflicts for LLMs: A Survey\" Xu et al. 2024 arxiv",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T13:30:14.416570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Beneath the Surface of Consistency\" cross-lingual knowledge representation sharing LLMs arxiv 2024",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T13:30:14.416731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models\" 2024 arxiv",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T13:30:14.416934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Xie Jian \"Adaptive Chameleon or Stubborn Sloth\" ConflictQA arxiv 2023\"\n\nLinks: [{\"title\":\"[2305.13300] Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts\",\"url\":\"https://arxiv.org/abs/2305.13300\"},{\"title\":\"[PDF] Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Adaptive-Chameleon-or-Stubborn-Sloth:-Revealing-the-Xie-Zhang/10f829a80a7ee0cdb16307f04e206133d75f81da\"},{\"title\":\"Computation and Language May 2023\",\"url\":\"http://arxiv.org/list/cs.CL/2023-05?skip=1025&show=2000\"},{\"title\":\"Chameleon: Adaptive Fault Tolerance for Distributed Training via...\",\"url\":\"https://arxiv.org/abs/2508.21613\"},{\"title\":\"An inductive bias for slowly changing features in human reinforcement learning\",\"url\":\"https://www.biorxiv.org/content/10.1101/2024.01.24.576910.full.pdf\"},{\"title\":\"To mask, or not to mask, Alice and Bob’s dating dilemma\",\"url\":\"https://www.medrxiv.org/content/10.1101/2022.04.14.22273886.full.pdf\"},{\"title\":\"Chameleon: Adaptive Code Optimization for Expedited Deep Neural Network   Compilation\",\"url\":\"https://arxiv.org/pdf/2001.08743\"},{\"title\":\"[2411.17741] Chameleon: Adaptive Caching and Scheduling for Many-Adapter LLM Inference Environments\",\"url\":\"https://arxiv.org/abs/2411.17741\"},{\"title\":\"Stochastic Chameleons: Irrelevant Context Hallucinations Reveal Class-Based (Mis)Generalization in LLMs\",\"url\":\"https://arxiv.org/html/2505.22630v2\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n**Title:** \"Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts\"\n\n**Authors:** Jian Xie, Kai Zhang, Jiangjie Chen, Renze Lou, and Yu Su\n\n**Publication:** International Conference on Learning Representations, 2023\n\n**ArXiv ID:** 2305.13300\n\n**Overview:** The paper presents the first comprehensive and \n…[truncated 638 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T13:30:14.417156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Knowledge Conflicts for LLMs: A Survey\" Xu et al. 2024 arxiv\"\n\nLinks: [{\"title\":\"Taming Knowledge Conflicts in Language Models\",\"url\":\"https://arxiv.org/html/2503.10996v1\"},{\"title\":\"Knowledge Conflicts for LLMs: A Survey - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.emnlp-main.486/\"},{\"title\":\"Assessing and Mitigating Medical Knowledge Drift and Conflicts in Large Language Models\",\"url\":\"https://arxiv.org/html/2505.07968\"},{\"title\":\"Benchmarking Multimodal Knowledge Conflict for Large Multimodal Models\",\"url\":\"https://arxiv.org/html/2505.19509v1\"},{\"title\":\"What External Knowledge is Preferred by LLMs? Characterizing and Exploring Chain of Evidence in Imperfect Context\",\"url\":\"https://arxiv.org/html/2412.12632v1\"},{\"title\":\"[2403.08319] Knowledge Conflicts for LLMs: A Survey\",\"url\":\"https://arxiv.org/abs/2403.08319\"},{\"title\":\"[2403.08319v2] Knowledge Conflicts for LLMs: A Survey\",\"url\":\"https://arxiv.org/abs/2403.08319v2\"},{\"title\":\"Knowledge Conflicts for LLMs: A Survey\",\"url\":\"https://arxiv.org/html/2403.08319v2\"}]\n\nI found the paper! The paper \"Knowledge Conflicts for LLMs: A Survey\" by Xu et al. was published in the Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024).\n\nThe survey provides an in-depth analysis of knowledge conflicts for large language models, highlighting the complex challenges they encounter when blending contextual and parametric knowledge. The focus is on three categories of knowledge conflicts: context-memory, inter-context, and intra-memory conflict. These conflicts can significantly impact the trustworthiness and performance of LLMs, especially in real-world applications where noise and misinformation are common.\n\nAdditionally, the paper is available on arXiv as preprint arXiv:2403.08319.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T13:30:14.417323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Beneath the Surface of Consistency\" cross-lingual knowledge representation sharing LLMs arxiv 2024\"\n\nLinks: [{\"title\":\"[PDF] Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/54a2e0dad730c1a955c66f3568a3fa0dca400225\"},{\"title\":\"[2408.10646v1] Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs\",\"url\":\"https://arxiv.org/abs/2408.10646v1\"},{\"title\":\"[2408.10646] Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs\",\"url\":\"https://arxiv.org/abs/2408.10646\"},{\"title\":\"Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs\",\"url\":\"https://arxiv.org/html/2408.10646v1\"},{\"title\":\"Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge\",\"url\":\"https://arxiv.org/pdf/2408.10646\"},{\"title\":\"Computation and Language Aug 2024\",\"url\":\"https://arxiv.org/list/cs.CL/2024-08?skip=540&show=2000\"},{\"title\":\"Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-naacl.475/\"}]\n\nI found the paper! Here's what I discovered:\n\n## Paper Details\n\n**\"Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs\"** is authored by Maxim Ifergan, Leshem Choshen, Roee Aharoni, Idan Szpektor, and Omri Abend, published on ArXiv on August 20, 2024 (arxiv ID: 2408.10646).\n\n## Key Findings\n\nThe research explores an important distinction in how LLMs handle factual knowledge across languages:\n\n- High consistency does not necessarily imply shared representation, particularly for languages with different scripts. Moreover, script similarity is a dominant factor in representation sharing.\n\n- The work explores multilingual factual knowledge through two aspects: the\n…[truncated 492 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T13:30:14.417477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models\" 2024 arxiv\"\n\nLinks: [{\"title\":\"[2407.01358] Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models\",\"url\":\"https://arxiv.org/abs/2407.01358\"},{\"title\":\"Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language   Models\",\"url\":\"https://arxiv.org/pdf/2407.01358\"},{\"title\":\"Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models\",\"url\":\"https://arxiv.org/html/2407.01358v1\"},{\"title\":\"Understanding Cross-Lingual Inconsistency in Large ...\",\"url\":\"https://arxiv.org/pdf/2505.13141\"},{\"title\":\"ECLeKTic: a Novel Challenge Set for Evaluation of Cross-Lingual Knowledge Transfer\",\"url\":\"https://arxiv.org/html/2502.21228v1\"}]\n\nPerfect! I found the paper you're looking for. Here are the results:\n\n**Paper Found:** \"Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models\" by Xiaolin Xing and 5 other authors\n\n**arXiv Link:** https://arxiv.org/abs/2407.01358\n\n**Publication Date:** July 1, 2024\n\n**Summary:** This paper investigates cross-lingual inconsistencies observed in Large Language Models such as ChatGPT, Llama, and Baichuan, which often exhibit significant inconsistencies when processing the same concepts across different languages.\n\nThe study proposes an innovative evaluation method for Cross-lingual Semantic Consistency (xSC) using the LaBSE model, and introduces metrics for Cross-lingual Accuracy Consistency (xAC) and Cross-lingual Timeliness Consistency (xTC) to comprehensively assess the models' performance regarding semantic, accuracy, and timeliness inconsistencies.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T13:30:14.417651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2305.13300 \"Adaptive Chameleon or Stubborn Sloth\" venue ICLR EMNLP publication",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org', 'openreview.net']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T13:30:14.417780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Knowledge Conflicts for LLMs: A Survey\" authors Rongwu Xu Zehan Qi 2024",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T13:30:14.417944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Taming Knowledge Conflicts in Language Models\" 2025 arxiv authors venue",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T13:30:14.418097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2305.13300 \"Adaptive Chameleon or Stubborn Sloth\" venue ICLR EMNLP publication\"\n\nLinks: [{\"title\":\"[2305.13300] Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts\",\"url\":\"https://arxiv.org/abs/2305.13300\"},{\"title\":\"arXiv:2305.13300v4 [cs.CL] 27 Feb 2024\",\"url\":\"https://arxiv.org/pdf/2305.13300\"},{\"title\":\"Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts. | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/search?q=Adaptive+Chameleon+or+Stubborn+Sloth:+Revealing+the+Behavior+of+Large+Language+Models+in+Knowledge+Conflicts.\"},{\"title\":\"Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts | OpenReview\",\"url\":\"https://openreview.net/forum?id=auKAUJZMO6\"},{\"title\":\"[PDF] Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Adaptive-Chameleon-or-Stubborn-Sloth:-Revealing-the-Xie-Zhang/10f829a80a7ee0cdb16307f04e206133d75f81da\"},{\"title\":\"Adaptive Chameleon or Stubborn Sloth:\",\"url\":\"https://openreview.net/pdf?id=auKAUJZMO6\"},{\"title\":\"Chameleon: A Data-Efficient Generalist for Dense Visual Prediction in the Wild\",\"url\":\"https://arxiv.org/html/2404.18459v1\"}]\n\nBased on the search results, I found the information about arxiv 2305.13300:\n\nThe paper \"Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts\" was published as a conference paper at ICLR 2024.\n\nThe paper was authored by Jian Xie and 4 other authors (including Kai Zhang, Jiangjie Chen, Renze Lou, and Yu Su, based on the citation information found). The paper presents the first comprehensive and controlled investigation into the behavior of LLMs when encountering knowledge conflicts, investigating how receptive LLMs are to external\n…[truncated 183 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T13:30:14.418268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Knowledge Conflicts for LLMs: A Survey\" authors Rongwu Xu Zehan Qi 2024\"\n\nLinks: [{\"title\":\"[2403.08319] Knowledge Conflicts for LLMs: A Survey\",\"url\":\"https://arxiv.org/abs/2403.08319\"},{\"title\":\"[2403.08319v2] Knowledge Conflicts for LLMs: A Survey\",\"url\":\"https://arxiv.org/abs/2403.08319v2\"},{\"title\":\"[PDF] Knowledge Conflicts for LLMs: A Survey | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/ab8e6df5001dbb9b48445220099425aff536b3e8\"},{\"title\":\"Knowledge Conflicts for LLMs: A Survey - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.emnlp-main.486/\"},{\"title\":\"Knowledge Conflicts for LLMs: A Survey\",\"url\":\"https://arxiv.org/html/2403.08319v2\"},{\"title\":\"arXiv:2404.16032v1 [cs.LG] 24 Apr 2024\",\"url\":\"https://arxiv.org/pdf/2404.16032v1\"},{\"title\":\"What External Knowledge is Preferred by LLMs? Characterizing and Exploring Chain of Evidence in Imperfect Context\",\"url\":\"https://arxiv.org/html/2412.12632v1\"},{\"title\":\"ConflictBank: A Benchmark for Evaluating Knowledge Conflicts in Large Language Models\",\"url\":\"https://arxiv.org/html/2408.12076v1\"},{\"title\":\"Benchmarking Multimodal Knowledge Conflict for Large Multimodal Models\",\"url\":\"https://arxiv.org/html/2505.19509v1\"}]\n\nI found the paper you're looking for! Here are the details:\n\n**Title:** Knowledge Conflicts for LLMs: A Survey\n\n**Authors:** Rongwu Xu, Zehan Qi, Zhijiang Guo, Cunxiang Wang, Hongru Wang, Yue Zhang, Wei Xu\n\n**Publication Details:** Published in Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing, pages 8541–8565, Miami, Florida, USA\n\n**Submission Timeline:** Submitted on 13 Mar 2024 (v1), last revised 22 Jun 2024 (v2)\n\n**Overview:** This survey provides an in-depth analysis of knowledge conflicts for large language models (LLMs), highlighting the complex challenges they encounter when blending contextual and parametric knowledge.\n\n**Focus Areas:** The survey focuses on three categories of knowledge conflicts: cont\n…[truncated 400 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T13:30:14.418436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Taming Knowledge Conflicts in Language Models\" 2025 arxiv authors venue\"\n\nLinks: [{\"title\":\"Taming Knowledge Conflicts in Language Models\",\"url\":\"https://arxiv.org/pdf/2503.10996\"},{\"title\":\"Where Knowledge Collides: A Mechanistic Study of Intra-Memory Knowledge Conflict in Language Models\",\"url\":\"https://arxiv.org/html/2601.09445v1\"},{\"title\":\"[2503.10996] Taming Knowledge Conflicts in Language Models\",\"url\":\"https://arxiv.org/abs/2503.10996\"},{\"title\":\"LLM Microscope: What Model Internals Reveal About Answer Correctness and Context Utilization\",\"url\":\"https://arxiv.org/html/2510.04013v1\"},{\"title\":\"Task Matters: Knowledge Requirements Shape LLM Responses to Context–Memory Conflict\",\"url\":\"https://arxiv.org/html/2506.06485v3\"},{\"title\":\"Machine Learning Mar 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-03?skip=2800&show=250\"},{\"title\":\"COMPASS: Context-Modulated PID Attention Steering ...\",\"url\":\"https://arxiv.org/pdf/2511.14776\"}]\n\nBased on the search results, here is the information about the paper \"Taming Knowledge Conflicts in Language Models\":\n\n**Authors:** Gaotang Li, Yuzhong Chen, and Hanghang Tong\n\n**Venue:** Forty-second International Conference on Machine Learning, ICML 2025, Vancouver, BC, Canada, July 13-19, 2025\n\n**ArXiv ID:** arXiv:2503.10996, 2025\n\n**Presentation Type:** ICML 2025 (Spotlight)\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T13:30:14.418614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2407.01358 Xiaolin Xing cross-lingual inconsistency LLM authors venue published",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T13:30:14.418756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2407.01358 Xiaolin Xing cross-lingual inconsistency LLM authors venue published\"\n\nLinks: [{\"title\":\"[2407.01358] Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models\",\"url\":\"https://arxiv.org/abs/2407.01358\"},{\"title\":\"Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models\",\"url\":\"https://arxiv.org/html/2407.01358v1\"},{\"title\":\"Align, Generate, Learn: A Novel Closed-Loop Framework for Cross-Lingual   In-Context Learning\",\"url\":\"https://arxiv.org/pdf/2412.08955\"},{\"title\":\"Cross-Lingual Pitfalls: Automatic Probing Cross-Lingual Weakness of Multilingual Large Language Models\",\"url\":\"https://arxiv.org/pdf/2505.18673\"},{\"title\":\"Toward Cross-Lingual Definition Generation for Language Learners\",\"url\":\"https://arxiv.org/pdf/2010.05533\"},{\"title\":\"On cross-lingual retrieval with multilingual text encoders\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9090691/\"},{\"title\":\"Prompt-Tuning Can Be Much Better Than Fine-Tuning on Cross-lingual   Understanding With Multilingual Language Models\",\"url\":\"https://arxiv.org/pdf/2210.12360\"}]\n\nBased on the search results, here is the information about arxiv paper 2407.01358:\n\n**Title:** Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models\n\n**Authors:** Xiaolin Xing, Zhiwei He, Haoyu Xu, Xing Wang, Rui Wang, and Yu Hong from Soochow University, Shanghai Jiao Tong University, and Tencent AI Lab\n\n**Published:** Submitted on July 1, 2024\n\n**Venue:** arXiv (Computer Science category)\n\n**Focus:** The paper investigates cross-lingual inconsistencies in Large Language Models (LLMs), such as ChatGPT, Llama, and Baichuan, which often exhibit significant inconsistencies when processing the same concepts across different languages.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T13:30:14.418934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2406.16135 \"Crosslingual Capabilities and Knowledge Barriers\" authors venue EMNLP ACL published",
+              "allowed_domains": "['arxiv.org', 'aclanthology.org', 'semanticscholar.org']"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T13:30:14.419091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2406.16135 \"Crosslingual Capabilities and Knowledge Barriers\" authors venue EMNLP ACL published\"\n\nLinks: [{\"title\":\"[2406.16135] Crosslingual Capabilities and Knowledge Barriers in Multilingual Large Language Models\",\"url\":\"https://arxiv.org/abs/2406.16135\"},{\"title\":\"Computer Science Jun 2024\",\"url\":\"https://arxiv.org/list/cs/2024-06?skip=7725&show=2000\"},{\"title\":\"1 Cross-linguistic disagreement as a conflict of semantic alignment norms in\",\"url\":\"https://arxiv.org/pdf/2503.04792\"},{\"title\":\"Machine Learning Jun 2024\",\"url\":\"https://web3.arxiv.org/list/cs.LG/2024-06?skip=3320&show=5\"},{\"title\":\"AdaCoT: Rethinking Cross-Lingual Factual Reasoning through Adaptive Chain-of-Thought\",\"url\":\"https://arxiv.org/html/2501.16154v1\"},{\"title\":\"Tracing Multilingual Factual Knowledge Acquisition in Pretraining\",\"url\":\"https://arxiv.org/html/2505.14824\"},{\"title\":\"AdaMCoT: Rethinking Cross-Lingual Factual Reasoning through Adaptive Multilingual Chain-of-Thought\",\"url\":\"https://arxiv.org/html/2501.16154v3\"},{\"title\":\"Language Models’ Factuality Depends on the Language of Inquiry\",\"url\":\"https://arxiv.org/html/2502.17955v1\"}]\n\nBased on the search results, here's what I found about arxiv paper 2406.16135:\n\n## Paper Information\n\n**Title:** Crosslingual Capabilities and Knowledge Barriers in Multilingual Large Language Models\n\n**Authors:** Lynn Chua, Badih Ghazi, Yangsibo Huang, Pritish Kamath, Ravi Kumar, Pasin Manurangsi, Amer Sinha, Chulin Xie, Chiyuan Zhang\n\n**Subject Areas:** Computation and Language (cs.CL); Machine Learning (cs.LG)\n\n## Paper Summary\n\nThe paper observes that while multilingual large language models show promising surface-level crosslingual abilities on machine translation and embedding space analyses, they struggle with deeper crosslingual knowledge transfer, revealing a crosslingual knowledge barrier in both general (MMLU benchmark) and domain-specific (Harry Potter quiz and TOFU benchmark) contexts.\n\nThe researchers propo\n…[truncated 463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T13:30:14.419296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml, datetime\n\npath = 'literature_map.yaml'\nwith open(path) as f:\n    data = yaml.safe_load(f)\n\nnow = '2026-05-22T14:00:00Z'\n\n# === Cluster 1: Knowledge Conflict Detection ===\n\n# 1. ConflictQA original paper (MUST CITE)\ndata['papers']['xie2024adaptive'] = {\n    'title': 'Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts',\n    'authors': ['Xie, J.', 'Zhang, K.', 'Chen, J.', 'Lou, R.', 'Su, Y.'],\n    'year': 2024,\n    'venue': 'ICLR 2024',\n    'url': 'https://arxiv.org/abs/2305.13300',\n    'doi': '',\n    'bibtex_key': 'xie2024adaptive',\n    'category': 'knowledge-conflict',\n    'role': 'foundation',\n    'relevance': 'Introduces ConflictQA benchmark (PopQA + StrategyQA based) for studying LLM behavior under context-parametric knowledge conflicts. Our primary evaluation dataset.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\n# 2. Knowledge Conflicts Survey\ndata['papers']['xu2024knowledge'] = {\n    'title': 'Knowledge Conflicts for LLMs: A Survey',\n    'authors': ['Xu, R.', 'Qi, Z.', 'Guo, Z.', 'Wang, C.', 'Wang, H.', 'Zhang, Y.', 'Xu, W.'],\n    'year': 2024,\n    'venue': 'EMNLP 2024',\n    'url': 'https://arxiv.org/abs/2403.08319',\n    'doi': '',\n    'bibtex_key': 'xu2024knowledge',\n    'category': 'knowledge-conflict',\n    'role': 'foundation',\n    'relevance': 'Comprehensive survey of context-memory, inter-context, and intra-memory knowledge conflicts in LLMs. Defines the taxonomy our work builds on.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\n# 3. Taming Knowledge Conflicts\ndata['papers']['li2025taming'] = {\n    'title': 'Taming Knowledge Conflicts in Language Models',\n    'authors': ['Li, G.', 'Chen, Y.', 'Tong, H.'],\n    'year': 2025,\n    'venue': 'ICML 2025 (Spotlight)',\n    'url': 'https://arxiv.org/abs/2503.10996',\n    'doi': '',\n    'bibtex_key': 'li2025taming',\n    'category': 'knowledge-conflict',\n    'role': 'direct-competitor',\n    'relevance': 'Proposes conflict resolution framework for LLMs. Provides resolution baselines our mechanistic approach complements.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\n# === Cluster 2: Cross-lingual Conflict ===\n\n# 4. Beneath the Surface of Consistency\ndata['papers']['ifergan2024beneath'] = {\n    'title': 'Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs',\n    'authors': ['Ifergan, M.', 'Choshen, L.', 'Aharoni, R.', 'Szpektor, I.', 'Abend, O.'],\n    'year': 2024,\n    'venue': 'Findings of NAACL 2025',\n    'url': 'https://arxiv.org/abs/2408.10646',\n    'doi': '',\n    'bibtex_key': 'ifergan2024beneath',\n    'category': 'cross-lingual-conflict',\n    'role': 'foundation',\n    'relevance': 'Shows cross-lingual answer consistency does not imply shared representation; script similarity dominates sharing. Directly motivates our probing approach to test whether conflict signals share representations across languages.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\n# 5. Evaluating Knowledge-based Cross-lingual Inconsistency\ndata['papers']['xing2024evaluating'] = {\n    'title': 'Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models',\n    'authors': ['Xing, X.', 'He, Z.', 'Xu, H.', 'Wang, X.', 'Wang, R.', 'Hong, Y.'],\n    'year': 2024,\n    'venue': 'arXiv',\n    'url': 'https://arxiv.org/abs/2407.01358',\n    'doi': '',\n    'bibtex_key': 'xing2024evaluating',\n    'category': 'cross-lingual-conflict',\n    'role': 'peripheral',\n    'relevance': 'Proposes cross-lingual semantic/accuracy/timeliness consistency metrics (xSC, xAC, xTC) for evaluating multilingual LLM inconsistency. Provides evaluation methodology relevant to our cross-lingual conflict measurement.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\n# Update meta\ndata['meta']['total_papers'] = len(data['papers'])\ndata['meta']['last_updated'] = now\n\nwith open(path, 'w') as f:\n    yaml.dump(data, f, default_flow_style=False, allow_unicode=True)\n\nprint(f'Done. Total papers: {data[\\\"meta\\\"][\\\"total_papers\\\"]}')\nfor k in ['xie2024adaptive', 'xu2024knowledge', 'li2025taming', 'ifergan2024beneath', 'xing2024evaluating']:\n    print(f'  + {k}: {data[\\\"papers\\\"][k][\\\"title'][:60]}...')\n\"\n",
+              "description": "Update literature_map.yaml with 5 new papers"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T13:30:14.419462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\n  File \"<string>\", line 108\n    print(f'  + {k}: {data[\"papers\"][k][\"title'][:60]}...')\n                                        ^\nSyntaxError: unterminated string literal (detected at line 108)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T13:30:14.419593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\n\npath = 'literature_map.yaml'\nwith open(path) as f:\n    data = yaml.safe_load(f)\n\nnow = '2026-05-22T14:00:00Z'\n\ndata['papers']['xie2024adaptive'] = {\n    'title': 'Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts',\n    'authors': ['Xie, J.', 'Zhang, K.', 'Chen, J.', 'Lou, R.', 'Su, Y.'],\n    'year': 2024,\n    'venue': 'ICLR 2024',\n    'url': 'https://arxiv.org/abs/2305.13300',\n    'doi': '',\n    'bibtex_key': 'xie2024adaptive',\n    'category': 'knowledge-conflict',\n    'role': 'foundation',\n    'relevance': 'Introduces ConflictQA benchmark (PopQA + StrategyQA based) for studying LLM behavior under context-parametric knowledge conflicts. Our primary evaluation dataset.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\ndata['papers']['xu2024knowledge'] = {\n    'title': 'Knowledge Conflicts for LLMs: A Survey',\n    'authors': ['Xu, R.', 'Qi, Z.', 'Guo, Z.', 'Wang, C.', 'Wang, H.', 'Zhang, Y.', 'Xu, W.'],\n    'year': 2024,\n    'venue': 'EMNLP 2024',\n    'url': 'https://arxiv.org/abs/2403.08319',\n    'doi': '',\n    'bibtex_key': 'xu2024knowledge',\n    'category': 'knowledge-conflict',\n    'role': 'foundation',\n    'relevance': 'Comprehensive survey of context-memory, inter-context, and intra-memory knowledge conflicts in LLMs. Defines the taxonomy our work builds on.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\ndata['papers']['li2025taming'] = {\n    'title': 'Taming Knowledge Conflicts in Language Models',\n    'authors': ['Li, G.', 'Chen, Y.', 'Tong, H.'],\n    'year': 2025,\n    'venue': 'ICML 2025 (Spotlight)',\n    'url': 'https://arxiv.org/abs/2503.10996',\n    'doi': '',\n    'bibtex_key': 'li2025taming',\n    'category': 'knowledge-conflict',\n    'role': 'direct-competitor',\n    'relevance': 'Proposes conflict resolution framework for LLMs. Provides resolution baselines our mechanistic approach complements.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\ndata['papers']['ifergan2024beneath'] = {\n    'title': 'Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs',\n    'authors': ['Ifergan, M.', 'Choshen, L.', 'Aharoni, R.', 'Szpektor, I.', 'Abend, O.'],\n    'year': 2024,\n    'venue': 'Findings of NAACL 2025',\n    'url': 'https://arxiv.org/abs/2408.10646',\n    'doi': '',\n    'bibtex_key': 'ifergan2024beneath',\n    'category': 'cross-lingual-conflict',\n    'role': 'foundation',\n    'relevance': 'Shows cross-lingual answer consistency does not imply shared representation; script similarity dominates sharing. Directly motivates our probing approach to test whether conflict signals share representations across languages.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\ndata['papers']['xing2024evaluating'] = {\n    'title': 'Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models',\n    'authors': ['Xing, X.', 'He, Z.', 'Xu, H.', 'Wang, X.', 'Wang, R.', 'Hong, Y.'],\n    'year': 2024,\n    'venue': 'arXiv',\n    'url': 'https://arxiv.org/abs/2407.01358',\n    'doi': '',\n    'bibtex_key': 'xing2024evaluating',\n    'category': 'cross-lingual-conflict',\n    'role': 'peripheral',\n    'relevance': 'Proposes cross-lingual semantic/accuracy/timeliness consistency metrics (xSC, xAC, xTC) for evaluating multilingual LLM inconsistency. Provides evaluation methodology relevant to our cross-lingual conflict measurement.',\n    'verified': True,\n    'added_by': 'paper-agent-lit-search',\n    'added_at': now\n}\n\ndata['meta']['total_papers'] = len(data['papers'])\ndata['meta']['last_updated'] = now\n\nwith open(path, 'w') as f:\n    yaml.dump(data, f, default_flow_style=False, allow_unicode=True)\n\ntotal = data['meta']['total_papers']\nnew_keys = ['xie2024adaptive', 'xu2024knowledge', 'li2025taming', 'ifergan2024beneath', 'xing2024evaluating']\nprint(f'Total papers: {total}')\nfor k in new_keys:\n    t = data['papers'][k]['title'][:65]\n    print(f'  + {k}: {t}...')\n\"\n",
+              "description": "Update literature_map.yaml with 5 new papers"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T13:30:14.419750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total papers: 15\n  + xie2024adaptive: Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of L...\n  + xu2024knowledge: Knowledge Conflicts for LLMs: A Survey...\n  + li2025taming: Taming Knowledge Conflicts in Language Models...\n  + ifergan2024beneath: Beneath the Surface of Consistency: Exploring Cross-lingual Knowl...\n  + xing2024evaluating: Evaluating Knowledge-based Cross-lingual Inconsistency in Large L..."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T13:30:14.419924+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已追加 5 篇论文到 `literature_map.yaml`（10 → 15 篇）。\n\n**Cluster 1: Knowledge Conflict Detection (+3)**\n\n| bibtex_key | 论文 | Venue | 角色 |\n|---|---|---|---|\n| `xie2024adaptive` | Adaptive Chameleon or Stubborn Sloth (ConflictQA) | ICLR 2024 | foundation — 我们使用的数据集原始论文 |\n| `xu2024knowledge` | Knowledge Conflicts for LLMs: A Survey | EMNLP 2024 | foundation — 定义 context-memory/inter-context/intra-memory 分类体系 |\n| `li2025taming` | Taming Knowledge Conflicts in Language Models | ICML 2025 Spotlight | direct-competitor — 冲突解决框架，我们的机制方法与之互补 |\n\n**Cluster 2: Cross-lingual Conflict (+2)**\n\n| bibtex_key | 论文 | Venue | 角色 |\n|---|---|---|---|\n| `ifergan2024beneath` | Beneath the Surface of Consistency | NAACL 2025 Findings | foundation — 跨语言一致性 ≠ 共享表征，脚本相似性主导，直接支撑我们的 probing 动机 |\n| `xing2024evaluating` | Evaluating Knowledge-based Cross-lingual Inconsistency | arXiv 2024 | peripheral — 提出 xSC/xAC/xTC 跨语言一致性度量 |\n\n所有 URL 均为真实 arXiv 链接，已验证存在。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260522T132715"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/paper-research.md"
+}

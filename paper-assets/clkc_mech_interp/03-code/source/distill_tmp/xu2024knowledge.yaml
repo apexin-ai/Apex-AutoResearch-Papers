@@ -1,0 +1,65 @@
+paper_key: "xu2024knowledge"
+title: "Knowledge Conflicts for LLMs: A Survey"
+venue: "EMNLP 2024"
+full_text_available: true
+
+research:
+  baselines: [KAFT, TrueTeacher, OPIN, CAD, DoLa, PCNN]
+  metrics:
+    - {name: "Consistency Rate", direction: "higher_better"}
+    - {name: "Knowledge Probe Accuracy", direction: "higher_better"}
+    - {name: "Generation Accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "PopQA", size: "20091"}
+    - {name: "KRE", size: "11684"}
+    - {name: "WikiContradiction", size: "2210"}
+    - {name: "ParaRel", size: "328"}
+  ablation_dimensions: [conflict_type_CM_IC_IM, cause_analysis, behavior_analysis, solution_taxonomy]
+  training_recipe: {optimizer: "N/A (survey)", lr: "N/A", hardware: "N/A"}
+  method_family: "survey / taxonomy"
+
+positioning:
+  core_claim: "Knowledge conflicts are a multifaceted lifecycle phenomenon — both cause (leading to behaviors) and effect (emerging from knowledge complexity) — requiring type-specific solutions"
+  key_results: "GPT-4 still exhibits 13% inconsistency on commonsense QA; 40% gap between probed knowledge and generation accuracy"
+  limitations: ["Rapid expansion may cause missing recent work", "Focus on text-only LLMs"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "LLMs encapsulate vast parametric knowledge yet face discrepancies when integrated with contextual information"
+  tension: "Existing analyses construct conflicts artificially and treat them in isolation — missing the interconnectedness"
+  key_insight: "Three-type taxonomy (Context-Memory, Inter-Context, Intra-Memory) with lifecycle view connecting causes → behaviors → solutions"
+  argument_chain: "problem (conflicts) → gap (isolated treatment) → taxonomy (CM/IC/IM) → lifecycle view (cause↔effect) → per-type analysis → future directions"
+  contribution_framing: "Comprehensive review with categorization, cause/behavior analysis, and solutions — positioned as filling a synthesis gap"
+  intro_structure: "3 main paragraphs: (1) LLM knowledge + problem, (2) lifecycle concept, (3) contribution + scope"
+  notable_technique: "The 'lifecycle' framing (cause AND effect) avoids the static taxonomy trap — knowledge conflicts are dynamic processes"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "problem_illustration"
+    description: "Three types of knowledge conflicts illustrated with color-coded chatboxes: yellow (context), blue (memory), purple (user query)"
+    narrative_role: "Establishes the three-type taxonomy visually"
+    design_elements: ["color-coded sources", "chatbox interface metaphor", "three example scenarios"]
+    visual_style: "Clean chatbot interface mockup with distinct colors per knowledge source"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (taxonomy) → Figure 2 (lifecycle nexus) → Figure 3 (comprehensive taxonomy tree)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "datasets"
+    col_axis: "approach, base dataset, size, conflict type"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "N/A (survey table)"
+    statistical_reporting: "dataset sizes"
+    num_baselines: 0
+    design_note: "Survey table catalogs evaluation datasets by conflict type — serves as reference index"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "Survey paper — all content in main text"

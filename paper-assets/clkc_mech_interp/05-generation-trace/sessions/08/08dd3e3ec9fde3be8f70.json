@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08dd3e3ec9fde3be8f70",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig2 section refs",
+  "task_key": "worker_code_fix-fig2-section-refs_20260525T174805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig2-section-refs_20260525T174805_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "c4f136af20d1236d9a08e67aae65a0778c31c8943c660d590a672eb9595317d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Caption 检查：`method.tex` 第 7 行已写 \"apply confound exclusion controls before causal steering validation\"，与新步骤顺序一致，无需修改。\n\n验证清单：\n- [x] Step 2 标注 §3.3–3.4\n- [x] Step 3 = Confound Exclusion §3.5\n- [x] Step 4 = Representation Steering §3.6\n- [x] 箭头方向 Data → Probing → Confound → Steering\n- [x] Caption 与步骤顺序一致\n- [x] PDF 部署到 `docs/paper/fig2_pipeline.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig2-section-refs.md"
+}

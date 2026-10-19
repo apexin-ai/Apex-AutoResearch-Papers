@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6bcde409b6f57f7944a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra layerwise data to artifacts",
+  "task_key": "worker_infra_layerwise-data-to-artifacts_20260522T135616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_layerwise-data-to-artifacts_20260522T135616_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "4abfc144ff3d11ee18968f6b430649179b65fd4b5bc3d9e0d9c5c621986d0ccb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。3 个文件已拉取到本地 artifacts/ 并注册：\n\n| 文件 | 大小 | Artifact ID | 验证 |\n|------|------|-------------|------|\n| `layerwise_probe_curves.json` | 30,006 B | `art_20260522_d93194` | 5 keys ✓ |\n| `llama31_probe_results.json` | 689 B | `art_20260522_ceb3cf` | 4 directions + num_layers ✓ |\n| `qwen3_probe_results.json` | 27,449 B | `art_20260522_baccb3` | per_layer + summary + num_layers ✓ |\n\nJSON 结构均已验证有效，Paper Agent 可直接用 `layerwise_probe_curves.json` 绘制 Fig 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-layerwise-data-to-artifacts.md"
+}

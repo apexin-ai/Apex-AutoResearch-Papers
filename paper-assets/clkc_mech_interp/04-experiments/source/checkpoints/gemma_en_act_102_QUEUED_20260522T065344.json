@@ -1,0 +1,15 @@
+{
+  "exp_id": "gemma_en_act_102",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:53:33.602Z",
+    "updated_at": "2026-05-22T06:53:44.527Z",
+    "hypothesis": "Collecting EN residual stream activations from Gemma-2-9B-IT for cross-lingual knowledge conflict analysis"
+  },
+  "timestamp": "2026-05-22T06:53:44.571762+00:00",
+  "trigger": "update_registry"
+}

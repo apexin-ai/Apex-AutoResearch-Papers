@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1bb9198b0914db3682e",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "diagnose steering 107 qwen L14",
+  "task_key": "worker_diagnose_steering_107_qwen_L14_20260522T151136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_steering_107_qwen_L14_20260522T151136_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "780083570699b8aeeb53f3c864fa22883f191ba42f63ce7eb56803ffd11b53b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**steering_107_qwen_L14 是 false positive failure**，进程正常完成并输出了完整结果 JSON。被 cron 标记失败是因为没写 W&B metrics（与 L13、L18 同样原因）。\n\n**实验结果：negative。** 所有 6 个 alpha 均无显著 steering 效果：\n- 最低 Fisher p = 0.68（alpha=-10），远不显著\n- 所有 alpha 的定向 flip (p2c, c2p) 均为 0\n- 尽管 probe accuracy 达 70.2%，steering 未能因果性地改变 answer routing\n\n已将 conclusion 更新为 `negative`，补充了 metrics 和 notes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-steering-107-qwen-l14.md"
+}

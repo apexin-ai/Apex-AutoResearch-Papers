@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f60101c114d86b9bd4fe",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra cuda0 ready check",
+  "task_key": "worker_infra_cuda0-ready-check_20260522T081922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cuda0-ready-check_20260522T081922_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "9c4b928ed72ae60f002998e2f7782c8fd7707a09742bb8ee82c7db236c33d2a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 59412 **仍在运行**，已跑 9 小时 4 分钟。\n\n| 项目 | 状态 |\n|------|------|\n| PID 59412 | 运行中，CPU 85.7%，elapsed 9h04m |\n| 命令 | `validate_translation.py --model Qwen3-8B --threshold 0.80` |\n| cuda:0 显存 | 16529 MiB / 97887 MiB（PID 59412 占 16520 MiB） |\n| cuda:0 利用率 | 14% |\n| 其他 GPU | cuda:1/2/3 也各有进程占用 ~16.5GB |\n\nCOMET Qwen 验证任务尚未完成，cuda:0 不可用。GPU 利用率偏低（14%）说明当前可能在做 CPU-bound 的数据处理或等待 I/O，但进程仍活跃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cuda0-ready-check.md"
+}

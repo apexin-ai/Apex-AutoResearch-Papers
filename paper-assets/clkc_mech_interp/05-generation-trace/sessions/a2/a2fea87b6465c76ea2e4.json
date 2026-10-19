@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2fea87b6465c76ea2e4",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu de act check and cuda3",
+  "task_key": "worker_gpu_de-act-check-and-cuda3_20260522T143758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_de-act-check-and-cuda3_20260522T143758_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "ed2ccab870564a91ffe9ea7087c196adee65f489ce1120db8c4226635d1872ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 第一步：DE activations (de_activations_112)\n- **状态**：已完成，PID 488140 已退出\n- **输出**：`de_activations.pt` — 342MB，shape=[1368, 32, 4096]，与 en_activations.pt 大小完全一致\n- **Registry**：已标记 DONE(success)\n\n### 第二步：cuda:1 空闲\nDE activations 完成后 cuda:1 已释放。Probe training 是 CPU-only，无需占用 GPU，暂时空闲。\n\n### 第三步：steering_107_L13_all (cuda:3)\n- **PID**：494285，运行中\n- **GPU**：cuda:3\n- **配置**：L13, position=all, alphas=[-20, -10, -5, 5, 10, 20]\n- **日志**：模型已加载，正在生成（pad_token_id 设置消息可见）\n- **Registry**：RUNNING\n\n### 第四步：磁盘概况\n\n| 路径 | 大小 |\n|------|------|\n| /root/autodl-tmp | 43G |\n| /root/models | 16G |\n| /root/miniconda3 | 8.6G |\n| /root/clkc_mech_interp | 3.5G |\n| /root/.cache/pip | 3.7G |\n| /root/.cache/huggingface | 151M |\n\npip cache 3.7G 可清理（`pip cache purge`），其余合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-de-act-check-and-cuda3.md"
+}

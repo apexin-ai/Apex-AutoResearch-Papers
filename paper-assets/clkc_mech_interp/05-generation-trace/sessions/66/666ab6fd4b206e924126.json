@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "666ab6fd4b206e924126",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp gemma xnli 113",
+  "task_key": "worker_exp_gemma_xnli_113_20260522T182644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma_xnli_113_20260522T182644.log",
+    "occurrence": 1,
+    "bytes": 1023461,
+    "sha256": "90a29e5cba9b23d232c4526e620c13c8ac66bc919abc43c3c3b2d2679ff81c29"
+  },
+  "statistics": {
+    "messages": 795,
+    "user_turns": 0,
+    "tool_calls": 356,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 78,
+      "tool_call": 356,
+      "tool_result": 356,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 795,
+      "chunks": [
+        {
+          "path": "666ab6fd4b206e924126-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "666ab6fd4b206e924126-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "666ab6fd4b206e924126-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "666ab6fd4b206e924126-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "666ab6fd4b206e924126-part-0005.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-xnli-113.md"
+}

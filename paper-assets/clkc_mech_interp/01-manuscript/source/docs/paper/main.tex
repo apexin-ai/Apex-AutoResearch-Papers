@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{subcaption}
+
+\title{English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries}
+
+\author{Anonymous ACL submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+\input{introduction}
+
+\input{related_work}
+
+\input{method}
+
+\input{experiments}
+
+\input{discussion}
+
+\input{conclusion}
+
+\input{limitations}
+
+\bibliography{references}
+
+\appendix
+
+\section{Fine-Grained Causal Boundary Analysis}
+\label{app:boundary}
+
+Table~\ref{tab:boundary} reports steering results across the full layer gradient from an independent replication ($N = 201$, Llama-3.1-8B-Instruct, RTX PRO 6000).
+
+\begin{table}[!t]
+\centering
+\caption{Causal boundary steering results (independently sampled, $N = 201$, Llama-3.1-8B-Instruct). Bonf.\ Sig.\ $\alpha$s: number of $\alpha$ values reaching significance after Bonferroni correction out of 6 tested.}
+\label{tab:boundary}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+Layer & Depth & Probe Acc & Best $\alpha$ & Best Fisher $p$ & Bonf.\ Sig.\ $\alpha$s & Result \\
+\midrule
+L12 & 38\% & 91.75\% & $+20$ & 0.085 & 0/6 & --- \\
+\textbf{L13} & \textbf{41\%} & \textbf{90.00\%} & $\mathbf{+10}$ & $\mathbf{<0.001}$ & \textbf{2/6} & $\checkmark\checkmark$ \\
+L14 & 44\% & 91.75\% & $+10$ & 0.002 & 1/6 & $\checkmark$ \\
+L16 & 50\% & 91.50\% & $+10$ & 0.005 & 1/6 & $\checkmark$ \\
+L18 & 56\% & 90.75\% & $+5$ & 0.010 & 0/6 & --- \\
+L28 & 88\% & 85.25\% & $+10$ & 0.284 & 0/6 & --- \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Seed Replication of L13 Steering}
+\label{app:seed_replication}
+
+To verify that the L13 causal effect is not an artifact of a specific train/test split, we repeated the Llama L13 steering experiment with an independently trained probe (seed=123, different train/test split).
+The causal effect replicates in the positive direction: $\alpha = +5$ ($p = 0.003$), $\alpha = +10$ ($p = 0.0003$), with 2 of 6 configurations surviving Bonferroni correction (matching the original 2/6).
+The consistent positive-direction effect across independent probe training confirms that L13 causal localization is not an artifact of a specific train/test split.
+
+\section{Detection--Decision Dissociation}
+\label{app:dissociation}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig6_dissociation.pdf}
+\caption{Detection--decision dissociation across three architectures. For Llama, the linear probe peak (L15, 47\% depth), MLP probe peak (L18, 56\%), and causal steering node (L13, 41\%) cluster in mid-layers; upper layers (e.g., L28) retain detectable signal but lack causal influence. Qwen and Gemma achieve comparable probe accuracy but show no significant causal site under linear steering, illustrating that detectability does not imply causal relevance.}
+\label{fig:dissociation}
+\end{figure}
+
+\section{AUROC Analysis}
+\label{app:auroc}
+
+Table~\ref{tab:auroc} reports AUROC for conflict probes on matched-condition replication data ($N = 131$--$201$), confirming strong continuous discriminative capacity across models.
+Gemma's 0.93 EN$\to$EN AUROC (the highest among all models for this metric), paired with zero directional flips under steering, provides the strongest evidence that detection and causal influence are dissociable.
+
+\begin{table}[!t]
+\centering
+\caption{AUROC and balanced accuracy for conflict probes (matched-condition data, best layer per model).}
+\label{tab:auroc}
+\small
+\begin{tabular}{llcc}
+\toprule
+Model & Direction & AUROC & Bal.\ Acc (\%) \\
+\midrule
+Llama-3.1-8B & EN$\to$EN & 0.981 & 92.7 \\
+\midrule
+Gemma-2-9B-IT & EN$\to$EN & 0.931 & 88.1 \\
+Gemma-2-9B-IT & ZH$\to$ZH & 0.900 & 85.7 \\
+Gemma-2-9B-IT & EN$\to$ZH & 0.852 & 75.1 \\
+Gemma-2-9B-IT & ZH$\to$EN & 0.921 & 77.8 \\
+\midrule
+Qwen3-8B & EN$\to$EN & 0.771 & 71.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Matched-Condition Steering Results}
+\label{app:steering_config}
+
+Table~\ref{tab:steering_config} reports steering results under matched conditions: all three architectures are tested at comparable relative depths (${\sim}$36--43\%) using the same probe training methodology and six $\alpha$ values in $[-20, +20]$.
+Despite the highest probe accuracy among the three models (88--89\%), Gemma produces zero directional flips, ruling out probe quality as a confound for the Llama-specific positive result.
+The full Llama causal gradient ($N = 201$) is in Appendix~\ref{app:boundary}.
+
+\begin{table}[!t]
+\centering
+\caption{Matched-condition steering results. Probe: EN$\to$EN balanced accuracy at the target layer. Best $p$: minimum Fisher exact $p$-value across six tested $\alpha$ values. Bonf.: $\alpha$ values surviving Bonferroni correction out of 6. Flips: total directional transitions (p$\to$c $+$ c$\to$p).$^{\dagger}$}
+\label{tab:steering_config}
+\small
+\begin{tabular}{lcrccc}
+\toprule
+Layer & Depth & Probe (\%) & Best $p$ & Bonf. & Flips \\
+\midrule
+\multicolumn{6}{l}{\textit{Llama-3.1-8B-Instruct ($N = 201$; 32 layers)}} \\
+\textbf{L13} & \textbf{41\%} & \textbf{90.0} & $\mathbf{<0.001}$ & \textbf{2/6} & \textbf{9} \\
+\midrule
+\multicolumn{6}{l}{\textit{Qwen3-8B ($N = 131$; 36 layers)}} \\
+L13 & 36\% & 71.8 & 0.168 & 0/6 & 0 \\
+L14 & 39\% & 71.0 & 0.785 & 0/6 & 0 \\
+L15 & 42\% & 72.9 & 0.617 & 0/6 & 0 \\
+\midrule
+\multicolumn{6}{l}{\textit{Gemma-2-9B-IT ($N = 171$; 42 layers)$^{\dagger}$}} \\
+L16 & 38\% & 88.0 & 0.067 & 0/6 & 0 \\
+L17 & 40\% & 88.9 & 0.448 & 0/6 & 0 \\
+L18 & 43\% & 89.5 & 0.219 & 0/6 & 0 \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize $^{\dagger}$ Gemma: after correcting a label assignment error.
+\end{flushleft}
+\end{table}
+
+\section{Use of AI Assistance}
+\label{app:ai-assistants}
+We used Claude for coding, code drafting, debugging, and language polishing.
+
+\end{document}

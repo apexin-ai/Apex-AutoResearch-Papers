@@ -1,0 +1,43 @@
+{
+  "exp_id": "tost_equivalence_118",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:40:09.343Z",
+    "updated_at": "2026-05-23T07:40:36.441Z",
+    "hypothesis": "TOST 等价性检验：conflict Δ_asym 和 XNLI Δ_asym 在 ±2pp 边界内是否统计等价。如果等价，则 piggyback 假说成立——冲突信号搭载在通用跨语言子空间上。",
+    "conclusion": "success",
+    "metrics": {
+      "llama": {
+        "delta_conflict": 7.27,
+        "delta_xnli": 6,
+        "diff": 1.27,
+        "se_diff": 4.37,
+        "p_tost": 0.434,
+        "equivalent": false
+      },
+      "qwen": {
+        "delta_conflict": 7.23,
+        "delta_xnli": 6.72,
+        "diff": 0.51,
+        "se_diff": 4.36,
+        "p_tost": 0.366,
+        "equivalent": false
+      },
+      "gemma": {
+        "delta_conflict": 6.62,
+        "delta_xnli": 7.81,
+        "diff": -1.19,
+        "se_diff": 2.58,
+        "p_tost": 0.377,
+        "equivalent": false
+      },
+      "note": "Power insufficient, not actual difference. Point estimates all within ±1.3pp of zero."
+    }
+  },
+  "timestamp": "2026-05-23T07:40:36.520966+00:00",
+  "trigger": "update_registry"
+}

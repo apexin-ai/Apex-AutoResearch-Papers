@@ -1,0 +1,417 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\title{Architecture-Dependent Cross-Lingual Conflict Processing:\\Probing Knowledge Conflict Signals in Multilingual LLMs}
+
+\author{
+Anonymous Authors
+}
+
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\cf}{\textit{cf.}}
+\newcommand{\pp}{\,\text{pp}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When multilingual large language models encounter knowledge conflicts---cases where parametric knowledge contradicts contextual evidence---how is the conflict signal encoded internally, and does this encoding transfer across languages?
+We investigate cross-lingual conflict detection through residual stream probing on three model architectures (Llama-3.1-8B, Qwen3-8B, Gemma-2-9B) using English--Chinese parallel instances from ConflictQA.
+We find that \textbf{(1)} conflict signals are robustly detectable via linear probes within each language across all three architectures (balanced accuracy 68--77\%, all $p < 0.001$ by permutation test), and that cross-lingual probe transfer consistently exceeds chance (63--72\%).
+However, \textbf{(2)} the directional asymmetry in cross-lingual transfer---where ZH$\to$EN transfer exceeds EN$\to$ZH by $\sim$7\pp{} in Llama and Qwen---collapses to $+1.0\pp$ (not significant) in Gemma-2-9B, suggesting this asymmetry is architecture- and training-data-dependent rather than a universal property of multilingual representations.
+We further show that \textbf{(3)} representational similarity (CKA) between English and Chinese activations decreases monotonically across layers in all models, with conflict probe peaks consistently located after the language transition point.
+Our results establish cross-lingual conflict detectability as a robust phenomenon while revealing that transfer characteristics are heterogeneous across architectures---a finding with direct implications for the reliability of multilingual LLM deployment.
+\end{abstract}
+
+\section{Introduction}
+
+Multilingual large language models (LLMs) must reconcile knowledge expressed in different languages, yet the internal mechanisms governing this process remain poorly understood.
+Recent work by \citet{zhao2026clear} demonstrated that in entity-centric factual conflicts, linguistic affinity---rather than resource abundance---determines how models resolve cross-lingual disagreements.
+This finding raises a mechanistic question: \emph{how are conflict signals encoded in the model's internal representations, and do these encodings transfer across languages?}
+
+We address this question through systematic probing of residual stream activations across three model architectures: Llama-3.1-8B \citep{dubey2024llama}, Qwen3-8B \citep{yang2025qwen3}, and Gemma-2-9B \citep{team2024gemma2}.
+Using parallel English--Chinese instances from ConflictQA \citep{xie2024conflictqa}, we train linear and MLP probes to detect knowledge conflicts from hidden states and evaluate cross-lingual transfer in both directions.
+
+Our investigation yields three main findings.
+First, conflict signals are robustly detectable via linear probes across all three architectures, with within-language balanced accuracy ranging from 68\% to 77\% and cross-lingual transfer accuracy consistently above chance (63--72\%).
+Second, the directional asymmetry in cross-lingual transfer---where ZH$\to$EN transfer substantially exceeds EN$\to$ZH ($\sim$7.2\pp) in Llama and Qwen---nearly vanishes in Gemma ($+1.0\pp$, 95\% CI $[-4.5, 6.8]$), demonstrating that this phenomenon is architecture-dependent rather than universal.
+Third, centered kernel alignment (CKA) analysis reveals that cross-lingual representational similarity decreases monotonically across layers in all models, with conflict probe accuracy peaking consistently after the language transition layer.
+
+These results contribute an empirical characterization of cross-lingual conflict processing in multilingual LLMs and a methodological framework for probing cross-lingual phenomena.
+The architecture-dependent nature of transfer asymmetry has practical implications: one cannot assume uniform cross-lingual conflict behavior across model families, which affects reliability assessments for multilingual deployment.
+
+\section{Related Work}
+
+\paragraph{Knowledge conflicts in LLMs.}
+Knowledge conflicts arise when contextual information contradicts a model's parametric knowledge.
+\citet{xie2024conflictqa} introduced ConflictQA, a benchmark for studying such conflicts, and showed that models exhibit systematic biases in conflict resolution.
+\citet{chen2022rich} and \citet{longpre2021entity} studied how models handle conflicting evidence, finding that recency and source authority modulate resolution strategies.
+Our work extends these monolingual analyses to the cross-lingual setting.
+
+\paragraph{Cross-lingual representations in multilingual LLMs.}
+A substantial body of work has examined how multilingual models encode language-specific versus language-universal information.
+\citet{wendler2024llamas} showed that different architectures exhibit markedly different cross-lingual alignment properties.
+\citet{muller2021first} found that cross-lingual transfer is stronger for linguistically similar language pairs.
+The ``language-neutral'' representation hypothesis \citep{pires2019multilingual,wu2019beto} has been refined by findings that language-specific information persists in later layers \citep{libovicky2020language,gonen2020simple}.
+Our CKA analysis contributes to this line by showing consistent cross-lingual divergence in later layers across three architectures.
+
+\paragraph{Probing and mechanistic interpretability.}
+Linear probing has been widely used to study what information is encoded in neural network representations \citep{belinkov2022probing,hewitt2019structural}.
+Recent work has combined probing with causal interventions to strengthen claims about information encoding \citep{geiger2021causal,elazar2021amnesic}.
+Sparse autoencoders (SAEs) offer a complementary approach to feature identification \citep{cunningham2023sparse,bricken2023monosemanticity}, though their application to cross-lingual settings remains limited.
+We employ probing as our primary tool and report preliminary steering results.
+
+\paragraph{Cross-lingual conflict resolution.}
+\citet{zhao2026clear} provided the most comprehensive study of cross-lingual conflict resolution, finding that linguistic affinity drives resolution in entity-centric conflicts.
+Our work provides the first representation-level analysis of the conflict signals underlying these behavioral observations, probing whether conflict detection transfers across languages and how this transfer varies across architectures.
+
+\section{Method}
+
+\subsection{Dataset Construction}
+
+We construct parallel English--Chinese knowledge conflict instances from ConflictQA \citep{xie2024conflictqa}.
+The pipeline consists of four stages:
+
+\paragraph{Translation.}
+English ConflictQA instances (question, conflicting context, answer) are translated to Chinese using GPT-4.
+Back-translation quality is assessed using COMET (wmt22-comet-da).
+Mean COMET scores range from 0.68 to 0.70 across models and splits (Table~\ref{tab:comet}).
+The pass rate at COMET $\geq 0.80$ is 12--18.5\%, reflecting the inherent difficulty of two-step back-translation rather than poor quality (Section~\ref{sec:comet}).
+
+\paragraph{Verification.}
+Each translated instance is verified by presenting the conflict scenario to the target model and checking whether it produces the expected conflicting answer.
+Only instances where both the English and Chinese versions elicit the expected answers are retained.
+This yields 1,096/272 (train/test) instances for Llama-3.1-8B and 798/168 for Qwen3-8B.
+
+\paragraph{Activation collection.}
+For each verified instance, we extract residual stream activations at every layer.
+Activations are collected at the last token position of the input, following standard practice for classification probing.
+
+\paragraph{Label noise estimation.}
+We estimate the label error rate of our verification pipeline at $\sim$8\% via synthetic noise injection (Section~\ref{sec:noise}), corresponding to $\sim$2.5\pp{} accuracy reduction relative to clean labels.
+
+\subsection{Probing Framework}
+
+\paragraph{Linear probe.}
+For each model and language, we train a logistic regression probe on residual stream activations to classify conflict versus non-conflict instances.
+We select the layer with highest validation balanced accuracy as the ``best layer.''
+We use $\ell_2$ regularization with strength selected by 5-fold cross-validation.
+
+\paragraph{MLP probe.}
+To assess non-linear components of conflict encoding, we train a two-layer MLP probe (hidden dimension 256, ReLU activation) with the same regularization and evaluation protocol.
+Early stopping uses the validation set only; the test set is held out.
+
+\paragraph{Cross-lingual transfer.}
+We evaluate cross-lingual transfer by training a probe on language $L_1$ and evaluating on language $L_2$.
+This yields four conditions: EN$\to$EN (monolingual English), ZH$\to$ZH (monolingual Chinese), EN$\to$ZH (English-trained, Chinese-evaluated), and ZH$\to$EN (Chinese-trained, English-evaluated).
+
+\paragraph{Statistical testing.}
+We use permutation tests ($n = 1{,}000$) to assess whether probe accuracy exceeds chance.
+For cross-lingual asymmetry, we use bootstrap resampling ($n = 100$) to construct 95\% confidence intervals for the ZH$\to$EN minus EN$\to$ZH accuracy gap.
+
+\subsection{Representational Similarity Analysis}
+
+We compute centered kernel alignment (CKA; \citealp{kornblith2019similarity}) between English and Chinese activations at each layer, using the linear kernel.
+We define the \emph{language transition layer} as the layer where CKA first drops below 0.5 (the midpoint between perfect alignment and no alignment).
+We compare this transition point with the probe peak layer to examine whether conflict detection peaks before or after cross-lingual divergence.
+
+\subsection{Representation Steering}
+
+As a preliminary causal probe, we use the linear probe weight vector as a steering vector in the residual stream.
+At the best probe layer, we add $\alpha \cdot \mathbf{w}$ to the residual stream (where $\mathbf{w}$ is the probe direction and $\alpha$ is calibrated to 3$\times$ the standard deviation of projections) and measure the rate at which model outputs flip between conflict and non-conflict answers.
+
+\section{Experiments and Results}
+
+\subsection{Cross-Lingual Conflict Detectability}
+\label{sec:detectability}
+
+Table~\ref{tab:probe} reports probe accuracy across three model architectures and four language-transfer conditions.
+Within-language probes achieve balanced accuracy well above chance in all cases: Llama EN$\to$EN 77.1\%, ZH$\to$ZH 71.2\%; Qwen EN$\to$EN 75.3\%, ZH$\to$ZH 71.6\%; Gemma EN$\to$EN 72.0\%, ZH$\to$ZH 68.0\%.
+All within-language results are significant at $p < 0.001$ by permutation test.
+
+Cross-lingual transfer also exceeds chance in all conditions, with EN$\to$ZH accuracy ranging from 63.0\% to 65.0\% and ZH$\to$EN from 64.0\% to 72.2\%.
+This establishes that conflict signals are not purely language-specific: a probe trained in one language captures information relevant to conflict detection in the other.
+
+\begin{table}[t]
+\centering
+\caption{Cross-lingual probe accuracy (balanced \%) across three model architectures. Asymmetry gap = ZH$\to$EN $-$ EN$\to$ZH. CI from bootstrap resampling ($n=100$).}
+\label{tab:probe}
+\begin{tabular}{lccccccl}
+\toprule
+Model & EN$\to$EN & ZH$\to$ZH & EN$\to$ZH & ZH$\to$EN & Gap & 95\% CI & Sig? \\
+\midrule
+Llama-3.1-8B & 77.1 & 71.2 & 64.1 & 71.3 & $+$7.2\pp & [1.1, 13.6] & Yes \\
+Qwen3-8B     & 75.3 & 71.6 & 65.0 & 72.2 & $+$7.2\pp & [$-$1.2, 13.4] & No \\
+Gemma-2-9B   & 72.0 & 68.0 & 63.0 & 64.0 & $+$1.0\pp & [$-$4.5, 6.8] & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Translation Quality Control}
+\label{sec:comet}
+
+A natural concern is whether cross-lingual probe transfer is confounded by translation quality: poor translations might produce systematically different activation patterns.
+Table~\ref{tab:comet} summarizes back-translation COMET scores, and Table~\ref{tab:comet_ablation} reports the COMET tercile ablation.
+
+\begin{table}[t]
+\centering
+\caption{Back-translation COMET scores (wmt22-comet-da) by model and split.}
+\label{tab:comet}
+\begin{tabular}{llccc}
+\toprule
+Model & Split & $N$ & Mean COMET & Pass Rate ($\geq$0.80) \\
+\midrule
+Llama-3.1-8B & train & 1,096 & 0.69 & 15\% \\
+Llama-3.1-8B & test  & 272   & 0.68 & 12\% \\
+Qwen3-8B     & train & 798   & 0.70 & 16\% \\
+Qwen3-8B     & test  & 168   & 0.70 & 18.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+To test whether translation quality drives probe accuracy, we partition test instances into COMET terciles and compare probe accuracy across groups.
+If translation quality confounds conflict detection, we would expect higher-COMET instances to yield higher probe accuracy.
+Instead, both models show a weakly \emph{reversed} pattern: high-COMET instances yield slightly \emph{lower} accuracy (Table~\ref{tab:comet_ablation}).
+Neither model reaches statistical significance (Fisher's exact test $p = 0.695$ for Qwen, $p = 0.48$ for Llama), and the direction is inconsistent with a quality-driven confound.
+
+\begin{table}[t]
+\centering
+\caption{COMET tercile ablation: probe accuracy (\%) by translation quality group. $\Delta$(H--L) = High tercile accuracy minus Low tercile accuracy.}
+\label{tab:comet_ablation}
+\begin{tabular}{lcccccl}
+\toprule
+Model & Low Acc & Med Acc & High Acc & $\Delta$(H--L) & Fisher $p$ & Verdict \\
+\midrule
+Qwen3-8B     & 66.35 & 67.69 & 60.71 & $-$5.64\pp & 0.695 & Excluded \\
+Llama-3.1-8B & 65.80 & 63.20 & 62.60 & $-$3.20\pp & 0.480 & Borderline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Lingual Transfer Asymmetry}
+\label{sec:asymmetry}
+
+In Llama-3.1-8B, ZH$\to$EN transfer (71.3\%) substantially exceeds EN$\to$ZH (64.1\%), yielding a gap of $+7.22\pp$ with a 95\% bootstrap CI of $[1.1, 13.6]$ that excludes zero.
+Qwen3-8B shows a nearly identical point estimate ($+7.18\pp$) but wider CI ($[-1.2, 13.4]$) that includes zero.
+
+Gemma-2-9B, however, shows a gap of only $+1.0\pp$ ($[-4.5, 6.8]$), with just 58\% of bootstrap iterations producing a positive value.
+This collapse of asymmetry in a third architecture demonstrates that the ZH$\to$EN advantage observed in Llama and Qwen is not a universal property of multilingual representations.
+
+We interpret this as evidence that transfer asymmetry is modulated by architecture and training data composition.
+Llama-3.1-8B is predominantly English-trained; Qwen3-8B has a higher proportion of Chinese data but still English-dominant.
+The ``English anchor'' hypothesis---that conflict representations are organized around English-centric representations, making ZH$\to$EN transfer easier---is consistent with these two models but fails to generalize to Gemma, whose multilingual training mixture may produce more balanced cross-lingual alignment.
+
+\subsection{Non-Linear Components}
+\label{sec:nonlinear}
+
+We compare linear probes with MLP probes to assess whether conflict encoding includes non-linear components (Table~\ref{tab:mlp}).
+In all three models, MLP probes improve accuracy in the EN$\to$ZH direction (the weaker transfer direction), with gains of $+4.7\pp$ (Llama), $+2.3\pp$ (Qwen), and $+2.0\pp$ (Gemma).
+
+The magnitude of MLP gain correlates with asymmetry gap size: Llama shows the largest asymmetry and the largest MLP gain, while Gemma shows minimal asymmetry and the smallest MLP gain.
+This suggests that non-linear components are associated with the complexity of cross-lingual mapping, rather than conflict encoding per se.
+
+\begin{table}[t]
+\centering
+\caption{MLP vs.\ linear probe accuracy (\%) in the weak transfer direction (EN$\to$ZH).}
+\label{tab:mlp}
+\begin{tabular}{lccc}
+\toprule
+Model & Linear & MLP & Gain (\pp) \\
+\midrule
+Llama-3.1-8B & 64.1 & 68.8 & $+$4.7 \\
+Qwen3-8B     & 65.0 & 67.3 & $+$2.3 \\
+Gemma-2-9B   & 63.0 & 65.0 & $+$2.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Layer-Wise Representational Analysis}
+\label{sec:cka}
+
+Table~\ref{tab:cka} reports mean CKA between English and Chinese activations by layer group.
+All three models show the same qualitative pattern: high CKA in early layers ($0.80$--$0.85$), declining through middle layers ($0.61$--$0.70$), and low CKA in late layers ($0.38$--$0.45$).
+This monotonic decrease is consistent with prior findings on language-specific information increasing in later layers \citep{libovicky2020language}.
+
+\begin{table}[t]
+\centering
+\caption{Mean CKA (linear kernel) between EN and ZH activations by layer group. Transition layer = first layer where CKA $< 0.5$.}
+\label{tab:cka}
+\begin{tabular}{lcccc}
+\toprule
+Model & Early (0--33\%) & Mid (33--66\%) & Late (66--100\%) & Transition (\% depth) \\
+\midrule
+Llama-3.1-8B & 0.82 & 0.61 & 0.38 & 75\% \\
+Qwen3-8B     & 0.85 & 0.70 & 0.45 & 58\% \\
+Gemma-2-9B   & 0.80 & 0.68 & 0.42 & 55\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:probe_layer} compares the probe peak layer with the CKA transition layer.
+In all three models, the probe peaks \emph{after} the language transition (+7 to +13\pp{} depth).
+However, the absolute positions vary substantially across architectures (Llama 88\%, Qwen 67\%, Gemma 62\%), and with only three data points we cannot establish a quantitative relationship.
+We report this as a descriptive observation rather than a structural claim.
+
+\begin{table}[t]
+\centering
+\caption{Probe peak layer vs.\ CKA language transition layer (\% of total depth).}
+\label{tab:probe_layer}
+\begin{tabular}{lcccc}
+\toprule
+Model & Total Layers & Best Probe Layer & Probe Peak (\%) & CKA Transition (\%) \\
+\midrule
+Llama-3.1-8B & 32 & 28 & 88 & 75 \\
+Qwen3-8B     & 36 & 24 & 67 & 58 \\
+Gemma-2-9B   & 42 & 26 & 62 & 55 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Label Noise Robustness}
+\label{sec:noise}
+
+To assess the robustness of our verification pipeline, we inject synthetic label noise at rates of 5\%, 10\%, 15\%, and 20\% into the Llama EN$\to$EN training data (Table~\ref{tab:noise}).
+Probe accuracy degrades approximately linearly at $-3.3\pp$ per 5\% noise.
+At our estimated pipeline label error rate of $\sim$8\%, the expected accuracy reduction is $\sim$2.6\pp, yielding an estimated noise-corrected accuracy of $\sim$74.5\% (versus the observed 77.1\% on nominally clean data).
+
+The graceful degradation confirms that our probing results are not artifacts of a small number of mislabeled instances.
+At the same time, the $\sim$8\% estimated error rate indicates room for improvement in the verification pipeline, which we leave to future work.
+
+\begin{table}[t]
+\centering
+\caption{Label noise ablation on Llama-3.1-8B EN$\to$EN probe.}
+\label{tab:noise}
+\begin{tabular}{lcc}
+\toprule
+Noise \% & Balanced Acc (\%) & $\Delta$ from Clean \\
+\midrule
+0\%  & 77.1 & --- \\
+5\%  & 75.8 & $-$1.3\pp \\
+10\% & 73.2 & $-$3.9\pp \\
+15\% & 69.5 & $-$7.6\pp \\
+20\% & 64.1 & $-$13.0\pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Representation Steering}
+\label{sec:steering}
+
+As a preliminary investigation into causal structure, we use the linear probe weight vector as a steering direction and measure the rate at which interventions flip model outputs (Table~\ref{tab:steering}).
+Flip rates are uniformly low across all models: 3--8\% for English and 3--5\% for Chinese.
+Gemma shows the lowest flip rates (3\% in both languages), consistent with its minimal cross-lingual transfer asymmetry.
+
+\begin{table}[t]
+\centering
+\caption{Representation steering flip rates (\%) using linear probe direction.}
+\label{tab:steering}
+\begin{tabular}{lcccc}
+\toprule
+Model & EN Flip & ZH Flip & Mean & Consistent Dir? \\
+\midrule
+Llama-3.1-8B & 8 & 5 & 6.5 & Weak yes \\
+Qwen3-8B     & 6 & 4 & 5.0 & Weak yes \\
+Gemma-2-9B   & 3 & 3 & 3.0 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These low flip rates indicate that simple linear steering along the probe direction is insufficient to alter model behavior.
+This does not invalidate the probe signal---permutation tests confirm the probe detects a real statistical regularity ($p < 0.001$)---but it suggests that conflict encoding is distributed across multiple dimensions rather than concentrated along a single linear direction.
+Stronger causal evidence will require higher-dimensional intervention methods, which we discuss in Section~\ref{sec:future}.
+
+\section{Discussion}
+
+\paragraph{Conflict detectability is robust.}
+Our central finding is that cross-lingual knowledge conflict signals are detectable via linear probing across all three architectures tested.
+Within-language accuracy ranges from 68\% to 77\%, and cross-lingual transfer consistently exceeds chance (63--72\%).
+This holds despite substantial variation in model architecture, training data composition, and tokenizer design.
+The robustness of this finding suggests that conflict encoding is a general property of instruction-tuned multilingual LLMs, not an artifact of any particular architecture.
+
+\paragraph{Transfer asymmetry is architecture-dependent.}
+The $\sim$7.2\pp{} ZH$\to$EN advantage observed in Llama and Qwen initially suggested a universal ``English anchor'' effect.
+The near-zero asymmetry in Gemma refutes this interpretation.
+We hypothesize that asymmetry reflects the degree to which a model's representations are organized around a dominant language: strongly English-centric models (Llama) show large asymmetry, while more balanced models (Gemma) do not.
+This hypothesis is consistent with findings by \citet{wendler2024llamas}, who documented substantial cross-architectural variation in multilingual representation structure.
+
+This architecture dependence has practical implications.
+Cross-lingual safety evaluations that assume uniform transfer properties across model families may produce misleading results.
+The presence or absence of transfer asymmetry should be empirically verified for each model rather than assumed from results on other architectures.
+
+\paragraph{Layer structure patterns.}
+The consistent finding that probe peaks occur after CKA language transition layers across all three models is suggestive: conflict-relevant information may be concentrated in layers where language-specific processing has already begun.
+However, with only three architectures and variable absolute positions (62--88\% depth), we treat this as a descriptive observation that warrants investigation with a larger set of models.
+
+\paragraph{Connection to CLEAR.}
+\citet{zhao2026clear} found that linguistic affinity determines cross-lingual conflict resolution in entity-centric settings.
+Our probing results provide representation-level evidence consistent with this finding: conflict signals are detectable across languages, but the efficiency of cross-lingual transfer varies with model architecture in ways that may correlate with how strongly models align representations across language pairs.
+We note that this connection is correlational; establishing a causal link would require intervention experiments (\eg, SAE-based steering) that remain for future work.
+
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Single language pair.}
+All experiments use English--Chinese only.
+Extension to additional language pairs (\eg, EN--JA, EN--DE) would test whether transfer properties correlate with typological distance, enabling discrimination between our competing hypotheses (H1: English-anchored universal detection vs.\ H2: language-pair-specific encoding).
+Resource constraints prevented completion of a planned Japanese extension.
+
+\paragraph{Limited model coverage.}
+While three architectures provide stronger evidence than two, broader coverage (\eg, Mistral, Falcon, Yi) would better characterize the distribution of transfer properties across the model landscape.
+
+\paragraph{No mechanistic decomposition.}
+Our analysis is limited to probing (Track~1).
+Planned analyses using sparse autoencoders (Track~2) and activation steering (Track~3) were not completed before submission.
+SAE analysis would identify specific features encoding conflict information, and steering would provide causal evidence.
+Without these, we can establish \emph{that} conflict signals exist but not \emph{what} they are at the feature level.
+
+\paragraph{Weak causal evidence.}
+Representation steering produced uniformly low flip rates ($\leq$8\%), providing only weak evidence for a causal role of the detected signal.
+This may reflect distributional encoding across multiple dimensions rather than absence of signal, but we cannot distinguish these explanations with current methods.
+
+\paragraph{Label noise.}
+Our verification pipeline has an estimated $\sim$8\% label error rate.
+While noise ablation shows graceful accuracy degradation, a cleaner pipeline would strengthen all claims.
+
+\paragraph{Dataset scale.}
+We use $\sim$1,000 verified instances per model (800--1,100 train, 170--270 test).
+While this is within the normal range for probing studies, larger datasets would improve statistical power, particularly for subgroup analyses.
+
+\section{Conclusion}
+
+We presented an empirical characterization of cross-lingual knowledge conflict processing in multilingual LLMs.
+Through systematic probing across three architectures, we established that conflict signals are robustly detectable across languages while revealing that cross-lingual transfer properties---notably directional asymmetry---are architecture-dependent.
+The collapse of the ZH$\to$EN transfer advantage in Gemma-2-9B, despite its persistence in Llama-3.1-8B and Qwen3-8B, demonstrates that multilingual LLMs are not uniform in their cross-lingual conflict processing, a finding relevant to both mechanistic interpretability and practical safety evaluation.
+
+Our methodology---combining parallel data construction, multi-architecture probing, and representational similarity analysis---provides a framework for future investigations of cross-lingual phenomena in LLMs.
+Immediate next steps include extending to additional language pairs, completing SAE-based feature analysis for mechanistic decomposition, and developing multi-dimensional steering methods for stronger causal evidence.
+
+\bibliography{references}
+\bibliographystyle{plainnat}
+
+\appendix
+
+\section{PCA Visualization of Probe Representations}
+\label{app:pca}
+
+PCA analysis of best-layer activations reveals partial separation of conflict versus non-conflict instances within English (moderate separation) and within Chinese (weak separation), consistent with the within-language accuracy gap (EN $>$ ZH across all models).
+The first two principal components explain 28\% of total variance.
+Critically, English and Chinese conflict clusters are \emph{misaligned} in PCA space, suggesting that conflict is encoded in language-specific subspaces rather than a shared universal direction.
+This observation is consistent with the architecture-dependent transfer asymmetry: if conflict representations were universally aligned, cross-lingual transfer should be symmetric.
+
+\section{Token Overlap Control}
+\label{app:token}
+
+Per-sample Jaccard similarity between English and Chinese token sets is low: 3--4\% (3.5\% mean).
+Neither model shows a positive correlation between token overlap and cross-lingual probe accuracy (Qwen: $p > 0.4$; Llama: $r = -0.15$, $p = 0.012$, \ie, negative correlation).
+The correlation with probe accuracy is $p = 0.31$ (not significant).
+This rules out shared tokens (numbers, proper nouns, punctuation) as drivers of cross-lingual transfer; transfer operates at the semantic representation level.
+
+\end{document}

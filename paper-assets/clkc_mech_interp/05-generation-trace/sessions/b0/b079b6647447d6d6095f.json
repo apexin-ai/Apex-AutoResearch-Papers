@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b079b6647447d6d6095f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code bootstrap seed probe",
+  "task_key": "worker_code_bootstrap_seed_probe_20260521T224419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_seed_probe_20260521T224419_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "29384550343967114083e54547786140ad3cbbe4ddedef982a3aaa67c18d25ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型 bootstrap 全部完成。结果汇总：\n\n## Bootstrap Probe Results (20 seeds, training set resampling)\n\n| 模型 | 方向 | balanced_acc (mean±std) | F1 (mean±std) | peak_layers 众数 |\n|------|------|------------------------|---------------|-------------------|\n| **Llama-3.1** | EN→EN | 0.7730±0.0104 | 0.7701±0.0113 | 分散（19最多） |\n| | ZH→ZH | 0.7088±0.0131 | 0.7096±0.0146 | 13-15 |\n| | EN→ZH | 0.6441±0.0224 | 0.6910±0.0306 | 13 为主 |\n| | ZH→EN | 0.7098±0.0266 | 0.7341±0.0239 | 分散（9,14,15,16） |\n| **Qwen-3** | EN→EN | 0.7542±0.0188 | 0.7511±0.0186 | 18-22 |\n| | ZH→ZH | 0.7170±0.0212 | 0.7231±0.0271 | 21 为主 |\n| | EN→ZH | 0.6569±0.0259 | 0.6560±0.0468 | 22 为主 |\n| | ZH→EN | 0.7309±0.0251 | 0.7237±0.0409 | 19-21 |\n\n## COMET 进度\n\n- **Qwen**: back-translation 320/798 (~40%)\n- **Llama**: back-translation 320/1096 (~29%)\n- 无 validated 文件产出\n\n## 产出文件\n\n- `data/llama31/probe_results_bootstrap.json`\n- `data/qwen3/probe_results_bootstrap.json`\n- 原有 `probe_results.json` 未被覆盖（用了 `--output_file` 参数）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-seed-probe.md"
+}

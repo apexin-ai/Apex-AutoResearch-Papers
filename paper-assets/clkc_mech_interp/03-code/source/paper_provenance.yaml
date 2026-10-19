@@ -1,0 +1,458 @@
+paper:
+  title: ''
+  version: 40
+  generated_at: '2026-05-26T10:10:55.195263+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments_test
+    paragraph: 0
+    sentence: 0
+  text: test claim
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_v1
+  decisions: []
+  deprecated: false
+- id: C002
+  location:
+    section: experiments_test2
+    paragraph: 0
+    sentence: 0
+  text: test
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_v1
+  decisions:
+  - decision: test decision
+  deprecated: false
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Llama EN-EN 77.1%, ZH-ZH 71.2% balanced accuracy
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_llama_v1
+  decisions: []
+  deprecated: false
+- id: C005
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Qwen EN-EN 75.3%, ZH-ZH 71.6% balanced accuracy
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_v1
+  decisions: []
+  deprecated: false
+- id: C008
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Asymmetry Llama +7.2pp CI[1.1,13.6], Qwen +7.2pp CI[-0.6,13.7]
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_llama_v1
+  - exp_id: mvp_probe_v1
+  decisions:
+  - decision: 'C2 framing: asymmetry is general cross-lingual property'
+  deprecated: false
+- id: C012
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: XNLI asymmetry Llama +6.0pp, Qwen +6.7pp, overlaps conflict CIs
+  type: quantitative
+  evidence:
+  - exp_id: xnli_baseline_110
+  decisions: []
+  deprecated: false
+- id: C017
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: COMET tercile not confounder p=0.695/0.761
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_v1
+  - exp_id: mvp_probe_llama_v1
+  decisions: []
+  deprecated: false
+- id: C023
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: L13 steering a=+5 p=0.002, a=-20 p<0.001 bidirectional
+  type: quantitative
+  evidence:
+  - exp_id: steering_107_L13
+  decisions:
+  - decision: Use causal influence not causal control
+  deprecated: false
+- id: C030
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: L28/L18 steering negative all p>0.3
+  type: quantitative
+  evidence:
+  - exp_id: steering_107
+  - exp_id: steering_107_L18
+  - exp_id: steering_107_L28_all
+  decisions: []
+  deprecated: false
+- id: C038
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: a=+20 reversal control>steering p=0.053
+  type: quantitative
+  evidence:
+  - exp_id: steering_107_L13
+  decisions:
+  - decision: Must report per Director calibration
+  deprecated: false
+- id: C039
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Method section: no quantitative claims, procedural description only'
+  type: methodological
+  evidence:
+  - exp_id: mvp_probe_v1
+  - exp_id: steering_107_L13
+  decisions: []
+  deprecated: false
+- id: C040
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Probes achieve 77.1% and 75.3% balanced accuracy
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_llama_v1
+  - exp_id: mvp_probe_v1
+  decisions: []
+  deprecated: false
+- id: C042
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Asymmetry ~7pp matches XNLI (+6.0, +6.7pp), not conflict-specific
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_llama_v1
+  - exp_id: mvp_probe_v1
+  - exp_id: xnli_baseline_110
+  decisions:
+  - decision: 'C2: asymmetry is general cross-lingual property'
+  deprecated: false
+- id: C045
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: L13 steering Fisher p=0.002, L28 no significant effect
+  type: quantitative
+  evidence:
+  - exp_id: steering_107_L13
+  - exp_id: steering_107
+  decisions:
+  - decision: Use causal influence not causal control
+  deprecated: false
+- id: C046
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Related Work: positioning only, no quantitative claims'
+  type: methodological
+  evidence:
+  - exp_id: mvp_probe_v1
+  decisions: []
+  deprecated: false
+- id: C047
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Probe accuracy on EN→EN peaks at layer 28 (88% depth), yet representation
+    steering succeeds only at layer 13 (41% depth; Fisher p=0.002)
+  type: quantitative
+  evidence:
+  - exp_id: steering_107_L13
+  - exp_id: mvp_probe_llama_v1
+  decisions:
+  - decision: Detection-decision dissociation is the central mechanistic finding
+  deprecated: false
+- id: C049
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Llama ZH→ZH probe peaks at L13, the same layer where steering succeeds
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_llama_v1
+  decisions:
+  - decision: Mid-layer serves dual role as cross-lingual alignment site and causal
+      locus
+  deprecated: false
+- id: C052
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: XNLI ZH→EN transfer advantage (+6.0 and +6.7 pp) closely matches conflict
+    task asymmetry (+7.2 pp), with overlapping CIs
+  type: quantitative
+  evidence:
+  - exp_id: xnli_baseline_110
+  - exp_id: mvp_probe_llama_v1
+  - exp_id: mvp_probe_v1
+  decisions:
+  - decision: Asymmetry is not conflict-specific, inherits from general cross-lingual
+      alignment
+  deprecated: false
+- id: C056
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: MLP gains positive for conflict (Qwen +3.84pp, Llama +5.21pp) but CI includes
+    zero for both models
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_v1
+  - exp_id: mvp_probe_llama_v1
+  decisions:
+  - decision: Reported as suggestive trend only, not as a claim
+  deprecated: false
+- id: C057
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Conflict signals are linearly detectable with balanced accuracies of 77.1%
+    and 75.3% on EN within-language detection
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_llama_v1
+  - exp_id: mvp_probe_v1
+  decisions:
+  - decision: Summary claim restating C1
+  deprecated: false
+- id: C059
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Transfer asymmetry (~7pp) matches XNLI non-conflict baseline in magnitude
+    and direction
+  type: quantitative
+  evidence:
+  - exp_id: xnli_baseline_110
+  - exp_id: mvp_probe_v1
+  - exp_id: mvp_probe_llama_v1
+  decisions:
+  - decision: Summary claim restating C2
+  deprecated: false
+- id: C062
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Probe peak at L28 (88% depth) but steering succeeds only at L13 (41% depth;
+    Fisher p=0.002)
+  type: quantitative
+  evidence:
+  - exp_id: steering_107_L13
+  - exp_id: mvp_probe_llama_v1
+  decisions:
+  - decision: Summary claim restating detection-decision dissociation
+  deprecated: false
+- id: C063
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-lingual transfer asymmetry: ZH->EN exceeds EN->ZH by approximately
+    7 percentage points'
+  type: quantitative
+  evidence:
+  - exp_id: mvp_probe_v1
+  - exp_id: mvp_probe_llama_v1
+  decisions:
+  - decision: Abstract summary of C2 asymmetry
+  deprecated: false
+- id: C065
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Asymmetry matches XNLI non-conflict baseline in magnitude and direction with
+    overlapping CIs
+  type: quantitative
+  evidence:
+  - exp_id: xnli_baseline_110
+  decisions:
+  - decision: Asymmetry is general cross-lingual property
+  deprecated: false
+- id: C068
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Probe signal peaks at late layers (88% depth) but steering achieves causal
+    influence only at mid-layer (41% depth)
+  type: quantitative
+  evidence:
+  - exp_id: steering_107_L13
+  - exp_id: mvp_probe_llama_v1
+  decisions:
+  - decision: Abstract summary of detection-decision dissociation
+  deprecated: false
+- id: C069
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Llama asymmetry 7.3pp, CI [0.4, 14.0], p=0.038 (n=2000 bootstrap)
+  type: quantitative
+  evidence:
+  - exp_id: bootstrap_n2000_111
+  decisions:
+  - decision: Updated from n=100 to n=2000 bootstrap
+  deprecated: false
+tables:
+- id: t1
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: r1
+    col: c1
+    value: '77.1'
+    source:
+      exp_id: mvp_probe_llama_v1
+      metric: bal_acc
+  deprecated: true
+- id: tab:main_results
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: EN-EN
+    col: Llama
+    value: '77.1'
+    source:
+      exp_id: mvp_probe_llama_v1
+      metric: balanced_accuracy_mean
+  - row: EN-ZH
+    col: Llama
+    value: '64.1'
+    source:
+      exp_id: mvp_probe_llama_v1
+      metric: balanced_accuracy_mean
+  - row: Delta
+    col: Qwen
+    value: +7.2 [-0.6,13.7]
+    source:
+      exp_id: mvp_probe_v1
+      metric: asymmetry_n2000
+  deprecated: false
+- id: tab:steering
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: L13_a5
+    col: all
+    value: 19.9/6.6/0.002
+    source:
+      exp_id: steering_107_L13
+      metric: alpha_5
+  - row: L13_a-20
+    col: all
+    value: 36.0/17.6/<0.001
+    source:
+      exp_id: steering_107_L13
+      metric: alpha_neg20
+  deprecated: false
+figures:
+- id: fig1
+  location:
+    section: experiments_test4
+    figure_number: 0
+  caption: test
+  type: line
+  source:
+    exp_id: exp1
+  output_path: fig1.pdf
+  deprecated: false
+- id: fig_layer_probe
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Layer-wise probe accuracy
+  type: line_plot
+  source:
+    exp_id: mvp_probe_llama_v1
+  output_path: figures/paper/fig2_layer_probe.pdf
+  deprecated: false
+- id: fig_asymmetry_forest
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Asymmetry forest plot
+  type: forest_plot
+  source:
+    exp_id: xnli_baseline_110
+  output_path: figures/paper/fig3_asymmetry_forest.pdf
+  deprecated: false
+- id: fig2_layer_probe
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Layer-wise probe balanced accuracy with steering overlay
+  type: statistical
+  source:
+    exp_id: mvp_probe_v1, mvp_probe_llama_v1, steering_107_L13
+  output_path: figures/paper/fig2_layerwise_probes.pdf
+  deprecated: false
+- id: fig3_asymmetry_forest
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Transfer asymmetry forest plot, conflict vs XNLI
+  type: statistical
+  source:
+    exp_id: mvp_probe_v1, mvp_probe_llama_v1, xnli_baseline_110, bootstrap_n2000_111
+  output_path: figures/paper/fig3_asymmetry_forest.pdf
+  deprecated: false
+_completeness:
+  coverage: 26/31
+  claims: 26
+  tables: 2
+  figures: 5
+  tier_counts:
+    tier1: 0
+    tier2: 26
+    tier3: 5
+    tierX: 0
+  last_checked: '2026-05-26T10:10:55.195302+00:00'

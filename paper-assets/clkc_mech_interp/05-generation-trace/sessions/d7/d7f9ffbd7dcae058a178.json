@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7f9ffbd7dcae058a178",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code restore probe results",
+  "task_key": "worker_code_restore_probe_results_20260521T224344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_restore_probe_results_20260521T224344_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "607ec7b978ff824f36e059eb57ea6a9659c081b4b32210929b0a1dd847e92f8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`probe_results.json` 已恢复为单 seed 格式。\n\n**恢复结果摘要：**\n\n| 方向 | balanced_acc | f1 | peak_layer |\n|------|-------------|------|-----------|\n| EN→EN | 0.7757 | 0.7814 | 28 |\n| ZH→ZH | 0.7206 | 0.7121 | 13 |\n| EN→ZH | 0.5956 | 0.5635 | 5 |\n| ZH→EN | 0.7132 | 0.7516 | 15 |\n\n5-seed 验证确认所有 seed 结果完全一致（std=0.0000），lbfgs 确定性成立。从 seed 0 提取写回。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-restore-probe-results.md"
+}

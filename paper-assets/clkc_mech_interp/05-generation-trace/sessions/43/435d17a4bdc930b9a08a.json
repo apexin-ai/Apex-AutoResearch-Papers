@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "435d17a4bdc930b9a08a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fig1 hero restyle v2",
+  "task_key": "worker_code_fig1-hero-restyle-v2_20260525T143014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-hero-restyle-v2_20260525T143014_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "9bd1c1dda53ae9b1df4701b15c435505d2d3834de0c26bf3f0ef1d7e1f6b456c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证清单：\n\n- [x] 圆角色块、深色头条带、sans-serif 字体\n- [x] 无逐层 32 个灰色格子（改为渐变色块概念）\n- [x] Panel (b) 无具体 accuracy 数字\n- [x] Panel (c) L13/L16 因果数据保留（p < 0.001 ***, p = 0.005 **）\n- [x] Panel (c) 标注 \"Upper layers (no causal effect)\" + p = 0.284 (n.s.)\n- [x] \"Detection ≠ Decision\" 为深色 pill/badge\n- [x] ZH 文字（居里夫人出生于巴黎、巴黎）正确渲染\n- [x] PDF + PNG 生成，PDF 已复制到 `docs/paper/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-hero-restyle-v2.md"
+}

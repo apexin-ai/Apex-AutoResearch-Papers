@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d49a975c6805541504c",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra diagnose qwen model",
+  "task_key": "worker_infra_diagnose_qwen_model_20260521T160023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_diagnose_qwen_model_20260521T160023_result.json",
+    "occurrence": 1,
+    "bytes": 1924,
+    "sha256": "12b8c25569644614a0375baf31117ba084aad7261cd69c7fa587b01f727696b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "HF API 请求超时（AutoDL 未开代理），但已有足够信息。汇总所有结果：\n\n---\n\n## 诊断结果\n\n### 1. Qwen3-8B-Instruct 下载残留\n\n`/root/models/Qwen/Qwen3-8B-Instruct/` 目录存在，但**只有一个 45 字节的 `.mdl` 文件**（ModelScope 下载标记），内容含 `\"id\": \"Qwen/Qwen3-8B-Instruct\"`。没有任何模型文件，下载失败。\n\n### 2. Qwen3-8B 是否为 Instruct 版本\n\n**是。** 证据：\n- `config.json`: 架构 `Qwen3ForCausalLM`，36层，hidden_size=4096，完整模型\n- `generation_config.json`: 含 `temperature: 0.6, top_k: 20, top_p: 0.95` — 典型 instruct 采样参数\n- `tokenizer_config.json`: **包含 `chat_template`**（grep 命中 1 次）— 确认是 chat/instruct 模型\n\n**结论：之前 worker 的判断正确——Qwen3 系列不区分 Base/Instruct，`Qwen3-8B` 本身就是指令微调模型。**\n\n### 3. HF 模型验证\n\nAPI 调用超时（AutoDL 未 `source /etc/network_turbo` 启用代理），无法在线确认。但本地模型元数据已充分证明 Qwen3-8B = Instruct。\n\n### 4. Qwen verify 进程\n\n```\nPID 11288 — python -u src/verify_parame... — 运行 58 分 14 秒\n```\n正在运行。`/root/clkc_mech_interp/data/qwen3/` 目录**不存在**，尚未产出 verified 文件。\n\n### 5. 翻译进程\n\n```\nPID 14004 — python -u src/translate_to_... — 运行 37 分 38 秒\n```\n正在运行。进度：**70/1096**（~6.4%），partial 文件 50 行（checkpoint 在 50 条时保存）。\n\n### 6. GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX PRO 6000 Blackwell | 16.3/97.9 GB | 85% |\n| 1 | RTX PRO 6000 Blackwell | 16.5/97.9 GB | 86% |\n| 2 | RTX PRO 6000 Blackwell | 0/97.9 GB | 0% |\n| 3 | RTX PRO 6000 Blackwell | 0/97.9 GB | 0% |\n\nGPU 0-1 在工作（对应 verify 和 translate 进程），GPU 2-3 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-qwen-model.md"
+}

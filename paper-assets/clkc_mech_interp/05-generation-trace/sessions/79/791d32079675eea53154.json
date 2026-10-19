@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "id": "791d32079675eea53154",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "code fig3 gemma data and regen",
+  "task_key": "worker_code_fig3-gemma-data-and-regen_20260526T084730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig3-gemma-data-and-regen_20260526T084730.log",
+    "occurrence": 1,
+    "bytes": 3788386,
+    "sha256": "1312b4ffdb179e4fa5dde511ebc0c750a02bc9096cc70e8306a913dfeb9316cc"
+  },
+  "statistics": {
+    "messages": 1911,
+    "user_turns": 8,
+    "tool_calls": 649,
+    "roles": {
+      "log": 1,
+      "system": 507,
+      "record": 3,
+      "assistant": 94,
+      "tool_call": 649,
+      "tool_result": 649,
+      "user": 8
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 71,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0001.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 333,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0001.json",
+          "message_count": 109
+        },
+        {
+          "path": "791d32079675eea53154-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "791d32079675eea53154-part-0003.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0003.json",
+          "message_count": 50
+        },
+        {
+          "path": "791d32079675eea53154-part-0004.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 501,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0004.json",
+          "message_count": 162
+        },
+        {
+          "path": "791d32079675eea53154-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "791d32079675eea53154-part-0006.json",
+          "message_count": 159
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 289,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0006.json",
+          "message_count": 21
+        },
+        {
+          "path": "791d32079675eea53154-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "791d32079675eea53154-part-0008.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0008.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0008.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0008.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 596,
+      "chunks": [
+        {
+          "path": "791d32079675eea53154-part-0008.json",
+          "message_count": 39
+        },
+        {
+          "path": "791d32079675eea53154-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "791d32079675eea53154-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "791d32079675eea53154-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "791d32079675eea53154-part-0012.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fig3-gemma-data-and-regen.md"
+}

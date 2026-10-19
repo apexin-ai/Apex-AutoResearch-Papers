@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68fd017a984140cbc6ce",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp steering llama L16 123",
+  "task_key": "worker_exp_steering-llama-L16-123_20260523T103815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering-llama-L16-123_20260523T103815_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "e8eaef0a426cec3f4e69099df41882894e99ccd4cf4d1fa3e7e6e9cadf4053b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，结果已在上方报告。该后台定时器不再需要。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-steering-llama-l16-123.md"
+}

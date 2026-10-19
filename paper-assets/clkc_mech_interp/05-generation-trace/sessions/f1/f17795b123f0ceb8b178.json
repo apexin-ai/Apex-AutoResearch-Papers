@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f17795b123f0ceb8b178",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code steering fix v3 107",
+  "task_key": "worker_code_steering-fix-v3-107_20260522T084838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_steering-fix-v3-107_20260522T084838_result.json",
+    "occurrence": 1,
+    "bytes": 2476,
+    "sha256": "b7f5f4a71de4613c5b770b9ba6b3f23f206b75d498c195ade5f5575809053f9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在正常跑 baseline（136 samples），没有崩溃。\n\n---\n\n## 汇报\n\n### 修复内容\n**SteeringHook.__call__** 两处改动：\n1. **2D case (KV cache decode)**：`h += self.alpha * d.unsqueeze(0)` → `h[-1] += self.alpha * d` — 只 steer 最后一个 position，与 3D case 的 `position=\"last\"` 行为一致\n2. **3D \"all\" case**：去掉冗余的 `.unsqueeze(0).unsqueeze(0)`，PyTorch broadcasting 自动处理\n3. `return output` 保持不变（已经是直接返回原 output，in-place 修改生效）\n\n其余代码无需改动：`self.applied` 初始化、`reset()` 方法、主循环中 `hook.reset()` 调用都已正确。\n\n### Dry-run 结果\n- `--dry_run` 数据验证通过：peak_layer=28, probe_acc=0.7757, 136 conflict samples\n- **1-sample hook 测试全部通过**：baseline / alpha=5 / alpha=-5 三次 generate 均成功，无 IndexError 或 tuple 错误\n\n### classify_answer 逻辑分析（不改动，报告给 Director）\n\n当前逻辑链：\n1. `extract_answer_entity(contextual)` — 用正则从全句 contextual_answer 中提取实体（匹配 \"is/was/born in/located in/written by\" 等模式），匹配失败则返回原句\n2. `answers_match(candidate, reference)` — normalize 后做 **substring containment**（`r in c or c in r`）+ **last-word matching**\n3. 分类：ctx_match ∧ ¬param → contextual；param ∧ ¬ctx → parametric；both match → both；neither match → neither\n\n**46.3% both/neither 率的可能原因：**\n- **substring containment 过于宽泛**：如果 parametric 和 contextual 答案有共同子串（如地名、人名的部分重叠），两者都匹配 → \"both\" 膨胀\n- **extract_answer_entity 覆盖不全**：如果 contextual_answer 不匹配任何预设正则模式，回退到全句比较，substring 更容易误匹配\n- **last-word matching 误报**：如果两个答案末尾恰好相同（如都以 \"Smith\" 结尾），可能把不同答案都判为 match\n- 测试样本中 baseline response 也判为 \"both\"（hook test 中就出现了），说明这是 classify_answer 本身的问题，不是 steering 引入的\n\n**建议方向**（供 Director 决策）：改用 exact entity match 或 token-level F1，去掉 substring containment 的宽松分支。\n\n### 提交状态\n完整实验已在 westd-41302 后台运行（PID=470287），136 samples × 10 alphas × (steering + control)，日志在 `/tmp/steering_107.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-steering-fix-v3-107.md"
+}

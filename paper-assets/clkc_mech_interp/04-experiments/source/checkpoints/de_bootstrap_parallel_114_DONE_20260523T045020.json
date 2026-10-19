@@ -1,0 +1,29 @@
+{
+  "exp_id": "de_bootstrap_parallel_114",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:03:13.084Z",
+    "updated_at": "2026-05-23T04:50:20.593Z",
+    "hypothesis": "Llama-3.1-8B-Instruct EN↔DE 跨语言探针迁移 bootstrap n=2000（64 workers 并行）。4 方向：EN→EN, DE→DE, EN→DE, DE→EN。测试 Δ_asym = (DE→EN - EN→DE) 是否显著为正，与 ZH 的 +7pp 不对称性方向一致，验证 C2 跨语言属性 claim。parent=de_activations_112",
+    "parent": "de_activations_112",
+    "spec": {
+      "command": "nohup python -u src/bootstrap_de_parallel.py --n_bootstrap 2000 --n_workers 64",
+      "server": "westd-41302",
+      "data_path": "data/llama31/{en,de}_activations.pt",
+      "data_count": 1368,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": "0-1999",
+      "checkpoint_source": "data/llama31/{en,de}_activations.pt",
+      "eval_data": "data/llama31/de_bootstrap_n2000_results.json",
+      "kill_reason": "BLAS thread explosion (load 950), restarting with OMP_NUM_THREADS=1. 43min progress lost, acceptable."
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-23T04:50:20.593Z"
+  },
+  "timestamp": "2026-05-23T04:50:20.673777+00:00",
+  "trigger": "update_registry"
+}

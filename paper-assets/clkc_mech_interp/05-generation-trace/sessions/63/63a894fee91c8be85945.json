@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63a894fee91c8be85945",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra fix path bug urgent",
+  "task_key": "worker_infra_fix_path_bug_urgent_20260521T234337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_path_bug_urgent_20260521T234337_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "807177192d4cc589254c7b2b9d28f576ab8e409e5151c2d1857e669d68acb7fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**Bug 修复**\n- 创建了双重路径目录 `data/{model}/data/{model}/`，防止 Llama 结果丢失\n- 修复了 `train_probe.py` 中的 `output_filename` 逻辑：`--output_file` 传入完整路径时只取 basename，避免与 `--output_dir` 重复拼接\n- Llama 结果已从错误路径复制到正确路径\n\n**Qwen 结果从 log 恢复完成**\n\n**两模型 n=100 Bootstrap 最终结果**\n\n| 方向 | Llama-3.1 bal_acc | Qwen-3 bal_acc |\n|------|-------------------|----------------|\n| EN→EN | 0.7710±0.0119 | 0.7528±0.0168 |\n| ZH→ZH | 0.7124±0.0127 | 0.7162±0.0179 |\n| EN→ZH | 0.6405±0.0245 | 0.6496±0.0273 |\n| ZH→EN | 0.7127±0.0270 | 0.7215±0.0256 |\n\n两模型跨语言迁移格局一致：同语言 > 跨语言，ZH→EN 迁移优于 EN→ZH。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-path-bug-urgent.md"
+}

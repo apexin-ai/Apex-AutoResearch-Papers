@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a04b3b38c875d4b46b8",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code probe pipeline",
+  "task_key": "worker_code_probe_pipeline_20260521T122439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe_pipeline_20260521T122439_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "552d210a939be28907e94e954b094064ee70554e3708d3b8159b28f9404b8786"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部就绪，验证通过。\n\n**创建的文件：**\n\n| 文件 | 说明 |\n|------|------|\n| `src/collect_activations.py` | Hook 所有层残差流，取最后 token 激活，存 `(N, L, D)` tensor |\n| `src/train_probe.py` | 逐层 logistic regression + 4 方向迁移评估 + binomial/permutation test + 可视化 |\n| `src/run_mvp.sh` | 一键运行脚本，支持 `--model`/`--data_dir`/`--batch_size` 参数 |\n\n**补装的依赖：** scikit-learn, scipy, matplotlib, numpy, torch (CPU), transformers\n\n**修复：** `scipy.stats.binom_test` 在 scipy≥1.12 已移除，改用 `binomtest(...).pvalue`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-probe-pipeline.md"
+}

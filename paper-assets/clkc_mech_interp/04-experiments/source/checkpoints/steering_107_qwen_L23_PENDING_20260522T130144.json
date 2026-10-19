@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_107_qwen_L23",
+  "project": "clkc_mech_interp",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:01:30.907Z",
+    "updated_at": "2026-05-22T13:01:44.362Z",
+    "hypothesis": "Linear probe 在 Qwen3-8B L23 的冲突检测 accuracy ~75%。若 L23 probe weight 方向的 steering 能产生因果效应（flip rate > control），将证明 probe 捕获的方向在 Qwen 中具有因果意义。与 Llama 的 4 个 NEGATIVE 变体对比，可判断 steering 失败是 Llama 特有还是跨模型普遍现象。parent=steering_107",
+    "parent": "steering_107"
+  },
+  "timestamp": "2026-05-22T13:01:44.437907+00:00",
+  "trigger": "update_registry"
+}

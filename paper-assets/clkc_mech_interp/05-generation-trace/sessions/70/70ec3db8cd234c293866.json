@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70ec3db8cd234c293866",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis de integrate run",
+  "task_key": "worker_analysis_de-integrate-run_20260523T070627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_de-integrate-run_20260523T070627_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "31f47fa221ee8d7e04f0f395d58ff94ef140b853673a25f92ec35d240a1b2991"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 屏幕输出 — 4 方向表格\n\n| Direction | Peak Layer | Bal Acc (mean) | 95% CI |\n|-----------|-----------|----------------|--------|\n| EN→EN | 18 | 0.7709 | [0.7463, 0.7978] |\n| DE→DE | 13 | 0.7626 | [0.7390, 0.7868] |\n| EN→DE | 16 | 0.6923 | [0.6324, 0.7390] |\n| DE→EN | 13 | 0.7047 | [0.6654, 0.7426] |\n\n### Δ_asym\n\n- **Δ_DE** = (DE→EN) − (EN→DE) = **+1.24pp**, 95% CI [−4.78, 8.09], p = 0.4045 (**不显著**)\n\n### 跨语言对比\n\n| Metric | EN-ZH | EN-DE |\n|--------|-------|-------|\n| Δ_asym (pp) | +7.3 [0.4, 14.0] p=0.038 | +1.24 [−4.78, 8.09] p=0.4045 |\n| Token overlap (%) | 3.4% | 14.77% |\n\n### Scenario 判定：**Scenario A**\n\nDE 的 token overlap 高达 14.77%（远高于 ZH 的 3.4%），但不对称性反而不显著（p=0.40），说明 token overlap 不是驱动 EN-ZH 不对称性的原因。\n\nJSON summary 已保存至 `data/llama31/de_integration_summary.json`，内容与上述一致，`\"scenario\": \"A\"`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-de-integrate-run.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d37ac082294e8f5c4325",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra status and push v2",
+  "task_key": "worker_infra_status_and_push_v2_20260521T194953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_status_and_push_v2_20260521T194953_result.json",
+    "occurrence": 1,
+    "bytes": 1520,
+    "sha256": "9bb7aaf74da9d670355d7357e3b00f44c17fd7911f719c73ef165058802eae40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "COMET 已开始 back-translation，长时间运行中（qwen: 798 条, llama: 1096 条）。\n\n---\n\n```\n[状态]\nGPU 0: 空闲 (0 MiB)\nGPU 1: COMET qwen 验证中 (16GB, back-translating 798 × 4 fields)\nGPU 2: COMET llama 验证中 (16GB, back-translating 1096 × 4 fields)\nGPU 3: 空闲 (0 MiB) — ZH 翻译 v2 已完成\n\nQwen EN activations: ✅ [966, 36, 4096]\nQwen ZH activations: ✅ [1116, 36, 4096]\nQwen ZH translate v2: ✅ train 798 / test 168\nCOMET model: ✅ 已就绪 (wmt22-comet-da)\n\n[已启动]\n- comet_qwen_v5 (GPU 1): back-translation + COMET scoring for qwen3\n- comet_llama_v5 (GPU 2): back-translation + COMET scoring for llama31\n  预计 30-60 分钟\n\n[探针结果 — Qwen3-8B, 全 4 方向]\nEN→EN: 75.00% (layer 24), binomial p<1e-6, permutation p=0.000\nZH→ZH: 63.03% (layer 21), binomial p=3.5e-5, permutation p=0.000\nEN→ZH: 63.45% (layer 22), binomial p=2.0e-5, permutation p=0.000\nZH→EN: 62.50% (layer 19), binomial p=7.4e-4, permutation p=0.010\n\nGate: PASS — 全部 4 方向均显著高于 chance (50%)，\n跨语言迁移成立 (EN→ZH/ZH→EN 均 p<0.05)\n```\n\n关键发现：\n- 同语言探针 (EN→EN 75%, ZH→ZH 63%) 均强于跨语言 (EN→ZH 63.5%, ZH→EN 62.5%)\n- EN 侧信号更强（75% vs 63%），可能反映 Qwen3 英文训练数据优势\n- 最佳层集中在 19-24 层（中上层），符合知识编码在中间层的假设\n- 跨语言迁移虽显著但弱于同语言，暗示 partial language-specific encoding"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-status-and-push-v2.md"
+}

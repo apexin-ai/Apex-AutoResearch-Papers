@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a0ff841b81fcc6d67b47",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp steering llama L16 127",
+  "task_key": "worker_exp_steering-llama-L16-127_20260524T004213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering-llama-L16-127_20260524T004213.log",
+    "occurrence": 1,
+    "bytes": 511398,
+    "sha256": "b9bda1b3c4cf2aaeaded5dd40eca2df9043b844cce04cedc46b943ee134427ab"
+  },
+  "statistics": {
+    "messages": 536,
+    "user_turns": 0,
+    "tool_calls": 257,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 257,
+      "tool_result": 257,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 536,
+      "chunks": [
+        {
+          "path": "a0ff841b81fcc6d67b47-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0ff841b81fcc6d67b47-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0ff841b81fcc6d67b47-part-0003.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-steering-llama-l16-127.md"
+}

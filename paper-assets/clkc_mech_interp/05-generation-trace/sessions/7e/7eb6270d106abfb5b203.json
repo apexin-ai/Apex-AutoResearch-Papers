@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7eb6270d106abfb5b203",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code regen bootstrap n2000",
+  "task_key": "worker_code_regen-bootstrap-n2000_20260525T201348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_regen-bootstrap-n2000_20260525T201348_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "badb7277391bf6283e95d4ac85422f7412295beb939ba712bab3995c46b4965c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ZH activations 只在 `gemma2_v2` 目录下存在，Llama 和 Qwen 均缺失。\n\n## 结果报告\n\n**无法执行 bootstrap probe 训练。** 前置条件不满足：\n\n### 缺失文件\n| 模型 | 缺失文件 | 说明 |\n|------|----------|------|\n| Llama-3.1 | `/root/clkc_mech_interp/data/llama31/zh_activations.pt` | 需要 GPU 重新生成 |\n| Qwen-3 | `/root/clkc_mech_interp/data/qwen3/zh_activations.pt` | 需要 GPU 重新生成 |\n\n### 已有文件\n- `data/llama31/en_activations.pt` (400MB, 2026-05-24)\n- `data/qwen3/en_activations.pt` (399MB, 2026-05-24)\n- ZH activations 仅存在于 `data/gemma2_v2/zh_activations.pt`\n\n### 影响\nBootstrap n=2000 需要 EN 和 ZH 两个语言的 activations 才能产出 4 方向数据（EN→EN, ZH→ZH, EN→ZH, ZH→EN）。仅有 EN 无法生成论文所需的跨语言对比数据和 asymmetry CI。\n\n### 下一步\n需要先用 GPU 运行 `collect_activations.py` 生成 Llama 和 Qwen 的 ZH activations，之后才能执行 bootstrap probe 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-regen-bootstrap-n2000.md"
+}

@@ -1,0 +1,165 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Models.}
+We probe two instruction-tuned models with comparable parameter counts but distinct architectures: Llama-3.1-8B-Instruct (32 layers, hidden dimension 4096) \citep{grattafiori2024llama} and Qwen3-8B (36 layers, hidden dimension 4096) \citep{yang2024qwen25}.
+
+\paragraph{Dataset.}
+We use ConflictQA \citep{xie2024adaptive}, a benchmark of context-parametric knowledge conflicts where a provided context contradicts the model's parametric knowledge.
+After verifying that each model can correctly answer the parametric-knowledge question without context, we retain 1{,}368 samples for Llama (1{,}096 train / 272 test) and 966 samples for Qwen (773 train / 193 test), split 80/20 with stratification.
+
+\paragraph{Translation.}
+We translate all English contexts and questions into Chinese using a Qwen3-8B translation pipeline (EN$\to$ZH), with quality validated by COMET \citep{rei2020comet} back-translation scores.
+
+\paragraph{Probing.}
+For each layer $l$, we train a logistic regression probe on the last-token residual stream representation $\mathbf{h}_l$, with binary labels indicating whether the model chose the contextual or parametric answer.
+We report balanced accuracy to account for class imbalance.
+All confidence intervals (CIs) are computed via bootstrap resampling ($n = 2{,}000$) with paired differences for asymmetry estimation.
+
+\paragraph{Non-conflict baseline.}
+To test whether cross-lingual transfer patterns are specific to knowledge conflicts, we run the same probing pipeline on XNLI \citep{conneau2018xnli}, classifying entailment versus contradiction.
+
+\subsection{Within-Language Conflict Detection}
+\label{sec:within_lang}
+
+Table~\ref{tab:main_results} reports balanced accuracy for all probe transfer directions.
+Both models encode linearly detectable conflict signals in their residual streams.
+Llama achieves 77.6\% on EN$\to$EN (peak at layer 28, 88\% depth) and 72.1\% on ZH$\to$ZH (peak at layer 13, 41\% depth).
+Qwen reaches 75.3\% on EN$\to$EN (peak at layer 22, 61\% depth) and 72.6\% on ZH$\to$ZH (peak at layer 14, 39\% depth).
+All within-language accuracies are significantly above chance (binomial $p < 0.001$).
+Figure~\ref{fig:layer_probe} shows the layer-wise probe accuracy curves for both models.
+These results confirm that knowledge conflict signals are linearly separable in the residual stream across both architectures and both languages.
+
+\subsection{Cross-Lingual Transfer and Asymmetry}
+\label{sec:cross_lingual}
+
+All four cross-lingual transfer directions achieve balanced accuracy above chance (binomial $p < 0.001$; Table~\ref{tab:main_results}), confirming that conflict representations partially overlap across languages.
+Both models show a consistent asymmetry: probes trained on Chinese representations transfer to English (ZH$\to$EN) more accurately than the reverse direction (EN$\to$ZH).
+For Llama, the asymmetry $\Delta_{\text{asym}} = +7.2$ percentage points (pp), with a 95\% bootstrap CI of [1.1, 13.6] that excludes zero.
+For Qwen, $\Delta_{\text{asym}} = +7.2$ pp with CI [$-$1.2, 13.4], which contains zero and is therefore not statistically significant at $\alpha = 0.05$.
+The consistent direction of asymmetry across architectures suggests a shared structural property rather than a model-specific artifact (Figure~\ref{fig:asymmetry_forest}).
+
+%% Table 1: Main cross-lingual probe results
+\begin{table}[t]
+\centering
+\caption{Cross-lingual probe balanced accuracy (\%) with bootstrap 95\% CIs ($n = 2{,}000$). $\Delta_{\text{asym}}$ = acc(ZH$\to$EN) $-$ acc(EN$\to$ZH), computed as the mean of paired bootstrap differences. Bold: best per-task direction.}
+\label{tab:main_results}
+\begin{tabular}{lcc}
+\toprule
+Direction & Llama-3.1-8B & Qwen3-8B \\
+\midrule
+\multicolumn{3}{l}{\textit{Conflict Task}} \\
+EN $\to$ EN & \textbf{77.6} & \textbf{75.3} \\
+ZH $\to$ ZH & 72.1 & 72.6 \\
+EN $\to$ ZH & 59.6 & 67.3 \\
+ZH $\to$ EN & 71.3 & 73.2 \\
+$\Delta_{\text{asym}}$ & +7.2 [1.1, 13.6] & +7.2 [$-$1.2, 13.4] \\
+\midrule
+\multicolumn{3}{l}{\textit{XNLI Baseline}} \\
+EN $\to$ EN & 94.0 & 96.6 \\
+ZH $\to$ ZH & 87.5 & 89.5 \\
+EN $\to$ ZH & 89.0 & 90.5 \\
+ZH $\to$ EN & \textbf{94.9} & \textbf{97.2} \\
+$\Delta_{\text{asym}}$ & +6.0 [0.9, 11.3] & +6.7 [2.4, 11.7] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Non-Conflict Baseline Comparison}
+\label{sec:xnli_baseline}
+
+If the ZH$\to$EN transfer advantage were specific to knowledge conflicts, it should be absent or substantially reduced in a non-conflict semantic task.
+We test this prediction using XNLI entailment-versus-contradiction probes.
+Both models achieve high within-language accuracy on XNLI (Llama 94.0\% EN, 87.5\% ZH; Qwen 96.6\% EN, 89.5\% ZH), confirming that the probing pipeline captures semantic distinctions beyond knowledge conflicts.
+The XNLI probes exhibit the same directional asymmetry: Llama $\Delta_{\text{asym}} = +6.0$ pp, CI [0.9, 11.3]; Qwen $\Delta_{\text{asym}} = +6.7$ pp, CI [2.4, 11.7].
+Both XNLI CIs exclude zero, and both overlap substantially with the corresponding conflict-task CIs (Figure~\ref{fig:asymmetry_forest}).
+The transfer asymmetry is therefore not specific to knowledge conflict representations but reflects a general cross-lingual property of these models: Chinese-trained probes transfer to English more readily than the reverse, regardless of the downstream task.
+
+\subsection{Confound Exclusion}
+\label{sec:confounds}
+
+Two potential confounds could inflate cross-lingual probe accuracy: translation quality and lexical overlap between English and Chinese inputs.
+
+\paragraph{Translation quality.}
+We stratify test samples by COMET score into terciles (high, medium, low) and compare EN$\to$ZH probe accuracy across strata.
+If translation quality drove probe transfer, high-COMET samples would yield higher accuracy.
+Table~\ref{tab:confound} shows no such pattern: Qwen exhibits a reversed direction ($\Delta = -5.6$ pp, Fisher $p = 0.695$), and Llama shows a negligible effect ($\Delta = +1.7$ pp, Fisher $p = 0.761$).
+Translation quality does not confound the cross-lingual transfer results.
+
+\paragraph{Token overlap.}
+Per-sample Jaccard similarity between English and Chinese tokenized inputs averages 3--4\%, consistent with the minimal lexical overlap between the two languages.
+Neither model shows a positive correlation between token overlap and probe accuracy: Qwen yields no significant correlation ($p > 0.4$), and Llama shows a weak negative correlation ($r = -0.15$, $p = 0.012$), where higher overlap is associated with \emph{lower} accuracy.
+Shared tokens do not drive cross-lingual transfer.
+
+%% Table 2: Confound exclusion
+\begin{table}[t]
+\centering
+\caption{Confound exclusion analysis. COMET tercile: $\Delta$ = balanced accuracy difference between high and low COMET score terciles for EN$\to$ZH probes (Fisher's exact test). Token overlap: Pearson correlation between per-sample Jaccard similarity and EN$\to$ZH probe accuracy.}
+\label{tab:confound}
+\begin{tabular}{llrl}
+\toprule
+Confound & Model & Result & $p$ \\
+\midrule
+COMET tercile & Qwen & $\Delta = -5.6$ pp & 0.695 \\
+COMET tercile & Llama & $\Delta = +1.7$ pp & 0.761 \\
+\midrule
+Token overlap & Qwen & n.s. & $>$0.4 \\
+Token overlap & Llama & $r = -0.15$ & 0.012 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Causal Evidence via Representation Steering}
+\label{sec:steering}
+
+The probing results establish that conflict signals are detectable, but detection does not imply causal relevance.
+We test whether the probe weight direction $\mathbf{w}_{\text{probe}}$ causally influences conflict resolution by injecting $\alpha \cdot \mathbf{w}_{\text{probe}}$ into the last-token residual stream at a target layer during inference.
+We measure the flip rate (fraction of samples that switch answer category) and compare against a random-direction control of equal magnitude via Fisher's exact test.
+
+\paragraph{L13 (mid-layer, 41\% depth).}
+Steering at layer 13 produces significantly more behavioral change than random controls in both directions (Table~\ref{tab:steering}).
+Positive steering ($\alpha = +5$) yields a flip rate of 19.9\% versus 6.6\% for the random control (Fisher $p = 0.002$), with all 4 directional flips moving from parametric to contextual answers.
+Negative steering ($\alpha = -20$) yields 36.0\% versus 17.6\% (Fisher $p < 0.001$), with 5 of 6 directional flips moving from contextual to parametric.
+Both results survive Bonferroni correction for multiple comparisons.
+The bidirectionality confirms that the probe weight vector encodes a meaningful axis of conflict resolution: positive perturbations push toward contextual answers, and negative perturbations push toward parametric answers.
+Steering at nearby L16 (50\% depth, just three layers away) showed no significant effect (all $p > 0.12$), indicating a remarkably narrow causal window.
+
+\paragraph{Negative layers.}
+Steering at L28 (the probing peak layer, 88\% depth) produces no significant effect with either last-token or all-position injection (all Fisher $p > 0.3$; Table~\ref{tab:steering}).
+L18 (the MLP probe peak, 56\% depth) also shows no causal influence (all Fisher $p > 0.44$).
+
+\paragraph{$\alpha = +20$ reversal.}
+At extreme perturbation magnitude ($\alpha = +20$), the control condition produces more flips than the steering condition ($p = 0.053$).
+This indicates coherence collapse at large perturbation magnitudes, constraining the effective steering range.
+
+\paragraph{Detection $\neq$ Decision.}
+The detectable conflict signal peaks at late layers (L28, 88\% depth), but causal influence on conflict resolution is localized to the mid-layer (L13, 41\% depth).
+Probing accuracy and causal relevance thus identify different computational stages: late layers encode the outcome of conflict resolution in a linearly readable form, while mid-layers host the computation that determines the outcome.
+
+%% Table 3: Steering results
+\begin{table}[t]
+\centering
+\caption{Representation steering results (Llama-3.1-8B). Flip rate: fraction of test samples switching answer category. Control: random-direction perturbation of equal magnitude. Significant results ($p < 0.05$) in bold.$^{\dagger}$}
+\label{tab:steering}
+\small
+\begin{tabular}{lcrrrrl}
+\toprule
+Layer & Depth & $\alpha$ & Steer (\%) & Ctrl (\%) & Fisher $p$ & Dir. \\
+\midrule
+\textbf{L13} & \textbf{41\%} & $\mathbf{+5}$ & \textbf{19.9} & \textbf{6.6} & $\mathbf{0.002}$ & \textbf{4 p$\to$c} \\
+\textbf{L13} & \textbf{41\%} & $\mathbf{-20}$ & \textbf{36.0} & \textbf{17.6} & $\mathbf{<0.001}$ & \textbf{5 c$\to$p} \\
+L16 & 50\% & $+5$ & 8.8 & 8.1 & 1.000 & \\
+L16 & 50\% & $+10$ & 18.4 & 11.0 & 0.123 & \\
+L16 & 50\% & $+20$ & 22.8 & 24.3 & 0.886 & \\
+L18 & 56\% & $+2$ & 3.7 & 1.5 & 0.447 & \\
+L28 & 88\% & $-20$ & 14.7 & 16.9 & 0.740 & \\
+L28 (all) & 88\% & $-20$ & 11.8 & 11.8 & 1.000 & \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize $^{\dagger}$ At $\alpha = +20$, the control flip rate exceeds steering ($p = 0.053$), indicating coherence collapse at extreme perturbation magnitudes.
+\end{flushleft}
+\end{table}

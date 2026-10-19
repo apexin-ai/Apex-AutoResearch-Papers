@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57294b69413de66b4868",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260522T145638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260522T145638_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "d44cc7a6b2894098277654cb2c8d36ada67bc833c4589d66eb075f63f7d0f7c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section written to `method.tex`. Key design choices:\n\n- All symbols ($\\mathbf{h}_l$, $f_\\theta$, $\\mathbf{w}_{\\text{probe}}$, $\\Delta_{\\text{asym}}$, $\\alpha$) defined at first use, consistent with Experiments section notation\n- Citations use `\\citep{}` with the specified bib keys; `\\citet{}` only for inline author references (Li et al., Zou et al.)\n- No em-dash, no -ing phrase endings, no banned transition words\n- ~1200 words, 7 subsections matching the outline\n- Figure~\\ref{fig:pipeline} referenced in the opening sentence\n- Equations numbered for cross-referencing (Eq.~\\ref{eq:asymmetry}, Eq.~\\ref{eq:steering})\n- Layer/depth conventions match Experiments (L13/41%, L18/56%, L28/88%)\n- Data splits match exactly (1,368/966, 80/20 stratified)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c39dc2726132ebabd38",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper research cluster56",
+  "task_key": "worker_paper_research_cluster56_20260522T140502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster56_20260522T140502_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "7608d787b3c1d660f405d122a70e032bf3b3c200c79ac38eab9fcbca82d7870a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "29 篇，符合 ≥28 要求。\n\n## 新增汇报\n\n### Cluster 5: Steering & Causal Intervention（+3 篇，现有 7 篇）\n\n| key | title | venue |\n|-----|-------|-------|\n| `li2023iti` | Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | NeurIPS 2023 |\n| `zou2023representation` | Representation Engineering: A Top-Down Approach to AI Transparency | arXiv 2023 |\n| `feng2026finegrained` | Fine-Grained Activation Steering: Steering Less, Achieving More | ICLR 2026 |\n\n### Cluster 6: Datasets & Evaluation Tools（+4 篇，现有 5 篇）\n\n| key | title | venue |\n|-----|-------|-------|\n| `conneau2018xnli` | XNLI: Evaluating Cross-lingual Sentence Representations | EMNLP 2018 |\n| `rei2020comet` | COMET: A Neural Framework for MT Evaluation | EMNLP 2020 |\n| `grattafiori2024llama` | The Llama 3 Herd of Models | arXiv 2024 |\n| `yang2024qwen25` | Qwen2.5 Technical Report | arXiv 2024 |\n\n所有 must_cite 论文均已找到并验证 URL。注意 ITI 论文实际发表于 2023 年（NeurIPS 2023），不是 2024。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster56.md"
+}

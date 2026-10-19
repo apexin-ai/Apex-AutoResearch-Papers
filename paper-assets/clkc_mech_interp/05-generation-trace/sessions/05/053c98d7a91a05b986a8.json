@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "053c98d7a91a05b986a8",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra piggyback data discovery",
+  "task_key": "worker_infra_piggyback-data-discovery_20260523T072645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_piggyback-data-discovery_20260523T072645_result.json",
+    "occurrence": 1,
+    "bytes": 2884,
+    "sha256": "91c4d5b4dc4294609b6625ae7411fd5b0da9568b8ecc1b6911ca0390ab08112e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已确认。汇报如下：\n\n---\n\n## Piggyback 实验数据路径确认\n\n### 1. Conflict 探针权重\n\n**⚠️ 不存在。** `train_probe.py` 使用 sklearn `LogisticRegression`，仅保存结果 JSON（`json.dump`），**不保存模型权重**（无 joblib/pickle/torch.save）。需要时须从激活文件重新训练。\n\n### 2. XNLI 探针权重\n\n**⚠️ 同上，不存在。**\n\n### 3. Conflict 激活文件\n\n| 模型 | en | zh | de | 路径前缀 |\n|------|:---:|:---:|:---:|------|\n| Llama3.1 | ✅ 342MB | ✅ 342MB | ✅ 342MB | `data/llama31/` |\n| Qwen3 | ✅ 272MB | ✅ 272MB | **❌ 缺失** | `data/qwen3/` |\n| Gemma2 | ✅ 457MB | ✅ 457MB | **❌ 缺失** | `data/gemma2/` |\n\n注意：**目录名是 `qwen3`**，不是 `qwen`。Qwen3 和 Gemma2 缺少德语 (`de_activations.pt`)。\n\n### 4. XNLI 激活文件\n\n| 模型 | en | zh | 路径前缀 |\n|------|:---:|:---:|------|\n| Llama3.1 | ✅ 250MB | ✅ 250MB | `data/xnli/llama31/` |\n| Qwen3 | ✅ 281MB | ✅ 281MB | `data/xnli/qwen3/` |\n| Gemma2 | ✅ 287MB | ✅ 287MB | `data/xnli/gemma2/` |\n\n全部齐全。\n\n### 5. Bootstrap n=2000 结果\n\n| 任务 | 模型 | 状态 | 路径 |\n|------|------|:---:|------|\n| Conflict | Llama3.1 | ✅ | `data/llama31/probe_results_bootstrap_n2000.json` |\n| Conflict | Qwen3 | ✅ | `data/qwen3/probe_results_bootstrap_n2000.json` |\n| Conflict | Gemma2 | ✅ | `data/gemma2/probe_results_bootstrap_n2000.json` |\n| Conflict(de) | Llama3.1 | ✅ | `data/llama31/de_bootstrap_n2000_results.json` |\n| XNLI | Gemma2 | ✅ | `data/xnli/gemma2/probe_results_bootstrap_n2000.json` |\n| XNLI | Llama3.1 | **❌ 缺失** | — |\n| XNLI | Qwen3 | **❌ 缺失** | — |\n\n### 6. Bootstrap JSON 格式（TOST 关键）\n\n**两种格式，都不保存原始 bootstrap Δ 分布：**\n\n- **Conflict 格式**（llama31/qwen3）：`per_layer` → `{en_en, en_zh, ...}` → `layer_N` → `{mean, std, ci_lower, ci_upper}` + `asymmetry_per_layer` → `layer_N` → `{mean_diff, ci_lower, ci_upper}` + `config: {n_seeds, n_jobs}`\n- **XNLI/de 格式**（gemma2、de）：`directions` → `{EN->EN, ...}` → `{balanced_accuracy_mean, std, ci_lo, ci_hi, f1_mean, f1_std, peak_layers: [2000个值]}`\n\n**⚠️ 如果 TOST 检验需要原始 per-bootstrap-sample 的 Δ 值，必须从激活文件重跑 bootstrap 并保存完整分布。**\n\n### 7. 缺失项汇总\n\n| # | 缺失 | 影响 |\n|---|------|------|\n| 1 | Qwen3 `de_activations.pt` | Conflict 德语三模型对比不齐 |\n| 2 | Gemma2 `de_activations.pt` | 同上 |\n| 3 | XNLI Llama3.1 bootstrap n=2000 | TOST 需重跑 |\n| 4 | XNLI Qwen3 bootstrap n=2000 | TOST 需重跑 |\n| 5 | 探针权重文件（全部模型） | piggyback 需从激活重新训练探针 |\n| 6 | 原始 bootstrap Δ 分布 | TOST 需修改 bootstrap 脚本保存 raw samples |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-piggyback-data-discovery.md"
+}

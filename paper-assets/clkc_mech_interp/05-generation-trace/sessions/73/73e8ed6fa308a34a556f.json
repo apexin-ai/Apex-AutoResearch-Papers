@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "73e8ed6fa308a34a556f",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "code anonymous repo prep",
+  "task_key": "worker_code_anonymous-repo-prep_20260525T083831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous-repo-prep_20260525T083831.log",
+    "occurrence": 1,
+    "bytes": 1833480,
+    "sha256": "abaf41b0c0ce318ded8544343e7914159c7f3cfe1888db34687c80bb6dbe2f67"
+  },
+  "statistics": {
+    "messages": 245,
+    "user_turns": 1,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 47,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 78,
+      "tool_result": 78,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "73e8ed6fa308a34a556f-part-0001.json",
+          "message_count": 76
+        },
+        {
+          "path": "73e8ed6fa308a34a556f-part-0002.json",
+          "message_count": 69
+        },
+        {
+          "path": "73e8ed6fa308a34a556f-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 91,
+      "chunks": [
+        {
+          "path": "73e8ed6fa308a34a556f-part-0003.json",
+          "message_count": 83
+        },
+        {
+          "path": "73e8ed6fa308a34a556f-part-0004.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-anonymous-repo-prep.md"
+}

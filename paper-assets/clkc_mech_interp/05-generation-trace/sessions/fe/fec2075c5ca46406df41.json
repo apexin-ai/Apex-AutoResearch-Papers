@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fec2075c5ca46406df41",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code bootstrap asymmetry",
+  "task_key": "worker_code_bootstrap_asymmetry_20260521T210858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_asymmetry_20260521T210858_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "da8929a2498141804429180fd924a95126b8c7e95bc4a71a55c42bfc3f57d1ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型都跑完了。结果如下：\n\n## Bootstrap Asymmetry 结果\n\n| | Llama-3.1 | Qwen-3 |\n|---|---|---|\n| ZH→EN bal_acc | 0.7647 (L15) | 0.6905 (L18) |\n| EN→ZH bal_acc | 0.6985 (L5) | 0.6429 (L23) |\n| Observed diff | +0.0662 | +0.0476 |\n| Bootstrap mean diff | +0.0670 | +0.0455 |\n| **95% CI** | **[-0.0095, 0.1392]** | **[-0.0471, 0.1382]** |\n| **CI excludes 0** | **No** | **No** |\n\n## 结论\n\n**两个模型的不对称 claim 均未获得统计显著性支撑。** 虽然 ZH→EN 方向在两个模型上都 point estimate 更高（Llama +6.6pp, Qwen +4.8pp），但 95% CI 均包含 0。当前 test set 规模（Llama 272, Qwen 168）下，这一差异无法与随机波动区分开。\n\n如果要 claim 不对称性，需要更大的 test set 或更强的效应量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-asymmetry.md"
+}

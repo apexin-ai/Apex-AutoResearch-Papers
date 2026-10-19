@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "a1e61331c6d6b86d6bf7",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "infra llama en probe",
+  "task_key": "worker_infra_llama_en_probe_20260521T171600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llama_en_probe_20260521T171600.log",
+    "occurrence": 1,
+    "bytes": 711070,
+    "sha256": "2e0b17c87af47f6a400e13bfce75f93b1cdd15c7bf5e0c121b4967f4bbde5763"
+  },
+  "statistics": {
+    "messages": 707,
+    "user_turns": 0,
+    "tool_calls": 323,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 323,
+      "tool_result": 323,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 707,
+      "chunks": [
+        {
+          "path": "a1e61331c6d6b86d6bf7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1e61331c6d6b86d6bf7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1e61331c6d6b86d6bf7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1e61331c6d6b86d6bf7-part-0004.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-llama-en-probe.md"
+}

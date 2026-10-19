@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4c8558432050aba9098",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra comet monitor",
+  "task_key": "worker_infra_comet-monitor_20260522T081158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_comet-monitor_20260522T081158_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "54f34b02acfd28738e6335d4009f568fa5aafe92f33cd1280acc4b2cf7f4f2c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### COMET Qwen (PID 59412, cuda:0)\n- **仍在运行**，train 集 back-translation 进度 **740/798 (93%)**\n- test 集已完成（`zh_conflict_test_validated.jsonl` 29KB，`translation_quality_report.json` 18KB 均已生成）\n- train validated 文件尚未写出（back-translation 完成后还需跑 COMET scoring）\n- **cuda:0 不可释放**，预计还需 10-20 分钟完成 back-translation + COMET scoring\n\n### COMET Llama (PID 59571, cuda:2)\n- **仍在运行**，train 集 back-translation 进度 **760/1096 (69%)**\n- 比 Qwen 慢，预计还需更久\n\n### GPU 占用\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| 0 | 46% | 16.5/97.9 GB | COMET Qwen validate_translation |\n| 1 | 46% | 16.5/97.9 GB | Gemma translate_to_zh |\n| 2 | 72% | 16.5/97.9 GB | COMET Llama validate_translation |\n| 3 | 88% | 16.2/97.9 GB | Llama translate_to_de |\n\n### 其他进程\n- `train_probe.py` bootstrap (Qwen + Llama) — 纯 CPU，各 ~550% CPU\n- `bootstrap_mlp_delta.py` — 纯 CPU\n- 4 张 GPU 全部被占用，当前无空闲 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-comet-monitor.md"
+}

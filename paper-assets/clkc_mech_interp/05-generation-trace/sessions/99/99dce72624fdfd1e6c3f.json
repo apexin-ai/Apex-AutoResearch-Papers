@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99dce72624fdfd1e6c3f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra collect bootstrap100 results",
+  "task_key": "worker_infra_collect_bootstrap100_results_20260521T230533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_collect_bootstrap100_results_20260521T230533_result.json",
+    "occurrence": 1,
+    "bytes": 110,
+    "sha256": "85017b1b0c6f2f8781573e820dd1e729ad11d0ffba31e69ae9c6387bddcb18db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后再查。当前状态：Llama seed 13/100，Qwen seed 22/100，均在正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-collect-bootstrap100-results.md"
+}

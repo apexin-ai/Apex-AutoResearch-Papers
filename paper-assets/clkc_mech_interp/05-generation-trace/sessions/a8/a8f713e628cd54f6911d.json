@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8f713e628cd54f6911d",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code steering script 107",
+  "task_key": "worker_code_steering-script-107_20260522T081012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_steering-script-107_20260522T081012_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "59db52966b6f0ab5622c9309bbf5abae25e06eca97a359d2b97f26f2eb992ce8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型的 dry-run 全部通过。\n\n**汇报：**\n\n| | Qwen3-8B | Llama-3.1-8B-Instruct |\n|---|---|---|\n| 脚本路径 | `/root/clkc_mech_interp/src/steering_experiment.py` | 同左 |\n| Peak layer | **24** (EN→EN, auto-detected) | **28** (EN→EN, auto-detected) |\n| Probe accuracy | 0.7500 | 0.7757 |\n| Steering dim | 4096 | 4096 |\n| Conflict test samples | 84 | 136 |\n| Orthogonality check | dot=0.000000 | dot=0.000000 |\n\n**正式运行命令（等 GPU 分配后执行）：**\n```bash\n# Qwen3\npython src/steering_experiment.py --model /root/models/Qwen3-8B/ --data_dir data/qwen3 --output_dir artifacts/steering\n\n# Llama\npython src/steering_experiment.py --model /root/models/Llama-3.1-8B-Instruct/ --data_dir data/llama31 --output_dir artifacts/steering\n```\n\n**设计要点：**\n- Probe 权重经 StandardScaler 逆变换映射回原始激活空间（`w_orig = w_scaled / scaler.scale_`），确保 steering 方向几何正确\n- 对照组用 Gram-Schmidt 生成的正交随机向量，排除非特异性扰动\n- 正负 alpha 双向扫描：+α 推向 conflict 方向，-α 推向 no_conflict 方向\n- 记录方向性 flip（parametric→contextual / contextual→parametric）用于因果性分析\n- Fisher exact test 对比 steering vs control 的 flip rate 统计显著性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-steering-script-107.md"
+}

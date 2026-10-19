@@ -1,0 +1,245 @@
+{
+  "schema_version": "1.0",
+  "id": "f77c7b46218edc283a8b",
+  "project": "clkc_mech_interp",
+  "kind": "conversation",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260522T145638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_method_20260522T145638.jsonl",
+    "occurrence": 1,
+    "bytes": 21936,
+    "sha256": "c747a4b80ce52d57529fb183fbf6e8856051b04bc7f2627693da3b2f7c4f1f80"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:58:16.356880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T14:58:16.357662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T14:58:16.357898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T14:58:16.358277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T14:58:16.358458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:58:16.358664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Models.}\n8\tWe probe two instruction-tuned models with comparable parameter counts but distinct architectures: Llama-3.1-8B-Instruct (32 layers, hidden dimension 4096) \\citep{grattafiori2024llama} and Qwen3-8B (36 layers, hidden dimension 4096) \\citep{yang2024qwen25}.\n9\t\n10\t\\paragraph{Dataset.}\n11\tWe use ConflictQA \\citep{xie2024adaptive}, a benchmark of context-parametric knowledge conflicts where a provided context contradicts the model's parametric knowledge.\n12\tAfter verifying that each model can correctly answer the parametric-knowledge question without context, we retain 1{,}368 samples for Llama (1{,}096 train / 272 test) and 966 samples for Qwen (773 train / 193 test), split 80/20 with stratification.\n13\t\n14\t\\paragraph{Translation.}\n15\tWe translate all English contexts and questions into Chinese using a Qwen3-8B translation pipeline (EN$\\to$ZH), with quality validated by COMET \\citep{rei2020comet} back-translation scores.\n16\t\n17\t\\paragraph{Probing.}\n18\tFor each layer $l$, we train a logistic regression probe on the last-token residual stream representation $\\mathbf{h}_l$, with binary labels indicating whether the model chose the contextual or parametric answer.\n19\tWe report balanced accuracy to account for class imbalance.\n20\tAll confidence intervals (CIs) are computed via bootstrap resampling with paired differences for asymmetry estimation.\n21\t\n22\t\\paragraph{Non-conflict baseline.}\n23\tTo test whether cross-lingual transfer patterns are specific to knowledge conflicts, we run the same probing pipeline on XNLI \\citep{conneau2018xnli}, classifying entailment versus contradiction.\n24\t\n25\t\\subsection{Within-Language Conflict Detection}\n26\t\\label{sec:within_lang}\n27\t\n28\tTable~\\ref{tab:main_results} reports balanced accuracy for all probe transfer directions.\n29\tBoth models encode linearly detectable conflict signals in their residual streams.\n…[truncated 9669 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T14:58:16.358882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/",
+              "description": "List paper sections directory"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:58:16.359025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T14:58:16.359179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex",
+              "content": "\\section{Method}\n\\label{sec:method}\n\nFigure~\\ref{fig:pipeline} illustrates the complete pipeline, from data construction through probing and steering.\nWe first formalize the task (\\S\\ref{sec:task}), then describe data construction (\\S\\ref{sec:data}), activation extraction (\\S\\ref{sec:extraction}), the probing framework (\\S\\ref{sec:probing}), cross-lingual transfer protocol (\\S\\ref{sec:transfer}), confound exclusion (\\S\\ref{sec:confound_method}), and representation steering (\\S\\ref{sec:steering_method}).\n\n\\subsection{Task Formulation}\n\\label{sec:task}\n\nGiven an input $x = (c, q)$ consisting of a context passage $c$ and a question $q$, the model produces an answer $a$ that is either \\emph{contextual} (derived from $c$) or \\emph{parametric} (derived from the model's pre-trained knowledge).\nWhen $c$ contradicts the model's parametric knowledge, the choice between these two answer sources constitutes a knowledge conflict.\nLet $\\mathbf{h}_l \\in \\mathbb{R}^d$ denote the residual stream representation at layer $l$ for the last input token.\nOur goal is to train a logistic regression probe $f_\\theta(\\mathbf{h}_l)$ that predicts a binary label $y \\in \\{\\text{contextual}, \\text{parametric}\\}$ from $\\mathbf{h}_l$, and to examine whether the learned probe direction transfers across languages and causally influences model behavior.\n\n\\subsection{Data Construction}\n\\label{sec:data}\n\n\\paragraph{Source dataset.}\nWe build on ConflictQA \\citep{xie2024adaptive}, a benchmark that pairs each question with a context passage that contradicts the model's parametric knowledge.\nEach sample contains a question, a parametric answer (ground truth from the model's training data), and a context-based answer (the contradicting information in the passage).\n\n\\paragraph{Parametric knowledge verification.}\nNot all samples in ConflictQA produce genuine conflicts for a given model: if the model cannot answer the question correctly without context, there is no parametric knowledge to conflict with.\nWe filter samples by first querying each model without context and retaining only those where the model produces the correct parametric answer.\nThis verification step yields 1{,}368 samples for Llama-3.1-8B-Instruct \\citep{grattafiori2024llama} and 966 for Qwen3-8B \\citep{yang2024qwen25}.\nWe split each set 80/20 with stratification by label, producing 1{,}096 train / 272 test for Llama and 773 train / 193 test for Qwen.\n\n\\paragraph{Translation.}\nTo study cross-lingual transfer, we translate all English contexts and questions into Chinese (EN$\\to$ZH) using a Qwen3-8B translation pipeline.\nWe validate translation quality with COMET \\citep{rei2020comet} back-translation scores: each Chinese translation is back-translated to English, and the COMET score between the original and back-translated English text serves as a quality measure.\nThis score is later used for confound analysis (\\S\\ref{sec:confound_method}).\n\n\\subsection{Activation Extraction}\n\\label{sec:extraction}\n\nFor each model, we construct two language versions of every input: an English version (EN context + EN question) and a Chinese version (ZH context + ZH question).\nWe pass each version through the model and extract the last-token residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at every layer $l \\in \\{0, \\ldots, L-1\\}$, where $L$ is the total number of layers (32 for Llama, 36 for Qwen) and $d = 4096$ for both models.\nThe last token is chosen because autoregressive models aggregate information into the final position before generating the next token \\citep{belinkov2022probing}.\nWe then record the model's predicted answer for each input and assign the binary label $y$: contextual if the model chose the context-based answer, parametric otherwise.\n\n\\subsection{Probing Framework}\n\\label{sec:probing}\n\nAt each layer $l$, we train a logistic regression classifier with $L_2$ regularization on the extracted representations $\\{\\mathbf{h}_l^{(i)}, y^{(i)}\\}_{i=1}^{N_\\text{train}}$ \\citep{belinkov2022probing, hewitt2019designing}.\nThe probe $f_\\theta(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)$ outputs the probability of the contextual class, where $\\mathbf{w}_l \\in \\mathbb{R}^d$ is the weight vector and $b_l$ is the bias.\nWe evaluate with balanced accuracy (the macro-average of per-class recall) to account for class imbalance.\nWe report the peak-layer accuracy, defined as the maximum balanced accuracy across all layers, as the primary metric for each probe transfer direction.\n\nConfidence intervals (CIs) are estimated via bootstrap resampling \\citep{ulmer2022deep}.\nFor each bootstrap iteration, we resample the test set with replacement, compute balanced accuracy, and derive 95\\% CIs from the empirical distribution.\nFor asymmetry estimation, we use paired bootstrap differences (described in \\S\\ref{sec:transfer}).\n\n\\subsection{Cross-Lingual Transfer Protocol}\n\\label{sec:transfer}\n\nWe evaluate probes in four transfer directions: EN$\\to$EN (train and test on English activations), ZH$\\to$ZH (train and test on Chinese), EN$\\to$ZH (train on English, test on Chinese), and ZH$\\to$EN (train on Chinese, test on English).\nThe within-language directions (EN$\\to$EN, ZH$\\to$ZH) establish upper bounds, while the cross-lingual directions test whether conflict representations share structure across languages.\n\nTo quantify the directional asymmetry between the two cross-lingual directions, we define:\n\\begin{equation}\n\\Delta_{\\text{asym}} = \\text{acc}(\\text{ZH}{\\to}\\text{EN}) - \\text{acc}(\\text{EN}{\\to}\\text{ZH})\n\\label{eq:asymmetry}\n\\end{equation}\nA positive $\\Delta_{\\text{asym}}$ indicates that Chinese-trained probes transfer to English more readily than the reverse.\nWe compute $\\Delta_{\\text{asym}}$ via paired bootstrap: in each iteration, the same resampled test indices are used for both directions, and the paired difference eliminates sample-level variance.\nWe report the mean and 95\\% CI of the bootstrap distribution.\n\n\\subsection{Confound Exclusion}\n\\label{sec:confound_method}\n\nCross-lingual probe transfer could reflect artifacts of translation quality or lexical overlap rather than shared representations.\nWe design two controls to exclude these confounds.\n\n\\paragraph{COMET tercile ablation.}\nWe stratify test samples into terciles by their COMET back-translation score (high, medium, low quality) and compare probe accuracy across strata.\nIf translation quality drove transfer, high-quality translations would yield higher probe accuracy.\nWe test this with Fisher's exact test on the accuracy difference between the top and bottom terciles.\n\n\\paragraph{Token overlap analysis.}\nDespite the large typographic distance between English and Chinese, some tokens (numbers, proper nouns, punctuation) may be shared after subword tokenization.\nWe compute the per-sample Jaccard similarity between the English and Chinese token sets and test for correlation with probe accuracy via Pearson's $r$.\nA positive correlation would suggest that shared tokens, rather than shared representations, drive transfer.\n\n\\paragraph{Non-conflict baseline.}\nTo test whether cross-lingual transfer asymmetry is specific to knowledge conflicts, we apply the same probing pipeline to XNLI \\citep{conneau2018xnli}, classifying entailment versus contradiction.\nIf the asymmetry pattern ($\\Delta_{\\text{asym}} > 0$) also appears in a non-conflict task, it reflects a general cross-lingual property rather than a conflict-specific phenomenon.\n\n\\subsection{Representation Steering}\n\\label{sec:steering_method}\n\nProbing establishes that conflict signals are linearly detectable, but detection does not imply causal relevance \\citep{hewitt2019designing}.\nWe test the causal role of the probe direction by injecting it into the model's forward pass during inference, following the inference-time intervention framework of \\citet{li2023iti} and \\citet{zou2023representation}.\n\n\\paragraph{Intervention procedure.}\nLet $\\mathbf{w}_{\\text{probe}}$ denote the weight vector of the logistic regression probe trained at a target layer $l$.\nDuring inference, we modify the last-token residual stream at layer $l$:\n\\begin{equation}\n\\mathbf{h}'_l = \\mathbf{h}_l + \\alpha \\cdot \\mathbf{w}_{\\text{probe}}\n\\label{eq:steering}\n\\end{equation}\nwhere $\\alpha \\in \\mathbb{R}$ is the steering magnitude.\nPositive $\\alpha$ pushes the representation toward the contextual direction; negative $\\alpha$ pushes toward the parametric direction.\n\n\\paragraph{Control condition.}\nWe replace $\\mathbf{w}_{\\text{probe}}$ with a random unit vector $\\mathbf{w}_{\\text{random}}$ of equal norm, injected with the same $\\alpha$.\nThis controls for the possibility that any perturbation of sufficient magnitude could alter model behavior.\n\n\\paragraph{Evaluation.}\nWe measure the flip rate: the fraction of test samples that switch answer category (parametric $\\leftrightarrow$ contextual) after intervention.\nWe compare steering and control flip rates with Fisher's exact test, applying Bonferroni correction for multiple comparisons across layers and $\\alpha$ values.\nWe test at three layers spanning different depths: L13 (41\\% depth), L18 (56\\% depth), and L28 (88\\% depth, the probing accuracy peak).\nThe steering magnitude $\\alpha$ is swept over $\\{-20, -10, -5, +2, +5, +10, +20\\}$ to characterize the effective range.\nIf the probe direction is causally relevant, the steering flip rate should significantly exceed the control, and the direction of flips (parametric-to-contextual vs.\\ contextual-to-parametric) should be consistent with the sign of $\\alpha$.\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T14:58:16.359402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T14:58:16.359560+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section written to `method.tex`. Key design choices:\n\n- All symbols ($\\mathbf{h}_l$, $f_\\theta$, $\\mathbf{w}_{\\text{probe}}$, $\\Delta_{\\text{asym}}$, $\\alpha$) defined at first use, consistent with Experiments section notation\n- Citations use `\\citep{}` with the specified bib keys; `\\citet{}` only for inline author references (Li et al., Zou et al.)\n- No em-dash, no -ing phrase endings, no banned transition words\n- ~1200 words, 7 subsections matching the outline\n- Figure~\\ref{fig:pipeline} referenced in the opening sentence\n- Equations numbered for cross-referencing (Eq.~\\ref{eq:asymmetry}, Eq.~\\ref{eq:steering})\n- Layer/depth conventions match Experiments (L13/41%, L18/56%, L28/88%)\n- Data splits match exactly (1,368/966, 80/20 stratified)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260522T145638"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-method.md"
+}

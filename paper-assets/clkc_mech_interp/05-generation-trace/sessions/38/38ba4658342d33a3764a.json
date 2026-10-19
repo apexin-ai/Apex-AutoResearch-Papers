@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "38ba4658342d33a3764a",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "audit ref verify B",
+  "task_key": "worker_audit_ref_verify_B_20260526T105303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref_verify_B_20260526T105303.log",
+    "occurrence": 1,
+    "bytes": 624195,
+    "sha256": "b649c559031876cd045b2bc42cf5c33b2eeab199daa1b251cc802c861dec5412"
+  },
+  "statistics": {
+    "messages": 215,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "38ba4658342d33a3764a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "38ba4658342d33a3764a-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-ref-verify-b.md"
+}

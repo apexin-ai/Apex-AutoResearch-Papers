@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a9a1d3236a17d5639bc",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp probe cosine sim 117",
+  "task_key": "worker_exp_probe-cosine-sim-117_20260523T073547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_probe-cosine-sim-117_20260523T073547_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "548760f088b82a98a1b1202816b54fa5712eb78918af28ff9648b3628abd0a03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。同步本地脚本文件也已保存。\n\n## 结果汇报\n\n### Peak Cosine Similarity\n\n| 模型 | 语言 | Peak Layer | Cosine Sim | Random Baseline |\n|------|------|-----------|------------|-----------------|\n| Llama-3.1-8B | en | 13 | 0.0497 | 0.0003 |\n| Llama-3.1-8B | zh | 8 | 0.0462 | 0.0003 |\n| Qwen3-8B | en | 4 | 0.0236 | 0.0003 |\n| Qwen3-8B | zh | 9 | 0.0407 | 0.0003 |\n| Gemma-2-9B | en | 19 | 0.0415 | 0.0010 |\n| Gemma-2-9B | zh | 20 | 0.0356 | 0.0010 |\n\n### 结论\n\n**Cosine similarity 极低，接近 0。** Peak 值在 0.02–0.05 之间，虽然略高于随机基线（~0.001），但绝对值非常小。这表明 conflict 探针和 XNLI 探针学到的方向几乎正交——**不支持 \"signal piggyback\" 假设**。两个任务的信息编码在不同的子空间中。\n\n### 输出文件\n\n- 数据：`data/probe_cosine_similarity.json`\n- 图片：`figures/paper/cosine_similarity.pdf` / `.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-probe-cosine-sim-117.md"
+}

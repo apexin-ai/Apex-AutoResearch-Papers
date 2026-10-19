@@ -1,0 +1,25 @@
+paper_key: "conneau2018xnli"
+title: "XNLI: Evaluating Cross-lingual Sentence Representations"
+venue: "EMNLP 2018"
+full_text_available: false
+
+research:
+  baselines: [mBERT, XLM, translate_train, translate_test]
+  metrics:
+    - {name: "Accuracy (NLI)", direction: "higher_better"}
+  datasets:
+    - {name: "XNLI", size: "7500 dev + 5000 test per language, 15 languages"}
+    - {name: "MultiNLI", size: "433K training"}
+  ablation_dimensions: [language, transfer_method]
+  training_recipe: {optimizer: "N/A (evaluation benchmark)", lr: "N/A", hardware: "N/A"}
+  method_family: "cross-lingual evaluation benchmark"
+
+positioning:
+  core_claim: "XNLI provides a standardized benchmark for evaluating cross-lingual sentence understanding across 15 languages"
+  key_results: "Cross-lingual transfer gap varies by language family"
+  limitations: ["Limited to NLI task"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

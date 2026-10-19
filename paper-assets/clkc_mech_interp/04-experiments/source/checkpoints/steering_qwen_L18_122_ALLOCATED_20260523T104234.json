@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_qwen_L18_122",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:01:23.666Z",
+    "updated_at": "2026-05-23T10:42:34.742Z",
+    "hypothesis": "Qwen3-8B L18 (~50% depth) steering：L14 (39%) 和 L23 (64%) 均 negative。L18 是 probe accuracy 另一个局部峰值，若 mid-layer 也 negative 则 Qwen 确认无 single-layer causal node。parent=steering_107_qwen_L14",
+    "parent": "steering_107_qwen_L14"
+  },
+  "timestamp": "2026-05-23T10:42:34.843310+00:00",
+  "trigger": "update_registry"
+}

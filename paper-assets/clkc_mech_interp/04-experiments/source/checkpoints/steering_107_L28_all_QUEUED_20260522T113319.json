@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_107_L28_all",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:33:06.652Z",
+    "updated_at": "2026-05-22T11:33:19.504Z",
+    "hypothesis": "Steering v1 在 L28/last-token 失败。可能原因是 last-token 注入过窄——冲突信号可能分布在多个 token 位置（如 entity tokens, context tokens）。all-position steering 覆盖所有 token，如果成功则说明因果信号分布式编码。parent=steering_107",
+    "parent": "steering_107"
+  },
+  "timestamp": "2026-05-22T11:33:19.664201+00:00",
+  "trigger": "update_registry"
+}

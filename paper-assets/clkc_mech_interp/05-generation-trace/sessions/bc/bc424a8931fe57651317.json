@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc424a8931fe57651317",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra gemma download 102 retry",
+  "task_key": "worker_infra_gemma-download-102-retry_20260522T013639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gemma-download-102-retry_20260522T013639_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "eafb2532377a33d2d0e8277d39e4b0177111880305bd19e3df256c5c8acf1131"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型实际上已经完整下载了，无需重试。\n\n**结果汇总：**\n- **下载方案**：ModelScope（上次已完成）\n- **路径**：`/root/autodl-tmp/models/gemma-2-9b-it/`\n- **文件大小**：18GB（4 个 safetensors 分片）\n- **参数量**：9,241,705,984（9.2B）\n- **验证状态**：Tokenizer OK（vocab 256000）、模型完整加载 CPU OK、全部 4 个分片校验通过\n- **清理**：已删除 ModelScope 临时文件（`._____temp/`、`.msc`、`.mv`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gemma-download-102-retry.md"
+}

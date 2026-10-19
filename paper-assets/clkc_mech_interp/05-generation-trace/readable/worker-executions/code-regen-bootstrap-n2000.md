@@ -1,0 +1,2453 @@
+# code regen bootstrap n2000
+
+**English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_code_regen-bootstrap-n2000_20260525T201348.log`
+- **Structured JSON:** [`49c2d11ec878edfcba07.json`](../../sessions/49/49c2d11ec878edfcba07.json)
+
+## Before a recorded user message
+
+52 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d7d8e80b-6718-4315-9cc3-64093b33fdbc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779749400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "be6994e5-5db3-4d4a-bf48-1b914726109b",
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by running the pre-checks on the remote server to see if the activation files exist and check the probe training script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "361f5eaa-3339-4340-a28f-dd3c968fe103",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRS2Yp6TjCmpRWxc1KFbAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12768,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12768
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先检查远程服务器上的 activations 文件和脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "ffe4dafe-354d-4cdc-aa3a-658b89e30556",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRS2Yp6TjCmpRWxc1KFbAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12768,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12768
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RvCsFErPnDvPVtb44ujwiH`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "dad9df4c-8eae-4c6e-ba9a-5271256bdbe3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRS2Yp6TjCmpRWxc1KFbAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12768,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12768
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-25T20:13:59.308Z_
+
+<details><summary>↩ Tool result · `toolu_01RvCsFErPnDvPVtb44ujwiH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "ca963461-3b2c-40e8-8020-444575f0d63e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S1shbdBwaF1xK1XAusP2PD`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/llama31/zh_activations*.pt 2>/dev/null && echo \"LLAMA_ZH_EXISTS\" || echo \"LLAMA_ZH_MISSING\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "7bacce04-cc53-4b05-8a68-a892d5560960",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQxPb7mM8Y3iaKKuZPzyCG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 24609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-25T20:14:03.636Z_
+
+<details><summary>↩ Tool result · `toolu_01S1shbdBwaF1xK1XAusP2PD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "ab7c579d-f0f6-49d9-a904-df03bb2c72e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B9QMZzybnHFySvAWKbkNbS`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/qwen3/zh_activations*.pt 2>/dev/null && echo \"QWEN_ZH_EXISTS\" || echo \"QWEN_ZH_MISSING\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "51bcf04d-73d5-4687-866e-8888d78ead64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQxPb7mM8Y3iaKKuZPzyCG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 24609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T20:14:04.656Z_
+
+<details><summary>↩ Tool result · `toolu_01B9QMZzybnHFySvAWKbkNbS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "73e58d3b-0d09-482b-9491-4dda3428a177",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NqMJK9rYjNvkPVA1ad1tR6`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/llama31/en_activations*.pt 2>/dev/null && echo \"LLAMA_EN_EXISTS\" || echo \"LLAMA_EN_MISSING\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "9edc1b30-1a16-4d9f-a5b2-259df430de62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQxPb7mM8Y3iaKKuZPzyCG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 24609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-25T20:14:06.102Z_
+
+<details><summary>↩ Tool result · `toolu_01NqMJK9rYjNvkPVA1ad1tR6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "35715396-b5b7-4dcb-b054-6225ecf8438d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CYCX5nR81hVJTrS2WxQga3`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/qwen3/en_activations*.pt 2>/dev/null && echo \"QWEN_EN_EXISTS\" || echo \"QWEN_EN_MISSING\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "89fd8fde-309c-4a18-85ec-301b9a3683e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQxPb7mM8Y3iaKKuZPzyCG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 24609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-25T20:14:07.071Z_
+
+<details><summary>↩ Tool result · `toolu_01CYCX5nR81hVJTrS2WxQga3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "a038cc9a-12ca-44bc-853d-93009be74ce7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018zJ8Xr9sWrtz1qESa94xAD`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls /root/clkc_mech_interp/src/train_probe*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "cafb7f86-fe79-4b98-b85b-6589372fa5a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQxPb7mM8Y3iaKKuZPzyCG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 24609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-25T20:14:08.863Z_
+
+<details><summary>↩ Tool result · `toolu_018zJ8Xr9sWrtz1qESa94xAD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/clkc_mech_interp/src/train_probe.py\\n/root/clkc_mech_interp/src/train_probe_fast.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "a906477e-52fd-4b86-8519-268e89219f1c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/clkc_mech_interp/src/train_probe.py\\\\n/root/clkc_mech_interp/src/train_probe_fast.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/clkc_mech_interp/src/train_probe.py\\n/root/clkc_mech_interp/src/train_probe_fast.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+`&&` 被 read-only 拦截了，拆开重跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "48018727-dcef-4df9-91e5-2eec9f9df9da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARNdCEdLrpiQbPrgMmRG9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1317
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GMEYtsbsZSku1TQmAa5nqd`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/llama31/zh_activations*.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "565c41b1-6e13-41c0-963a-bded1c5d23e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARNdCEdLrpiQbPrgMmRG9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1317
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T20:14:12.584Z_
+
+<details><summary>↩ Tool result · `toolu_01GMEYtsbsZSku1TQmAa5nqd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/clkc_mech_interp/data/llama31/zh_activations*.pt': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "17c9abc7-f5f7-4937-a1b3-216168837296",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/clkc_mech_interp/data/llama31/zh_activations*.pt': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/clkc_mech_interp/data/llama31/zh_activations*.pt': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FiwCWAkgTAKkFydASqojRv`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/qwen3/zh_activations*.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "83144e2e-1951-4686-a2f1-a8f0064de01f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARNdCEdLrpiQbPrgMmRG9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1317
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T20:14:13.527Z_
+
+<details><summary>↩ Tool result · `toolu_01FiwCWAkgTAKkFydASqojRv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/clkc_mech_interp/data/qwen3/zh_activations*.pt': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "d708101d-5e19-42f9-b8bc-aee343729410",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/clkc_mech_interp/data/qwen3/zh_activations*.pt': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/clkc_mech_interp/data/qwen3/zh_activations*.pt': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WvzJTNZ8nuAQr3NkJgwMy7`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/llama31/en_activations*.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "b1c40eef-f625-4919-af33-b6b73ba022ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARNdCEdLrpiQbPrgMmRG9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1317
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-25T20:14:14.486Z_
+
+<details><summary>↩ Tool result · `toolu_01WvzJTNZ8nuAQr3NkJgwMy7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 419445213 May 24 06:13 /root/clkc_mech_interp/data/llama31/en_activations.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "1c6ae879-ada2-48dc-92b4-b7f8d31f8ea5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 419445213 May 24 06:13 /root/clkc_mech_interp/data/llama31/en_activations.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 419445213 May 24 06:13 /root/clkc_mech_interp/data/llama31/en_activations.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JBGMBry3HNRy4BktSBWppc`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/qwen3/en_activations*.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "18391067-5cbc-4eea-b1ba-eef76642954e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARNdCEdLrpiQbPrgMmRG9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1317
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T20:14:15.410Z_
+
+<details><summary>↩ Tool result · `toolu_01JBGMBry3HNRy4BktSBWppc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 418198557 May 24 20:00 /root/clkc_mech_interp/data/qwen3/en_activations.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "01971a61-5880-4d81-9aba-8f576bc4501c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 418198557 May 24 20:00 /root/clkc_mech_interp/data/qwen3/en_activations.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 418198557 May 24 20:00 /root/clkc_mech_interp/data/qwen3/en_activations.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WwKw9QYgnoRvVm1Nj9zw2m`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "head -80 /root/clkc_mech_interp/src/train_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "9b7c30a7-9b59-4f07-91b4-50ae2c8205d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARNdCEdLrpiQbPrgMmRG9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1317
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T20:14:15.933Z_
+
+<details><summary>↩ Tool result · `toolu_01WwKw9QYgnoRvVm1Nj9zw2m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\n\\nLoads .pt activation files from collect_activations.py, trains a logistic\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\ntransfer directions for the specified languages.\\n\\nStatistical tests:\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\n\\nOutput:\\n  - Console table with per-layer accuracy + p-values\\n  - probe_results.json   (structured results)\\n  - probe_accuracy_by_layer.png  (visualization)\\n\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nfrom pathlib import Path\\n\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\n\\n\\ndef load_activations(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    return {\\n        \\\"train_X\\\": acts[:n_train],\\n        \\\"train_y\\\": data[\\\"labels\\\"][:n_train],\\n        \\\"test_X\\\": acts[n_train:],\\n        \\\"test_y\\\": data[\\\"labels\\\"][n_train:],\\n    }\\n\\n\\ndef load_activations_unsplit(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    n_total = acts.shape[0]\\n    return {\\\"X\\\": acts, \\\"y\\\": data[\\\"labels\\\"], \\\"test_ratio\\\": (n_total - n_train) / n_total}\\n\\n\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\n    n = unsplit[\\\"X\\\"].shape[0]\\n    indices = np.arange(n)\\n    y_np = unsplit[\\\"y\\\"].numpy()\\n    tr_idx, te_idx = train_test_split(\\n        indices, test_size=unsplit[\\\"test_ratio\\\"], random_state=seed, stratify=y_np)\\n    return {\\n        \\\"train_X\\\": unsplit[\\\"X\\\"][tr_idx],\\n        \\\"train_y\\\": unsplit[\\\"y\\\"][tr_idx],\\n        \\\"test_X\\\": unsplit[\\\"X\\\"][te_idx],\\n        \\\"test_y\\\": unsplit[\\\"y\\\"][te_idx],\\n    }\\n\\n\\ndef train_and_eval(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    random_state: int = 42,\\n) -> tuple[float, float, float]:\\n    scaler = StandardScaler()\\n    train_X = scaler.fit_transform(train_X)\\n    test_X = scaler.transform(test_X)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "f0d3f6e3-320f-4b31-856d-4b27f661a124",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\\\n\\\\nLoads .pt activation files from collect_activations.py, trains a logistic\\\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\\\ntransfer directions for the specified languages.\\\\n\\\\nStatistical tests:\\\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\\\n\\\\nOutput:\\\\n  - Console table with per-layer accuracy + p-values\\\\n  - probe_results.json   (structured results)\\\\n  - probe_accuracy_by_layer.png  (visualization)\\\\n\\\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\\\nfrom sklearn.model_selection import train_test_split\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\n\\\\ndef load_activations(path: str) -> dict:\\\\n    data = torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    n_train = data[\\\\\\\"split_sizes\\\\\\\"][\\\\\\\"train\\\\\\\"]\\\\n    acts = data[\\\\\\\"activations\\\\\\\"]\\\\n    if acts.dtype == torch.bfloat16:\\\\n        acts = acts.float()\\\\n    return {\\\\n        \\\\\\\"train_X\\\\\\\": acts[:n_train],\\\\n        \\\\\\\"train_y\\\\\\\": data[\\\\\\\"labels\\\\\\\"][:n_train],\\\\n        \\\\\\\"test_X\\\\\\\": acts[n_train:],\\\\n        \\\\\\\"test_y\\\\\\\": data[\\\\\\\"labels\\\\\\\"][n_train:],\\\\n    }\\\\n\\\\n\\\\ndef load_activations_unsplit(path: str) -> dict:\\\\n    data = torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    acts = data[\\\\\\\"activations\\\\\\\"]\\\\n    if acts.dtype == torch.bfloat16:\\\\n        acts = acts.float()\\\\n    n_train = data[\\\\\\\"split_sizes\\\\\\\"][\\\\\\\"train\\\\\\\"]\\\\n    n_total = acts.shape[0]\\\\n    return {\\\\\\\"X\\\\\\\": acts, \\\\\\\"y\\\\\\\": data[\\\\\\\"labels\\\\\\\"], \\\\\\\"test_ratio\\\\\\\": (n_total - n_train) / n_total}\\\\n\\\\n\\\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\\\n    n = unsplit[\\\\\\\"X\\\\\\\"].shape[0]\\\\n    indices = np.arange(n)\\\\n    y_np = unsplit[\\\\\\\"y\\\\\\\"].numpy()\\\\n    tr_idx, te_idx = train_test_split(\\\\n        indices, test_size=unsplit[\\\\\\\"test_ratio\\\\\\\"], random_state=seed, stratify=y_np)\\\\n    return {\\\\n        \\\\\\\"train_X\\\\\\\": unsplit[\\\\\\\"X\\\\\\\"][tr_idx],\\\\n        \\\\\\\"train_y\\\\\\\": unsplit[\\\\\\\"y\\\\\\\"][tr_idx],\\\\n        \\\\\\\"test_X\\\\\\\": unsplit[\\\\\\\"X\\\\\\\"][te_idx],\\\\n        \\\\\\\"test_y\\\\\\\": unsplit[\\\\\\\"y\\\\\\\"][te_idx],\\\\n    }\\\\n\\\\n\\\\ndef train_and_eval(\\\\n    train_X: np.ndarray,\\\\n    train_y: np.ndarray,\\\\n    test_X: np.ndarray,\\\\n    test_y: np.ndarray,\\\\n    random_state: int = 42,\\\\n) -> tuple[float, float, float]:\\\\n    scaler = StandardScaler()\\\\n    train_X = scaler.fit_transform(train_X)\\\\n    test_X = scaler.transform(test_X)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\n\\nLoads .pt activation files from collect_activations.py, trains a logistic\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\ntransfer directions for the specified languages.\\n\\nStatistical tests:\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\n\\nOutput:\\n  - Console table with per-layer accuracy + p-values\\n  - probe_results.json   (structured results)\\n  - probe_accuracy_by_layer.png  (visualization)\\n\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nfrom pathlib import Path\\n\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\n\\n\\ndef load_activations(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    return {\\n        \\\"train_X\\\": acts[:n_train],\\n        \\\"train_y\\\": data[\\\"labels\\\"][:n_train],\\n        \\\"test_X\\\": acts[n_train:],\\n        \\\"test_y\\\": data[\\\"labels\\\"][n_train:],\\n    }\\n\\n\\ndef load_activations_unsplit(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    n_total = acts.shape[0]\\n    return {\\\"X\\\": acts, \\\"y\\\": data[\\\"labels\\\"], \\\"test_ratio\\\": (n_total - n_train) / n_total}\\n\\n\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\n    n = unsplit[\\\"X\\\"].shape[0]\\n    indices = np.arange(n)\\n    y_np = unsplit[\\\"y\\\"].numpy()\\n    tr_idx, te_idx = train_test_split(\\n        indices, test_size=unsplit[\\\"test_ratio\\\"], random_state=seed, stratify=y_np)\\n    return {\\n        \\\"train_X\\\": unsplit[\\\"X\\\"][tr_idx],\\n        \\\"train_y\\\": unsplit[\\\"y\\\"][tr_idx],\\n        \\\"test_X\\\": unsplit[\\\"X\\\"][te_idx],\\n        \\\"test_y\\\": unsplit[\\\"y\\\"][te_idx],\\n    }\\n\\n\\ndef train_and_eval(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    random_state: int = 42,\\n) -> tuple[float, float, float]:\\n    scaler = StandardScaler()\\n    train_X = scaler.fit_transform(train_X)\\n    test_X = scaler.transform(test_X)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+ZH activations are missing for both Llama and Qwen. EN activations exist for both. Let me check if there are any zh activation files with different naming patterns, and also look at more of the train_probe.py script to understand the arguments better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "10c94956-51c6-4b6d-a082-262bad8c2552",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NJFSahRvdNW3hPLmsaZat",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2429,
+      "cache_read_input_tokens": 26617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+ZH activations 缺失。让我确认下是否有其他命名格式的 zh 文件，同时看看脚本的完整参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "36780cd1-4da3-428f-ae0e-446ec1b7bd6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NJFSahRvdNW3hPLmsaZat",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2429,
+      "cache_read_input_tokens": 26617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GU13Aizkd27KzoA4WpT5rD`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/llama31/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "52f5fffe-6c36-4de9-996b-a9153fa5cbaa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NJFSahRvdNW3hPLmsaZat",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2429,
+      "cache_read_input_tokens": 26617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-25T20:14:24.899Z_
+
+<details><summary>↩ Tool result · `toolu_01GU13Aizkd27KzoA4WpT5rD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 411012\\ndrwxr-xr-x 2 root root      4096 May 25 21:15 .\\ndrwxr-xr-x 6 root root      4096 May 24 19:37 ..\\n-rw-r--r-- 1 root root 419445213 May 24 06:13 en_activations.pt\\n-rw-r--r-- 1 root root    332916 May 24 06:12 en_conflict_test_verified.jsonl\\n-rw-r--r-- 1 root root   1002274 May 24 06:12 en_conflict_train_verified.jsonl\\n-rw-r--r-- 1 root root     43947 May 25 01:08 probe_accuracy_by_layer.png\\n-rw-r--r-- 1 root root      2165 May 25 21:15 probe_per_layer.json\\n-rw-r--r-- 1 root root      1069 May 25 01:08 probe_results_multiseed.json\\n-rw-r--r-- 1 root root      3769 May 24 06:27 steering_results_L12_last.json\\n-rw-r--r-- 1 root root      3765 May 24 06:42 steering_results_L13_last.json\\n-rw-r--r-- 1 root root      3782 May 25 01:39 steering_results_L13_last_seed123.json\\n-rw-r--r-- 1 root root      3762 May 24 06:57 steering_results_L14_last.json\\n-rw-r--r-- 1 root root      3757 May 24 08:57 steering_results_L16_last.json\\n-rw-r--r-- 1 root root      3759 May 24 09:17 steering_results_L18_last.json\\n-rw-r--r-- 1 root root      3749 May 24 09:33 steering_results_L28_last.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "03d48bfb-618e-4ac3-b494-6863cff4b88e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 411012\\\\ndrwxr-xr-x 2 root root      4096 May 25 21:15 .\\\\ndrwxr-xr-x 6 root root      4096 May 24 19:37 ..\\\\n-rw-r--r-- 1 root root 419445213 May 24 06:13 en_activations.pt\\\\n-rw-r--r-- 1 root root    332916 May 24 06:12 en_conflict_test_verified.jsonl\\\\n-rw-r--r-- 1 root root   1002274 May 24 06:12 en_conflict_train_verified.jsonl\\\\n-rw-r--r-- 1 root root     43947 May 25 01:08 probe_accuracy_by_layer.png\\\\n-rw-r--r-- 1 root root      2165 May 25 21:15 probe_per_layer.json\\\\n-rw-r--r-- 1 root root      1069 May 25 01:08 probe_results_multiseed.json\\\\n-rw-r--r-- 1 root root      3769 May 24 06:27 steering_results_L12_last.json\\\\n-rw-r--r-- 1 root root      3765 May 24 06:42 steering_results_L13_last.json\\\\n-rw-r--r-- 1 root root      3782 May 25 01:39 steering_results_L13_last_seed123.json\\\\n-rw-r--r-- 1 root root      3762 May 24 06:57 steering_results_L14_last.json\\\\n-rw-r--r-- 1 root root      3757 May 24 08:57 steering_results_L16_last.json\\\\n-rw-r--r-- 1 root root      3759 May 24 09:17 steering_results_L18_last.json\\\\n-rw-r--r-- 1 root root      3749 May 24 09:33 steering_results_L28_last.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 411012\\ndrwxr-xr-x 2 root root      4096 May 25 21:15 .\\ndrwxr-xr-x 6 root root      4096 May 24 19:37 ..\\n-rw-r--r-- 1 root root 419445213 May 24 06:13 en_activations.pt\\n-rw-r--r-- 1 root root    332916 May 24 06:12 en_conflict_test_verified.jsonl\\n-rw-r--r-- 1 root root   1002274 May 24 06:12 en_conflict_train_verified.jsonl\\n-rw-r--r-- 1 root root     43947 May 25 01:08 probe_accuracy_by_layer.png\\n-rw-r--r-- 1 root root      2165 May 25 21:15 probe_per_layer.json\\n-rw-r--r-- 1 root root      1069 May 25 01:08 probe_results_multiseed.json\\n-rw-r--r-- 1 root root      3769 May 24 06:27 steering_results_L12_last.json\\n-rw-r--r-- 1 root root      3765 May 24 06:42 steering_results_L13_last.json\\n-rw-r--r-- 1 root root      3782 May 25 01:39 steering_results_L13_last_seed123.json\\n-rw-r--r-- 1 root root      3762 May 24 06:57 steering_results_L14_last.json\\n-rw-r--r-- 1 root root      3757 May 24 08:57 steering_results_L16_last.json\\n-rw-r--r-- 1 root root      3759 May 24 09:17 steering_results_L18_last.json\\n-rw-r--r-- 1 root root      3749 May 24 09:33 steering_results_L28_last.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FD2HkzsYAHWvjzzQ5uye3H`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "ls -la /root/clkc_mech_interp/data/qwen3/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "4285a091-ef70-41ed-aa25-7d75f7e29112",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NJFSahRvdNW3hPLmsaZat",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2429,
+      "cache_read_input_tokens": 26617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EsgfdKExkHSbQTR2xbaJB3`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "head -200 /root/clkc_mech_interp/src/train_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "2d852813-4c92-4b0a-a6b2-00c8e0f7e7bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NJFSahRvdNW3hPLmsaZat",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2429,
+      "cache_read_input_tokens": 26617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-25T20:14:25.881Z_
+
+<details><summary>↩ Tool result · `toolu_01FD2HkzsYAHWvjzzQ5uye3H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 409908\\ndrwxr-xr-x 2 root root      4096 May 25 01:09 .\\ndrwxr-xr-x 6 root root      4096 May 24 19:37 ..\\n-rw-r--r-- 1 root root 418198557 May 24 20:00 en_activations.pt\\n-rw-r--r-- 1 root root    265984 May 24 19:59 en_conflict_test_verified.jsonl\\n-rw-r--r-- 1 root root   1173426 May 24 19:58 en_conflict_train_verified.jsonl\\n-rw-r--r-- 1 root root     53407 May 25 01:09 probe_accuracy_by_layer.png\\n-rw-r--r-- 1 root root      6852 May 24 20:00 probe_results.json\\n-rw-r--r-- 1 root root      1068 May 25 01:09 probe_results_multiseed.json\\n-rw-r--r-- 1 root root      4389 May 24 20:18 steering_results_L13_last.json\\n-rw-r--r-- 1 root root      4374 May 24 20:36 steering_results_L14_last.json\\n-rw-r--r-- 1 root root      4384 May 24 20:53 steering_results_L15_last.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "0c2a119d-5b51-45b8-870f-54d26f466957",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 409908\\\\ndrwxr-xr-x 2 root root      4096 May 25 01:09 .\\\\ndrwxr-xr-x 6 root root      4096 May 24 19:37 ..\\\\n-rw-r--r-- 1 root root 418198557 May 24 20:00 en_activations.pt\\\\n-rw-r--r-- 1 root root    265984 May 24 19:59 en_conflict_test_verified.jsonl\\\\n-rw-r--r-- 1 root root   1173426 May 24 19:58 en_conflict_train_verified.jsonl\\\\n-rw-r--r-- 1 root root     53407 May 25 01:09 probe_accuracy_by_layer.png\\\\n-rw-r--r-- 1 root root      6852 May 24 20:00 probe_results.json\\\\n-rw-r--r-- 1 root root      1068 May 25 01:09 probe_results_multiseed.json\\\\n-rw-r--r-- 1 root root      4389 May 24 20:18 steering_results_L13_last.json\\\\n-rw-r--r-- 1 root root      4374 May 24 20:36 steering_results_L14_last.json\\\\n-rw-r--r-- 1 root root      4384 May 24 20:53 steering_results_L15_last.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 409908\\ndrwxr-xr-x 2 root root      4096 May 25 01:09 .\\ndrwxr-xr-x 6 root root      4096 May 24 19:37 ..\\n-rw-r--r-- 1 root root 418198557 May 24 20:00 en_activations.pt\\n-rw-r--r-- 1 root root    265984 May 24 19:59 en_conflict_test_verified.jsonl\\n-rw-r--r-- 1 root root   1173426 May 24 19:58 en_conflict_train_verified.jsonl\\n-rw-r--r-- 1 root root     53407 May 25 01:09 probe_accuracy_by_layer.png\\n-rw-r--r-- 1 root root      6852 May 24 20:00 probe_results.json\\n-rw-r--r-- 1 root root      1068 May 25 01:09 probe_results_multiseed.json\\n-rw-r--r-- 1 root root      4389 May 24 20:18 steering_results_L13_last.json\\n-rw-r--r-- 1 root root      4374 May 24 20:36 steering_results_L14_last.json\\n-rw-r--r-- 1 root root      4384 May 24 20:53 steering_results_L15_last.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T20:14:26.401Z_
+
+<details><summary>↩ Tool result · `toolu_01EsgfdKExkHSbQTR2xbaJB3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\n\\nLoads .pt activation files from collect_activations.py, trains a logistic\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\ntransfer directions for the specified languages.\\n\\nStatistical tests:\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\n\\nOutput:\\n  - Console table with per-layer accuracy + p-values\\n  - probe_results.json   (structured results)\\n  - probe_accuracy_by_layer.png  (visualization)\\n\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nfrom pathlib import Path\\n\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\n\\n\\ndef load_activations(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    return {\\n        \\\"train_X\\\": acts[:n_train],\\n        \\\"train_y\\\": data[\\\"labels\\\"][:n_train],\\n        \\\"test_X\\\": acts[n_train:],\\n        \\\"test_y\\\": data[\\\"labels\\\"][n_train:],\\n    }\\n\\n\\ndef load_activations_unsplit(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    n_total = acts.shape[0]\\n    return {\\\"X\\\": acts, \\\"y\\\": data[\\\"labels\\\"], \\\"test_ratio\\\": (n_total - n_train) / n_total}\\n\\n\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\n    n = unsplit[\\\"X\\\"].shape[0]\\n    indices = np.arange(n)\\n    y_np = unsplit[\\\"y\\\"].numpy()\\n    tr_idx, te_idx = train_test_split(\\n        indices, test_size=unsplit[\\\"test_ratio\\\"], random_state=seed, stratify=y_np)\\n    return {\\n        \\\"train_X\\\": unsplit[\\\"X\\\"][tr_idx],\\n        \\\"train_y\\\": unsplit[\\\"y\\\"][tr_idx],\\n        \\\"test_X\\\": unsplit[\\\"X\\\"][te_idx],\\n        \\\"test_y\\\": unsplit[\\\"y\\\"][te_idx],\\n    }\\n\\n\\ndef train_and_eval(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    random_state: int = 42,\\n) -> tuple[float, float, float]:\\n    scaler = StandardScaler()\\n    train_X = scaler.fit_transform(train_X)\\n    test_X = scaler.transform(test_X)\\n    clf = LogisticRegression(\\n        class_weight='balanced', max_iter=1000, solver=\\\"lbfgs\\\",\\n        random_state=random_state,\\n    )\\n    clf.fit(train_X, train_y)\\n    y_pred = clf.predict(test_X)\\n    acc = float(np.mean(y_pred == test_y))\\n    bal_acc = balanced_accuracy_score(test_y, y_pred)\\n    f1 = f1_score(test_y, y_pred)\\n    return acc, bal_acc, f1\\n\\n\\ndef binomial_p(accuracy: float, n: int, chance: float = 0.5) -> float:\\n    k = int(round(accuracy * n))\\n    return stats.binomtest(k, n, chance, alternative=\\\"greater\\\").pvalue\\n\\n\\ndef permutation_test(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    observed_bal_acc: float,\\n    n_perm: int = 1000,\\n    rng_seed: int = 42,\\n) -> float:\\n    rng = np.random.RandomState(rng_seed)\\n    count = 0\\n    for _ in range(n_perm):\\n        perm_y = rng.permutation(train_y)\\n        _, bal_acc, _ = train_and_eval(train_X, perm_y, test_X, test_y, random_state=rng_seed)\\n        if bal_acc >= observed_bal_acc:\\n            count += 1\\n    return count / n_perm\\n\\n\\ndef run_direction(\\n    train_data: dict,\\n    test_data: dict,\\n    num_layers: int,\\n    direction_name: str,\\n    run_permutation: bool = True,\\n    seed: int = 42,\\n    n_perm: int = 1000,\\n) -> list[dict]:\\n    train_y = train_data[\\\"train_y\\\"].numpy()\\n    test_y = test_data[\\\"test_y\\\"].numpy()\\n    n_test = len(test_y)\\n\\n    results = []\\n    best_bal_acc, best_layer = 0.0, 0\\n\\n    for layer in range(num_layers):\\n        train_X = train_data[\\\"train_X\\\"][:, layer, :].numpy()\\n        test_X = test_data[\\\"test_X\\\"][:, layer, :].numpy()\\n\\n        acc, bal_acc, f1 = train_and_eval(train_X, train_y, test_X, test_y, random_state=seed)\\n        p_binom = binomial_p(acc, n_test)\\n\\n        results.append({\\n            \\\"layer\\\": layer,\\n            \\\"accuracy\\\": round(acc, 4),\\n            \\\"balanced_accuracy\\\": round(bal_acc, 4),\\n            \\\"f1\\\": round(f1, 4),\\n            \\\"p_binomial\\\": round(p_binom, 6),\\n        })\\n\\n        if bal_acc > best_bal_acc:\\n            best_bal_acc = bal_acc\\n            best_layer = layer\\n\\n    if run_permutation:\\n        print(f\\\"  Running permutation test on best layer {best_layer} (bal_acc={best_bal_acc:.4f})...\\\")\\n        train_X_best = train_data[\\\"train_X\\\"][:, best_layer, :].numpy()\\n        test_X_best = test_data[\\\"test_X\\\"][:, best_layer, :].numpy()\\n        p_perm = permutation_test(\\n            train_X_best, train_y, test_X_best, test_y, best_bal_acc,\\n            n_perm=n_perm, rng_seed=seed,\\n        )\\n        for r in results:\\n            r[\\\"p_permutation\\\"] = None\\n        results[best_layer][\\\"p_permutation\\\"] = round(p_perm, 4)\\n    else:\\n        for r in results:\\n            r[\\\"p_permutation\\\"] = None\\n\\n    return results\\n\\n\\ndef get_directions(langs):\\n    directions = []\\n    for lang in langs:\\n        directions.append(f\\\"{lang.upper()}→{lang.upper()}\\\")\\n    for src in langs:\\n        for tgt in langs:\\n            if src != tgt:\\n                directions.append(f\\\"{src.upper()}→{tgt.upper()}\\\")\\n    return directions\\n\\n\\ndef run_all_directions(lang_data, num_layers, run_perm, seed, n_perm=1000):\\n    langs = list(lang_data.keys())\\n    all_results = {}\\n\\n    for lang in langs:\\n        label = f\\\"{lang.upper()}→{lang.upper()}\\\"\\n        print(f\\\"\\\\n[{label}] Training probes (seed={seed})...\\\")\\n        all_results[label] = run_direction(\\n            lang_data[lang], lang_data[lang], num_layers, label, run_perm, seed=seed, n_perm=n_perm)\\n\\n    for src in langs:\\n        for tgt in langs:\\n            if src != tgt:\\n                label = f\\\"{src.upper()}→{tgt.upper()}\\\"\\n                print(f\\\"\\\\n[{label}] Training {src.upper()} probes, testing on {tgt.upper()} (seed={seed})...\\\")\\n                all_results[label] = run_direction(\\n                    lang_data[src], lang_data[tgt], num_layers, label, run_perm, seed=seed, n_perm=n_perm)\\n\\n    return all_results\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "194b1fa5-d419-4f18-85ce-4aa65485768b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\\\n\\\\nLoads .pt activation files from collect_activations.py, trains a logistic\\\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\\\ntransfer directions for the specified languages.\\\\n\\\\nStatistical tests:\\\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\\\n\\\\nOutput:\\\\n  - Console table with per-layer accuracy + p-values\\\\n  - probe_results.json   (structured results)\\\\n  - probe_accuracy_by_layer.png  (visualization)\\\\n\\\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\\\nfrom sklearn.model_selection import train_test_split\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\n\\\\ndef load_activations(path: str) -> dict:\\\\n    data = torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    n_train = data[\\\\\\\"split_sizes\\\\\\\"][\\\\\\\"train\\\\\\\"]\\\\n    acts = data[\\\\\\\"activations\\\\\\\"]\\\\n    if acts.dtype == torch.bfloat16:\\\\n        acts = acts.float()\\\\n    return {\\\\n        \\\\\\\"train_X\\\\\\\": acts[:n_train],\\\\n        \\\\\\\"train_y\\\\\\\": data[\\\\\\\"labels\\\\\\\"][:n_train],\\\\n        \\\\\\\"test_X\\\\\\\": acts[n_train:],\\\\n        \\\\\\\"test_y\\\\\\\": data[\\\\\\\"labels\\\\\\\"][n_train:],\\\\n    }\\\\n\\\\n\\\\ndef load_activations_unsplit(path: str) -> dict:\\\\n    data = torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    acts = data[\\\\\\\"activations\\\\\\\"]\\\\n    if acts.dtype == torch.bfloat16:\\\\n        acts = acts.float()\\\\n    n_train = data[\\\\\\\"split_sizes\\\\\\\"][\\\\\\\"train\\\\\\\"]\\\\n    n_total = acts.shape[0]\\\\n    return {\\\\\\\"X\\\\\\\": acts, \\\\\\\"y\\\\\\\": data[\\\\\\\"labels\\\\\\\"], \\\\\\\"test_ratio\\\\\\\": (n_total - n_train) / n_total}\\\\n\\\\n\\\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\\\n    n = unsplit[\\\\\\\"X\\\\\\\"].shape[0]\\\\n    indices = np.arange(n)\\\\n    y_np = unsplit[\\\\\\\"y\\\\\\\"].numpy()\\\\n    tr_idx, te_idx = train_test_split(\\\\n        indices, test_size=unsplit[\\\\\\\"test_ratio\\\\\\\"], random_state=seed, stratify=y_np)\\\\n    return {\\\\n        \\\\\\\"train_X\\\\\\\": unsplit[\\\\\\\"X\\\\\\\"][tr_idx],\\\\n        \\\\\\\"train_y\\\\\\\": unsplit[\\\\\\\"y\\\\\\\"][tr_idx],\\\\n        \\\\\\\"test_X\\\\\\\": unsplit[\\\\\\\"X\\\\\\\"][te_idx],\\\\n        \\\\\\\"test_y\\\\\\\": unsplit[\\\\\\\"y\\\\\\\"][te_idx],\\\\n    }\\\\n\\\\n\\\\ndef train_and_eval(\\\\n    train_X: np.ndarray,\\\\n    train_y: np.ndarray,\\\\n    test_X: np.ndarray,\\\\n    test_y: np.ndarray,\\\\n    random_state: int = 42,\\\\n) -> tuple[float, float, float]:\\\\n    scaler = StandardScaler()\\\\n    train_X = scaler.fit_transform(train_X)\\\\n    test_X = scaler.transform(test_X)\\\\n    clf = LogisticRegression(\\\\n        class_weight='balanced', max_iter=1000, solver=\\\\\\\"lbfgs\\\\\\\",\\\\n        random_state=random_state,\\\\n    )\\\\n    clf.fit(train_X, train_y)\\\\n    y_pred = clf.predict(test_X)\\\\n    acc = float(np.mean(y_pred == test_y))\\\\n    bal_acc = balanced_accuracy_score(test_y, y_pred)\\\\n    f1 = f1_score(test_y, y_pred)\\\\n    return acc, bal_acc, f1\\\\n\\\\n\\\\ndef binomial_p(accuracy: float, n: int, chance: float = 0.5) -> float:\\\\n    k = int(round(accuracy * n))\\\\n    return stats.binomtest(k, n, chance, alternative=\\\\\\\"greater\\\\\\\").pvalue\\\\n\\\\n\\\\ndef permutation_test(\\\\n    train_X: np.ndarray,\\\\n    train_y: np.ndarray,\\\\n    test_X: np.ndarray,\\\\n    test_y: np.ndarray,\\\\n    observed_bal_acc: float,\\\\n    n_perm: int = 1000,\\\\n    rng_seed: int = 42,\\\\n) -> float:\\\\n    rng = np.random.RandomState(rng_seed)\\\\n    count = 0\\\\n    for _ in range(n_perm):\\\\n        perm_y = rng.permutation(train_y)\\\\n        _, bal_acc, _ = train_and_eval(train_X, perm_y, test_X, test_y, random_state=rng_seed)\\\\n        if bal_acc >= observed_bal_acc:\\\\n            count += 1\\\\n    return count / n_perm\\\\n\\\\n\\\\ndef run_direction(\\\\n    train_data: dict,\\\\n    test_data: dict,\\\\n    num_layers: int,\\\\n    direction_name: str,\\\\n    run_permutation: bool = True,\\\\n    seed: int = 42,\\\\n    n_perm: int = 1000,\\\\n) -> list[dict]:\\\\n    train_y = train_data[\\\\\\\"train_y\\\\\\\"].numpy()\\\\n    test_y = test_data[\\\\\\\"test_y\\\\\\\"].numpy()\\\\n    n_test = len(test_y)\\\\n\\\\n    results = []\\\\n    best_bal_acc, best_layer = 0.0, 0\\\\n\\\\n    for layer in range(num_layers):\\\\n        train_X = train_data[\\\\\\\"train_X\\\\\\\"][:, layer, :].numpy()\\\\n        test_X = test_data[\\\\\\\"test_X\\\\\\\"][:, layer, :].numpy()\\\\n\\\\n        acc, bal_acc, f1 = train_and_eval(train_X, train_y, test_X, test_y, random_state=seed)\\\\n        p_binom = binomial_p(acc, n_test)\\\\n\\\\n        results.append({\\\\n            \\\\\\\"layer\\\\\\\": layer,\\\\n            \\\\\\\"accuracy\\\\\\\": round(acc, 4),\\\\n            \\\\\\\"balanced_accuracy\\\\\\\": round(bal_acc, 4),\\\\n            \\\\\\\"f1\\\\\\\": round(f1, 4),\\\\n            \\\\\\\"p_binomial\\\\\\\": round(p_binom, 6),\\\\n        })\\\\n\\\\n        if bal_acc > best_bal_acc:\\\\n            best_bal_acc = bal_acc\\\\n            best_layer = layer\\\\n\\\\n    if run_permutation:\\\\n        print(f\\\\\\\"  Running permutation test on best layer {best_layer} (bal_acc={best_bal_acc:.4f})...\\\\\\\")\\\\n        train_X_best = train_data[\\\\\\\"train_X\\\\\\\"][:, best_layer, :].numpy()\\\\n        test_X_best = test_data[\\\\\\\"test_X\\\\\\\"][:, best_layer, :].numpy()\\\\n        p_perm = permutation_test(\\\\n            train_X_best, train_y, test_X_best, test_y, best_bal_acc,\\\\n            n_perm=n_perm, rng_seed=seed,\\\\n        )\\\\n        for r in results:\\\\n            r[\\\\\\\"p_permutation\\\\\\\"] = None\\\\n        results[best_layer][\\\\\\\"p_permutation\\\\\\\"] = round(p_perm, 4)\\\\n    else:\\\\n        for r in results:\\\\n            r[\\\\\\\"p_permutation\\\\\\\"] = None\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef get_directions(langs):\\\\n    directions = []\\\\n    for lang in langs:\\\\n        directions.append(f\\\\\\\"{lang.upper()}→{lang.upper()}\\\\\\\")\\\\n    for src in langs:\\\\n        for tgt in langs:\\\\n            if src != tgt:\\\\n                directions.append(f\\\\\\\"{src.upper()}→{tgt.upper()}\\\\\\\")\\\\n    return directions\\\\n\\\\n\\\\ndef run_all_directions(lang_data, num_layers, run_perm, seed, n_perm=1000):\\\\n    langs = list(lang_data.keys())\\\\n    all_results = {}\\\\n\\\\n    for lang in langs:\\\\n        label = f\\\\\\\"{lang.upper()}→{lang.upper()}\\\\\\\"\\\\n        print(f\\\\\\\"\\\\\\\\n[{label}] Training probes (seed={seed})...\\\\\\\")\\\\n        all_results[label] = run_direction(\\\\n            lang_data[lang], lang_data[lang], num_layers, label, run_perm, seed=seed, n_perm=n_perm)\\\\n\\\\n    for src in langs:\\\\n        for tgt in langs:\\\\n            if src != tgt:\\\\n                label = f\\\\\\\"{src.upper()}→{tgt.upper()}\\\\\\\"\\\\n                print(f\\\\\\\"\\\\\\\\n[{label}] Training {src.upper()} probes, testing on {tgt.upper()} (seed={seed})...\\\\\\\")\\\\n                all_results[label] = run_direction(\\\\n                    lang_data[src], lang_data[tgt], num_layers, label, run_perm, seed=seed, n_perm=n_perm)\\\\n\\\\n    return all_results\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\n\\nLoads .pt activation files from collect_activations.py, trains a logistic\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\ntransfer directions for the specified languages.\\n\\nStatistical tests:\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\n\\nOutput:\\n  - Console table with per-layer accuracy + p-values\\n  - probe_results.json   (structured results)\\n  - probe_accuracy_by_layer.png  (visualization)\\n\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nfrom pathlib import Path\\n\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\n\\n\\ndef load_activations(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    return {\\n        \\\"train_X\\\": acts[:n_train],\\n        \\\"train_y\\\": data[\\\"labels\\\"][:n_train],\\n        \\\"test_X\\\": acts[n_train:],\\n        \\\"test_y\\\": data[\\\"labels\\\"][n_train:],\\n    }\\n\\n\\ndef load_activations_unsplit(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    n_total = acts.shape[0]\\n    return {\\\"X\\\": acts, \\\"y\\\": data[\\\"labels\\\"], \\\"test_ratio\\\": (n_total - n_train) / n_total}\\n\\n\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\n    n = unsplit[\\\"X\\\"].shape[0]\\n    indices = np.arange(n)\\n    y_np = unsplit[\\\"y\\\"].numpy()\\n    tr_idx, te_idx = train_test_split(\\n        indices, test_size=unsplit[\\\"test_ratio\\\"], random_state=seed, stratify=y_np)\\n    return {\\n        \\\"train_X\\\": unsplit[\\\"X\\\"][tr_idx],\\n        \\\"train_y\\\": unsplit[\\\"y\\\"][tr_idx],\\n        \\\"test_X\\\": unsplit[\\\"X\\\"][te_idx],\\n        \\\"test_y\\\": unsplit[\\\"y\\\"][te_idx],\\n    }\\n\\n\\ndef train_and_eval(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    random_state: int = 42,\\n) -> tuple[float, float, float]:\\n    scaler = StandardScaler()\\n    train_X = scaler.fit_transform(train_X)\\n    test_X = scaler.transform(test_X)\\n    clf = LogisticRegression(\\n        class_weight='balanced', max_iter=1000, solver=\\\"lbfgs\\\",\\n        random_state=random_state,\\n    )\\n    clf.fit(train_X, train_y)\\n    y_pred = clf.predict(test_X)\\n    acc = float(np.mean(y_pred == test_y))\\n    bal_acc = balanced_accuracy_score(test_y, y_pred)\\n    f1 = f1_score(test_y, y_pred)\\n    return acc, bal_acc, f1\\n\\n\\ndef binomial_p(accuracy: float, n: int, chance: float = 0.5) -> float:\\n    k = int(round(accuracy * n))\\n    return stats.binomtest(k, n, chance, alternative=\\\"greater\\\").pvalue\\n\\n\\ndef permutation_test(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    observed_bal_acc: float,\\n    n_perm: int = 1000,\\n    rng_seed: int = 42,\\n) -> float:\\n    rng = np.random.RandomState(rng_seed)\\n    count = 0\\n    for _ in range(n_perm):\\n        perm_y = rng.permutation(train_y)\\n        _, bal_acc, _ = train_and_eval(train_X, perm_y, test_X, test_y, random_state=rng_seed)\\n        if bal_acc >= observed_bal_acc:\\n            count += 1\\n    return count / n_perm\\n\\n\\ndef run_direction(\\n    train_data: dict,\\n    test_data: dict,\\n    num_layers: int,\\n    direction_name: str,\\n    run_permutation: bool = True,\\n    seed: int = 42,\\n    n_perm: int = 1000,\\n) -> list[dict]:\\n    train_y = train_data[\\\"train_y\\\"].numpy()\\n    test_y = test_data[\\\"test_y\\\"].numpy()\\n    n_test = len(test_y)\\n\\n    results = []\\n    best_bal_acc, best_layer = 0.0, 0\\n\\n    for layer in range(num_layers):\\n        train_X = train_data[\\\"train_X\\\"][:, layer, :].numpy()\\n        test_X = test_data[\\\"test_X\\\"][:, layer, :].numpy()\\n\\n        acc, bal_acc, f1 = train_and_eval(train_X, train_y, test_X, test_y, random_state=seed)\\n        p_binom = binomial_p(acc, n_test)\\n\\n        results.append({\\n            \\\"layer\\\": layer,\\n            \\\"accuracy\\\": round(acc, 4),\\n            \\\"balanced_accuracy\\\": round(bal_acc, 4),\\n            \\\"f1\\\": round(f1, 4),\\n            \\\"p_binomial\\\": round(p_binom, 6),\\n        })\\n\\n        if bal_acc > best_bal_acc:\\n            best_bal_acc = bal_acc\\n            best_layer = layer\\n\\n    if run_permutation:\\n        print(f\\\"  Running permutation test on best layer {best_layer} (bal_acc={best_bal_acc:.4f})...\\\")\\n        train_X_best = train_data[\\\"train_X\\\"][:, best_layer, :].numpy()\\n        test_X_best = test_data[\\\"test_X\\\"][:, best_layer, :].numpy()\\n        p_perm = permutation_test(\\n            train_X_best, train_y, test_X_best, test_y, best_bal_acc,\\n            n_perm=n_perm, rng_seed=seed,\\n        )\\n        for r in results:\\n            r[\\\"p_permutation\\\"] = None\\n        results[best_layer][\\\"p_permutation\\\"] = round(p_perm, 4)\\n    else:\\n        for r in results:\\n            r[\\\"p_permutation\\\"] = None\\n\\n    return results\\n\\n\\ndef get_directions(langs):\\n    directions = []\\n    for lang in langs:\\n        directions.append(f\\\"{lang.upper()}→{lang.upper()}\\\")\\n    for src in langs:\\n        for tgt in langs:\\n            if src != tgt:\\n                directions.append(f\\\"{src.upper()}→{tgt.upper()}\\\")\\n    return directions\\n\\n\\ndef run_all_directions(lang_data, num_layers, run_perm, seed, n_perm=1000):\\n    langs = list(lang_data.keys())\\n    all_results = {}\\n\\n    for lang in langs:\\n        label = f\\\"{lang.upper()}→{lang.upper()}\\\"\\n        print(f\\\"\\\\n[{label}] Training probes (seed={seed})...\\\")\\n        all_results[label] = run_direction(\\n            lang_data[lang], lang_data[lang], num_layers, label, run_perm, seed=seed, n_perm=n_perm)\\n\\n    for src in langs:\\n        for tgt in langs:\\n            if src != tgt:\\n                label = f\\\"{src.upper()}→{tgt.upper()}\\\"\\n                print(f\\\"\\\\n[{label}] Training {src.upper()} probes, testing on {tgt.upper()} (seed={seed})...\\\")\\n                all_results[label] = run_direction(\\n                    lang_data[src], lang_data[tgt], num_layers, label, run_perm, seed=seed, n_perm=n_perm)\\n\\n    return all_results\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+ZH activations files are missing for both Llama and Qwen. Only EN activations exist. The probe script requires both EN and ZH activations for cross-lingual transfer evaluation. Let me check the rest of the script to understand the bootstrap functionality and the main/argparse section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "5c7b072d-7eef-4b1e-a602-d2f2204e8820",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEz1ZvpNDfEi3CeK31rKTJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4321,
+      "cache_read_input_tokens": 29046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4321
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+两个模型都只有 EN activations，ZH 缺失。看看脚本后半部分，确认 bootstrap 逻辑和是否支持单语言运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "70b22aa6-1529-4158-871c-dbe7b83d8687",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEz1ZvpNDfEi3CeK31rKTJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4321,
+      "cache_read_input_tokens": 29046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4321
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NzSSc698KUK6SkP48frj3f`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "wc -l /root/clkc_mech_interp/src/train_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "545819f4-9864-4a40-baf3-ce51a9293358",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEz1ZvpNDfEi3CeK31rKTJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4321,
+      "cache_read_input_tokens": 29046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4321
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-25T20:14:34.980Z_
+
+<details><summary>↩ Tool result · `toolu_01NzSSc698KUK6SkP48frj3f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"505 /root/clkc_mech_interp/src/train_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "ab015baa-5676-4d98-9e22-57a05375c1b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"505 /root/clkc_mech_interp/src/train_probe.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"505 /root/clkc_mech_interp/src/train_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011W5dn664eJsuLzk1FLovCc`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "tail -200 /root/clkc_mech_interp/src/train_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "702d6ad5-e5a9-4f39-912e-4b70558c92d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013RFAYKiwMdrZtvn18pNLXo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 350,
+      "cache_read_input_tokens": 33367,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 350
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-25T20:14:37.655Z_
+
+<details><summary>↩ Tool result · `toolu_011W5dn664eJsuLzk1FLovCc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    print(f\\\"Saved plot to {output_path}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Train linear probes on residual stream activations\\\")\\n    parser.add_argument(\\\"--activation_dir\\\", type=str, default=\\\"outputs\\\")\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=\\\"outputs\\\")\\n    parser.add_argument(\\\"--n_perm\\\", type=int, default=1000, help=\\\"Number of permutation test iterations\\\")\\n    parser.add_argument(\\\"--skip_permutation\\\", action=\\\"store_true\\\", help=\\\"Skip slow permutation test\\\")\\n    parser.add_argument('--bootstrap_seeds', type=int, default=0,\\n                        help='Number of bootstrap resampling runs. 0=disabled.')\\n    parser.add_argument('--output_file', type=str, default=None,\\n                        help='Output JSON filename (default: probe_results.json)')\\n    parser.add_argument(\\\"--seeds\\\", type=str, default=\\\"42\\\",\\n                        help='Comma-separated seeds, e.g. \\\"0,1,2,3,4\\\"')\\n    parser.add_argument(\\\"--langs\\\", type=str, default=\\\"en,zh\\\",\\n                        help='Comma-separated language codes, e.g. \\\"en,zh,de\\\"')\\n    args = parser.parse_args()\\n\\n    seeds = [int(s) for s in args.seeds.split(',')]\\n    langs = [l.strip().lower() for l in args.langs.split(\\\",\\\")]\\n\\n    lang_data = {}\\n    for lang in langs:\\n        path = Path(args.activation_dir) / f\\\"{lang}_activations.pt\\\"\\n        if path.exists():\\n            lang_data[lang] = load_activations(str(path))\\n            d = lang_data[lang]\\n            print(f\\\"Loaded {lang.upper()}: train={d['train_X'].shape[0]}, test={d['test_X'].shape[0]}\\\")\\n        else:\\n            print(f\\\"Warning: {path} not found, skipping {lang.upper()}\\\")\\n\\n    if not lang_data:\\n        raise FileNotFoundError(f\\\"No activation files found in {args.activation_dir}\\\")\\n\\n    num_layers = next(iter(lang_data.values()))[\\\"train_X\\\"].shape[1]\\n    print(f\\\"Number of layers: {num_layers}\\\")\\n\\n    directions = get_directions(list(lang_data.keys()))\\n    run_perm = not args.skip_permutation\\n\\n    if args.output_file:\\n        output_filename = Path(args.output_file).name\\n    else:\\n        output_filename = \\\"probe_results.json\\\"\\n\\n    if args.bootstrap_seeds > 0:\\n        print(f\\\"\\\\nBOOTSTRAP MODE: {args.bootstrap_seeds} resampling runs (no permutation test)\\\")\\n        bootstrap_results = run_bootstrap_directions(lang_data, num_layers, args.bootstrap_seeds)\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(\\\"BOOTSTRAP SUMMARY (mean +/- std)\\\")\\n        print(f\\\"{'='*60}\\\")\\n        for direction in directions:\\n            if direction in bootstrap_results:\\n                s = bootstrap_results[direction]\\n                print(f\\\"  {direction}: bal_acc={s['balanced_accuracy_mean']:.4f}+/-{s['balanced_accuracy_std']:.4f}, \\\"\\n                      f\\\"f1={s['f1_mean']:.4f}+/-{s['f1_std']:.4f}, peaks={s['peak_layers']}\\\")\\n\\n        output = {\\n            \\\"mode\\\": \\\"bootstrap\\\",\\n            \\\"n_bootstrap\\\": args.bootstrap_seeds,\\n            \\\"num_layers\\\": num_layers,\\n            \\\"langs\\\": list(lang_data.keys()),\\n            \\\"directions\\\": {d: r for d, r in bootstrap_results.items()},\\n        }\\n\\n        json_path = Path(args.output_dir) / output_filename\\n        with open(json_path, \\\"w\\\") as f:\\n            json.dump(output, f, indent=2)\\n        print(f\\\"\\\\nSaved results to {json_path}\\\")\\n        return\\n\\n    elif len(seeds) == 1:\\n        seed = seeds[0]\\n        np.random.seed(seed)\\n        all_results = run_all_directions(lang_data, num_layers, run_perm, seed, n_perm=args.n_perm)\\n\\n        print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        print(\\\"Probe Accuracy by Layer\\\")\\n        print(\\\"=\\\" * 60)\\n        print_table(all_results, num_layers, directions)\\n\\n        print(\\\"\\\\n--- Best layers ---\\\")\\n        summary = {}\\n        for direction, results in all_results.items():\\n            best = max(results, key=lambda r: r[\\\"balanced_accuracy\\\"])\\n            p_str = f\\\", perm_p={best['p_permutation']:.4f}\\\" if best[\\\"p_permutation\\\"] is not None else \\\"\\\"\\n            print(f\\\"  {direction}: layer {best['layer']}, acc={best['accuracy']:.4f}, \\\"\\n                  f\\\"bal_acc={\\n\\n... [截断: 输出过长，省略 672 字符] ...\\n\\ng_data.keys()),\\n        }\\n\\n        plot_path = Path(args.output_dir) / \\\"probe_accuracy_by_layer.png\\\"\\n        plot_results(all_results, num_layers, str(plot_path))\\n\\n    else:\\n        lang_unsplit = {}\\n        for lang in langs:\\n            upath = Path(args.activation_dir) / f\\\"{lang}_activations.pt\\\"\\n            if upath.exists():\\n                lang_unsplit[lang] = load_activations_unsplit(str(upath))\\n                print(f\\\"Loaded {lang.upper()} unsplit: {lang_unsplit[lang]['X'].shape[0]} samples\\\")\\n\\n        per_seed = {}\\n        all_seed_layer_results = {}\\n\\n        for seed in seeds:\\n            print(f\\\"\\\\n{'='*60}\\\")\\n            print(f\\\"SEED {seed}\\\")\\n            print(f\\\"{'='*60}\\\")\\n            np.random.seed(seed)\\n            lang_data_seed = {}\\n            for lang, unsplit in lang_unsplit.items():\\n                lang_data_seed[lang] = resplit_data(unsplit, seed)\\n                d = lang_data_seed[lang]\\n                print(f\\\"  {lang.upper()}: train={d['train_X'].shape[0]}, test={d['test_X'].shape[0]}\\\")\\n            all_results = run_all_directions(lang_data_seed, num_layers, run_perm, seed, n_perm=args.n_perm)\\n            all_seed_layer_results[seed] = all_results\\n\\n            print_table(all_results, num_layers, directions)\\n\\n            seed_summary = {}\\n            for direction, results in all_results.items():\\n                best = max(results, key=lambda r: r[\\\"balanced_accuracy\\\"])\\n                seed_summary[direction] = {\\n                    \\\"balanced_accuracy\\\": best[\\\"balanced_accuracy\\\"],\\n                    \\\"f1\\\": best[\\\"f1\\\"],\\n                    \\\"accuracy\\\": best[\\\"accuracy\\\"],\\n                    \\\"peak_layer\\\": best[\\\"layer\\\"],\\n                    \\\"p_binomial\\\": best[\\\"p_binomial\\\"],\\n                    \\\"p_permutation\\\": best[\\\"p_permutation\\\"],\\n                }\\n                print(f\\\"  {direction}: layer {best['layer']}, bal_acc={best['balanced_accuracy']:.4f}, f1={best['f1']:.4f}\\\")\\n            per_seed[str(seed)] = seed_summary\\n\\n        summary = {}\\n        directions_seen = set()\\n        for s in per_seed.values():\\n            directions_seen.update(s.keys())\\n\\n        for direction in directions:\\n            if direction not in directions_seen:\\n                continue\\n            bal_accs = [per_seed[str(s)][direction][\\\"balanced_accuracy\\\"] for s in seeds]\\n            f1s = [per_seed[str(s)][direction][\\\"f1\\\"] for s in seeds]\\n            accs = [per_seed[str(s)][direction][\\\"accuracy\\\"] for s in seeds]\\n            peak_layers = [per_seed[str(s)][direction][\\\"peak_layer\\\"] for s in seeds]\\n\\n            summary[direction] = {\\n                \\\"balanced_accuracy_mean\\\": round(float(np.mean(bal_accs)), 4),\\n                \\\"balanced_accuracy_std\\\": round(float(np.std(bal_accs)), 4),\\n                \\\"f1_mean\\\": round(float(np.mean(f1s)), 4),\\n                \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n                \\\"accuracy_mean\\\": round(float(np.mean(accs)), 4),\\n                \\\"accuracy_std\\\": round(float(np.std(accs)), 4),\\n                \\\"peak_layers\\\": peak_layers,\\n            }\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(\\\"SUMMARY (mean +/- std across seeds)\\\")\\n        print(f\\\"{'='*60}\\\")\\n        for direction, s in summary.items():\\n            print(f\\\"  {direction}: bal_acc={s['balanced_accuracy_mean']:.4f}+/-{s['balanced_accuracy_std']:.4f}, \\\"\\n                  f\\\"f1={s['f1_mean']:.4f}+/-{s['f1_std']:.4f}, peaks={s['peak_layers']}\\\")\\n\\n        output = {\\n            \\\"per_seed\\\": per_seed,\\n            \\\"summary\\\": summary,\\n            \\\"num_layers\\\": num_layers,\\n            \\\"seeds\\\": seeds,\\n            \\\"langs\\\": list(lang_data.keys()),\\n        }\\n\\n        first_results = all_seed_layer_results[seeds[0]]\\n        plot_path = Path(args.output_dir) / \\\"probe_accuracy_by_layer.png\\\"\\n        plot_results(first_results, num_layers, str(plot_path))\\n\\n    json_path = Path(args.output_dir) / output_filename\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved results to {json_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "b2984e36-b063-4527-8644-050a0b80de5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(f\\\\\\\"Saved plot to {output_path}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on residual stream activations\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--activation_dir\\\\\\\", type=str, default=\\\\\\\"outputs\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=\\\\\\\"outputs\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n_perm\\\\\\\", type=int, default=1000, help=\\\\\\\"Number of permutation test iterations\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--skip_permutation\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip slow permutation test\\\\\\\")\\\\n    parser.add_argument('--bootstrap_seeds', type=int, default=0,\\\\n                        help='Number of bootstrap resampling runs. 0=disabled.')\\\\n    parser.add_argument('--output_file', type=str, default=None,\\\\n                        help='Output JSON filename (default: probe_results.json)')\\\\n    parser.add_argument(\\\\\\\"--seeds\\\\\\\", type=str, default=\\\\\\\"42\\\\\\\",\\\\n                        help='Comma-separated seeds, e.g. \\\\\\\"0,1,2,3,4\\\\\\\"')\\\\n    parser.add_argument(\\\\\\\"--langs\\\\\\\", type=str, default=\\\\\\\"en,zh\\\\\\\",\\\\n                        help='Comma-separated language codes, e.g. \\\\\\\"en,zh,de\\\\\\\"')\\\\n    args = parser.parse_args()\\\\n\\\\n    seeds = [int(s) for s in args.seeds.split(',')]\\\\n    langs = [l.strip().lower() for l in args.langs.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n    lang_data = {}\\\\n    for lang in langs:\\\\n        path = Path(args.activation_dir) / f\\\\\\\"{lang}_activations.pt\\\\\\\"\\\\n        if path.exists():\\\\n            lang_data[lang] = load_activations(str(path))\\\\n            d = lang_data[lang]\\\\n            print(f\\\\\\\"Loaded {lang.upper()}: train={d['train_X'].shape[0]}, test={d['test_X'].shape[0]}\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"Warning: {path} not found, skipping {lang.upper()}\\\\\\\")\\\\n\\\\n    if not lang_data:\\\\n        raise FileNotFoundError(f\\\\\\\"No activation files found in {args.activation_dir}\\\\\\\")\\\\n\\\\n    num_layers = next(iter(lang_data.values()))[\\\\\\\"train_X\\\\\\\"].shape[1]\\\\n    print(f\\\\\\\"Number of layers: {num_layers}\\\\\\\")\\\\n\\\\n    directions = get_directions(list(lang_data.keys()))\\\\n    run_perm = not args.skip_permutation\\\\n\\\\n    if args.output_file:\\\\n        output_filename = Path(args.output_file).name\\\\n    else:\\\\n        output_filename = \\\\\\\"probe_results.json\\\\\\\"\\\\n\\\\n    if args.bootstrap_seeds > 0:\\\\n        print(f\\\\\\\"\\\\\\\\nBOOTSTRAP MODE: {args.bootstrap_seeds} resampling runs (no permutation test)\\\\\\\")\\\\n        bootstrap_results = run_bootstrap_directions(lang_data, num_layers, args.bootstrap_seeds)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(\\\\\\\"BOOTSTRAP SUMMARY (mean +/- std)\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n        for direction in directions:\\\\n            if direction in bootstrap_results:\\\\n                s = bootstrap_results[direction]\\\\n                print(f\\\\\\\"  {direction}: bal_acc={s['balanced_accuracy_mean']:.4f}+/-{s['balanced_accuracy_std']:.4f}, \\\\\\\"\\\\n                      f\\\\\\\"f1={s['f1_mean']:.4f}+/-{s['f1_std']:.4f}, peaks={s['peak_layers']}\\\\\\\")\\\\n\\\\n        output = {\\\\n            \\\\\\\"mode\\\\\\\": \\\\\\\"bootstrap\\\\\\\",\\\\n            \\\\\\\"n_bootstrap\\\\\\\": args.bootstrap_seeds,\\\\n            \\\\\\\"num_layers\\\\\\\": num_layers,\\\\n            \\\\\\\"langs\\\\\\\": list(lang_data.keys()),\\\\n            \\\\\\\"directions\\\\\\\": {d: r for d, r in bootstrap_results.items()},\\\\n        }\\\\n\\\\n        json_path = Path(args.output_dir) / output_filename\\\\n        with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(output, f, indent=2)\\\\n        print(f\\\\\\\"\\\\\\\\nSaved results to {json_path}\\\\\\\")\\\\n        return\\\\n\\\\n    elif len(seeds) == 1:\\\\n        seed = seeds[0]\\\\n        np.random.seed(seed)\\\\n        all_results = run_all_directions(lang_data, num_layers, run_perm, seed, n_perm=args.n_perm)\\\\n\\\\n        print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n        print(\\\\\\\"Probe Accuracy by Layer\\\\\\\")\\\\n        print(\\\\\\\"=\\\\\\\" * 60)\\\\n        print_table(all_results, num_layers, directions)\\\\n\\\\n        print(\\\\\\\"\\\\\\\\n--- Best layers ---\\\\\\\")\\\\n        summary = {}\\\\n        for direction, results in all_results.items():\\\\n            best = max(results, key=lambda r: r[\\\\\\\"balanced_accuracy\\\\\\\"])\\\\n            p_str = f\\\\\\\", perm_p={best['p_permutation']:.4f}\\\\\\\" if best[\\\\\\\"p_permutation\\\\\\\"] is not None else \\\\\\\"\\\\\\\"\\\\n            print(f\\\\\\\"  {direction}: layer {best['layer']}, acc={best['accuracy']:.4f}, \\\\\\\"\\\\n                  f\\\\\\\"bal_acc={\\\\n\\\\n... [截断: 输出过长，省略 672 字符] ...\\\\n\\\\ng_data.keys()),\\\\n        }\\\\n\\\\n        plot_path = Path(args.output_dir) / \\\\\\\"probe_accuracy_by_layer.png\\\\\\\"\\\\n        plot_results(all_results, num_layers, str(plot_path))\\\\n\\\\n    else:\\\\n        lang_unsplit = {}\\\\n        for lang in langs:\\\\n            upath = Path(args.activation_dir) / f\\\\\\\"{lang}_activations.pt\\\\\\\"\\\\n            if upath.exists():\\\\n                lang_unsplit[lang] = load_activations_unsplit(str(upath))\\\\n                print(f\\\\\\\"Loaded {lang.upper()} unsplit: {lang_unsplit[lang]['X'].shape[0]} samples\\\\\\\")\\\\n\\\\n        per_seed = {}\\\\n        all_seed_layer_results = {}\\\\n\\\\n        for seed in seeds:\\\\n            print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n            print(f\\\\\\\"SEED {seed}\\\\\\\")\\\\n            print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n            np.random.seed(seed)\\\\n            lang_data_seed = {}\\\\n            for lang, unsplit in lang_unsplit.items():\\\\n                lang_data_seed[lang] = resplit_data(unsplit, seed)\\\\n                d = lang_data_seed[lang]\\\\n                print(f\\\\\\\"  {lang.upper()}: train={d['train_X'].shape[0]}, test={d['test_X'].shape[0]}\\\\\\\")\\\\n            all_results = run_all_directions(lang_data_seed, num_layers, run_perm, seed, n_perm=args.n_perm)\\\\n            all_seed_layer_results[seed] = all_results\\\\n\\\\n            print_table(all_results, num_layers, directions)\\\\n\\\\n            seed_summary = {}\\\\n            for direction, results in all_results.items():\\\\n                best = max(results, key=lambda r: r[\\\\\\\"balanced_accuracy\\\\\\\"])\\\\n                seed_summary[direction] = {\\\\n                    \\\\\\\"balanced_accuracy\\\\\\\": best[\\\\\\\"balanced_accuracy\\\\\\\"],\\\\n                    \\\\\\\"f1\\\\\\\": best[\\\\\\\"f1\\\\\\\"],\\\\n                    \\\\\\\"accuracy\\\\\\\": best[\\\\\\\"accuracy\\\\\\\"],\\\\n                    \\\\\\\"peak_layer\\\\\\\": best[\\\\\\\"layer\\\\\\\"],\\\\n                    \\\\\\\"p_binomial\\\\\\\": best[\\\\\\\"p_binomial\\\\\\\"],\\\\n                    \\\\\\\"p_permutation\\\\\\\": best[\\\\\\\"p_permutation\\\\\\\"],\\\\n                }\\\\n                print(f\\\\\\\"  {direction}: layer {best['layer']}, bal_acc={best['balanced_accuracy']:.4f}, f1={best['f1']:.4f}\\\\\\\")\\\\n            per_seed[str(seed)] = seed_summary\\\\n\\\\n        summary = {}\\\\n        directions_seen = set()\\\\n        for s in per_seed.values():\\\\n            directions_seen.update(s.keys())\\\\n\\\\n        for direction in directions:\\\\n            if direction not in directions_seen:\\\\n                continue\\\\n            bal_accs = [per_seed[str(s)][direction][\\\\\\\"balanced_accuracy\\\\\\\"] for s in seeds]\\\\n            f1s = [per_seed[str(s)][direction][\\\\\\\"f1\\\\\\\"] for s in seeds]\\\\n            accs = [per_seed[str(s)][direction][\\\\\\\"accuracy\\\\\\\"] for s in seeds]\\\\n            peak_layers = [per_seed[str(s)][direction][\\\\\\\"peak_layer\\\\\\\"] for s in seeds]\\\\n\\\\n            summary[direction] = {\\\\n                \\\\\\\"balanced_accuracy_mean\\\\\\\": round(float(np.mean(bal_accs)), 4),\\\\n                \\\\\\\"balanced_accuracy_std\\\\\\\": round(float(np.std(bal_accs)), 4),\\\\n                \\\\\\\"f1_mean\\\\\\\": round(float(np.mean(f1s)), 4),\\\\n                \\\\\\\"f1_std\\\\\\\": round(float(np.std(f1s)), 4),\\\\n                \\\\\\\"accuracy_mean\\\\\\\": round(float(np.mean(accs)), 4),\\\\n                \\\\\\\"accuracy_std\\\\\\\": round(float(np.std(accs)), 4),\\\\n                \\\\\\\"peak_layers\\\\\\\": peak_layers,\\\\n            }\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(\\\\\\\"SUMMARY (mean +/- std across seeds)\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n        for direction, s in summary.items():\\\\n            print(f\\\\\\\"  {direction}: bal_acc={s['balanced_accuracy_mean']:.4f}+/-{s['balanced_accuracy_std']:.4f}, \\\\\\\"\\\\n                  f\\\\\\\"f1={s['f1_mean']:.4f}+/-{s['f1_std']:.4f}, peaks={s['peak_layers']}\\\\\\\")\\\\n\\\\n        output = {\\\\n            \\\\\\\"per_seed\\\\\\\": per_seed,\\\\n            \\\\\\\"summary\\\\\\\": summary,\\\\n            \\\\\\\"num_layers\\\\\\\": num_layers,\\\\n            \\\\\\\"seeds\\\\\\\": seeds,\\\\n            \\\\\\\"langs\\\\\\\": list(lang_data.keys()),\\\\n        }\\\\n\\\\n        first_results = all_seed_layer_results[seeds[0]]\\\\n        plot_path = Path(args.output_dir) / \\\\\\\"probe_accuracy_by_layer.png\\\\\\\"\\\\n        plot_results(first_results, num_layers, str(plot_path))\\\\n\\\\n    json_path = Path(args.output_dir) / output_filename\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved results to {json_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    print(f\\\"Saved plot to {output_path}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Train linear probes on residual stream activations\\\")\\n    parser.add_argument(\\\"--activation_dir\\\", type=str, default=\\\"outputs\\\")\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=\\\"outputs\\\")\\n    parser.add_argument(\\\"--n_perm\\\", type=int, default=1000, help=\\\"Number of permutation test iterations\\\")\\n    parser.add_argument(\\\"--skip_permutation\\\", action=\\\"store_true\\\", help=\\\"Skip slow permutation test\\\")\\n    parser.add_argument('--bootstrap_seeds', type=int, default=0,\\n                        help='Number of bootstrap resampling runs. 0=disabled.')\\n    parser.add_argument('--output_file', type=str, default=None,\\n                        help='Output JSON filename (default: probe_results.json)')\\n    parser.add_argument(\\\"--seeds\\\", type=str, default=\\\"42\\\",\\n                        help='Comma-separated seeds, e.g. \\\"0,1,2,3,4\\\"')\\n    parser.add_argument(\\\"--langs\\\", type=str, default=\\\"en,zh\\\",\\n                        help='Comma-separated language codes, e.g. \\\"en,zh,de\\\"')\\n    args = parser.parse_args()\\n\\n    seeds = [int(s) for s in args.seeds.split(',')]\\n    langs = [l.strip().lower() for l in args.langs.split(\\\",\\\")]\\n\\n    lang_data = {}\\n    for lang in langs:\\n        path = Path(args.activation_dir) / f\\\"{lang}_activations.pt\\\"\\n        if path.exists():\\n            lang_data[lang] = load_activations(str(path))\\n            d = lang_data[lang]\\n            print(f\\\"Loaded {lang.upper()}: train={d['train_X'].shape[0]}, test={d['test_X'].shape[0]}\\\")\\n        else:\\n            print(f\\\"Warning: {path} not found, skipping {lang.upper()}\\\")\\n\\n    if not lang_data:\\n        raise FileNotFoundError(f\\\"No activation files found in {args.activation_dir}\\\")\\n\\n    num_layers = next(iter(lang_data.values()))[\\\"train_X\\\"].shape[1]\\n    print(f\\\"Number of layers: {num_layers}\\\")\\n\\n    directions = get_directions(list(lang_data.keys()))\\n    run_perm = not args.skip_permutation\\n\\n    if args.output_file:\\n        output_filename = Path(args.output_file).name\\n    else:\\n        output_filename = \\\"probe_results.json\\\"\\n\\n    if args.bootstrap_seeds > 0:\\n        print(f\\\"\\\\nBOOTSTRAP MODE: {args.bootstrap_seeds} resampling runs (no permutation test)\\\")\\n        bootstrap_results = run_bootstrap_directions(lang_data, num_layers, args.bootstrap_seeds)\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(\\\"BOOTSTRAP SUMMARY (mean +/- std)\\\")\\n        print(f\\\"{'='*60}\\\")\\n        for direction in directions:\\n            if direction in bootstrap_results:\\n                s = bootstrap_results[direction]\\n                print(f\\\"  {direction}: bal_acc={s['balanced_accuracy_mean']:.4f}+/-{s['balanced_accuracy_std']:.4f}, \\\"\\n                      f\\\"f1={s['f1_mean']:.4f}+/-{s['f1_std']:.4f}, peaks={s['peak_layers']}\\\")\\n\\n        output = {\\n            \\\"mode\\\": \\\"bootstrap\\\",\\n            \\\"n_bootstrap\\\": args.bootstrap_seeds,\\n            \\\"num_layers\\\": num_layers,\\n            \\\"langs\\\": list(lang_data.keys()),\\n            \\\"directions\\\": {d: r for d, r in bootstrap_results.items()},\\n        }\\n\\n        json_path = Path(args.output_dir) / output_filename\\n        with open(json_path, \\\"w\\\") as f:\\n            json.dump(output, f, indent=2)\\n        print(f\\\"\\\\nSaved results to {json_path}\\\")\\n        return\\n\\n    elif len(seeds) == 1:\\n        seed = seeds[0]\\n        np.random.seed(seed)\\n        all_results = run_all_directions(lang_data, num_layers, run_perm, seed, n_perm=args.n_perm)\\n\\n        print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        print(\\\"Probe Accuracy by Layer\\\")\\n        print(\\\"=\\\" * 60)\\n        print_table(all_results, num_layers, directions)\\n\\n        print(\\\"\\\\n--- Best layers ---\\\")\\n        summary = {}\\n        for direction, results in all_results.items():\\n            best = max(results, key=lambda r: r[\\\"balanced_accuracy\\\"])\\n            p_str = f\\\", perm_p={best['p_permutation']:.4f}\\\" if best[\\\"p_permutation\\\"] is not None else \\\"\\\"\\n            print(f\\\"  {direction}: layer {best['layer']}, acc={best['accuracy']:.4f}, \\\"\\n                  f\\\"bal_acc={\\n\\n... [截断: 输出过长，省略 672 字符] ...\\n\\ng_data.keys()),\\n        }\\n\\n        plot_path = Path(args.output_dir) / \\\"probe_accuracy_by_layer.png\\\"\\n        plot_results(all_results, num_layers, str(plot_path))\\n\\n    else:\\n        lang_unsplit = {}\\n        for lang in langs:\\n            upath = Path(args.activation_dir) / f\\\"{lang}_activations.pt\\\"\\n            if upath.exists():\\n                lang_unsplit[lang] = load_activations_unsplit(str(upath))\\n                print(f\\\"Loaded {lang.upper()} unsplit: {lang_unsplit[lang]['X'].shape[0]} samples\\\")\\n\\n        per_seed = {}\\n        all_seed_layer_results = {}\\n\\n        for seed in seeds:\\n            print(f\\\"\\\\n{'='*60}\\\")\\n            print(f\\\"SEED {seed}\\\")\\n            print(f\\\"{'='*60}\\\")\\n            np.random.seed(seed)\\n            lang_data_seed = {}\\n            for lang, unsplit in lang_unsplit.items():\\n                lang_data_seed[lang] = resplit_data(unsplit, seed)\\n                d = lang_data_seed[lang]\\n                print(f\\\"  {lang.upper()}: train={d['train_X'].shape[0]}, test={d['test_X'].shape[0]}\\\")\\n            all_results = run_all_directions(lang_data_seed, num_layers, run_perm, seed, n_perm=args.n_perm)\\n            all_seed_layer_results[seed] = all_results\\n\\n            print_table(all_results, num_layers, directions)\\n\\n            seed_summary = {}\\n            for direction, results in all_results.items():\\n                best = max(results, key=lambda r: r[\\\"balanced_accuracy\\\"])\\n                seed_summary[direction] = {\\n                    \\\"balanced_accuracy\\\": best[\\\"balanced_accuracy\\\"],\\n                    \\\"f1\\\": best[\\\"f1\\\"],\\n                    \\\"accuracy\\\": best[\\\"accuracy\\\"],\\n                    \\\"peak_layer\\\": best[\\\"layer\\\"],\\n                    \\\"p_binomial\\\": best[\\\"p_binomial\\\"],\\n                    \\\"p_permutation\\\": best[\\\"p_permutation\\\"],\\n                }\\n                print(f\\\"  {direction}: layer {best['layer']}, bal_acc={best['balanced_accuracy']:.4f}, f1={best['f1']:.4f}\\\")\\n            per_seed[str(seed)] = seed_summary\\n\\n        summary = {}\\n        directions_seen = set()\\n        for s in per_seed.values():\\n            directions_seen.update(s.keys())\\n\\n        for direction in directions:\\n            if direction not in directions_seen:\\n                continue\\n            bal_accs = [per_seed[str(s)][direction][\\\"balanced_accuracy\\\"] for s in seeds]\\n            f1s = [per_seed[str(s)][direction][\\\"f1\\\"] for s in seeds]\\n            accs = [per_seed[str(s)][direction][\\\"accuracy\\\"] for s in seeds]\\n            peak_layers = [per_seed[str(s)][direction][\\\"peak_layer\\\"] for s in seeds]\\n\\n            summary[direction] = {\\n                \\\"balanced_accuracy_mean\\\": round(float(np.mean(bal_accs)), 4),\\n                \\\"balanced_accuracy_std\\\": round(float(np.std(bal_accs)), 4),\\n                \\\"f1_mean\\\": round(float(np.mean(f1s)), 4),\\n                \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n                \\\"accuracy_mean\\\": round(float(np.mean(accs)), 4),\\n                \\\"accuracy_std\\\": round(float(np.std(accs)), 4),\\n                \\\"peak_layers\\\": peak_layers,\\n            }\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(\\\"SUMMARY (mean +/- std across seeds)\\\")\\n        print(f\\\"{'='*60}\\\")\\n        for direction, s in summary.items():\\n            print(f\\\"  {direction}: bal_acc={s['balanced_accuracy_mean']:.4f}+/-{s['balanced_accuracy_std']:.4f}, \\\"\\n                  f\\\"f1={s['f1_mean']:.4f}+/-{s['f1_std']:.4f}, peaks={s['peak_layers']}\\\")\\n\\n        output = {\\n            \\\"per_seed\\\": per_seed,\\n            \\\"summary\\\": summary,\\n            \\\"num_layers\\\": num_layers,\\n            \\\"seeds\\\": seeds,\\n            \\\"langs\\\": list(lang_data.keys()),\\n        }\\n\\n        first_results = all_seed_layer_results[seeds[0]]\\n        plot_path = Path(args.output_dir) / \\\"probe_accuracy_by_layer.png\\\"\\n        plot_results(first_results, num_layers, str(plot_path))\\n\\n    json_path = Path(args.output_dir) / output_filename\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved results to {json_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture:
+
+1. ZH activations are **missing** for both Llama and Qwen
+2. The script loads activations per language - if a file is missing, it prints a warning and skips that language
+3. The bootstrap mode (`--bootstrap_seeds 2000`) needs cross-lingual data (EN and ZH) to produce all 4 directions (EN→EN, ZH→ZH, EN→ZH, ZH→EN)
+4. Without ZH activations, the script would only produce EN→EN results
+
+The task asks for `--langs en,zh` which requires both activation files. 
+
+Since generating ZH activations requires GPU and the task explicitly says not to regenerate them, I need to report this limitation. Let me also check what the `run_bootstrap_directions` function actually does and whether it could work with just EN data, plus verify the output filename expectations—the task wants `probe_results_bootstrap_n2000.json` but the default is `probe_results.json`, which can be overridden with the `--output_file` argument.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "c4d5fc93-9e43-400d-8abb-1170f8fd5461",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TC2H6zPYvrdVygQndExfWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3267,
+      "cache_read_input_tokens": 33717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3267
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+看看 `run_bootstrap_directions` 函数和 bootstrap 的输出文件名逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "94110ef5-4bb9-4fd6-a53c-6582f8cd70c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TC2H6zPYvrdVygQndExfWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3267,
+      "cache_read_input_tokens": 33717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3267
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NibnbUzA8f4XQWhNjy5kH8`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "head -310 /root/clkc_mech_interp/src/train_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "6aa95930-49bf-42ed-83f7-1e48151d2c1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TC2H6zPYvrdVygQndExfWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3267,
+      "cache_read_input_tokens": 33717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3267
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-25T20:14:51.660Z_
+
+<details><summary>↩ Tool result · `toolu_01NibnbUzA8f4XQWhNjy5kH8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\n\\nLoads .pt activation files from collect_activations.py, trains a logistic\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\ntransfer directions for the specified languages.\\n\\nStatistical tests:\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\n\\nOutput:\\n  - Console table with per-layer accuracy + p-values\\n  - probe_results.json   (structured results)\\n  - probe_accuracy_by_layer.png  (visualization)\\n\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nfrom pathlib import Path\\n\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\n\\n\\ndef load_activations(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    return {\\n        \\\"train_X\\\": acts[:n_train],\\n        \\\"train_y\\\": data[\\\"labels\\\"][:n_train],\\n        \\\"test_X\\\": acts[n_train:],\\n        \\\"test_y\\\": data[\\\"labels\\\"][n_train:],\\n    }\\n\\n\\ndef load_activations_unsplit(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    n_total = acts.shape[0]\\n    return {\\\"X\\\": acts, \\\"y\\\": data[\\\"labels\\\"], \\\"test_ratio\\\": (n_total - n_train) / n_total}\\n\\n\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\n    n = unsplit[\\\"X\\\"].shape[0]\\n    indices = np.arange(n)\\n    y_np = unsplit[\\\"y\\\"].numpy()\\n    tr_idx, te_idx = train_test_split(\\n        indices, test_size=unsplit[\\\"test_ratio\\\"], random_state=seed, stratify=y_np)\\n    return {\\n        \\\"train_X\\\": unsplit[\\\"X\\\"][tr_idx],\\n        \\\"train_y\\\": unsplit[\\\"y\\\"][tr_idx],\\n        \\\"test_X\\\": unsplit[\\\"X\\\"][te_idx],\\n        \\\"test_y\\\": unsplit[\\\"y\\\"][te_idx],\\n    }\\n\\n\\ndef train_and_eval(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    random_state: int = 42,\\n) -> tuple[float, float, float]:\\n    scaler = StandardScaler()\\n    train_X = scaler.fit_transform(train_X)\\n    test_X = scaler.transform(test_X)\\n    clf = LogisticRegression(\\n        class_weight='balanced', max_iter=1000, solver=\\\"lbfgs\\\",\\n        random_state=random_state,\\n    )\\n    clf.fit(train_X, train_y)\\n    y_pred = clf.predict(test_X)\\n    acc = float(np.mean(y_pred == test_y))\\n    bal_acc = balanced_accuracy_score(test_y, y_pred)\\n    f1 = f1_score(test_y, y_pred)\\n    return acc, bal_acc, f1\\n\\n\\ndef binomial_p(accuracy: float, n: int, chance: float = 0.5) -> float:\\n    k = int(round(accuracy * n))\\n    return stats.binomtest(k, n, chance, alternative=\\\"greater\\\").pvalue\\n\\n\\ndef permutation_test(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    observed_bal_acc: float,\\n    n_perm: int = 1000,\\n    rng_seed: int = 42,\\n) -> float:\\n    rng = np.random.RandomState(rng_seed)\\n    count = 0\\n    for _ in range(n_perm):\\n        perm_y = rng.permutation(train_y)\\n        _, bal_acc, _ = train_and_eval(train_X, perm_y, test_X, test_y, random_state=rng_seed)\\n        if bal_acc >= observed_bal_acc:\\n            count += 1\\n    return count / n_perm\\n\\n\\ndef run_direction(\\n    train_data: dict,\\n    test_data: dict,\\n    num_layers: int,\\n    direction_name: str,\\n    run_permutation: bool = True,\\n    seed: int = 42,\\n    n_perm: int = 1000,\\n) -> list[dict]:\\n    train_y = train_data[\\\"train_y\\\"].numpy()\\n    test_y = test_data[\\\"test_y\\\"].numpy()\\n    n_test = len(test_y)\\n\\n    results = []\\n    best_bal_acc, best_layer = 0.0, 0\\n\\n    for layer in range(n\\n\\n... [截断: 输出过长，省略 2823 字符] ...\\n\\n), replace=True)\\n        X_boot = train_X_all[idx]\\n        y_boot = train_y_all[idx]\\n        best_bal_acc = 0\\n        best_result = None\\n        for layer in range(num_layers):\\n            scaler = StandardScaler()\\n            X_tr = scaler.fit_transform(X_boot[:, layer, :])\\n            X_te = scaler.transform(test_X_all[:, layer, :])\\n            clf = LogisticRegression(class_weight='balanced', max_iter=1000, solver='lbfgs', random_state=seed)\\n            clf.fit(X_tr, y_boot)\\n            y_pred = clf.predict(X_te)\\n            bal_acc = balanced_accuracy_score(test_y, y_pred)\\n            if bal_acc > best_bal_acc:\\n                best_bal_acc = bal_acc\\n                best_result = {\\n                    'balanced_accuracy': round(float(bal_acc), 4),\\n                    'accuracy': round(float(np.mean(y_pred == test_y)), 4),\\n                    'f1': round(float(f1_score(test_y, y_pred)), 4),\\n                    'peak_layer': layer,\\n                }\\n        all_results.append(best_result)\\n        print(f\\\"  Bootstrap {seed}: bal_acc={best_result['balanced_accuracy']:.4f} @ L{best_result['peak_layer']}\\\")\\n    bal_accs = [r['balanced_accuracy'] for r in all_results]\\n    f1s = [r['f1'] for r in all_results]\\n    peak_layers = [r['peak_layer'] for r in all_results]\\n    return {\\n        'direction': direction_name,\\n        'n_bootstrap': n_bootstrap,\\n        'balanced_accuracy_mean': round(float(np.mean(bal_accs)), 4),\\n        'balanced_accuracy_std': round(float(np.std(bal_accs)), 4),\\n        'f1_mean': round(float(np.mean(f1s)), 4),\\n        'f1_std': round(float(np.std(f1s)), 4),\\n        'peak_layers': peak_layers,\\n        'per_bootstrap': all_results,\\n    }\\n\\n\\ndef run_bootstrap_directions(lang_data, num_layers, n_bootstrap):\\n    langs = list(lang_data.keys())\\n    results = {}\\n\\n    for lang in langs:\\n        label = f\\\"{lang.upper()}→{lang.upper()}\\\"\\n        print(f\\\"\\\\n[{label}] Bootstrap ({n_bootstrap} seeds)...\\\")\\n        results[label] = run_direction_bootstrap(\\n            lang_data[lang], lang_data[lang], num_layers, label, n_bootstrap)\\n\\n    for src in langs:\\n        for tgt in langs:\\n            if src != tgt:\\n                label = f\\\"{src.upper()}→{tgt.upper()}\\\"\\n                print(f\\\"\\\\n[{label}] Bootstrap ({n_bootstrap} seeds)...\\\")\\n                results[label] = run_direction_bootstrap(\\n                    lang_data[src], lang_data[tgt], num_layers, label, n_bootstrap)\\n\\n    return results\\n\\n\\ndef print_table(all_results: dict[str, list[dict]], num_layers: int, directions: list[str]):\\n    header = f\\\"{'Layer':>5}\\\"\\n    for d in directions:\\n        header += f\\\"  {d + ' Acc':>12}  {d + ' BAcc':>12}  {d + ' F1':>10}\\\"\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for layer in range(num_layers):\\n        row = f\\\"{layer:>5}\\\"\\n        for d in directions:\\n            if d in all_results:\\n                r = all_results[d][layer]\\n                row += f\\\"  {r['accuracy']:>12.4f}  {r['balanced_accuracy']:>12.4f}  {r['f1']:>10.4f}\\\"\\n            else:\\n                row += f\\\"  {'—':>12}  {'—':>12}  {'—':>10}\\\"\\n        print(row)\\n\\n\\ndef plot_results(all_results: dict[str, list[dict]], num_layers: int, output_path: str):\\n    fig, ax = plt.subplots(figsize=(12, 5))\\n    cmap = plt.cm.tab10\\n\\n    for i, (direction, results) in enumerate(all_results.items()):\\n        layers = [r[\\\"layer\\\"] for r in results]\\n        accs = [r[\\\"accuracy\\\"] for r in results]\\n        ax.plot(layers, accs, label=direction, color=cmap(i % 10), linewidth=1.5)\\n\\n    ax.axhline(y=0.5, color=\\\"gray\\\", linestyle=\\\"--\\\", linewidth=1, label=\\\"Chance (50%)\\\")\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Accuracy\\\")\\n    ax.set_title(\\\"Linear Probe Accuracy by Layer\\\")\\n    ax.legend(fontsize=8)\\n    ax.set_xlim(0, num_layers - 1)\\n    ax.set_ylim(0.3, 1.0)\\n    fig.tight_layout()\\n    fig.savefig(output_path, dpi=150)\\n    plt.close(fig)\\n    print(f\\\"Saved plot to {output_path}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Train linear probes on residual stream activations\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "d2838498-f28e-44e3-9a4c-797e4f563494",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\\\n\\\\nLoads .pt activation files from collect_activations.py, trains a logistic\\\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\\\ntransfer directions for the specified languages.\\\\n\\\\nStatistical tests:\\\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\\\n\\\\nOutput:\\\\n  - Console table with per-layer accuracy + p-values\\\\n  - probe_results.json   (structured results)\\\\n  - probe_accuracy_by_layer.png  (visualization)\\\\n\\\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\\\nfrom sklearn.model_selection import train_test_split\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\n\\\\ndef load_activations(path: str) -> dict:\\\\n    data = torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    n_train = data[\\\\\\\"split_sizes\\\\\\\"][\\\\\\\"train\\\\\\\"]\\\\n    acts = data[\\\\\\\"activations\\\\\\\"]\\\\n    if acts.dtype == torch.bfloat16:\\\\n        acts = acts.float()\\\\n    return {\\\\n        \\\\\\\"train_X\\\\\\\": acts[:n_train],\\\\n        \\\\\\\"train_y\\\\\\\": data[\\\\\\\"labels\\\\\\\"][:n_train],\\\\n        \\\\\\\"test_X\\\\\\\": acts[n_train:],\\\\n        \\\\\\\"test_y\\\\\\\": data[\\\\\\\"labels\\\\\\\"][n_train:],\\\\n    }\\\\n\\\\n\\\\ndef load_activations_unsplit(path: str) -> dict:\\\\n    data = torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    acts = data[\\\\\\\"activations\\\\\\\"]\\\\n    if acts.dtype == torch.bfloat16:\\\\n        acts = acts.float()\\\\n    n_train = data[\\\\\\\"split_sizes\\\\\\\"][\\\\\\\"train\\\\\\\"]\\\\n    n_total = acts.shape[0]\\\\n    return {\\\\\\\"X\\\\\\\": acts, \\\\\\\"y\\\\\\\": data[\\\\\\\"labels\\\\\\\"], \\\\\\\"test_ratio\\\\\\\": (n_total - n_train) / n_total}\\\\n\\\\n\\\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\\\n    n = unsplit[\\\\\\\"X\\\\\\\"].shape[0]\\\\n    indices = np.arange(n)\\\\n    y_np = unsplit[\\\\\\\"y\\\\\\\"].numpy()\\\\n    tr_idx, te_idx = train_test_split(\\\\n        indices, test_size=unsplit[\\\\\\\"test_ratio\\\\\\\"], random_state=seed, stratify=y_np)\\\\n    return {\\\\n        \\\\\\\"train_X\\\\\\\": unsplit[\\\\\\\"X\\\\\\\"][tr_idx],\\\\n        \\\\\\\"train_y\\\\\\\": unsplit[\\\\\\\"y\\\\\\\"][tr_idx],\\\\n        \\\\\\\"test_X\\\\\\\": unsplit[\\\\\\\"X\\\\\\\"][te_idx],\\\\n        \\\\\\\"test_y\\\\\\\": unsplit[\\\\\\\"y\\\\\\\"][te_idx],\\\\n    }\\\\n\\\\n\\\\ndef train_and_eval(\\\\n    train_X: np.ndarray,\\\\n    train_y: np.ndarray,\\\\n    test_X: np.ndarray,\\\\n    test_y: np.ndarray,\\\\n    random_state: int = 42,\\\\n) -> tuple[float, float, float]:\\\\n    scaler = StandardScaler()\\\\n    train_X = scaler.fit_transform(train_X)\\\\n    test_X = scaler.transform(test_X)\\\\n    clf = LogisticRegression(\\\\n        class_weight='balanced', max_iter=1000, solver=\\\\\\\"lbfgs\\\\\\\",\\\\n        random_state=random_state,\\\\n    )\\\\n    clf.fit(train_X, train_y)\\\\n    y_pred = clf.predict(test_X)\\\\n    acc = float(np.mean(y_pred == test_y))\\\\n    bal_acc = balanced_accuracy_score(test_y, y_pred)\\\\n    f1 = f1_score(test_y, y_pred)\\\\n    return acc, bal_acc, f1\\\\n\\\\n\\\\ndef binomial_p(accuracy: float, n: int, chance: float = 0.5) -> float:\\\\n    k = int(round(accuracy * n))\\\\n    return stats.binomtest(k, n, chance, alternative=\\\\\\\"greater\\\\\\\").pvalue\\\\n\\\\n\\\\ndef permutation_test(\\\\n    train_X: np.ndarray,\\\\n    train_y: np.ndarray,\\\\n    test_X: np.ndarray,\\\\n    test_y: np.ndarray,\\\\n    observed_bal_acc: float,\\\\n    n_perm: int = 1000,\\\\n    rng_seed: int = 42,\\\\n) -> float:\\\\n    rng = np.random.RandomState(rng_seed)\\\\n    count = 0\\\\n    for _ in range(n_perm):\\\\n        perm_y = rng.permutation(train_y)\\\\n        _, bal_acc, _ = train_and_eval(train_X, perm_y, test_X, test_y, random_state=rng_seed)\\\\n        if bal_acc >= observed_bal_acc:\\\\n            count += 1\\\\n    return count / n_perm\\\\n\\\\n\\\\ndef run_direction(\\\\n    train_data: dict,\\\\n    test_data: dict,\\\\n    num_layers: int,\\\\n    direction_name: str,\\\\n    run_permutation: bool = True,\\\\n    seed: int = 42,\\\\n    n_perm: int = 1000,\\\\n) -> list[dict]:\\\\n    train_y = train_data[\\\\\\\"train_y\\\\\\\"].numpy()\\\\n    test_y = test_data[\\\\\\\"test_y\\\\\\\"].numpy()\\\\n    n_test = len(test_y)\\\\n\\\\n    results = []\\\\n    best_bal_acc, best_layer = 0.0, 0\\\\n\\\\n    for layer in range(n\\\\n\\\\n... [截断: 输出过长，省略 2823 字符] ...\\\\n\\\\n), replace=True)\\\\n        X_boot = train_X_all[idx]\\\\n        y_boot = train_y_all[idx]\\\\n        best_bal_acc = 0\\\\n        best_result = None\\\\n        for layer in range(num_layers):\\\\n            scaler = StandardScaler()\\\\n            X_tr = scaler.fit_transform(X_boot[:, layer, :])\\\\n            X_te = scaler.transform(test_X_all[:, layer, :])\\\\n            clf = LogisticRegression(class_weight='balanced', max_iter=1000, solver='lbfgs', random_state=seed)\\\\n            clf.fit(X_tr, y_boot)\\\\n            y_pred = clf.predict(X_te)\\\\n            bal_acc = balanced_accuracy_score(test_y, y_pred)\\\\n            if bal_acc > best_bal_acc:\\\\n                best_bal_acc = bal_acc\\\\n                best_result = {\\\\n                    'balanced_accuracy': round(float(bal_acc), 4),\\\\n                    'accuracy': round(float(np.mean(y_pred == test_y)), 4),\\\\n                    'f1': round(float(f1_score(test_y, y_pred)), 4),\\\\n                    'peak_layer': layer,\\\\n                }\\\\n        all_results.append(best_result)\\\\n        print(f\\\\\\\"  Bootstrap {seed}: bal_acc={best_result['balanced_accuracy']:.4f} @ L{best_result['peak_layer']}\\\\\\\")\\\\n    bal_accs = [r['balanced_accuracy'] for r in all_results]\\\\n    f1s = [r['f1'] for r in all_results]\\\\n    peak_layers = [r['peak_layer'] for r in all_results]\\\\n    return {\\\\n        'direction': direction_name,\\\\n        'n_bootstrap': n_bootstrap,\\\\n        'balanced_accuracy_mean': round(float(np.mean(bal_accs)), 4),\\\\n        'balanced_accuracy_std': round(float(np.std(bal_accs)), 4),\\\\n        'f1_mean': round(float(np.mean(f1s)), 4),\\\\n        'f1_std': round(float(np.std(f1s)), 4),\\\\n        'peak_layers': peak_layers,\\\\n        'per_bootstrap': all_results,\\\\n    }\\\\n\\\\n\\\\ndef run_bootstrap_directions(lang_data, num_layers, n_bootstrap):\\\\n    langs = list(lang_data.keys())\\\\n    results = {}\\\\n\\\\n    for lang in langs:\\\\n        label = f\\\\\\\"{lang.upper()}→{lang.upper()}\\\\\\\"\\\\n        print(f\\\\\\\"\\\\\\\\n[{label}] Bootstrap ({n_bootstrap} seeds)...\\\\\\\")\\\\n        results[label] = run_direction_bootstrap(\\\\n            lang_data[lang], lang_data[lang], num_layers, label, n_bootstrap)\\\\n\\\\n    for src in langs:\\\\n        for tgt in langs:\\\\n            if src != tgt:\\\\n                label = f\\\\\\\"{src.upper()}→{tgt.upper()}\\\\\\\"\\\\n                print(f\\\\\\\"\\\\\\\\n[{label}] Bootstrap ({n_bootstrap} seeds)...\\\\\\\")\\\\n                results[label] = run_direction_bootstrap(\\\\n                    lang_data[src], lang_data[tgt], num_layers, label, n_bootstrap)\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef print_table(all_results: dict[str, list[dict]], num_layers: int, directions: list[str]):\\\\n    header = f\\\\\\\"{'Layer':>5}\\\\\\\"\\\\n    for d in directions:\\\\n        header += f\\\\\\\"  {d + ' Acc':>12}  {d + ' BAcc':>12}  {d + ' F1':>10}\\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    for layer in range(num_layers):\\\\n        row = f\\\\\\\"{layer:>5}\\\\\\\"\\\\n        for d in directions:\\\\n            if d in all_results:\\\\n                r = all_results[d][layer]\\\\n                row += f\\\\\\\"  {r['accuracy']:>12.4f}  {r['balanced_accuracy']:>12.4f}  {r['f1']:>10.4f}\\\\\\\"\\\\n            else:\\\\n                row += f\\\\\\\"  {'—':>12}  {'—':>12}  {'—':>10}\\\\\\\"\\\\n        print(row)\\\\n\\\\n\\\\ndef plot_results(all_results: dict[str, list[dict]], num_layers: int, output_path: str):\\\\n    fig, ax = plt.subplots(figsize=(12, 5))\\\\n    cmap = plt.cm.tab10\\\\n\\\\n    for i, (direction, results) in enumerate(all_results.items()):\\\\n        layers = [r[\\\\\\\"layer\\\\\\\"] for r in results]\\\\n        accs = [r[\\\\\\\"accuracy\\\\\\\"] for r in results]\\\\n        ax.plot(layers, accs, label=direction, color=cmap(i % 10), linewidth=1.5)\\\\n\\\\n    ax.axhline(y=0.5, color=\\\\\\\"gray\\\\\\\", linestyle=\\\\\\\"--\\\\\\\", linewidth=1, label=\\\\\\\"Chance (50%)\\\\\\\")\\\\n    ax.set_xlabel(\\\\\\\"Layer\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"Accuracy\\\\\\\")\\\\n    ax.set_title(\\\\\\\"Linear Probe Accuracy by Layer\\\\\\\")\\\\n    ax.legend(fontsize=8)\\\\n    ax.set_xlim(0, num_layers - 1)\\\\n    ax.set_ylim(0.3, 1.0)\\\\n    fig.tight_layout()\\\\n    fig.savefig(output_path, dpi=150)\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"Saved plot to {output_path}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on residual stream activations\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Train per-layer linear probes and evaluate cross-lingual transfer.\\n\\nLoads .pt activation files from collect_activations.py, trains a logistic\\nregression probe per layer, and evaluates on all mono-/cross-lingual\\ntransfer directions for the specified languages.\\n\\nStatistical tests:\\n  - Binomial test: is each accuracy significantly above chance (50%)?\\n  - Permutation test (1000 iters): is the layer-wise peak accuracy above noise?\\n\\nOutput:\\n  - Console table with per-layer accuracy + p-values\\n  - probe_results.json   (structured results)\\n  - probe_accuracy_by_layer.png  (visualization)\\n\\nDependencies: torch, numpy, sklearn, scipy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nfrom pathlib import Path\\n\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, f1_score\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\n\\n\\ndef load_activations(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    return {\\n        \\\"train_X\\\": acts[:n_train],\\n        \\\"train_y\\\": data[\\\"labels\\\"][:n_train],\\n        \\\"test_X\\\": acts[n_train:],\\n        \\\"test_y\\\": data[\\\"labels\\\"][n_train:],\\n    }\\n\\n\\ndef load_activations_unsplit(path: str) -> dict:\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    acts = data[\\\"activations\\\"]\\n    if acts.dtype == torch.bfloat16:\\n        acts = acts.float()\\n    n_train = data[\\\"split_sizes\\\"][\\\"train\\\"]\\n    n_total = acts.shape[0]\\n    return {\\\"X\\\": acts, \\\"y\\\": data[\\\"labels\\\"], \\\"test_ratio\\\": (n_total - n_train) / n_total}\\n\\n\\ndef resplit_data(unsplit: dict, seed: int) -> dict:\\n    n = unsplit[\\\"X\\\"].shape[0]\\n    indices = np.arange(n)\\n    y_np = unsplit[\\\"y\\\"].numpy()\\n    tr_idx, te_idx = train_test_split(\\n        indices, test_size=unsplit[\\\"test_ratio\\\"], random_state=seed, stratify=y_np)\\n    return {\\n        \\\"train_X\\\": unsplit[\\\"X\\\"][tr_idx],\\n        \\\"train_y\\\": unsplit[\\\"y\\\"][tr_idx],\\n        \\\"test_X\\\": unsplit[\\\"X\\\"][te_idx],\\n        \\\"test_y\\\": unsplit[\\\"y\\\"][te_idx],\\n    }\\n\\n\\ndef train_and_eval(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    random_state: int = 42,\\n) -> tuple[float, float, float]:\\n    scaler = StandardScaler()\\n    train_X = scaler.fit_transform(train_X)\\n    test_X = scaler.transform(test_X)\\n    clf = LogisticRegression(\\n        class_weight='balanced', max_iter=1000, solver=\\\"lbfgs\\\",\\n        random_state=random_state,\\n    )\\n    clf.fit(train_X, train_y)\\n    y_pred = clf.predict(test_X)\\n    acc = float(np.mean(y_pred == test_y))\\n    bal_acc = balanced_accuracy_score(test_y, y_pred)\\n    f1 = f1_score(test_y, y_pred)\\n    return acc, bal_acc, f1\\n\\n\\ndef binomial_p(accuracy: float, n: int, chance: float = 0.5) -> float:\\n    k = int(round(accuracy * n))\\n    return stats.binomtest(k, n, chance, alternative=\\\"greater\\\").pvalue\\n\\n\\ndef permutation_test(\\n    train_X: np.ndarray,\\n    train_y: np.ndarray,\\n    test_X: np.ndarray,\\n    test_y: np.ndarray,\\n    observed_bal_acc: float,\\n    n_perm: int = 1000,\\n    rng_seed: int = 42,\\n) -> float:\\n    rng = np.random.RandomState(rng_seed)\\n    count = 0\\n    for _ in range(n_perm):\\n        perm_y = rng.permutation(train_y)\\n        _, bal_acc, _ = train_and_eval(train_X, perm_y, test_X, test_y, random_state=rng_seed)\\n        if bal_acc >= observed_bal_acc:\\n            count += 1\\n    return count / n_perm\\n\\n\\ndef run_direction(\\n    train_data: dict,\\n    test_data: dict,\\n    num_layers: int,\\n    direction_name: str,\\n    run_permutation: bool = True,\\n    seed: int = 42,\\n    n_perm: int = 1000,\\n) -> list[dict]:\\n    train_y = train_data[\\\"train_y\\\"].numpy()\\n    test_y = test_data[\\\"test_y\\\"].numpy()\\n    n_test = len(test_y)\\n\\n    results = []\\n    best_bal_acc, best_layer = 0.0, 0\\n\\n    for layer in range(n\\n\\n... [截断: 输出过长，省略 2823 字符] ...\\n\\n), replace=True)\\n        X_boot = train_X_all[idx]\\n        y_boot = train_y_all[idx]\\n        best_bal_acc = 0\\n        best_result = None\\n        for layer in range(num_layers):\\n            scaler = StandardScaler()\\n            X_tr = scaler.fit_transform(X_boot[:, layer, :])\\n            X_te = scaler.transform(test_X_all[:, layer, :])\\n            clf = LogisticRegression(class_weight='balanced', max_iter=1000, solver='lbfgs', random_state=seed)\\n            clf.fit(X_tr, y_boot)\\n            y_pred = clf.predict(X_te)\\n            bal_acc = balanced_accuracy_score(test_y, y_pred)\\n            if bal_acc > best_bal_acc:\\n                best_bal_acc = bal_acc\\n                best_result = {\\n                    'balanced_accuracy': round(float(bal_acc), 4),\\n                    'accuracy': round(float(np.mean(y_pred == test_y)), 4),\\n                    'f1': round(float(f1_score(test_y, y_pred)), 4),\\n                    'peak_layer': layer,\\n                }\\n        all_results.append(best_result)\\n        print(f\\\"  Bootstrap {seed}: bal_acc={best_result['balanced_accuracy']:.4f} @ L{best_result['peak_layer']}\\\")\\n    bal_accs = [r['balanced_accuracy'] for r in all_results]\\n    f1s = [r['f1'] for r in all_results]\\n    peak_layers = [r['peak_layer'] for r in all_results]\\n    return {\\n        'direction': direction_name,\\n        'n_bootstrap': n_bootstrap,\\n        'balanced_accuracy_mean': round(float(np.mean(bal_accs)), 4),\\n        'balanced_accuracy_std': round(float(np.std(bal_accs)), 4),\\n        'f1_mean': round(float(np.mean(f1s)), 4),\\n        'f1_std': round(float(np.std(f1s)), 4),\\n        'peak_layers': peak_layers,\\n        'per_bootstrap': all_results,\\n    }\\n\\n\\ndef run_bootstrap_directions(lang_data, num_layers, n_bootstrap):\\n    langs = list(lang_data.keys())\\n    results = {}\\n\\n    for lang in langs:\\n        label = f\\\"{lang.upper()}→{lang.upper()}\\\"\\n        print(f\\\"\\\\n[{label}] Bootstrap ({n_bootstrap} seeds)...\\\")\\n        results[label] = run_direction_bootstrap(\\n            lang_data[lang], lang_data[lang], num_layers, label, n_bootstrap)\\n\\n    for src in langs:\\n        for tgt in langs:\\n            if src != tgt:\\n                label = f\\\"{src.upper()}→{tgt.upper()}\\\"\\n                print(f\\\"\\\\n[{label}] Bootstrap ({n_bootstrap} seeds)...\\\")\\n                results[label] = run_direction_bootstrap(\\n                    lang_data[src], lang_data[tgt], num_layers, label, n_bootstrap)\\n\\n    return results\\n\\n\\ndef print_table(all_results: dict[str, list[dict]], num_layers: int, directions: list[str]):\\n    header = f\\\"{'Layer':>5}\\\"\\n    for d in directions:\\n        header += f\\\"  {d + ' Acc':>12}  {d + ' BAcc':>12}  {d + ' F1':>10}\\\"\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for layer in range(num_layers):\\n        row = f\\\"{layer:>5}\\\"\\n        for d in directions:\\n            if d in all_results:\\n                r = all_results[d][layer]\\n                row += f\\\"  {r['accuracy']:>12.4f}  {r['balanced_accuracy']:>12.4f}  {r['f1']:>10.4f}\\\"\\n            else:\\n                row += f\\\"  {'—':>12}  {'—':>12}  {'—':>10}\\\"\\n        print(row)\\n\\n\\ndef plot_results(all_results: dict[str, list[dict]], num_layers: int, output_path: str):\\n    fig, ax = plt.subplots(figsize=(12, 5))\\n    cmap = plt.cm.tab10\\n\\n    for i, (direction, results) in enumerate(all_results.items()):\\n        layers = [r[\\\"layer\\\"] for r in results]\\n        accs = [r[\\\"accuracy\\\"] for r in results]\\n        ax.plot(layers, accs, label=direction, color=cmap(i % 10), linewidth=1.5)\\n\\n    ax.axhline(y=0.5, color=\\\"gray\\\", linestyle=\\\"--\\\", linewidth=1, label=\\\"Chance (50%)\\\")\\n    ax.set_xlabel(\\\"Layer\\\")\\n    ax.set_ylabel(\\\"Accuracy\\\")\\n    ax.set_title(\\\"Linear Probe Accuracy by Layer\\\")\\n    ax.legend(fontsize=8)\\n    ax.set_xlim(0, num_layers - 1)\\n    ax.set_ylim(0.3, 1.0)\\n    fig.tight_layout()\\n    fig.savefig(output_path, dpi=150)\\n    plt.close(fig)\\n    print(f\\\"Saved plot to {output_path}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Train linear probes on residual stream activations\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture. The script can handle missing languages gracefully - it skips missing activations and only runs directions for available languages. But with only EN, it would only produce EN→EN, not the 4 directions (EN→EN, ZH→ZH, EN→ZH, ZH→EN).
+
+The bootstrap mode with `--bootstrap_seeds 2000` requires both EN and ZH activations for cross-lingual transfer. Without ZH, we'd only get EN→EN.
+
+But wait - the task says to check if ZH activations exist, and if they're missing, "不要尝试重新生成（需要 GPU），直接在产出中报告缺失情况". 
+
+So the ZH activations are missing, and I should report which files are absent rather than trying to regenerate them. The task expects either a 4-direction data overview or a clear report of what's missing if ZH activations aren't available.
+
+Looking at the output file naming, the script defaults to `probe_results.json` but the task wants `probe_results_bootstrap_n2000.json`, which I can set via the `--output_file` parameter. The script gracefully handles missing languages by skipping them, so running with `--langs en,zh` would just produce EN→EN results since only English is available. But I need to check what the task actually requires before deciding whether to proceed with EN-only or wait for the ZH activations.
+
+The task is explicit: only execute when ALL activation files exist. Since ZH activations are missing for both models, I shouldn't run the probes at all—I should just report the missing files in the output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "fe988813-17cf-4578-9c67-19677146e838",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsrvsckbPku4UFLN16Etgc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3792,
+      "cache_read_input_tokens": 36984,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3792
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+确认 ZH activations 不存在，搜索下是否在其他位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "d451631a-5307-4959-a9c5-4ef295adb925",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsrvsckbPku4UFLN16Etgc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3792,
+      "cache_read_input_tokens": 36984,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3792
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018hjpGmogfUc5ZW3W1xdgFE`</summary>
+
+```json
+{
+  "server": "westd-14391",
+  "command": "find /root/clkc_mech_interp/data -name \"*zh*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "f29dcd14-4175-4b9e-a3d9-1a21253df09c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsrvsckbPku4UFLN16Etgc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3792,
+      "cache_read_input_tokens": 36984,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3792
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-25T20:15:17.442Z_
+
+<details><summary>↩ Tool result · `toolu_018hjpGmogfUc5ZW3W1xdgFE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_train.jsonl\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_test.jsonl\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_train_validated.jsonl\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_test_validated.jsonl\\n/root/clkc_mech_interp/data/gemma2_v2/zh_activations.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "48ac1bdd-4700-4444-aeee-b0d3d6a2e376",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_train.jsonl\\\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_test.jsonl\\\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_train_validated.jsonl\\\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_test_validated.jsonl\\\\n/root/clkc_mech_interp/data/gemma2_v2/zh_activations.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_train.jsonl\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_test.jsonl\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_train_validated.jsonl\\n/root/clkc_mech_interp/data/gemma2_v2/zh_conflict_test_validated.jsonl\\n/root/clkc_mech_interp/data/gemma2_v2/zh_activations.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+ZH activations 只在 `gemma2_v2` 目录下存在，Llama 和 Qwen 均缺失。
+
+## 结果报告
+
+**无法执行 bootstrap probe 训练。** 前置条件不满足：
+
+### 缺失文件
+| 模型 | 缺失文件 | 说明 |
+|------|----------|------|
+| Llama-3.1 | `/root/clkc_mech_interp/data/llama31/zh_activations.pt` | 需要 GPU 重新生成 |
+| Qwen-3 | `/root/clkc_mech_interp/data/qwen3/zh_activations.pt` | 需要 GPU 重新生成 |
+
+### 已有文件
+- `data/llama31/en_activations.pt` (400MB, 2026-05-24)
+- `data/qwen3/en_activations.pt` (399MB, 2026-05-24)
+- ZH activations 仅存在于 `data/gemma2_v2/zh_activations.pt`
+
+### 影响
+Bootstrap n=2000 需要 EN 和 ZH 两个语言的 activations 才能产出 4 方向数据（EN→EN, ZH→ZH, EN→ZH, ZH→EN）。仅有 EN 无法生成论文所需的跨语言对比数据和 asymmetry CI。
+
+### 下一步
+需要先用 GPU 运行 `collect_activations.py` 生成 Llama 和 Qwen 的 ZH activations，之后才能执行 bootstrap probe 训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "uuid": "3d58f181-67d5-4120-91ed-4e01b0d31764",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011tKwpYk4WsJGkvaPL53bto",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1365,
+      "cache_read_input_tokens": 40776,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1365
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 52_
+
+ZH activations 只在 `gemma2_v2` 目录下存在，Llama 和 Qwen 均缺失。
+
+## 结果报告
+
+**无法执行 bootstrap probe 训练。** 前置条件不满足：
+
+### 缺失文件
+| 模型 | 缺失文件 | 说明 |
+|------|----------|------|
+| Llama-3.1 | `/root/clkc_mech_interp/data/llama31/zh_activations.pt` | 需要 GPU 重新生成 |
+| Qwen-3 | `/root/clkc_mech_interp/data/qwen3/zh_activations.pt` | 需要 GPU 重新生成 |
+
+### 已有文件
+- `data/llama31/en_activations.pt` (400MB, 2026-05-24)
+- `data/qwen3/en_activations.pt` (399MB, 2026-05-24)
+- ZH activations 仅存在于 `data/gemma2_v2/zh_activations.pt`
+
+### 影响
+Bootstrap n=2000 需要 EN 和 ZH 两个语言的 activations 才能产出 4 方向数据（EN→EN, ZH→ZH, EN→ZH, ZH→EN）。仅有 EN 无法生成论文所需的跨语言对比数据和 asymmetry CI。
+
+### 下一步
+需要先用 GPU 运行 `collect_activations.py` 生成 Llama 和 Qwen 的 ZH activations，之后才能执行 bootstrap probe 训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 93180,
+  "duration_api_ms": 91784,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "f05a1809-dfe0-4477-ad21-01049fb7403f",
+  "total_cost_usd": 0.4280365,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 30300,
+    "cache_read_input_tokens": 262257,
+    "output_tokens": 4220,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30300,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 451,
+        "cache_read_input_tokens": 40776,
+        "cache_creation_input_tokens": 1365,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1365
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1833,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001968,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 4220,
+      "cacheReadInputTokens": 262257,
+      "cacheCreationInputTokens": 30300,
+      "webSearchRequests": 0,
+      "costUSD": 0.42606849999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d8f900ed-65fc-4527-bf0b-4a38b9c5726e"
+}
+```
+
+</details>
+
+---

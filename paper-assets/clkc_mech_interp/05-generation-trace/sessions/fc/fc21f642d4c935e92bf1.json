@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc21f642d4c935e92bf1",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis steering 107",
+  "task_key": "worker_analysis_steering_107_20260522T105154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_steering_107_20260522T105154_result.json",
+    "occurrence": 1,
+    "bytes": 2021,
+    "sha256": "786c2a41c1259ed865f92ed4753219db1c13fb5ff3ef2b41aee6f094d01491a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## steering_107 分析完成 — 结论：**NEGATIVE**\n\n### 核心数据\n\n**Baseline** (n=136): contextual 41 | both 35 | parametric 32 | neither 28\n\n| alpha | steering flip rate | random flip rate | Fisher p | p→c / c→p |\n|------:|-------------------:|-----------------:|---------:|----------:|\n| -20 | **14.7%** | 16.9% | 0.740 | 0 / 2 |\n| -10 | 10.3% | 9.6% | 1.000 | 0 / 1 |\n| -5 | 4.4% | 3.7% | 1.000 | 1 / 0 |\n| -2 | 3.7% | 2.9% | 1.000 | 1 / 0 |\n| -1 | 4.4% | 2.9% | 0.749 | 2 / 0 |\n| +1 | 0.7% | 0.7% | 1.000 | 0 / 0 |\n| +2 | 2.2% | 1.5% | 1.000 | 0 / 0 |\n| +5 | 3.7% | 4.4% | 1.000 | 0 / 0 |\n| +10 | 7.4% | 6.6% | 1.000 | 0 / 0 |\n| +20 | 12.5% | **17.6%** | 0.309 | 1 / 0 |\n\n### 判断\n\n**假设证伪。** 三条核心证据：\n\n1. **最高 steering flip rate 14.7%（α=-20），未达 ≥15% 阈值**，且对应 random 更高（16.9%）\n2. **所有 alpha 的 Fisher p > 0.3**，steering 与 random 方向无统计差异\n3. **方向性 flips (p→c + c→p) 总计仅 9 次**——观测到的 \"flips\" 几乎都是进出 both/neither 的噪声，而非 parametric↔contextual 定向转换\n\nFlip 率随 |alpha| 单调递增且 steering/random 对称，说明 flips 由扰动幅度驱动，与方向无关。\n\n### 对论文的影响\n\n- 探针的判别精度（77.6%）作为**相关性发现**仍成立\n- **不能声称因果性**——这是一个 clean negative result\n- 可作为 \"correlation ≠ causation\" 的讨论点：线性探针高精度 ≠ mechanistic understanding\n\n### 建议下一步\n\n1. **Activation patching / causal tracing** — 定位真正的因果节点，不假设 probe direction = causal direction\n2. **DAS (Distributed Alignment Search)** — 非线性/多层干预方向\n3. **多层联合 steering** — 因果机制可能跨层分布\n4. **非线性探针对比** — MLP probe 看因果方向是否在非线性子空间\n\nRegistry 已更新：status=DONE, conclusion=negative, metrics 已写入。Artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-steering-107-copy-2.md"
+}

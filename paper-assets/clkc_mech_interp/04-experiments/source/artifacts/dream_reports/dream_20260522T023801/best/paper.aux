@@ -1,0 +1,85 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Knowledge conflicts in LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-lingual representations in multilingual models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sparse autoencoders for mechanistic interpretability.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation steering.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data Construction}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces COMET tercile ablation. Probe accuracy does not increase with translation quality, ruling out translation quality as a confound.}}{3}{table.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:comet}{{1}{3}{COMET tercile ablation. Probe accuracy does not increase with translation quality, ruling out translation quality as a confound}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Translation quality validation.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Track 1: Residual Stream Probing}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Track 2: SAE Feature Analysis}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Track 3: Causal Intervention via Steering}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probe-based steering.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SAE feature steering.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-architecture probe results. EN$\to $EN and ZH$\to $ZH are within-language; EN$\to $ZH and ZH$\to $EN are cross-lingual transfer. Asym.\ gap = (ZH$\to $EN) $-$ (EN$\to $ZH). All permutation test $p < 0.001$.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:cross_arch}{{2}{4}{Cross-architecture probe results. EN$\to $EN and ZH$\to $ZH are within-language; EN$\to $ZH and ZH$\to $EN are cross-lingual transfer. Asym.\ gap = (ZH$\to $EN) $-$ (EN$\to $ZH). All permutation test $p < 0.001$}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces MLP gain in the weak transfer direction (EN$\to $ZH). Models with better Chinese alignment show smaller non-linear gains.}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:mlp}{{3}{4}{MLP gain in the weak transfer direction (EN$\to $ZH). Models with better Chinese alignment show smaller non-linear gains}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cross-Architecture Conflict Detectability}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:detectability}{{4.1}{4}{Cross-Architecture Conflict Detectability}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{MLP non-linearity.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Multilingual Extension: EN$\leftrightarrow $JA}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:multilingual}{{4.2}{4}{Multilingual Extension: EN$\leftrightarrow $JA}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Layer-wise Representation Analysis}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:layerwise}{{4.3}{4}{Layer-wise Representation Analysis}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{CKA and SVCCA analysis.}{4}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Multi-lingual asymmetry comparison. All four model$\times $language-pair combinations show X$\to $EN $>$ EN$\to $X.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:multilingual}{{4}{5}{Multi-lingual asymmetry comparison. All four model$\times $language-pair combinations show X$\to $EN $>$ EN$\to $X}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces CKA similarity between EN and ZH activations by layer group. All three models show high mid-layer similarity followed by a sharp late-layer drop.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:cka}{{5}{5}{CKA similarity between EN and ZH activations by layer group. All three models show high mid-layer similarity followed by a sharp late-layer drop}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{PCA visualization of probe weights.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}SAE Feature Analysis}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:sae}{{4.4}{5}{SAE Feature Analysis}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Conflict feature identification.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LangFIR deconfounding.}{5}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces SAE conflict feature summary. Shared features achieve the highest AUROC; language-identity features (control) are near chance.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:sae_features}{{6}{6}{SAE conflict feature summary. Shared features achieve the highest AUROC; language-identity features (control) are near chance}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Feature type layer distribution. Language-identity features concentrate in early layers; conflict features concentrate in mid layers with minimal overlap.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:langfir}{{7}{6}{Feature type layer distribution. Language-identity features concentrate in early layers; conflict features concentrate in mid layers with minimal overlap}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-lingual Jaccard analysis.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Causal Intervention: Representation Steering}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:steering}{{4.5}{6}{Causal Intervention: Representation Steering}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Probe-based steering.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SAE feature steering.}{6}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature-set ablation.}{6}{section*.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Layer-group Jaccard analysis. Mid-layer sharing significantly exceeds late-layer sharing ($p = 0.008$), supporting H1.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:jaccard}{{8}{7}{Layer-group Jaccard analysis. Mid-layer sharing significantly exceeds late-layer sharing ($p = 0.008$), supporting H1}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Probe-based steering flip rates. Cross-lingual steering reproduces the asymmetry: ZH$\to $EN $>$ EN$\to $ZH. All conditions substantially exceed the random baseline ($\approx $5\%).}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:probe_steering}{{9}{7}{Probe-based steering flip rates. Cross-lingual steering reproduces the asymmetry: ZH$\to $EN $>$ EN$\to $ZH. All conditions substantially exceed the random baseline ($\approx $5\%)}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Robustness and Scaling}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:scaling}{{4.6}{7}{Robustness and Scaling}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Larger dataset validation.}{7}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Label noise robustness.}{7}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{H1 vs.\ H2 resolution.}{7}{section*.32}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{zhao2026clear}{{1}{2026}{{Zhao et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces SAE feature steering: cross-lingual transfer. EN features transferred to ZH retain 69\% of monolingual effectiveness. The ZH$\to $EN direction again outperforms EN$\to $ZH.}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:sae_steering}{{10}{8}{SAE feature steering: cross-lingual transfer. EN features transferred to ZH retain 69\% of monolingual effectiveness. The ZH$\to $EN direction again outperforms EN$\to $ZH}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Feature-set steering ablation. Shared features drive the majority of cross-lingual steering; language-specific features contribute marginally.}}{8}{table.caption.27}\protected@file@percent }
+\newlabel{tab:feature_ablation}{{11}{8}{Feature-set steering ablation. Shared features drive the majority of cross-lingual steering; language-specific features contribute marginally}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Connection to CLEAR.}{8}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Preliminary typological correlation.}{8}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{wendler2024lost}{{2}{2024}{{Wendler et al.}}{{}}}
+\bibcite{kornblith2019cka}{{3}{2019}{{Kornblith et al.}}{{}}}
+\bibcite{bricken2023monosemanticity}{{4}{2023}{{Bricken et al.}}{{}}}
+\bibcite{templeton2024scaling}{{5}{2024}{{Templeton et al.}}{{}}}
+\bibcite{xie2024conflictqa}{{6}{2024}{{Xie et al.}}{{}}}
+\bibcite{turner2024steering}{{7}{2024}{{Turner et al.}}{{}}}
+\bibcite{gao2024spare}{{8}{2024}{{Gao et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Sample size scaling. Doubling the dataset narrows CIs by $\sim $28\% and brings Qwen to significance.}}{9}{table.caption.29}\protected@file@percent }
+\newlabel{tab:scaling}{{12}{9}{Sample size scaling. Doubling the dataset narrows CIs by $\sim $28\% and brings Qwen to significance}{table.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Label noise robustness (Llama EN$\to $EN). Graceful degradation at $\sim $2.6pp per 5\% noise.}}{9}{table.caption.31}\protected@file@percent }
+\newlabel{tab:noise}{{13}{9}{Label noise robustness (Llama EN$\to $EN). Graceful degradation at $\sim $2.6pp per 5\% noise}{table.caption.31}{}}
+\gdef \@abspage@last{9}

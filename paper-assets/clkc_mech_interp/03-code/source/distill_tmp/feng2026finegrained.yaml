@@ -1,0 +1,24 @@
+paper_key: "feng2026finegrained"
+title: "Fine-Grained Activation Steering: Steering Less, Achieving More"
+venue: "ICLR 2026"
+full_text_available: false
+
+research:
+  baselines: [block_level_activation_steering]
+  metrics:
+    - {name: "task-specific accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "multiple LLM benchmarks", size: "N/A"}
+  ablation_dimensions: [steering_granularity, adaptive_strength]
+  training_recipe: {optimizer: "N/A (inference-time)", lr: "N/A", hardware: "multiple LLMs"}
+  method_family: "atomic-unit-level contrastive activation steering"
+
+positioning:
+  core_claim: "Atomic-unit-level steering with adaptive strengths outperforms block-level approaches by steering less but achieving more"
+  key_results: "Surpasses advanced baselines across multiple tasks"
+  limitations: ["Details limited to abstract"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

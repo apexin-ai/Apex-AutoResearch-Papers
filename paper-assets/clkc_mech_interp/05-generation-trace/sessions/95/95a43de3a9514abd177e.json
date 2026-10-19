@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95a43de3a9514abd177e",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis xnli mlp probe collect",
+  "task_key": "worker_analysis_xnli-mlp-probe-collect_20260522T062653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_xnli-mlp-probe-collect_20260522T062653_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "600b80599203dd76c33d856515337eb7fca0e14e637fa9c6cf2287f509bbf1ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n## XNLI MLP Probe — C3 验证结果\n\n**C3 成立：非线性 encoding 是冲突任务特有的。**\n\n关键 EN→ZH 方向 MLP gains 对比：\n\n| Model | XNLI EN→ZH Δ | Conflict EN→ZH Δ |\n|-------|:-----------:|:----------------:|\n| Qwen3 | **-2.0pp** | **+2.4pp** |\n| Llama3.1 | **-0.5pp** | **+9.2pp** |\n\nXNLI 上 MLP probe 相比 linear probe 完全没有增益（甚至为负），而冲突任务上 MLP 有显著提升。这说明冲突任务中 EN→ZH 方向的 representation 需要非线性变换才能解码，而这种 non-linear encoding 在普通 NLI 任务中不存在。\n\n报告已保存至 `artifacts/xnli_mlp_probe_report.md` 并注册到 manifest。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-xnli-mlp-probe-collect.md"
+}

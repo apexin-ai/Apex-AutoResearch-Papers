@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09797726570d4beeb816",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig4 whitemargin",
+  "task_key": "worker_code_fix-fig4-whitemargin_20260525T193449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig4-whitemargin_20260525T193449_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "224a286421fc0b577f6215d223f31898f1d491c4975ee63c88dc93baf91caf8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修改内容**\n\n| | 旧值 | 新值 |\n|---|---|---|\n| 布局 | 三面板 gridspec（左右面板有大量死空间） | 单 axes + blended transform（标签/数字紧贴内容边缘） |\n| pad_inches | 默认 0.1 | 0.02 |\n| CORAL | `#E07A5F`（浅珊瑚） | `#D4513D`（深红珊瑚） |\n| TEAL | `#5BA4B5`（浅青） | `#2A7F8F`（深青） |\n| PDF 尺寸 | 567.4 × 312.1 pt | 612.5 × 267.7 pt |\n\n**关键改善**：旧图有 ~88pt 总横向白边（左56.7+右31.5），内容仅占约84%宽度。新图内容占比接近99%，在 `\\includegraphics[width=\\columnwidth]` 缩放后有效绘图区域提升约18%，文字和图元显著更大更清晰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig4-whitemargin.md"
+}

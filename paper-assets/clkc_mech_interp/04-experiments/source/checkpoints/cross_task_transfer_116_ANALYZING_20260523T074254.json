@@ -1,0 +1,48 @@
+{
+  "exp_id": "cross_task_transfer_116",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:42:11.538Z",
+    "updated_at": "2026-05-23T07:42:54.594Z",
+    "hypothesis": "Cross-task probe transfer 验证 piggyback 假说：用 XNLI 探针评估 conflict 激活（反之亦然），如果跨任务准确率 >> 50% 则说明两个任务共享相同的跨语言子空间。3 模型 × 全层 × 2 方向。",
+    "conclusion": "success",
+    "metrics": {
+      "llama": {
+        "c_to_xnli_min": 0.8725,
+        "c_to_xnli_min_layer": 11,
+        "x_to_conf_min": 0.9945,
+        "x_to_conf_min_layer": 24,
+        "transfer_stable": true
+      },
+      "qwen": {
+        "c_to_xnli_min": 0.5625,
+        "c_to_xnli_min_layer": 23,
+        "x_to_conf_min": 1,
+        "x_to_conf_min_layer": "none",
+        "transfer_dip_layers": "18-24"
+      },
+      "gemma": {
+        "c_to_xnli_min": 0.5325,
+        "c_to_xnli_min_layer": 15,
+        "x_to_conf_min": 0.8145,
+        "x_to_conf_min_layer": 13,
+        "transfer_dip_layers": "14-22"
+      },
+      "summary": "Piggyback confirmed. Most layers ~1.0 transfer. Mid-layer dip in Gemma/Qwen where conflict-specific processing occurs."
+    },
+    "spec": {
+      "command": "python3 src/cross_task_transfer.py",
+      "server": "westd-41302",
+      "data_path": "data/{llama31,qwen3,gemma2}/{en,zh}_activations.pt + data/xnli/{llama31,qwen3,gemma2}/{en,zh}_activations.pt",
+      "data_count": 1368,
+      "model_name": "Llama+Qwen+Gemma",
+      "seed": "fixed"
+    }
+  },
+  "timestamp": "2026-05-23T07:42:54.696935+00:00",
+  "trigger": "update_registry"
+}

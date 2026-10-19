@@ -1,0 +1,28 @@
+{
+  "exp_id": "comet_llama_v4",
+  "project": "clkc_mech_interp",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:59:05.160Z",
+    "updated_at": "2026-05-22T01:49:37.575Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/clkc_mech_interp && python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/llama31/ --en_dir data/llama31/ --output_dir data/llama31/ --threshold 0.80 2>&1 | tee logs/comet_llama.log\"",
+      "server": "westd-41302",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "41348",
+      "log_path": "~/runs/clkc_mech_interp/comet_llama_v4.log",
+      "submitted_at": "2026-05-21T19:59:05.111Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T01:49:37.611359+00:00",
+  "trigger": "update_registry"
+}

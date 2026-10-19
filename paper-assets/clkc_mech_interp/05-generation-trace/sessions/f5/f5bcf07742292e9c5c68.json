@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5bcf07742292e9c5c68",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper research cluster34",
+  "task_key": "worker_paper_research_cluster34_20260522T134427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster34_20260522T134427_result.json",
+    "occurrence": 1,
+    "bytes": 1214,
+    "sha256": "cd87a39ebeb7e5833298a60a4b7a667b4a6c6d4e274ea53e6768c6a84d647baf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "22 篇，YAML 完整。汇总：\n\n**Cluster 3: Cross-lingual Representations (+4)**\n| Key | Title | Venue |\n|-----|-------|-------|\n| `wu2020emerging` | Emerging Cross-lingual Structure in Pretrained Language Models | ACL 2020 **(MUST CITE)** |\n| `wendler2024llamas` | Do Llamas Work in English? On the Latent Language of Multilingual Transformers | ACL 2024 |\n| `muller2021first` | First Align, then Predict: Understanding the Cross-Lingual Ability of Multilingual BERT | EACL 2021 |\n| `kargaran2024mexa` | MEXA: Multilingual Evaluation of English-Centric LLMs via Cross-Lingual Alignment | Findings of ACL 2025 |\n\n**Cluster 4: Probing Methodology (+3)**\n| Key | Title | Venue |\n|-----|-------|-------|\n| `belinkov2022probing` | Probing Classifiers: Promises, Shortcomings, and Advances | Computational Linguistics 48(1) **(MUST CITE)** |\n| `hewitt2019designing` | Designing and Interpreting Probes with Control Tasks | EMNLP 2019 |\n| `ulmer2022deep` | deep-significance: Easy and Meaningful Statistical Significance Testing in the Age of Neural Networks | arXiv 2022 |\n\n所有 URL 已通过 WebSearch 确认指向真实论文。literature_map.yaml 已从 15 篇更新至 22 篇。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster34.md"
+}

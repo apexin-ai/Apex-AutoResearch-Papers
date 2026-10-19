@@ -1,0 +1,300 @@
+# Experiment Plan — clkc_mech_interp
+# 最后更新: 2026-05-22
+# 目标: ICLR 2027 (DDL ~2026-09-24)
+
+# ── MVP 实验（已完成/进行中）──
+
+- plan_id: mvp_001
+  name: "双模型残差流探针 MVP"
+  claim: "C1 (detectability) + C2 (asymmetry)"
+  description: "Llama-3.1-8B + Qwen3-8B 双模型 EN/ZH 4方向探针迁移实验"
+  priority: P0
+  status: done
+  registry_id:
+    - mvp_probe_llama_v1
+    - mvp_probe_v1
+  gpu_hours: 8
+  results_summary: |
+    Llama EN→EN 77.1±1.2%, ZH→ZH 71.2±1.3%, EN→ZH 64.1±2.5%, ZH→EN 71.3±2.7%
+    Qwen EN→EN 75.3±1.7%, ZH→ZH 71.6±1.8%, EN→ZH 65.0±2.7%, ZH→EN 72.2±2.6%
+    不对称性: Llama +7.22pp, Qwen +7.19pp
+
+- plan_id: mvp_002
+  name: "MLP vs Linear 探针对比"
+  claim: "C3 (non-linearity)"
+  description: "1-hidden-layer MLP 探针与线性探针对比，量化非线性成分"
+  priority: P0
+  status: done
+  registry_id:
+    - mlp_probe_llama
+    - mlp_probe_qwen
+  gpu_hours: 4
+  results_summary: |
+    Llama EN→ZH: Linear 59.6% → MLP 68.8% (+9.2pp) [single-seed 基线]
+    Qwen EN→ZH: Linear 67.3% → MLP 69.6% (+2.3pp) [single-seed 基线]
+    注意: bootstrap mean 线性基线更高 (Llama 64.1%), MLP 优势在 bootstrap 下约 +4.7pp
+
+- plan_id: mvp_003
+  name: "COMET 翻译质量验证"
+  claim: "RC1 (translation confound)"
+  description: "wmt22-comet-da back-translation 验证 ZH 翻译质量，threshold ≥ 0.80"
+  priority: P0
+  status: running
+  gpu_hours: 6
+  depends_on: []
+
+# ── 统计修正（P0，Reviewer 发现的 CI 混用问题）──
+
+- plan_id: plan_099
+  name: "训练集 bootstrap 不对称性 CI"
+  claim: "C2 (asymmetry) — 统计修正"
+  description: |
+    用 n=100 训练集 bootstrap 逐迭代计算不对称性，提取 paired CI。
+    Llama: +7.22pp CI [1.1%, 13.6%] 排除零(borderline); Qwen: +7.18pp CI [-1.2%, 13.4%] 含零。
+  priority: P0
+  status: done
+  gpu_hours: 0
+  depends_on: [mvp_001]
+  results_summary: |
+    Llama: +7.22pp, 95% CI [1.1%, 13.6%], 98/100 iterations positive — significant
+    Qwen: +7.18pp, 95% CI [-1.2%, 13.4%], 96/100 iterations positive — trending
+    效果量跨架构高度一致 (7.22 vs 7.18), 第三模型(Gemma)将决定C2强度
+
+# ── Track 1: Cross-Lingual Probing (P0) ──
+
+- plan_id: plan_101
+  name: "Token overlap 分析"
+  claim: "C2 (asymmetry) — RC2 排除"
+  description: |
+    计算 EN-ZH 输入的 token overlap ratio，分析共享 token 对探针迁移的贡献。
+    Per-sample Jaccard + correlation with probe correctness + tercile 分析。
+  priority: P0
+  status: done
+  gpu_hours: 0
+  depends_on: [mvp_001]
+  results_summary: |
+    RC2 排除。Per-sample Jaccard 3-4%, Qwen 无相关 (p>0.4),
+    Llama 负相关 (r=-0.15, p=0.012, tercile Δ=-23.9pp)。
+    共享 token 不驱动迁移，迁移发生在语义表示层。
+
+- plan_id: plan_102
+  name: "第三模型架构验证"
+  claim: "C2 (asymmetry) — RC3 排除"
+  description: |
+    在第三个模型架构（Mistral-7B-Instruct-v0.3 或 Gemma-2-9B-IT）上重复完整探针实验。
+    验证 ~7.2pp 不对称性是否跨架构一致。
+    包含: verify → translate → collect activations → train probe → bootstrap n=100。
+  priority: P0
+  status: planned
+  gpu_hours: 20
+  depends_on: []
+
+- plan_id: plan_103
+  name: "多语言扩展 (EN↔JA)"
+  claim: "C2 (asymmetry) — RC4 + H1/H2 检验"
+  description: |
+    扩展到 EN↔JA 语言对，测试不对称性是否与 typological distance 相关。
+    JA 作为 CJK 系但与 ZH typologically 不同的语言，可检验 H2 的语言距离编码假设。
+    如果 EN↔JA 不对称性方向和幅度与 EN↔ZH 类似 → 支持 H1 (English-anchored)
+    如果差异显著 → 支持 H2 (language-pair-specific)
+  priority: P1
+  status: planned
+  gpu_hours: 20
+  depends_on: []
+
+- plan_id: plan_104
+  name: "Layer-wise CKA/SVCCA"
+  claim: "C4 (layer structure)"
+  description: |
+    在每一层计算 EN vs ZH 激活的 CKA (Centered Kernel Alignment) 和 SVCCA，
+    量化跨语言表征相似度随层变化的 pattern。
+    验证 "Lost in Multilinguality" 的 language transition 是否影响冲突信号迁移。
+  priority: P0
+  status: planned
+  gpu_hours: 4
+  depends_on: [mvp_001]
+
+- plan_id: plan_105
+  name: "COMET 分段 ablation"
+  claim: "C1 (detectability) — RC1 深化 + COMET gate 判定"
+  description: |
+    按 COMET 分数将翻译分为 high/med/low 三档（tertile），用已有探针评估各档 balanced acc。
+    判断标准: High vs Low tertile acc 差异 < 5pp 且 p > 0.05 → 翻译质量非 confounder → 放宽阈值。
+    背景: Qwen test back-translation COMET mean=0.70, pass rate 18.45% at ≥0.80。
+    Back-translation 两步翻译天然拉低 COMET，需 ablation 实证判断是否影响探针。
+  priority: P0
+  status: done
+  gpu_hours: 0
+  depends_on: [mvp_003]
+  results_summary: |
+    Qwen test (n=168): Low COMET 66.35%, Med 67.69%, High 60.71%
+    Delta(High-Low)=-5.64pp (反向), Fisher p=0.695 → 翻译质量非 confounder
+    Llama 待确认一致性
+
+# ── Track 1 扩展 (P1) ──
+
+- plan_id: plan_109
+  name: "探针权重可视化 + PCA"
+  claim: "C1 (detectability) + C4 (layer structure) — 定性证据"
+  description: |
+    对最优层的线性探针权重做 PCA / t-SNE 可视化，展示冲突 vs 非冲突样本的分布。
+    跨语言对比：EN 和 ZH 的冲突表征在 PCA 空间中是否重叠？
+    为 "mechanistic interpretability" claim 提供定性证据（不能只有准确率数字）。
+  priority: P1
+  status: planned
+  gpu_hours: 0.5
+  depends_on: [mvp_001]
+
+- plan_id: plan_106
+  name: "Label noise ablation"
+  claim: "C1 (detectability) — robustness"
+  description: |
+    系统性注入 5%/10%/15%/20% label noise，测量 probe accuracy 下降曲线。
+    评估 verification pipeline 的 label error tolerance。
+  priority: P1
+  status: planned
+  gpu_hours: 4
+  depends_on: [mvp_001]
+
+- plan_id: plan_107
+  name: "Representation steering (干预实验)"
+  claim: "C2 (asymmetry) — RC8 因果证据"
+  description: |
+    用探针方向作为 steering vector，在残差流中干预冲突信号。
+    测量干预后模型输出（parametric vs contextual answer）的变化。
+    提供 C2 不对称性的因果证据（不仅是相关性）。
+    如果 Track 3 SAE steering 无法完成，此实验是因果证据的唯一来源。
+  priority: P0
+  status: planned
+  gpu_hours: 8
+  depends_on: [mvp_001, plan_104]
+
+- plan_id: plan_108
+  name: "更大数据集验证"
+  claim: "C1 (detectability) — RC4 数据充分性"
+  description: |
+    扩大 ConflictQA 采样至 2000+ samples per model (当前 ~1000)。
+    或引入其他知识冲突数据集（如 SQuAD-conflict, WebQuestions-conflict）。
+  priority: P1
+  status: planned
+  gpu_hours: 12
+  depends_on: []
+
+# ── Dream 审稿暴露的结构性补丁（P0）──
+
+- plan_id: plan_110
+  name: "非冲突语义基线 (sentiment/NLI)"
+  claim: "C2 (asymmetry) — RC9 conflict-specificity 验证"
+  description: |
+    [CRITICAL] Dream 三档审稿一致认为的首要缺失实验。
+    用相同模型和激活提取 pipeline，探针一个非冲突的跨语言语义任务
+    （情感极性 positive/negative 或 NLI entailment/contradiction）。
+    如果 X→EN > EN→X 不对称性在非冲突任务中消失 → C2 confirmed (conflict-specific)。
+    如果不对称性在非冲突任务中同样存在 → C2 需 reframe 为 general cross-lingual property。
+    计算量极小：复用 Llama + Qwen 已有 pipeline，只需新数据集 + 新 labels。
+    推荐数据集: multilingual sentiment (Amazon Reviews / SST-2 翻译) 或 XNLI。
+  priority: P0
+  status: planned
+  gpu_hours: 4
+  depends_on: []
+
+- plan_id: plan_111
+  name: "Bootstrap n≥2000 升级"
+  claim: "C2 (asymmetry) — 统计基础设施修正"
+  description: |
+    [MAJOR] 当前 bootstrap n=100 低于学术标准 n≥1000 (Efron & Tibshirani 1993)。
+    CI endpoints 在 n=100 时波动大（2.5th percentile 仅是第 2-3 极端值）。
+    对 Qwen CI 下界 -1.2pp 尤其关键。
+    升级所有探针实验的 bootstrap 至 n≥2000。计算代价极小（logistic regression）。
+    同时为 Gemma (plan_102) 直接使用 n=2000。
+  priority: P0
+  status: planned
+  gpu_hours: 0.5
+  depends_on: [mvp_001]
+
+- plan_id: plan_112
+  name: "非 CJK 语言对 EN↔DE"
+  claim: "C2 (asymmetry) — RC4 typological diversity"
+  description: |
+    [MAJOR] 当前仅 CJK 语言对 (EN↔ZH, EN↔JA)，无法区分 H1 (universal)
+    与 CJK-specific pattern。添加一个 Indo-European 语言对 EN↔DE。
+    即使 n=500-700，只要方向一致就实质性增强 universality claims。
+    Pipeline: ConflictQA → DE 翻译 → verify → collect activations → probe → bootstrap n≥2000。
+  priority: P0
+  status: planned
+  gpu_hours: 16
+  depends_on: []
+
+# ── Track 2: SAE Feature Analysis (P1-P2) ──
+
+- plan_id: plan_201
+  name: "Qwen-Scope SAE 冲突特征识别"
+  claim: "C5 (SAE features)"
+  description: |
+    用 Qwen-Scope 预训练 SAE (Qwen3-8B-Base) 分析冲突激活中的差异化特征。
+    适配 cloze/completion 格式（base model 兼容）。
+    SpARE mutual-information feature selection 方法。
+  priority: P1
+  status: planned
+  gpu_hours: 16
+  depends_on: [mvp_001]
+
+- plan_id: plan_202
+  name: "LangFIR 语言特征解耦"
+  claim: "C5 (SAE features) — 控制实验"
+  description: |
+    用 LangFIR random-token filtering 识别 language-identity 特征。
+    从 SAE conflict features 中排除 language-identity 特征。
+    验证 conflict features 和 language features 的层分布是否非重叠。
+  priority: P1
+  status: planned
+  gpu_hours: 8
+  depends_on: [plan_201]
+
+- plan_id: plan_203
+  name: "Cross-lingual feature Jaccard 分析"
+  claim: "C5 (SAE features) — H1 vs H2 检验"
+  description: |
+    计算 mid-layer vs late-layer conflict feature 的跨语言 Jaccard index。
+    H1 预测: mid-layer Jaccard >> late-layer Jaccard
+    H2 预测: 无显著差异或 mid < late
+    Paired permutation test p < 0.05。
+  priority: P1
+  status: planned
+  gpu_hours: 4
+  depends_on: [plan_201, plan_202]
+
+# ── Track 3: Steering (P2) ──
+
+- plan_id: plan_301
+  name: "Monolingual→cross-lingual steering transfer"
+  claim: "C6 (steering)"
+  description: |
+    用 SpARE 的英语冲突特征做 cross-lingual steering。
+    测量跨语言 steering 有效性 (EM_C, EM_M, flip rates)。
+  priority: P2
+  status: planned
+  gpu_hours: 16
+  depends_on: [plan_201, plan_203]
+
+- plan_id: plan_302
+  name: "Cross-lingual-specific steering"
+  claim: "C6 (steering)"
+  description: |
+    用 Track 2 发现的跨语言特有特征构建 steering vectors。
+    对比与 monolingual features 的 steering 效果差异。
+  priority: P2
+  status: planned
+  gpu_hours: 16
+  depends_on: [plan_301]
+
+- plan_id: plan_303
+  name: "Typological steering correlation"
+  claim: "C6 (steering) — CLEAR 因果链接"
+  description: |
+    测试 steering 有效性是否与 CLEAR 的 linguistic similarity metric 相关。
+    提供 linguistic similarity → conflict resolution 的因果（非仅相关）证据。
+  priority: P2
+  status: planned
+  gpu_hours: 12
+  depends_on: [plan_301, plan_103]

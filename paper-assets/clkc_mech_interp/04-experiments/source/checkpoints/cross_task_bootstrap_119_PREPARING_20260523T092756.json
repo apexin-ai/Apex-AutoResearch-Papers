@@ -1,0 +1,17 @@
+{
+  "exp_id": "cross_task_bootstrap_119",
+  "project": "clkc_mech_interp",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:27:46.635Z",
+    "updated_at": "2026-05-23T09:27:56.179Z",
+    "hypothesis": "Cross-task probe transfer bootstrap n=1000：为 cross_task_transfer_116 的单种子结果提供 95% CI。验证所有层的跨任务迁移准确率是否统计上显著高于 chance (0.5)。parent=cross_task_transfer_116",
+    "parent": "cross_task_transfer_116",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T09:27:56.303294+00:00",
+  "trigger": "update_registry"
+}

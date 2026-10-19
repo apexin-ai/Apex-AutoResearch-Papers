@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7b6555664f0b5a7ca23",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra bootstrap speed diagnosis",
+  "task_key": "worker_infra_bootstrap-speed-diagnosis_20260522T080912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_bootstrap-speed-diagnosis_20260522T080912_result.json",
+    "occurrence": 1,
+    "bytes": 1600,
+    "sha256": "1c343f3c5cf591f870e9c33d21cea78092fd6be4172bd23d1cd7b21cb2aab6db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，汇报如下：\n\n## 诊断结果\n\n### 当前进度（运行 ~76 分钟）\n\n| | Qwen | Llama |\n|---|---|---|\n| 当前方向 | EN→EN（第1/4个方向） | EN→EN（第1/4个方向） |\n| 已完成 | ~748/8000 总迭代 (9.4%) | ~507/8000 总迭代 (6.3%) |\n| 每轮耗时 | ~6.1s (36层 LR) | ~9.0s (32层 LR) |\n| CPU 占用 | 549% (~5.5核) | 546% (~5.5核) |\n| **预估剩余** | **~12.3 小时** | **~18.7 小时** |\n\n### 数据维度\n- Qwen: train=798, test=168, 36 layers, dim=4096\n- Llama: train=1096, test=272, 32 layers, dim=4096\n\n### 瓶颈原因\n\n1. **总计算量巨大**: 4方向 × 2000 seeds × 36层 = **288,000 次 LR fit**（Qwen），256,000 次（Llama）\n2. **完全串行**: bootstrap seeds 循环和 layers 循环都是顺序执行，**零并行**\n3. **线程严重不足**: `OMP_NUM_THREADS=4, MKL_NUM_THREADS=4`，服务器有 **208 核**，仅用 ~11 核（两进程合计）\n4. **全层扫描**: 每轮跑全部 36/32 层，peak 集中在 L13-L23 附近\n\n### 优化建议\n\n**方案：kill 后用优化脚本重跑**（省 15+ 小时）\n\n| 优化措施 | 预期加速 | 说明 |\n|----------|---------|------|\n| `joblib.Parallel(n_jobs=32)` 并行化 seed 循环 | ~20-30x | 每个 seed 完全独立 |\n| `OMP_NUM_THREADS=8` | ~1.5x | lbfgs 内部矩阵运算并行 |\n| 只跑 peak±5 层 (11层 vs 36层) | ~3x | 如果只需要 peak 统计量 |\n\n保守估计：仅加 joblib n_jobs=32 → Qwen 从 12.3h 降到 **~25 分钟**，Llama ~35 分钟。\n\n是否要 kill 现有进程并写优化版脚本重跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-bootstrap-speed-diagnosis.md"
+}

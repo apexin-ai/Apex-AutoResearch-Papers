@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15677e0bb62ad25cb5d1",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code sync repo westd",
+  "task_key": "worker_code_sync_repo_westd_20260526T121324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_repo_westd_20260526T121324_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "8a823ec97d8503a0e83373da3f93a1387a47c7c979e5a5c7b7f3fb427311b984"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败：无法连接到 `westd-14391`（端口 14391，IP 36.103.198.204）。\n\n可能原因：\n- **AutoDL 实例已关机或重启**，重启后 SSH 端口会变\n- 服务器网络不可达\n\n请去 AutoDL 控制台确认：\n1. 实例是否在运行状态\n2. 当前 SSH 端口是否仍为 14391（如果变了，需更新 `~/.ssh/config` 中 `westd-14391` 的端口配置）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-repo-westd.md"
+}

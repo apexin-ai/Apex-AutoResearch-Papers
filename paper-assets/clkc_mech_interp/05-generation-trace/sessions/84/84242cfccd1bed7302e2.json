@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84242cfccd1bed7302e2",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra download qwen instruct",
+  "task_key": "worker_infra_download_qwen_instruct_20260521T151825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_qwen_instruct_20260521T151825_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "01fac891d50de2d553869554ac957818774c6ee6439b66022e793cafb8a8e1ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：**`Qwen/Qwen3-8B-Instruct` 在 HuggingFace 上不存在。**\n\nQwen3 系列所有模型（0.6B、1.7B、4B、8B、14B、30B-A3B）均只有 base 名称（如 `Qwen/Qwen3-8B`），没有单独的 `-Instruct` 变体。Qwen3 模型本身已经是指令微调+思考模式的，不再区分 base/instruct。\n\n服务器上已有 `/root/models/Qwen3-8B`（当前正在被 `verify_parametric_knowledge.py` 和 `translate_to_zh.py` 使用）。`Qwen/Qwen3-8B` 即等效于你想要的 Instruct 模型。\n\n需要我做什么？\n1. 如果你确实需要一个不同的模型（比如 Qwen2.5-8B-Instruct），我可以下载\n2. 如果 Qwen3-8B 就是目标，服务器上已经有了，无需额外下载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen-instruct.md"
+}

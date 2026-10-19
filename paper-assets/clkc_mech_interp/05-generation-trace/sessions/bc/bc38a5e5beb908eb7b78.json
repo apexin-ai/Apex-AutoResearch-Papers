@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc38a5e5beb908eb7b78",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra comet diagnose restart",
+  "task_key": "worker_infra_comet_diagnose_restart_20260521T230831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_comet_diagnose_restart_20260521T230831_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "40b1821c7c3b698c6585d4e8768da9a02e472da8e5dc013addd5164ec91dee13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 COMET 进程运行正常：\n\n- **Qwen** (PID 59407, GPU 0): COMET 模型已加载，正在 back-translate 798 条，GPU 利用率 28%\n- **Llama** (PID 59566, GPU 2): COMET 模型已加载，正在 back-translate 1096 条，GPU 利用率 39%\n\n## 诊断总结\n\n| 项目 | 结论 |\n|------|------|\n| **死因** | `EXIT_CODE=124` — 被 `submit_training_job` 的 timeout 命令杀死，非 OOM |\n| **首次启动失败** | 忘加 `source /etc/network_turbo` 或 `TRANSFORMERS_OFFLINE=1`，COMET 内部 xlm-roberta-large 加载时尝试连 HuggingFace 失败 |\n| **解决** | 用 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` + nohup 直接启动，绕过 timeout 限制和网络依赖 |\n| **重复 bootstrap** | PID 57240 已 kill（与 57514 重复的 llama bootstrap） |\n| **无 resume** | validate_translation.py 无断点续传，必须从头跑 |\n\n## 预计耗时\n\n- Qwen: 798 train + 168 test ≈ 966 条 × ~10s/条 ≈ **2.7 小时** + COMET 评分\n- Llama: 1096 train + 272 test ≈ 1368 条 × ~10s/条 ≈ **3.8 小时** + COMET 评分\n\n## 监控命令\n\n```bash\ntail -5 /root/clkc_mech_interp/logs/comet_qwen_restart.log\ntail -5 /root/clkc_mech_interp/logs/comet_llama_restart.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-comet-diagnose-restart-copy-2.md"
+}

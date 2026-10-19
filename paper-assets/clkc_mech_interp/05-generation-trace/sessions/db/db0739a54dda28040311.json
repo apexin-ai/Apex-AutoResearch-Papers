@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db0739a54dda28040311",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra gemma bootstrap check",
+  "task_key": "worker_infra_gemma-bootstrap-check_20260523T065048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gemma-bootstrap-check_20260523T065048_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "7b01ffd4cc684a4dbe992945b7b475411b8786ffc5cbfea2947d72e36c720945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**成功完成。** 进程已退出，输出文件存在（1.3MB，14:46写入）。\n\n### 结果汇总\n\n| 方向 | Mean | 95% CI | \n|------|------|--------|\n| EN→EN | 0.9635 | [0.9492, 0.9799] |\n| ZH→ZH | 0.8941 | [0.8796, 0.9097] |\n| EN→ZH | 0.8940 | [0.8795, 0.9097] |\n| ZH→EN | 0.9721 | [0.9575, 0.9852] |\n\n**Asymmetry (ZH→EN − EN→ZH):** Δ = +7.81pp, CI = [5.71, 9.99], p = 0.0000\n\n关键发现：ZH→EN 显著高于 EN→ZH（+7.81pp），CI 不跨零，p<0.0001，不对称性高度显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gemma-bootstrap-check.md"
+}

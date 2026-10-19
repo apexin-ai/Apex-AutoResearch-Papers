@@ -1,0 +1,26 @@
+paper_key: "team2026qwen"
+title: "Qwen-Scope: Turning Sparse Features into Development Tools for Large Language Models"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [post_hoc_SAE_analysis]
+  metrics:
+    - {name: "language steering performance", direction: "higher_better"}
+    - {name: "toxicity classification accuracy", direction: "higher_better"}
+    - {name: "code-switching reduction", direction: "lower_better"}
+  datasets:
+    - {name: "toxicity/safety/code-switching benchmarks", size: "N/A"}
+  ablation_dimensions: [model_variant, SAE_group]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "7 Qwen variants, 14 SAE groups"}
+  method_family: "SAE-based development tooling"
+
+positioning:
+  core_claim: "SAE sparse features can be turned into practical development tools for language steering, toxicity control, and code-switching reduction"
+  key_results: "Demonstrated across 7 Qwen variants"
+  limitations: ["Qwen-specific"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

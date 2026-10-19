@@ -1,0 +1,23 @@
+{
+  "exp_id": "comet_qwen_v6",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:35:28.893Z",
+    "updated_at": "2026-05-22T02:36:01.827Z",
+    "hypothesis": "COMET back-translation 质量验证 Qwen ZH 翻译（v6: 跟踪 nohup 进程，v5 被 tmux 监控误标 failed）",
+    "spec": {
+      "command": "nohup python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/qwen3/ --en_dir data/qwen3/ --output_dir data/qwen3/ --threshold 0.80",
+      "server": "westd-41302",
+      "data_path": "data/qwen3/",
+      "data_count": 966,
+      "model_name": "Unbabel/wmt22-comet-da",
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-22T02:36:01.862047+00:00",
+  "trigger": "update_registry"
+}

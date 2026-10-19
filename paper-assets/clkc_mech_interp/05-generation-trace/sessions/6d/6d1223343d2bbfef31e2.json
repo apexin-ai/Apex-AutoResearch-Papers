@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d1223343d2bbfef31e2",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix readme qwen version",
+  "task_key": "worker_code_fix_readme_qwen_version_20260526T094938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_readme_qwen_version_20260526T094938_result.json",
+    "occurrence": 1,
+    "bytes": 206,
+    "sha256": "bb92b6b000a7b17c444e9f0309273e5d08daf32d3f117aabb432a9e69f0d5984"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- README 第 9 行 `Qwen3-8B` → `Qwen3-8B-Instruct`，与第 66 行下载说明一致\n- 已匿名 commit\n- `anonymous_repo.zip` 已重新打包（106K），无 `.git/` 目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-readme-qwen-version.md"
+}

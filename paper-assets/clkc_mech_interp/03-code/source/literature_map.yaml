@@ -1,0 +1,615 @@
+categories: []
+meta:
+  last_updated: '2026-05-22T14:30:00Z'
+  total_papers: 29
+papers:
+  basu2026interpretability:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Basu, S.
+    - et al.
+    bibtex_key: basu2026interpretability
+    category: sae-steering
+    doi: ''
+    relevance: 'SAE steering failure in clinical triage despite 98.2% AUROC probes.
+      Critical negative result: defines boundary conditions for when SAE steering
+      works. Our Track 3 design addresses their methodological gaps.'
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: 'Interpretability without actionability: mechanistic methods cannot correct
+      language model errors despite near-perfect internal representations'
+    url: https://arxiv.org/abs/2603.18353
+    venue: arXiv
+    verified: true
+    year: 2026
+  boer2026probing:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Boer, A.
+    - Brink, I.
+    - Ulmer, D.
+    bibtex_key: boer2026probing
+    category: probing
+    doi: ''
+    relevance: 0.96 Macro-F1 parametric-vs-contextual attribution probe on Llama/Mistral/Qwen.
+      Monolingual performance ceiling for our Track 1. Cross-domain transfer 0.94-0.99
+      F1.
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: Probing for Knowledge Attribution in Large Language Models
+    url: https://arxiv.org/abs/2602.22787
+    venue: arXiv
+    verified: true
+    year: 2026
+  ifergan2024beneath:
+    added_at: '2026-05-22T14:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Ifergan, M.
+    - Choshen, L.
+    - Aharoni, R.
+    - Szpektor, I.
+    - Abend, O.
+    bibtex_key: ifergan2024beneath
+    category: cross-lingual-conflict
+    doi: ''
+    relevance: Shows cross-lingual answer consistency does not imply shared representation;
+      script similarity dominates sharing. Directly motivates our probing approach
+      to test whether conflict signals share representations across languages.
+    role: foundation
+    title: 'Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge
+      Representation Sharing in LLMs'
+    url: https://arxiv.org/abs/2408.10646
+    venue: Findings of NAACL 2025
+    verified: true
+    year: 2024
+  kialy2026universal:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Kialy, U.Z.
+    - Shtarkberg, A.
+    - Klein, A.
+    bibtex_key: kialy2026universal
+    category: cross-lingual-sae
+    doi: ''
+    relevance: First cross-lingual SAE feature discovery. Shows cross-linguistic core
+      for register features + zero-shot steering transfer. We test whether this extends
+      to knowledge conflict features.
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: A Universal Vibe? Finding and Controlling Language-Agnostic Informal Register
+      with SAEs
+    url: https://arxiv.org/abs/2603.26236
+    venue: arXiv
+    verified: true
+    year: 2026
+  li2025taming:
+    added_at: '2026-05-22T14:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Li, G.
+    - Chen, Y.
+    - Tong, H.
+    bibtex_key: li2025taming
+    category: knowledge-conflict
+    doi: ''
+    relevance: Proposes conflict resolution framework for LLMs. Provides resolution
+      baselines our mechanistic approach complements.
+    role: direct-competitor
+    title: Taming Knowledge Conflicts in Language Models
+    url: https://arxiv.org/abs/2503.10996
+    venue: ICML 2025 (Spotlight)
+    verified: true
+    year: 2025
+  pham2026where:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Pham, M.V.
+    - Borkakoty, H.
+    - Hou, Y.
+    bibtex_key: pham2026where
+    category: conflict-mechanism
+    doi: ''
+    relevance: Activation patching + CMAP for intra-memory conflicts. Attention layers
+      21-47 dominate conflict resolution in Qwen3-4B. Closest methodological parallel
+      for within-parametric conflicts.
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: 'Where Knowledge Collides: A Mechanistic Study of Intra-Memory Knowledge
+      Conflict in Language Models'
+    url: https://arxiv.org/abs/2601.09445
+    venue: arXiv
+    verified: true
+    year: 2026
+  team2026qwen:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Qwen Team
+    bibtex_key: team2026qwen
+    category: sae-tools
+    doi: ''
+    relevance: Pretrained SAEs for Qwen3 family. Our Track 2 uses Qwen-Scope SAEs
+      on Qwen3-8B-Base. Documents cross-lingual transfer for toxicity features (Section
+      5.2).
+    role: foundation
+    semantic_scholar_id: ''
+    title: 'Qwen-Scope: Turning Sparse Features into Development Tools for Large Language
+      Models'
+    url: https://arxiv.org/abs/2605.11887
+    venue: arXiv
+    verified: true
+    year: 2026
+  wang2025lost:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Wang, M.
+    - Adel, H.
+    - Lange, L.
+    - et al.
+    bibtex_key: wang2025lost
+    category: cross-lingual-mechanism
+    doi: ''
+    relevance: Language-independent concept space through most layers, language-specific
+      only in final layers. Key mechanistic finding our H1/H2 hypotheses build on.
+    role: foundation
+    semantic_scholar_id: ''
+    title: 'Lost in Multilinguality: Dissecting Cross-lingual Factual Inconsistency
+      in Transformer Language Models'
+    url: https://arxiv.org/abs/2504.04264
+    venue: ACL 2025 (SAC Highlights)
+    verified: true
+    year: 2025
+  wong2026langfir:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Wong, S.H.
+    - Siddique, A.B.
+    - Sajjad, H.
+    bibtex_key: wong2026langfir
+    category: cross-lingual-sae
+    doi: ''
+    relevance: Random-token filtering isolates <5 language-specific SAE features/language.
+      Our Track 2 uses this as control to disentangle language-identity from conflict
+      features.
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: 'LangFIR: Discovering Sparse Language-Specific Features from Monolingual
+      Data for Language Steering'
+    url: https://arxiv.org/abs/2604.03532
+    venue: arXiv
+    verified: true
+    year: 2026
+  xie2024adaptive:
+    added_at: '2026-05-22T14:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Xie, J.
+    - Zhang, K.
+    - Chen, J.
+    - Lou, R.
+    - Su, Y.
+    bibtex_key: xie2024adaptive
+    category: knowledge-conflict
+    doi: ''
+    relevance: Introduces ConflictQA benchmark (PopQA + StrategyQA based) for studying
+      LLM behavior under context-parametric knowledge conflicts. Our primary evaluation
+      dataset.
+    role: foundation
+    title: 'Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large
+      Language Models in Knowledge Conflicts'
+    url: https://arxiv.org/abs/2305.13300
+    venue: ICLR 2024
+    verified: true
+    year: 2024
+  xing2024evaluating:
+    added_at: '2026-05-22T14:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Xing, X.
+    - He, Z.
+    - Xu, H.
+    - Wang, X.
+    - Wang, R.
+    - Hong, Y.
+    bibtex_key: xing2024evaluating
+    category: cross-lingual-conflict
+    doi: ''
+    relevance: Proposes cross-lingual semantic/accuracy/timeliness consistency metrics
+      (xSC, xAC, xTC) for evaluating multilingual LLM inconsistency. Provides evaluation
+      methodology relevant to our cross-lingual conflict measurement.
+    role: peripheral
+    title: Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language
+      Models
+    url: https://arxiv.org/abs/2407.01358
+    venue: arXiv
+    verified: true
+    year: 2024
+  xu2024knowledge:
+    added_at: '2026-05-22T14:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Xu, R.
+    - Qi, Z.
+    - Guo, Z.
+    - Wang, C.
+    - Wang, H.
+    - Zhang, Y.
+    - Xu, W.
+    bibtex_key: xu2024knowledge
+    category: knowledge-conflict
+    doi: ''
+    relevance: Comprehensive survey of context-memory, inter-context, and intra-memory
+      knowledge conflicts in LLMs. Defines the taxonomy our work builds on.
+    role: foundation
+    title: 'Knowledge Conflicts for LLMs: A Survey'
+    url: https://arxiv.org/abs/2403.08319
+    venue: EMNLP 2024
+    verified: true
+    year: 2024
+  zhao2024analysing:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Zhao, Y.
+    - Du, X.
+    - Hong, G.
+    - et al.
+    bibtex_key: zhao2024analysing
+    category: probing
+    doi: ''
+    relevance: 'Original conflict probing work: ~90% accuracy detecting conflicts
+      in residual stream. Foundation for our Track 1 cross-lingual extension.'
+    role: foundation
+    semantic_scholar_id: ''
+    title: Analysing the Residual Stream of Language Models Under Knowledge Conflicts
+    url: https://arxiv.org/abs/2410.16090
+    venue: NeurIPS 2024 FMI Workshop
+    verified: true
+    year: 2024
+  zhao2025steering:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Zhao, Y.
+    - Devoto, A.
+    - Hong, G.
+    - et al.
+    bibtex_key: zhao2025steering
+    category: sae-steering
+    doi: ''
+    relevance: 'SpARE: SAE-based conflict feature selection + steering. Core methodology
+      we extend to cross-lingual setting. MI-based feature selection, constraint-aware
+      activation editing.'
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation
+      Engineering
+    url: https://arxiv.org/abs/2410.15999
+    venue: NAACL 2025 Oral
+    verified: true
+    year: 2025
+  zhao2026when:
+    abstract: ''
+    added_at: '2026-05-21T12:04:50.273Z'
+    added_by: director-bootstrap
+    authors:
+    - Zhao, J.
+    - et al.
+    bibtex_key: zhao2026when
+    category: cross-lingual-conflict
+    doi: ''
+    relevance: 'CLEAR benchmark: 10-language cross-lingual conflict evaluation. Behavioral
+      finding that linguistic similarity governs entity-centric conflict resolution.
+      Our work provides mechanistic explanation.'
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: 'When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models'
+    url: https://arxiv.org/abs/2601.07041
+    venue: arXiv
+    verified: true
+    year: 2026
+  wu2020emerging:
+    added_at: '2026-05-22T14:30:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Wu, S.
+    - Conneau, A.
+    - Li, H.
+    - Zettlemoyer, L.
+    - Stoyanov, V.
+    bibtex_key: wu2020emerging
+    category: cross-lingual-repr
+    doi: 10.18653/v1/2020.acl-main.536
+    relevance: Shows mid-layer cross-lingual alignment emerges from shared parameters
+      alone; monolingual representations can be aligned post-hoc. Foundation for understanding
+      language-agnostic concept space our probing hypotheses build on. MUST CITE.
+    role: foundation
+    title: Emerging Cross-lingual Structure in Pretrained Language Models
+    url: https://aclanthology.org/2020.acl-main.536/
+    venue: ACL 2020
+    verified: true
+    year: 2020
+  wendler2024llamas:
+    added_at: '2026-05-22T14:30:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Wendler, C.
+    - Veselovsky, V.
+    - Monea, G.
+    - West, R.
+    bibtex_key: wendler2024llamas
+    category: cross-lingual-repr
+    doi: ''
+    relevance: Demonstrates English-centric LLMs implicitly pivot through English representations
+      in middle layers. Three-phase pattern (input language -> English pivot -> output
+      language) supports hypothesis that conflict signals may route through English-aligned
+      subspace.
+    role: foundation
+    title: 'Do Llamas Work in English? On the Latent Language of Multilingual Transformers'
+    url: https://arxiv.org/abs/2402.10588
+    venue: ACL 2024
+    verified: true
+    year: 2024
+  muller2021first:
+    added_at: '2026-05-22T14:30:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Muller, B.
+    - Elazar, Y.
+    - Sagot, B.
+    - Seddah, D.
+    bibtex_key: muller2021first
+    category: cross-lingual-repr
+    doi: ''
+    relevance: CKA-based layer-wise analysis showing mBERT decomposes into multilingual
+      encoder + language-agnostic predictor. Representations first converge to language
+      neutrality then recover language specificity. Methodological precedent for our
+      layer-wise analysis.
+    role: methodology
+    title: 'First Align, then Predict: Understanding the Cross-Lingual Ability of Multilingual
+      BERT'
+    url: https://aclanthology.org/2021.eacl-main.189/
+    venue: EACL 2021
+    verified: true
+    year: 2021
+  kargaran2024mexa:
+    added_at: '2026-05-22T14:30:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Kargaran, A.H.
+    - Modarressi, A.
+    - Nikeghbal, N.
+    - Diesner, J.
+    - Yvon, F.
+    - "Sch\xFCtze, H."
+    bibtex_key: kargaran2024mexa
+    category: cross-lingual-repr
+    doi: ''
+    relevance: Cross-lingual alignment metric leveraging English pivot hypothesis, 0.90
+      Pearson correlation with downstream tasks. Provides evaluation methodology for
+      measuring English-centric alignment relevant to our cross-lingual transfer analysis.
+    role: methodology
+    title: 'MEXA: Multilingual Evaluation of English-Centric LLMs via Cross-Lingual
+      Alignment'
+    url: https://arxiv.org/abs/2410.05873
+    venue: Findings of ACL 2025
+    verified: true
+    year: 2024
+  belinkov2022probing:
+    added_at: '2026-05-22T14:30:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Belinkov, Y.
+    bibtex_key: belinkov2022probing
+    category: probing-methodology
+    doi: ''
+    relevance: Comprehensive survey of probing classifier promises, shortcomings, and
+      advances. Defines the methodological framework our linear probes follow. MUST
+      CITE for probing methodology justification.
+    role: foundation
+    title: 'Probing Classifiers: Promises, Shortcomings, and Advances'
+    url: https://arxiv.org/abs/2102.12452
+    venue: Computational Linguistics 48(1)
+    verified: true
+    year: 2022
+  hewitt2019designing:
+    added_at: '2026-05-22T14:30:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Hewitt, J.
+    - Liang, P.
+    bibtex_key: hewitt2019designing
+    category: probing-methodology
+    doi: ''
+    relevance: Introduces selectivity metric (linguistic accuracy - control accuracy)
+      to distinguish genuine representation encoding from probe memorization. Our probing
+      design uses control tasks following this framework. EMNLP 2019 Best Paper Runner
+      Up.
+    role: methodology
+    title: Designing and Interpreting Probes with Control Tasks
+    url: https://aclanthology.org/D19-1275/
+    venue: EMNLP 2019
+    verified: true
+    year: 2019
+  ulmer2022deep:
+    added_at: '2026-05-22T14:30:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Ulmer, D.
+    - Hardmeier, C.
+    - Frellsen, J.
+    bibtex_key: ulmer2022deep
+    category: probing-methodology
+    doi: ''
+    relevance: Bootstrap-based statistical testing framework for neural network comparisons,
+      including Almost Stochastic Order (ASO). Provides the bootstrap CI methodology
+      we use for probing accuracy significance testing.
+    role: methodology
+    title: 'deep-significance: Easy and Meaningful Statistical Significance Testing
+      in the Age of Neural Networks'
+    url: https://arxiv.org/abs/2204.06815
+    venue: arXiv
+    verified: true
+    year: 2022
+  li2023iti:
+    added_at: '2026-05-22T16:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Li, K.
+    - Patel, O.
+    - "Vi\xE9gas, F."
+    - Pfister, H.
+    - Wattenberg, M.
+    bibtex_key: li2023iti
+    category: steering
+    doi: ''
+    relevance: Inference-Time Intervention shifts activations along truthful directions
+      in attention heads to improve truthfulness. Foundational activation steering method
+      our causal intervention approach builds on.
+    role: foundation
+    title: 'Inference-Time Intervention: Eliciting Truthful Answers from a Language
+      Model'
+    url: https://arxiv.org/abs/2306.03341
+    venue: NeurIPS 2023
+    verified: true
+    year: 2023
+  zou2023representation:
+    added_at: '2026-05-22T16:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Zou, A.
+    - Phan, L.
+    - Chen, S.
+    - Campbell, J.
+    - Guo, P.
+    - Ren, R.
+    - Pan, A.
+    - et al.
+    bibtex_key: zou2023representation
+    category: steering
+    doi: ''
+    relevance: Introduces Representation Engineering (RepE) framework using population-level
+      representations for monitoring and manipulating high-level cognitive phenomena.
+      Foundational paradigm for our steering methodology.
+    role: foundation
+    title: 'Representation Engineering: A Top-Down Approach to AI Transparency'
+    url: https://arxiv.org/abs/2310.01405
+    venue: arXiv
+    verified: true
+    year: 2023
+  feng2026finegrained:
+    added_at: '2026-05-22T16:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Feng, Z.
+    - Li, T.
+    - Zhu, Z.
+    - Zhou, H.
+    - Qian, J.
+    - Zhang, L.
+    - Mao, K.
+    bibtex_key: feng2026finegrained
+    category: steering
+    doi: ''
+    relevance: Decomposes block activations into atomic-unit-level activations for
+      fine-grained steering. Shows block-level steering entangles beneficial and harmful
+      features. Methodological advance relevant to our per-feature steering design.
+    role: methodology
+    title: 'Fine-Grained Activation Steering: Steering Less, Achieving More'
+    url: https://arxiv.org/abs/2602.04428
+    venue: ICLR 2026
+    verified: true
+    year: 2026
+  conneau2018xnli:
+    added_at: '2026-05-22T16:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Conneau, A.
+    - Rinott, R.
+    - Lample, G.
+    - Williams, A.
+    - Bowman, S.
+    - Schwenk, H.
+    - Stoyanov, V.
+    bibtex_key: conneau2018xnli
+    category: dataset-tool
+    doi: ''
+    relevance: Cross-lingual NLI benchmark spanning 15 languages. Used for evaluating
+      cross-lingual transfer and multilingual understanding in our experiments.
+    role: foundation
+    title: 'XNLI: Evaluating Cross-lingual Sentence Representations'
+    url: https://aclanthology.org/D18-1269/
+    venue: EMNLP 2018
+    verified: true
+    year: 2018
+  rei2020comet:
+    added_at: '2026-05-22T16:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Rei, R.
+    - Stewart, C.
+    - Farinha, A.C.
+    - Lavie, A.
+    bibtex_key: rei2020comet
+    category: dataset-tool
+    doi: ''
+    relevance: Neural MT evaluation metric using cross-lingual pretrained encoders.
+      Provides translation quality evaluation for our cross-lingual dataset construction
+      pipeline.
+    role: methodology
+    title: 'COMET: A Neural Framework for MT Evaluation'
+    url: https://aclanthology.org/2020.emnlp-main.213/
+    venue: EMNLP 2020
+    verified: true
+    year: 2020
+  grattafiori2024llama:
+    added_at: '2026-05-22T16:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Grattafiori, A.
+    - et al. (Llama Team, AI @ Meta)
+    bibtex_key: grattafiori2024llama
+    category: dataset-tool
+    doi: ''
+    relevance: Technical report for Llama 3.1 models (8B/70B/405B). One of our primary
+      experimental models. Documents multilingual capabilities and 128K context window.
+    role: foundation
+    title: The Llama 3 Herd of Models
+    url: https://arxiv.org/abs/2407.21783
+    venue: arXiv
+    verified: true
+    year: 2024
+  yang2024qwen25:
+    added_at: '2026-05-22T16:00:00Z'
+    added_by: paper-agent-lit-search
+    authors:
+    - Yang, A.
+    - Yang, B.
+    - et al. (Qwen Team)
+    bibtex_key: yang2024qwen25
+    category: dataset-tool
+    doi: ''
+    relevance: Technical report for Qwen2.5 model series. One of our primary experimental
+      models. Documents multilingual pretraining on 18T tokens.
+    role: foundation
+    title: Qwen2.5 Technical Report
+    url: https://arxiv.org/abs/2412.15115
+    venue: arXiv
+    verified: true
+    year: 2024

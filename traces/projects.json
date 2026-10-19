@@ -66,6 +66,22 @@
       }
     },
     {
+      "project": "clkc_mech_interp",
+      "title": "English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries",
+      "catalog": "../paper-assets/clkc_mech_interp/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 689,
+        "messages": 76491,
+        "user_turns": 2055,
+        "tool_calls": 30623,
+        "unparsed_lines": 313,
+        "result": 282,
+        "worker": 310,
+        "conversation": 92,
+        "history": 5
+      }
+    },
+    {
       "project": "crosscoder-behavioral-circuit-transplant",
       "title": "crosscoder behavioral circuit transplant",
       "catalog": "../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/catalog.json",
@@ -142,6 +158,12 @@
         "conversation": 1235,
         "history": 189
       }
+    },
+    {
+      "project": "prod42",
+      "title": "prod42",
+      "catalog": "../paper-assets/prod42/05-generation-trace/catalog.json",
+      "statistics": {}
     },
     {
       "project": "prod_0510",

@@ -1,0 +1,46 @@
+{
+  "exp_id": "steering_gemma_L17_131",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:01:06.445Z",
+    "updated_at": "2026-05-24T09:02:17.397Z",
+    "hypothesis": "Gemma-2-9B-IT L17 (40% depth) steering 匹配条件复现：原始 L17 在低 probe acc (75%, N=158) 下 best p=0.104，是所有 Gemma 层中最接近显著的。Llama L16 从 p=0.12 翻转为 p=0.005 after probe quality 提升。用匹配条件重跑 L17，验证是否也翻转。",
+    "parent": "steering_107_gemma_L17",
+    "spec": {
+      "command": "python src/steering_experiment.py --model /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 17 --alphas -20,-10,-5,5,10,20 --position last --output_suffix L17_last",
+      "server": "westd-14391",
+      "data_path": "data/gemma2/en_conflict_test_verified.jsonl",
+      "data_count": 88,
+      "model_name": "Gemma-2-9B-IT",
+      "seed": "default",
+      "gpu": "cuda:0",
+      "checkpoint_source": "google/gemma-2-9b-it (pretrained)",
+      "eval_data": "data/gemma2/en_conflict_test_verified.jsonl"
+    },
+    "metrics": {
+      "N": 88,
+      "probe_acc": 0.6648,
+      "best_alpha": "none",
+      "best_fisher_p": 1,
+      "bonferroni_significant": false,
+      "all_p_values": {
+        "alpha_neg20": 1,
+        "alpha_neg10": 1,
+        "alpha_neg5": 1,
+        "alpha_pos5": 1,
+        "alpha_pos10": 1,
+        "alpha_pos20": 1
+      },
+      "total_flips": 0
+    },
+    "checkpoint_path": "N/A (steering, no checkpoint)",
+    "log_path": "westd-14391:/root/clkc_mech_interp/data/gemma2/steering_results_L17_last.json",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-24T09:02:17.529432+00:00",
+  "trigger": "update_registry"
+}

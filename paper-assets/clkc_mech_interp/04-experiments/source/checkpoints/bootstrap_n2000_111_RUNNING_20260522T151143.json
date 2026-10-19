@@ -1,0 +1,38 @@
+{
+  "exp_id": "bootstrap_n2000_111",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:18:39.374Z",
+    "updated_at": "2026-05-22T15:11:42.963Z",
+    "hypothesis": "Bootstrap n=100 低于学术标准（Efron &amp; Tibshirani 1993 推荐 n≥1000）。升级 Llama 和 Qwen 的探针 bootstrap 至 n=2000，获得更稳定的 CI endpoints，特别是 Qwen 下界 -1.2pp 可能因 n 不足而不准确。",
+    "spec": {
+      "command": "python src/train_probe.py --bootstrap_seeds 2000",
+      "server": "westd-41302",
+      "data_path": "data/qwen3/ + data/llama31/",
+      "data_count": 2364,
+      "model_name": "Qwen3-8B + Llama-3.1-8B-Instruct (CPU-only)",
+      "seed": 42,
+      "checkpoint_path": "data/llama31/probe_results_bootstrap_n2000.json + data/qwen3/probe_results_bootstrap_n2000.json",
+      "log_path": "logs/probe_training_fast_llama.log"
+    },
+    "metrics": {
+      "llama_asymmetry_peak_mean_diff": 0.0727,
+      "llama_asymmetry_p_value": 0.038,
+      "llama_asymmetry_ci": [
+        0.0037,
+        0.1397
+      ],
+      "llama_n_seeds": 2000,
+      "llama_en_en_peak_layer": "18-19",
+      "llama_status": "completed",
+      "qwen_status": "completed"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T15:11:43.030515+00:00",
+  "trigger": "update_registry"
+}

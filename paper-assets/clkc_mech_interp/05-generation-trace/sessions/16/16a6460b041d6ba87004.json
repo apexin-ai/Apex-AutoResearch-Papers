@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16a6460b041d6ba87004",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra progress check",
+  "task_key": "worker_infra_progress-check_20260522T060604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_progress-check_20260522T060604_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "54ace560ac2eba4c798259690130c352accb64afe76e7fe5e554f9904032af8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. Gemma translate\n**已停止。** 日志停在 390/1274，无 `translate_to_zh` 进程存活。可能已崩溃或被中断。\n\n### 2. Bootstrap n=2000\n两个模型都在运行中，各有 4 个条件（EN→EN, ZH→ZH, EN→ZH, ZH→EN）：\n\n| 模型 | EN→EN | ZH→ZH | EN→ZH | ZH→EN | 进度 |\n|------|-------|-------|-------|-------|------|\n| **Qwen3** | done (bal_acc=0.7528±0.0168, 3838s) | **运行中** | 待跑 | 待跑 | ~25-50% |\n| **Llama31** | done (bal_acc=0.7709±0.0127, 4746s) | **运行中** | 待跑 | 待跑 | ~25-50% |\n\nEN→EN 每个耗时约 1-1.3h，估计全部完成还需 **2-4h**。结果文件尚未生成。\n\n### 3. 额外发现：COMET 验证在跑\nGPU 0/2 上有 `validate_translation.py` 进程（非原始 translate 任务）：\n- Qwen3: 660/798 back-translated (~83%)\n- Llama31: 640/1096 back-translated (~58%)\n\n### 4. GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 16.5 / 97.9 GB | 20% |\n| 1 | 16.5 / 97.9 GB | 12% |\n| 2 | 16.5 / 97.9 GB | 21% |\n| 3 | 0 / 97.9 GB | 0% (空闲) |\n\nGPU 1 可能是 COMET 模型的共享负载，GPU 3 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-progress-check.md"
+}

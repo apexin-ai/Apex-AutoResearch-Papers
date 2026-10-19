@@ -1,0 +1,43 @@
+{
+  "exp_id": "steering_gemma_L24_121",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:01:20.736Z",
+    "updated_at": "2026-05-23T10:57:22.106Z",
+    "hypothesis": "Gemma-2-9B L24 (~57% depth) steering：L17/L21 negative, 试更深层。若 L24 也 negative 则 Gemma 确实不存在 single-layer causal node（支持 Llama-specific 结论）。parent=steering_107_gemma_L17",
+    "parent": "steering_107_gemma_L17",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 OMP_NUM_THREADS=1 python src/steering_experiment.py --model gemma --layer 24 --alphas 5 10 20 --position last",
+      "server": "westd-41302",
+      "data_path": "/root/clkc_mech_interp/data/gemma2/",
+      "data_count": 158,
+      "model_name": "Gemma-2-9B",
+      "seed": 42,
+      "gpu": "cuda:1",
+      "checkpoint_source": "steering_107_gemma_L17",
+      "eval_data": "conflict probe activations",
+      "checkpoint_path": "N/A",
+      "log_path": "/root/clkc_mech_interp/logs/steering_gemma_L24.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "probe_accuracy_L24": 0.7627,
+      "alpha_5_flips": "1/158",
+      "alpha_5_fisher_p": 1,
+      "alpha_10_flips": "3/158",
+      "alpha_10_fisher_p": 1,
+      "alpha_20_flips": "5/158",
+      "alpha_20_fisher_p": 1,
+      "bonferroni_significant": "none",
+      "directional_flips_p2c": 0,
+      "directional_flips_c2p": 0
+    },
+    "completed_at": "2026-05-23T10:57:22.106Z"
+  },
+  "timestamp": "2026-05-23T10:57:22.191196+00:00",
+  "trigger": "update_registry"
+}

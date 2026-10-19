@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_llama_L16_127",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:41:39.262Z",
+    "updated_at": "2026-05-24T00:58:42.989Z",
+    "hypothesis": "Llama-3.1-8B L16 (50% depth) steering 同条件复现：原始 L16 (N=136, probe acc 77%) 为 negative (p=0.12)。用与 L12/L13/L14 相同的数据和 probe（N=201, probe acc ~91%）重跑 L16，消除 probe quality confound。若仍 negative 则确认 causal window 上界在 L14-L16 之间。",
+    "parent": "steering_107_L13"
+  },
+  "timestamp": "2026-05-24T00:58:43.086715+00:00",
+  "trigger": "update_registry"
+}

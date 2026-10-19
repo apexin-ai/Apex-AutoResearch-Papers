@@ -1,0 +1,524 @@
+issues:
+# === Round 4 — RECURRING ISSUES (from Round 3, still present) ===
+
+- id: "R3-N2"
+  summary: "COMET tercile 消融 MDD=25.3pp 混淆排除功效不足"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "R1 认为'本质上无效'，R2 部分反驳——多证据链部分弥补"
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1 再次标记为 critical (W3)，R2 部分同意但指出多层控制框架(XNLI+EN-DE)部分缓解。Gemma +10.3pp 混淆方向趋势仍未解决。"
+  action_items:
+    - round: 3
+      action: "§4.5 重构：论证重心从 COMET tercile 转向 token overlap + EN-DE 对照"
+      assigned_to: paper_agent
+      status: done
+    - round: 4
+      action: "增加连续回归分析(COMET score vs probe acc)替代 tercile；或增大样本量；对 Gemma +10.3pp 做深入调查"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-N3"
+  summary: "因果证据仅限 Llama L13 单模型单层，detection≠decision claim 过度概括"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "Contribution 暗示跨架构发现，实为 1正2负"
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1-W1 和 R2-N1 独立提出相同判断并在交叉回应中 AGREE。Qwen/Gemma 各仅测1层(L14/L17)，替代解释未排除(非线性通路、不同因果窗口、样本量不足)。与 Basu et al. 2026 差异化不清晰。"
+  action_items:
+    - round: 3
+      action: "Contribution 重写限定为 Llama-specific + 三层解离证据"
+      assigned_to: paper_agent
+      status: done
+    - round: 4
+      action: "(1) Abstract/Conclusion 进一步降级 claim 为 Llama-specific observation；(2) 对 Qwen/Gemma 补充至少 3 层 steering；(3) 强化 Basu et al. 差异化论述(跨语言+三模型+层定位)"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-W1"
+  summary: "单一 train/test split 缺乏 k-fold cross-validation"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "Belinkov 2022 推荐 CV 为标准做法"
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1-W5 和 R2-W2 再次标记。Bootstrap CI 仅捕获 split 内变异。Δ_asym arithmetic diff (11.0pp) vs bootstrap mean (7.3pp) 差距暗示 peak layer 偏移。"
+  action_items:
+    - round: 3
+      action: "Limitations 加 k-fold CV 承诺 + camera-ready 计划"
+      assigned_to: paper_agent
+      status: done
+    - round: 4
+      action: "在当前版本完成至少 3-fold CV 主要结果(Table 1)，不再仅承诺 camera-ready"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-W2"
+  summary: "Qwen3-8B 同时作为翻译模型和实验对象的双重角色"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "Qwen EN→ZH transfer accuracy 最高(67.3%)，与 aligned 假设方向一致"
+    - round: 4
+      reviewers: [1]
+      note: "R1-W6 再次提出。R2 反驳称 Qwen3 vs Qwen2.5 是不同代际，但论文实际使用 Qwen3-8B 做两者(Section 3.2 + 4.1)，R2 事实判断有误。Llama/Gemma 独立验证相同 pattern 部分缓解。"
+  action_items:
+    - round: 3
+      action: "Limitations 增强 Qwen dual role 讨论"
+      assigned_to: paper_agent
+      status: done
+    - round: 4
+      action: "正文中更显著标注此利益冲突；或用独立翻译模型(如 NLLB)做额外验证"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-W6"
+  summary: "Discussion 三个 mechanistic 假说全部 untested"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - round: 3
+      reviewers: [2, 1]
+      note: "建议至少验证一个"
+    - round: 4
+      reviewers: [1, 2]
+      note: "R2-W4 指出机制深度偏浅(probing-level 非 circuit-level)。R1 交叉 AGREE(部分)——probing+steering 是 accepted practice 但不应从中过度概括。Discussion 仍仅列假说未验证。"
+  action_items:
+    - round: 3
+      action: "MLP probe 数据验证假说1 + registry 数据验证假说2/3"
+      assigned_to: paper_agent
+      status: done
+    - round: 4
+      action: "考虑 activation patching 验证至少一个假说；或在 framing 中重定位为 empirical probing study"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-NOV"
+  summary: "新颖性被 Basu et al. (2026) 先行发现削弱"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "detection≠decision 已被 Basu 部分 preempt"
+    - round: 4
+      reviewers: [2]
+      note: "R2-N1 再次标记，R1 在交叉中 AGREE 并补充：Section 5 仅一句差异化论述过于单薄。增量在 setting 扩展(跨语言+三模型)而非 insight 扩展。"
+  action_items:
+    - round: 3
+      action: "Contribution 合并 + Basu 差异化写入 discussion"
+      assigned_to: paper_agent
+      status: done
+    - round: 4
+      action: "Section 2 或 Section 5 增加与 Basu et al. 的逐点对比段落(≥3 差异点)；重新定位为'跨语言设定下的 replication + extension'而非独立发现"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# === Round 4 — NEW ISSUES ===
+
+- id: "R4-N1"
+  summary: "Qwen 不对称性 CI 包含零；Bonferroni 校正后仅 Gemma 显著"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1-W2 首次提出，R2 交叉 AGREE。Qwen CI [-0.6, 13.7] 跨零。三模型 Bonferroni 阈值 0.017 下 Llama p=0.038 也不显著。仅 Gemma p=0.006 幸存。'Consistent across all three' 论断统计不充分。"
+  action_items:
+    - round: 4
+      action: "(1) 明确报告 Qwen 不显著而非'marginally includes zero'；(2) 报告 Bonferroni 校正后结果；(3) 依赖方向一致性 binomial test(p=0.016) + XNLI 独立复制作为主要论据"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-W1"
+  summary: "全文多重假设检验缺乏整体 FWER 控制"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1-W7 提出，R2 部分同意。全文 ~100+ 检验仅 steering 做了 per-layer Bonferroni。三模型 asymmetry 属同一族未校正。建议至少对同族检验做校正并报告。"
+  action_items:
+    - round: 4
+      action: "对 asymmetry 三模型检验做 Bonferroni/Holm 校正并报告校正后结果；明确标注哪些结论校正后仍成立"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-W2"
+  summary: "Steering 仅在英文数据评估，未测试跨语言因果干预"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1-W8 提出，R2 AGREE。论文主题是跨语言冲突，但 steering 实验仅用英文 test data。未测试中文输入 steering 或 cross-lingual steering(ZH→EN probe 对 ZH 输入)。"
+  action_items:
+    - round: 4
+      action: "至少在 Llama L13 上测试中文输入 steering + ZH→EN probe cross-lingual steering"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-W3"
+  summary: "TOST 等价检验功效 1.4%，uninformative"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1-W4 提出，R2 AGREE。±2pp 边界对 n~200 和 SE~5-8pp 过窄，检验注定失败。报告 uninformative 检验有空洞分析之嫌。"
+  action_items:
+    - round: 4
+      action: "要么使用合理等价边界(±5pp)重做 TOST；要么删除 TOST，改用 CI 重叠 + binomial direction consistency 的定性论证"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-W4"
+  summary: "贡献权重不均衡；Contribution 2(asymmetry)定位有争议"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - round: 4
+      reviewers: [1, 2]
+      note: "R2-W1/N3 提出(null result 包装为贡献)，R1 REBUT(ruling-out 有方法论价值)但同意统计证据不够强。分歧：C2 是否应为独立贡献。共识：当前证据力度不足以支撑该 claim 的强度。"
+  action_items:
+    - round: 4
+      action: "考虑将 C2 并入 C1 作为分析组成部分，或保留但降低措辞强度(consistent with → preliminary evidence consistent with)"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-I1"
+  summary: "Fisher's exact test 用于 paired steering data，应为 McNemar's"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1-W9 提出，R2 AGREE。Same samples receive both steering and random control = paired within-subject design。Fisher 假设独立样本。对 Llama L13 (p=0.002) 不影响结论方向，但对 borderline 结果可能有影响。"
+  action_items:
+    - round: 4
+      action: "补充 McNemar's test 结果或论证 Fisher 在此 setting 的保守性"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# === Round 3 RESOLVED (confirmed in Round 4) ===
+
+- id: "R3-N1"
+  summary: "标题 'Mirror' 等价性主张与 TOST 功效不匹配"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "建议改 Mirror→Consistent With"
+    - round: 4
+      reviewers: [1, 2]
+      note: "标题已改为 'Are Consistent With'。R1 在交叉回应中确认标题语义无过度声称。"
+  action_items:
+    - round: 3
+      action: "标题 Mirror→Consistent With"
+      assigned_to: paper_agent
+      status: done
+  resolution: "标题已改为 'English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries'。R4 Reviewer 确认。"
+  resolution_round: 4
+
+- id: "R3-W3"
+  summary: "Probe selectivity 未正式评估"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "引用 Hewitt & Liang 2019 但未执行"
+  action_items:
+    - round: 3
+      action: "Random labels selectivity control"
+      assigned_to: main_agent
+      status: done
+  resolution: "Selectivity control 完成，R4 R1 在 S4 确认(49.2-51.0% chance, gap 21-40pp)。"
+  resolution_round: 4
+
+- id: "R3-W4"
+  summary: "缺少 AUROC 阈值无关评估指标"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "AUROC 对 Gemma 尤其有意义"
+  action_items:
+    - round: 3
+      action: "AUROC 计算 + Appendix"
+      assigned_to: main_agent
+      status: done
+  resolution: "AUROC 完成(Llama 0.981, Gemma 0.931, Qwen 0.771)。R4 未再标记。"
+  resolution_round: 4
+
+- id: "R3-W5"
+  summary: "Steering α 值选择缺乏理论依据"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "α∈{±20,±10,±5,±2,±1} 无规范化"
+  action_items:
+    - round: 3
+      action: "Method 加入 α 选择理由 + Turner/Marks 引用"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Section 4.6 已引用 Turner 2023 和 Marks 2024 作为 α sweep 惯例。R4 未再标记。"
+  resolution_round: 4
+
+- id: "R3-M1"
+  summary: "COMET 版本号未标注"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "需标注具体版本"
+  action_items:
+    - round: 3
+      action: "加入 wmt22-comet-da"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Section 4.1 已标注 'wmt22-comet-da'。R4 未再标记。"
+  resolution_round: 4
+
+- id: "R3-M2"
+  summary: "Token overlap 仅用 Jaccard 粗粒度指标"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "EN-ZH 字符系统不同使 3-4% 已足够"
+  action_items:
+    - round: 3
+      action: "加入 floor imposed by distinct writing systems"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Section 4.5 已加入解释。R4 R1-S3 确认 EN-DE 控制(14.8% vs 3.8%)有效。"
+  resolution_round: 4
+
+- id: "R3-M4"
+  summary: "Random direction control 仅为最低标准"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "更强 control 方向"
+  action_items:
+    - round: 3
+      action: "Limitations 提及更强 control 方向"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Limitations 已提及。R4 R1-S5 确认 random control 设计合理(等幅 r~N(0,I))。"
+  resolution_round: 4
+
+- id: "R3-M5"
+  summary: "Figure 3 灰色带暗示 TOST 有效但功效不支持"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "±2pp 灰色带视觉暗示 meaningful zone"
+    - round: 4
+      reviewers: [1, 2]
+      note: "Figure caption 已改为 'exploratory equivalence margin' + TOST power 1.4% 标注。R4 未标记视觉误导问题(仅标记 TOST 本身 uninformative)。"
+  action_items:
+    - round: 3
+      action: "Figure caption 改为 exploratory"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Caption 已修改。视觉误导问题解决。TOST uninformative 性质已单独列为 R4-W3。"
+  resolution_round: 4
+
+# === PREVIOUSLY RESOLVED (Rounds 1-2, confirmed stable) ===
+
+- id: "R2-W2"
+  summary: "标题仅测试 EN-ZH 一个语言对构成 overclaiming"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - round: 1
+      reviewers: [2, 1]
+      note: "标题应加限定"
+    - round: 2
+      reviewers: [1, 2]
+      note: "升级为 Must-Fix"
+  action_items:
+    - round: 2
+      action: "标题加入 English-Chinese 限定"
+      assigned_to: paper_agent
+      status: done
+  resolution: "标题已限定为 English-Chinese。R4 R1 在 N2 rebut 中确认标题语义正确。"
+  resolution_round: 3
+
+- id: "MF-2"
+  summary: "标题 Inherit 因果措辞仅有相关性证据"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [2, 1]
+      note: "Inherit→Mirror→Consistent With"
+  action_items:
+    - round: 2
+      action: "全文替换"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Reviewer PASS. R4 确认标题用 'Consistent With'。"
+  resolution_round: 3
+
+- id: "R1-N2"
+  summary: "Detection ≠ Decision 因果声明仅在 Llama 成立"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "最核心局限"
+    - round: 2
+      reviewers: [1, 2]
+      note: "升级为 MF-3"
+    - round: 3
+      reviewers: [1, 2]
+      note: "Contribution 重写限定，但根本问题未解"
+    - round: 4
+      reviewers: [1, 2]
+      note: "合并至 R3-N3。四轮持续存在的核心问题。"
+  action_items:
+    - round: 2
+      action: "Reframe 为 architecture-dependent"
+      assigned_to: paper_agent
+      status: done
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-M3"
+  summary: "无代码/数据可用性声明"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: [1, 2]
+      note: "double-blind 可用匿名链接"
+  action_items:
+    - round: 3
+      action: "加入声明"
+      assigned_to: paper_agent
+      status: done
+  resolution: "匿名代码仓库已提供。R4 确认。"
+  resolution_round: 3

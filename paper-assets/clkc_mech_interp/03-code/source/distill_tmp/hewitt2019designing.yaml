@@ -1,0 +1,26 @@
+paper_key: "hewitt2019designing"
+title: "Designing and Interpreting Probes with Control Tasks"
+venue: "EMNLP 2019"
+full_text_available: false
+
+research:
+  baselines: [linear_probe, MLP_probe, control_task_baselines]
+  metrics:
+    - {name: "Selectivity", direction: "higher_better"}
+    - {name: "Probe Accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "Penn Treebank", size: "standard"}
+    - {name: "Universal Dependencies", size: "standard"}
+  ablation_dimensions: [probe_complexity, control_task_design]
+  training_recipe: {optimizer: "N/A (probing methodology)", lr: "N/A", hardware: "ELMo, BERT"}
+  method_family: "probing methodology / control tasks"
+
+positioning:
+  core_claim: "Control tasks measure probe selectivity — ensuring probes detect linguistic structure rather than memorizing labels"
+  key_results: "Linear probes show higher selectivity than MLP probes"
+  limitations: ["Limited to syntactic probing"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

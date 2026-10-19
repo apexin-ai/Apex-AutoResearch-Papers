@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e231509cdc774ff4c9f8",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260522T132715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260522T132715_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "5fa2db097432fbac344d798e302e9de1090f3fa44f905346729dafac9572a5c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已追加 5 篇论文到 `literature_map.yaml`（10 → 15 篇）。\n\n**Cluster 1: Knowledge Conflict Detection (+3)**\n\n| bibtex_key | 论文 | Venue | 角色 |\n|---|---|---|---|\n| `xie2024adaptive` | Adaptive Chameleon or Stubborn Sloth (ConflictQA) | ICLR 2024 | foundation — 我们使用的数据集原始论文 |\n| `xu2024knowledge` | Knowledge Conflicts for LLMs: A Survey | EMNLP 2024 | foundation — 定义 context-memory/inter-context/intra-memory 分类体系 |\n| `li2025taming` | Taming Knowledge Conflicts in Language Models | ICML 2025 Spotlight | direct-competitor — 冲突解决框架，我们的机制方法与之互补 |\n\n**Cluster 2: Cross-lingual Conflict (+2)**\n\n| bibtex_key | 论文 | Venue | 角色 |\n|---|---|---|---|\n| `ifergan2024beneath` | Beneath the Surface of Consistency | NAACL 2025 Findings | foundation — 跨语言一致性 ≠ 共享表征，脚本相似性主导，直接支撑我们的 probing 动机 |\n| `xing2024evaluating` | Evaluating Knowledge-based Cross-lingual Inconsistency | arXiv 2024 | peripheral — 提出 xSC/xAC/xTC 跨语言一致性度量 |\n\n所有 URL 均为真实 arXiv 链接，已验证存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "495a99b4968de37d230a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fig3 fig4 restyle",
+  "task_key": "worker_code_fig3-fig4-restyle_20260525T131241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig3-fig4-restyle_20260525T131241_result.json",
+    "occurrence": 1,
+    "bytes": 1346,
+    "sha256": "361764bac255a87fa85aaac3bbe9ee0eff7fe7c2d81ad7791f265408b5d81f08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图效果满意。总结：\n\n---\n\n### Figure 3 — Layer-wise Probing\n- **数据来源**: `artifacts/layerwise_probe_curves.json`（含 Llama-3.1-8B 和 Qwen3-8B 的 4-direction per-layer probe accuracy, residual stream + MLP, Qwen3 含 bootstrap CI）\n- **设计**: 2-panel 水平排列（**Gemma-2 无 per-layer 数据，未绘制**）；EN→EN 蓝色实线圆形标记，ZH→ZH 珊瑚实线方形标记，EN→ZH 浅青虚线三角，ZH→EN 深青点划线菱形；MLP 灰色虚线弱化；peak 大标记标注；CI fill_between\n- **文件**: \n  - `figures/paper/fig3_layerwise.png` / `.pdf`\n  - 生成脚本: `figures/paper/gen_fig3_layerwise.py`\n\n### Figure 4 — Asymmetry Forest Plot\n- **数据来源**: 脚本内嵌数据（3 模型 × 2 任务的 bootstrap CI，与原 `gen_fig3_asymmetry_forest.py` 一致）\n- **设计**: Forest plot，Conflict 珊瑚色，XNLI 青色，±2pp 灰色等价区间，serif 字体，右侧 monospace 数值标注\n- **文件**:\n  - `figures/paper/fig4_asymmetry.png` / `.pdf`\n  - 生成脚本: `figures/paper/gen_fig4_asymmetry.py`\n\n**注意**: Gemma-2-9B 缺少 per-layer probe 数据（服务器上只有 `probe_results_multiseed.json` summary），Figure 3 只含 2 个 panel。如需补充 Gemma panel，需先在远程跑 4-direction per-layer probe 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig3-fig4-restyle.md"
+}

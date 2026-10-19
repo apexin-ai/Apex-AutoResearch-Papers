@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a776bb558568af568f80",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu gemma L17 steering launch",
+  "task_key": "worker_gpu_gemma-L17-steering-launch_20260522T143742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_gemma-L17-steering-launch_20260522T143742_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "ff93d3c4c2841e91fbc19b0219fd9903a88c8d12292af5ab34f87967dbbfab07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动。\n\n**汇总：**\n- **实验 ID**: `steering_107_gemma_L17`\n- **PID**: 493751（nohup 子进程）\n- **GPU**: cuda:2, 18.5GB/97.9GB VRAM 已占用（符合 Gemma bf16 ~18GB 预期）\n- **Probe accuracy L17**: 0.7532\n- **测试样本**: 158 conflict / 316 total\n- **日志**: `/root/clkc_mech_interp/logs/steering_gemma_L17.log`\n- **输出**: `data/gemma2/steering_results/steering_results_gemma_L17.json`\n- **Registry 状态**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-gemma-l17-steering-launch.md"
+}

@@ -1,0 +1,25 @@
+paper_key: "rei2020comet"
+title: "COMET: A Neural Framework for MT Evaluation"
+venue: "EMNLP 2020"
+full_text_available: false
+
+research:
+  baselines: [BLEU, METEOR, BERTScore, BLEURT]
+  metrics:
+    - {name: "Kendall tau correlation with human judgments", direction: "higher_better"}
+    - {name: "MQM score", direction: "context_dependent"}
+  datasets:
+    - {name: "WMT Metrics shared task", size: "multiple years"}
+  ablation_dimensions: [model_architecture, training_data]
+  training_recipe: {optimizer: "N/A (evaluation framework)", lr: "N/A", hardware: "XLM-R based"}
+  method_family: "neural MT evaluation"
+
+positioning:
+  core_claim: "Neural-based MT evaluation using cross-lingual embeddings achieves higher correlation with human judgments than surface-level metrics"
+  key_results: "COMET outperforms BLEU and BERTScore on human correlation"
+  limitations: ["Requires reference translations"]
+  relation_to_us: "orthogonal"
+
+narrative: N/A
+figures: N/A
+tables: N/A

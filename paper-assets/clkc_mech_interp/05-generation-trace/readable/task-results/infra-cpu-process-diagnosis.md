@@ -1,0 +1,90 @@
+# infra cpu process diagnosis
+
+**English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_infra_cpu-process-diagnosis_20260523T034613_result.json`
+- **Structured JSON:** [`d8bf3a623a9c65a2dfa7.json`](../../sessions/d8/d8bf3a623a9c65a2dfa7.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 诊断结果
+
+### 系统负载
+- **load average: 652.47, 587.65, 579.51** — 极度过载
+- 42 个 running 进程（40 个 Gemma bootstrap 工作进程 + DE probe + misc）
+- 内存充裕（1TB 总量，仅用 46GB）
+- **两个任务互相争抢 CPU，导致双双极慢**
+
+---
+
+### DE probe 3-lang n=2000 (PID 496671)
+- **进程状态**: alive (etime=12:32:22)，CPU=123.5%（瞬时）
+- **命令**: `train_probe.py --langs en,zh,de --bootstrap_seeds 2000 --output_file de_probe_results_bootstrap_n2000.json`
+- **输出文件**: `de_probe_results_bootstrap_n2000.json` **尚未生成**（进程未完成）
+- **日志**: `/tmp/de_probe_n2000.log`（65KB，**最后修改 02:26，9小时前**）
+- **当前进度**: 日志停在 EN→EN Bootstrap 1699/2000，但进程没有 `-u` 参数，stdout 被缓冲。实际进度应更靠后。
+- **3 语言 = 9 个 train/test 对**（en_en, en_zh, en_de, zh_en, zh_zh, zh_de, de_en, de_zh, de_de），每对 2000 seeds。按之前 2-lang 每对 80-120min 估算，总计需 12-18 小时。
+- **判断**: ⚠️ **未卡死，但被 CPU 争抢严重拖慢**。预计还需 2-6 小时。
+
+已有的 2-lang EN/ZH 结果（`probe_results_bootstrap_n2000.json`，已完成）：
+
+| 方向 | Peak bal_acc (mean) | Peak layer |
+|------|-------------------|------------|
+| EN→EN | 75.08% | L19 |
+| ZH→ZH | 63.16% | L18 (部分截断) |
+| EN→ZH | 59.21%* | L29* |
+| ZH→EN | 67.35%* | L10* |
+| **Δ_asym (zh_en − en_zh peak)** | **+7.27pp [0.37, 13.97], p=0.038** | |
+
+---
+
+### Gemma XNLI bootstrap n=2000 (PID 507589)
+- **进程状态**: alive (etime=09:16:42)，40 个 worker 进程 active（每个 70-470% CPU）
+- **PID 507351** (bash wrapper): alive
+- **PID 512737**: dead
+- **输出文件**:
+  - `data/xnli/gemma2/en_activations.pt` (288M, May 23 02:28)
+  - `data/xnli/gemma2/zh_activations.pt` (288M, May 23 02:29)
+  - `data/xnli/gemma2/probe_basic_results.json` (31K, May 23 04:30) ✅ 已完成
+  - `data/xnli/gemma2/probe_accuracy_by_layer.png` (108K, May 23 04:30) ✅
+- **日志**: `gemma_xnli_probe.log` 仅 109 字节，显示 `[EN→EN] Bootstrap (2000 seeds, 64 workers)...`，然后就没有了（同样因 buffering）
+- **当前进度**: 42 层 × 4 对 × 2000 seeds 的 bootstrap，可能在第 1/4 对（EN→EN）或更后
+- **判断**: ⚠️ **未卡死，但 40 个 worker 占满 CPU 导致系统 load 652**
+
+基础 probe 结果（已完成，无 bootstrap CI）：
+
+| 方向 | Best layer | Accuracy | bal_acc | F1 |
+|------|-----------|----------|---------|-----|
+| EN→EN | L20 | 95.5% | 0.9563 | 0.9565 |
+| ZH→ZH | L24 | 89.0% | 0.8896 | 0.8952 |
+| EN→ZH | L28 | 89.5% | 0.8944 | 0.9014 |
+| ZH→EN | L21 | 97.5% | 0.9752 | 0.9763 |
+
+---
+
+### GPU
+4× NVIDIA RTX PRO 6000 Blackwell (各 96GB) — **全部空闲**，0MB 显存占用，0% 利用率。
+
+---
+
+### 建议
+
+两个 bootstrap 任务互相挤占 CPU（40 个 Gemma workers + DE probe 共用 CPU pool），load 652 说明线程数远超核数。都不需要 GPU。选项：
+1. **等**：两个任务都在跑，只是慢。DE probe 估计再 2-6h，Gemma bootstrap 不确定。
+2. **Kill Gemma bootstrap 先让 DE probe 跑完**，然后再单独跑 Gemma bootstrap（速度会快很多）。
+3. **Kill DE probe 先让 Gemma bootstrap 跑完**，然后再跑 DE probe。
+
+---

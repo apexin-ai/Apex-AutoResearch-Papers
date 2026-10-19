@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8d48669f4ca31559c20e",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "cpu layerwise probe curves",
+  "task_key": "worker_cpu_layerwise-probe-curves_20260522T132052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_layerwise-probe-curves_20260522T132052.log",
+    "occurrence": 1,
+    "bytes": 790251,
+    "sha256": "0898b4650f38d392438b5287599df91576491c301a3ab80f26a5510c9bc40e3f"
+  },
+  "statistics": {
+    "messages": 435,
+    "user_turns": 0,
+    "tool_calls": 179,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 179,
+      "tool_result": 179,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 435,
+      "chunks": [
+        {
+          "path": "8d48669f4ca31559c20e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d48669f4ca31559c20e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d48669f4ca31559c20e-part-0003.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/cpu-layerwise-probe-curves.md"
+}

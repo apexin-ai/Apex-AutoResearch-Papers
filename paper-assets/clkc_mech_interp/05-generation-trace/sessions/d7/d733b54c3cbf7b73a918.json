@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d733b54c3cbf7b73a918",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "infra status and push v2",
+  "task_key": "worker_infra_status_and_push_v2_20260521T194953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_status_and_push_v2_20260521T194953.log",
+    "occurrence": 1,
+    "bytes": 599226,
+    "sha256": "5fe4a37a137f876108b45f4f55c351a7616f443d0d9ec9c857341f72e9bd571f"
+  },
+  "statistics": {
+    "messages": 356,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 110,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 356,
+      "chunks": [
+        {
+          "path": "d733b54c3cbf7b73a918-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d733b54c3cbf7b73a918-part-0002.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-status-and-push-v2.md"
+}

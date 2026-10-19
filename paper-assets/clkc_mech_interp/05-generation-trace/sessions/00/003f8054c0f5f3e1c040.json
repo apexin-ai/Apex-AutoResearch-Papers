@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "003f8054c0f5f3e1c040",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp steering gemma v2 L21 139",
+  "task_key": "worker_exp_steering_gemma_v2_L21_139_20260526T090029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering_gemma_v2_L21_139_20260526T090029_result.json",
+    "occurrence": 1,
+    "bytes": 239,
+    "sha256": "58abb5980d7777f7bda011f6bbd74166b110e3fd00bd991c16b584fdd7f68c27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接 westd-14391 失败（端口 14391 无法连接）。AutoDL 实例重启后端口会变——请去 AutoDL 控制台确认实例当前的 SSH 端口，然后更新 `~/.ssh/config` 中 westd-14391 的端口配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-steering-gemma-v2-l21-139.md"
+}

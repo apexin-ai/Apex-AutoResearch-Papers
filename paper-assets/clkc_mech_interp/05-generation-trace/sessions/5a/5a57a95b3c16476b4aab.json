@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a57a95b3c16476b4aab",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra llama full probe",
+  "task_key": "worker_infra_llama_full_probe_20260521T190238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llama_full_probe_20260521T190238_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "96f47e1897b07acd2bdd1ebdca508dd32bfefb593f5d53dcabfa051654c4a530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n```\n[Llama-3.1-8B MVP Gate Verdict]\n\n=== EN→EN (within-language baseline) ===\nPeak: 77.6% (layer 28)\nBinomial p: 7.99e-21\nPermutation p: 0.000\n\n=== ZH→ZH (within-language Chinese) ===\nPeak: 72.1% (layer 13)\nBinomial p: 1.09e-13\nPermutation p: 0.000\n\n=== EN→ZH (cross-lingual transfer) ===\nPeak: 59.6% (layer 5)\nBinomial p: 9.66e-04\nPermutation p: 0.001\n\n=== ZH→EN (cross-lingual transfer) ===\nPeak: 71.3% (layer 15)\nBinomial p: 7.11e-13\nPermutation p: 0.000\n\nGate Criteria:\n- EN acc ≥ 80%: FAIL (77.6%)\n- ZH transfer binomial p < 0.01: PASS (EN→ZH: 9.66e-04, ZH→EN: 7.11e-13)\n- ZH transfer point > 60%: CONDITIONAL (EN→ZH: 59.6% FAIL, ZH→EN: 71.3% PASS)\n- Layer-wise structure (≥1 layer ≥ 65%, perm p < 0.01): PASS (ZH→EN has 5 layers ≥ 65%, best layer 15 perm p=0.000)\n\nOverall: CONDITIONAL\n\nNotes:\n- EN→EN baseline narrowly misses 80% gate (77.6%), but is highly significant\n- Cross-lingual transfer is asymmetric: ZH→EN (71.3%) is strong, EN→ZH (59.6%) is weak\n- ZH→EN shows robust layer-wise structure with 5 layers ≥ 65% (layers 9, 15, 25, 27, 28)\n- EN→ZH transfer only barely exceeds chance at its peak (59.6%), suggesting the EN probe doesn't generalize well to ZH test data\n\n输出文件:\n- data/llama31/probe_results.json\n- data/llama31/probe_accuracy_by_layer.png\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llama-full-probe.md"
+}

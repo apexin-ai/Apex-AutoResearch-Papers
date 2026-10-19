@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45ea7a2d80aaccc7095b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "research qwen server diagnostic",
+  "task_key": "worker_research_qwen-server-diagnostic_20260524T112908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_qwen-server-diagnostic_20260524T112908_result.json",
+    "occurrence": 1,
+    "bytes": 2454,
+    "sha256": "e79e264b75b831482c990000a3ea1fb298d9b300d5e34d1bce8e9440d7dadc58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 1. Qwen 模型状态\n\n| 路径 | 大小 | 状态 |\n|------|------|------|\n| `/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/` | **1.7MB** | **未完成** — 只有 config.json、tokenizer 等元数据文件，**没有 model.safetensors 权重文件** |\n\n对比：Llama-3.1-8B-Instruct 占 15GB，Gemma-2-9b-it 占 18GB。Qwen2.5-7B-Instruct 完整应约 15GB。\n\n**其他已下载模型：**\n- `Meta-Llama-3.1-8B-Instruct` — 15GB ✓\n- `gemma-2-9b-it` (AI-ModelScope) — 18GB ✓\n\n### 2. Qwen 数据\n\n**不存在。** `data/` 下只有三个目录：`llama31`、`gemma2`、`gemma2_v2`。没有 `qwen*` 目录。\n\n### 3. 已有数据概览\n\n| 模型 | 文件 | 行数 | 大小 | conflict | no_conflict |\n|------|------|------|------|----------|-------------|\n| llama31 | train_verified | 1200 | 979KB | — | — |\n| llama31 | test_verified | 400 | 325KB | 201 | 199 |\n| llama31 | activations.pt | — | 400MB | — | — |\n| gemma2 | train_verified | 528 | 392KB | — | — |\n| gemma2 | test_verified | 176 | 131KB | 88 | 88 |\n| gemma2 | activations.pt | — | 202MB | — | — |\n| gemma2_v2 | train_verified | 1026 | 764KB | — | — |\n| gemma2_v2 | test_verified | 342 | 256KB | 171 | 171 |\n| gemma2_v2 | activations.pt | — | 393MB | — | — |\n\n数据均已完成 steering 实验（每个目录有多个 `steering_results_L*.json`）。\n\n### 4. 可用脚本\n\n关键脚本（`/root/clkc_mech_interp/src/`）：\n\n- **数据准备**: `prepare_gemma_data.py`, `prepare_gemma_data_v2.py`, `prepare_xnli.py`\n- **验证**: `verify_parametric_knowledge.py`\n- **Activations**: `collect_activations.py`\n- **Steering**: `steering_experiment.py`\n- **Probe**: `train_probe.py`, `train_probe_fast.py`, `train_mlp_probe.py`\n- **分析**: `bootstrap_*.py`, `compute_cka.py`, `cross_task_transfer*.py`, `token_overlap*.py`\n\n**注意：没有 `prepare_qwen_data.py`** — 需要新建或改编现有脚本。\n\n### 5. 服务器环境\n\n| 项目 | 值 |\n|------|-----|\n| GPU | **NVIDIA RTX PRO 6000 Blackwell Server Edition** |\n| 显存 | **97,887 MiB (~96GB)** |\n| GPU 占用 | **空闲**（无进程运行） |\n\n### 总结\n\n- **Qwen2.5-7B-Instruct 模型下载未完成**，只拉了元数据，需要重新下载权重\n- **没有任何 Qwen 数据**，需要准备 prepare_qwen_data.py 脚本并跑完整 pipeline\n- GPU 空闲，96GB 显存足够运行 Qwen-7B"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-qwen-server-diagnostic.md"
+}

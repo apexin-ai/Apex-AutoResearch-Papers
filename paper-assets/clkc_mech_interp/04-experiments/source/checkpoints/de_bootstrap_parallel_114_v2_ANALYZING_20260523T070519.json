@@ -1,0 +1,63 @@
+{
+  "exp_id": "de_bootstrap_parallel_114_v2",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:51:54.227Z",
+    "updated_at": "2026-05-23T07:05:19.594Z",
+    "hypothesis": "DE bootstrap n=2000 v2: OMP_NUM_THREADS=1 修复 BLAS 线程爆炸。4 方向 EN↔DE，64 workers 并行。parent=de_activations_112",
+    "parent": "de_activations_112",
+    "spec": {
+      "command": "OMP_NUM_THREADS=1 nohup python -u src/bootstrap_de_parallel.py --n_bootstrap 2000 --n_workers 64 --output_file de_bootstrap_n2000_results.json",
+      "server": "westd-41302",
+      "data_path": "data/llama31/{en,de}_activations.pt",
+      "data_count": 1368,
+      "model_name": "Llama-3.1-8B-Instruct (CPU-only)",
+      "seed": "0-1999",
+      "checkpoint_source": "data/llama31/{en,de}_activations.pt",
+      "eval_data": "data/llama31/de_bootstrap_n2000_results.json"
+    },
+    "metrics": {
+      "en_en": {
+        "mean": 0.7709,
+        "ci": [
+          0.7463,
+          0.7978
+        ]
+      },
+      "de_de": {
+        "mean": 0.7626,
+        "ci": [
+          0.739,
+          0.7868
+        ]
+      },
+      "en_de": {
+        "mean": 0.6923,
+        "ci": [
+          0.6324,
+          0.739
+        ]
+      },
+      "de_en": {
+        "mean": 0.7047,
+        "ci": [
+          0.6654,
+          0.7426
+        ]
+      },
+      "asymmetry_delta": 0.0124,
+      "asymmetry_ci": [
+        -0.0478,
+        0.0809
+      ],
+      "asymmetry_p": 0.4045
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T07:05:19.679636+00:00",
+  "trigger": "update_registry"
+}

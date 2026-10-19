@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3503d57590f2500bfc7",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "research comet dep strategy",
+  "task_key": "worker_research_comet_dep_strategy_20260521T162628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_comet_dep_strategy_20260521T162628_result.json",
+    "occurrence": 1,
+    "bytes": 1853,
+    "sha256": "81f34cb53cc3fd80a38c2822f3835eb8f9668cc44b095cb521a52123dd28ede7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。汇总如下：\n\n---\n\n## 调研结果\n\n### 冲突分析\n\nunbabel-comet 2.2.7（最新版）的硬约束：\n- `transformers<5.0,>=4.17` → 会把 5.9.0 降到 4.57.6\n- `numpy<2.0.0` → 会把 2.3.2 降到 1.26.4\n- `huggingface-hub<1.0`\n\n**所有 unbabel-comet 版本（0.0.2 ~ 2.2.7）均不支持 transformers ≥ 5.0。** 方案 4（版本兼容）不可行。\n\n### 各方案评估\n\n| 方案 | 可行性 | 问题 |\n|------|--------|------|\n| 1. 执行顺序 | **差** | validate_translation.py 同时用 `transformers`（back-translate）和 `comet`（评分），两者必须共存。要拆脚本才行 |\n| 2. 独立 conda env | **最佳** | 隔离干净，数据盘 234G 空间充足，脚本无需修改 |\n| 3. 轻量替代 | **可用但降级** | sacrebleu（BLEU/chrF）无 ML 依赖但只衡量 n-gram 重合度，不如 COMET 的语义评估；BERTScore 也依赖 transformers |\n| 4. 版本兼容 | **不可行** | COMET 全版本锁死 `transformers<5.0` |\n\n### 推荐：方案 2 — 独立 conda env\n\n```bash\n# 创建隔离环境（装到数据盘）\nconda create -p /root/autodl-tmp/envs/comet_env python=3.12 -y\nconda activate /root/autodl-tmp/envs/comet_env\n\n# 安装 COMET（会自带 transformers 4.x + numpy 1.x）\npip install unbabel-comet torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128\n\n# 运行验证\npython src/validate_translation.py --comet_model Unbabel/wmt22-comet-da ...\n```\n\n优势：\n- 主环境 transformers 5.9.0 完全不受影响\n- validate_translation.py 代码零修改\n- back-translate 用的 Qwen3-8B 在 transformers 4.57.6 下也能正常加载\n- 一次性搭建，后续可复用\n\n额外开销：约 2-3GB 磁盘（数据盘 234G 足够），搭建时间 5-10 分钟。\n\n需要我现在执行搭建吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-comet-dep-strategy.md"
+}

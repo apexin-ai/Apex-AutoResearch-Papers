@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6517df200aa083ceedc",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "cpu layerwise probe curves",
+  "task_key": "worker_cpu_layerwise-probe-curves_20260522T132052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_layerwise-probe-curves_20260522T132052_result.json",
+    "occurrence": 1,
+    "bytes": 1491,
+    "sha256": "f8a2848582bfa2b4fdc7d1607c7b5f5337a49624905c0fe7dd2593482077e101"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完毕。\n\n## 输出\n\n**文件路径**: `/root/clkc_mech_interp/data/layerwise_probe_curves.json`（服务器 westd-41302）\n\n## 数据摘要\n\n### Residual Stream Probe\n\n| Model | Direction | Peak Layer | Peak Bal. Acc |\n|-------|-----------|-----------|---------------|\n| **Llama-3.1-8B** (32 layers) | EN→EN | 28 | 0.7757 |\n| | ZH→ZH | 13 | 0.7206 |\n| | EN→ZH | 5 | 0.5956 |\n| | ZH→EN | 15 | 0.7059 |\n| **Qwen3-8B** (36 layers) | EN→EN | 24 | 0.7500 |\n| | ZH→ZH | 14 | 0.7262 |\n| | EN→ZH | 23 | 0.6726 |\n| | ZH→EN | 18 | 0.7321 |\n\n### MLP Probe\n\n| Model | Direction | Peak Layer | Peak Bal. Acc |\n|-------|-----------|-----------|---------------|\n| **Llama-3.1-8B** (32 layers) | EN→EN | 16 | 0.8051 |\n| | ZH→ZH | 7 | 0.7463 |\n| | EN→ZH | 18 | 0.6875 |\n| | ZH→EN | 15 | 0.7500 |\n| **Qwen3-8B** (36 layers) | EN→EN | 14 | 0.7738 |\n| | ZH→ZH | 2 | 0.7500 |\n| | EN→ZH | 22 | 0.6964 |\n| | ZH→EN | 8 | 0.7381 |\n\n## JSON 结构\n\n包含 5 个顶层 key：\n- `llama31` — residual stream 逐层 balanced accuracy (32 layers × 4 directions)\n- `llama31_mlp` — MLP 逐层 balanced accuracy\n- `qwen3` — residual stream 逐层 balanced accuracy (36 layers × 4 directions)\n- `qwen3_mlp` — MLP 逐层 balanced accuracy\n- `qwen3_bootstrap_ci` — Qwen3 n=2000 bootstrap 逐层均值 + 95% CI\n\n每个 model entry 包含 `directions`（layer→accuracy 映射）和 `peaks`（peak_layer, peak_acc）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-layerwise-probe-curves.md"
+}

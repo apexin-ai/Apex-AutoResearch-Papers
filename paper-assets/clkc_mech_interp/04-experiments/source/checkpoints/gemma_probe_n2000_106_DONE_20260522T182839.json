@@ -1,0 +1,45 @@
+{
+  "exp_id": "gemma_probe_n2000_106",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:27:24.006Z",
+    "updated_at": "2026-05-22T18:28:39.242Z",
+    "hypothesis": "升级 Gemma-2-9B-IT 冲突任务探针 bootstrap 至 n=2000，获得稳定 CI endpoints。预期 EN→EN ~76%，迁移不对称性 +6-7pp 与 Llama/Qwen 一致，p<0.01。parent=gemma_full_pipeline_102",
+    "parent": "gemma_full_pipeline_102",
+    "spec": {
+      "command": "python src/train_probe.py --activation_dir data/gemma2/ --output_dir data/gemma2/ --bootstrap_seeds 2000 --langs en,zh --skip_permutation",
+      "server": "westd-41302",
+      "data_path": "data/gemma2/{en,zh}_activations.pt",
+      "data_count": 1590,
+      "model_name": "Gemma-2-9B-IT",
+      "seed": 42,
+      "checkpoint_source": "gemma_en_act_102 + gemma_zh_act_103",
+      "eval_data": "data/gemma2/en_conflict_test.jsonl + data/gemma2/zh_conflict_test.jsonl",
+      "checkpoint_path": "data/gemma2/probe_results_bootstrap_n2000.json",
+      "log_path": "logs/gemma_probe_n2000.log"
+    },
+    "metrics": {
+      "en_en_bal_acc": 76.2,
+      "en_en_peak_layer": 24,
+      "zh_zh_bal_acc": 71,
+      "zh_zh_peak_layer": 24,
+      "en_zh_bal_acc": 62.9,
+      "en_zh_peak_layer": 22,
+      "zh_en_bal_acc": 70.2,
+      "zh_en_peak_layer": 24,
+      "asymmetry_pp": 6.62,
+      "asymmetry_ci_lo": 1.9,
+      "asymmetry_ci_hi": 11.08,
+      "asymmetry_p": 0.006,
+      "bootstrap_n": 2000
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T18:28:39.242Z"
+  },
+  "timestamp": "2026-05-22T18:28:39.333600+00:00",
+  "trigger": "update_registry"
+}

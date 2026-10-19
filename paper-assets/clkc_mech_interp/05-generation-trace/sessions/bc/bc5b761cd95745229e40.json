@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "bc5b761cd95745229e40",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "gpu qwen L13 steering prep",
+  "task_key": "worker_gpu_qwen-L13-steering-prep_20260522T133215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_qwen-L13-steering-prep_20260522T133215.log",
+    "occurrence": 1,
+    "bytes": 762189,
+    "sha256": "95658ff6ff68b637873f9a3a037af6e387adb896ed43aa96a1994a2aecea704b"
+  },
+  "statistics": {
+    "messages": 623,
+    "user_turns": 0,
+    "tool_calls": 286,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 286,
+      "tool_result": 286,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 623,
+      "chunks": [
+        {
+          "path": "bc5b761cd95745229e40-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bc5b761cd95745229e40-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bc5b761cd95745229e40-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bc5b761cd95745229e40-part-0004.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-qwen-l13-steering-prep.md"
+}

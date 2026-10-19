@@ -1,0 +1,27 @@
+{
+  "exp_id": "steering_llama_L16_127",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:41:39.262Z",
+    "updated_at": "2026-05-24T00:58:54.185Z",
+    "hypothesis": "Llama-3.1-8B L16 (50% depth) steering 同条件复现：原始 L16 (N=136, probe acc 77%) 为 negative (p=0.12)。用与 L12/L13/L14 相同的数据和 probe（N=201, probe acc ~91%）重跑 L16，消除 probe quality confound。若仍 negative 则确认 causal window 上界在 L14-L16 之间。",
+    "parent": "steering_107_L13",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_dir data/llama31 --peak_layer 16 --alphas -20 -10 -5 5 10 20 --position last --output_suffix _L16_last",
+      "server": "westd-14391",
+      "data_path": "/root/clkc_mech_interp/data/llama31/",
+      "data_count": 201,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "checkpoint_source": "steering_107_L13",
+      "eval_data": "ConflictQA popQA-chatgpt 201 conflict test samples"
+    }
+  },
+  "timestamp": "2026-05-24T00:58:54.365282+00:00",
+  "trigger": "update_registry"
+}

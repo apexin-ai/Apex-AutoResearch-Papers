@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f16c6b5b2479df6deae",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra westd14391 setup plan",
+  "task_key": "worker_infra_westd14391-setup-plan_20260523T215451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd14391-setup-plan_20260523T215451_result.json",
+    "occurrence": 1,
+    "bytes": 3864,
+    "sha256": "144ed5ad3a853e21a23b6c807f4ee4b36ae1e7c30947bb2f5647d76bf4ceba8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从日志中提取了完整的 westd-41302 数据目录和脚本信息。已收集齐全部信息，可以输出报告。\n\n---\n\n## 数据需求\n\n### steering_experiment.py 输入文件\n\n| 文件 | 用途 | Steering 必须 |\n|------|------|:---:|\n| `en_activations.pt` | 训练 probe 提取 steering direction | **是** |\n| `en_conflict_test_verified.jsonl` | 评估 steering 效果的测试样本 | **是** |\n| `probe_results.json` | 如果不指定 `--peak_layer` 则自动读取 peak layer | 可选（可用 `--peak_layer` 跳过） |\n| `en_conflict_train*.jsonl` | collect_activations 的输入 | 仅重新生成 activations 时 |\n| 其他 `de_*/zh_*` 文件 | 跨语言 probe/steering | L12/L14 不需要 |\n\n### data/llama31/ 目录（westd-41302 上的完整内容）\n\n```\nen_activations.pt        ← 关键，估算 ~200-400 MB\nde_activations.pt        ← 本次不需要\nzh_activations.pt        ← 本次不需要\nen_conflict_test.jsonl\nen_conflict_test_verified.jsonl   ← 关键\nen_conflict_train.jsonl\nen_conflict_train_verified.jsonl\nde_conflict_*.jsonl, zh_conflict_*.jsonl  ← 本次不需要\nprobe_results.json + bootstrap 变体\nprobe_weights/\nsteering_results/         ← 已有 L13/L18/L28 结果\n各种分析 JSON\n```\n\n**Steering 必须文件**：`en_activations.pt` + `en_conflict_test_verified.jsonl`（+ 脚本）\n\n## 模型需求\n\n| 项目 | 值 |\n|------|------|\n| 路径 (westd-14391) | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct` |\n| 大小 | **15 GB**（已在 westd-14391 上） |\n| 下载 | **不需要，已存在** |\n\n## L13 参数参考（成功实验，p=0.0009）\n\n```bash\nCUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python src/steering_experiment.py \\\n  --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n  --data_dir data/llama31 \\\n  --peak_layer 13 \\\n  --alphas -20 -10 -5 5 10 20 \\\n  --position last \\\n  --output_suffix _L13_last\n```\n\n- **alphas**: `-20, -10, -5, 5, 10, 20`（最佳 α=-20, p=0.0009; α=5, p=0.002）\n- **position**: `last`（all-position 结果完全相同）\n- **测试样本**: 136 条\n- **probe 精度**: 76.1%\n\n## 代码需求\n\n### Python 脚本\n\n| 文件 | 来源 | 状态 |\n|------|------|------|\n| `src/steering_experiment.py` | westd-41302 生成，~365 行 | **本地不存在，需从 westd-41302 取或重新生成** |\n| `src/collect_activations.py` | `artifacts/clkc_code/src/` | 本地有 |\n| `src/train_probe.py` | `artifacts/clkc_code/src/` | 本地有 |\n| 其他 5 个 .py | `artifacts/clkc_code/src/` | 本地有（steering 不直接需要） |\n\n### Python 包依赖\n\n```\ntorch, transformers, numpy, scipy, scikit-learn, matplotlib, tqdm\n```\n\n## 磁盘状况 (westd-14391)\n\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| 根分区 `/` | 30 GB | 13 GB | 18 GB |\n| 数据盘 `/root/autodl-tmp/` | 250 GB | 31 GB | **220 GB** |\n\n## 关键阻塞与建议\n\n1. **westd-41302 不在 SSH 工具可用列表中**。无法直接 scp 数据。需要：\n   - 用户手动从 westd-41302 传 `en_activations.pt` + `en_conflict_test_verified.jsonl` + `steering_experiment.py`\n   - 或在 westd-14391 上用 `collect_activations.py` 重新生成 `en_activations.pt`（需 ~10-20 分钟 GPU 时间，需要先传 JSONL 训练数据）\n\n2. **steering_experiment.py 不在本地**。日志中保留了完整的前 100 行和 argparse 部分，但中间部分（steering hook、generation、evaluation 逻辑）缺失。需从 westd-41302 获取完整文件。\n\n3. **建议传输方案**：如果 westd-41302 还能访问，`scp` 整个 `/root/clkc_mech_interp/` 到 westd-14391（数据盘 220GB 空间充足）。如果不能，最小路径是传 JSONL 数据（25MB）+ 重写 steering 脚本 + 重新生成 activations。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd14391-setup-plan.md"
+}

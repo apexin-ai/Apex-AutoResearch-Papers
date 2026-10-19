@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cfdaae13439cc2e1169",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp westd14391 data prep steering",
+  "task_key": "worker_exp_westd14391-data-prep-steering_20260523T220839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_westd14391-data-prep-steering_20260523T220839_result.json",
+    "occurrence": 1,
+    "bytes": 4136,
+    "sha256": "ca479dbdc262c23a925806604f42774d1c740585d35918cdd41a8a3a51a00b6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three layers complete. Here's the full report.\n\n---\n\n## Steering Experiment Results — Llama-3.1-8B-Instruct × ConflictQA\n\n**Server**: westd-14391  \n**Model**: Meta-Llama-3.1-8B-Instruct  \n**Dataset**: ConflictQA (popQA-chatgpt), 1200 train (600 conflict + 600 no_conflict), 201 conflict test  \n**Method**: Linear probe on residual stream (last token), steering via probe weight direction  \n**Control**: Random orthogonal direction (Gram-Schmidt)  \n**Statistical test**: Fisher exact test, Bonferroni correction k=6, α_corrected = 0.00833\n\n### Baseline Distribution (n=201 conflict samples, no steering)\n\n| parametric | contextual | both | neither |\n|-----------|------------|------|---------|\n| 4 (2.0%)  | 131 (65.2%)| 10 (5.0%) | 56 (27.9%) |\n\n---\n\n### Layer 12 — Probe accuracy: 91.75%\n\n| Alpha | Steer flips | Ctrl flips | Fisher p | p→c | c→p |\n|-------|------------|------------|----------|-----|-----|\n| -20   | 54 (26.9%) | 50 (24.9%) | 0.7327   | 0   | 1   |\n| -10   | 36 (17.9%) | 29 (14.4%) | 0.4165   | 0   | 0   |\n| -5    | 17 (8.5%)  | 19 (9.5%)  | 0.8616   | 0   | 0   |\n| +5    | 21 (10.4%) | 14 (7.0%)  | 0.2884   | 0   | 1   |\n| +10   | 38 (18.9%) | 30 (14.9%) | 0.3518   | 0   | 1   |\n| +20   | 43 (21.4%) | 59 (29.4%) | 0.0853   | 0   | 1   |\n\n**Bonferroni-significant**: None. Min p = 0.0853 (α=+20). L12 steering direction has no detectable causal effect.\n\n---\n\n### Layer 13 — Probe accuracy: 90.00%\n\n| Alpha | Steer flips | Ctrl flips | Fisher p | p→c | c→p |\n|-------|------------|------------|----------|-----|-----|\n| -20   | 45 (22.4%) | 51 (25.4%) | 0.5587   | 1   | 1   |\n| -10   | 35 (17.4%) | 23 (11.4%) | 0.1179   | 0   | 1   |\n| -5    | 12 (6.0%)  | 17 (8.5%)  | 0.4412   | 0   | 0   |\n| +5    | 38 (18.9%) | 17 (8.5%)  | **0.0034** | 0 | 2   |\n| +10   | 57 (28.4%) | 27 (13.4%) | **0.0003** | 0 | 3   |\n| +20   | 65 (32.3%) | 62 (30.8%) | 0.8302   | 1   | 0   |\n\n**Bonferroni-significant**: α=+5 (p=0.0034 < 0.00833), α=+10 (p=0.0003 < 0.00833). Both survive correction.\n\n---\n\n### Layer 14 — Probe accuracy: 91.75%\n\n| Alpha | Steer flips | Ctrl flips | Fisher p | p→c | c→p |\n|-------|------------|------------|----------|-----|-----|\n| -20   | 51 (25.4%) | 43 (21.4%) | 0.4095   | 0   | 0   |\n| -10   | 28 (13.9%) | 33 (16.4%) | 0.5784   | 1   | 0   |\n| -5    | 20 (10.0%) | 12 (6.0%)  | 0.1965   | 0   | 0   |\n| +5    | 24 (11.9%) | 18 (9.0%)  | 0.4152   | 0   | 1   |\n| +10   | 56 (27.9%) | 30 (14.9%) | **0.0022** | 0 | 2   |\n| +20   | 67 (33.3%) | 68 (33.8%) | 1.0000   | 0   | 3   |\n\n**Bonferroni-significant**: α=+10 (p=0.0022 < 0.00833). Survives correction.\n\n---\n\n### L13 Replication Assessment\n\n| Metric | Original (plan_107) | Current |\n|--------|-------------------|---------|\n| Best α | +10 | +10 |\n| Fisher p | 0.0009 | 0.0003 |\n| Steer flips | — | 57/201 (28.4%) |\n| Ctrl flips | — | 27/201 (13.4%) |\n\n**复现成功。** L13 α=+10 的 p=0.0003 甚至强于原始 p=0.0009，且 α=+5 也通过 Bonferroni 校正。\n\n### Cross-layer Summary\n\n| Layer | Probe Acc | Best α | Fisher p | Bonferroni sig? |\n|-------|----------|--------|----------|-----------------|\n| 12    | 91.75%   | +20    | 0.0853   | No              |\n| **13**| 90.00%   | **+10**| **0.0003**| **Yes (2/6)**  |\n| 14    | 91.75%   | +10    | 0.0022   | Yes (1/6)       |\n\nL13 是最强效应层（2 个 alpha 通过 Bonferroni），L14 次之（1 个），L12 无显著效应。效应集中在 positive direction（+5 到 +10），与 probe 的 conflict→no_conflict 方向一致。α=+20 时 steering 和 control 都产生大量 flips，说明高强度扰动破坏了生成质量，不具有方向性。\n\n### Output Files\n\n- `westd-14391:/root/clkc_mech_interp/data/llama31/en_activations.pt` — activations (1600, 32, 4096)\n- `westd-14391:/root/clkc_mech_interp/data/llama31/steering_results_L12_last.json`\n- `westd-14391:/root/clkc_mech_interp/data/llama31/steering_results_L13_last.json`\n- `westd-14391:/root/clkc_mech_interp/data/llama31/steering_results_L14_last.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-westd14391-data-prep-steering.md"
+}

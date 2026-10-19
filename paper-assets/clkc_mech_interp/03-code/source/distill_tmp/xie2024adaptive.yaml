@@ -1,0 +1,84 @@
+paper_key: "xie2024adaptive"
+title: "Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines: [ChatGPT, GPT-4, PaLM2, Qwen-7B, Llama2-7B, Llama2-70B, Vicuna-7B, Vicuna-33B]
+  metrics:
+    - {name: "Memorization Ratio (MR)", direction: "context_dependent"}
+    - {name: "Answer Consistency", direction: "higher_better"}
+  datasets:
+    - {name: "PopQA", size: "14K entity-centric QA"}
+    - {name: "StrategyQA", size: "multi-step reasoning"}
+  ablation_dimensions: [counter_memory_construction, evidence_quantity_proportion, evidence_order, knowledge_popularity, evidence_coherence, irrelevant_evidence]
+  training_recipe: {optimizer: "N/A (behavioral study)", lr: "N/A", hardware: "8 LLMs including GPT-4, PaLM2"}
+  method_family: "behavioral analysis framework"
+
+positioning:
+  core_claim: "LLMs are highly receptive to coherent conflicting evidence in isolation but exhibit strong confirmation bias when both supportive and contradictory evidence coexist"
+  key_results: "Entity substitution: 60-100% MR (stubborn); generation-based counter-memory: 20-80% counter-answer adoption (receptive); GPT-4 80% MR for popular questions"
+  limitations: ["Framework limited to factual QA", "Counter-memory generation quality depends on ChatGPT", "No mechanistic explanation for observed behaviors"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLMs have parametric memory but face outdated or inaccurate knowledge — how receptive are they to external counter-evidence?"
+  tension: "Prior heuristic methods produce incoherent counter-evidence leading to unreliable conclusions; no systematic framework exists"
+  key_insight: "Paradoxical dual behavior: receptive to isolated coherent counter-evidence BUT confirmation-biased with competing evidence — popularity modulates this"
+  argument_chain: "problem (knowledge conflicts) → gap (no systematic framework) → framework (5-step pipeline) → finding 1 (receptive to coherent evidence) → finding 2 (confirmation bias) → finding 3 (popularity effect)"
+  contribution_framing: "Framework + multiple empirical findings; findings presented as seemingly contradictory pair for maximum impact"
+  intro_structure: "4 paragraphs: (1) LLM memory problem, (2) tension + gap, (3) framework + contribution, (4) paradoxical findings"
+  notable_technique: "The 'Chameleon or Sloth' title creates a memorable framing; paradoxical findings structure keeps readers engaged"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "method_overview"
+    description: "Five-step framework: memory elicitation → counter-answer construction → counter-memory generation → entailment checking → evidence preference testing"
+    narrative_role: "Establishes the systematic methodology that distinguishes this work from prior ad-hoc approaches"
+    design_elements: ["sequential workflow", "numbered steps", "example inputs/outputs"]
+    visual_style: "Horizontal pipeline diagram with examples at each step"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "Entity substitution vs generation-based counter-memory across 8 models"
+      how_gain_highlighted: "Dramatic contrast between two methods reveals construction quality matters"
+      design_note: "Stacked bars with Memory/Counter/Uncertain segments — visual contrast tells the story"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Memorization ratio by question popularity for 4 models"
+      how_gain_highlighted: "Popularity correlation visible as upward trend"
+      design_note: "Per-model lines on same axes enable cross-model comparison"
+  ablation_figures:
+    - figure_id: "Tables 6-7"
+      viz_type: "N/A (tables used)"
+      dimensions_varied: ["evidence proportion (0/2 to 2/2)", "irrelevant evidence presence"]
+      design_note: "Systematic proportion variation reveals continuous rather than threshold behavior"
+  figure_narrative_role: "Figure 1 (framework) → Figure 2 (paradox discovery) → Figure 3 (popularity effect) → Tables (systematic ablation)"
+
+tables:
+  table_count: 7
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models"
+    col_axis: "Correct/Wrong/Unknown × PopQA/StrategyQA"
+    row_organization: "flat"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "N/A (baseline establishment)"
+    statistical_reporting: "percentage values"
+    num_baselines: 8
+    design_note: "Establishes closed-book performance before conflict analysis — sets the stage"
+  ablation_tables:
+    - table_id: "Table 6"
+      what_varied: ["parametric/counter evidence proportions"]
+      variation_style: "full_numbers"
+      design_note: "Systematic 6-level proportion variation (0/2 through 2/2)"
+    - table_id: "Table 7"
+      what_varied: ["irrelevant evidence quantity (0-3)"]
+      variation_style: "full_numbers"
+      design_note: "4-category answer distribution reveals distraction effects"
+  supplementary_tables:
+    in_appendix: true
+    content: "Prompts, detailed per-model breakdowns, NLI validation"
+    reason: "Main paper presents aggregate findings; appendix provides reproducibility details"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2162773c5fb26faaa19",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis bootstrap n2000 check",
+  "task_key": "worker_analysis_bootstrap-n2000-check_20260522T045940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-n2000-check_20260522T045940_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "cd8ecb8ed694f0fb2919a5948bfc9cdd2c14b6f2adcb5c5f8a058a3b575f2976"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the current status:\n\n## Bootstrap n=2000 状态\n\n**进行中。** 两个任务（Qwen + Llama）均在 12:42 启动，目前还在第 1/4 方向（EN→EN）。\n\n| 信息 | 值 |\n|------|------|\n| 服务器 CPU | 208 核，负载 201.7 |\n| Qwen 数据 | train=(798, 36, 4096), 2000 bootstraps, 64 workers |\n| Llama 数据 | train=(1096, 32, 4096), 2000 bootstraps, 64 workers |\n| 并行竞争 | 另有 3 个 xnli probe 训练也在跑 |\n\n**预估完成时间**：每方向 ~25-40 分钟，4 方向/模型，共 ~100-160 分钟。预计 **14:30-15:30** 完成。\n\n### n=100 参考结果（已确认）\n\n| 模型 | EN→EN | ZH→ZH | EN→ZH | ZH→EN | 不对称性 | 95% CI | positive |\n|------|-------|-------|-------|-------|---------|--------|----------|\n| Qwen | 0.7528±0.0168 | 0.7162±0.0179 | 0.6496±0.0273 | 0.7215±0.0256 | +7.18pp | [-1.2%, 13.4%] | 96/100 |\n| Llama | 0.7710±0.0119 | 0.7124±0.0127 | 0.6405±0.0245 | 0.7127±0.0270 | +7.22pp | [1.1%, 13.6%] | 98/100 |\n\n结果出来后需要运行的不对称性计算逻辑已确认——直接从 `per_bootstrap` 数组计算 ZH→EN - EN→ZH 的差值分布和 percentile CI，不需要 `bootstrap_asymmetry.py`（那个脚本做的是固定 probe + resample test set 的 bootstrap，和当前方法不同）。\n\n需要我设置定时检查，还是稍后手动回来看？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-n2000-check.md"
+}

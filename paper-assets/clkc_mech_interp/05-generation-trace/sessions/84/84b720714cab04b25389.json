@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "84b720714cab04b25389",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "infra layerwise data to artifacts",
+  "task_key": "worker_infra_layerwise-data-to-artifacts_20260522T135616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_layerwise-data-to-artifacts_20260522T135616.log",
+    "occurrence": 1,
+    "bytes": 652856,
+    "sha256": "0380e9de296960c5c2d2420e31b293623b1770714fbcbb3a108b497e3fe36607"
+  },
+  "statistics": {
+    "messages": 135,
+    "user_turns": 1,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 47,
+      "tool_result": 47,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 98,
+      "chunks": [
+        {
+          "path": "84b720714cab04b25389-part-0001.json",
+          "message_count": 98
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 37,
+      "chunks": [
+        {
+          "path": "84b720714cab04b25389-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "84b720714cab04b25389-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-layerwise-data-to-artifacts.md"
+}

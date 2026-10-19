@@ -136,6 +136,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39265650589"
+    },
+    "clkc_mech_interp/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 875845724,
+        "etag": "\"73ee888fe0c942da67ada65d3c19880f-105\"",
+        "modified": "2026-05-31T17:29:10+00:00"
+      },
+      "archive_sha256": "2cb56e25efbcfb8572840ec654724f86f034369afeaf0d2ad98ce47e2dd61e5f",
+      "projects": [
+        "clkc_mech_interp",
+        "prod42"
+      ],
+      "counts": [
+        {
+          "project": "clkc_mech_interp",
+          "title": "English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries",
+          "paper_pdf": "paper.pdf",
+          "code_count": 189,
+          "data_count": 584,
+          "trace_count": 689
+        },
+        {
+          "project": "prod42",
+          "title": "prod42",
+          "paper_pdf": null,
+          "code_count": 0,
+          "data_count": 0,
+          "trace_count": 0
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39265650589"
     }
   }
 }

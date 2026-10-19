@@ -1,0 +1,6 @@
+2026-05-22 03:10:16,842 INFO    core.tools.feishu  create_chat: name='审稿-clkc_mech_interp' → chat_id=oc_8b9aa92fafaf69b48d2c44b41c2fe9d9
+2026-05-22 03:10:16,845 INFO    core.tools.dream  [dream] auto-created Group C for project=clkc_mech_interp: oc_8b9aa92fafaf69b48d2c44b41c2fe9d9
+2026-05-22 03:10:17,011 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-prod42/config/mcp_config_dream_review_director.json
+2026-05-22 03:19:12,513 INFO    core.tools.dream  [dream] appended reference check results for clkc_mech_interp/best
+2026-05-22 03:29:06,494 INFO    core.tools.dream  [dream] appended reference check results for clkc_mech_interp/median
+2026-05-22 03:37:46,284 INFO    core.tools.dream  [dream] appended reference check results for clkc_mech_interp/worst

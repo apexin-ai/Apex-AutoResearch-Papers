@@ -1,0 +1,27 @@
+paper_key: "kargaran2024mexa"
+title: "MEXA: Multilingual Evaluation of English-Centric LLMs via Cross-Lingual Alignment"
+venue: "Findings of ACL 2025"
+full_text_available: false
+
+research:
+  baselines: [Llama, Gemma, Mistral, OLMo]
+  metrics:
+    - {name: "Pearson correlation", direction: "higher_better"}
+  datasets:
+    - {name: "FLORES-200", size: "parallel sentences"}
+    - {name: "Belebele", size: "downstream"}
+    - {name: "m-MMLU", size: "downstream"}
+    - {name: "m-ARC", size: "downstream"}
+  ablation_dimensions: [language, model_family]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "cross-lingual alignment measurement"
+
+positioning:
+  core_claim: "Cross-lingual alignment of internal representations predicts multilingual task performance without running downstream tasks"
+  key_results: "High Pearson correlation between alignment scores and downstream performance"
+  limitations: ["Focused on English-centric models"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

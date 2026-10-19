@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "833d263128abc672e6c9",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code anonymous repo prep",
+  "task_key": "worker_code_anonymous-repo-prep_20260525T083831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous-repo-prep_20260525T083831_result.json",
+    "occurrence": 1,
+    "bytes": 2817,
+    "sha256": "55ba9d02cb00a5eab8ade47d7149d12d15bc23ea4d910002de8e1d60c4bed70c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 完成报告\n\n### 1. 完整文件列表\n\n```\nanonymous_repo/\n├── .gitignore\n├── LICENSE\n├── README.md\n├── requirements.txt\n├── scripts/\n│   ├── run_pipeline.sh\n│   └── run_probes.sh\n└── src/\n    ├── bootstrap_asymmetry.py\n    ├── bootstrap_mlp_delta.py\n    ├── bootstrap_probe.py\n    ├── collect_activations.py\n    ├── comet_tertile_ablation.py\n    ├── compute_auroc.py\n    ├── compute_cka.py\n    ├── cross_task_transfer.py\n    ├── cross_task_transfer_bootstrap.py\n    ├── prepare_xnli.py\n    ├── probe_cosine_similarity.py\n    ├── random_labels_control.py\n    ├── steering_experiment.py\n    ├── supplement_sampling.py\n    ├── token_overlap_analysis.py\n    ├── tost_equivalence.py\n    ├── tost_power_analysis.py\n    ├── train_mlp_probe.py\n    ├── train_probe.py\n    ├── translate.py\n    ├── validate_translation.py\n    └── verify_parametric_knowledge.py\n```\n\n**28 files** total (22 Python scripts + 2 shell scripts + 4 infrastructure files)\n\n### 2. README.md 概要\n\n覆盖：项目描述（cross-lingual knowledge conflict mechanistic interpretability）、repo 结构表、环境配置、数据获取（ConflictQA + XNLI + 3 models）、完整复现流程（step-by-step + one-command pipeline）、关键实验对照表、匿名 BibTeX。\n\n### 3. requirements.txt\n\n```\ntorch>=2.0, transformers>=4.40, datasets>=2.0, accelerate>=0.20,\nscikit-learn>=1.3, scipy>=1.10, numpy>=1.24, pandas>=2.0,\nmatplotlib>=3.7, unbabel-comet>=2.2\n```\n\n### 4. 匿名化检查结果\n\n| 检查项 | 结果 |\n|--------|------|\n| `/root/` 绝对路径 | **0 处** |\n| `hf-mirror.com` URL | **0 处** |\n| `autodl` 引用 | **0 处** |\n| 个人邮箱/姓名 | **0 处** |\n| 硬编码模型路径字典 | **0 处**（全部改为 `--models` JSON argparse） |\n\n全部通过。\n\n### 5. 代码总行数\n\n- **Python 源文件**: 3,605 行\n- **全部文件（含 README/scripts/config）**: 3,922 行\n\n### 6. Git 状态\n\n- 仓库已初始化：`user.name=\"Anonymous\"`, `user.email=\"anonymous@anonymous.invalid\"`\n- 分支：`main`\n- 初始 commit：`53821b9 Initial commit: anonymous code for EMNLP 2026 submission`\n\n### 7. 排除的死代码文件（10 个）\n\n`comet_tertile_ablation_fix.py`, `prepare_gemma_data.py`, `bootstrap_mlp_delta_llama_fix.py`, `bootstrap_xnli_gemma_parallel.py`, `token_overlap.py`, `token_overlap_en_de.py`, `aggregate_layerwise.py`, `extract_layerwise.py`, `integrate_de_results.py`, `train_probe_fast.py`\n\n### 8. 合并的文件\n\n`translate_to_zh.py` + `translate_to_de.py` → `translate.py`（`--target_lang` 参数）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anonymous-repo-prep.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_107_L13_all",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:19:16.120Z",
+    "updated_at": "2026-05-22T15:19:30.580Z",
+    "hypothesis": "L13 last-token steering 显著 (p<0.001)。如果 all-position steering（对所有 token 位置施加干预）产生更强或不同模式的因果效应，则说明冲突信号分布在多个 token 位置；如果结果一致，则说明因果信号集中在 last token。parent=steering_107_L13",
+    "parent": "steering_107_L13"
+  },
+  "timestamp": "2026-05-22T15:19:30.665993+00:00",
+  "trigger": "update_registry"
+}

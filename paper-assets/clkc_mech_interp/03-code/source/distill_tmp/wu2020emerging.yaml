@@ -1,0 +1,26 @@
+paper_key: "wu2020emerging"
+title: "Emerging Cross-lingual Structure in Pretrained Language Models"
+venue: "ACL 2020"
+full_text_available: false
+
+research:
+  baselines: [mBERT, random_init, supervised_alignment]
+  metrics:
+    - {name: "Word Translation Accuracy", direction: "higher_better"}
+    - {name: "Structural Similarity (CKA/CCA)", direction: "higher_better"}
+  datasets:
+    - {name: "MUSE bilingual dictionaries", size: "multiple language pairs"}
+    - {name: "XNLI", size: "15 languages"}
+  ablation_dimensions: [layer_index, language_pair, anchor_points]
+  training_recipe: {optimizer: "N/A (analysis study)", lr: "N/A", hardware: "mBERT"}
+  method_family: "cross-lingual representation analysis"
+
+positioning:
+  core_claim: "Cross-lingual structure emerges in pretrained multilingual models even without explicit cross-lingual supervision — shared parameters and structural similarity drive alignment"
+  key_results: "mBERT representations share cross-lingual structure that improves with depth"
+  limitations: ["Limited to mBERT", "Analysis focused on closely related language pairs"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

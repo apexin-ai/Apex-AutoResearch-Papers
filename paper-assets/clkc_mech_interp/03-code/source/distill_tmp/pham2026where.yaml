@@ -1,0 +1,24 @@
+paper_key: "pham2026where"
+title: "Where Knowledge Collides: A Mechanistic Study of Intra-Memory Knowledge Conflict in Language Models"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "N/A (mechanistic study)", direction: "N/A"}
+  datasets:
+    - {name: "N/A (abstract only)", size: "N/A"}
+  ablation_dimensions: [conflict_type, intervention_target]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "mechanistic interpretability for intra-memory knowledge conflicts"
+
+positioning:
+  core_claim: "Mechanistic framework for locating and intervening on conflicting parametric knowledge within LLMs"
+  key_results: "N/A from abstract"
+  limitations: ["Details limited to abstract"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

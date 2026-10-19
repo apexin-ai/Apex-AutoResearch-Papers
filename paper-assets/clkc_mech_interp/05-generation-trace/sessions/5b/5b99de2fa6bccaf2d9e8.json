@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b99de2fa6bccaf2d9e8",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra steering status and qwen prep",
+  "task_key": "worker_infra_steering-status-and-qwen-prep_20260522T110418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_steering-status-and-qwen-prep_20260522T110418_result.json",
+    "occurrence": 1,
+    "bytes": 1733,
+    "sha256": "5a644fe1c66f3db1b31f1175528f65aff08ce7579b45177d5eceb5f1ee97e875"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Steering Llama v3 — 已完成\n\nv3 运行成功（前两次 v1/v2 因 hook 维度 bug 崩溃，v3 修复后完整跑完）。\n\n**配置**: Layer 28, probe acc 77.6%, n=136, position=last\n\n**结果汇总**:\n\n| Alpha | Steering Flips | Control Flips | p→c | c→p | Fisher p |\n|------:|:--------------:|:-------------:|:---:|:---:|:--------:|\n| -20 | 14.7% | 16.9% | 0 | 2 | 0.74 |\n| -10 | 10.3% | 9.6% | 0 | 1 | 1.00 |\n| -5 | 4.4% | 3.7% | 1 | 0 | 1.00 |\n| -2 | 3.7% | 2.9% | 1 | 0 | 1.00 |\n| -1 | 4.4% | 2.9% | 2 | 0 | 0.75 |\n| +1 | 0.7% | 0.7% | 0 | 0 | 1.00 |\n| +2 | 2.2% | 1.5% | 0 | 0 | 1.00 |\n| +5 | 3.7% | 4.4% | 0 | 0 | 1.00 |\n| +10 | 7.4% | 6.6% | 0 | 0 | 1.00 |\n| +20 | 12.5% | 17.6% | 1 | 0 | 0.31 |\n\n**结论**: Steering 对 Llama **完全无效**。所有 alpha 的 steering flip rate 与 control flip rate 无显著差异（所有 Fisher p >> 0.05）。大 alpha 只是增加了噪声 flip，但无方向性效果。\n\n---\n\n## Steering Qwen 准备情况\n\n- **cuda:0**: 空闲（3 MiB, 0%）\n- **模型**: `/root/models/Qwen3-8B-Instruct/` 已存在\n- **数据**: `data/qwen3/en_conflict_{train,test}.jsonl` 已确认\n- **Peak layer**: 24（EN→EN probe）\n- **输出目录**: `data/qwen3/steering_results/`（尚不存在，脚本会创建）\n\n**提交命令**:\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/clkc_mech_interp && \\\nCUDA_VISIBLE_DEVICES=0 nohup python -u src/steering_experiment.py \\\n  --model /root/models/Qwen3-8B-Instruct/ \\\n  --data_dir data/qwen3 \\\n  --output_dir data/qwen3/steering_results \\\n  --peak_layer 24 \\\n  > logs/steering_qwen.log 2>&1 &\n```\n\n是否现在提交运行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-steering-status-and-qwen-prep.md"
+}

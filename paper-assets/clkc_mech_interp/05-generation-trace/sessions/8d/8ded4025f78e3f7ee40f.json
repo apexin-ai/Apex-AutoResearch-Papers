@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ded4025f78e3f7ee40f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "research paper data consistency",
+  "task_key": "worker_research_paper-data-consistency_20260524T065859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-data-consistency_20260524T065859_result.json",
+    "occurrence": 1,
+    "bytes": 4318,
+    "sha256": "e020fc50a4fdac069b5bc464cc9dda21ae4863479dab9b5770e1f6f01d882921"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## 1. Table 3 (tab:steering) 当前内容\n\n文件：`docs/paper/experiments.tex:168-200`\n\n**Llama-3.1-8B (隐式标题，N=136):**\n| Layer | Depth | α | Steer% | Ctrl% | Fisher p | Dir |\n|-------|-------|---|--------|-------|----------|-----|\n| **L13** | 41% | +5 | 19.9 | 6.6 | **0.002** | 4 p→c |\n| **L13** | 41% | -20 | 36.0 | 17.6 | **<0.001** | 5 c→p |\n| L16 | 50% | +5 | 8.8 | 8.1 | 1.000 | |\n| L16 | 50% | +10 | 18.4 | 11.0 | 0.123 | |\n| L16 | 50% | +20 | 22.8 | 24.3 | 0.886 | |\n| L18 | 56% | +2 | 3.7 | 1.5 | 0.447 | |\n| L28 | 88% | -20 | 14.7 | 16.9 | 0.740 | |\n| L28 (all) | 88% | -20 | 11.8 | 11.8 | **1.000** | |\n\n**Qwen3-8B (N=84):** L14 p=0.682, L23 p=1.000\n**Gemma-2-9B-IT (N=158):** L17 p=0.104, L21 p≥0.623\n\nTable 3 不含 probe accuracy 列、不含 N 列。\n\n---\n\n## 2. Appendix 内容\n\n`main.tex` 中有三个 Appendix：\n\n- **Appendix A** (app:ai-assistants) — AI 使用声明\n- **Appendix B** (app:boundary) — Fine-Grained Causal Boundary Analysis (tab:boundary, N=201, 独立复制实验)\n\n  | Layer | Depth | Probe Acc | Best α | Best p | Bonf. Sig. |\n  |-------|-------|-----------|--------|--------|------------|\n  | L12 | 38% | 91.75% | +20 | 0.085 | 0/6 |\n  | **L13** | 41% | 90.00% | +10 | **<0.001** | **2/6** |\n  | L14 | 44% | 91.75% | +10 | 0.002 | 1/6 |\n  | L16 | 50% | 91.50% | +10 | 0.005 | 1/6 |\n  | L18 | 56% | **90.75%** | +5 | 0.010 | 0/6 |\n  | L28 | 88% | 85.25% | +10 | **0.284** | 0/6 |\n\n- **Appendix C** (app:steering_config) — Complete Steering Configuration (tab:steering_config, 汇总所有模型)\n\n  Llama L18 行：probe acc = **---**（缺失），best p = 0.447\n  Llama L28 行：probe acc = 77.6，best p = 0.740\n\n---\n\n## 3. L18 probe accuracy 出现位置\n\n- **Appendix B** `main.tex:78`：L18 probe acc = **90.75%** ✓（N=201 新数据）\n- **Appendix C** `main.tex:102`：L18 probe acc = **---**（N=136 旧数据，未填写）\n- **Qwen L18** `main.tex:107`：73.8%（这是 Qwen 的 L18，不是 Llama 的）\n- **Table 3**：无 probe accuracy 列\n\n结论：L18 的 90.75% 仅出现在 Appendix B（N=201），Appendix C 的 Llama L18 probe accuracy 缺失。\n\n---\n\n## 4. L28 p 值一致性\n\n各处 L28 p 值：\n\n| 位置 | 实验 | p 值 | 一致？ |\n|------|------|------|--------|\n| Table 3 L28 行 | N=136 | 0.740 | ✓ |\n| Table 3 L28 (all) 行 | N=136 | **1.000** | ⚠️ |\n| Appendix C (tab:steering_config) | N=136 | 0.740 (best) | ✓ |\n| Appendix B (tab:boundary) | N=201 | **0.284** | ✓ |\n| 正文 `experiments.tex:151` | N=201 | 0.284 | ✓ (正确归因) |\n| 正文 `experiments.tex:154` | N=136 | \"all p > 0.3\" | ✓ |\n| `artifacts/_project/paper/experiments.tex:159` | N=136 | **0.370** | ⚠️ 与 docs 版不同 |\n\nN=201 (0.284) 和 N=136 (0.740) 是不同实验，不构成不一致。文中正确区分了来源。\n\n---\n\n## 5. 发现的数据不一致问题\n\n### ⚠️ 问题 1：L28 (all) p 值在两版 experiments.tex 中不同\n- `docs/paper/experiments.tex:185`：L28 (all) p = **1.000**\n- `artifacts/_project/paper/experiments.tex:159`：L28 (all) p = **0.370**\n- 两处的 flip rate 完全相同（steer 11.8%, ctrl 11.8%）\n- 如果 flip rate 真的相等，Fisher p 应为 1.000，0.370 可能是旧版错误\n- 但也可能是百分比四舍五入掩盖了实际计数差异——需要回查原始数据确认\n\n### ⚠️ 问题 2：Appendix C 中 Llama L18 probe accuracy 缺失\n- `main.tex:102`：`L18 & 56\\% & --- & 0.447`\n- 其他层都有 probe accuracy 值，唯独 L18 标记为 ---\n- 旧实验 (N=136) 的 L18 probe accuracy 应该有数据，建议补充\n\n### ⚠️ 问题 3：用户报告的旧数据 best p 与论文不匹配\n- 用户提供：N=136 旧数据 L28 best p = **0.31**（steering_107）\n- 论文 Appendix C：L28 best p = **0.740**\n- 差异很大（0.31 vs 0.740），需要回查实验日志确认哪个是正确值\n\n### 注意项：L18 p=0.010 的\"non-significance\"措辞\n- `experiments.tex:151`：*\"diminishing to non-significance at L18 ($p = 0.010$)\"*\n- p=0.010 在名义 α=0.05 下是显著的，仅在 Bonferroni 校正后才不显著（0/6）\n- 当前措辞可能让读者误解，建议加上 \"after Bonferroni correction\" 限定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-data-consistency.md"
+}

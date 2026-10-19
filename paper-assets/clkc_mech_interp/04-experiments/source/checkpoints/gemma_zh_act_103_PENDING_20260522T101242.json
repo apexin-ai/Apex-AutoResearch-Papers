@@ -1,0 +1,16 @@
+{
+  "exp_id": "gemma_zh_act_103",
+  "project": "clkc_mech_interp",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:12:32.474Z",
+    "updated_at": "2026-05-22T10:12:42.310Z",
+    "hypothesis": "收集 Gemma-2-9B-IT ZH 残差流激活用于跨语言 probe 训练",
+    "parent": "gemma_full_pipeline_102"
+  },
+  "timestamp": "2026-05-22T10:12:42.381904+00:00",
+  "trigger": "update_registry"
+}

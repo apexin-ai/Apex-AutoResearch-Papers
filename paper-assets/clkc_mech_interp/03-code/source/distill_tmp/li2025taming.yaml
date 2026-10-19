@@ -1,0 +1,83 @@
+paper_key: "li2025taming"
+title: "Taming Knowledge Conflicts in Language Models"
+venue: "ICML 2025 (Spotlight)"
+full_text_available: true
+
+research:
+  baselines: [Original, Prompt, PH3_l, PH3_s, CAD, JuNe]
+  metrics:
+    - {name: "Exact Match Accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "World Capital", size: "parametric domain"}
+    - {name: "Athlete Sport", size: "parametric domain"}
+    - {name: "Book Author", size: "parametric domain"}
+    - {name: "Official Language", size: "parametric domain"}
+    - {name: "Company Headquarter", size: "parametric domain"}
+    - {name: "Company Founder", size: "parametric domain"}
+    - {name: "Memo-Trap", size: "contextual"}
+    - {name: "NQ-Swap", size: "contextual"}
+    - {name: "Hate Speech Ending", size: "contextual"}
+    - {name: "Proverb Ending", size: "contextual"}
+    - {name: "Proverb Translation", size: "contextual"}
+  ablation_dimensions: [head_identification_set_size, num_intervened_heads_K, scaling_factor, single_vs_dual_run]
+  training_recipe: {optimizer: "N/A (test-time intervention)", lr: "N/A", hardware: "6 architectures tested"}
+  method_family: "attention intervention (test-time)"
+
+positioning:
+  core_claim: "Attention heads simultaneously encode both contextual and parametric knowledge (CP superposition), and a dual-run test-time intervention (JuICE) can disentangle them without fine-tuning"
+  key_results: "JuICE 79.1% vs PH3_l 61.2% on coherent conflicts (Gemma); 66.8% avg on contextual reliance vs CAD 51.1%"
+  limitations: ["Limited to attention head intervention, MLP contributions not addressed", "Theoretical analysis assumes simplified linear models"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LMs store parametric knowledge but encounter knowledge conflicts when parametric memory contradicts contextual information"
+  tension: "Prior work assumes exclusive 'memory heads' and 'context heads', but this binary view is oversimplified"
+  key_insight: "Discovery of CP superposition — attention heads simultaneously contribute to both knowledge types — revealed via systematic probing across conflict types"
+  argument_chain: "problem (knowledge conflicts) → misconception (exclusive heads) → discovery (CP superposition) → algorithm (JuICE dual-run) → validation (11 datasets, 6 architectures) → theory"
+  contribution_framing: "5 contributions listed explicitly: Problem, Mechanism, Algorithm, Experiment, Theory — unusually structured as labeled items"
+  intro_structure: "5 paragraphs: (1) LM knowledge storage problem, (2) prior assumption critique, (3) key discovery, (4) proposed solution, (5) contribution list"
+  notable_technique: "Labeling contributions as Problem/Mechanism/Algorithm/Experiment/Theory gives a clear taxonomy that signals thoroughness"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "problem_illustration"
+    description: "Contrasts exclusive head roles (prior assumption) vs CP superposition phenomenon, showing attention heads encoding both memory and context simultaneously"
+    narrative_role: "Visually establishes the paper's core discovery — prior work's assumption is wrong"
+    design_elements: ["side-by-side conceptual diagrams", "left=prior assumption, right=actual finding", "color-coded knowledge types"]
+    visual_style: "Clean conceptual diagram with two contrasting panels; minimal but effective"
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Robustness across head identification set size, number of heads K, and scaling factors"
+      how_gain_highlighted: "JuICE maintains performance across parameter ranges"
+      design_note: "Multi-panel robustness analysis shows method is not sensitive to hyperparameters"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      dimensions_varied: ["single-pass vs dual-run", "number of combined heads"]
+      design_note: "Demonstrates dual-run is essential — single-pass degrades with more heads"
+  figure_narrative_role: "Figure 1 (problem) → Figure 2-3 (mechanism discovery) → Figure 4 (method) → Figure 5-6 (robustness + ablation)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods"
+    col_axis: "datasets × conflict types (Type 1/2/3)"
+    row_organization: "flat"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run accuracy %"
+    num_baselines: 6
+    design_note: "Split into parametric enhancement (Table 3) and contextual reliance (Table 4) — separates two evaluation dimensions"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["number of top-K heads combined"]
+      variation_style: "full_numbers"
+      design_note: "Shows counteracting effects when combining too many heads"
+  supplementary_tables:
+    in_appendix: true
+    content: "Limitations and future work; additional per-model breakdowns"
+    reason: "Main paper already has 11 datasets × 6 models — appendix extends edge cases"

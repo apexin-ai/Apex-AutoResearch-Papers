@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62edb14178ecde559992",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp steering llama L16 123 collect",
+  "task_key": "worker_exp_steering-llama-L16-123-collect_20260523T105357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering-llama-L16-123-collect_20260523T105357_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "6f65ae8abfce56bfaff4db9aee591c2412b94216954862c6c01e2f20adba1510"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Llama L16 (last position)\n状态: **完成**\nProbe accuracy: **76.84%**\nTest samples: 136 conflict / 272 total\n\n| Alpha | Steering flips | Control flips | Fisher p |\n|-------|---------------|---------------|----------|\n| +5 | 12/136 (8.8%) | 11/136 (8.1%) | 1.0000 |\n| +10 | 25/136 (18.4%) | 15/136 (11.0%) | 0.1226 |\n| +20 | 31/136 (22.8%) | 33/136 (24.3%) | 0.8864 |\n\nBonferroni 显著 (k=3, 阈值 p<0.0167): **无**\n\n注意：实验只跑了正方向 alpha（5, 10, 20），没有负方向（-5, -10, -20）。Alpha 10 有微弱趋势（steering > control），但未达显著。Alpha 20 时 control flips 反而略高于 steering flips，说明高 alpha 破坏了生成质量。\n\nJSON 路径: `/root/clkc_mech_interp/data/llama31/steering_results_L16_last.json`\nLog 路径: `/root/clkc_mech_interp/logs/steering_llama_L16.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-steering-llama-l16-123-collect.md"
+}

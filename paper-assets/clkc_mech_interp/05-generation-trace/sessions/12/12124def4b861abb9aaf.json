@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "12124def4b861abb9aaf",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp gemma steering pipeline",
+  "task_key": "worker_exp_gemma-steering-pipeline_20260524T070228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-steering-pipeline_20260524T070228.log",
+    "occurrence": 1,
+    "bytes": 806292,
+    "sha256": "90c61c1e1caea51a816834740353712ca2dd5eaed21b0ceefe7d9504e8970b5b"
+  },
+  "statistics": {
+    "messages": 517,
+    "user_turns": 0,
+    "tool_calls": 213,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 86,
+      "tool_call": 213,
+      "tool_result": 213,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 517,
+      "chunks": [
+        {
+          "path": "12124def4b861abb9aaf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "12124def4b861abb9aaf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "12124def4b861abb9aaf-part-0003.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-steering-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55aae235908bc6660349",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper update experiments steering",
+  "task_key": "worker_paper_update-experiments-steering_20260522T155330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-experiments-steering_20260522T155330_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "65a9adad580e8984a88e8d2e3c663d7ea848c8ded4f05f194dde66713ee52ef9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。改动摘要：\n\n**文本** (L137-146):\n- \"Detection ≠ Decision\" 段改为 Llama-specific framing，补充 L13 all-position = last-token 的结论\n- 新增 \"Cross-model steering\" 段，报告 Qwen L14 (p=0.682) 和 L23 (p=1.0) 均 negative，强调 detectability ≠ causality，用 \"suggesting\" hedging 跨模型结论\n\n**Table 3** (L148-174):\n- Caption 去掉 \"(Llama-3.1-8B)\"，改为两模型通用\n- 按模型分组（Llama / Qwen），增加 L13 (all)、Qwen L14、Qwen L23 三行，共 7 个配置全覆盖\n- 脚注补充 \"(Llama L13)\" 限定 α=+20 reversal 的适用范围"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-experiments-steering.md"
+}

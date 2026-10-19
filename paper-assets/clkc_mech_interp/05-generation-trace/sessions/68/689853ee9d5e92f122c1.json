@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "689853ee9d5e92f122c1",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper figure fig2 layer v2",
+  "task_key": "worker_paper_figure_fig2_layer_v2_20260522T135425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_layer_v2_20260522T135425_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "52bbd43d68baacb3ecc5ea40f64133d2258ba7eb5b9c0a6327b6d36a63e240bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**输出文件：**\n- PDF: `figures/paper/fig2_layerwise_probes.pdf`\n- PNG: `figures/paper/fig2_layerwise_probes.png`\n- 数据: `artifacts/layerwise_probe_curves.json`\n- 绘图脚本: `artifacts/gen_fig2_layerwise_probes.py`\n\n**图表内容：** 1×2 layout，左 Llama-3.1-8B 右 Qwen3-4B。每个 subplot 含 4 方向 × 2 probe 类型（residual 实线 + MLP 虚线），共 8 条曲线。Qwen 有 bootstrap 95% CI shading。Peak 用星号（residual）和菱形（MLP）标注。Llama L13 有 steering 因果节点标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-layer-v2.md"
+}

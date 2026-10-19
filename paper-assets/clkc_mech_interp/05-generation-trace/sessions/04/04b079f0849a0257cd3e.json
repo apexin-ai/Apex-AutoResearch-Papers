@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04b079f0849a0257cd3e",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu qwen L14 steering urgent",
+  "task_key": "worker_gpu_qwen-L14-steering-urgent_20260522T141636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_qwen-L14-steering-urgent_20260522T141636_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "afdcfe36d1034b3a83e275f0875ccd9d7a60120b672526af0022456880fdbd1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 实验 | 状态 | 操作 |\n|------|------|------|\n| **steering_107_qwen_L13** | DONE (killed) | PID 490477 + 子进程 490482 已 kill |\n| **steering_107_qwen_L23** | DONE (negative) | all_fisher_p=1.0，深层无效 |\n| **steering_107_qwen_L14** | RUNNING | PID **491833**，cuda:0，模型加载中 |\n\nL14 日志显示 probe accuracy=0.7024，方向维度 4096，正在加载 Qwen3-8B checkpoint shards。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-qwen-l14-steering-urgent.md"
+}

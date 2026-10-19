@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb48c1c16f4d05d22206",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp steering gemma L24 121 v2",
+  "task_key": "worker_exp_steering-gemma-L24-121-v2_20260523T101833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering-gemma-L24-121-v2_20260523T101833_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "541b32f4beb8e0fe246951398cb2adff79153977394e856fc84405dfa8b09c2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验后台运行中（PID 569640）。已获得信息：\n- Probe accuracy at L24: **76.27%**\n- Steering direction dim: 3584\n- 模型已加载完成，正在跑 6 个 alpha 方向的生成\n\n~4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-steering-gemma-l24-121-v2.md"
+}

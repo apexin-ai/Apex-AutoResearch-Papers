@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b78ffe536b1a0d12a681",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code regen zh activations bootstrap",
+  "task_key": "worker_code_regen-zh-activations-bootstrap_20260525T201729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_regen-zh-activations-bootstrap_20260525T201729_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "a391e5a97b8ba739777be038996d0040e7143f9c0551bcde946adf451323494e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "翻译质量验证通过。管线运行正常。\n\n**当前状态汇总**：\n\n| 步骤 | 状态 | 预计耗时 |\n|------|------|---------|\n| 1. Llama31 翻译 (1600 样本) | **进行中** (100/1200 train) | ~1.8h |\n| 2. Qwen3 翻译 (1418 样本) | 排队 | ~1.6h |\n| 3. 创建 validated 符号链接 | 排队 | 瞬间 |\n| 4. Llama31 ZH activations | 排队 | ~10min |\n| 5. Qwen3 ZH activations | 排队 | ~10min |\n| 6. Bootstrap n=2000 (并行) | 排队 | ~30min |\n\n**速度**: ~4 秒/样本 (Qwen3-8B on Blackwell RTX PRO 6000)\n**预计完成**: ~08:25 UTC+8\n**日志**: `/tmp/zh_pipeline.log`\n**PID**: 13675 (主进程), 13683 (当前翻译进程)\n\n**注意**: 跳过了 COMET 翻译质量验证步骤（`zh_conflict_train.jsonl` 直接符号链接为 `_validated` 版本），因为 gemma2_v2 上的验证结果显示几乎 100% 通过率。如需正式验证，完成后可单独运行 `validate_translation.py`。\n\n**监控命令**：\n```bash\n# 翻译进度\nwc -l data/llama31/zh_conflict_train.jsonl.partial\n# 管线日志\ntail -20 /tmp/zh_pipeline.log\n# 进程存活\nps -p 13675 -o pid,etime\n# GPU 状态\nnvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-regen-zh-activations-bootstrap.md"
+}

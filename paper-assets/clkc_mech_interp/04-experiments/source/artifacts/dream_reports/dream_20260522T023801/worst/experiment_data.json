@@ -1,0 +1,714 @@
+[
+  {
+    "name": "COMET 翻译质量验证（完整）",
+    "description": "wmt22-comet-da back-translation 完成 Llama 侧 COMET 评估。 Qwen test 已完成（pass rate 18.45%），Llama train+test 完成评分。\n",
+    "results": {
+      "llama_test_n": 272,
+      "llama_test_pass_rate_at_080": 0.12,
+      "llama_test_mean_comet": 0.68,
+      "llama_train_n": 1096,
+      "llama_train_pass_rate_at_080": 0.15,
+      "llama_train_mean_comet": 0.69,
+      "qwen_train_n": 798,
+      "qwen_train_pass_rate_at_080": 0.16,
+      "qwen_train_mean_comet": 0.7,
+      "llama_comet_tertile_ablation_delta_pp": -3.2,
+      "llama_comet_tertile_ablation_fisher_p": 0.48
+    },
+    "tables": [
+      {
+        "name": "COMET Back-Translation Summary",
+        "columns": [
+          "Model",
+          "Split",
+          "N",
+          "Mean COMET",
+          "Pass Rate (>=0.80)"
+        ],
+        "rows": [
+          [
+            "Llama-3.1-8B",
+            "train",
+            1096,
+            0.69,
+            "15%"
+          ],
+          [
+            "Llama-3.1-8B",
+            "test",
+            272,
+            0.68,
+            "12%"
+          ],
+          [
+            "Qwen3-8B",
+            "train",
+            798,
+            0.7,
+            "16%"
+          ],
+          [
+            "Qwen3-8B",
+            "test",
+            168,
+            0.7,
+            "18.5%"
+          ]
+        ]
+      },
+      {
+        "name": "COMET Tercile Ablation (Both Models)",
+        "columns": [
+          "Model",
+          "Low Acc",
+          "Med Acc",
+          "High Acc",
+          "Delta(H-L)",
+          "Fisher p"
+        ],
+        "rows": [
+          [
+            "Qwen3-8B",
+            "66.35%",
+            "67.69%",
+            "60.71%",
+            "-5.64pp",
+            0.695
+          ],
+          [
+            "Llama-3.1-8B",
+            "65.8%",
+            "63.2%",
+            "62.6%",
+            "-3.2pp",
+            0.48
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "两个模型 ablation 方向均为弱反向（High COMET → 略低 acc），但 Llama delta 幅度 远小于 Qwen（-3.2 vs -5.6pp），且 p 值更低（0.48 vs 0.695）。审稿人可能追问 \"为什么 Llama 方向一致但效果弱得多\"。worst 下的 framing：两模型 ablation 均未达 显著阈值，翻译质量不是主要 confounder，但需承认 back-translation COMET 本身 作为翻译质量 proxy 的局限性。建议加入 forward-only COMET 作为补充指标。\n\n\nWorst 下 Llama COMET 整体更低（0.68 vs Qwen 0.70），因为 Llama tokenizer 对中文的 coverage 更差，back-translation 两步累积误差更大。但 ablation 方向仍为反向或无显著差异—— 这在 worst 档并不矛盾，因为翻译质量 confound 的排除对 C1 有利。 实际风险在于：Llama 的 COMET ablation 如果出现 High > Low（质量确实影响 Llama 探针）， 就与 Qwen 结果不一致，需要额外解释。worst 假设 delta=-3.2pp（弱反向）且 p=0.48（不显著）， 刚好处于\"不能确定排除但也不能确定是 confounder\"的灰色地带。\n"
+  },
+  {
+    "name": "第三模型架构验证",
+    "description": "在 Gemma-2-9B-IT 上重复完整探针实验：verify → translate → collect activations → train probe → bootstrap n=100。验证 ~7.2pp 不对称性是否跨架构一致。\n",
+    "results": {
+      "model": "Gemma-2-9B-IT",
+      "en_en_bal_acc": 0.72,
+      "zh_zh_bal_acc": 0.68,
+      "en_zh_bal_acc": 0.63,
+      "zh_en_bal_acc": 0.64,
+      "asymmetry_gap_pp": 1.0,
+      "bootstrap_ci_95": "[-4.5, 6.8]",
+      "bootstrap_significant": false,
+      "positive_iterations_pct": 58,
+      "best_probe_layer": 18,
+      "best_layer_depth_pct": 0.62,
+      "mlp_en_zh_acc": 0.65,
+      "mlp_gain_en_zh_pp": 2.0,
+      "token_overlap_jaccard_mean": 0.035,
+      "token_overlap_correlation_p": 0.31
+    },
+    "tables": [
+      {
+        "name": "Cross-Lingual Probe Accuracy — Three Models",
+        "columns": [
+          "Model",
+          "EN→EN",
+          "ZH→ZH",
+          "EN→ZH",
+          "ZH→EN",
+          "Asym Gap",
+          "95% CI",
+          "Sig?"
+        ],
+        "rows": [
+          [
+            "Llama-3.1-8B",
+            "77.1%",
+            "71.2%",
+            "64.1%",
+            "71.3%",
+            "+7.22pp",
+            "[1.1, 13.6]",
+            "Yes"
+          ],
+          [
+            "Qwen3-8B",
+            "75.3%",
+            "71.6%",
+            "65.0%",
+            "72.2%",
+            "+7.18pp",
+            "[-1.2, 13.4]",
+            "No"
+          ],
+          [
+            "Gemma-2-9B",
+            "72.0%",
+            "68.0%",
+            "63.0%",
+            "64.0%",
+            "+1.0pp",
+            "[-4.5, 6.8]",
+            "No"
+          ]
+        ]
+      },
+      {
+        "name": "MLP vs Linear — Weak Direction (EN→ZH)",
+        "columns": [
+          "Model",
+          "Linear",
+          "MLP",
+          "Gain (pp)"
+        ],
+        "rows": [
+          [
+            "Llama-3.1-8B",
+            "64.1%",
+            "68.8%",
+            "+4.7"
+          ],
+          [
+            "Qwen3-8B",
+            "65.0%",
+            "67.3%",
+            "+2.3"
+          ],
+          [
+            "Gemma-2-9B",
+            "63.0%",
+            "65.0%",
+            "+2.0"
+          ]
+        ]
+      },
+      {
+        "name": "Best Probe Layer and Depth",
+        "columns": [
+          "Model",
+          "Total Layers",
+          "Best Layer",
+          "Depth %"
+        ],
+        "rows": [
+          [
+            "Llama-3.1-8B",
+            32,
+            28,
+            "88%"
+          ],
+          [
+            "Qwen3-8B",
+            36,
+            24,
+            "67%"
+          ],
+          [
+            "Gemma-2-9B",
+            42,
+            26,
+            "62%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Gemma 结果直接击穿 C2 \"跨架构一致不对称性\" claim。三模型中仅 Llama 显著（1/3）， 方向一致性降至 2/3（Gemma 名义方向仍为正但实质为零）。C2 不能再作为核心 claim。 但 C1 稳健——三模型 within-lang acc 均 >65%（最低 Gemma 68%），远超 chance。 Reframe 方向：不对称性是 architecture/training-data-dependent 的特征，其存在与否 本身就是 finding。Llama（英语主导训练数据）和 Qwen（中英均衡但英语仍多） 出现不对称，Gemma（不同数据配比）不出现——这揭示了多语言 LLM 内部跨语言 对齐程度的异质性。引用 Wendler et al. 2024 \"Llamas Know What GPTs Don't Show\" 的跨架构差异发现。\n\n\nWorst 核心假设：第三模型不对称性 <2pp 或方向反转。Gemma-2-9B 的多语言训练数据 配比与 Llama/Qwen 不同——Gemma 的 ZH 数据占比可能更均衡或更低，导致英语锚点效应 减弱。Within-lang acc 仍在 68-72%（C1 成立，冲突可检测），但跨语言迁移两个方向 几乎对称（EN→ZH 63% vs ZH→EN 64%, gap 仅 1pp），CI 宽且含零。 这意味着 Llama/Qwen 的 ~7.2pp 不对称性可能是这两个模型训练数据中英语主导的 artifact，而非语言表征空间的通用结构特征。MLP gain 仅 +2pp（对比 Llama +4.7pp）， 非线性成分也弱得多，暗示 Gemma 的跨语言对齐更均匀。 探针最优层在 62% depth（vs Llama 88%, Qwen 67%），层分布 pattern 无统一规律。\n"
+  },
+  {
+    "name": "多语言扩展 (EN↔JA)",
+    "description": "扩展到 EN↔JA 语言对。JA 作为 CJK 但与 ZH typologically 不同的语言， 检验不对称性是否与 typological distance 相关（H1 vs H2 检验）。\n",
+    "results": {
+      "status": "incomplete_or_not_started",
+      "completion_pct": 15,
+      "reason": "GPU 资源被 Track 1 三模型验证和 COMET 占满，JA 翻译+验证 pipeline 未启动",
+      "partial_results_if_any": {
+        "ja_translation_comet_estimate": null,
+        "ja_verify_pass_rate": null
+      },
+      "lang_pairs_validated": 1
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "单语言对是 worst 下最大的审稿风险之一。缺少 JA 无法检验 H2（语言距离编码假设）， H1 vs H2 的解析力大幅下降。论文需在 Limitations 中明确承认并提出 future work。 缓解策略：强调 EN-ZH 本身作为高 typological distance pair 的价值——如果机制 在最难的语言对上都能检测到，更相近的语言对更可能工作。\n\n\nWorst 假设 lang_pairs_validated=1（仅 EN-ZH）。JA 扩展需要完整 pipeline： 翻译 ConflictQA → COMET 验证 → verify answers → collect activations → train probes → bootstrap。每个步骤在两个模型上重复。在 DDL 紧张（~4个月）且 GPU 资源被 三模型验证（plan_102）和 COMET（mvp_003）占用的情况下，JA 扩展大概率无法 在投稿前完成。worst 下仅完成了 JA 翻译的前期调研（15%），未产出可用数据。 这使得 RC4（数据多样性）无法充分回应，论文只能聚焦 EN-ZH 单语言对。\n"
+  },
+  {
+    "name": "Layer-wise CKA/SVCCA",
+    "description": "计算每层 EN vs ZH 激活的 CKA 和 SVCCA，量化跨语言表征相似度随层变化的 pattern。\n",
+    "results": {
+      "llama_cka_early_layers_mean": 0.82,
+      "llama_cka_mid_layers_mean": 0.61,
+      "llama_cka_late_layers_mean": 0.38,
+      "qwen_cka_early_layers_mean": 0.85,
+      "qwen_cka_mid_layers_mean": 0.7,
+      "qwen_cka_late_layers_mean": 0.45,
+      "gemma_cka_early_layers_mean": 0.8,
+      "gemma_cka_mid_layers_mean": 0.68,
+      "gemma_cka_late_layers_mean": 0.42,
+      "cka_probe_peak_correlation": -0.35,
+      "language_transition_layer_llama_pct": 0.75,
+      "language_transition_layer_qwen_pct": 0.58,
+      "language_transition_layer_gemma_pct": 0.55
+    },
+    "tables": [
+      {
+        "name": "CKA Mean by Layer Group",
+        "columns": [
+          "Model",
+          "Early (0-33%)",
+          "Mid (33-66%)",
+          "Late (66-100%)",
+          "Transition Layer %"
+        ],
+        "rows": [
+          [
+            "Llama-3.1-8B",
+            0.82,
+            0.61,
+            0.38,
+            "75%"
+          ],
+          [
+            "Qwen3-8B",
+            0.85,
+            0.7,
+            0.45,
+            "58%"
+          ],
+          [
+            "Gemma-2-9B",
+            0.8,
+            0.68,
+            0.42,
+            "55%"
+          ]
+        ]
+      },
+      {
+        "name": "Probe Peak vs Language Transition",
+        "columns": [
+          "Model",
+          "Probe Peak Layer %",
+          "CKA Transition %",
+          "Gap (pp)"
+        ],
+        "rows": [
+          [
+            "Llama-3.1-8B",
+            "88%",
+            "75%",
+            "+13"
+          ],
+          [
+            "Qwen3-8B",
+            "67%",
+            "58%",
+            "+9"
+          ],
+          [
+            "Gemma-2-9B",
+            "62%",
+            "55%",
+            "+7"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CKA 分析提供了描述性价值但无法产生强 claim。三模型均显示 CKA 随层下降， probe peak 在 transition 之后，但 gap 幅度不一致（+7 到 +13pp）， 且仅 3 个数据点不足以建立统计关系。worst 下此实验贡献降级为 supplementary evidence，不支撑独立 claim。C4 从\"层结构 claim\"降为\"层结构 observation\"。\n\n\nCKA 从高到低的单调下降是多语言 LLM 的已知 pattern（\"Lost in Multilinguality\"）， worst 下也预期如此。但关键问题是 CKA 下降点与 probe peak 层的关系。 Worst 假设：三模型的 language transition 层位置不一致（Llama 75%、Qwen 58%、 Gemma 55%），与 probe peak 层（Llama 88%、Qwen 67%、Gemma 62%）之间 没有简洁的跨架构规律。CKA-probe peak correlation 为弱负相关（-0.35）， 不足以支持\"冲突信号出现在 language transition 之后\"的干净叙事。 这使得 C4（层结构 claim）只能描述现象而无法提出机制解释。\n"
+  },
+  {
+    "name": "COMET 分段 ablation（Llama 补充）",
+    "description": "Llama 侧 COMET tercile ablation，补充 Qwen 已完成的结果， 验证翻译质量非 confounder 的结论跨架构一致性。\n",
+    "results": {
+      "llama_test_n": 272,
+      "llama_low_comet_acc": 65.8,
+      "llama_med_comet_acc": 63.2,
+      "llama_high_comet_acc": 62.6,
+      "llama_delta_high_low_pp": -3.2,
+      "llama_fisher_p": 0.48,
+      "cross_model_consistency": "partial"
+    },
+    "tables": [
+      {
+        "name": "COMET Tercile Ablation Cross-Model",
+        "columns": [
+          "Model",
+          "Low Acc",
+          "Med Acc",
+          "High Acc",
+          "Delta(H-L) pp",
+          "Fisher p",
+          "Verdict"
+        ],
+        "rows": [
+          [
+            "Qwen3-8B",
+            "66.35%",
+            "67.69%",
+            "60.71%",
+            -5.64,
+            0.695,
+            "Excluded"
+          ],
+          [
+            "Llama-3.1-8B",
+            "65.8%",
+            "63.2%",
+            "62.6%",
+            -3.2,
+            0.48,
+            "Borderline"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "RC1 在 worst 下仍基本可以排除，但 Llama 侧的证据力弱于 Qwen。 论文 framing 需要更谨慎：强调两模型方向均为反向（high quality ≠ better detection）， 同时承认 individual model 的 ablation power 受限于样本量。\n\n\nWorst 假设 COMET ablation 在 Llama 上方向一致（反向）但效果量小且 p 更低。 Llama delta 仅 -3.2pp vs Qwen -5.64pp，Fisher p=0.48 处于灰色地带。 不矛盾（两个模型方向均为反向），但 Llama 的弱效应可能被审稿人质疑为 \"翻译质量确实对 Llama 有微弱影响但样本量不够检测\"。 Worst 的 critical 场景（COMET ablation 在 Llama 上出现正向 delta——即 High COMET 准确率更高）在 worst 定义中列为可能，但此处取 borderline 解释： 方向一致但 convincing degree 不足。\n"
+  },
+  {
+    "name": "探针权重可视化 + PCA",
+    "description": "最优层线性探针权重 PCA/t-SNE 可视化，展示冲突/非冲突样本分布， 跨语言对比 EN vs ZH 表征空间。\n",
+    "results": {
+      "pca_explained_variance_pc1_pc2": 0.28,
+      "en_zh_conflict_cluster_overlap_visual": "partial",
+      "en_conflict_vs_en_nonconflict_separation": "moderate",
+      "zh_conflict_vs_zh_nonconflict_separation": "weak",
+      "cross_lingual_conflict_cluster_alignment": "misaligned"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "可视化结果在 worst 下偏向 H2（language-specific encoding）。 EN/ZH conflict cluster 不重叠使得 \"universal conflict detector\" 叙事站不住。 但仍有可展示的 finding：within-language 分离的存在证明线性探针确实捕获了 有意义的信号（不是噪声拟合），为 C1 提供定性支持。 论文中放入 supplementary 而非 main text。\n\n\nWorst 下 PCA 前两主成分仅解释 28% 方差，冲突/非冲突分离在 EN 上 moderate 但 ZH 上 weak——与 within-lang probe acc 差异一致（EN 77% vs ZH 71%）。 关键 worst 特征：EN 和 ZH 的冲突 cluster 在 PCA 空间中不对齐（misaligned）， 暗示冲突表征并非 language-universal，而是在各语言子空间中独立编码。 这与 Gemma 不对称消失一致——如果冲突表征不共享，跨语言迁移就依赖于 各模型训练数据中建立的偶然对齐，而非结构性的 universal representation。\n"
+  },
+  {
+    "name": "Label noise ablation",
+    "description": "注入 5%/10%/15%/20% label noise，测量 probe accuracy 下降曲线， 评估 verification pipeline 的 label error tolerance。\n",
+    "results": {
+      "noise_0pct_acc": 77.1,
+      "noise_5pct_acc": 75.8,
+      "noise_10pct_acc": 73.2,
+      "noise_15pct_acc": 69.5,
+      "noise_20pct_acc": 64.1,
+      "degradation_slope_per_5pct": -3.3,
+      "estimated_label_error_rate": 0.08,
+      "acc_at_estimated_error": 74.5
+    },
+    "tables": [
+      {
+        "name": "Label Noise Ablation (Llama EN→EN)",
+        "columns": [
+          "Noise %",
+          "Balanced Acc",
+          "Delta from Clean"
+        ],
+        "rows": [
+          [
+            "0%",
+            "77.1%",
+            "-"
+          ],
+          [
+            "5%",
+            "75.8%",
+            "-1.3pp"
+          ],
+          [
+            "10%",
+            "73.2%",
+            "-3.9pp"
+          ],
+          [
+            "15%",
+            "69.5%",
+            "-7.6pp"
+          ],
+          [
+            "20%",
+            "64.1%",
+            "-13.0pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Label noise ablation 是 defensive experiment——在 worst 下仍完成且结果合理。 ~8% estimated label error 需要在论文中坦诚报告。可以 argue verification pipeline 的 error tolerance 是可接受的（acc 仅下降 ~2.5pp at 8% noise）， 但审稿人可能要求更严格的 verification。此实验在 worst 下属于\"完成但不增强 claim\"。\n\n\nLabel noise ablation 在 worst 下仍产出合理结果——探针 acc 随 noise 单调下降， 斜率约 -3.3pp/5%。但 worst 特征是 estimated label error rate 为 ~8% （高于理想的 <5%），暗示 verification pipeline 漏过了相当比例的错误标签。 这使得 observed probe acc（如 Gemma 68%）的\"真实上限\"可能更高，但也 意味着当前结果受 label noise 压制。论文需报告此估计但不作为借口。\n"
+  },
+  {
+    "name": "Representation steering (干预实验)",
+    "description": "用探针方向作为 steering vector 在残差流中干预冲突信号， 测量干预后模型输出的变化，提供 C2 不对称性的因果证据。\n",
+    "results": {
+      "llama_en_steer_flip_rate": 0.08,
+      "llama_zh_steer_flip_rate": 0.05,
+      "qwen_en_steer_flip_rate": 0.06,
+      "qwen_zh_steer_flip_rate": 0.04,
+      "gemma_en_steer_flip_rate": 0.03,
+      "gemma_zh_steer_flip_rate": 0.03,
+      "overall_flip_rate_mean": 0.048,
+      "steer_direction_consistency": "inconsistent",
+      "causal_evidence_strength": "weak"
+    },
+    "tables": [
+      {
+        "name": "Representation Steering Flip Rates",
+        "columns": [
+          "Model",
+          "EN Flip Rate",
+          "ZH Flip Rate",
+          "Mean",
+          "Consistent Direction?"
+        ],
+        "rows": [
+          [
+            "Llama-3.1-8B",
+            "8%",
+            "5%",
+            "6.5%",
+            "Weak yes"
+          ],
+          [
+            "Qwen3-8B",
+            "6%",
+            "4%",
+            "5.0%",
+            "Weak yes"
+          ],
+          [
+            "Gemma-2-9B",
+            "3%",
+            "3%",
+            "3.0%",
+            "No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Steering 在 worst 下基本失败。因果证据链断裂，论文只能依赖 probe correlation + permutation test 的统计控制，无法提供 intervention-based causal evidence。 RC8 成为 acknowledged limitation。framing：\"the probe detects a real signal (permutation test p<0.001), but the signal is not concentrated enough for simple linear steering to alter model behavior\"——这实际上对冲突编码机制 提出了更深层的问题（多维 vs 单维），可作为 future work 切入点。\n\n\nWorst 假设 steering 效果极弱——flip rate 均 <10%，且方向不一致。 线性探针方向作为 steering vector 的假设前提是冲突信号集中在单一线性方向， 但 PCA 可视化（plan_109）显示冲突表征在多维空间中分布，单一方向无法充分 捕获。Gemma flip rate 仅 3%（近乎 random），因其不对称性本就消失。 这使得 RC8（causal evidence）无法通过 Track 1 途径解决，而 Track 3 SAE steering 又不可用——论文在因果证据维度上存在空洞。 Worst 下的 framing：steering 的低效本身是一个 finding——冲突信号不是简单的 单一方向编码，而是分布在多维子空间中，需要更精细的干预方法。\n"
+  },
+  {
+    "name": "更大数据集验证",
+    "description": "扩大 ConflictQA 采样至 2000+ samples 或引入其他知识冲突数据集。\n",
+    "results": {
+      "status": "not_started",
+      "reason": "P1 优先级 + GPU/人力资源集中于 P0 实验（plan_102, mvp_003）",
+      "estimated_completion": "post-submission"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "P1 实验在 worst 下全部降为 future work。论文 Limitations 中需诚实列出 数据量限制。如有审稿人要求 rebuttal 补数据，可在 rebuttal 期快速追加。\n\n\nWorst 假设 tracks_submission_ready=1（仅 Track 1），DDL 紧张下 P1 实验 被砍。数据集扩展的 GPU 时间（12h）和人力投入（翻译+验证 pipeline 再跑一轮） 在 worst 下不可用。RC4 只能靠现有 ~1000 samples/model 应对。 缓解：强调 ConflictQA 的 sample 质量（verification pipeline）而非 quantity， 并指出 1000 samples 在 probing 文献中并不算小。\n"
+  },
+  {
+    "name": "Qwen-Scope SAE 冲突特征识别",
+    "description": "用 Qwen-Scope 预训练 SAE (Qwen3-8B-Base) 分析冲突激活中的差异化特征。\n",
+    "results": {
+      "status": "not_completed",
+      "completion_pct": 0,
+      "reason": "Track 2 整体未启动，DDL 前无法完成",
+      "sae_cross_lingual_jaccard_mid_layer": 0.0
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Track 2 缺失意味着 C5 完全不支持，论文无法提供 SAE 层面的机制证据。 H1 vs H2 的 SAE Jaccard 检验（plan_203）也无法执行。 这是 worst 下论文 claim 强度下降的主要原因之一——仅靠 probing 无法提供 \"冲突特征是什么\"的答案，只能说\"冲突信号存在\"。\n\n\nWorst 假设 Track 2/3 均无法在 DDL 前完成。SAE 实验需要 16 GPU-hours 仅用于 特征识别，加上下游 LangFIR（8h）和 Jaccard 分析（4h）共 28h，且依赖 base model 适配（cloze 格式调试）。在 P0 实验消耗大量 GPU 和研究时间的情况下， Track 2 被搁置。sae_cross_lingual_jaccard_mid_layer=0.0 表示无数据。\n"
+  },
+  {
+    "name": "LangFIR 语言特征解耦",
+    "description": "用 LangFIR random-token filtering 识别 language-identity 特征， 从 SAE conflict features 中排除，验证分布是否非重叠。\n",
+    "results": {
+      "status": "not_started",
+      "depends_on_blocked": "plan_201"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Blocked by plan_201. No output in worst tier.\n\n依赖 plan_201 完成。plan_201 未启动则此实验自动阻塞。Worst 下无任何输出。\n"
+  },
+  {
+    "name": "Cross-lingual feature Jaccard 分析",
+    "description": "计算 mid-layer vs late-layer conflict feature 的跨语言 Jaccard index， 检验 H1（mid >> late）vs H2（无差异）。\n",
+    "results": {
+      "status": "not_started",
+      "depends_on_blocked": "plan_201, plan_202",
+      "sae_cross_lingual_jaccard_mid_layer": 0.0,
+      "sae_cross_lingual_jaccard_late_layer": 0.0
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Blocked. H1 vs H2 resolution degrades to probe-transfer-only evidence.\n\n依赖 plan_201 和 plan_202。两者均未完成则此实验无法执行。 H1 vs H2 的 SAE 检验在 worst 下完全缺失，只能靠 probe transfer 间接推断。\n"
+  },
+  {
+    "name": "Monolingual→cross-lingual steering transfer",
+    "description": "用 SpARE 英语冲突特征做 cross-lingual steering， 测量跨语言 steering 有效性。\n",
+    "results": {
+      "status": "not_started",
+      "depends_on_blocked": "plan_201, plan_203"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Blocked by Track 2. No causal steering evidence available.\n\nTrack 3 完全依赖 Track 2（SAE 特征识别）。Track 2 未完成则 Track 3 无可用的 steering vectors。Worst 下 C6（steering claim）完全不支持。 plan_107（representation steering）是唯一的因果干预尝试，但其结果极弱。\n"
+  },
+  {
+    "name": "Cross-lingual-specific steering",
+    "description": "用 Track 2 发现的跨语言特有特征构建 steering vectors， 对比与 monolingual features 的效果差异。\n",
+    "results": {
+      "status": "not_started",
+      "depends_on_blocked": "plan_301"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Doubly blocked. No output in worst tier.\n\n双重阻塞：依赖 plan_301（未启动）和 Track 2 特征。Worst 下无输出。\n"
+  },
+  {
+    "name": "Typological steering correlation",
+    "description": "测试 steering 有效性与 CLEAR linguistic similarity metric 的相关性， 提供因果链接。\n",
+    "results": {
+      "status": "not_started",
+      "depends_on_blocked": "plan_301, plan_103"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "缺失此实验使论文与 CLEAR 的连接从 \"mechanistic explanation\" 降为 \"consistent observation\"。审稿人可能质疑 \"为什么不做 steering 验证因果\"。 回应策略：承认 limitation 并将 steering 定位为 immediate future work， 同时强调当前 probing 结果已为 CLEAR 的 linguistic affinity 发现提供了 第一个 representation-level evidence（即使不是 causal evidence）。\n\n\n依赖 plan_301（steering 未启动）和 plan_103（JA 扩展未完成）。 这是论文 narrative 中连接 CLEAR 的因果桥梁，worst 下完全缺失。 论文与 CLEAR 的连接只能停留在 correlational level——\"我们发现的探针信号 与 CLEAR 观察到的现象 consistent，但无法证明因果关系\"。\n"
+  },
+  {
+    "name": "Worst Tier 投稿可行性综合评估",
+    "description": "综合所有 worst-tier 预测，评估投稿可行性和最优 reframe 路径。\n",
+    "results": {
+      "claims_fully_supported": [
+        "C1"
+      ],
+      "claims_partially_supported": [
+        "C3",
+        "C4"
+      ],
+      "claims_collapsed": [
+        "C2"
+      ],
+      "claims_no_evidence": [
+        "C5",
+        "C6"
+      ],
+      "tracks_submission_ready": 1,
+      "lang_pairs_validated": 1,
+      "models_with_significant_asymmetry": 1,
+      "models_with_consistent_direction": 2,
+      "recommended_path": "Path A",
+      "submission_venue_confidence": "borderline_accept"
+    },
+    "tables": [
+      {
+        "name": "Worst Tier Claim Status Summary",
+        "columns": [
+          "Claim",
+          "Status",
+          "Evidence Strength",
+          "Role in Paper"
+        ],
+        "rows": [
+          [
+            "C1: Detectability",
+            "Supported",
+            "Strong (3 models, all >65%)",
+            "Core claim"
+          ],
+          [
+            "C2: Asymmetry",
+            "Collapsed",
+            "Weak (1/3 significant)",
+            "Observation only"
+          ],
+          [
+            "C3: Non-linearity",
+            "Partial",
+            "Direction consistent, magnitude varies",
+            "Supporting"
+          ],
+          [
+            "C4: Layer structure",
+            "Partial",
+            "Descriptive only, no pattern",
+            "Supplementary"
+          ],
+          [
+            "C5: SAE features",
+            "No evidence",
+            "Track 2 not completed",
+            "Future work"
+          ],
+          [
+            "C6: Steering",
+            "No evidence",
+            "Track 3 not completed",
+            "Future work"
+          ]
+        ]
+      },
+      {
+        "name": "Worst Tier Key Metrics vs Thresholds",
+        "columns": [
+          "Metric",
+          "Worst Value",
+          "Threshold for C2",
+          "Verdict"
+        ],
+        "rows": [
+          [
+            "Third model asym gap",
+            "+1.0pp",
+            ">2pp",
+            "Below"
+          ],
+          [
+            "Significant models (of 3)",
+            "1",
+            ">=2",
+            "Below"
+          ],
+          [
+            "Consistent direction (of 3)",
+            "2",
+            "3",
+            "Below"
+          ],
+          [
+            "Third model within-lang acc",
+            "68-72%",
+            ">65%",
+            "Pass (C1 OK)"
+          ],
+          [
+            "Cross-lingual transfer range",
+            "63-64%",
+            ">58%",
+            "Pass (C1 OK)"
+          ],
+          [
+            "MLP gain (third model)",
+            "+2.0pp",
+            ">3pp",
+            "Weak"
+          ],
+          [
+            "SAE Jaccard mid-layer",
+            "0.0 (N/A)",
+            ">0",
+            "No data"
+          ],
+          [
+            "Lang pairs validated",
+            "1",
+            ">=2",
+            "Below"
+          ],
+          [
+            "Tracks ready",
+            "1",
+            ">=2",
+            "Below"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst 下论文仍有内容可写（C1 robust + 三模型跨架构对比 + methodology）， 但贡献度从\"跨语言冲突处理的机制发现\"降为\"跨语言冲突可检测性的实证 characterization + architecture-dependent transfer 的初步观察\"。 Path A framing 的关键卖点：正是因为不对称性在 Gemma 上消失，才揭示了一个 更深层的问题——多语言 LLM 的跨语言对齐程度是 heterogeneous 的，模型训练 数据的语言配比直接影响冲突信号的跨语言迁移特性。这个 finding 对多语言 LLM 的安全性和可靠性有直接实践意义（不能假设所有模型的跨语言行为一致）。 投稿策略：以 ICLR 为目标但准备 ACL/EMNLP 作为 backup venue，后者对 empirical analysis 的接受度更高。\n\nWorst 综合：C1 稳健（三模型 within-lang >65%），C2 崩塌（仅 Llama 显著， Gemma 不对称消失），C3 方向一致但幅度跨架构差异大，C4 层结构无统一 pattern， C5/C6 无数据。论文体量缩至 Track 1 only。 Path A 是最优选择——将不对称性的跨架构差异本身作为 finding，定位为 \"Architecture-dependent cross-lingual conflict processing\"。 C1（detectability）作为核心贡献，C2 降级为 architecture-dependent observation， C3/C4 作为 supplementary characterization。 ICLR 投稿仍可行但竞争力显著下降——缺乏 mechanism（SAE）和 causation（steering）， 论文定位从 Oral/Spotlight 目标降为 Poster borderline。\n"
+  }
+]

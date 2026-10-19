@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "297c492e9a9117c7a839",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "research auroc calculation",
+  "task_key": "worker_research_auroc-calculation_20260525T045219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_auroc-calculation_20260525T045219_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "c3abac9f2cc1e88598966b2a603170309593e840d013c2d8060c9d4c9abb116d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n| Model | Direction | AUROC | Balanced Acc |\n|---|---|---|---|\n| Llama-3.1-8B | EN→EN | 0.9808±0.0012 | 92.7%±0.1% |\n| Gemma-2-9B | EN→EN | 0.9313±0.0065 | 88.1%±1.3% |\n| Gemma-2-9B | ZH→ZH | 0.8997±0.0084 | 85.7%±0.6% |\n| Gemma-2-9B | EN→ZH | 0.8522±0.0155 | 75.1%±1.2% |\n| Gemma-2-9B | ZH→EN | 0.9213±0.0134 | 77.8%±3.5% |\n| Qwen3-8B | EN→EN | 0.7705±0.0210 | 71.4%±1.9% |\n\n**关键发现：**\n- AUROC 普遍高于 balanced accuracy（因为 AUROC 利用了连续概率值，不受阈值选择影响）\n- Gemma ZH→EN 的 AUROC (0.9213) 远高于其 balanced accuracy (77.8%)，说明 probe 的排序能力很强，但阈值不理想\n- Llama31 和 Qwen3 只有 EN activations（无 `zh_activations.pt`），所以只能计算 EN→EN\n\n脚本保存在服务器 `src/compute_auroc.py`，结果在 `results/auroc_all_models.json`，本地副本在 `artifacts/auroc_all_models.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-auroc-calculation.md"
+}

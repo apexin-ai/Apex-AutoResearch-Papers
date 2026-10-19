@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8a288389d3c1f978a4b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis bootstrap n2000 111",
+  "task_key": "worker_analysis_bootstrap-n2000-111_20260522T041909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-n2000-111_20260522T041909_result.json",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "a1c8588a1dd367cd88bb20429e39edb413c15b83e770e07ccf9f8b2a81b5568b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap n=2000 is running on westd-41302 — both Qwen and Llama have 64 fork workers each, actively computing. I'll check back in ~4.5 minutes for completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-n2000-111.md"
+}

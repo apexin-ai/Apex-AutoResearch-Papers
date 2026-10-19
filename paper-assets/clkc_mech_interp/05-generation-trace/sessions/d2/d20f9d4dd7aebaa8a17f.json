@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "d20f9d4dd7aebaa8a17f",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp qwen3 steering full pipeline",
+  "task_key": "worker_exp_qwen3-steering-full-pipeline_20260524T113438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen3-steering-full-pipeline_20260524T113438.log",
+    "occurrence": 1,
+    "bytes": 2347720,
+    "sha256": "033cad0edfb28a203ac5ee2e670ad3ecbafd7cfd108f6e15f1fe688e38b90058"
+  },
+  "statistics": {
+    "messages": 1602,
+    "user_turns": 2,
+    "tool_calls": 700,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 4,
+      "assistant": 182,
+      "tool_call": 700,
+      "tool_result": 700,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 591,
+      "chunks": [
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0004.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 928,
+      "chunks": [
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0004.json",
+          "message_count": 129
+        },
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0009.json",
+          "message_count": 79
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 83,
+      "chunks": [
+        {
+          "path": "d20f9d4dd7aebaa8a17f-part-0009.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-qwen3-steering-full-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7485ca477f44ce38c3ea",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra gpu cpu status check v2",
+  "task_key": "worker_infra_gpu-cpu-status-check-v2_20260522T153534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-cpu-status-check-v2_20260522T153534_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "0389c291c079503d424e8e4742d4f9ee702ad9ad675d0510c6a9e68aad505ff0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态报告 — westd-41302\n\n### GPU 状态 (4× RTX PRO 6000 Blackwell, 98GB each)\n\n| GPU | 显存 | 利用率 | 温度 | 功耗 | 状态 |\n|-----|------|--------|------|------|------|\n| cuda:0 | 3MiB / 98GB | 0% | 32°C | 34W | 空闲 |\n| cuda:1 | 3MiB / 98GB | 0% | 31°C | 33W | 空闲 |\n| cuda:2 | 18579MiB / 98GB | 12% | 39°C | 101W | **PID 493756 (python)** |\n| cuda:3 | 3MiB / 98GB | 0% | 32°C | 35W | 空闲 |\n\n### 进程状态\n\n| PID | 任务 | 运行时间 | 状态 |\n|-----|------|----------|------|\n| 493751 | Gemma L17 steering (cuda:2) | 56 min | ✅ 存活 |\n| 496671 | DE probe training (CPU) | 21 min | ✅ 存活 |\n| 476334 | Gemma probe n=2000 (CPU) | 4h 51m | ✅ 存活 |\n| 467708 | C3 MLP bootstrap Llama (CPU) | 7h 00m | ✅ 存活 |\n\n### 结果文件\n\n| 文件 | 状态 |\n|------|------|\n| `steering_results_gemma_L17.json` | ❌ 未生成（steering 仍在跑） |\n| `de_probe_results*.json` | ❌ 未生成（DE probe 仍在跑，激活文件 `de_activations.pt` 342MB 已就绪） |\n| `probe_results_bootstrap_n2000.json` (Gemma) | ❌ 未生成（已跑 4h51m，仍在进行） |\n\n### 磁盘\n\n根分区 **21G / 30G (68%)**，剩余 9.7G。\n\n### 小结\n\n4 个进程全部存活，3 个结果文件均未生成——都还在跑。cuda:0/1/3 空闲可用。根分区用了 68%，暂无压力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-cpu-status-check-v2.md"
+}

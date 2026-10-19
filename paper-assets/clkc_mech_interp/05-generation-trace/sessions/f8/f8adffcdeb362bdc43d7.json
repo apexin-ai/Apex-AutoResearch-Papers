@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8adffcdeb362bdc43d7",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code probe fix v3 and both probes",
+  "task_key": "worker_code_probe_fix_v3_and_both_probes_20260521T201354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe_fix_v3_and_both_probes_20260521T201354_result.json",
+    "occurrence": 1,
+    "bytes": 1517,
+    "sha256": "0b6dcd62b5e54e42caceb4b8dfbfc8a008789db3e61f5ff40a46f18e0c07fdfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 1. 代码修改验证\n\n3 处全部已使用 balanced_accuracy，验证通过：\n\n| 验证项 | 状态 |\n|--------|------|\n| run_direction 中 best layer 选择用 `bal_acc > best_bal_acc` | ✓ |\n| main() 中 `key=lambda r: r[\"balanced_accuracy\"]` | ✓ |\n| permutation test 用 `bal_acc >= observed_bal_acc` | ✓ |\n| 语法检查 SYNTAX OK | ✓ |\n\n## 2. Llama-3.1 探针结果 (32 layers)\n\n| 方向 | accuracy | balanced_acc | f1 | peak_layer | binomial_p | permutation_p |\n|------|----------|-------------|------|------------|------------|---------------|\n| EN→EN | 0.7757 | 0.7757 | 0.7814 | 28 | 0.0 | 0.0 |\n| ZH→ZH | 0.7206 | 0.7206 | 0.7121 | 13 | 0.0 | 0.0 |\n| EN→ZH | 0.5956 | 0.5956 | 0.5635 | 5 | 0.000966 | 0.001 |\n| ZH→EN | 0.7132 | 0.7132 | 0.7516 | 15 | 0.0 | 0.0 |\n\n## 3. Qwen-3 探针结果 (36 layers)\n\n| 方向 | accuracy | balanced_acc | f1 | peak_layer | binomial_p | permutation_p |\n|------|----------|-------------|------|------------|------------|---------------|\n| EN→EN | 0.7500 | 0.7500 | 0.7500 | 24 | 0.0 | 0.0 |\n| ZH→ZH | 0.7262 | 0.7262 | 0.7356 | 14 | 0.0 | 0.0 |\n| EN→ZH | 0.6726 | 0.6726 | 0.6893 | 23 | 5e-06 | 0.0 |\n| ZH→EN | 0.7321 | 0.7321 | 0.7097 | 18 | 0.0 | 0.0 |\n\n数据是类别平衡的，所以 accuracy == balanced_accuracy。所有方向的 permutation_p 都显著 (p ≤ 0.001)。Qwen 的跨语言迁移 (EN→ZH: 0.6726) 明显优于 Llama (EN→ZH: 0.5956)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-probe-fix-v3-and-both-probes.md"
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "9d6c3a326a82445a6546",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "audit ref verify A",
+  "task_key": "worker_audit_ref_verify_A_20260526T105254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref_verify_A_20260526T105254.log",
+    "occurrence": 1,
+    "bytes": 742985,
+    "sha256": "8297781fd66c8b86d40525d2ffe02c134a240d74257a3869661b53ee1ead837a"
+  },
+  "statistics": {
+    "messages": 408,
+    "user_turns": 4,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 124,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 133,
+      "tool_result": 133,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "9d6c3a326a82445a6546-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "9d6c3a326a82445a6546-part-0001.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "9d6c3a326a82445a6546-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "9d6c3a326a82445a6546-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 330,
+      "chunks": [
+        {
+          "path": "9d6c3a326a82445a6546-part-0001.json",
+          "message_count": 102
+        },
+        {
+          "path": "9d6c3a326a82445a6546-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d6c3a326a82445a6546-part-0003.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-ref-verify-a.md"
+}

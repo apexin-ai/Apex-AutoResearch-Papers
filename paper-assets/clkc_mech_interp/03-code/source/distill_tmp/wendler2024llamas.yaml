@@ -1,0 +1,78 @@
+paper_key: "wendler2024llamas"
+title: "Do Llamas Work in English? On the Latent Language of Multilingual Transformers"
+venue: "ACL 2024"
+full_text_available: true
+
+research:
+  baselines: []
+  metrics:
+    - {name: "Token Energy", direction: "higher_better"}
+    - {name: "Entropy", direction: "lower_better"}
+    - {name: "Language Probability", direction: "context_dependent"}
+  datasets:
+    - {name: "Translation task", size: "162-353 words per language pair"}
+    - {name: "Repetition task", size: "56-139 words per language"}
+    - {name: "Cloze task", size: "56-139 sentences per language"}
+  ablation_dimensions: [model_size, task_type, language_pair, layer_index]
+  training_recipe: {optimizer: "N/A (analysis study)", lr: "N/A", hardware: "Llama-2 7B/13B/70B"}
+  method_family: "logit lens / mechanistic interpretability"
+
+positioning:
+  core_claim: "Multilingual transformers trained on English-dominated corpora process non-English inputs through an intermediate concept space structurally closer to English — a semantic (not lexical) pivot"
+  key_results: "Three-phase processing: input space → concept space (English-biased, layers 41-70) → output space; consistent across 7B/13B/70B and all tasks"
+  limitations: ["Limited to Llama-2 family", "Tasks are simple and controlled (toy)", "Logit lens captures only output-relevant information", "High-dimensional structure unexplored"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Modern LLMs trained on English-dominated corpora perform well across languages — how does this generalization occur?"
+  tension: "The 'pivot language hypothesis' is colloquially assumed but technically hard to investigate — neural networks operate on opaque high-dimensional vectors"
+  key_insight: "Three-phase layer-wise processing: input space → concept space (closer to English) → output space — revealed via logit lens applied to controlled non-English prompts"
+  argument_chain: "question (how does cross-lingual generalization work?) → hypothesis (English pivot) → challenge (opaque vectors) → method (logit lens) → finding (three phases) → interpretation (semantic not lexical pivot)"
+  contribution_framing: "Empirical evidence for a long-hypothesized phenomenon; conceptual model with three named phases"
+  intro_structure: "5 paragraphs: (1) hook + question, (2) pivot hypothesis + prior assumptions, (3) significance (bias implications), (4) technical challenge, (5) method + contribution"
+  notable_technique: "Opening with a quote about Estonian translates the technical question into a memorable human anecdote"
+
+figures:
+  figure_count: 20
+  figure1:
+    type: "method_overview"
+    description: "Logit lens illustration: layer-by-layer probability distributions showing intermediate layers predict English 'flower' before final layer predicts Chinese '花'"
+    narrative_role: "Single image captures the entire paper's finding — English intermediate representation before target language"
+    design_elements: ["probability bars per layer", "English vs target language tokens highlighted", "layer progression left-to-right"]
+    visual_style: "Vertical layer stacks with probability distributions; color highlights for key tokens"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Language probability trajectories across layers for 3 model sizes × 3 tasks"
+      how_gain_highlighted: "English probability spike in middle layers visible across all conditions"
+      design_note: "4 panels with entropy heatmaps — information-dense but the pattern is unmistakable"
+    - figure_id: "Figure 3"
+      viz_type: "scatter"
+      what_compared: "2D MDS visualization of embedding trajectories across layers"
+      how_gain_highlighted: "Trajectories visibly pass through English cluster before reaching target"
+      design_note: "Spatial visualization makes the 'passing through English' metaphor literal"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["entropy", "token energy", "language probabilities across layers"]
+      design_note: "Comprehensive three-phase anatomy in one figure with conceptual 3D sphere model"
+  figure_narrative_role: "Figure 1 (teaser finding) → Figure 2 (systematic evidence) → Figure 3 (spatial visualization) → Figure 4 (phase anatomy) → Figures 5-20 (per-language replication)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Tables 1-4 (Appendix)"
+    row_axis: "language pairs"
+    col_axis: "dataset sizes (total vs single-token)"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "N/A (dataset statistics)"
+    statistical_reporting: "counts"
+    num_baselines: 0
+    design_note: "All tables are dataset statistics in appendix — main results conveyed entirely through figures"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Dataset statistics, per-language replication figures"
+    reason: "Main paper uses figures for all results — tables only for dataset description"

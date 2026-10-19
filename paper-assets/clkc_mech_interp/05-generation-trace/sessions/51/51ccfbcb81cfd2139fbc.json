@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51ccfbcb81cfd2139fbc",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp gemma xnli bootstrap restart",
+  "task_key": "worker_exp_gemma-xnli-bootstrap-restart_20260523T043727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-xnli-bootstrap-restart_20260523T043727_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "8362e061a1f25d33186dbd0459b1df530f3de68d1d7c18e4a1b98dd5d97b3b5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验注册完成。汇总报告：\n\n```\nGemma XNLI bootstrap n=2000:\n- PID: 549893\n- exp_id: gemma_xnli_bootstrap_115\n- Workers: 32 (OMP_NUM_THREADS=1)\n- 数据: EN 800/200, ZH 800/200, 42 layers x 3584 dim\n- 脚本: src/bootstrap_xnli_gemma_parallel.py\n- 日志: logs/gemma_xnli_bootstrap_n2000_parallel.log\n- 输出: data/xnli/gemma2/probe_results_bootstrap_n2000.json\n- 预估完成时间: 6-12 小时\n\nDE bootstrap 状态:\n- PID 538586: alive (43 min elapsed)\n- 仍在跑 EN->EN (第1/4方向), 64 workers\n\n系统 load: 950 (208 vCPU)\n```\n\n注意：系统 load average 极高（~950 vs 208 cores），主因是 DE bootstrap 64 workers 未设 `OMP_NUM_THREADS=1` 导致 BLAS 线程爆炸。Gemma bootstrap 已设置 `OMP_NUM_THREADS=1` 避免加剧。Dry run 临时文件已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-xnli-bootstrap-restart.md"
+}

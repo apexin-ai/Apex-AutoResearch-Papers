@@ -1,0 +1,16 @@
+{
+  "exp_id": "de_bootstrap_parallel_114",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:03:13.084Z",
+    "updated_at": "2026-05-23T04:03:25.520Z",
+    "hypothesis": "Llama-3.1-8B-Instruct EN↔DE 跨语言探针迁移 bootstrap n=2000（64 workers 并行）。4 方向：EN→EN, DE→DE, EN→DE, DE→EN。测试 Δ_asym = (DE→EN - EN→DE) 是否显著为正，与 ZH 的 +7pp 不对称性方向一致，验证 C2 跨语言属性 claim。parent=de_activations_112",
+    "parent": "de_activations_112"
+  },
+  "timestamp": "2026-05-23T04:03:25.591574+00:00",
+  "trigger": "update_registry"
+}

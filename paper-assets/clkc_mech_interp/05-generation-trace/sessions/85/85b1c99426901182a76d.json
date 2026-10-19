@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85b1c99426901182a76d",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis xnli mlp probe 110",
+  "task_key": "worker_analysis_xnli-mlp-probe-110_20260522T054629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_xnli-mlp-probe-110_20260522T054629_result.json",
+    "occurrence": 1,
+    "bytes": 208,
+    "sha256": "8e7173020ced863457d00ed35e73a73fbe31f671eb7c599bba76f5cd3ecfa2db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MLP probes relaunched with thread limits (OMP/MKL/OPENBLAS_NUM_THREADS=1) to avoid OOM. Both are progressing — Llama on EN→EN layer 6, Qwen on EN→EN layer 11. Checking back in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-xnli-mlp-probe-110.md"
+}

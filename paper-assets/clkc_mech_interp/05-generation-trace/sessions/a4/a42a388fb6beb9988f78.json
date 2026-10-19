@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a42a388fb6beb9988f78",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig2 spacing",
+  "task_key": "worker_code_fix-fig2-spacing_20260525T184844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig2-spacing_20260525T184844_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "46aeb750aa98e2833bbfbed7490e46228a0efa4727ddb1eeeaaf211af16c3082"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n- `\\includegraphics` 前加 `\\vspace{-5pt}`（减少图与页顶空白）\n- `\\caption` 前加 `\\vspace{-8pt}`（减少图与 caption 间空白）\n- `\\end{figure*}` 前加 `\\vspace{-10pt}`（减少 figure 与后续文本间距）\n\n编译成功，总页数仍为 12。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig2-spacing.md"
+}

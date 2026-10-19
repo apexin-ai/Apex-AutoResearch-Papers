@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "925cdbb03cc5cf17107f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra kill duplicate steering",
+  "task_key": "worker_infra_kill-duplicate-steering_20260522T085648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-duplicate-steering_20260522T085648_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "1295a80eae22ee017a2a4a977d3ae1eaec28eaa27bd59244cee5f1522b273025"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Kill 重复 steering 进程\n- **PID 470295**: 已 kill，确认死亡 ✓\n- **PID 468898**: 存活，运行 11min，CPU 68.8%，`steering_experiment.py` ✓\n- **GPU 0**: 只有 PID 468898 一个进程（16084 MiB），重复进程已清除 ✓\n\n### 2. COMET Llama (PID 59571, cuda:2)\n- **不是 COMET Llama**，实际是 `validate_translation.py`（用 Qwen3-8B）\n- **状态正常**：运行 9h41m，CPU 83.4%，GPU 2 利用率 16%、显存 16529 MiB\n- 输出文件 `zh_conflict_train_validated.jsonl` 尚未生成（可能写入完成时才落盘）\n- **未 kill**——进程活跃，不符合卡住判定条件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-duplicate-steering.md"
+}

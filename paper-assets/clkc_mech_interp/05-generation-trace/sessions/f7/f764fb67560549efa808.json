@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "f764fb67560549efa808",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "gpu gemma pipeline 102",
+  "task_key": "worker_gpu_gemma-pipeline-102_20260522T042134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_gemma-pipeline-102_20260522T042134.log",
+    "occurrence": 1,
+    "bytes": 756192,
+    "sha256": "4d2de4718e3dbe09a0b12338cd2e51c03e8a2d8a9014fbe2b239eb4b6eedd74e"
+  },
+  "statistics": {
+    "messages": 600,
+    "user_turns": 0,
+    "tool_calls": 255,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 255,
+      "tool_result": 255,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 600,
+      "chunks": [
+        {
+          "path": "f764fb67560549efa808-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f764fb67560549efa808-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f764fb67560549efa808-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f764fb67560549efa808-part-0004.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-gemma-pipeline-102.md"
+}

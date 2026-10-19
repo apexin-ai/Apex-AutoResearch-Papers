@@ -1,0 +1,59 @@
+{
+  "exp_id": "cross_task_bootstrap_119",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:27:46.635Z",
+    "updated_at": "2026-05-23T09:28:18.015Z",
+    "hypothesis": "Cross-task probe transfer bootstrap n=1000：为 cross_task_transfer_116 的单种子结果提供 95% CI。验证所有层的跨任务迁移准确率是否统计上显著高于 chance (0.5)。parent=cross_task_transfer_116",
+    "parent": "cross_task_transfer_116",
+    "conclusion": "success",
+    "metrics": {
+      "key_layers": {
+        "llama_L13_c2x": {
+          "mean": 0.9984,
+          "ci": [
+            0.9925,
+            1
+          ]
+        },
+        "llama_L13_x2c": {
+          "mean": 1,
+          "ci": [
+            1,
+            1
+          ]
+        },
+        "qwen_L23_c2x": {
+          "mean": 0.9647,
+          "ci": [
+            0.895,
+            0.995
+          ]
+        },
+        "gemma_L15_c2x": {
+          "mean": 0.9682,
+          "ci": [
+            0.93,
+            0.99
+          ]
+        },
+        "gemma_L21_c2x": {
+          "mean": 0.7303,
+          "ci": [
+            0.6525,
+            0.8275
+          ]
+        }
+      },
+      "all_ci_above_chance": true,
+      "weakest": "Gemma L21 C→X: 0.73 [0.65, 0.83]",
+      "runtime_min": 86
+    }
+  },
+  "timestamp": "2026-05-23T09:28:18.104025+00:00",
+  "trigger": "update_registry"
+}

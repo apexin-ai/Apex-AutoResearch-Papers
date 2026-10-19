@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70424e40cb721445dfb3",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra llama en activations v2",
+  "task_key": "worker_infra_llama_en_activations_v2_20260521T163247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llama_en_activations_v2_20260521T163247_result.json",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "9ed97034e811580f589feef19b410283e2c28a4342c79c815bda7f3801f433bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **1368/1368 samples** 全部处理\n- 输出文件：`data/llama31/en_activations.pt`，shape = `[1368, 32, 4096]`（1368 样本 × 32 层 × 4096 维）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llama-en-activations-v2.md"
+}

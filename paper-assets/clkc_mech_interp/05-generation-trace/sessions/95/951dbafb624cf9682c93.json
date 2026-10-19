@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "951dbafb624cf9682c93",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra collect llama seed results",
+  "task_key": "worker_infra_collect_llama_seed_results_20260521T220651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_collect_llama_seed_results_20260521T220651_result.json",
+    "occurrence": 1,
+    "bytes": 205,
+    "sha256": "b3b13cbe8b582f98a21ffd88bbe47cfb85b65bf85258cd262033305d138de587"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- Seed 0-2 已完成，seed 3 正在跑 permutation test（ZH→EN 方向）\n- `probe_results.json` 尚未生成（脚本全部跑完才写入）\n- 2 分钟后自动检查"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-collect-llama-seed-results.md"
+}

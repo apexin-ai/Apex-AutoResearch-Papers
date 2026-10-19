@@ -1,0 +1,58 @@
+{
+  "exp_id": "steering_107_L13",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:32:16.358Z",
+    "updated_at": "2026-05-22T13:30:23.835Z",
+    "spec": {
+      "command": "steering_experiment.py --peak_layer 13 --position last --output_suffix _L13_last",
+      "server": "westd-41302",
+      "gpu": "cuda:1",
+      "model_name": "Llama-3.1-8B-Instruct",
+      "data_path": "data/llama31",
+      "data_count": 136,
+      "seed": 42,
+      "pid": 479381,
+      "checkpoint_path": "data/llama31/steering_results/steering_results_L13_last.json",
+      "log_path": "logs/steering_llama_L13_last.log"
+    },
+    "hypothesis": "Steering v1 在 L28(最后层)失败。L13(mid-layer)可能包含更强的跨语言共享冲突信号方向,因为 mid-layer 是跨语言对齐发生的典型位置(Conneau et al. 2020),steering 在此层更可能产生因果效应。parent=steering_107",
+    "parent": "steering_107",
+    "reproduce": {
+      "finished_at": "2026-05-22T13:28:11.731Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T13:28:12.183Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T13:28:17.138571+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "probe_accuracy": 0.761,
+      "best_fisher_p": 0.0009,
+      "best_alpha": -20,
+      "second_best_p": 0.002,
+      "second_best_alpha": 5,
+      "significant_alphas": [
+        -20,
+        5
+      ],
+      "direction_clean": true,
+      "neg_alpha_c2p": 5,
+      "pos_alpha_p2c": 4,
+      "alpha_20_degradation": true
+    }
+  },
+  "timestamp": "2026-05-22T13:30:23.896812+00:00",
+  "trigger": "update_registry"
+}

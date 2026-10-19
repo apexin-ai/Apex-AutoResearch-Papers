@@ -1,0 +1,28 @@
+{
+  "exp_id": "steering_llama_L18_128",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T01:00:59.605Z",
+    "updated_at": "2026-05-24T01:36:29.111Z",
+    "hypothesis": "Llama-3.1-8B L18 (56% depth) steering 同条件复现：原始 L18 (N=136, probe acc 77%) 为 negative (p=0.45)。L16 从 negative 翻转为 success (p=0.005) 证明 probe quality confound。用同条件高质量 probe (N=201, acc ~91%) 重跑 L18，确认 causal window 上界是否延伸到 L18。",
+    "parent": "steering_107_L13",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_dir data/llama31 --peak_layer 18 --alphas -20 -10 -5 5 10 20 --position last --output_suffix _L18_last",
+      "server": "westd-14391",
+      "data_path": "/root/clkc_mech_interp/data/llama31/",
+      "data_count": 201,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "checkpoint_source": "steering_107_L13",
+      "eval_data": "ConflictQA popQA-chatgpt 201 conflict test samples"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-24T01:36:29.213613+00:00",
+  "trigger": "update_registry"
+}

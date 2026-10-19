@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "833d0295ab96382479dc",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra gemma download 102",
+  "task_key": "worker_infra_gemma-download-102_20260522T011341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gemma-download-102_20260522T011341_result.json",
+    "occurrence": 1,
+    "bytes": 190,
+    "sha256": "01b36a02b7ec7dfe7cf69441379fd5bbe3b738d7183ad1d26397bbc32982497f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载已在后台运行（PID 66254，ModelScope 源，4 个 shard 并行下载）。速度约 4-5 MB/s/shard，预计 15-20 分钟完成。4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gemma-download-102.md"
+}

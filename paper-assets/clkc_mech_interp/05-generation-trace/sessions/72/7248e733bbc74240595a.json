@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7248e733bbc74240595a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra gpu cpu status check",
+  "task_key": "worker_infra_gpu-cpu-status-check_20260522T133230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-cpu-status-check_20260522T133230_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "0dbfd4ec231af5ec87e3c6e175919c4f600a771d6f8921f68b54e14e7ae11316"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU Status:\n- cuda:0: 占用 16.4/97.9 GB | Qwen Steering L23 (PID 485325, 33min) — alpha=-5 进行中\n- cuda:1: 占用 14.9/97.9 GB | Llama DE activations (PID 488140, ~1min) — 模型加载中\n- cuda:2: 空闲 (3 MiB)\n- cuda:3: 空闲 (3 MiB)\n\nCPU Tasks:\n- Gemma probe n=2000: 运行中 (PID 476334, 2h48m) — 1736/2000，输出文件尚未生成\n- C3 MLP bootstrap Llama: 运行中 (PID 467708, 4h58m) — condition 2/6 (L5), 150/1000。condition 1 (L18) 已完成: delta=+0.0521 [-0.0221,+0.1287] excludes_zero=False\n- Bootstrap n=2000 Llama: 输出文件不存在，无活跃进程（可能未启动或已合并到 Gemma 进程）\n- Bootstrap n=2000 Qwen: 已完成，输出文件 22KB (May 22 21:08)\n- Layer-wise extraction: 无活跃进程\n\nDisk:\n- /root: 24G/30G (79%) ⚠️ 偏高\n- /root/autodl-tmp: 43G/250G (18%)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-cpu-status-check.md"
+}

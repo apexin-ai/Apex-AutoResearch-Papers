@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_llama_L13_repl_126",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:04:17.974Z",
+    "updated_at": "2026-05-23T23:04:39.043Z",
+    "hypothesis": "Llama-3.1-8B L13 steering 复现：在 westd-14391 上用新采样的 ConflictQA 数据（N=201）复现原始 L13 steering 结果（原 p=0.0009 on westd-41302, N=136）。验证结果对数据采样的鲁棒性。",
+    "parent": "steering_107_L13"
+  },
+  "timestamp": "2026-05-23T23:04:39.137674+00:00",
+  "trigger": "update_registry"
+}

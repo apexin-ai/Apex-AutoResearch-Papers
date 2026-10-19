@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ebac5afbbed839e9e3",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp gemma steering continue",
+  "task_key": "worker_exp_gemma-steering-continue_20260524T074929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-steering-continue_20260524T074929_result.json",
+    "occurrence": 1,
+    "bytes": 104,
+    "sha256": "33107daa0c6115fcbc8db90ab990ad48274e651b8d61ab71eaaa6bced43875bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前的定时检查已过期（数据准备早已完成）。等待 L17 实验结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-steering-continue.md"
+}

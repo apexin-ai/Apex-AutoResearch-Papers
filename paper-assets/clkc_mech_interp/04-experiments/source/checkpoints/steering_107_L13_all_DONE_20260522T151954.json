@@ -1,0 +1,105 @@
+{
+  "exp_id": "steering_107_L13_all",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:19:16.120Z",
+    "updated_at": "2026-05-22T15:19:54.389Z",
+    "hypothesis": "L13 last-token steering 显著 (p<0.001)。如果 all-position steering（对所有 token 位置施加干预）产生更强或不同模式的因果效应，则说明冲突信号分布在多个 token 位置；如果结果一致，则说明因果信号集中在 last token。parent=steering_107_L13",
+    "parent": "steering_107_L13",
+    "spec": {
+      "command": "steering_experiment.py --peak_layer 13 --position all --alphas -20 -10 -5 5 10 20 --output_suffix _L13_all",
+      "server": "westd-41302",
+      "gpu": "cuda:3",
+      "model_name": "Llama-3.1-8B-Instruct",
+      "data_path": "data/llama31",
+      "data_count": 136,
+      "seed": 42,
+      "pid": 494291,
+      "checkpoint_path": "data/llama31/steering_results/steering_results_L13_all.json",
+      "log_path": "logs/steering_llama_L13_all.log",
+      "checkpoint_source": "data/llama31/probes/linear_probe_results.pt",
+      "eval_data": "data/llama31/en_conflict_test.jsonl"
+    },
+    "metrics": {
+      "probe_accuracy": 0.761,
+      "n_samples": 136,
+      "layer": 13,
+      "position": "all",
+      "baseline": {
+        "parametric": 32,
+        "contextual": 41,
+        "both": 35,
+        "neither": 28
+      },
+      "alpha_neg20": {
+        "steering_flips": 49,
+        "control_flips": 24,
+        "steering_flip_rate": 0.3603,
+        "control_flip_rate": 0.1765,
+        "p2c": 1,
+        "c2p": 5,
+        "fisher_p": 0.000948
+      },
+      "alpha_neg10": {
+        "steering_flips": 31,
+        "control_flips": 25,
+        "steering_flip_rate": 0.2279,
+        "control_flip_rate": 0.1838,
+        "p2c": 2,
+        "c2p": 1,
+        "fisher_p": 0.453592
+      },
+      "alpha_neg5": {
+        "steering_flips": 22,
+        "control_flips": 17,
+        "steering_flip_rate": 0.1618,
+        "control_flip_rate": 0.125,
+        "p2c": 2,
+        "c2p": 1,
+        "fisher_p": 0.489298
+      },
+      "alpha_5": {
+        "steering_flips": 27,
+        "control_flips": 9,
+        "steering_flip_rate": 0.1985,
+        "control_flip_rate": 0.0662,
+        "p2c": 4,
+        "c2p": 0,
+        "fisher_p": 0.002005
+      },
+      "alpha_10": {
+        "steering_flips": 31,
+        "control_flips": 20,
+        "steering_flip_rate": 0.2279,
+        "control_flip_rate": 0.1471,
+        "p2c": 2,
+        "c2p": 0,
+        "fisher_p": 0.119745
+      },
+      "alpha_20": {
+        "steering_flips": 28,
+        "control_flips": 43,
+        "steering_flip_rate": 0.2059,
+        "control_flip_rate": 0.3162,
+        "p2c": 2,
+        "c2p": 2,
+        "fisher_p": 0.052826
+      },
+      "significant_alphas": [
+        -20,
+        5
+      ],
+      "bidirectional_confirmed": true,
+      "identical_to_last_token": true
+    },
+    "conclusion": "success",
+    "notes": "All-position steering at L13 produces IDENTICAL results to last-token steering (same flip counts, same Fisher p-values for every alpha). This means: (1) the causal signal is entirely concentrated at the last token position, (2) steering non-last tokens has zero additional effect. This is informative — it rules out distributed encoding of the conflict signal across token positions at L13. The causal mechanism operates through the last token's residual stream.",
+    "completed_at": "2026-05-22T15:19:54.389Z"
+  },
+  "timestamp": "2026-05-22T15:19:54.453450+00:00",
+  "trigger": "update_registry"
+}

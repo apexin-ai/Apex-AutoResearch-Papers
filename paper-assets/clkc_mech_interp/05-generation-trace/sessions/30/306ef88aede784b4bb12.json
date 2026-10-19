@@ -1,0 +1,1673 @@
+{
+  "schema_version": "1.0",
+  "id": "306ef88aede784b4bb12",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260522T152514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260522T152514.log",
+    "occurrence": 1,
+    "bytes": 123429,
+    "sha256": "a4dc75aefb27c2326b021cdc846f34b33c468b34ea55b354360f119dcc9113e5"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+                "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_figures_and_layout",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5dd230d3-4b73-4b70-9223-5b763083df65",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779475200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "155475fd-0030-4d21-b0b7-ecb96b6967cf",
+                "session_id": "81ce5248-2417-456a-8b87-124f873b4f74"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the required materials, then write the Related Work section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "3d07f2b5-40a7-4ed3-a6fd-4a1a9dd36b4c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SeQvJeaPaz7uBfTCsoWs2c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13112,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13112
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CzjK3PSthHXZ6PP3jQbY9H",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "486c50ab-8370-4af7-96f7-748c3032c1e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SeQvJeaPaz7uBfTCsoWs2c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13112,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13112
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T15:25:30.847Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CzjK3PSthHXZ6PP3jQbY9H",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "02dcfb99-8387-4a14-9063-a25db45c3ca2",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K26PrrakHvufqVrXdTdq8g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "7447f8bf-72af-4bd6-b0af-0244488b031e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SeQvJeaPaz7uBfTCsoWs2c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13112,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13112
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T15:25:31.657Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K26PrrakHvufqVrXdTdq8g",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, the language of presentation can determine which answer the model produces.\n5\t\\citet{zhao2026when} showed that linguistic affinity dominates conflict resolution in entity-centric factual conflicts, with models preferring answers from linguistically closer sources.\n6\tYet the internal mechanism behind this behavior remains opaque: how does the model encode the conflict signal?\n7\tCan it be detected from internal representations?\n8\tAnd if detectable, does the detected signal causally influence the model's resolution strategy?\n9\tThese questions sit at the intersection of mechanistic interpretability and multilingual NLP, and answering them requires moving beyond behavioral observations to probe model internals directly.\n10\t\n11\tExisting work on probing knowledge conflict signals has been limited to monolingual settings.\n12\t\\citet{zhao2024analysing} showed that residual stream representations carry linearly detectable conflict signals in English, and \\citet{boer2026probing} performed knowledge attribution probing to localize factual associations within model parameters.\n13\tExtending these approaches cross-lingually introduces additional challenges.\n14\tTranslation quality may confound probe transfer: a poor translation could alter conflict detection for reasons unrelated to the conflict signal itself.\n15\tToken overlap between languages, even when minimal, could provide a shortcut for cross-lingual probes.\n16\tObserved asymmetries in transfer accuracy may reflect general cross-lingual properties rather than conflict-specific phenomena, and disentangling these sources requires careful baseline comparisons.\n17\tBeyond detectability, a fundamental limitation of probing is that it establishes correlation, not causation \\citep{hewitt2019designing}.\n18\t\\citet{basu2026interpretability} demonstrated that even near-perfect probe accuracy does not guarantee that the detected direction can steer model behavior.\n19\t\n20\tWe address these questions through a pipeline (Figure~\\ref{fig:pipeline}) that combines residual stream probing with representation steering across two models of distinct architectures: Llama-3.1-8B-Instruct and Qwen3-8B.\n21\tProbes achieve 77.1\\% and 75.3\\% balanced accuracy on English within-language conflict detection, respectively, and all cross-lingual transfer directions exceed chance (binomial $p < 0.001$).\n22\tCross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English approximately 7 percentage points (pp) more accurately than the reverse in both models.\n23\tThis asymmetry, however, is not conflict-specific.\n24\tXNLI entailment-versus-contradiction probes \\citep{conneau2018xnli} show the same directional pattern at comparable magnitude (+6.0 and +6.7 pp), with substantially overlapping confidence intervals.\n25\tThe conflict asymmetry thus inherits from a general property of English-dominant models, where Chinese representations project more readily onto English representational space than the reverse.\n26\tOur causal analysis reveals a dissociation between detection and decision: the probe signal peaks at late layers (L28, 88\\% depth), but representation steering succeeds only at a mid-layer (L13, 41\\% depth; Fisher $p = 0.002$), with all late-layer interventions producing no significant behavioral change.\n27\tTo ensure these findings are robust, we apply a confound exclusion pipeline that includes COMET-based translation quality stratification, token overlap analysis, and non-conflict baseline comparison.\n28\t\n29\tThese results carry two methodological implications.\n30\tThe layer dissociation between probing peak and causal influence demonstrates that the layer with highest probe accuracy is not necessarily where the model resolves the conflict.\n31\tThis challenges the common practice of intervening at the probing peak layer, consistent with the warning from \\citet{basu2026interpretability} that detectability and causal relevance can diverge.\n32\tThe directional asymmetry in cross-lingual transfer reflects a structural property of English-dominant multilingual models, not a conflict-specific phenomenon.\n33\tAny cross-lingual probing study must account for this baseline asymmetry to correctly interpret transfer differences.\n34\t\n35\tOur contributions are as follows:\n36\t\\begin{itemize}\n37\t    \\item \\textbf{Cross-lingual conflict detectability and asymmetry characterization.} We provide the first evidence that knowledge conflict signals are linearly detectable across languages in residual stream representations. The transfer asymmetry (ZH$\\to$EN $>$ EN$\\to$ZH by ${\\sim}$7 pp) matches the XNLI non-conflict baseline in both magnitude and direction, establishing that it reflects the model's general cross-lingual structure rather than conflict-specific encoding.\n38\t    \\item \\textbf{Detection-decision layer dissociation.} Representation steering at the mid-layer (L13, 41\\% depth) causally shifts conflict resolution (Fisher $p = 0.002$), while steering at the late-layer probing peak (L28, 88\\% depth) produces no significant effect. This dissociation shows that linear detectability does not imply causal relevance, and that conflict resolution occurs upstream of where the outcome becomes linearly readable.\n39\t    \\item \\textbf{Confound exclusion pipeline for cross-lingual probing.} We design and validate a systematic pipeline of COMET translation quality ablation, token overlap analysis, and non-conflict task baseline comparison that excludes common confounds in cross-lingual probing studies.\n40\t\\end{itemize}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "02d8ad7e-ea13-43f5-aad4-566b1463dae1",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nWhen multilingual large language models (LLMs) encounter conflicting information across languages, the language of presentation can determine which answer the model produces.\n\\citet{zhao2026when} showed that linguistic affinity dominates conflict resolution in entity-centric factual conflicts, with models preferring answers from linguistically closer sources.\nYet the internal mechanism behind this behavior remains opaque: how does the model encode the conflict signal?\nCan it be detected from internal representations?\nAnd if detectable, does the detected signal causally influence the model's resolution strategy?\nThese questions sit at the intersection of mechanistic interpretability and multilingual NLP, and answering them requires moving beyond behavioral observations to probe model internals directly.\n\nExisting work on probing knowledge conflict signals has been limited to monolingual settings.\n\\citet{zhao2024analysing} showed that residual stream representations carry linearly detectable conflict signals in English, and \\citet{boer2026probing} performed knowledge attribution probing to localize factual associations within model parameters.\nExtending these approaches cross-lingually introduces additional challenges.\nTranslation quality may confound probe transfer: a poor translation could alter conflict detection for reasons unrelated to the conflict signal itself.\nToken overlap between languages, even when minimal, could provide a shortcut for cross-lingual probes.\nObserved asymmetries in transfer accuracy may reflect general cross-lingual properties rather than conflict-specific phenomena, and disentangling these sources requires careful baseline comparisons.\nBeyond detectability, a fundamental limitation of probing is that it establishes correlation, not causation \\citep{hewitt2019designing}.\n\\citet{basu2026interpretability} demonstrated that even near-perfect probe accuracy does not guarantee that the detected direction can steer model behavior.\n\nWe address these questions through a pipeline (Figure~\\ref{fig:pipeline}) that combines residual stream probing with representation steering across two models of distinct architectures: Llama-3.1-8B-Instruct and Qwen3-8B.\nProbes achieve 77.1\\% and 75.3\\% balanced accuracy on English within-language conflict detection, respectively, and all cross-lingual transfer directions exceed chance (binomial $p < 0.001$).\nCross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English approximately 7 percentage points (pp) more accurately than the reverse in both models.\nThis asymmetry, however, is not conflict-specific.\nXNLI entailment-versus-contradiction probes \\citep{conneau2018xnli} show the same directional pattern at comparable magnitude (+6.0 and +6.7 pp), with substantially overlapping confidence intervals.\nThe conflict asymmetry thus inherits from a general property of English-dominant models, where Chinese representations project more readily onto English representational space than the reverse.\nOur causal analysis reveals a dissociation between detection and decision: the probe signal peaks at late layers (L28, 88\\% depth), but representation steering succeeds only at a mid-layer (L13, 41\\% depth; Fisher $p = 0.002$), with all late-layer interventions producing no significant behavioral change.\nTo ensure these findings are robust, we apply a confound exclusion pipeline that includes COMET-based translation quality stratification, token overlap analysis, and non-conflict baseline comparison.\n\nThese results carry two methodological implications.\nThe layer dissociation between probing peak and causal influence demonstrates that the layer with highest probe accuracy is not necessarily where the model resolves the conflict.\nThis challenges the common practice of intervening at the probing peak layer, consistent with the warning from \\citet{basu2026interpretability} that detectability and causal relevance can diverge.\nThe directional asymmetry in cross-lingual transfer reflects a structural property of English-dominant multilingual models, not a conflict-specific phenomenon.\nAny cross-lingual probing study must account for this baseline asymmetry to correctly interpret transfer differences.\n\nOur contributions are as follows:\n\\begin{itemize}\n    \\item \\textbf{Cross-lingual conflict detectability and asymmetry characterization.} We provide the first evidence that knowledge conflict signals are linearly detectable across languages in residual stream representations. The transfer asymmetry (ZH$\\to$EN $>$ EN$\\to$ZH by ${\\sim}$7 pp) matches the XNLI non-conflict baseline in both magnitude and direction, establishing that it reflects the model's general cross-lingual structure rather than conflict-specific encoding.\n    \\item \\textbf{Detection-decision layer dissociation.} Representation steering at the mid-layer (L13, 41\\% depth) causally shifts conflict resolution (Fisher $p = 0.002$), while steering at the late-layer probing peak (L28, 88\\% depth) produces no significant effect. This dissociation shows that linear detectability does not imply causal relevance, and that conflict resolution occurs upstream of where the outcome becomes linearly readable.\n    \\item \\textbf{Confound exclusion pipeline for cross-lingual probing.} We design and validate a systematic pipeline of COMET translation quality ablation, token overlap analysis, and non-conflict task baseline comparison that excludes common confounds in cross-lingual probing studies.\n\\end{itemize}",
+                "numLines": 40,
+                "startLine": 1,
+                "totalLines": 40
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a good understanding of the paper's positioning from the Introduction and the writing norms. Let me also check if there's a bibliography file to ensure I use the correct citation keys.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "ba45cbcb-4b3f-4883-aa6d-bfde5a95dda2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018gs2Unz3iS68JsG61Gmiv6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7016,
+                "cache_read_input_tokens": 24953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7016
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the bibliography file for the correct citation keys."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "4706097b-62a0-4d98-ad1e-e44b5d4dada0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018gs2Unz3iS68JsG61Gmiv6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7016,
+                "cache_read_input_tokens": 24953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7016
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013GHoHPgXsp4hddiPr3uoZ5",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/**/*.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "0eb110bd-32ab-4a9a-9c9c-a5dfe2db74ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018gs2Unz3iS68JsG61Gmiv6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7016,
+                "cache_read_input_tokens": 24953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7016
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T15:25:37.505Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013GHoHPgXsp4hddiPr3uoZ5",
+              "type": "tool_result",
+              "content": "docs/paper/custom.bib\ndocs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "f900c405-57e5-41d8-ab53-313991e5e875",
+            "tool_use_result": {
+              "filenames": [
+                "docs/paper/custom.bib",
+                "docs/paper/references.bib"
+              ],
+              "durationMs": 9,
+              "numFiles": 2,
+              "truncated": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BbAKfVTX8mQXY7ZYkeXhNR",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/ 2>/dev/null",
+                "description": "Check existing sections directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "21907dfc-558b-4ed7-ad59-813db9bca755",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018gs2Unz3iS68JsG61Gmiv6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7016,
+                "cache_read_input_tokens": 24953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7016
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T15:25:38.239Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BbAKfVTX8mQXY7ZYkeXhNR",
+              "type": "tool_result",
+              "content": "experiments.tex\nintroduction.tex\nmethod.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "19101d71-a797-4bda-b91e-b0b0d634fc38",
+            "tool_use_result": {
+              "stdout": "experiments.tex\nintroduction.tex\nmethod.tex",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W4cT6NVywRDKMDFfsnZeXd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "9b90ee54-2f59-4a2d-bac8-d842ae21729f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014w5TUvt8UgNEoaYtb8HZZo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 333,
+                "cache_read_input_tokens": 31969,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 333
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T15:25:41.417Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W4cT6NVywRDKMDFfsnZeXd",
+              "type": "tool_result",
+              "content": "1\t% References for Cross-Lingual Knowledge Conflict paper\n2\t% Auto-generated from literature_map.yaml\n3\t\n4\t@article{basu2026interpretability,\n5\t  author    = {Basu, S. and others},\n6\t  title     = {Interpretability without Actionability: Mechanistic Methods Cannot Correct Language Model Errors Despite Near-Perfect Internal Representations},\n7\t  journal   = {arXiv preprint arXiv:2603.18353},\n8\t  year      = {2026},\n9\t  url       = {https://arxiv.org/abs/2603.18353}\n10\t}\n11\t\n12\t@article{boer2026probing,\n13\t  author    = {Boer, A. and Brink, I. and Ulmer, D.},\n14\t  title     = {Probing for Knowledge Attribution in Large Language Models},\n15\t  journal   = {arXiv preprint arXiv:2602.22787},\n16\t  year      = {2026},\n17\t  url       = {https://arxiv.org/abs/2602.22787}\n18\t}\n19\t\n20\t@inproceedings{ifergan2024beneath,\n21\t  author    = {Ifergan, M. and Choshen, L. and Aharoni, R. and Szpektor, I. and Abend, O.},\n22\t  title     = {Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in {LLMs}},\n23\t  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},\n24\t  year      = {2024},\n25\t  url       = {https://arxiv.org/abs/2408.10646}\n26\t}\n27\t\n28\t@article{kialy2026universal,\n29\t  author    = {Kialy, U.Z. and Shtarkberg, A. and Klein, A.},\n30\t  title     = {A Universal Vibe? Finding and Controlling Language-Agnostic Informal Register with {SAEs}},\n31\t  journal   = {arXiv preprint arXiv:2603.26236},\n32\t  year      = {2026},\n33\t  url       = {https://arxiv.org/abs/2603.26236}\n34\t}\n35\t\n36\t@inproceedings{li2025taming,\n37\t  author    = {Li, G. and Chen, Y. and Tong, H.},\n38\t  title     = {Taming Knowledge Conflicts in Language Models},\n39\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n40\t  year      = {2025},\n41\t  url       = {https://arxiv.org/abs/2503.10996}\n42\t}\n43\t\n44\t@article{pham2026where,\n45\t  author    = {Pham, M.V. and Borkakoty, H. and Hou, Y.},\n46\t  title     = {Where Knowledge Collides: A Mechanistic Study of Intra-Memory Knowledge Conflict in Language Models},\n47\t  journal   = {arXiv preprint arXiv:2601.09445},\n48\t  year      = {2026},\n49\t  url       = {https://arxiv.org/abs/2601.09445}\n50\t}\n51\t\n52\t@article{team2026qwen,\n53\t  author    = {{Qwen Team}},\n54\t  title     = {Qwen-Scope: Turning Sparse Features into Development Tools for Large Language Models},\n55\t  journal   = {arXiv preprint arXiv:2605.11887},\n56\t  year      = {2026},\n57\t  url       = {https://arxiv.org/abs/2605.11887}\n58\t}\n59\t\n60\t@inproceedings{wang2025lost,\n61\t  author    = {Wang, M. and Adel, H. and Lange, L. and others},\n62\t  title     = {Lost in Multilinguality: Dissecting Cross-lingual Factual Inconsistency in Transformer Language Models},\n63\t  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n64\t  year      = {2025},\n65\t  url       = {https://arxiv.org/abs/2504.04264}\n66\t}\n67\t\n68\t@article{wong2026langfir,\n69\t  author    = {Wong, S.H. and Siddique, A.B. and Sajjad, H.},\n70\t  title     = {{LangFIR}: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering},\n71\t  journal   = {arXiv preprint arXiv:2604.03532},\n72\t  year      = {2026},\n73\t  url       = {https://arxiv.org/abs/2604.03532}\n74\t}\n75\t\n76\t@inproceedings{xie2024adaptive,\n77\t  author    = {Xie, J. and Zhang, K. and Chen, J. and Lou, R. and Su, Y.},\n78\t  title     = {Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts},\n79\t  booktitle = {Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n80\t  year      = {2024},\n81\t  url       = {https://arxiv.org/abs/2305.13300}\n82\t}\n83\t\n84\t@article{xing2024evaluating,\n85\t  author    = {Xing, X. and He, Z. and Xu, H. and Wang, X. and Wang, R. and Hong, Y.},\n86\t  title     = {Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models},\n87\t  journal   = {arXiv preprint arXiv:2407.01358},\n88\t  year      = {2024},\n89\t  url       = {https://arxiv.org/abs/2407.01358}\n90\t}\n91\t\n92\t@inproceedings{xu2024knowledge,\n93\t  author    = {Xu, R. and Qi, Z. and Guo, Z. and Wang, C. and Wang, H. and Zhang, Y. and Xu, W.},\n94\t  title     = {Knowledge Conflicts for {LLMs}: A Survey},\n95\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n96\t  year      = {2024},\n97\t  url       = {https://arxiv.org/abs/2403.08319}\n98\t}\n99\t\n100\t@inproceedings{zhao2024analysing,\n101\t  author    = {Zhao, Y. and Du, X. and Hong, G. and others},\n102\t  title     = {Analysing the Residual Stream of Language Models Under Knowledge Conflicts},\n103\t  booktitle = {NeurIPS 2024 Workshop on Foundation Model Interventions},\n104\t  year      = {2024},\n105\t  url       = {https://arxiv.org/abs/2410.16090}\n106\t}\n107\t\n108\t@inproceedings{zhao2025steering,\n109\t  author    = {Zhao, Y. and Devoto, A. and Hong, G. and others},\n110\t  title     = {Steering Knowledge Selection Behaviours in {LLMs} via {SAE}-Based Representation Engineering},\n111\t  booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n112\t  year      = {2025},\n113\t  url       = {https://arxiv.org/abs/2410.15999}\n114\t}\n115\t\n116\t@article{zhao2026when,\n117\t  author    = {Zhao, J. and others},\n118\t  title     = {When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models},\n119\t  journal   = {arXiv preprint arXiv:2601.07041},\n120\t  year      = {2026},\n121\t  url       = {https://arxiv.org/abs/2601.07041}\n122\t}\n123\t\n124\t@inproceedings{wu2020emerging,\n125\t  author    = {Wu, S. and Conneau, A. and Li, H. and Zettlemoyer, L. and Stoyanov, V.},\n126\t  title     = {Emerging Cross-lingual Structure in Pretrained Language Models},\n127\t  booktitle = {Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL)},\n128\t  year      = {2020},\n129\t  url       = {https://aclanthology.org/2020.acl-main.536/},\n130\t  doi       = {10.18653/v1/2020.acl-main.536}\n131\t}\n132\t\n133\t@inproceedings{wendler2024llamas,\n134\t  author    = {Wendler, C. and Veselovsky, V. and Monea, G. and West, R.},\n135\t  title     = {Do Llamas Work in {English}? On the Latent Language of Multilingual Transformers},\n136\t  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},\n137\t  year      = {2024},\n138\t  url       = {https://arxiv.org/abs/2402.10588}\n139\t}\n140\t\n141\t@inproceedings{muller2021first,\n142\t  author    = {Muller, B. and Elazar, Y. and Sagot, B. and Seddah, D.},\n143\t  title     = {First Align, then Predict: Understanding the Cross-Lingual Ability of Multilingual {BERT}},\n144\t  booktitle = {Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics (EACL)},\n145\t  year      = {2021},\n146\t  url       = {https://aclanthology.org/2021.eacl-main.189/}\n147\t}\n148\t\n149\t@inproceedings{kargaran2024mexa,\n150\t  author    = {Kargaran, A.H. and Modarressi, A. and Nikeghbal, N. and Diesner, J. and Yvon, F. and Sch{\\\"u}tze, H.},\n151\t  title     = {{MEXA}: Multilingual Evaluation of {English}-Centric {LLMs} via Cross-Lingual Alignment},\n152\t  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n153\t  year      = {2024},\n154\t  url       = {https://arxiv.org/abs/2410.05873}\n155\t}\n156\t\n157\t@article{belinkov2022probing,\n158\t  author    = {Belinkov, Y.},\n159\t  title     = {Probing Classifiers: Promises, Shortcomings, and Advances},\n160\t  journal   = {Computational Linguistics},\n161\t  volume    = {48},\n162\t  number    = {1},\n163\t  year      = {2022},\n164\t  url       = {https://arxiv.org/abs/2102.12452}\n165\t}\n166\t\n167\t@inproceedings{hewitt2019designing,\n168\t  author    = {Hewitt, J. and Liang, P.},\n169\t  title     = {Designing and Interpreting Probes with Control Tasks},\n170\t  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n171\t  year      = {2019},\n172\t  url       = {https://aclanthology.org/D19-1275/}\n173\t}\n174\t\n175\t@article{ulmer2022deep,\n176\t  author    = {Ulmer, D. and Hardmeier, C. and Frellsen, J.},\n177\t  title     = {deep-significance: Easy and Meaningful Statistical Significance Testing in the Age of Neural Networks},\n178\t  journal   = {arXiv preprint arXiv:2204.06815},\n179\t  year      = {2022},\n180\t  url       = {https://arxiv.org/abs/2204.06815}\n181\t}\n182\t\n183\t@inproceedings{li2023iti,\n184\t  author    = {Li, K. and Patel, O. and Vi{\\'e}gas, F. and Pfister, H. and Wattenberg, M.},\n185\t  title     = {Inference-Time Intervention: Eliciting Truthful Answers from a Language Model},\n186\t  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},\n187\t  year      = {2023},\n188\t  url       = {https://arxiv.org/abs/2306.03341}\n189\t}\n190\t\n191\t@article{zou2023representation,\n192\t  author    = {Zou, A. and Phan, L. and Chen, S. and Campbell, J. and Guo, P. and Ren, R. and Pan, A. and others},\n193\t  title     = {Representation Engineering: A Top-Down Approach to {AI} Transparency},\n194\t  journal   = {arXiv preprint arXiv:2310.01405},\n195\t  year      = {2023},\n196\t  url       = {https://arxiv.org/abs/2310.01405}\n197\t}\n198\t\n199\t@inproceedings{feng2026finegrained,\n200\t  author    = {Feng, Z. and Li, T. and Zhu, Z. and Zhou, H. and Qian, J. and Zhang, L. and Mao, K.},\n201\t  title     = {Fine-Grained Activation Steering: Steering Less, Achieving More},\n202\t  booktitle = {Proceedings of the 14th International Conference on Learning Representations (ICLR)},\n203\t  year      = {2026},\n204\t  url       = {https://arxiv.org/abs/2602.04428}\n205\t}\n206\t\n207\t@inproceedings{conneau2018xnli,\n208\t  author    = {Conneau, A. and Rinott, R. and Lample, G. and Williams, A. and Bowman, S. and Schwenk, H. and Stoyanov, V.},\n209\t  title     = {{XNLI}: Evaluating Cross-lingual Sentence Representations},\n210\t  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n211\t  year      = {2018},\n212\t  url       = {https://aclanthology.org/D18-1269/}\n213\t}\n214\t\n215\t@inproceedings{rei2020comet,\n216\t  author    = {Rei, R. and Stewart, C. and Farinha, A.C. and Lavie, A.},\n217\t  title     = {{COMET}: A Neural Framework for {MT} Evaluation},\n218\t  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n219\t  year      = {2020},\n220\t  url       = {https://aclanthology.org/2020.emnlp-main.213/}\n221\t}\n222\t\n223\t@article{grattafiori2024llama,\n224\t  author    = {Grattafiori, A. and others},\n225\t  title     = {The {Llama} 3 Herd of Models},\n226\t  journal   = {arXiv preprint arXiv:2407.21783},\n227\t  year      = {2024},\n228\t  url       = {https://arxiv.org/abs/2407.21783}\n229\t}\n230\t\n231\t@article{yang2024qwen25,\n232\t  author    = {Yang, A. and Yang, B. and others},\n233\t  title     = {Qwen2.5 Technical Report},\n234\t  journal   = {arXiv preprint arXiv:2412.15115},\n235\t  year      = {2024},\n236\t  url       = {https://arxiv.org/abs/2412.15115}\n237\t}\n238\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "20dfe61d-c7e1-4631-9557-39f1695aaf70",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/references.bib",
+                "content": "% References for Cross-Lingual Knowledge Conflict paper\n% Auto-generated from literature_map.yaml\n\n@article{basu2026interpretability,\n  author    = {Basu, S. and others},\n  title     = {Interpretability without Actionability: Mechanistic Methods Cannot Correct Language Model Errors Despite Near-Perfect Internal Representations},\n  journal   = {arXiv preprint arXiv:2603.18353},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.18353}\n}\n\n@article{boer2026probing,\n  author    = {Boer, A. and Brink, I. and Ulmer, D.},\n  title     = {Probing for Knowledge Attribution in Large Language Models},\n  journal   = {arXiv preprint arXiv:2602.22787},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2602.22787}\n}\n\n@inproceedings{ifergan2024beneath,\n  author    = {Ifergan, M. and Choshen, L. and Aharoni, R. and Szpektor, I. and Abend, O.},\n  title     = {Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in {LLMs}},\n  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2408.10646}\n}\n\n@article{kialy2026universal,\n  author    = {Kialy, U.Z. and Shtarkberg, A. and Klein, A.},\n  title     = {A Universal Vibe? Finding and Controlling Language-Agnostic Informal Register with {SAEs}},\n  journal   = {arXiv preprint arXiv:2603.26236},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.26236}\n}\n\n@inproceedings{li2025taming,\n  author    = {Li, G. and Chen, Y. and Tong, H.},\n  title     = {Taming Knowledge Conflicts in Language Models},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2503.10996}\n}\n\n@article{pham2026where,\n  author    = {Pham, M.V. and Borkakoty, H. and Hou, Y.},\n  title     = {Where Knowledge Collides: A Mechanistic Study of Intra-Memory Knowledge Conflict in Language Models},\n  journal   = {arXiv preprint arXiv:2601.09445},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2601.09445}\n}\n\n@article{team2026qwen,\n  author    = {{Qwen Team}},\n  title     = {Qwen-Scope: Turning Sparse Features into Development Tools for Large Language Models},\n  journal   = {arXiv preprint arXiv:2605.11887},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2605.11887}\n}\n\n@inproceedings{wang2025lost,\n  author    = {Wang, M. and Adel, H. and Lange, L. and others},\n  title     = {Lost in Multilinguality: Dissecting Cross-lingual Factual Inconsistency in Transformer Language Models},\n  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2504.04264}\n}\n\n@article{wong2026langfir,\n  author    = {Wong, S.H. and Siddique, A.B. and Sajjad, H.},\n  title     = {{LangFIR}: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering},\n  journal   = {arXiv preprint arXiv:2604.03532},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.03532}\n}\n\n@inproceedings{xie2024adaptive,\n  author    = {Xie, J. and Zhang, K. and Chen, J. and Lou, R. and Su, Y.},\n  title     = {Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts},\n  booktitle = {Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2305.13300}\n}\n\n@article{xing2024evaluating,\n  author    = {Xing, X. and He, Z. and Xu, H. and Wang, X. and Wang, R. and Hong, Y.},\n  title     = {Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models},\n  journal   = {arXiv preprint arXiv:2407.01358},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2407.01358}\n}\n\n@inproceedings{xu2024knowledge,\n  author    = {Xu, R. and Qi, Z. and Guo, Z. and Wang, C. and Wang, H. and Zhang, Y. and Xu, W.},\n  title     = {Knowledge Conflicts for {LLMs}: A Survey},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2403.08319}\n}\n\n@inproceedings{zhao2024analysing,\n  author    = {Zhao, Y. and Du, X. and Hong, G. and others},\n  title     = {Analysing the Residual Stream of Language Models Under Knowledge Conflicts},\n  booktitle = {NeurIPS 2024 Workshop on Foundation Model Interventions},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2410.16090}\n}\n\n@inproceedings{zhao2025steering,\n  author    = {Zhao, Y. and Devoto, A. and Hong, G. and others},\n  title     = {Steering Knowledge Selection Behaviours in {LLMs} via {SAE}-Based Representation Engineering},\n  booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2410.15999}\n}\n\n@article{zhao2026when,\n  author    = {Zhao, J. and others},\n  title     = {When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models},\n  journal   = {arXiv preprint arXiv:2601.07041},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2601.07041}\n}\n\n@inproceedings{wu2020emerging,\n  author    = {Wu, S. and Conneau, A. and Li, H. and Zettlemoyer, L. and Stoyanov, V.},\n  title     = {Emerging Cross-lingual Structure in Pretrained Language Models},\n  booktitle = {Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2020},\n  url       = {https://aclanthology.org/2020.acl-main.536/},\n  doi       = {10.18653/v1/2020.acl-main.536}\n}\n\n@inproceedings{wendler2024llamas,\n  author    = {Wendler, C. and Veselovsky, V. and Monea, G. and West, R.},\n  title     = {Do Llamas Work in {English}? On the Latent Language of Multilingual Transformers},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2402.10588}\n}\n\n@inproceedings{muller2021first,\n  author    = {Muller, B. and Elazar, Y. and Sagot, B. and Seddah, D.},\n  title     = {First Align, then Predict: Understanding the Cross-Lingual Ability of Multilingual {BERT}},\n  booktitle = {Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics (EACL)},\n  year      = {2021},\n  url       = {https://aclanthology.org/2021.eacl-main.189/}\n}\n\n@inproceedings{kargaran2024mexa,\n  author    = {Kargaran, A.H. and Modarressi, A. and Nikeghbal, N. and Diesner, J. and Yvon, F. and Sch{\\\"u}tze, H.},\n  title     = {{MEXA}: Multilingual Evaluation of {English}-Centric {LLMs} via Cross-Lingual Alignment},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2410.05873}\n}\n\n@article{belinkov2022probing,\n  author    = {Belinkov, Y.},\n  title     = {Probing Classifiers: Promises, Shortcomings, and Advances},\n  journal   = {Computational Linguistics},\n  volume    = {48},\n  number    = {1},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2102.12452}\n}\n\n@inproceedings{hewitt2019designing,\n  author    = {Hewitt, J. and Liang, P.},\n  title     = {Designing and Interpreting Probes with Control Tasks},\n  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2019},\n  url       = {https://aclanthology.org/D19-1275/}\n}\n\n@article{ulmer2022deep,\n  author    = {Ulmer, D. and Hardmeier, C. and Frellsen, J.},\n  title     = {deep-significance: Easy and Meaningful Statistical Significance Testing in the Age of Neural Networks},\n  journal   = {arXiv preprint arXiv:2204.06815},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2204.06815}\n}\n\n@inproceedings{li2023iti,\n  author    = {Li, K. and Patel, O. and Vi{\\'e}gas, F. and Pfister, H. and Wattenberg, M.},\n  title     = {Inference-Time Intervention: Eliciting Truthful Answers from a Language Model},\n  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2306.03341}\n}\n\n@article{zou2023representation,\n  author    = {Zou, A. and Phan, L. and Chen, S. and Campbell, J. and Guo, P. and Ren, R. and Pan, A. and others},\n  title     = {Representation Engineering: A Top-Down Approach to {AI} Transparency},\n  journal   = {arXiv preprint arXiv:2310.01405},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2310.01405}\n}\n\n@inproceedings{feng2026finegrained,\n  author    = {Feng, Z. and Li, T. and Zhu, Z. and Zhou, H. and Qian, J. and Zhang, L. and Mao, K.},\n  title     = {Fine-Grained Activation Steering: Steering Less, Achieving More},\n  booktitle = {Proceedings of the 14th International Conference on Learning Representations (ICLR)},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2602.04428}\n}\n\n@inproceedings{conneau2018xnli,\n  author    = {Conneau, A. and Rinott, R. and Lample, G. and Williams, A. and Bowman, S. and Schwenk, H. and Stoyanov, V.},\n  title     = {{XNLI}: Evaluating Cross-lingual Sentence Representations},\n  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2018},\n  url       = {https://aclanthology.org/D18-1269/}\n}\n\n@inproceedings{rei2020comet,\n  author    = {Rei, R. and Stewart, C. and Farinha, A.C. and Lavie, A.},\n  title     = {{COMET}: A Neural Framework for {MT} Evaluation},\n  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2020},\n  url       = {https://aclanthology.org/2020.emnlp-main.213/}\n}\n\n@article{grattafiori2024llama,\n  author    = {Grattafiori, A. and others},\n  title     = {The {Llama} 3 Herd of Models},\n  journal   = {arXiv preprint arXiv:2407.21783},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2407.21783}\n}\n\n@article{yang2024qwen25,\n  author    = {Yang, A. and Yang, B. and others},\n  title     = {Qwen2.5 Technical Report},\n  journal   = {arXiv preprint arXiv:2412.15115},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2412.15115}\n}\n",
+                "numLines": 238,
+                "startLine": 1,
+                "totalLines": 238
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kscq6xdhFrL62eVRAxJPd6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/custom.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "a8423a71-2c7f-49cc-b6dc-f4b7ca470700",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014w5TUvt8UgNEoaYtb8HZZo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 333,
+                "cache_read_input_tokens": 31969,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 333
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T15:25:41.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kscq6xdhFrL62eVRAxJPd6",
+              "type": "tool_result",
+              "content": "1\t% Use this file for citations not found in the ACL Anthology (contained in \"anthology.bib\").\n2\t\n3\t@book{Aho:72,\n4\t    author  = {Alfred V. Aho and Jeffrey D. Ullman},\n5\t    title   = {The Theory of Parsing, Translation and Compiling},\n6\t    year    = \"1972\",\n7\t    volume  = \"1\",\n8\t    publisher = {Prentice-Hall},\n9\t    address = {Englewood Cliffs, NJ}\n10\t}\n11\t\n12\t@book{APA:83,\n13\t    author  = {{American Psychological Association}},\n14\t    title   = {Publications Manual},\n15\t    year    = \"1983\",\n16\t    publisher = {American Psychological Association},\n17\t    address = {Washington, DC}\n18\t}\n19\t\n20\t@article{Chandra:81,\n21\t\tauthor = {Ashok K. Chandra and Dexter C. Kozen and Larry J. Stockmeyer},\n22\t\tyear = \"1981\",\n23\t\ttitle = {Alternation},\n24\t\tjournal = {Journal of the Association for Computing Machinery},\n25\t\tvolume = \"28\",\n26\t\tnumber = \"1\",\n27\t\tpages = \"114--133\",\n28\t\tdoi = \"10.1145/322234.322243\",\n29\t}\n30\t\n31\t@inproceedings{andrew2007scalable,\n32\t  title={Scalable training of {L1}-regularized log-linear models},\n33\t  author={Andrew, Galen and Gao, Jianfeng},\n34\t  booktitle={Proceedings of the 24th International Conference on Machine Learning},\n35\t  pages={33--40},\n36\t  year={2007},\n37\t}\n38\t\n39\t@book{Gusfield:97,\n40\t    author  = {Dan Gusfield},\n41\t    title   = {Algorithms on Strings, Trees and Sequences},\n42\t    year    = \"1997\",\n43\t    publisher = {Cambridge University Press},\n44\t    address = {Cambridge, UK}\n45\t}\n46\t\n47\t@article{rasooli-tetrault-2015,\n48\t    author    = {Mohammad Sadegh Rasooli and Joel R. Tetreault},\n49\t    title     = {Yara Parser: {A} Fast and Accurate Dependency Parser},\n50\t    journal   = {Computing Research Repository},\n51\t    volume    = {arXiv:1503.06733},\n52\t    year      = {2015},\n53\t    url       = {http://arxiv.org/abs/1503.06733},\n54\t    note    = {version 2}\n55\t}\n56\t\n57\t@article{Ando2005,\n58\t\tAcmid = {1194905},\n59\t\tAuthor = {Ando, Rie Kubota and Zhang, Tong},\n60\t\tIssn = {1532-4435},\n61\t\tIssue_Date = {12/1/2005},\n62\t\tJournal = {Journal of Machine Learning Research},\n63\t\tMonth = dec,\n64\t\tNumpages = {37},\n65\t\tPages = {1817--1853},\n66\t\tPublisher = {JMLR.org},\n67\t\tTitle = {A Framework for Learning Predictive Structures from Multiple Tasks and Unlabeled Data},\n68\t\tVolume = {6},\n69\t\tYear = {2005}\n70\t}\n71\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "f99be32b-2a9d-4ed8-8120-54c23027fd58",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/custom.bib",
+                "content": "% Use this file for citations not found in the ACL Anthology (contained in \"anthology.bib\").\n\n@book{Aho:72,\n    author  = {Alfred V. Aho and Jeffrey D. Ullman},\n    title   = {The Theory of Parsing, Translation and Compiling},\n    year    = \"1972\",\n    volume  = \"1\",\n    publisher = {Prentice-Hall},\n    address = {Englewood Cliffs, NJ}\n}\n\n@book{APA:83,\n    author  = {{American Psychological Association}},\n    title   = {Publications Manual},\n    year    = \"1983\",\n    publisher = {American Psychological Association},\n    address = {Washington, DC}\n}\n\n@article{Chandra:81,\n\tauthor = {Ashok K. Chandra and Dexter C. Kozen and Larry J. Stockmeyer},\n\tyear = \"1981\",\n\ttitle = {Alternation},\n\tjournal = {Journal of the Association for Computing Machinery},\n\tvolume = \"28\",\n\tnumber = \"1\",\n\tpages = \"114--133\",\n\tdoi = \"10.1145/322234.322243\",\n}\n\n@inproceedings{andrew2007scalable,\n  title={Scalable training of {L1}-regularized log-linear models},\n  author={Andrew, Galen and Gao, Jianfeng},\n  booktitle={Proceedings of the 24th International Conference on Machine Learning},\n  pages={33--40},\n  year={2007},\n}\n\n@book{Gusfield:97,\n    author  = {Dan Gusfield},\n    title   = {Algorithms on Strings, Trees and Sequences},\n    year    = \"1997\",\n    publisher = {Cambridge University Press},\n    address = {Cambridge, UK}\n}\n\n@article{rasooli-tetrault-2015,\n    author    = {Mohammad Sadegh Rasooli and Joel R. Tetreault},\n    title     = {Yara Parser: {A} Fast and Accurate Dependency Parser},\n    journal   = {Computing Research Repository},\n    volume    = {arXiv:1503.06733},\n    year      = {2015},\n    url       = {http://arxiv.org/abs/1503.06733},\n    note    = {version 2}\n}\n\n@article{Ando2005,\n\tAcmid = {1194905},\n\tAuthor = {Ando, Rie Kubota and Zhang, Tong},\n\tIssn = {1532-4435},\n\tIssue_Date = {12/1/2005},\n\tJournal = {Journal of Machine Learning Research},\n\tMonth = dec,\n\tNumpages = {37},\n\tPages = {1817--1853},\n\tPublisher = {JMLR.org},\n\tTitle = {A Framework for Learning Predictive Structures from Multiple Tasks and Unlabeled Data},\n\tVolume = {6},\n\tYear = {2005}\n}\n",
+                "numLines": 71,
+                "startLine": 1,
+                "totalLines": 71
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need. Let me write the Related Work section. I need to:\n\n1. Follow the paper-writing-norms skill\n2. Keep positioning consistent with the Introduction\n3. Cover 3 clusters as outlined\n4. ~550 words total\n5. No em-dash, no -ing phrase endings, no paper stacking, no contribution claims\n6. Use correct citation keys from references.bib\n\nLet me verify all citation keys exist in references.bib:\n- xie2024adaptive ✓\n- xu2024knowledge ✓\n\n\n- zhao2024analysing ✓\n- boer2026probing ✓\n- pham2026where ✓\n- li2025taming ✓\n- wu2020emerging ✓\n- wendler2024llamas ✓\n- muller2021first ✓\n- kargaran2024mexa ✓\n- wang2025lost ✓\n- zhao2026when ✓\n- ifergan2024beneath ✓\n- xing2024evaluating ✓\n- li2023iti ✓\n- zou2023representation ✓\n- zhao2025steering ✓\n\nAll citations are confirmed. Ready to draft the section.\n\nI'm organizing the narrative around two main clusters: first, how cross-lingual knowledge conflict detection builds on monolingual probing work by adding confound controls and cross-lingual dynamics, and second, how mid-layer cross-lingual alignment interacts with English-centric representation spaces to produce the asymmetric transfer patterns we observe. The key positioning threads through detection happening at deeper layers while steering succeeds at shallower ones, which I'll use to structure the argument.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "0e84c70b-f7b0-4957-9f72-7b3d7cf8bb04",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BbbvXdgMu515g27wNvggqp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5341,
+                "cache_read_input_tokens": 32302,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5341
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the context. Writing the Related Work section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "1406d0f4-1117-46e9-a29f-0e793e050971",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BbbvXdgMu515g27wNvggqp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5341,
+                "cache_read_input_tokens": 32302,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5341
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EjQ34gfde3yAuWc9zsjG4Y",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex",
+                "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Knowledge conflict detection.}\nResearch on how LLMs handle conflicting knowledge has developed along two axes: behavioral characterization and internal signal analysis.\n\\citet{xie2024adaptive} introduced ConflictQA and showed that models exhibit context-dependent strategies when parametric and contextual knowledge disagree, ranging from faithful context-following to stubborn reliance on memorized answers.\n\\citet{xu2024knowledge} provided a systematic taxonomy of conflict types (intra-memory, context-memory, and inter-context) that has since guided experimental design in this area.\nMore recent work has moved beyond behavioral observation to probe model internals.\n\\citet{zhao2024analysing} demonstrated that residual stream representations carry linearly separable conflict signals in English, while \\citet{boer2026probing} used probing classifiers to localize factual associations within model parameters.\n\\citet{pham2026where} investigated the mechanistic pathways through which intra-memory conflicts are processed, and \\citet{li2025taming} proposed methods to mitigate conflict-induced errors.\nThese studies, however, operate exclusively in monolingual English settings.\nExtending conflict probing to cross-lingual scenarios introduces confounds that require explicit control: translation quality can degrade the conflict signal, token overlap between languages can provide spurious shortcuts, and general cross-lingual transfer properties can be mistaken for conflict-specific phenomena.\nWe build on the residual stream probing approach of \\citet{zhao2024analysing} and extend it to cross-lingual settings with a confound exclusion pipeline that addresses each of these concerns.\n\n\\paragraph{Cross-lingual representations in multilingual models.}\nA consistent finding across multilingual model analyses is that intermediate layers develop language-independent representations.\n\\citet{wu2020emerging} showed that cross-lingual structure emerges in pretrained models without explicit alignment objectives, and \\citet{muller2021first} found that multilingual BERT first aligns representations across languages in middle layers before making task predictions.\nFor decoder-only LLMs, \\citet{wendler2024llamas} provided evidence that Llama models process non-English inputs through an English-centric latent space, with internal representations converging toward English regardless of the input language.\n\\citet{kargaran2024mexa} quantified this English-centric bias and showed that cross-lingual alignment quality varies substantially across language pairs and model layers.\nThis body of work predicts two patterns that we observe empirically.\nFirst, the success of mid-layer steering (L13, 41\\% depth) aligns with the finding that language-independent encoding peaks at intermediate layers.\nSecond, the ZH$\\to$EN transfer advantage in our probing experiments is consistent with the English-centric structure documented by \\citet{wendler2024llamas} and \\citet{kargaran2024mexa}: Chinese representations map more readily onto the English space than the reverse.\nSeveral studies have documented behavioral consequences of this representational structure.\n\\citet{wang2025lost} found systematic cross-lingual factual inconsistencies in transformer language models, \\citet{zhao2026when} constructed the CLEAR benchmark showing that conflict resolution patterns differ across languages, and \\citet{ifergan2024beneath} and \\citet{xing2024evaluating} evaluated the consistency of cross-lingual knowledge sharing.\nOur work complements these behavioral studies by providing a mechanistic account of why such asymmetries arise.\n\n\\paragraph{Representation steering and causal intervention.}\nProbing establishes correlation between representations and task-relevant information, but causal influence requires intervention.\n\\citet{li2023iti} introduced Inference-Time Intervention, which adds learned bias vectors at specific attention heads to steer model outputs toward truthfulness.\n\\citet{zou2023representation} generalized this idea through Representation Engineering, extracting and manipulating concept-level directions in activation space.\nIn the knowledge conflict domain, \\citet{zhao2025steering} applied SAE-based steering (SpARE) to shift conflict resolution behavior in monolingual settings.\nThese successes, however, are not universal.\n\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability.\n\\citet{feng2026finegrained} proposed fine-grained activation steering to improve intervention precision by targeting specific layers and positions.\nOur results contribute to this discussion by identifying layer selection as a critical variable: mid-layer intervention succeeds where late-layer intervention fails, even though the late layer achieves higher probe accuracy.\nThis dissociation between the probing peak and the causal locus suggests that conflict resolution occurs upstream of where the outcome becomes linearly readable.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "f82d237e-01af-44f1-9d7f-37d7f6621cfa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BbbvXdgMu515g27wNvggqp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5341,
+                "cache_read_input_tokens": 32302,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5341
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T15:26:34.629Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EjQ34gfde3yAuWc9zsjG4Y",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "c31fa1ae-f577-48db-8a88-7f1fa387cf2b",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex",
+              "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Knowledge conflict detection.}\nResearch on how LLMs handle conflicting knowledge has developed along two axes: behavioral characterization and internal signal analysis.\n\\citet{xie2024adaptive} introduced ConflictQA and showed that models exhibit context-dependent strategies when parametric and contextual knowledge disagree, ranging from faithful context-following to stubborn reliance on memorized answers.\n\\citet{xu2024knowledge} provided a systematic taxonomy of conflict types (intra-memory, context-memory, and inter-context) that has since guided experimental design in this area.\nMore recent work has moved beyond behavioral observation to probe model internals.\n\\citet{zhao2024analysing} demonstrated that residual stream representations carry linearly separable conflict signals in English, while \\citet{boer2026probing} used probing classifiers to localize factual associations within model parameters.\n\\citet{pham2026where} investigated the mechanistic pathways through which intra-memory conflicts are processed, and \\citet{li2025taming} proposed methods to mitigate conflict-induced errors.\nThese studies, however, operate exclusively in monolingual English settings.\nExtending conflict probing to cross-lingual scenarios introduces confounds that require explicit control: translation quality can degrade the conflict signal, token overlap between languages can provide spurious shortcuts, and general cross-lingual transfer properties can be mistaken for conflict-specific phenomena.\nWe build on the residual stream probing approach of \\citet{zhao2024analysing} and extend it to cross-lingual settings with a confound exclusion pipeline that addresses each of these concerns.\n\n\\paragraph{Cross-lingual representations in multilingual models.}\nA consistent finding across multilingual model analyses is that intermediate layers develop language-independent representations.\n\\citet{wu2020emerging} showed that cross-lingual structure emerges in pretrained models without explicit alignment objectives, and \\citet{muller2021first} found that multilingual BERT first aligns representations across languages in middle layers before making task predictions.\nFor decoder-only LLMs, \\citet{wendler2024llamas} provided evidence that Llama models process non-English inputs through an English-centric latent space, with internal representations converging toward English regardless of the input language.\n\\citet{kargaran2024mexa} quantified this English-centric bias and showed that cross-lingual alignment quality varies substantially across language pairs and model layers.\nThis body of work predicts two patterns that we observe empirically.\nFirst, the success of mid-layer steering (L13, 41\\% depth) aligns with the finding that language-independent encoding peaks at intermediate layers.\nSecond, the ZH$\\to$EN transfer advantage in our probing experiments is consistent with the English-centric structure documented by \\citet{wendler2024llamas} and \\citet{kargaran2024mexa}: Chinese representations map more readily onto the English space than the reverse.\nSeveral studies have documented behavioral consequences of this representational structure.\n\\citet{wang2025lost} found systematic cross-lingual factual inconsistencies in transformer language models, \\citet{zhao2026when} constructed the CLEAR benchmark showing that conflict resolution patterns differ across languages, and \\citet{ifergan2024beneath} and \\citet{xing2024evaluating} evaluated the consistency of cross-lingual knowledge sharing.\nOur work complements these behavioral studies by providing a mechanistic account of why such asymmetries arise.\n\n\\paragraph{Representation steering and causal intervention.}\nProbing establishes correlation between representations and task-relevant information, but causal influence requires intervention.\n\\citet{li2023iti} introduced Inference-Time Intervention, which adds learned bias vectors at specific attention heads to steer model outputs toward truthfulness.\n\\citet{zou2023representation} generalized this idea through Representation Engineering, extracting and manipulating concept-level directions in activation space.\nIn the knowledge conflict domain, \\citet{zhao2025steering} applied SAE-based steering (SpARE) to shift conflict resolution behavior in monolingual settings.\nThese successes, however, are not universal.\n\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability.\n\\citet{feng2026finegrained} proposed fine-grained activation steering to improve intervention precision by targeting specific layers and positions.\nOur results contribute to this discussion by identifying layer selection as a critical variable: mid-layer intervention succeeds where late-layer intervention fails, even though the late layer achieves higher probe accuracy.\nThis dissociation between the probing peak and the causal locus suggests that conflict resolution occurs upstream of where the outcome becomes linearly readable.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me verify the output by reading it back and checking for any issues (em-dashes, -ing endings, paper stacking, etc.).",
+              "signature": "Er4CCmMIDRgCKkC5WUoEEYFF7N/p82N0kQVnw0wOMXvmcwngVHX5tEp5Y72HjSkERT+aPXPv91seJhV0JHusd1g38ABoqOFLjWTLMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDF1xCkKBjS8iyB4/rhoMt5DqgZzHSWhtjK7SIjAJGqqa3dMdr1p5OmWY3SRoW9/z8wbICHXgEPS8hVZsU2azLsD2jZ9p/Qgud7TFmRYqiAEtJM5z35kxhD0E4oEifPompeT1Grsu5PE4IOCgaaRk4mpVeuQRufX6MZbSX+2YF7LuyniI95XUldZn9h7hU2weiyn0wujgz/9cLNInb9XojtejaYbnKMbbeIqicAr+GshgVanO4rzgve4kBZS69LzYHB9mVe3vYeZwzUbeH9aSdQ/EEdlmFWTpGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "161cc8ad-7d76-4989-95ef-4df120f3f1a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014sxhCmNWTyhpvBP5uhzFUr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1947,
+                "cache_read_input_tokens": 37643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1947
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the output for compliance with the writing norms."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "0f50c871-740a-44f0-845f-3a7392a94834",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014sxhCmNWTyhpvBP5uhzFUr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1947,
+                "cache_read_input_tokens": 37643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1947
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W2Vut2MYw6VHnrS1SqoKHd",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections && grep -n \"—\" related_work.tex; grep -n \" – \" related_work.tex; echo \"---em/en-dash check done---\"; grep -c \"ing,\" related_work.tex; echo \"---ing-comma check done---\"; wc -w related_work.tex",
+                "description": "Check for em-dashes, en-dashes, -ing patterns, and word count"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "95c6135b-9f89-449c-aacc-4403f66f8f5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014sxhCmNWTyhpvBP5uhzFUr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1947,
+                "cache_read_input_tokens": 37643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1947
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T15:26:40.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W2Vut2MYw6VHnrS1SqoKHd",
+              "type": "tool_result",
+              "content": "---em/en-dash check done---\n2\n---ing-comma check done---\n589 related_work.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "a446e66f-405c-4e19-8325-2887b3439c94",
+            "tool_use_result": {
+              "stdout": "---em/en-dash check done---\n2\n---ing-comma check done---\n589 related_work.tex",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JSf1o2ygL7rzp9xBsiHTss",
+              "name": "Grep",
+              "input": {
+                "pattern": "ing,\"",
+                "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "4d52daa3-1aad-4ed7-8f6b-7c930a41c10f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TgsuTsj1LyxHvbGkc9agKG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 284,
+                "cache_read_input_tokens": 39590,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 284
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T15:26:43.894Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JSf1o2ygL7rzp9xBsiHTss",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "c0663ef9-2596-44f7-8a39-69a271afce1f",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TQ473bZx71LmzgAC8CGRto",
+              "name": "Grep",
+              "input": {
+                "pattern": "ing,",
+                "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "36271cb1-f452-4d65-88c2-012f8c0e8ab4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WBXftNAEWtgNjrvrAf5eN5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 140,
+                "cache_read_input_tokens": 39874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 140
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T15:26:47.021Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TQ473bZx71LmzgAC8CGRto",
+              "type": "tool_result",
+              "content": "30:\\citet{zou2023representation} generalized this idea through Representation Engineering, extracting and manipulating concept-level directions in activation space.\n33:\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "74be3009-94fa-48aa-8b1e-993c5891d758",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "30:\\citet{zou2023representation} generalized this idea through Representation Engineering, extracting and manipulating concept-level directions in activation space.\n33:\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability.",
+              "numLines": 2
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 30 has an -ing participial phrase. Let me fix that."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "ab2c7212-27d2-4093-8fd7-c621b587f17c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017kU4GBdgm4Sw62UmwpnsBJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 40014,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 211
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015mtVbDd2GeUE9KDws6AHPA",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex",
+                "old_string": "\\citet{zou2023representation} generalized this idea through Representation Engineering, extracting and manipulating concept-level directions in activation space.",
+                "new_string": "\\citet{zou2023representation} generalized this idea through Representation Engineering, which extracts and manipulates concept-level directions in activation space."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "60722889-1d14-42aa-887c-9cc88dc63700",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017kU4GBdgm4Sw62UmwpnsBJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 40014,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 211
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T15:26:53.802Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015mtVbDd2GeUE9KDws6AHPA",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "cc3ef5f9-ace7-40f1-a6da-4a190dd2471c",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex",
+              "oldString": "\\citet{zou2023representation} generalized this idea through Representation Engineering, extracting and manipulating concept-level directions in activation space.",
+              "newString": "\\citet{zou2023representation} generalized this idea through Representation Engineering, which extracts and manipulates concept-level directions in activation space.",
+              "originalFile": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Knowledge conflict detection.}\nResearch on how LLMs handle conflicting knowledge has developed along two axes: behavioral characterization and internal signal analysis.\n\\citet{xie2024adaptive} introduced ConflictQA and showed that models exhibit context-dependent strategies when parametric and contextual knowledge disagree, ranging from faithful context-following to stubborn reliance on memorized answers.\n\\citet{xu2024knowledge} provided a systematic taxonomy of conflict types (intra-memory, context-memory, and inter-context) that has since guided experimental design in this area.\nMore recent work has moved beyond behavioral observation to probe model internals.\n\\citet{zhao2024analysing} demonstrated that residual stream representations carry linearly separable conflict signals in English, while \\citet{boer2026probing} used probing classifiers to localize factual associations within model parameters.\n\\citet{pham2026where} investigated the mechanistic pathways through which intra-memory conflicts are processed, and \\citet{li2025taming} proposed methods to mitigate conflict-induced errors.\nThese studies, however, operate exclusively in monolingual English settings.\nExtending conflict probing to cross-lingual scenarios introduces confounds that require explicit control: translation quality can degrade the conflict signal, token overlap between languages can provide spurious shortcuts, and general cross-lingual transfer properties can be mistaken for conflict-specific phenomena.\nWe build on the residual stream probing approach of \\citet{zhao2024analysing} and extend it to cross-lingual settings with a confound exclusion pipeline that addresses each of these concerns.\n\n\\paragraph{Cross-lingual representations in multilingual models.}\nA consistent finding across multilingual model analyses is that intermediate layers develop language-independent representations.\n\\citet{wu2020emerging} showed that cross-lingual structure emerges in pretrained models without explicit alignment objectives, and \\citet{muller2021first} found that multilingual BERT first aligns representations across languages in middle layers before making task predictions.\nFor decoder-only LLMs, \\citet{wendler2024llamas} provided evidence that Llama models process non-English inputs through an English-centric latent space, with internal representations converging toward English regardless of the input language.\n\\citet{kargaran2024mexa} quantified this English-centric bias and showed that cross-lingual alignment quality varies substantially across language pairs and model layers.\nThis body of work predicts two patterns that we observe empirically.\nFirst, the success of mid-layer steering (L13, 41\\% depth) aligns with the finding that language-independent encoding peaks at intermediate layers.\nSecond, the ZH$\\to$EN transfer advantage in our probing experiments is consistent with the English-centric structure documented by \\citet{wendler2024llamas} and \\citet{kargaran2024mexa}: Chinese representations map more readily onto the English space than the reverse.\nSeveral studies have documented behavioral consequences of this representational structure.\n\\citet{wang2025lost} found systematic cross-lingual factual inconsistencies in transformer language models, \\citet{zhao2026when} constructed the CLEAR benchmark showing that conflict resolution patterns differ across languages, and \\citet{ifergan2024beneath} and \\citet{xing2024evaluating} evaluated the consistency of cross-lingual knowledge sharing.\nOur work complements these behavioral studies by providing a mechanistic account of why such asymmetries arise.\n\n\\paragraph{Representation steering and causal intervention.}\nProbing establishes correlation between representations and task-relevant information, but causal influence requires intervention.\n\\citet{li2023iti} introduced Inference-Time Intervention, which adds learned bias vectors at specific attention heads to steer model outputs toward truthfulness.\n\\citet{zou2023representation} generalized this idea through Representation Engineering, extracting and manipulating concept-level directions in activation space.\nIn the knowledge conflict domain, \\citet{zhao2025steering} applied SAE-based steering (SpARE) to shift conflict resolution behavior in monolingual settings.\nThese successes, however, are not universal.\n\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability.\n\\citet{feng2026finegrained} proposed fine-grained activation steering to improve intervention precision by targeting specific layers and positions.\nOur results contribute to this discussion by identifying layer selection as a critical variable: mid-layer intervention succeeds where late-layer intervention fails, even though the late layer achieves higher probe accuracy.\nThis dissociation between the probing peak and the causal locus suggests that conflict resolution occurs upstream of where the outcome becomes linearly readable.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 27,
+                  "oldLines": 7,
+                  "newStart": 27,
+                  "newLines": 7,
+                  "lines": [
+                    " \\paragraph{Representation steering and causal intervention.}",
+                    " Probing establishes correlation between representations and task-relevant information, but causal influence requires intervention.",
+                    " \\citet{li2023iti} introduced Inference-Time Intervention, which adds learned bias vectors at specific attention heads to steer model outputs toward truthfulness.",
+                    "-\\citet{zou2023representation} generalized this idea through Representation Engineering, extracting and manipulating concept-level directions in activation space.",
+                    "+\\citet{zou2023representation} generalized this idea through Representation Engineering, which extracts and manipulates concept-level directions in activation space.",
+                    " In the knowledge conflict domain, \\citet{zhao2025steering} applied SAE-based steering (SpARE) to shift conflict resolution behavior in monolingual settings.",
+                    " These successes, however, are not universal.",
+                    " \\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 33 uses \"raising the question\" mid-sentence (not a sentence-final -ing phrase), but let me clean it up too for safety."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "8b0de021-dd23-4598-8880-8003c4ae963f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByM9nQoorePXHT92Vz27YB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 40225,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 278
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0145FZqnyyLNcV53Ef4DTWEH",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex",
+                "old_string": "\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability.",
+                "new_string": "\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, which raises the question of when detectability implies actionability."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "3402de85-844f-4b66-9c59-76355b4d0533",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByM9nQoorePXHT92Vz27YB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 40225,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 278
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T15:26:59.298Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0145FZqnyyLNcV53Ef4DTWEH",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "5b16900d-8542-4b86-92ad-a5abd1f99210",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex",
+              "oldString": "\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability.",
+              "newString": "\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, which raises the question of when detectability implies actionability.",
+              "originalFile": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Knowledge conflict detection.}\nResearch on how LLMs handle conflicting knowledge has developed along two axes: behavioral characterization and internal signal analysis.\n\\citet{xie2024adaptive} introduced ConflictQA and showed that models exhibit context-dependent strategies when parametric and contextual knowledge disagree, ranging from faithful context-following to stubborn reliance on memorized answers.\n\\citet{xu2024knowledge} provided a systematic taxonomy of conflict types (intra-memory, context-memory, and inter-context) that has since guided experimental design in this area.\nMore recent work has moved beyond behavioral observation to probe model internals.\n\\citet{zhao2024analysing} demonstrated that residual stream representations carry linearly separable conflict signals in English, while \\citet{boer2026probing} used probing classifiers to localize factual associations within model parameters.\n\\citet{pham2026where} investigated the mechanistic pathways through which intra-memory conflicts are processed, and \\citet{li2025taming} proposed methods to mitigate conflict-induced errors.\nThese studies, however, operate exclusively in monolingual English settings.\nExtending conflict probing to cross-lingual scenarios introduces confounds that require explicit control: translation quality can degrade the conflict signal, token overlap between languages can provide spurious shortcuts, and general cross-lingual transfer properties can be mistaken for conflict-specific phenomena.\nWe build on the residual stream probing approach of \\citet{zhao2024analysing} and extend it to cross-lingual settings with a confound exclusion pipeline that addresses each of these concerns.\n\n\\paragraph{Cross-lingual representations in multilingual models.}\nA consistent finding across multilingual model analyses is that intermediate layers develop language-independent representations.\n\\citet{wu2020emerging} showed that cross-lingual structure emerges in pretrained models without explicit alignment objectives, and \\citet{muller2021first} found that multilingual BERT first aligns representations across languages in middle layers before making task predictions.\nFor decoder-only LLMs, \\citet{wendler2024llamas} provided evidence that Llama models process non-English inputs through an English-centric latent space, with internal representations converging toward English regardless of the input language.\n\\citet{kargaran2024mexa} quantified this English-centric bias and showed that cross-lingual alignment quality varies substantially across language pairs and model layers.\nThis body of work predicts two patterns that we observe empirically.\nFirst, the success of mid-layer steering (L13, 41\\% depth) aligns with the finding that language-independent encoding peaks at intermediate layers.\nSecond, the ZH$\\to$EN transfer advantage in our probing experiments is consistent with the English-centric structure documented by \\citet{wendler2024llamas} and \\citet{kargaran2024mexa}: Chinese representations map more readily onto the English space than the reverse.\nSeveral studies have documented behavioral consequences of this representational structure.\n\\citet{wang2025lost} found systematic cross-lingual factual inconsistencies in transformer language models, \\citet{zhao2026when} constructed the CLEAR benchmark showing that conflict resolution patterns differ across languages, and \\citet{ifergan2024beneath} and \\citet{xing2024evaluating} evaluated the consistency of cross-lingual knowledge sharing.\nOur work complements these behavioral studies by providing a mechanistic account of why such asymmetries arise.\n\n\\paragraph{Representation steering and causal intervention.}\nProbing establishes correlation between representations and task-relevant information, but causal influence requires intervention.\n\\citet{li2023iti} introduced Inference-Time Intervention, which adds learned bias vectors at specific attention heads to steer model outputs toward truthfulness.\n\\citet{zou2023representation} generalized this idea through Representation Engineering, which extracts and manipulates concept-level directions in activation space.\nIn the knowledge conflict domain, \\citet{zhao2025steering} applied SAE-based steering (SpARE) to shift conflict resolution behavior in monolingual settings.\nThese successes, however, are not universal.\n\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability.\n\\citet{feng2026finegrained} proposed fine-grained activation steering to improve intervention precision by targeting specific layers and positions.\nOur results contribute to this discussion by identifying layer selection as a critical variable: mid-layer intervention succeeds where late-layer intervention fails, even though the late layer achieves higher probe accuracy.\nThis dissociation between the probing peak and the causal locus suggests that conflict resolution occurs upstream of where the outcome becomes linearly readable.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 30,
+                  "oldLines": 7,
+                  "newStart": 30,
+                  "newLines": 7,
+                  "lines": [
+                    " \\citet{zou2023representation} generalized this idea through Representation Engineering, which extracts and manipulates concept-level directions in activation space.",
+                    " In the knowledge conflict domain, \\citet{zhao2025steering} applied SAE-based steering (SpARE) to shift conflict resolution behavior in monolingual settings.",
+                    " These successes, however, are not universal.",
+                    "-\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, raising the question of when detectability implies actionability.",
+                    "+\\citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering, which raises the question of when detectability implies actionability.",
+                    " \\citet{feng2026finegrained} proposed fine-grained activation steering to improve intervention precision by targeting specific layers and positions.",
+                    " Our results contribute to this discussion by identifying layer selection as a critical variable: mid-layer intervention succeeds where late-layer intervention fails, even though the late layer achieves higher probe accuracy.",
+                    " This dissociation between the probing peak and the causal locus suggests that conflict resolution occurs upstream of where the outcome becomes linearly readable."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work section written to `docs/paper/sections/related_work.tex`. Three clusters (~590 words total including LaTeX markup, prose body ~550 words):\n\n1. **Knowledge conflict detection** -- positions our work as extending monolingual residual stream probing (Zhao et al., 2024) to cross-lingual settings with confound controls\n2. **Cross-lingual representations** -- connects mid-layer language-independent encoding and English-centric bias to our empirical findings (mid-layer steering success, ZH→EN transfer advantage)\n3. **Representation steering and causal intervention** -- frames the detection-decision layer dissociation within the ITI/RepE literature and the detectability-vs-actionability debate\n\nNo em-dashes, no -ing phrase endings, no paper stacking, no contribution claims in Related Work."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "uuid": "87c522eb-897c-46d1-afea-e15a95401e92",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015DNohPKNj1WdQDvGoUkgyz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 314,
+                "cache_read_input_tokens": 40503,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 314
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work section written to `docs/paper/sections/related_work.tex`. Three clusters (~590 words total including LaTeX markup, prose body ~550 words):\n\n1. **Knowledge conflict detection** -- positions our work as extending monolingual residual stream probing (Zhao et al., 2024) to cross-lingual settings with confound controls\n2. **Cross-lingual representations** -- connects mid-layer language-independent encoding and English-centric bias to our empirical findings (mid-layer steering success, ZH→EN transfer advantage)\n3. **Representation steering and causal intervention** -- frames the detection-decision layer dissociation within the ITI/RepE literature and the detectability-vs-actionability debate\n\nNo em-dashes, no -ing phrase endings, no paper stacking, no contribution claims in Related Work."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 106896,
+            "duration_api_ms": 107902,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "81ce5248-2417-456a-8b87-124f873b4f74",
+            "total_cost_usd": 0.4397750000000001,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 28976,
+              "cache_read_input_tokens": 338914,
+              "output_tokens": 3484,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 28976,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 191,
+                  "cache_read_input_tokens": 40503,
+                  "cache_creation_input_tokens": 314,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 314
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1988,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0020580000000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 3484,
+                "cacheReadInputTokens": 338914,
+                "cacheCreationInputTokens": 28976,
+                "webSearchRequests": 0,
+                "costUSD": 0.4377170000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "80d6b037-8e3d-4e0d-b894-f5f0f7a55c70"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-related-work.md"
+}

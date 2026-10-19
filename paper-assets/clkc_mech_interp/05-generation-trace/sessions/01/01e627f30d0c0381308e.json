@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01e627f30d0c0381308e",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu qwen L13 steering prep",
+  "task_key": "worker_gpu_qwen-L13-steering-prep_20260522T133215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_qwen-L13-steering-prep_20260522T133215_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "870cce5d10c331f4d915cf250c8f43c1d83f95607b866d3a1109d691ca49c171"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Qwen L23 Steering 结果（negative）\n\n| alpha | steering flips | control flips | Fisher p | p→c | c→p |\n|-------|---------------|--------------|----------|-----|-----|\n| -20 | 1/84 (1.2%) | 2/84 (2.4%) | 1.0 | 0 | 0 |\n| -10 | 2/84 (2.4%) | 2/84 (2.4%) | 1.0 | 0 | 0 |\n| -5 | 2/84 (2.4%) | 2/84 (2.4%) | 1.0 | 0 | 0 |\n| +5 | 1/84 (1.2%) | 2/84 (2.4%) | 1.0 | 0 | 0 |\n| +10 | 2/84 (2.4%) | 1/84 (1.2%) | 1.0 | 0 | 0 |\n| +20 | 2/84 (2.4%) | 3/84 (3.6%) | 1.0 | 0 | 0 |\n\n- Probe accuracy: 0.732\n- Baseline: contextual=35, parametric=8, both=20, neither=21\n- **结论**: L23 在 Qwen3-8B 上完全无因果效应，与 Llama L23 负结果一致\n\n### Qwen L13 Steering 已启动\n- **PID**: 490477\n- **GPU**: cuda:0\n- **exp_id**: steering_107_qwen_L13\n- **状态**: RUNNING，模型加载中\n- 预计运行 ~50 分钟（6 alphas × ~8 min/alpha）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-qwen-l13-steering-prep.md"
+}

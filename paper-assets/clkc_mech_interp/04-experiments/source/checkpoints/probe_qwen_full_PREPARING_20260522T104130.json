@@ -1,0 +1,28 @@
+{
+  "exp_id": "probe_qwen_full",
+  "project": "clkc_mech_interp",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:53:27.131Z",
+    "updated_at": "2026-05-22T10:41:30.422Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/clkc_mech_interp && rm -f data/qwen3/probe_results.json data/qwen3/probe_accuracy_by_layer.png && python -u src/train_probe.py --activation_dir data/qwen3/ --output_dir data/qwen3/ 2>&1 | tee logs/probe_qwen_full.log\"",
+      "server": "westd-41302",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "38354",
+      "log_path": "~/runs/clkc_mech_interp/probe_qwen_full.log",
+      "submitted_at": "2026-05-21T19:53:27.113Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T10:41:30.468089+00:00",
+  "trigger": "update_registry"
+}

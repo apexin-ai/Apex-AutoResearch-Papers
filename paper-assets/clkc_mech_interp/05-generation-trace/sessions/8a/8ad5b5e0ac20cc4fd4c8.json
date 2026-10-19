@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ad5b5e0ac20cc4fd4c8",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis qwen L14 results urgent",
+  "task_key": "worker_analysis_qwen-L14-results-urgent_20260522T150412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen-L14-results-urgent_20260522T150412_result.json",
+    "occurrence": 1,
+    "bytes": 1220,
+    "sha256": "9f16db887659a0b425b828b369f0d4a1d104fb3c5032348921585078dee0e412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## Qwen L14 Steering 结果\n\n| α | Steering flips | Control flips | p→c | c→p | Fisher p |\n|---|---|---|---|---|---|\n| -20 | 4/84 | 6/84 | 0 | 0 | 0.746 |\n| -10 | 2/84 | 4/84 | 0 | 0 | 0.682 |\n| -5 | 2/84 | 3/84 | 0 | 0 | 1.000 |\n| +5 | 1/84 | 1/84 | 0 | 0 | 1.000 |\n| +10 | 3/84 | 2/84 | 0 | 0 | 1.000 |\n| +20 | 5/84 | 3/84 | 0 | 0 | 0.720 |\n\n**结论：NEGATIVE**\n\n- 所有 alpha 的 Fisher p 均远大于 0.05（最低 0.682），无显著因果效应\n- p→c 和 c→p 全部为 0，完全没有方向性翻转\n- Steering flips 与 control flips 处于同一噪声水平\n\n**与 Llama L13 对比：截然不同**\n\n| | Llama L13 | Qwen L14 |\n|---|---|---|\n| α=-20 Fisher p | **0.0009** | 0.746 |\n| α=+5 Fisher p | **0.002** | 1.000 |\n| 方向性分离 | 有（p→c / c→p 分离） | 无（全部为 0） |\n\nQwen L14 的 probe accuracy (70.2%) 虽然合理，但 probe 方向不具因果效应。mid-layer causal node 在 Qwen 上不成立，至少不在 L14。可能原因：Qwen 的知识冲突解决机制分布在不同层，或 probe 捕获的是相关性而非因果方向。\n\ncuda:1 已释放（3 MiB），GPU 0/1 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-l14-results-urgent.md"
+}

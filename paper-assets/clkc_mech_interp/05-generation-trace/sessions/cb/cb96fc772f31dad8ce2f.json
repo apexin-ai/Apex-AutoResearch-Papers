@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb96fc772f31dad8ce2f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper write abstract discussion",
+  "task_key": "worker_paper_write-abstract-discussion_20260522T153557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_write-abstract-discussion_20260522T153557_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "30911d390401539badf68123354a1a9da0f5ced341d45e3410e6b96447809e91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入：\n\n**Abstract** (~200 词)\n- 结构：现象（跨语言冲突内部机制未知）→ 方法（残差流探针 + 跨语言迁移 + steering）→ 三个核心发现（检测 75-77%、不对称性继承通用跨语言属性、Detection ≠ Decision）→ 结论\n- Steering 结果限定为 \"in Llama\"，未过度泛化\n- 未使用 \"consistently\"\n\n**Discussion** (5 段)\n1. **Detection ≠ Decision** — L13 因果 vs L28 检测峰值，连接 mid-layer 跨语言对齐文献，引用 Basu 方法论警告\n2. **不对称性是通用属性** — XNLI 对照数据（+6.0/+6.7 pp vs +7.2/+7.2 pp），CI 重叠，连接 Wendler & Kargaran\n3. **非线性作为 observation** — MLP gains 方向对但 CI 含零，用 \"directional trend\" 定性\n4. **Steering 的 model-specificity** — Llama 成功 Qwen 失败，框架为 \"mechanistic results 跨架构迁移性本身是有意义的发现\"\n5. **Broader implications** — 连接 CLEAR，方法论贡献（confound pipeline），detection-decision dissociation 的实践意义"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-write-abstract-discussion.md"
+}

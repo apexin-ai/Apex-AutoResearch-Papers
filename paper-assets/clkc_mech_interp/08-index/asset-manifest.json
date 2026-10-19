@@ -1,0 +1,130 @@
+{
+  "project": "clkc_mech_interp",
+  "code_count": 189,
+  "data_count": 584,
+  "env_count": 1,
+  "tex_count": 17,
+  "bib_count": 2,
+  "review_count": 4,
+  "validation_count": 5,
+  "contribution_count": 3,
+  "chat_count": 92,
+  "worker_count": 592,
+  "trace_count": 689,
+  "trace_bytes": 131309167,
+  "maintenance_count": 31,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 1,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "90e58fe87d45c22f8cafd4533b3a51afb889de247b344a035b1c75bd5c9e09fb",
+  "title": "English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries",
+  "pages": 12,
+  "status_marker": "Anonymous ACL submission",
+  "version_count": 30,
+  "version_paths": [
+    "figures/paper/fig2_pipeline_v2.pdf",
+    "figures/paper/fig1_hero_v2.pdf",
+    "figures/paper/fig2_layerwise_probes.pdf",
+    "figures/paper/fig1_pipeline.pdf",
+    "figures/paper/fig3_layerwise.pdf",
+    "figures/paper/fig4_asymmetry.pdf",
+    "figures/paper/fig6_dissociation.pdf",
+    "figures/paper/fig2_pipeline.pdf",
+    "figures/paper/fig5_steering.pdf",
+    "figures/paper/fig3_asymmetry_forest.pdf",
+    "figures/paper/fig4_asymmetry_forest.pdf",
+    "figures/paper/fig1_hero.pdf",
+    "docs/paper/fig2_pipeline_backup.pdf",
+    "docs/paper/fig2_layerwise_probes.pdf",
+    "docs/paper/fig3_layerwise_probes.pdf",
+    "docs/paper/fig6_dissociation.pdf",
+    "docs/paper/fig2_pipeline.pdf",
+    "docs/paper/fig5_steering.pdf",
+    "docs/paper/fig4_asymmetry_forest.pdf",
+    "docs/paper/main.pdf",
+    "docs/paper/fig1_hero.pdf",
+    "artifacts/_project/paper/main_20260525_d0397f.pdf",
+    "artifacts/_project/paper/main_20260525.pdf",
+    "artifacts/dream_reports/dream_20260522T023801/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260522T023801/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260522T023801/best/paper.pdf",
+    "artifacts/review_round_2/submitted.pdf",
+    "artifacts/review_round_3/submitted.pdf",
+    "artifacts/review_round_4/submitted.pdf",
+    "artifacts/review_round_1/submitted.pdf"
+  ],
+  "archive_rel": "clkc_mech_interp/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "clkc_mech_interp/workspace.tar.gz",
+    "sha256": "2cb56e25efbcfb8572840ec654724f86f034369afeaf0d2ad98ce47e2dd61e5f",
+    "bytes": 875845724,
+    "etag": "\"73ee888fe0c942da67ada65d3c19880f-105\"",
+    "modified": "2026-05-31T17:29:10+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "17 source files; 30 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "3 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "92 conversations; 592 worker logs/results; 689 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "189 code/configuration files; 1 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "584 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "4 internal review records; 5 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "31 project documentation files; 1 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}

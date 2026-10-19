@@ -1,0 +1,25 @@
+paper_key: "wong2026langfir"
+title: "LangFIR: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering"
+venue: "COLM 2026"
+full_text_available: false
+
+research:
+  baselines: [monolingual_unfiltered_SAE, methods_requiring_parallel_data]
+  metrics:
+    - {name: "language steering accuracy", direction: "higher_better"}
+    - {name: "feature selectivity", direction: "higher_better"}
+  datasets:
+    - {name: "12 languages across 3 datasets", size: "N/A"}
+  ablation_dimensions: [language, model_scale]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "Gemma-3 1B/4B, Llama-3.1-8B"}
+  method_family: "SAE-based language feature discovery"
+
+positioning:
+  core_claim: "Language-specific features can be discovered from monolingual data alone using SAEs, enabling effective language steering without parallel data"
+  key_results: "Works across 12 languages on 3 models"
+  limitations: ["Abstract only"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

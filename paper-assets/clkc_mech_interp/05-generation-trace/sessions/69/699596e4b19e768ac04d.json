@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "699596e4b19e768ac04d",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra steering monitor L24 v4",
+  "task_key": "worker_infra_steering-monitor-L24-v4_20260523T105419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_steering-monitor-L24-v4_20260523T105419_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "96c10e8843d0e835f494d34cd1de681d6accbaf3102dced52eea5acf5049d970"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gemma L24 (121)\n\n**状态:** 完成\n\n**Probe accuracy:** 76.27%\n\n**Baseline distribution:** both=32, neither=55, parametric=26, contextual=45 (n=158 conflict samples)\n\n### 结果表（alpha × contextual 方向）\n\n| alpha | steering flips | control flips | p→c | c→p | Fisher p |\n|-------|---------------|---------------|-----|-----|----------|\n| +5.0  | 1/158 (0.6%)  | 1/158 (0.6%)  | 0   | 0   | 1.0000   |\n| +10.0 | 3/158 (1.9%)  | 2/158 (1.3%)  | 0   | 0   | 1.0000   |\n| +20.0 | 5/158 (3.2%)  | 4/158 (2.5%)  | 0   | 0   | 1.0000   |\n\n**Bonferroni 显著 (k=6, p < 0.0083):** 无。所有条件 Fisher p = 1.0，steering flips 与 control flips 无显著差异，且 p→c / c→p 定向翻转均为 0。\n\n**路径:**\n- Log: `/root/clkc_mech_interp/logs/steering_gemma_L24.log`\n- JSON: `/root/clkc_mech_interp/data/gemma2/steering_results_L24_last.json`\n\nL24 steering 完全无效——flip rate 极低且与 control 无差异，方向性翻转为零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-steering-monitor-l24-v4.md"
+}

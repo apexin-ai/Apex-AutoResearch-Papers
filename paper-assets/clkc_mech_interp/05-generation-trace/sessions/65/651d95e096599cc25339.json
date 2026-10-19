@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "651d95e096599cc25339",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig4 transfer",
+  "task_key": "worker_code_fix-fig4-transfer_20260525T184858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig4-transfer_20260525T184858_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "7589489e4951221bae91c9b3761ec29aaf7975c3090ab2165173436d0f3058fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译环境缺少 `inconsolata.sty`，这是 TeX 包缺失问题，与图片修改无关。图片本身引用路径 `fig4_asymmetry_forest.pdf` 已正确更新。\n\n修改汇总：\n\n| 项目 | 修改前 | 修改后 |\n|------|--------|--------|\n| 字体 | serif (Times) | sans-serif (DejaVu Sans) |\n| 模型名字体 | 10pt | 12pt |\n| 行标签字体 | 9.5pt | 11pt |\n| x轴标签 | 10pt | 11pt |\n| x轴刻度 | 9pt | 10pt |\n| 数值面板 | 9pt | 10pt |\n| ±2pp 标注 | 7.5pt | 9pt |\n| 图例位置 | upper right | lower right |\n| 图例边框 | frameon=True, framealpha=0.95 | frameon=False |\n| 图例字体 | 9pt | 10pt |\n\n产出文件：\n- `fig4_asymmetry.png` — 128K, 300 DPI\n- `fig4_asymmetry.pdf` — 31K\n- `fig4_asymmetry_forest.pdf` — 31K（已复制到论文目录）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig4-transfer.md"
+}

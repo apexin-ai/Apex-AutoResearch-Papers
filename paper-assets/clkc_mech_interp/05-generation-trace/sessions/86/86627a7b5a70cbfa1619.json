@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86627a7b5a70cbfa1619",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis bonferroni alpha check",
+  "task_key": "worker_analysis_bonferroni-alpha-check_20260522T172835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bonferroni-alpha-check_20260522T172835_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "ab7f3ed6842177268805ffe3822109abc2aa2ee7190988e0e5e2f5b619c189f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## Llama-3.1-8B-Instruct (n=136)\n\n| 文件 | Layer | Position | Probe Acc | Alpha 数量 | Alphas |\n|------|-------|----------|-----------|-----------|--------|\n| `steering_results_L13_last.json` | 13 | last | 0.761 | **10** | [-20, -10, -5, -2, -1, 1, 2, 5, 10, 20] |\n| `steering_results_L13_all.json` | 13 | all | 0.761 | **6** | [-20, -10, -5, 5, 10, 20] |\n| `steering_results_L18_last.json` | 18 | last | 0.739 | **10** | [-20, -10, -5, -2, -1, 1, 2, 5, 10, 20] |\n| `steering_results_L28_all.json` | 28 | all | 0.776 | **6** | [-20, -10, -5, 5, 10, 20] |\n| `steering_results.json` | 28 | last | 0.776 | **10** | [-20, -10, -5, -2, -1, 1, 2, 5, 10, 20] |\n\n## Gemma-2-9B-IT (n=158)\n\n| 文件 | Layer | Position | Probe Acc | Alpha 数量 | Alphas |\n|------|-------|----------|-----------|-----------|--------|\n| `steering_results_gemma_L17.json` | 17 | last | 0.753 | **6** | [-20, -10, -5, 5, 10, 20] |\n| `steering_results_gemma_L21.json` | 21 | last | 0.763 | **6** | [-20, -10, -5, 5, 10, 20] |\n\n规律：`position=last` 的实验用了完整 10 个 alpha（含 ±1, ±2），`position=all` 和 Gemma 实验只用了 6 个（跳过了小 alpha）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bonferroni-alpha-check.md"
+}

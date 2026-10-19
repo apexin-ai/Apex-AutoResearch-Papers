@@ -1,0 +1,27 @@
+paper_key: "basu2026interpretability"
+title: "Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [concept_bottleneck_steering, SAE_feature_steering, logit_lens_activation_patching, linear_probing_TSV_steering]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "Output sensitivity", direction: "higher_better"}
+    - {name: "Percentage of missed hazards corrected", direction: "higher_better"}
+    - {name: "Knowledge-action gap", direction: "lower_better"}
+  datasets:
+    - {name: "Clinical vignettes", size: "400 physician-adjudicated (144 hazards, 256 benign)"}
+  ablation_dimensions: [interpretability_method, steering_approach]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "Steering-8B, Qwen-2.5-7B-Instruct"}
+  method_family: "evaluation of mechanistic interpretability for error correction"
+
+positioning:
+  core_claim: "Mechanistic interpretability methods achieve near-perfect internal representations but cannot reliably correct LLM errors — a knowledge-action gap exists"
+  key_results: "High AUROC for internal detection but poor error correction rate"
+  limitations: ["Limited to clinical domain"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

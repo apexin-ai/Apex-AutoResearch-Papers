@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75db4cbeb6f4dd70b493",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra anon repo integrity check",
+  "task_key": "worker_infra_anon-repo-integrity-check_20260523T185646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_anon-repo-integrity-check_20260523T185646_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "07b1fa6ded1204e92afa3677a4bda2592dd42966c45fb461adfd8d3a7d5ae413"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整性核查结果\n\n- 本地文件数: **35**\n- GitHub 文件数: **35**\n- 文件列表一致: **是**\n- Commit hash 一致: **是** (local=f9a679a, remote=f9a679a)\n- 核心文件: README ✓, .gitignore ✓, requirements.txt ✗, setup.py ✗, pyproject.toml ✗\n- .py 文件数: **31**, .sh 文件数: **2**\n- 匿名化验证: **CLEAN**\n- 仓库可见性: **public**\n\n> **注意**: requirements.txt 不存在，但 README 中引用了 `pip install -r requirements.txt`。如需提交审稿，建议补上该文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-anon-repo-integrity-check.md"
+}

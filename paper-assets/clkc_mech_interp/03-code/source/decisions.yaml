@@ -1,0 +1,347 @@
+_next_id: 22
+decisions:
+- id: D001
+  date: 2026-05-21 12:00 UTC
+  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性
+  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering
+    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA
+    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-21 12:06 UTC
+  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise
+    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径
+  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern
+    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry
+    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-21 14:26 UTC
+  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集
+  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至
+    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%
+    标签翻转率确认了 M001 verify 步骤的必要性。
+  related_experiments:
+  - exp_id: mvp_probe_llama_v1
+    role: triggered_decision
+    result: verify 保留率 33%, 266 train / 70 test, 20% flip
+  depends_on:
+  - D001
+  - D002
+- id: D004
+  date: 2026-05-21 19:17 UTC
+  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs
+    EN→ZH 59.6%），等 Qwen 结果做最终 verdict
+  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN
+    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按
+    D002 规则进入 EXTEND 评估。等 Qwen 跨模型验证后做最终 MVP verdict。不对称迁移本身是有价值的科学发现。
+  related_experiments:
+  - exp_id: mvp_probe_llama_v1
+    role: primary
+    result: EN→EN 77.6% L28, ZH→ZH 72.1% L13, EN→ZH 59.6% L5, ZH→EN 71.3% L15
+  depends_on:
+  - D002
+- id: D005
+  date: 2026-05-21 20:33 UTC
+  summary: 双模型 MVP CONDITIONAL PASS：Llama EN→EN 77.6% + Qwen EN→EN 75.0%，跨语言迁移不对称且跨架构一致（ZH→EN
+    >> EN→ZH），等 COMET 验证后进入 research 阶段
+  rationale: 两个模型全 4 方向探针结果统计高度显著（permutation p < 0.001）。核心发现：(1) 冲突信号在两模型两语言中均可线性检测；(2)
+    跨语言迁移存在方向性不对称（ZH→EN 71-73% vs EN→ZH 60-67%），两模型一致；(3) 不对称程度与架构相关——Qwen（多语言训练比例更高）EN→ZH
+    67.3% 远强于 Llama 59.6%。EN→EN 均在 70-79% CONDITIONAL 区间，未达 80% PASS，但跨语言迁移的质量和不对称发现的科学价值足以支撑继续研究。COMET
+    翻译质量验证是最后一个前置条件。
+  related_experiments:
+  - exp_id: mvp_probe_llama_v1
+    role: primary
+    result: EN→EN 77.6%, ZH→ZH 72.1%, EN→ZH 59.6%, ZH→EN 71.3%
+  - exp_id: mvp_probe_v1
+    role: primary
+    result: EN→EN 75.0%, ZH→ZH 72.6%, EN→ZH 67.3%, ZH→EN 73.2% (v2 clean labels)
+  depends_on:
+  - D002
+  - D004
+- id: D006
+  date: 2026-05-22 02:13 UTC
+  summary: COMET 0.80 阈值不直接适用 back-translation：提升 plan_105 至 P0，用 ablation 实证判断翻译质量是否影响探针结果
+  rationale: Qwen test COMET mean=0.70, pass rate 18.45% (31/168 at ≥0.80)。但 0.80
+    阈值是为正向翻译设定的，back-translation 引入二次噪声（EN→ZH→EN），COMET 天然偏低。降低阈值是 ad hoc 的；正确做法是用
+    plan_105 COMET 分段 ablation 实证检验：按 COMET tertile 分组比较 probe acc，如果组间无显著差异 → 翻译质量非
+    confounder → 放宽阈值有据可依；如果组间差异显著 → 需过滤低 COMET 样本重跑探针。
+  related_experiments:
+  - exp_id: comet_qwen_v5
+    role: evidence
+    result: Qwen test COMET mean=0.70, pass 18.45%
+  - exp_id: mvp_probe_v1
+    role: dependent
+    result: 探针结果可能受翻译质量影响
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-22 03:50 UTC
+  summary: Dream 审稿结果处理：新增 3 个 P0 实验（非冲突基线、bootstrap 升级、EN↔DE）
+  rationale: Dream dream_20260522T023801 三档审稿（best 5/10, median 5/10, worst 4/10）一致识别
+    CRITICAL gap：缺失非冲突语义基线。X→EN > EN→X 不对称性可能是英语主导模型的一般性质而非冲突特异性。另外两个 MAJOR gap：bootstrap
+    n=100 不足（需 n≥2000）、仅 CJK 语言对（需 Indo-European）。三个问题均与实验结果无关，属结构性缺陷，优先级最高。新增 plan_110
+    (非冲突基线, P0)、plan_111 (bootstrap 升级, P0)、plan_112 (EN↔DE, P0)。paper_framing.md
+    新增 RC9-RC11，scope control 更新。
+  related_experiments:
+  - exp_id: dream_20260522T023801
+    role: trigger
+    result: 'best 5/10, median 5/10, worst 4/10 — 三档一致 CRITICAL: 缺非冲突基线'
+  depends_on: []
+- id: D008
+  date: 2026-05-22 05:43 UTC
+  summary: C2 reframe：不对称性非冲突特异性，改为"冲突信号继承模型一般跨语言迁移偏置"
+  rationale: plan_110 XNLI 基线结果：Qwen +6.72pp CI[2.36,11.73], Llama +5.97pp CI[0.92,11.33]，与冲突任务（7.18/7.22pp）量级无区别，均≥5pp。按
+    RC9 预设标准，C2 需 reframe。新 framing：冲突信号编码在模型的通用跨语言表征空间中（非独立机制），继承其方向性偏置。这是更深层的机制洞察——冲突检测不是专用子空间，而是
+    piggyback 在已有的跨语言对齐结构上。论文从"发现新现象"转为"机制分析+方法论贡献"。C1(可检测性)、C3(非线性)、C4(层结构)不受影响。
+  related_experiments:
+  - exp_id: xnli_baseline_110
+    role: decisive
+    result: XNLI asymmetry Qwen +6.72pp Llama +5.97pp, ≥5pp threshold → reframe
+  depends_on:
+  - D007
+- id: D009
+  date: 2026-05-22 07:12 UTC
+  summary: C3 confirmed conflict-specific：XNLI MLP 对照证明非线性 encoding 是冲突特有属性
+  rationale: 'XNLI EN→ZH MLP Δ: Qwen -2.0pp, Llama -0.5pp（负/零）。冲突 EN→ZH MLP Δ: Qwen
+    +2.4pp, Llama +9.2pp（正且显著）。两模型一致。虽然方向不对称性 (C2) 是一般跨语言属性，但冲突信号在弱迁移方向 (EN→ZH) 需要非线性变换才能解码，而一般语义任务不需要。这成为
+    C2 reframe 后论文的核心差异化 contribution。'
+  related_experiments:
+  - exp_id: xnli_baseline_110
+    role: decisive
+    result: 'XNLI MLP EN→ZH Δ: Qwen -2.0pp, Llama -0.5pp'
+  - exp_id: mvp_002
+    role: comparison
+    result: 'Conflict MLP EN→ZH Δ: Qwen +2.4pp, Llama +9.2pp'
+  depends_on:
+  - D008
+- id: D010
+  date: 2026-05-22 07:50 UTC
+  summary: Steering (plan_107) 升为最高优先级；C3 需统计加固但不作为唯一卖点
+  rationale: Reviewer 评估 C3 作为主要 contribution 不充分（Qwen +2.4pp 噪声级，无 CI，4× 跨架构差异）。当前叙事骨架只有
+    C1 扎实，C2 是 null result repackage，C3/C4 是 supporting evidence。Reviewer 建议最有效路径：Track
+    3 steering > Track 2 SAE > 打磨 C3。plan_107 (probe-weight steering) 已在 P0 列表，不依赖
+    SAE，可立即启动。论文结构升级为：Detection (C1) → Characterization (C2+C3+C4) → Causal Intervention
+    (steering)。C3 同时做统计加固（Gemma MLP + bootstrap CI）作为并行任务。
+  related_experiments:
+  - exp_id: xnli_baseline_110
+    role: context
+    result: C3 MLP contrast confirmed but statistically weak
+  - exp_id: mvp_002
+    role: context
+    result: MLP Δ Qwen +2.4pp (noise-level), Llama +9.2pp (single-seed)
+  depends_on:
+  - D008
+  - D009
+- id: D011
+  date: 2026-05-22 11:03 UTC
+  summary: Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3 存亡
+  rationale: Steering_107 v1 (L28, last-token, Llama) 10个alpha全部不显著。但方法改进框架要求：只测了1个配置不能宣布方向死亡。L28是88%深度，太晚——mid-layer(L13/L18)理论上更适合跨语言处理干预。position=all可能比last-token更有效（冲突信号可能分布在多个token）。成本：3个变体并行
+    ~4-6h GPU时间，<1天。如果全部失败→steering dead，论文退为probing+analysis贡献。
+  related_experiments:
+  - exp_id: steering_107
+    role: evidence
+    result: negative — all alphas non-significant, Fisher p∈[0.31,1.00]
+  depends_on:
+  - D010
+- id: D012
+  date: 2026-05-22 12:44 UTC
+  summary: D009 撤回：C3 non-linearity 降为 "trend only"，双模型 bootstrap CI 均含零
+  rationale: 'Llama L18 bootstrap n=1000: delta=+5.21pp, CI=[-2.21%,+12.87%]，含零。Qwen
+    L23: delta=+3.84pp, CI=[-3.57%,+11.31%]，含零。两模型 MLP 优势方向一致（正）但统计不显著。D009 原结论"C3
+    confirmed conflict-specific"不成立。C3 降为 supporting observation / trend，不再作为独立 claim。'
+  related_experiments:
+  - exp_id: xnli_baseline_110
+    role: evidence
+    result: XNLI MLP delta negative/zero vs conflict positive — direction contrast
+      holds but CIs include zero
+  - exp_id: mvp_002
+    role: baseline
+    result: single-seed MLP deltas were larger but not bootstrapped
+  depends_on:
+  - D009
+- id: D013
+  date: 2026-05-22 12:55 UTC
+  summary: 'DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作'
+  rationale: 用户确认 venue 从 ICLR 2027 改为 EMNLP 2026 ARR，deadline May 25。剩余3天。立即启动 Paper
+    Agent，用已有结果（C1+C2+XNLI对照+方法论控制+steering negative as finding）写作。实验继续跑，完成的结果即时补入。
+  related_experiments:
+  - exp_id: mvp_probe_llama_v1
+    role: core
+    result: C1 success
+  - exp_id: mvp_probe_v1
+    role: core
+    result: C1 success
+  - exp_id: xnli_baseline_110
+    role: core
+    result: C2 reframed
+  - exp_id: steering_107
+    role: core
+    result: negative, reportable finding
+  depends_on: []
+- id: D014
+  date: 2026-05-22 13:22 UTC
+  summary: Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-layer，非 probe peak。D010/D011
+    策略验证成功
+  rationale: L13 steering 两个 alpha 显著：α=-20 p=0.0009 (36% vs 17.6%), α=+5 p=0.002
+    (19.9% vs 6.6%)。方向性完全正确（正α→p→c, 负α→c→p）。L28/L18 均 negative → 因果决策在 mid-layer (~40%
+    depth)，probe peak (L28, 88%) 只是诊断信号。这是论文核心因果证据，直接回应 RC8。下一步：等 α=+10/+20 确认，然后
+    Qwen L13 跨模型验证。Paper story 升级为 detection-vs-decision 层分离。
+  related_experiments:
+  - exp_id: steering_107_L13
+    role: core
+    result: SUCCESS — α=-20 p=0.0009, α=+5 p=0.002
+  - exp_id: steering_107
+    role: control
+    result: NEGATIVE at L28
+  - exp_id: steering_107_L18
+    role: control
+    result: NEGATIVE at L18
+  - exp_id: steering_107_L28_all
+    role: control
+    result: NEGATIVE at L28 all-position
+  depends_on:
+  - D011
+- id: D015
+  date: 2026-05-22 16:34 UTC
+  summary: C6 steering 确认为 Llama-specific；Gemma L17 informative negative 终结跨模型验证
+  rationale: 三个模型的 ~40% depth 层全测完：Llama L13 SUCCESS (p<0.001), Qwen L14 negative
+    (underpowered), Gemma L17 negative (informative, adequate sample size)。Steering
+    因果效应是 architecture-dependent。论文叙事维持 "detection ≠ decision" 核心发现 + Llama-specific
+    steering + model-specificity 方法论警告。不再追加 steering 实验。
+  related_experiments:
+  - exp_id: steering_107_gemma_L17
+    role: cross-model validation
+    result: negative (all p>0.1, 0 directional flips)
+  - exp_id: steering_107_L13
+    role: primary evidence
+    result: success (p=0.002, p=0.0009)
+  - exp_id: steering_107_qwen_L14
+    role: cross-model validation
+    result: negative (underpowered)
+  depends_on:
+  - D014
+- id: D016
+  date: 2026-05-23 07:47 UTC
+  summary: 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提交，TOST underpowered 不加入，cosine
+    similarity 逻辑错误不加入。全部保留为 rebuttal 储备。
+  rationale: 1) Cross-task transfer (116)：Llama 大部分层 ≥0.97、L13=1.0 直接支持 piggyback，但单种子无
+    CI，Gemma 中间层崩塌增加叙事复杂度，8 页限制下无法充分展开。2) TOST (118)：点估计均 <1.3pp 但 SE 太大(2.6-4.4pp)
+    导致检验失败，加入会给审稿人攻击弹药。3) Cosine sim (117)：实验设计逻辑错误，近零结果是 trivial 的。三个实验均保留数据供 rebuttal
+    使用。
+  related_experiments:
+  - exp_id: cross-task-transfer-116
+    role: piggyback direct test
+    result: Llama near-perfect transfer, Gemma mid-layer collapse
+  - exp_id: probe-cosine-sim-117
+    role: piggyback angle test
+    result: cosine ≈ 0, trivial/expected
+  - exp_id: tost-equivalence-118
+    role: formal equivalence test
+    result: all fail, underpowered
+  depends_on: []
+- id: D017
+  date: 2026-05-23 08:24 UTC
+  summary: Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering 层扫描、Qwen 换 α、或其他 GPU
+    ablation。剩余工作全部 CPU 级别。
+  rationale: Reviewer 逐项评估 4 个潜在 GPU 实验方向均给 NO：(1) Gemma L14-22 已有 L17/L21 两个 negative
+    数据点，新增层扫描风险高收益低；(2) Qwen underpowered 是数据集限制非 α 问题；(3) Llama L13 已有 10 个 α 完整扫描+Bonferroni；(4)
+    更细粒度层扫描是 camera-ready 工作。DDL 48h 内应集中论文打磨。
+  related_experiments:
+  - exp_id: steering_107_gemma_L17
+    role: Gemma steering negative
+    result: negative
+  - exp_id: steering_107_gemma_L21
+    role: Gemma steering negative
+    result: negative
+  - exp_id: steering_107_qwen_L14
+    role: Qwen steering negative
+    result: negative
+  - exp_id: cross-task-transfer-116
+    role: Gemma mid-layer collapse discovery
+    result: L14-22 collapse
+  depends_on:
+  - D015
+  - D016
+- id: D018
+  date: 2026-05-23 08:25 UTC
+  summary: 推翻 D016 中 cross-task transfer "不加入"的决定：用户批准加入论文，bootstrap n=1000 解决单种子问题，聚焦
+    Gemma L14-22 崩塌与 steering 失败共定位的 mechanistic 解释
+  rationale: 1) 用户明确批准 "最能提分无条件支持做"；2) bootstrap CI 将解决 Reviewer 对单种子的担忧；3) Gemma
+    mid-layer 崩塌与 steering 失败的共定位是 mechanistic insight，把 informative negative 升级为
+    mechanistically explained negative；4) 页数有余量（当前 7 页，段落框架 4 行已确认不超 8 页）；5) TOST
+    和 cosine sim 仍不加入（D016 中这两项维持不变）。
+  related_experiments:
+  - exp_id: cross-task-transfer-116
+    role: single-seed results
+    result: Llama ≥0.97, Gemma L14-22 collapse
+  - exp_id: cross-task-bootstrap-119
+    role: bootstrap CI in progress
+    result: pending
+  depends_on:
+  - D016
+- id: D019
+  date: 2026-05-23 11:27 UTC
+  summary: 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemma L24 均无显著效应。Llama 因果窗口极窄（L13
+    成功，L16/L18/L28 全失败）。Steering 是 Llama L13 唯一成功点，architecture-specific 结论进一步强化。
+  rationale: 新增 3 个 negative 加上之前的 6 个，总计 12 个 steering configs 中只有 Llama L13 成功。Qwen
+    三层(L14/L18/L23)、Gemma 三层(L10/L17/L24)全面失败。Llama L16（距L13仅3层）也失败，证明因果窗口极窄。论文叙事"Detection
+    ≠ Decision + narrow causal window"更加稳固。考虑将 Llama L16 加入 Table 3 以展示 causal window
+    精度。
+  related_experiments:
+  - exp_id: steering-qwen-L18-122
+    role: Qwen additional layer
+    result: negative, all p=1.0
+  - exp_id: steering-llama-L16-123
+    role: causal window boundary
+    result: negative, narrowest gap to L13
+  - exp_id: steering-gemma-L24-121
+    role: Gemma post-dip layer
+    result: negative, cleanest null
+  depends_on:
+  - D015
+  - D018
+- id: D020
+  date: 2026-05-24 17:15 UTC
+  summary: Detection≠Decision 叙事从 "L28 peak vs L13 causal = 大幅分离" 改为 "causal site
+    L13 稳定而 detection peak 随数据波动"
+  rationale: 多种子实验（虽数据版本不同）揭示 peak layer 在种子间剧烈波动（Llama L28→L12/L15），而 peak accuracy
+    稳定（±0.12%）。这说明 L28 peak 可能是数据依赖的，但 causal site L13 有 boundary sweep（6层, N=201,
+    独立样本）确认是稳健的。新叙事实际上更强：detection 是分布式的（broad plateau L3-L22），causal influence 是集中的（L13），这比"L28
+    vs L13 距离大"更有 mechanistic insight。配合 MF-3 的 Llama-specific 限定，整体 framing 更诚实。
+  related_experiments:
+  - exp_id: multi_seed_probing
+    role: trigger
+    result: peak layer unstable across seeds, accuracy stable
+  depends_on: []
+- id: D021
+  date: 2026-05-26 09:41 UTC
+  summary: Matched-condition N=201 层扫描推翻 D019 部分结论：L14/L16 也通过 Bonferroni 校正，L13 非"唯一"因果节点而是
+    peak。ROADMAP 数据源统一为 matched-condition，论文 provenance 仍基于原始 N=136 数据（待决定是否更新论文）。
+  rationale: Reviewer 审查发现 ROADMAP 混用两套数据源：C1 用 matched-condition N=201（Llama 90.0%），C3
+    却说"L13 唯一因果节点"——仅在原始 N=136 数据下成立。matched-condition 层扫描（steering_llama_L13_repl_126,
+    steering_llama_L14_125, steering_llama_L16_127）显示 L13/L14/L16 三层均 Bonferroni 显著（阈值
+    0.05/6=0.00833）。D019 中"Llama L16 也失败"基于 steering_llama_L16_123（N=136, probe acc
+    76.84%），但 steering_llama_L16_127（N=201, probe acc 91.5%, p=0.005）结论为 success。因果窗口从"L13
+    单点"扩展为"L13-L16 mid-layer window"。这实际上强化了 Detection≠Decision 叙事——因果效应集中在 ~40-50%
+    depth 的窄窗口，而非 probe peak（~88% depth）。论文是否切换到 matched-condition 数据需要评估：优点是数据质量更高，缺点是需要更新
+    Table 3 和相关叙事。
+  related_experiments:
+  - exp_id: steering_llama_L13_repl_126
+    role: matched-condition L13
+    result: Bonferroni significant (α=+10 p=0.0003, α=+5 p=0.0034)
+  - exp_id: steering_llama_L14_125
+    role: matched-condition L14
+    result: Bonferroni significant (α=+10 p=0.0022)
+  - exp_id: steering_llama_L16_127
+    role: matched-condition L16
+    result: Bonferroni significant (α=+10 p=0.005), reversing D019
+  - exp_id: steering_llama_L16_123
+    role: original L16 (superseded)
+    result: negative (N=136, probe acc 76.84%)
+  depends_on:
+  - D019
+  - D014

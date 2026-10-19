@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd7ff8e0d41c20485eea",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "cpu c3 mlp bootstrap",
+  "task_key": "worker_cpu_c3-mlp-bootstrap_20260522T080853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_c3-mlp-bootstrap_20260522T080853_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "2544623d8c5131d55d5ab43ac498e90989c84eff321b4327fb860c4300aa8d53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程在 20 分钟内完成了 ~400/1000 iterations（第一个 condition），服务器严重负载（其他 train_probe.py 占用 550% CPU）。\n\n**当前状态**：\n- 脚本 `src/bootstrap_mlp_delta.py` 在 westd-41302 后台运行 (PID 464607)\n- 日志: `logs/c3_mlp_bootstrap.log`\n- 结果会写入: `data/c3_mlp_bootstrap_results.json`（每个 condition 完成后增量保存）\n- 预估总运行时间: **~2-3 小时**（服务器负载高）\n\n**已有中间结果** (qwen3_conflict, 400 iterations):\n- mean delta = **+0.039** (MLP bal_acc - Linear bal_acc)\n- Linear EN→ZH: ~0.600, MLP EN→ZH: ~0.639\n- Delta 非常稳定，一直为正值\n\n从趋势看，conflict 的 CI 应该会清楚地排除 0（MLP gain 显著）。XNLI 的结果需要等脚本跑完。\n\n4 个 conditions 配置:\n\n| Condition | Peak Layer | EN Train | ZH Test |\n|-----------|-----------|----------|---------|\n| qwen3_conflict | 23 | 798 | 168 |\n| llama31_conflict | 5 | 1096 | 272 |\n| qwen3_xnli | 22 | 800 | 200 |\n| llama31_xnli | 17 | 800 | 200 |\n\n进程已经在后台稳定运行，完成后 `data/c3_mlp_bootstrap_results.json` 会包含所有 4 个 condition 的 95% CI。可以后续用 `cat data/c3_mlp_bootstrap_results.json` 查看最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-c3-mlp-bootstrap.md"
+}

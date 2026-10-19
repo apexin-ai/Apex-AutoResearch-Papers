@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "62ea7ecabfe2cd1fa8d5",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fig5 fig6 steering dissociation",
+  "task_key": "worker_code_fig5-fig6-steering-dissociation_20260525T131217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig5-fig6-steering-dissociation_20260525T131217_result.json",
+    "occurrence": 1,
+    "bytes": 2235495,
+    "sha256": "c4783201f8ea4265b6299aefc9dbcb0117f253f2a258ede36887219f4acd1820"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "62ea7ecabfe2cd1fa8d5-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig5-fig6-steering-dissociation.md"
+}

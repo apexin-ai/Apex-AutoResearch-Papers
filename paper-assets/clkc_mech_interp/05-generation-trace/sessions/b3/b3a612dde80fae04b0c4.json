@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3a612dde80fae04b0c4",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "research tost bayesian equivalence",
+  "task_key": "worker_research_tost-bayesian-equivalence_20260524T170140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_tost-bayesian-equivalence_20260524T170140_result.json",
+    "occurrence": 1,
+    "bytes": 2048,
+    "sha256": "efbb92a60cfd6cd7bc8fbb8621593e80914ff20c32c8fdb3bb9ec2febe49f156"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已执行完毕，结果已保存。汇报如下：\n\n---\n\n```\nTOST Power Analysis:\n  Llama (margin=±2pp):  power=0.014, TOST p=0.424 → fail to reject (insufficient)\n  Llama (margin=±5pp):  power=0.103, TOST p=0.180 → fail to reject (insufficient)\n  Llama (margin=±10pp): power=0.584, TOST p=0.017 → reject H0 (but power still insufficient)\n  Qwen  (margin=±2pp):  power=0.014, TOST p=0.367 → fail to reject (insufficient)\n  Qwen  (margin=±5pp):  power=0.092, TOST p=0.154 → fail to reject (insufficient)\n  Qwen  (margin=±10pp): power=0.534, TOST p=0.016 → reject H0 (but power still insufficient)\n  Margin needed for power=0.80: Llama ±12.3pp, Qwen ±12.8pp\n\nBayesian Equivalence (prior_scale=5pp):\n  Llama: diff=1.2pp, BF01=1.53, anecdotal evidence for equivalence\n  Qwen:  diff=0.5pp, BF01=1.51, anecdotal evidence for equivalence\n\nBayesian Equivalence (prior_scale=10pp):\n  Llama: diff=1.2pp, BF01=2.52, anecdotal evidence for equivalence\n  Qwen:  diff=0.5pp, BF01=2.46, anecdotal evidence for equivalence\n```\n\n**结论：** 两类分析给出互补但一致的图景。TOST 分析表明，由于 SE 较大（~4.1–4.4pp，源于 bootstrap CI 宽度），在严格的等价边界（±2–5pp）下统计功效严重不足（power < 0.11），无法通过 TOST 正式证明等价性；需要放宽到 ±10pp 才能在 α=0.05 下拒绝非等价 H0（p≈0.016），达到 80% power 则需 ±12–13pp 的边界。Bayesian 分析方向一致：所有 BF01 均 >1（1.2–2.5），数据一致地轻微偏向等价假说而非差异假说，但证据强度仅为 anecdotal（未达 BF01>3 的 moderate 阈值）。综合来看，**现有数据与 \"asymmetry 非 conflict-specific\" 的 claim 方向一致（两个差异仅 0.5–1.2pp），但样本量不足以提供统计上确凿的等价性证据**。论文中应诚实报告这一点：CI 重叠和小差异提供 suggestive evidence，TOST 功效不足是 limitation，Bayesian BF01>1 支持等价方向但证据强度有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-tost-bayesian-equivalence.md"
+}

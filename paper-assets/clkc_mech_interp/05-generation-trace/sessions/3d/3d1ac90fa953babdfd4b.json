@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d1ac90fa953babdfd4b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260522T130459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260522T130459_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "b2c3e7962bd71c03e6f78b14a4e8d0527cc7891b5e528620abf7d84c225af7d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 generated and registered (`art_20260522_7c8cc3`).\n\n**Output files:**\n- PDF: `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/figures/paper/fig1_pipeline.pdf` (34 KB, vector)\n- PNG: `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/figures/paper/fig1_pipeline.png` (220 KB, 300 DPI)\n\n**Layout:** 三大 block 从左到右，浅色背景区分（蓝灰/浅橙/浅绿），EN 蓝色 / ZH 橙色 / cross-lingual 粉紫色编码贯穿全图。Block 1 五步垂直数据流，Block 2 含 2×2 transfer matrix（对角线单语/非对角线跨语言），Block 3 三项 confound check 带绿色对勾。底部标注对应章节号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure.md"
+}

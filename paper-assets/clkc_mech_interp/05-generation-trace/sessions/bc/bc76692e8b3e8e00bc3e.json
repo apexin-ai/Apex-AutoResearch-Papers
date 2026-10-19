@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc76692e8b3e8e00bc3e",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "cpu c3 mlp bootstrap fix",
+  "task_key": "worker_cpu_c3-mlp-bootstrap-fix_20260522T083245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_c3-mlp-bootstrap-fix_20260522T083245_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "86d0b4981a037fa262a3ecec745754ddbce7a57e454ad956d6ebc8d3a7a316ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都在正常运行：\n\n**Qwen bootstrap** (原进程): qwen3_conflict L23 已到 450/1000，继续跑，不受影响\n\n**Llama fix** (PID 467703): 已启动 `llama31_conflict_en_zh_L18` (layer 18, n_boot=1000)，数据加载正常 (Train: 1096×4096, Test: 272×4096)\n\n**修改内容：**\n- 新建 `src/bootstrap_mlp_delta_llama_fix.py`，包含 6 个 Llama 条件：\n  - `conflict_en_zh_L18` — MLP 峰值层，C3 核心\n  - `conflict_en_zh_L5` — Linear 峰值层，对比\n  - `conflict_en_en_L16` — EN→EN MLP 峰值，对照方向\n  - `conflict_en_en_L28` — EN→EN Linear 峰值，对照方向\n  - `xnli_en_zh_L18` — XNLI @ conflict MLP 峰值\n  - `xnli_en_zh_L5` — XNLI @ conflict Linear 峰值\n- 每个条件 n=1000 bootstrap\n- 输出 → `data/c3_mlp_bootstrap_llama_fix.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-c3-mlp-bootstrap-fix.md"
+}

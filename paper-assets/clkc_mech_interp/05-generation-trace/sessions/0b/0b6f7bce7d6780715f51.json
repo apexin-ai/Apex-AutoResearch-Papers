@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b6f7bce7d6780715f51",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code de integration prep",
+  "task_key": "worker_code_de-integration-prep_20260523T062125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_de-integration-prep_20260523T062125_result.json",
+    "occurrence": 1,
+    "bytes": 1495,
+    "sha256": "2fff380e5239b154efa5a171b910d2a6530d65ece222564368a50a6fcbfe512b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n### 创建/修改的文件\n\n| 文件 | 位置 | 说明 |\n|------|------|------|\n| `src/integrate_de_results.py` | 服务器 `/root/clkc_mech_interp/` | DE 结果集成脚本 |\n| `figures/gen_fig3_asymmetry_forest.py` | 服务器 `/root/clkc_mech_interp/` | Fig 3 forest plot（DE 行已注释预留） |\n| `artifacts/de_paper_patches.md` | 本地 artifacts 目录 | 两种 scenario 论文段落模板 |\n\n### integrate_de_results.py dry-run (mock Scenario A)\n\n```\n4-Direction Bootstrap Summary (Llama-3.1, EN-DE, n=2000)\n  EN->EN    L19   0.7508  [0.7169, 0.7831]\n  DE->DE    L16   0.7102  [0.6654, 0.7511]\n  EN->DE    L14   0.6250  [0.5588, 0.6912]\n  DE->EN    L18   0.6380  [0.5735, 0.6985]\n\nΔ_DE = +1.30pp  CI [-4.52, 7.12]  p=0.3312  (NOT significant)\n→ Scenario A: Token overlap does not drive EN-ZH asymmetry\n```\n\n输出同时保存 `de_integration_summary.json`（含 scenario 判定）。\n\n### Fig 3 DE placeholder 位置\n\n`gen_fig3_asymmetry_forest.py` 第 22 行：\n```python\n# (\"Llama-3.1 (DE)\", DELTA_DE, CI_LO_DE, CI_HI_DE, \"de\"),\n```\n取消注释并填入实际值即可。y 轴、分隔线、section header 均已预留扩展点。\n\n### 结果就绪后一行命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/clkc_mech_interp && \\\npython3 src/integrate_de_results.py --results_file data/llama31/de_bootstrap_n2000_results.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-de-integration-prep.md"
+}

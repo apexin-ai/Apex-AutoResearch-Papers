@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "022e000d23fea29a3924",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp gemma comet confound",
+  "task_key": "worker_exp_gemma-comet-confound_20260524T152738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-comet-confound_20260524T152738_result.json",
+    "occurrence": 1,
+    "bytes": 166,
+    "sha256": "3465fd92e09da16f4675a1ffc94800c44a74fc2e56cf809b7ea6700c52266e4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Stale processes killed. COMET download at 55% (~14 min left), translation at 540/1026 train (~80 min left). Will check back in ~4 min for the download."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-comet-confound.md"
+}

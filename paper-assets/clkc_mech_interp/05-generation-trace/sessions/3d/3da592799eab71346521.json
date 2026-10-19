@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3da592799eab71346521",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra llama en probe v2",
+  "task_key": "worker_infra_llama_en_probe_v2_20260521T173441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llama_en_probe_v2_20260521T173441_result.json",
+    "occurrence": 1,
+    "bytes": 1190,
+    "sha256": "8911e572bf5d795779f317189c3b35be567fb2c98d110167693482af8649dce5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[Llama EN→EN 探针结果]\nPeak: 77.6% (layer 28)\nBinomial p: 0.0 (< 1e-6)\nPermutation p: 0.000 (0/1000)\nGate: CONDITIONAL (< 80% 但统计显著)\n\n每层 accuracy:\nLayer  0: 63.6%\nLayer  1: 65.1%\nLayer  2: 69.1%\nLayer  3: 65.8%\nLayer  4: 63.6%\nLayer  5: 69.9%\nLayer  6: 68.8%\nLayer  7: 71.0%\nLayer  8: 69.5%\nLayer  9: 71.0%\nLayer 10: 74.6%\nLayer 11: 72.8%\nLayer 12: 72.8%\nLayer 13: 76.1%\nLayer 14: 72.8%\nLayer 15: 76.1%\nLayer 16: 76.8%\nLayer 17: 75.0%\nLayer 18: 73.9%\nLayer 19: 75.7%\nLayer 20: 74.6%\nLayer 21: 75.7%\nLayer 22: 76.5%\nLayer 23: 73.2%\nLayer 24: 74.6%\nLayer 25: 72.1%\nLayer 26: 76.5%\nLayer 27: 74.3%\nLayer 28: 77.6%  ← peak\nLayer 29: 76.5%\nLayer 30: 77.2%\nLayer 31: 76.8%\n```\n\n输出文件：\n- `data/llama31/probe_results.json`\n- `data/llama31/probe_accuracy_by_layer.png`\n\n相比 buggy Qwen 的 63%，修复后 Llama 提升到 77.6%（+14.6pp）。所有层 binomial p < 1e-5，permutation p = 0.000。信号高度显著但未过 80% gate，判定 **CONDITIONAL**。accuracy 从 layer 10 起稳定在 72-78% 的高原，peak 在 layer 28（中后层），符合语义特征在深层编码的预期模式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llama-en-probe-v2.md"
+}

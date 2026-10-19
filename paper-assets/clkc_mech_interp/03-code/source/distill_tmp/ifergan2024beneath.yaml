@@ -1,0 +1,80 @@
+paper_key: "ifergan2024beneath"
+title: "Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs"
+venue: "Findings of NAACL 2025"
+full_text_available: true
+
+research:
+  baselines: [ROME, MEMIT, Finetuning]
+  metrics:
+    - {name: "Exact Match", direction: "higher_better"}
+    - {name: "Cross-lingual Consistency (CKC)", direction: "higher_better"}
+    - {name: "Representation Sharing (CKR/SR)", direction: "higher_better"}
+    - {name: "NCL (Number of Consistent Languages)", direction: "higher_better"}
+    - {name: "NTL (Number of Transferred Languages)", direction: "higher_better"}
+    - {name: "Reliability", direction: "higher_better"}
+    - {name: "Locality", direction: "higher_better"}
+  datasets:
+    - {name: "CLIKE", size: "35K facts, 13 languages, 7 scripts, 14 relations"}
+  ablation_dimensions: [script_family, language_pairing, model_design, editing_method, relation_type]
+  training_recipe: {optimizer: "N/A (knowledge editing as analysis tool)", lr: "N/A", hardware: "7B parameter models"}
+  method_family: "knowledge editing as analytical probe"
+
+positioning:
+  core_claim: "High cross-lingual consistency does NOT imply shared internal representations; script similarity is the dominant factor in representation sharing, not language family or training data proportion"
+  key_results: "42.5% facts known in at least one language but only 11.8% cross-lingual avg; 3x potential improvement if knowledge fully shared; CKC-CKR gap consistent across all models"
+  limitations: ["Limited to middle MLP layer editing methods", "Only decoder-only 7B models tested", "CLIKE may not represent full linguistic diversity"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "The veracity of a factoid is largely independent of the language it is written in — yet LLMs show inconsistency across languages"
+  tension: "Prior work conflates consistency (same answers) with representation sharing (same internal mechanism) — these are fundamentally different"
+  key_insight: "Knowledge editing as a causal probe: edit in one language, observe propagation to others — distinguishes mere behavioral consistency from true representation sharing"
+  argument_chain: "observation (cross-lingual inconsistency) → conceptual distinction (consistency ≠ sharing) → method (editing-based probing) → dataset (CLIKE 13 langs) → finding (script dominates sharing) → implication (3x improvement possible)"
+  contribution_framing: "Introduces distinction, proposes methodology, creates dataset, and empirical findings — 4 interlocking contributions"
+  intro_structure: "6 paragraphs: (1) opening observation, (2) theoretical dichotomy, (3) key distinction + methodology, (4) dataset/models, (5) findings summary, (6) contribution claim"
+  notable_technique: "The consistency≠sharing distinction is a powerful reframing that makes prior work's conflation visible — simple but high-impact conceptual contribution"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "problem_illustration"
+    description: "Two examples: sports question shows consistency WITHOUT sharing (green), Turing birthplace shows true shared representation (blue), with edit propagation visualization"
+    narrative_role: "Crystallizes the paper's core distinction — consistency vs sharing — in one visual"
+    design_elements: ["color-coded examples (green vs blue)", "edit propagation arrows", "contrasting outcomes"]
+    visual_style: "Dual-panel with color distinction; uses concrete factual examples to make abstract concept tangible"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "Cross-lingual performance variability: Any Language vs Best Language vs Cross-lingual Average"
+      how_gain_highlighted: "Gap between 'Any Language' and 'Average' shows unrealized potential"
+      design_note: "Three bars per model visually quantify the 'knowledge waste' — powerful for motivation"
+    - figure_id: "Figure 4"
+      viz_type: "heatmap"
+      what_compared: "Pairwise CKC and SR across 13 languages for 4 models"
+      how_gain_highlighted: "Block-diagonal structure reveals script-based clustering"
+      design_note: "Heatmap matrix with language labels grouped by script — visual pattern immediately conveys the finding"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      dimensions_varied: ["NCL distribution", "NTL distribution", "E[NCL] vs E[NTL]"]
+      design_note: "Left panel shows distributions, right shows expectations — combines frequency and summary stats"
+  figure_narrative_role: "Figure 1 (concept) → Figure 2 (motivation: knowledge waste) → Figure 3 (CKC vs CKR gap) → Figure 4 (script-based patterns) → Figure 5-7 (deeper analyses)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models (extended vs base)"
+    col_axis: "CKC/CKR metrics × language directions"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "percentage changes with ↑/↓ arrows"
+    statistical_reporting: "single values with directional changes"
+    num_baselines: 4
+    design_note: "Compact table focused on language extension effects — percentage arrows give instant readability"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Additional cross-lingual matrices, per-relation breakdowns, editing method comparisons"
+    reason: "Main paper focuses on aggregate findings; appendix provides per-language and per-relation granularity"

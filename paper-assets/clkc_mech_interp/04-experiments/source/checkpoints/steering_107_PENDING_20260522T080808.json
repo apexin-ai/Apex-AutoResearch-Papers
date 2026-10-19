@@ -1,0 +1,22 @@
+{
+  "exp_id": "steering_107",
+  "project": "clkc_mech_interp",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:08:08.511Z",
+    "updated_at": "2026-05-22T08:08:08.511Z",
+    "spec": {
+      "command": "python src/steering_experiment.py (probe-weight steering vectors, residual stream intervention)",
+      "server": "westd-41302",
+      "data_path": "data/{qwen3,llama31}/en_conflict_test_verified.jsonl + zh_conflict_test_validated.jsonl",
+      "data_count": 600,
+      "model_name": "Qwen3-8B + Llama-3.1-8B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-22T08:08:08.574459+00:00",
+  "trigger": "update_registry"
+}

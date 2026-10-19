@@ -1,0 +1,28 @@
+dreams:
+  dream_20260522T023801:
+    dream_id: dream_20260522T023801
+    project: clkc_mech_interp
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 重点评估：1) C2 不对称性 claim 在 Llama borderline 显著 + Qwen 不显著的情况下能否撑住；2) 只有 Track
+      1 probing 无 Track 2/3 SAE+steering 时论文贡献强度是否足够 ICLR；3) back-translation COMET
+      低但 ablation 排除 confounder 的 framing 是否说服审稿人
+    what_if: []
+    pid: 1871763
+    chat_id: oc_6951eb3869a0070e3ae607ab60c90dad
+    card_message_id: om_x100b6fc856077cb4b480a5fd5610b91
+    started_at: '2026-05-22T02:38:01+00:00'
+    updated_at: '2026-05-22T03:37:46+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 3e63e63f7259c63b18e63c1c091799d532173beccb58792a8ac5ab223ac37e04
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated

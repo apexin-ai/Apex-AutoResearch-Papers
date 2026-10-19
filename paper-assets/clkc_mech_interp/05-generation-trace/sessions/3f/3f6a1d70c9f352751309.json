@@ -1,0 +1,1246 @@
+{
+  "schema_version": "1.0",
+  "id": "3f6a1d70c9f352751309",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "analysis qwen L14 results urgent",
+  "task_key": "worker_analysis_qwen-L14-results-urgent_20260522T150412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen-L14-results-urgent_20260522T150412.log",
+    "occurrence": 1,
+    "bytes": 65649,
+    "sha256": "7e3c72418ded58de3c6465cf083d0e674de1e33b47206c8a3f811a6550dfa4d0"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+                "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "655ff436-a5d8-48a0-92bb-ab6c24af748c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779475200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b99fd036-7e77-49c6-985f-f82aef8077bc",
+                "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the task, I need to read results from the server, analyze them, kill a zombie process, and update the registry."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "df3677c3-5dd2-4758-b01c-557aecb6f7bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JMMyRQk92Fep8q98uPnbdW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12223,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12223
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UKrcpRp7EqVEYmG38tx7ua",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__read_registry",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "7a32e132-63bd-427f-ae4f-9fd130375d50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JMMyRQk92Fep8q98uPnbdW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12223,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12223
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T15:04:30.216Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01UKrcpRp7EqVEYmG38tx7ua",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__kill_job"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "e9ce9cfc-bb51-4dcd-ba5e-033b65751891",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__kill_job",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the steering results from the server and killing the zombie process in parallel.",
+              "signature": "Eq0CCmMIDRgCKkCnYW506+RJNZfFR9986y9UxMThEjDLvFYdY0vtaswtOAOrkqicRyshm6kM6yMbytJSQyyhxc4JX9pVf4EWUe0EMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDHh24iK0FkAPBbyZDhoMmWkYTIXQ53Xu6iq1IjDO82ykMMOZwAiRct4wZLWLZATQMjHQo3nLWxk/nTMNgXL+nYnaoHpD5oKcQWbWIWYqeEobcaBKm7EUQ39yEql8/oyLvwNPAahJlqZuznF1vdErCohK4oampeHZEnS8JsQAcgrdq1/ov329UkmX7Ks/+03LM5fcFUyxxPvrpn9yNpjN2xWtuouMyahQX0T1vbFeozjKuI02N/mr2LgAOtM8qRmedACtKCz/3BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "5c6b1a98-40d8-447d-9404-10b77dd8b7c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrtkdfcJ1GYUg48FomqKbf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1775,
+                "cache_read_input_tokens": 24064,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1775
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ERrRv1mnSGyEPrHTkxupe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-41302",
+                "command": "cat /root/clkc_mech_interp/data/qwen3/steering_results/steering_results_qwen_L14.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "fbaaba7b-2000-489c-8d36-63ea8a88d1a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrtkdfcJ1GYUg48FomqKbf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1775,
+                "cache_read_input_tokens": 24064,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1775
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012MuP3wqpUZANQED4ocN977",
+              "name": "mcp__agent-ml-research__kill_job",
+              "input": {
+                "server": "westd-41302",
+                "pid": "493129",
+                "reason": "实验已完成，释放 cuda:1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "eccb5d9b-53db-431b-afd9-7c1b3b6512a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrtkdfcJ1GYUg48FomqKbf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1775,
+                "cache_read_input_tokens": 24064,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1775
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T15:04:37.488Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ERrRv1mnSGyEPrHTkxupe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/models/Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"peak_layer\\\\\\\": 14,\\\\n    \\\\\\\"probe_accuracy\\\\\\\": 0.7023809523809523,\\\\n    \\\\\\\"position\\\\\\\": \\\\\\\"last\\\\\\\",\\\\n    \\\\\\\"alphas\\\\\\\": [\\\\n      -20.0,\\\\n      -10.0,\\\\n      -5.0,\\\\n      5.0,\\\\n      10.0,\\\\n      20.0\\\\n    ],\\\\n    \\\\\\\"n_test\\\\\\\": 84,\\\\n    \\\\\\\"use_chat_template\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"baseline\\\\\\\": {\\\\n    \\\\\\\"distribution\\\\\\\": {\\\\n      \\\\\\\"both\\\\\\\": 20,\\\\n      \\\\\\\"parametric\\\\\\\": 8,\\\\n      \\\\\\\"neither\\\\\\\": 21,\\\\n      \\\\\\\"contextual\\\\\\\": 35\\\\n    },\\\\n    \\\\\\\"samples\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"The mother of Eleanor of England, Countess of Bar, was Queen Eleanor of Castile.\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"both\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"**Answer:** *Confessions of a Nazi Spy* is a **propaganda film** and a **crime/detective film**. It is also considered a **historical drama** and a **political thriller**, as it deals with themes of espionage, propaganda, and the dangers of extremism.\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"parametric\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"Fuel is an open-world racing game, which places it within the **racing** genre. It also incorporates elements of **action** and **exploration** due to its vast, interactive environment and variety of vehicles. However, its primary genre classification is **racing**.\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"neither\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"The genre of *Children Without* is literary fiction.\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"neither\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"The band's genre can be described as a blend of several styles, including **hard rock**, **alternative rock**, **post-grunge**, **alternative metal**, and **emo**, with influences from **punk** (particularly pop-punk) and **heavy metal**. Their music is characterized as an **aggressive yet accessible style of rock**, combining **driving guitars**, **groove and bounce**, **pop elements**, and **softer melodies** with an **aggressive edge** and **\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"neither\\\\\\\"\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"alpha_-20.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": -20.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 4,\\\\n      \\\\\\\"control_flips\\\\\\\": 6,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0476,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0714,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 0.746262,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 10,\\\\n        \\\\\\\"neither\\\\\\\": 19,\\\\n        \\\\\\\"contextual\\\\\\\": 34\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_-10.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": -10.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 2,\\\\n      \\\\\\\"control_flips\\\\\\\": 4,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0238,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0476,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 0.681783,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 9,\\\\n        \\\\\\\"neither\\\\\\\": 19,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_-5.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": -5.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 2,\\\\n      \\\\\\\"control_flips\\\\\\\": 3,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0238,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0357,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 1.0,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 9,\\\\n        \\\\\\\"neither\\\\\\\": 19,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_5.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 5.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 1,\\\\n      \\\\\\\"control_flips\\\\\\\": 1,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0119,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0119,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 1.0,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 8,\\\\n        \\\\\\\"neither\\\\\\\": 20,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_10.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 10.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 3,\\\\n      \\\\\\\"control_flips\\\\\\\": 2,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0357,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0238,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 1.0,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 8,\\\\n        \\\\\\\"neither\\\\\\\": 20,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_20.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 20.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 5,\\\\n      \\\\\\\"control_flips\\\\\\\": 3,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0595,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0357,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 0.719831,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 9,\\\\n        \\\\\\\"neither\\\\\\\": 19,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "422d3a23-be53-4048-ab73-467c7e4fff75",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/models/Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"peak_layer\\\\\\\": 14,\\\\n    \\\\\\\"probe_accuracy\\\\\\\": 0.7023809523809523,\\\\n    \\\\\\\"position\\\\\\\": \\\\\\\"last\\\\\\\",\\\\n    \\\\\\\"alphas\\\\\\\": [\\\\n      -20.0,\\\\n      -10.0,\\\\n      -5.0,\\\\n      5.0,\\\\n      10.0,\\\\n      20.0\\\\n    ],\\\\n    \\\\\\\"n_test\\\\\\\": 84,\\\\n    \\\\\\\"use_chat_template\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"baseline\\\\\\\": {\\\\n    \\\\\\\"distribution\\\\\\\": {\\\\n      \\\\\\\"both\\\\\\\": 20,\\\\n      \\\\\\\"parametric\\\\\\\": 8,\\\\n      \\\\\\\"neither\\\\\\\": 21,\\\\n      \\\\\\\"contextual\\\\\\\": 35\\\\n    },\\\\n    \\\\\\\"samples\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"The mother of Eleanor of England, Countess of Bar, was Queen Eleanor of Castile.\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"both\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"**Answer:** *Confessions of a Nazi Spy* is a **propaganda film** and a **crime/detective film**. It is also considered a **historical drama** and a **political thriller**, as it deals with themes of espionage, propaganda, and the dangers of extremism.\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"parametric\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"Fuel is an open-world racing game, which places it within the **racing** genre. It also incorporates elements of **action** and **exploration** due to its vast, interactive environment and variety of vehicles. However, its primary genre classification is **racing**.\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"neither\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"The genre of *Children Without* is literary fiction.\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"neither\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"response\\\\\\\": \\\\\\\"The band's genre can be described as a blend of several styles, including **hard rock**, **alternative rock**, **post-grunge**, **alternative metal**, and **emo**, with influences from **punk** (particularly pop-punk) and **heavy metal**. Their music is characterized as an **aggressive yet accessible style of rock**, combining **driving guitars**, **groove and bounce**, **pop elements**, and **softer melodies** with an **aggressive edge** and **\\\\\\\",\\\\n        \\\\\\\"answer_type\\\\\\\": \\\\\\\"neither\\\\\\\"\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"alpha_-20.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": -20.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 4,\\\\n      \\\\\\\"control_flips\\\\\\\": 6,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0476,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0714,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 0.746262,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 10,\\\\n        \\\\\\\"neither\\\\\\\": 19,\\\\n        \\\\\\\"contextual\\\\\\\": 34\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_-10.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": -10.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 2,\\\\n      \\\\\\\"control_flips\\\\\\\": 4,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0238,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0476,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 0.681783,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 9,\\\\n        \\\\\\\"neither\\\\\\\": 19,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_-5.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": -5.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 2,\\\\n      \\\\\\\"control_flips\\\\\\\": 3,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0238,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0357,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 1.0,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 9,\\\\n        \\\\\\\"neither\\\\\\\": 19,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_5.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 5.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 1,\\\\n      \\\\\\\"control_flips\\\\\\\": 1,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0119,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0119,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 1.0,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 8,\\\\n        \\\\\\\"neither\\\\\\\": 20,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_10.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 10.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 3,\\\\n      \\\\\\\"control_flips\\\\\\\": 2,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0357,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0238,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 1.0,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 8,\\\\n        \\\\\\\"neither\\\\\\\": 20,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    },\\\\n    \\\\\\\"alpha_20.0\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 20.0,\\\\n      \\\\\\\"n\\\\\\\": 84,\\\\n      \\\\\\\"steering_flips\\\\\\\": 5,\\\\n      \\\\\\\"control_flips\\\\\\\": 3,\\\\n      \\\\\\\"steering_flip_rate\\\\\\\": 0.0595,\\\\n      \\\\\\\"control_flip_rate\\\\\\\": 0.0357,\\\\n      \\\\\\\"steering_p2c\\\\\\\": 0,\\\\n      \\\\\\\"steering_c2p\\\\\\\": 0,\\\\n      \\\\\\\"fisher_p\\\\\\\": 0.719831,\\\\n      \\\\\\\"steered_distribution\\\\\\\": {\\\\n        \\\\\\\"both\\\\\\\": 21,\\\\n        \\\\\\\"parametric\\\\\\\": 9,\\\\n        \\\\\\\"neither\\\\\\\": 19,\\\\n        \\\\\\\"contextual\\\\\\\": 35\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/models/Qwen3-8B\\\",\\n    \\\"peak_layer\\\": 14,\\n    \\\"probe_accuracy\\\": 0.7023809523809523,\\n    \\\"position\\\": \\\"last\\\",\\n    \\\"alphas\\\": [\\n      -20.0,\\n      -10.0,\\n      -5.0,\\n      5.0,\\n      10.0,\\n      20.0\\n    ],\\n    \\\"n_test\\\": 84,\\n    \\\"use_chat_template\\\": true\\n  },\\n  \\\"baseline\\\": {\\n    \\\"distribution\\\": {\\n      \\\"both\\\": 20,\\n      \\\"parametric\\\": 8,\\n      \\\"neither\\\": 21,\\n      \\\"contextual\\\": 35\\n    },\\n    \\\"samples\\\": [\\n      {\\n        \\\"response\\\": \\\"The mother of Eleanor of England, Countess of Bar, was Queen Eleanor of Castile.\\\",\\n        \\\"answer_type\\\": \\\"both\\\"\\n      },\\n      {\\n        \\\"response\\\": \\\"**Answer:** *Confessions of a Nazi Spy* is a **propaganda film** and a **crime/detective film**. It is also considered a **historical drama** and a **political thriller**, as it deals with themes of espionage, propaganda, and the dangers of extremism.\\\",\\n        \\\"answer_type\\\": \\\"parametric\\\"\\n      },\\n      {\\n        \\\"response\\\": \\\"Fuel is an open-world racing game, which places it within the **racing** genre. It also incorporates elements of **action** and **exploration** due to its vast, interactive environment and variety of vehicles. However, its primary genre classification is **racing**.\\\",\\n        \\\"answer_type\\\": \\\"neither\\\"\\n      },\\n      {\\n        \\\"response\\\": \\\"The genre of *Children Without* is literary fiction.\\\",\\n        \\\"answer_type\\\": \\\"neither\\\"\\n      },\\n      {\\n        \\\"response\\\": \\\"The band's genre can be described as a blend of several styles, including **hard rock**, **alternative rock**, **post-grunge**, **alternative metal**, and **emo**, with influences from **punk** (particularly pop-punk) and **heavy metal**. Their music is characterized as an **aggressive yet accessible style of rock**, combining **driving guitars**, **groove and bounce**, **pop elements**, and **softer melodies** with an **aggressive edge** and **\\\",\\n        \\\"answer_type\\\": \\\"neither\\\"\\n      }\\n    ]\\n  },\\n  \\\"results\\\": {\\n    \\\"alpha_-20.0\\\": {\\n      \\\"alpha\\\": -20.0,\\n      \\\"n\\\": 84,\\n      \\\"steering_flips\\\": 4,\\n      \\\"control_flips\\\": 6,\\n      \\\"steering_flip_rate\\\": 0.0476,\\n      \\\"control_flip_rate\\\": 0.0714,\\n      \\\"steering_p2c\\\": 0,\\n      \\\"steering_c2p\\\": 0,\\n      \\\"fisher_p\\\": 0.746262,\\n      \\\"steered_distribution\\\": {\\n        \\\"both\\\": 21,\\n        \\\"parametric\\\": 10,\\n        \\\"neither\\\": 19,\\n        \\\"contextual\\\": 34\\n      }\\n    },\\n    \\\"alpha_-10.0\\\": {\\n      \\\"alpha\\\": -10.0,\\n      \\\"n\\\": 84,\\n      \\\"steering_flips\\\": 2,\\n      \\\"control_flips\\\": 4,\\n      \\\"steering_flip_rate\\\": 0.0238,\\n      \\\"control_flip_rate\\\": 0.0476,\\n      \\\"steering_p2c\\\": 0,\\n      \\\"steering_c2p\\\": 0,\\n      \\\"fisher_p\\\": 0.681783,\\n      \\\"steered_distribution\\\": {\\n        \\\"both\\\": 21,\\n        \\\"parametric\\\": 9,\\n        \\\"neither\\\": 19,\\n        \\\"contextual\\\": 35\\n      }\\n    },\\n    \\\"alpha_-5.0\\\": {\\n      \\\"alpha\\\": -5.0,\\n      \\\"n\\\": 84,\\n      \\\"steering_flips\\\": 2,\\n      \\\"control_flips\\\": 3,\\n      \\\"steering_flip_rate\\\": 0.0238,\\n      \\\"control_flip_rate\\\": 0.0357,\\n      \\\"steering_p2c\\\": 0,\\n      \\\"steering_c2p\\\": 0,\\n      \\\"fisher_p\\\": 1.0,\\n      \\\"steered_distribution\\\": {\\n        \\\"both\\\": 21,\\n        \\\"parametric\\\": 9,\\n        \\\"neither\\\": 19,\\n        \\\"contextual\\\": 35\\n      }\\n    },\\n    \\\"alpha_5.0\\\": {\\n      \\\"alpha\\\": 5.0,\\n      \\\"n\\\": 84,\\n      \\\"steering_flips\\\": 1,\\n      \\\"control_flips\\\": 1,\\n      \\\"steering_flip_rate\\\": 0.0119,\\n      \\\"control_flip_rate\\\": 0.0119,\\n      \\\"steering_p2c\\\": 0,\\n      \\\"steering_c2p\\\": 0,\\n      \\\"fisher_p\\\": 1.0,\\n      \\\"steered_distribution\\\": {\\n        \\\"both\\\": 21,\\n        \\\"parametric\\\": 8,\\n        \\\"neither\\\": 20,\\n        \\\"contextual\\\": 35\\n      }\\n    },\\n    \\\"alpha_10.0\\\": {\\n      \\\"alpha\\\": 10.0,\\n      \\\"n\\\": 84,\\n      \\\"steering_flips\\\": 3,\\n      \\\"control_flips\\\": 2,\\n      \\\"steering_flip_rate\\\": 0.0357,\\n      \\\"control_flip_rate\\\": 0.0238,\\n      \\\"steering_p2c\\\": 0,\\n      \\\"steering_c2p\\\": 0,\\n      \\\"fisher_p\\\": 1.0,\\n      \\\"steered_distribution\\\": {\\n        \\\"both\\\": 21,\\n        \\\"parametric\\\": 8,\\n        \\\"neither\\\": 20,\\n        \\\"contextual\\\": 35\\n      }\\n    },\\n    \\\"alpha_20.0\\\": {\\n      \\\"alpha\\\": 20.0,\\n      \\\"n\\\": 84,\\n      \\\"steering_flips\\\": 5,\\n      \\\"control_flips\\\": 3,\\n      \\\"steering_flip_rate\\\": 0.0595,\\n      \\\"control_flip_rate\\\": 0.0357,\\n      \\\"steering_p2c\\\": 0,\\n      \\\"steering_c2p\\\": 0,\\n      \\\"fisher_p\\\": 0.719831,\\n      \\\"steered_distribution\\\": {\\n        \\\"both\\\": 21,\\n        \\\"parametric\\\": 9,\\n        \\\"neither\\\": 19,\\n        \\\"contextual\\\": 35\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T15:04:38.599Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012MuP3wqpUZANQED4ocN977",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"493129\\\", \\\"reason\\\": \\\"实验已完成，释放 cuda:1\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "20c3e42d-4702-491b-b30a-b10859829ca5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"493129\\\", \\\"reason\\\": \\\"实验已完成，释放 cuda:1\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"493129\", \"reason\": \"实验已完成，释放 cuda:1\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the results:\n\nResults for each alpha:\n\n| α | Steering flips | Control flips | p→c | c→p | Fisher p |\n|---|---|---|---|---|---|\n| -20 | 4/84 | 6/84 | 0 | 0 | 0.746 |\n| -10 | 2/84 | 4/84 | 0 | 0 | 0.682 |\n| -5 | 2/84 | 3/84 | 0 | 0 | 1.0 |\n\n\n| 5 | 1/84 | 1/84 | 0 | 0 | 1.0 |\n| 10 | 3/84 | 2/84 | 0 | 0 | 1.0 |\n| 20 | 5/84 | 3/84 | 0 | 0 | 0.720 |\n\nThe Fisher exact test results across all alpha values show no statistically significant differences—every p-value is well above 0.05—and there are zero transitions between steering and control conditions at any alpha level, indicating no detectable causal effect.\n\nThe steering-induced flips are indistinguishable from random noise, and while the probe achieves 70.2% accuracy, this doesn't translate to actual causal control. This is a clear negative result: the L14 probe in Qwen3-8B fails to causally influence knowledge conflict resolution, which stands in sharp contrast to Llama's L13 where we saw highly significant effects. Now I need to verify the CUDA release status and update the registry accordingly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "9b89c537-2604-4437-bf0d-b16d00f404ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01244mkB6T5zJhhSyXbDsdu8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2712,
+                "cache_read_input_tokens": 25839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已 kill。确认 GPU 释放并更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "3ae3d6ea-aad0-4b52-b2d5-6750f730eb10",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01244mkB6T5zJhhSyXbDsdu8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2712,
+                "cache_read_input_tokens": 25839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QKARXgBkFLN2bTy1iLpGeF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-41302",
+                "command": "nvidia-smi --query-gpu=index,memory.used --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "cf94ae9f-f604-4e91-9797-6a8701448447",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01244mkB6T5zJhhSyXbDsdu8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2712,
+                "cache_read_input_tokens": 25839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T15:04:53.437Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QKARXgBkFLN2bTy1iLpGeF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB\\\\n1, 3 MiB\\\\n2, 18579 MiB\\\\n3, 16107 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "e68e3bc7-219a-48e5-9b06-00386c3e4800",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB\\\\n1, 3 MiB\\\\n2, 18579 MiB\\\\n3, 16107 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 3 MiB\\n1, 3 MiB\\n2, 18579 MiB\\n3, 16107 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S8cMGmcasmEtBiuRn3oc6y",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "steering_107_qwen_L14",
+                "field": "spec",
+                "value": {
+                  "command": "steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14",
+                  "server": "westd-41302",
+                  "gpu": "cuda:1",
+                  "model_name": "Qwen3-8B",
+                  "data_path": "data/qwen3",
+                  "data_count": 84,
+                  "seed": 42,
+                  "pid": 493129,
+                  "checkpoint_path": "data/qwen3/steering_results/steering_results_qwen_L14.json",
+                  "log_path": "logs/steering_qwen_L14.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "c197c7ca-4d7a-4488-b86e-617d9ea9c696",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01244mkB6T5zJhhSyXbDsdu8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2712,
+                "cache_read_input_tokens": 25839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T15:04:56.771Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S8cMGmcasmEtBiuRn3oc6y",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"steering_107_qwen_L14\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:17:00.714Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:04:56.756Z\\\", \\\"hypothesis\\\": \\\"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"spec\\\": {\\\"command\\\": \\\"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\\\", \\\"server\\\": \\\"westd-41302\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"data_path\\\": \\\"data/qwen3\\\", \\\"data_count\\\": 84, \\\"seed\\\": 42, \\\"pid\\\": 493129, \\\"checkpoint_path\\\": \\\"data/qwen3/steering_results/steering_results_qwen_L14.json\\\", \\\"log_path\\\": \\\"logs/steering_qwen_L14.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.022}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "3327dea9-f0b6-4df4-8ba7-1abee769631a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"steering_107_qwen_L14\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:17:00.714Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:04:56.756Z\\\", \\\"hypothesis\\\": \\\"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"spec\\\": {\\\"command\\\": \\\"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\\\", \\\"server\\\": \\\"westd-41302\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"data_path\\\": \\\"data/qwen3\\\", \\\"data_count\\\": 84, \\\"seed\\\": 42, \\\"pid\\\": 493129, \\\"checkpoint_path\\\": \\\"data/qwen3/steering_results/steering_results_qwen_L14.json\\\", \\\"log_path\\\": \\\"logs/steering_qwen_L14.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.022}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"steering_107_qwen_L14\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:17:00.714Z\", \"updated_at\": \"2026-05-22T15:04:56.756Z\", \"hypothesis\": \"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\", \"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"model_name\": \"Qwen3-8B\", \"data_path\": \"data/qwen3\", \"data_count\": 84, \"seed\": 42, \"pid\": 493129, \"checkpoint_path\": \"data/qwen3/steering_results/steering_results_qwen_L14.json\", \"log_path\": \"logs/steering_qwen_L14.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.022}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "cuda:1 is released (3 MiB). Now update conclusion, metrics, and status.",
+              "signature": "EowCCmMIDRgCKkB0aVNr96+cxp7XFY/m3MHy4uaRAUvdLQ/+pHM13zUSzwoQy6jk5h6vRC2VNVs5sfnBFYTbY3G2Eh1S2dl1L9h0Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDLL4UHQabrQepohgOxoMkjjyK1uHKuzTHAmfIjD2N/yNOVbcDpMdTkmsdN8CCoKoYU6Fj/6jabM72UelLOfTjB5LX6zl9Xx/CBURoGkqV2VyHlmRMWbT1uMmX/TrQE+M2uxE1Qfh3OqJO6JtVsENmHpPDWIHSY+2/UxcxAYU+EazdAfLFN4OKgsYcVaP3XaMkJ59bEH5winQqGi6bp1kk+JwKv6bdhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "77ecff7d-4cc8-439e-bb00-6f5082521e86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MKeHBhDroR1EzvNVDNU7n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1488,
+                "cache_read_input_tokens": 28551,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1488
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 已释放 (3 MiB)。结论是 **NEGATIVE**——所有 alpha 的 Fisher p 均远大于 0.05，且 p2c/c2p 全部为 0。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "ababbbb5-1678-4108-b8f2-104574643e6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MKeHBhDroR1EzvNVDNU7n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1488,
+                "cache_read_input_tokens": 28551,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1488
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R81Ap3my9yjQYJzA8G2wnz",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "steering_107_qwen_L14",
+                "field": "conclusion",
+                "value": "negative"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "16835792-ffd0-4175-903f-7f499df19a0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MKeHBhDroR1EzvNVDNU7n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1488,
+                "cache_read_input_tokens": 28551,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1488
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T15:05:03.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R81Ap3my9yjQYJzA8G2wnz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"steering_107_qwen_L14\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:17:00.714Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:05:03.271Z\\\", \\\"hypothesis\\\": \\\"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"spec\\\": {\\\"command\\\": \\\"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\\\", \\\"server\\\": \\\"westd-41302\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"data_path\\\": \\\"data/qwen3\\\", \\\"data_count\\\": 84, \\\"seed\\\": 42, \\\"pid\\\": 493129, \\\"checkpoint_path\\\": \\\"data/qwen3/steering_results/steering_results_qwen_L14.json\\\", \\\"log_path\\\": \\\"logs/steering_qwen_L14.log\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0864}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "751dd035-d02a-4588-8b4c-e831a11c7885",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"steering_107_qwen_L14\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:17:00.714Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:05:03.271Z\\\", \\\"hypothesis\\\": \\\"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"spec\\\": {\\\"command\\\": \\\"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\\\", \\\"server\\\": \\\"westd-41302\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"data_path\\\": \\\"data/qwen3\\\", \\\"data_count\\\": 84, \\\"seed\\\": 42, \\\"pid\\\": 493129, \\\"checkpoint_path\\\": \\\"data/qwen3/steering_results/steering_results_qwen_L14.json\\\", \\\"log_path\\\": \\\"logs/steering_qwen_L14.log\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0864}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"steering_107_qwen_L14\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:17:00.714Z\", \"updated_at\": \"2026-05-22T15:05:03.271Z\", \"hypothesis\": \"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\", \"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"model_name\": \"Qwen3-8B\", \"data_path\": \"data/qwen3\", \"data_count\": 84, \"seed\": 42, \"pid\": 493129, \"checkpoint_path\": \"data/qwen3/steering_results/steering_results_qwen_L14.json\", \"log_path\": \"logs/steering_qwen_L14.log\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0864}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019hAghVGeyFwrei93Fc1kEE",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "steering_107_qwen_L14",
+                "field": "metrics",
+                "value": {
+                  "probe_accuracy": 0.702,
+                  "alpha_-20": {
+                    "steering_flips": 4,
+                    "control_flips": 6,
+                    "p2c": 0,
+                    "c2p": 0,
+                    "fisher_p": 0.746
+                  },
+                  "alpha_-10": {
+                    "steering_flips": 2,
+                    "control_flips": 4,
+                    "p2c": 0,
+                    "c2p": 0,
+                    "fisher_p": 0.682
+                  },
+                  "alpha_-5": {
+                    "steering_flips": 2,
+                    "control_flips": 3,
+                    "p2c": 0,
+                    "c2p": 0,
+                    "fisher_p": 1
+                  },
+                  "alpha_5": {
+                    "steering_flips": 1,
+                    "control_flips": 1,
+                    "p2c": 0,
+                    "c2p": 0,
+                    "fisher_p": 1
+                  },
+                  "alpha_10": {
+                    "steering_flips": 3,
+                    "control_flips": 2,
+                    "p2c": 0,
+                    "c2p": 0,
+                    "fisher_p": 1
+                  },
+                  "alpha_20": {
+                    "steering_flips": 5,
+                    "control_flips": 3,
+                    "p2c": 0,
+                    "c2p": 0,
+                    "fisher_p": 0.72
+                  }
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "71cbd552-9039-4b56-a261-3a9313c98022",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MKeHBhDroR1EzvNVDNU7n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1488,
+                "cache_read_input_tokens": 28551,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1488
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T15:05:06.970Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019hAghVGeyFwrei93Fc1kEE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"steering_107_qwen_L14\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:17:00.714Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:05:06.946Z\\\", \\\"hypothesis\\\": \\\"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"spec\\\": {\\\"command\\\": \\\"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\\\", \\\"server\\\": \\\"westd-41302\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"data_path\\\": \\\"data/qwen3\\\", \\\"data_count\\\": 84, \\\"seed\\\": 42, \\\"pid\\\": 493129, \\\"checkpoint_path\\\": \\\"data/qwen3/steering_results/steering_results_qwen_L14.json\\\", \\\"log_path\\\": \\\"logs/steering_qwen_L14.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.702, \\\"alpha_-20\\\": {\\\"steering_flips\\\": 4, \\\"control_flips\\\": 6, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.746}, \\\"alpha_-10\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 4, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.682}, \\\"alpha_-5\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 3, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 1, \\\"control_flips\\\": 1, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_10\\\": {\\\"steering_flips\\\": 3, \\\"control_flips\\\": 2, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_20\\\": {\\\"steering_flips\\\": 5, \\\"control_flips\\\": 3, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.72}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0285}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "2a408701-e9b3-4db8-b6c5-3d374f488ede",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"steering_107_qwen_L14\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:17:00.714Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:05:06.946Z\\\", \\\"hypothesis\\\": \\\"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"spec\\\": {\\\"command\\\": \\\"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\\\", \\\"server\\\": \\\"westd-41302\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"data_path\\\": \\\"data/qwen3\\\", \\\"data_count\\\": 84, \\\"seed\\\": 42, \\\"pid\\\": 493129, \\\"checkpoint_path\\\": \\\"data/qwen3/steering_results/steering_results_qwen_L14.json\\\", \\\"log_path\\\": \\\"logs/steering_qwen_L14.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.702, \\\"alpha_-20\\\": {\\\"steering_flips\\\": 4, \\\"control_flips\\\": 6, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.746}, \\\"alpha_-10\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 4, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.682}, \\\"alpha_-5\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 3, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 1, \\\"control_flips\\\": 1, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_10\\\": {\\\"steering_flips\\\": 3, \\\"control_flips\\\": 2, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_20\\\": {\\\"steering_flips\\\": 5, \\\"control_flips\\\": 3, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.72}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0285}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"steering_107_qwen_L14\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:17:00.714Z\", \"updated_at\": \"2026-05-22T15:05:06.946Z\", \"hypothesis\": \"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\", \"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"model_name\": \"Qwen3-8B\", \"data_path\": \"data/qwen3\", \"data_count\": 84, \"seed\": 42, \"pid\": 493129, \"checkpoint_path\": \"data/qwen3/steering_results/steering_results_qwen_L14.json\", \"log_path\": \"logs/steering_qwen_L14.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.702, \"alpha_-20\": {\"steering_flips\": 4, \"control_flips\": 6, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.746}, \"alpha_-10\": {\"steering_flips\": 2, \"control_flips\": 4, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.682}, \"alpha_-5\": {\"steering_flips\": 2, \"control_flips\": 3, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_5\": {\"steering_flips\": 1, \"control_flips\": 1, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_10\": {\"steering_flips\": 3, \"control_flips\": 2, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_20\": {\"steering_flips\": 5, \"control_flips\": 3, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.72}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0285}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011uMentL8Auv94PjfjigXLV",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "steering_107_qwen_L14",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "b6f8cbc3-0fca-43fa-b116-1620bf5c7e75",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ERieB1Reukqag2h7subYBn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2122,
+                "cache_read_input_tokens": 30039,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2122
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T15:05:11.357Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011uMentL8Auv94PjfjigXLV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"steering_107_qwen_L14\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:17:00.714Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:05:11.321Z\\\", \\\"hypothesis\\\": \\\"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"spec\\\": {\\\"command\\\": \\\"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\\\", \\\"server\\\": \\\"westd-41302\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"data_path\\\": \\\"data/qwen3\\\", \\\"data_count\\\": 84, \\\"seed\\\": 42, \\\"pid\\\": 493129, \\\"checkpoint_path\\\": \\\"data/qwen3/steering_results/steering_results_qwen_L14.json\\\", \\\"log_path\\\": \\\"logs/steering_qwen_L14.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.702, \\\"alpha_-20\\\": {\\\"steering_flips\\\": 4, \\\"control_flips\\\": 6, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.746}, \\\"alpha_-10\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 4, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.682}, \\\"alpha_-5\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 3, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 1, \\\"control_flips\\\": 1, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_10\\\": {\\\"steering_flips\\\": 3, \\\"control_flips\\\": 2, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_20\\\": {\\\"steering_flips\\\": 5, \\\"control_flips\\\": 3, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.72}}, \\\"completed_at\\\": \\\"2026-05-22T15:05:11.321Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0447}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "bcc03a6a-647a-4645-81da-977c99f88172",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"steering_107_qwen_L14\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:17:00.714Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:05:11.321Z\\\", \\\"hypothesis\\\": \\\"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"spec\\\": {\\\"command\\\": \\\"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\\\", \\\"server\\\": \\\"westd-41302\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"data_path\\\": \\\"data/qwen3\\\", \\\"data_count\\\": 84, \\\"seed\\\": 42, \\\"pid\\\": 493129, \\\"checkpoint_path\\\": \\\"data/qwen3/steering_results/steering_results_qwen_L14.json\\\", \\\"log_path\\\": \\\"logs/steering_qwen_L14.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.702, \\\"alpha_-20\\\": {\\\"steering_flips\\\": 4, \\\"control_flips\\\": 6, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.746}, \\\"alpha_-10\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 4, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.682}, \\\"alpha_-5\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 3, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 1, \\\"control_flips\\\": 1, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_10\\\": {\\\"steering_flips\\\": 3, \\\"control_flips\\\": 2, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_20\\\": {\\\"steering_flips\\\": 5, \\\"control_flips\\\": 3, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.72}}, \\\"completed_at\\\": \\\"2026-05-22T15:05:11.321Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0447}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"steering_107_qwen_L14\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:17:00.714Z\", \"updated_at\": \"2026-05-22T15:05:11.321Z\", \"hypothesis\": \"Llama L13 steering 成功 (Fisher p=0.0009) 在 ZH→ZH probe peak layer (L13, 41% depth)。Qwen 的 ZH→ZH residual probe peak 在 L14 (39% depth, bal_acc=0.726)。若 Qwen L14 steering 也产生显著因果效应，则 mid-layer causal node 是跨模型普遍现象，与 Conneau et al. (2020) 的跨语言对齐在 mid-layer 的发现一致。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"steering_experiment.py --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\", \"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"model_name\": \"Qwen3-8B\", \"data_path\": \"data/qwen3\", \"data_count\": 84, \"seed\": 42, \"pid\": 493129, \"checkpoint_path\": \"data/qwen3/steering_results/steering_results_qwen_L14.json\", \"log_path\": \"logs/steering_qwen_L14.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.702, \"alpha_-20\": {\"steering_flips\": 4, \"control_flips\": 6, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.746}, \"alpha_-10\": {\"steering_flips\": 2, \"control_flips\": 4, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.682}, \"alpha_-5\": {\"steering_flips\": 2, \"control_flips\": 3, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_5\": {\"steering_flips\": 1, \"control_flips\": 1, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_10\": {\"steering_flips\": 3, \"control_flips\": 2, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_20\": {\"steering_flips\": 5, \"control_flips\": 3, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.72}}, \"completed_at\": \"2026-05-22T15:05:11.321Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0447}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## Qwen L14 Steering 结果\n\n| α | Steering flips | Control flips | p→c | c→p | Fisher p |\n|---|---|---|---|---|---|\n| -20 | 4/84 | 6/84 | 0 | 0 | 0.746 |\n| -10 | 2/84 | 4/84 | 0 | 0 | 0.682 |\n| -5 | 2/84 | 3/84 | 0 | 0 | 1.000 |\n| +5 | 1/84 | 1/84 | 0 | 0 | 1.000 |\n| +10 | 3/84 | 2/84 | 0 | 0 | 1.000 |\n| +20 | 5/84 | 3/84 | 0 | 0 | 0.720 |\n\n**结论：NEGATIVE**\n\n- 所有 alpha 的 Fisher p 均远大于 0.05（最低 0.682），无显著因果效应\n- p→c 和 c→p 全部为 0，完全没有方向性翻转\n- Steering flips 与 control flips 处于同一噪声水平\n\n**与 Llama L13 对比：截然不同**\n\n| | Llama L13 | Qwen L14 |\n|---|---|---|\n| α=-20 Fisher p | **0.0009** | 0.746 |\n| α=+5 Fisher p | **0.002** | 1.000 |\n| 方向性分离 | 有（p→c / c→p 分离） | 无（全部为 0） |\n\nQwen L14 的 probe accuracy (70.2%) 虽然合理，但 probe 方向不具因果效应。mid-layer causal node 在 Qwen 上不成立，至少不在 L14。可能原因：Qwen 的知识冲突解决机制分布在不同层，或 probe 捕获的是相关性而非因果方向。\n\ncuda:1 已释放（3 MiB），GPU 0/1 空闲可用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "uuid": "739b9b8a-035a-4e30-8cdb-4ef376a4e1db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V2ZWh97vLgUkK8dzcVNL2a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1021,
+                "cache_read_input_tokens": 32161,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1021
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## Qwen L14 Steering 结果\n\n| α | Steering flips | Control flips | p→c | c→p | Fisher p |\n|---|---|---|---|---|---|\n| -20 | 4/84 | 6/84 | 0 | 0 | 0.746 |\n| -10 | 2/84 | 4/84 | 0 | 0 | 0.682 |\n| -5 | 2/84 | 3/84 | 0 | 0 | 1.000 |\n| +5 | 1/84 | 1/84 | 0 | 0 | 1.000 |\n| +10 | 3/84 | 2/84 | 0 | 0 | 1.000 |\n| +20 | 5/84 | 3/84 | 0 | 0 | 0.720 |\n\n**结论：NEGATIVE**\n\n- 所有 alpha 的 Fisher p 均远大于 0.05（最低 0.682），无显著因果效应\n- p→c 和 c→p 全部为 0，完全没有方向性翻转\n- Steering flips 与 control flips 处于同一噪声水平\n\n**与 Llama L13 对比：截然不同**\n\n| | Llama L13 | Qwen L14 |\n|---|---|---|\n| α=-20 Fisher p | **0.0009** | 0.746 |\n| α=+5 Fisher p | **0.002** | 1.000 |\n| 方向性分离 | 有（p→c / c→p 分离） | 无（全部为 0） |\n\nQwen L14 的 probe accuracy (70.2%) 虽然合理，但 probe 方向不具因果效应。mid-layer causal node 在 Qwen 上不成立，至少不在 L14。可能原因：Qwen 的知识冲突解决机制分布在不同层，或 probe 捕获的是相关性而非因果方向。\n\ncuda:1 已释放（3 MiB），GPU 0/1 空闲可用。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61034,
+            "duration_api_ms": 60535,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "b5a54135-9cd5-4f89-b063-bacc39c10cd3",
+            "total_cost_usd": 0.27561075,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 21341,
+              "cache_read_input_tokens": 152495,
+              "output_tokens": 2574,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21341,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 596,
+                  "cache_read_input_tokens": 32161,
+                  "cache_creation_input_tokens": 1021,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1021
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1482,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001582,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 2574,
+                "cacheReadInputTokens": 152495,
+                "cacheCreationInputTokens": 21341,
+                "webSearchRequests": 0,
+                "costUSD": 0.27402875000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "40040fb2-52f6-4845-b468-1874fc493254"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-qwen-l14-results-urgent.md"
+}

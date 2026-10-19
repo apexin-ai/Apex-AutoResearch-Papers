@@ -1,0 +1,24 @@
+{
+  "exp_id": "gemma_en_act_102",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:53:33.602Z",
+    "updated_at": "2026-05-22T06:58:59.551Z",
+    "hypothesis": "Collecting EN residual stream activations from Gemma-2-9B-IT for cross-lingual knowledge conflict analysis",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/collect_activations.py --model /root/autodl-tmp/models/gemma-2-9b-it --data_dir data/gemma2/ --output_dir data/gemma2/ --lang en --batch_size 4",
+      "server": "westd-41302",
+      "data_path": "data/gemma2/en_conflict_{train,test}_verified.jsonl",
+      "data_count": 1590,
+      "model_name": "gemma-2-9b-it",
+      "seed": 42
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T06:58:59.591897+00:00",
+  "trigger": "update_registry"
+}

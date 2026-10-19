@@ -1,0 +1,1 @@
+{"model":"Llama3.1-8B","n_bootstrap":100,"method":"per_iteration_asymmetry_from_training_bootstrap","en_zh_best_layer_mode":13,"zh_en_best_layer_mode":15,"en_zh_acc_mean":0.6405,"zh_en_acc_mean":0.7127,"asymmetry_mean":0.0722,"asymmetry_std":0.0329,"asymmetry_ci_95":[0.011,0.1361],"ci_excludes_zero":true}

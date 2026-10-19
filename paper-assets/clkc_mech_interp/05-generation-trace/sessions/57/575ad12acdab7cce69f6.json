@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "575ad12acdab7cce69f6",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu de activations collect",
+  "task_key": "worker_gpu_de-activations-collect_20260522T133030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_de-activations-collect_20260522T133030_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "c162890809bb0e81763f5b0eb45b389d7c26e857b85790bbbbbfed518e79b533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已注册为 RUNNING。汇报：\n\n- **实验 ID**: `de_activations_112`\n- **PID**: 488132\n- **GPU**: cuda:1 (97GB VRAM, 空闲)\n- **数据**: 1096 train + 272 test = 1368 samples\n- **脚本修改**: `collect_activations.py` 已添加 `--lang de` 支持（choices 加 \"de\"，DE 文件无后缀）\n- **预计时间**: ~10-15 min（参考 EN/ZH 规模）\n- **输出**: `data/llama31/de_activations.pt`\n- **日志**: `/root/clkc_mech_interp/logs/de_activations.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-de-activations-collect.md"
+}

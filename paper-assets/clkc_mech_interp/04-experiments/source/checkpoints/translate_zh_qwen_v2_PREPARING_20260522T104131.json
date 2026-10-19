@@ -1,0 +1,28 @@
+{
+  "exp_id": "translate_zh_qwen_v2",
+  "project": "clkc_mech_interp",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:03:25.199Z",
+    "updated_at": "2026-05-22T10:41:31.369Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/clkc_mech_interp && python -u src/translate_to_zh.py --model /root/models/Qwen3-8B/ --input_dir data/qwen3/ --output_dir data/qwen3/ --batch_size 4 2>&1 | tee logs/translate_zh_qwen_v2.log\"",
+      "server": "westd-41302",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "34720",
+      "log_path": "~/runs/clkc_mech_interp/translate_zh_qwen_v2.log",
+      "submitted_at": "2026-05-21T19:03:25.181Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T10:41:31.417910+00:00",
+  "trigger": "update_registry"
+}

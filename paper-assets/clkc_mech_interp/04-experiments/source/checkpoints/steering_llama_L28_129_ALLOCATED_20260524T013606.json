@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_llama_L28_129",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T01:01:02.744Z",
+    "updated_at": "2026-05-24T01:36:06.039Z",
+    "hypothesis": "Llama-3.1-8B L28 (88% depth) steering 同条件复现：原始 L28 (N=136, probe acc 77%) 为 negative (p=0.31)。L16 翻转证明 probe quality confound。L28 是 detection peak 层——若 L28 也翻转为 significant，则 Detection ≠ Decision 解离 claim 不成立；若仍 negative，则解离在高质量 probe 条件下依然稳健。",
+    "parent": "steering_107_L13"
+  },
+  "timestamp": "2026-05-24T01:36:06.149742+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "bootstrap_n2000_111",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:18:39.374Z",
+    "updated_at": "2026-05-22T05:04:39.837Z",
+    "hypothesis": "Bootstrap n=100 低于学术标准（Efron &amp; Tibshirani 1993 推荐 n≥1000）。升级 Llama 和 Qwen 的探针 bootstrap 至 n=2000，获得更稳定的 CI endpoints，特别是 Qwen 下界 -1.2pp 可能因 n 不足而不准确。"
+  },
+  "timestamp": "2026-05-22T05:04:39.877928+00:00",
+  "trigger": "update_registry"
+}

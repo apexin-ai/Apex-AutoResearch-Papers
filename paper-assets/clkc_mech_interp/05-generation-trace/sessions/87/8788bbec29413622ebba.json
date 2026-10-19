@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8788bbec29413622ebba",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "cpu de probe and cleanup",
+  "task_key": "worker_cpu_de-probe-and-cleanup_20260522T150155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_de-probe-and-cleanup_20260522T150155_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "5f14aecb5850870661cc4fad4f52af81110ca50ba58d7c90a5d38aaa4b193a65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**磁盘清理**: pip cache purge 清理 376 个文件，当前 30G 用了 21G（68%）。\n\n**DE probe training 已启动**:\n- **PID**: 496671（bash wrapper: 496666）\n- **服务器**: westd-41302\n- **命令**: `--langs en,zh,de --bootstrap_seeds 2000`\n- **方向**: 9 个（EN→EN, ZH→ZH, DE→DE, EN→ZH, ZH→EN, EN→DE, DE→EN, ZH→DE, DE→ZH）\n- **输出**: `data/llama31/de_probe_results_bootstrap_n2000.json`\n- **日志**: `/tmp/de_probe_n2000.log`\n- **注册**: exp_id=`de_probe_n2000_112`，状态 RUNNING\n\n**脚本修改**: `train_probe.py` 新增 `--langs` 参数（默认 `en,zh` 向后兼容），动态生成所有单语+跨语言方向。\n\n**预计时间**: 2000 bootstrap × 9 directions × 32 layers，预计 3-5 小时（CPU-only 多核并行中，CPU 2104%）。\n\n**无冲突**: PID 465851（EN/ZH bootstrap）已完成；Gemma probe（PID 476339）在不同数据集上运行，输出文件不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-de-probe-and-cleanup.md"
+}

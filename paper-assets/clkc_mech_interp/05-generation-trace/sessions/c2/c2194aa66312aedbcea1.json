@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2194aa66312aedbcea1",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra urgent status all items",
+  "task_key": "worker_infra_urgent-status-all-items_20260522T161835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_urgent-status-all-items_20260522T161835_result.json",
+    "occurrence": 1,
+    "bytes": 2322,
+    "sha256": "fa372b2bca16614a4718ea9aa1ba6aaf7533b7e49f3aefb25720a082db08005e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. Gemma L17 Steering (PID 493756)\n- **进程**: 存活，已运行 **1h40m**，GPU 2（29% util, 18.5GB）\n- **结果文件**: 不存在（steering_results/ 目录为空）\n- **日志**: 模型已加载完成，probe acc@L17=**0.7532**，之后无新输出 — 正在静默执行 steering generation\n\n### 2. Gemma L21 Steering (PID 499402)\n- **进程**: 存活，已运行 **22min**，GPU 0（28% util, 18.5GB）\n- **结果文件**: 不存在\n- **日志**: 模型已加载完成，probe acc@L21=**0.7627**，正在静默执行\n\n### 3. DE Probe Training (PID 496671)\n- **进程**: 存活，已运行 **1h05m**，CPU-only\n- **结果文件**: 不存在，无专用日志文件\n- **命令**: `train_probe.py --langs en,zh,de --bootstrap_seeds 2000`（3语言 bootstrap）\n\n### 4. Gemma Probe n=2000 Bootstrap (PID 476334)\n- **进程**: 存活，已运行 **5h34m**，CPU-only（32 jobs）\n- **结果文件**: `data/gemma2/probe_results_bootstrap_n2000.json` 不存在（写完才输出）\n- **日志进度**:\n  - en_en: 完成（83min）\n  - en_zh: 完成（57min）\n  - **zh_en: 进行中**（386/2000 tasks, ~14.6min elapsed）\n  - zh_zh: 待运行\n- **预计剩余**: zh_en 还需 ~40min，zh_zh ~60min → 总计约 **1.5-2h** 完成\n\n### 5. C3 MLP Bootstrap (PID 467708)\n- **进程**: 存活，已运行 **7h44m**，CPU-only\n- **日志**: 已完成 L27 → 现在跑 **L28**（200/1000, ETA ~3380s≈56min）\n- **L27 结果**: delta=+0.0221, CI=[-0.0184, +0.0625], **excludes_zero=False**（不显著）\n\n### 6. GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 | 进程 |\n|-----|------|---------|--------|------|\n| 0 | RTX PRO 6000 Blackwell (98GB) | 18.5GB | 28% | PID 499402 (L21 steering) |\n| 1 | RTX PRO 6000 Blackwell (98GB) | 3MB | 0% | **空闲** |\n| 2 | RTX PRO 6000 Blackwell (98GB) | 18.5GB | 29% | PID 493756 (L17 steering) |\n| 3 | RTX PRO 6000 Blackwell (98GB) | 3MB | 0% | **空闲** |\n\n### 已完成的结果: Llama31 Probe Bootstrap n=2000\n`data/llama31/probe_results_bootstrap_n2000.json` 已存在，关键指标：\n- **Asymmetry peak**: mean_diff=**0.0727**, p=**0.038**, CI=[0.0037, 0.1397] — **显著 (p<0.05)**\n- en_en peak: layer 19, acc=0.7508\n- n_seeds=2000\n\n**GPU 1 和 3 空闲**，可以分配新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-status-all-items.md"
+}

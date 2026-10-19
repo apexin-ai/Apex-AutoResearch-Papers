@@ -1,0 +1,26 @@
+paper_key: "muller2021first"
+title: "First Align, then Predict: Understanding the Cross-Lingual Ability of Multilingual BERT"
+venue: "EACL 2021"
+full_text_available: false
+
+research:
+  baselines: [mBERT, XLM-R, realignment_methods]
+  metrics:
+    - {name: "Accuracy (downstream tasks)", direction: "higher_better"}
+    - {name: "Alignment Score", direction: "higher_better"}
+  datasets:
+    - {name: "XNLI", size: "15 languages"}
+    - {name: "NER datasets", size: "multiple languages"}
+  ablation_dimensions: [alignment_method, language_pair, layer]
+  training_recipe: {optimizer: "N/A (analysis study)", lr: "N/A", hardware: "mBERT, XLM-R"}
+  method_family: "cross-lingual alignment analysis"
+
+positioning:
+  core_claim: "mBERT's cross-lingual ability follows a two-step process: first aligning representations across languages, then making task predictions in a shared space"
+  key_results: "Improved alignment correlates with better cross-lingual transfer"
+  limitations: ["Limited to encoder models"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

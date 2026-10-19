@@ -1,0 +1,43 @@
+{
+  "exp_id": "comet_qwen_v5",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T20:03:10.943Z",
+    "updated_at": "2026-05-22T01:50:06.309Z",
+    "spec": {
+      "command": "nohup python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/qwen3/ --en_dir data/qwen3/ --output_dir data/qwen3/ --threshold 0.80",
+      "server": "westd-41302",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "42080",
+      "log_path": "~/runs/clkc_mech_interp/comet_qwen_v5.log",
+      "submitted_at": "2026-05-21T20:03:10.909Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/qwen3/",
+      "data_count": 966,
+      "model_name": "Unbabel/wmt22-comet-da",
+      "seed": 0
+    },
+    "metrics": {
+      "death_cause": "EXIT_CODE=124 timeout kill by submit_training_job",
+      "restart_pid": 59407,
+      "restart_gpu": "cuda:0",
+      "restart_method": "nohup + TRANSFORMERS_OFFLINE=1",
+      "restart_time": "2026-05-21T23:15:00Z",
+      "estimated_hours": 2.7,
+      "no_resume": true,
+      "acceleration": "cuda:1 并行处理 test set (168条)",
+      "train_progress_at_accel": "~340/798",
+      "accel_time": "2026-05-22T00:36:00Z"
+    }
+  },
+  "timestamp": "2026-05-22T01:50:06.345388+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "955ab3c712c169e0f06c",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp westd14391 data prep steering",
+  "task_key": "worker_exp_westd14391-data-prep-steering_20260523T220839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_westd14391-data-prep-steering_20260523T220839.log",
+    "occurrence": 1,
+    "bytes": 1400637,
+    "sha256": "c8b8f71c7f785e7c77eb1566abdf1e1f506aa90e044ff88a56ccc0ce4bbebce7"
+  },
+  "statistics": {
+    "messages": 1183,
+    "user_turns": 1,
+    "tool_calls": 535,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 535,
+      "tool_result": 535,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1043,
+      "chunks": [
+        {
+          "path": "955ab3c712c169e0f06c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "955ab3c712c169e0f06c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "955ab3c712c169e0f06c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "955ab3c712c169e0f06c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "955ab3c712c169e0f06c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "955ab3c712c169e0f06c-part-0006.json",
+          "message_count": 143
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "955ab3c712c169e0f06c-part-0006.json",
+          "message_count": 37
+        },
+        {
+          "path": "955ab3c712c169e0f06c-part-0007.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-westd14391-data-prep-steering.md"
+}

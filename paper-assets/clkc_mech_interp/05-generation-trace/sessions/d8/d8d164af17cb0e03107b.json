@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8d164af17cb0e03107b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig2 spacing",
+  "task_key": "worker_code_fix-fig2-spacing_20260525T193501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig2-spacing_20260525T193501_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "6253e39670e53aa13740e89fcffffbd2b8ca6a38a134444a1ac71cec614210dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 4 PDF 存在（最近更新于今天 19:27）。已在本次编译中包含。\n\n完成。修改汇总：\n\n**method.tex 第 4-12 行（Figure 2 环境）间距修改：**\n\n| 位置 | 修改前 | 修改后 |\n|------|--------|--------|\n| 图前（`\\centering` 后） | `\\vspace{-8pt}` | `\\vspace{-18pt}` |\n| 图与 caption 之间 | `\\vspace{-10pt}` | `\\vspace{-14pt}` |\n| caption 后（`\\end{figure*}` 前） | `\\vspace{-18pt}` | `\\vspace{-20pt}` |\n\n**验证结果：**\n- 总页数：12 页（正文 8 页 + Limitations 1 页 + References 2 页 + Appendix 1 页）\n- 正文 ≤ 8 页：通过\n- Figure 2 附近无文字重叠：通过\n- Figure 4 新 PDF 已包含在编译中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig2-spacing-copy-2.md"
+}

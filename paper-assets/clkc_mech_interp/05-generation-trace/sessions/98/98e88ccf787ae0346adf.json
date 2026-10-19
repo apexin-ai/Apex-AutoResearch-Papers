@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98e88ccf787ae0346adf",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra qwen en probe",
+  "task_key": "worker_infra_qwen_en_probe_20260521T171606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen_en_probe_20260521T171606_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "143206efc93191f07cfde2eb7c02196c133534878f20abf25c04f7099bf104e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## EN→EN 探针基线结果\n\n| 指标 | 值 |\n|------|-----|\n| Peak accuracy | **63.03%** (layer 17) |\n| Binomial p-value | 0.000035 (显著高于 chance 50%) |\n| 80% gate | **FAIL** |\n\n**每层 accuracy 分布**：大部分层在 50-58% 之间，中间层（8, 15-23）稍高至 60-63%，没有任何层接近 80%。\n\n**结论**：EN→EN 方向的线性探针 accuracy 只有 63%，远未达到 80% 的 gate。虽然统计上显著高于随机（binomial p < 0.001），但信号非常弱。后续跨语言迁移实验的上限被 within-language baseline 限制，意义有限。\n\nPermutation test 已在后台运行（PID 22829），完成后结果会覆盖到 `data/qwen3/probe_results.json`。\n\n输出文件：\n- `data/qwen3/probe_results.json`\n- `data/qwen3/probe_accuracy_by_layer.png`\n- `logs/probe_qwen_en.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-en-probe.md"
+}

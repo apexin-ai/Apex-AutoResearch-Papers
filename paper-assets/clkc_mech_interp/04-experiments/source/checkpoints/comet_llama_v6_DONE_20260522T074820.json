@@ -1,0 +1,27 @@
+{
+  "exp_id": "comet_llama_v6",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:35:29.651Z",
+    "updated_at": "2026-05-22T07:48:20.081Z",
+    "hypothesis": "COMET back-translation 质量验证 Llama ZH 翻译（v6: 跟踪 nohup 进程，v5 被 tmux 监控误标 failed）",
+    "spec": {
+      "command": "nohup python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/llama31/ --en_dir data/llama31/ --output_dir data/llama31/ --threshold 0.80",
+      "server": "westd-41302",
+      "data_path": "data/llama31/",
+      "data_count": 1368,
+      "model_name": "Unbabel/wmt22-comet-da",
+      "seed": 0,
+      "checkpoint_path": "data/llama31/zh_conflict_{train,test}_validated.jsonl",
+      "log_path": "logs/comet_llama_nohup.log"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T07:48:20.081Z"
+  },
+  "timestamp": "2026-05-22T07:48:20.147823+00:00",
+  "trigger": "update_registry"
+}

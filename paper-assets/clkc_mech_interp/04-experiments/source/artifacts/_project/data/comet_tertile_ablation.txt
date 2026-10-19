@@ -1,0 +1,1 @@
+See remote file: /root/clkc_mech_interp/data/qwen3/comet_tertile_ablation.json on westd-41302. Key results: Low COMET bal_acc=0.6635, Med=0.6769, High=0.6071. Delta(High-Low)=-5.64pp (reversed). Fisher p=0.695. Conclusion: NOT confounder.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7fa3044de4dbad341a6",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis gemma L17 steering results",
+  "task_key": "worker_analysis_gemma-L17-steering-results_20260522T163015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma-L17-steering-results_20260522T163015_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "4be7a6ef0e28aec9869e75accf75a6e8f01669dcf4ddd912310aae11c72f97b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n## Gemma L17 Steering — **NEGATIVE**\n\n| Alpha | Steering Flips | Control Flips | Fisher p | p2c | c2p |\n|-------|---------------|---------------|----------|-----|-----|\n| -20 | 2 (1.3%) | 8 (5.1%) | 0.104 | 0 | 0 |\n| -10 | 2 (1.3%) | 2 (1.3%) | 1.000 | 0 | 0 |\n| -5 | 2 (1.3%) | 1 (0.6%) | 1.000 | 0 | 0 |\n| +5 | 1 (0.6%) | 3 (1.9%) | 0.623 | 0 | 0 |\n| +10 | 2 (1.3%) | 2 (1.3%) | 1.000 | 0 | 0 |\n| +20 | 1 (0.6%) | 4 (2.5%) | 0.371 | 0 | 0 |\n\n- **probe_accuracy**: 75.3%（探针本身可以检测冲突，但方向不具有因果意义）\n- **零方向性 flip**：所有 alpha 的 p2c 和 c2p 都是 0\n- **无显著 alpha**：最低 Fisher p = 0.104\n\n## Steering 全局结论\n\n| 模型 | 层 | 结果 |\n|------|-----|------|\n| **Llama L13** | 41% depth | **SUCCESS** (p<0.001, 双向) |\n| Llama L18 | 56% depth | negative |\n| Llama L28 | 88% depth | negative |\n| Qwen L14 | 39% depth | negative |\n| Qwen L23 | 64% depth | negative |\n| **Gemma L17** | **40% depth** | **negative** |\n\nSteering 因果效应是 **Llama-specific**（1/3 模型）。L21 实验仍在运行中，但预期也是 negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma-l17-steering-results.md"
+}

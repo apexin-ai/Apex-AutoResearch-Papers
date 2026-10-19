@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d08b293d74d22f1f7ef",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code bootstrap 100 and comet",
+  "task_key": "worker_code_bootstrap_100_and_comet_20260521T230033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_100_and_comet_20260521T230033_result.json",
+    "occurrence": 1,
+    "bytes": 251,
+    "sha256": "dd16ef998179c32b7365563c204b9f14c0746e48f74d6ff5c9adf11ba2b9f326"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **Bootstrap probes**：Llama PID=57509、Qwen PID=57771 均在后台运行中，各到 seed 7/100\n- **COMET 验证**：Qwen 340/798 (43%)、Llama 320/1096 (29%)，进程正常\n\n3 分钟后轮询 bootstrap 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-100-and-comet.md"
+}

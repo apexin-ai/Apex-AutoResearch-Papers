@@ -1,0 +1,38 @@
+{
+  "exp_id": "probe_cosine_sim_117",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:45:46.903Z",
+    "updated_at": "2026-05-23T07:46:21.057Z",
+    "hypothesis": "Probe weight cosine similarity：如果 conflict 和 XNLI 探针权重向量高度对齐（cos > 0.5），则 piggyback 假说在方向级别成立。3 模型 × 全层。",
+    "conclusion": "success",
+    "metrics": {
+      "llama": {
+        "peak_cos_en": 0.0497,
+        "peak_layer_en": 13,
+        "peak_cos_zh": 0.0462,
+        "peak_layer_zh": 8
+      },
+      "qwen": {
+        "peak_cos_en": 0.0236,
+        "peak_layer_en": 4,
+        "peak_cos_zh": 0.0407,
+        "peak_layer_zh": 9
+      },
+      "gemma": {
+        "peak_cos_en": 0.0415,
+        "peak_layer_en": 19,
+        "peak_cos_zh": 0.0356,
+        "peak_layer_zh": 20
+      },
+      "random_baseline": 0.001,
+      "summary": "Near-orthogonal (cos 0.02-0.05). Combined with Exp 116 perfect transfer: shared subspace, different discriminative directions."
+    }
+  },
+  "timestamp": "2026-05-23T07:46:21.140984+00:00",
+  "trigger": "update_registry"
+}

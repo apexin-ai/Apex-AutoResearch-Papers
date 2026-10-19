@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de50b3be0c856d6b2f5b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra qwen en probe v2",
+  "task_key": "worker_infra_qwen_en_probe_v2_20260521T173449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen_en_probe_v2_20260521T173449_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "ee8bcdc4dd8a258e2d4904bc5abb46482df5334184c499e1b16adb0506de28d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[Qwen3-8B EN→EN 探针结果]\nPeak: 70.2% (layer 19)\nBinomial p: 0.0 (< machine epsilon)\nPermutation p: 0.000 (0/1000 permutations exceeded observed acc)\nGate: CONDITIONAL (70% > 50% chance, but < 80% threshold)\n\n每层 accuracy:\nLayer  0: 56.7%\nLayer  1: 58.8%\nLayer  2: 59.7%\nLayer  3: 60.5%\nLayer  4: 60.1%\nLayer  5: 63.0%\nLayer  6: 63.0%\nLayer  7: 60.1%\nLayer  8: 60.9%\nLayer  9: 65.6%\nLayer 10: 63.9%\nLayer 11: 65.1%\nLayer 12: 66.8%\nLayer 13: 69.3%\nLayer 14: 66.8%\nLayer 15: 68.1%\nLayer 16: 67.2%\nLayer 17: 68.9%\nLayer 18: 69.3%\nLayer 19: 70.2%  ← peak\nLayer 20: 68.9%\nLayer 21: 66.4%\nLayer 22: 69.3%\nLayer 23: 69.3%\nLayer 24: 64.3%\nLayer 25: 65.6%\nLayer 26: 65.6%\nLayer 27: 62.6%\nLayer 28: 63.5%\nLayer 29: 66.4%\nLayer 30: 65.6%\nLayer 31: 68.1%\nLayer 32: 65.1%\nLayer 33: 63.9%\nLayer 34: 63.0%\nLayer 35: 61.3%\n\n输出文件:\n- data/qwen3/probe_results.json\n- data/qwen3/probe_accuracy_by_layer.png\n- logs/probe_qwen_en_v2.log\n```\n\n修复 left-padding bug 后从 63% 提升到 70.2%（+7%），统计显著性极强（binomial p ≈ 0, permutation p = 0.000）。信号集中在 layers 13-23 的中间层，符合 mechanistic interpretability 中概念表征在中间层形成的预期。但 70% 未到 80% gate，判定 **CONDITIONAL**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-en-probe-v2.md"
+}

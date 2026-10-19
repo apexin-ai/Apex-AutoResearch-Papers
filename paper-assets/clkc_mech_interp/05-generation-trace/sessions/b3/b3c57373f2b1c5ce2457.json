@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3c57373f2b1c5ce2457",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix bib basu title",
+  "task_key": "worker_code_fix_bib_basu_title_20260526T113916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_bib_basu_title_20260526T113916_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "0a7e8056fc3026afc98d43034ad2a5f8390cc364759451d3a01f0679fd397f16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**变更：**\n- 旧值：`Interpretability without Actionability: Mechanistic Methods Cannot Correct Language Model Errors Despite Near-Perfect Internal Representations`\n- 新值：`Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations`\n\nTitle case → sentence case，与 arXiv 原文对齐。该标题无专有名词/缩写，不需要花括号保护。编译通过，bibtex 无报错，PDF 正常生成（12 页）。\n\nSources:\n- [arXiv:2603.18353](https://arxiv.org/abs/2603.18353)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-bib-basu-title.md"
+}

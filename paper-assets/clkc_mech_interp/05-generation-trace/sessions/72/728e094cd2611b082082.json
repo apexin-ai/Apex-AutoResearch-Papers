@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "728e094cd2611b082082",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis comet tertile ablation 105",
+  "task_key": "worker_analysis_comet-tertile-ablation-105_20260522T021600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_comet-tertile-ablation-105_20260522T021600_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "ffeca284d4bc717d4f5d1da6b7b43f8428db070cae78d5d6dcb4a7c738e053c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## COMET Tertile Ablation 结果 (plan_105)\n\n| Tertile | COMET range | n | balanced_acc |\n|---------|-------------|---|-------------|\n| **Low** | [0.44, 0.64] | 56 | **0.6635** |\n| **Med** | [0.64, 0.76] | 56 | **0.6769** |\n| **High** | [0.76, 0.95] | 56 | **0.6071** |\n\n- **Full test bal_acc**: 0.6488 (EN→ZH, layer 22)\n- **Delta (High - Low)**: **-5.64 pp** (方向反转 — 高 COMET 反而 probe acc 更低)\n- **Fisher exact test**: p = 0.695, OR = 0.79 (远未显著)\n\n**结论: NOT confounder。** 翻译质量与探针准确率无正相关。高 COMET 样本的 probe acc 反而略低于低 COMET 样本，且差异不显著。COMET gate 可以放宽而不影响探针实验的效度。\n\n已完成：\n1. 脚本 `/root/clkc_mech_interp/src/comet_tertile_ablation.py`\n2. 结果 `/root/clkc_mech_interp/data/qwen3/comet_tertile_ablation.json`\n3. `mvp_probe_v1` registry metrics 已更新\n4. Artifact 已注册\n\n**阈值修正**：`validate_translation.py` line 171 已经是 `>= threshold`，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-comet-tertile-ablation-105.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ec81385d90479872248",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis en de token overlap",
+  "task_key": "worker_analysis_en-de-token-overlap_20260523T044131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_en-de-token-overlap_20260523T044131_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "3762d91e40a897a5cb48d56c116bab8fc053e167f76b126bf28c343ee94c1f46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 1 完成。结果：\n\n**EN-DE Token Overlap (Llama-3.1-8B-Instruct)**\n\n| 指标 | EN-DE | EN-ZH (参考) |\n|------|-------|-------------|\n| Type-level Jaccard | 0.4210 | ~0.03-0.04 |\n| Per-sample Jaccard mean | **14.77%** | ~3-4% |\n| Per-sample Jaccard median | 13.47% | — |\n| Per-sample Jaccard std | 7.84% | — |\n| Per-sample Jaccard range | [1.3%, 47.3%] | — |\n| Overlap/EN | 31.2% | — |\n| Overlap/DE | 20.9% | — |\n\nEN-DE 的 token overlap 约为 EN-ZH 的 **4.2x**，符合预期（共享拉丁字母 + 大量 cognate subword）。\n\n- 脚本路径：`/root/clkc_mech_interp/src/token_overlap_en_de.py`\n- 结果文件：`/root/clkc_mech_interp/data/llama31/token_overlap_en_de.json`\n- Phase 2（correlation）：DE bootstrap 完成后执行 `python src/token_overlap_en_de.py --phase full` 即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-en-de-token-overlap.md"
+}

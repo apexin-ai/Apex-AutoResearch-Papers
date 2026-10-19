@@ -1,0 +1,629 @@
+# cron hook steering 107
+
+**English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 22
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/cron_hook_steering_107.jsonl`
+- **Structured JSON:** [`f3a9c15c786038ce21dc.json`](../../sessions/f3/f3a9c15c786038ce21dc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+22 recorded events
+
+### User
+
+_source line 1 · 2026-05-22T08:28:44.952234+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: steering_107
+- project: clkc_mech_interp
+- server: westd-41302
+- log_path: ~/runs/clkc_mech_interp/steering_107.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:steering_107",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-22T08:28:54.928199+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-22T08:28:54.978862+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T08:28:58.040075+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T08:28:58.493072+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T08:28:58.498053+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"steering_107\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-22T08:08:08.511Z\", \"updated_at\": \"2026-05-22T08:28:43.081Z\", \"hypothesis\": \"线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。\", \"parent\": \"mvp_probe_v1\"}, \"cka_svcca_104\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T07:16:25.262Z\", \"updated_at\": \"2026-05-22T08:16:28.383Z\", \"hypothesis\": \"冲突任务的 EN-ZH 逐层 CKA/SVCCA 相似度在中后层（探针检测冲突信号的 peak layers 附近）显著低于 XNLI 的对应层，表明冲突信号导致语言间表征出现特有的分叉（divergence），而非冲突语义任务中 EN-ZH 表征保持较高对齐。这将从表征几何角度强化 C3（冲突信号需要非线性解码是因为跨语言表征在冲突条件下发生了非线性分叉）。\", \"conclusion\": \"negative\", \"metrics\": {\"qwen_conflict_aligned_cka_mean\": 0.652, \"qwen_xnli_aligned_cka_mean\": 0.094, \"llama_conflict_aligned_cka_mean\": 0.778, \"llama_xnli_aligned_cka_mean\": 0.151, \"qwen_conflict_shuffled_cka_mean\": 0.124, \"qwen_xnli_shuffled_cka_mean\": 0.096, \"llama_conflict_shuffled_cka_mean\": 0.08, \"llama_xnli_shuffled_cka_mean\": 0.165, \"qwen_shuffled_diff\": 0.028, \"llama_shuffled_diff\": -0.085, \"conclusion_detail\": \"CKA 差异在控制内容配对后消失（Qwen +0.028≈0）或反转（Llama -0.085）。不支持 conflict-specific cross-lingual alignment。结果可作为 appendix methodological lesson。脚本自动判断有 bug（Llama 反转方向被误判为 supported），已手动修正。\"}}, \"en_de_translate_112\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-22T07:16:17.050Z\", \"updated_at\": \"2026-05-22T08:11:02.807Z\", \"hypothesis\": \"跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。\"}, \"comet_llama_v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:35:29.651Z\", \"updated_at\": \"2026-05-22T07:48:20.081Z\", \"hypothesis\": \"COMET back-translation 质量验证 Llama ZH 翻译（v6: 跟踪 nohup 进
+…[truncated 9172 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 457
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T08:28:58.954743+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T08:28:58.955186+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "clkc_mech_interp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T08:29:01.169326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"gemma_full_pipeline_102\", \"success\": true, \"actions\": [\"Job still running (pid=gemma_translate_zh)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2676
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T08:29:01.220115+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-22T08:28:44Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 38 个实验 — ANALYZING 1, DONE 9, PREPARING 25, RUNNING 3\\n**DONE 分布**: killed 4, negative 2, success 3\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-41302:cuda:0, westd-41302:cuda:1, westd-41302:cuda:2, westd-41302:cuda:3\\n- **实际运行**: 1 张 — westd-41302:cuda:1(gemma_full_pipeline_102)\\n- **空闲（分配了没跑）**: westd-41302:cuda:0, westd-41302:cuda:2\\n\\n### 💾 磁盘余量\\n- **westd-41302**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `gemma_full_pipeline_102` | westd-41302 | cuda:1 | ? | `—` |\\n| `bootstrap_n2000_111` | westd-41302 | ? | ? | `—` |\\n| `en_de_translate_112` | westd-41302 | ? | 462035 | `logs/de_translate_llama.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `cka_svcca_104` [negative] — 2026-05-22T08:16:28\\n- `comet_llama_v6` [killed] — 2026-05-22T07:48:20\\n- `comet_qwen_v6` [killed] — 2026-05-22T07:48:19\\n- `gemma_en_act_102` [success] — 2026-05-22T06:59:03\\n- `xnli_baseline_110` [negative] — 2026-05-22T06:48:45\\n\\n### 🔴 最近失败原因 (top 3)\\n- `comet_llama_v6`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `comet_qwen_v6`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-22\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| en_de_translate_112 | 跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。 | — | — | — |\\n| bootstrap_n2000_111 | Bootstrap n=100 低
+…[truncated 1397 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 2265
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T08:29:01.270952+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/ROADMAP.md\", \"content\": \"# clkc_mech_interp — Research Dashboard\\n\\n> 最后更新: 2026-05-22 03:50 UTC | 更新原因: Dream 审稿结果处理 + P0 实验优先级更新\\n\\n## 核心方向\\n跨语言知识冲突信号的机制解释：残差流探针检测、层结构分析、因果干预。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research Phase**（MVP 2026-05-21 通过）。ICLR 2027 DDL ~2026-09-24。\\n\\n### Dream 审稿结果 (dream_20260522T023801)\\n- **best 5/10 | median 5/10 | worst 4/10** — 三档均 below acceptance\\n- **CRITICAL（三档一致）**: 缺非冲突语义基线 → 新增 plan_110 (P0)\\n- **MAJOR（三档一致）**: bootstrap n=100 不足 → 新增 plan_111 (P0)\\n- **MAJOR（三档一致）**: 仅 CJK 语言对 → 新增 plan_112 EN↔DE (P0)\\n- **MAJOR**: Track 2/3 framing 过度承诺 → 诚实 reframe 为 probing + CKA + steering\\n- 结论：结构性缺陷优先修复，实验结果无关的问题先解决\\n\\n### 已完成\\n- C1 detectability: Llama 77.1%, Qwen 75.3% (within-lang) ✅\\n- C2 asymmetry: Llama +7.22pp CI[1.1,13.6], Qwen +7.18pp CI[-1.2,13.4] ✅⚠️\\n- RC1 COMET confound excluded (tercile ablation, both models) ✅\\n- RC2 Token overlap excluded (per-sample Jaccard 3-4%, negative corr) ✅\\n- MLP vs Linear comparison done (方向一致，幅度不同) ✅\\n\\n### GPU 状态\\n- cuda:0 — COMET train Qwen (~35%)\\n- cuda:1 — **空闲** → plan_102 Gemma verify\\n- cuda:2 — COMET train Llama (~24%)\\n- cuda:3 — **空闲** → plan_110 非冲突基线\\n\\n## 近期任务（P0，按优先级）\\n- [ ] plan_110: 非冲突语义基线 — sentiment/NLI probe (CRITICAL, ~4h)\\n- [ ] plan_111: Bootstrap n≥2000 升级 (trivial compute, ~0.5h)\\n- [ ] plan_102: Gemma-2-9B-IT 全流程验证 (~20h)\\n- [ ] plan_112: EN↔DE Indo-European 语言对 (~16h)\\n- [ ] plan_104: Layer-wise CKA/SVCCA (~4h, depends mvp_001)\\n- [ ] plan_107: Representation steering (~8h, depends mvp_001+plan_104)\\n- [ ] plan_103: EN↔JA 多语言扩展 (~20h)\\n\\n## GPU 预算\\n本项目分配: cuda:0,1,2,3 (westd-41302)\\nCOMET train 完成后 cuda:0,2 释放给 plan_102/112\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D010 | 2026-05-22 | Steering (plan_107) 升为最高优先级；C3 需统计加固但不作为唯一卖点 | xnli_baseline_110, mvp_002 |\\n| D0
+…[truncated 910 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 2315
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T08:29:11.917666+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T08:29:11.918044+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T08:29:12.520339+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "filters": "{'exp_id': 'steering_107'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "filters": "{'exp_id': 'steering_107'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T08:29:12.571144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0664}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-22T08:29:17.947622+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T08:29:18.149127+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"steering_107\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:08:08.511Z\", \"updated_at\": \"2026-05-22T08:28:43.081Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/clkc_mech_interp && CUDA_VISIBLE_DEVICES=0 python -u src/steering_experiment.py --model /root/models/Llama-3.1-8B-Instruct/ --data_dir data/llama31 --output_dir data/llama31/steering_results 2>&1 | tee logs/steering_llama.log\\\"\", \"server\": \"westd-41302\", \"gpu\": [\"cuda:0\"], \"pid\": \"466385\", \"log_path\": \"~/runs/clkc_mech_interp/steering_107.log\", \"submitted_at\": \"2026-05-22T08:22:21.333Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。\", \"parent\": \"mvp_probe_v1\", \"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-22T08:14:32.378Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/clkc_mech_interp && CUDA_VISIBLE_DEVICES=0 python -u src/steering_experiment.py --model /root/models/Llama-3.1-8B-Instruct/ --data_dir data/llama31 --output_dir data/llama31/steering_results 2>&1 | tee logs/steering_llama.log\\\"\", \"finished_at\": \"2026-05-22T08:28:42.915Z\", \"training_hours\": 0.24}, \"pid\": \"466385\", \"log_path\": \"~/runs/clkc_mech_interp/steering_107.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:28:44.903019+00:00\"}]}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, 
+…[truncated 63 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-22T08:29:18.149592+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T08:29:18.302048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_cpu_c3-mlp-bootstrap_20260522T080853\", \"task_type\": \"cpu:c3-mlp-bootstrap\", \"project\": \"clkc_mech_interp\", \"status\": \"running\", \"started_at\": \"2026-05-22T08:08:53.807985+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T08:29:43.973662+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:steering_107",
+  "project": "clkc_mech_interp",
+  "task_prompt": "## 任务：分析 steering_107 实验结果\n\n### 背景\nsteering_107 是一个因果干预实验（representation steering），验证线性探针权重是否定义了残差流中知识冲突信号的因果方向。\n\n**Hypothesis**: 沿探针权重方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择。正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random）。\n\n**Parent**: mvp_probe_v1（Qwen3-8B 探针实验，EN acc 75.3%）\n\n### 你需要做的\n\n1. **SSH 到 westd-41302 读日志和结果**:\n   - 主日志: `~/runs/clkc_mech_interp/steering_107.log`\n   - 也检查: `/root/clkc_mech_interp/logs/steering_llama.log`\n   - 结果目录: `/root/clkc_mech_interp/data/llama31/steering_results/`\n   - 读取所有结果文件（JSON/CSV/log），特别关注:\n     - steering flip rate（正向和负向）\n     - random control flip rate\n     - 各 layer 的 steering 效果\n     - 统计显著性（如果有）\n\n2. **检查 W&B** (如果有 run):\n   - 用 fetch_wandb_metrics 查看 steering 相关指标\n\n3. **判断 conclusion**:\n   - flip rate ≥15% (steering) vs ≤5% (random) → success\n   - steering 有效但效果弱（5-15%）→ 可能是 partial success，记为 success 但标注\n   - steering 无效或与 random 无显著差异 → negative\n   - 脚本错误/数据问题 → failed\n\n4. **输出格式**（必须严格遵守）:\n   写入项目文件 `steering_107_analysis.md`，包含:\n   ```\n   ## steering_107 分析结果\n   \n   ### Conclusion: [success/negative/failed]\n   \n   ### 核心指标\n   - steering_flip_rate_positive: X%\n   - steering_flip_rate_negative: X%\n   - random_flip_rate: X%\n   - best_layer: N\n   - best_alpha: X\n   - [其他关键指标]\n   \n   ### 详细分析\n   [对结果的解读，与 hypothesis 的对比]\n   \n   ### Checkpoint/Log 路径\n   - log_path: ...\n   - results_path: ...\n   ```\n\n服务器环境: conda base 环境，项目在 /root/clkc_mech_interp/",
+  "tool_groups": "['ssh', 'wandb', 'knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:steering_107",
+    "project": "clkc_mech_interp",
+    "task_prompt": "## 任务：分析 steering_107 实验结果\n\n### 背景\nsteering_107 是一个因果干预实验（representation steering），验证线性探针权重是否定义了残差流中知识冲突信号的因果方向。\n\n**Hypothesis**: 沿探针权重方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择。正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random）。\n\n**Parent**: mvp_probe_v1（Qwen3-8B 探针实验，EN acc 75.3%）\n\n### 你需要做的\n\n1. **SSH 到 westd-41302 读日志和结果**:\n   - 主日志: `~/runs/clkc_mech_interp/steering_107.log`\n   - 也检查: `/root/clkc_mech_interp/logs/steering_llama.log`\n   - 结果目录: `/root/clkc_mech_interp/data/llama31/steering_results/`\n   - 读取所有结果文件（JSON/CSV/log），特别关注:\n     - steering flip rate（正向和负向）\n     - random control flip rate\n     - 各 layer 的 steering 效果\n     - 统计显著性（如果有）\n\n2. **检查 W&B** (如果有 run):\n   - 用 fetch_wandb_metrics 查看 steering 相关指标\n\n3. **判断 conclusion**:\n   - flip rate ≥15% (steering) vs ≤5% (random) → success\n   - steering 有效但效果弱（5-15%）→ 可能是 partial success，记为 success 但标注\n   - steering 无效或与 random 无显著差异 → negative\n   - 脚本错误/数据问题 → failed\n\n4. **输出格式**（必须严格遵守）:\n   写入项目文件 `steering_107_analysis.md`，包含:\n   ```\n   ## steering_107 分析结果\n   \n   ### Conclusion: [success/negative/failed]\n   \n   ### 核心指标\n   - steering_flip_rate_positive: X%\n   - steering_flip_rate_negative: X%\n   - random_flip_rate: X%\n   - best_layer: N\n   - best_alpha: X\n   - [其他关键指标]\n   \n   ### 详细分析\n   [对结果的解读，与 hypothesis 的对比]\n   \n   ### Checkpoint/Log 路径\n   - log_path: ...\n   - results_path: ...\n   ```\n\n服务器环境: conda base 环境，项目在 /root/clkc_mech_interp/",
+    "tool_groups": "['ssh', 'wandb', 'knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T08:29:46.692120+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_steering_107_20260522T082944\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/workers/worker_analysis_steering_107_20260522T082944.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_steering_107_20260522T082944 started. Use get_worker_status('worker_analysis_steering_107_20260522T082944') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:steering_107",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2718
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-22T08:29:51.817156+00:00_
+
+已派 Worker `worker_analysis_steering_107_20260522T082944` 分析 steering_107 结果（SSH 读日志+结果文件+W&B 指标）。等待 Worker 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:steering_107"
+}
+```
+
+</details>
+
+---

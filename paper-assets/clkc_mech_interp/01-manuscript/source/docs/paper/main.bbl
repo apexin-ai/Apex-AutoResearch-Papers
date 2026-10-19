@@ -1,0 +1,320 @@
+\begin{thebibliography}{38}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Basu et~al.(2026)Basu, Patel, Sheth, Muralidharan, Elamaran, Kinra,
+  Morgan, and Batniji}]{basu2026interpretability}
+Sanjay Basu, Sadiq~Y. Patel, Parth Sheth, Bhairavi Muralidharan, Namrata
+  Elamaran, Aakriti Kinra, John Morgan, and Rajaie Batniji. 2026.
+\newblock \href {https://arxiv.org/abs/2603.18353} {Interpretability without
+  actionability: mechanistic methods cannot correct language model errors
+  despite near-perfect internal representations}.
+\newblock \emph{arXiv preprint arXiv:2603.18353}.
+
+\bibitem[{Belinkov(2022)}]{belinkov2022probing}
+Yonatan Belinkov. 2022.
+\newblock \href {https://arxiv.org/abs/2102.12452} {Probing classifiers:
+  Promises, shortcomings, and advances}.
+\newblock \emph{Computational Linguistics}, 48(1).
+
+\bibitem[{Brink et~al.(2026)Brink, Boer, and Ulmer}]{brink2026probing}
+Ivo Brink, Alexander Boer, and Dennis Ulmer. 2026.
+\newblock \href {https://arxiv.org/abs/2602.22787} {Probing for knowledge
+  attribution in large language models}.
+\newblock \emph{arXiv preprint arXiv:2602.22787}.
+
+\bibitem[{Conneau et~al.(2018)Conneau, Rinott, Lample, Williams, Bowman,
+  Schwenk, and Stoyanov}]{conneau2018xnli}
+Alexis Conneau, Ruty Rinott, Guillaume Lample, Adina Williams, Samuel Bowman,
+  Holger Schwenk, and Veselin Stoyanov. 2018.
+\newblock \href {https://aclanthology.org/D18-1269/} {{XNLI}: Evaluating
+  cross-lingual sentence representations}.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Conneau et~al.(2020)Conneau, Wu, Li, Zettlemoyer, and
+  Stoyanov}]{wu2020emerging}
+Alexis Conneau, Shijie Wu, Haoran Li, Luke Zettlemoyer, and Veselin Stoyanov.
+  2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.acl-main.536} {Emerging
+  cross-lingual structure in pretrained language models}.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Elhage et~al.(2022)Elhage, Hume, Olsson, Schiefer, Henighan, Kravec,
+  Hatfield-Dodds, Lasenby, Drain, Chen et~al.}]{elhage2022toy}
+Nelson Elhage, Tristan Hume, Catherine Olsson, Nicholas Schiefer, Tom Henighan,
+  Shauna Kravec, Zac Hatfield-Dodds, Robert Lasenby, Dawn Drain, Carol Chen,
+  and 1 others. 2022.
+\newblock \href {https://arxiv.org/abs/2209.10652} {Toy models of
+  superposition}.
+\newblock \emph{Transformer Circuits Thread}.
+
+\bibitem[{Feng et~al.(2026)Feng, Li, Zhu, Zhou, Qian, Zhang, Chua, Mak, Ng, and
+  Mao}]{feng2026finegrained}
+Zijian Feng, Tianjiao Li, Zixiao Zhu, Hanzhang Zhou, Junlang Qian, Li~Zhang,
+  Jia Jim~Deryl Chua, Lee~Onn Mak, Gee~Wah Ng, and Kezhi Mao. 2026.
+\newblock \href {https://arxiv.org/abs/2602.04428} {Fine-grained activation
+  steering: Steering less, achieving more}.
+\newblock In \emph{Proceedings of the 14th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Geiger et~al.(2024)Geiger, Wu, Potts, Icard, and
+  Goodman}]{geiger2024finding}
+Atticus Geiger, Zhengxuan Wu, Christopher Potts, Thomas Icard, and Noah~D.
+  Goodman. 2024.
+\newblock Finding alignments between interpretable causal variables and
+  distributed neural representations.
+\newblock In \emph{Proceedings of the Third Conference on Causal Learning and
+  Reasoning}, volume 236 of \emph{Proceedings of Machine Learning Research},
+  pages 160--187. PMLR.
+
+\bibitem[{{Gemma Team} et~al.(2024){Gemma Team}, Rivi{\`e}re, Pathak, Sessa,
+  Hardin, Bhupatiraju, Hussenot, Mesnard, Shahriari, Ram{\'e}
+  et~al.}]{team2024gemma}
+{Gemma Team}, Morgane Rivi{\`e}re, Shreya Pathak, Pier~Giuseppe Sessa, Cassidy
+  Hardin, Surya Bhupatiraju, L{\'e}onard Hussenot, Thomas Mesnard, Bobak
+  Shahriari, Alexandre Ram{\'e}, and 1 others. 2024.
+\newblock \href {https://arxiv.org/abs/2408.00118} {Gemma 2: Improving open
+  language models at a practical size}.
+\newblock \emph{arXiv preprint arXiv:2408.00118}.
+
+\bibitem[{Grattafiori et~al.(2024)Grattafiori, Dubey, Jauhri, Pandey, Kadian,
+  Al-Dahle, Letman, Mathur, Schelten, Yang, Fan, Goyal, Hartshorn, Yang, Mber,
+  Bai et~al.}]{grattafiori2024llama}
+Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek
+  Kadian, Ahmad Al-Dahle, Aieleen Letman, Akhil Mathur, Alan Schelten, Amy
+  Yang, Angela Fan, Anirudh Goyal, Anthony Hartshorn, Aobo Yang, Ariel Mber,
+  Chao Bai, and 1 others. 2024.
+\newblock \href {https://arxiv.org/abs/2407.21783} {The {Llama} 3 herd of
+  models}.
+\newblock \emph{arXiv preprint arXiv:2407.21783}.
+
+\bibitem[{Gurgurov et~al.(2026)Gurgurov, Al~Ghussin, Baeumel, Chou,
+  Schramowski, Mosbach, van Genabith, and Ostermann}]{gurgurov2026clasbench}
+Daniil Gurgurov, Yusser Al~Ghussin, Tanja Baeumel, Cheng-Ting Chou, Patrick
+  Schramowski, Marius Mosbach, Josef van Genabith, and Simon Ostermann. 2026.
+\newblock {CLaS-Bench}: A cross-lingual alignment and steering benchmark.
+\newblock \emph{arXiv preprint arXiv:2601.08331}.
+
+\bibitem[{Hewitt and Liang(2019)}]{hewitt2019designing}
+John Hewitt and Percy Liang. 2019.
+\newblock \href {https://aclanthology.org/D19-1275/} {Designing and
+  interpreting probes with control tasks}.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Ifergan et~al.(2025)Ifergan, Choshen, Aharoni, Szpektor, and
+  Abend}]{ifergan2024beneath}
+Maxim Ifergan, Leshem Choshen, Roee Aharoni, Idan Szpektor, and Omri Abend.
+  2025.
+\newblock \href {https://arxiv.org/abs/2408.10646} {Beneath the surface of
+  consistency: Exploring cross-lingual knowledge representation sharing in
+  {LLMs}}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  NAACL 2025}.
+
+\bibitem[{Kargaran et~al.(2025)Kargaran, Modarressi, Nikeghbal, Diesner, Yvon,
+  and Sch{\"u}tze}]{kargaran2024mexa}
+Amir~Hossein Kargaran, Ali Modarressi, Nafiseh Nikeghbal, Jana Diesner,
+  Fran{\c{c}}ois Yvon, and Hinrich Sch{\"u}tze. 2025.
+\newblock \href {https://arxiv.org/abs/2410.05873} {{MEXA}: Multilingual
+  evaluation of {English}-centric {LLMs} via cross-lingual alignment}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2025}.
+
+\bibitem[{Li et~al.(2025)Li, Chen, and Tong}]{li2025taming}
+Gaotang Li, Yuzhong Chen, and Hanghang Tong. 2025.
+\newblock \href {https://arxiv.org/abs/2503.10996} {Taming knowledge conflicts
+  in language models}.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Li et~al.(2023)Li, Patel, Vi{\'e}gas, Pfister, and
+  Wattenberg}]{li2023iti}
+Kenneth Li, Oam Patel, Fernanda Vi{\'e}gas, Hanspeter Pfister, and Martin
+  Wattenberg. 2023.
+\newblock \href {https://arxiv.org/abs/2306.03341} {Inference-time
+  intervention: Eliciting truthful answers from a language model}.
+\newblock In \emph{Advances in Neural Information Processing Systems 36
+  (NeurIPS)}.
+
+\bibitem[{Marks and Tegmark(2024)}]{marks2024geometry}
+Samuel Marks and Max Tegmark. 2024.
+\newblock \href {https://arxiv.org/abs/2310.06824} {The geometry of truth:
+  Emergent linear structure in large language model representations of
+  true/false datasets}.
+\newblock In \emph{Proceedings of the 1st Conference on Language Modeling
+  (COLM)}.
+
+\bibitem[{Meng et~al.(2022)Meng, Bau, Andonian, and
+  Belinkov}]{meng2022locating}
+Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov. 2022.
+\newblock \href {https://arxiv.org/abs/2202.05262} {Locating and editing
+  factual associations in {GPT}}.
+\newblock In \emph{Advances in Neural Information Processing Systems 35
+  (NeurIPS)}.
+
+\bibitem[{Muller et~al.(2021)Muller, Elazar, Sagot, and
+  Seddah}]{muller2021first}
+Benjamin Muller, Yanai Elazar, Beno{\^i}t Sagot, and Djam{\'e} Seddah. 2021.
+\newblock \href {https://aclanthology.org/2021.eacl-main.189/} {First align,
+  then predict: Understanding the cross-lingual ability of multilingual
+  {BERT}}.
+\newblock In \emph{Proceedings of the 16th Conference of the European Chapter
+  of the Association for Computational Linguistics (EACL)}.
+
+\bibitem[{Pham et~al.(2026)Pham, Borkakoty, and Hou}]{pham2026where}
+Minh~Vu Pham, Hsuvas Borkakoty, and Yufang Hou. 2026.
+\newblock \href {https://arxiv.org/abs/2601.09445} {Where knowledge collides: A
+  mechanistic study of intra-memory knowledge conflict in language models}.
+\newblock \emph{arXiv preprint arXiv:2601.09445}.
+
+\bibitem[{Pimentel and Cotterell(2021)}]{pimentel2021probing}
+Tiago Pimentel and Ryan Cotterell. 2021.
+\newblock A {B}ayesian framework for information-theoretic probing.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in
+  Natural Language Processing}, pages 2869--2887. Association for Computational
+  Linguistics.
+
+\bibitem[{Pokharel et~al.(2026)Pokharel, Agrawal, and
+  Nagar}]{pokharel2026crosslingual}
+Rhitabrat Pokharel, Ameeta Agrawal, and Tanay Nagar. 2026.
+\newblock \href {https://arxiv.org/abs/2601.16390} {Cross-lingual activation
+  steering for multilingual language models}.
+\newblock \emph{arXiv preprint arXiv:2601.16390}.
+
+\bibitem[{Ravichander et~al.(2021)Ravichander, Belinkov, and
+  Hovy}]{ravichander2021probing}
+Abhilasha Ravichander, Yonatan Belinkov, and Eduard Hovy. 2021.
+\newblock Probing the probing paradigm: Does probing accuracy entail task
+  relevance?
+\newblock In \emph{Proceedings of the 16th Conference of the European Chapter
+  of the Association for Computational Linguistics}, pages 3363--3377.
+  Association for Computational Linguistics.
+
+\bibitem[{Rei et~al.(2020)Rei, Stewart, Farinha, and Lavie}]{rei2020comet}
+Ricardo Rei, Craig Stewart, Ana~C. Farinha, and Alon Lavie. 2020.
+\newblock \href {https://aclanthology.org/2020.emnlp-main.213/} {{COMET}: A
+  neural framework for {MT} evaluation}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Sundar et~al.(2025)Sundar, Williamson, Metcalf, Theobald, Seto, and
+  Fedzechkina}]{sundar2025steering}
+Anirudh Sundar, Sinead Williamson, Katherine Metcalf, Barry-John Theobald,
+  Skyler Seto, and Masha Fedzechkina. 2025.
+\newblock \href {https://arxiv.org/abs/2502.15639} {Steering into new embedding
+  spaces: Analyzing cross-lingual alignment induced by model interventions in
+  multilingual language models}.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Templeton et~al.(2024)Templeton, Conerly, Marcus, Lindsey, Bricken,
+  Chen, Pearce, Citro, Ameisen, Jones et~al.}]{templeton2024scaling}
+Adly Templeton, Tom Conerly, Jonathan Marcus, Jack Lindsey, Trenton Bricken,
+  Brian Chen, Adam Pearce, Craig Citro, Emmanuel Ameisen, Andy Jones, and 1
+  others. 2024.
+\newblock \href
+  {https://transformer-circuits.pub/2024/scaling-monosemanticity/} {Scaling
+  monosemanticity: Extracting interpretable features from {Claude} 3 {Sonnet}}.
+\newblock \emph{Transformer Circuits Thread}.
+
+\bibitem[{Turner et~al.(2023)Turner, Thiergart, Leech, Udell, Vazquez, Mini,
+  and MacDiarmid}]{turner2023activation}
+Alexander~Matt Turner, Lisa Thiergart, Gavin Leech, David Udell, Juan~J.
+  Vazquez, Ulisse Mini, and Monte MacDiarmid. 2023.
+\newblock \href {https://arxiv.org/abs/2308.10248} {Steering language models
+  with activation engineering}.
+\newblock \emph{arXiv preprint arXiv:2308.10248}.
+
+\bibitem[{Ulmer et~al.(2022)Ulmer, Hardmeier, and Frellsen}]{ulmer2022deep}
+Dennis Ulmer, Christian Hardmeier, and Jes Frellsen. 2022.
+\newblock \href {https://arxiv.org/abs/2204.06815} {deep-significance: Easy and
+  meaningful statistical significance testing in the age of neural networks}.
+\newblock \emph{arXiv preprint arXiv:2204.06815}.
+
+\bibitem[{Wang et~al.(2025)Wang, Adel, Lange, Liu, Nie, Str{\"o}tgen, and
+  Sch{\"u}tze}]{wang2025lost}
+Mingyang Wang, Heike Adel, Lukas Lange, Yihong Liu, Ercong Nie, Jannik
+  Str{\"o}tgen, and Hinrich Sch{\"u}tze. 2025.
+\newblock \href {https://arxiv.org/abs/2504.04264} {Lost in multilinguality:
+  Dissecting cross-lingual factual inconsistency in transformer language
+  models}.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Wendler et~al.(2024)Wendler, Veselovsky, Monea, and
+  West}]{wendler2024llamas}
+Chris Wendler, Veniamin Veselovsky, Giovanni Monea, and Robert West. 2024.
+\newblock \href {https://arxiv.org/abs/2402.10588} {Do llamas work in
+  {English}? on the latent language of multilingual transformers}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Xie et~al.(2024)Xie, Zhang, Chen, Lou, and Su}]{xie2024adaptive}
+Jian Xie, Kai Zhang, Jiangjie Chen, Renze Lou, and Yu~Su. 2024.
+\newblock \href {https://arxiv.org/abs/2305.13300} {Adaptive chameleon or
+  stubborn sloth: Revealing the behavior of large language models in knowledge
+  conflicts}.
+\newblock In \emph{Proceedings of the 12th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Xing et~al.(2024)Xing, He, Xu, Wang, Wang, and
+  Hong}]{xing2024evaluating}
+Xiaolin Xing, Zhiwei He, Haoyu Xu, Xing Wang, Rui Wang, and Yu~Hong. 2024.
+\newblock \href {https://arxiv.org/abs/2407.01358} {Evaluating knowledge-based
+  cross-lingual inconsistency in large language models}.
+\newblock \emph{arXiv preprint arXiv:2407.01358}.
+
+\bibitem[{Xu et~al.(2024)Xu, Qi, Guo, Wang, Wang, Zhang, and
+  Xu}]{xu2024knowledge}
+Rongwu Xu, Zehan Qi, Zhijiang Guo, Cunxiang Wang, Hongru Wang, Yue Zhang, and
+  Wei Xu. 2024.
+\newblock \href {https://arxiv.org/abs/2403.08319} {Knowledge conflicts for
+  {LLMs}: A survey}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Yang et~al.(2025)Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang,
+  Lv et~al.}]{yang2025qwen3}
+An~Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen
+  Yu, Chang Gao, Chengen Huang, Chenxu Lv, and 1 others. 2025.
+\newblock \href {https://arxiv.org/abs/2505.09388} {Qwen3 technical report}.
+\newblock \emph{arXiv preprint arXiv:2505.09388}.
+
+\bibitem[{Zhao et~al.(2026)Zhao, Huang, Chen, You, and Yu}]{zhao2026when}
+Jiaqi Zhao, Qiang Huang, Haodong Chen, Xiaoxing You, and Jun Yu. 2026.
+\newblock \href {https://arxiv.org/abs/2601.07041} {When abundance conceals
+  weakness: Knowledge conflict in multilingual models}.
+\newblock \emph{arXiv preprint arXiv:2601.07041}.
+
+\bibitem[{Zhao et~al.(2025)Zhao, Devoto, Hong, Du, Gema, Wang, He, Wong, and
+  Minervini}]{zhao2025steering}
+Yu~Zhao, Alessio Devoto, Giwon Hong, Xiaotang Du, Aryo~Pradipta Gema, Hongru
+  Wang, Xuanli He, Kam-Fai Wong, and Pasquale Minervini. 2025.
+\newblock \href {https://arxiv.org/abs/2410.15999} {Steering knowledge
+  selection behaviours in {LLMs} via {SAE}-based representation engineering}.
+\newblock In \emph{Proceedings of the 2025 Conference of the North American
+  Chapter of the Association for Computational Linguistics (NAACL)}.
+
+\bibitem[{Zhao et~al.(2024)Zhao, Du, Hong, Gema, Devoto, Wang, He, Wong, and
+  Minervini}]{zhao2024analysing}
+Yu~Zhao, Xiaotang Du, Giwon Hong, Aryo~Pradipta Gema, Alessio Devoto, Hongru
+  Wang, Xuanli He, Kam-Fai Wong, and Pasquale Minervini. 2024.
+\newblock \href {https://arxiv.org/abs/2410.16090} {Analysing the residual
+  stream of language models under knowledge conflicts}.
+\newblock In \emph{NeurIPS 2024 Workshop on Foundation Model Interventions}.
+
+\bibitem[{Zou et~al.(2025)Zou, Phan, Chen, Campbell, Guo, Ren, Pan, Yin,
+  Mazeika, Dombrowski, Goel, Li, Byun, Wang, Mallen, Basart, Koyejo, Song,
+  Fredrikson, Kolter, and Hendrycks}]{zou2023representation}
+Andy Zou, Long Phan, Sarah Chen, James Campbell, Phillip Guo, Richard Ren,
+  Alexander Pan, Xuwang Yin, Mantas Mazeika, Ann-Kathrin Dombrowski, Shashwat
+  Goel, Nathaniel Li, Michael~J. Byun, Zifan Wang, Alex Mallen, Steven Basart,
+  Sanmi Koyejo, Dawn Song, Matt Fredrikson, and 2 others. 2025.
+\newblock \href {https://arxiv.org/abs/2310.01405} {Representation engineering:
+  A top-down approach to {AI} transparency}.
+\newblock In \emph{Proceedings of the 13th International Conference on Learning
+  Representations (ICLR)}.
+
+\end{thebibliography}

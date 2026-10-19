@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a674fa23a8fc644fb7cf",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp steering qwen L18 122",
+  "task_key": "worker_exp_steering-qwen-L18-122_20260523T100257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering-qwen-L18-122_20260523T100257_result.json",
+    "occurrence": 1,
+    "bytes": 265,
+    "sha256": "a70d7ddd7df4c17fdfc8198dc6d7637c68b2750dda1c209da3fb27ee2f9a9002"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动：\n- **PID**: 568435\n- **GPU**: cuda:2\n- **Layer**: 18, Probe accuracy: 0.7381\n- **Alphas**: 5, 10, 20\n- 模型已加载完毕，正在跑 baseline generation (84 samples)\n- 预计总时间 ~30-60 分钟，270 秒后检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-steering-qwen-l18-122.md"
+}

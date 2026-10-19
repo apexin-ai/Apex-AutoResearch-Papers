@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbbd299f7252a7bddff2",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "cpu gemma probe training 102",
+  "task_key": "worker_cpu_gemma-probe-training-102_20260522T104418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_gemma-probe-training-102_20260522T104418_result.json",
+    "occurrence": 1,
+    "bytes": 400,
+    "sha256": "131d51aa59c472eb8f6fad75b3c44e2ab7ab3b76191875bd425f3312abbfd4c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Probe training 已启动：\n\n- **PID**: 476334\n- **脚本**: `train_probe_fast.py`（joblib 32 workers 并行）\n- **配置**: 4 方向 × 42 layers × 2000 bootstrap seeds\n- **当前状态**: en_en 方向已开始处理\n- **预计完成**: ~25-30 分钟（fast 版）\n\n输出文件: `data/gemma2/probe_results_bootstrap_n2000.json`，日志: `logs/gemma_probe_training.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-gemma-probe-training-102.md"
+}

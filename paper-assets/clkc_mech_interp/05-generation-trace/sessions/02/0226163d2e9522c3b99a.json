@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0226163d2e9522c3b99a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu steering L28 all 107v2c",
+  "task_key": "worker_gpu_steering-L28-all-107v2c_20260522T113058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_steering-L28-all-107v2c_20260522T113058_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "9705cc6487379e85f335dd02836aa6e2c54866fa6cc2dc3cb51405fae769012d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**汇报：**\n- cuda:0 上 Steering Qwen 进程（PID 478889）已 kill\n- **steering_107_L28_all** 已启动，PID **480150**，cuda:0\n- 配置：L28 / all-position / alphas [-20, -10, -5, 5, 10, 20] / 136 conflict pairs\n- Probe accuracy at L28: 0.7757\n- 预计运行时间：6 个 alpha × 136 pairs × 2（steering+control），约 10-20 分钟\n- 日志：`logs/steering_llama_L28_all.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-steering-l28-all-107v2c.md"
+}

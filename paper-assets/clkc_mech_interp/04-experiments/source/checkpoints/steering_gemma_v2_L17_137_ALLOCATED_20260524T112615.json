@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_gemma_v2_L17_137",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:22:27.406Z",
+    "updated_at": "2026-05-24T11:26:15.881Z",
+    "hypothesis": "Gemma-2-9B-IT L17 (40% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171.",
+    "parent": "steering_gemma_L17_131"
+  },
+  "timestamp": "2026-05-24T11:26:15.993282+00:00",
+  "trigger": "update_registry"
+}

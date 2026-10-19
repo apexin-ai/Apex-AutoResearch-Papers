@@ -1,0 +1,3572 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a6f092d4326a0fe2a621",
+  "rounds": [
+    {
+      "number": 157,
+      "messages": [
+        {
+          "source_line": 3961,
+          "timestamp": "2026-05-25T08:43:17.299008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_anonymous-repo-prep_20260525T083831",
+              "verbose": "True"
+            }
+          },
+          "id": "event-003961"
+        },
+        {
+          "source_line": 3962,
+          "timestamp": "2026-05-25T08:43:17.851950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_anonymous-repo-prep_20260525T083831\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:anonymous-repo-prep\\\", \\\"project\\\": \\\"clkc_mech_interp\\\", \\\"started_at\\\": \\\"2026-05-25T08:38:32.165314+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"Bash\\\"], \\\"last_text\\\": \\\"Now I'll write all the files. I'll exclude dead code: `comet_tertile_ablation_fix.py` (patch script), `prepare_gemma_data.py` (superseded by v2), `train_probe_fast.py` (redundant), `aggregate_layerwise.py`/`extract_layerwise.py` (hardcoded utility), `token_overlap.py` (superseded), `bootstrap_mlp_de\\\", \\\"turn_count\\\": 9}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 552
+          },
+          "id": "event-003962"
+        },
+        {
+          "source_line": 3963,
+          "timestamp": "2026-05-25T08:43:17.852334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex"
+            }
+          },
+          "id": "event-003963"
+        },
+        {
+          "source_line": 3964,
+          "timestamp": "2026-05-25T08:43:17.902947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{multirow}\n15\t\\usepackage{xcolor}\n16\t\\usepackage{subcaption}\n17\t\n18\t\\title{English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries}\n19\t\n20\t\\author{Anonymous ACL submission}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t\\begin{abstract}\n26\t\\input{abstract}\n27\t\\end{abstract}\n28\t\n29\t\\input{introduction}\n30\t\n31\t\\input{related_work}\n32\t\n33\t\\input{method}\n34\t\n35\t\\input{experiments}\n36\t\n37\t\\input{discussion}\n38\t\n39\t\\input{conclusion}\n40\t\n41\t\\input{limitations}\n42\t\n43\t\\bibliography{references}\n44\t\n45\t\\appendix\n46\t\n47\t\\section{Use of AI Assistants}\n48\t\\label{app:ai-assistants}\n49\t\n50\tWe used Claude (Anthropic) as an AI coding and writing assistant\n51\tthroughout this work. Specifically:\n52\t\\begin{itemize}\n53\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n54\t    pipelines, and analysis utilities; debugging and refactoring.\n55\t    \\item \\textbf{Writing:} drafting and revising paper sections,\n56\t    polishing prose, and reformatting \\LaTeX{}.\n57\t    \\item \\textbf{Literature:} summarizing related papers to inform\n58\t    related-work section.\n59\t\\end{itemize}\n60\t\n61\t\\section{Fine-Grained Causal Boundary Analysis}\n62\t\\label{app:boundary}\n63\t\n64\tTable~\\ref{tab:boundary} reports steering results across the full layer gradient from an independent replication ($N = 201$, Llama-3.1-8B-Instruct, RTX PRO 6000).\n65\t\n66\t\\begin{table}[h]\n67\t\\centering\n68\t\\caption{Causal boundary steering results (independently sampled, $N = 201$, Llama-3.1-8B-Instruct). Bonf.\\ Sig.\\ $\\alpha$s: number of $\\alpha$ values reaching significance after Bonferroni correction out of 6 tested.}\n69\t\\label{tab:boundary}\n70\t\\small\n71\t\\resizebox{\\columnwidth}{!\n…[truncated 4448 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003964"
+        },
+        {
+          "source_line": 3965,
+          "timestamp": "2026-05-25T08:43:29.365394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85/AGENTS.md",
+              "limit": "100"
+            }
+          },
+          "id": "event-003965"
+        },
+        {
+          "source_line": 3966,
+          "timestamp": "2026-05-25T08:43:29.366126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t## 当前项目\n2\t当前绑定项目：**clkc_mech_interp**\n3\t\n4\t今天是 **2026-05-25**。\n5\t\n6\t你是 ML 研究团队的论文写作协调者（Paper Agent）。**始终用中文回复。**\n7\t\n8\t## 身份认知\n9\t\n10\t你是 AI 论文写作协调者。**你协调写作流程，Worker 做具体写作。**\n11\t\n12\t**能力边界**：\n13\t- 内部流水线**严格串行**——任意时刻最多 1 个活跃 Worker，前一步产出确认后才进入下一步\n14\t- 你自己做：Outline 生成、全局 consistency 检查、provenance 同步、修改策略制定\n15\t- Worker 做：章节 LaTeX 撰写、matplotlib/PaperBanana 图表生成、文献搜索与验证\n16\t\n17\t**速度预期（串行但快）**：\n18\t- 单个 Worker 写一个章节：分钟级（不是小时级）\n19\t- 全 5 步流水线（Outline → Plots → Literature → Sections → Refinement）：24h 内可完成初稿\n20\t- Patch 模式（修改 + 级联 + 验证）：小时级\n21\t- **不要留\"明天再做下一步\"的 buffer**——每一步完成后立即进入下一步\n22\t\n23\t**心智硬约束**：\n24\t- 写作的 truth source 是 registry 中的实验数据，不是你的记忆\n25\t- 每个定量 claim 必须关联 exp_id；引用必须经过验证（`verify_references`），不得凭记忆编造\n26\t- **默认串行**——后步依赖前步产出，不并行 spawn 多个 Worker\n27\t- 不做 Framing 决策（那是 Main Agent + Director + Reviewer 的事），你只执行 Director 已批准的 narrative\n28\t- 不做 Venue 决策——Director 指定什么 venue 你就按什么标准写，不因时间紧张建议换 venue\n29\t\n30\t**上级关系**：Director 决定 WHAT（何时写、投稿目标、claim 方向），你负责 HOW（怎么写）。Director 的指令必须 `paper_agent_post_to_director` 汇报结果。\n31\t\n32\t## 工作环境\n33\t\n34\t你运行在飞书 IM 后台，复用 Group B（运维群）。你的纯文本输出**用户和 Director 都看不到**——必须通过 `paper_agent_post_to_director` 与 Director 通信，`paper_agent_request_review` 提交 Reviewer 审查。\n35\t\n36\t## 模式判断\n37\t\n38\t收到 Director 消息后，先判断模式：\n39\t\n40\t| 模式 | 判定条件 | 流水线 |\n41\t|------|---------|--------|\n42\t| **Dream** | 环境变量 `DREAM_OUTPUT_DIR` 存在 | 简化（直接写全文） |\n43\t| **Full Draft** | 项目无 `.tex` 文件 + 无 `writing_plan.yaml` | 完整 5 步 |\n44\t| **Patch** | 已存在 `.tex` 文件 | Phase A-E |\n45\t\n46\tDirector 的消息内容也是判断依据（\"写一篇论文\" vs \"把 exp_008 加入 Table 2\" vs Dream Tool 触发）。\n47\t\n48\t## Full Draft 流水线（5 步，严格串行）\n49\t\n50\t**Step 1 — Outline Generation（自己做）**\n51\t- 输入：`ideas.md` + `paper_framing.md` + registry 全量 + `ROADMAP.md`\n52\t- 输出 `writing_plan.yaml`：`paper_outline`（含 word_budget / dependencies）、`visualization_plan`（含 `narrative_intent` + `design_notes`，见 `paper-visualization.skill.md`）、`table_plan`（table_id / type / columns / data_source）、`literature_strategy`、`writing_order`、`color_palette: {baseline: \"#0072B2\",\n…[truncated 4964 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-003966"
+        },
+        {
+          "source_line": 3967,
+          "timestamp": "2026-05-25T08:43:38.655251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml",
+              "limit": "80",
+              "offset": "0"
+            }
+          },
+          "id": "event-003967"
+        },
+        {
+          "source_line": 3968,
+          "timestamp": "2026-05-25T08:43:38.655820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t_next_id: 21\n1\tdecisions:\n2\t- id: D001\n3\t  date: 2026-05-21 12:00 UTC\n4\t  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性\n5\t  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering\n6\t    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA\n7\t    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。\n8\t  related_experiments: []\n9\t  depends_on: []\n10\t- id: D002\n11\t  date: 2026-05-21 12:06 UTC\n12\t  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise\n13\t    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径\n14\t  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern\n15\t    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry\n16\t    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。\n17\t  related_experiments: []\n18\t  depends_on:\n19\t  - D001\n20\t- id: D003\n21\t  date: 2026-05-21 14:26 UTC\n22\t  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集\n23\t  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至\n24\t    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%\n25\t    标签翻转率确认了 M001 verify 步骤的必要性。\n26\t  related_experiments:\n27\t  - exp_id: mvp_probe_llama_v1\n28\t    role: triggered_decision\n29\t    result: verify 保留率 33%, 266 train / 70 test, 20% flip\n30\t  depends_on:\n31\t  - D001\n32\t  - D002\n33\t- id: D004\n34\t  date: 2026-05-21 19:17 UTC\n35\t  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs\n36\t    EN→ZH 59.6%），等 Qwen 结果做最终 verdict\n37\t  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN\n38\t    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按\n39\t    D002 规则进入 EXTEND 评估。等 Qwen 跨模型验证后做最终 MVP verdict。不对称迁移本身是有价值的科学发现。\n40\t  related_experiments:\n41\t  - exp_id: mvp_probe_llama_v1\n42\t    role: primary\n43\n…[truncated 1630 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-003968"
+        },
+        {
+          "source_line": 3969,
+          "timestamp": "2026-05-25T08:43:42.168794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml",
+              "offset": "300",
+              "limit": "100"
+            }
+          },
+          "id": "event-003969"
+        },
+        {
+          "source_line": 3970,
+          "timestamp": "2026-05-25T08:43:42.219557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "300\t    result: negative, narrowest gap to L13\n301\t  - exp_id: steering-gemma-L24-121\n302\t    role: Gemma post-dip layer\n303\t    result: negative, cleanest null\n304\t  depends_on:\n305\t  - D015\n306\t  - D018\n307\t- id: D020\n308\t  date: 2026-05-24 17:15 UTC\n309\t  summary: Detection≠Decision 叙事从 \"L28 peak vs L13 causal = 大幅分离\" 改为 \"causal site\n310\t    L13 稳定而 detection peak 随数据波动\"\n311\t  rationale: 多种子实验（虽数据版本不同）揭示 peak layer 在种子间剧烈波动（Llama L28→L12/L15），而 peak accuracy\n312\t    稳定（±0.12%）。这说明 L28 peak 可能是数据依赖的，但 causal site L13 有 boundary sweep（6层, N=201,\n313\t    独立样本）确认是稳健的。新叙事实际上更强：detection 是分布式的（broad plateau L3-L22），causal influence 是集中的（L13），这比\"L28\n314\t    vs L13 距离大\"更有 mechanistic insight。配合 MF-3 的 Llama-specific 限定，整体 framing 更诚实。\n315\t  related_experiments:\n316\t  - exp_id: multi_seed_probing\n317\t    role: trigger\n318\t    result: peak layer unstable across seeds, accuracy stable\n319\t  depends_on: []\n320\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003970"
+        },
+        {
+          "source_line": 3971,
+          "timestamp": "2026-05-25T08:43:49.095504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/ -name \"*.tex\" -newer /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/related_work.tex -exec ls -la {} \\; 2>/dev/null",
+              "description": "Find tex files modified after related_work.tex"
+            }
+          },
+          "id": "event-003971"
+        },
+        {
+          "source_line": 3972,
+          "timestamp": "2026-05-25T08:43:49.503158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 3714 May 25 08:03 /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu 1709 May 25 08:41 /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu 2045 May 25 08:03 /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu 6217 May 25 08:29 /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex\n-rw-r--r-- 1 ubuntu ubuntu 2700 May 25 06:02 /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu 1862 May 25 08:31 /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu 5928 May 25 08:41 /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex\n-rw-r--r-- 1 ubuntu ubuntu 17346 May 25 08:38 /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 407
+          },
+          "id": "event-003972"
+        },
+        {
+          "source_line": 3973,
+          "timestamp": "2026-05-25T08:43:49.503497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper_provenance.yaml",
+              "limit": "30"
+            }
+          },
+          "id": "event-003973"
+        },
+        {
+          "source_line": 3974,
+          "timestamp": "2026-05-25T08:43:49.604240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tpaper:\n2\t  title: ''\n3\t  version: 32\n4\t  generated_at: '2026-05-22T16:23:35.224302+00:00'\n5\tclaims:\n6\t- id: C001\n7\t  location:\n8\t    section: experiments_test\n9\t    paragraph: 0\n10\t    sentence: 0\n11\t  text: test claim\n12\t  type: quantitative\n13\t  evidence:\n14\t  - exp_id: mvp_probe_v1\n15\t  decisions: []\n16\t  deprecated: false\n17\t- id: C002\n18\t  location:\n19\t    section: experiments_test2\n20\t    paragraph: 0\n21\t    sentence: 0\n22\t  text: test\n23\t  type: quantitative\n24\t  evidence:\n25\t  - exp_id: mvp_probe_v1\n26\t  decisions:\n27\t  - decision: test decision\n28\t  deprecated: false\n29\t- id: C003\n30\t  location:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-003974"
+        },
+        {
+          "source_line": 3975,
+          "timestamp": "2026-05-25T08:43:56.786209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-003975"
+        },
+        {
+          "source_line": 3976,
+          "timestamp": "2026-05-25T08:43:57.238314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, presentation language can determine the answer. Behavioral studies attribute this to linguistic affinity, but the internal mechanism remains unknown: how is the conflict signal encoded, and does detectability imply causal influence on resolution? We probe residual stream representations in Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma-2-9B-IT, focusing on English (EN)--Chinese (ZH) conflicts. Our analysis combines cross-lingual transfer, Cross-lingual Natural Language Inference (XNLI) non-conflict baselines, confound exclusion, and representation steering. Conflict signals are linearly detectable across languages, and cross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English ${\\sim}$7 percentage points more accurately than the reverse. This asymmetry is consistent with the XNLI non-conflict baseline in both magnitude and direction, with overlapping confidence intervals, consistent with the model's general multilingual structure rather than conflict-specific encoding. A dissociation emerges between detection and decision in Llama-3.1-8B-Instruct: the probe signal peaks at late layers (88\\% depth), but representation steering achieves causal influence only at a mid-layer (41\\% depth); analogous Qwen and Gemma steering yields no significant effect. These findings, observed in Llama-3.1-8B-Instruct and absent in Qwen and Gemma, indicate that linear detectability does not imply causal relevance, with implications for probe-based intervention. We release our code and data at\\footnote{\\url{https://github.com/anonymous-nlp-2026-2/clkc_mech_interp}}.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-003976"
+        },
+        {
+          "source_line": 3977,
+          "timestamp": "2026-05-25T08:43:57.288954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__paper_compile_and_check,mcp__agent-ml-research__check_paper_consistency",
+              "max_results": "2"
+            }
+          },
+          "id": "event-003977"
+        },
+        {
+          "source_line": 3978,
+          "timestamp": "2026-05-25T08:43:57.389707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-003978"
+        },
+        {
+          "source_line": 3979,
+          "timestamp": "2026-05-25T08:44:09.337571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_paper_consistency"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__check_paper_consistency",
+            "tool_args": {
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-003979"
+        },
+        {
+          "source_line": 3980,
+          "timestamp": "2026-05-25T08:44:09.338044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper\\\", \\\"sections\\\": [{\\\"file\\\": \\\"abstract.tex\\\", \\\"role\\\": \\\"headline\\\", \\\"num_numbers\\\": 3, \\\"num_cites\\\": 0}, {\\\"file\\\": \\\"acl_latex.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 2, \\\"num_cites\\\": 1}, {\\\"file\\\": \\\"conclusion.tex\\\", \\\"role\\\": \\\"headline\\\", \\\"num_numbers\\\": 4, \\\"num_cites\\\": 2}, {\\\"file\\\": \\\"discussion.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 18, \\\"num_cites\\\": 8}, {\\\"file\\\": \\\"experiments.tex\\\", \\\"role\\\": \\\"result\\\", \\\"num_numbers\\\": 175, \\\"num_cites\\\": 9}, {\\\"file\\\": \\\"introduction.tex\\\", \\\"role\\\": \\\"intro\\\", \\\"num_numbers\\\": 8, \\\"num_cites\\\": 6}, {\\\"file\\\": \\\"limitations.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 6, \\\"num_cites\\\": 2}, {\\\"file\\\": \\\"method.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 3, \\\"num_cites\\\": 13}, {\\\"file\\\": \\\"related_work.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 0, \\\"num_cites\\\": 28}], \\\"critical\\\": [{\\\"kind\\\": \\\"missing_bib_key\\\", \\\"message\\\": \\\"\\\\\\\\cite{Gusfield:97} used in acl_latex but no matching entry in references.bib.\\\", \\\"location\\\": \\\"acl_latex\\\"}], \\\"warning\\\": [], \\\"info\\\": [{\\\"kind\\\": \\\"notation_per_section\\\", \\\"message\\\": \\\"Inline math symbols collected per section.\\\", \\\"data\\\": {\\\"abstract\\\": [\\\"\\\\\\\\sim\\\"], \\\"conclusion\\\": [\\\"\\\\\\\\sim\\\", \\\"\\\\\\\\to\\\"], \\\"discussion\\\": [\\\"\\\\\\\\to\\\"], \\\"experiments\\\": [\\\"\\\\\\\\Delta\\\", \\\"\\\\\\\\alpha\\\", \\\"\\\\\\\\approx\\\", \\\"\\\\\\\\cap\\\", \\\"\\\\\\\\cdot\\\", \\\"\\\\\\\\dagger\\\", \\\"\\\\\\\\ddagger\\\", \\\"\\\\\\\\in\\\", \\\"\\\\\\\\leftrightarrow\\\", \\\"\\\\\\\\pm\\\", \\\"\\\\\\\\sim\\\", \\\"\\\\\\\\times\\\", \\\"\\\\\\\\to\\\"], \\\"introduction\\\": [\\\"\\\\\\\\sim\\\", \\\"\\\\\\\\to\\\"], \\\"limitations\\\": [\\\"\\\\\\\\Delta\\\", \\\"\\\\\\\\pm\\\"], \\\"method\\\": [\\\"\\\\\\\\Delta\\\", \\\"\\\\\\\\alpha\\\", \\\"\\\\\\\\cdot\\\", \\\"\\\\\\\\in\\\", \\\"\\\\\\\\pm\\\", \\\"\\\\\\\\sigma\\\", \\\"\\\\\\\\sim\\\", \\\"\\\\\\\\theta\\\", \\\"\\\\\\\\to\\\", \\\"\\\\\\\\top\\\"], \\\"related_work\\\": [\\\"\\\\\\\\to\\\"]}}], \\\"summary\\\": {\\\"critical\\\": 1, \\\"warning\\\": 0, \\\"info\\\": 1}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__check_paper_consistency",
+            "elapsed_ms": 0
+          },
+          "id": "event-003980"
+        },
+        {
+          "source_line": 3981,
+          "timestamp": "2026-05-25T08:44:09.840025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-003981"
+        },
+        {
+          "source_line": 3982,
+          "timestamp": "2026-05-25T08:44:09.991204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"20) arXiv preprint\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 215--220\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Gavin Leech, Ulisse Mini, and Monte Mac-Di-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2913) in paragraph at lines 280--284\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Binyuan Hui, Bo Zheng, Bowen Yu, Chang\\\\n []\\\\n\\\\n[10]\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 302--307\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Kam-Fai Wong, and Pasquale Min-ervini. 2024.\\\\n []\\\\n\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 53--55\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (4.52687pt too wide) in paragraph at lines 106--124\\\\n [][] \\\\n []\\\\n\\\\n[11]\\\\nOverfull \\\\\\\\hbox (1.76633pt too wide) in paragraph at lines 140--154\\\\n [][] \\\\n []\\\\n\\\\n[12\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 3AB98B01D1F1EB9EEEF83DE45D5BA356;3869.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16108 strings out of 469438\\\\n 252346 string characters out of 5468411\\\\n 721578 words of memory out of 5000000\\\\n 44005 multiletter control sequences out of 15000+600000\\\\n 707016 words of font info for 385 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,16n,93p,1810b,676s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\\\nr/s\n…[truncated 3697 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 151
+          },
+          "id": "event-003982"
+        },
+        {
+          "source_line": 3983,
+          "timestamp": "2026-05-25T08:44:25.009810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n '\\\\\\\\bibliography\\|\\\\\\\\appendix\\|\\\\\\\\section{Limitations' /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex",
+              "description": "Find where appendix/bibliography starts in main.tex"
+            }
+          },
+          "id": "event-003983"
+        },
+        {
+          "source_line": 3984,
+          "timestamp": "2026-05-25T08:44:25.060503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-003984"
+        },
+        {
+          "source_line": 3985,
+          "timestamp": "2026-05-25T08:44:28.424877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\(bibliography|appendix|section\\{Limitations)",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-003985"
+        },
+        {
+          "source_line": 3986,
+          "timestamp": "2026-05-25T08:44:28.475396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003986"
+        },
+        {
+          "source_line": 3987,
+          "timestamp": "2026-05-25T08:44:31.486833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "bibliography|appendix|Limitations",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-003987"
+        },
+        {
+          "source_line": 3988,
+          "timestamp": "2026-05-25T08:44:31.587699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43:\\bibliography{references}\n45:\\appendix"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-003988"
+        },
+        {
+          "source_line": 3989,
+          "timestamp": "2026-05-25T08:44:38.767201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/",
+              "description": "List existing PDF page images"
+            }
+          },
+          "id": "event-003989"
+        },
+        {
+          "source_line": 3990,
+          "timestamp": "2026-05-25T08:44:38.868160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "main_p1.png\nmain_p2.png\nmain_p3.png\nmain_p4.png\nmain_p5.png\nmain_p6.png\nmain_p7.png\nmain_p8.png\nmain_p9.png"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-003990"
+        },
+        {
+          "source_line": 3991,
+          "timestamp": "2026-05-25T08:44:41.679092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003991"
+        },
+        {
+          "source_line": 3992,
+          "timestamp": "2026-05-25T08:44:41.880216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 201
+          },
+          "id": "event-003992"
+        },
+        {
+          "source_line": 3993,
+          "timestamp": "2026-05-25T08:44:45.294639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.pdf",
+              "project": "clkc_mech_interp",
+              "pages": "7-9",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003993"
+        },
+        {
+          "source_line": 3994,
+          "timestamp": "2026-05-25T08:44:45.798201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 514.1}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 509.4}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 581.7}], \\\"total_pages\\\": 12, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 503
+          },
+          "id": "event-003994"
+        },
+        {
+          "source_line": 3995,
+          "timestamp": "2026-05-25T08:44:48.610990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-003995"
+        },
+        {
+          "source_line": 3996,
+          "timestamp": "2026-05-25T08:44:49.113026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003996"
+        },
+        {
+          "source_line": 3997,
+          "timestamp": "2026-05-25T08:44:49.635101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1024
+          },
+          "id": "event-003997"
+        },
+        {
+          "source_line": 3998,
+          "timestamp": "2026-05-25T08:44:49.635547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-003998"
+        },
+        {
+          "source_line": 3999,
+          "timestamp": "2026-05-25T08:44:50.440923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1327
+          },
+          "id": "event-003999"
+        },
+        {
+          "source_line": 4000,
+          "timestamp": "2026-05-25T08:44:50.594059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 958
+          },
+          "id": "event-004000"
+        },
+        {
+          "source_line": 4001,
+          "timestamp": "2026-05-25T08:45:14.335188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Paper Agent 新 session 启动，汇报当前状态\n\n**论文编译状态**：✅ 编译成功\n- 总页数：12 页（正文 8 页 + Limitations + References + 4 个 Appendix）\n- 正文页数：恰好 8 页（Conclusion 结束于第 8 页底部），符合 EMNLP 2026 的 8 页正文限制\n- 无真实 critical warning（唯一 critical 是 ACL 模板文件 acl_latex.tex 中的 \\cite{Gusfield:97}，与我们论文无关）\n- 0 个 consistency warning\n\n**匿名代码仓库**：Worker `code:anonymous-repo-prep` 正在运行（turn 9，正在写文件排除死代码），预计几分钟内完成。\n\n**论文标题**：English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries\n\n**等待指令**：Paper Agent 已就绪，可随时执行后续任务（Patch 修改、Reviewer 迭代、Overleaf 同步等）。如需我做什么请指示。",
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-004001"
+        },
+        {
+          "source_line": 4002,
+          "timestamp": "2026-05-25T08:45:18.606784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4271
+          },
+          "id": "event-004002"
+        },
+        {
+          "source_line": 4003,
+          "timestamp": "2026-05-25T08:45:23.964385+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 汇报当前状态：\n- 论文编译成功，正文恰好 8 页，符合 EMNLP 2026 限制\n- 无真实 critical 问题\n- 匿名代码仓库 Worker 正在运行中\n- 等待 Director 进一步指令"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004003"
+        }
+      ]
+    },
+    {
+      "number": 158,
+      "messages": [
+        {
+          "source_line": 4004,
+          "timestamp": "2026-05-25T08:47:45.582448+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 收到你的状态汇报。当前情况：\n\n1. **R3 全部 14 项修复已完成**，论文编译正常（8 页正文，0 critical warning）\n2. **Round 4 审稿已提交**，等待用户批准审稿模式后自动启动 Reviewer 验证\n3. **匿名代码仓库**：继续监控 Worker 完成情况\n\n当前无需你执行新任务。等 Round 4 审稿报告返回后，如有需要修改的地方我会派单给你。保持就绪状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "director"
+          },
+          "id": "event-004004"
+        },
+        {
+          "source_line": 4005,
+          "timestamp": "2026-05-25T08:47:53.082775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[确认] 收到指令，保持就绪。\n\n- R3 修复完成、编译正常——已确认\n- 等待 Round 4 审稿报告返回后接收修改任务\n- 继续监控匿名代码仓库 Worker 完成情况",
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-004005"
+        },
+        {
+          "source_line": 4006,
+          "timestamp": "2026-05-25T08:47:57.300990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4218
+          },
+          "id": "event-004006"
+        },
+        {
+          "source_line": 4007,
+          "timestamp": "2026-05-25T08:47:59.930188+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认 Director 指令，保持就绪状态。等待 Round 4 审稿报告返回。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004007"
+        }
+      ]
+    },
+    {
+      "number": 159,
+      "messages": [
+        {
+          "source_line": 4008,
+          "timestamp": "2026-05-25T08:48:00.575584+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "system"
+          },
+          "id": "event-004008"
+        },
+        {
+          "source_line": 4009,
+          "timestamp": "2026-05-25T08:48:13.046116+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 确认收到 Director 指令。当前状态：待命，等待 Round 4 审稿报告。无新任务需要执行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004009"
+        }
+      ]
+    },
+    {
+      "number": 160,
+      "messages": [
+        {
+          "source_line": 4010,
+          "timestamp": "2026-05-25T09:06:02.588767+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] 附录内容引用完整性检查与修复\n\n逐项检查论文附录的所有 section/subsection/table/figure，确认正文中是否有合理引用指向它们。\n\n**检查步骤**：\n\n1. **盘点附录**：列出每个 Appendix section/subsection 及其内容（表、图、算法等）\n\n2. **逐项验证**：在正文中搜索每一项的引用。合格引用 = 在内容相关章节中有一句话明确指向该附录项，并说明读者为什么要看。不合格：只在末尾泛泛说 \"see appendix\"、引用在 Limitations/Conclusion 但相关章节没有、\"see Appendix X\" 没上下文\n\n3. **修复**：\n   - 无引用的附录项 → 在最相关正文章节加一句自然引用（说明为什么去看 + 能找到什么）\n   - 确实对核心 claim 无必要的附录内容 → 删除\n   - 不要硬塞补丁式引用\n\n4. **引用质量**：每条引用让 reviewer 立刻明白为什么翻那里、能找到什么\n\n**汇报要求**：\n(a) 附录有多少个 section/subsection？分别什么内容？\n(b) 哪些原本没有正文引用？加在了哪个章节哪句话？\n(c) 是否有附录内容被删除？\n\n这次不用验证引用真实性。完成后编译确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "director"
+          },
+          "id": "event-004010"
+        },
+        {
+          "source_line": 4011,
+          "timestamp": "2026-05-25T09:06:11.048356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex",
+              "offset": "44"
+            }
+          },
+          "id": "event-004011"
+        },
+        {
+          "source_line": 4012,
+          "timestamp": "2026-05-25T09:06:11.500873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "44\t\n45\t\\appendix\n46\t\n47\t\\section{Use of AI Assistants}\n48\t\\label{app:ai-assistants}\n49\t\n50\tWe used Claude (Anthropic) as an AI coding and writing assistant\n51\tthroughout this work. Specifically:\n52\t\\begin{itemize}\n53\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n54\t    pipelines, and analysis utilities; debugging and refactoring.\n55\t    \\item \\textbf{Writing:} drafting and revising paper sections,\n56\t    polishing prose, and reformatting \\LaTeX{}.\n57\t    \\item \\textbf{Literature:} summarizing related papers to inform\n58\t    related-work section.\n59\t\\end{itemize}\n60\t\n61\t\\section{Fine-Grained Causal Boundary Analysis}\n62\t\\label{app:boundary}\n63\t\n64\tTable~\\ref{tab:boundary} reports steering results across the full layer gradient from an independent replication ($N = 201$, Llama-3.1-8B-Instruct, RTX PRO 6000).\n65\t\n66\t\\begin{table}[h]\n67\t\\centering\n68\t\\caption{Causal boundary steering results (independently sampled, $N = 201$, Llama-3.1-8B-Instruct). Bonf.\\ Sig.\\ $\\alpha$s: number of $\\alpha$ values reaching significance after Bonferroni correction out of 6 tested.}\n69\t\\label{tab:boundary}\n70\t\\small\n71\t\\resizebox{\\columnwidth}{!}{%\n72\t\\begin{tabular}{lcccccc}\n73\t\\toprule\n74\tLayer & Depth & Probe Acc & Best $\\alpha$ & Best Fisher $p$ & Bonf.\\ Sig.\\ $\\alpha$s & Result \\\\\n75\t\\midrule\n76\tL12 & 38\\% & 91.75\\% & $+20$ & 0.085 & 0/6 & --- \\\\\n77\t\\textbf{L13} & \\textbf{41\\%} & \\textbf{90.00\\%} & $\\mathbf{+10}$ & $\\mathbf{<0.001}$ & \\textbf{2/6} & $\\checkmark\\checkmark$ \\\\\n78\tL14 & 44\\% & 91.75\\% & $+10$ & 0.002 & 1/6 & $\\checkmark$ \\\\\n79\tL16 & 50\\% & 91.50\\% & $+10$ & 0.005 & 1/6 & $\\checkmark$ \\\\\n80\tL18 & 56\\% & 90.75\\% & $+5$ & 0.010 & 0/6 & --- \\\\\n81\tL28 & 88\\% & 85.25\\% & $+10$ & 0.284 & 0/6 & --- \\\\\n82\t\\bottomrule\n83\t\\end{tabular}%\n84\t}\n85\t\\end{table}\n86\t\n87\t\\section{Seed Replication of L13 Steering}\n88\t\\label{app:seed_replication}\n89\t\n90\tTo verify that the L13 causal effect is not an artifact of a specific train/test split, we repeated the Llama L13 \n…[truncated 3613 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004012"
+        },
+        {
+          "source_line": 4013,
+          "timestamp": "2026-05-25T09:06:12.105224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\label\\{(app:|tab:|fig:)",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-004013"
+        },
+        {
+          "source_line": 4014,
+          "timestamp": "2026-05-25T09:06:12.170613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 65
+          },
+          "id": "event-004014"
+        },
+        {
+          "source_line": 4015,
+          "timestamp": "2026-05-25T09:06:16.025326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-004015"
+        },
+        {
+          "source_line": 4016,
+          "timestamp": "2026-05-25T09:06:16.075984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex:217:  \\label{tab:accents}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex:236:  \\label{fig:experiments}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex:269:  \\caption{\\label{citation-guide}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex:312:  \\label{eq:example}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex:317:are all defined with the \\verb|\\label{label}| command and cross references\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex:327:\\label{sec:bibtex}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex:373:\\label{sec:appendix}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/related_work.tex:2:\\label{sec:related_work}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:2:\\label{sec:experiments}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:5:\\label{sec:setup}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:29:\\label{sec:within_lang}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:45:\\label{fig:layer_probe}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:49:\\label{sec:cross_lingual}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:61:\\label{tab:main_results}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:90:\\label{sec:xnli_baseline}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:106:\\label{fig:asymmetry_forest}\n/home/ubuntu/.agent-ml-research-prod42/projects/c\n…[truncated 5923 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-004016"
+        },
+        {
+          "source_line": 4017,
+          "timestamp": "2026-05-25T09:06:26.335004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "app:ai-assistants|app:boundary|app:seed_replication|app:steering_config|app:auroc|tab:boundary|tab:steering_config|tab:auroc",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-004017"
+        },
+        {
+          "source_line": 4018,
+          "timestamp": "2026-05-25T09:06:26.386126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:20:We report balanced accuracy rather than AUROC, as our claims depend on cross-model directional comparisons; AUROC results are reported in Appendix~\\ref{app:auroc}.\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:23:All experiments used a single GPU; the boundary replication (Appendix~\\ref{app:boundary}) used an NVIDIA RTX PRO 6000.\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:160:An independent replication ($N = 201$, six layers L12--L28) confirmed L13 significance ($p < 0.001$) and localized the causal boundary: effects attenuate from L14 ($p = 0.002$) through L16 ($p = 0.005$) to non-significance at L18 ($p = 0.010$, n.s.\\ after Bonferroni) and L28 ($p = 0.284$; Appendix Table~\\ref{tab:boundary}).\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:168:An independent replication with a separately trained probe (seed=123, different train/test split) confirms the L13 causal effect: 2/6 positive-direction $\\alpha$ configurations survive Bonferroni correction (matching the original 2/6; Appendix~\\ref{app:seed_replication}).\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:173:AUROC analysis confirms this pattern: Gemma achieves 0.93 AUROC (vs.\\ Llama 0.98, Qwen 0.77; Appendix~\\ref{app:auroc}), demonstrating strong continuous discriminative capacity with zero causal effect.\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex:174:Appendix~\\ref{app:steering_config} reports matched-condition results at three layers per model (${\\sim}$36--43\\% depth), all confirming the null.\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex:48:\\label{app:ai-assistants}\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.te\n…[truncated 2109 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-004018"
+        },
+        {
+          "source_line": 4019,
+          "timestamp": "2026-05-25T09:06:50.544012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-004019"
+        },
+        {
+          "source_line": 4020,
+          "timestamp": "2026-05-25T09:06:50.802081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe showed that knowledge conflict signals in multilingual LLMs are linearly detectable across languages, with all cross-lingual transfer directions exceeding chance (binomial $p < 0.001$) across three architectures.\n5\tThe ZH$\\to$EN transfer advantage (${\\sim}$7~pp) is consistent with the XNLI non-conflict baseline, establishing that this asymmetry reflects general cross-lingual alignment properties rather than conflict-specific encoding.\n6\tCausal analysis reveals a three-way dissociation in Llama: linear probe peak (L28, 88\\% depth), MLP probe peak (L18, 56\\%), and causal steering node (L13, 41\\%; Fisher $p = 0.002$), demonstrating that where a signal is most readable is not where it most influences behavior.\n7\tSteering fails in Qwen and Gemma despite probe accuracy up to 88.9\\% and AUROC of 0.93, confirming that detectability does not imply causal relevance and that the causal role of probe-weight directions is architecture-dependent.\n8\t\n9\tThese findings have two implications for interpretability methodology.\n10\tFirst, probing accuracy alone is insufficient for mechanistic claims; causal validation across multiple architectures is necessary to distinguish representation from computation.\n11\tSecond, the mid-layer locus of causal influence (L13, coinciding with known cross-lingual alignment sites) suggests that conflict resolution may share computational substrate with language alignment, a hypothesis testable via activation patching \\citep{meng2022locating}.\n12\t\n13\tFuture work should extend to typologically diverse language pairs, apply non-linear intervention methods \\citep{geiger2024finding} to architectures where linear steering fails, and test whether the detection-decision dissociation generalizes beyond knowledge conflicts; our confound exclusion pipeline provides a reusable template for such studies.\n14\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 258
+          },
+          "id": "event-004020"
+        },
+        {
+          "source_line": 4021,
+          "timestamp": "2026-05-25T09:06:54.768016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-004021"
+        },
+        {
+          "source_line": 4022,
+          "timestamp": "2026-05-25T09:06:54.869098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tOur study has three main limitations.\n5\tFirst, we evaluate only one language pair (English-Chinese) and causal steering succeeded only in Llama at L13; Gemma L17 failed despite 88.9\\% probe accuracy ($n = 171$) and Qwen L14 ($n = 131$) was also negative.\n6\tTypologically diverse language pairs and alternative intervention methods are needed to assess generality.\n7\tNull steering results in Qwen and Gemma may reflect limitations of single-direction linear steering rather than absence of causal structure; alternative methods such as activation patching \\citep{meng2022locating} may reveal non-linear causal pathways that our approach cannot detect.\n8\tSecond, the effective dataset size (966 to 1,590 samples per model) is constrained by parametric knowledge verification, which retains only questions where the model confidently knows the ground truth and may bias toward well-represented knowledge; additionally, Qwen3-8B serves as both the translation model and an experimental subject, though COMET-based quality control mitigates this concern, and the fact that Llama and Gemma, architecturally independent of the translation model, show the same asymmetry pattern ($\\Delta_{\\text{asym}} = +7.3$ and $+6.6$~pp, respectively) provides cross-validation that the effect is not an artifact of Qwen-specific translation biases.\n9\tThird, all probing results are based on a single train/test split with bootstrap confidence intervals capturing within-split variability; while peak balanced accuracy remains stable across seeds (Llama $\\pm$0.12\\%, Gemma $\\pm$1.32\\%, Qwen $\\pm$1.90\\%), the specific peak layer can shift.\n10\tWe acknowledge that $k$-fold cross-validation would provide stronger stability guarantees \\citep{belinkov2022probing}; given that our core claims rest on cross-model consistency and directional patterns rather than exact accuracy values, the current cross-seed stability analysis provides partial mitigation, and we commit\n…[truncated 69 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-004022"
+        },
+        {
+          "source_line": 4023,
+          "timestamp": "2026-05-25T09:07:11.042086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex",
+              "old_string": "We acknowledge that $k$-fold cross-validation would provide stronger stability guarantees \\citep{belinkov2022probing}; given that our core claims rest on cross-model consistency and directional patterns rather than exact accuracy values, the current cross-seed stability analysis provides partial mitigation, and we commit to reporting full 5-fold CV results in the camera-ready version.",
+              "new_string": "We acknowledge that $k$-fold cross-validation would provide stronger stability guarantees \\citep{belinkov2022probing}; given that our core claims rest on cross-model consistency and directional patterns rather than exact accuracy values, the current cross-seed stability analysis provides partial mitigation, and we commit to reporting full 5-fold CV results in the camera-ready version.\nThis work used AI coding and writing assistants throughout; Appendix~\\ref{app:ai-assistants} details the scope of use."
+            }
+          },
+          "id": "event-004023"
+        },
+        {
+          "source_line": 4024,
+          "timestamp": "2026-05-25T09:07:11.092942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004024"
+        },
+        {
+          "source_line": 4025,
+          "timestamp": "2026-05-25T09:07:14.859952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-004025"
+        },
+        {
+          "source_line": 4026,
+          "timestamp": "2026-05-25T09:07:17.377391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\" []\\\\n\\\\n[10]\\\\nUnderfull \\\\\\\\hbox (badness 2913) in paragraph at lines 280--284\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Binyuan Hui, Bo Zheng, Bowen Yu, Chang\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 302--307\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Kam-Fai Wong, and Pasquale Min-ervini. 2024.\\\\n []\\\\n\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 53--55\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (4.52687pt too wide) in paragraph at lines 106--124\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (1.76633pt too wide) in paragraph at lines 140--154\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[11] [12\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 3AB98B01D1F1EB9EEEF83DE45D5BA356;3869.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16106 strings out of 469438\\\\n 252331 string characters out of 5468411\\\\n 724544 words of memory out of 5000000\\\\n 44003 multiletter control sequences out of 15000+600000\\\\n 707016 words of font info for 385 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,16n,93p,1810b,674s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfon\n…[truncated 3816 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2517
+          },
+          "id": "event-004026"
+        },
+        {
+          "source_line": 4027,
+          "timestamp": "2026-05-25T09:07:24.536032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.pdf",
+              "project": "clkc_mech_interp",
+              "pages": "9",
+              "dpi": "150"
+            }
+          },
+          "id": "event-004027"
+        },
+        {
+          "source_line": 4028,
+          "timestamp": "2026-05-25T09:07:24.890024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 565.6}], \\\"total_pages\\\": 12, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 353
+          },
+          "id": "event-004028"
+        },
+        {
+          "source_line": 4029,
+          "timestamp": "2026-05-25T09:07:27.901659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-004029"
+        },
+        {
+          "source_line": 4030,
+          "timestamp": "2026-05-25T09:07:28.707972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 806
+          },
+          "id": "event-004030"
+        },
+        {
+          "source_line": 4031,
+          "timestamp": "2026-05-25T09:07:47.982618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] 附录引用完整性检查与修复完成\n\n**(a) 附录盘点：5 个 section**\n| 附录 | Label | 内容 |\n|------|-------|------|\n| A | `app:ai-assistants` | AI 使用披露（Claude 辅助代码/写作/文献） |\n| B | `app:boundary` | 因果边界分析（6 层梯度，N=201，Table 5） |\n| C | `app:seed_replication` | L13 种子复现（seed=123，独立 train/test split） |\n| D | `app:steering_config` | 匹配条件 steering 结果（3 模型 × 3 层，Table 6） |\n| E | `app:auroc` | AUROC 分析（3 模型连续判别力，Table 7） |\n\n**(b) 引用缺失与修复**\n- B/C/D/E 均已有合格引用（全部在 experiments.tex 的相关章节中，带上下文说明）\n- **仅 Appendix A（AI Assistants）无正文引用** → 在 Limitations 末尾加了一句：`This work used AI coding and writing assistants throughout; Appendix~A details the scope of use.`\n\n**(c) 删除内容**\n- 无。5 个附录均有必要（B-E 支撑核心 claim，A 是 ARR 要求的 AI 使用披露）。\n\n**编译确认**：✅ 成功，12 页（正文 8 页不变），0 critical warning。",
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-004031"
+        },
+        {
+          "source_line": 4032,
+          "timestamp": "2026-05-25T09:07:52.158876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4176
+          },
+          "id": "event-004032"
+        },
+        {
+          "source_line": 4033,
+          "timestamp": "2026-05-25T09:07:54.614918+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认 Limitations 仍在第 9 页（不计入正文页数），新增的引用句自然嵌入段末。向 Director 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004033"
+        }
+      ]
+    },
+    {
+      "number": 161,
+      "messages": [
+        {
+          "source_line": 4034,
+          "timestamp": "2026-05-25T09:07:55.235024+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "system"
+          },
+          "id": "event-004034"
+        },
+        {
+          "source_line": 4035,
+          "timestamp": "2026-05-25T09:08:02.130489+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 汇报，无需重复发送。系统提醒误触。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004035"
+        }
+      ]
+    },
+    {
+      "number": 162,
+      "messages": [
+        {
+          "source_line": 4036,
+          "timestamp": "2026-05-25T09:15:26.741568+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] Conclusion 浓缩为 2 段\n\n用户要求 Conclusion 太长，压缩到 2 段。保留核心发现和贡献总结，删除冗余展开。编译确认正文不超 8 页。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "director"
+          },
+          "id": "event-004036"
+        },
+        {
+          "source_line": 4037,
+          "timestamp": "2026-05-25T09:15:34.543013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-004037"
+        },
+        {
+          "source_line": 4038,
+          "timestamp": "2026-05-25T09:15:34.643811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe showed that knowledge conflict signals in multilingual LLMs are linearly detectable across languages, with all cross-lingual transfer directions exceeding chance (binomial $p < 0.001$) across three architectures.\n5\tThe ZH$\\to$EN transfer advantage (${\\sim}$7~pp) is consistent with the XNLI non-conflict baseline, establishing that this asymmetry reflects general cross-lingual alignment properties rather than conflict-specific encoding.\n6\tCausal analysis reveals a three-way dissociation in Llama: linear probe peak (L28, 88\\% depth), MLP probe peak (L18, 56\\%), and causal steering node (L13, 41\\%; Fisher $p = 0.002$), demonstrating that where a signal is most readable is not where it most influences behavior.\n7\tSteering fails in Qwen and Gemma despite probe accuracy up to 88.9\\% and AUROC of 0.93, confirming that detectability does not imply causal relevance and that the causal role of probe-weight directions is architecture-dependent.\n8\t\n9\tThese findings have two implications for interpretability methodology.\n10\tFirst, probing accuracy alone is insufficient for mechanistic claims; causal validation across multiple architectures is necessary to distinguish representation from computation.\n11\tSecond, the mid-layer locus of causal influence (L13, coinciding with known cross-lingual alignment sites) suggests that conflict resolution may share computational substrate with language alignment, a hypothesis testable via activation patching \\citep{meng2022locating}.\n12\t\n13\tFuture work should extend to typologically diverse language pairs, apply non-linear intervention methods \\citep{geiger2024finding} to architectures where linear steering fails, and test whether the detection-decision dissociation generalizes beyond knowledge conflicts; our confound exclusion pipeline provides a reusable template for such studies.\n14\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-004038"
+        },
+        {
+          "source_line": 4039,
+          "timestamp": "2026-05-25T09:15:47.702655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex",
+              "old_string": "We showed that knowledge conflict signals in multilingual LLMs are linearly detectable across languages, with all cross-lingual transfer directions exceeding chance (binomial $p < 0.001$) across three architectures.\nThe ZH$\\to$EN transfer advantage (${\\sim}$7~pp) is consistent with the XNLI non-conflict baseline, establishing that this asymmetry reflects general cross-lingual alignment properties rather than conflict-specific encoding.\nCausal analysis reveals a three-way dissociation in Llama: linear probe peak (L28, 88\\% depth), MLP probe peak (L18, 56\\%), and causal steering node (L13, 41\\%; Fisher $p = 0.002$), demonstrating that where a signal is most readable is not where it most influences behavior.\nSteering fails in Qwen and Gemma despite probe accuracy up to 88.9\\% and AUROC of 0.93, confirming that detectability does not imply causal relevance and that the causal role of probe-weight directions is architecture-dependent.\n\nThese findings have two implications for interpretability methodology.\nFirst, probing accuracy alone is insufficient for mechanistic claims; causal validation across multiple architectures is necessary to distinguish representation from computation.\nSecond, the mid-layer locus of causal influence (L13, coinciding with known cross-lingual alignment sites) suggests that conflict resolution may share computational substrate with language alignment, a hypothesis testable via activation patching \\citep{meng2022locating}.\n\nFuture work should extend to typologically diverse language pairs, apply non-linear intervention methods \\citep{geiger2024finding} to architectures where linear steering fails, and test whether the detection-decision dissociation generalizes beyond knowledge conflicts; our confound exclusion pipeline provides a reusable template for such studies.",
+              "new_string": "We showed that knowledge conflict signals in multilingual LLMs are linearly detectable across languages (all directions $p < 0.001$, three architectures), with the ZH$\\to$EN transfer advantage (${\\sim}$7~pp) matching the XNLI non-conflict baseline in both magnitude and direction---consistent with general cross-lingual alignment rather than conflict-specific encoding.\nA three-way dissociation emerges in Llama: linear probe peak (L28, 88\\% depth), MLP probe peak (L18, 56\\%), and causal steering node (L13, 41\\%; Fisher $p = 0.002$), while analogous steering in Qwen and Gemma yields no significant effect despite probe accuracy up to 88.9\\% and AUROC of 0.93.\n\nThese results establish that probing accuracy alone is insufficient for mechanistic claims: causal validation across architectures is necessary to distinguish representation from computation.\nThe mid-layer locus of causal influence, coinciding with known cross-lingual alignment sites, suggests conflict resolution may share computational substrate with language alignment, testable via activation patching \\citep{meng2022locating}.\nFuture work should extend to diverse language pairs and apply non-linear intervention methods \\citep{geiger2024finding} to architectures where linear steering fails."
+            }
+          },
+          "id": "event-004039"
+        },
+        {
+          "source_line": 4040,
+          "timestamp": "2026-05-25T09:15:47.753391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004040"
+        },
+        {
+          "source_line": 4041,
+          "timestamp": "2026-05-25T09:15:51.173667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-004041"
+        },
+        {
+          "source_line": 4042,
+          "timestamp": "2026-05-25T09:15:53.583237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"[9]\\\\nUnderfull \\\\\\\\hbox (badness 1430) in paragraph at lines 172--176\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) mul-ti-lin-gual lan-guage mod-els[][].  \\\\\\\\T1/ptm/m/it/10 (+\\\\n20) arXiv preprint\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 215--220\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Gavin Leech, Ulisse Mini, and Monte Mac-Di-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2913) in paragraph at lines 280--284\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Binyuan Hui, Bo Zheng, Bowen Yu, Chang\\\\n []\\\\n\\\\n[10]\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 302--307\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Kam-Fai Wong, and Pasquale Min-ervini. 2024.\\\\n []\\\\n\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 53--55\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (4.52687pt too wide) in paragraph at lines 106--124\\\\n [][] \\\\n []\\\\n\\\\n[11]\\\\nOverfull \\\\\\\\hbox (1.76633pt too wide) in paragraph at lines 140--154\\\\n [][] \\\\n []\\\\n\\\\n[12\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 3AB98B01D1F1EB9EEEF83DE45D5BA356;3869.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16108 strings out of 469438\\\\n 252346 string characters out of 5468411\\\\n 722578 words of memory out of 5000000\\\\n 44005 multiletter control sequences out of 15000+600000\\\\n 707016 words of font info for 385 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,16n,93p,1810b,680s stack positions out of 10000i,1000n,20000p,\n…[truncated 3716 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2409
+          },
+          "id": "event-004042"
+        },
+        {
+          "source_line": 4043,
+          "timestamp": "2026-05-25T09:16:03.032214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Conclusion 已压缩为 2 段\n\n**修改内容**：\n- 原 3 段（核心发现 / 方法论启示 / 未来工作）→ 2 段\n- 第 1 段：核心发现浓缩（可检测性 + 不对称性匹配 XNLI baseline + 三重分离 + Qwen/Gemma null result）\n- 第 2 段：合并方法论启示与未来工作（probing ≠ causal → 需多架构验证 + mid-layer 与语言对齐共享基底假说 + 未来扩展方向）\n- 删除了冗余展开（\"These findings have two implications...\" 的分点结构，\"our confound exclusion pipeline provides a reusable template\" 等）\n\n**编译确认**：✅ 12 页（正文 8 页不变），0 critical warning。",
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-004043"
+        },
+        {
+          "source_line": 4044,
+          "timestamp": "2026-05-25T09:16:07.404349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4372
+          },
+          "id": "event-004044"
+        },
+        {
+          "source_line": 4045,
+          "timestamp": "2026-05-25T09:16:10.522673+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，12 页（正文 8 页 + 附录/参考文献），0 critical warning。验证正文页数未变。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004045"
+        }
+      ]
+    },
+    {
+      "number": 163,
+      "messages": [
+        {
+          "source_line": 4046,
+          "timestamp": "2026-05-25T09:16:11.178455+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "system"
+          },
+          "id": "event-004046"
+        },
+        {
+          "source_line": 4047,
+          "timestamp": "2026-05-25T09:16:18.720523+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004047"
+        }
+      ]
+    },
+    {
+      "number": 164,
+      "messages": [
+        {
+          "source_line": 4048,
+          "timestamp": "2026-05-25T10:03:49.932141+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] 紧急：修正 Abstract 匿名仓库脚注格式\n\n用户要求：\n1. Abstract 原文最后一句话**保持不动**，不删改不截断\n2. 在 Abstract 最后一句话的句号**之前**加 `\\footnote{}`\n3. 脚注内容：`Code and data are available at \\url{https://github.com/anonymous-nlp-2026-2/clkc_mech_interp}.`\n4. 整句 \"Code and data...\" 只出现在脚注里，不在 Abstract 正文中\n\n正确格式示例：\n```latex\n...最后一句原文\\footnote{Code and data are available at \\url{https://github.com/anonymous-nlp-2026-2/clkc_mech_interp}.}.\n```\n\n检查当前 Abstract 最后一句是否完整，如有截断/改写先恢复原文再加脚注。编译确认。\n\n汇报：Abstract 最后一句话是什么 + 脚注格式是否正确。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "director"
+          },
+          "id": "event-004048"
+        },
+        {
+          "source_line": 4049,
+          "timestamp": "2026-05-25T10:03:56.432016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-004049"
+        },
+        {
+          "source_line": 4050,
+          "timestamp": "2026-05-25T10:03:56.432354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, presentation language can determine the answer. Behavioral studies attribute this to linguistic affinity, but the internal mechanism remains unknown: how is the conflict signal encoded, and does detectability imply causal influence on resolution? We probe residual stream representations in Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma-2-9B-IT, focusing on English (EN)--Chinese (ZH) conflicts. Our analysis combines cross-lingual transfer, Cross-lingual Natural Language Inference (XNLI) non-conflict baselines, confound exclusion, and representation steering. Conflict signals are linearly detectable across languages, and cross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English ${\\sim}$7 percentage points more accurately than the reverse. This asymmetry is consistent with the XNLI non-conflict baseline in both magnitude and direction, with overlapping confidence intervals, consistent with the model's general multilingual structure rather than conflict-specific encoding. A dissociation emerges between detection and decision in Llama-3.1-8B-Instruct: the probe signal peaks at late layers (88\\% depth), but representation steering achieves causal influence only at a mid-layer (41\\% depth); analogous Qwen and Gemma steering yields no significant effect. These findings, observed in Llama-3.1-8B-Instruct and absent in Qwen and Gemma, indicate that linear detectability does not imply causal relevance, with implications for probe-based intervention. We release our code and data at\\footnote{\\url{https://github.com/anonymous-nlp-2026-2/clkc_mech_interp}}.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-004050"
+        },
+        {
+          "source_line": 4051,
+          "timestamp": "2026-05-25T10:04:07.978568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex",
+              "old_string": "indicate that linear detectability does not imply causal relevance, with implications for probe-based intervention. We release our code and data at\\footnote{\\url{https://github.com/anonymous-nlp-2026-2/clkc_mech_interp}}.",
+              "new_string": "indicate that linear detectability does not imply causal relevance, with implications for probe-based intervention\\footnote{Code and data are available at \\url{https://github.com/anonymous-nlp-2026-2/clkc_mech_interp}.}."
+            }
+          },
+          "id": "event-004051"
+        },
+        {
+          "source_line": 4052,
+          "timestamp": "2026-05-25T10:04:08.029249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004052"
+        },
+        {
+          "source_line": 4053,
+          "timestamp": "2026-05-25T10:04:11.343211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-004053"
+        },
+        {
+          "source_line": 4054,
+          "timestamp": "2026-05-25T10:04:13.911981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"[9]\\\\nUnderfull \\\\\\\\hbox (badness 1430) in paragraph at lines 172--176\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) mul-ti-lin-gual lan-guage mod-els[][].  \\\\\\\\T1/ptm/m/it/10 (+\\\\n20) arXiv preprint\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 215--220\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Gavin Leech, Ulisse Mini, and Monte Mac-Di-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2913) in paragraph at lines 280--284\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Binyuan Hui, Bo Zheng, Bowen Yu, Chang\\\\n []\\\\n\\\\n[10]\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 302--307\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Kam-Fai Wong, and Pasquale Min-ervini. 2024.\\\\n []\\\\n\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 53--55\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (4.52687pt too wide) in paragraph at lines 106--124\\\\n [][] \\\\n []\\\\n\\\\n[11]\\\\nOverfull \\\\\\\\hbox (1.76633pt too wide) in paragraph at lines 140--154\\\\n [][] \\\\n []\\\\n\\\\n[12\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 3AB98B01D1F1EB9EEEF83DE45D5BA356;3869.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16109 strings out of 469438\\\\n 252355 string characters out of 5468411\\\\n 722578 words of memory out of 5000000\\\\n 44005 multiletter control sequences out of 15000+600000\\\\n 707082 words of font info for 386 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,16n,93p,1809b,680s stack positions out of 10000i,1000n,20000p,\n…[truncated 3716 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2568
+          },
+          "id": "event-004054"
+        },
+        {
+          "source_line": 4055,
+          "timestamp": "2026-05-25T10:04:21.291551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Abstract 脚注格式已修正\n\n**修改内容**：\n- 原文：`...with implications for probe-based intervention. We release our code and data at\\footnote{\\url{...}}.`（\"code and data\" 出现在正文中）\n- 修正：`...with implications for probe-based intervention\\footnote{Code and data are available at \\url{...}.}.`（仅脚注提及代码数据）\n\n**Abstract 最后一句**：`These findings, observed in Llama-3.1-8B-Instruct and absent in Qwen and Gemma, indicate that linear detectability does not imply causal relevance, with implications for probe-based intervention.`（句号前插入脚注）\n\n**脚注内容**：`Code and data are available at \\url{https://github.com/anonymous-nlp-2026-2/clkc_mech_interp}.`\n\n**编译确认**：✅ 12 页（正文 8 页），0 critical warning。",
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-004055"
+        },
+        {
+          "source_line": 4056,
+          "timestamp": "2026-05-25T10:04:25.213380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3921
+          },
+          "id": "event-004056"
+        },
+        {
+          "source_line": 4057,
+          "timestamp": "2026-05-25T10:04:27.909547+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 critical warning，12 页（正文 8 页不变）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004057"
+        }
+      ]
+    },
+    {
+      "number": 165,
+      "messages": [
+        {
+          "source_line": 4058,
+          "timestamp": "2026-05-25T10:04:28.535510+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "system"
+          },
+          "id": "event-004058"
+        },
+        {
+          "source_line": 4059,
+          "timestamp": "2026-05-25T10:04:34.769516+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004059"
+        }
+      ]
+    },
+    {
+      "number": 166,
+      "messages": [
+        {
+          "source_line": 4060,
+          "timestamp": "2026-05-25T11:02:53.227633+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] 紧急：论文脚注仓库链接替换为匿名链接\n\n将论文中所有 `https://github.com/anonymous-nlp-2026-2/clkc_mech_interp` 替换为 `https://anonymous.4open.science/r/clkc_mech_interp-F894/`。\n\n重点检查 Abstract 脚注，也全文搜索确认无其他 GitHub 链接残留。编译确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "director"
+          },
+          "id": "event-004060"
+        },
+        {
+          "source_line": 4061,
+          "timestamp": "2026-05-25T11:03:00.681232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "github\\.com/anonymous-nlp-2026-2|anonymous\\.4open\\.science",
+              "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-004061"
+        },
+        {
+          "source_line": 4062,
+          "timestamp": "2026-05-25T11:03:00.783039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex:1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-004062"
+        },
+        {
+          "source_line": 4063,
+          "timestamp": "2026-05-25T11:03:04.948906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex",
+              "old_string": "https://github.com/anonymous-nlp-2026-2/clkc_mech_interp",
+              "new_string": "https://anonymous.4open.science/r/clkc_mech_interp-F894/"
+            }
+          },
+          "id": "event-004063"
+        },
+        {
+          "source_line": 4064,
+          "timestamp": "2026-05-25T11:03:04.999878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004064"
+        },
+        {
+          "source_line": 4065,
+          "timestamp": "2026-05-25T11:03:08.163783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "clkc_mech_interp",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-004065"
+        },
+        {
+          "source_line": 4066,
+          "timestamp": "2026-05-25T11:03:11.029807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"[9]\\\\nUnderfull \\\\\\\\hbox (badness 1430) in paragraph at lines 172--176\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) mul-ti-lin-gual lan-guage mod-els[][].  \\\\\\\\T1/ptm/m/it/10 (+\\\\n20) arXiv preprint\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 215--220\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Gavin Leech, Ulisse Mini, and Monte Mac-Di-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2913) in paragraph at lines 280--284\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Binyuan Hui, Bo Zheng, Bowen Yu, Chang\\\\n []\\\\n\\\\n[10]\\\\nUnderfull \\\\\\\\hbox (badness 1087) in paragraph at lines 302--307\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Kam-Fai Wong, and Pasquale Min-ervini. 2024.\\\\n []\\\\n\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 53--55\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (4.52687pt too wide) in paragraph at lines 106--124\\\\n [][] \\\\n []\\\\n\\\\n[11]\\\\nOverfull \\\\\\\\hbox (1.76633pt too wide) in paragraph at lines 140--154\\\\n [][] \\\\n []\\\\n\\\\n[12\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 3AB98B01D1F1EB9EEEF83DE45D5BA356;3869.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16111 strings out of 469438\\\\n 252370 string characters out of 5468411\\\\n 722578 words of memory out of 5000000\\\\n 44005 multiletter control sequences out of 15000+600000\\\\n 707146 words of font info for 387 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,16n,93p,1809b,680s stack positions out of 10000i,1000n,20000p,\n…[truncated 3566 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2866
+          },
+          "id": "event-004066"
+        },
+        {
+          "source_line": 4067,
+          "timestamp": "2026-05-25T11:03:16.000765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] 匿名链接替换完成\n\n**修改**：abstract.tex 脚注中 `https://github.com/anonymous-nlp-2026-2/clkc_mech_interp` → `https://anonymous.4open.science/r/clkc_mech_interp-F894/`\n\n**全文搜索确认**：仅 abstract.tex 有一处，已替换。无其他 GitHub 链接残留。\n\n**编译确认**：✅ 12 页（正文 8 页），0 critical warning。",
+              "project": "clkc_mech_interp"
+            }
+          },
+          "id": "event-004067"
+        },
+        {
+          "source_line": 4068,
+          "timestamp": "2026-05-25T11:03:20.168219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4167
+          },
+          "id": "event-004068"
+        },
+        {
+          "source_line": 4069,
+          "timestamp": "2026-05-25T11:03:22.454221+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 critical warning。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004069"
+        }
+      ]
+    },
+    {
+      "number": 167,
+      "messages": [
+        {
+          "source_line": 4070,
+          "timestamp": "2026-05-25T11:03:23.047613+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "system"
+          },
+          "id": "event-004070"
+        },
+        {
+          "source_line": 4071,
+          "timestamp": "2026-05-25T11:03:29.138474+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent"
+          },
+          "id": "event-004071"
+        }
+      ]
+    },
+    {
+      "number": 168,
+      "messages": [
+        {
+          "source_line": 4072,
+          "timestamp": "2026-05-25T11:39:59.135330+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] 论文审计报告修复 — 批量写作问题\n\n按优先级修复以下问题：\n\n**1. α 集合不一致（must-fix）**\nmethod.tex:57 定义 α ∈ {±20, ±10, ±5, ±2, ±1}（k=10），但 experiments.tex:151 列出 α ∈ {−20, −10, −5, +1, +2, +5, +10, +20}（8 个值，缺 −1 和 −2）。统一两处描述，确保 Bonferroni k 值与实际扫描数一致。\n\n**2. \"across languages\" 措辞（must-fix）**\nabstract.tex 和 introduction.tex 中 \"across languages\" 改为 \"across English and Chinese\" 或 \"between languages\"，因为仅测试 EN-ZH 一个语对。\n\n**3. 符号统一（must-fix）**\nmethod.tex:11 用 $\\mathbf{w}_l$，method.tex:49 和 experiments.tex:150 用 $\\mathbf{w}_{\\text{probe}}$。统一为 $\\mathbf{w}_l$，steering 节首次出现时说明等价关系。\n\n**4. 去 AI 风格（must-fix）**\n- conclusion.tex:4 的 em-dash `---` 改为逗号或句号\n- 全文约 10 处 \"-ing\" 分词结尾（, confirming/indicating/demonstrating/establishing that...），改写为独立句或其他句式。具体位置：experiments.tex:51, 94, 157, 158, 173; discussion.tex:21; introduction.tex:26, 27\n\n**5. Abstract 字数（must-fix）**\n确认 ≤ 200 words（去除 LaTeX 标记和 footnote 后）。如超限精简 1-2 个从句。\n\n**6. Page 12 空白（should-fix）**\nAppendix 最后一页 Table 6 仅占 15-20%，剩余 ~80% 空白。重新编排 appendix 表格消除空页。\n\n**7. 内部信息措辞精简（nice-to-have）**\nexperiments.tex:204 和 main.tex:126 \"re-run after correcting a label assignment error in an earlier version of the data preparation pipeline\" → 精简为 \"after correcting a label assignment error\"。\n\n**8. sections/ 残留文件（nice-to-have）**\npaper 目录下 sections/ 子目录是残留副本，与根目录 tex 不同步。如果 main.tex 不引用 sections/，删除整个 sections/ 目录。\n\n完成后编译确认。逐项汇报修改内容。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "source": "director"
+          },
+          "id": "event-004072"
+        },
+        {
+          "source_line": 4073,
+          "timestamp": "2026-05-25T11:40:07.682942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex"
+            }
+          },
+          "id": "event-004073"
+        },
+        {
+          "source_line": 4074,
+          "timestamp": "2026-05-25T11:40:08.139482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tOur pipeline proceeds from data construction through probing and steering, formalized below.\n5\t\n6\t\\subsection{Task Formulation}\n7\t\\label{sec:task}\n8\t\n9\tGiven a context passage $c$ and question $q$, the model produces an answer that is either \\emph{contextual} (derived from $c$) or \\emph{parametric} (from pre-trained knowledge).\n10\tWhen $c$ contradicts parametric knowledge, the choice constitutes a knowledge conflict.\n11\tWe train a logistic regression probe $f_\\theta(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)$ on the last-token residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at layer $l$ to predict a binary label $y \\in \\{\\text{contextual}, \\text{parametric}\\}$.\n12\t\n13\t\\subsection{Data Construction}\n14\t\\label{sec:data}\n15\t\n16\tWe build on ConflictQA \\citep{xie2024adaptive}, which pairs questions with context passages contradicting the model's parametric knowledge.\n17\tWe filter samples by querying each model without context and retaining only those answered correctly, yielding 1{,}368 samples for Llama \\citep{grattafiori2024llama}, 966 for Qwen \\citep{yang2025qwen3}, and 1{,}590 for Gemma \\citep{team2024gemma} (80/20 train/test split with stratification).\n18\tFor cross-lingual transfer, we translate all inputs into Chinese using a Qwen3-8B pipeline, with quality validated by COMET (Crosslingual Optimized Metric for Evaluation of Translation; \\citet{rei2020comet}) back-translation scores used in confound analysis (\\S\\ref{sec:confound_method}).\n19\t\n20\t\\subsection{Activation Extraction and Probing}\n21\t\\label{sec:extraction}\n22\t\n23\tFor each input, we construct English and Chinese versions and extract the last-token residual stream $\\mathbf{h}_l \\in \\mathbb{R}^d$ at every layer $l$ ($L = 32$ for Llama, $36$ for Qwen, $42$ for Gemma; $d = 4096$ for Llama/Qwen, $3584$ for Gemma), following the last-token aggregation principle \\citep{belinkov2022probing}.\n24\tWe record the model's answer and assign bin\n…[truncated 4382 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 456
+          },
+          "id": "event-004074"
+        },
+        {
+          "source_line": 4075,
+          "timestamp": "2026-05-25T11:40:08.139913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-004075"
+        },
+        {
+          "source_line": 4076,
+          "timestamp": "2026-05-25T11:40:08.291101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Models.}\n8\tWe probe three instruction-tuned models with comparable parameter counts but distinct architectures: Llama-3.1-8B-Instruct (32 layers, hidden dimension 4096) \\citep{grattafiori2024llama}, Qwen3-8B (36 layers, hidden dimension 4096) \\citep{yang2025qwen3}, and Gemma-2-9B-IT (42 layers, hidden dimension 3584) \\citep{team2024gemma}.\n9\t\n10\t\\paragraph{Dataset.}\n11\tWe use ConflictQA \\citep{xie2024adaptive}, a benchmark of context-parametric knowledge conflicts where a provided context contradicts the model's parametric knowledge.\n12\tAfter verifying that each model can correctly answer the parametric-knowledge question without context, we retain 1{,}368 samples for Llama (1{,}096 train / 272 test), 966 for Qwen (773 train / 193 test), and 1{,}590 for Gemma (1{,}274 train / 316 test), split 80/20 with stratification.\n13\tThe three models were independently verified, yielding only 3.5\\% three-way question overlap (23 questions); pairwise overlaps range from 7.2\\% (Llama $\\cap$ Gemma) to 24.8\\% (Gemma $\\cap$ Qwen), so the consistent asymmetry pattern across models constitutes largely independent replication.\n14\t\n15\t\\paragraph{Translation.}\n16\tWe translate all English contexts and questions into Chinese using a Qwen3-8B translation pipeline (EN$\\to$ZH), with quality validated by COMET (wmt22-comet-da; \\citealt{rei2020comet}) back-translation scores.\n17\t\n18\t\\paragraph{Probing.}\n19\tFor each layer $l$, we train an $L_2$-regularized logistic regression probe ($C = 1.0$, scikit-learn default) on the last-token residual stream representation $\\mathbf{h}_l$, with binary labels indicating whether the model chose the contextual or parametric answer.\n20\tWe report balanced accuracy rather than AUROC, as our claims depend on cross-model directional comparisons; AUROC results are reported in Appendix~\\ref{app:auroc}.\n21\tAll CIs are computed via bootstrap resam\n…[truncated 16062 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-004076"
+        },
+        {
+          "source_line": 4077,
+          "timestamp": "2026-05-25T11:40:08.392034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-004077"
+        },
+        {
+          "source_line": 4078,
+          "timestamp": "2026-05-25T11:40:08.442928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, presentation language can determine the answer. Behavioral studies attribute this to linguistic affinity, but the internal mechanism remains unknown: how is the conflict signal encoded, and does detectability imply causal influence on resolution? We probe residual stream representations in Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma-2-9B-IT, focusing on English (EN)--Chinese (ZH) conflicts. Our analysis combines cross-lingual transfer, Cross-lingual Natural Language Inference (XNLI) non-conflict baselines, confound exclusion, and representation steering. Conflict signals are linearly detectable across languages, and cross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English ${\\sim}$7 percentage points more accurately than the reverse. This asymmetry is consistent with the XNLI non-conflict baseline in both magnitude and direction, with overlapping confidence intervals, consistent with the model's general multilingual structure rather than conflict-specific encoding. A dissociation emerges between detection and decision in Llama-3.1-8B-Instruct: the probe signal peaks at late layers (88\\% depth), but representation steering achieves causal influence only at a mid-layer (41\\% depth); analogous Qwen and Gemma steering yields no significant effect. These findings, observed in Llama-3.1-8B-Instruct and absent in Qwen and Gemma, indicate that linear detectability does not imply causal relevance, with implications for probe-based intervention\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/clkc_mech_interp-F894/}.}.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004078"
+        },
+        {
+          "source_line": 4079,
+          "timestamp": "2026-05-25T11:40:12.312038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-004079"
+        },
+        {
+          "source_line": 4080,
+          "timestamp": "2026-05-25T11:40:12.764304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, the language of presentation can determine which answer the model produces \\citep{zhao2026when}.\n5\tYet the internal mechanism remains opaque: how does the model encode the conflict signal, can it be detected from internal representations, and does the detected signal causally influence resolution?\n6\t\n7\tExisting work on probing conflict signals has been limited to monolingual settings \\citep{zhao2024analysing, brink2026probing}.\n8\tExtending cross-lingually introduces confounds (translation quality, token overlap, general transfer properties), and probing establishes correlation rather than causation \\citep{hewitt2019designing}; \\citet{basu2026interpretability} showed that near-perfect probe accuracy does not guarantee effective steering.\n9\t\n10\tOur work extends \\citet{zhao2024analysing} in four directions: (1)~cross-lingual expansion from monolingual English to EN-ZH conflict probing; (2)~a systematic confound exclusion pipeline; (3)~the XNLI baseline revealing that asymmetry parallels general cross-lingual structure; and (4)~three-model causal intervention demonstrating that detectability does not predict causal relevance.\n11\tWe combine residual stream probing with representation steering across Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma-2-9B-IT.\n12\tProbes achieve 77.6\\%, 75.0\\%, and 76.2\\% balanced accuracy on English conflict detection, and all cross-lingual transfer directions exceed chance (binomial $p < 0.001$).\n13\tCross-lingual transfer exhibits a directional asymmetry (ZH$\\to$EN $>$ EN$\\to$ZH by ${\\sim}$7~pp) that is consistent with the XNLI non-conflict baseline \\citep{conneau2018xnli}, reflecting general cross-lingual structure rather than conflict-specific encoding.\n14\tOur causal analysis reveals a dissociation in Llama: the probe signal peaks at L28 (88\\% depth), but steering succeeds only at L13 (41\\% \n…[truncated 1795 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004080"
+        },
+        {
+          "source_line": 4081,
+          "timestamp": "2026-05-25T11:40:12.764804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-004081"
+        },
+        {
+          "source_line": 4082,
+          "timestamp": "2026-05-25T11:40:13.217228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Causal influence is localized to L13 regardless of detection peak.}\n5\tIn Llama, causal influence is localized to L13 (41\\% depth; Fisher $p = 0.002$), regardless of detection peak location (EN$\\to$EN at L28, ZH$\\to$ZH at L13), with all late-layer interventions producing no significant change ($p > 0.3$).\n6\tAn MLP probe reveals a third dissociation: non-linear conflict features peak at L18 (56\\% depth), between the linear peak (L28) and the causal node (L13).\n7\tL13 coincides with cross-lingual alignment sites \\citep{muller2021first, wendler2024llamas}, suggesting mid-layers serve a dual role in alignment and conflict resolution.\n8\tSteering failed in Qwen (L14, $n = 131$, $p = 0.785$) and Gemma (L17, $n = 171$, $p = 0.448$) with zero directional flips; Gemma's 88.9\\% probe accuracy rules out probe quality as a confound.\n9\t\n10\t\\paragraph{Why does steering fail in Qwen and Gemma?}\n11\tThree hypotheses merit consideration: (1)~non-linear causal interactions that single-direction perturbation cannot address \\citep{elhage2022toy}; (2)~superposition with other features such that perturbing one direction disrupts unrelated computations \\citep{templeton2024scaling}; (3)~architectural differences (e.g., Gemma's sandwich normalization) altering perturbation propagation.\n12\t\n13\t\\paragraph{Preliminary hypothesis validation.}\n14\tExisting analyses address all three hypotheses.\n15\tFor~(1), MLP probes gain $+9.2$~pp over linear probes on Llama conflict EN$\\to$ZH but $-0.5$~pp on XNLI; Qwen shows a similar pattern ($+2.4$ vs.\\ $-2.0$~pp), indicating conflict-specific non-linear encoding.\n16\tFor~(2), conflict and XNLI probe weight vectors are near-orthogonal (cosine similarity 0.02--0.05), yet cross-task language identity transfer is near-perfect (87--100\\%), consistent with shared subspace but distinct discriminative directions, a hallmark of superposition.\n17\tFor~(3), Qwen and Gemma show mid-layer cross-task transfer dips\n…[truncated 769 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004082"
+        },
+        {
+          "source_line": 4083,
+          "timestamp": "2026-05-25T11:40:13.217641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-004083"
+        },
+        {
+          "source_line": 4084,
+          "timestamp": "2026-05-25T11:40:13.268077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe showed that knowledge conflict signals in multilingual LLMs are linearly detectable across languages (all directions $p < 0.001$, three architectures), with the ZH$\\to$EN transfer advantage (${\\sim}$7~pp) matching the XNLI non-conflict baseline in both magnitude and direction---consistent with general cross-lingual alignment rather than conflict-specific encoding.\n5\tA three-way dissociation emerges in Llama: linear probe peak (L28, 88\\% depth), MLP probe peak (L18, 56\\%), and causal steering node (L13, 41\\%; Fisher $p = 0.002$), while analogous steering in Qwen and Gemma yields no significant effect despite probe accuracy up to 88.9\\% and AUROC of 0.93.\n6\t\n7\tThese results establish that probing accuracy alone is insufficient for mechanistic claims: causal validation across architectures is necessary to distinguish representation from computation.\n8\tThe mid-layer locus of causal influence, coinciding with known cross-lingual alignment sites, suggests conflict resolution may share computational substrate with language alignment, testable via activation patching \\citep{meng2022locating}.\n9\tFuture work should extend to diverse language pairs and apply non-linear intervention methods \\citep{geiger2024finding} to architectures where linear steering fails.\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004084"
+        },
+        {
+          "source_line": 4085,
+          "timestamp": "2026-05-25T11:41:38.247804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex",
+              "old_string": "We sweep $\\alpha \\in \\{-20, -10, -5, +1, +2, +5, +10, +20\\}$ following prior steering conventions \\citep{turner2023activation, marks2024geometry} and report results at all tested values.",
+              "new_string": "We sweep $\\alpha \\in \\{\\pm 20, \\pm 10, \\pm 5, \\pm 2, \\pm 1\\}$ ($k = 10$) following prior steering conventions \\citep{turner2023activation, marks2024geometry} and report results at all tested values."
+            }
+          },
+          "id": "event-004085"
+        },
+        {
+          "source_line": 4086,
+          "timestamp": "2026-05-25T11:41:38.298567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004086"
+        },
+        {
+          "source_line": 4087,
+          "timestamp": "2026-05-25T11:41:42.414485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex",
+              "old_string": "encounter conflicting information across languages",
+              "new_string": "encounter conflicting information between languages"
+            }
+          },
+          "id": "event-004087"
+        },
+        {
+          "source_line": 4088,
+          "timestamp": "2026-05-25T11:41:42.465248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004088"
+        },
+        {
+          "source_line": 4089,
+          "timestamp": "2026-05-25T11:41:45.898285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex",
+              "old_string": "Conflict signals are linearly detectable across languages",
+              "new_string": "Conflict signals are linearly detectable across English and Chinese"
+            }
+          },
+          "id": "event-004089"
+        },
+        {
+          "source_line": 4090,
+          "timestamp": "2026-05-25T11:41:45.949079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004090"
+        },
+        {
+          "source_line": 4091,
+          "timestamp": "2026-05-25T11:41:50.366414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex",
+              "old_string": "conflicting information across languages, the language",
+              "new_string": "conflicting information between languages, the language"
+            }
+          },
+          "id": "event-004091"
+        },
+        {
+          "source_line": 4092,
+          "timestamp": "2026-05-25T11:41:50.467197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-004092"
+        },
+        {
+          "source_line": 4093,
+          "timestamp": "2026-05-25T11:41:54.733510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex",
+              "old_string": "First evidence that knowledge conflict signals are linearly detectable across languages",
+              "new_string": "First evidence that knowledge conflict signals are linearly detectable across English and Chinese"
+            }
+          },
+          "id": "event-004093"
+        },
+        {
+          "source_line": 4094,
+          "timestamp": "2026-05-25T11:41:54.784160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004094"
+        },
+        {
+          "source_line": 4095,
+          "timestamp": "2026-05-25T11:41:58.401379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex",
+              "old_string": "linearly detectable across languages",
+              "new_string": "linearly detectable across English and Chinese"
+            }
+          },
+          "id": "event-004095"
+        },
+        {
+          "source_line": 4096,
+          "timestamp": "2026-05-25T11:41:58.502298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-004096"
+        },
+        {
+          "source_line": 4097,
+          "timestamp": "2026-05-25T11:42:06.384722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex",
+              "old_string": "we inject $\\alpha \\cdot \\mathbf{w}_{\\text{probe}}$ into the last-token residual stream at layer $l$ during inference \\citep{li2023iti, zou2023representation}:\n$\\mathbf{h}'_l = \\mathbf{h}_l + \\alpha \\cdot \\mathbf{w}_{\\text{probe}}$,",
+              "new_string": "we inject $\\alpha \\cdot \\mathbf{w}_l$ (the probe weight vector from \\S\\ref{sec:task}) into the last-token residual stream at layer $l$ during inference \\citep{li2023iti, zou2023representation}:\n$\\mathbf{h}'_l = \\mathbf{h}_l + \\alpha \\cdot \\mathbf{w}_l$,"
+            }
+          },
+          "id": "event-004097"
+        },
+        {
+          "source_line": 4098,
+          "timestamp": "2026-05-25T11:42:06.385302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-004098"
+        },
+        {
+          "source_line": 4099,
+          "timestamp": "2026-05-25T11:42:10.301965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex",
+              "old_string": "\\mathbf{w}_{\\text{probe}}",
+              "new_string": "\\mathbf{w}_l"
+            }
+          },
+          "id": "event-004099"
+        },
+        {
+          "source_line": 4100,
+          "timestamp": "2026-05-25T11:42:10.403107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-004100"
+        },
+        {
+          "source_line": 4101,
+          "timestamp": "2026-05-25T11:42:14.278274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex",
+              "old_string": "\\mathbf{w}_{\\text{probe}}",
+              "new_string": "\\mathbf{w}_l"
+            }
+          },
+          "id": "event-004101"
+        },
+        {
+          "source_line": 4102,
+          "timestamp": "2026-05-25T11:42:14.329235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004102"
+        },
+        {
+          "source_line": 4103,
+          "timestamp": "2026-05-25T11:42:18.197592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex",
+              "old_string": "in both magnitude and direction---consistent with",
+              "new_string": "in both magnitude and direction, consistent with"
+            }
+          },
+          "id": "event-004103"
+        },
+        {
+          "source_line": 4104,
+          "timestamp": "2026-05-25T11:42:18.249266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-004104"
+        },
+        {
+          "source_line": 4105,
+          "timestamp": "2026-05-25T11:42:23.923206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex",
+              "old_string": "(binomial $p < 0.001$; Table~\\ref{tab:main_results}), confirming that conflict representations partially overlap across languages.",
+              "new_string": "(binomial $p < 0.001$; Table~\\ref{tab:main_results}); this confirms that conflict representations partially overlap between English and Chinese."
+            }
+          },
+          "id": "event-004105"
+        },
+        {
+          "source_line": 4106,
+          "timestamp": "2026-05-25T11:42:23.973958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004106"
+        },
+        {
+          "source_line": 4107,
+          "timestamp": "2026-05-25T11:42:30.663590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex",
+              "old_string": "Gemma 95.6\\% EN, 89.0\\% ZH), confirming that the probing pipeline captures semantic distinctions beyond knowledge conflicts.",
+              "new_string": "Gemma 95.6\\% EN, 89.0\\% ZH). These accuracies confirm that the probing pipeline captures semantic distinctions beyond knowledge conflicts."
+            }
+          },
+          "id": "event-004107"
+        },
+        {
+          "source_line": 4108,
+          "timestamp": "2026-05-25T11:42:30.714499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004108"
+        },
+        {
+          "source_line": 4109,
+          "timestamp": "2026-05-25T11:42:35.584818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex",
+              "old_string": "All-position injection at L13 produces identical results, confirming that the causal signal is concentrated at the final token.",
+              "new_string": "All-position injection at L13 produces identical results; the causal signal is concentrated at the final token."
+            }
+          },
+          "id": "event-004109"
+        },
+        {
+          "source_line": 4110,
+          "timestamp": "2026-05-25T11:42:35.636189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-004110"
+        },
+        {
+          "source_line": 4111,
+          "timestamp": "2026-05-25T11:42:44.032229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex",
+              "old_string": "showed no significant effect (all $p > 0.12$), indicating a narrow causal window.",
+              "new_string": "showed no significant effect (all $p > 0.12$), consistent with a narrow causal window."
+            }
+          },
+          "id": "event-004111"
+        },
+        {
+          "source_line": 4112,
+          "timestamp": "2026-05-25T11:42:44.133160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-004112"
+        },
+        {
+          "source_line": 4113,
+          "timestamp": "2026-05-25T11:42:50.158005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex",
+              "old_string": "AUROC analysis confirms this pattern: Gemma achieves 0.93 AUROC (vs.\\ Llama 0.98, Qwen 0.77; Appendix~\\ref{app:auroc}), demonstrating strong continuous discriminative capacity with zero causal effect.",
+              "new_string": "AUROC analysis confirms this pattern: Gemma achieves 0.93 AUROC (vs.\\ Llama 0.98, Qwen 0.77; Appendix~\\ref{app:auroc}), yet steering produces zero causal effect."
+            }
+          },
+          "id": "event-004113"
+        },
+        {
+          "source_line": 4114,
+          "timestamp": "2026-05-25T11:42:50.208940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004114"
+        },
+        {
+          "source_line": 4115,
+          "timestamp": "2026-05-25T11:42:56.433330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex",
+              "old_string": "matches the XNLI baseline ($+6.0$, $+6.7$, $+7.8$~pp), confirming it piggybacks on general cross-lingual alignment",
+              "new_string": "matches the XNLI baseline ($+6.0$, $+6.7$, $+7.8$~pp); this asymmetry piggybacks on general cross-lingual alignment"
+            }
+          },
+          "id": "event-004115"
+        },
+        {
+          "source_line": 4116,
+          "timestamp": "2026-05-25T11:42:56.534095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-004116"
+        },
+        {
+          "source_line": 4117,
+          "timestamp": "2026-05-25T11:43:02.016124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex",
+              "old_string": "matches the XNLI non-conflict baseline, establishing that it reflects general cross-lingual alignment rather than conflict-specific encoding.",
+              "new_string": "matches the XNLI non-conflict baseline, consistent with general cross-lingual alignment rather than conflict-specific encoding."
+            }
+          },
+          "id": "event-004117"
+        },
+        {
+          "source_line": 4118,
+          "timestamp": "2026-05-25T11:43:02.066922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004118"
+        },
+        {
+          "source_line": 4119,
+          "timestamp": "2026-05-25T11:43:05.932227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex",
+              "old_string": "diverge in Llama, demonstrating that detectability does not predict causal relevance.",
+              "new_string": "diverge in Llama: detectability does not predict causal relevance."
+            }
+          },
+          "id": "event-004119"
+        },
+        {
+          "source_line": 4120,
+          "timestamp": "2026-05-25T11:43:05.982945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004120"
+        },
+        {
+          "source_line": 4121,
+          "timestamp": "2026-05-25T11:43:10.501365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex",
+              "old_string": "re-run after correcting a label assignment error in an earlier version of the data preparation pipeline.",
+              "new_string": "after correcting a label assignment error."
+            }
+          },
+          "id": "event-004121"
+        },
+        {
+          "source_line": 4122,
+          "timestamp": "2026-05-25T11:43:10.552182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004122"
+        },
+        {
+          "source_line": 4123,
+          "timestamp": "2026-05-25T11:43:14.067732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex",
+              "old_string": "re-run after correcting a label assignment error in an earlier version of the data preparation pipeline.",
+              "new_string": "after correcting a label assignment error."
+            }
+          },
+          "id": "event-004123"
+        },
+        {
+          "source_line": 4124,
+          "timestamp": "2026-05-25T11:43:14.118461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004124"
+        },
+        {
+          "source_line": 4125,
+          "timestamp": "2026-05-25T11:43:18.889366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex",
+              "old_string": "\\begin{table}[h]\n\\centering\n\\caption{Causal boundary steering results",
+              "new_string": "\\begin{table}[!t]\n\\centering\n\\caption{Causal boundary steering results"
+            }
+          },
+          "id": "event-004125"
+        },
+        {
+          "source_line": 4126,
+          "timestamp": "2026-05-25T11:43:18.940013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004126"
+        },
+        {
+          "source_line": 4127,
+          "timestamp": "2026-05-25T11:43:23.560051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex",
+              "old_string": "\\begin{table}[h]\n\\centering\n\\caption{Matched-condition steering results.",
+              "new_string": "\\begin{table}[!t]\n\\centering\n\\caption{Matched-condition steering results."
+            }
+          },
+          "id": "event-004127"
+        },
+        {
+          "source_line": 4128,
+          "timestamp": "2026-05-25T11:43:23.611048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004128"
+        },
+        {
+          "source_line": 4129,
+          "timestamp": "2026-05-25T11:43:27.476576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex",
+              "old_string": "\\begin{table}[h]\n\\centering\n\\caption{AUROC and balanced accuracy",
+              "new_string": "\\begin{table}[!t]\n\\centering\n\\caption{AUROC and balanced accuracy"
+            }
+          },
+          "id": "event-004129"
+        },
+        {
+          "source_line": 4130,
+          "timestamp": "2026-05-25T11:43:27.477257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-004130"
+        },
+        {
+          "source_line": 4131,
+          "timestamp": "2026-05-25T11:43:32.706044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/",
+              "description": "List residual sections directory"
+            }
+          },
+          "id": "event-004131"
+        },
+        {
+          "source_line": 4132,
+          "timestamp": "2026-05-25T11:43:32.907238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "abstract.tex\nconclusion.tex\ndiscussion.tex\nexperiments.tex\nintroduction.tex\nlimitations.tex\nmethod.tex\nrelated_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-004132"
+        },
+        {
+          "source_line": 4133,
+          "timestamp": "2026-05-25T11:43:35.671045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "rm -r /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/",
+              "description": "Remove residual sections/ directory"
+            }
+          },
+          "id": "event-004133"
+        },
+        {
+          "source_line": 4134,
+          "timestamp": "2026-05-25T11:43:35.771991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-004134"
+        },
+        {
+          "source_line": 4135,
+          "timestamp": "2026-05-25T11:43:39.338496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-004135"
+        },
+        {
+          "source_line": 4136,
+          "timestamp": "2026-05-25T11:43:39.439297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWhen multilingual large language models (LLMs) encounter conflicting information between languages, presentation language can determine the answer. Behavioral studies attribute this to linguistic affinity, but the internal mechanism remains unknown: how is the conflict signal encoded, and does detectability imply causal influence on resolution? We probe residual stream representations in Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma-2-9B-IT, focusing on English (EN)--Chinese (ZH) conflicts. Our analysis combines cross-lingual transfer, Cross-lingual Natural Language Inference (XNLI) non-conflict baselines, confound exclusion, and representation steering. Conflict signals are linearly detectable across English and Chinese, and cross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English ${\\sim}$7 percentage points more accurately than the reverse. This asymmetry is consistent with the XNLI non-conflict baseline in both magnitude and direction, with overlapping confidence intervals, consistent with the model's general multilingual structure rather than conflict-specific encoding. A dissociation emerges between detection and decision in Llama-3.1-8B-Instruct: the probe signal peaks at late layers (88\\% depth), but representation steering achieves causal influence only at a mid-layer (41\\% depth); analogous Qwen and Gemma steering yields no significant effect. These findings, observed in Llama-3.1-8B-Instruct and absent in Qwen and Gemma, indicate that linear detectability does not imply causal relevance, with implications for probe-based intervention\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/clkc_mech_interp-F894/}.}.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-004136"
+        },
+        {
+          "source_line": 4137,
+          "timestamp": "2026-05-25T11:43:44.114479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex | sed 's/\\\\footnote{[^}]*}//g' | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[${}~]//g; s/--/-/g; s/  */ /g' | wc -w",
+              "description": "Count abstract words excluding LaTeX markup and footnote"
+            }
+          },
+          "id": "event-004137"
+        },
+        {
+          "source_line": 4138,
+          "timestamp": "2026-05-25T11:43:44.215363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "201"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-004138"
+        },
+        {
+          "source_line": 4139,
+          "timestamp": "2026-05-25T11:43:57.066027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex",
+              "old_string": "This asymmetry is consistent with the XNLI non-conflict baseline in both magnitude and direction, with overlapping confidence intervals, consistent with the model's general multilingual structure rather than conflict-specific encoding.",
+              "new_string": "This asymmetry matches the XNLI non-conflict baseline in magnitude and direction, consistent with the model's general multilingual structure rather than conflict-specific encoding."
+            }
+          },
+          "id": "event-004139"
+        },
+        {
+          "source_line": 4140,
+          "timestamp": "2026-05-25T11:43:57.116820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c5d5712d42fa999cd11d5f120df2929d:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004140"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a81a834bc2073f616ec",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu gemma zh activations 102",
+  "task_key": "worker_gpu_gemma-zh-activations-102_20260522T102224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_gemma-zh-activations-102_20260522T102224_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "fa0a7900f2c7078834755b2e6b1e973da88f729910b5cb7634ddc8d659ff09f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ZH activations 收集完成。\n\n**结果汇总**：\n- 输出文件：`data/gemma2/zh_activations.pt`（~456 MB，时间戳 18:27）\n- shape：`[1590, 42, 3584]` bfloat16（1590 samples × 42 layers × 3584 hidden dim）\n- labels：1590 个，split_sizes = train 1274 + test 316\n- Registry 已更新（gemma_full_pipeline_102）\n\n下一步可以进行 ZH probe 训练和 cross-lingual bootstrap 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-gemma-zh-activations-102.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "steering_107_L18",
+  "project": "clkc_mech_interp",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:32:16.683Z",
+    "updated_at": "2026-05-22T11:32:16.683Z"
+  },
+  "timestamp": "2026-05-22T11:32:16.744514+00:00",
+  "trigger": "update_registry"
+}

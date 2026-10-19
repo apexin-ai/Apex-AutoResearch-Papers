@@ -1,0 +1,16 @@
+{
+  "exp_id": "tost_equivalence_118",
+  "project": "clkc_mech_interp",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:40:09.343Z",
+    "updated_at": "2026-05-23T07:40:15.914Z",
+    "hypothesis": "TOST 等价性检验：conflict Δ_asym 和 XNLI Δ_asym 在 ±2pp 边界内是否统计等价。如果等价，则 piggyback 假说成立——冲突信号搭载在通用跨语言子空间上。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T07:40:16.019073+00:00",
+  "trigger": "update_registry"
+}

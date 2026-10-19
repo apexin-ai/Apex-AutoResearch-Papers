@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_107_gemma_L21",
+  "project": "clkc_mech_interp",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:54:17.099Z",
+    "updated_at": "2026-05-22T15:59:27.095Z",
+    "hypothesis": "Gemma L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配但可能 negative。L21 (50% depth) 作为对照——如果 L17 negative 但 L21 positive，说明 Gemma 因果节点在不同相对深度；两者都 negative 则确认 Gemma steering 失败（与 Qwen 一致，steering 是 Llama-specific）。parent=steering_107_gemma_L17",
+    "parent": "steering_107_gemma_L17"
+  },
+  "timestamp": "2026-05-22T15:59:27.180265+00:00",
+  "trigger": "update_registry"
+}

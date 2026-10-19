@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3174c4c0276ce94b78c7",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra bootstrap progress check",
+  "task_key": "worker_infra_bootstrap-progress-check_20260523T045652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_bootstrap-progress-check_20260523T045652_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "21bc236aff701a5a396f1c5c32143bcc5821f5bd71858c28f6b9ae2eb2069289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### DE bootstrap v2 (PID 550508)\n- **状态**: 运行中（python 进程，5 线程，VmRSS ~2.1GB）\n- **启动时间**: 12:49（约 10 分钟前）\n- **当前阶段**: `[EN->EN] Bootstrap` — 第 1/4 phase，日志无 Parallel 进度输出，说明 joblib 尚未返回首批 completed tasks\n- **已完成 seeds**: 0（尚在首 phase 计算中）\n- **输出文件**: 不存在\n- **参考**: 此前 llama n2000 / 32 workers 每 phase 约 120 min；v2 用 64 workers，但系统严重过载，预计每 phase 60-120 min\n- **预估总时间**: ~4-8 小时（4 phases）\n\n### Gemma XNLI bootstrap (PID 549893)\n- **状态**: 运行中（bash 壳进程，子 python 通过 nohup 启动）\n- **启动时间**: 12:44（约 15 分钟前）\n- **当前阶段**: `[EN->EN] Bootstrap` — 第 1/4 phase，同样无进度输出\n- **已完成 seeds**: 0\n- **输出文件**: 不存在\n- **参数**: 32 workers, 42 layers（比 llama 多 10 层）\n- **预估总时间**: ~8-10 小时\n\n### 系统负载\n- **Load avg**: 860 / 746 / 699（1/5/15 min）\n- **CPU 数**: 208\n- **严重过载**: load 是 CPU 数的 ~4 倍。两个 bootstrap 加起来只有 96 workers，负载 860 说明还有大量其他进程在抢 CPU，会显著拖慢两个 bootstrap。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-bootstrap-progress-check.md"
+}

@@ -1,0 +1,83 @@
+paper_key: "wang2025lost"
+title: "Lost in Multilinguality: Dissecting Cross-lingual Factual Inconsistency in Transformer Language Models"
+venue: "ACL 2025 (SAC Highlights)"
+full_text_available: true
+
+research:
+  baselines: [Translation-en, Translation-early-exit, LoRA_finetuning, Full_finetuning]
+  metrics:
+    - {name: "Prediction Accuracy", direction: "higher_better"}
+    - {name: "Cross-lingual Consistency", direction: "higher_better"}
+  datasets:
+    - {name: "KLAR", size: "2619 parallel facts, 17 languages, 20 relation types"}
+  ablation_dimensions: [language, relation_type, model_architecture, shortcut_layer]
+  training_recipe: {optimizer: "linear approximation f(h)=Wh+b", lr: "1e-4 (LLaMA2), 5e-8 (BLOOM)", hardware: "LLaMA2-7B, BLOOM-560M"}
+  method_family: "linear shortcut / mechanistic interpretability"
+
+positioning:
+  core_claim: "Cross-lingual factual inconsistency stems from failures during the language transition phase in final layers — correct concepts are extracted but incorrectly mapped to target language tokens"
+  key_results: "LLaMA2: 71.47% → 76.08% (+4.6%) with shortcut; BLOOM: 43.24% → 51.67% (+8.43%)"
+  limitations: ["Assumes English as pivot language", "Linear approximation may miss non-linear transformations", "Limited to knowledge probing tasks", "17 languages still not comprehensive"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "MLMs show remarkable capabilities in storing factual knowledge across languages yet exhibit inconsistencies when responding to semantically equivalent prompts in different languages"
+  tension: "Prior studies explored the inner workings of MLMs but mainly focus on scenarios where models make correct predictions, leaving the reasons behind inconsistent predictions unexplored"
+  key_insight: "Three-stage knowledge recall process: language-independent relation processing → object extraction → language-specific transition. Failures occur at the transition stage — correct answer in concept space, wrong answer in output"
+  argument_chain: "phenomenon (inconsistency) → gap (failure mechanisms unexplored) → dataset (KLAR) → analysis (three-stage process) → finding (transition failure) → fix (linear shortcut)"
+  contribution_framing: "4 contributions: dataset, mechanistic analysis, failure identification, practical method — each builds on the previous"
+  intro_structure: "6 paragraphs: (1) establish capability, (2) identify gap, (3) narrow focus to failures, (4) present solution path, (5) preview findings, (6) list contributions"
+  notable_technique: "The concrete example in Figure 1 (Ottawa→Toronto failure) makes the abstract 'language transition failure' immediately visceral"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "problem_illustration"
+    description: "Concrete failure: LLaMA2 correctly identifies 'Ottawa' in concept space but outputs 'Toronto' in Chinese — language transition failure visualized"
+    narrative_role: "Makes the core finding tangible in one image — readers immediately understand what 'transition failure' means"
+    design_elements: ["concrete factual example", "concept space vs output space contrast", "English and Chinese text"]
+    visual_style: "Side-by-side latent space vs output showing the failure point; bilingual text"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "heatmap"
+      what_compared: "Cross-lingual consistency between all language pairs"
+      how_gain_highlighted: "Block-diagonal for same-script families"
+      design_note: "Symmetric heatmap reveals script-based clustering pattern"
+    - figure_id: "Figure 8"
+      viz_type: "bar_chart"
+      what_compared: "Per-language accuracy and consistency improvement with shortcut"
+      how_gain_highlighted: "Before/after bars show consistent improvement"
+      design_note: "Direct before/after comparison per language"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["layer-wise rank evolution", "cosine similarity across layers", "information flow"]
+      design_note: "Multi-perspective analysis combining rank, similarity, and flow in one figure"
+    - figure_id: "Figure 4"
+      viz_type: "stacked_bar"
+      dimensions_varied: ["language composition of latent representations across layers"]
+      design_note: "Shows English dominance in middle layers → target language in final layers"
+  figure_narrative_role: "Figure 1 (failure example) → Figure 2 (consistency patterns) → Figure 3-4 (mechanism analysis) → Figure 5-6 (failure dissection) → Figure 7 (method) → Figure 8 (results)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "models (LLaMA2, BLOOM)"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "improvement percentages shown"
+    statistical_reporting: "single accuracy values"
+    num_baselines: 4
+    design_note: "Simple 5×2 table — clarity over complexity; improvement magnitudes speak for themselves"
+  ablation_tables:
+    - table_id: "Tables 7, 10"
+      what_varied: ["per-relation breakdown"]
+      variation_style: "full_numbers"
+      design_note: "Appendix tables show per-relation granularity"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-relation accuracy, per-language breakdowns, dataset examples"
+    reason: "Main paper shows aggregate; appendix provides diagnostic detail per relation type"

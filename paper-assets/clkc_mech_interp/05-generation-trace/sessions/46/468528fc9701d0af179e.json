@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "468528fc9701d0af179e",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis bootstrap asymmetry ci 099",
+  "task_key": "worker_analysis_bootstrap-asymmetry-ci-099_20260522T021622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-asymmetry-ci-099_20260522T021622_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "2c2f221a273b9bee277adf881a106ee27610a2c61afe3881c31f15024603a1d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 摘要\n\n**方法**：从已有 training-set bootstrap (n=100) per-iteration 数据中，逐迭代计算 `ZH→EN_acc - EN→ZH_acc`，取 percentile CI。\n\n**修正结果**：\n\n| 模型 | 不对称性 | 95% CI | 显著 |\n|------|----------|--------|------|\n| **Qwen3-8B** | 7.18pp ± 3.67pp | [-1.19%, 13.41%] | **否** |\n| **Llama3.1-8B** | 7.22pp ± 3.29pp | [1.10%, 13.61%] | **是** |\n\n**对比旧值**（Llama 旧 CI 来自 test-set bootstrap 围绕 11.76pp point estimate）：\n- Llama: 11.76pp [4.3%, 19.6%] → **7.22pp [1.1%, 13.6%]**（点估计下降，CI 收窄，仍显著）\n- Qwen: 5.95pp [-3.7%, 14.8%] → **7.18pp [-1.2%, 13.4%]**（点估计略升，CI 略窄，仍不显著）\n\nRegistry 已更新（`_corrected` 后缀字段），JSON 保存至服务器 `data/{model}/bootstrap_asymmetry_corrected.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-asymmetry-ci-099.md"
+}

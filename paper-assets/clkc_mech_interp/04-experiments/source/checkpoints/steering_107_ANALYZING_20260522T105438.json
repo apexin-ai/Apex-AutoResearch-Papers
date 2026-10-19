@@ -1,0 +1,69 @@
+{
+  "exp_id": "steering_107",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:08:08.511Z",
+    "updated_at": "2026-05-22T10:54:38.555Z",
+    "spec": {
+      "pid": 468898,
+      "server": "westd-41302",
+      "gpu": "cuda:0",
+      "model_name": "Llama-3.1-8B-Instruct",
+      "peak_layer": 28,
+      "probe_acc": 0.7757,
+      "n_samples": 136,
+      "note": "Status ANALYZING but PID still alive at 09:40 UTC, ~11-12 alphas done out of ~15-20, ETA 20-40min"
+    },
+    "hypothesis": "线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。",
+    "parent": "mvp_probe_v1",
+    "server": "westd-41302",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-41302",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-22T08:14:32.378Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/clkc_mech_interp && CUDA_VISIBLE_DEVICES=0 python -u src/steering_experiment.py --model /root/models/Llama-3.1-8B-Instruct/ --data_dir data/llama31 --output_dir data/llama31/steering_results 2>&1 | tee logs/steering_llama.log\"",
+      "finished_at": "2026-05-22T08:28:42.915Z",
+      "training_hours": 0.24
+    },
+    "pid": "466385",
+    "log_path": "~/runs/clkc_mech_interp/steering_107.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T08:28:44.903019+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "probe_accuracy": 0.7757,
+      "peak_layer": 28,
+      "n_test": 136,
+      "baseline_distribution": {
+        "parametric": 32,
+        "contextual": 41,
+        "both": 35,
+        "neither": 28
+      },
+      "best_steering_alpha": -20,
+      "best_steering_flip_rate": 0.1471,
+      "best_steering_control_flip_rate": 0.1691,
+      "best_steering_fisher_p": 0.7399,
+      "max_directional_p2c": 2,
+      "max_directional_c2p": 2,
+      "all_fisher_p_min": 0.3093,
+      "hypothesis_met": false,
+      "steering_vs_random_summary": "steering flip rates statistically indistinguishable from random at all alphas"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T10:54:38.602129+00:00",
+  "trigger": "update_registry"
+}

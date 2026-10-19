@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a009f28e55b6ebdb821",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp multi seed probing",
+  "task_key": "worker_exp_multi-seed-probing_20260524T170240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_multi-seed-probing_20260524T170240_result.json",
+    "occurrence": 1,
+    "bytes": 1712,
+    "sha256": "ea3ff2e3dea0ecea2e39a0d42e5f658f72854a9d1435e57c338445bc41da275a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认无 ZH activations。以下是完整结果汇总：\n\n---\n\n**Multi-Seed Probing Results (3 seeds × 3 models, stratified resplit per seed)**\n\n### Llama-3.1-8B (EN→EN, 32 layers)\n\n| Seed | Peak Layer | Balanced Acc | F1 |\n|------|-----------|-------------|-----|\n| 42 | 15 | 92.75% | 92.91% |\n| 123 | 12 | 92.75% | 92.91% |\n| 456 | 15 | 92.50% | 92.57% |\n\n**Mean: 92.67% ± 0.12%** | Peak layers: [15, 12, 15]\n\n### Gemma-2-9B (EN→EN, 42 layers)\n\n| Seed | Peak Layer | Balanced Acc | F1 |\n|------|-----------|-------------|-----|\n| 42 | 20 | 88.01% | 87.91% |\n| 123 | 12 | 89.77% | 89.74% |\n| 456 | 21 | 86.55% | 86.31% |\n\n**Mean: 88.11% ± 1.32%** | Peak layers: [20, 12, 21]\n\n### Qwen3-8B (EN→EN, 36 layers)\n\n| Seed | Peak Layer | Balanced Acc | F1 |\n|------|-----------|-------------|-----|\n| 42 | 17 | 69.85% | 70.85% |\n| 123 | 18 | 74.05% | 72.80% |\n| 456 | 24 | 70.23% | 70.23% |\n\n**Mean: 71.38% ± 1.90%** | Peak layers: [17, 18, 24]\n\n### Asymmetry\n\n无 `zh_activations.pt`，三个模型均无法计算跨语言 asymmetry。如需此分析，需先用 `collect_activations.py` 收集 ZH activations。\n\n### Robustness 评估\n\n- **Llama**: 非常稳定（std=0.12%），peak layer 略有变动（12 vs 15）但 accuracy 基本一致\n- **Gemma**: 中等稳定（std=1.32%），peak layer 分散（12, 20, 21），accuracy 波动稍大\n- **Qwen**: 中等稳定（std=1.90%），peak layer 最不一致（17, 18, 24），但 accuracy 显著高于 chance（所有 p_binomial=0.0）\n\n结果文件：\n- `data/llama31/probe_results_multiseed.json`\n- `data/gemma2_v2/probe_results_multiseed.json`\n- `data/qwen3/probe_results_multiseed.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-multi-seed-probing.md"
+}

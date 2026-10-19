@@ -1,0 +1,46 @@
+{
+  "exp_id": "steering_qwen_L13_133",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:01:08.705Z",
+    "updated_at": "2026-05-24T13:57:58.905Z",
+    "hypothesis": "Qwen3-8B-Instruct L13 (36% depth) probe direction causally influences conflict resolution with matched-condition data (N≈200, high probe acc). L13 = L14 peak - 1, establishing Qwen layer scan baseline for comparison with Llama L13 causal window.",
+    "parent": "steering_107_qwen_L14",
+    "spec": {
+      "command": "python steering_experiment.py --model-path /root/autodl-tmp/models/Qwen/Qwen3-8B/ --activations-path data/qwen3/en_activations.pt --test-data data/qwen3/en_conflict_test_verified.jsonl --layer 13 --alphas -20 -10 -5 5 10 20 --position last",
+      "server": "westd-14391",
+      "data_path": "data/qwen3/en_conflict_test_verified.jsonl",
+      "data_count": 131,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "logistic regression probe on en_activations.pt layer 13",
+      "eval_data": "data/qwen3/en_conflict_test_verified.jsonl (N=131 conflict samples)"
+    },
+    "checkpoint_path": "westd-14391:/root/clkc_mech_interp/data/qwen3/steering_results_L13_last.json",
+    "log_path": "westd-14391:/root/clkc_mech_interp/logs/steering_qwen3_L13.log",
+    "metrics": {
+      "probe_balanced_acc": 71.76,
+      "best_fisher_p": 0.1677,
+      "N_conflict": 131,
+      "directional_flips": 0,
+      "bonferroni_sig_alphas": "0/6",
+      "alphas_tested": [
+        -20,
+        -10,
+        -5,
+        5,
+        10,
+        20
+      ]
+    },
+    "notes": "Qwen3-8B matched-condition steering. N=131 (below 150 gate), probe acc 71.76% (below 75% gate but consistent with paper's original Qwen probing results). 0/6 alphas significant. 0 directional flips. Null result consistent with original paper Appendix C (N=84, best p=0.682).",
+    "conclusion": "negative",
+    "completed_at": "2026-05-24T13:57:58.905Z"
+  },
+  "timestamp": "2026-05-24T13:57:59.121636+00:00",
+  "trigger": "update_registry"
+}

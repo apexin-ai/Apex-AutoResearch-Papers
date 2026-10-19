@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef4102bc1271dac27647",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis steering 107",
+  "task_key": "worker_analysis_steering_107_20260522T082944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_steering_107_20260522T082944_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "3c09b555b251c1c02a91a5802f26e190fd37459e93015dcdbee64970e9c9f793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**steering_107: failed** — 脚本在第一个 steering 条件崩溃，无任何结果数据。\n\n**崩溃根因**: `SteeringHook.__call__`（line 119）用 `h[:, -1, :]` 索引 hidden states，假设 3D tensor。但 `model.generate()` 使用 KV cache 时，decoder layer 输出的 hidden states 在某些步骤为 2D，触发 `IndexError: too many indices for tensor of dimension 2`。\n\n**可用信息**:\n- Baseline 完成：contextual=41, parametric=32, both=35, neither=28（136 samples）\n- 探针 layer 28 accuracy: 77.57%\n- 正交性验证通过\n\n**修复**: hook 需加 `if h.dim() == 2` 分支处理 KV cache 场景。分析已写入 `artifacts/steering_107_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-steering-107.md"
+}

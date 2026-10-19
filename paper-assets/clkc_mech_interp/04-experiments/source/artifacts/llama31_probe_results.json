@@ -1,0 +1,35 @@
+{
+  "EN→EN": {
+    "balanced_accuracy": 0.7757,
+    "f1": 0.7814,
+    "accuracy": 0.7757,
+    "peak_layer": 28,
+    "p_binomial": 0.0,
+    "p_permutation": 0.0
+  },
+  "ZH→ZH": {
+    "balanced_accuracy": 0.7206,
+    "f1": 0.7121,
+    "accuracy": 0.7206,
+    "peak_layer": 13,
+    "p_binomial": 0.0,
+    "p_permutation": 0.0
+  },
+  "EN→ZH": {
+    "balanced_accuracy": 0.5956,
+    "f1": 0.5635,
+    "accuracy": 0.5956,
+    "peak_layer": 5,
+    "p_binomial": 0.000966,
+    "p_permutation": 0.005
+  },
+  "ZH→EN": {
+    "balanced_accuracy": 0.7132,
+    "f1": 0.7516,
+    "accuracy": 0.7132,
+    "peak_layer": 15,
+    "p_binomial": 0.0,
+    "p_permutation": 0.0
+  },
+  "num_layers": 32
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8361b045582a584b7d28",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra mvp setup and verify",
+  "task_key": "worker_infra_mvp_setup_and_verify_20260521T144351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_setup_and_verify_20260521T144351_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "7a498cb3ace1ef5e8300d619293eea269f32810dbbb8913f51babe93032f4244"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen verify (base) 在 GPU 0 上运行正常 — 模型已加载，开始处理 3200 条训练数据（1595 unique questions）。\n\n## 当前状态总结\n\n| 步骤 | 状态 |\n|------|------|\n| 探测服务器 | 完成 |\n| 代码同步 | 完成（verify_parametric_knowledge.py + run_mvp.sh） |\n| Rename | 完成（3200/800/1600/400 行确认） |\n| Llama verify | **已完成** — train: 1096 kept (34.2%), test: 272 kept (34.0%) |\n| Qwen verify | **运行中** GPU 0 — 使用 Qwen3-8B **base** |\n\n### 注意事项\n**Qwen 用了 base 模型而非 Instruct**，原因：\n- HF 主站网络不可达（Errno 101）\n- Qwen3-8B-Instruct 是门控模型（需 HF token），服务器无 token\n- hf-mirror.com 返回 401，ModelScope 未收录 Qwen3\n- Qwen3-8B base 有 chat template，可用于 QA 验证\n\n如果必须用 Instruct 版本，需要在服务器上配置 HF token（`huggingface-cli login`）并等网络恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-setup-and-verify.md"
+}

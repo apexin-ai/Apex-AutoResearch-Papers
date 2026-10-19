@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ae8f43428dc9e237911",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra mvp llama phase a",
+  "task_key": "worker_infra_mvp_llama_phase_a_20260521T133704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_llama_phase_a_20260521T133704_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "3fbd9fa20274deaa0aac642bda3e6fe491fe086042e8c8b53fb00a3ee7abf278"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output format is correct — includes `qwen_parametric_answer`, `qwen_agrees_with`, and `original_label` fields.\n\n**Llama-3.1-8B MVP Phase A — Complete. Results:**\n\n| | Train | Test |\n|---|---|---|\n| **Input entries** | 800 | 200 |\n| **Unique questions** | 395 | 100 |\n| **Kept** | 266 (33.2%) | 70 (35.0%) |\n| **Discarded** (neither) | 534 (66.8%) | 130 (65.0%) |\n| **Flipped** | 54 (20.3% of kept) | 14 (20.0% of kept) |\n| **Unchanged** | 212 | 56 |\n\n**Key observations:**\n- ~65% discard rate — Llama-3.1-8B's parametric answers matched neither ground truth nor ChatGPT's memory for most questions, much higher ambiguity than typical\n- ~20% label flip rate among kept samples — consistent across train/test\n- Both splits below 300 samples (WARNING triggered) — may need supplementary sampling\n- Output files: `data/llama31/en_conflict_train_verified.jsonl` (266 lines), `data/llama31/en_conflict_test_verified.jsonl` (70 lines)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-llama-phase-a.md"
+}

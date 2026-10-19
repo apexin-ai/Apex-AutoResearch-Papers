@@ -1,0 +1,77 @@
+paper_key: "zhao2025steering"
+title: "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering"
+venue: "NAACL 2025 Oral"
+full_text_available: true
+
+research:
+  baselines: [TaskVec, ActAdd, SEA_linear, SEA_SqExp, DoLa, CAD, ICL, Without_Controlling]
+  metrics:
+    - {name: "EM_M (parametric exact match)", direction: "higher_better"}
+    - {name: "EM_C (contextual exact match)", direction: "higher_better"}
+    - {name: "EM_C→M (behavior change)", direction: "higher_better"}
+    - {name: "EM_M→C (behavior change)", direction: "higher_better"}
+  datasets:
+    - {name: "NQSwap", size: "from Longpre et al. 2021"}
+    - {name: "Macnoise", size: "from Hong et al. 2024"}
+  ablation_dimensions: [input_dependent_vs_independent, remove_only_vs_add_only, layer_selection]
+  training_recipe: {optimizer: "N/A (inference-time, SAE pre-trained)", lr: "N/A", hardware: "Llama3-8B, Llama2-7B, Gemma2-9B"}
+  method_family: "SAE-based representation engineering"
+
+positioning:
+  core_claim: "Sparse autoencoders decompose polysemantic residual stream activations into monosemantic features, enabling precise inference-time steering of knowledge selection without fine-tuning"
+  key_results: "SpARE surpasses representation engineering baselines by +10% and contrastive decoding by +15%; Llama3-8B EM_C 77.69±1.30 on NQSwap"
+  limitations: ["Only tested on ODQA knowledge conflict scenarios", "Relies on pre-trained SAEs which may not capture all relevant features"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLMs memorize factual knowledge but conflict with contextual information at inference time"
+  tension: "Existing representation engineering methods operate on polysemantic activations — edits are imprecise and affect unrelated behaviors"
+  key_insight: "SAEs provide monosemantic decomposition, enabling surgical feature-level editing of knowledge selection — revealed through residual stream probing showing distinct skewness patterns"
+  argument_chain: "problem (knowledge conflicts) → limitation (polysemantic activations) → tool (SAE decomposition) → method (SpARE 3-step pipeline) → validation (2 datasets, 3 models, 9 baselines)"
+  contribution_framing: "Single compound contribution: identifies functional features + applies them for editing; results framed as percentage gains over two baseline categories"
+  intro_structure: "5 paragraphs: (1) LLM knowledge memorization, (2) conflict problem + costly solutions, (3) representation engineering opportunity, (4) polysemantic limitation → SAE solution, (5) SpARE method + results"
+  notable_technique: "Framing the contribution as bridging two research threads (representation engineering + SAE interpretability) creates a natural niche"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "problem_illustration"
+    description: "Shows knowledge conflict scenario with Llama2-7B predictions steered by SpARE between contextual and parametric answers"
+    narrative_role: "Immediately demonstrates the paper's capability — model output changes under steering"
+    design_elements: ["input-output example", "contrasting steered predictions", "real model outputs"]
+    visual_style: "Text-based example with highlighted steered outputs; simple but effective teaser"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "Controlling capability across methods: behavior change (C→M, M→C) and maintaining (M→M, C→C)"
+      how_gain_highlighted: "SpARE points cluster in upper-right (high on both axes); baselines spread in inferior quadrants"
+      design_note: "2D scatter with different shapes per model and colors per method — packs 3 models × 9 methods into one readable figure"
+  ablation_figures:
+    - figure_id: "Figure 4c"
+      viz_type: "scatter"
+      dimensions_varied: ["input-independent", "remove-only", "add-only", "full SpARE"]
+      design_note: "Ablation variants plotted on same 2D space as main results for direct visual comparison"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["layer index for intervention"]
+      design_note: "Per-layer effectiveness shows mid-layers are optimal — connects to probing findings"
+  figure_narrative_role: "Figure 1 (teaser) → Figure 2 (probing analysis) → Figure 3 (method workflow) → Figure 4 (results + ablation) → Figure 5-7 (mechanism analysis)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × models"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean ± std"
+    num_baselines: 9
+    design_note: "Split into two halves: steer-to-parametric (top) and steer-to-contextual (bottom); mean±std shows reliability"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Additional probing results, per-layer analysis"
+    reason: "Main paper focuses on practical steering results; mechanism details in appendix"

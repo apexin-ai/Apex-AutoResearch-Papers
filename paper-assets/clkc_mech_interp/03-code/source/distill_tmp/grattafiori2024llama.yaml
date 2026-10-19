@@ -1,0 +1,27 @@
+paper_key: "grattafiori2024llama"
+title: "The Llama 3 Herd of Models"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [GPT-4, Claude-3, Gemini, Mistral, Qwen]
+  metrics:
+    - {name: "MMLU", direction: "higher_better"}
+    - {name: "HumanEval", direction: "higher_better"}
+    - {name: "GSM8K", direction: "higher_better"}
+    - {name: "Multilingual benchmarks", direction: "higher_better"}
+  datasets:
+    - {name: "15T+ token pretraining corpus", size: "15T+ tokens, 100+ languages"}
+  ablation_dimensions: [model_scale, training_data_mix, instruction_tuning]
+  training_recipe: {optimizer: "AdamW", lr: "scheduled", hardware: "16K H100 GPUs"}
+  method_family: "large-scale pretraining"
+
+positioning:
+  core_claim: "Llama 3 family achieves competitive performance with proprietary models through massive scale and careful data curation"
+  key_results: "Llama-3.1-405B competitive with GPT-4 on most benchmarks"
+  limitations: ["English-dominated training despite multilingual goals"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

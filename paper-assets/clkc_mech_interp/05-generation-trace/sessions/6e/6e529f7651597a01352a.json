@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e529f7651597a01352a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp tost equivalence 118",
+  "task_key": "worker_exp_tost-equivalence-118_20260523T073611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_tost-equivalence-118_20260523T073611_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "ea0b724e9760cdb76bc08a0f3b0294fe93bbd1956cff9f365e0e2d54266ac572"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报结果：\n\n## TOST 等价性检验结果\n\n**方案**：A（从 CI 反推 SE）\n**等价边界**：±2pp\n\n| Model | Δ_conflict | Δ_xnli | Diff (C−X) | SE_diff | p_TOST | 等价? |\n|-------|-----------|--------|------------|---------|--------|------|\n| Llama-3.1-8B | 7.27pp | 6.00pp | +1.27pp | 4.37pp | 0.434 | NO |\n| Qwen-3-8B | 7.23pp | 6.72pp | +0.51pp | 4.36pp | 0.366 | NO |\n| Gemma-2-9B | 6.62pp | 7.81pp | −1.19pp | 2.58pp | 0.377 | NO |\n\n**结论**：三个模型均未通过 TOST（p > 0.05），无法在 ±2pp 边界内证明统计等价。\n\n**但需注意**：这是 **power 不足**，不是差异大。点估计差值都在 ±1.3pp 以内（远小于 2pp 边界），但 bootstrap SE 太大（2.6–4.4pp），导致无法拒绝 H0。Gemma 的 SE 最小（2.58pp），最接近能证明等价——如果 SE 能降到 ~1.5pp（大约需要 n≈6000 bootstrap 或更多样本），Gemma 可能通过。\n\n结果已保存至 `data/tost_equivalence_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-tost-equivalence-118.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ca74100309f9d4c5975",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra kill comet launch steering",
+  "task_key": "worker_infra_kill-comet-launch-steering_20260522T082111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-comet-launch-steering_20260522T082111_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "a2c9bac4bb902dc680537523f4acd8bff32668810edbeb54b0d95e052d37950e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**CUDA:0 CLEAR** — 显存 3 MiB / 97887 MiB，利用率 0%，无残留进程。\n\n其他 GPU 上仍有进程运行（PID 85171、59571、462040），不影响 cuda:0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-comet-launch-steering.md"
+}

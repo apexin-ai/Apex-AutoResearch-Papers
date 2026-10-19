@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71ec02f04e4f6f4501cf",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra wait bootstrap100 bash",
+  "task_key": "worker_infra_wait_bootstrap100_bash_20260521T230652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_wait_bootstrap100_bash_20260521T230652_result.json",
+    "occurrence": 1,
+    "bytes": 1545,
+    "sha256": "b0690d794c32a5b3f1a384c64808c1f77afcf1a2baee28bcb77240e6c954cd99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap 完成。注意：**n_bootstrap=20/方向**（不是 100/方向 — 可能是 100 次总迭代分配到 4+个方向）。\n\n## Bootstrap 结果 (n=20/方向)\n\n### Llama 3.1\n\n| Direction | Bal Acc (mean±std) | F1 (mean±std) |\n|-----------|-------------------|---------------|\n| EN→EN | **0.773 ± 0.010** | 0.770 ± 0.011 |\n| ZH→ZH | 0.709 ± 0.013 | 0.710 ± 0.015 |\n| ZH→EN | 0.710 ± 0.027 | 0.734 ± 0.024 |\n| EN→ZH | 0.644 ± 0.022 | 0.691 ± 0.031 |\n\n### Qwen 3\n\n| Direction | Bal Acc (mean±std) | F1 (mean±std) |\n|-----------|-------------------|---------------|\n| EN→EN | **0.754 ± 0.019** | 0.751 ± 0.019 |\n| ZH→EN | 0.731 ± 0.025 | 0.724 ± 0.041 |\n| ZH→ZH | 0.717 ± 0.021 | 0.723 ± 0.027 |\n| EN→ZH | 0.657 ± 0.026 | 0.656 ± 0.047 |\n\n### COMET 进度\n\n- **Qwen**: ~340/798 back-translated (~43%)\n- **Llama**: ~320/1096 back-translated (~29%)\n- 两个都还在 back-translate 阶段，EXIT_CODE=124（timeout，COMET 进程仍在运行）\n- 无 validated 文件\n\n### 关键发现\n\n1. **同语言 probe 最强**：EN→EN 两模型都是最高（Llama 0.773, Qwen 0.754）\n2. **跨语言不对称**：ZH→EN 明显优于 EN→ZH（两模型一致），说明中文表示更容易迁移到英文方向\n3. **EN→ZH 最弱**：~0.65，跨语言方向中最困难\n4. **Llama EN→EN 略优于 Qwen**（0.773 vs 0.754），但 Qwen ZH→ZH 略优（0.717 vs 0.709）\n5. **std 合理**：同语言 ~0.01-0.02，跨语言 ~0.02-0.03，bootstrap 估计稳定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-wait-bootstrap100-bash.md"
+}

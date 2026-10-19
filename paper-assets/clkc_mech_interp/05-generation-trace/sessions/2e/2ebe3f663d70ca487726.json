@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ebe3f663d70ca487726",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "research clear citation verify",
+  "task_key": "worker_research_clear-citation-verify_20260522T005633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_clear-citation-verify_20260522T005633_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "63fb88ac9a29e89f91b64f077cf5f1facf1910d907ccbc3e13fe67826349d0a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n**CLEAR (Zhao et al. 2026) 是真实论文，非幻觉引用。**\n\n- **完整标题**: \"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models\"\n- **作者**: Jiaqi Zhao, Qiang Huang, Haodong Chen, Xiaoxing You, Jun Yu\n- **arXiv**: [2601.07041](https://arxiv.org/abs/2601.07041)，2026-01-11 提交\n- **内容确认**: 确实是跨语言知识冲突评估框架，覆盖 10 种语言、6 个 LLM\n\n**但有一个引用准确性问题需要修正**：paper_framing.md 将 CLEAR 的发现简化为\"语言相似性决定冲突解决\"，这不完整。CLEAR 的核心贡献是发现冲突解决机制是 **task-dependent** 的：\n- Entity-centric factual conflicts → linguistic affinity 主导\n- Reasoning-intensive tasks → resource abundance 主导\n\n由于我们使用的是 ConflictQA（entity-centric），引用时应精确限定为\"CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 决定冲突解决\"。\n\n审计报告已写入 `artifacts/clear_citation_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-clear-citation-verify.md"
+}

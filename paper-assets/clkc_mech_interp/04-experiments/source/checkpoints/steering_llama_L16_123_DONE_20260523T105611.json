@@ -1,0 +1,45 @@
+{
+  "exp_id": "steering_llama_L16_123",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:01:26.264Z",
+    "updated_at": "2026-05-23T10:56:10.928Z",
+    "hypothesis": "Llama-3.1-8B L16 (~50% depth) steering：L13 (41%) 成功 (p=0.0009)。L16 紧邻 L13 但更深，验证 causal window 宽度。若 L16 也显著则 causal node 是一个区间而非单点；若 negative 则 L13 是精确 causal layer。parent=steering_107_L13",
+    "parent": "steering_107_L13",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python src/steering_experiment.py --model llama --layer 16 --alphas 5 10 20 --position last",
+      "server": "westd-41302",
+      "data_path": "/root/clkc_mech_interp/data/llama31/",
+      "data_count": 136,
+      "model_name": "Llama-3.1-8B",
+      "seed": 42,
+      "gpu": "cuda:3",
+      "checkpoint_source": "steering_107_L13",
+      "eval_data": "conflict probe activations",
+      "checkpoint_path": "N/A",
+      "log_path": "/root/clkc_mech_interp/logs/steering_llama_L16.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "probe_accuracy_L16": 0.7684,
+      "alpha_5_flips": "12/136",
+      "alpha_5_control": "11/136",
+      "alpha_5_fisher_p": 1,
+      "alpha_10_flips": "25/136",
+      "alpha_10_control": "15/136",
+      "alpha_10_fisher_p": 0.1226,
+      "alpha_20_flips": "31/136",
+      "alpha_20_control": "33/136",
+      "alpha_20_fisher_p": 0.8864,
+      "bonferroni_significant": "none",
+      "note": "only positive alphas tested"
+    },
+    "completed_at": "2026-05-23T10:56:10.928Z"
+  },
+  "timestamp": "2026-05-23T10:56:11.019123+00:00",
+  "trigger": "update_registry"
+}

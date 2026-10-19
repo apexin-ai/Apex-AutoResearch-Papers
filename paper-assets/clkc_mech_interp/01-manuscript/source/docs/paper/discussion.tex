@@ -1,0 +1,15 @@
+\vspace{-6pt}
+\section{Discussion}
+\label{sec:discussion}
+\vspace{-4pt}
+
+\paragraph{Causal influence is localized to L13 regardless of detection peak.}
+In Llama, causal influence is localized to L13 (41\% depth; Fisher $p < 0.001$), near but distinct from the linear probe peak (L15, 47\%) and MLP probe peak (L18, 56\%), with upper-layer interventions producing no significant change ($p > 0.3$; Figure~\ref{fig:dissociation}).
+L13 coincides with cross-lingual alignment sites \citep{muller2021first, wendler2024llamas}, suggesting mid-layers serve a dual role in alignment and conflict resolution.
+The dissociation evidence is strongest for Gemma, where 88.9\% probe accuracy and 0.93 AUROC coexist with zero steering effects, ruling out probe quality as a confound; for Qwen, weaker probe performance (71.4\%) leaves the null result more ambiguous.
+
+\paragraph{Why does steering fail in Qwen and Gemma?}
+Three hypotheses merit consideration: (1)~non-linear causal interactions \citep{elhage2022toy}, where MLP probes gain $+9.2$~pp over linear probes on conflict but $-0.5$~pp on XNLI; (2)~superposition \citep{templeton2024scaling}, where conflict and XNLI weight vectors are near-orthogonal yet cross-task language transfer is near-perfect; (3)~architectural differences, as Qwen and Gemma show mid-layer transfer dips absent in Llama.
+Definitive validation requires activation patching \citep{meng2022locating}.
+The ZH$\to$EN advantage matches the XNLI baseline across all models, indicating asymmetry piggybacks on general cross-lingual alignment \citep{zhao2026when, kargaran2024mexa, wendler2024llamas}; \citet{basu2026interpretability} reported steering failure despite 98.2\% AUROC, while our L13 succeeds via mid-layer steering and three-model architectural isolation.
+

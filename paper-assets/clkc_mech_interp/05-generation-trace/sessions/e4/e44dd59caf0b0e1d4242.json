@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e44dd59caf0b0e1d4242",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra kill old bootstrap",
+  "task_key": "worker_infra_kill-old-bootstrap_20260522T071227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-old-bootstrap_20260522T071227_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "c5b2ed92321b326a1ad6028c608af21d53d277e2ebe86d4d85dfed1caef625c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Kill 了**：旧 bootstrap_n2000.py 主进程 5 个 (PID 80344/80345/80348/80351/80352) + 38 个残留 worker，共 43 个进程\n- **新进程存活**：PID 331575 (Qwen, 状态 Rl) 和 335148 (Llama, 状态 Rl) 正常运行\n- **日志正常**：Qwen 已完成 28 轮 bootstrap，Llama 已完成 20 轮，输出持续推进"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-old-bootstrap.md"
+}

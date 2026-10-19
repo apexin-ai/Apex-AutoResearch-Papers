@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd26e3d0f98abb659399",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis llama tertile ablation 105",
+  "task_key": "worker_analysis_llama-tertile-ablation-105_20260522T025918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama-tertile-ablation-105_20260522T025918_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "95d23846ddf14ac392af7dc73774c0c3c7a00f6d8ee0ad64c2da056f2109cb00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果对比\n\n| | **Qwen3-8B** (L22) | **Llama-3.1-8B** (L13) |\n|---|---|---|\n| Full balanced_acc | 0.6488 | 0.5919 |\n| High COMET bal_acc | 0.6071 | 0.6165 |\n| Med COMET bal_acc | 0.6769 | 0.5624 |\n| Low COMET bal_acc | 0.6635 | 0.6000 |\n| **Δ(High-Low)** | **-5.64 pp** | **+1.65 pp** |\n| Fisher p | 0.6951 | 0.7613 |\n| **Conclusion** | NOT CONFOUNDER | NOT CONFOUNDER |\n\n两个模型一致：翻译质量不是探针迁移的混淆因素。Qwen 甚至出现反向效应（高 COMET → 低探针准确率）。Registry 已更新 `mvp_probe_llama_v1` metrics，memory.md 已追加 COMET tertile ablation 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-tertile-ablation-105.md"
+}

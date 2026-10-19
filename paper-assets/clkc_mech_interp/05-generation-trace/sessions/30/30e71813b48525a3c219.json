@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30e71813b48525a3c219",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra restart de bootstrap omp",
+  "task_key": "worker_infra_restart-de-bootstrap-omp_20260523T044835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_restart-de-bootstrap-omp_20260523T044835_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "bd3cb4a1b859fdd4841090761f14f19a0e7f7552536d4ea014b5500fe4883c4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。产出汇总：\n\n```\n旧 PID 538586: killed\n新 PID: 550508 (python), 550503 (wrapper bash)\nCPU load: ~700 → 569 (仍在下降中)\nGemma bootstrap PID 549893: alive\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-restart-de-bootstrap-omp.md"
+}

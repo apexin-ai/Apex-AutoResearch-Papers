@@ -1,0 +1,28 @@
+{
+  "exp_id": "gemma_verify_en",
+  "project": "clkc_mech_interp",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:25:03.216Z",
+    "updated_at": "2026-05-22T10:41:28.574Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/clkc_mech_interp && CUDA_VISIBLE_DEVICES=0 python -u src/verify_parametric_knowledge.py --model /root/autodl-tmp/models/gemma-2-9b-it --data_dir data/ --raw_dir data/ --output_dir data/gemma2/ --batch_size 8 2>&1 | tee logs/gemma_verify_en.log\"",
+      "server": "westd-41302",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "78079",
+      "log_path": "~/runs/clkc_mech_interp/gemma_verify_en.log",
+      "submitted_at": "2026-05-22T04:25:03.050Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T10:41:28.622770+00:00",
+  "trigger": "update_registry"
+}

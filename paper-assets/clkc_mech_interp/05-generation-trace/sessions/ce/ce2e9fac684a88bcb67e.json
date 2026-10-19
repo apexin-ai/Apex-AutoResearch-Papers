@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ce2e9fac684a88bcb67e",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp gemma comet pickup",
+  "task_key": "worker_exp_gemma-comet-pickup_20260524T160418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-comet-pickup_20260524T160418.log",
+    "occurrence": 1,
+    "bytes": 1006092,
+    "sha256": "d2aa3d147acecb51ed117037fbe5d15c04e25e61dc451d0ee431bb9ecc51a405"
+  },
+  "statistics": {
+    "messages": 729,
+    "user_turns": 0,
+    "tool_calls": 303,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 118,
+      "tool_call": 303,
+      "tool_result": 303,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 729,
+      "chunks": [
+        {
+          "path": "ce2e9fac684a88bcb67e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2e9fac684a88bcb67e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2e9fac684a88bcb67e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2e9fac684a88bcb67e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2e9fac684a88bcb67e-part-0005.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-comet-pickup.md"
+}

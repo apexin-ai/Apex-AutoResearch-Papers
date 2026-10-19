@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "219b968283f7a03ed251",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp de bootstrap parallel",
+  "task_key": "worker_exp_de-bootstrap-parallel_20260523T035641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_de-bootstrap-parallel_20260523T035641_result.json",
+    "occurrence": 1,
+    "bytes": 1235,
+    "sha256": "3fca2c6764d8f868684c98434d305576c262d9b106297501f10e4631c19e8b6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总报告：\n\n---\n\n### 1. 旧进程 Kill 确认\n| PID | 进程 | 状态 |\n|-----|-------|------|\n| 496671 | DE probe serial | killed (defunct → SIGKILL) |\n| 507589 | Gemma XNLI bootstrap 主进程 | killed |\n| 507351 | Gemma XNLI bootstrap 包装进程 | killed |\n| 507591-507636 | 64 个 orphaned multiprocessing workers | 全部 killed |\n\nCPU load：852 → 10.43（1min avg）\n\n### 2. Gemma XNLI 基础 Probe 结果（完好）\n| 方向 | Peak bal_acc | Peak layer |\n|------|------------|------------|\n| EN→EN | 0.9563 | L20 |\n| ZH→ZH | 0.8896 | L24 |\n| EN→ZH | 0.8944 | L28 |\n| ZH→EN | 0.9752 | L21 |\n\n### 3. Dry Run 结果（Llama EN↔DE, 1 seed）\n| 方向 | bal_acc | Peak layer |\n|------|--------|------------|\n| EN→EN | 0.7647 | L10 |\n| DE→DE | 0.7610 | L13 |\n| EN→DE | 0.6691 | L10 |\n| DE→EN | 0.6654 | L25 |\n| Asymmetry | -0.37pp | p=1.0 (n=1, 无统计意义) |\n\n### 4. Full n=2000 已启动\n- **PID**: 538586\n- **Registry**: `de_bootstrap_parallel_114` → RUNNING\n- **输出**: `data/llama31/de_bootstrap_n2000_results.json`\n- **日志**: `logs/de_bootstrap_n2000_parallel.log`\n\n### 5. 清理\n- `de_bootstrap_dryrun.json` 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-de-bootstrap-parallel.md"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "steering_gemma_L10_120",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:01:18.511Z",
+    "updated_at": "2026-05-23T12:03:10.023Z",
+    "hypothesis": "Gemma-2-9B L10 (~24% depth) steering：之前 L17/L21 (40-50% depth) negative。若更浅层（接近 early processing）能产生因果效应，则 Gemma 的 causal node 可能在比 Llama L13 (41%) 更浅的相对位置。parent=steering_107_gemma_L17",
+    "parent": "steering_107_gemma_L17",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 OMP_NUM_THREADS=1 python src/steering_experiment.py --model gemma --layer 10 --alphas 5 10 20 --position last",
+      "server": "westd-41302",
+      "data_path": "/root/clkc_mech_interp/data/gemma2/",
+      "data_count": 158,
+      "model_name": "Gemma-2-9B",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "checkpoint_source": "steering_107_gemma_L17",
+      "eval_data": "conflict probe activations"
+    }
+  },
+  "timestamp": "2026-05-23T12:03:10.126193+00:00",
+  "trigger": "update_registry"
+}

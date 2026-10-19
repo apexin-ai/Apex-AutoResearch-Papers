@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "aedc6a68c6b9522fcd02",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp gemma steering continue",
+  "task_key": "worker_exp_gemma-steering-continue_20260524T074929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-steering-continue_20260524T074929.log",
+    "occurrence": 1,
+    "bytes": 1125723,
+    "sha256": "47a538fba786e6addea0ef85ef963100afe1ab07e1f067457b5526aaa9dcecb4"
+  },
+  "statistics": {
+    "messages": 706,
+    "user_turns": 1,
+    "tool_calls": 269,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 149,
+      "tool_call": 269,
+      "tool_result": 269,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 660,
+      "chunks": [
+        {
+          "path": "aedc6a68c6b9522fcd02-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "aedc6a68c6b9522fcd02-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "aedc6a68c6b9522fcd02-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "aedc6a68c6b9522fcd02-part-0004.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "aedc6a68c6b9522fcd02-part-0004.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-steering-continue.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "841d3810df05aeb00a8a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu gemma en activations 102",
+  "task_key": "worker_gpu_gemma-en-activations-102_20260522T065228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_gemma-en-activations-102_20260522T065228_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "083005b233adf8367a31ba2f232bd2028bf042611962ff434782c6f97318cf35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "EN activations 收集完成。\n\n**结果：**\n- 输出文件：`data/gemma2/en_activations.pt`\n- Shape：`[1590, 42, 3584]`（1590 样本 × 42 层 × 3584 hidden_dim）\n- 文件大小：**457MB**\n- 耗时：~5 分钟\n- Registry：`gemma_en_act_102` → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-gemma-en-activations-102.md"
+}

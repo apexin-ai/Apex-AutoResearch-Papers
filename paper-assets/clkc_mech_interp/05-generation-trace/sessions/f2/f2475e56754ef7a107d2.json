@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2475e56754ef7a107d2",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra urgent status check 3items",
+  "task_key": "worker_infra_urgent-status-check-3items_20260522T150851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_urgent-status-check-3items_20260522T150851_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "2fcca2a27c382d2622da0d02f2c159269e58cbdeaf8a965f6a8f8dde79da8b03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. Gemma L17 Steering (PID 493756, cuda:2) — 🔄 运行中\n\n- 进程存活，已运行 30min\n- 日志仅 9 行（模型加载完毕），之后无输出 — **确认是 stdout 缓冲问题**\n- GPU 2: 18.6GB 显存占用，21% 利用率 — 在做推理\n- 结果文件尚未生成\n- **无需干预**，正在正常运行，只是没有 flush stdout\n\n### 2. Gemma Probe Training (PID 476334) — 🔄 运行中 (~50%)\n\n- 进程存活，已运行 4h25m\n- 进度：\n  - ✅ zh_en: 2000/2000 done (178.4min)\n  - ✅ zh_zh: 2000/2000 done (82.9min)\n  - 🔄 en_zh: 98/2000 (~5%，刚开始)\n  - ⏳ en_en: 尚未开始\n- **预计还需 ~2-3 小时完成全部 4 个方向**\n\n### 3. Llama Bootstrap n=2000 (PID 465851) — ✅ 完成\n\n文件 `probe_results_bootstrap_n2000.json` (20KB, 22:39 生成)\n\n关键结果：\n| 指标 | 值 |\n|------|-----|\n| **asymmetry_peak mean_diff** | **0.0727** |\n| **p_value (two-sided)** | **0.038** (显著) |\n| CI | [0.0037, 0.1397] |\n| n_seeds | 2000 |\n\nen_en 方向 peak 在 layer 18-19 (acc ~0.75)，zh_zh 方向 peak 较低。**不对称性统计显著 (p=0.038)**。\n\n### 4. Llama L13-all Steering (PID 494291, cuda:3) — 🔄 运行中\n\n- 进程存活，已运行 29min\n- 日志显示正在生成文本（pad_token_id 设置消息）\n- GPU 3: 16.1GB 显存占用，25% 利用率\n- 结果文件尚未生成\n- **正常运行中**\n\n---\n\n**总结**: 1 项完成（Llama bootstrap，p=0.038 显著），3 项正常运行中，无需干预。Gemma steering 的无日志问题是缓冲导致，GPU 利用率证实在工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-status-check-3items.md"
+}

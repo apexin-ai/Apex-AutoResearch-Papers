@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5d5d9087d788880bb04",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp steering qwen L18 check",
+  "task_key": "worker_exp_steering-qwen-L18-check_20260523T103758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering-qwen-L18-check_20260523T103758_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "5bfc994ea0c5bed87184f2ebcee7453242a40118d32d0be92173d4d494ec585d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen L18 (122)\n\n**状态: 完成**（进程 568435 已退出，GPU 2 空闲）\n\n**Probe accuracy: 73.8%**\n\n| Alpha | Steering flips | Control flips | Fisher p |\n|-------|---------------|---------------|----------|\n| +5 | 3/84 (3.6%) | 1/84 (1.2%) | 0.6205 |\n| +10 | 3/84 (3.6%) | 1/84 (1.2%) | 0.6205 |\n| +20 | 3/84 (3.6%) | 2/84 (2.4%) | 1.0000 |\n\n**注意：只跑了正方向 alpha，没有负方向（-5, -10, -20）。** 所有条件下 p→c 和 c→p 方向性 flip 均为 0。\n\n**Bonferroni 显著: 无**（所有 p 值远大于 0.0083 阈值）\n\nSteering 效果本质上与 control 无显著差异——L18 的 probe 方向在 Qwen3-8B 上无法有效引导行为翻转。\n\n**JSON 路径:** `/root/clkc_mech_interp/data/qwen3/steering_results_L18_last.json`\n**Log 路径:** `/root/clkc_mech_interp/logs/steering_qwen_L18.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-steering-qwen-l18-check.md"
+}

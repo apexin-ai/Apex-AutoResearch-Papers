@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "348abe171ed65f51603b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig1 hero schematic",
+  "task_key": "worker_code_fix-fig1-hero-schematic_20260525T133753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig1-hero-schematic_20260525T133753_result.json",
+    "occurrence": 1,
+    "bytes": 451,
+    "sha256": "1618864b2f78b07c76cd3866a9fcf87c267d85b7a52dce9e5dae6b3de14db03c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证清单：\n\n- [x] Panel (b) 无 \"77.6%\" 或任何具体 accuracy 数字\n- [x] Panel (b) 无合成 S 形曲线\n- [x] Panel (b) 有 layer stack 示意 + \"Detection peak\" 标注 + 渐变色\n- [x] Panel (b) 有三模型 badge + \"All models detect conflict\"\n- [x] Panel (b) 有 \"(see Fig. 3 for details)\" 引用\n- [x] Panel (a) 和 (c) 完全不变\n- [x] PDF 和 PNG 都成功生成\n- [x] PDF 已复制到 `docs/paper/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig1-hero-schematic.md"
+}

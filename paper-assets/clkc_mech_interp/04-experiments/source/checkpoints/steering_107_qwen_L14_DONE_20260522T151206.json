@@ -1,0 +1,42 @@
+{
+  "exp_id": "steering_107_qwen_L14",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:38:53.449Z",
+    "updated_at": "2026-05-22T15:12:05.979Z",
+    "hypothesis": "Steering Qwen3-8B at layer 14 (the ZH→ZH peak layer with 72.6% probe accuracy) will causally shift language-knowledge routing, analogous to Llama L13 steering, confirming cross-model depth-ratio consistency (~40%) for the cultural-linguistic knowledge conflict mechanism.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/steering_experiment.py --model /root/models/Qwen3-8B --data_dir data/qwen3 --output_dir data/qwen3/steering_results --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14",
+      "server": "westd-41302",
+      "data_path": "data/qwen3",
+      "data_count": 168,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "gpu": "cuda:1",
+      "checkpoint_path": "data/qwen3/steering_results/steering_results_qwen_L14.json",
+      "log_path": "logs/steering_qwen_L14.log",
+      "pid": 493122
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T15:10:27.638Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T15:10:28.182Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T15:10:29.719060+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T15:12:06.095028+00:00",
+  "trigger": "update_registry"
+}

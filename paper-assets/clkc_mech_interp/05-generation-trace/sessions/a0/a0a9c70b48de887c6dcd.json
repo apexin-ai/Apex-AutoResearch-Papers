@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a0a9c70b48de887c6dcd",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "infra comet env setup",
+  "task_key": "worker_infra_comet_env_setup_20260521T165221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_comet_env_setup_20260521T165221.log",
+    "occurrence": 1,
+    "bytes": 743793,
+    "sha256": "1e7335accff994f02255e35ecc2773ddde23f1c7ddab205a387292e17ab3e49d"
+  },
+  "statistics": {
+    "messages": 487,
+    "user_turns": 0,
+    "tool_calls": 204,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 204,
+      "tool_result": 204,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 487,
+      "chunks": [
+        {
+          "path": "a0a9c70b48de887c6dcd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0a9c70b48de887c6dcd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0a9c70b48de887c6dcd-part-0003.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-comet-env-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec5f8a15e18b93303e11",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix bugs and rerun both",
+  "task_key": "worker_code_fix_bugs_and_rerun_both_20260521T211425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_bugs_and_rerun_both_20260521T211425_result.json",
+    "occurrence": 1,
+    "bytes": 1778,
+    "sha256": "7a50477f3afeef996652f094faa435803830c3ee066e2b9c8fcc1a9fc3011fc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有实验完成。汇总结果：\n\n---\n\n## Bootstrap 非对称性结果\n\n| 模型 | ZH→EN bal_acc | EN→ZH bal_acc | Observed diff | Bootstrap mean | 95% CI | CI 排除 0 |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| **Llama 3.1** | 0.7132 (L15) | 0.5956 (L5) | +0.1176 | +0.1182 | [0.0429, 0.1957] | **Yes** |\n| **Qwen 3** | 0.7321 (L18) | 0.6726 (L23) | +0.0595 | +0.0580 | [-0.0367, 0.1481] | No |\n\n**结论**：Llama 的 ZH→EN 显著优于 EN→ZH（CI 排除 0），Qwen 的不对称性不显著。\n\n---\n\n## MLP vs Linear Probe 对比\n\n| 模型 | 方向 | Linear bal_acc | MLP bal_acc | 差值 | 结论 |\n|------|------|:---:|:---:|:---:|------|\n| **Llama** | EN→EN | 0.7757 (L28) | **0.8051** (L16) | +0.0294 | MLP 提升，best layer 前移 |\n| **Llama** | ZH→ZH | 0.7206 (L13) | **0.7463** (L7) | +0.0257 | MLP 提升 |\n| **Llama** | EN→ZH | 0.5956 (L5) | **0.6875** (L18) | +0.0919 | MLP 大幅提升，best layer 后移 |\n| **Llama** | ZH→EN | 0.7132 (L15) | **0.7500** (L15) | +0.0368 | MLP 提升，best layer 不变 |\n| **Qwen** | EN→EN | 0.7500 (L24) | **0.7738** (L14) | +0.0238 | MLP 提升，best layer 前移 |\n| **Qwen** | ZH→ZH | 0.7262 (L14) | **0.7500** (L2) | +0.0238 | MLP 提升，best layer 大幅前移 |\n| **Qwen** | EN→ZH | 0.6726 (L23) | **0.6964** (L22) | +0.0238 | MLP 小幅提升 |\n| **Qwen** | ZH→EN | 0.7321 (L18) | **0.7381** (L8) | +0.0060 | MLP 微弱提升，best layer 前移 |\n\n**核心发现**：\n1. MLP 在所有方向均优于 Linear，提升 +0.6~+9.2 pp\n2. 跨语言方向提升最大：Llama EN→ZH 从 0.5956→0.6875（+9.2 pp），说明非线性特征确实有帮助\n3. MLP 的 best layer 普遍前移，提示非线性探针能在更浅层提取信息"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-bugs-and-rerun-both.md"
+}

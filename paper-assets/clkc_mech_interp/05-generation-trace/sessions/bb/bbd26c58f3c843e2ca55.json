@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbd26c58f3c843e2ca55",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra steering monitor L24 qwen",
+  "task_key": "worker_infra_steering-monitor-L24-qwen_20260523T104118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_steering-monitor-L24-qwen_20260523T104118_result.json",
+    "occurrence": 1,
+    "bytes": 280,
+    "sha256": "8e80723d24d6f874a9dc3688180f4df731ea9c6c17d4361ff9c8d205353169ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen L18 已完成，Gemma L24 仍在运行。3 分钟后复查 Gemma 状态。\n\n**Qwen L18 中间结果**：\n- Probe accuracy: 73.81%\n- 所有 alpha 的 steering flips 都极少（3/84），Fisher p 值均不显著\n- 脚本只跑了正向 alpha，没有负向"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-steering-monitor-l24-qwen.md"
+}

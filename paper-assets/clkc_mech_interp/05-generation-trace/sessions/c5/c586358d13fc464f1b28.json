@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c586358d13fc464f1b28",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code check zh pipeline status",
+  "task_key": "worker_code_check-zh-pipeline-status_20260525T203548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check-zh-pipeline-status_20260525T203548_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "8aedf5c3e969d66bb9277f35e0a65dd5c77ba3e3fe7935f761f9401eefea980c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Pipeline 状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **进程 PID 13675** | 存活，已运行 11 分 46 秒 |\n| **当前步骤** | Step 1: 翻译 Llama31 EN→ZH（模型已加载完毕，正在生成翻译） |\n| **GPU** | 67% 利用率，16.5 GB / 97.9 GB 显存占用 |\n\n### 各步骤完成情况\n\n| 步骤 | 状态 |\n|------|------|\n| 1. 翻译 llama31 EN→ZH (1600样本) | **进行中** (~11min/预计108min，刚开始) |\n| 2. 翻译 qwen3 EN→ZH (1418样本) | 未开始 |\n| 3. 创建 validated 符号链接 | 未开始 |\n| 4. 收集 llama31 ZH activations | 未开始 |\n| 5. 收集 qwen3 ZH activations | 未开始 |\n| 6. Bootstrap n=2000 | 未开始 |\n\n### 结论\n\nPipeline 刚启动约 12 分钟，正在执行第一步（Llama31 翻译）。Qwen3-8B 翻译模型已加载到 GPU（16.5GB），推理进行中。尚无任何产出文件生成。\n\n**预计剩余时间**: ~3.5–4 小时（翻译 ~3.4h + activations ~20min + bootstrap ~30min）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-zh-pipeline-status.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_gemma_L16_130",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:01:05.466Z",
+    "updated_at": "2026-05-24T09:00:58.439Z",
+    "hypothesis": "Gemma-2-9B-IT L16 (38% depth) steering 匹配条件复现：L17 (40%) 在低 probe acc (75%) 下 best p=0.104，接近 marginal。用匹配 Llama 的高质量条件（N≈200, 高 probe acc）重跑 L16（L17 peak-1），确认 causal window 下界。",
+    "parent": "steering_107_gemma_L17"
+  },
+  "timestamp": "2026-05-24T09:00:58.546487+00:00",
+  "trigger": "update_registry"
+}

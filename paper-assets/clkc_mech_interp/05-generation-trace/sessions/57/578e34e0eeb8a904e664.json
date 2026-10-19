@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "578e34e0eeb8a904e664",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra verify bootstrap100 files",
+  "task_key": "worker_infra_verify_bootstrap100_files_20260521T234207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_bootstrap100_files_20260521T234207_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "2347789b57f6f12ffa3145a3b526f983bb7050315e088bba2c3241f9d1764075"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**n=100 bootstrap 没有成功完成。** 所有现存 JSON 文件中 `n_bootstrap` 均为 **20**。\n\n### 详细状况\n\n| 模型 | n=100 运行状态 | 问题 |\n|------|---------------|------|\n| **Qwen** | 迭代全部跑完（日志 404 个 Bootstrap 匹配 = 4方向×101） | **保存时崩溃**：路径拼接 bug 导致 `data/qwen3/data/qwen3/probe_results_bootstrap.json`（重复），FileNotFoundError，结果丢失 |\n| **Llama** | 只跑到第4个方向 ZH→EN 的 Bootstrap 12 就停了（日志 318/404） | **未完成**，进程已终止 |\n\n### 文件现状（全部是 n=20 的旧结果）\n\n| 文件 | n_bootstrap |\n|------|-------------|\n| `data/llama31/probe_results_bootstrap.json` | 20 |\n| `data/llama31/probe_results_bootstrap_n20.json` | 20 |\n| `data/qwen3/probe_results_bootstrap.json` | 20 |\n| `data/qwen3/probe_results_bootstrap_n20.json` | 20 |\n\n### 需要修复\n\n1. `train_probe.py` 第335行的保存路径有 bug：相对路径 `data/qwen3/` 被拼接了两次\n2. 修复后需要重新跑 n=100（两个模型都要重跑）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-bootstrap100-files.md"
+}

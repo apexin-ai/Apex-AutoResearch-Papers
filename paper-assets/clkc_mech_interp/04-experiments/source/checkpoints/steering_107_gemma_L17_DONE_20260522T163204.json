@@ -1,0 +1,103 @@
+{
+  "exp_id": "steering_107_gemma_L17",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:31:22.416Z",
+    "updated_at": "2026-05-22T16:32:04.369Z",
+    "hypothesis": "Gemma-2-9B-IT L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配。若 steering 在此层有因果效应（Fisher p<0.05 + 方向性 flip），则证明 probe-weight steering 跨模型泛化；否则 steering 可能是 Llama-specific。parent=steering_107_L13",
+    "parent": "steering_107_L13",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/steering_experiment.py --model_name google/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 17 --position last --output_suffix _gemma_L17 --alphas -20 -10 -5 5 10 20",
+      "server": "westd-41302",
+      "data_path": "/root/clkc_mech_interp/data/gemma2",
+      "model_name": "google/gemma-2-9b-it",
+      "seed": 42,
+      "data_count": 158,
+      "gpu": "cuda:1",
+      "checkpoint_source": "data/gemma2/probes/linear_probe_results.pt",
+      "eval_data": "data/gemma2/en_conflict_test.jsonl",
+      "checkpoint_path": "data/gemma2/steering_results/steering_results_gemma_L17.json",
+      "log_path": "logs/steering_gemma_L17.log"
+    },
+    "metrics": {
+      "probe_accuracy": 0.7532,
+      "n_test": 158,
+      "layer": 17,
+      "position": "last",
+      "baseline": {
+        "parametric": 26,
+        "contextual": 45,
+        "both": 32,
+        "neither": 55
+      },
+      "alpha_neg20": {
+        "steering_flips": 2,
+        "control_flips": 8,
+        "steering_flip_rate": 0.0127,
+        "control_flip_rate": 0.0506,
+        "p2c": 0,
+        "c2p": 0,
+        "fisher_p": 0.103795
+      },
+      "alpha_neg10": {
+        "steering_flips": 2,
+        "control_flips": 2,
+        "steering_flip_rate": 0.0127,
+        "control_flip_rate": 0.0127,
+        "p2c": 0,
+        "c2p": 0,
+        "fisher_p": 1
+      },
+      "alpha_neg5": {
+        "steering_flips": 2,
+        "control_flips": 1,
+        "steering_flip_rate": 0.0127,
+        "control_flip_rate": 0.0063,
+        "p2c": 0,
+        "c2p": 0,
+        "fisher_p": 1
+      },
+      "alpha_5": {
+        "steering_flips": 1,
+        "control_flips": 3,
+        "steering_flip_rate": 0.0063,
+        "control_flip_rate": 0.019,
+        "p2c": 0,
+        "c2p": 0,
+        "fisher_p": 0.622608
+      },
+      "alpha_10": {
+        "steering_flips": 2,
+        "control_flips": 2,
+        "steering_flip_rate": 0.0127,
+        "control_flip_rate": 0.0127,
+        "p2c": 0,
+        "c2p": 0,
+        "fisher_p": 1
+      },
+      "alpha_20": {
+        "steering_flips": 1,
+        "control_flips": 4,
+        "steering_flip_rate": 0.0063,
+        "control_flip_rate": 0.0253,
+        "p2c": 0,
+        "c2p": 0,
+        "fisher_p": 0.371013
+      },
+      "significant_alphas": [],
+      "best_fisher_p": 0.103795,
+      "best_alpha": -20,
+      "all_p2c": 0,
+      "all_c2p": 0
+    },
+    "conclusion": "negative",
+    "notes": "Gemma L17 steering 完全失败：所有 6 个 alpha 的 Fisher p > 0.1，最好的是 alpha=-20 (p=0.104)。零方向性 flip（所有 p2c=0, c2p=0）。Flip rate 极低（1-2/158），与 random control 无差异。结合 Qwen L14 (negative) 和 Qwen L23 (negative)，steering 因果效应仅在 Llama L13 观察到（1/3 模型）。这意味着 probe 权重方向的因果意义是 Llama-specific，不是跨模型普遍现象。论文中 steering 实验应定位为 Llama-specific positive + 两模型 negative 的对比结果。",
+    "completed_at": "2026-05-22T16:32:04.369Z"
+  },
+  "timestamp": "2026-05-22T16:32:04.439445+00:00",
+  "trigger": "update_registry"
+}

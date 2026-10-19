@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a75bf00f50b7edae2005",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp gemma comet fix",
+  "task_key": "worker_exp_gemma-comet-fix_20260524T170207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-comet-fix_20260524T170207_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "b775960ca540cf948fec3060ab3cbb94fdfd3a652584eb28a0d21cf3f62cde79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline complete. Here's the **Gemma-2 COMET Tercile Ablation** result:\n\n---\n\n## COMET Tercile Ablation — Gemma-2-9B-IT (EN→ZH, Layer 17)\n\n| Tercile | n | COMET range | COMET mean | Balanced Acc |\n|---------|---|-------------|------------|--------------|\n| **High** | 112 | [0.9122, 0.9634] | 0.9304 | **0.6261** |\n| **Med** | 112 | [0.8871, 0.9120] | 0.8996 | 0.6003 |\n| **Low** | 111 | [0.8076, 0.8870] | 0.8564 | 0.5233 |\n\n- **Full test balanced_acc:** 0.5877\n- **Delta (High − Low):** +10.28 pp\n- **Fisher exact test:** p = 0.278, OR = 0.728\n- **Conclusion: CONFOUNDER** — higher COMET (better translation quality) correlates with higher probe accuracy (+10.28 pp), suggesting translation quality is a confounding factor for cross-lingual probe performance on Gemma-2.\n\n**Fix applied:** The original script indexed tertile masks (0–341) into the 335-entry prediction array. Fixed by computing tertiles only over the 335 validated entries that have activations, excluding the 7 filtered-out (COMET < 0.80) samples.\n\n**Implication:** The COMET gate (≥ 0.80 threshold) is not aggressive enough for Gemma-2 — low-quality translations in the passed set still depress probe accuracy. Consider tightening the threshold or controlling for translation quality in subsequent analyses."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-comet-fix.md"
+}

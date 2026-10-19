@@ -1,0 +1,28 @@
+{
+  "exp_id": "steering_gemma_L24_121",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:01:20.736Z",
+    "updated_at": "2026-05-23T10:57:14.431Z",
+    "hypothesis": "Gemma-2-9B L24 (~57% depth) steering：L17/L21 negative, 试更深层。若 L24 也 negative 则 Gemma 确实不存在 single-layer causal node（支持 Llama-specific 结论）。parent=steering_107_gemma_L17",
+    "parent": "steering_107_gemma_L17",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 OMP_NUM_THREADS=1 python src/steering_experiment.py --model gemma --layer 24 --alphas 5 10 20 --position last",
+      "server": "westd-41302",
+      "data_path": "/root/clkc_mech_interp/data/gemma2/",
+      "data_count": 158,
+      "model_name": "Gemma-2-9B",
+      "seed": 42,
+      "gpu": "cuda:1",
+      "checkpoint_source": "steering_107_gemma_L17",
+      "eval_data": "conflict probe activations"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-23T10:57:14.517201+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ada6f7e85d033df0eb6b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp steering L18 L28 sequential",
+  "task_key": "worker_exp_steering-L18-L28-sequential_20260524T010150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering-L18-L28-sequential_20260524T010150_result.json",
+    "occurrence": 1,
+    "bytes": 1851,
+    "sha256": "76cdb34b41fbb48dca74944d48e96b23283c0568a7c518d57c6caa705ae53c93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## L28 Results\n\n- **Probe accuracy at L28: 85.25%**\n- N = 201\n\n| α | Steering flips/N | Control flips/N | Fisher p |\n|---:|:-:|:-:|:-:|\n| -20 | 12/201 (6.0%) | 11/201 (5.5%) | 1.000 |\n| -10 | 5/201 (2.5%) | 8/201 (4.0%) | 0.575 |\n| -5 | 3/201 (1.5%) | 5/201 (2.5%) | 0.724 |\n| +5 | 4/201 (2.0%) | 2/201 (1.0%) | 0.685 |\n| +10 | 6/201 (3.0%) | 2/201 (1.0%) | 0.284 |\n| +20 | 16/201 (8.0%) | 15/201 (7.5%) | 1.000 |\n\n**Bonferroni 校正 (k=6, 阈值 p < 0.0083):** 无 alpha 通过。Best α=+10, p=0.284。\n\n**结论:** L28 steering 完全不显著。所有 alpha 的 p 值都远高于阈值，steering flips 与 control flips 几乎无差异。\n\n=== L28 RESULTS END ===\n\n---\n\n## Step 6: 完整 6 层同条件对比表\n\n| Layer | Depth | Probe Acc | Best α | Best p | Bonferroni sig |\n|-------|-------|-----------|--------|--------|----------------|\n| L12 | 38% | 91.75% | +20 | 0.0853 | ❌ |\n| L13 | 41% | 90.00% | +10 | 0.0003 | ✅✅ (2/6) |\n| L14 | 44% | 91.75% | +10 | 0.0022 | ✅ (1/6) |\n| L16 | 50% | 91.50% | +10 | 0.005 | ✅ (1/6) |\n| **L18** | **56%** | **90.75%** | **+5** | **0.0099** | **❌ (marginal)** |\n| **L28** | **88%** | **85.25%** | **+10** | **0.284** | **❌** |\n\n**关键发现：**\n\nL28（detection peak 层，probe accuracy 最高层）steering 完全无效（best p=0.284），而 L13-L16 中层 steering 显著。**\"Detection ≠ Decision\" claim 得到强化，不需要重写。** L28 虽然最擅长检测 conflict，但干预该层对模型行为毫无影响——conflict 的因果决策发生在中层（L13-L16），而非检测峰值层。\n\nL18 处于边界状态（p=0.0099，略高于 Bonferroni 阈值 0.0083），可解读为 steering 效果从 L16 到 L18 开始衰减，到 L28 完全消失——进一步支持因果作用集中在中层的结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-steering-l18-l28-sequential.md"
+}

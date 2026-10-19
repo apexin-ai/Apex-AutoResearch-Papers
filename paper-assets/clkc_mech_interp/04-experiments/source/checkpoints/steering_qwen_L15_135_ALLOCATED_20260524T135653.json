@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_qwen_L15_135",
+  "project": "clkc_mech_interp",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:01:12.928Z",
+    "updated_at": "2026-05-24T13:56:53.071Z",
+    "hypothesis": "Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.",
+    "parent": "steering_107_qwen_L14"
+  },
+  "timestamp": "2026-05-24T13:56:53.207377+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65df14c1f6eec0fa92b6",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "cpu bootstrap n2000 optimized",
+  "task_key": "worker_cpu_bootstrap-n2000-optimized_20260522T081516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_bootstrap-n2000-optimized_20260522T081516_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "4f457c771396f40b95413a38d6078f06a1118c044dc51cc2d7303608edb95751"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都在运行：\n\n| 任务 | PID | 状态 | 进度 |\n|------|-----|------|------|\n| **Qwen** (36层) | 465546 | en_en 方向, 98/2000 seeds done @ 1.1min | 4方向 × ~6min ≈ **~25min 总计** |\n| **Llama** (32层) | 465846 | en_en 方向, 刚开始 | **~30min 总计** |\n\n- 旧慢速进程 331575/335148 已 kill\n- 优化脚本 `src/train_probe_fast.py`: joblib 32 workers + `OMP_NUM_THREADS=2`，含 StandardScaler（匹配原脚本）、paired asymmetry CI 计算\n- 预估 Qwen ~16:40 完成，Llama ~16:50 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-bootstrap-n2000-optimized.md"
+}

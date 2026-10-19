@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "8f29cf37b82e8d6d19d0",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fig1 fig2 paperbanana redesign",
+  "task_key": "worker_code_fig1-fig2-paperbanana-redesign_20260525T161757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-fig2-paperbanana-redesign_20260525T161757_result.json",
+    "occurrence": 1,
+    "bytes": 2121361,
+    "sha256": "3c269fbb8e9d1779252018b3e830b81d2365cb749cba615f40173d2b6a119f67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "8f29cf37b82e8d6d19d0-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-fig2-paperbanana-redesign.md"
+}

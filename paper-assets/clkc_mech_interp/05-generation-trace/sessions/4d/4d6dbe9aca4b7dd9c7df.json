@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "4d6dbe9aca4b7dd9c7df",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "infra mvp llama phase a",
+  "task_key": "worker_infra_mvp_llama_phase_a_20260521T133704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_llama_phase_a_20260521T133704.log",
+    "occurrence": 1,
+    "bytes": 1217095,
+    "sha256": "22666d9cde0117b92134bee9223e98a04e552329f71dadb0f8cb4008b6830abf"
+  },
+  "statistics": {
+    "messages": 934,
+    "user_turns": 3,
+    "tool_calls": 285,
+    "roles": {
+      "log": 1,
+      "system": 66,
+      "record": 1,
+      "assistant": 290,
+      "tool_call": 285,
+      "tool_result": 285,
+      "user": 3,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 124,
+      "chunks": [
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0001.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0001.json",
+          "message_count": 56
+        },
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 547,
+      "chunks": [
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0002.json",
+          "message_count": 154
+        },
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0005.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0005.json",
+          "message_count": 147
+        },
+        {
+          "path": "4d6dbe9aca4b7dd9c7df-part-0006.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-mvp-llama-phase-a.md"
+}

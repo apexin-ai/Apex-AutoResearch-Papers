@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "df79fb4d094ea7cb88cb",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fig1 hero detection neq decision",
+  "task_key": "worker_code_fig1-hero-detection-neq-decision_20260525T131143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-hero-detection-neq-decision_20260525T131143_result.json",
+    "occurrence": 1,
+    "bytes": 2123658,
+    "sha256": "d5a07c3d7aa4ca18cb804a57a2d767d71a77cb7f5d922de177af7618b088dbd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "df79fb4d094ea7cb88cb-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-hero-detection-neq-decision.md"
+}

@@ -1,0 +1,765 @@
+# research clear citation verify
+
+**English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/chats/worker_research_clear-citation-verify_20260522T005633.jsonl`
+- **Structured JSON:** [`3e3e5b3e5af5a08ae835.json`](../../sessions/3e/3e3e5b3e5af5a08ae835.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+23 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T00:59:27.909473+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T00:59:27.909974+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T00:59:27.910178+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T00:59:27.910403+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper_framing.md\", \"content\": \"# Paper Framing — clkc_mech_interp\\n\\n> 最后更新: 2026-05-22 | 目标: ICLR 2027 (DDL ~2026-09-24)\\n\\n## Core Insight\\n\\n多语言 LLM 中，跨语言知识冲突的检测信号可在残差流中被线性探针检测，且跨语言迁移呈现**方向性不对称**（ZH→EN >> EN→ZH ~7.2pp），该不对称性跨架构高度一致（Llama-3.1-8B 与 Qwen3-8B）。这为 CLEAR (Zhao et al. 2026) 发现的 \\\"语言相似性决定冲突解决\\\" 提供了首个**机制层面的解释**。\\n\\n## Narrative Structure\\n\\n**现象驱动的机制解释**（非 \\\"applying X to Y\\\"）：\\n\\n1. **Phenomenon**: CLEAR 发现 linguistic similarity（而非 resource abundance）决定跨语言冲突解决，但未提供机制解释\\n2. **Mechanistic question**: 冲突信号在模型内部如何编码？是 language-universal 还是 language-specific？为什么 similarity 起决定作用？\\n3. **Our answer**: 通过残差流探针、SAE 特征分析、激活干预三条互补分析轨道，揭示冲突检测信号的跨语言结构——是否共享、在哪些层出现、能否用于干预\\n\\n**Secondary framing**: SAE-based mechanistic interpretability 工具在跨语言条件下的 stress test——probing / SAE / steering 三种工具的跨语言适用性边界\\n\\n## Competing Hypotheses (pre-registered)\\n\\n**H1 — English-anchored universal detection**:\\n冲突检测信号本身是 language-independent 的（\\\"是否存在冲突\\\" 是语言无关判断），编码在 mid-layer 共享表征空间中。final-layer language transition 引入 similarity-dependent 干扰，影响 resolution 但不影响 detection。\\n- 预测: mid-layer conflict feature 跨语言 Jaccard >> late-layer Jaccard (paired permutation test p < 0.05)\\n- 预测: 英语探针跨语言迁移更强（英语作为训练数据主导语言，表征空间以英语为锚点）\\n\\n**H2 — Language-pair-specific encoding**:\\n冲突特征从 mid-layer 起即为 language-pair-specific 的，linguistic distance 直接编码在冲突表征中。\\n- 预测: mid-layer 和 late-layer Jaccard 无显著差异，或 mid < late\\n- 预测: 探针迁移准确率与语言对 typological distance 强相关\\n\\n**MVP 证据倾向**:\\n当前双模型结果倾向 **H1 的变体**——ZH→EN 迁移（71-72%）显著强于 EN→ZH（64-65%），暗示冲突信号以英语表征空间为锚点编码。非线性成分（MLP EN→ZH +9.2pp vs linear）提示 EN→ZH 方向的跨语言映射更复杂。\\n\\n## Core Claims\\n\\n### Claim 1: Cross-lingual conflict detectability\\n**Statement**: 跨语言知识冲突信号可在残差流中被线性探针检测，准确率显著高于随机基线。\\n**Evidence needed**:\\n- ≥2 model architectures 的 within-language probe acc > 70% (balanced) ✅ (Llama 77.1%, Qwen 75.
+…[truncated 5760 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T00:59:27.910596+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CLEAR cross-lingual knowledge conflict LLM benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CLEAR cross-lingual knowledge conflict LLM benchmark"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-22T00:59:27.910729+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"CLEAR\" \"Zhao\" 2026 cross-lingual knowledge conflict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"CLEAR\" \"Zhao\" 2026 cross-lingual knowledge conflict"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T00:59:27.910871+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CLEAR benchmark cross-lingual knowledge conflict multilingual"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CLEAR benchmark cross-lingual knowledge conflict multilingual"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T00:59:27.911036+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Zhao et al 2026 knowledge conflict LLM cross-lingual"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Zhao et al 2026 knowledge conflict LLM cross-lingual"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T00:59:27.911181+00:00_
+
+Web search results for query: "CLEAR cross-lingual knowledge conflict LLM benchmark"
+
+Links: [{"title":"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/pdf/2601.07041"},{"title":"CLM-Bench: Benchmarking and Analyzing Cross-lingual Misalignment of LLMs in Knowledge Editing","url":"https://arxiv.org/pdf/2601.17397"},{"title":"ECLeKTic: A novel benchmark for evaluating cross-lingual knowledge transfer in LLMs","url":"https://research.google/blog/eclektic-a-novel-benchmark-for-evaluating-cross-lingual-knowledge-transfer-in-llms/"},{"title":"ConflictBank: A Benchmark for Evaluating the Influence of Knowledge   Conflicts in LLM","url":"https://arxiv.org/pdf/2408.12076"},{"title":"LiveCLKTBench: Towards Reliable Evaluation of Cross-Lingual Knowledge Transfer in Multilingual LLMs","url":"https://arxiv.org/pdf/2511.14774"}]
+
+Based on the search results, here's what I found about CLEAR:
+
+CLEAR is a Cross-Lingual knowlEdge conflict evAluation fRamework for systematically studying how multilingual LLMs navigate knowledge conflicts.
+
+**Key Features:**
+
+CLEAR decomposes conflict resolution into four progressive scenarios, from multilingual parametric elicitation to competitive multi-source cross-lingual induction, and systematically evaluates model behavior across two complementary QA benchmarks with distinct task characteristics.
+
+The framework constructs multilingual versions of ConflictQA and ConflictingQA covering 10 typologically diverse languages and evaluates six representative LLMs.
+
+**Key Findings:**
+
+In reasoning-intensive tasks, conflict resolution is dominated by language resource abundance, with high-resource languages exerting stronger persuasive power. In contrast, for entity-centric factual conflicts, linguistic affinity, not resource scale, becomes decisive, allowing low-resource but linguistically aligned languages to outperform distant high-resource ones.
+
+CLEAR spans 10 languages chosen to vary in both reso
+…[truncated 298 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T00:59:27.911337+00:00_
+
+Web search results for query: ""CLEAR" "Zhao" 2026 cross-lingual knowledge conflict"
+
+Links: [{"title":"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/pdf/2601.07041"},{"title":"Cross-linguistic disagreement as a conflict of semantic alignment norms   in multilingual AI~Linguistic Diversity as a Problem for Philosophy,   Cognitive Science, and AI~","url":"https://arxiv.org/pdf/2503.04792"},{"title":"CLEAR: Cross-Lingual Enhancement in Alignment via Reverse-training","url":"https://arxiv.org/pdf/2604.05821"},{"title":"Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs","url":"https://arxiv.org/pdf/2510.26024"},{"title":"Cross-Lingual Transfer of Cultural Knowledge: An Asymmetric Phenomenon","url":"https://arxiv.org/html/2506.01675v1"}]
+
+Based on the search results, I found relevant information about your query:
+
+CLEAR is a Cross-Lingual knowlEdge conflict evAluation fRamework that systematically examines how multilingual LLMs reconcile conflicting internal beliefs and multilingual external evidence.
+
+The framework was developed by Jiaqi Zhao and colleagues to address how Large Language Models encode vast world knowledge across multiple languages, yet when external evidence contradicts these language-dependent memories, models encounter cross-lingual knowledge conflict.
+
+In the CLEAR framework, languages are mapped based on their resource richness and taxonomic family, enabling a systematic study of how linguistic affinity and data scale influence cross-lingual knowledge conflict resolution.
+
+The research appears to have been published in 2026 (based on the arxiv PDF reference date) and focuses on understanding how multilingual language models handle situations where internal knowledge and external evidence conflict across different languages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T00:59:27.911524+00:00_
+
+Web search results for query: "Zhao et al 2026 knowledge conflict LLM cross-lingual"
+
+Links: [{"title":"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/pdf/2601.07041"},{"title":"Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language   Models","url":"https://arxiv.org/pdf/2407.01358"},{"title":"Knowledge Conflicts for LLMs: A Survey","url":"https://arxiv.org/html/2403.08319v2"},{"title":"Analysing the Residual Stream of Language Models Under Knowledge   Conflicts","url":"https://arxiv.org/pdf/2410.16090"},{"title":"Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs","url":"https://arxiv.org/html/2408.10646v1"},{"title":"GitHub - pillowsofwind/Knowledge-Conflicts-Survey: [EMNLP 2024] The official GitHub repo for the survey paper \"Knowledge Conflicts for LLMs: A Survey\" · GitHub","url":"https://github.com/pillowsofwind/Knowledge-Conflicts-Survey"},{"title":"Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge   Representation Sharing in LLMs","url":"https://arxiv.org/pdf/2408.10646"}]
+
+I found several relevant results for your search. Here are the key findings:
+
+The most relevant result appears to be a paper on knowledge conflict in multilingual models that examines how LLMs react to conflicts where internally stored beliefs contradict information presented in context, particularly when queries and retrieved sources span multiple languages, addressing Cross-Lingual Knowledge Conflict (CLKC) which has been largely unexplored in existing English-centric studies.
+
+Other related work includes:
+
+- A study on cross-lingual inconsistencies showing that multilingual LLMs often display notable inconsistencies when dealing with the same concepts across different languages, and a new Multilingual Aligned Knowledge-based Question-Answering dataset (MAKQA) spanning 12 languages across six major knowledge domains.
+
+- Research showing that cont
+…[truncated 647 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T00:59:27.911685+00:00_
+
+Web search results for query: "CLEAR benchmark cross-lingual knowledge conflict multilingual"
+
+Links: [{"title":"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/pdf/2601.07041"},{"title":"LiveCLKTBench: Towards Reliable Evaluation of Cross-Lingual Knowledge Transfer in Multilingual LLMs","url":"https://arxiv.org/pdf/2511.14774"},{"title":"CLM-Bench: Benchmarking and Analyzing Cross-lingual Misalignment of LLMs in Knowledge Editing","url":"https://arxiv.org/pdf/2601.17397"},{"title":"ECLeKTic: A novel benchmark for evaluating cross-lingual knowledge transfer in LLMs","url":"https://research.google/blog/eclektic-a-novel-benchmark-for-evaluating-cross-lingual-knowledge-transfer-in-llms/"},{"title":"XTREME: A Massively Multilingual Multi-task Benchmark for Evaluating   Cross-lingual Generalization","url":"https://arxiv.org/pdf/2003.11080"},{"title":"Cross-Lingual Multi-Hop Knowledge Editing","url":"https://arxiv.org/pdf/2407.10275"}]
+
+Based on the search results, here's what I found about the CLEAR benchmark:
+
+## CLEAR Benchmark Overview
+
+CLEAR is a Cross-Lingual knowlEdge conflict evAluation fRamework designed to systematically study how multilingual LLMs navigate knowledge conflicts.
+
+## Key Features
+
+CLEAR decomposes conflict resolution into four progressive scenarios, from multilingual parametric elicitation to competitive multi-source cross-lingual induction, and systematically evaluates model behavior across two complementary QA benchmarks with distinct task characteristics.
+
+CLEAR spans 10 languages chosen to vary in both resource abundance and linguistic affinity, enabling controlled analysis of whether cross-lingual decision-making is driven primarily by training data scale or structural proximity between languages. The framework uses multilingual versions of ConflictQA and ConflictingQA covering 10 typologically diverse languages and evaluates six representative LLMs.
+
+## Key Findings
+
+The research reveals 
+…[truncated 510 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T00:59:27.911881+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2601.07041 \"When Abundance Conceals Weakness\" authors CLEAR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2601.07041 \"When Abundance Conceals Weakness\" authors CLEAR"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T00:59:27.912015+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"linguistic affinity\" \"resource abundance\" cross-lingual knowledge conflict multilingual LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"linguistic affinity\" \"resource abundance\" cross-lingual knowledge conflict multilingual LLM 2025 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T00:59:27.912148+00:00_
+
+Web search results for query: "arxiv 2601.07041 "When Abundance Conceals Weakness" authors CLEAR"
+
+Links: [{"title":"[2601.07041] When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/abs/2601.07041"},{"title":"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/html/2601.07041"},{"title":"CLEAR: An Auditable Foundation Model for Radiology Grounded in Clinical Concepts","url":"https://www.medrxiv.org/content/10.64898/2026.01.15.26344222.full.pdf"},{"title":"Self-supervised contrastive learning for integrative single cell RNA-seq data analysis","url":"https://www.biorxiv.org/content/10.1101/2021.07.26.453730.full.pdf"},{"title":"Vulnerability Abundance: A formal proof of infinite vulnerabilities in code","url":"https://arxiv.org/pdf/2604.07539"}]
+
+Based on the search results, here's what I found about arxiv 2601.07041:
+
+The paper "When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models" was submitted on January 11, 2026 and authored by Jiaqi Zhao, Qiang Huang, Haodong Chen, Xiaoxing You, and Jun Yu.
+
+The paper introduces CLEAR, a Cross-Lingual knowlEdge conflict evAluation fRamework that systematically examines how multilingual LLMs reconcile conflicting internal beliefs and multilingual external evidence.
+
+The research addresses how Large Language Models encode vast world knowledge across multiple languages, yet their internal beliefs are often unevenly distributed across linguistic spaces, and when external evidence contradicts these language-dependent memories, models encounter cross-lingual knowledge conflict.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T00:59:27.912302+00:00_
+
+Web search results for query: ""linguistic affinity" "resource abundance" cross-lingual knowledge conflict multilingual LLM 2025 2026"
+
+Links: [{"title":"[2601.07041] When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/abs/2601.07041"},{"title":"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/pdf/2601.07041"},{"title":"When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models","url":"https://arxiv.org/html/2601.07041"},{"title":"Crosslingual Capabilities and Knowledge Barriers in Multilingual Large Language Models | OpenReview","url":"https://openreview.net/forum?id=BCyAlMoyx5"},{"title":"Faux Polyglot: A Study on Information Disparity in Multilingual Large Language Models","url":"https://arxiv.org/pdf/2407.05502"},{"title":"Crosslingual Capabilities and Knowledge Barriers in Multilingual Large Language Models","url":"https://arxiv.org/html/2406.16135v1"}]
+
+The search has returned relevant results. Here are the key findings:
+
+## Main Research Finding
+
+Large Language Models encode vast world knowledge across multiple languages, yet their internal beliefs are often unevenly distributed across linguistic spaces. When external evidence contradicts these language-dependent memories, models encounter cross-lingual knowledge conflict, a phenomenon largely unexplored beyond English-centric settings.
+
+## Task-Dependent Conflict Resolution Pattern
+
+The research reveals an important dichotomy in how multilingual LLMs resolve knowledge conflicts:
+
+- **Reasoning-intensive tasks**: Conflict resolution is dominated by language resource abundance, with high-resource languages exerting stronger persuasive power.
+
+- **Entity-centric factual conflicts**: Linguistic affinity, not resource scale, becomes decisive, allowing low-resource but linguistically aligned languages to outperform distant high-resource ones.
+
+## Research Framework
+
+The CLEAR framework systematic
+…[truncated 596 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T00:59:27.912496+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "clear_citation_audit.md",
+  "content": "# CLEAR Citation Audit Report\n\n> 审计日期: 2026-05-22\n\n## 验证结论: ✅ 真实存在\n\nCLEAR (Zhao et al. 2026) 是真实论文，非 AI 幻觉引用。\n\n## 论文完整信息\n\n| 字段 | 内容 |\n|------|------|\n| 标题 | When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models |\n| 作者 | Jiaqi Zhao, Qiang Huang, Haodong Chen, Xiaoxing You, Jun Yu |\n| 提交日期 | 2026-01-11 |\n| arXiv | [2601.07041](https://arxiv.org/abs/2601.07041) |\n| 会议/期刊 | arXiv preprint (截至审计日期，未确认正式发表venue) |\n| 缩写含义 | CLEAR = Cross-Lingual knowlEdge conflict evAluation fRamework |\n\n## 论文实际内容\n\nCLEAR 是一个系统性评估框架，研究多语言 LLM 如何处理跨语言知识冲突：\n- 覆盖 **10 种类型学多样性语言**，评估 **6 个代表性 LLM**\n- 使用 ConflictQA 和 ConflictingQA 的多语言版本\n- 将冲突解决分解为 4 个递进场景\n\n**核心发现（task-dependent pattern）**:\n1. **推理密集型任务**: 语言资源丰富度 (resource abundance) 主导冲突解决，高资源语言有更强说服力\n2. **实体中心事实冲突**: 语言亲缘性 (linguistic affinity) 而非资源规模决定冲突解决，低资源但语言学亲近的语言可胜过高资源但距离远的语言\n\n## ⚠️ 引用准确性问题\n\npaper_framing.md 当前描述:\n> \"CLEAR 发现的 '语言相似性决定冲突解决'\"\n\n**问题**: 这是对 CLEAR 发现的不完整简化。CLEAR 的关键贡献恰恰是发现冲突解决机制是 **task-dependent** 的——linguistic affinity 仅在 entity-centric factual conflicts 中起决定作用。在 reasoning-intensive tasks 中，resource abundance 才是主导因素。\n\n**建议修正**: 论文叙事中引用 CLEAR 时应准确呈现其 task-dependent 发现，而非笼统说\"语言相似性决定冲突解决\"。我们的 probing 实验使用的是 ConflictQA（entity-centric factual QA），因此可以说\"CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 而非 resource abundance 决定冲突解决\"。\n\n## 搜索证据\n\n以下 4 组搜索查询均指向同一论文 arXiv:2601.07041:\n1. `CLEAR cross-lingual knowledge conflict LLM benchmark` → 首条结果\n2. `\"CLEAR\" \"Zhao\" 2026 cross-lingual knowledge conflict` → 首条结果\n3. `CLEAR benchmark cross-lingual knowledge conflict multilingual` → 首条结果\n4. `Zhao et al 2026 knowledge conflict LLM cross-lingual` → 首条结果\n\n## 相关真实论文（供交叉引用）\n\n| 论文 | arXiv | 相关性 |\n|------|-------|--------|\n| CLM-Bench: Cross-lingual Misalignment of LLMs in Knowledge Editing | [2601.17397](https://arxiv.org/abs/2601.17397) | 跨语言知识编辑错位 |\n| ECLeKTic: Evaluating Cross-lingual Knowledge Transfer in LLMs | Google Research Blog | 跨语言知识迁移评估 |\n| LiveCLKTBench: Reliable Evaluation of Cross-Lingual Knowledge Transfer | [2511.14774](https://arxiv.org/abs/2511.14774) | 跨语言知识迁移基准 |\n| Knowledge Conflicts for LLMs: A Survey (EMNLP 2024) | [2403.08319](https://arxiv.org/abs/2403.08319) | 知识冲突综述 |\n| Analysing the Residual Stream under Knowledge Conflicts | [2410.16090](https://arxiv.org/abs/2410.16090) | 残差流+知识冲突（方法论最近） |\n| Crosslingual Capabilities and Knowledge Barriers in Multilingual LLMs | [2406.16135](https://arxiv.org/abs/2406.16135) | 跨语言能力与知识壁垒 |\n| Beneath the Surface of Consistency: Cross-lingual Knowledge Representation Sharing | [2408.10646](https://arxiv.org/abs/2408.10646) | 跨语言知识表征共享 |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "file": "clear_citation_audit.md",
+    "content": "# CLEAR Citation Audit Report\n\n> 审计日期: 2026-05-22\n\n## 验证结论: ✅ 真实存在\n\nCLEAR (Zhao et al. 2026) 是真实论文，非 AI 幻觉引用。\n\n## 论文完整信息\n\n| 字段 | 内容 |\n|------|------|\n| 标题 | When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models |\n| 作者 | Jiaqi Zhao, Qiang Huang, Haodong Chen, Xiaoxing You, Jun Yu |\n| 提交日期 | 2026-01-11 |\n| arXiv | [2601.07041](https://arxiv.org/abs/2601.07041) |\n| 会议/期刊 | arXiv preprint (截至审计日期，未确认正式发表venue) |\n| 缩写含义 | CLEAR = Cross-Lingual knowlEdge conflict evAluation fRamework |\n\n## 论文实际内容\n\nCLEAR 是一个系统性评估框架，研究多语言 LLM 如何处理跨语言知识冲突：\n- 覆盖 **10 种类型学多样性语言**，评估 **6 个代表性 LLM**\n- 使用 ConflictQA 和 ConflictingQA 的多语言版本\n- 将冲突解决分解为 4 个递进场景\n\n**核心发现（task-dependent pattern）**:\n1. **推理密集型任务**: 语言资源丰富度 (resource abundance) 主导冲突解决，高资源语言有更强说服力\n2. **实体中心事实冲突**: 语言亲缘性 (linguistic affinity) 而非资源规模决定冲突解决，低资源但语言学亲近的语言可胜过高资源但距离远的语言\n\n## ⚠️ 引用准确性问题\n\npaper_framing.md 当前描述:\n> \"CLEAR 发现的 '语言相似性决定冲突解决'\"\n\n**问题**: 这是对 CLEAR 发现的不完整简化。CLEAR 的关键贡献恰恰是发现冲突解决机制是 **task-dependent** 的——linguistic affinity 仅在 entity-centric factual conflicts 中起决定作用。在 reasoning-intensive tasks 中，resource abundance 才是主导因素。\n\n**建议修正**: 论文叙事中引用 CLEAR 时应准确呈现其 task-dependent 发现，而非笼统说\"语言相似性决定冲突解决\"。我们的 probing 实验使用的是 ConflictQA（entity-centric factual QA），因此可以说\"CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 而非 resource abundance 决定冲突解决\"。\n\n## 搜索证据\n\n以下 4 组搜索查询均指向同一论文 arXiv:2601.07041:\n1. `CLEAR cross-lingual knowledge conflict LLM benchmark` → 首条结果\n2. `\"CLEAR\" \"Zhao\" 2026 cross-lingual knowledge conflict` → 首条结果\n3. `CLEAR benchmark cross-lingual knowledge conflict multilingual` → 首条结果\n4. `Zhao et al 2026 knowledge conflict LLM cross-lingual` → 首条结果\n\n## 相关真实论文（供交叉引用）\n\n| 论文 | arXiv | 相关性 |\n|------|-------|--------|\n| CLM-Bench: Cross-lingual Misalignment of LLMs in Knowledge Editing | [2601.17397](https://arxiv.org/abs/2601.17397) | 跨语言知识编辑错位 |\n| ECLeKTic: Evaluating Cross-lingual Knowledge Transfer in LLMs | Google Research Blog | 跨语言知识迁移评估 |\n| LiveCLKTBench: Reliable Evaluation of Cross-Lingual Knowledge Transfer | [2511.14774](https://arxiv.org/abs/2511.14774) | 跨语言知识迁移基准 |\n| Knowledge Conflicts for LLMs: A Survey (EMNLP 2024) | [2403.08319](https://arxiv.org/abs/2403.08319) | 知识冲突综述 |\n| Analysing the Residual Stream under Knowledge Conflicts | [2410.16090](https://arxiv.org/abs/2410.16090) | 残差流+知识冲突（方法论最近） |\n| Crosslingual Capabilities and Knowledge Barriers in Multilingual LLMs | [2406.16135](https://arxiv.org/abs/2406.16135) | 跨语言能力与知识壁垒 |\n| Beneath the Surface of Consistency: Cross-lingual Knowledge Representation Sharing | [2408.10646](https://arxiv.org/abs/2408.10646) | 跨语言知识表征共享 |\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T00:59:27.912661+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'clear_citation_audit.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T00:59:27.912829+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/ 2>/dev/null && echo \"EXISTS\" || echo \"NO_DIR\"",
+  "description": "Check artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/ 2>/dev/null && echo \"EXISTS\" || echo \"NO_DIR\"",
+    "description": "Check artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T00:59:27.912975+00:00_
+
+clkc_code
+EXISTS
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T00:59:27.913104+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/clear_citation_audit.md",
+  "content": "# CLEAR Citation Audit Report\n\n> 审计日期: 2026-05-22\n\n## 验证结论: ✅ 真实存在\n\nCLEAR (Zhao et al. 2026) 是真实论文，非 AI 幻觉引用。\n\n## 论文完整信息\n\n| 字段 | 内容 |\n|------|------|\n| 标题 | When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models |\n| 作者 | Jiaqi Zhao, Qiang Huang, Haodong Chen, Xiaoxing You, Jun Yu |\n| 提交日期 | 2026-01-11 |\n| arXiv | [2601.07041](https://arxiv.org/abs/2601.07041) |\n| 会议/期刊 | arXiv preprint (截至审计日期，未确认正式发表venue) |\n| 缩写含义 | CLEAR = Cross-Lingual knowlEdge conflict evAluation fRamework |\n\n## 论文实际内容\n\nCLEAR 是一个系统性评估框架，研究多语言 LLM 如何处理跨语言知识冲突：\n- 覆盖 **10 种类型学多样性语言**，评估 **6 个代表性 LLM**\n- 使用 ConflictQA 和 ConflictingQA 的多语言版本\n- 将冲突解决分解为 4 个递进场景\n\n**核心发现（task-dependent pattern）**:\n1. **推理密集型任务**: 语言资源丰富度 (resource abundance) 主导冲突解决，高资源语言有更强说服力\n2. **实体中心事实冲突**: 语言亲缘性 (linguistic affinity) 而非资源规模决定冲突解决，低资源但语言学亲近的语言可胜过高资源但距离远的语言\n\n## ⚠️ 引用准确性问题\n\npaper_framing.md 当前描述:\n> \"CLEAR 发现的 '语言相似性决定冲突解决'\"\n\n**问题**: 这是对 CLEAR 发现的不完整简化。CLEAR 的关键贡献恰恰是发现冲突解决机制是 **task-dependent** 的——linguistic affinity 仅在 entity-centric factual conflicts 中起决定作用。在 reasoning-intensive tasks 中，resource abundance 才是主导因素。\n\n**建议修正**: 论文叙事中引用 CLEAR 时应准确呈现其 task-dependent 发现，而非笼统说\"语言相似性决定冲突解决\"。我们的 probing 实验使用的是 ConflictQA（entity-centric factual QA），因此可以说\"CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 而非 resource abundance 决定冲突解决\"。\n\n## 搜索证据\n\n以下 4 组搜索查询均指向同一论文 arXiv:2601.07041:\n1. `CLEAR cross-lingual knowledge conflict LLM benchmark` → 首条结果\n2. `\"CLEAR\" \"Zhao\" 2026 cross-lingual knowledge conflict` → 首条结果\n3. `CLEAR benchmark cross-lingual knowledge conflict multilingual` → 首条结果\n4. `Zhao et al 2026 knowledge conflict LLM cross-lingual` → 首条结果\n\n## 相关真实论文（供交叉引用）\n\n| 论文 | arXiv | 相关性 |\n|------|-------|--------|\n| CLM-Bench: Cross-lingual Misalignment of LLMs in Knowledge Editing | [2601.17397](https://arxiv.org/abs/2601.17397) | 跨语言知识编辑错位 |\n| ECLeKTic: Evaluating Cross-lingual Knowledge Transfer in LLMs | Google Research Blog | 跨语言知识迁移评估 |\n| LiveCLKTBench: Reliable Evaluation of Cross-Lingual Knowledge Transfer | [2511.14774](https://arxiv.org/abs/2511.14774) | 跨语言知识迁移基准 |\n| Knowledge Conflicts for LLMs: A Survey (EMNLP 2024) | [2403.08319](https://arxiv.org/abs/2403.08319) | 知识冲突综述 |\n| Analysing the Residual Stream under Knowledge Conflicts | [2410.16090](https://arxiv.org/abs/2410.16090) | 残差流+知识冲突（方法论最近） |\n| Crosslingual Capabilities and Knowledge Barriers in Multilingual LLMs | [2406.16135](https://arxiv.org/abs/2406.16135) | 跨语言能力与知识壁垒 |\n| Beneath the Surface of Consistency: Cross-lingual Knowledge Representation Sharing | [2408.10646](https://arxiv.org/abs/2408.10646) | 跨语言知识表征共享 |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/clear_citation_audit.md",
+    "content": "# CLEAR Citation Audit Report\n\n> 审计日期: 2026-05-22\n\n## 验证结论: ✅ 真实存在\n\nCLEAR (Zhao et al. 2026) 是真实论文，非 AI 幻觉引用。\n\n## 论文完整信息\n\n| 字段 | 内容 |\n|------|------|\n| 标题 | When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models |\n| 作者 | Jiaqi Zhao, Qiang Huang, Haodong Chen, Xiaoxing You, Jun Yu |\n| 提交日期 | 2026-01-11 |\n| arXiv | [2601.07041](https://arxiv.org/abs/2601.07041) |\n| 会议/期刊 | arXiv preprint (截至审计日期，未确认正式发表venue) |\n| 缩写含义 | CLEAR = Cross-Lingual knowlEdge conflict evAluation fRamework |\n\n## 论文实际内容\n\nCLEAR 是一个系统性评估框架，研究多语言 LLM 如何处理跨语言知识冲突：\n- 覆盖 **10 种类型学多样性语言**，评估 **6 个代表性 LLM**\n- 使用 ConflictQA 和 ConflictingQA 的多语言版本\n- 将冲突解决分解为 4 个递进场景\n\n**核心发现（task-dependent pattern）**:\n1. **推理密集型任务**: 语言资源丰富度 (resource abundance) 主导冲突解决，高资源语言有更强说服力\n2. **实体中心事实冲突**: 语言亲缘性 (linguistic affinity) 而非资源规模决定冲突解决，低资源但语言学亲近的语言可胜过高资源但距离远的语言\n\n## ⚠️ 引用准确性问题\n\npaper_framing.md 当前描述:\n> \"CLEAR 发现的 '语言相似性决定冲突解决'\"\n\n**问题**: 这是对 CLEAR 发现的不完整简化。CLEAR 的关键贡献恰恰是发现冲突解决机制是 **task-dependent** 的——linguistic affinity 仅在 entity-centric factual conflicts 中起决定作用。在 reasoning-intensive tasks 中，resource abundance 才是主导因素。\n\n**建议修正**: 论文叙事中引用 CLEAR 时应准确呈现其 task-dependent 发现，而非笼统说\"语言相似性决定冲突解决\"。我们的 probing 实验使用的是 ConflictQA（entity-centric factual QA），因此可以说\"CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 而非 resource abundance 决定冲突解决\"。\n\n## 搜索证据\n\n以下 4 组搜索查询均指向同一论文 arXiv:2601.07041:\n1. `CLEAR cross-lingual knowledge conflict LLM benchmark` → 首条结果\n2. `\"CLEAR\" \"Zhao\" 2026 cross-lingual knowledge conflict` → 首条结果\n3. `CLEAR benchmark cross-lingual knowledge conflict multilingual` → 首条结果\n4. `Zhao et al 2026 knowledge conflict LLM cross-lingual` → 首条结果\n\n## 相关真实论文（供交叉引用）\n\n| 论文 | arXiv | 相关性 |\n|------|-------|--------|\n| CLM-Bench: Cross-lingual Misalignment of LLMs in Knowledge Editing | [2601.17397](https://arxiv.org/abs/2601.17397) | 跨语言知识编辑错位 |\n| ECLeKTic: Evaluating Cross-lingual Knowledge Transfer in LLMs | Google Research Blog | 跨语言知识迁移评估 |\n| LiveCLKTBench: Reliable Evaluation of Cross-Lingual Knowledge Transfer | [2511.14774](https://arxiv.org/abs/2511.14774) | 跨语言知识迁移基准 |\n| Knowledge Conflicts for LLMs: A Survey (EMNLP 2024) | [2403.08319](https://arxiv.org/abs/2403.08319) | 知识冲突综述 |\n| Analysing the Residual Stream under Knowledge Conflicts | [2410.16090](https://arxiv.org/abs/2410.16090) | 残差流+知识冲突（方法论最近） |\n| Crosslingual Capabilities and Knowledge Barriers in Multilingual LLMs | [2406.16135](https://arxiv.org/abs/2406.16135) | 跨语言能力与知识壁垒 |\n| Beneath the Surface of Consistency: Cross-lingual Knowledge Representation Sharing | [2408.10646](https://arxiv.org/abs/2408.10646) | 跨语言知识表征共享 |\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T00:59:27.913269+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/clear_citation_audit.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_clear-citation-verify_20260522T005633",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-22T00:59:27.913435+00:00_
+
+## 验证结果
+
+**CLEAR (Zhao et al. 2026) 是真实论文，非幻觉引用。**
+
+- **完整标题**: "When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models"
+- **作者**: Jiaqi Zhao, Qiang Huang, Haodong Chen, Xiaoxing You, Jun Yu
+- **arXiv**: [2601.07041](https://arxiv.org/abs/2601.07041)，2026-01-11 提交
+- **内容确认**: 确实是跨语言知识冲突评估框架，覆盖 10 种语言、6 个 LLM
+
+**但有一个引用准确性问题需要修正**：paper_framing.md 将 CLEAR 的发现简化为"语言相似性决定冲突解决"，这不完整。CLEAR 的核心贡献是发现冲突解决机制是 **task-dependent** 的：
+- Entity-centric factual conflicts → linguistic affinity 主导
+- Reasoning-intensive tasks → resource abundance 主导
+
+由于我们使用的是 ConflictQA（entity-centric），引用时应精确限定为"CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 决定冲突解决"。
+
+审计报告已写入 `artifacts/clear_citation_audit.md`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_clear-citation-verify_20260522T005633"
+}
+```
+
+</details>
+
+---

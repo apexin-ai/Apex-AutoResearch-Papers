@@ -1,0 +1,27 @@
+paper_key: "boer2026probing"
+title: "Probing for Knowledge Attribution in Large Language Models"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [probe_variants]
+  metrics:
+    - {name: "Macro-F1", direction: "higher_better"}
+    - {name: "Error rate under attribution mismatch", direction: "descriptive"}
+  datasets:
+    - {name: "AttriWiki", size: "self-supervised pipeline"}
+    - {name: "SQuAD", size: "standard"}
+    - {name: "WebQuestions", size: "standard"}
+  ablation_dimensions: [model, dataset_transfer]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "multiple LLMs"}
+  method_family: "linear probes for knowledge source attribution"
+
+positioning:
+  core_claim: "Linear probes on hidden representations can identify which knowledge source (parametric vs contextual) a model is using for its answer"
+  key_results: "Probes transfer across datasets; attribution mismatch increases error rates"
+  limitations: ["Limited to QA tasks"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

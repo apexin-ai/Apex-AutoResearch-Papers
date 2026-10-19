@@ -1,0 +1,44 @@
+{
+  "exp_id": "steering_107_gemma_L21",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:54:17.099Z",
+    "updated_at": "2026-05-22T17:28:33.495Z",
+    "hypothesis": "Gemma L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配但可能 negative。L21 (50% depth) 作为对照——如果 L17 negative 但 L21 positive，说明 Gemma 因果节点在不同相对深度；两者都 negative 则确认 Gemma steering 失败（与 Qwen 一致，steering 是 Llama-specific）。parent=steering_107_gemma_L17",
+    "parent": "steering_107_gemma_L17",
+    "spec": {
+      "checkpoint_path": "N/A (steering experiment)",
+      "log_path": "/root/clkc_mech_interp/logs/steering_gemma_L21.log"
+    },
+    "metrics": {
+      "probe_accuracy": 0.763,
+      "n_samples": 158,
+      "baseline": {
+        "both": 32,
+        "neither": 55,
+        "parametric": 26,
+        "contextual": 45
+      },
+      "best_fisher_p": 0.623,
+      "directional_flips": 0,
+      "max_steering_flip_rate": 0.0316,
+      "alphas_tested": [
+        -20,
+        -10,
+        -5,
+        5,
+        10,
+        20
+      ]
+    },
+    "conclusion": "negative",
+    "notes": "L21 (50% depth) steering NEGATIVE. All 6 alphas: Fisher p ≥ 0.62, directional flips (p2c/c2p) = 0 at every alpha. Probe accuracy 0.763 (adequate). Combined with L17 negative result, confirms Gemma steering fails at both 40% and 50% depth — consistent with Qwen pattern, steering appears Llama-specific.",
+    "completed_at": "2026-05-22T17:28:33.496Z"
+  },
+  "timestamp": "2026-05-22T17:28:33.602519+00:00",
+  "trigger": "update_registry"
+}

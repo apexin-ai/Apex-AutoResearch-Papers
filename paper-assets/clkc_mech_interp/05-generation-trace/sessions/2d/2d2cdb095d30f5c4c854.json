@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2d2cdb095d30f5c4c854",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "analysis fig2 gemma prep",
+  "task_key": "worker_analysis_fig2-gemma-prep_20260523T050143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fig2-gemma-prep_20260523T050143.log",
+    "occurrence": 1,
+    "bytes": 729632,
+    "sha256": "b1ccbad777027b062a1c8a1764e544f159233dfda6788c9a6cff9877cc7a34b7"
+  },
+  "statistics": {
+    "messages": 214,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 214,
+      "chunks": [
+        {
+          "path": "2d2cdb095d30f5c4c854-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "2d2cdb095d30f5c4c854-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-fig2-gemma-prep.md"
+}

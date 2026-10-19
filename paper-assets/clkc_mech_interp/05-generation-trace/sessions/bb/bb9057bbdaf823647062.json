@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb9057bbdaf823647062",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "cpu bootstrap n2000 restart",
+  "task_key": "worker_cpu_bootstrap-n2000-restart_20260522T065238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_bootstrap-n2000-restart_20260522T065238_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "2b9a14feaec37c9ab44a347130758f2636264e1b0ea5b1dafa848e158cf94f3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 bootstrap 任务已成功启动并在运行：\n\n| 模型 | Python PID | 状态 |\n|------|-----------|------|\n| Qwen3 | 331575 | 运行中，EN→EN bootstrap 已开始 |\n| Llama3.1 | 335148 | 运行中，EN→EN bootstrap 已开始 |\n\n日志文件：`logs/bootstrap_n2000_qwen.log`、`logs/bootstrap_n2000_llama.log`。预计各 60-90 min 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-bootstrap-n2000-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f94dc4a37641d66bfefc",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra urgent cpu status check",
+  "task_key": "worker_infra_urgent-cpu-status-check_20260523T034512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_urgent-cpu-status-check_20260523T034512_result.json",
+    "occurrence": 1,
+    "bytes": 2193,
+    "sha256": "76d14ba5406c8604504806713d9f8143aec3fc366948ba7f958fefd720c623c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。以下是完整报告：\n\n---\n\n## DE probe n=2000 (PID 496671)\n**进程状态: alive — 但严重落后，预计无法在 DDL 前完成**\n- 运行时间: 12h33m\n- 当前进度: EN→EN 方向 1700/2000（第 1 个方向，共 9 个方向）\n- 输出文件 `de_probe_results_bootstrap_n2000.json` **尚未生成**\n- 估算剩余: ~120h（~5天）→ **远超 May 25 DDL**\n- **根因**: 使用的是串行 `train_probe.py`，没有多进程并行\n\n**现有 DE 方向数据: 无。** 所有已完成的 probe 结果（`probe_results.json`, `probe_results_bootstrap_n2000.json`）仅含 EN/ZH 方向。\n\n## 现有 Llama EN/ZH bootstrap n=2000 (已完成)\n```\nEN→EN: 75.1% (L19), CI=[71.7, 78.3]\nZH→ZH: 69.7% (L13), CI=[65.8, 73.5]\nEN→ZH: 60.8% (L13), CI=[52.2, 68.4]\nZH→EN: 68.0% (L15), CI=[55.5, 75.4]\nΔ_asym: +7.27pp [0.37, 13.97], p=0.038, n_seeds=2000\n```\n\n## Gemma XNLI bootstrap n=2000 (PID 507589)\n**进程状态: alive — 在跑但进度不明**\n- 运行时间: 9h18m, CPU 131%, 127 线程\n- 日志只显示 `[EN→EN] Bootstrap (2000 seeds, 64 workers)...`，EN→EN 方向尚未完成\n- 输出到 `data/xnli/gemma2/probe_results.json`（将覆盖基础结果）\n\n**现有 Gemma XNLI 基础结果（单 seed，无 bootstrap CI）:**\n```\nEN→EN: 95.6% (L20)\nZH→ZH: 89.0% (L24)\nEN→ZH: 89.4% (L28)\nZH→EN: 97.5% (L21)\n```\n\n## GPU\n```\ncuda:0: RTX PRO 6000 Blackwell 0/96GB 33°C 0%\ncuda:1: RTX PRO 6000 Blackwell 0/96GB 32°C 0%\ncuda:2: RTX PRO 6000 Blackwell 0/96GB 32°C 0%\ncuda:3: RTX PRO 6000 Blackwell 0/96GB 32°C 0%\n```\n\n---\n\n## 紧急问题\n\n**服务器 load average 331-563**，两个 CPU 进程严重争抢。\n\n**DE probe 必须处理**——当前串行脚本不可能在 DDL 前完成 9 个方向 × 2000 seeds。建议：\n\n1. **Kill PID 496671**，改用并行版本（类似 `bootstrap_n2000.py`，适配 3 语言 en/zh/de）。用 64 workers 估计每方向 1-2h，9 方向 ≈ 9-18h，可以赶上 DDL。\n2. Kill 后也能减轻 Gemma 进程的 CPU 争抢，加速其完成。\n\n是否要我立即写一个 3 语言并行 bootstrap 脚本并重启 DE probe？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-cpu-status-check.md"
+}

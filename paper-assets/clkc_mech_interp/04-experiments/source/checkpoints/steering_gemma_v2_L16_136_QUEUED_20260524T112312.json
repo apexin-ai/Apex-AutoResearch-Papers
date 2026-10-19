@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_gemma_v2_L16_136",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:22:26.566Z",
+    "updated_at": "2026-05-24T11:23:12.476Z",
+    "hypothesis": "Gemma-2-9B-IT L16 (38% depth) steering v2 匹配条件：修复 prepare_gemma_data relabel bug 后重新采样 (N=171, probe acc 88.0%)，与 Llama 同条件 (6 alpha, Bonferroni k=6)。验证 Gemma mid-layer 是否有 causal steering 效应。",
+    "parent": "steering_gemma_L16_130"
+  },
+  "timestamp": "2026-05-24T11:23:12.612796+00:00",
+  "trigger": "update_registry"
+}

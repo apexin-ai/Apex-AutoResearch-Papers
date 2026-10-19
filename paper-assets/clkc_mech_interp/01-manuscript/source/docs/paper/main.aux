@@ -1,0 +1,1063 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zhao2026when}
+\citation{zhao2024analysing,brink2026probing}
+\citation{hewitt2019designing}
+\citation{basu2026interpretability}
+\citation{zhao2024analysing}
+\citation{conneau2018xnli}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN@col{2}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\citation{basu2026interpretability}
+\citation{xie2024adaptive}
+\citation{xu2024knowledge}
+\citation{zhao2024analysing}
+\citation{brink2026probing}
+\citation{pham2026where}
+\citation{li2025taming}
+\citation{pimentel2021probing}
+\citation{ravichander2021probing}
+\citation{wu2020emerging}
+\citation{muller2021first}
+\citation{wendler2024llamas}
+\citation{kargaran2024mexa}
+\citation{wang2025lost}
+\citation{zhao2026when}
+\citation{ifergan2024beneath}
+\citation{xing2024evaluating}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Cross-lingual knowledge conflict in multilingual LLMs. When a context passage contradicts the model's parametric knowledge, the language of presentation (English vs.\ Chinese) can bias the answer toward different sources. We ask three questions: (1)~Is the conflict signal linearly detectable in the residual stream? (2)~Do probes transfer across languages, and is the transfer symmetric? (3)~Does detection imply causal influence on resolution?}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:hero}{{1}{2}{Cross-lingual knowledge conflict in multilingual LLMs. When a context passage contradicts the model's parametric knowledge, the language of presentation (English vs.\ Chinese) can bias the answer toward different sources. We ask three questions: (1)~Is the conflict signal linearly detectable in the residual stream? (2)~Do probes transfer across languages, and is the transfer symmetric? (3)~Does detection imply causal influence on resolution?}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Knowledge conflict detection.}{2}{section*.2}\protected@file@percent }
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN@col{2}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@writefile{toc}{\contentsline {paragraph}{Cross-lingual representations in multilingual models.}{2}{section*.3}\protected@file@percent }
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\citation{li2023iti}
+\citation{turner2023activation}
+\citation{zou2023representation}
+\citation{marks2024geometry}
+\citation{zhao2025steering}
+\citation{pokharel2026crosslingual}
+\citation{sundar2025steering}
+\citation{gurgurov2026clasbench}
+\citation{basu2026interpretability}
+\citation{feng2026finegrained}
+\citation{meng2022locating}
+\citation{geiger2024finding}
+\citation{xie2024adaptive}
+\citation{grattafiori2024llama}
+\citation{yang2025qwen3}
+\citation{team2024gemma}
+\citation{rei2020comet}
+\citation{belinkov2022probing}
+\citation{belinkov2022probing,hewitt2019designing}
+\citation{hewitt2019designing}
+\citation{ulmer2022deep}
+\@LN@col{1}
+\@LN{133}{2}
+\@LN{134}{2}
+\@LN{135}{2}
+\@LN{136}{2}
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@writefile{toc}{\contentsline {paragraph}{Representation steering and causal intervention.}{3}{section*.4}\protected@file@percent }
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:task}{{3.1}{3}{Task Formulation}{subsection.3.1}{}}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN@col{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Data Construction}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:data}{{3.2}{3}{Data Construction}{subsection.3.2}{}}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Activation Extraction and Probing}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:extraction}{{3.3}{3}{Activation Extraction and Probing}{subsection.3.3}{}}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\newlabel{sec:probing}{{3.3}{3}{Activation Extraction and Probing}{subsection.3.3}{}}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\citation{conneau2018xnli}
+\citation{hewitt2019designing}
+\citation{li2023iti,zou2023representation}
+\citation{meng2022locating,geiger2024finding}
+\citation{grattafiori2024llama}
+\citation{yang2025qwen3}
+\citation{team2024gemma}
+\citation{xie2024adaptive}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Method overview. We construct parallel EN/ZH conflict data from ConflictQA with COMET-validated translations, extract per-layer residual stream representations, train logistic regression probes in four transfer directions (EN$\to $EN, ZH$\to $ZH, EN$\to $ZH, ZH$\to $EN), and apply confound exclusion controls before causal steering validation.}}{4}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:pipeline}{{2}{4}{Method overview. We construct parallel EN/ZH conflict data from ConflictQA with COMET-validated translations, extract per-layer residual stream representations, train logistic regression probes in four transfer directions (EN$\to $EN, ZH$\to $ZH, EN$\to $ZH, ZH$\to $EN), and apply confound exclusion controls before causal steering validation}{figure.caption.5}{}}
+\@LN@col{1}
+\@LN{231}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Cross-Lingual Transfer Protocol}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:transfer}{{3.4}{4}{Cross-Lingual Transfer Protocol}{subsection.3.4}{}}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Confound Exclusion}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:confound_method}{{3.5}{4}{Confound Exclusion}{subsection.3.5}{}}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Representation Steering}{4}{subsection.3.6}\protected@file@percent }
+\newlabel{sec:steering_method}{{3.6}{4}{Representation Steering}{subsection.3.6}{}}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN@col{2}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\citation{hewitt2019designing}
+\citation{conneau2018xnli}
+\@LN@col{1}
+\@LN{292}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experiments}{section.4}{}}
+\@LN{293}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:setup}{{4.1}{5}{Experimental Setup}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{5}{section*.6}\protected@file@percent }
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@writefile{toc}{\contentsline {paragraph}{Dataset and translation.}{5}{section*.7}\protected@file@percent }
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@writefile{toc}{\contentsline {paragraph}{Probing.}{5}{section*.8}\protected@file@percent }
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@writefile{toc}{\contentsline {paragraph}{Non-conflict baseline.}{5}{section*.9}\protected@file@percent }
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Within-Language Conflict Detection}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:within_lang}{{4.2}{5}{Within-Language Conflict Detection}{subsection.4.2}{}}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN@col{2}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Lingual Transfer and Asymmetry}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:cross_lingual}{{4.3}{5}{Cross-Lingual Transfer and Asymmetry}{subsection.4.3}{}}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@LN{374}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Non-Conflict Baseline Comparison}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:xnli_baseline}{{4.4}{5}{Non-Conflict Baseline Comparison}{subsection.4.4}{}}
+\@LN{375}{4}
+\@LN{376}{4}
+\@LN{377}{4}
+\@LN{378}{4}
+\@LN{379}{4}
+\@LN{380}{4}
+\@LN{381}{4}
+\@LN{382}{4}
+\@LN{383}{4}
+\@LN{384}{4}
+\@LN{385}{4}
+\@LN{386}{4}
+\@LN{387}{4}
+\@LN{388}{4}
+\@LN{389}{4}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Layer-wise probe balanced accuracy for Llama-3.1-8B (left), Qwen3-8B (center), and Gemma-2-9B-IT (right). Solid lines: residual stream probes; dashed lines (Llama and Qwen only): multilayer perceptron (MLP) sublayer probes. Stars mark peak layers. In the Llama panel, the vertical annotation at L13 marks the layer where steering produces significant causal influence (Fisher $p < 0.001$), near the EN$\to $EN probe peak (L15). In the Gemma panel, L17 and L21 are annotated as steering-negative layers.}}{6}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:layer_probe}{{3}{6}{Layer-wise probe balanced accuracy for Llama-3.1-8B (left), Qwen3-8B (center), and Gemma-2-9B-IT (right). Solid lines: residual stream probes; dashed lines (Llama and Qwen only): multilayer perceptron (MLP) sublayer probes. Stars mark peak layers. In the Llama panel, the vertical annotation at L13 marks the layer where steering produces significant causal influence (Fisher $p < 0.001$), near the EN$\to $EN probe peak (L15). In the Gemma panel, L17 and L21 are annotated as steering-negative layers}{figure.caption.10}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Single-seed balanced accuracy (\%) at each direction's optimal layer. $\Delta _{\text  {asym}}$ and 95\% CIs from paired bootstrap ($n = 2{,}000$ resamples). Bold: best per-task direction.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:main_results}{{1}{6}{Single-seed balanced accuracy (\%) at each direction's optimal layer. $\Delta _{\text {asym}}$ and 95\% CIs from paired bootstrap ($n = 2{,}000$ resamples). Bold: best per-task direction}{table.caption.11}{}}
+\@LN{390}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Confound Exclusion}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:confounds}{{4.5}{6}{Confound Exclusion}{subsection.4.5}{}}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@writefile{toc}{\contentsline {paragraph}{Token overlap and EN-DE control.}{6}{section*.13}\protected@file@percent }
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Transfer asymmetry ($\Delta _{\text  {asym}}$) with bootstrap 95\% CIs ($n = 2{,}000$) for conflict and XNLI tasks across all three architectures (six data points). Conflict and XNLI CIs overlap substantially within each model, indicating that the ZH$\to $EN advantage is a general cross-lingual property rather than conflict-specific. Grey dashed lines: $\pm $2~pp exploratory equivalence margin (TOST power $= 1.4$\%; see \S  \ref {sec:xnli_baseline}).}}{6}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:asymmetry_forest}{{4}{6}{Transfer asymmetry ($\Delta _{\text {asym}}$) with bootstrap 95\% CIs ($n = 2{,}000$) for conflict and XNLI tasks across all three architectures (six data points). Conflict and XNLI CIs overlap substantially within each model, indicating that the ZH$\to $EN advantage is a general cross-lingual property rather than conflict-specific. Grey dashed lines: $\pm $2~pp exploratory equivalence margin (TOST power $= 1.4$\%; see \S \ref {sec:xnli_baseline})}{figure.caption.12}{}}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@writefile{toc}{\contentsline {paragraph}{Translation quality.}{6}{section*.14}\protected@file@percent }
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\citation{turner2023activation,marks2024geometry}
+\citation{muller2021first,wendler2024llamas}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Confound exclusion analysis. COMET tercile: $\Delta $ = balanced accuracy difference between high and low COMET score terciles for EN$\to $ZH probes (Fisher's exact test). Token overlap: Pearson correlation between per-sample Jaccard similarity and EN$\to $ZH probe accuracy.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:confound}{{2}{7}{Confound exclusion analysis. COMET tercile: $\Delta $ = balanced accuracy difference between high and low COMET score terciles for EN$\to $ZH probes (Fisher's exact test). Token overlap: Pearson correlation between per-sample Jaccard similarity and EN$\to $ZH probe accuracy}{table.caption.15}{}}
+\@LN{426}{6}
+\@LN{427}{6}
+\@LN{428}{6}
+\@LN{429}{6}
+\@LN{430}{6}
+\@LN{431}{6}
+\@LN{432}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Causal Evidence via Representation Steering}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:steering}{{4.6}{7}{Causal Evidence via Representation Steering}{subsection.4.6}{}}
+\@LN{433}{6}
+\@LN{434}{6}
+\@LN{435}{6}
+\@LN{436}{6}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN{441}{6}
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN{444}{6}
+\@LN{445}{6}
+\@writefile{toc}{\contentsline {paragraph}{L13 (mid-layer, 41\% depth).}{7}{section*.16}\protected@file@percent }
+\@LN{446}{6}
+\@LN{447}{6}
+\@LN{448}{6}
+\@LN{449}{6}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN@col{2}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@writefile{toc}{\contentsline {paragraph}{Negative layers and coherence collapse.}{7}{section*.18}\protected@file@percent }
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@writefile{toc}{\contentsline {paragraph}{Causal localization (Llama).}{7}{section*.19}\protected@file@percent }
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model steering.}{7}{section*.20}\protected@file@percent }
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@LN{500}{6}
+\@writefile{toc}{\contentsline {paragraph}{Causal influence is localized to L13 regardless of detection peak.}{7}{section*.22}\protected@file@percent }
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\citation{elhage2022toy}
+\citation{templeton2024scaling}
+\citation{meng2022locating}
+\citation{zhao2026when,kargaran2024mexa,wendler2024llamas}
+\citation{basu2026interpretability}
+\citation{meng2022locating}
+\citation{belinkov2022probing}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Steering significance across layers and models. Each point shows the best $-\log _{10}(p)$ (Fisher exact test) across six $\alpha $ values at a given layer. Filled circles: significant after per-layer Bonferroni correction ($k{=}6$, threshold $p < 0.0083$). Only Llama shows significant causal effects, concentrated at L13 ($p < 0.001$) with attenuation through L14 ($p = 0.002$) and L16 ($p = 0.005$). Qwen (L13--L15) and Gemma (L16--L18) show no significant effects at comparable relative depths (36--43\%), despite high probe accuracy.}}{8}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:steering_viz}{{5}{8}{Steering significance across layers and models. Each point shows the best $-\log _{10}(p)$ (Fisher exact test) across six $\alpha $ values at a given layer. Filled circles: significant after per-layer Bonferroni correction ($k{=}6$, threshold $p < 0.0083$). Only Llama shows significant causal effects, concentrated at L13 ($p < 0.001$) with attenuation through L14 ($p = 0.002$) and L16 ($p = 0.005$). Qwen (L13--L15) and Gemma (L16--L18) show no significant effects at comparable relative depths (36--43\%), despite high probe accuracy}{figure.caption.17}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Representation steering results (Llama: original experiment, $N{=}136$, 10-value $\alpha $ grid; Qwen/Gemma: 6-value grid). Flip rate: fraction of test samples switching answer category. Control: random-direction perturbation of equal magnitude. Bonferroni threshold $p < 0.005$ ($k = 10$) for Llama, $p < 0.0083$ ($k = 6$) for Qwen/Gemma. Significant results in bold.$^{\dagger }$}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:steering}{{3}{8}{Representation steering results (Llama: original experiment, $N{=}136$, 10-value $\alpha $ grid; Qwen/Gemma: 6-value grid). Flip rate: fraction of test samples switching answer category. Control: random-direction perturbation of equal magnitude. Bonferroni threshold $p < 0.005$ ($k = 10$) for Llama, $p < 0.0083$ ($k = 6$) for Qwen/Gemma. Significant results in bold.$^{\dagger }$}{table.caption.21}{}}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@writefile{toc}{\contentsline {paragraph}{Why does steering fail in Qwen and Gemma?}{8}{section*.23}\protected@file@percent }
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN@col{2}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\newlabel{sec:limitations}{{6}{8}{Limitations}{section*.24}{}}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\bibdata{references}
+\bibcite{basu2026interpretability}{{1}{2026}{{Basu et~al.}}{{Basu, Patel, Sheth, Muralidharan, Elamaran, Kinra, Morgan, and Batniji}}}
+\bibcite{belinkov2022probing}{{2}{2022}{{Belinkov}}{{}}}
+\bibcite{brink2026probing}{{3}{2026}{{Brink et~al.}}{{Brink, Boer, and Ulmer}}}
+\bibcite{conneau2018xnli}{{4}{2018}{{Conneau et~al.}}{{Conneau, Rinott, Lample, Williams, Bowman, Schwenk, and Stoyanov}}}
+\bibcite{wu2020emerging}{{5}{2020}{{Conneau et~al.}}{{Conneau, Wu, Li, Zettlemoyer, and Stoyanov}}}
+\bibcite{elhage2022toy}{{6}{2022}{{Elhage et~al.}}{{Elhage, Hume, Olsson, Schiefer, Henighan, Kravec, Hatfield-Dodds, Lasenby, Drain, Chen et~al.}}}
+\bibcite{feng2026finegrained}{{7}{2026}{{Feng et~al.}}{{Feng, Li, Zhu, Zhou, Qian, Zhang, Chua, Mak, Ng, and Mao}}}
+\bibcite{geiger2024finding}{{8}{2024}{{Geiger et~al.}}{{Geiger, Wu, Potts, Icard, and Goodman}}}
+\bibcite{team2024gemma}{{9}{2024}{{{Gemma Team} et~al.}}{{{Gemma Team}, Rivi{\`e}re, Pathak, Sessa, Hardin, Bhupatiraju, Hussenot, Mesnard, Shahriari, Ram{\'e} et~al.}}}
+\bibcite{grattafiori2024llama}{{10}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten, Yang, Fan, Goyal, Hartshorn, Yang, Mber, Bai et~al.}}}
+\bibcite{gurgurov2026clasbench}{{11}{2026}{{Gurgurov et~al.}}{{Gurgurov, Al~Ghussin, Baeumel, Chou, Schramowski, Mosbach, van Genabith, and Ostermann}}}
+\bibcite{hewitt2019designing}{{12}{2019}{{Hewitt and Liang}}{{}}}
+\bibcite{ifergan2024beneath}{{13}{2025}{{Ifergan et~al.}}{{Ifergan, Choshen, Aharoni, Szpektor, and Abend}}}
+\bibcite{kargaran2024mexa}{{14}{2025}{{Kargaran et~al.}}{{Kargaran, Modarressi, Nikeghbal, Diesner, Yvon, and Sch{\"u}tze}}}
+\bibcite{li2025taming}{{15}{2025}{{Li et~al.}}{{Li, Chen, and Tong}}}
+\@LN@col{1}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN@col{2}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\bibcite{li2023iti}{{16}{2023}{{Li et~al.}}{{Li, Patel, Vi{\'e}gas, Pfister, and Wattenberg}}}
+\bibcite{marks2024geometry}{{17}{2024}{{Marks and Tegmark}}{{}}}
+\bibcite{meng2022locating}{{18}{2022}{{Meng et~al.}}{{Meng, Bau, Andonian, and Belinkov}}}
+\bibcite{muller2021first}{{19}{2021}{{Muller et~al.}}{{Muller, Elazar, Sagot, and Seddah}}}
+\bibcite{pham2026where}{{20}{2026}{{Pham et~al.}}{{Pham, Borkakoty, and Hou}}}
+\bibcite{pimentel2021probing}{{21}{2021}{{Pimentel and Cotterell}}{{}}}
+\bibcite{pokharel2026crosslingual}{{22}{2026}{{Pokharel et~al.}}{{Pokharel, Agrawal, and Nagar}}}
+\bibcite{ravichander2021probing}{{23}{2021}{{Ravichander et~al.}}{{Ravichander, Belinkov, and Hovy}}}
+\bibcite{rei2020comet}{{24}{2020}{{Rei et~al.}}{{Rei, Stewart, Farinha, and Lavie}}}
+\bibcite{sundar2025steering}{{25}{2025}{{Sundar et~al.}}{{Sundar, Williamson, Metcalf, Theobald, Seto, and Fedzechkina}}}
+\bibcite{templeton2024scaling}{{26}{2024}{{Templeton et~al.}}{{Templeton, Conerly, Marcus, Lindsey, Bricken, Chen, Pearce, Citro, Ameisen, Jones et~al.}}}
+\bibcite{turner2023activation}{{27}{2023}{{Turner et~al.}}{{Turner, Thiergart, Leech, Udell, Vazquez, Mini, and MacDiarmid}}}
+\bibcite{ulmer2022deep}{{28}{2022}{{Ulmer et~al.}}{{Ulmer, Hardmeier, and Frellsen}}}
+\bibcite{wang2025lost}{{29}{2025}{{Wang et~al.}}{{Wang, Adel, Lange, Liu, Nie, Str{\"o}tgen, and Sch{\"u}tze}}}
+\bibcite{wendler2024llamas}{{30}{2024}{{Wendler et~al.}}{{Wendler, Veselovsky, Monea, and West}}}
+\bibcite{xie2024adaptive}{{31}{2024}{{Xie et~al.}}{{Xie, Zhang, Chen, Lou, and Su}}}
+\bibcite{xing2024evaluating}{{32}{2024}{{Xing et~al.}}{{Xing, He, Xu, Wang, Wang, and Hong}}}
+\bibcite{xu2024knowledge}{{33}{2024}{{Xu et~al.}}{{Xu, Qi, Guo, Wang, Wang, Zhang, and Xu}}}
+\bibcite{yang2025qwen3}{{34}{2025}{{Yang et~al.}}{{Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang, Lv et~al.}}}
+\bibcite{zhao2026when}{{35}{2026}{{Zhao et~al.}}{{Zhao, Huang, Chen, You, and Yu}}}
+\bibcite{zhao2025steering}{{36}{2025}{{Zhao et~al.}}{{Zhao, Devoto, Hong, Du, Gema, Wang, He, Wong, and Minervini}}}
+\@LN@col{1}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN@col{2}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\bibcite{zhao2024analysing}{{37}{2024}{{Zhao et~al.}}{{Zhao, Du, Hong, Gema, Devoto, Wang, He, Wong, and Minervini}}}
+\bibcite{zou2023representation}{{38}{2025}{{Zou et~al.}}{{Zou, Phan, Chen, Campbell, Guo, Ren, Pan, Yin, Mazeika, Dombrowski, Goel, Li, Byun, Wang, Mallen, Basart, Koyejo, Song, Fredrikson, Kolter, and Hendrycks}}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Causal boundary steering results (independently sampled, $N = 201$, Llama-3.1-8B-Instruct). Bonf.\ Sig.\ $\alpha $s: number of $\alpha $ values reaching significance after Bonferroni correction out of 6 tested.}}{11}{table.caption.26}\protected@file@percent }
+\newlabel{tab:boundary}{{4}{11}{Causal boundary steering results (independently sampled, $N = 201$, Llama-3.1-8B-Instruct). Bonf.\ Sig.\ $\alpha $s: number of $\alpha $ values reaching significance after Bonferroni correction out of 6 tested}{table.caption.26}{}}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Fine-Grained Causal Boundary Analysis}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:boundary}{{A}{11}{Fine-Grained Causal Boundary Analysis}{appendix.A}{}}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Seed Replication of L13 Steering}{11}{appendix.B}\protected@file@percent }
+\newlabel{app:seed_replication}{{B}{11}{Seed Replication of L13 Steering}{appendix.B}{}}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Detection--decision dissociation across three architectures. For Llama, the linear probe peak (L15, 47\% depth), MLP probe peak (L18, 56\%), and causal steering node (L13, 41\%) cluster in mid-layers; upper layers (e.g., L28) retain detectable signal but lack causal influence. Qwen and Gemma achieve comparable probe accuracy but show no significant causal site under linear steering, illustrating that detectability does not imply causal relevance.}}{11}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:dissociation}{{6}{11}{Detection--decision dissociation across three architectures. For Llama, the linear probe peak (L15, 47\% depth), MLP probe peak (L18, 56\%), and causal steering node (L13, 41\%) cluster in mid-layers; upper layers (e.g., L28) retain detectable signal but lack causal influence. Qwen and Gemma achieve comparable probe accuracy but show no significant causal site under linear steering, illustrating that detectability does not imply causal relevance}{figure.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces AUROC and balanced accuracy for conflict probes (matched-condition data, best layer per model).}}{11}{table.caption.28}\protected@file@percent }
+\newlabel{tab:auroc}{{5}{11}{AUROC and balanced accuracy for conflict probes (matched-condition data, best layer per model)}{table.caption.28}{}}
+\@LN{817}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Detection--Decision Dissociation}{11}{appendix.C}\protected@file@percent }
+\newlabel{app:dissociation}{{C}{11}{Detection--Decision Dissociation}{appendix.C}{}}
+\@LN{818}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {D}AUROC Analysis}{11}{appendix.D}\protected@file@percent }
+\newlabel{app:auroc}{{D}{11}{AUROC Analysis}{appendix.D}{}}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Matched-Condition Steering Results}{11}{appendix.E}\protected@file@percent }
+\newlabel{app:steering_config}{{E}{11}{Matched-Condition Steering Results}{appendix.E}{}}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Matched-condition steering results. Probe: EN$\to $EN balanced accuracy at the target layer. Best $p$: minimum Fisher exact $p$-value across six tested $\alpha $ values. Bonf.: $\alpha $ values surviving Bonferroni correction out of 6. Flips: total directional transitions (p$\to $c $+$ c$\to $p).$^{\dagger }$}}{12}{table.caption.29}\protected@file@percent }
+\newlabel{tab:steering_config}{{6}{12}{Matched-condition steering results. Probe: EN$\to $EN balanced accuracy at the target layer. Best $p$: minimum Fisher exact $p$-value across six tested $\alpha $ values. Bonf.: $\alpha $ values surviving Bonferroni correction out of 6. Flips: total directional transitions (p$\to $c $+$ c$\to $p).$^{\dagger }$}{table.caption.29}{}}
+\@LN{838}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Use of AI Assistance}{12}{appendix.F}\protected@file@percent }
+\newlabel{app:ai-assistants}{{F}{12}{Use of AI Assistance}{appendix.F}{}}
+\@LN{839}{11}
+\@LN{840}{11}
+\@LN@col{2}
+\gdef \@abspage@last{12}

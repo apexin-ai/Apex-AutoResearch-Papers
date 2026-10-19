@@ -1,0 +1,4270 @@
+dream_id: dream_20260522T023801
+project: clkc_mech_interp
+venue: ''
+focus: 重点评估：1) C2 不对称性 claim 在 Llama borderline 显著 + Qwen 不显著的情况下能否撑住；2) 只有 Track
+  1 probing 无 Track 2/3 SAE+steering 时论文贡献强度是否足够 ICLR；3) back-translation COMET 低但
+  ablation 排除 confounder 的 framing 是否说服审稿人
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 第三模型复现显著不对称 + Track 2 出初步结果，原始 framing 全线成立
+      key_assumptions:
+      - 第三模型（Mistral/Gemma）ZH→EN vs EN→ZH 不对称性显著（bootstrap CI 排除零）
+      - 3/3 模型方向一致，≥2/3 达统计显著
+      - MLP non-linearity 方向在第三模型复现
+      - Llama COMET tercile ablation 复现 Qwen 的 not_confounder 结论
+      - Track 2 SAE 在 Qwen-Scope 上识别出跨语言共享 conflict feature（Jaccard > 0.15）
+      - ≥1 额外语言对（EN-JA 或 EN-DE）方向一致
+      number_ranges:
+        third_model_asymmetry_gap_pp:
+        - 5.0
+        - 12.0
+        significant_asymmetry_models_of_3:
+        - 2
+        - 3
+        consistent_direction_models_of_3:
+        - 3
+        - 3
+        third_model_within_lang_acc:
+        - 0.72
+        - 0.82
+        cross_lingual_transfer_acc_range:
+        - 0.63
+        - 0.75
+        mlp_gain_weak_direction_pp_third_model:
+        - 3.0
+        - 10.0
+        sae_cross_lingual_jaccard_mid_layer:
+        - 0.15
+        - 0.35
+        lang_pairs_validated:
+        - 2
+        - 3
+        tracks_submission_ready:
+        - 1
+        - 2
+      narrative_direction: '原始 framing 完全成立：CLEAR entity-centric 冲突解决的首个机制解释。 C2 不对称性从
+        "consistent trend" 升级为 "statistically robust cross-architecture phenomenon"，
+        英语锚点假说（H1 变体）获三模型+多语言对支持。 Track 2 SAE 提供 feature-level 证据补强因果叙事，部分缓解 RC8（无
+        intervention 的因果 claim）。 论文定位：mechanistic interpretability + cross-lingual，双社区贡献。
+
+        '
+    median:
+      tier: median
+      meaning: 第三模型方向一致但未显著，仅 Track 1，claims 需降强度但核心叙事可维持
+      key_assumptions:
+      - 第三模型不对称方向一致（ZH→EN > EN→ZH）但 CI 含零
+      - 3/3 方向一致，仅 1/3（Llama）达统计显著
+      - effect size 跨模型稳定（±2pp 内），强 consistency argument
+      - Llama COMET ablation 复现 not_confounder
+      - Track 2 SAE 未完成或结果 noisy（Jaccard < 0.10）
+      - 额外语言对仅 1 对，方向一致但样本量不足以单独显著
+      number_ranges:
+        third_model_asymmetry_gap_pp:
+        - 2.0
+        - 7.0
+        significant_asymmetry_models_of_3:
+        - 1
+        - 1
+        consistent_direction_models_of_3:
+        - 3
+        - 3
+        third_model_within_lang_acc:
+        - 0.68
+        - 0.77
+        cross_lingual_transfer_acc_range:
+        - 0.6
+        - 0.72
+        mlp_gain_weak_direction_pp_third_model:
+        - 1.0
+        - 5.0
+        sae_cross_lingual_jaccard_mid_layer:
+        - 0.0
+        - 0.1
+        lang_pairs_validated:
+        - 1
+        - 2
+        tracks_submission_ready:
+        - 1
+        - 1
+      narrative_direction: 'C2 从 "significant asymmetry" 调整为 "remarkably consistent
+        effect size across architectures  (7.2±0.5pp) despite varying statistical
+        power"——强调 effect size stability 而非 p-value。 引用 Cumming (2014) "new statistics"
+        框架，effect size + CI 报告优于 NHST。 C1（detectability）升级为主 claim，C2 降为 strong supporting
+        evidence。 Track 1 only 的贡献度靠深度弥补：layer-wise 分析 + confound exclusion pipeline  (token
+        overlap + COMET ablation) 作为方法论贡献。RC8（因果 claim）明确限定为  "correlational evidence
+        consistent with H1"，将 causal verification 列为 future work。 论文定位：phenomenon
+        characterization + methodology，仍 ICLR-viable 但需  supplementary experiments
+        充实 appendix（更多 ablation、error analysis）。
+
+        '
+    worst:
+      tier: worst
+      meaning: 第三模型不对称消失或反转，核心 C2 claim 崩塌，需重新定位论文 angle
+      key_assumptions:
+      - 第三模型不对称 <2pp 或方向反转（EN→ZH > ZH→EN）
+      - 仅 Llama 显著，Qwen+第三模型均不显著，方向不全一致
+      - 不对称性可能是 Llama 训练数据分布的 artifact 而非通用机制
+      - Track 2/3 均无法在 DDL 前完成
+      - COMET ablation 在 Llama 上出现与 Qwen 不一致的方向（质量确实影响 Llama）
+      number_ranges:
+        third_model_asymmetry_gap_pp:
+        - -3.0
+        - 2.0
+        significant_asymmetry_models_of_3:
+        - 0
+        - 1
+        consistent_direction_models_of_3:
+        - 1
+        - 2
+        third_model_within_lang_acc:
+        - 0.65
+        - 0.75
+        cross_lingual_transfer_acc_range:
+        - 0.58
+        - 0.7
+        mlp_gain_weak_direction_pp_third_model:
+        - -1.0
+        - 3.0
+        sae_cross_lingual_jaccard_mid_layer:
+        - 0.0
+        - 0.0
+        lang_pairs_validated:
+        - 1
+        - 1
+        tracks_submission_ready:
+        - 1
+        - 1
+      narrative_direction: 'C2 不对称性降级为 observation，不再作为核心 claim。Reframe 路径（按优先级）：
+
+        Path A "Architecture-dependent cross-lingual conflict processing"—— 不对称性的存在与否本身取决于架构/训练数据，这是一个
+        finding 而非 failure。 主 claim 变为：冲突信号跨语言可检测（C1 robust），但迁移特性是架构依赖的， 揭示多语言 LLM
+        内部跨语言对齐程度的异质性。引用 Wendler et al. (2024)  "Llamas Know What GPTs Don''t Show"
+        的跨架构差异发现，定位为该方向的机制扩展。
+
+        Path B "Cross-lingual probing methodology + negative result"—— 聚焦 confound
+        exclusion pipeline（token overlap 分析 + COMET ablation）作为  方法论贡献，不对称性作为 "hypothesis
+        tested and bounded" 的严格实验。 引用 Rogers et al. "negative results in NLP" 框架。
+
+        两条路径均保持 ICLR 目标：Path A 走 empirical analysis track， Path B 需要显著加厚实验密度（5+ 模型、3+
+        语言对）补偿 claim 强度下降。 关键：worst 情况下 C1 仍然成立（within-lang acc 65-75%，均远超 chance），
+        论文不会 "没东西可写"，只是叙事重心从 mechanism 转向 characterization。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/dream_reports/dream_20260522T023801/best/paper.pdf
+  imagined_experiments:
+  - name: COMET 翻译质量验证（Llama 补全）
+    plan_id: mvp_003
+    description: wmt22-comet-da back-translation 验证 Llama ZH 翻译质量，补完 Qwen 已有结果
+    expected_results:
+      llama_test_total: 272
+      llama_test_pass_rate_080: 0.22
+      llama_test_mean_comet: 0.715
+      llama_test_passed_mean_comet: 0.855
+      llama_train_total: 1096
+      llama_train_pass_rate_080: 0.24
+      llama_train_mean_comet: 0.72
+      llama_comet_tercile_low_acc: 0.648
+      llama_comet_tercile_med_acc: 0.661
+      llama_comet_tercile_high_acc: 0.632
+      llama_comet_tercile_delta_high_low_pp: -1.6
+      llama_comet_tercile_fisher_p: 0.82
+      llama_comet_tercile_conclusion: not_confounder
+    result_rationale: 'Llama 的翻译管线与 Qwen 共用同一 prompt template，back-translation COMET
+      分布应高度相似。 best 档要求 Llama 复现 Qwen 的 not_confounder 结论——这在机制上合理： 冲突检测信号编码在残差流的语义层，而非表层翻译质量。
+      如果翻译质量是 confounder，高 COMET 样本应有更高探针准确率， 但 Qwen 结果已呈反向（-5.64pp），Llama 预期同样反向或无差异。
+      pass rate 略高于 Qwen（22% vs 18.5%）因 Llama 的 EN 数据比例更大， back-translation 到 EN 的回译质量天然更好。
+
+      '
+    tables:
+    - name: 'Table: COMET Tercile Ablation (Both Models)'
+      columns:
+      - Model
+      - Tercile
+      - N
+      - COMET_mean
+      - Bal_Acc
+      - Delta_vs_Low
+      rows:
+      - - Llama-3.1-8B
+        - Low
+        - '91'
+        - '0.582'
+        - 64.8%
+        - —
+      - - Llama-3.1-8B
+        - Med
+        - '91'
+        - '0.714'
+        - 66.1%
+        - +1.3pp
+      - - Llama-3.1-8B
+        - High
+        - '90'
+        - '0.821'
+        - 63.2%
+        - -1.6pp
+      - - Qwen3-8B
+        - Low
+        - '56'
+        - '0.585'
+        - 66.4%
+        - —
+      - - Qwen3-8B
+        - Med
+        - '56'
+        - '0.700'
+        - 67.7%
+        - +1.3pp
+      - - Qwen3-8B
+        - High
+        - '56'
+        - '0.816'
+        - 60.7%
+        - -5.6pp
+    figures_description:
+    - 散点图：per-sample COMET score (x) vs probe confidence (y)，两模型子图，拟合线斜率接近零或为负
+    analysis: '两模型一致结论：翻译质量非 confounder。这允许放宽 COMET ≥0.80 门槛， 从而保留更多样本进入后续实验（特别是 plan_103
+      多语言扩展时 JA 翻译质量可能更低）。 RC1 彻底关闭。
+
+      '
+  - name: 第三模型架构验证（Gemma-2-9B-IT）
+    plan_id: plan_102
+    description: 在 Gemma-2-9B-IT 上重复完整 4 方向探针实验 + bootstrap n=100 不对称性 CI
+    expected_results:
+      model: Gemma-2-9B-IT
+      en_en_bal_acc: 0.764
+      zh_zh_bal_acc: 0.708
+      en_zh_bal_acc: 0.647
+      zh_en_bal_acc: 0.726
+      asymmetry_gap_pp: 7.9
+      bootstrap_ci_95: '[2.3%, 13.8%]'
+      bootstrap_significant: true
+      bootstrap_positive_iterations: 99/100
+      best_layer_en: 30
+      best_layer_zh: 28
+      best_layer_depth_ratio: 0.71
+      mlp_en_zh_acc: 0.708
+      mlp_gain_en_zh_pp: 6.1
+      mlp_zh_en_acc: 0.739
+      mlp_gain_zh_en_pp: 1.3
+      permutation_test_p_en_en: <0.001
+      permutation_test_p_zh_zh: <0.001
+      permutation_test_p_en_zh: <0.001
+      permutation_test_p_zh_en: <0.001
+      token_overlap_jaccard_mean: 0.035
+      token_overlap_correlation_p: 0.51
+    result_rationale: 'best 档核心要求：第三模型显著不对称 + 3/3 方向一致。 Gemma-2-9B-IT 采用 GQA + sliding
+      window attention，架构与 Llama（GQA）和 Qwen（GQA）有差异但同为 dense transformer。 within-language
+      acc ~76%/71% 落在 [0.72, 0.82] 范围内—— Gemma 英语预训练数据占比高（Google 英语资源丰富），EN→EN 高于
+      Qwen/Llama 合理。 ZH 训练数据比例低于 Qwen 但与 Llama 相当，ZH→ZH 在 Llama 附近。 不对称性 +7.9pp 在
+      [5, 12] 范围中段，CI 排除零—— 这是 best 档与 mid 档的关键区别：Gemma 作为第三个 significant 模型将 C2 从
+      "2/3 显著" 提升到 "3/3 显著"。 MLP 在 EN→ZH 方向增益 +6.1pp 位于 [3, 10] 范围—— 幅度介于 Llama（~4.7pp
+      bootstrap-corrected）和 Qwen（+2.3pp）之间， 支持"非线性成分与跨语言对齐程度负相关"的叙事： Gemma ZH 对齐弱于
+      Qwen 但强于 Llama 的 ZH 特化程度。 peak layer depth ~71% 介于 Llama（88%）和 Qwen（67%）， 三模型
+      peak 均在 mid-to-upper layers 但绝对位置有差异—— 提示冲突信号集中区域与模型的语言 transition layer 有关，非固定比例。
+
+      '
+    tables:
+    - name: 'Table: Cross-Architecture Probe Results Summary'
+      columns:
+      - Model
+      - EN→EN
+      - ZH→ZH
+      - EN→ZH
+      - ZH→EN
+      - Asym_gap
+      - CI_95
+      - Sig?
+      rows:
+      - - Llama-3.1-8B
+        - 77.1%
+        - 71.2%
+        - 64.1%
+        - 71.3%
+        - +7.2pp
+        - '[1.1, 13.6]'
+        - 'Yes'
+      - - Qwen3-8B
+        - 75.3%
+        - 71.6%
+        - 65.0%
+        - 72.2%
+        - +7.2pp
+        - '[-1.2, 13.4]'
+        - No (trend)
+      - - Gemma-2-9B-IT
+        - 76.4%
+        - 70.8%
+        - 64.7%
+        - 72.6%
+        - +7.9pp
+        - '[2.3, 13.8]'
+        - 'Yes'
+    - name: 'Table: MLP Non-linearity Gain (EN→ZH weak direction)'
+      columns:
+      - Model
+      - Linear
+      - MLP
+      - Gain_pp
+      - Interpretation
+      rows:
+      - - Llama-3.1-8B
+        - 64.1%
+        - 68.8%
+        - '+4.7'
+        - Strong non-linear component
+      - - Qwen3-8B
+        - 65.0%
+        - 67.3%
+        - '+2.3'
+        - Weak non-linear (better ZH alignment)
+      - - Gemma-2-9B-IT
+        - 64.7%
+        - 70.8%
+        - '+6.1'
+        - Moderate non-linear component
+    figures_description:
+    - 三模型不对称性 forest plot：每模型一行，点估计 + 95% bootstrap CI，垂直虚线在 0pp
+    - 三模型 layer-wise probe accuracy 曲线叠加图：EN→EN 和 ZH→EN 方向，x=layer depth ratio
+    analysis: '三模型不对称性分别为 +7.2pp / +7.2pp / +7.9pp，效果量惊人一致（CV < 6%）。 2/3 统计显著（Llama
+      borderline + Gemma clear），Qwen 方向一致但 CI 含零。 meta-analytic 角度：即使保守处理 Qwen 为 non-significant，
+      三模型一致方向 + 效果量同质性本身就是强证据。 C2 升级为 "statistically robust cross-architecture phenomenon"。
+      MLP 增益的跨模型梯度（Llama 4.7 > Gemma 6.1 > Qwen 2.3） 与各模型的中文预训练数据占比负相关—— 中文对齐越好，EN→ZH
+      映射越线性，非线性残差越小。
+
+      '
+  - name: 多语言扩展 (EN↔JA)
+    plan_id: plan_103
+    description: EN↔JA 语言对完整探针实验，检验不对称性方向是否跨语言对一致
+    expected_results:
+      model: Qwen3-8B
+      en_en_bal_acc_ja_split: 0.748
+      ja_ja_bal_acc: 0.693
+      en_ja_bal_acc: 0.618
+      ja_en_bal_acc: 0.681
+      asymmetry_gap_ja_pp: 6.3
+      bootstrap_ci_95_ja: '[0.4%, 12.5%]'
+      bootstrap_significant_ja: true
+      model_2: Llama-3.1-8B
+      llama_en_ja_bal_acc: 0.601
+      llama_ja_en_bal_acc: 0.668
+      llama_asymmetry_gap_ja_pp: 6.7
+      llama_bootstrap_ci_95_ja: '[0.8%, 13.1%]'
+      llama_bootstrap_significant_ja: true
+      lang_pairs_validated: 2
+      h1_h2_verdict: H1_supported
+    result_rationale: 'best 档要求 ≥1 额外语言对方向一致（lang_pairs_validated ∈ [2,3]）。 EN↔JA
+      预测方向与 EN↔ZH 相同（JA→EN > EN→JA）的原因： H1 英语锚点假说认为冲突信号以英语表征空间为锚点编码， 从任何非英语语言迁移到英语都更容易（"下坡"），反之更难（"上坡"）。
+      JA 不对称性略小于 ZH（6.3pp vs 7.2pp）合理： 日语与英语的 typological distance 大于中文与英语（形态学复杂度更高、
+      SOV 语序、多种书写系统），但 Qwen 的 JA 训练数据占比也较低， 两个因素部分抵消。关键是方向一致而非幅度完全相同。 JA 作为 CJK 系但与
+      ZH typologically 不同的语言—— 如果 H2（language-pair-specific）成立，JA 应呈现不同 pattern； 方向一致强力支持
+      H1。 JA within-language acc 略低于 ZH（69.3% vs 71.6%）， 因 Qwen 的 JA 训练数据少于 ZH，表征质量略弱。
+
+      '
+    tables:
+    - name: 'Table: Multi-Lingual Asymmetry Comparison'
+      columns:
+      - Model
+      - Lang_Pair
+      - X→EN
+      - EN→X
+      - Asym_gap
+      - CI_95
+      - Direction
+      rows:
+      - - Qwen3-8B
+        - EN↔ZH
+        - 72.2%
+        - 65.0%
+        - +7.2pp
+        - '[-1.2, 13.4]'
+        - ZH→EN wins
+      - - Qwen3-8B
+        - EN↔JA
+        - 68.1%
+        - 61.8%
+        - +6.3pp
+        - '[0.4, 12.5]'
+        - JA→EN wins
+      - - Llama-3.1-8B
+        - EN↔ZH
+        - 71.3%
+        - 64.1%
+        - +7.2pp
+        - '[1.1, 13.6]'
+        - ZH→EN wins
+      - - Llama-3.1-8B
+        - EN↔JA
+        - 66.8%
+        - 60.1%
+        - +6.7pp
+        - '[0.8, 13.1]'
+        - JA→EN wins
+    figures_description:
+    - 2x2 子图矩阵（model x lang_pair），每个子图为 4 方向探针 accuracy bar chart + error bars
+    - 不对称性 forest plot 扩展版：4 条（2 models x 2 lang_pairs），方向全部一致
+    analysis: '4/4 model×lang_pair 组合不对称性方向一致（X→EN > EN→X）， 效果量在 6.3-7.9pp 范围内。这是
+      H1（English-anchored）的强证据： 冲突信号以英语表征空间为锚点，X→EN 利用了"向锚点靠拢"的表征优势， EN→X 则需要额外的非线性映射。
+      H2（language-pair-specific）预测 JA 和 ZH 应有不同 pattern——被数据否定。 审稿人 RC4（dataset diversity）部分缓解：
+      不再是"只有 EN-ZH 一个语言对"，而是"两个 typologically 不同的亚洲语言"。 理想状态下 EN↔DE（印欧语系）也做，但 best
+      档 2 对已满足最低要求。
+
+      '
+  - name: Layer-wise CKA/SVCCA 分析
+    plan_id: plan_104
+    description: 逐层计算 EN vs ZH 激活的 CKA 和 SVCCA，量化跨语言表征相似度的层分布
+    expected_results:
+      models_analyzed:
+      - Llama-3.1-8B
+      - Qwen3-8B
+      - Gemma-2-9B-IT
+      cka_peak_similarity_layer_ratio_llama: 0.55
+      cka_peak_similarity_layer_ratio_qwen: 0.5
+      cka_peak_similarity_layer_ratio_gemma: 0.52
+      cka_mid_layer_mean: 0.82
+      cka_late_layer_mean: 0.54
+      cka_mid_late_drop_significant: true
+      svcca_mid_layer_mean: 0.78
+      svcca_late_layer_mean: 0.48
+      probe_peak_vs_cka_transition_correlation: -0.71
+      language_transition_layer_ratio_llama: 0.75
+      language_transition_layer_ratio_qwen: 0.6
+      language_transition_layer_ratio_gemma: 0.68
+    result_rationale: 'CKA/SVCCA 测量 EN 和 ZH 激活的表征几何相似度。 best 档下预期 pattern：mid-layers
+      高相似度（~0.82）→ late-layers 急剧下降（~0.54）。 这与 "Lost in Multilinguality"（Wendler et
+      al. 2024）的发现一致： LLM 在 mid-layers 形成 language-agnostic 概念表征， late-layers 发生 language
+      transition 准备解码。 关键发现：probe accuracy peak 出现在 CKA 下降的"转折层"附近—— 冲突信号在 language-agnostic
+      和 language-specific 表征的交界处最可检测。 这解释了为什么 ZH→EN 迁移更强：mid-layer 表征以英语为锚点， ZH→EN
+      方向"顺着"表征空间的自然结构，EN→ZH 则逆行。 三模型 CKA 转折层位置不同（Llama ~55%, Qwen ~50%, Gemma ~52%），
+      但 probe peak 与 CKA transition 的关系一致（相关 r=-0.71）。
+
+      '
+    tables:
+    - name: 'Table: CKA Similarity by Layer Group'
+      columns:
+      - Model
+      - Early (0-33%)
+      - Mid (33-67%)
+      - Late (67-100%)
+      - Mid-Late Drop
+      rows:
+      - - Llama-3.1-8B
+        - '0.71'
+        - '0.83'
+        - '0.52'
+        - '-0.31'
+      - - Qwen3-8B
+        - '0.68'
+        - '0.81'
+        - '0.56'
+        - '-0.25'
+      - - Gemma-2-9B-IT
+        - '0.70'
+        - '0.82'
+        - '0.53'
+        - '-0.29'
+    figures_description:
+    - 三模型 CKA heatmap（layer x layer 对角线）叠加 probe accuracy 曲线，标注 transition zone
+    - CKA/SVCCA 逐层曲线图 + probe accuracy 曲线双 y 轴叠加，标注 peak 和 transition 点
+    analysis: 'CKA 分析为 C4（layer structure）提供量化基础，同时为 C2（asymmetry）提供机制解释： 不对称性源于 mid-layer
+      表征空间的英语锚点特性。 probe peak 与 CKA transition 的相关性（r=-0.71）提示 冲突信号在表征空间从 language-universal
+      向 language-specific 转变时最显著—— 这正是冲突"需要被解决"的时刻。 与 H1 一致：如果表征空间以英语为锚点， ZH/JA 样本在
+      mid-layer 被"翻译"为英语表征后冲突信号变得可检测， 而英语样本到 ZH/JA 则需要额外的非线性映射来"离开"锚点。
+
+      '
+  - name: 探针权重可视化 + PCA
+    plan_id: plan_109
+    description: 最优层线性探针权重 PCA/t-SNE 可视化，展示冲突 vs 非冲突的跨语言表征结构
+    expected_results:
+      pca_variance_explained_2d: 0.38
+      conflict_nonconflict_silhouette_en: 0.42
+      conflict_nonconflict_silhouette_zh: 0.35
+      cross_lingual_overlap_mid_layer: high
+      cross_lingual_overlap_late_layer: low
+      en_zh_conflict_centroid_cosine_mid: 0.78
+      en_zh_conflict_centroid_cosine_late: 0.51
+    result_rationale: 'PCA 可视化在 best 档下应呈现清晰的定性 pattern： mid-layer 中 EN 和 ZH 的冲突样本在
+      PCA 空间中高度重叠（centroid cosine ~0.78）， 支持 H1 的 language-universal 冲突检测假说。 late-layer
+      中两语言聚类开始分离（cosine 降至 ~0.51）， 对应 language transition 引入的 language-specific 成分。
+      silhouette score EN > ZH（0.42 vs 0.35）反映英语探针分离度更好， 与 EN→EN > ZH→ZH 的准确率差异一致。
+      PCA 只解释 ~38% 方差——冲突信号不是低维线性结构， 但方向性清晰可见，为论文提供直观的 Figure 1 素材。
+
+      '
+    tables: []
+    figures_description:
+    - 2x3 PCA 子图矩阵（mid-layer vs late-layer x 3 models），颜色=conflict/non-conflict，形状=EN/ZH，椭圆标注
+      95% CI
+    - t-SNE 补充图：mid-layer 全样本，4 类（EN-conflict, EN-non, ZH-conflict, ZH-non）颜色区分
+    analysis: '可视化为 mechanistic interpretability claim 提供必要的定性证据—— 审稿人需要"看到"冲突信号，而非仅看
+      accuracy 数字。 mid-layer 重叠 + late-layer 分离的 pattern 与 CKA 分析（plan_104）互洽， 构成完整的层级叙事。
+
+      '
+  - name: Label noise ablation
+    plan_id: plan_106
+    description: 系统性注入 5%/10%/15%/20% label noise，测量 probe accuracy 下降曲线
+    expected_results:
+      noise_0_acc: 0.771
+      noise_5_acc: 0.754
+      noise_10_acc: 0.731
+      noise_15_acc: 0.702
+      noise_20_acc: 0.668
+      degradation_slope_per_5pp: -2.6
+      robustness_threshold_pp: 12
+      cross_lingual_noise_sensitivity_en_zh: 1.3
+      cross_lingual_noise_sensitivity_zh_en: 1.1
+    result_rationale: '线性探针对 label noise 的鲁棒性直接关系到 verification pipeline 的可靠性。 best
+      档下探针应表现出合理的渐进退化（非突变）， 因为残差流中的冲突信号是分布式编码的，少量 label noise 不会改变决策边界方向， 只会使其偏移。~2.6pp/5%
+      noise 的斜率表明探针在 10% noise 下仍保持 >73%， 考虑到 verification pipeline 的 label error
+      rate 预估 <5%， 这提供了充分的安全裕度。 跨语言方向的 noise sensitivity 差异小（1.3x vs 1.1x） 表明 noise
+      robustness 是探针的固有属性而非语言依赖的。
+
+      '
+    tables:
+    - name: 'Table: Label Noise Robustness (Llama EN→EN)'
+      columns:
+      - Noise_Level
+      - Bal_Acc
+      - Delta_vs_0%
+      - Relative_Drop
+      rows:
+      - - 0%
+        - 77.1%
+        - —
+        - —
+      - - 5%
+        - 75.4%
+        - -1.7pp
+        - 2.2%
+      - - 10%
+        - 73.1%
+        - -4.0pp
+        - 5.2%
+      - - 15%
+        - 70.2%
+        - -6.9pp
+        - 8.9%
+      - - 20%
+        - 66.8%
+        - -10.3pp
+        - 13.4%
+    figures_description:
+    - Noise level (x) vs balanced accuracy (y) 曲线图，4 方向 x 3 模型叠加，error bars from 5-fold
+    analysis: '探针在 ≤10% noise 下保持 >73% accuracy， 验证 pipeline label quality 的 error
+      tolerance 充裕。 此实验为 C1 的 robustness 声明提供支持，是补充性结果而非核心发现。 建议放入 Appendix 而非主文。
+
+      '
+  - name: Representation steering（干预实验）
+    plan_id: plan_107
+    description: 用探针方向作为 steering vector 干预残差流中的冲突信号，测量模型输出变化
+    expected_results:
+      llama_monolingual_en_flip_rate: 0.312
+      llama_monolingual_zh_flip_rate: 0.268
+      llama_cross_lingual_zh_en_flip_rate: 0.243
+      llama_cross_lingual_en_zh_flip_rate: 0.178
+      llama_flip_asymmetry_cross: 0.065
+      qwen_monolingual_en_flip_rate: 0.289
+      qwen_cross_lingual_zh_en_flip_rate: 0.221
+      qwen_cross_lingual_en_zh_flip_rate: 0.192
+      steering_alpha_optimal: 2.5
+      steering_coherence_preserved_rate: 0.91
+      parametric_to_contextual_shift_significant: true
+    result_rationale: 'best 档下 representation steering 应产生有意义的输出翻转—— 这是 RC8（因果 claims
+      without intervention）的直接缓解。 探针方向即为冲突信号的线性近似，沿该方向干预残差流 应推动模型从 parametric answer
+      翻转到 contextual answer（或反之）。 monolingual flip rate ~30% 是合理的—— 不是所有样本都能被线性 steering
+      翻转（非线性成分存在）， 但 30% 显著高于随机翻转基线（~5%）。 cross-lingual flip rate 低于 monolingual（ZH→EN
+      24.3% vs EN 31.2%）， 且呈现与探针迁移相同的不对称性（ZH→EN 24.3% > EN→ZH 17.8%）， 从因果方向确认 C2：不对称性不仅是探针检测的统计
+      pattern， 而是残差流中冲突信号编码的因果结构。 coherence preserved rate 91% 表明 steering 没有破坏模型的一般生成质量。
+
+      '
+    tables:
+    - name: 'Table: Steering Flip Rates by Direction'
+      columns:
+      - Model
+      - Direction
+      - Flip_Rate
+      - Random_Baseline
+      - Lift
+      rows:
+      - - Llama
+        - EN (mono)
+        - 31.2%
+        - 4.8%
+        - 6.5x
+      - - Llama
+        - ZH (mono)
+        - 26.8%
+        - 5.1%
+        - 5.3x
+      - - Llama
+        - ZH→EN (cross)
+        - 24.3%
+        - 4.9%
+        - 5.0x
+      - - Llama
+        - EN→ZH (cross)
+        - 17.8%
+        - 5.2%
+        - 3.4x
+      - - Qwen
+        - EN (mono)
+        - 28.9%
+        - 4.6%
+        - 6.3x
+      - - Qwen
+        - ZH→EN (cross)
+        - 22.1%
+        - 4.7%
+        - 4.7x
+      - - Qwen
+        - EN→ZH (cross)
+        - 19.2%
+        - 5.0%
+        - 3.8x
+    figures_description:
+    - Steering alpha sweep 曲线（alpha x flip_rate），标注 optimal alpha 和 coherence collapse
+      threshold
+    - Flip rate asymmetry bar chart：monolingual vs cross-lingual x 方向，error bars from
+      bootstrap
+    analysis: 'Steering 实验是 best 档的关键差异化实验—— 即使 Track 3 SAE steering 未完成，probe-based
+      steering 已提供因果证据。 flip rate 不对称性（ZH→EN > EN→ZH）与探针迁移不对称性方向一致， 从相关性→因果性升级。 审稿人如果质疑
+      "探针只证明信号可检测"（RC8）， steering 实验的回应是："干预该信号确实改变了冲突解决行为"。 放入主文 Section 4.3 作为 C2
+      不对称性的因果证据。
+
+      '
+  - name: 更大数据集验证
+    plan_id: plan_108
+    description: 扩大 ConflictQA 采样至 2000+ samples per model，验证结论稳定性
+    expected_results:
+      sample_size_per_model: 2200
+      llama_en_en_2k: 0.775
+      llama_asymmetry_gap_2k_pp: 7.4
+      llama_bootstrap_ci_2k: '[3.1%, 11.8%]'
+      qwen_en_en_2k: 0.758
+      qwen_asymmetry_gap_2k_pp: 7.0
+      qwen_bootstrap_ci_2k: '[1.8%, 12.3%]'
+      qwen_2k_significant: true
+      ci_width_reduction_pct: 28
+    result_rationale: '数据量翻倍后 CI 宽度应缩减约 1/√2 ≈ 28%。 best 档下关键收益：Qwen 的 CI 从 [-1.2%,
+      13.4%] 收窄至 [1.8%, 12.3%]， 终于排除零——即 Qwen 也达到统计显著。 这是 best 档 "3/3 显著" 的另一条路径（与
+      Gemma 第三模型互补）： 即使不加第三模型，Qwen 扩大样本后也能独立显著。 点估计基本不变（7.0pp vs 7.18pp），表明效果量是稳定的，
+      之前 Qwen 不显著纯粹是 power 不足而非效果不存在。
+
+      '
+    tables:
+    - name: 'Table: Sample Size Scaling Effect on CI'
+      columns:
+      - Model
+      - N
+      - Asym_gap
+      - CI_95
+      - Significant?
+      rows:
+      - - Llama
+        - ~1000
+        - +7.2pp
+        - '[1.1, 13.6]'
+        - 'Yes'
+      - - Llama
+        - ~2200
+        - +7.4pp
+        - '[3.1, 11.8]'
+        - 'Yes'
+      - - Qwen
+        - ~1000
+        - +7.2pp
+        - '[-1.2, 13.4]'
+        - 'No'
+      - - Qwen
+        - ~2200
+        - +7.0pp
+        - '[1.8, 12.3]'
+        - 'Yes'
+    figures_description:
+    - Power analysis 曲线：sample size (x) vs CI width (y)，标注 'significance threshold'
+      水平线
+    analysis: '数据扩展是 low-risk high-value 实验——不可能改变结论方向， 只会收窄 CI。best 档下 Qwen 达显著是锦上添花（因为
+      Gemma 已提供第三模型）， 建议放入 Appendix 或 robustness 小节。
+
+      '
+  - name: Qwen-Scope SAE 冲突特征识别
+    plan_id: plan_201
+    description: 用 Qwen-Scope 预训练 SAE 在 Qwen3-8B-Base 上识别冲突相关的稀疏特征
+    expected_results:
+      sae_model: Qwen3-8B-Base
+      sae_source: Qwen-Scope (pre-trained)
+      format_adaptation: cloze/completion (base model compatible)
+      total_features_analyzed: 65536
+      conflict_candidate_features_mi_top: 128
+      conflict_features_after_filtering: 47
+      feature_sparsity_mean: 0.034
+      feature_activation_conflict_vs_nonconflict_auroc: 0.81
+      en_conflict_features_count: 38
+      zh_conflict_features_count: 31
+      shared_conflict_features_count: 18
+      raw_jaccard_all_layers: 0.22
+      mid_layer_jaccard: 0.28
+      late_layer_jaccard: 0.12
+      language_identity_feature_overlap: 0.03
+    result_rationale: 'best 档要求 SAE 在 Qwen-Scope 上识别出跨语言共享 conflict feature（Jaccard
+      > 0.15）。 Qwen-Scope 的 SAE 在 Qwen3-8B-Base 上预训练，特征空间已学到有意义的 monosemantic 分解。
+      conflict vs non-conflict 的 mutual-information feature selection（SpARE 方法） 应能从
+      65K 特征中筛选出 ~128 个 candidate，进一步过滤到 ~47 个 robust 特征。 38 个 EN conflict features
+      和 31 个 ZH conflict features 中有 18 个共享（Jaccard ~0.22）， 在 [0.15, 0.35] 范围中段。 mid-layer
+      Jaccard 0.28 显著高于 late-layer 0.12—— 这是 H1 的 SAE-level 证据：mid-layer 冲突特征跨语言共享度高，
+      late-layer 语言分化后共享度下降。 language-identity feature overlap 仅 3% 表明 conflict features
+      不是 language features 的子集。 AUROC 0.81 表明 SAE 特征可以高质量区分冲突/非冲突样本， 与探针 accuracy
+      ~75% 在同一水平（不同指标不直接可比但数量级一致）。
+
+      '
+    tables:
+    - name: 'Table: SAE Conflict Feature Summary'
+      columns:
+      - Category
+      - Count
+      - Sparsity
+      - AUROC
+      rows:
+      - - EN-specific conflict
+        - '20'
+        - '0.031'
+        - '0.79'
+      - - ZH-specific conflict
+        - '13'
+        - '0.038'
+        - '0.76'
+      - - Cross-lingual shared
+        - '18'
+        - '0.033'
+        - '0.84'
+      - - Language-identity (control)
+        - '42'
+        - '0.025'
+        - '0.52'
+    figures_description:
+    - SAE 特征激活 heatmap：top-47 conflict features x 样本（按 EN-conflict/EN-non/ZH-conflict/ZH-non
+      排列）
+    - Venn diagram：EN conflict features vs ZH conflict features，标注 Jaccard
+    analysis: 'Track 2 初步结果成立——SAE 提供了 feature-level 的冲突编码证据。 shared conflict features
+      的存在直接支持 H1（language-universal detection）， mid > late layer Jaccard 差异支持"冲突信号在
+      mid-layer 跨语言共享、late-layer 分化"的叙事。 这部分缓解 RC8：SAE 特征激活模式提供了超越线性探针的 interpretability
+      证据， 虽然不等同于 causal intervention，但结合 plan_107 的 steering 实验， 形成 "探针检测 → SAE 分解
+      → steering 干预" 的三层证据链。
+
+      '
+  - name: LangFIR 语言特征解耦
+    plan_id: plan_202
+    description: 用 LangFIR random-token filtering 识别 language-identity 特征，从冲突特征中排除
+    expected_results:
+      language_identity_features_identified: 42
+      language_features_early_layer_concentration: 0.68
+      conflict_features_mid_layer_concentration: 0.61
+      overlap_conflict_language: 2
+      overlap_rate: 0.043
+      conflict_features_after_deconfounding: 45
+      jaccard_change_after_deconfounding: '+0.02'
+      layer_distribution_separation_p: 0.003
+    result_rationale: 'LangFIR 通过 random-token filtering 识别在所有 token 上一致激活的 language-identity
+      特征。 best 档下预期 42 个 language features 主要集中在 early layers（68%）， 而 conflict features
+      集中在 mid layers（61%）——两类特征的层分布显著不同（p=0.003）。 仅 2 个 overlap（overlap rate 4.3%）表明
+      conflict 不是 language 的子集， 从 SAE feature 层面证明冲突检测是语义级别的判断，而非语言识别的副产品。 deconfounding
+      后 Jaccard 轻微上升（+0.02），因为移除 language-contaminated 特征 纯化了 conflict feature 集合。
+
+      '
+    tables:
+    - name: 'Table: Feature Type Layer Distribution'
+      columns:
+      - Feature_Type
+      - Early (0-33%)
+      - Mid (33-67%)
+      - Late (67-100%)
+      - Total
+      rows:
+      - - Language-identity
+        - 29 (69%)
+        - 9 (21%)
+        - 4 (10%)
+        - '42'
+      - - Conflict (shared)
+        - 2 (11%)
+        - 11 (61%)
+        - 5 (28%)
+        - '18'
+      - - Conflict (EN-only)
+        - 1 (5%)
+        - 10 (50%)
+        - 9 (45%)
+        - '20'
+      - - Conflict (ZH-only)
+        - 1 (8%)
+        - 7 (54%)
+        - 5 (38%)
+        - '13'
+    figures_description:
+    - 层分布对比直方图：language-identity features vs conflict features 的 layer histogram 叠加
+    analysis: 'LangFIR 控制实验为 C5 提供关键的 confound 排除： 冲突信号不是语言信号的 epiphenomenon。 层分布分离（early
+      vs mid）与 plan_104 的 CKA 分析互洽—— early layers 做语言识别，mid layers 做语义/冲突判断。
+
+      '
+  - name: Cross-lingual feature Jaccard 分析
+    plan_id: plan_203
+    description: mid-layer vs late-layer conflict feature 跨语言 Jaccard 对比，检验 H1 vs
+      H2
+    expected_results:
+      mid_layer_jaccard: 0.28
+      late_layer_jaccard: 0.12
+      jaccard_difference: 0.16
+      paired_permutation_test_p: 0.008
+      h1_vs_h2_verdict: H1_supported
+      per_layer_jaccard_peak_ratio: 0.48
+      per_layer_jaccard_trough_ratio: 0.88
+    result_rationale: 'H1 预测 mid-layer Jaccard >> late-layer Jaccard， H2 预测无显著差异或
+      mid < late。 best 档下 mid 0.28 vs late 0.12，差异 0.16，permutation test p=0.008 <
+      0.05。 这是 H1 的定量确认：冲突特征在 mid-layers 跨语言高度共享， 在 late-layers（language transition
+      后）显著分化。 Jaccard peak 在 ~48% depth（mid-layer），trough 在 ~88% depth（late-layer），
+      与 CKA transition zone（plan_104）和 probe peak（plan_102）时间线吻合。 三条独立证据线（CKA 表征相似度、probe
+      accuracy、SAE feature Jaccard） 收敛在相同的层级叙事上，大幅增强可信度。
+
+      '
+    tables:
+    - name: 'Table: Layer-Group Jaccard Summary'
+      columns:
+      - Layer_Group
+      - EN_features
+      - ZH_features
+      - Shared
+      - Jaccard
+      - 95% CI
+      rows:
+      - - Early (0-33%)
+        - '3'
+        - '3'
+        - '1'
+        - '0.20'
+        - '[0.04, 0.41]'
+      - - Mid (33-67%)
+        - '21'
+        - '18'
+        - '8'
+        - '0.28'
+        - '[0.16, 0.42]'
+      - - Late (67-100%)
+        - '14'
+        - '10'
+        - '3'
+        - '0.12'
+        - '[0.03, 0.24]'
+    figures_description:
+    - 逐层 Jaccard 曲线 + 95% permutation CI 带，标注 H1/H2 预测区间
+    - Mid vs Late Jaccard 散点图（每层一个点），对角线上方=H1，下方=H2
+    analysis: 'Jaccard 分析是 H1 vs H2 检验的最直接证据。 p=0.008 在 0.05 显著性水平下 comfortably significant。
+      结合 plan_104（CKA 层分布）和 plan_109（PCA 可视化）， 三条证据线一致支持 H1：冲突信号以英语为锚点在 mid-layer
+      跨语言共享编码。 这是论文 Discussion 部分 H1 vs H2 resolution 的核心数据。
+
+      '
+  - name: Monolingual→cross-lingual steering transfer
+    plan_id: plan_301
+    description: 用 SpARE 英语冲突 SAE 特征做 cross-lingual steering，测量跨语言有效性
+    expected_results:
+      en_monolingual_em_c: 0.42
+      en_monolingual_em_m: 0.31
+      en_monolingual_flip_rate: 0.35
+      zh_cross_lingual_em_c: 0.29
+      zh_cross_lingual_em_m: 0.22
+      zh_cross_lingual_flip_rate: 0.24
+      transfer_efficiency: 0.69
+      steering_asymmetry_en_to_zh: 0.24
+      steering_asymmetry_zh_to_en: 0.31
+      steering_asymmetry_gap: 0.07
+      coherence_preserved_cross: 0.87
+    result_rationale: 'SpARE 已在英语 monolingual 场景证明 SAE steering 对知识冲突有效。 best 档下 cross-lingual
+      transfer efficiency ~69%（跨语言 flip rate / monolingual flip rate）， 表明英语冲突特征包含约
+      70% 的跨语言可迁移信号。 30% 的 transfer loss 对应 late-layer language-specific 成分（与 Jaccard
+      分析一致）。 steering asymmetry（EN→ZH 0.24 < ZH→EN 0.31）再次复现探针和 probe steering 的不对称方向，
+      从 SAE feature 干预层面第三次确认 C2。 coherence 87% 略低于 probe steering 的 91%—— SAE feature
+      steering 更 targeted 但也更 brittle（fewer degrees of freedom）。
+
+      '
+    tables:
+    - name: 'Table: SAE Steering Cross-Lingual Transfer'
+      columns:
+      - Condition
+      - EM_C
+      - EM_M
+      - Flip_Rate
+      - Coherence
+      rows:
+      - - EN mono (baseline)
+        - '0.42'
+        - '0.31'
+        - 35.0%
+        - '0.93'
+      - - EN→ZH (cross)
+        - '0.29'
+        - '0.22'
+        - 24.0%
+        - '0.87'
+      - - ZH→EN (cross)
+        - '0.34'
+        - '0.26'
+        - 31.0%
+        - '0.89'
+      - - Random features (control)
+        - '0.05'
+        - '0.04'
+        - 5.2%
+        - '0.94'
+    figures_description:
+    - Steering 效果对比 bar chart：monolingual vs cross-lingual（两个方向），+ random control
+    - Transfer efficiency vs layer depth 曲线：不同层 steering 的跨语言迁移效率
+    analysis: 'SAE steering 提供了最直接的因果证据—— 操控特定 SAE 特征改变了跨语言冲突解决行为。 transfer efficiency
+      69% 与 Jaccard 28% 的 scale 差异 是因为即使非 shared features 也可能有部分跨语言效应。 这是 Track 3
+      的核心贡献，结合 Track 1 probing + Track 2 SAE 分析， 构成完整的 "检测→分解→干预" 三轨证据。
+
+      '
+  - name: Cross-lingual-specific steering
+    plan_id: plan_302
+    description: 用 Track 2 跨语言特有特征构建 steering vectors，对比 monolingual features 效果
+    expected_results:
+      shared_feature_steering_flip_rate: 0.28
+      en_only_feature_steering_flip_rate_on_zh: 0.11
+      zh_only_feature_steering_flip_rate_on_en: 0.09
+      shared_vs_specific_lift: 2.7
+      combined_steering_flip_rate: 0.33
+      combined_vs_shared_only_lift: 1.18
+    result_rationale: '如果 H1 成立，shared features 的 cross-lingual steering 效果应显著优于 language-specific
+      features。 best 档下 shared feature steering 0.28 vs specific features ~0.10，lift
+      2.7x—— 强力支持冲突信号的跨语言共享编码假说。 combined steering（shared + specific）仅比 shared-only
+      提升 18%， 表明 language-specific features 的增量贡献有限， 冲突解决的核心信号已被 shared features 捕获。
+
+      '
+    tables:
+    - name: 'Table: Feature Type Steering Comparison'
+      columns:
+      - Feature_Set
+      - Target_Lang
+      - Flip_Rate
+      - vs_Shared
+      rows:
+      - - Shared (18 features)
+        - ZH
+        - 28.0%
+        - 1.0x
+      - - EN-only (20 features)
+        - ZH
+        - 11.0%
+        - 0.39x
+      - - ZH-only (13 features)
+        - EN
+        - 9.0%
+        - 0.32x
+      - - Combined (all 51)
+        - ZH
+        - 33.0%
+        - 1.18x
+    figures_description:
+    - Feature-set ablation bar chart：4 条件 x flip rate，标注显著性星号
+    analysis: 'Feature-set ablation 是 H1 最精细的因果检验： shared features 包含绝大部分跨语言 steering
+      能力， language-specific features 贡献边际，combined 收益递减。 这与"冲突检测是 language-universal
+      的，resolution 才是 language-specific 的"叙事完全一致。
+
+      '
+  - name: Typological steering correlation
+    plan_id: plan_303
+    description: 测试 steering 有效性与 CLEAR linguistic similarity metric 的相关性
+    expected_results:
+      lang_pairs_tested:
+      - EN↔ZH
+      - EN↔JA
+      steering_effectiveness_en_zh: 0.28
+      steering_effectiveness_en_ja: 0.23
+      clear_similarity_en_zh: 0.72
+      clear_similarity_en_ja: 0.58
+      correlation_direction: positive
+      note: 仅 2 个语言对，无法计算有意义的相关系数，仅报告方向一致性
+    result_rationale: 'best 档下 lang_pairs_validated = 2，只有 EN↔ZH 和 EN↔JA 两对数据点。 两个点不足以计算
+      Pearson r，但方向一致性有意义： CLEAR similarity 更高的 EN↔ZH（0.72）steering 效果更好（0.28 > 0.23），
+      与 linguistic similarity → conflict resolution 的因果链方向一致。 这是 suggestive evidence
+      而非 definitive proof—— 论文中应诚实限定为 "consistent with the hypothesis,  pending validation
+      with additional language pairs"。 best 档的叙事不依赖此实验的强结论，而是用它作为 future work 的 pilot
+      data。
+
+      '
+    tables:
+    - name: 'Table: Steering vs Linguistic Similarity'
+      columns:
+      - Lang_Pair
+      - CLEAR_Similarity
+      - Steering_Flip_Rate
+      - Probe_Asymmetry
+      rows:
+      - - EN↔ZH
+        - '0.72'
+        - 28.0%
+        - +7.2pp
+      - - EN↔JA
+        - '0.58'
+        - 23.0%
+        - +6.3pp
+    figures_description:
+    - 散点图（仅 2 点 + 趋势线虚线）：CLEAR similarity (x) vs steering flip rate (y)，标注 'n=2, directional
+      only'
+    analysis: 此实验在 best 档下只能提供方向性暗示。 论文定位为 Discussion 段落而非独立 claim， 明确标注 "preliminary,
+      n=2" 并指向 future work（5+ 语言对验证）。 审稿人不会因 n=2 的相关分析扣分——前提是作者不 overclaim。
+  review_report: '---
+
+    dream_id: dream_20260522T023801
+
+    tier: best
+
+    overall_score: borderline accept (3.5/5)
+
+    timestamp: 2026-05-22T03:18:57.390166+00:00
+
+    ---
+
+
+    # Review Report: Cross-Lingual Conflict Detection in Multilingual LLMs
+
+
+    **Paper:** Cross-Lingual Conflict Detection in Multilingual LLMs: Mechanistic
+    Evidence for English-Anchored Representations
+
+
+    **Venue:** ACL ARR (inferred from anonymous *CL format + CLEAR ACL 2026 citation)
+
+
+    **Review Mode:** Full (2-reviewer roundtable with cross-sharing and convergence)
+
+
+    ---
+
+
+    ## Final Scores (ACL ARR 1–5 scale)
+
+
+    | Dimension | Score | Justification |
+
+    |-----------|-------|---------------|
+
+    | **Soundness** | **3.5 / 5** | Methodology generally sound for what it covers;
+    hypothesis-driven design with appropriate statistical tests. Deducted for: missing
+    non-conflict baseline (critical gap in experimental design), bootstrap n=100 below
+    standard, base/instruct SAE mismatch, small feature counts underlying Jaccard
+    test. |
+
+    | **Excitement** | **3.5 / 5** | Novel intersection of mechanistic interpretability
+    and multilingual NLP; three-track convergence design is methodologically compelling.
+    Tempered by: English-anchoring could be trivially explained by pre-training distribution
+    rather than conflict-specific mechanism; only 2 typologically similar language
+    pairs tested. |
+
+    | **Overall Assessment** | **3.5 / 5 (Borderline Accept)** | A well-designed study
+    with a novel question and genuine triangulation across methods. The three-track
+    convergence (probing → SAE → steering) is the paper''s strongest contribution.
+    However, the missing non-conflict baseline, limited language diversity, and thin
+    bibliography prevent a confident accept. Addressing these would likely elevate
+    to clear accept. |
+
+
+    **Confidence:** 4/5
+
+
+    ---
+
+
+    ## 1. Summary
+
+
+    This paper presents the first mechanistic investigation of cross-lingual knowledge
+    conflict signals in multilingual LLMs. Using three complementary analysis tracks
+    — residual stream probing (Track 1), sparse autoencoder feature analysis (Track
+    2), and causal representation steering (Track 3) — the authors study how conflict
+    detection signals are encoded across three transformer architectures (Llama-3.1-8B,
+    Qwen3-8B, Gemma-2-9B-IT) and two language pairs (EN↔ZH, EN↔JA). The paper formulates
+    two competing hypotheses: H1 (English-anchored universal detection) predicts language-universal
+    conflict encoding in mid-layers with late-layer language-specific divergence;
+    H2 (language-pair-specific encoding) predicts language-specific encoding from
+    mid-layers onward. Three independent evidence lines — probe transfer asymmetry
+    (X→EN > EN→X by 6.3–7.9pp), SAE Jaccard analysis (mid-layer 0.28 > late-layer
+    0.12, p=0.008), and steering flip rate asymmetry — converge to support H1.
+
+
+    ---
+
+
+    ## 2. Strengths
+
+
+    ### S1. Novel and well-motivated research question
+
+    This is the first study to investigate the internal mechanisms of cross-lingual
+    knowledge conflict resolution. The paper bridges two communities (mechanistic
+    interpretability and multilingual NLP) with a question that naturally extends
+    CLEAR''s behavioral findings (Zhao et al. 2026) into mechanistic territory. The
+    "how" and "why" behind linguistic affinity''s role in conflict resolution is a
+    question worth answering.
+
+
+    ### S2. Hypothesis-driven experimental design
+
+    The H1 vs. H2 framing derives specific, falsifiable predictions (mid-layer > late-layer
+    sharing for H1; directional consistency across language pairs) and systematically
+    tests them. This is exemplary scientific practice, particularly for interpretability
+    research which often devolves into exploratory pattern-finding without clear hypotheses.
+
+
+    ### S3. Three-track converging evidence
+
+    The detection (probing) → decomposition (SAE) → intervention (steering) pipeline
+    provides increasingly strong evidence types: correlational → structural → causal.
+    The fact that steering flip rate asymmetry mirrors probe transfer asymmetry (Section
+    4.5) is the paper''s strongest result, moving beyond "signals are detectable"
+    to "manipulating these signals causally changes behavior."
+
+
+    ### S4. Cross-architecture consistency
+
+    The asymmetry gap of +7.2pp / +7.2pp / +7.9pp across three architectures (CV <
+    6%) is remarkably consistent. The MLP non-linearity gradient anti-correlating
+    with Chinese pre-training proportion (Qwen +2.3pp < Llama +4.7pp < Gemma +6.1pp)
+    connects training data characteristics to mechanistic behavior — a clean and interpretable
+    finding.
+
+
+    ### S5. Thorough confound controls
+
+    - COMET tercile ablation (Table 1) empirically rules out translation quality as
+    confound, finding a null/reversed relationship.
+
+    - LangFIR deconfounding separates language-identity features (early layers, 68%)
+    from conflict features (mid layers, 61%) with minimal overlap (4.3%).
+
+    - Label noise ablation establishes safety margins (~2.6pp/5% noise).
+
+    - Token overlap analysis confirms low Jaccard (3–4%) between language pairs.
+
+
+    ### S6. Feature-set ablation provides fine-grained causal evidence
+
+    Table 11 shows shared features alone achieve 28% cross-lingual flip rate vs. 9–11%
+    for language-specific features, with combined sets providing only marginal 18%
+    lift. This is the most precise test of H1 in the paper — shared features are not
+    merely correlated with conflict signals but causally drive cross-lingual conflict
+    resolution.
+
+
+    ---
+
+
+    ## 3. Weaknesses
+
+
+    ### W1 (Major). Missing non-conflict semantic baseline
+
+    **The most critical gap in the paper.** The "English-anchored" asymmetry (X→EN
+    > EN→X) could be a general property of multilingual representations under any
+    semantic task, not a conflict-specific phenomenon. English-dominant pre-training
+    means English occupies a more central position in representation space; any probing
+    task might show the same directional advantage. Without a control experiment training
+    probes on a non-conflict semantic distinction (e.g., sentiment, topic, entailment)
+    and measuring whether the same asymmetry appears, the paper cannot distinguish
+    between:
+
+    - (a) Conflict detection is specifically English-anchored (the paper''s claim)
+
+    - (b) All cross-lingual semantic transfer is English-anchored (trivially true,
+    already known)
+
+
+    This experiment is computationally cheap — the same probing pipeline on a different
+    binary classification task — and its absence is the single largest threat to the
+    paper''s novelty. **If (b) is true, the paper reduces from "novel mechanistic
+    finding about conflict" to "replication of known cross-lingual transfer asymmetry
+    on a new task."**
+
+
+    ### W2 (Major). Only two typologically similar language pairs
+
+    Both EN↔ZH and EN↔JA are CJK languages from the same cultural sphere. The paper
+    claims "English-anchored universal detection" (H1) but the evidence cannot distinguish
+    this from "similar behavior for typologically similar languages." H2 predicts
+    language-pair-specific patterns — testing only pairs with high typological similarity
+    between the non-English languages cannot falsify H2 meaningfully. At minimum,
+    one Indo-European pair (e.g., EN↔DE or EN↔FR, where shared script and morphology
+    may produce different dynamics) is needed to justify the "universal" claim. The
+    paper''s own framing references CLEAR''s 10-language evaluation, making the 2-language
+    coverage feel thin.
+
+
+    ### W3 (Major). Severely inadequate bibliography
+
+    Only 8 references are cited. For an ACL main conference paper, this is far below
+    the norm (~30–50). Critical missing areas include:
+
+    - **Cross-lingual probing foundations:** Pires et al. (2019), Conneau et al. (2020),
+    Chi et al. (2020) — the entire lineage of cross-lingual representation analysis
+    that this work builds on.
+
+    - **Monolingual conflict probing:** Recent work achieving 90%+ accuracy on monolingual
+    conflict detection should be cited and compared to explain the 70–77% gap.
+
+    - **SVCCA:** Raghu et al. (2017) — the original SVCCA paper is not cited despite
+    SVCCA being used.
+
+    - **ConflictQA:** The dataset source (Xie et al. 2024) is cited in references
+    but not in the methods section where the dataset is actually introduced (Section
+    3.1).
+
+    - **Multilingual knowledge editing, language-specific neurons, concept neurons**
+    — all adjacent areas with no coverage.
+
+
+    The thin bibliography raises concerns about awareness of the broader landscape
+    and could lead to unstated overlap with existing work.
+
+
+    ### W4 (Moderate). SAE base model / probing instruct model mismatch
+
+    Track 2 uses Qwen-Scope SAEs trained on Qwen3-8B-Base, while Track 1 probing uses
+    instruct-tuned models. The paper acknowledges this (Limitations §3) but dismisses
+    it as "cross-validation between tracks partially mitigates." This underestimates
+    the issue:
+
+    - RLHF/instruction tuning reorganizes representations, particularly in mid-to-late
+    layers where the paper claims critical conflict processing occurs.
+
+    - The Jaccard analysis (Table 8) operates in the SAE''s native feature space on
+    the base model. Mapping these results onto instruct-model behavior is a logical
+    gap.
+
+    - SAE analysis is limited to a single model (Qwen) — no cross-architecture SAE
+    validation (Llama and Gemma are absent from Track 2).
+
+
+    ### W5 (Moderate). Bootstrap n=100 is insufficient for reliable 95% CIs
+
+    Standard practice recommends n ≥ 1000 (Efron & Tibshirani 1993). At n=100, the
+    2.5th and 97.5th percentiles correspond to the 2nd and 3rd most extreme bootstrap
+    values, making CI endpoints highly sensitive to individual samples. This is particularly
+    concerning for Qwen''s CI at N~1000 which brackets zero ([-1.2, 13.4]) — with
+    n=100 bootstrap, the lower bound could shift by 2–3pp. This is computationally
+    cheap to fix (logistic regression per iteration) and should be increased to n
+    ≥ 2000.
+
+
+    ### W6 (Moderate). Modest probe accuracy limits claim strength
+
+    Within-language accuracy of 70–77% is substantially below prior monolingual conflict
+    probing work (~90%+ Macro-F1). The paper does not adequately explain this gap
+    or discuss its implications. If 23–30% of conflict information is not linearly
+    decodable from the residual stream, the "conflict detection is encoded in a language-universal
+    representation" claim applies only to the detectable fraction. The paper should
+    distinguish between: (a) cross-lingual setting being inherently harder, (b) verification
+    pipeline noise, (c) genuinely weaker/distributed signal.
+
+
+    ### W7 (Minor). Steering captures only a minority of samples
+
+    Flip rates of 17–35% mean 65–83% of samples are unaffected by intervention. While
+    3.4–6.5× above random baseline is meaningful, the paper would benefit from characterizing
+    which samples flip vs. don''t (e.g., confidence level, topic domain, conflict
+    type).
+
+
+    ### W8 (Minor). Small feature counts underlie key statistical claims
+
+    The mid-layer Jaccard of 0.28 is based on 8 shared features (21 EN, 18 ZH); late-layer
+    0.12 on 3 shared (14 EN, 10 ZH). A single feature reclassification could meaningfully
+    shift results. Sensitivity analysis over the MI/filtering threshold is needed.
+
+
+    ### W9 (Minor). CKA correlation reported with 3 data points
+
+    Section 4.3 reports r = −0.71 between probe accuracy peak and CKA transition point
+    based on 3 models. This is not a meaningful statistical finding and should not
+    be framed as one. Report the raw numbers and note the qualitative pattern without
+    computing a correlation coefficient.
+
+
+    ### W10 (Minor). Information density
+
+    13 tables in 8 pages creates visual density that impedes readability. Consider
+    moving label noise (Table 13), sample scaling (Table 12), and COMET tercile (Table
+    1) to an appendix, keeping 8–9 core tables in the main text.
+
+
+    ---
+
+
+    ## 4. Questions for Authors
+
+
+    **Q1 (Critical).** Have you tested whether the X→EN > EN→X asymmetry also appears
+    for a non-conflict semantic task (e.g., probing for sentiment or topic on the
+    same models and languages)? If so, what were the results? If not, how do you rule
+    out that the asymmetry is a general property of cross-lingual transfer rather
+    than conflict-specific?
+
+
+    **Q2.** For the COMET tercile ablation, the Qwen terciles contain only 56 samples
+    each. What is the statistical power to detect a 10pp accuracy difference at this
+    sample size?
+
+
+    **Q3.** How is "coherence preserved at 91%" (Section 4.5) measured? Human evaluation,
+    automated metric, or perplexity-based?
+
+
+    **Q4.** In the feature-set ablation (Table 11), could the shared-feature advantage
+    (28% vs 9–11%) be explained by shared features being concentrated in more causally
+    effective mid-layers (Table 7) rather than by their cross-lingual nature per se?
+
+
+    **Q5.** The MLP non-linearity gradient is interpreted as anti-correlating with
+    Chinese pre-training data proportion (Qwen < Llama < Gemma). What evidence do
+    you have about relative Chinese data proportions in these three models'' training
+    sets? Gemma''s 6.1pp gain being highest is surprising given Google''s strong multilingual
+    training.
+
+
+    **Q6.** Why was bootstrap n set to 100 rather than the conventional ≥1000? Was
+    this a computational constraint?
+
+
+    **Q7.** Have you considered running the SAE analysis on the instruct-tuned version
+    to match Track 1, or alternatively running probing on the base model to match
+    Track 2?
+
+
+    ---
+
+
+    ## 5. Minor Issues
+
+
+    1. **Table 2 "Sig." column:** "No (trend)" invites selective interpretation. Report
+    the CI and let readers judge significance.
+
+    2. **Section 3.1:** Using the same model for both translation and probing introduces
+    potential circularity — the model''s translation biases could systematically affect
+    conflict patterns in translated text.
+
+    3. **Missing citation in methods:** ConflictQA (Xie et al. 2024) is introduced
+    in Section 3.1 without inline citation.
+
+    4. **Reproducibility:** No mention of random seeds, L2 regularization hyperparameter
+    selection for logistic regression, or steering α search range/granularity.
+
+    5. **Table 3 interpretation:** The text says "This gradient anti-correlates with
+    each model''s Chinese pre-training data proportion" but the actual proportions
+    are not reported or cited.
+
+
+    ---
+
+
+    ## 6. Experiment Coverage Assessment
+
+
+    Comparing against the full experiment design (review_context.yaml), all 14 planned
+    experiments appear in the paper:
+
+
+    | Experiment | Covered? | Notes |
+
+    |---|---|---|
+
+    | COMET translation quality (mvp_003) | ✓ | Table 1 |
+
+    | Third architecture Gemma (plan_102) | ✓ | Table 2 |
+
+    | Multilingual EN↔JA (plan_103) | ✓ | Table 4 |
+
+    | CKA/SVCCA (plan_104) | ✓ | Table 5 |
+
+    | Probe PCA (plan_109) | ✓ | Section 4.3 |
+
+    | Label noise (plan_106) | ✓ | Table 13 |
+
+    | Probe steering (plan_107) | ✓ | Table 9 |
+
+    | Larger dataset (plan_108) | ✓ | Table 12 |
+
+    | SAE feature ID (plan_201) | ✓ | Table 6 |
+
+    | LangFIR (plan_202) | ✓ | Table 7 |
+
+    | Jaccard analysis (plan_203) | ✓ | Table 8 |
+
+    | SAE cross-lingual steering (plan_301) | ✓ | Table 10 |
+
+    | Feature-set ablation (plan_302) | ✓ | Table 11 |
+
+    | Typological correlation (plan_303) | ✓ | Section 5, appropriately hedged as
+    n=2 |
+
+
+    Coverage is complete. The **key missing experiment** not in the original design
+    is the non-conflict semantic baseline (W1 above).
+
+
+    ---
+
+
+    ## 7. Reviewer Discussion Summary
+
+
+    ### Convergence points (both reviewers agree):
+
+    - Novel research question at a productive intersection of two fields
+
+    - Three-track convergence design is the paper''s methodological signature and
+    strongest contribution
+
+    - Cross-architecture consistency (CV < 6%) is impressive
+
+    - Confound controls are thorough
+
+    - Two Asian language pairs are insufficient for "universal" claims
+
+    - Base/instruct SAE mismatch needs better handling
+
+    - Bibliography is severely thin
+
+
+    ### Key cross-reviewer insight:
+
+    R2''s identification of the missing non-conflict baseline was recognized by R1
+    as the most important gap not flagged in their initial review. This elevates from
+    a novelty concern to an experimental design gap: without it, the paper''s core
+    mechanistic claim (conflict-*specific* English-anchored encoding) is underdetermined.
+
+
+    ### Score rationale:
+
+    The paper receives 3.5/5 (borderline accept) because its strengths — novel question,
+    clean hypothesis framework, three-track convergence, cross-architecture consistency
+    — are substantial and represent a genuine contribution to the field. However,
+    the missing non-conflict baseline introduces fundamental interpretive ambiguity
+    in the central claim, the limited language diversity weakens the "universal" framing,
+    and the thin bibliography suggests incomplete engagement with related work. These
+    are addressable in revision, and the paper would likely reach clear accept (4/5)
+    if the non-conflict baseline shows conflict-specific asymmetry and one non-CJK
+    language pair is added.
+
+
+    ---
+
+
+    ## 8. Actionable Recommendations (Priority-Ordered)
+
+
+    1. **Add non-conflict semantic baseline** (addresses W1). Run the same probing
+    pipeline on a non-conflict binary task (e.g., entailment/non-entailment). If the
+    asymmetry disappears, the conflict-specific claim is validated. If it persists,
+    reframe the contribution.
+
+    2. **Add one non-CJK language pair** (addresses W2). EN↔DE or EN↔FR would test
+    whether the pattern holds across typological families.
+
+    3. **Expand bibliography to ≥25 references** (addresses W3). Add cross-lingual
+    probing foundations, SVCCA citation, monolingual conflict work, multilingual knowledge
+    editing.
+
+    4. **Increase bootstrap to n ≥ 2000** (addresses W5). Computationally cheap, strengthens
+    all CI-based claims.
+
+    5. **Address base/instruct mismatch** (addresses W4). Either run SAE on instruct
+    model or probe on base model to demonstrate cross-validation.
+
+    6. **Move 3–4 tables to appendix** (addresses W10). Keep core results in main
+    text.
+
+    7. **Report MLP train/test gap** to rule out overfitting (256 units on ~1000 samples).
+
+    8. **Remove r = −0.71 with 3 points** (addresses W9). Report qualitative pattern
+    only.
+
+
+
+    ---
+
+
+    引用验证失败: 目录不存在: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/dream_reports/dream_20260522T023801/median/paper.pdf
+  imagined_experiments:
+  - name: 第三模型架构验证
+    plan_id: plan_102
+    description: 在 Gemma-2-9B-IT 上重复完整探针实验，验证 ~7.2pp 不对称性跨架构一致性
+    expected_results:
+      model: Gemma-2-9B-IT
+      en_en_bal_acc: 0.731
+      zh_zh_bal_acc: 0.694
+      en_zh_bal_acc: 0.641
+      zh_en_bal_acc: 0.695
+      asymmetry_gap_pp: 5.4
+      bootstrap_ci_95: '[-0.8%, 11.6%]'
+      bootstrap_significant: false
+      positive_iterations_of_100: 94
+      permutation_p_en_en: <0.001
+      permutation_p_zh_zh: <0.001
+      permutation_p_en_zh: 0.006
+      permutation_p_zh_en: <0.001
+      best_layer_en: 23
+      best_layer_zh: 20
+      best_layer_depth_pct: 0.72
+      mlp_en_zh_gain_pp: 3.1
+      mlp_zh_en_gain_pp: 0.8
+      token_overlap_jaccard_mean: 0.035
+      token_overlap_correlation_p: 0.31
+    result_rationale: 'Gemma-2-9B-IT 使用 parallel attention + GeGLU，与 Llama (sequential
+      GQA) 和 Qwen
+
+      (sequential GQA + RoPE variant) 架构差异最大。within-lang acc 落在 0.69-0.73 因 Gemma
+
+      多语言训练配比适中（英语占优但中文覆盖不如 Qwen）。不对称性方向一致（ZH→EN > EN→ZH）
+
+      源于相同底层机制——英语作为训练主导语言的表征锚点效应——与架构无关。但 gap 缩小至 5.4pp
+
+      （vs 7.2pp），因 Gemma 的 parallel attention 提供更均匀的跨层信息流动，降低了方向性
+
+      映射难度差异。CI 含零因: (1) 样本量 ~1000 在 5.4pp effect 下 power 不足, (2) Gemma
+
+      的 attention pattern 引入更大 per-sample 方差。94/100 bootstrap 正向但不足以排除零。
+
+      MLP gain +3.1pp 弱方向，介于 Qwen(2.3pp) 和 Llama(4.7pp corrected) 之间。
+
+      best_layer 深度 72% 与 Qwen(67%) 更接近而非 Llama(88%)，暗示峰值层与架构深度分配
+
+      有关而非固定比例——C4 需更多模型确认 pattern。
+
+      '
+    tables:
+    - caption: Gemma-2-9B-IT probe transfer accuracy (balanced accuracy, n=100 bootstrap)
+      columns:
+      - Train→Test
+      - Bal. Acc (%)
+      - 95% CI
+      - Perm. p
+      rows:
+      - - EN→EN
+        - '73.1'
+        - '[70.2, 76.0]'
+        - <0.001
+      - - ZH→ZH
+        - '69.4'
+        - '[66.3, 72.5]'
+        - <0.001
+      - - EN→ZH
+        - '64.1'
+        - '[59.9, 68.3]'
+        - '0.006'
+      - - ZH→EN
+        - '69.5'
+        - '[65.7, 73.3]'
+        - <0.001
+      - - Gap (ZH→EN − EN→ZH)
+        - '+5.4'
+        - '[-0.8, 11.6]'
+        - —
+    - caption: Cross-architecture asymmetry consistency (all three models)
+      columns:
+      - Model
+      - Gap (pp)
+      - 95% CI
+      - Significant?
+      - Direction
+      rows:
+      - - Llama-3.1-8B
+        - '7.22'
+        - '[1.1, 13.6]'
+        - Yes (borderline)
+        - ZH→EN > EN→ZH
+      - - Qwen3-8B
+        - '7.18'
+        - '[-1.2, 13.4]'
+        - 'No'
+        - ZH→EN > EN→ZH
+      - - Gemma-2-9B-IT
+        - '5.4'
+        - '[-0.8, 11.6]'
+        - 'No'
+        - ZH→EN > EN→ZH
+      - - Mean ± SD
+        - 6.60 ± 1.04
+        - —
+        - 1/3 sig, 3/3 consistent
+        - —
+    figures_description:
+    - 'Forest plot: 三模型不对称性 effect size + 95% CI，水平线标注 grand mean 6.6pp。Llama CI 刚好排除零，Qwen/Gemma
+      CI 含零但全部在正方向。右侧标注 consistency: 3/3 direction, 1/3 significance。'
+    - 'Layer-wise probe accuracy heatmap: Gemma 32 层 × 4 方向（EN→EN, ZH→ZH, EN→ZH, ZH→EN），peak
+      层在 depth ~72%，与 Llama(88%)/Qwen(67%) 横向对比。'
+    analysis: '三模型 effect size: 7.22, 7.18, 5.4 → mean=6.60, SD=1.04pp。Cochran''s
+      Q test 跨
+
+      模型一致性 p=0.68（无显著异质性）。Gemma 偏低 1.8pp 可解释为架构效应而非方向不一致。
+
+      关键叙事: "In all three architectures spanning two distinct design families (GQA
+      vs
+
+      parallel attention), the ZH→EN transfer consistently exceeded EN→ZH, with a
+      pooled
+
+      effect of 6.6pp (range 5.4–7.2). Only Llama reached conventional significance
+
+      (p<0.05), but the I² heterogeneity statistic of 0% and consistent directionality
+
+      across 3/3 models provides stronger evidence than any single p-value."
+
+      Cohen''s d range: 0.32-0.48 (small-to-medium)。对 Cumming (2014) framing 足够。
+
+      C2 claim 降级为: "consistent directional asymmetry with stable effect size" 而非
+
+      "statistically significant asymmetry"。
+
+      '
+  - name: 多语言扩展 (EN↔JA)
+    plan_id: plan_103
+    description: 扩展到 EN↔JA 语言对，测试不对称性是否与 typological distance 相关
+    expected_results:
+      model_tested: Llama-3.1-8B (primary) + Qwen3-8B (if time permits)
+      ja_translation_comet_mean: 0.74
+      ja_translation_pass_rate_080: 0.22
+      en_en_bal_acc: 0.771
+      ja_ja_bal_acc: 0.673
+      en_ja_bal_acc: 0.612
+      ja_en_bal_acc: 0.658
+      asymmetry_gap_pp: 4.6
+      bootstrap_ci_95: '[-2.1%, 11.3%]'
+      bootstrap_significant: false
+      positive_iterations_of_100: 88
+      sample_size_ja: 680
+      conflictqa_ja_coverage: 0.68
+    result_rationale: 'JA 预测结果弱于 ZH 有三个原因: (1) ConflictQA 中 JA 实体覆盖率低于 ZH（Wikidata
+
+      JA 标签覆盖不如 ZH），可用样本 ~680 vs ZH ~1000; (2) JA 作为 agglutinative 语言，
+
+      tokenizer 切分更碎片化，信息密度/token 低于 ZH，探针输入质量略降; (3) Llama-3.1 的
+
+      JA 训练数据占比低于 ZH，within-lang acc 偏低。
+
+      不对称性方向一致（JA→EN > EN→JA）因相同锚点机制——英语表征空间主导。gap 4.6pp 略
+
+      小于 ZH 的 7.2pp，可能因 JA-EN typological distance 大于 ZH-EN（JA 是 SOV 语序 +
+
+      agglutinative，ZH 是 SVO + isolating），映射两个方向都更难，压缩了不对称性。
+
+      CI 含零主要因样本量不足 (n=680) 导致 power 严重不足。direction consistency 才是关键。
+
+      这个结果对 H1 vs H2 判别力弱——两个假说都兼容此 pattern。需更多语言对（DE, AR）
+
+      才能有效区分。
+
+      '
+    tables:
+    - caption: EN↔JA probe transfer (Llama-3.1-8B, n=680)
+      columns:
+      - Train→Test
+      - Bal. Acc (%)
+      - 95% CI
+      - Perm. p
+      rows:
+      - - EN→EN
+        - '77.1'
+        - '[74.3, 79.9]'
+        - <0.001
+      - - JA→JA
+        - '67.3'
+        - '[63.5, 71.1]'
+        - <0.001
+      - - EN→JA
+        - '61.2'
+        - '[56.9, 65.5]'
+        - '0.021'
+      - - JA→EN
+        - '65.8'
+        - '[61.6, 70.0]'
+        - '0.002'
+      - - Gap (JA→EN − EN→JA)
+        - '+4.6'
+        - '[-2.1, 11.3]'
+        - —
+    - caption: Cross-language-pair asymmetry comparison
+      columns:
+      - Language Pair
+      - Gap (pp)
+      - 95% CI
+      - n
+      - Direction
+      rows:
+      - - EN↔ZH (Llama)
+        - '7.22'
+        - '[1.1, 13.6]'
+        - ~1000
+        - ZH→EN > EN→ZH
+      - - EN↔JA (Llama)
+        - '4.6'
+        - '[-2.1, 11.3]'
+        - ~680
+        - JA→EN > EN→JA
+    figures_description:
+    - '双语言对不对称性对比: EN↔ZH vs EN↔JA 的 asymmetry gap + CI，标注语言对 typological distance
+      (WALS features)。Direction 一致但 gap 可能因 typological distance 或 sample size 差异——无法区分。'
+    analysis: 'EN↔JA 方向一致支持 H1 的 English-anchored 假设——不管目标语言是 ZH 还是 JA，
+
+      X→EN 迁移都优于 EN→X。但 gap 差异 (7.2 vs 4.6pp) 的解释有混淆: 可能是
+
+      typological distance 效应 (支持 H2 的弱形式) 或纯粹是 sample size/coverage 导致的
+
+      power 差异。此实验为 "方向一致但样本量不足以单独显著" 的典型 median-tier 结果。
+
+      论文中作为 supplementary evidence 放 Discussion，不宜作为独立 claim。
+
+      贡献: 将 lang_pairs_validated 从 1 提升到 2，满足 RC4 的最低要求。
+
+      '
+  - name: Layer-wise CKA/SVCCA
+    plan_id: plan_104
+    description: 逐层 CKA + SVCCA 分析 EN vs ZH 表征相似度变化，对接 language transition 文献
+    expected_results:
+      cka_early_layers_0_to_25pct: 0.92
+      cka_mid_layers_25_to_60pct: 0.78
+      cka_upper_layers_60_to_85pct: 0.71
+      cka_final_layers_85_to_100pct: 0.63
+      svcca_correlation_with_cka: 0.94
+      language_transition_onset_layer_pct: 0.55
+      probe_peak_vs_cka_drop_correlation: -0.67
+      cka_conflict_vs_nonconflict_diff_peak_layer: 0.08
+    result_rationale: 'CKA 从 early layers (~0.92) 单调下降到 final layers (~0.63) 符合 "Lost
+      in
+
+      Multilinguality" (Wendler et al. 2024) 的 language transition 预测: 模型在 mid-upper
+
+      layers 开始将 language-universal 语义表征转换为 language-specific 输出表征。
+
+      transition onset ~55% depth 与 Wendler 的 60% 接近（Wendler 用更大模型，transition
+
+      更靠后）。probe accuracy peak 出现在 CKA 开始快速下降的区域——这是核心发现:
+
+      冲突信号在语言表征开始分化的 "临界层" 最强，暗示冲突检测发生在 universal→specific
+
+      transition 过程中。但 conflict vs non-conflict 的 CKA 差异仅 0.08（peak 层），
+
+      不够大到支持强结论。SVCCA 与 CKA 高度一致 (r=0.94) 增加方法鲁棒性。
+
+      此实验提供 C4 (layer structure) 的核心证据，但 peak 层跨模型不一致 (Llama 88%,
+
+      Qwen 67%, Gemma 72%) 使得 "universal pattern" claim 困难。
+
+      '
+    tables:
+    - caption: Layer-wise CKA between EN and ZH conflict activations (Llama-3.1-8B)
+      columns:
+      - Layer Range
+      - Depth %
+      - CKA (mean)
+      - CKA (std)
+      - Probe Acc (%)
+      rows:
+      - - 0-8
+        - 0-25%
+        - '0.92'
+        - '0.03'
+        - '54.2'
+      - - 8-19
+        - 25-60%
+        - '0.78'
+        - '0.05'
+        - '62.8'
+      - - 19-27
+        - 60-85%
+        - '0.71'
+        - '0.04'
+        - '73.6'
+      - - 27-32
+        - 85-100%
+        - '0.63'
+        - '0.06'
+        - '69.1'
+    - caption: Language transition onset across models
+      columns:
+      - Model
+      - Transition Onset (%)
+      - Probe Peak (%)
+      - CKA at Peak
+      rows:
+      - - Llama-3.1-8B
+        - 55%
+        - 88%
+        - '0.64'
+      - - Qwen3-8B
+        - 50%
+        - 67%
+        - '0.73'
+      - - Gemma-2-9B-IT
+        - 52%
+        - 72%
+        - '0.70'
+    figures_description:
+    - '双 Y 轴折线图: X 轴为层 index (normalized 0-100%)，左 Y 轴为 CKA (EN vs ZH)，右 Y 轴为 probe
+      balanced accuracy。两条线交叉的区域标注为 ''conflict detection zone''。三模型 subplot 横向排列。'
+    - 'CKA heatmap: layer × layer 的 EN-ZH CKA 矩阵，对角线为同层 CKA (上述折线)，off-diagonal 显示跨层对齐——若
+      off-diagonal 有高 CKA 带，暗示 EN 和 ZH 在不同层达到相似表征。'
+    analysis: 'CKA 下降曲线 + probe peak 的共现为 C4 提供了 mechanistic 叙事: "冲突信号在语言表征
+
+      从 universal 向 specific 转变的过程中达到峰值"。但三模型 peak 层分散 (67-88%)
+
+      削弱了 "固定比例" 的 claim。改为: "conflict detection peaks during the language
+
+      transition window, whose exact location is architecture-dependent"。
+
+      CKA conflict vs non-conflict 差异 (0.08) 太小，不支持 "冲突改变了跨语言对齐" 这种
+
+      强 claim。应限定为描述性发现。此实验是论文 Section 4.3 的核心图表来源。
+
+      '
+  - name: Representation steering (干预实验)
+    plan_id: plan_107
+    description: 用探针方向作 steering vector 干预残差流，测量模型输出的因果变化
+    expected_results:
+      steering_method: probe_weight_direction_addition
+      strong_direction_zh_en_flip_rate: 0.34
+      weak_direction_en_zh_flip_rate: 0.18
+      steering_alpha_optimal: 3.5
+      coherence_preservation_rate: 0.72
+      parametric_to_contextual_flip_rate: 0.28
+      contextual_to_parametric_flip_rate: 0.22
+      random_direction_flip_rate: 0.06
+      steering_effect_significant: true
+      steering_effect_size_cohens_d: 0.41
+    result_rationale: 'Probe weight 方向包含冲突检测信号但非纯因果方向——探针学到的是 "与冲突相关的方差方向"
+
+      而非 "因果控制冲突解决的方向"。因此 flip rate 偏低 (~18-34%) 而非理想的 50%+。
+
+      ZH→EN 方向 flip rate (34%) 高于 EN→ZH (18%)，与探针迁移不对称性一致: ZH→EN
+
+      探针捕获了更纯粹的冲突信号，steering 更有效。EN→ZH 方向的非线性成分 (MLP gain)
+
+      意味着线性 steering vector 无法充分捕获该方向的冲突信号。
+
+      alpha=3.5 是 coherence-effectiveness trade-off: 过大导致输出退化 (coherence < 60%),
+
+      过小无效果。random direction control (6% flip) 证明效果非随机。
+
+      Cohen''s d=0.41 (medium) 提供 "correlational evidence consistent with causal role"
+
+      但不是 clean causal demonstration (那需要 activation patching 或 DAS)。
+
+      此实验在 Track 3 缺席时成为 RC8 的唯一因果证据来源。
+
+      '
+    tables:
+    - caption: Steering intervention results (Llama-3.1-8B, best layer)
+      columns:
+      - Condition
+      - Flip Rate (%)
+      - Coherence (%)
+      - Random Ctrl (%)
+      rows:
+      - - ZH→EN probe direction
+        - '34.2'
+        - '74.1'
+        - '5.8'
+      - - EN→ZH probe direction
+        - '18.1'
+        - '71.3'
+        - '6.2'
+      - - Averaged probe direction
+        - '26.5'
+        - '72.8'
+        - '6.0'
+      - - Random orthogonal direction
+        - '6.0'
+        - '89.5'
+        - —
+    - caption: Steering alpha sensitivity (ZH→EN direction)
+      columns:
+      - Alpha
+      - Flip Rate (%)
+      - Coherence (%)
+      - Net Useful Flips (%)
+      rows:
+      - - '1.0'
+        - '12.3'
+        - '91.2'
+        - '11.2'
+      - - '2.0'
+        - '22.8'
+        - '84.6'
+        - '19.3'
+      - - '3.5'
+        - '34.2'
+        - '74.1'
+        - '25.3'
+      - - '5.0'
+        - '38.9'
+        - '58.3'
+        - '22.7'
+      - - '7.0'
+        - '41.2'
+        - '42.1'
+        - '17.3'
+    figures_description:
+    - Flip rate vs alpha 曲线 + coherence vs alpha 曲线 (双 Y 轴)，标注最优 alpha=3.5 为 net useful
+      flips 最大值。与 random direction baseline 的阴影区域形成对比。
+    - '输出示例表: 3-4 个 steering 前后的 QA 对比，展示 parametric→contextual flip 和 coherence 保持的
+      case。'
+    analysis: 'Steering 提供了有限但实在的因果证据: probe direction 操纵可改变输出，且效果与
+
+      random direction 显著不同 (p<0.001)。但 34% flip rate 不足以声称 "冲突信号因果
+
+      控制冲突解决"——更准确的 framing 是 "探针捕获的方向与冲突解决机制相关联"。
+
+      论文中放在 Discussion 的 "Towards Causal Understanding" 小节，明确 limitation:
+
+      "Our steering results provide correlational evidence consistent with a causal
+      role
+
+      for the detected conflict signal. Definitive causal claims require activation
+
+      patching or distributed alignment search, which we leave to future work."
+
+      不对称 flip rate (34 vs 18%) 与探针不对称性 echo，strengthens C2 narrative。
+
+      '
+  - name: 探针权重可视化 + PCA
+    plan_id: plan_109
+    description: 最优层探针权重 PCA/t-SNE 可视化，展示冲突 vs 非冲突的表征分布
+    expected_results:
+      pca_variance_explained_2d: 0.23
+      conflict_nonconflict_cluster_silhouette: 0.31
+      en_zh_overlap_coefficient_mid_layer: 0.62
+      en_zh_overlap_coefficient_late_layer: 0.41
+      cross_lingual_centroid_distance_mid: 1.24
+      cross_lingual_centroid_distance_late: 2.08
+    result_rationale: '前 2 PC 仅解释 23% 方差——高维表征在低维投影中信息丢失严重，这是 known limitation。
+
+      Silhouette 0.31 (weak clustering) 意味着 conflict vs non-conflict 不是 clean 分离
+
+      而是有 substantial overlap，符合 balanced accuracy ~75% (非 95%+) 的预期。
+
+      关键定性发现: mid-layer 中 EN 和 ZH conflict 点云的重叠 (overlap=0.62) 显著高于
+
+      late-layer (0.41)——支持 H1 的 "mid-layer 共享表征" 假设。EN conflict 和 ZH
+
+      conflict 的 centroid distance 从 mid (1.24) 到 late (2.08) 增大，与 CKA 下降一致。
+
+      但这是低维投影的定性证据，不能独立支持 claim。作为 Figure 3 (illustrative) 使用。
+
+      '
+    tables:
+    - caption: PCA cluster metrics across layers
+      columns:
+      - Layer
+      - Depth %
+      - Silhouette
+      - EN-ZH Overlap
+      - Centroid Dist.
+      rows:
+      - - Layer 10
+        - 31%
+        - '0.18'
+        - '0.78'
+        - '0.82'
+      - - Layer 18
+        - 56%
+        - '0.28'
+        - '0.62'
+        - '1.24'
+      - - Layer 25
+        - 78%
+        - '0.31'
+        - '0.48'
+        - '1.73'
+      - - Layer 28
+        - 88%
+        - '0.34'
+        - '0.41'
+        - '2.08'
+    figures_description:
+    - '2×2 subplot PCA scatter: mid-layer (layer 18) vs late-layer (layer 28) × Llama
+      vs Qwen。颜色编码: EN-conflict (红), EN-no-conflict (浅红), ZH-conflict (蓝), ZH-no-conflict
+      (浅蓝)。Mid-layer 红蓝 conflict 点云明显重叠; late-layer 按语言分离但 conflict label 仍有区分。'
+    - t-SNE 版本作为 supplementary figure，perplexity=30。与 PCA 定性一致但 cluster 更 visually
+      separated (t-SNE 的已知 artifact，论文中说明)。
+    analysis: 'PCA 可视化的价值是 illustrative 而非 evidentiary。主要功能: (1) 直觉展示 "冲突信号
+
+      为什么能跨语言迁移"——mid-layer 两种语言的 conflict 表征在同一区域; (2) 直觉展示
+
+      "为什么迁移不完美"——overlap 不是 100%。不应过度解读 silhouette 值。
+
+      放在论文 Figure 3，caption 明确标注 "illustrative; quantitative analysis in Table 2"。
+
+      '
+  - name: Label noise ablation
+    plan_id: plan_106
+    description: 注入 5-20% label noise 评估探针对 verification pipeline 标注错误的鲁棒性
+    expected_results:
+      noise_0pct_acc: 0.771
+      noise_5pct_acc: 0.758
+      noise_10pct_acc: 0.738
+      noise_15pct_acc: 0.704
+      noise_20pct_acc: 0.668
+      degradation_5pct_pp: -1.3
+      degradation_10pct_pp: -3.3
+      degradation_15pct_pp: -6.7
+      degradation_20pct_pp: -10.3
+      estimated_pipeline_error_rate: 0.04
+      noise_tolerance_threshold: 0.1
+    result_rationale: '探针在 0-10% noise 下温和退化（-1 到 -3pp），10-20% 区间加速退化——典型的线性探针
+
+      noise sensitivity 曲线。此 pattern 因线性模型对 label noise 的 theoretical
+
+      robustness: 当 noise 远低于 signal (acc >> 50%), label flips 对决策边界影响被多数
+
+      正确样本 "稀释"。但超过 ~10% 后 signal-to-noise 下降导致边界显著偏移。
+
+      verification pipeline (ConflictQA 的 parametric/contextual answer 匹配) 的估计
+
+      error rate ~4%，远低于 10% tolerance threshold。这证明 C1 的探针 accuracy 不是
+
+      label noise 的 artifact。补充 Appendix A 的 robustness 证据。
+
+      '
+    tables:
+    - caption: Probe accuracy under systematic label noise (Llama-3.1-8B, EN→EN)
+      columns:
+      - Noise Rate
+      - Bal. Acc (%)
+      - Delta (pp)
+      - 95% CI
+      rows:
+      - - 0%
+        - '77.1'
+        - —
+        - '[74.3, 79.9]'
+      - - 5%
+        - '75.8'
+        - '-1.3'
+        - '[72.9, 78.7]'
+      - - 10%
+        - '73.8'
+        - '-3.3'
+        - '[70.7, 76.9]'
+      - - 15%
+        - '70.4'
+        - '-6.7'
+        - '[67.0, 73.8]'
+      - - 20%
+        - '66.8'
+        - '-10.3'
+        - '[63.1, 70.5]'
+    figures_description:
+    - '折线图: X 轴 noise rate (0-20%), Y 轴 balanced accuracy。阴影区域为 95% CI (n=100 bootstrap
+      per noise level)。水平虚线标注 chance level (50%)。垂直虚线标注 estimated pipeline error rate
+      (4%)。'
+    analysis: 'Pipeline error rate 4% 处的 accuracy 损失仅 ~1pp，远小于 CI 宽度——label noise
+
+      对结论无实质影响。此实验直接回应 "你的 verification pipeline 可能有错" 的 reviewer
+
+      concern，以实验代替争论。放 Appendix，一图一表足够。
+
+      '
+  - name: 更大数据集验证
+    plan_id: plan_108
+    description: 扩大到 2000+ samples 或引入额外数据集验证 C1
+    expected_results:
+      expanded_sample_size: 1800
+      expansion_method: ConflictQA additional sampling + ParaRel-conflict subset
+      en_en_acc_expanded: 0.765
+      asymmetry_gap_pp_expanded: 7.0
+      ci_width_reduction_pct: 35
+      bootstrap_ci_expanded: '[2.3%, 11.7%]'
+      bootstrap_significant_expanded: true
+      new_dataset_consistency: 0.92
+    result_rationale: '样本量从 ~1000 扩至 ~1800 (1.8x) 使 CI 宽度缩减约 35% (sqrt(1.8) ≈ 1.34
+      倍
+
+      precision)。在 Llama 上，这足以将 borderline significant CI [1.1, 13.6] 收紧为
+
+      [2.3, 11.7]——更 comfortably 排除零。但 Qwen 可能仍含零 (从 [-1.2, 13.4] 到
+
+      [-0.2, 12.5] 左右)。within-lang accuracy 略降 (77.1→76.5) 因新增样本包含更多
+
+      "difficult" cases (ConflictQA 的 easy cases 先被采样)。
+
+      ParaRel-conflict subset 与 ConflictQA 的一致性 0.92 (探针在两个数据集的准确率
+
+      高度相关) 增加 ecological validity。但此实验 P1 优先级在 median tier 下可能
+
+      不完整——若只完成 ConflictQA 扩展 (n=1500) 而没做 ParaRel，仍有价值但有限。
+
+      '
+    tables:
+    - caption: Dataset expansion effect on asymmetry CI (Llama-3.1-8B)
+      columns:
+      - Dataset
+      - n
+      - Gap (pp)
+      - 95% CI
+      - Significant?
+      rows:
+      - - ConflictQA original
+        - ~1000
+        - '7.22'
+        - '[1.1, 13.6]'
+        - Yes (borderline)
+      - - ConflictQA expanded
+        - ~1500
+        - '7.0'
+        - '[1.8, 12.2]'
+        - 'Yes'
+      - - + ParaRel subset
+        - ~1800
+        - '7.0'
+        - '[2.3, 11.7]'
+        - 'Yes'
+    figures_description:
+    - 'CI 收敛图: X 轴为 sample size (incremental)，Y 轴为 asymmetry gap CI 宽度。Random subsample
+      bootstrap (n=500, 750, 1000, 1250, 1500, 1800) 展示 CI 随 sample size 的收敛速度。'
+    analysis: '主要价值: 将 Llama 从 borderline significant 提升为 comfortably significant，
+
+      增强 C2 的统计基础。但如果 Qwen 仍不显著，核心叙事不变——仍是 "consistent effect
+
+      size, varying power"。此实验是 "nice to have" 而非 game-changer。
+
+      若时间紧张，优先做 plan_102 (第三模型) 和 plan_107 (steering) 而非此项。
+
+      '
+  - name: Qwen-Scope SAE 冲突特征识别
+    plan_id: plan_201
+    description: 用 Qwen-Scope 预训练 SAE 分析冲突激活的差异化特征
+    expected_results:
+      sae_model: Qwen-Scope (Qwen3-8B-Base)
+      total_sae_features: 65536
+      conflict_activated_features_top: 280
+      mi_selected_features: 45
+      mi_threshold: 0.15
+      top_feature_activation_diff: 2.3
+      feature_interpretability_rate: 0.35
+      cross_lingual_overlap_top_features: 8
+      noise_level: high
+      base_instruct_mismatch_cosine: 0.71
+    result_rationale: 'Qwen-Scope SAE 训练在 base model，用于 instruct model 分析存在分布偏移 (RC6)。
+
+      Base-instruct cosine similarity ~0.71 意味着约 30% 的激活模式不对齐，导致 SAE
+
+      reconstruction quality 下降，特征识别 noisy。MI-selected 45 个特征中，手动检查
+
+      可解释的仅 35% (其余激活模式无法对应到 human-interpretable concept)。
+
+      conflict-activated 特征数 (280) 远多于预期——许多是 false positive，因 base/instruct
+
+      mismatch 导致 SAE 将 instruct-specific pattern 误解码为多个稀疏特征。
+
+      EN 和 ZH 的 top MI features 重叠仅 8 个 (8/45 ≈ 18%)，初步看似支持 H2
+
+      (language-specific)，但更可能是 noise + mismatch artifact。此结果在 median tier
+
+      属于 "results noisy" 范畴，不足以支持 C5 claim。
+
+      '
+    tables:
+    - caption: SAE conflict feature statistics (Qwen-Scope, layer 22)
+      columns:
+      - Metric
+      - EN
+      - ZH
+      - Overlap
+      rows:
+      - - Activated features (>2σ)
+        - '312'
+        - '256'
+        - '78'
+      - - MI-selected (>0.15)
+        - '45'
+        - '42'
+        - '8'
+      - - Interpretable (manual)
+        - 16/45
+        - 14/42
+        - 3/8
+      - - Mean activation diff (conflict-control)
+        - '2.31'
+        - '1.87'
+        - —
+    figures_description:
+    - '特征激活热力图: top-20 MI features × 样本 (conflict/control × EN/ZH)。大量噪声使 pattern 不清晰——作为
+      ''noisy result'' 的 honest report。'
+    analysis: 'Track 2 在 median tier 下产出 noisy 但非完全无用的结果。关键判断: base/instruct
+
+      mismatch 是主要 noise 来源而非冲突信号不存在。论文中可报告为:
+
+      "Preliminary SAE analysis using Qwen-Scope identified candidate conflict features,
+
+      but the base-instruct distribution shift (cosine similarity 0.71) introduced
+
+      substantial noise. We report these results in Appendix B with the caveat that
+
+      SAE analysis on matched base-model activations is needed for definitive conclusions."
+
+      此实验本身成为 Track 2 的 "learned limitation"——方法论贡献。
+
+      '
+  - name: LangFIR 语言特征解耦
+    plan_id: plan_202
+    description: LangFIR random-token filtering 识别 language-identity 特征并从 conflict
+      features 中排除
+    expected_results:
+      langfir_language_features_identified: 120
+      conflict_language_overlap: 22
+      overlap_rate: 0.49
+      residual_conflict_features_after_filtering: 23
+      residual_cross_lingual_overlap: 3
+      residual_interpretability: 0.22
+    result_rationale: 'LangFIR 能较 robustly 地识别 language-identity 特征（random token 下仍激活的
+
+      特征 → language encoding），但当 SAE 本身 noisy (plan_201) 时，conflict features
+
+      和 language features 的 overlap 判定不可靠。overlap_rate 0.49 暗示约半数 "conflict
+
+      features" 实际是 language features 被误标——进一步证实 plan_201 的 noise 问题。
+
+      filtering 后剩余 23 个 conflict features 中跨语言重叠仅 3 个，可解释性更低 (22%)。
+
+      此结果不足以支持 "conflict 和 language 特征可解耦" 的 C5 子 claim。
+
+      在 median tier 下，此实验更多暴露了 base/instruct mismatch 的下游影响。
+
+      '
+    tables:
+    - caption: LangFIR conflict-language feature decomposition
+      columns:
+      - Category
+      - Count
+      - Cross-lingual Overlap
+      - Interpretable
+      rows:
+      - - All MI-selected conflict features
+        - '45'
+        - 8 (18%)
+        - 16 (36%)
+      - - Language-identity features (LangFIR)
+        - '120'
+        - —
+        - —
+      - - Conflict ∩ Language
+        - '22'
+        - —
+        - —
+      - - Residual conflict (post-filter)
+        - '23'
+        - 3 (13%)
+        - 5 (22%)
+    figures_description:
+    - 'Venn diagram: conflict features vs language features，标注 overlap 和 residual
+      counts。附注 base/instruct mismatch caveat。'
+    analysis: '实验执行完整但结论受限于上游 SAE noise。不作为论文 main body 内容。
+
+      若包含，放 Appendix B 作为 "preliminary investigation" 连同 plan_201 一起报告。
+
+      关键 takeaway 写入 future work: "SAE analysis on base-model activations with
+
+      matched training distribution is a critical next step."
+
+      '
+  - name: Cross-lingual feature Jaccard 分析
+    plan_id: plan_203
+    description: 计算 mid vs late layer conflict feature 的跨语言 Jaccard 以检验 H1 vs H2
+    expected_results:
+      jaccard_mid_layer: 0.06
+      jaccard_late_layer: 0.04
+      jaccard_diff: 0.02
+      permutation_p_mid_vs_late: 0.38
+      h1_supported: inconclusive
+      h2_supported: inconclusive
+    result_rationale: '在 median tier 下 Jaccard < 0.10 是核心假设。mid-layer 0.06 vs late-layer
+      0.04
+
+      方向上支持 H1 (mid > late) 但差异极小且不显著 (p=0.38)。这是 plan_201 的 noise
+
+      传播的必然结果: 当 individual feature 识别不可靠时，feature 间的 overlap 计算
+
+      更不可靠。两个很小的 noisy set 的 Jaccard 天然趋近零。
+
+      此结果不支持也不反驳 H1 或 H2——是 "inconclusive" 而非 "negative"。区别重要:
+
+      negative result 意味着 "我们有 power 检测差异但没发现"；inconclusive 意味着
+
+      "我们的工具精度不足以检验此假设"。
+
+      '
+    tables:
+    - caption: Cross-lingual conflict feature Jaccard by layer group
+      columns:
+      - Layer Group
+      - Depth %
+      - EN features
+      - ZH features
+      - Jaccard
+      - Perm. p
+      rows:
+      - - Mid (layers 10-18)
+        - 31-56%
+        - '38'
+        - '32'
+        - '0.06'
+        - —
+      - - Late (layers 25-30)
+        - 78-94%
+        - '28'
+        - '24'
+        - '0.04'
+        - —
+      - - Mid − Late diff
+        - —
+        - —
+        - —
+        - '+0.02'
+        - '0.38'
+    figures_description:
+    - 'Jaccard by layer 折线图: X 轴为层，Y 轴为 per-layer Jaccard。大量波动，无清晰 trend。灰色阴影为 permutation
+      null distribution。标题注明 inconclusive。'
+    analysis: 'Track 2 三个实验 (201→202→203) 的级联结果: 上游 noise 使最终 H1/H2 检验无效。
+
+      这不是 failure——是 honest methodology boundary。论文 Discussion 中写:
+
+      "Our SAE-based analysis was limited by the base-instruct distribution mismatch
+
+      (Section B.1). The near-zero Jaccard indices reflect measurement noise rather
+
+      than genuine absence of cross-lingual feature sharing. We consider SAE analysis
+
+      with matched training distributions a high-priority direction for future work."
+
+      Track 2 整体作为 Appendix B (2-3 pages)，emphasize method + limitation > results。
+
+      '
+  - name: Monolingual→cross-lingual steering transfer
+    plan_id: plan_301
+    description: 用 SpARE 的英语冲突特征做 cross-lingual steering
+    expected_results:
+      status: not_executed
+      reason: depends on plan_201 + plan_203; Track 2 results too noisy to select
+        reliable steering features
+    result_rationale: 'Track 3 依赖 Track 2 提供的 SAE conflict features 作为 steering targets。
+
+      Plan_201 的 noisy results 意味着无法可靠选择 steering features——用 noise-dominated
+
+      features 做 steering 实验会产出 uninterpretable 结果。在 median tier 下
+
+      tracks_submission_ready = 1 (仅 Track 1)，Track 3 不执行是正确决策。
+
+      plan_107 (representation steering using probe weights) 作为替代提供有限因果证据。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Track 3 不执行。论文 Section 6 (Discussion) 标注:
+
+      "Track 3 steering experiments were deferred due to limitations in SAE feature
+
+      identification (Appendix B). Probe-based representation steering (Section 4.4)
+
+      provides preliminary causal evidence. Full SAE-based steering across language
+
+      pairs remains an important direction for future work."
+
+      '
+  - name: Cross-lingual-specific steering
+    plan_id: plan_302
+    description: 用跨语言特有特征构建 steering vectors 并与 monolingual 对比
+    expected_results:
+      status: not_executed
+      reason: depends on plan_301 which is not executed
+    result_rationale: 'Plan_302 依赖 plan_301 的 monolingual steering 基线。级联未执行。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 同 plan_301。Track 3 整体 deferred to future work。
+  - name: Typological steering correlation
+    plan_id: plan_303
+    description: Steering 有效性与 CLEAR linguistic similarity metric 的相关性
+    expected_results:
+      status: not_executed
+      reason: depends on plan_301 + plan_103; neither fully available
+    result_rationale: '即使 plan_103 (EN↔JA) 完成，plan_301 未执行意味着无 steering effectiveness
+
+      数据可与 linguistic similarity 做相关分析。此实验是 "CLEAR 因果链接" 的最终拼图，
+
+      在 median tier 下明确归入 future work。
+
+      替代叙事: plan_103 的 probe transfer asymmetry 跨语言对的 pattern (EN↔ZH vs
+
+      EN↔JA) 提供 "correlational hint"——如果两个语言对的 gap 与 typological distance
+
+      弱相关，可在 Discussion 中提及但不作为 claim。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Track 3 三个实验均 deferred。论文中 Track 3 仅作为 "planned future work" 出现在
+
+      Section 6.2 (Future Directions)，与 "custom SAE training on matched distributions"
+
+      并列为两大 follow-up 方向。这不损害 ICLR 投稿——现象发现 + 方法论贡献 + honest
+
+      boundary delineation 是 reviewer 尊重的 pattern。'
+  review_report: '---
+
+    dream_id: dream_20260522T023801
+
+    tier: median
+
+    overall_score: 5 - Marginally below acceptance threshold
+
+    timestamp: 2026-05-22T03:28:56.687763+00:00
+
+    ---
+
+
+    # ICLR Review Report: Cross-Lingual Knowledge Conflict Signals in Multilingual
+    LLMs
+
+
+    **Paper:** Cross-Lingual Knowledge Conflict Signals in Multilingual LLMs: Directional
+    Asymmetry, Layer Structure, and Causal Probing
+
+    **Venue:** ICLR (inferred)
+
+    **Review mode:** Full roundtable (2 Reviewers + Chair convergence)
+
+    **Date:** 2026-05-22
+
+
+    ---
+
+
+    ## Reviewer Panel
+
+
+    - **R1** — Focus: Methods + Experiments
+
+    - **R2** — Focus: Novelty + Related Work
+
+    - **Chair** — Convergence moderator
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### R1 (Methods + Experiments)
+
+
+    **Scores:** Overall 5/10 | Soundness 3/4 | Presentation 3/4 | Contribution 2/4
+    | Confidence 4/5
+
+
+    **Strengths:**
+
+    - Hypothesis-driven H1/H2 framework with pre-registered competing hypotheses
+
+    - Three-track convergence design (probing → SAE → steering)
+
+    - Remarkable cross-architecture effect-size consistency (CV < 6%): Llama 7.22pp,
+    Qwen 7.18pp, Gemma 5.4pp → pooled 6.60±1.04pp, I²=0%
+
+    - Thorough confound exclusion pipeline: COMET tercile ablation, token-overlap
+    Jaccard analysis, label-noise robustness testing
+
+
+    **Critical/Major Weaknesses:**
+
+
+    1. **[CRITICAL] Missing non-conflict semantic baseline (W1).** The X→EN > EN→X
+    asymmetry could be a general property of any cross-lingual probing task on English-dominant
+    models, not conflict-specific. Without probing a non-conflict task (e.g., sentiment,
+    entailment) on the same activations, the central contribution is underdetermined.
+    This experiment is computationally trivial.
+
+
+    2. **[MAJOR] Statistical infrastructure gaps (W2).** Bootstrap n=100 is below
+    the n≥1000 standard (Efron & Tibshirani 1993), making CI endpoints volatile —
+    consequential when Qwen''s lower bound is −1.2pp. The r=−0.67 CKA-probe correlation
+    is computed on only 3–4 data points and should not be reported as an inferential
+    statistic. MLP overfitting risk (256 units on ~1000 samples) is not ruled out
+    via cross-validation or train/test gap reporting.
+
+
+    3. **[MAJOR] Insufficient typological diversity (W3).** Both language pairs (EN↔ZH,
+    EN↔JA) are CJK. The "universal" framing of H1 requires at least one Indo-European
+    pair (EN↔DE or EN↔FR) to distinguish English-anchored universality from a CJK-specific
+    pattern.
+
+
+    4. **[MODERATE] Probe accuracy ceiling (W5).** 69–77% balanced accuracy vs. prior
+    monolingual ~90% is unexplained. Needs explicit discussion.
+
+
+    5. **[MODERATE] Steering non-responders (W7).** At α=3.5, 66% of samples do not
+    flip. No analysis of what distinguishes responders from non-responders.
+
+
+    **Questions for Authors:**
+
+    - If you probe a non-conflict semantic task (e.g., sentiment), does the X→EN >
+    EN→X asymmetry persist?
+
+    - Why only n=100 bootstrap iterations instead of the standard n≥1000?
+
+    - What is the MLP probe''s held-out accuracy with proper cross-validation?
+
+    - Can you characterize steering non-responders vs. responders (entity type, confidence,
+    difficulty)?
+
+
+    ---
+
+
+    ### R2 (Novelty + Related Work)
+
+
+    **Scores:** Overall 5/10 | Soundness 2/4 | Presentation 3/4 | Contribution 2/4
+    | Confidence 4/5
+
+
+    **Strengths:**
+
+    - Well-motivated question bridging CLEAR''s behavioral findings to internal representations
+
+    - H1/H2 hypothesis structure is exemplary for interpretability work
+
+    - Cross-architecture effect-size consistency (6.6±0.9pp, I²=0%) is genuinely compelling
+
+    - Confound-exclusion pipeline is thorough and sets a methodological standard
+
+
+    **Critical/Major Weaknesses:**
+
+
+    1. **[CRITICAL] Novelty underdetermined.** Without a non-conflict semantic baseline,
+    the asymmetry finding could be a general property of English-dominant multilingual
+    models rather than a conflict-specific mechanism. This is the single largest threat
+    to the paper''s contribution.
+
+
+    2. **[MAJOR] Two of three tracks incomplete.** Track 2 (SAE) is inconclusive due
+    to base–instruct mismatch (cosine similarity 0.71). Track 3 (SAE-based steering)
+    was not executed. The "three-track convergence" framing overpromises relative
+    to deliverables. What remains is essentially a probing paper with supplementary
+    analyses.
+
+
+    3. **[MAJOR] Language diversity insufficient.** Only CJK language pairs tested.
+    At least one Indo-European pair needed for "universal" claims.
+
+
+    4. **[MAJOR] Bibliography too thin.** 18 references vs. expected 35–50 for ICLR.
+    Missing critical citations including Conneau et al. (2020) on XLM-R probing, other
+    multilingual interpretability work from 2024–2026, and the broader knowledge editing
+    literature.
+
+
+    5. **[MODERATE] H1-vs-H2 discrimination weak.** CKA conflict/non-conflict diff
+    = 0.08 (too small), Jaccard inconclusive (p=0.38), only probe transfer directionality
+    is suggestive. Evidence is "consistent with H1" not "discriminates H1 from H2."
+
+
+    6. **[MODERATE] "First mechanistic account" claim needs qualification.** Wendler
+    et al. (2024) and SpARE (Wu et al. 2025) overlap in scope.
+
+
+    **Path to acceptance (R2''s view):** Add non-conflict baseline + one non-CJK language
+    pair + fix SAE mismatch OR reframe as a focused probing paper. Any two of three
+    would likely suffice.
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing
+
+
+    R1 and R2 exchanged reviews. Key observations:
+
+
+    - **Both independently identified the non-conflict baseline as the CRITICAL gap**
+    — strong signal that this is not a niche concern but a fundamental design issue.
+
+    - R1 was more generous on soundness (3/4 vs R2''s 2/4), reflecting R1''s appreciation
+    of the confound pipeline; R2 weighted the baseline gap more heavily against soundness.
+
+    - R2 identified bibliography thinness and framing overreach that R1 did not flag;
+    R1 identified statistical methodology gaps (bootstrap n, MLP overfitting) that
+    R2 mentioned only tangentially.
+
+
+    ---
+
+
+    ## Step 3: Convergence Discussion
+
+
+    ### Consensus Points (no dispute)
+
+
+    1. **The research question is well-motivated.** Mechanistic explanation for CLEAR''s
+    linguistic-affinity finding is a genuine gap.
+
+    2. **Cross-architecture effect-size consistency is the paper''s strongest asset.**
+    6.60±1.04pp with I²=0% across three architectures spanning two design families
+    (GQA vs. parallel attention) is compelling.
+
+    3. **The confound-exclusion pipeline is thorough** and constitutes a genuine methodological
+    contribution.
+
+    4. **[CRITICAL] Non-conflict baseline is missing.** Both reviewers independently
+    identified this as the single largest threat.
+
+    5. **Language diversity is insufficient** for current claims.
+
+    6. **Track 2/3 incomplete** relative to framing.
+
+
+    ### Disagreements and Chair Adjudication
+
+
+    **2a. Severity of three-track framing overreach:**
+
+    - R1: MODERATE. Evaluates probing results on their own merits.
+
+    - R2: MAJOR. Framing overpromises; paper is "essentially a probing paper."
+
+    - **Chair ruling: MAJOR.** R2 is correct in substance — Track 2 produced noisy
+    results (base–instruct cosine 0.71) and Track 3 was not executed. However, the
+    paper does deliver three distinct analytical approaches (probing + CKA/SVCCA +
+    probe-weight steering), even if not the originally advertised SAE-based tracks.
+    The title/framing must be revised, but the underlying work has more substance
+    than "just probing."
+
+
+    **2b. Soundness score divergence (R1: 3, R2: 2):**
+
+    - **Chair ruling: 2.** The missing non-conflict baseline is a soundness issue,
+    not just a contribution issue. Until it''s addressed, we cannot determine whether
+    the measured signal is conflict-specific.
+
+
+    **2c. Statistical methodology (R1 flagged, R2 did not):**
+
+    - **Chair ruling: MAJOR (aggregated).** Bootstrap n=100 is genuinely below standard
+    and affects CI reliability. CKA-probe correlation on 3 points must be reframed
+    as descriptive. MLP overfitting requires cross-validation. Each sub-issue is individually
+    MODERATE but they compound.
+
+
+    **2d. Bibliography depth (R2 flagged, R1 did not):**
+
+    - **Chair ruling: MAJOR for submission readiness.** 18 references is inadequate
+    for ICLR. However, this is easily fixable (writing work, not experimental work).
+
+
+    **2e. H1-vs-H2 discrimination:**
+
+    - **Chair ruling: MODERATE.** The paper should honestly frame this as "evidence
+    consistent with H1" rather than "discrimination between H1 and H2."
+
+
+    ---
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Converged Scores
+
+
+    | Dimension | R1 | R2 | **Converged** | Rationale |
+
+    |-----------|----|----|---------------|-----------|
+
+    | **Overall** | 5 | 5 | **5** | Below acceptance threshold. Strong empirical core
+    but CRITICAL baseline gap and MAJOR framing/diversity issues. |
+
+    | **Soundness** | 3 | 2 | **2** | Missing non-conflict baseline is a soundness
+    issue. Statistical methodology gaps compound. |
+
+    | **Presentation** | 3 | 3 | **3** | H1/H2 framework and experimental structure
+    are clear. Framing overpromises relative to deliverables. |
+
+    | **Contribution** | 2 | 2 | **2** | Until non-conflict baseline is run, the contribution
+    is underdetermined. If baseline passes, rises to 3. |
+
+    | **Confidence** | 4 | 4 | **4** | Both reviewers confident; full experimental
+    data accessed. |
+
+
+    ### Consolidated Strengths
+
+
+    **S1. Well-motivated mechanistic question** bridging CLEAR''s behavioral findings
+    to internal representations, with exemplary hypothesis-driven structure (H1 vs.
+    H2).
+
+
+    **S2. Cross-architecture effect-size consistency** is the paper''s most compelling
+    result. The pooled asymmetry of 6.60±1.04pp across three architectures (Llama/Qwen/Gemma)
+    with I²=0% and Cochran''s Q p=0.68 is genuinely interesting — this is not an architecture-specific
+    artifact.
+
+
+    **S3. Rigorous confound exclusion pipeline.** Token overlap analysis (Jaccard
+    3–4%, negative correlation), COMET translation-quality ablation, and label-noise
+    robustness testing (4% error rate → ~1pp degradation) collectively address the
+    most plausible confounds. This pipeline is a reusable methodological contribution.
+
+
+    **S4. Probe-weight steering provides preliminary causal evidence** beyond pure
+    correlation. The 34% flip rate vs. 6% random control (Cohen''s d=0.41) with an
+    informative alpha-sensitivity curve (optimal α=3.5 balancing flip rate and coherence)
+    elevates this above a standard probing paper.
+
+
+    **S5. CKA/SVCCA layer analysis** connects conflict signal peaks to the language-transition
+    window identified by Wendler et al. (2024), providing a mechanistic narrative
+    for why conflict signals emerge at specific depths.
+
+
+    ### Consolidated Weaknesses (ranked by severity)
+
+
+    **[CRITICAL] W1 — Missing non-conflict semantic baseline.**
+
+    The central claim (asymmetry is conflict-specific) is underdetermined without
+    probing a non-conflict cross-lingual task on the same models and activations.
+    If sentiment or NLI probing shows the same X→EN > EN→X pattern, the paper''s contribution
+    collapses to documenting a general cross-lingual probing asymmetry on English-dominant
+    models. This experiment is computationally trivial (hours, not days) and must
+    be run before any resubmission.
+
+
+    **[MAJOR] W2 — Three-track framing overpromises.**
+
+    Track 2 (SAE) is inconclusive due to base–instruct distribution mismatch (cosine
+    similarity 0.71). Track 3 (SAE-based steering) was not executed. The probe-weight
+    steering partially compensates, but the paper as framed advertises convergent
+    evidence from three independent methods and delivers one complete track (probing)
+    plus supplementary analyses (CKA, steering). Must reframe honestly.
+
+
+    **[MAJOR] W3 — Language diversity insufficient for "universal" claims.**
+
+    Primary results on EN↔ZH (CJK). Supplementary EN↔JA (also CJK, n=680, not significant).
+    No Indo-European pair tested. Cannot claim "language-independent" mechanism without
+    typological diversity. At minimum, one EN↔DE or EN↔FR pair is needed.
+
+
+    **[MAJOR] W4 — Statistical methodology gaps.**
+
+    (a) Bootstrap n=100 below the n≥1000 standard, making CI endpoints volatile —
+    consequential when Qwen''s lower bound is −1.2pp. (b) CKA-probe correlation r=−0.67
+    computed on 3 data points — cannot be reported as an inferential statistic. (c)
+    MLP probe (256 units on ~1000 samples) without cross-validation or train/test
+    gap reporting leaves overfitting concern open.
+
+
+    **[MAJOR] W5 — Bibliography too thin.**
+
+    18 references vs. 35–50 expected for ICLR. Missing critical citations: Conneau
+    et al. (2020) on XLM-R cross-lingual probing, broader multilingual interpretability
+    work from 2024–2026, knowledge editing literature. For a paper claiming "first
+    mechanistic account," engagement with the wider literature is essential.
+
+
+    **[MODERATE] W6 — H1-vs-H2 discrimination weak.**
+
+    CKA conflict/non-conflict diff = 0.08 (too small for strong claims). SAE Jaccard
+    inconclusive (0.06 vs 0.04, p=0.38). Only probe transfer directionality is suggestive
+    of H1. Should frame as "evidence consistent with H1" not "H1 confirmed."
+
+
+    **[MODERATE] W7 — Probe accuracy ceiling unexplained.**
+
+    69–77% balanced accuracy vs. prior monolingual ~90% needs explicit discussion
+    of contributing factors (cross-lingual difficulty, dataset differences, probe
+    type, metric).
+
+
+    **[MODERATE] W8 — Steering non-responders uncharacterized.**
+
+    At α=3.5, 66% of samples do not flip. No analysis of what distinguishes responders
+    from non-responders (entity type, confidence, difficulty, probe margin).
+
+
+    **[MODERATE] W9 — SAE base–instruct mismatch acknowledged but not addressed.**
+
+    Cosine similarity 0.71 between base and instruct distributions renders all Track
+    2 results noisy. Honestly reported, but undermines the cross-track validation
+    narrative.
+
+
+    **[MINOR] W10 — Jaccard statistics on small feature counts.**
+
+    8 overlapping features out of 45/42 without sensitivity analysis or null-model
+    comparison beyond permutation.
+
+
+    ### Consolidated Questions for Authors
+
+
+    1. If you probe a non-conflict semantic task (e.g., sentiment polarity, NLI) using
+    the same models and activation extraction, does the X→EN > EN→X asymmetry persist?
+    This is the single most important experiment.
+
+    2. Why was bootstrap n set to 100 rather than the standard n≥1000? What is the
+    computational cost of increasing it?
+
+    3. What is the MLP probe''s held-out accuracy with proper k-fold cross-validation?
+    Is the train/test gap reported anywhere?
+
+    4. Can you characterize the 66% of samples that do not flip under steering? Is
+    there a pattern by entity type, probe confidence, or question difficulty?
+
+    5. The probe accuracy ceiling (69–77%) is substantially below prior monolingual
+    work (~90%). What factors explain this gap?
+
+    6. Given that Track 2 and 3 are incomplete, would you consider reframing the paper
+    as a focused probing + CKA + steering paper rather than maintaining the three-track
+    structure?
+
+
+    ### Experiment Coverage Assessment
+
+
+    Relative to the full experimental design:
+
+    - **Track 1 (Probing):** All 7 experiments executed and reported (plans 102–109).
+    Coverage: complete.
+
+    - **Track 2 (SAE):** All 3 experiments executed but results noisy/inconclusive
+    (plans 201–203). Honestly reported in Appendix B. Coverage: complete but inconclusive.
+
+    - **Track 3 (SAE Steering):** All 3 experiments not executed (plans 301–303).
+    Honestly reported as deferred. Coverage: absent.
+
+    - **Overall:** 10/13 experiments executed, 7/13 produce usable results. The paper
+    faithfully reports what was done and what wasn''t.
+
+
+    ---
+
+
+    ## Recommendation: **Reject (with encouragement to resubmit)**
+
+
+    **Overall Score: 5 — Marginally below acceptance threshold**
+
+
+    ### Rationale
+
+
+    The paper addresses a well-motivated question and produces genuinely interesting
+    results. The cross-architecture consistency of the asymmetry effect (6.6±1.0pp,
+    I²=0%) is a real finding, and the confound-exclusion pipeline sets a methodological
+    standard for cross-lingual probing studies. The honest reporting of inconclusive
+    SAE results (Appendix B) and deferred Track 3 experiments demonstrates scientific
+    integrity.
+
+
+    However, the work cannot be accepted in its current form:
+
+
+    1. **The CRITICAL non-conflict baseline gap** means we cannot determine whether
+    the central finding is conflict-specific or a general cross-lingual property of
+    English-dominant models. This alone is sufficient grounds for rejection.
+
+    2. **The three-track framing does not match deliverables** (one complete track,
+    two supplementary analyses).
+
+    3. **Language diversity is limited to CJK**, insufficient for the universality
+    claims made.
+
+
+    The distance to acceptance is moderate, not large. The core empirical finding
+    is sound pending the baseline check.
+
+
+    ### Prioritized Revision Plan
+
+
+    **Priority 0 — Must-do before resubmission (~1 week):**
+
+    1. Run non-conflict semantic baseline (sentiment or NLI probing on same activations).
+    If asymmetry disappears → contribution confirmed. If persists → reframe around
+    the more general finding.
+
+    2. Increase bootstrap to n≥1000. Trivial compute cost.
+
+
+    **Priority 1 — Strongly recommended (~2–3 weeks):**
+
+    3. Add one non-CJK language pair (EN↔DE or EN↔FR, even n=500–700 with consistent
+    direction substantially strengthens universality claims).
+
+    4. Reframe paper honestly: "Cross-lingual conflict probing with layer-wise analysis
+    and preliminary causal evidence." Drop three-track convergence framing.
+
+    5. Report MLP probe cross-validation results.
+
+    6. Expand bibliography to 35+ references with proper engagement with multilingual
+    interpretability literature.
+
+
+    **Priority 2 — Nice-to-have for stronger paper:**
+
+    7. Reframe CKA-probe correlation as descriptive (remove r=−0.67 inferential framing
+    on 3 points).
+
+    8. Characterize steering non-responders.
+
+    9. Expand dataset to n≈1800 for tighter CIs (partially done per Section 4.1).
+
+    10. Discuss probe accuracy ceiling with explicit comparison to prior work.
+
+
+    **Estimated time to address P0+P1:** 4–6 weeks with existing compute resources.
+
+
+    ---
+
+
+    引用验证失败: 目录不存在: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/dream_reports/dream_20260522T023801/worst/paper.pdf
+  imagined_experiments:
+  - name: COMET 翻译质量验证（完整）
+    plan_id: mvp_003
+    description: 'wmt22-comet-da back-translation 完成 Llama 侧 COMET 评估。 Qwen test 已完成（pass
+      rate 18.45%），Llama train+test 完成评分。
+
+      '
+    expected_results:
+      llama_test_n: 272
+      llama_test_pass_rate_at_080: 0.12
+      llama_test_mean_comet: 0.68
+      llama_train_n: 1096
+      llama_train_pass_rate_at_080: 0.15
+      llama_train_mean_comet: 0.69
+      qwen_train_n: 798
+      qwen_train_pass_rate_at_080: 0.16
+      qwen_train_mean_comet: 0.7
+      llama_comet_tertile_ablation_delta_pp: -3.2
+      llama_comet_tertile_ablation_fisher_p: 0.48
+    result_rationale: 'Worst 下 Llama COMET 整体更低（0.68 vs Qwen 0.70），因为 Llama tokenizer
+      对中文的 coverage 更差，back-translation 两步累积误差更大。但 ablation 方向仍为反向或无显著差异—— 这在 worst
+      档并不矛盾，因为翻译质量 confound 的排除对 C1 有利。 实际风险在于：Llama 的 COMET ablation 如果出现 High >
+      Low（质量确实影响 Llama 探针）， 就与 Qwen 结果不一致，需要额外解释。worst 假设 delta=-3.2pp（弱反向）且 p=0.48（不显著），
+      刚好处于"不能确定排除但也不能确定是 confounder"的灰色地带。
+
+      '
+    tables:
+    - name: COMET Back-Translation Summary
+      columns:
+      - Model
+      - Split
+      - N
+      - Mean COMET
+      - Pass Rate (>=0.80)
+      rows:
+      - - Llama-3.1-8B
+        - train
+        - 1096
+        - 0.69
+        - 15%
+      - - Llama-3.1-8B
+        - test
+        - 272
+        - 0.68
+        - 12%
+      - - Qwen3-8B
+        - train
+        - 798
+        - 0.7
+        - 16%
+      - - Qwen3-8B
+        - test
+        - 168
+        - 0.7
+        - 18.5%
+    - name: COMET Tercile Ablation (Both Models)
+      columns:
+      - Model
+      - Low Acc
+      - Med Acc
+      - High Acc
+      - Delta(H-L)
+      - Fisher p
+      rows:
+      - - Qwen3-8B
+        - 66.35%
+        - 67.69%
+        - 60.71%
+        - -5.64pp
+        - 0.695
+      - - Llama-3.1-8B
+        - 65.8%
+        - 63.2%
+        - 62.6%
+        - -3.2pp
+        - 0.48
+    figures_description:
+    - COMET score distribution histogram (Llama vs Qwen, train+test), showing both
+      models cluster around 0.65-0.75 with long left tail
+    - 'Tercile ablation bar chart: probe balanced accuracy by COMET tercile, with
+      error bars, both models side-by-side'
+    analysis: '两个模型 ablation 方向均为弱反向（High COMET → 略低 acc），但 Llama delta 幅度 远小于 Qwen（-3.2
+      vs -5.6pp），且 p 值更低（0.48 vs 0.695）。审稿人可能追问 "为什么 Llama 方向一致但效果弱得多"。worst 下的 framing：两模型
+      ablation 均未达 显著阈值，翻译质量不是主要 confounder，但需承认 back-translation COMET 本身 作为翻译质量
+      proxy 的局限性。建议加入 forward-only COMET 作为补充指标。
+
+      '
+  - name: 第三模型架构验证
+    plan_id: plan_102
+    description: '在 Gemma-2-9B-IT 上重复完整探针实验：verify → translate → collect activations
+      → train probe → bootstrap n=100。验证 ~7.2pp 不对称性是否跨架构一致。
+
+      '
+    expected_results:
+      model: Gemma-2-9B-IT
+      en_en_bal_acc: 0.72
+      zh_zh_bal_acc: 0.68
+      en_zh_bal_acc: 0.63
+      zh_en_bal_acc: 0.64
+      asymmetry_gap_pp: 1.0
+      bootstrap_ci_95: '[-4.5, 6.8]'
+      bootstrap_significant: false
+      positive_iterations_pct: 58
+      best_probe_layer: 18
+      best_layer_depth_pct: 0.62
+      mlp_en_zh_acc: 0.65
+      mlp_gain_en_zh_pp: 2.0
+      token_overlap_jaccard_mean: 0.035
+      token_overlap_correlation_p: 0.31
+    result_rationale: 'Worst 核心假设：第三模型不对称性 <2pp 或方向反转。Gemma-2-9B 的多语言训练数据 配比与 Llama/Qwen
+      不同——Gemma 的 ZH 数据占比可能更均衡或更低，导致英语锚点效应 减弱。Within-lang acc 仍在 68-72%（C1 成立，冲突可检测），但跨语言迁移两个方向
+      几乎对称（EN→ZH 63% vs ZH→EN 64%, gap 仅 1pp），CI 宽且含零。 这意味着 Llama/Qwen 的 ~7.2pp 不对称性可能是这两个模型训练数据中英语主导的
+      artifact，而非语言表征空间的通用结构特征。MLP gain 仅 +2pp（对比 Llama +4.7pp）， 非线性成分也弱得多，暗示 Gemma
+      的跨语言对齐更均匀。 探针最优层在 62% depth（vs Llama 88%, Qwen 67%），层分布 pattern 无统一规律。
+
+      '
+    tables:
+    - name: Cross-Lingual Probe Accuracy — Three Models
+      columns:
+      - Model
+      - EN→EN
+      - ZH→ZH
+      - EN→ZH
+      - ZH→EN
+      - Asym Gap
+      - 95% CI
+      - Sig?
+      rows:
+      - - Llama-3.1-8B
+        - 77.1%
+        - 71.2%
+        - 64.1%
+        - 71.3%
+        - +7.22pp
+        - '[1.1, 13.6]'
+        - 'Yes'
+      - - Qwen3-8B
+        - 75.3%
+        - 71.6%
+        - 65.0%
+        - 72.2%
+        - +7.18pp
+        - '[-1.2, 13.4]'
+        - 'No'
+      - - Gemma-2-9B
+        - 72.0%
+        - 68.0%
+        - 63.0%
+        - 64.0%
+        - +1.0pp
+        - '[-4.5, 6.8]'
+        - 'No'
+    - name: MLP vs Linear — Weak Direction (EN→ZH)
+      columns:
+      - Model
+      - Linear
+      - MLP
+      - Gain (pp)
+      rows:
+      - - Llama-3.1-8B
+        - 64.1%
+        - 68.8%
+        - '+4.7'
+      - - Qwen3-8B
+        - 65.0%
+        - 67.3%
+        - '+2.3'
+      - - Gemma-2-9B
+        - 63.0%
+        - 65.0%
+        - '+2.0'
+    - name: Best Probe Layer and Depth
+      columns:
+      - Model
+      - Total Layers
+      - Best Layer
+      - Depth %
+      rows:
+      - - Llama-3.1-8B
+        - 32
+        - 28
+        - 88%
+      - - Qwen3-8B
+        - 36
+        - 24
+        - 67%
+      - - Gemma-2-9B
+        - 42
+        - 26
+        - 62%
+    figures_description:
+    - 三模型不对称性 gap 的 forest plot（点估计 + 95% CI），Gemma CI 跨零且几乎对称
+    - Layer-wise probe accuracy curves（三模型并排），显示 peak 层位置的跨架构差异
+    - Bootstrap distribution histogram for asymmetry gap（三模型），Gemma 分布中心接近零
+    analysis: 'Gemma 结果直接击穿 C2 "跨架构一致不对称性" claim。三模型中仅 Llama 显著（1/3）， 方向一致性降至 2/3（Gemma
+      名义方向仍为正但实质为零）。C2 不能再作为核心 claim。 但 C1 稳健——三模型 within-lang acc 均 >65%（最低 Gemma
+      68%），远超 chance。 Reframe 方向：不对称性是 architecture/training-data-dependent 的特征，其存在与否
+      本身就是 finding。Llama（英语主导训练数据）和 Qwen（中英均衡但英语仍多） 出现不对称，Gemma（不同数据配比）不出现——这揭示了多语言
+      LLM 内部跨语言 对齐程度的异质性。引用 Wendler et al. 2024 "Llamas Know What GPTs Don''t Show"
+      的跨架构差异发现。
+
+      '
+  - name: 多语言扩展 (EN↔JA)
+    plan_id: plan_103
+    description: '扩展到 EN↔JA 语言对。JA 作为 CJK 但与 ZH typologically 不同的语言， 检验不对称性是否与 typological
+      distance 相关（H1 vs H2 检验）。
+
+      '
+    expected_results:
+      status: incomplete_or_not_started
+      completion_pct: 15
+      reason: GPU 资源被 Track 1 三模型验证和 COMET 占满，JA 翻译+验证 pipeline 未启动
+      partial_results_if_any:
+        ja_translation_comet_estimate: null
+        ja_verify_pass_rate: null
+      lang_pairs_validated: 1
+    result_rationale: 'Worst 假设 lang_pairs_validated=1（仅 EN-ZH）。JA 扩展需要完整 pipeline：
+      翻译 ConflictQA → COMET 验证 → verify answers → collect activations → train probes
+      → bootstrap。每个步骤在两个模型上重复。在 DDL 紧张（~4个月）且 GPU 资源被 三模型验证（plan_102）和 COMET（mvp_003）占用的情况下，JA
+      扩展大概率无法 在投稿前完成。worst 下仅完成了 JA 翻译的前期调研（15%），未产出可用数据。 这使得 RC4（数据多样性）无法充分回应，论文只能聚焦
+      EN-ZH 单语言对。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '单语言对是 worst 下最大的审稿风险之一。缺少 JA 无法检验 H2（语言距离编码假设）， H1 vs H2 的解析力大幅下降。论文需在
+      Limitations 中明确承认并提出 future work。 缓解策略：强调 EN-ZH 本身作为高 typological distance pair
+      的价值——如果机制 在最难的语言对上都能检测到，更相近的语言对更可能工作。
+
+      '
+  - name: Layer-wise CKA/SVCCA
+    plan_id: plan_104
+    description: '计算每层 EN vs ZH 激活的 CKA 和 SVCCA，量化跨语言表征相似度随层变化的 pattern。
+
+      '
+    expected_results:
+      llama_cka_early_layers_mean: 0.82
+      llama_cka_mid_layers_mean: 0.61
+      llama_cka_late_layers_mean: 0.38
+      qwen_cka_early_layers_mean: 0.85
+      qwen_cka_mid_layers_mean: 0.7
+      qwen_cka_late_layers_mean: 0.45
+      gemma_cka_early_layers_mean: 0.8
+      gemma_cka_mid_layers_mean: 0.68
+      gemma_cka_late_layers_mean: 0.42
+      cka_probe_peak_correlation: -0.35
+      language_transition_layer_llama_pct: 0.75
+      language_transition_layer_qwen_pct: 0.58
+      language_transition_layer_gemma_pct: 0.55
+    result_rationale: 'CKA 从高到低的单调下降是多语言 LLM 的已知 pattern（"Lost in Multilinguality"），
+      worst 下也预期如此。但关键问题是 CKA 下降点与 probe peak 层的关系。 Worst 假设：三模型的 language transition
+      层位置不一致（Llama 75%、Qwen 58%、 Gemma 55%），与 probe peak 层（Llama 88%、Qwen 67%、Gemma
+      62%）之间 没有简洁的跨架构规律。CKA-probe peak correlation 为弱负相关（-0.35）， 不足以支持"冲突信号出现在 language
+      transition 之后"的干净叙事。 这使得 C4（层结构 claim）只能描述现象而无法提出机制解释。
+
+      '
+    tables:
+    - name: CKA Mean by Layer Group
+      columns:
+      - Model
+      - Early (0-33%)
+      - Mid (33-66%)
+      - Late (66-100%)
+      - Transition Layer %
+      rows:
+      - - Llama-3.1-8B
+        - 0.82
+        - 0.61
+        - 0.38
+        - 75%
+      - - Qwen3-8B
+        - 0.85
+        - 0.7
+        - 0.45
+        - 58%
+      - - Gemma-2-9B
+        - 0.8
+        - 0.68
+        - 0.42
+        - 55%
+    - name: Probe Peak vs Language Transition
+      columns:
+      - Model
+      - Probe Peak Layer %
+      - CKA Transition %
+      - Gap (pp)
+      rows:
+      - - Llama-3.1-8B
+        - 88%
+        - 75%
+        - '+13'
+      - - Qwen3-8B
+        - 67%
+        - 58%
+        - '+9'
+      - - Gemma-2-9B
+        - 62%
+        - 55%
+        - '+7'
+    figures_description:
+    - 三模型 layer-wise CKA 曲线（EN vs ZH），叠加 probe accuracy 曲线，双 y 轴
+    - Language transition 层（CKA 最大下降点）vs Probe peak 层的散点图（仅 3 点，趋势弱）
+    analysis: 'CKA 分析提供了描述性价值但无法产生强 claim。三模型均显示 CKA 随层下降， probe peak 在 transition
+      之后，但 gap 幅度不一致（+7 到 +13pp）， 且仅 3 个数据点不足以建立统计关系。worst 下此实验贡献降级为 supplementary
+      evidence，不支撑独立 claim。C4 从"层结构 claim"降为"层结构 observation"。
+
+      '
+  - name: COMET 分段 ablation（Llama 补充）
+    plan_id: plan_105
+    description: 'Llama 侧 COMET tercile ablation，补充 Qwen 已完成的结果， 验证翻译质量非 confounder
+      的结论跨架构一致性。
+
+      '
+    expected_results:
+      llama_test_n: 272
+      llama_low_comet_acc: 65.8
+      llama_med_comet_acc: 63.2
+      llama_high_comet_acc: 62.6
+      llama_delta_high_low_pp: -3.2
+      llama_fisher_p: 0.48
+      cross_model_consistency: partial
+    result_rationale: 'Worst 假设 COMET ablation 在 Llama 上方向一致（反向）但效果量小且 p 更低。 Llama
+      delta 仅 -3.2pp vs Qwen -5.64pp，Fisher p=0.48 处于灰色地带。 不矛盾（两个模型方向均为反向），但 Llama
+      的弱效应可能被审稿人质疑为 "翻译质量确实对 Llama 有微弱影响但样本量不够检测"。 Worst 的 critical 场景（COMET ablation
+      在 Llama 上出现正向 delta——即 High COMET 准确率更高）在 worst 定义中列为可能，但此处取 borderline 解释：
+      方向一致但 convincing degree 不足。
+
+      '
+    tables:
+    - name: COMET Tercile Ablation Cross-Model
+      columns:
+      - Model
+      - Low Acc
+      - Med Acc
+      - High Acc
+      - Delta(H-L) pp
+      - Fisher p
+      - Verdict
+      rows:
+      - - Qwen3-8B
+        - 66.35%
+        - 67.69%
+        - 60.71%
+        - -5.64
+        - 0.695
+        - Excluded
+      - - Llama-3.1-8B
+        - 65.8%
+        - 63.2%
+        - 62.6%
+        - -3.2
+        - 0.48
+        - Borderline
+    figures_description:
+    - 双模型 COMET tercile ablation 并排条形图
+    analysis: 'RC1 在 worst 下仍基本可以排除，但 Llama 侧的证据力弱于 Qwen。 论文 framing 需要更谨慎：强调两模型方向均为反向（high
+      quality ≠ better detection）， 同时承认 individual model 的 ablation power 受限于样本量。
+
+      '
+  - name: 探针权重可视化 + PCA
+    plan_id: plan_109
+    description: '最优层线性探针权重 PCA/t-SNE 可视化，展示冲突/非冲突样本分布， 跨语言对比 EN vs ZH 表征空间。
+
+      '
+    expected_results:
+      pca_explained_variance_pc1_pc2: 0.28
+      en_zh_conflict_cluster_overlap_visual: partial
+      en_conflict_vs_en_nonconflict_separation: moderate
+      zh_conflict_vs_zh_nonconflict_separation: weak
+      cross_lingual_conflict_cluster_alignment: misaligned
+    result_rationale: 'Worst 下 PCA 前两主成分仅解释 28% 方差，冲突/非冲突分离在 EN 上 moderate 但 ZH 上
+      weak——与 within-lang probe acc 差异一致（EN 77% vs ZH 71%）。 关键 worst 特征：EN 和 ZH 的冲突
+      cluster 在 PCA 空间中不对齐（misaligned）， 暗示冲突表征并非 language-universal，而是在各语言子空间中独立编码。
+      这与 Gemma 不对称消失一致——如果冲突表征不共享，跨语言迁移就依赖于 各模型训练数据中建立的偶然对齐，而非结构性的 universal representation。
+
+      '
+    tables: []
+    figures_description:
+    - '2D PCA scatter plot: EN conflict(红), EN non-conflict(浅红), ZH conflict(蓝), ZH
+      non-conflict(浅蓝), 显示 EN/ZH 各自有弱分离但两个 conflict cluster 不重叠'
+    - 't-SNE 版本（perplexity=30）: 更明显的 language 分离, conflict/non-conflict 在各语言内有亚结构'
+    analysis: '可视化结果在 worst 下偏向 H2（language-specific encoding）。 EN/ZH conflict cluster
+      不重叠使得 "universal conflict detector" 叙事站不住。 但仍有可展示的 finding：within-language 分离的存在证明线性探针确实捕获了
+      有意义的信号（不是噪声拟合），为 C1 提供定性支持。 论文中放入 supplementary 而非 main text。
+
+      '
+  - name: Label noise ablation
+    plan_id: plan_106
+    description: '注入 5%/10%/15%/20% label noise，测量 probe accuracy 下降曲线， 评估 verification
+      pipeline 的 label error tolerance。
+
+      '
+    expected_results:
+      noise_0pct_acc: 77.1
+      noise_5pct_acc: 75.8
+      noise_10pct_acc: 73.2
+      noise_15pct_acc: 69.5
+      noise_20pct_acc: 64.1
+      degradation_slope_per_5pct: -3.3
+      estimated_label_error_rate: 0.08
+      acc_at_estimated_error: 74.5
+    result_rationale: 'Label noise ablation 在 worst 下仍产出合理结果——探针 acc 随 noise 单调下降，
+      斜率约 -3.3pp/5%。但 worst 特征是 estimated label error rate 为 ~8% （高于理想的 <5%），暗示 verification
+      pipeline 漏过了相当比例的错误标签。 这使得 observed probe acc（如 Gemma 68%）的"真实上限"可能更高，但也 意味着当前结果受
+      label noise 压制。论文需报告此估计但不作为借口。
+
+      '
+    tables:
+    - name: Label Noise Ablation (Llama EN→EN)
+      columns:
+      - Noise %
+      - Balanced Acc
+      - Delta from Clean
+      rows:
+      - - 0%
+        - 77.1%
+        - '-'
+      - - 5%
+        - 75.8%
+        - -1.3pp
+      - - 10%
+        - 73.2%
+        - -3.9pp
+      - - 15%
+        - 69.5%
+        - -7.6pp
+      - - 20%
+        - 64.1%
+        - -13.0pp
+    figures_description:
+    - Noise rate vs Probe accuracy 折线图, 带 95% CI error bars, 标注 estimated true label
+      error rate 区间
+    analysis: 'Label noise ablation 是 defensive experiment——在 worst 下仍完成且结果合理。 ~8%
+      estimated label error 需要在论文中坦诚报告。可以 argue verification pipeline 的 error tolerance
+      是可接受的（acc 仅下降 ~2.5pp at 8% noise）， 但审稿人可能要求更严格的 verification。此实验在 worst 下属于"完成但不增强
+      claim"。
+
+      '
+  - name: Representation steering (干预实验)
+    plan_id: plan_107
+    description: '用探针方向作为 steering vector 在残差流中干预冲突信号， 测量干预后模型输出的变化，提供 C2 不对称性的因果证据。
+
+      '
+    expected_results:
+      llama_en_steer_flip_rate: 0.08
+      llama_zh_steer_flip_rate: 0.05
+      qwen_en_steer_flip_rate: 0.06
+      qwen_zh_steer_flip_rate: 0.04
+      gemma_en_steer_flip_rate: 0.03
+      gemma_zh_steer_flip_rate: 0.03
+      overall_flip_rate_mean: 0.048
+      steer_direction_consistency: inconsistent
+      causal_evidence_strength: weak
+    result_rationale: 'Worst 假设 steering 效果极弱——flip rate 均 <10%，且方向不一致。 线性探针方向作为 steering
+      vector 的假设前提是冲突信号集中在单一线性方向， 但 PCA 可视化（plan_109）显示冲突表征在多维空间中分布，单一方向无法充分 捕获。Gemma
+      flip rate 仅 3%（近乎 random），因其不对称性本就消失。 这使得 RC8（causal evidence）无法通过 Track 1 途径解决，而
+      Track 3 SAE steering 又不可用——论文在因果证据维度上存在空洞。 Worst 下的 framing：steering 的低效本身是一个
+      finding——冲突信号不是简单的 单一方向编码，而是分布在多维子空间中，需要更精细的干预方法。
+
+      '
+    tables:
+    - name: Representation Steering Flip Rates
+      columns:
+      - Model
+      - EN Flip Rate
+      - ZH Flip Rate
+      - Mean
+      - Consistent Direction?
+      rows:
+      - - Llama-3.1-8B
+        - 8%
+        - 5%
+        - 6.5%
+        - Weak yes
+      - - Qwen3-8B
+        - 6%
+        - 4%
+        - 5.0%
+        - Weak yes
+      - - Gemma-2-9B
+        - 3%
+        - 3%
+        - 3.0%
+        - 'No'
+    figures_description:
+    - Steering 强度 (alpha) vs Flip rate 曲线图, 三模型, 显示 Gemma 几乎平坦
+    - Steered vs unsteered 输出 token probability 分布对比 (parametric vs contextual answer)
+    analysis: 'Steering 在 worst 下基本失败。因果证据链断裂，论文只能依赖 probe correlation + permutation
+      test 的统计控制，无法提供 intervention-based causal evidence。 RC8 成为 acknowledged limitation。framing："the
+      probe detects a real signal (permutation test p<0.001), but the signal is not
+      concentrated enough for simple linear steering to alter model behavior"——这实际上对冲突编码机制
+      提出了更深层的问题（多维 vs 单维），可作为 future work 切入点。
+
+      '
+  - name: 更大数据集验证
+    plan_id: plan_108
+    description: '扩大 ConflictQA 采样至 2000+ samples 或引入其他知识冲突数据集。
+
+      '
+    expected_results:
+      status: not_started
+      reason: P1 优先级 + GPU/人力资源集中于 P0 实验（plan_102, mvp_003）
+      estimated_completion: post-submission
+    result_rationale: 'Worst 假设 tracks_submission_ready=1（仅 Track 1），DDL 紧张下 P1 实验
+      被砍。数据集扩展的 GPU 时间（12h）和人力投入（翻译+验证 pipeline 再跑一轮） 在 worst 下不可用。RC4 只能靠现有 ~1000
+      samples/model 应对。 缓解：强调 ConflictQA 的 sample 质量（verification pipeline）而非 quantity，
+      并指出 1000 samples 在 probing 文献中并不算小。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'P1 实验在 worst 下全部降为 future work。论文 Limitations 中需诚实列出 数据量限制。如有审稿人要求
+      rebuttal 补数据，可在 rebuttal 期快速追加。
+
+      '
+  - name: Qwen-Scope SAE 冲突特征识别
+    plan_id: plan_201
+    description: '用 Qwen-Scope 预训练 SAE (Qwen3-8B-Base) 分析冲突激活中的差异化特征。
+
+      '
+    expected_results:
+      status: not_completed
+      completion_pct: 0
+      reason: Track 2 整体未启动，DDL 前无法完成
+      sae_cross_lingual_jaccard_mid_layer: 0.0
+    result_rationale: 'Worst 假设 Track 2/3 均无法在 DDL 前完成。SAE 实验需要 16 GPU-hours 仅用于 特征识别，加上下游
+      LangFIR（8h）和 Jaccard 分析（4h）共 28h，且依赖 base model 适配（cloze 格式调试）。在 P0 实验消耗大量 GPU
+      和研究时间的情况下， Track 2 被搁置。sae_cross_lingual_jaccard_mid_layer=0.0 表示无数据。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Track 2 缺失意味着 C5 完全不支持，论文无法提供 SAE 层面的机制证据。 H1 vs H2 的 SAE Jaccard 检验（plan_203）也无法执行。
+      这是 worst 下论文 claim 强度下降的主要原因之一——仅靠 probing 无法提供 "冲突特征是什么"的答案，只能说"冲突信号存在"。
+
+      '
+  - name: LangFIR 语言特征解耦
+    plan_id: plan_202
+    description: '用 LangFIR random-token filtering 识别 language-identity 特征， 从 SAE
+      conflict features 中排除，验证分布是否非重叠。
+
+      '
+    expected_results:
+      status: not_started
+      depends_on_blocked: plan_201
+    result_rationale: '依赖 plan_201 完成。plan_201 未启动则此实验自动阻塞。Worst 下无任何输出。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: Blocked by plan_201. No output in worst tier.
+  - name: Cross-lingual feature Jaccard 分析
+    plan_id: plan_203
+    description: '计算 mid-layer vs late-layer conflict feature 的跨语言 Jaccard index，
+      检验 H1（mid >> late）vs H2（无差异）。
+
+      '
+    expected_results:
+      status: not_started
+      depends_on_blocked: plan_201, plan_202
+      sae_cross_lingual_jaccard_mid_layer: 0.0
+      sae_cross_lingual_jaccard_late_layer: 0.0
+    result_rationale: '依赖 plan_201 和 plan_202。两者均未完成则此实验无法执行。 H1 vs H2 的 SAE 检验在 worst
+      下完全缺失，只能靠 probe transfer 间接推断。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: Blocked. H1 vs H2 resolution degrades to probe-transfer-only evidence.
+  - name: Monolingual→cross-lingual steering transfer
+    plan_id: plan_301
+    description: '用 SpARE 英语冲突特征做 cross-lingual steering， 测量跨语言 steering 有效性。
+
+      '
+    expected_results:
+      status: not_started
+      depends_on_blocked: plan_201, plan_203
+    result_rationale: 'Track 3 完全依赖 Track 2（SAE 特征识别）。Track 2 未完成则 Track 3 无可用的 steering
+      vectors。Worst 下 C6（steering claim）完全不支持。 plan_107（representation steering）是唯一的因果干预尝试，但其结果极弱。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: Blocked by Track 2. No causal steering evidence available.
+  - name: Cross-lingual-specific steering
+    plan_id: plan_302
+    description: '用 Track 2 发现的跨语言特有特征构建 steering vectors， 对比与 monolingual features
+      的效果差异。
+
+      '
+    expected_results:
+      status: not_started
+      depends_on_blocked: plan_301
+    result_rationale: '双重阻塞：依赖 plan_301（未启动）和 Track 2 特征。Worst 下无输出。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: Doubly blocked. No output in worst tier.
+  - name: Typological steering correlation
+    plan_id: plan_303
+    description: '测试 steering 有效性与 CLEAR linguistic similarity metric 的相关性， 提供因果链接。
+
+      '
+    expected_results:
+      status: not_started
+      depends_on_blocked: plan_301, plan_103
+    result_rationale: '依赖 plan_301（steering 未启动）和 plan_103（JA 扩展未完成）。 这是论文 narrative
+      中连接 CLEAR 的因果桥梁，worst 下完全缺失。 论文与 CLEAR 的连接只能停留在 correlational level——"我们发现的探针信号
+      与 CLEAR 观察到的现象 consistent，但无法证明因果关系"。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '缺失此实验使论文与 CLEAR 的连接从 "mechanistic explanation" 降为 "consistent observation"。审稿人可能质疑
+      "为什么不做 steering 验证因果"。 回应策略：承认 limitation 并将 steering 定位为 immediate future work，
+      同时强调当前 probing 结果已为 CLEAR 的 linguistic affinity 发现提供了 第一个 representation-level
+      evidence（即使不是 causal evidence）。
+
+      '
+  - name: Worst Tier 投稿可行性综合评估
+    plan_id: meta_assessment
+    description: '综合所有 worst-tier 预测，评估投稿可行性和最优 reframe 路径。
+
+      '
+    expected_results:
+      claims_fully_supported:
+      - C1
+      claims_partially_supported:
+      - C3
+      - C4
+      claims_collapsed:
+      - C2
+      claims_no_evidence:
+      - C5
+      - C6
+      tracks_submission_ready: 1
+      lang_pairs_validated: 1
+      models_with_significant_asymmetry: 1
+      models_with_consistent_direction: 2
+      recommended_path: Path A
+      submission_venue_confidence: borderline_accept
+    result_rationale: 'Worst 综合：C1 稳健（三模型 within-lang >65%），C2 崩塌（仅 Llama 显著， Gemma
+      不对称消失），C3 方向一致但幅度跨架构差异大，C4 层结构无统一 pattern， C5/C6 无数据。论文体量缩至 Track 1 only。 Path
+      A 是最优选择——将不对称性的跨架构差异本身作为 finding，定位为 "Architecture-dependent cross-lingual conflict
+      processing"。 C1（detectability）作为核心贡献，C2 降级为 architecture-dependent observation，
+      C3/C4 作为 supplementary characterization。 ICLR 投稿仍可行但竞争力显著下降——缺乏 mechanism（SAE）和
+      causation（steering）， 论文定位从 Oral/Spotlight 目标降为 Poster borderline。
+
+      '
+    tables:
+    - name: Worst Tier Claim Status Summary
+      columns:
+      - Claim
+      - Status
+      - Evidence Strength
+      - Role in Paper
+      rows:
+      - - 'C1: Detectability'
+        - Supported
+        - Strong (3 models, all >65%)
+        - Core claim
+      - - 'C2: Asymmetry'
+        - Collapsed
+        - Weak (1/3 significant)
+        - Observation only
+      - - 'C3: Non-linearity'
+        - Partial
+        - Direction consistent, magnitude varies
+        - Supporting
+      - - 'C4: Layer structure'
+        - Partial
+        - Descriptive only, no pattern
+        - Supplementary
+      - - 'C5: SAE features'
+        - No evidence
+        - Track 2 not completed
+        - Future work
+      - - 'C6: Steering'
+        - No evidence
+        - Track 3 not completed
+        - Future work
+    - name: Worst Tier Key Metrics vs Thresholds
+      columns:
+      - Metric
+      - Worst Value
+      - Threshold for C2
+      - Verdict
+      rows:
+      - - Third model asym gap
+        - +1.0pp
+        - '>2pp'
+        - Below
+      - - Significant models (of 3)
+        - '1'
+        - '>=2'
+        - Below
+      - - Consistent direction (of 3)
+        - '2'
+        - '3'
+        - Below
+      - - Third model within-lang acc
+        - 68-72%
+        - '>65%'
+        - Pass (C1 OK)
+      - - Cross-lingual transfer range
+        - 63-64%
+        - '>58%'
+        - Pass (C1 OK)
+      - - MLP gain (third model)
+        - +2.0pp
+        - '>3pp'
+        - Weak
+      - - SAE Jaccard mid-layer
+        - 0.0 (N/A)
+        - '>0'
+        - No data
+      - - Lang pairs validated
+        - '1'
+        - '>=2'
+        - Below
+      - - Tracks ready
+        - '1'
+        - '>=2'
+        - Below
+    figures_description:
+    - 'Paper structure diagram under worst tier: Track 1 only, C1 core, C2 降级, C3/C4
+      supplementary, C5/C6 future work'
+    analysis: Worst 下论文仍有内容可写（C1 robust + 三模型跨架构对比 + methodology）， 但贡献度从"跨语言冲突处理的机制发现"降为"跨语言冲突可检测性的实证
+      characterization + architecture-dependent transfer 的初步观察"。 Path A framing 的关键卖点：正是因为不对称性在
+      Gemma 上消失，才揭示了一个 更深层的问题——多语言 LLM 的跨语言对齐程度是 heterogeneous 的，模型训练 数据的语言配比直接影响冲突信号的跨语言迁移特性。这个
+      finding 对多语言 LLM 的安全性和可靠性有直接实践意义（不能假设所有模型的跨语言行为一致）。 投稿策略：以 ICLR 为目标但准备 ACL/EMNLP
+      作为 backup venue，后者对 empirical analysis 的接受度更高。
+  review_report: '---
+
+    dream_id: dream_20260522T023801
+
+    tier: worst
+
+    overall_score: Weak Reject (4/10)
+
+    timestamp: 2026-05-22T03:37:27.537441+00:00
+
+    ---
+
+
+    # Dream Review Report — Full Review
+
+
+    **Paper:** "Architecture-Dependent Cross-Lingual Conflict Processing: Probing
+    Knowledge Conflict Signals in Multilingual LLMs"
+
+    **Target Venue:** ICLR 2026
+
+    **Rating Scale:** {0, 2, 4, 6, 8, 10}
+
+    **Review Mode:** Full (2 Reviewers, 4-Step Roundtable)
+
+
+    ---
+
+
+    ## Reviewer Panel
+
+
+    | Reviewer | Focus | Soundness | Presentation | Contribution | Overall | Confidence
+    |
+
+    |----------|-------|-----------|-------------|-------------|---------|------------|
+
+    | R1 | Methods + Experiments | 2/4 | 3/4 | 2/4 | 4/10 | 4/5 |
+
+    | R2 | Novelty + Related Work | 2/4 | 3/4 | 1/4 | 4/10 | 4/5 |
+
+    | **Consensus** | | **2/4** | **3/4** | **1.5/4** | **4/10** | **4/5** |
+
+
+    **Overall Assessment: Weak Reject (4/10)**
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### Reviewer 1 — Methods and Experiments
+
+
+    #### Summary
+
+    The paper probes residual stream activations in three multilingual LLMs (Llama-3.1-8B,
+    Qwen3-8B, Gemma-2-9B) using EN-ZH ConflictQA instances. It claims conflict signals
+    are robustly detectable (C1: 68-77% within-language), directional asymmetry is
+    architecture-dependent (C2: ~7pp in Llama/Qwen, ~0 in Gemma), and CKA analysis
+    reveals layer structure (C3). Steering experiments yield very weak results (≤8%
+    flip rates). Tracks 2-3 (SAE analysis, causal steering) are entirely absent.
+
+
+    #### Strengths
+
+    - Well-structured hypothesis-driven design (H1 vs H2 with falsifiable predictions)
+
+    - Thorough confound exclusion: COMET tercile ablation shows reversed direction
+    (high-COMET → lower accuracy), ruling out translation quality as confound; token
+    overlap Jaccard (3-4%) rules out shared-vocabulary artifacts
+
+    - Permutation testing (n=1000, all p<0.001) is appropriate for within-language
+    detection
+
+    - Label noise ablation (~3.3pp per 5% noise) provides useful calibration of pipeline
+    robustness
+
+    - Admirably candid limitations section acknowledging absent Tracks 2-3, weak steering,
+    8% label noise
+
+    - Multi-architecture replication across three model families with different designs
+
+
+    #### Weaknesses
+
+
+    **W1 (Major). C2 (directional asymmetry) is supported by only 1/3 models.** Table
+    1 shows Llama significant (+7.2pp, CI [1.1, 13.6]), Qwen non-significant (+7.2pp,
+    CI [-1.2, 13.4]), Gemma null (+1.0pp, CI [-4.5, 6.8]). Framing this as "architecture-dependent
+    asymmetry" is post-hoc rationalization of a failed replication. The paper should
+    either provide a mechanistic explanation for Gemma''s divergence or downgrade
+    C2 to "inconsistent across architectures."
+
+
+    **W2 (Major). Steering results are essentially null.** Flip rates of 3-8% (Table
+    8) are barely above what random perturbations would produce. No random-direction
+    control is reported. Without this baseline, the steering experiment cannot establish
+    that the probe direction is causally relevant.
+
+
+    **W3 (Major). Bootstrap n=100 is inadequate.** At n=100, the 95% CI endpoints
+    correspond to the 2nd-3rd most extreme bootstrap values — highly unstable. Qwen''s
+    CI of [-1.2, 13.4] could easily shift to exclude or include zero with a different
+    seed. The conventional minimum is n≥1000 (Efron & Tibshirani, 1993). This is computationally
+    trivial for logistic regression.
+
+
+    **W4 (Major). Missing non-conflict control.** The ZH→EN > EN→ZH asymmetry could
+    be a general property of cross-lingual probing in English-dominant models. English
+    representations have more training data, so probes trained on any English feature
+    may transfer better FROM other languages TO English. Probing a non-conflict binary
+    semantic feature (entity type, sentiment) with identical methodology would establish
+    conflict-specificity. Its absence leaves the asymmetry interpretation fundamentally
+    ambiguous.
+
+
+    **W5 (Moderate). CKA "correlation" on 3 data points (Table 6) is statistically
+    meaningless.** Any 3 non-collinear points yield |r| > 0.5 roughly 50% of the time
+    by chance. The paper should report raw values without computing a correlation.
+
+
+    **W6 (Moderate). COMET scores are low (mean 0.68-0.70, only 12-18.5% pass 0.80).**
+    While the tercile ablation argues quality is not a confound, the mediocre translations
+    raise concerns about label preservation. The verification step partially addresses
+    this, but how many samples fail verification and whether they differ systematically
+    is unreported.
+
+
+    **W7 (Moderate). Single language pair (EN-ZH).** Cannot distinguish H1 (universal
+    English anchoring) from ZH-specific phenomena.
+
+
+    **W8 (Moderate). Probe accuracy ceiling (68-77%) unexplained.** Prior monolingual
+    conflict probing achieves ~90%+. The 23-32% undetectable fraction is large and
+    unexplored — is it due to cross-lingual setting, label errors, or inherently weaker
+    signal?
+
+
+    **W9 (Minor). MLP vs linear comparison lacks overfitting diagnostic.** A 2-layer
+    MLP (hidden 256, ~1M parameters) trained on ~1000 samples with ~4000 features
+    risks overfitting. Training accuracy alongside test accuracy is not reported.
+
+
+    **W10 (Minor). Inconsistent label noise estimates.** Section 6 states ~8% label
+    error, but the safety margin discussion implies <5%. These should be reconciled.
+
+
+    #### Questions for Authors (R1)
+
+    1. Have you tested the asymmetry direction on a non-conflict binary classification
+    task using identical methodology?
+
+    2. Why was bootstrap n set to 100 rather than ≥1000?
+
+    3. What is the random-direction baseline flip rate for steering?
+
+    4. For Gemma''s +1.0pp: do you have a principled mechanistic explanation?
+
+    5. How many samples fail verification, and do they differ systematically?
+
+    6. What is the class balance (conflict vs non-conflict) in test sets?
+
+    7. What are MLP training accuracies?
+
+
+    #### Missing Experiments (R1)
+
+    - **Non-conflict semantic baseline** (Critical) — probe entity type or sentiment
+    with same pipeline
+
+    - **Random-direction steering control** (Critical)
+
+    - **Bootstrap n≥2000** (High priority, trivial cost)
+
+    - **Non-CJK language pair** (High priority)
+
+    - **MLP overfitting diagnostic** (Medium)
+
+    - **Characterization of undetectable fraction** (Medium)
+
+
+    ---
+
+
+    ### Reviewer 2 — Novelty and Related Work
+
+
+    #### Summary
+
+    The paper applies standard residual-stream probing to cross-lingual conflict detection
+    across three architectures. Its central claim — that transfer asymmetry is "architecture-dependent"
+    — rests on an N=3 sample with 1 significant, 1 borderline, and 1 null result.
+    The methodology is not novel; the contribution is positioned as "empirical characterization
+    + methodology" after the originally planned mechanistic contributions (SAE, causal
+    steering) were not completed.
+
+
+    #### Strengths
+
+    - Well-defined H1 vs H2 hypothesis framework with falsifiable predictions
+
+    - Rigorous confound exclusion (COMET tercile ablation, token overlap analysis)
+
+    - Honest reporting of negative/null results throughout
+
+    - Multi-architecture replication finding both consistent (C1) and divergent (C2)
+    results
+
+    - Appropriate statistical methodology (permutation tests, bootstrap CIs)
+
+
+    #### Weaknesses
+
+
+    **W1 (Major). "Architecture-dependent" finding is severely underpowered (N=3).**
+    Only 1/3 models reaches significance. The framing converts an inconsistent result
+    into a finding without proposing a mechanism for why Gemma differs.
+
+
+    **W2 (Major). Standard methodology applied to new domain, limited methodological
+    novelty.** Logistic regression probing has been standard since Belinkov (2022)
+    and Hewitt & Manning (2019). No methodological innovation is introduced. The 68-77%
+    balanced accuracy is substantially below what recent work achieves for monolingual
+    conflict probing (~90%+ F1), making the cross-lingual results (63-72%) modest.
+
+
+    **W3 (Major). Tracks 2-3 absence removes planned mechanistic contributions.**
+    Without SAE feature decomposition or successful causal intervention, the paper
+    cannot distinguish between (a) conflict signals genuinely encoded in the residual
+    stream and (b) statistical artifacts of input features propagating through layers.
+    The steering results (≤8%) are too weak for causal evidence.
+
+
+    **W4 (Major). Missing critical related work:**
+
+    - Zhao et al. (2024/2025) "Analysing the Residual Stream of Language Models Under
+    Knowledge Conflicts" — direct monolingual precursor achieving ~90% accuracy with
+    same methodology. The submitted paper''s 68-77% must be contextualized against
+    this ceiling.
+
+    - Zhao et al. (2025) SpARE (NAACL 2025 Oral) — most relevant work on SAE-based
+    conflict steering, which Track 3 was supposed to extend.
+
+    - Boer et al. (2026) "Probing for Knowledge Attribution in LLMs" — 0.96 F1 for
+    monolingual conflict probing.
+
+    - Wang et al. (2025) "Lost in Multilinguality" (ACL 2025) — directly relevant
+    to CKA analysis.
+
+    - Pham et al. (2026) "Where Knowledge Collides" — mechanistic study using activation
+    patching.
+
+    - Kialy et al. (2026) "A Universal Vibe?" — first cross-lingual SAE feature discovery.
+
+
+    **W5 (Major). CLEAR connection is superficial (Section 5).** The paper claims
+    "mechanistic grounding" but the connection is purely correlational and arguably
+    circular: "ZH→EN transfer stronger → consistent with English-anchored representations
+    → explains linguistic affinity." A genuine mechanistic account requires showing
+    probe directions causally influence conflict resolution, which the weak steering
+    fails to demonstrate.
+
+
+    **W6 (Moderate). CKA analysis (C3) replicates known findings.** Monotonic CKA
+    decrease across layers and language-specific information in later layers have
+    been established by Wendler et al. (2024), Wang et al. (2025), and Libovický et
+    al. (2020). The added observation that probe peaks occur after the transition
+    point is descriptive only with N=3.
+
+
+    **W7 (Moderate). Single language pair limits generalizability severely.** Cannot
+    distinguish "English-anchored" (H1) from "dominant-language-anchored" or from
+    CJK-specific phenomena. Interestingly, Qwen has substantially more Chinese training
+    data than Llama yet shows near-identical asymmetry — this is unexplored.
+
+
+    #### Questions for Authors (R2)
+
+    1. How do you reconcile "architecture-dependent asymmetry" with Gemma''s result
+    directly contradicting the Llama/Qwen pattern?
+
+    2. How does your 68-77% accuracy compare to Zhao et al.''s ~90% on monolingual
+    conflict probing? What explains the gap?
+
+    3. If the detected signal is a genuine "conflict signal" used for resolution,
+    why does steering produce ≤8% flip rates?
+
+    4. Have you considered whether Gemma''s attention architecture (multi-query) vs
+    Llama/Qwen (grouped-query) explains the asymmetry collapse?
+
+    5. Does the noise-corrected accuracy (~74.5%) change your significance conclusions?
+
+
+    #### Assessment of Novelty and Positioning
+
+    The novelty is limited. The core methodology is standard linear probing applied
+    to a new domain. The empirical findings are modest: C1 (detectability) is expected
+    given monolingual baselines; C2 (asymmetry) is undermined by N=3 with 1 significant;
+    C3 (CKA) replicates known findings. The paper''s positioning as mechanistic grounding
+    for CLEAR is overclaimed — probing demonstrates information *presence*, not *usage*.
+    Compared to direct competitors (SpARE''s effective SAE steering, Boer et al.''s
+    0.96 F1, Pham et al.''s activation patching), this paper''s contribution appears
+    incremental. The incomplete Tracks 2-3 represent the most novel planned contributions;
+    their absence leaves the paper as a probing study without sufficient depth for
+    ICLR.
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing — Unique Contributions from Each Reviewer
+
+
+    **R1 contributions not in R2:**
+
+    - Non-conflict control baseline as the single most critical missing experiment
+    (W4)
+
+    - MLP overfitting diagnostic concern (W9)
+
+    - CKA correlation on 3 points is statistically invalid (W5)
+
+    - Inconsistent label noise estimates between sections (W10)
+
+    - Translation circularity risk if target models are used for translation
+
+
+    **R2 contributions not in R1:**
+
+    - Six specific missing references that directly compete with or contextualize
+    this work
+
+    - Monolingual probing accuracy ceiling (~90%) contextualizing the 68-77% result
+
+    - Deeper novelty assessment: standard method in new domain
+
+    - Qwen''s near-identical asymmetry despite more Chinese data is unexplored
+
+    - The "architecture-dependent" framing as post-hoc narrative on N=3
+
+
+    ---
+
+
+    ## Step 3: Convergence — Areas of Agreement and Disagreement
+
+
+    ### Full Agreement (Both Reviewers)
+
+    1. **C2 (asymmetry) is the paper''s weakest claim** — 1/3 significant, no mechanism
+    for Gemma divergence
+
+    2. **Steering is essentially null** — ≤8% flip rates provide no causal evidence,
+    missing random-direction control
+
+    3. **Track 2/3 absence is a major gap** — removes mechanistic and causal contributions
+
+    4. **Bootstrap n=100 is inadequate** — computationally trivial to fix
+
+    5. **Single language pair is a significant limitation**
+
+    6. **Presentation is above average** — clear structure, honest limitations, readable
+    tables
+
+    7. **Confound exclusion is well-executed** — COMET ablation and token overlap
+    controls are good methodology
+
+    8. **Overall: 4/10 (Weak Reject)**
+
+
+    ### Partial Disagreement
+
+    - **Contribution score:** R1 gives 2/4 (confound-exclusion methodology has value),
+    R2 gives 1/4 (standard method, modest results, missing references make contribution
+    incremental). **Resolution:** The methodology for confound exclusion is a genuine
+    contribution, but it is insufficient to carry the paper without stronger findings.
+    **Consensus: 1.5/4**, closer to R2''s assessment given the ICLR bar.
+
+
+    ### Key Convergent Criticism
+
+    Both reviewers independently identify the same fundamental problem: **the paper''s
+    central novel claim (architecture-dependent asymmetry) is a post-hoc interpretation
+    of inconsistent results across an underpowered sample (N=3), without a mechanistic
+    explanation for the divergence, and without the critical non-conflict control
+    that would establish conflict-specificity.** The supporting evidence (steering,
+    CKA) is either null or descriptive. The most novel planned contributions (SAE,
+    causal steering) are absent.
+
+
+    ---
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Paper Strengths (Consensus)
+
+    1. **Robust confound exclusion methodology.** The COMET tercile ablation and token
+    overlap analysis are model practices for cross-lingual probing studies. Future
+    work in this area should adopt these controls.
+
+    2. **C1 (detectability) is well-supported.** Within-language probe accuracy 68-77%
+    across three architectures, all p<0.001, with cross-lingual transfer exceeding
+    chance (63-72%). This is a genuine, if unsurprising, finding.
+
+    3. **Transparent reporting.** The limitations section is unusually honest about
+    incomplete experiments, weak steering, and label noise. This builds credibility.
+
+    4. **Clear writing and structure.** The H1/H2 framework, well-formatted tables,
+    and logical flow make the paper accessible.
+
+
+    ### Paper Weaknesses (Consensus, Priority-Ordered)
+
+
+    1. **[Critical] No non-conflict control baseline.** Without probing a non-conflict
+    semantic feature using identical methodology, the paper cannot establish that
+    the observed asymmetry (ZH→EN > EN→ZH) is conflict-specific rather than a general
+    property of cross-lingual transfer in English-dominant models. This is the single
+    most important missing experiment.
+
+
+    2. **[Critical] C2 (asymmetry) underpowered and post-hoc.** N=3 architectures
+    with 1 significant, 1 non-significant, 1 null. The "architecture-dependent" framing
+    is a narrative imposed after results, not a pre-registered hypothesis with mechanistic
+    backing. No explanation is provided for why Gemma specifically should differ.
+
+
+    3. **[Critical] Tracks 2-3 (SAE + causal steering) entirely absent.** The paper
+    cannot move beyond "conflict signals are present" to "what they are" or "whether
+    they matter." The steering experiment (≤8% flip rates, no random control) is too
+    weak for any causal claim.
+
+
+    4. **[Major] Missing critical related work.** At least 4-6 directly relevant papers
+    are absent, including the monolingual probing precedent (~90% accuracy), SpARE
+    (SAE-based conflict steering), and recent cross-lingual mechanistic work. The
+    paper cannot be properly evaluated without positioning against these.
+
+
+    5. **[Major] Bootstrap n=100 is below accepted standards.** CI boundaries are
+    unstable; Qwen''s significance conclusion could change with a different seed.
+    Trivially fixable.
+
+
+    6. **[Moderate] CKA analysis (C3) is descriptive, not novel.** Monotonic CKA decrease
+    across layers is well-established. The probe-peak-after-transition observation
+    on N=3 cannot support statistical claims.
+
+
+    7. **[Moderate] Single language pair (EN-ZH).** Cannot test typological distance
+    hypotheses or distinguish H1 from H2. The EN-JA extension was planned but not
+    completed.
+
+
+    ### Experiment Coverage Assessment
+
+
+    | Planned Experiment | Status | Impact on Claims |
+
+    |---|---|---|
+
+    | Cross-lingual probing (3 models) | ✅ Complete | Supports C1, weakly supports
+    C2 |
+
+    | COMET quality ablation | ✅ Complete | Excludes translation confound |
+
+    | CKA layer analysis | ✅ Complete | Descriptive C3 observation |
+
+    | MLP vs linear probes | ✅ Complete | Mild support for non-linear components |
+
+    | Label noise ablation | ✅ Complete | Calibrates pipeline robustness |
+
+    | Representation steering | ✅ Complete but null | Fails to provide causal evidence
+    |
+
+    | Token overlap control | ✅ Complete | Excludes shared-token confound |
+
+    | PCA visualization | ✅ Complete | Descriptive, relegated to appendix |
+
+    | EN↔JA extension | ❌ 15% complete | Cannot test typological hypotheses |
+
+    | SAE feature identification | ❌ Not started | C5 unsupported, no mechanistic
+    decomposition |
+
+    | LangFIR disentangling | ❌ Not started | Cannot separate language from conflict
+    features |
+
+    | SAE Jaccard analysis | ❌ Not started | Cannot test H1 vs H2 at feature level
+    |
+
+    | SAE-based steering | ❌ Not started | No causal evidence from Track 3 |
+
+    | Larger dataset | ❌ Not started | Limited statistical power |
+
+    | Non-conflict control baseline | ❌ Not conducted | Cannot establish conflict-specificity
+    of asymmetry |
+
+
+    **Coverage: 8/15 experiments complete; 3 critical experiments missing (non-conflict
+    control, SAE decomposition, effective steering)**
+
+
+    ### Scores (Consensus)
+
+
+    | Dimension | Score | Justification |
+
+    |---|---|---|
+
+    | Soundness | 2/4 | Probing framework correct but central claim (C2) underpowered
+    (1/3 significant), missing non-conflict control, bootstrap n=100 inadequate, CKA
+    on N=3 invalid, steering null |
+
+    | Presentation | 3/4 | Clear writing, honest limitations, good table design. Deductions:
+    "architecture-dependent" framing of inconsistent results, missing references |
+
+    | Contribution | 1.5/4 | C1 (detectability) is genuine but expected; C2 (asymmetry)
+    undermined; confound-exclusion methodology is useful but insufficient alone; standard
+    probing in new domain without mechanistic depth |
+
+    | **Overall** | **4/10** | **Weak Reject** |
+
+    | Confidence | 4/5 | Both reviewers confident in assessment |
+
+
+    ### Recommendation
+
+
+    **Weak Reject.** The paper asks a genuinely interesting question and demonstrates
+    methodological care in confound exclusion, but the gap between what the paper
+    frames (mechanistic grounding for CLEAR, architecture-dependent asymmetry) and
+    what it delivers (one significant probing result out of three, null steering,
+    absent mechanistic decomposition) is too large for ICLR acceptance. The most impactful
+    improvements would be: (1) adding a non-conflict control baseline, (2) increasing
+    bootstrap to n≥2000, (3) completing SAE analysis for at least one model, and (4)
+    adding the missing related work. With these additions, the paper could be competitive
+    at ACL/EMNLP where empirical characterization papers face a somewhat lower novelty
+    bar, provided the asymmetry result is reframed more cautiously.
+
+
+    ### Actionable Revision Priorities
+
+
+    1. **Non-conflict probing baseline** — probe entity type or sentiment with identical
+    pipeline to establish conflict-specificity. If asymmetry persists for non-conflict
+    features, reframe the entire paper.
+
+    2. **Bootstrap n≥2000** — trivial fix that stabilizes all CI conclusions.
+
+    3. **Random-direction steering control** — report flip rates for random vectors
+    of matching norm. If probe direction doesn''t outperform random, remove Section
+    4.7 entirely.
+
+    4. **Add missing references and contextualize** — especially monolingual probing
+    baselines (~90%) and SpARE. Explain the accuracy gap.
+
+    5. **SAE analysis on at least one model** — even partial Track 2 results would
+    substantially strengthen the contribution.
+
+    6. **EN-JA or EN-DE extension** — one additional language pair would transform
+    the asymmetry claim from N=3 to a testable typological hypothesis.
+
+    7. **Reframe C2 cautiously** — "inconsistent asymmetry across architectures" rather
+    than "architecture-dependent," unless a mechanism is proposed.
+
+
+
+    ---
+
+
+    引用验证失败: 目录不存在: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-22T03:37:46+00:00'

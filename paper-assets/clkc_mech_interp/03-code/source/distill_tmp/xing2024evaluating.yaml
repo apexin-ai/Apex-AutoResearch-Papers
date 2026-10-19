@@ -1,0 +1,26 @@
+paper_key: "xing2024evaluating"
+title: "Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [ChatGPT, Llama, Baichuan]
+  metrics:
+    - {name: "xSC (Cross-lingual Semantic Consistency)", direction: "higher_better"}
+    - {name: "xAC (Cross-lingual Accuracy Consistency)", direction: "higher_better"}
+    - {name: "xTC (Cross-lingual Timeliness Consistency)", direction: "higher_better"}
+  datasets:
+    - {name: "knowledge QA across multiple languages", size: "N/A"}
+  ablation_dimensions: [language, model, consistency_dimension]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "ChatGPT, Llama, Baichuan"}
+  method_family: "cross-lingual consistency evaluation"
+
+positioning:
+  core_claim: "Cross-lingual inconsistency has multiple dimensions (semantic, accuracy, timeliness) requiring separate metrics"
+  key_results: "All tested LLMs show significant cross-lingual inconsistency"
+  limitations: ["Abstract only"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "id": "830d4b0b18670f0f7e91",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "audit ref verify C",
+  "task_key": "worker_audit_ref_verify_C_20260526T110632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref_verify_C_20260526T110632.log",
+    "occurrence": 1,
+    "bytes": 677265,
+    "sha256": "278a1dc80a951a7a9c9ab272b861c287aee85b94acb200960457990355213e16"
+  },
+  "statistics": {
+    "messages": 335,
+    "user_turns": 5,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 100,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 108,
+      "tool_result": 108,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "830d4b0b18670f0f7e91-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "830d4b0b18670f0f7e91-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "830d4b0b18670f0f7e91-part-0001.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 37,
+      "chunks": [
+        {
+          "path": "830d4b0b18670f0f7e91-part-0001.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "830d4b0b18670f0f7e91-part-0001.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "830d4b0b18670f0f7e91-part-0001.json",
+          "message_count": 35
+        },
+        {
+          "path": "830d4b0b18670f0f7e91-part-0002.json",
+          "message_count": 155
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-ref-verify-c.md"
+}

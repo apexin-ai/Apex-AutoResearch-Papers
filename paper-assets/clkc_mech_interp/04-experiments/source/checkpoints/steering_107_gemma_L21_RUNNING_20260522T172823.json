@@ -1,0 +1,50 @@
+{
+  "exp_id": "steering_107_gemma_L21",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:54:17.099Z",
+    "updated_at": "2026-05-22T17:28:23.628Z",
+    "hypothesis": "Gemma L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配但可能 negative。L21 (50% depth) 作为对照——如果 L17 negative 但 L21 positive，说明 Gemma 因果节点在不同相对深度；两者都 negative 则确认 Gemma steering 失败（与 Qwen 一致，steering 是 Llama-specific）。parent=steering_107_gemma_L17",
+    "parent": "steering_107_gemma_L17",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model_name google/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 21 --position last --output_suffix _gemma_L21 --alphas -20 -10 -5 5 10 20",
+      "server": "westd-41302",
+      "data_path": "/root/clkc_mech_interp/data/gemma2",
+      "model_name": "google/gemma-2-9b-it",
+      "seed": 42,
+      "data_count": 136,
+      "gpu": "cuda:0",
+      "pid": 499402,
+      "checkpoint_source": "google/gemma-2-9b-it (base model, no checkpoint)",
+      "eval_data": "/root/clkc_mech_interp/data/gemma2/en_conflict_test.jsonl"
+    },
+    "metrics": {
+      "probe_accuracy": 0.763,
+      "n_samples": 158,
+      "baseline": {
+        "both": 32,
+        "neither": 55,
+        "parametric": 26,
+        "contextual": 45
+      },
+      "best_fisher_p": 0.623,
+      "directional_flips": 0,
+      "max_steering_flip_rate": 0.0316,
+      "alphas_tested": [
+        -20,
+        -10,
+        -5,
+        5,
+        10,
+        20
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T17:28:23.706458+00:00",
+  "trigger": "update_registry"
+}

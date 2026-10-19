@@ -1,0 +1,22 @@
+{
+  "exp_id": "cka_svcca_104",
+  "project": "clkc_mech_interp",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:16:25.262Z",
+    "updated_at": "2026-05-22T07:16:25.262Z",
+    "spec": {
+      "command": "python src/compute_cka.py (custom script, CKA + SVCCA per layer)",
+      "server": "westd-41302",
+      "data_path": "data/{llama31,qwen3}/{en,zh}_activations.pt + data/xnli/{llama31,qwen3}/{en,zh}_activations.pt",
+      "data_count": 4728,
+      "model_name": "Llama-3.1-8B-Instruct + Qwen3-8B (CPU-only, activation analysis)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-22T07:16:25.303528+00:00",
+  "trigger": "update_registry"
+}

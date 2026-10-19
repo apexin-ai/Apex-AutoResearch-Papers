@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fe311622accf0d8e334e",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "infra westd14391 setup plan",
+  "task_key": "worker_infra_westd14391-setup-plan_20260523T215451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd14391-setup-plan_20260523T215451.log",
+    "occurrence": 1,
+    "bytes": 597881,
+    "sha256": "9c283b3d5f1a2329b3af8b7100ef0b1a9aa231d47079e854b869847ae825f6be"
+  },
+  "statistics": {
+    "messages": 150,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "fe311622accf0d8e334e-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "fe311622accf0d8e334e-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-westd14391-setup-plan.md"
+}

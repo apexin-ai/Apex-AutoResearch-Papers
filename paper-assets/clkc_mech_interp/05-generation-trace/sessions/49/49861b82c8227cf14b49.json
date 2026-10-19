@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "49861b82c8227cf14b49",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "cpu c3 mlp bootstrap",
+  "task_key": "worker_cpu_c3-mlp-bootstrap_20260522T080853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_c3-mlp-bootstrap_20260522T080853.log",
+    "occurrence": 1,
+    "bytes": 867839,
+    "sha256": "c47902cb61087302ce842c9dca8d83732da15ff664a362cdf200fbf017e7fa4e"
+  },
+  "statistics": {
+    "messages": 571,
+    "user_turns": 0,
+    "tool_calls": 250,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 250,
+      "tool_result": 250,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 571,
+      "chunks": [
+        {
+          "path": "49861b82c8227cf14b49-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "49861b82c8227cf14b49-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "49861b82c8227cf14b49-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "49861b82c8227cf14b49-part-0004.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/cpu-c3-mlp-bootstrap.md"
+}

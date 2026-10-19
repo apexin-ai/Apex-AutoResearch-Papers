@@ -1,0 +1,64 @@
+paper_key: "zhao2024analysing"
+title: "Analysing the Residual Stream of Language Models Under Knowledge Conflicts"
+venue: "NeurIPS 2024 FMI Workshop"
+full_text_available: true
+
+research:
+  baselines: []
+  metrics:
+    - {name: "Accuracy (probing)", direction: "higher_better"}
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "AUPRC", direction: "higher_better"}
+  datasets:
+    - {name: "NQSwap", size: "from Longpre et al. 2021"}
+    - {name: "Macnoise", size: "from Hong et al. 2024"}
+    - {name: "ConflictQA", size: "from Xie et al. 2024"}
+  ablation_dimensions: [layer_index, activation_type_hidden_MLP_attn, dataset, skewness_metric]
+  training_recipe: {optimizer: "logistic regression L1 reg", lr: "lambda=3e-4", hardware: "Llama3-8B, Llama2-7B"}
+  method_family: "residual stream probing / linear probing"
+
+positioning:
+  core_claim: "LLMs encode knowledge conflict signals in mid-layer residual streams detectable via linear probing, and display distinct skewness patterns depending on which knowledge source they ultimately use"
+  key_results: "Conflict detection peaks at layer 14 with ~90% accuracy; hidden states outperform MLP/Attention after layer 14"
+  limitations: ["Only linear probing tested", "Limited to two model families", "Workshop paper scope"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLMs memorize factual knowledge but may encounter conflicts with contextual information at inference time"
+  tension: "Prior methods require expensive multi-step inference to detect conflicts — can we find internal signals instead?"
+  key_insight: "Residual stream contains detectable conflict signals in mid-layers; skewness patterns differ between parametric vs contextual knowledge selection"
+  argument_chain: "problem (knowledge conflicts) → limitation (expensive detection) → hypothesis (internal signals exist) → method (linear probing) → finding 1 (mid-layer detection) → finding 2 (skewness patterns)"
+  contribution_framing: "Two main findings stated directly — compact workshop format"
+  intro_structure: "6 paragraphs: (1) background, (2) problem, (3) existing limitations, (4) research gap, (5) proposed approach, (6) contribution summary"
+  notable_technique: "Workshop paper that clearly sets up its full-paper follow-up (SpARE) — effective research arc planning"
+
+figures:
+  figure_count: 19
+  figure1:
+    type: "teaser_result"
+    description: "Three-panel plot showing probing accuracy, AUROC, and AUPRC across all 32 layers of Llama3-8B for conflict detection"
+    narrative_role: "Immediately shows the main finding — mid-layer peak — in the opening figure"
+    design_elements: ["three metrics on separate panels", "color-coded lines for hidden/MLP/attention", "layer index x-axis"]
+    visual_style: "Clean line plots with three colors; peak at layer 14 visually obvious"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Knowledge source prediction accuracy across layers"
+      how_gain_highlighted: "Peak at layer 16-17 shows optimal prediction layer"
+      design_note: "Complements Figure 1 — detection vs prediction peak at different layers"
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      dimensions_varied: ["skewness metrics (Kurtosis, Hoyer, Gini) across layers"]
+      design_note: "Multiple skewness metrics converge — robustness of the finding"
+  figure_narrative_role: "Figure 1 (conflict detection) → Figure 2 (skewness patterns) → Figure 3 (knowledge prediction) → Figures 4-19 (appendix replication across datasets/models)"
+
+tables:
+  table_count: 0
+  main_result_table: null
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Replicated figures for additional datasets and models"
+    reason: "Workshop format — all results as figures for visual impact, replication in appendix"

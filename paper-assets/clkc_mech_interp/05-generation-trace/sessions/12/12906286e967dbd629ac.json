@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12906286e967dbd629ac",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code table3 update execute",
+  "task_key": "worker_code_table3-update-execute_20260523T120530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table3-update-execute_20260523T120530_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "0ce6133c2996e819513ebe41bfc7c6612428a4bfc492343f5311770510f127ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Overfull hbox 在 Table 2（confound exclusion），与本次修改无关，是已有的 minor 排版问题。\n\n## 修改结果\n- **Table 3: L16 三行已插入** — 是 ✓（L13 α=-20 之后，L18 之前）\n- **Qwen placeholder: 已删除** — `artifacts/` 版本已删除；`docs/paper/` 版本无 placeholder（已有 Qwen/Gemma 真实数据）\n- **正文 L16 句子: 已添加** — 是 ✓（L13 段落末尾，\"Steering at nearby L16 (50% depth, just three layers away) showed no significant effect (all p > 0.12), indicating a remarkably narrow causal window.\"）\n- **编译: 成功**（本地 latexmk -pdf，服务器无 LaTeX）\n- **页数: 9 页**（主文 ≤8 页，Limitations + References 在第 8 页底部开始延续到第 9 页，EMNLP 合规）\n- **Critical warnings: 0**（1 个 Overfull \\hbox 10.49pt 在 Table 2，与本次修改无关，属 minor）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-table3-update-execute.md"
+}

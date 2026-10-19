@@ -1,0 +1,24 @@
+paper_key: "zhao2026when"
+title: "When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [6_representative_LLMs]
+  metrics:
+    - {name: "cross-lingual knowledge conflict resolution", direction: "context_dependent"}
+  datasets:
+    - {name: "2 QA benchmarks, 10 typologically diverse languages", size: "N/A"}
+  ablation_dimensions: [language, model]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "6 multilingual LLMs"}
+  method_family: "cross-lingual knowledge conflict analysis (CLEAR framework)"
+
+positioning:
+  core_claim: "Multilingual abundance conceals knowledge weaknesses — high-resource language performance masks cross-lingual conflict patterns"
+  key_results: "CLEAR framework reveals hidden conflicts across 10 languages"
+  limitations: ["Abstract only"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb8ed75e359123ef4860",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra v2c debug c3 wait",
+  "task_key": "worker_infra_v2c-debug-c3-wait_20260522T122729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_v2c-debug-c3-wait_20260522T122729_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "ad48c927cc32f26103a53bf365fda024bbc2f1bb75adf5829f8ebce70f36d32b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background timer completed. v2c was already handled. The report above covers all findings."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-v2c-debug-c3-wait.md"
+}

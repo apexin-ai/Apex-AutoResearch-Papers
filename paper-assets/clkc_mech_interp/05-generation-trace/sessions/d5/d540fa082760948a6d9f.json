@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d540fa082760948a6d9f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig2 whitespace",
+  "task_key": "worker_code_fix-fig2-whitespace_20260525T190618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig2-whitespace_20260525T190618_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "beab82efa36205c6efdf99fff32c78f5ef97acb25aa6a210b1386b2c2746902c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "第 8 页底部是 Discussion + Limitations 开始，第 9 页是 References。正文 ≤ 8 页，符合要求。\n\n### 结果\n\n- **pdfcrop 裁剪**：原图 660.48×368.64 pts → 裁剪后 661×369 pts，无实质白边，问题不在 PDF 本身。\n- **LaTeX 间距调整**：\n  - `\\vspace{-5pt}` → `-8pt`（图片上方）\n  - `\\vspace{-8pt}` → `-10pt`（图片与 caption 之间）\n  - `\\vspace{-15pt}` → `-18pt`（caption 下方）\n- **页数**：12 页，正文 8 页（含 Limitations），第 9 页起为 References。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig2-whitespace.md"
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "b5974bb10072059de157",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "code steering fix 107",
+  "task_key": "worker_code_steering-fix-107_20260522T083334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_steering-fix-107_20260522T083334.log",
+    "occurrence": 1,
+    "bytes": 513747,
+    "sha256": "0115affeb6d303e28e7592483a982782577b0bb1a944b1f4eb2feae9089de4ed"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 0,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 125,
+      "tool_result": 125
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 311,
+      "chunks": [
+        {
+          "path": "b5974bb10072059de157-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5974bb10072059de157-part-0002.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-steering-fix-107.md"
+}

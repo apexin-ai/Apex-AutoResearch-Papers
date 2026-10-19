@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "18e82761ccafde406a3a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fig1 paperbanana v3",
+  "task_key": "worker_code_fig1-paperbanana-v3_20260525T122528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-paperbanana-v3_20260525T122528_result.json",
+    "occurrence": 1,
+    "bytes": 2116310,
+    "sha256": "d432bfac10a48f80523076f1386227157298135e40c8068fd3ac1765628bd89f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "18e82761ccafde406a3a-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-paperbanana-v3.md"
+}

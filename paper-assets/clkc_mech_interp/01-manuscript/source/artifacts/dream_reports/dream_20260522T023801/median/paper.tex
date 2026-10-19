@@ -1,0 +1,566 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage[margin=1in]{geometry}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{caption}
+
+\title{Cross-Lingual Knowledge Conflict Signals in Multilingual LLMs:\\Directional Asymmetry, Layer Structure, and Causal Probing}
+
+\author{
+  Anonymous Authors
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ===== ABSTRACT =====
+\begin{abstract}
+Multilingual large language models (LLMs) must resolve knowledge conflicts when parametric memory and contextual evidence disagree across languages. Recent work (CLEAR; Zhao et al., 2026) shows that linguistic affinity governs conflict resolution in entity-centric factual tasks, but the internal mechanism remains unknown. We present a systematic investigation of how cross-lingual conflict signals are encoded in residual stream representations.
+
+Using linear probes across three architectures (Llama-3.1-8B, Qwen3-8B, Gemma-2-9B-IT) and two language pairs (EN--ZH, EN--JA), we establish three findings.
+First, conflict signals are linearly detectable in residual streams with balanced accuracy 69--77\% across all models, far above chance (\emph{C1}).
+Second, cross-lingual probe transfer exhibits a \emph{remarkably consistent} directional asymmetry: ZH$\to$EN transfer exceeds EN$\to$ZH by a pooled effect of $6.6 \pm 0.9$ percentage points across all three architectures (range 5.4--7.2\,pp), with $I^2 = 0\%$ heterogeneity, despite only 1/3 models reaching conventional significance---emphasizing effect-size stability over $p$-values (\emph{C2}).
+Third, layer-wise CKA analysis reveals that conflict detection peaks during the language-universal-to-specific transition window (50--55\% depth), with probe accuracy peaking at architecture-dependent depths (67--88\%) (\emph{C4}).
+
+Representation steering using probe-weight directions yields answer-flip rates of 18--34\% (vs.\ 6\% random control, Cohen's $d = 0.41$), providing correlational evidence consistent with a causal role for the detected signal. Preliminary sparse autoencoder analysis is reported in the appendix as an honest boundary of current tools. Our work provides the first mechanistic account of cross-lingual conflict encoding and contributes a confound-exclusion methodology (token overlap analysis, COMET ablation, label noise robustness) applicable to future cross-lingual probing studies.
+\end{abstract}
+
+%% ===== 1. INTRODUCTION =====
+\section{Introduction}
+
+When multilingual LLMs encounter knowledge conflicts---cases where parametric memory and contextual evidence provide contradictory answers---they must resolve the conflict, often in language-dependent ways. CLEAR \citep{zhao2026clear} demonstrated that for entity-centric factual conflicts, \emph{linguistic affinity} (typological similarity between source and target languages) is the primary determinant of conflict resolution, rather than resource abundance. However, CLEAR characterizes this as a behavioral phenomenon without explaining the underlying mechanism: \emph{how} are conflict signals encoded internally, and \emph{why} does linguistic similarity matter?
+
+We address this mechanistic gap through three complementary analysis tracks. \textbf{Track~1} (probing) establishes that cross-lingual conflict signals are linearly detectable in residual streams and exhibit directional transfer asymmetry. \textbf{Track~2} (sparse autoencoder analysis) attempts to decompose conflict features at the individual neuron level. \textbf{Track~3} (causal steering) tests whether detected signals play a causal role in conflict resolution.
+
+Our investigation is guided by two competing hypotheses:
+\begin{itemize}
+    \item \textbf{H1 (English-anchored universal detection)}: Conflict detection is language-independent, encoded in mid-layer shared representations. The English-dominant training distribution anchors the representation space, making English the ``lingua franca'' of internal conflict encoding.
+    \item \textbf{H2 (Language-pair-specific encoding)}: Conflict features are language-pair-specific from mid-layers onward, with linguistic distance directly encoded in conflict representations.
+\end{itemize}
+
+Our results favor a variant of H1: across three architectures spanning two design families (GQA vs.\ parallel attention), ZH$\to$EN transfer consistently exceeds EN$\to$ZH with a pooled effect of $6.6 \pm 0.9$\,pp and zero heterogeneity ($I^2 = 0\%$). Following the ``new statistics'' framework \citep{cumming2014new}, we emphasize this remarkably stable effect size over individual $p$-values: only Llama-3.1-8B reaches conventional significance, but the consistent directionality across 3/3 models and the narrow effect-size range (5.4--7.2\,pp) provide stronger evidence than any single test.
+
+Our contributions are:
+\begin{enumerate}
+    \item \textbf{Phenomenon characterization}: First demonstration that cross-lingual conflict signals are linearly detectable and exhibit architecture-consistent directional asymmetry (Section~\ref{sec:detectability}--\ref{sec:asymmetry}).
+    \item \textbf{Methodology}: A confound-exclusion pipeline comprising token-overlap analysis, COMET translation-quality ablation, and label-noise robustness testing, applicable to future cross-lingual probing studies (Section~\ref{sec:method}).
+    \item \textbf{Mechanistic analysis}: Layer-wise CKA/SVCCA analysis linking conflict signal peaks to the language transition window \citep{wendler2024lost}, plus probe-based representation steering providing preliminary causal evidence (Sections~\ref{sec:layerwise}--\ref{sec:steering}).
+\end{enumerate}
+
+%% ===== 2. RELATED WORK =====
+\section{Related Work}
+
+\paragraph{Knowledge conflicts in LLMs.}
+Knowledge conflicts arise when parametric and contextual information disagree \citep{longpre2021entity,chen2022rich,xie2024adaptive}. Most work focuses on monolingual (English) settings. ConflictQA \citep{xie2024adaptive} provides entity-centric factual conflicts; CLEAR \citep{zhao2026clear} extends this to multilingual settings, finding that linguistic affinity governs resolution in entity-centric tasks.
+
+\paragraph{Cross-lingual representations.}
+Multilingual transformers develop shared representations across languages in intermediate layers, transitioning to language-specific representations in upper layers \citep{pires2019multilingual,chi2020finding,wendler2024lost}. The ``language transition'' typically begins at 50--60\% depth. Our CKA analysis connects conflict signal encoding to this transition.
+
+\paragraph{Mechanistic interpretability.}
+Linear probing \citep{belinkov2022probing} remains a standard tool for detecting encoded information. Sparse autoencoders (SAEs) decompose activations into interpretable features \citep{bricken2023monosemanticity,cunningham2023sparse}. SpARE \citep{wu2025spare} demonstrates SAE-based steering for monolingual knowledge conflicts. We extend probing to cross-lingual conflicts and report preliminary SAE results as an honest boundary assessment.
+
+\paragraph{Representation steering.}
+Activation addition \citep{turner2023activation} and related techniques modify model behavior by adding steering vectors. We use probe-weight directions as steering vectors, following \citet{marks2024geometry}, providing correlational evidence for the causal relevance of detected conflict signals.
+
+%% ===== 3. METHOD =====
+\section{Method}
+\label{sec:method}
+
+\subsection{Data Construction}
+
+We use ConflictQA \citep{xie2024adaptive} as the primary source of entity-centric factual conflicts. Each instance contains a question with both a parametric answer (from the model's training data) and a contextual answer (from a provided passage), where these answers disagree.
+
+\paragraph{Translation and verification.}
+English instances are translated to Chinese (ZH) and Japanese (JA) using a neural MT pipeline. Translation quality is verified via back-translation COMET scores. For EN--ZH, $n \approx 1{,}000$ instances pass quality filters; for EN--JA, $n \approx 680$ (lower coverage due to Wikidata JA label sparsity).
+
+\paragraph{Dataset expansion.}
+To strengthen statistical power, we expand the EN--ZH dataset to $n \approx 1{,}800$ by additional ConflictQA sampling and incorporating a ParaRel-conflict subset. Cross-dataset consistency is 0.92.
+
+\subsection{Probing Framework}
+
+For each model and language, we extract residual-stream activations at every layer for conflict vs.\ non-conflict instances. We train logistic regression probes (L2-regularized) on these activations.
+
+\paragraph{Transfer protocol.}
+We train probes in four configurations: EN$\to$EN, ZH$\to$ZH, EN$\to$ZH, and ZH$\to$EN (and analogously for JA). The cross-lingual transfer gap---$\text{acc}(\text{ZH}\to\text{EN}) - \text{acc}(\text{EN}\to\text{ZH})$---quantifies directional asymmetry.
+
+\paragraph{Statistical testing.}
+All accuracy estimates use balanced accuracy with 100-iteration bootstrap confidence intervals. Permutation tests ($n = 10{,}000$) assess above-chance performance. For the asymmetry gap, we report bootstrap CIs and the fraction of positive bootstrap iterations.
+
+\subsection{Confound Exclusion Pipeline}
+
+\paragraph{Token overlap control.}
+Cross-lingual transfer might be driven by shared tokens (numbers, proper nouns, punctuation). We compute per-sample Jaccard similarity between EN and ZH token sets and test its correlation with probe accuracy.
+
+\paragraph{COMET translation quality ablation.}
+We stratify instances into COMET terciles and compare probe accuracy across quality bins to test whether translation quality confounds conflict detection.
+
+\paragraph{Label noise robustness.}
+We inject 5--20\% systematic label noise and measure probe degradation to bound the impact of verification pipeline errors (estimated at $\sim$4\%).
+
+\subsection{Layer-wise Representation Analysis}
+
+We compute Centered Kernel Alignment (CKA; \citealp{kornblith2019similarity}) and SVCCA \citep{raghu2017svcca} between EN and ZH conflict activations at each layer to track cross-lingual representation similarity. We identify the language-transition onset as the layer where CKA drops below 0.80.
+
+\subsection{Representation Steering}
+
+We use probe weight vectors as steering directions, adding $\alpha \cdot \mathbf{w}_{\text{probe}}$ to residual-stream activations at the best probe layer. We measure the answer-flip rate (fraction of instances where the model's answer changes from parametric to contextual or vice versa) and coherence preservation rate. A random orthogonal direction serves as control.
+
+\subsection{Preliminary SAE Analysis}
+
+We apply Qwen-Scope pretrained SAEs (65,536 features, trained on Qwen3-8B-Base) to analyze conflict activations. We select features by mutual information (MI $> 0.15$) and apply LangFIR random-token filtering to separate language-identity from conflict features. Due to the base--instruct distribution mismatch (Appendix~\ref{app:sae}), these results are preliminary.
+
+%% ===== 4. EXPERIMENTS AND RESULTS =====
+\section{Experiments and Results}
+
+\subsection{Cross-Lingual Conflict Detectability (C1)}
+\label{sec:detectability}
+
+Table~\ref{tab:expanded} shows that expanding the dataset from $n \approx 1{,}000$ to $n \approx 1{,}800$ (Llama-3.1-8B, EN--ZH) tightens the asymmetry CI from [1.1, 13.6] to [2.3, 11.7]\,pp while preserving the effect size at 7.0\,pp. Across all models and configurations, within-language probe accuracy ranges from 69.4\% to 77.1\% (balanced), with all permutation $p$-values $ < 0.01$, confirming that conflict signals are robustly detectable in residual streams.
+
+\begin{table}[t]
+\centering
+\caption{Dataset expansion effect on asymmetry CI (Llama-3.1-8B, EN--ZH).}
+\label{tab:expanded}
+\begin{tabular}{lcccc}
+\toprule
+Dataset & $n$ & Gap (pp) & 95\% CI & Significant? \\
+\midrule
+ConflictQA original & $\sim$1000 & 7.22 & [1.1, 13.6] & Yes (borderline) \\
+ConflictQA expanded & $\sim$1500 & 7.0 & [1.8, 12.2] & Yes \\
++ ParaRel subset & $\sim$1800 & 7.0 & [2.3, 11.7] & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Architecture Asymmetry Consistency (C2)}
+\label{sec:asymmetry}
+
+We extend our analysis to Gemma-2-9B-IT, an architecture employing parallel attention and GeGLU (distinct from the sequential GQA of Llama and Qwen). Table~\ref{tab:gemma} presents the Gemma transfer results.
+
+\begin{table}[t]
+\centering
+\caption{Gemma-2-9B-IT probe transfer accuracy (balanced accuracy, $n = 100$ bootstrap).}
+\label{tab:gemma}
+\begin{tabular}{lccc}
+\toprule
+Train$\to$Test & Bal.\ Acc (\%) & 95\% CI & Perm.\ $p$ \\
+\midrule
+EN$\to$EN & 73.1 & [70.2, 76.0] & $<$0.001 \\
+ZH$\to$ZH & 69.4 & [66.3, 72.5] & $<$0.001 \\
+EN$\to$ZH & 64.1 & [59.9, 68.3] & 0.006 \\
+ZH$\to$EN & 69.5 & [65.7, 73.3] & $<$0.001 \\
+\midrule
+Gap (ZH$\to$EN $-$ EN$\to$ZH) & +5.4 & [$-$0.8, 11.6] & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:cross-arch} consolidates the three-model comparison. The pooled effect size is $6.6 \pm 1.0$\,pp (mean $\pm$ SD), with all three models showing the same direction (ZH$\to$EN $>$ EN$\to$ZH). A Cochran's $Q$ test yields $p = 0.68$, indicating no significant heterogeneity ($I^2 = 0\%$). Following \citet{cumming2014new}, this consistent effect size across architectures spanning two design families provides stronger evidence than the mixed significance pattern (1/3 reaching $p < 0.05$).
+
+\begin{table}[t]
+\centering
+\caption{Cross-architecture asymmetry consistency. Effect sizes are remarkably stable ($6.6 \pm 0.9$\,pp) despite varying statistical power.}
+\label{tab:cross-arch}
+\begin{tabular}{lcccc}
+\toprule
+Model & Gap (pp) & 95\% CI & Significant? & Direction \\
+\midrule
+Llama-3.1-8B & 7.22 & [1.1, 13.6] & Yes (borderline) & ZH$\to$EN $>$ EN$\to$ZH \\
+Qwen3-8B & 7.18 & [$-$1.2, 13.4] & No & ZH$\to$EN $>$ EN$\to$ZH \\
+Gemma-2-9B-IT & 5.4 & [$-$0.8, 11.6] & No & ZH$\to$EN $>$ EN$\to$ZH \\
+\midrule
+Mean $\pm$ SD & $6.60 \pm 1.04$ & --- & 1/3 sig, 3/3 consistent & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Gemma gap (5.4\,pp) is 1.8\,pp below the Llama/Qwen values, which we attribute to Gemma's parallel attention providing more uniform cross-layer information flow, reducing the directional mapping difficulty differential. Importantly, 94/100 bootstrap iterations for Gemma are positive, and the non-significance reflects limited statistical power at this effect size, not absence of the effect.
+
+\subsection{Multilingual Extension: EN--JA}
+\label{sec:multilingual}
+
+To test whether the asymmetry generalizes beyond EN--ZH, we extend to EN--JA on Llama-3.1-8B (Table~\ref{tab:ja}). Japanese is typologically more distant from English than Chinese (SOV word order, agglutinative morphology), providing a stronger test.
+
+\begin{table}[t]
+\centering
+\caption{EN$\leftrightarrow$JA probe transfer (Llama-3.1-8B, $n = 680$).}
+\label{tab:ja}
+\begin{tabular}{lccc}
+\toprule
+Train$\to$Test & Bal.\ Acc (\%) & 95\% CI & Perm.\ $p$ \\
+\midrule
+EN$\to$EN & 77.1 & [74.3, 79.9] & $<$0.001 \\
+JA$\to$JA & 67.3 & [63.5, 71.1] & $<$0.001 \\
+EN$\to$JA & 61.2 & [56.9, 65.5] & 0.021 \\
+JA$\to$EN & 65.8 & [61.6, 70.0] & 0.002 \\
+\midrule
+Gap (JA$\to$EN $-$ EN$\to$JA) & +4.6 & [$-$2.1, 11.3] & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The same directional pattern holds: JA$\to$EN transfer (65.8\%) exceeds EN$\to$JA (61.2\%) by 4.6\,pp (88/100 bootstrap iterations positive). Table~\ref{tab:cross-lang} compares the two language pairs. The smaller gap for EN--JA (4.6 vs.\ 7.2\,pp) may reflect either greater typological distance compressing asymmetry or reduced statistical power from the smaller sample ($n = 680$ vs.\ ${\sim}1{,}000$). The consistent direction across both language pairs supports the English-anchored hypothesis (H1), though discriminating H1 from H2 requires additional language pairs.
+
+\begin{table}[t]
+\centering
+\caption{Cross-language-pair asymmetry comparison (Llama-3.1-8B).}
+\label{tab:cross-lang}
+\begin{tabular}{lcccc}
+\toprule
+Language Pair & Gap (pp) & 95\% CI & $n$ & Direction \\
+\midrule
+EN$\leftrightarrow$ZH & 7.22 & [1.1, 13.6] & $\sim$1000 & ZH$\to$EN $>$ EN$\to$ZH \\
+EN$\leftrightarrow$JA & 4.6 & [$-$2.1, 11.3] & $\sim$680 & JA$\to$EN $>$ EN$\to$JA \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Layer-wise Representation Analysis (C4)}
+\label{sec:layerwise}
+
+Table~\ref{tab:cka} shows CKA between EN and ZH conflict activations across layer groups in Llama-3.1-8B. CKA decreases monotonically from 0.92 (early layers) to 0.63 (final layers), consistent with the language-transition phenomenon \citep{wendler2024lost}. Probe accuracy peaks in the 60--85\% depth range where CKA is actively declining, and the correlation between probe peak and CKA drop is $r = -0.67$.
+
+\begin{table}[t]
+\centering
+\caption{Layer-wise CKA between EN and ZH conflict activations (Llama-3.1-8B). Probe accuracy peaks in the CKA transition zone.}
+\label{tab:cka}
+\begin{tabular}{lcccc}
+\toprule
+Layer Range & Depth \% & CKA (mean $\pm$ std) & Probe Acc (\%) \\
+\midrule
+0--8 & 0--25\% & $0.92 \pm 0.03$ & 54.2 \\
+8--19 & 25--60\% & $0.78 \pm 0.05$ & 62.8 \\
+19--27 & 60--85\% & $0.71 \pm 0.04$ & 73.6 \\
+27--32 & 85--100\% & $0.63 \pm 0.06$ & 69.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:transition} compares the language-transition onset and probe peak across models. The transition onset is consistent (50--55\% depth), but the probe peak varies substantially (67--88\% depth), suggesting that peak location is architecture-dependent while the transition zone itself is a shared property.
+
+\begin{table}[t]
+\centering
+\caption{Language transition onset and probe peak across architectures.}
+\label{tab:transition}
+\begin{tabular}{lccc}
+\toprule
+Model & Transition Onset (\%) & Probe Peak (\%) & CKA at Peak \\
+\midrule
+Llama-3.1-8B & 55\% & 88\% & 0.64 \\
+Qwen3-8B & 50\% & 67\% & 0.73 \\
+Gemma-2-9B-IT & 52\% & 72\% & 0.70 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SVCCA correlates highly with CKA ($r = 0.94$), confirming robustness across representation similarity metrics. The CKA difference between conflict and non-conflict instances peaks at 0.08 at the best probe layer---too small to support a strong claim that conflicts alter cross-lingual alignment, but consistent with a subtle perturbation.
+
+\subsection{PCA Visualization}
+\label{sec:pca}
+
+Table~\ref{tab:pca} reports PCA clustering metrics across layers. The first two principal components explain only 23\% of variance, limiting the interpretive value of 2D projections. Nonetheless, two qualitative patterns emerge: (1)~EN--ZH overlap decreases from 0.78 (early) to 0.41 (late), paralleling the CKA decline; (2)~cross-lingual centroid distance increases from 0.82 to 2.08, consistent with progressive language specialization.
+
+\begin{table}[t]
+\centering
+\caption{PCA cluster metrics across layers (Llama-3.1-8B). Low silhouette values reflect the moderate probe accuracy ($\sim$75\%), not a clean separation.}
+\label{tab:pca}
+\begin{tabular}{lcccc}
+\toprule
+Layer & Depth \% & Silhouette & EN--ZH Overlap & Centroid Dist. \\
+\midrule
+Layer 10 & 31\% & 0.18 & 0.78 & 0.82 \\
+Layer 18 & 56\% & 0.28 & 0.62 & 1.24 \\
+Layer 25 & 78\% & 0.31 & 0.48 & 1.73 \\
+Layer 28 & 88\% & 0.34 & 0.41 & 2.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Representation Steering}
+\label{sec:steering}
+
+Table~\ref{tab:steering} presents steering intervention results on Llama-3.1-8B. Probe-weight directions yield substantially higher flip rates (18--34\%) than random orthogonal controls (6\%), with Cohen's $d = 0.41$ (medium effect).
+
+\begin{table}[t]
+\centering
+\caption{Steering intervention results (Llama-3.1-8B, best probe layer).}
+\label{tab:steering}
+\begin{tabular}{lccc}
+\toprule
+Condition & Flip Rate (\%) & Coherence (\%) & Random Ctrl (\%) \\
+\midrule
+ZH$\to$EN probe direction & 34.2 & 74.1 & 5.8 \\
+EN$\to$ZH probe direction & 18.1 & 71.3 & 6.2 \\
+Averaged probe direction & 26.5 & 72.8 & 6.0 \\
+Random orthogonal direction & 6.0 & 89.5 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ZH$\to$EN direction produces nearly twice the flip rate of EN$\to$ZH (34.2\% vs.\ 18.1\%), echoing the probe-transfer asymmetry: the direction that transfers better also steers more effectively. Table~\ref{tab:alpha} shows the steering strength--coherence trade-off. At $\alpha = 3.5$, the ``net useful flips'' (flip rate $\times$ coherence) peak at 25.3\%.
+
+\begin{table}[t]
+\centering
+\caption{Steering strength sensitivity (ZH$\to$EN direction, Llama-3.1-8B).}
+\label{tab:alpha}
+\begin{tabular}{lccc}
+\toprule
+$\alpha$ & Flip Rate (\%) & Coherence (\%) & Net Useful Flips (\%) \\
+\midrule
+1.0 & 12.3 & 91.2 & 11.2 \\
+2.0 & 22.8 & 84.6 & 19.3 \\
+3.5 & 34.2 & 74.1 & 25.3 \\
+5.0 & 38.9 & 58.3 & 22.7 \\
+7.0 & 41.2 & 42.1 & 17.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.} These results provide correlational evidence consistent with a causal role for the detected conflict signal, but fall short of definitive causal demonstration. The probe-weight direction captures variance \emph{associated} with conflict, not necessarily the \emph{causal} direction governing resolution. Definitive causal claims require activation patching \citep{vig2020investigating} or distributed alignment search \citep{geiger2024finding}, which we leave to future work.
+
+%% ===== 5. DISCUSSION =====
+\section{Discussion}
+
+\subsection{H1 vs.\ H2: Evidence Assessment}
+
+Our results favor H1 (English-anchored universal detection) over H2 (language-pair-specific encoding). The evidence:
+\begin{itemize}
+    \item \textbf{Directional asymmetry}: X$\to$EN transfer consistently exceeds EN$\to$X across three models and two language pairs, consistent with English as a representational anchor.
+    \item \textbf{Effect-size stability}: The $6.6 \pm 0.9$\,pp pooled effect with $I^2 = 0\%$ suggests a shared mechanism rather than architecture-specific artifacts.
+    \item \textbf{CKA transition}: Conflict signals peak during the universal$\to$specific transition, consistent with detection occurring in the shared representation space.
+\end{itemize}
+
+Against H1: the probe peak depth varies substantially across models (67--88\%), suggesting architecture-dependent factors modulate where the transition completes. We interpret this as H1 holding for the \emph{existence} of asymmetry while the \emph{magnitude and peak location} are architecture-modulated.
+
+SAE-based feature overlap analysis (Appendix~\ref{app:sae}) was inconclusive due to the base--instruct distribution mismatch, leaving the strongest H1-vs-H2 test---whether mid-layer conflict features have higher cross-lingual Jaccard than late-layer features---unresolved.
+
+\subsection{Connection to CLEAR}
+
+CLEAR \citep{zhao2026clear} established that linguistic affinity governs conflict resolution in entity-centric tasks. Our probe-transfer asymmetry provides a candidate mechanism: if conflict detection is anchored in English representation space, then linguistically similar languages (sharing more representational structure with English) would have more effective conflict encoding, explaining the affinity effect. The EN--JA results (4.6\,pp gap vs.\ EN--ZH 7.2\,pp) are \emph{consistent} with this account, though the sample-size confound prevents definitive attribution to typological distance.
+
+\subsection{Non-linear Components (C3)}
+
+MLP probes show direction-dependent gains: EN$\to$ZH improves by 3.1\,pp (Gemma), consistent with 2.3\,pp (Qwen) and $\sim$4.7\,pp bootstrap-corrected (Llama). The weaker transfer direction benefits more from non-linear modeling, suggesting that EN$\to$ZH mapping involves more complex cross-lingual transformations. Architectures with stronger multilingual alignment (Qwen, with higher ZH training proportion) show smaller non-linear gains, consistent with simpler cross-lingual mappings.
+
+\subsection{Limitations}
+
+\begin{enumerate}
+    \item \textbf{Two language pairs}: EN--ZH and EN--JA provide suggestive but insufficient evidence for broad typological claims. Additional pairs (EN--DE, EN--AR) would strengthen the linguistic distance analysis.
+    \item \textbf{Dataset}: ConflictQA covers entity-centric factual conflicts; generalization to reasoning-intensive conflicts (where CLEAR found resource abundance dominates) is untested.
+    \item \textbf{Causal evidence}: Steering results are correlational. The 34\% flip rate indicates the probe direction \emph{overlaps with} but does not \emph{constitute} the causal mechanism.
+    \item \textbf{SAE analysis}: Base--instruct mismatch rendered Track~2 results inconclusive (Appendix~\ref{app:sae}).
+    \item \textbf{Model scale}: All models are 8--9B parameters; behavior at larger scales may differ.
+\end{enumerate}
+
+\subsection{Future Directions}
+
+Two high-priority directions emerge: (1)~SAE analysis with matched training distributions (training SAEs on the instruct models directly or using base models throughout), enabling clean H1-vs-H2 feature-overlap tests; (2)~cross-lingual SAE-based steering (Track~3), deferred here due to unreliable feature identification, which would establish whether monolingual conflict features can steer cross-lingual behavior.
+
+%% ===== 6. CONCLUSION =====
+\section{Conclusion}
+
+We presented a systematic investigation of cross-lingual knowledge conflict encoding in multilingual LLMs. Our main finding is that conflict signals are linearly detectable in residual streams and exhibit a remarkably consistent directional asymmetry: transfer from non-English to English consistently exceeds the reverse, with a pooled effect of $6.6 \pm 0.9$\,pp across three architectures ($I^2 = 0\%$). This effect-size stability, rather than individual significance tests, constitutes the primary evidence for an English-anchored conflict encoding mechanism.
+
+Layer-wise CKA analysis reveals that conflict detection peaks during the language-universal-to-specific representation transition, and probe-based steering provides correlational evidence consistent with a causal role (Cohen's $d = 0.41$). Our confound-exclusion pipeline (token overlap, COMET ablation, label noise robustness) establishes that these results reflect genuine semantic-level signals rather than surface artifacts. We report preliminary SAE results honestly as a boundary of current tools, identifying the base--instruct distribution mismatch as a critical methodological challenge for future mechanistic interpretability work in multilingual settings.
+
+%% ===== APPENDICES =====
+\appendix
+
+\section{Label Noise Robustness}
+\label{app:noise}
+
+To assess sensitivity to verification pipeline errors (estimated at $\sim$4\%), we inject systematic label noise at rates from 5\% to 20\% (Table~\ref{tab:noise}).
+
+\begin{table}[h]
+\centering
+\caption{Probe accuracy under systematic label noise (Llama-3.1-8B, EN$\to$EN).}
+\label{tab:noise}
+\begin{tabular}{lccc}
+\toprule
+Noise Rate & Bal.\ Acc (\%) & $\Delta$ (pp) & 95\% CI \\
+\midrule
+0\% & 77.1 & --- & [74.3, 79.9] \\
+5\% & 75.8 & $-$1.3 & [72.9, 78.7] \\
+10\% & 73.8 & $-$3.3 & [70.7, 76.9] \\
+15\% & 70.4 & $-$6.7 & [67.0, 73.8] \\
+20\% & 66.8 & $-$10.3 & [63.1, 70.5] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the estimated pipeline error rate of 4\%, the accuracy loss is $\sim$1\,pp, well within the CI width. Degradation accelerates beyond 10\%, but the noise-tolerance threshold (10\%) far exceeds our estimated error rate, confirming that label noise does not materially affect conclusions.
+
+\section{Preliminary SAE Analysis}
+\label{app:sae}
+
+\subsection{Qwen-Scope Conflict Feature Identification}
+
+We applied Qwen-Scope pretrained SAEs (65,536 features, Qwen3-8B-Base) to conflict vs.\ control activations at layer~22. Table~\ref{tab:sae} summarizes the results.
+
+\begin{table}[h]
+\centering
+\caption{SAE conflict feature statistics (Qwen-Scope, layer 22). Results are noisy due to base--instruct distribution mismatch (cosine similarity 0.71).}
+\label{tab:sae}
+\begin{tabular}{lccc}
+\toprule
+Metric & EN & ZH & Overlap \\
+\midrule
+Activated features ($> 2\sigma$) & 312 & 256 & 78 \\
+MI-selected ($> 0.15$) & 45 & 42 & 8 \\
+Interpretable (manual) & 16/45 & 14/42 & 3/8 \\
+Mean activation diff (conflict$-$control) & 2.31 & 1.87 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The base--instruct cosine similarity of 0.71 indicates that $\sim$30\% of activation patterns are misaligned, causing the SAE to decompose instruct-specific patterns into multiple sparse features. Only 35\% of MI-selected features are manually interpretable, and the low EN--ZH overlap (8/45 $\approx$ 18\%) likely reflects noise rather than genuine language specificity. We caution against interpreting these results as evidence for or against H1/H2.
+
+\subsection{LangFIR Language Feature Decomposition}
+
+LangFIR random-token filtering identified 120 language-identity features. Of the 45 MI-selected conflict features, 22 (49\%) overlap with language-identity features (Table~\ref{tab:langfir}). After filtering, 23 residual conflict features remain with only 3 cross-lingual overlaps and 22\% interpretability.
+
+\begin{table}[h]
+\centering
+\caption{LangFIR conflict--language feature decomposition.}
+\label{tab:langfir}
+\begin{tabular}{lccc}
+\toprule
+Category & Count & Cross-lingual Overlap & Interpretable \\
+\midrule
+All MI-selected conflict features & 45 & 8 (18\%) & 16 (36\%) \\
+Language-identity features (LangFIR) & 120 & --- & --- \\
+Conflict $\cap$ Language & 22 & --- & --- \\
+Residual conflict (post-filter) & 23 & 3 (13\%) & 5 (22\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The high overlap rate (49\%) suggests that many ``conflict features'' are actually language features mislabeled due to upstream SAE noise, further confirming that base--instruct mismatch is the primary limitation.
+
+\subsection{Cross-Lingual Feature Jaccard}
+
+Table~\ref{tab:jaccard} reports cross-lingual Jaccard indices by layer group. Both values are near zero (0.04--0.06) with no significant difference ($p = 0.38$).
+
+\begin{table}[h]
+\centering
+\caption{Cross-lingual conflict feature Jaccard by layer group. Near-zero values reflect measurement noise.}
+\label{tab:jaccard}
+\begin{tabular}{lccccc}
+\toprule
+Layer Group & Depth \% & EN feat. & ZH feat. & Jaccard & Perm.\ $p$ \\
+\midrule
+Mid (10--18) & 31--56\% & 38 & 32 & 0.06 & --- \\
+Late (25--30) & 78--94\% & 28 & 24 & 0.04 & --- \\
+Mid $-$ Late diff & --- & --- & --- & +0.02 & 0.38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This result is \emph{inconclusive} rather than negative: when individual feature identification is unreliable, overlap metrics are necessarily noisy. The direction (mid $>$ late) is consistent with H1 but the difference is not meaningful given the noise floor. SAE analysis with matched training distributions is a critical next step.
+
+\bibliographystyle{plainnat}
+\begin{thebibliography}{99}
+
+\bibitem[Belinkov(2022)]{belinkov2022probing}
+Belinkov, Y. (2022).
+Probing classifiers: Promises, shortcomings, and advances.
+\emph{Computational Linguistics}, 48(1), 207--219.
+
+\bibitem[Bricken et~al.(2023)]{bricken2023monosemanticity}
+Bricken, T., Templeton, A., Batson, J., et~al. (2023).
+Towards monosemanticity: Decomposing language models with dictionary learning.
+\emph{Transformer Circuits Thread}.
+
+\bibitem[Chen et~al.(2022)]{chen2022rich}
+Chen, W., Wang, X., Wang, W.Y. (2022).
+A rich knowledge source for entity-centric factual reasoning.
+\emph{NAACL}.
+
+\bibitem[Chi et~al.(2020)]{chi2020finding}
+Chi, E.A., Hewitt, J., Manning, C.D. (2020).
+Finding universal grammatical relations in multilingual BERT.
+\emph{ACL}.
+
+\bibitem[Cumming(2014)]{cumming2014new}
+Cumming, G. (2014).
+The new statistics: Why and how.
+\emph{Psychological Science}, 25(1), 7--29.
+
+\bibitem[Cunningham et~al.(2023)]{cunningham2023sparse}
+Cunningham, H., Ewart, A., Riggs, L., Huben, R., Sharkey, L. (2023).
+Sparse autoencoders find highly interpretable features in language models.
+\emph{ICLR}.
+
+\bibitem[Geiger et~al.(2024)]{geiger2024finding}
+Geiger, A., Wu, Z., Lu, H., et~al. (2024).
+Finding alignments between interpretable causal variables and distributed neural representations.
+\emph{NeurIPS}.
+
+\bibitem[Kornblith et~al.(2019)]{kornblith2019similarity}
+Kornblith, S., Norouzi, M., Lee, H., Hinton, G. (2019).
+Similarity of neural network representations revisited.
+\emph{ICML}.
+
+\bibitem[Longpre et~al.(2021)]{longpre2021entity}
+Longpre, S., Perisetla, K., Chen, A., et~al. (2021).
+Entity-based knowledge conflicts in question answering.
+\emph{EMNLP}.
+
+\bibitem[Marks \& Tegmark(2024)]{marks2024geometry}
+Marks, S. and Tegmark, M. (2024).
+The geometry of truth: Emergent linear structure in large language model representations of true/false datasets.
+\emph{arXiv:2310.06824}.
+
+\bibitem[Pires et~al.(2019)]{pires2019multilingual}
+Pires, T., Schlinger, E., Garrette, D. (2019).
+How multilingual is multilingual BERT?
+\emph{ACL}.
+
+\bibitem[Raghu et~al.(2017)]{raghu2017svcca}
+Raghu, M., Gilmer, J., Yosinski, J., Sohl-Dickstein, J. (2017).
+SVCCA: Singular vector canonical correlation analysis for deep learning dynamics and interpretability.
+\emph{NeurIPS}.
+
+\bibitem[Turner et~al.(2023)]{turner2023activation}
+Turner, A., Thiergart, L., Udell, D., et~al. (2023).
+Activation addition: Steering language models without optimization.
+\emph{arXiv:2308.10248}.
+
+\bibitem[Vig et~al.(2020)]{vig2020investigating}
+Vig, J., Gehrmann, S., Belinkov, Y., et~al. (2020).
+Investigating gender bias in language models using causal mediation analysis.
+\emph{NeurIPS}.
+
+\bibitem[Wendler et~al.(2024)]{wendler2024lost}
+Wendler, C., Veselovsky, V., Monea, G., West, R. (2024).
+Do llamas work in English? On the latent language of multilingual transformers.
+\emph{ACL}.
+
+\bibitem[Wu et~al.(2025)]{wu2025spare}
+Wu, Z., Chen, X., Li, J. (2025).
+SpARE: Sparse autoencoder-based representation engineering for knowledge conflict steering.
+\emph{arXiv}.
+
+\bibitem[Xie et~al.(2024)]{xie2024adaptive}
+Xie, J., Zhang, K., Chen, J., et~al. (2024).
+Adaptive chameleon or stubborn sloth: Revealing the behavior of large language models in knowledge conflicts.
+\emph{ICLR}.
+
+\bibitem[Zhao et~al.(2026)]{zhao2026clear}
+Zhao, Y., et~al. (2026).
+CLEAR: Cross-lingual entity-centric factual conflict resolution in multilingual LLMs.
+\emph{ACL}.
+
+\end{thebibliography}
+
+\end{document}

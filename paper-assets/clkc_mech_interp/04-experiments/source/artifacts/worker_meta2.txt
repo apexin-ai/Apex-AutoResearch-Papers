@@ -1,0 +1,12 @@
+{
+  "worker_id": "worker_code_fix-fig3-local-from-backup_20260526T080353",
+  "status": "failed",
+  "task_type": "code:fix-fig3-local-from-backup",
+  "project": "clkc_mech_interp",
+  "started_at": "2026-05-26T08:03:54.029474+00:00",
+  "ended_at": "2026-05-26T08:34:03.103549+00:00",
+  "setup": null,
+  "teardown": null,
+  "setup_data": {},
+  "result_raw_length": 2062954
+}

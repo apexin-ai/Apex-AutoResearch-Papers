@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c74e7491c86f0f0fbca0",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra de bootstrap v2 check",
+  "task_key": "worker_infra_de-bootstrap-v2-check_20260523T070348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_de-bootstrap-v2-check_20260523T070348_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "353fa14283caba876e2ebcb65858a8ea3020596dd132624bc03b0ecb71d8b105"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程已退出，运行成功。** 结果文件已生成（1.3MB，15:01 写入）。\n\n## 结果汇总\n\n| 方向 | Mean Accuracy | 95% CI | \n|------|-------------|--------|\n| EN→EN (within) | 0.7709 | [0.7463, 0.7978] |\n| DE→DE (within) | 0.7626 | [0.7390, 0.7868] |\n| EN→DE (cross) | 0.6923 | [0.6324, 0.7390] |\n| DE→EN (cross) | 0.7047 | [0.6654, 0.7426] |\n\n**Asymmetry (DE→EN − EN→DE):** Δ = +1.24pp, 95% CI = [−4.78, +8.09], **p = 0.4045**\n\n## 解读\n\n- Within-language probing 两个方向都很强（~77%/76%），且 CI 重叠，说明 DE 和 EN 的 factual representation 质量相当。\n- Cross-language 显著低于 within（~69-70% vs ~77%），drop 约 7-8pp，说明跨语言 transfer 存在明显损失。\n- **Asymmetry 不显著**（p=0.40），DE→EN 和 EN→DE 的 cross-lingual transfer 没有统计上的方向性差异。CI 跨零，无法拒绝对称假设。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-de-bootstrap-v2-check.md"
+}

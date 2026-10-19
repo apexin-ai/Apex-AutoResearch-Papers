@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fd22f4e6eb7e27f4426",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu steering qwen L23 107",
+  "task_key": "worker_gpu_steering-qwen-L23-107_20260522T125514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_steering-qwen-L23-107_20260522T125514_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "6390f842c5a2b6c9d978c2e4b277f420281235370877a33dfcfd3a5bf98c17ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动，registry 和 cron 均已注册。\n\n**汇总：**\n- **PID**: 485320（GPU 子进程 485325）\n- **模型**: `/root/models/Qwen3-8B`（base，非 Instruct；Instruct 目录为空）\n- **数据**: 798 train + 168 test = 966 样本（test 中 84 conflict / 168 total）\n- **Probe accuracy @ L23**: 73.2%\n- **GPU 占用**: ~15GB on cuda:0\n- **配置**: L23 / last-token / 6 alphas (-20, -10, -5, 5, 10, 20)\n- **预估运行时间**: 168 test × 6 alphas + baseline = ~1200 次生成，单卡约 30-60 分钟\n- **Cron**: 每 8 分钟轮询日志，完成后自动汇报并更新 registry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-steering-qwen-l23-107.md"
+}

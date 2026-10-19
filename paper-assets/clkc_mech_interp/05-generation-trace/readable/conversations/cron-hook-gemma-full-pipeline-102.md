@@ -1,0 +1,2757 @@
+# cron hook gemma full pipeline 102
+
+**English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 91
+- **Recorded user turns:** 2
+- **Tool calls:** 44
+- **Original source:** `logs/chats/cron_hook_gemma_full_pipeline_102.jsonl`
+- **Structured JSON:** [`5f2d7a9b942936e91982.json`](../../sessions/5f/5f2d7a9b942936e91982.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+39 recorded events
+
+### User
+
+_source line 1 · 2026-05-22T10:08:41.809718+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: gemma_full_pipeline_102
+- project: clkc_mech_interp
+- server: westd-41302
+- log_path: /root/clkc_mech_interp/logs/gemma_translate_zh.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-22T10:08:55.729024+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__get_worker_status",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__get_worker_status",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-22T10:08:55.779679+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T10:09:04.168314+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T10:09:04.168739+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T10:09:04.670907+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gemma_full_pipeline_102\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:55:53.223Z\", \"updated_at\": \"2026-05-22T10:08:39.767Z\", \"hypothesis\": \"跨语言知识冲突信号的可检测性（EN balanced acc ≥70%）和迁移不对称性（ZH→EN > EN→ZH ~7pp）在第三个模型架构 Gemma-2-9B-IT（42层 GQA）上同样成立，与 Llama-3.1-8B 和 Qwen3-8B 形成三模型跨架构验证。\", \"metrics\": {\"gemma_zh_translate_status\": \"done\", \"zh_train_lines\": 1274, \"zh_test_lines\": 316, \"zh_train_path\": \"/root/clkc_mech_interp/data/gemma2/zh_conflict_train.jsonl\", \"zh_test_path\": \"/root/clkc_mech_interp/data/gemma2/zh_conflict_test.jsonl\"}, \"conclusion\": \"failed\"}, \"steering_107\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-22T08:08:08.511Z\", \"updated_at\": \"2026-05-22T09:59:14.999Z\", \"hypothesis\": \"线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。\", \"parent\": \"mvp_probe_v1\"}, \"en_de_translate_112\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-22T07:16:17.050Z\", \"updated_at\": \"2026-05-22T09:59:12.035Z\", \"hypothesis\": \"跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。\"}, \"cka_svcca_104\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T07:16:25.262Z\", \"updated_at\": \"2026-05-22T08:16:28.383Z\", \"hypothesis\": \"冲突任务的 EN-ZH 逐层 CKA/SVCCA 相似度在中后层（探针检测冲突信号的 peak layers 附近）显著低于 XNLI 的对应层，表明冲突信号导致语言间表征出现特有的分叉（divergence），而非冲突语义任务中 EN-ZH 表征保持较高对齐。这将从表征几何角度强化 C3（冲突信号需要非线性解码是因为跨语言表征在冲突条件下发生了非线性分叉）。\", \"conclusion\": \"negative\", \"metrics\": {\"qwen_conflict_aligned_cka_mean\": 0.652, \"qwen_xnli_aligned_cka_mean\": 0.094, \"llama_conflict_aligned_cka_mean\": 0.778, \"llama_xnli_aligned_cka_mean\": 0.151, \"qwen_conflict_shuffled_cka_mean\": 0.124, \
+…[truncated 9467 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T10:09:04.671288+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T10:09:05.122827+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T10:09:05.273973+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-22T10:08:40Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 38 个实验 — ANALYZING 1, DONE 10, PREPARING 25, RUNNING 2\\n**DONE 分布**: failed 1, killed 4, negative 2, success 3\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-41302:cuda:0, westd-41302:cuda:1, westd-41302:cuda:2, westd-41302:cuda:3\\n- **空闲（分配了没跑）**: westd-41302:cuda:1, westd-41302:cuda:2\\n\\n### 💾 磁盘余量\\n- **westd-41302**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `bootstrap_n2000_111` | westd-41302 | ? | ? | `—` |\\n| `en_de_translate_112` | ? | ? | 462040 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `gemma_full_pipeline_102` [failed] — 2026-05-22T10:08:39 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `cka_svcca_104` [negative] — 2026-05-22T08:16:28\\n- `comet_llama_v6` [killed] — 2026-05-22T07:48:20\\n- `comet_qwen_v6` [killed] — 2026-05-22T07:48:19\\n- `gemma_en_act_102` [success] — 2026-05-22T06:59:03\\n\\n### 🔴 最近失败原因 (top 3)\\n- `gemma_full_pipeline_102`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `comet_llama_v6`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `comet_qwen_v6`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-22\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| en_de_translate_112 | 跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。 | — | — | — |\\n| bootstrap_n2000_111 | Bootstra
+…[truncated 1614 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T10:09:05.274358+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "clkc_mech_interp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T10:09:05.274809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/ROADMAP.md\", \"content\": \"# clkc_mech_interp — Research Dashboard\\n\\n> 最后更新: 2026-05-22 09:05 UTC | 更新原因: Reviewer WARNING 修正：steering v2→v3, ETA 2h→6-7h, 进度数字同步\\n\\n## 核心方向\\n跨语言知识冲突信号的机制解释：残差流探针检测、层结构分析、因果干预。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research Phase**（MVP 2026-05-21 通过）。ICLR 2027 DDL ~2026-09-24。\\n\\n### 关键发现\\n- **C1 detectability** ✅ Llama 77.1%, Qwen 75.3%\\n- **C2 reframed (D008)**: 方向不对称性非冲突特有（XNLI ≥5pp），冲突信号编码在通用跨语言空间\\n- **C3 non-linearity (D009)**: MLP EN→ZH Δ 冲突有(+2.4~9.2pp) XNLI 无(-2.0~-0.5pp)。Bootstrap 进行中：Qwen ~3.9pp, Llama L18 ~5.0pp，待 CI 确认\\n- **C4 CKA (negative)**: 配对控制后差异消失，作为 appendix methodological lesson\\n- **Steering (D010)**: 最高优先级，probe-weight 因果干预\\n\\n### GPU 状态 (2026-05-22 ~18:00 UTC)\\n- cuda:0 — **Steering v3 Llama** (plan_107, PID 468898, ~7% done, ETA ~23:00 UTC)\\n  - Baseline: p=32, c=41, both=35, neither=28\\n  - alpha=-20 处理中，hook 稳定无 crash\\n- cuda:1 — Gemma ZH translate (plan_102, 150/316 test, ~47%)\\n- cuda:2 — COMET Llama train (780/1096, 进程活跃但日志无更新，可能 scoring 阶段)\\n- cuda:3 — DE translate Llama (plan_112, 610/1096, ~56%)\\n\\n### CPU 任务\\n- Bootstrap n=2000 (plan_111): loky 32 workers 运行中\\n- C3 MLP bootstrap: Qwen L23 650/1000 (delta ~3.9pp), Llama L18 150/1000 (delta ~5.0pp)\\n\\n## 近期任务（P0）\\n- [x] plan_110: XNLI 非冲突基线 — DONE, C2 reframed, C3 contrast confirmed\\n- [x] plan_104: CKA/SVCCA — DONE (negative, 配对混淆 M013/M014)\\n- [ ] plan_107: Steering v3 Llama → 运行中 ETA ~23:00 UTC (~6-7h total)\\n- [ ] plan_102: Gemma 全流程 → ZH translate 47%, 后续 probe + bootstrap\\n- [ ] plan_111: Bootstrap n≥2000 → 优化版 joblib 并行，运行中\\n- [ ] plan_112: EN↔DE → Llama DE translate 56%\\n- [ ] C3 MLP bootstrap CI → Qwen 65%, Llama L18 15%, ETA ~2h\\n\\n## GPU 预算\\n本项目分配: cuda:0,1,2,3 (westd-41302)\\nCOMET Qwen killed (RC1 resolved). COMET Llama 运行中但低优先级。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|-----
+…[truncated 1043 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T10:09:22.497829+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T10:09:22.849612+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/agent_6de38321.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T10:09:22.851129+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "filters": "{'exp_id': 'gemma_full_pipeline_102'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "filters": "{'exp_id': 'gemma_full_pipeline_102'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T10:09:23.453580+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1087}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-22T10:09:23.453949+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T10:09:23.504494+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/agent_6de38321.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-22T10:09:35.751359+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T10:09:35.752412+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T10:09:36.154006+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Glob",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T10:09:36.204570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-22T10:09:38.127017+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T10:09:38.178194+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-22T10:09:57.561211+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T10:09:58.516733+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/memory.md\", \"content\": \"# 关键研究发现\\n\\n## C2 不对称性非冲突特有 [2026-05-22, xnli_baseline_110]\\n\\n**核心发现**：~6pp ZH→EN > EN→ZH 不对称性在非冲突任务 XNLI 上同样存在，是模型的一般性跨语言属性，非冲突信号特有。\\n\\n| Model | XNLI asymmetry | Conflict asymmetry |\\n|-------|---------------|-------------------|\\n| Qwen | +6.72pp CI[2.36,11.73] ✓ | +5.95pp CI[-3.67,14.81] |\\n| Llama | +5.97pp CI[0.92,11.33] ✓ | +11.76pp CI[4.29,19.57] ✓ |\\n\\n**推导**：英语主导预训练 → EN 表征空间更\\\"标准\\\" → ZH→EN 迁移天然更好。C2 需 reframe：从 \\\"conflict-specific asymmetry\\\" 改为 \\\"conflict signals share general cross-lingual transfer pathways\\\"。\\n\\n**Llama 的 excess asymmetry**：conflict(+11.76) - XNLI(+5.97) = +5.79pp，可能有冲突特有成分，但 CI 重叠大，需统计检验。Qwen excess 为负(-0.77pp)。\\n\\n---\\n\\n# Gemma-2-9B-IT 兼容性报告 (plan_102)\\n\\n## 模型结构\\n\\n| 属性 | 值 |\\n|------|-----|\\n| model_type | gemma2 |\\n| architecture | Gemma2ForCausalLM |\\n| num_hidden_layers | 42 |\\n| hidden_size | 3584 |\\n| num_attention_heads | 16 |\\n| num_key_value_heads | 8 (GQA) |\\n| head_dim | 256 |\\n| vocab_size | 256000 |\\n| torch_dtype | bfloat16 |\\n\\n## 各脚本兼容性\\n- verify_parametric_knowledge.py — ✅ 无需修改\\n- collect_activations.py — ✅ 无需修改（model.model.layers 同构）\\n- train_probe.py — ✅ 无需修改（无硬编码维度）\\n\\n## GPU 需求\\n- 模型加载（bfloat16）：~18GB VRAM\\n- 推荐：单卡 24GB+ 即可\\n\\n---\\n\\n## 踩坑记录\\n\\n### CUDA_VISIBLE_DEVICES 映射规则 [2026-05-22]\\n- `submit_on_allocated` / `submit_training_job` 会自动注入 `CUDA_VISIBLE_DEVICES` 映射物理 GPU，脚本内 `--gpu 0` = 分配的第一块卡\\n- **SSH 手动执行时**，`CUDA_VISIBLE_DEVICES` 直接对应物理 GPU 编号。分配 cuda:1 就必须写 `CUDA_VISIBLE_DEVICES=1`，不是 0\\n- **tmux 内层 `bash -c` 设置的 CUDA_VISIBLE_DEVICES 会覆盖外层值**，必须确保最内层命令的环境变量正确\\n\", \"total_chars\": 1492, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 955
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-22T10:09:58.669037+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__load_project_config",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__load_project_config",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T10:09:58.669463+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T10:10:06.966002+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-41302",
+  "log_path": "/root/clkc_mech_interp/logs/gemma_translate_zh.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-41302",
+    "log_path": "/root/clkc_mech_interp/logs/gemma_translate_zh.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T10:10:08.121775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"[980/1274] translated\", \"  [990/1274] translated\", \"  [1000/1274] translated\", \"  Progress saved at 1000/1274\", \"  [1010/1274] translated\", \"  [1020/1274] translated\", \"  [1030/1274] translated\", \"  [1040/1274] translated\", \"  [1050/1274] translated\", \"  Progress saved at 1050/1274\", \"  [1060/1274] translated\", \"  [1070/1274] translated\", \"  [1080/1274] translated\", \"  [1090/1274] translated\", \"  [1100/1274] translated\", \"  Progress saved at 1100/1274\", \"  [1110/1274] translated\", \"  [1120/1274] translated\", \"  [1130/1274] translated\", \"  [1140/1274] translated\", \"  [1150/1274] translated\", \"  Progress saved at 1150/1274\", \"  [1160/1274] translated\", \"  [1170/1274] translated\", \"  [1180/1274] translated\", \"  [1190/1274] translated\", \"  [1200/1274] translated\", \"  Progress saved at 1200/1274\", \"  [1210/1274] translated\", \"  [1220/1274] translated\", \"  [1230/1274] translated\", \"  [1240/1274] translated\", \"  [1250/1274] translated\", \"  Progress saved at 1250/1274\", \"  [1260/1274] translated\", \"  [1270/1274] translated\", \"Saved 1274 items to data/gemma2/zh_conflict_train.jsonl\", \"\", \"Translating en_conflict_test.jsonl -> zh_conflict_test.jsonl\", \"  [1/316] translated\", \"  [10/316] translated\", \"  [20/316] translated\", \"  [30/316] translated\", \"  [40/316] translated\", \"  [50/316] translated\", \"  Progress saved at 50/316\", \"  [60/316] translated\", \"  [70/316] translated\", \"  [80/316] translated\", \"  [90/316] translated\", \"  [100/316] translated\", \"  Progress saved at 100/316\", \"  [110/316] translated\", \"  [120/316] translated\", \"  [130/316] translated\", \"  [140/316] translated\", \"  [150/316] translated\", \"  Progress saved at 150/316\", \"  [160/316] translated\", \"  [170/316] translated\", \"  [180/316] translated\", \"  [190/316] translated\", \"  [200/316] translated\", \"  Progress saved at 200/316\",
+…[truncated 623 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1155
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-22T10:10:44.906083+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "gemma_full_pipeline_102",
+  "field": "notes",
+  "value": "失败原因: cron 误判（false positive）。翻译步骤正常完成（1274 train + 316 test），进程正常退出（log 尾部 \"Done.\"），但 cron 预期 W&B metrics 未找到 → 误标 failed。已有成果: ZH 翻译数据完整生成（zh_conflict_train.jsonl 1274条, zh_conflict_test.jsonl 316条）。建议: 继续 pipeline 后续步骤（collect ZH activations → probe → bootstrap）",
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "gemma_full_pipeline_102",
+    "field": "notes",
+    "value": "失败原因: cron 误判（false positive）。翻译步骤正常完成（1274 train + 316 test），进程正常退出（log 尾部 \"Done.\"），但 cron 预期 W&B metrics 未找到 → 误标 failed。已有成果: ZH 翻译数据完整生成（zh_conflict_train.jsonl 1274条, zh_conflict_test.jsonl 316条）。建议: 继续 pipeline 后续步骤（collect ZH activations → probe → bootstrap）",
+    "project": "clkc_mech_interp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T10:10:45.259313+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gemma_full_pipeline_102\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-22T03:55:53.223Z\", \"updated_at\": \"2026-05-22T10:10:44.968Z\", \"hypothesis\": \"跨语言知识冲突信号的可检测性（EN balanced acc ≥70%）和迁移不对称性（ZH→EN > EN→ZH ~7pp）在第三个模型架构 Gemma-2-9B-IT（42层 GQA）上同样成立，与 Llama-3.1-8B 和 Qwen3-8B 形成三模型跨架构验证。\", \"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-22T03:57:47.790Z\", \"finished_at\": \"2026-05-22T10:08:39.314Z\", \"training_hours\": 6.18}, \"completed_at\": \"2026-05-22T04:24:55.671Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T10:08:41.602790+00:00\"}]}, \"spec\": {\"command\": \"translate_to_zh running in tmux(gemma_translate_zh), verify EN done (1274 train + 316 test)\", \"server\": \"westd-41302\", \"data_path\": \"data/gemma2/\", \"data_count\": 1590, \"model_name\": \"Gemma-2-9B-IT\", \"seed\": 42}, \"metrics\": {\"gemma_zh_translate_status\": \"done\", \"zh_train_lines\": 1274, \"zh_test_lines\": 316, \"zh_train_path\": \"/root/clkc_mech_interp/data/gemma2/zh_conflict_train.jsonl\", \"zh_test_path\": \"/root/clkc_mech_interp/data/gemma2/zh_conflict_test.jsonl\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"notes\": \"失败原因: cron 误判（false positive）。翻译步骤正常完成（1274 train + 316 test），进程正常退出（log 尾部 \\\"Done.\\\"），但 cron 预期 W&B metrics 未找到 → 误标 failed。已有成果: ZH 翻译数据完整生成（zh_conflict_train.jsonl 1274条, zh_conflict_test.jsonl 316条）。建议: 继续 pipeline 后续步骤（collect ZH activations → probe → bootstrap）\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1676}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-22T10:10:45.259801+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "clkc_mech_interp",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "clkc_mech_interp",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T10:10:45.310400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"clkc_mech_interp\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"westd-41302:cuda:0\", \"westd-41302:cuda:1\", \"westd-41302:cuda:2\", \"westd-41302:cuda:3\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/clkc_mech_interp\", \"servers\": [\"westd-41302\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-22T10:11:28.654052+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "code:gemma_zh_act",
+  "project": "clkc_mech_interp",
+  "task_prompt": "## 任务：Gemma-2-9B-IT ZH 激活采集\n\n### 背景\nGemma 全流程 pipeline (plan_102) 的 ZH 翻译步骤已完成（1274 train + 316 test）。现在需要采集 ZH 残差流激活，为后续 probe 训练做准备。EN 激活已采集完毕（gemma_en_act_102 = success）。\n\n### 服务器信息\n- Server: westd-41302\n- 项目路径: /root/clkc_mech_interp\n- GPU: cuda:1（必须用 CUDA_VISIBLE_DEVICES=1）\n- 模型: Gemma-2-9B-IT (42层, hidden_size=3584, bfloat16, ~18GB VRAM)\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 步骤\n\n1. **验证 ZH 翻译数据存在**（ssh_read_only）:\n   ```\n   wc -l /root/clkc_mech_interp/data/gemma2/zh_conflict_train.jsonl\n   wc -l /root/clkc_mech_interp/data/gemma2/zh_conflict_test.jsonl\n   head -1 /root/clkc_mech_interp/data/gemma2/zh_conflict_train.jsonl\n   ```\n   预期: 1274 train, 316 test\n\n2. **查看 EN 激活采集时用的命令**（ssh_read_only）:\n   - 查看 collect_activations.py 的参数用法: `python /root/clkc_mech_interp/collect_activations.py --help`\n   - 查看 EN 激活输出在哪: `ls -la /root/clkc_mech_interp/data/gemma2/*.pt` 或 `ls -la /root/clkc_mech_interp/activations/gemma2/`\n   - 看看之前 EN 激活采集的日志: `cat /root/clkc_mech_interp/logs/gemma_en_act.log 2>/dev/null || ls /root/clkc_mech_interp/logs/gemma*`\n\n3. **采集 ZH 激活**（ssh_execute）:\n   - 参照 EN 激活采集的方式，对 ZH 数据运行 collect_activations.py\n   - 使用 `CUDA_VISIBLE_DEVICES=1`\n   - 用 submit_training_job 提交（不要 nohup），exp_id=gemma_zh_act_103\n   - 日志输出到 /root/clkc_mech_interp/logs/gemma_zh_act.log\n   - 记得设 spec: command, server, data_path, data_count, model_name, seed\n\n4. **注册实验**:\n   - update_registry: exp_id=gemma_zh_act_103, hypothesis=\"收集 Gemma-2-9B-IT ZH 残差流激活用于跨语言 probe 训练\", parent=gemma_full_pipeline_102\n\n### 注意事项\n- SSH 手动执行时 CUDA_VISIBLE_DEVICES 直接对应物理 GPU 编号。分配 cuda:1 写 CUDA_VISIBLE_DEVICES=1\n- 模型路径可能在 /root/autodl-tmp/ 下（AutoDL 数据盘），用 find 查一下\n- collect_activations.py 与 Gemma 兼容（model.model.layers 同构），无需修改代码",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "Gemma-2-9B-IT 兼容性已验证: 42层, hidden_size=3584, GQA 8 KV heads, bfloat16。collect_activations.py 无需修改。EN 激活已采集成功(gemma_en_act_102)。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:gemma_zh_act",
+    "project": "clkc_mech_interp",
+    "task_prompt": "## 任务：Gemma-2-9B-IT ZH 激活采集\n\n### 背景\nGemma 全流程 pipeline (plan_102) 的 ZH 翻译步骤已完成（1274 train + 316 test）。现在需要采集 ZH 残差流激活，为后续 probe 训练做准备。EN 激活已采集完毕（gemma_en_act_102 = success）。\n\n### 服务器信息\n- Server: westd-41302\n- 项目路径: /root/clkc_mech_interp\n- GPU: cuda:1（必须用 CUDA_VISIBLE_DEVICES=1）\n- 模型: Gemma-2-9B-IT (42层, hidden_size=3584, bfloat16, ~18GB VRAM)\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 步骤\n\n1. **验证 ZH 翻译数据存在**（ssh_read_only）:\n   ```\n   wc -l /root/clkc_mech_interp/data/gemma2/zh_conflict_train.jsonl\n   wc -l /root/clkc_mech_interp/data/gemma2/zh_conflict_test.jsonl\n   head -1 /root/clkc_mech_interp/data/gemma2/zh_conflict_train.jsonl\n   ```\n   预期: 1274 train, 316 test\n\n2. **查看 EN 激活采集时用的命令**（ssh_read_only）:\n   - 查看 collect_activations.py 的参数用法: `python /root/clkc_mech_interp/collect_activations.py --help`\n   - 查看 EN 激活输出在哪: `ls -la /root/clkc_mech_interp/data/gemma2/*.pt` 或 `ls -la /root/clkc_mech_interp/activations/gemma2/`\n   - 看看之前 EN 激活采集的日志: `cat /root/clkc_mech_interp/logs/gemma_en_act.log 2>/dev/null || ls /root/clkc_mech_interp/logs/gemma*`\n\n3. **采集 ZH 激活**（ssh_execute）:\n   - 参照 EN 激活采集的方式，对 ZH 数据运行 collect_activations.py\n   - 使用 `CUDA_VISIBLE_DEVICES=1`\n   - 用 submit_training_job 提交（不要 nohup），exp_id=gemma_zh_act_103\n   - 日志输出到 /root/clkc_mech_interp/logs/gemma_zh_act.log\n   - 记得设 spec: command, server, data_path, data_count, model_name, seed\n\n4. **注册实验**:\n   - update_registry: exp_id=gemma_zh_act_103, hypothesis=\"收集 Gemma-2-9B-IT ZH 残差流激活用于跨语言 probe 训练\", parent=gemma_full_pipeline_102\n\n### 注意事项\n- SSH 手动执行时 CUDA_VISIBLE_DEVICES 直接对应物理 GPU 编号。分配 cuda:1 写 CUDA_VISIBLE_DEVICES=1\n- 模型路径可能在 /root/autodl-tmp/ 下（AutoDL 数据盘），用 find 查一下\n- collect_activations.py 与 Gemma 兼容（model.model.layers 同构），无需修改代码",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "Gemma-2-9B-IT 兼容性已验证: 42层, hidden_size=3584, GQA 8 KV heads, bfloat16。collect_activations.py 无需修改。EN 激活已采集成功(gemma_en_act_102)。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T10:11:30.770047+00:00_
+
+called mcp__agent-ml-research__feishu_send_result_card
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_send_result_card</summary>
+
+```json
+{
+  "exp_id": "gemma_full_pipeline_102",
+  "conclusion": "failed",
+  "key_metrics": "{'zh_train_lines': 1274, 'zh_test_lines': 316, 'actual_status': 'translate_completed_successfully'}",
+  "baseline_comparison": "Cron 误判(false positive): 翻译步骤正常完成(1274 train + 316 test)，进程正常退出，但 cron 预期 W&B metrics 未找到 → 误标 failed。已派 Worker 继续 pipeline 后续步骤(collect ZH activations)。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "tool_args": {
+    "exp_id": "gemma_full_pipeline_102",
+    "conclusion": "failed",
+    "key_metrics": "{'zh_train_lines': 1274, 'zh_test_lines': 316, 'actual_status': 'translate_completed_successfully'}",
+    "baseline_comparison": "Cron 误判(false positive): 翻译步骤正常完成(1274 train + 316 test)，进程正常退出，但 cron 预期 W&B metrics 未找到 → 误标 failed。已派 Worker 继续 pipeline 后续步骤(collect ZH activations)。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T10:11:31.372881+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_gemma_zh_act_20260522T101129\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/workers/worker_code_gemma_zh_act_20260522T101129.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_gemma_zh_act_20260522T101129 started. Use get_worker_status('worker_code_gemma_zh_act_20260522T101129') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2718
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T10:11:34.992520+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e36f3a444b4b37120d101c657b\", \"chat_id\": \"oc_6951eb3869a0070e3ae607ab60c90dad\", \"msg_type\": \"interactive\", \"next_required_steps\": \"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "elapsed_ms": 4222
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-22T10:11:56.885292+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 | Worker 1 (GPU 1 / CPU 0) | 磁盘: westd-41302 / 3% (817GB 可用)\n\n**gemma_full_pipeline_102 — Cron 误判（false positive）**\n\nCron 报告进程异常退出，但日志显示 ZH 翻译步骤正常完成（log 尾部 \"Done.\"，1274 train + 316 test 全部翻译完毕）。根因：翻译任务不产生 W&B metrics，进程正常退出后被 cron 误标 failed。\n\n**已有成果**：\n- zh_conflict_train.jsonl: 1274 条\n- zh_conflict_test.jsonl: 316 条\n- EN 激活已采集成功 (gemma_en_act_102)\n\n**已采取行动**：\n- Registry notes 已更新（标注 false positive）\n- 已派 Worker (worker_code_gemma_zh_act) 到 cuda:1 验证数据并采集 Gemma ZH 激活（pipeline 下一步）\n- Worker 完成后将继续 probe 训练 + bootstrap\n\n**当前 GPU 状态**：\n- cuda:0: steering_107 (ANALYZING)\n- cuda:1: → gemma_zh_act Worker（刚派出）\n- cuda:2: COMET Llama train（状态待确认）\n- cuda:3: en_de_translate_112 (RUNNING, ~56%)",
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 4/4 | Worker 1 (GPU 1 / CPU 0) | 磁盘: westd-41302 / 3% (817GB 可用)\n\n**gemma_full_pipeline_102 — Cron 误判（false positive）**\n\nCron 报告进程异常退出，但日志显示 ZH 翻译步骤正常完成（log 尾部 \"Done.\"，1274 train + 316 test 全部翻译完毕）。根因：翻译任务不产生 W&B metrics，进程正常退出后被 cron 误标 failed。\n\n**已有成果**：\n- zh_conflict_train.jsonl: 1274 条\n- zh_conflict_test.jsonl: 316 条\n- EN 激活已采集成功 (gemma_en_act_102)\n\n**已采取行动**：\n- Registry notes 已更新（标注 false positive）\n- 已派 Worker (worker_code_gemma_zh_act) 到 cuda:1 验证数据并采集 Gemma ZH 激活（pipeline 下一步）\n- Worker 完成后将继续 probe 训练 + bootstrap\n\n**当前 GPU 状态**：\n- cuda:0: steering_107 (ANALYZING)\n- cuda:1: → gemma_zh_act Worker（刚派出）\n- cuda:2: COMET Llama train（状态待确认）\n- cuda:3: en_de_translate_112 (RUNNING, ~56%)",
+    "project": "clkc_mech_interp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-22T10:28:42.227091+00:00_
+
+Worker 已派出，结果卡片已发送。向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:gemma_full_pipeline_102"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+52 recorded events
+
+### User
+
+_source line 40 · 2026-05-22T10:49:36.649395+00:00_
+
+[系统告警] Worker 日志 30 分钟无更新，可能卡死 (第 1/3 次告警)：
+
+worker_id: worker_code_gemma_zh_act_20260522T101129
+project: clkc_mech_interp
+日志最后内容: **gemma_zh_act_103 完成。**  - 输出: `/root/clkc_mech_interp/data/gemma2/zh_activations.pt` (456MB) - shape: `[1590, 42, 3584]` — 1590 samples × 42 layers × 3584 hidden_dim - 与 EN 激活 (`en_activations.pt`) 
+
+请调用 get_worker_status('worker_code_gemma_zh_act_20260522T101129') 确认状态，并根据情况决定是等待、SSH 检查还是取消 worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "source": "system_monitor"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T10:49:44.971017+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T10:49:44.971453+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T10:49:48.033043+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_code_gemma_zh_act_20260522T101129",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_code_gemma_zh_act_20260522T101129",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T10:49:48.486422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_gemma_zh_act_20260522T101129\", \"status\": \"running\", \"task_type\": \"code:gemma_zh_act\", \"project\": \"clkc_mech_interp\", \"started_at\": \"2026-05-22T10:11:29.313658+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"update_registry\", \"update_registry\", \"update_registry\", \"update_registry\", \"update_registry\"], \"last_text\": \"**gemma_zh_act_103 完成。**\\n\\n- 输出: `/root/clkc_mech_interp/data/gemma2/zh_activations.pt` (456MB)\\n- shape: `[1590, 42, 3584]` — 1590 samples × 42 layers × 3584 hidden_dim\\n- 与 EN 激活 (`en_activations.pt`) 维度完全一致，可直接用于跨语言 probe 训练\", \"turn_count\": 28}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T10:49:48.486827+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "clkc_mech_interp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-22T10:49:49.089682+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-22T10:49:49.090429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gemma_full_pipeline_102\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:55:53.223Z\", \"updated_at\": \"2026-05-22T10:45:34.455Z\", \"hypothesis\": \"跨语言知识冲突信号的可检测性（EN balanced acc ≥70%）和迁移不对称性（ZH→EN > EN→ZH ~7pp）在第三个模型架构 Gemma-2-9B-IT（42层 GQA）上同样成立，与 Llama-3.1-8B 和 Qwen3-8B 形成三模型跨架构验证。\", \"metrics\": {\"gemma_probe_training_status\": \"running\", \"probe_pid\": 476334, \"probe_script\": \"train_probe_fast.py\", \"probe_n_seeds\": 2000, \"probe_n_jobs\": 32, \"probe_start_time\": \"2026-05-22T18:30\"}, \"conclusion\": \"failed\", \"notes\": \"失败原因: cron 误判（false positive）。翻译步骤正常完成（1274 train + 316 test），进程正常退出（log 尾部 \\\"Done.\\\"），但 cron 预期 W&B metrics 未找到 → 误标 failed。已有成果: ZH 翻译数据完整生成（zh_conflict_train.jsonl 1274条, zh_conflict_test.jsonl 316条）。建议: 继续 pipeline 后续步骤（collect ZH activations → probe → bootstrap）\"}, \"llama31_en_activations\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:05:41.632Z\", \"updated_at\": \"2026-05-22T10:41:42.810Z\", \"conclusion\": \"killed\"}, \"qwen3_translate_zh\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:26:57.715Z\", \"updated_at\": \"2026-05-22T10:41:42.229Z\", \"conclusion\": \"killed\"}, \"collect_en_activations_qwen3_8b\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:32:54.926Z\", \"updated_at\": \"2026-05-22T10:41:41.277Z\", \"conclusion\": \"killed\"}, \"collect_en_activations_llama_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:33:12.172Z\", \"updated_at\": \"2026-05-22T10:41:40.312Z\", \"conclusion\": \"killed\"}, \"translate_zh_llama_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:33:14.895Z\", \"updated_at\": \"2026-05-22T10:41:38.953Z\", \"conclusion\": \"killed\"}, \"translate_zh_qwen\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:52:34.661Z\", \"updated_at\": \"2026-05-22T10:41:38.021Z\", \"conclusion\": \"killed\"}, \"collect_en_act_llama_v3\": {\"
+…[truncated 10448 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 603
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T10:49:49.441974+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T10:49:49.442290+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-22T10:49:49.546201+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "clkc_mech_interp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-22T10:49:49.597036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/report.md\", \"content\": \"# Handover — 2026-05-22\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| en_de_translate_112 | 跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。 | — | — | — |\\n| bootstrap_n2000_111 | Bootstrap n=100 低于学术标准（Efron &amp; Tibshirani 1993 推荐 n≥1000）。升级 Llama 和 Qwen 的探针 bootstrap 至 n=2000，获得更稳定的 CI endpoints，特别是 Qwen 下界 -1.2pp 可能因 n 不足而不准确。 | — | — | — |\\n| steering_107 | 线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。 | — | — | — |\\n\\n## 待处理\\n- gemma_translate_zh（准备中）\\n- gemma_verify_en（准备中）\\n- comet_llama_v4（准备中）\\n- comet_llama_v3（准备中）\\n- comet_llama_v2（准备中）\\n- comet_llama（准备中）\\n- comet_qwen_v4（准备中）\\n- comet_qwen_v3（准备中）\\n- comet_qwen_v2（准备中）\\n- comet_qwen（准备中）\\n- …另有 15 项\\n\\n## 近期结论\\n- **gemma_zh_act_103** (success): 收集 Gemma-2-9B-IT ZH 残差流激活用于跨语言 probe 训练 ← 基于 gemma_full_pipeline_102\\n- **gemma_full_pipeline_102** (failed): 跨语言知识冲突信号的可检测性（EN balanced acc ≥70%）和迁移不对称性（ZH→EN > EN→ZH ~7pp）在第三个模型架构 Gemma-2-9B-IT（42层 GQA）上同样成立，与 Llama-3.1-8B 和 Qwen3-8B 形成三模型跨架构验证。\\n- **cka_svcca_104** (negative): 冲突任务的 EN-ZH 逐层 CKA/SVCCA 相似度在中后层（探针检测冲突信号的 peak layers 附近）显著低于 XNLI 的对应层，表明冲突信号导致语言间表征出现特有的分叉（divergence），而非冲突语义任务中 EN-ZH 表征保持较高对齐。这将从表征几何角度强化 C3（冲突信号需要非线性解码是因为跨语言表征在冲突条件下发生了非线性分叉）。\\n\\n## 趋势\\n成功 4 / 负向 2 / 失败 1 / 共 11\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-41302: 无 GPU 信息\\n\\n## 告警\\n- comet_qwen_v5: 已被终止 — unknown\\n- comet_llama_v5: 已被终止 — unknown\\n- comet_qwen_v6: 已被终止 — unknown\\n- comet_llama_v6: 已被终止 — unknown\
+…[truncated 132 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 154
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T10:49:49.597701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/ROADMAP.md\", \"content\": \"# clkc_mech_interp — Research Dashboard\\n\\n> 最后更新: 2026-05-22 09:05 UTC | 更新原因: Reviewer WARNING 修正：steering v2→v3, ETA 2h→6-7h, 进度数字同步\\n\\n## 核心方向\\n跨语言知识冲突信号的机制解释：残差流探针检测、层结构分析、因果干预。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research Phase**（MVP 2026-05-21 通过）。ICLR 2027 DDL ~2026-09-24。\\n\\n### 关键发现\\n- **C1 detectability** ✅ Llama 77.1%, Qwen 75.3%\\n- **C2 reframed (D008)**: 方向不对称性非冲突特有（XNLI ≥5pp），冲突信号编码在通用跨语言空间\\n- **C3 non-linearity (D009)**: MLP EN→ZH Δ 冲突有(+2.4~9.2pp) XNLI 无(-2.0~-0.5pp)。Bootstrap 进行中：Qwen ~3.9pp, Llama L18 ~5.0pp，待 CI 确认\\n- **C4 CKA (negative)**: 配对控制后差异消失，作为 appendix methodological lesson\\n- **Steering (D010)**: 最高优先级，probe-weight 因果干预\\n\\n### GPU 状态 (2026-05-22 ~18:00 UTC)\\n- cuda:0 — **Steering v3 Llama** (plan_107, PID 468898, ~7% done, ETA ~23:00 UTC)\\n  - Baseline: p=32, c=41, both=35, neither=28\\n  - alpha=-20 处理中，hook 稳定无 crash\\n- cuda:1 — Gemma ZH translate (plan_102, 150/316 test, ~47%)\\n- cuda:2 — COMET Llama train (780/1096, 进程活跃但日志无更新，可能 scoring 阶段)\\n- cuda:3 — DE translate Llama (plan_112, 610/1096, ~56%)\\n\\n### CPU 任务\\n- Bootstrap n=2000 (plan_111): loky 32 workers 运行中\\n- C3 MLP bootstrap: Qwen L23 650/1000 (delta ~3.9pp), Llama L18 150/1000 (delta ~5.0pp)\\n\\n## 近期任务（P0）\\n- [x] plan_110: XNLI 非冲突基线 — DONE, C2 reframed, C3 contrast confirmed\\n- [x] plan_104: CKA/SVCCA — DONE (negative, 配对混淆 M013/M014)\\n- [ ] plan_107: Steering v3 Llama → 运行中 ETA ~23:00 UTC (~6-7h total)\\n- [ ] plan_102: Gemma 全流程 → ZH translate 47%, 后续 probe + bootstrap\\n- [ ] plan_111: Bootstrap n≥2000 → 优化版 joblib 并行，运行中\\n- [ ] plan_112: EN↔DE → Llama DE translate 56%\\n- [ ] C3 MLP bootstrap CI → Qwen 65%, Llama L18 15%, ETA ~2h\\n\\n## GPU 预算\\n本项目分配: cuda:0,1,2,3 (westd-41302)\\nCOMET Qwen killed (RC1 resolved). COMET Llama 运行中但低优先级。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|-----
+…[truncated 1043 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T10:50:24.247045+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T10:50:24.247546+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T10:50:29.015992+00:00_
+
+called mcp__agent-ml-research__cancel_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cancel_worker</summary>
+
+```json
+{
+  "worker_id": "worker_code_gemma_zh_act_20260522T101129"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__cancel_worker",
+  "tool_args": {
+    "worker_id": "worker_code_gemma_zh_act_20260522T101129"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T10:50:29.472905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_gemma_zh_act_20260522T101129\", \"status\": \"cancelled\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__cancel_worker",
+  "elapsed_ms": 456
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T10:50:29.573691+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T10:50:29.624410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T10:50:51.465414+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T10:50:51.516237+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/agent_6de38321.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T10:50:51.516790+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/skills/check-training-status.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/skills/check-training-status.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T10:50:51.567521+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/agent_6de38321.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T10:50:54.377708+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T10:50:54.579452+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-22T10:50:54.631027+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/check-training-status.skill.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/check-training-status.skill.md",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T10:50:54.782010+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Glob",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T10:50:57.595150+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-22T10:50:57.595934+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-22T10:50:57.648110+00:00_
+
+1	---
+2	always: false
+3	description: 当用户问训练进度/实验状态/查状态时使用。用专用工具查看训练状态，禁止 ssh_execute。
+4	name: check-training-status
+5	priority: 8
+6	scope: global
+7	tags:
+8	- workflow
+9	- monitoring
+10	tools:
+11	- reconcile_crons
+12	- read_registry
+13	- check_job_status
+14	- tail_training_logs
+15	- fetch_wandb_metrics
+16	version: 13
+17	roles:
+18	- agent
+19	- worker
+20	---
+21	
+22	# 查状态工作流
+23	
+24	## 触发条件
+25	用户说"查状态"/"status"/"怎么样了"/"进展如何"。
+26	
+27	## 全局状态（用户没指定具体实验）
+28	1. reconcile_crons — 同步所有 cron（处理离线期间的变化）
+29	2. read_registry — 获取所有实验，关注 RUNNING/ANALYZING/PENDING
+30	3. 汇报摘要：每个实验一行（ID、状态、关键指标、耗时）
+31	
+32	## 单个实验状态
+33	1. read_registry — 获取实验信息（含 log_path、server、pid）
+34	2. 如果 RUNNING：check_job_status(server, pid) — 确认进程活着
+35	   - **进程不存在时停止**：不要继续查日志，直接汇报"进程已退出"
+36	3. 查指标：优先从 registry.metrics 读取（cron 已同步），metrics 为空才调 fetch_wandb_metrics
+37	4. 查日志（需要时）：tail_training_logs(server, **绝对路径**, lines=50)
+38	   - 路径从 registry 的 log_path 字段取，使用绝对路径，不用 ~ 符号
+39	   - 进程未启动时日志文件可能尚不存在，不要盲目调用
+40	
+41	## 工具选择规则
+42	
+43	| 需求 | 正确工具 | 禁止 |
+44	|------|----------|------|
+45	| 进程是否活着 | check_job_status | ssh_execute + ps |
+46	| 查训练日志 | tail_training_logs（绝对路径） | ssh_execute + tail |
+47	| 查 W&B 指标 | registry.metrics 或 fetch_wandb_metrics | ssh_execute |
+48	| GPU 使用情况 | list_available_gpus | ssh_execute + nvidia-smi |
+49	
+50	完成后立即停止，不要继续 poll 或重复查询。
+51	
+52	## 工具调用预算
+53	- 全局状态：最多 **2 次**（reconcile_crons + read_registry）
+54	- 单个实验：最多 **3 次**（read_registry + check_job_status + tail_training_logs）
+55	
+56	## 经验沉淀
+57	
+58	- [2026-03-20] 查日志前必须先 check_job_status 确认进程已启动、日志文件已生成；日志路径始终用绝对路径，不用 ~ 符号（工具不展开 ~）。
+59	- [2026-03-20] W&B 工具调用前先确认 config/projects/{project}.yaml 的 entity 和 project 字段已填写，否则直接报 "not configured" 错误，配置缺失时用 registry.metrics 数据代替。
+60	- [2026-03-24] 日志路径始终用绝对路径，不用 ~ 符号；查日志前必须先 check_job_status 确认进程已启动、日志文件已生成。
+61	
+62	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T10:50:57.648589+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "Read",
+  "elapsed_ms": 53
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-22T10:51:04.733019+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__load_project_config",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__load_project_config",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T10:51:04.733477+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-22T10:51:07.649128+00:00_
+
+called mcp__agent-ml-research__get_gpu_health
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_gpu_health</summary>
+
+```json
+{
+  "server": "westd-41302"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__get_gpu_health",
+  "tool_args": {
+    "server": "westd-41302"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T10:51:08.102544+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"servers\": {\"westd-41302\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__get_gpu_health",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-22T10:51:08.102976+00:00_
+
+called mcp__agent-ml-research__check_job_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__check_job_status</summary>
+
+```json
+{
+  "server": "westd-41302",
+  "pid": "476334"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__check_job_status",
+  "tool_args": {
+    "server": "westd-41302",
+    "pid": "476334"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-22T10:51:08.554553+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "clkc_mech_interp",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "clkc_mech_interp",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-22T10:51:10.160093+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"status\": \"running\", \"running\": true, \"pid\": \"476334\", \"detection\": \"ps\", \"process_state\": \"S\", \"elapsed_time\": \"06:17\", \"tmux_session_alive\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__check_job_status",
+  "elapsed_ms": 2057
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T10:51:10.160464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"clkc_mech_interp\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"westd-41302:cuda:0\", \"westd-41302:cuda:1\", \"westd-41302:cuda:2\", \"westd-41302:cuda:3\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/clkc_mech_interp\", \"servers\": [\"westd-41302\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 1605
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-22T10:51:22.314289+00:00_
+
+called mcp__agent-ml-research__check_job_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__check_job_status</summary>
+
+```json
+{
+  "server": "westd-41302",
+  "pid": "468898"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__check_job_status",
+  "tool_args": {
+    "server": "westd-41302",
+    "pid": "468898"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-22T10:51:22.866973+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "fields": "['*']",
+  "filters": "{'status': 'ANALYZING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "fields": "['*']",
+    "filters": "{'status': 'ANALYZING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-22T10:51:23.424213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"status\": \"not_found\", \"running\": false, \"pid\": \"468898\", \"detection\": \"ps\", \"tmux_session_alive\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__check_job_status",
+  "elapsed_ms": 1109
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-22T10:51:23.474803+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "fields": "['*']",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "clkc_mech_interp",
+    "fields": "['*']",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-22T10:51:23.525506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"steering_107\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:08:08.511Z\", \"updated_at\": \"2026-05-22T09:59:14.999Z\", \"spec\": {\"pid\": 468898, \"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"model_name\": \"Llama-3.1-8B-Instruct\", \"peak_layer\": 28, \"probe_acc\": 0.7757, \"n_samples\": 136, \"note\": \"Status ANALYZING but PID still alive at 09:40 UTC, ~11-12 alphas done out of ~15-20, ETA 20-40min\"}, \"hypothesis\": \"线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。\", \"parent\": \"mvp_probe_v1\", \"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-22T08:14:32.378Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/clkc_mech_interp && CUDA_VISIBLE_DEVICES=0 python -u src/steering_experiment.py --model /root/models/Llama-3.1-8B-Instruct/ --data_dir data/llama31 --output_dir data/llama31/steering_results 2>&1 | tee logs/steering_llama.log\\\"\", \"finished_at\": \"2026-05-22T08:28:42.915Z\", \"training_hours\": 0.24}, \"pid\": \"466385\", \"log_path\": \"~/runs/clkc_mech_interp/steering_107.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:28:44.903019+00:00\"}]}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1358}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 658
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-22T10:51:23.626422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"en_de_translate_112\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T07:16:17.050Z\", \"updated_at\": \"2026-05-22T09:59:12.035Z\", \"spec\": {\"pid\": 462040, \"note\": \"PID corrected from 462035 to 462040\"}, \"hypothesis\": \"跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。\"}, \"bootstrap_n2000_111\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:18:39.374Z\", \"updated_at\": \"2026-05-22T05:04:47.582Z\", \"hypothesis\": \"Bootstrap n=100 低于学术标准（Efron &amp; Tibshirani 1993 推荐 n≥1000）。升级 Llama 和 Qwen 的探针 bootstrap 至 n=2000，获得更稳定的 CI endpoints，特别是 Qwen 下界 -1.2pp 可能因 n 不足而不准确。\", \"spec\": {\"command\": \"python src/train_probe.py --bootstrap_seeds 2000 (Qwen + Llama, 64 workers each)\", \"server\": \"westd-41302\", \"data_path\": \"data/qwen3/ + data/llama31/\", \"data_count\": 2364, \"model_name\": \"Qwen3-8B + Llama-3.1-8B-Instruct (CPU-only probe retraining)\", \"seed\": 42}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0988}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-22T10:51:54.099452+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:steering_107",
+  "project": "clkc_mech_interp",
+  "task_prompt": "## 任务：分析 steering_107 实验结果\n\nsteering_107 是本项目最高优先级实验（D010）。进程已完成（PID 468898 已退出），需要分析结果。\n\n### 实验背景\n- **hypothesis**: 线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义。\n- **模型**: Llama-3.1-8B-Instruct\n- **服务器**: westd-41302\n- **输出目录**: /root/clkc_mech_interp/data/llama31/steering_results\n- **日志**: /root/runs/clkc_mech_interp/steering_107.log（也可能在 /root/clkc_mech_interp/logs/steering_llama.log）\n\n### 你要做的事\n\n1. SSH 到 westd-41302，读取日志尾部确认实验正常完成（没有 error/crash）\n2. 读取 steering_results 目录下的输出文件（JSON/CSV/PKL），理解结果结构\n3. 提取关键指标：\n   - Baseline: parametric/contextual/both/neither 分布\n   - 各 alpha 值下的 flip rate（steering direction vs random direction）\n   - 最佳 alpha 对应的 steering flip rate 和 random flip rate\n   - 是否满足 hypothesis：steering flip rate ≥15% 且 random ≤5%？\n4. 判断 conclusion：success（hypothesis confirmed）/ negative（hypothesis falsified）/ 部分成立\n5. 更新 registry：\n   - update_registry(exp_id=\"steering_107\", field=\"metrics\", value={...关键指标...})\n   - update_registry(exp_id=\"steering_107\", field=\"conclusion\", value=\"success\"或\"negative\")\n   - update_registry(exp_id=\"steering_107\", field=\"status\", value=\"DONE\")\n   - 设置 checkpoint_path 和 log_path\n\n6. 将分析结果写入详细的文字总结（作为 worker 最终输出），包括：\n   - 核心数据表（alpha vs flip rate）\n   - 对 hypothesis 的判断\n   - 对论文 story 的影响\n   - 建议的下一步\n\n### 环境\n- 服务器: westd-41302, account: root\n- conda 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 项目路径: /root/clkc_mech_interp",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:steering_107",
+    "project": "clkc_mech_interp",
+    "task_prompt": "## 任务：分析 steering_107 实验结果\n\nsteering_107 是本项目最高优先级实验（D010）。进程已完成（PID 468898 已退出），需要分析结果。\n\n### 实验背景\n- **hypothesis**: 线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义。\n- **模型**: Llama-3.1-8B-Instruct\n- **服务器**: westd-41302\n- **输出目录**: /root/clkc_mech_interp/data/llama31/steering_results\n- **日志**: /root/runs/clkc_mech_interp/steering_107.log（也可能在 /root/clkc_mech_interp/logs/steering_llama.log）\n\n### 你要做的事\n\n1. SSH 到 westd-41302，读取日志尾部确认实验正常完成（没有 error/crash）\n2. 读取 steering_results 目录下的输出文件（JSON/CSV/PKL），理解结果结构\n3. 提取关键指标：\n   - Baseline: parametric/contextual/both/neither 分布\n   - 各 alpha 值下的 flip rate（steering direction vs random direction）\n   - 最佳 alpha 对应的 steering flip rate 和 random flip rate\n   - 是否满足 hypothesis：steering flip rate ≥15% 且 random ≤5%？\n4. 判断 conclusion：success（hypothesis confirmed）/ negative（hypothesis falsified）/ 部分成立\n5. 更新 registry：\n   - update_registry(exp_id=\"steering_107\", field=\"metrics\", value={...关键指标...})\n   - update_registry(exp_id=\"steering_107\", field=\"conclusion\", value=\"success\"或\"negative\")\n   - update_registry(exp_id=\"steering_107\", field=\"status\", value=\"DONE\")\n   - 设置 checkpoint_path 和 log_path\n\n6. 将分析结果写入详细的文字总结（作为 worker 最终输出），包括：\n   - 核心数据表（alpha vs flip rate）\n   - 对 hypothesis 的判断\n   - 对论文 story 的影响\n   - 建议的下一步\n\n### 环境\n- 服务器: westd-41302, account: root\n- conda 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 项目路径: /root/clkc_mech_interp",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-22T10:52:05.165067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_steering_107_20260522T105154\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/workers/worker_analysis_steering_107_20260522T105154.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_steering_107_20260522T105154 started. Use get_worker_status('worker_analysis_steering_107_20260522T105154') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 11065
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-22T10:52:05.367031+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "monitor:server_check",
+  "project": "clkc_mech_interp",
+  "task_prompt": "## 任务：服务器状态全检 + Gemma probe 监控\n\n### 需要检查的进程\n\n1. **Gemma probe 训练** (PID 476334)\n   - 这是 gemma_full_pipeline_102 的后续步骤，由之前的 worker 启动\n   - 脚本: train_probe_fast.py, n_seeds=2000, n_jobs=32\n   - 需要确认：进程还在跑吗？进度如何？输出在哪？\n   - 预期输出目录: /root/clkc_mech_interp/data/gemma2/ 下面\n\n2. **en_de_translate_112** (PID 462040)\n   - DE 翻译任务，ROADMAP 说 ~56% 进度\n   - 确认进程活着，查看最新进度\n\n3. **bootstrap_n2000_111** \n   - CPU-only bootstrap 升级任务\n   - 查看是否还在跑，进度如何\n\n### 你要做的事\n\n1. SSH (read_only) 到 westd-41302，运行：\n   ```\n   ps aux | grep -E \"476334|462040|train_probe|bootstrap|translate\" | grep -v grep\n   nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader\n   ```\n\n2. 检查 Gemma probe 训练详情：\n   - 查看 /root/clkc_mech_interp/data/gemma2/ 目录下的文件\n   - 如果有日志文件，tail 查看进度\n   - 确认 probe 训练的输出路径\n\n3. 检查 en_de_translate_112 进度：\n   - 查看 /root/clkc_mech_interp/data/llama31/ 下德语相关文件\n   - 日志: /root/runs/clkc_mech_interp/en_de_translate_112.log 或类似路径\n\n4. 检查 bootstrap_n2000_111 进度：\n   - 日志路径可能在 /root/runs/clkc_mech_interp/ 下\n\n5. 汇总报告：每个任务一行（状态、进度、预计完成时间）\n\n### 环境\n- 服务器: westd-41302, account: root\n- 用 ssh_read_only，不要用 ssh_execute",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "monitor:server_check",
+    "project": "clkc_mech_interp",
+    "task_prompt": "## 任务：服务器状态全检 + Gemma probe 监控\n\n### 需要检查的进程\n\n1. **Gemma probe 训练** (PID 476334)\n   - 这是 gemma_full_pipeline_102 的后续步骤，由之前的 worker 启动\n   - 脚本: train_probe_fast.py, n_seeds=2000, n_jobs=32\n   - 需要确认：进程还在跑吗？进度如何？输出在哪？\n   - 预期输出目录: /root/clkc_mech_interp/data/gemma2/ 下面\n\n2. **en_de_translate_112** (PID 462040)\n   - DE 翻译任务，ROADMAP 说 ~56% 进度\n   - 确认进程活着，查看最新进度\n\n3. **bootstrap_n2000_111** \n   - CPU-only bootstrap 升级任务\n   - 查看是否还在跑，进度如何\n\n### 你要做的事\n\n1. SSH (read_only) 到 westd-41302，运行：\n   ```\n   ps aux | grep -E \"476334|462040|train_probe|bootstrap|translate\" | grep -v grep\n   nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader\n   ```\n\n2. 检查 Gemma probe 训练详情：\n   - 查看 /root/clkc_mech_interp/data/gemma2/ 目录下的文件\n   - 如果有日志文件，tail 查看进度\n   - 确认 probe 训练的输出路径\n\n3. 检查 en_de_translate_112 进度：\n   - 查看 /root/clkc_mech_interp/data/llama31/ 下德语相关文件\n   - 日志: /root/runs/clkc_mech_interp/en_de_translate_112.log 或类似路径\n\n4. 检查 bootstrap_n2000_111 进度：\n   - 日志路径可能在 /root/runs/clkc_mech_interp/ 下\n\n5. 汇总报告：每个任务一行（状态、进度、预计完成时间）\n\n### 环境\n- 服务器: westd-41302, account: root\n- 用 ssh_read_only，不要用 ssh_execute",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-22T10:52:07.682246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_monitor_server_check_20260522T105205\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/logs/workers/worker_monitor_server_check_20260522T105205.log\", \"setup_data\": {}, \"message\": \"Worker worker_monitor_server_check_20260522T105205 started. Use get_worker_status('worker_monitor_server_check_20260522T105205') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2315
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-22T10:52:32.452046+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 分配 | 实际在跑待确认（GPU health 无缓存）| Worker 2 (分析 steering_107 + 服务器全检)\n\n**Session 启动状态汇报**\n\n1. **steering_107（最高优先级 D010）**：进程已退出（PID 468898 not found），状态 ANALYZING。已派 Worker 分析结果。这是 probe-weight 因果干预实验，成败直接影响论文核心 claim。\n\n2. **gemma_full_pipeline_102**：Gemma probe 训练进程（PID 476334）仍在运行（6min elapsed）。之前的监控 Worker 卡死已取消。已派 Worker 确认进度。\n\n3. **en_de_translate_112**（RUNNING）：DE 翻译 ~56%，PID 462040 待确认。\n\n4. **bootstrap_n2000_111**（RUNNING）：n=2000 bootstrap 升级，待确认进度。\n\n5. **已完成**：gemma_zh_act_103（success，ZH 激活收集完成）、cka_svcca_104（negative，作 appendix）、xnli_baseline_110（negative，C2 已 reframe）。\n\n**待处理**：\n- steering_107 分析结果出来后立即汇报（分钟级）\n- Gemma pipeline 后续：EN+ZH 激活已就绪，probe 在跑，之后需 bootstrap\n- Worker 回调后更新 report.md 和 ROADMAP",
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 4/4 分配 | 实际在跑待确认（GPU health 无缓存）| Worker 2 (分析 steering_107 + 服务器全检)\n\n**Session 启动状态汇报**\n\n1. **steering_107（最高优先级 D010）**：进程已退出（PID 468898 not found），状态 ANALYZING。已派 Worker 分析结果。这是 probe-weight 因果干预实验，成败直接影响论文核心 claim。\n\n2. **gemma_full_pipeline_102**：Gemma probe 训练进程（PID 476334）仍在运行（6min elapsed）。之前的监控 Worker 卡死已取消。已派 Worker 确认进度。\n\n3. **en_de_translate_112**（RUNNING）：DE 翻译 ~56%，PID 462040 待确认。\n\n4. **bootstrap_n2000_111**（RUNNING）：n=2000 bootstrap 升级，待确认进度。\n\n5. **已完成**：gemma_zh_act_103（success，ZH 激活收集完成）、cka_svcca_104（negative，作 appendix）、xnli_baseline_110（negative，C2 已 reframe）。\n\n**待处理**：\n- steering_107 分析结果出来后立即汇报（分钟级）\n- Gemma pipeline 后续：EN+ZH 激活已就绪，probe 在跑，之后需 bootstrap\n- Worker 回调后更新 report.md 和 ROADMAP",
+    "project": "clkc_mech_interp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-22T10:52:36.520422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:gemma_full_pipeline_102",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4068
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-22T10:52:41.376406+00:00_
+
+Session 启动完成：
+
+- 告警处理：卡死 Worker `worker_code_gemma_zh_act_20260522T101129` 已取消（gemma_zh_act_103 任务早已完成）
+- steering_107 进程已退出，派 Worker 分析结果中
+- 服务器状态全检 Worker 在跑，确认所有进程和 GPU 状态
+- 已向 Director 汇报
+
+等待 Worker 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:gemma_full_pipeline_102"
+}
+```
+
+</details>
+
+---

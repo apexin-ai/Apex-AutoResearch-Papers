@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0d2a0cd5ea05e3de2d7",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis table3 llama L16",
+  "task_key": "worker_analysis_table3-llama-L16_20260523T120142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table3-llama-L16_20260523T120142_result.json",
+    "occurrence": 1,
+    "bytes": 2636,
+    "sha256": "8de43b6a470676aef42c37f1cc442d5330cb69a1bc3d5374f61804c5acaa0442"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现有 Table 3 完整内容（`artifacts/_project/paper/experiments.tex` L142-164）：\n\n```latex\n%% Table 3: Steering results\n\\begin{table}[t]\n\\centering\n\\caption{Representation steering results (Llama-3.1-8B). Flip rate: fraction of test samples switching answer category. Control: random-direction perturbation of equal magnitude. Significant results ($p < 0.05$) in bold.$^{\\dagger}$}\n\\label{tab:steering}\n\\small\n\\begin{tabular}{lcrrrrl}\n\\toprule\nLayer & Depth & $\\alpha$ & Steer (\\%) & Ctrl (\\%) & Fisher $p$ & Dir. \\\\\n\\midrule\n\\textbf{L13} & \\textbf{41\\%} & $\\mathbf{+5}$ & \\textbf{19.9} & \\textbf{6.6} & $\\mathbf{0.002}$ & \\textbf{4 p$\\to$c} \\\\\n\\textbf{L13} & \\textbf{41\\%} & $\\mathbf{-20}$ & \\textbf{36.0} & \\textbf{17.6} & $\\mathbf{<0.001}$ & \\textbf{5 c$\\to$p} \\\\\nL18 & 56\\% & $+2$ & 3.7 & 1.5 & 0.447 & \\\\\nL28 & 88\\% & $-20$ & 14.7 & 16.9 & 0.740 & \\\\\nL28 (all) & 88\\% & $-20$ & 11.8 & 11.8 & 0.370 & \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Qwen3-8B L13: \\textbf{[PLACEHOLDER]}}} \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n---\n\n## 分析\n\n**格式规范：**\n- 百分比：1 位小数（19.9, 6.6）\n- p 值：3 位小数（0.002, 0.447），极小值用 `<0.001`\n- 显著行（p < 0.05）：全行 `\\textbf{}`\n- Dir. 列：仅显著行填写翻转方向，非显著行留空\n- 行按 layer 编号排序\n\n**L16 数据换算：**\n| α | Steer | Ctrl | Steer % | Ctrl % | p |\n|---|-------|------|---------|--------|---|\n| +5 | 12/136 | 11/136 | 8.8 | 8.1 | 1.000 |\n| +10 | 25/136 | 15/136 | 18.4 | 11.0 | 0.123 |\n| +20 | 31/136 | 33/136 | 22.8 | 24.3 | 0.886 |\n\nL16 depth = 16/32 = 50%。全部不显著，不加粗，Dir. 留空。\n\n---\n\n## Diff 方案\n\n**在 L153（L13 α=-20 行）之后、L154（L18 行）之前，插入 3 行：**\n\n```diff\n \\textbf{L13} & \\textbf{41\\%} & $\\mathbf{-20}$ & \\textbf{36.0} & \\textbf{17.6} & $\\mathbf{<0.001}$ & \\textbf{5 c$\\to$p} \\\\\n+L16 & 50\\% & $+5$ & 8.8 & 8.1 & 1.000 & \\\\\n+L16 & 50\\% & $+10$ & 18.4 & 11.0 & 0.123 & \\\\\n+L16 & 50\\% & $+20$ & 22.8 & 24.3 & 0.886 & \\\\\n L18 & 56\\% & $+2$ & 3.7 & 1.5 & 0.447 & \\\\\n```\n\n**建议行排列顺序（按 layer → α）：**\n\n| # | Layer | α |\n|---|-------|---|\n| 1 | L13 | +5 (sig) |\n| 2 | L13 | -20 (sig) |\n| 3 | **L16** | **+5** |\n| 4 | **L16** | **+10** |\n| 5 | **L16** | **+20** |\n| 6 | L18 | +2 |\n| 7 | L28 | -20 |\n| 8 | L28 (all) | -20 |\n\nL16 三行全部 p > 0.1，与 L13 的 p=0.002 和 p<0.001 形成鲜明对比，支持\"因果窗口极窄（仅 3 层即失效）\"的叙事。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table3-llama-l16.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "gemma_probe_n2000_106",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:27:24.006Z",
+    "updated_at": "2026-05-22T18:27:52.134Z",
+    "hypothesis": "升级 Gemma-2-9B-IT 冲突任务探针 bootstrap 至 n=2000，获得稳定 CI endpoints。预期 EN→EN ~76%，迁移不对称性 +6-7pp 与 Llama/Qwen 一致，p<0.01。parent=gemma_full_pipeline_102",
+    "parent": "gemma_full_pipeline_102"
+  },
+  "timestamp": "2026-05-22T18:27:52.206429+00:00",
+  "trigger": "update_registry"
+}

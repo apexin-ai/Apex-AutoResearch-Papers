@@ -1,0 +1,14 @@
+{
+  "exp_id": "cross_task_transfer_116",
+  "project": "clkc_mech_interp",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:42:11.538Z",
+    "updated_at": "2026-05-23T07:42:11.538Z"
+  },
+  "timestamp": "2026-05-23T07:42:11.653334+00:00",
+  "trigger": "update_registry"
+}

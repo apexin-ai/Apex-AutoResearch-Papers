@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daa687eafb70f7e4576f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra kill orphans urgent",
+  "task_key": "worker_infra_kill-orphans-urgent_20260523T050259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-orphans-urgent_20260523T050259_result.json",
+    "occurrence": 1,
+    "bytes": 336,
+    "sha256": "4bf7f07e81100f95bc60c933bd4c9d366c286ad2e8a07616daaf04789fabb793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **kill 结果**：64 个 PID 全部已不存在（No such process），之前已被杀或自行退出\n- **剩余孤儿数**：1 个 bootstrap_de_parallel 孤儿进程仍在运行\n- **当前 load**：126.07 / 456.08 / 602.49（1/5/15min）— load 正在快速下降，说明大批进程确实已经终止"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-orphans-urgent.md"
+}

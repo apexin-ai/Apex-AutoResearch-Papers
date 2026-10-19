@@ -1,0 +1,23 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Knowledge conflict detection.}
+\citet{xie2024adaptive} introduced ConflictQA and showed that models exhibit context-dependent resolution strategies, and \citet{xu2024knowledge} provided a systematic conflict taxonomy (intra-memory, context-memory, inter-context).
+Moving beyond behavioral observation, \citet{zhao2024analysing} demonstrated linearly separable conflict signals in English residual streams, and \citet{brink2026probing} localized factual associations via probing. More recently, \citet{pham2026where} traced intra-memory conflict pathways, while \citet{li2025taming} proposed conflict mitigation methods.
+Information-theoretic approaches \citep{pimentel2021probing} offer complementary perspectives on probe expressiveness, and \citet{ravichander2021probing} raised concerns about whether probed information is task-relevant.
+These studies operate exclusively in monolingual settings; extending to cross-lingual scenarios introduces confounds (translation quality, token overlap, general transfer properties) that we address with a dedicated exclusion pipeline.
+
+\paragraph{Cross-lingual representations in multilingual models.}
+Intermediate layers develop language-independent representations: \citet{wu2020emerging} showed cross-lingual structure emerges without explicit alignment, and \citet{muller2021first} found mid-layer alignment in multilingual BERT.
+For decoder-only LLMs, \citet{wendler2024llamas} showed that Llama processes non-English inputs through an English-centric latent space, and \citet{kargaran2024mexa} quantified this bias across language pairs.
+These findings predict our empirical observations: mid-layer steering success aligns with intermediate-layer language alignment, and the ZH$\to$EN transfer advantage reflects English-centric structure.
+Behavioral consequences have been documented by \citet{wang2025lost}, \citet{zhao2026when} (CLEAR cross-lingual conflict benchmark), and \citet{ifergan2024beneath}; \citet{xing2024evaluating}; our work provides a mechanistic account of why such asymmetries arise.
+
+\paragraph{Representation steering and causal intervention.}
+\citet{li2023iti} introduced Inference-Time Intervention for steering via learned bias vectors, \citet{turner2023activation} proposed Activation Addition as an optimization-free alternative, and \citet{zou2023representation} generalized these approaches through Representation Engineering.
+\citet{marks2024geometry} showed that truth-related representations exhibit linear structure amenable to such interventions.
+In knowledge conflicts, \citet{zhao2025steering} applied Sparse Autoencoder (SAE)-based steering (SpARE) in monolingual settings.
+Recent work has begun exploring cross-lingual steering: \citet{pokharel2026crosslingual} proposed training-free cross-lingual activation steering, \citet{sundar2025steering} analyzed how model interventions induce cross-lingual alignment shifts, and \citet{gurgurov2026clasbench} introduced a cross-lingual steering benchmark.
+These successes are not universal: \citet{basu2026interpretability} showed that near-perfect probe accuracy on clinical NLP tasks failed to translate into effective steering.
+\citet{feng2026finegrained} proposed fine-grained activation steering targeting specific layers, and \citet{meng2022locating} demonstrated localized causal editing via activation patching (Rank-One Model Editing; ROME); alternative causal frameworks \citep{geiger2024finding} remain unexplored for cross-lingual conflict settings.
+Our results identify layer selection as a critical variable: mid-layer intervention succeeds where late-layer intervention fails, suggesting conflict resolution occurs upstream of where the outcome becomes linearly readable.

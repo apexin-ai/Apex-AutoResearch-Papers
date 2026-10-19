@@ -1,0 +1,46 @@
+# Data and model artifacts
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+data/
+models/
+results/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+.venv/
+venv/
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+wandb/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary
+*.partial
+/tmp/

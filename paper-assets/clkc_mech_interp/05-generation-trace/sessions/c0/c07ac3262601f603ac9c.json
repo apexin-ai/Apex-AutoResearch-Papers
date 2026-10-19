@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c07ac3262601f603ac9c",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "research sample overlap analysis",
+  "task_key": "worker_research_sample-overlap-analysis_20260524T152022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sample-overlap-analysis_20260524T152022_result.json",
+    "occurrence": 1,
+    "bytes": 1936,
+    "sha256": "3bd4fd46adab41085e0d2de2dc66e0e2142c0baf169f14d3f5b5ab4415212e2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在完全理解了。差异的主要原因是：各模型的 data prep 脚本**独立从完整 ConflictQA 数据集随机采样 2000 条**（默认 seed=42 但可能在不同时间/参数执行），然后各自 verify。\n\n最终结果如下：\n\n---\n\n```\nConflictQA 三模型样本集重叠度分析\n============================================================\n\n数据来源: ConflictQA-popQA-chatgpt (同一份 HuggingFace 数据集)\n数据流水线: 各模型独立采样 → verification → balance & split\n\n样本集大小（verify 后）:\n  Llama-3.1-8B:  1600 samples (1499 unique questions)\n  Gemma-2-9B:    1368 samples (666 unique questions)\n  Qwen3-8B:      1418 samples (708 unique questions)\n\n两两重叠（问题级）:\n  Llama ∩ Gemma:  108 (占Llama 7.2%, 占Gemma 16.2%)\n  Llama ∩ Qwen:   134 (占Llama 8.9%, 占Qwen 18.9%)\n  Gemma ∩ Qwen:   165 (占Gemma 24.8%, 占Qwen 23.3%)\n\n三模型共同: 23 questions (占最小集Gemma 3.5%)\n\n各自独有:\n  Llama only: 1280\n  Gemma only: 416\n  Qwen only:  432\n\n差异来源（两重因素叠加）:\n  1. 采样差异: 各模型的 prepare_data 脚本独立从 ConflictQA 全集\n     随机采样 ~2000 条（种子/时间不同），起始问题集已不同\n     - Llama 与本地 raw_sampled 重叠仅 39.8%\n     - Gemma 与本地 raw_sampled 重叠仅 53.6%\n     - Qwen 100% 来自 raw_sampled（用的是 verify_parametric_knowledge.py）\n  2. Verification 过滤: 各模型 parametric knowledge 不同，\n     同一问题是否通过 verification 因模型而异\n```\n\n**结论**: 重叠极低（三模型共同仅 23 个问题），主因是数据准备流水线各自独立采样，而非仅仅是 verification 差异。如果审稿人关心跨模型可比性，需要强调论文的 claim 是「同一现象在不同模型上独立复现」，而非「同一组问题在三个模型上表现如何」。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sample-overlap-analysis.md"
+}

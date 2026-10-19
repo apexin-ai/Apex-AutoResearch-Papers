@@ -1,0 +1,53 @@
+{
+  "exp_id": "xnli_baseline_110",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:55:49.066Z",
+    "updated_at": "2026-05-22T05:42:14.628Z",
+    "hypothesis": "跨语言探针迁移不对称性（ZH→EN > EN→ZH ~7pp）是知识冲突信号特有的，而非一般性跨语言属性。在非冲突语义任务（XNLI entailment vs contradiction）上，同pipeline的残差流线性探针不应展现类似幅度的迁移不对称性（预期 <2pp）。若非冲突任务也展现 ≥5pp 不对称性，则 C2 需 reframe 为 general cross-lingual property。",
+    "server": "westd-41302",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-41302",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-22T03:57:47.118Z"
+    },
+    "spec": {
+      "command": "collect_activations (Qwen+Llama, EN+ZH) → train_probe bootstrap n=2000",
+      "server": "westd-41302",
+      "data_path": "data/xnli/",
+      "data_count": 1000,
+      "model_name": "Qwen3-8B + Llama-3.1-8B-Instruct",
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "qwen_xnli_asymmetry_pp": 6.72,
+      "qwen_xnli_ci": "[2.36, 11.73]",
+      "qwen_xnli_significant": true,
+      "qwen_conflict_asymmetry_pp": 5.95,
+      "qwen_conflict_ci": "[-3.67, 14.81]",
+      "llama_xnli_asymmetry_pp": 5.97,
+      "llama_xnli_ci": "[0.92, 11.33]",
+      "llama_xnli_significant": true,
+      "llama_conflict_asymmetry_pp": 11.76,
+      "llama_conflict_ci": "[4.29, 19.57]",
+      "qwen_xnli_en_en": 96.58,
+      "qwen_xnli_zh_zh": 89.49,
+      "qwen_xnli_en_zh": 90.45,
+      "qwen_xnli_zh_en": 97.17,
+      "llama_xnli_en_en": 93.98,
+      "llama_xnli_zh_zh": 87.47,
+      "llama_xnli_en_zh": 88.95,
+      "llama_xnli_zh_en": 94.92,
+      "conclusion_detail": "Asymmetry is NOT conflict-specific. XNLI shows comparable ~6pp asymmetry. C2 needs reframe."
+    }
+  },
+  "timestamp": "2026-05-22T05:42:14.668004+00:00",
+  "trigger": "update_registry"
+}

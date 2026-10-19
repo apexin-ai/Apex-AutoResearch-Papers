@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "30e7733f0a0281973f3b",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "code probe fix v3 and both probes",
+  "task_key": "worker_code_probe_fix_v3_and_both_probes_20260521T201354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe_fix_v3_and_both_probes_20260521T201354.log",
+    "occurrence": 1,
+    "bytes": 693894,
+    "sha256": "dff84bbceb486864df50c2066eacc0d63e289976cb2913ed7f6545b55d93b977"
+  },
+  "statistics": {
+    "messages": 458,
+    "user_turns": 0,
+    "tool_calls": 201,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 201,
+      "tool_result": 201,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 458,
+      "chunks": [
+        {
+          "path": "30e7733f0a0281973f3b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "30e7733f0a0281973f3b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "30e7733f0a0281973f3b-part-0003.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-probe-fix-v3-and-both-probes.md"
+}

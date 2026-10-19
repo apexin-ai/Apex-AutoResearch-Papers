@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "081f45d61519a2af8491",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "gpu xnli pipeline 110",
+  "task_key": "worker_gpu_xnli-pipeline-110_20260522T044346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_xnli-pipeline-110_20260522T044346.log",
+    "occurrence": 1,
+    "bytes": 1508350,
+    "sha256": "9ca6a9fdc2507391a7c05c18b12487312172be532312d9298f4ba12ef6ecee2b"
+  },
+  "statistics": {
+    "messages": 1133,
+    "user_turns": 1,
+    "tool_calls": 508,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 109,
+      "tool_call": 508,
+      "record": 1,
+      "tool_result": 508,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 998,
+      "chunks": [
+        {
+          "path": "081f45d61519a2af8491-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "081f45d61519a2af8491-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "081f45d61519a2af8491-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "081f45d61519a2af8491-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "081f45d61519a2af8491-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "081f45d61519a2af8491-part-0006.json",
+          "message_count": 98
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "081f45d61519a2af8491-part-0006.json",
+          "message_count": 82
+        },
+        {
+          "path": "081f45d61519a2af8491-part-0007.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-xnli-pipeline-110.md"
+}

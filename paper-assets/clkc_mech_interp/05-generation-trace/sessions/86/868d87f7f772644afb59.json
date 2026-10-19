@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "868d87f7f772644afb59",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis steering llama results 107",
+  "task_key": "worker_analysis_steering-llama-results-107_20260522T112421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_steering-llama-results-107_20260522T112421_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "0990e19f5d6cb1a98ff1a37113434212d75142f95c2ac7b58c1136190ad5d004"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n**Steering v3 Llama (plan_107): 完成，结论 NEGATIVE。**\n\n- 进程 PID 468898 已结束，10 个 alpha 全部跑完，结果写入 `steering_results.json`\n- **关键发现：probe weight direction 的 steering 效果与 random orthogonal direction 无统计差异。** 所有 Fisher p > 0.30，最大方向性 flip 仅 2/136（1.5%），远低于 15% 阈值\n- 大 alpha (±20) 时 steering 和 random 都引起 ~15% flip，但这只是非定向的扰动破坏\n- **Interpretation：** 线性 probe 能以 77.6% accuracy 分类 contextual vs parametric activations，但其 weight vector 不是模型决策的因果通道。Probe 找到的是相关信号，不是因果方向\n\n对 claim 的影响：不能用 \"probe weights as steering vectors\" 来论证因果性。需要其他方法（如 DAS/distributed alignment search, activation patching, or causal mediation analysis）来寻找因果方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-steering-llama-results-107.md"
+}

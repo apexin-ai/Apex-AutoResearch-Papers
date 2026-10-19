@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c852aa0c2d75732a83be",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu qwen L14 restart v2",
+  "task_key": "worker_gpu_qwen-L14-restart-v2_20260522T150243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_qwen-L14-restart-v2_20260522T150243_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "0877d9c36b3f3868711fd321f5ef9b4f9f3bc7875c52c3569cc453f38fe1050b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### cuda:1/2/3 上的进程\n\n| GPU | PID | 启动时间 | 实验 |\n|-----|-----|---------|------|\n| cuda:1 | 493129 | 22:37 | **Qwen L14 steering**（已完成，占着显存未退出） |\n| cuda:2 | 493756 | 22:39 | Gemma-2 L17 steering |\n| cuda:3 | 494291 | 22:40 | Llama-3.1 L13 steering (position=all) |\n\ncuda:1 上的 16GB 就是之前启动的 **Qwen L14 进程 (PID 493129)**——它已经跑完并写出了结果文件，但进程还挂着没退出（可能卡在模型未释放）。结果已完整保存，不需要重跑。\n\n如需释放 cuda:1 显存，可以 kill 掉 PID 493129。要执行吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-qwen-l14-restart-v2.md"
+}

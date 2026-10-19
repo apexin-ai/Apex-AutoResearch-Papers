@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87805fa7e748f217d327",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "cpu llama bootstrap n2000 restart",
+  "task_key": "worker_cpu_llama-bootstrap-n2000-restart_20260522T135606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_llama-bootstrap-n2000-restart_20260522T135606_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "f34d68fe535e9c5968a396c9aebcadf534172ffac2870353b2f96a45ae2ac465"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程正常运行中，无需重启。**\n\nPID 465851 (`train_probe_fast.py`) 状态：\n\n| 方向 | 状态 | 耗时 |\n|------|------|------|\n| en_en | ✅ 完成 | 80.5 min |\n| zh_zh | ✅ 完成 | 95.6 min |\n| en_zh | ✅ 完成 | 120.8 min |\n| zh_en | 🔄 进行中 | 818/2000 tasks (35.6 min) |\n\nzh_en 方向已完成约 41%，按速率预计还需 ~50 分钟完成。输出文件会在全部 4 个方向跑完后才写入 `data/llama31/probe_results_bootstrap_n2000.json`。\n\nQwen 的对应文件已完成（22KB，21:08 生成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-llama-bootstrap-n2000-restart.md"
+}

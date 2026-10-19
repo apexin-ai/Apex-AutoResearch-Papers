@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2ee7242bf5a0448ed6a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig1 panel c L28 label",
+  "task_key": "worker_code_fix-fig1-panel-c-L28-label_20260525T135755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig1-panel-c-L28-label_20260525T135755_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "c14fa6fe148a02676d4296f1fe77aa8c79d1fdc40ab9fbbb9640452c3f8ac60c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n- `gen_fig1_hero.py:334` — \"Detection peak\" → \"Upper layers\"\n- PNG/PDF 已重新生成，`docs/paper/fig1_hero.pdf` 已同步更新\n- L13 (p < 0.001) 和 L16 (p = 0.005) 标注未改动，Panel (a)(b) 未改动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig1-panel-c-l28-label.md"
+}

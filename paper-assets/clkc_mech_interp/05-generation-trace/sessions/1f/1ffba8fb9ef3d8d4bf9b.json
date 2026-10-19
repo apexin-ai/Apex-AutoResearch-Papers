@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ffba8fb9ef3d8d4bf9b",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "exp steering gemma L10 120 v2",
+  "task_key": "worker_exp_steering-gemma-L10-120-v2_20260523T101826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_steering-gemma-L10-120-v2_20260523T101826_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "037019c6726bb8b7a0811c1d89071336bc41a512567e2a3fd0701ab6d5c4c3d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个方向实验均已完成。\n\n## Gemma L10 (120)\n状态: **完成**\n\n命令:\n```\n# 正方向\nCUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 10 --alphas 5 10 20 --position last\n# 负方向\nCUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 10 --alphas -5 -10 -20 --position last --output_suffix _L10_neg\n```\n\nProbe accuracy: **70.57%**\n\n| | Steering flips | Control flips | Fisher p |\n|---|---|---|---|\n| Alpha +5 | 3/158 (1.9%) | 2/158 (1.3%) | 1.0000 |\n| Alpha -5 | 1/158 (0.6%) | 1/158 (0.6%) | 1.0000 |\n| Alpha +10 | 1/158 (0.6%) | 1/158 (0.6%) | 1.0000 |\n| Alpha -10 | 2/158 (1.3%) | 4/158 (2.5%) | 0.6845 |\n| Alpha +20 | 5/158 (3.2%) | 1/158 (0.6%) | 0.2143 |\n| Alpha -20 | 2/158 (1.3%) | 6/158 (3.8%) | 0.2828 |\n\n所有条件 p→c=0, c→p=0（无实质性参数↔上下文翻转）\n\nBonferroni 显著 (k=6, p<0.0083): **无**\n\nJSON 路径:\n- `/root/clkc_mech_interp/data/gemma2/steering_results.json`（正方向）\n- `/root/clkc_mech_interp/data/gemma2/steering_results_L10_neg.json`（负方向）\n\nLog 路径:\n- `/root/clkc_mech_interp/logs/steering_gemma_L10.log`\n- `/root/clkc_mech_interp/logs/steering_gemma_L10_neg.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-steering-gemma-l10-120-v2.md"
+}

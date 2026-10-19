@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21f23d58a17e11ab9ac6",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code mvp data build",
+  "task_key": "worker_code_mvp_data_build_20260521T120253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_data_build_20260521T120253_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "dc959e6cb13f4d726e53482ee8fea05203d005ed8387b21a411ba145cb0c4a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。最终产出：\n\n**`data/` 目录**：\n| 文件 | 行数 | 说明 |\n|------|------|------|\n| `en_conflict_train.jsonl` | 800 | 400 conflict + 400 no_conflict |\n| `en_conflict_test.jsonl` | 200 | 100 conflict + 100 no_conflict |\n| `raw_sampled_train.jsonl` | 400 | 原始 ConflictQA 采样数据 |\n| `raw_sampled_test.jsonl` | 100 | 原始 ConflictQA 采样数据 |\n| `DATA_README.md` | 数据文档 |\n\n**`src/` 目录**：\n| 文件 | 说明 |\n|------|------|\n| `translate_to_zh.py` | ZH 翻译脚本，使用 Qwen3-8B，需 GPU 服务器运行 |\n\n**标签设计**：二分类——`conflict`（context 与参数知识矛盾，使用 `counter_memory_aligned_evidence`）vs `no_conflict`（context 与参数知识一致，使用 `parametric_memory_aligned_evidence`）。数据来源为 ConflictQA 的 `popQA-chatgpt` 子集，seed=42 采样 500 条原始样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-data-build.md"
+}

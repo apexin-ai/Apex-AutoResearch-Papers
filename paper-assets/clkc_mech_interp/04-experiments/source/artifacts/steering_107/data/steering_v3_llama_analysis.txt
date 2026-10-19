@@ -1,0 +1,8 @@
+NEGATIVE RESULT: Linear probe weight direction has no causal steering effect on knowledge conflict resolution in Llama-3.1-8B-Instruct.
+
+Baseline (n=136): parametric=32, contextual=41, both=35, neither=28
+
+Best alpha=-20: steering_flip_rate=14.7%, control_flip_rate=16.9%, fisher_p=0.740
+All Fisher p > 0.30. Max directional flips (p2c or c2p) = 2 out of 136.
+
+Interpretation: Steering flip rates statistically indistinguishable from random orthogonal direction at all alphas. High alpha perturbations cause non-directional noise. Probe weight vector captures correlational signal (77.6% accuracy) but not a causally effective direction.

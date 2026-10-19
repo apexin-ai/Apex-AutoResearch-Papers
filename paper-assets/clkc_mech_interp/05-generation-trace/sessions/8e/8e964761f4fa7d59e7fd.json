@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e964761f4fa7d59e7fd",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix verify pipeline",
+  "task_key": "worker_code_fix-verify-pipeline_20260524T091603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-verify-pipeline_20260524T091603_result.json",
+    "occurrence": 1,
+    "bytes": 1466,
+    "sha256": "5ecee6d0782e42a1fdf5d89f7d4cce104a95d4fdaf030f8fc21581b5aaf1a78f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n### 产出\n\n1. **`src/prepare_gemma_data_v2.py`** — 已写入服务器，修复了三个 bug：\n   - **relabel bug**：旧脚本翻转 label 时未更新 `parametric_answer`/`contextual_answer`，导致 68% conflict 样本答案相同。新脚本在翻转时同步更新答案字段，并有 post-filter 兜底。\n   - **classify 优先级 bug**：旧脚本先检查 `ground_truth`，ConflictQA 中大量 `memory_answer ≈ ground_truth` 的条目被误分类为 `\"ground_truth\"` 触发不必要翻转。新脚本改为优先检查 `memory_answer`。\n   - **缺少 chat_template**：旧脚本直接 tokenize prompt，新脚本使用 `tokenizer.apply_chat_template()`。\n\n2. **Qwen 管线检查**：无 Qwen 准备脚本，无 Qwen 数据目录，无 `prepare_qwen*.py` 文件。Qwen 不受此 bug 影响，不需要修复。\n\n3. **Dry-run 验证**：50 条采样 → 94 个样本（47 对），0 个 conflict 样本有相同答案，字段与 Llama 格式完全匹配。\n\n### 运行正式数据\n\nConflictQA 原始数据已在服务器缓存中：\n```bash\ncd /root/clkc_mech_interp\npython src/prepare_gemma_data_v2.py \\\n  --model /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it \\\n  --conflictqa_path /root/.cache/huggingface/hub/datasets--osunlp--ConflictQA/snapshots/056384049e63c1ddae853891c24610fa07d85744/conflictQA-popQA-chatgpt.json \\\n  --n_sample 2000 \\\n  --output_dir data/gemma2\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-verify-pipeline.md"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "401263ba66ecf07a0778",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp gemma comet fix",
+  "task_key": "worker_exp_gemma-comet-fix_20260524T170207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-comet-fix_20260524T170207.log",
+    "occurrence": 1,
+    "bytes": 1096224,
+    "sha256": "f1a51834b8551aeb671b280ae8a8b0a5f1aa563e345dd595526ba54494b1ad1e"
+  },
+  "statistics": {
+    "messages": 547,
+    "user_turns": 1,
+    "tool_calls": 211,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 211,
+      "tool_result": 211,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 519,
+      "chunks": [
+        {
+          "path": "401263ba66ecf07a0778-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "401263ba66ecf07a0778-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "401263ba66ecf07a0778-part-0003.json",
+          "message_count": 164
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "401263ba66ecf07a0778-part-0003.json",
+          "message_count": 16
+        },
+        {
+          "path": "401263ba66ecf07a0778-part-0004.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-comet-fix.md"
+}

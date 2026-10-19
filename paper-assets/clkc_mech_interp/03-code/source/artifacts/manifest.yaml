@@ -1,0 +1,623 @@
+- id: art_20260522_ec166f
+  name: token_overlap_results
+  type: report
+  description: EN-ZH token overlap analysis for Qwen3-8B and Llama-3.1-8B-Instruct
+    tokenizers
+  path: projects/clkc_mech_interp/artifacts/_project/report/token_overlap_results.md
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T00:59:43.452576+00:00'
+  tags:
+  - token_overlap
+  - tokenizer
+  - cross_lingual
+- id: art_20260522_761a07
+  name: token_overlap_enhanced_analysis
+  type: data
+  description: 'Enhanced token overlap analysis: per-sample Jaccard, correlation with
+    EN→ZH probe correctness, tercile control experiment. Conclusion: RC2 (token overlap
+    drives transfer) EXCLUDED. Qwen shows no significant correlation; Llama shows
+    significant negative correlation.'
+  path: projects/clkc_mech_interp/artifacts/_project/data/token_overlap_summary.md
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T01:41:21.094334+00:00'
+  tags:
+  - token_overlap
+  - RC2
+  - control_experiment
+- id: art_20260522_3dc34a
+  name: bootstrap_asymmetry_corrected_qwen
+  type: data
+  description: 'Qwen3-8B corrected bootstrap asymmetry CI (plan_099): 7.18pp [-1.19%,
+    13.41%], not significant'
+  path: projects/clkc_mech_interp/artifacts/mvp_probe_v1/data/bootstrap_qwen.json
+  url: null
+  project: clkc_mech_interp
+  exp_id: mvp_probe_v1
+  skill: ''
+  created_at: '2026-05-22T02:19:58.473358+00:00'
+  tags:
+  - bootstrap
+  - asymmetry
+  - plan_099
+- id: art_20260522_97f39a
+  name: bootstrap_asymmetry_corrected_llama
+  type: data
+  description: 'Llama3.1-8B corrected bootstrap asymmetry CI (plan_099): 7.22pp [1.10%,
+    13.61%], significant'
+  path: projects/clkc_mech_interp/artifacts/mvp_probe_llama_v1/data/bootstrap_llama.json
+  url: null
+  project: clkc_mech_interp
+  exp_id: mvp_probe_llama_v1
+  skill: ''
+  created_at: '2026-05-22T02:19:59.701708+00:00'
+  tags:
+  - bootstrap
+  - asymmetry
+  - plan_099
+- id: art_20260522_a2aa95
+  name: comet_tertile_ablation
+  type: data
+  description: 'COMET tertile ablation for Qwen3-8B EN to ZH probe (plan_105). NOT
+    confounder: delta=-5.64pp reversed, Fisher p=0.695.'
+  path: projects/clkc_mech_interp/artifacts/_project/data/comet_tertile_ablation.txt
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T02:22:39.354141+00:00'
+  tags:
+  - plan_105
+  - comet
+  - ablation
+  - qwen3
+- id: art_20260522_g2pipe
+  name: gemma2_pipeline_commands
+  type: report
+  description: 'Gemma-2-9B-IT full probe pipeline commands (plan_102): 6-step execution
+    sequence with verified args, time estimates, and risk notes'
+  path: projects/clkc_mech_interp/artifacts/gemma2_pipeline_commands.md
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T12:00:00.000000+00:00'
+  tags:
+  - plan_102
+  - gemma2
+  - pipeline
+- id: art_20260522_1150c6
+  name: plan_110_xnli_baseline_report
+  type: report
+  description: 'XNLI non-conflict semantic baseline experiment report. Compares cross-lingual
+    probe transfer asymmetry between XNLI (NLI task) and knowledge conflict task for
+    Qwen3-8B and Llama-3.1-8B. Key finding: ~6pp ZH→EN > EN→ZH asymmetry is a general
+    cross-lingual property, not conflict-specific.'
+  path: projects/clkc_mech_interp/artifacts/plan_110/report/plan_110_xnli_baseline_report.md
+  url: null
+  project: clkc_mech_interp
+  exp_id: plan_110
+  skill: ''
+  created_at: '2026-05-22T05:39:36.475661+00:00'
+  tags:
+  - xnli
+  - baseline
+  - asymmetry
+  - cross-lingual
+  - probe
+  - bootstrap
+- id: art_20260522_mlpc3
+  name: xnli_mlp_probe_c3_report
+  type: report
+  description: 'XNLI MLP probe results vs conflict task. C3 CONFIRMED: XNLI EN→ZH
+    MLP gains are negative (Qwen -2.0pp, Llama -0.5pp) vs conflict task positive (Qwen
+    +2.4pp, Llama +9.2pp). Non-linear encoding is conflict-specific.'
+  path: projects/clkc_mech_interp/artifacts/xnli_mlp_probe_report.md
+  url: null
+  project: clkc_mech_interp
+  exp_id: plan_110
+  skill: ''
+  created_at: '2026-05-22T14:50:00.000000+00:00'
+  tags:
+  - xnli
+  - mlp_probe
+  - C3
+  - non-linearity
+  - cross-lingual
+- id: art_20260522_b840b2
+  name: cka_svcca_results_v2
+  type: data
+  description: 'CKA/SVCCA v2: 4 combinations (conflict/xnli × aligned/shuffled) on
+    test set, fixing pairing confound'
+  path: projects/clkc_mech_interp/artifacts/_project/data/cka_svcca_results_v2.json
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:12:07.756062+00:00'
+  tags: []
+- id: art_20260522_e58f1d
+  name: steering_107_analysis
+  type: report
+  description: steering_107 实验结果分析：线性探针方向的因果性 steering 实验，结论 NEGATIVE
+  path: projects/clkc_mech_interp/artifacts/steering_107/report/steering_107_analysis.md
+  url: null
+  project: clkc_mech_interp
+  exp_id: steering_107
+  skill: ''
+  created_at: '2026-05-22T10:55:21.286529+00:00'
+  tags:
+  - steering
+  - negative_result
+  - causality
+  - D010
+- id: art_20260522_00fa14
+  name: steering_v3_llama_results
+  type: data
+  description: 'Steering v3 experiment results for Llama-3.1-8B-Instruct: 10 alpha
+    values, all negative (steering = random control). Linear probe weights do not
+    causally steer knowledge conflict resolution.'
+  path: projects/clkc_mech_interp/artifacts/steering_107/data/steering_v3_llama_analysis.txt
+  url: null
+  project: clkc_mech_interp
+  exp_id: steering_107
+  skill: ''
+  created_at: '2026-05-22T11:26:42.564171+00:00'
+  tags:
+  - steering
+  - negative_result
+  - llama
+  - plan_107
+- id: art_20260522_7c8cc3
+  name: fig1_pipeline
+  type: chart
+  description: 'Figure 1: Cross-lingual conflict probing pipeline overview. Three-block
+    conceptual diagram (Data Construction → Probing Framework → Confound Exclusion)
+    with EN/ZH color coding, 2×2 transfer protocol matrix, and three confound checks.
+    PDF vector + 300 DPI PNG.'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig1_pipeline.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-22T13:16:01.190252+00:00'
+  tags:
+  - paper
+  - figure1
+  - pipeline
+  - conceptual
+- id: art_20260522_91af56
+  name: fig1_pipeline
+  type: chart
+  description: 'Figure 1: Cross-lingual conflict probing pipeline overview (conceptual
+    diagram). Three blocks: Data Construction (ConflictQA → verification → translation
+    → COMET validation), Probing Framework (residual stream → linear probe → 4-direction
+    transfer → bootstrap), Confound Exclusion (COMET tercile + token overlap + XNLI
+    baseline). Data sources: mvp_probe_v1, mvp_probe_llama_v1.'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig1_pipeline_91af56.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-22T13:17:30.800535+00:00'
+  tags:
+  - paper
+  - method
+  - conceptual
+  - fig1
+- id: art_20260522_656bf4
+  name: fig3_asymmetry_forest
+  type: chart
+  description: 'Figure 3 (KEY FIGURE): Forest plot comparing transfer asymmetry (ZH→EN
+    − EN→ZH) between Conflict and XNLI tasks. 4 rows: Llama Conflict +7.2pp CI[1.1,13.6],
+    Llama XNLI +6.0pp CI[0.9,11.3], Qwen Conflict +7.2pp CI[-1.2,13.4], Qwen XNLI
+    +6.7pp CI[2.4,11.7]. Shows substantial CI overlap → asymmetry is general cross-lingual
+    property. Data: mvp_probe_v1, mvp_probe_llama_v1, xnli_baseline_110.'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig3_asymmetry_forest.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-22T13:19:12.780905+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - fig3
+  - key_figure
+- id: art_20260522_f2lwp1
+  name: fig2_layerwise_probes
+  type: chart
+  description: 'Figure 2: Layer-wise probe accuracy curves for Llama-3.1-8B and Qwen3-4B.
+    1×2 layout showing residual stream (solid) and MLP (dashed) probes across 4 transfer
+    directions (EN→EN, ZH→ZH, EN→ZH, ZH→EN). Includes bootstrap 95% CI bands for Qwen,
+    peak markers, and L13 steering annotation for Llama. PDF vector + 300 DPI PNG.'
+  path: projects/clkc_mech_interp/figures/paper/fig2_layerwise_probes.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-22T15:30:00.000000+00:00'
+  tags:
+  - paper
+  - figure2
+  - layerwise
+  - probe
+  - residual_stream
+  - mlp
+- id: art_20260522_f2data
+  name: layerwise_probe_curves_data
+  type: data
+  description: 'Layer-wise probe accuracy data (JSON) for Llama-3.1-8B and Qwen3-4B:
+    residual stream + MLP probes, 4 directions, peak layers, and Qwen bootstrap CI
+    (n=2000). Source of Fig 2.'
+  path: projects/clkc_mech_interp/artifacts/layerwise_probe_curves.json
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:30:00.000000+00:00'
+  tags:
+  - data
+  - layerwise
+  - probe
+- id: art_20260522_d93194
+  name: layerwise_probe_curves
+  type: data
+  description: 'Layer-wise probe accuracy curves for Fig 2: llama31, llama31_mlp,
+    qwen3, qwen3_mlp, qwen3_bootstrap_ci (n=100)'
+  path: projects/clkc_mech_interp/artifacts/_project/data/layerwise_probe_curves.json
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:12:06.339116+00:00'
+  tags:
+  - probe
+  - layer-wise
+  - fig2
+- id: art_20260522_ceb3cf
+  name: llama31_probe_results
+  type: data
+  description: 'LLaMA 3.1 linear probe summary: peak layers and balanced accuracy
+    for 4 cross-lingual directions (n=100)'
+  path: projects/clkc_mech_interp/artifacts/_project/data/llama31_probe_results.json
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:12:06.370630+00:00'
+  tags:
+  - probe
+  - llama31
+  - summary
+- id: art_20260522_baccb3
+  name: qwen3_probe_results
+  type: data
+  description: 'Qwen3 per-layer probe results: 36 layers x 4 directions with summary
+    (n=100)'
+  path: projects/clkc_mech_interp/artifacts/_project/data/qwen3_probe_results.json
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:12:06.406770+00:00'
+  tags:
+  - probe
+  - qwen3
+  - per-layer
+- id: art_20260522_0fb564
+  name: experiments_section_tex
+  type: paper
+  description: 'Experiments section (Section 4) complete LaTeX. 6 subsections: Setup,
+    Within-Language Detection, Cross-Lingual Transfer, XNLI Baseline, Confound Exclusion,
+    Causal Steering. 3 tables (main results, confounds, steering). All data from registry
+    artifacts. Placeholders: Qwen L13 steering, Figure 2 layer-wise curves.'
+  path: projects/clkc_mech_interp/artifacts/_project/paper/experiments.tex
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:36:53.917680+00:00'
+  tags:
+  - paper
+  - experiments
+  - section4
+  - latex
+- id: art_20260522_ea7013
+  name: fig2_layerwise_probes
+  type: chart
+  description: 'Layer-wise probe balanced accuracy curves (1×2: Llama | Qwen). 4 transfer
+    directions × residual + MLP. L13 steering causal node annotated. Data: mvp_probe_v1,
+    mvp_probe_llama_v1, steering_107_L13.'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig2_layerwise_probes.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-22T16:13:28.085102+00:00'
+  tags:
+  - paper
+  - experiments
+  - layer_probe
+  - steering
+- id: art_20260523_8ff5f2
+  name: fig2_layerwise_probes_3panel
+  type: chart
+  description: Fig 2 layer-wise probe accuracy 三面板图 (Llama/Qwen/Gemma)。Gemma 面板含 L17/L21
+    negative steering 标注。1×3 布局，PDF+PNG。
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig2_layerwise_probes.png
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T05:47:28.232808+00:00'
+  tags:
+  - figure
+  - paper
+  - fig2
+  - gemma
+  - layerwise
+- id: art_20260523_5b9a96
+  name: fig3_asymmetry_forest_6row
+  type: chart
+  description: 'Fig 3 asymmetry forest plot 6 行版 (3 模型 × 2 任务: Conflict + XNLI)。Gemma
+    XNLI Δ=+7.8pp [5.7, 10.0] 已加入。'
+  path: projects/clkc_mech_interp/artifacts/gemma_xnli_bootstrap_115/chart/fig3_asymmetry_forest.png
+  url: null
+  project: clkc_mech_interp
+  exp_id: gemma_xnli_bootstrap_115
+  skill: ''
+  created_at: '2026-05-23T06:58:14.180219+00:00'
+  tags:
+  - figure
+  - paper
+  - fig3
+  - forest-plot
+  - asymmetry
+- id: art_20260525_0a6662
+  name: fig1_hero_detection_neq_decision
+  type: chart
+  description: 'Figure 1 Hero figure for EMNLP 2026 paper: 3-panel layout showing
+    (a) cross-lingual knowledge conflict example, (b) Detection via probing (all 3
+    models detect, peak 77.6%), (c) Causation via steering (only Llama L13-L16 causal
+    window). Conclusion: Detection ≠ Decision. Generated with matplotlib, PDF+PNG.'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig1_hero.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-25T13:36:37.630548+00:00'
+  tags:
+  - figure1
+  - hero
+  - detection-neq-decision
+  - paper
+- id: art_20260525_4911bb
+  name: fig1_hero_v2_restyled
+  type: chart
+  description: 'Figure 1 Hero v2 (restyled): 参考专业流程图风格重做。深色头条带+白字标题、圆角色块、sans-serif、渐变概念图替代灰格子、pill
+    badge 结论框。三 panel 内容不变。'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig1_hero_4911bb.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-25T14:47:17.140014+00:00'
+  tags:
+  - figure1
+  - hero
+  - detection-neq-decision
+  - paper
+  - restyled
+- id: art_20260525_bbb1d6
+  name: fig1_hero_v3_heatmap
+  type: chart
+  description: 'Figure 1 Hero v3: heatmap bar 设计，三模型垂直热力条。4 轮 matplotlib 迭代（Worker
+    超时未完成第 5 轮）。需 Director 审查是否需要更多打磨。'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig1_hero_bbb1d6.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-25T16:47:11.361235+00:00'
+  tags:
+  - figure1
+  - hero
+  - heatmap
+  - paper
+- id: art_20260525_484cfd
+  name: fig2_pipeline_v2_redesign
+  type: chart
+  description: 'Figure 2 Pipeline v2: 四步圆角卡片 + mini-visualization + 深色编号圆。干净专业的 pipeline
+    图。'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig2_pipeline.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-25T16:47:13.153616+00:00'
+  tags:
+  - figure2
+  - pipeline
+  - paper
+- id: art_20260525_fe662c
+  name: fig1_hero_paperbanana
+  type: chart
+  description: 'Figure 1 hero figure: Detection ≠ Decision — (a) cross-lingual knowledge
+    conflict task, (b) probe heatmaps, (c) causal steering. Generated by PaperBanana
+    (Imagen), round 4 selected as best.'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig1_hero_fe662c.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T17:46:03.336026+00:00'
+  tags:
+  - figure
+  - paper
+  - paperbanana
+  - fig1
+- id: art_20260525_d34eb6
+  name: fig2_pipeline_paperbanana
+  type: chart
+  description: 'Figure 2 method pipeline: 4-step flow — Data Construction, 4-Direction
+    Probing, Representation Steering, Confound Exclusion. Generated by PaperBanana
+    (Imagen), round 3 selected as best.'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig2_pipeline_d34eb6.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T17:46:05.801009+00:00'
+  tags:
+  - figure
+  - paper
+  - paperbanana
+  - fig2
+- id: art_20260525_b05e36
+  name: fig1_hero_paperbanana_v4
+  type: chart
+  description: 'Figure 1 Hero (PaperBanana r4): 极简学术风格，三 panel heatmap bar 设计。Panel
+    (a) 文字极简 + CJK，Panel (b) 三模型 probe accuracy heatmap，Panel (c) Llama causal window
+    + "Detection ≠ Decision"。'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig1_hero_b05e36.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-25T17:48:19.089996+00:00'
+  tags:
+  - figure1
+  - hero
+  - paperbanana
+  - paper
+  - final
+- id: art_20260525_69bb98
+  name: fig2_pipeline_paperbanana_fixed
+  type: chart
+  description: 'Figure 2 Pipeline (PaperBanana, section refs fixed): 四步 pipeline，正确顺序
+    Data(§3.2)→Probing(§3.3–3.4)→Confound(§3.5)→Steering(§3.6)。Mini visuals + 统一配色。'
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig2_pipeline_69bb98.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-25T17:52:22.430584+00:00'
+  tags:
+  - figure2
+  - pipeline
+  - paperbanana
+  - paper
+  - final
+- id: art_20260525_6f4037
+  name: main_20260525
+  type: paper
+  description: 'Compiled paper PDF (12 pages: 8pp main text + limitations + references
+    + appendix). EMNLP 2026 submission format.'
+  path: projects/clkc_mech_interp/artifacts/_project/paper/main_20260525.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:17:11.917673+00:00'
+  tags:
+  - paper
+  - pdf
+  - emnlp2026
+- id: art_20260525_d0397f
+  name: main_20260525
+  type: paper
+  description: 论文 PDF 编译版本 2026-05-25，12页，含最新 experiments.tex 更新
+  path: projects/clkc_mech_interp/artifacts/_project/paper/main_20260525_d0397f.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:20:40.665328+00:00'
+  tags:
+  - paper
+  - pdf
+  - compiled
+- id: art_20260526_5666e4
+  name: fig2_pipeline
+  type: chart
+  description: Figure 2 方法流程图（PaperBanana 重绘 v4）：5-stage pipeline — Data Construction
+    → Activation Extraction → Probing → Controls → Steering。含 2×2 probing grid、Δ_asym=+7pp、L13
+    causal steering 等关键标注。
+  path: projects/clkc_mech_interp/artifacts/_project/chart/fig2_pipeline_5666e4.pdf
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-26T05:01:24.712419+00:00'
+  tags:
+  - figure
+  - pipeline
+  - paper
+  - paperbanana
+- id: art_20260526_862908
+  name: anon_repo_audit
+  type: report
+  description: 匿名代码仓库安全审计报告 — 发现并修复 .git/config 中的 PAT 泄露、GitHub URL 泄露、.gitignore
+    缺失 *.pth
+  path: projects/clkc_mech_interp/artifacts/_project/report/anon_repo_audit.md
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T09:38:01.207108+00:00'
+  tags:
+  - anonymization
+  - security
+  - code-release
+- id: art_20260526_a56cca
+  name: anonymous_repo_zip
+  type: data
+  description: 匿名代码仓库 zip（54K），.git/ 已排除，commit 0e06616，author/email 已匿名化。用于 EMNLP
+    2026 ARR 提交。
+  path: projects/clkc_mech_interp/artifacts/_project/data/anonymous_repo.zip
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T09:46:50.292136+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - anonymous
+- id: art_20260526_343dcf
+  name: anonymous_repo_zip
+  type: data
+  description: 匿名代码仓库 zip（106K），Qwen3 model name 已统一为 Instruct，.git/ 已排除，author/email
+    已匿名化。用于 EMNLP 2026 ARR 提交。
+  path: projects/clkc_mech_interp/artifacts/_project/data/anonymous_repo_343dcf.zip
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T09:51:58.853457+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - anonymous
+- id: art_20260526_365feb
+  name: anonymous_repo_zip
+  type: data
+  description: 匿名代码仓库 zip（31 files），单一 anonymous_repo/ 顶层目录，Qwen3 统一为 Instruct，.git/
+    已排除。用于 EMNLP 2026 ARR 提交。
+  path: projects/clkc_mech_interp/artifacts/_project/data/anonymous_repo_365feb.zip
+  url: null
+  project: clkc_mech_interp
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T09:59:00.917097+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - anonymous

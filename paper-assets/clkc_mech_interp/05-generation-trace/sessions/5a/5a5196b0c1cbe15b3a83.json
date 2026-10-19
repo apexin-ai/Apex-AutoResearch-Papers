@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a5196b0c1cbe15b3a83",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "gpu xnli pipeline 110",
+  "task_key": "worker_gpu_xnli-pipeline-110_20260522T044346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_xnli-pipeline-110_20260522T044346_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "9ef1d82797b3ecc3c13bd9d8f8fa3dcbc1823145e58a2bff47f1c2bd22c9c0b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "XNLI baseline experiment complete. Results summary:\n\n**Asymmetry comparison (ZH→EN − EN→ZH balanced accuracy):**\n\n| Model | XNLI | Conflict | XNLI CI | Conflict CI |\n|-------|------|----------|---------|-------------|\n| Qwen3-8B | +6.72pp | +5.95pp | [+2.36, +11.73] | [−3.67, +14.81] |\n| Llama-3.1-8B | +5.97pp | +11.76pp | [+0.92, +11.33] | [+4.29, +19.57] |\n\n**Core finding**: The ~6pp ZH→EN > EN→ZH asymmetry is **not conflict-specific** — it persists with comparable magnitude on XNLI (a non-conflict NLI task). For Qwen, the XNLI asymmetry is actually larger than the conflict asymmetry. This is a general cross-lingual representation property of these models, likely driven by English-dominant pretraining.\n\nReport registered as `art_20260522_1150c6`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-xnli-pipeline-110.md"
+}

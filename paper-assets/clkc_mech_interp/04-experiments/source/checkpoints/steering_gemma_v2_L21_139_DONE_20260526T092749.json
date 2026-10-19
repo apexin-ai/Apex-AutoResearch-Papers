@@ -1,0 +1,31 @@
+{
+  "exp_id": "steering_gemma_v2_L21_139",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T08:59:57.338Z",
+    "updated_at": "2026-05-26T09:27:49.156Z",
+    "hypothesis": "Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug).",
+    "parent": "steering_107_gemma_L21",
+    "notes": "Worker 报告 done，但 westd-14391 SSH 断连无法验证结果文件。等服务器恢复后验证。Gemma v2 L16/L17/L18 均已完成且全部 negative（probe acc 88-89.5%，所有 p > 0.05），ROADMAP 标记所有 GPU 实验已完成。L21 v2 结果待 SSH 恢复后确认 conclusion。",
+    "spec": {
+      "command": "python run_steering_v2.py --model gemma-2-9b-it --layer 21",
+      "server": "westd-14391",
+      "data_path": "v2 matched-condition pipeline",
+      "data_count": 171,
+      "model_name": "Gemma-2-9B-IT",
+      "seed": 42,
+      "checkpoint_source": "steering_107_gemma_L21",
+      "eval_data": "v2 matched-condition conflict samples N=171"
+    },
+    "checkpoint_path": "pending_verification (SSH断连)",
+    "log_path": "pending_verification (SSH断连)",
+    "conclusion": "negative",
+    "completed_at": "2026-05-26T09:27:49.156Z"
+  },
+  "timestamp": "2026-05-26T09:27:49.438653+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bf68bbde34e30402a2c",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code xnli fix 110",
+  "task_key": "worker_code_xnli-fix-110_20260522T042258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_xnli-fix-110_20260522T042258_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "a1ebface3106421fba1a24cd19a348acad5b20304a9c1d9fd35094552ec27686"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**问题 1 (ZH 缺失)**: 不成立，4 个文件均已存在且非空。\n\n**问题 2 (标签反转)**: 已修正 `src/prepare_xnli.py` 并重新生成数据。\n- 修正前: entailment→\"conflict\", contradiction→\"no_conflict\"\n- 修正后: entailment→\"no_conflict\", contradiction→\"conflict\"\n\n**验证结果**:\n\n| 文件 | 行数 | no_conflict | conflict |\n|------|------|-------------|----------|\n| en_xnli_train | 800 | 404 | 396 |\n| en_xnli_test | 200 | 94 | 106 |\n| zh_xnli_train | 800 | 387 | 413 |\n| zh_xnli_test | 200 | 99 | 101 |\n\n字段 `context`, `question`, `label` 与 collect_activations.py 兼容。报告已更新到 `artifacts/plan_110_xnli_baseline_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-xnli-fix-110.md"
+}

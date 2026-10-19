@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "5f12d962e898e969d853",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix fig3 local from backup",
+  "task_key": "worker_code_fix-fig3-local-from-backup_20260526T080353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-fig3-local-from-backup_20260526T080353_result.json",
+    "occurrence": 1,
+    "bytes": 2422275,
+    "sha256": "61deb80fbfbb5e1015f741f9518b8432b86ac472671b71addba52bc209fd3228"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "5f12d962e898e969d853-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig3-local-from-backup.md"
+}

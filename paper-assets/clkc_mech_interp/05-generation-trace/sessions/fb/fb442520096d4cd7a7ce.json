@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb442520096d4cd7a7ce",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code supplement sampling",
+  "task_key": "worker_code_supplement_sampling_20260521T142644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_supplement_sampling_20260521T142644_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "55066eef50114e04a979ee6806807d85828bb303ec9421eec2f4380fff4f70e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地和服务器数据一致（相同的 seed=43 产出相同结果）。\n\n完成总结：\n\n**补采样完成**\n- 从 ConflictQA popQA-chatgpt 子集（7947 条，7208 unique questions）中排除已有 494 条，新采样 1500 条（seed=43）\n- 分割：1200 train + 300 test\n- 每条生成 conflict + no_conflict 两行\n\n**文件清单**（本地 + 服务器均已就绪）：\n\n| 文件 | 行数 |\n|------|------|\n| `en_conflict_train_supplement.jsonl` | 2400 |\n| `en_conflict_test_supplement.jsonl` | 600 |\n| `raw_sampled_train_supplement.jsonl` | 1200 |\n| `raw_sampled_test_supplement.jsonl` | 300 |\n| `en_conflict_train_full.jsonl` | 3200 (原800+新2400) |\n| `en_conflict_test_full.jsonl` | 800 (原200+新600) |\n| `raw_sampled_train_full.jsonl` | 1600 (原400+新1200) |\n| `raw_sampled_test_full.jsonl` | 400 (原100+新300) |\n\n原始数据文件未修改。`*_full.jsonl` 已就绪作为后续 verify 的输入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-supplement-sampling.md"
+}

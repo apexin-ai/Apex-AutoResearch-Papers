@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fc4cb88840f16e4e41d",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis token overlap 101 enhanced",
+  "task_key": "worker_analysis_token-overlap-101-enhanced_20260522T013533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_token-overlap-101-enhanced_20260522T013533_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "c299fc527523cea095b56a0ab7d414044846ca640eab4cd7ca9f9a0312b9c7f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n## 结果摘要\n\n**RC2（共享 token 驱动 cross-lingual transfer）：排除**\n\n| | Qwen (layer 22) | Llama (layer 13) |\n|---|---|---|\n| Type-level Jaccard | 10.4% | 15.1% |\n| Per-sample Jaccard (mean) | 4.4% | 3.2% |\n| Pearson r (overlap vs correctness) | 0.059 (p=0.45) | **-0.153 (p=0.012)** |\n| Spearman r | 0.064 (p=0.41) | **-0.215 (p=0.0004)** |\n| Tercile Δ(high-low) | +7.1pp | **-23.9pp** |\n\n核心发现：\n1. Per-sample overlap 极低（3-4%），type-level 统计膨胀了 3x\n2. Qwen 无显著相关\n3. Llama 显著**负**相关 — 高 overlap 反而降低准确率，方向与 RC2 假说完全相反\n4. 不需要额外 masking 实验，tercile 分析已给出明确结论\n\n产出文件：\n- 脚本：`/root/clkc_mech_interp/src/token_overlap_enhanced.py`\n- 结果：`/root/clkc_mech_interp/data/token_overlap_analysis.json`\n- 项目知识：`memory.md` 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-token-overlap-101-enhanced.md"
+}

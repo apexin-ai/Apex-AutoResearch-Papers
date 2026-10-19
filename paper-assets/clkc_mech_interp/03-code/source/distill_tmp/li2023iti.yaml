@@ -1,0 +1,26 @@
+paper_key: "li2023iti"
+title: "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: [vanilla, few-shot, ITI_variants]
+  metrics:
+    - {name: "MC1 (TruthfulQA)", direction: "higher_better"}
+    - {name: "MC2 (TruthfulQA)", direction: "higher_better"}
+    - {name: "CE Loss", direction: "lower_better"}
+  datasets:
+    - {name: "TruthfulQA", size: "817 questions"}
+  ablation_dimensions: [num_heads, layer_selection, alpha_scaling]
+  training_recipe: {optimizer: "N/A (inference-time)", lr: "N/A", hardware: "Llama-65B, Alpaca"}
+  method_family: "inference-time attention head intervention"
+
+positioning:
+  core_claim: "Probing identifies attention heads encoding truthful directions; shifting activations along these directions at inference time elicits more truthful answers"
+  key_results: "ITI improves Llama-65B TruthfulQA MC1 from ~32% to ~65%"
+  limitations: ["TruthfulQA-specific tuning", "May trade fluency for truthfulness"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

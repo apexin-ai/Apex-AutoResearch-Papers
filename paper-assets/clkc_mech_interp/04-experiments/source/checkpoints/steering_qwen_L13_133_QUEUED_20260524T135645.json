@@ -1,0 +1,16 @@
+{
+  "exp_id": "steering_qwen_L13_133",
+  "project": "clkc_mech_interp",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:01:08.705Z",
+    "updated_at": "2026-05-24T13:56:45.335Z",
+    "hypothesis": "Qwen3-8B-Instruct L13 (36% depth) probe direction causally influences conflict resolution with matched-condition data (N≈200, high probe acc). L13 = L14 peak - 1, establishing Qwen layer scan baseline for comparison with Llama L13 causal window.",
+    "parent": "steering_107_qwen_L14"
+  },
+  "timestamp": "2026-05-24T13:56:45.471245+00:00",
+  "trigger": "update_registry"
+}

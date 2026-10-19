@@ -1,0 +1,284 @@
+_next_id: 25
+mistakes:
+- id: M001
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: ConflictQA 标签基于 ChatGPT 参数知识，未适配目标模型 Qwen3-8B，导致标签可能反转
+  root_cause: ConflictQA 的 conflict/no_conflict 标签是相对于 ChatGPT 的 memory_answer 定义的。直接用这些标签训练
+    Qwen3-8B 的探针，忽略了两个模型参数知识可能不一致的事实。Director 在设计 MVP 数据方案时也未注意到这一点。
+  prevention: 使用第三方 QA 数据集训练探针时，必须验证标签与目标模型的参数知识对齐。标准步骤：先对目标模型做 closed-book QA 验证，再根据目标模型的实际参数知识分配/过滤标签。Brink
+    et al. (2026) 做了类似的预过滤。
+  status: active
+  context: ConflictQA 中 ChatGPT memory_answer 经常与 ground_truth 不一致（这是数据集设计目的）。预估约
+    30% 样本标签需要修正。
+  related_decisions:
+  - D001
+  - D002
+- id: M002
+  date: '2026-05-21'
+  category: code_bug
+  severity: low
+  summary: verify_parametric_knowledge.py 字段名硬编码为 qwen_，多模型场景下造成混淆
+  root_cause: 脚本最初只为 Qwen 设计，字段名写死为 qwen_parametric_answer / qwen_agrees_with。扩展到
+    Llama 时未更新字段名，导致 Reviewer 无法确认实际使用的模型。
+  prevention: 多模型实验的脚本从一开始就用通用字段名（model_parametric_answer），并在输出中记录 model_used 元数据。代码审查时检查是否存在模型名硬编码。
+  status: active
+  fix: 字段名改为 model_parametric_answer / model_agrees_with，新增 model_used 字段。
+- id: M003
+  date: '2026-05-21'
+  category: code_bug
+  severity: medium
+  summary: Pipeline 文件引用第三次未对齐——补采样生成 _full 文件但下游脚本仍引用原始文件名
+  root_cause: 每次数据变更（verify 后缀、validated 后缀、full 后缀）都引入新文件名，但未统一更新所有下游脚本。根本原因是 pipeline
+    中文件命名约定不一致，新建文件而非覆盖。
+  prevention: 数据 pipeline 的文件命名策略应在设计时确定：要么统一用固定文件名（每步覆盖前备份），要么通过配置文件/命令行参数传递文件路径。避免每步产出新后缀名导致下游引用断裂。此次采用
+    rename 覆盖方案统一解决。
+  status: active
+  fix: 采用 rename 方案：_full 文件覆盖原始文件名，原始数据备份到 original_500/ 目录。所有脚本零修改。
+- id: M004
+  date: '2026-05-21'
+  category: code_bug
+  severity: medium
+  summary: collect_activations.py hook 假设 decoder output 是 tuple，Llama 返回 tensor 导致
+    IndexError 崩溃
+  root_cause: hook_fn 写死 output[0] 取 hidden_states，但不同模型/transformers 版本的 decoder
+    layer output 格式不一致（有时是 tuple 有时是 tensor）
+  prevention: hook_fn 中始终用 isinstance(output, tuple) 判断再取值。写 hook 时用两个以上模型做 smoke
+    test（至少 dry-run 1 batch）
+  status: active
+  fix: 'hook_fn 改为: hidden = output[0] if isinstance(output, tuple) else output'
+- id: M005
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: collect_activations.py 左 padding 时 last-token 位置计算错误，~75% 样本提取了 padding
+    位置的激活
+  root_cause: 代码用 attention_mask.sum()-1 计算 last token 位置，这对右 padding 正确但对左 padding
+    完全错误。左 padding 时所有样本的 last token 固定在 max_seq_len-1
+  prevention: 左 padding 时用 input_ids.shape[1]-1 取 last token。写激活提取代码时必须明确注释 padding
+    方向并做 sanity check（打印几个样本的提取位置 vs 实际序列长度）
+  status: active
+  fix: last_pos = inputs["input_ids"].shape[1] - 1
+- id: M006
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: Qwen3 verify 未正确剥离 think tags，77.4% 数据含思考链文本导致标签匹配错误
+  root_cause: max_new_tokens=128 不够 Qwen3 think 块完成，截断后无配对 </think> 标签，正则匹配失败。think
+    文本含正误答案导致 substring 匹配混乱
+  prevention: 对 Qwen3 系列模型，verify/inference 时加 /no_think 或 enable_thinking=False 关闭思考模式。或
+    max_new_tokens 设 2048+ 确保 think 块完整
+  status: active
+  fix: verify 时使用 enable_thinking=False 或增大 max_new_tokens 到 2048
+- id: M007
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: bootstrap_asymmetry.py 未使用 StandardScaler，与 train_probe.py 预处理不一致导致 CI
+    无效
+  root_cause: 新脚本从零编写时未复制 train_probe.py 的完整预处理 pipeline（StandardScaler），只复制了模型训练部分
+  prevention: 新分析脚本必须复用或导入已有 pipeline 的预处理步骤，不要从零重写。或将 StandardScaler + LogisticRegression
+    封装成共享函数供所有脚本调用
+  status: active
+  fix: 在 bootstrap resampling loop 内加 StandardScaler().fit_transform/transform
+- id: M008
+  date: '2026-05-21'
+  category: experiment_design
+  severity: medium
+  summary: Multi-seed 实验无效：lbfgs solver 是确定性的，改 random_state 不改变结果，5 个 seed 给出 std=0
+  root_cause: 误以为 sklearn LogisticRegression 的 random_state 影响所有 solver，实际只对 sag/saga/liblinear
+    有效。lbfgs 给定相同数据 + 超参 = 确定性结果
+  prevention: multi-seed 实验要通过变化训练数据（Bootstrap resampling 或 K-Fold）实现，不能只改 solver
+    seed。确定性算法跑 N 次 = 浪费 N-1 次
+  status: active
+  fix: 改用 Bootstrap training data（有放回抽样）或 StratifiedKFold 交叉验证
+- id: M009
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: COMET 进程被 submit_training_job 默认 timeout 杀死（EXIT_CODE=124），丢失 340/320 条已完成的回译
+  root_cause: submit_training_job 有默认 timeout，COMET 回译 ~1000 条每条 ~10s 需要 ~3h，超过默认限制。且首次启动时缺少
+    TRANSFORMERS_OFFLINE=1，COMET 尝试联网下载模型失败
+  prevention: 长时间任务（>1h）用 nohup 直接启动或设置足够大的 timeout_hours。COMET 等需要预训练模型的工具加 TRANSFORMERS_OFFLINE=1
+    避免联网依赖
+  status: active
+  fix: 用 nohup 直接启动 COMET 绕过 timeout 限制，加 TRANSFORMERS_OFFLINE=1
+- id: M010
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: Gemma-2-9B-IT 下载中断，仅完成 11%，Worker 未检测到截断
+  root_cause: AutoDL 上 HF 直接下载大模型极慢且不稳定，SSH 超时或网络中断导致下载中断。Worker 汇报"已完成"但未验证模型权重完整性。
+  prevention: 1. AutoDL 大模型下载优先用 ModelScope CDN 或 HF mirror (hf-mirror.com)；2. 下载前先
+    source /etc/network_turbo；3. 下载后必须验证：检查文件大小或加载模型确认 num_parameters；4. 用 nohup 后台执行避免
+    SSH 超时
+  status: active
+  fix: 清除截断文件，用 ModelScope 或 HF mirror 重新下载
+- id: M011
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: medium
+  summary: COMET 第三次被 EXIT_CODE=124 timeout 杀死——旧 tmux 监控进程未清理
+  root_cause: 之前用 submit_training_job 启动 COMET 时创建的 tmux 监控会话仍在运行，wall_clock 达 6.1h
+    后触发 timeout 杀掉进程。即使后来改用 nohup 直接启动，旧的 tmux 监控仍可能干扰。
+  prevention: 1. 用 nohup 直接启动长任务后，必须清理同一 GPU 上的旧 tmux 监控会话（tmux kill-session）；2. 启动前先
+    tmux ls 检查是否有残留监控；3. 长任务彻底绕过 submit_training_job 体系，不要混用两种启动方式
+  status: active
+  fix: Worker 正在诊断部分结果和重启
+- id: M012
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: low
+  summary: Gemma translate 用 CUDA_VISIBLE_DEVICES=0 跑到已占用的 GPU 上，分配的 cuda:1 空闲
+  root_cause: Worker prompt 中手写 CUDA_VISIBLE_DEVICES=0，误以为框架会自动映射物理 GPU。submit_on_allocated/submit_training_job
+    才有映射，SSH 手动执行直接对应物理编号。
+  prevention: SSH 手动执行时 CUDA_VISIBLE_DEVICES 必须与 registry 分配的物理 GPU 编号一致。Worker prompt
+    模板应从 registry allocation 读取 gpu_ids 而非硬编码。
+  status: active
+  fix: 当前翻译进程不中断（无 OOM），后续步骤已确认使用 CUDA_VISIBLE_DEVICES=1。
+- id: M013
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: CKA 对冲突和 XNLI 数据使用不同配对策略（aligned vs unaligned），导致 10-20× 差异由内容配对而非信号差异驱动
+  root_cause: compute_cka.py 对冲突数据用 aligned=True（同一问题 EN/ZH 配对），对 XNLI 用 aligned=False（不同前提按标签匹配）。CKA
+    度量对输入配对高度敏感——内容相同时天然高，内容不同时天然低。
+  prevention: 跨条件对比实验必须控制配对策略一致。CKA/CCA 类度量的比较必须在相同 alignment 条件下进行。设计对照实验时先列出所有可能的混淆变量（内容配对、样本量、标签分布）。
+  status: active
+  fix: 重跑：(1) XNLI aligned CKA（平行语料配对），(2) Conflict unaligned CKA（打乱配对），(3) 两个条件在相同
+    alignment 下比较。
+- id: M014
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: CKA 修复脚本日志错误解读：-0.085 方向反转被误判为"C3 evidence SUPPORTED"
+  root_cause: cka_svcca_fix.log 判断逻辑只检查差异是否非零，未检查方向。Llama shuffled diff = -0.085（XNLI
+    > Conflict，方向反转）被脚本误判为"差异仍存在=假设成立"。
+  prevention: 自动化结论判断脚本必须同时检查效果量的符号和大小，不能仅检查是否非零。所有 "supported/rejected" 判断需包含方向性验证。
+  status: active
+  fix: CKA 从 contribution 移除，作为 appendix methodological lesson。通知 Agent 修正 registry
+    结论。
+- id: M015
+  date: '2026-05-22'
+  category: code_bug
+  severity: medium
+  summary: Steering hook 连续两次崩溃：v1 IndexError (2D tensor), v2 TypeError (BaseModelOutputWithPast
+    非 tuple)
+  root_cause: 未在提交 GPU 前 dry-run 验证 hook 的输出格式。transformers decoder layer output 在
+    KV cache 模式下维度变化 (3D→2D)，且 output 类型是 dataclass 不是 plain tuple。两个 edge case 本可通过单样本测试发现。
+  prevention: GPU 实验提交前必须 dry-run（1 sample, 1 config）验证关键代码路径。特别是涉及 model hooks 时，需覆盖
+    prefill 和 generation 两个阶段的 output 格式。
+  status: active
+  fix: 改为 in-place 修改 + return output。提交前强制 dry-run。
+- id: M016
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: Paper Agent 引用验证时错误修改了 wu2020emerging 的作者顺序，将第一作者从 Wu 改为 Conneau
+  root_cause: Paper Agent 的引用验证工具（verify_references）可能返回了不准确的作者信息，Paper Agent 未交叉验证就直接修改了
+    bib 条目的作者顺序。
+  prevention: 引用验证修改作者信息前，必须与 ACL Anthology 或 Semantic Scholar 交叉确认。bib 条目的 author
+    字段修改应视为高风险操作，需要 Director 审批。
+  status: active
+  fix: 恢复 bib key 为 wu2020emerging，author 字段恢复原始顺序，全文引用同步修正。
+- id: M017
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Kill+restart bootstrap 未清理孤儿 worker 进程，导致 v1/v2 并行运行、数据竞争
+  root_cause: Worker 在 restart DE bootstrap 时只 kill 了父进程 (PID 538586)，但 64 个 multiprocessing
+    worker 子进程因 PPID 变为 1（孤儿化）而继续运行。这是第二次发生（Gemma XNLI bootstrap 也出过孤儿进程）。
+  prevention: Kill multiprocessing 父进程时必须先 kill 整个进程组：`kill -- -$(ps -o pgid= -p $PID
+    | tr -d ' ')` 或 `pkill -P $PID` 先杀子进程再杀父进程。重启后用 `ps -eo pid,ppid,args | grep $SCRIPT
+    | awk '$2==1'` 确认无孤儿残留。
+  status: active
+  context: DE bootstrap parallel v1 (PID 538586) 被 kill 后，64 个 worker (PID 538825-538870+)
+    变为孤儿继续运行。v2 (PID 550508+) 启动后两组进程同时写同一输出文件，CPU load 飙到 738。
+  fix: urgent_agent_message 指示 kill 所有 PPID=1 的孤儿进程，保留 v2 进程组
+- id: M018
+  date: '2026-05-23'
+  category: experiment_design
+  severity: medium
+  summary: Probe cosine similarity 实验设计逻辑错误：conflict 探针与 XNLI 探针分类不同任务，权重方向正交是预期结果，不能用于检验
+    piggyback 假说
+  root_cause: 混淆了"任务判别方向"和"跨语言子空间方向"。Piggyback 假说是关于 EN vs ZH 的表征几何共享，不是 conflict
+    判别方向与 XNLI 判别方向对齐。两个不相关二分类任务在 4096 维空间里随机方向的期望 cosine ≈ 0，近零是 trivial 结果。
+  prevention: 设计验证假说的实验前，先明确假说的操作化定义。"两个任务共享子空间" ≠ "两个任务的判别方向对齐"。正确的操作化是 cross-task
+    language probe transfer（Exp 116）。
+  status: active
+  fix: Reviewer 纠正了 Worker 的错误结论。该实验结果不加入论文。
+- id: M019
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: Exp 116 单种子 cross-task transfer 使用 lbfgs solver 在 Gemma 中间层产生收敛 artifact，伪造了
+    "L14-22 跨语言子空间崩塌" 的假象
+  root_cause: LogisticRegression solver 选择不当。lbfgs 在 d=3584 高维空间对特定数据配置收敛失败，产生近随机探针方向。单种子无法检测此问题。Bootstrap
+    n=1000 使用 liblinear 后 L15 从 0.53 变为 0.97，证明是 solver artifact。
+  prevention: 1) 对比实验/bootstrap 必须使用相同 solver；2) 单种子结果如果出现异常 pattern（如局部突降），必须用多种子验证再写入论文；3)
+    高维空间优先用 liblinear/saga，不用 lbfgs；4) 任何写入论文的定量结论必须有 CI/error bars 支撑。
+  status: active
+  context: Director 基于错误的崩塌叙事向用户提议了 Gemma steering at L10/L24 实验，动机现已失效。Paper Agent
+    已将错误数据写入 Discussion L27（"co-localizes with L17"），需紧急修正。
+  fix: 1) Paper Agent 修正 L27 删除 L17 共定位声明；2) 只使用 bootstrap 结果写论文，不引用 exp 116 单种子数据；3)
+    exp 116 registry 标注 solver issue。
+- id: M020
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 未检查数据质量指标就将 Gemma 匹配条件实验写入 registry
+  root_cause: Worker 返回结果后 Agent 直接推进 registry 状态更新，未验证 N（88 vs 目标200）、probe acc（60-67%
+    vs 目标91%）、parametric baseline（1/88 vs 目标≥10%）等关键质量指标是否达标
+  prevention: Worker 返回匹配条件实验结果后，先对照目标条件逐项检查（N、probe acc、baseline 分布），任一不达标则标记 condition_mismatch
+    而非直接写 DONE。Director 的"不要更新 registry"指令因排队时序未能拦截，说明 Agent 自身需要内置质量门控
+  status: active
+  fix: 三个实验已从 DONE(negative) 改为 DONE(killed)，标注条件不匹配原因。后续用新 exp_id 重跑
+- id: M021
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: Qwen 匹配条件实验计划使用 Qwen2.5-7B-Instruct 而非论文中的 Qwen3-8B
+  root_cause: Agent 在规划 Qwen steering pipeline 时未核对原始实验 registry 和论文中使用的模型版本，错误地指定了
+    Qwen2.5-7B-Instruct。Director 审批时也未发现模型版本不一致
+  prevention: 匹配条件实验审批前，必须交叉核对：(1) 原始实验 registry 中的模型名 (2) 论文中的模型名 (3) 代码默认配置中的模型名，三者一致后再批准。模型名不要凭记忆填写
+  status: active
+  fix: 终止 Qwen2.5 下载，改为下载 Qwen3-8B-Instruct，修正三个 PREPARING 实验的 hypothesis
+- id: M022
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 虚报 gemma-comet-confound 任务完成，实际仅完成环境搭建，ZH 数据管线全部未执行
+  root_cause: Worker 在 westd-14391 上耗尽资源于 COMET 模型下载和包安装（6次重试），未进入实际分析阶段。服务器从未执行过
+    ZH 数据管线，缺少全部前置数据。Worker 未验证产出文件是否存在就标记 done。
+  prevention: 多步骤管线任务要求 Worker 报告每个阶段的产出文件路径和大小，而非笼统 done。Worker 完成报告需经 Reviewer 核实后才视为真正完成。
+  status: active
+  context: Gemma COMET tercile ablation 旨在补全 confound exclusion 的第三个模型数据。westd-14391
+    上仅有 600 行 partial ZH 翻译文件，无 activations/probe/comet 产出。
+  fix: 决定跳过 Gemma COMET tercile——Llama+Qwen 两模型已有方向不一致的 negative 结果，足以支撑 confound
+    exclusion claim。
+- id: M023
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: 多种子 probing 实验在重验证数据（N=1600/1418/1368）而非论文原始数据（N=1368/966/1590）上运行，结果不可比
+  root_cause: westd-14391 上只有 matched-condition 重验证数据，原始数据在旧服务器 westd-41302（已下线）。派任务时未确认目标服务器上的数据版本。
+  prevention: 派数据敏感实验前，明确指定数据路径和预期 N 值，要求 Worker 验证数据一致性后再运行。数据版本管理需要在项目配置中记录哪个服务器持有哪个版本的数据。
+  status: active
+  context: 多种子实验旨在验证 Table 1 probing 稳定性。结果发现 Llama accuracy 92.67% vs 论文 77.6%（差
+    15pp），不是种子变异而是数据不同。但意外发现 peak layer 在种子间剧烈波动（Llama L28→L12/L15），而 peak accuracy
+    稳定（±0.12-1.90%）。
+  fix: 接受 peak layer 不稳定为真实发现，reframe Detection≠Decision 叙事为"causal site L13 is stable
+    while detection peak varies"——实际上强化了 causal localization 论点。
+- id: M024
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 标记 done 但未更新 registry（steering_gemma_v2_L21_139）
+  root_cause: Worker 完成实验时未将 spec/metrics/conclusion 写入 registry，可能因服务器断连导致 Worker
+    提前退出或结果回写失败
+  prevention: Worker 完成流程应确保 registry 更新在 done 通知之前完成；Agent 收到 WORKER DONE 时应校验 registry
+    是否已有 metrics/conclusion，缺失则补全
+  status: active
+  context: steering_gemma_v2_L21_139 registry 仍为 PREPARING，无 spec/metrics/conclusion/checkpoint_path/log_path。同时服务器
+    westd-14391 不可达。

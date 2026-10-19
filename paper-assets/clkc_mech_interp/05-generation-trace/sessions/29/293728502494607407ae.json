@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "293728502494607407ae",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra kill duplicate qwen L14",
+  "task_key": "worker_infra_kill-duplicate-qwen-L14_20260522T150047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-duplicate-qwen-L14_20260522T150047_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "f5d05575206718ccd9c1a3476f224f867bf7dc5ace82af139b2bda38abbadaca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 493122** — 已 kill，cuda:0 显存已释放（0 → 3 MiB）\n- **PID 491833** — 也不在了（PROCESS_GONE）\n\n⚠️ 注意：PID 491833（你想保留的进程）也已经不存在了。两个进程都没了。\n\nGPU 状态：\n\n| GPU | 显存占用 |\n|-----|---------|\n| 0 | 3 MiB（空闲） |\n| 1 | 16,379 MiB |\n| 2 | 18,579 MiB |\n| 3 | 16,107 MiB |\n\ncuda:0 已完全释放，但 PID 491833 的 steering 进程也已经消失，可能需要重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-duplicate-qwen-l14.md"
+}

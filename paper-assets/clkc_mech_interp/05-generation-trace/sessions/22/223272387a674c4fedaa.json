@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "223272387a674c4fedaa",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code fix bib critical",
+  "task_key": "worker_code_fix_bib_critical_20260526T111024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_bib_critical_20260526T111024_result.json",
+    "occurrence": 1,
+    "bytes": 3515,
+    "sha256": "0862e6ff0a99739bcd1f93f1c45bcbc24f6b12e6f2a3d179a25c37b8973e9408"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation successful, 0 warnings.\n\n## 引用修复报告\n\n### 逐条变更\n\n**ERROR（8 条）**\n\n1. **`feng2026finegrained`**\n   - 来源：[arXiv 2602.04428](https://arxiv.org/abs/2602.04428), [OpenReview](https://openreview.net/pdf?id=guSVafqhrB)\n   - author: `Feng, Zihao and Li, Tian and Zhu, Zhengyu and Zhou, Hao and Qian, Junliang and Zhang, Lin and Mao, Kede`（7人，全错）→ `Feng, Zijian and Li, Tianjiao and Zhu, Zixiao and Zhou, Hanzhang and Qian, Junlang and Zhang, Li and Chua, Jia Jim Deryl and Mak, Lee Onn and Ng, Gee Wah and Mao, Kezhi`（10人）\n\n2. **`xing2024evaluating`**\n   - 来源：[arXiv 2407.01358](https://arxiv.org/abs/2407.01358)\n   - author: `Xiaoling` → `Xiaolin`，`Zhenhui` → `Zhiwei`，`Huiyun` → `Haoyu`，`Wang, Xin` → `Wang, Xing`\n\n3. **`sundar2025steering`**\n   - 来源：[ACL Anthology 2025.acl-long.118](https://aclanthology.org/2025.acl-long.118/)\n   - author: `Zhao, Skyler` → `Seto, Skyler`，`Jurafsky, Dan` → `Fedzechkina, Masha`\n\n4. **`ifergan2024beneath`**\n   - 来源：[arXiv 2408.10646](https://arxiv.org/abs/2408.10646)\n   - author: `Ifergan, Matan` → `Ifergan, Maxim`\n   - year: `2024` → `2025`\n\n5. **`wu2020emerging`**\n   - 来源：[ACL Anthology 2020.acl-main.536](https://aclanthology.org/2020.acl-main.536/)\n   - author: 顺序修正，`Conneau, Alexis` 移至第一作者（原为 `Wu, Shijie` 在前）\n\n6. **`li2025taming`**\n   - 来源：[arXiv 2503.10996](https://arxiv.org/abs/2503.10996), [ICML 2025 poster](https://icml.cc/virtual/2025/poster/46677)\n   - author: `Chen, Yufei` → `Chen, Yuzhong`\n\n7. **`wang2025lost`**\n   - 来源：[ACL Anthology 2025.acl-long.253](https://aclanthology.org/2025.acl-long.253/)\n   - author: 增加 `Liu, Yihong` 和 `Nie, Ercong`（5人→7人）\n\n8. **`pham2026where`**\n   - 来源：[arXiv 2601.09445](https://arxiv.org/abs/2601.09445)\n   - author: `Borkakoty, Hrishav` → `Borkakoty, Hsuvas`\n\n**WARNING（6 条）**\n\n9. **`marks2024geometry`**\n   - 来源：[ICLR 2025 proceedings](https://proceedings.iclr.cc/paper_files/paper/2025/file/d3221cdb27e49d9c1cd35ad254feccfe-Paper-Conference.pdf)\n   - year: `2024` → `2025`\n\n10. **`kargaran2024mexa`**\n    - 来源：[ACL Anthology 2025.findings-acl.1385](https://aclanthology.org/2025.findings-acl.1385/)\n    - author: `Nikeghbal, Naghmeh` → `Nikeghbal, Nafiseh`\n    - year: `2024` → `2025`\n\n11. **`zou2023representation`**\n    - 来源：[arXiv 2310.01405](https://arxiv.org/abs/2310.01405), [dblp](https://dblp.org/rec/journals/corr/abs-2310-01405.html)\n    - author: `Koyber, Sanmi` → `Koyejo, Sanmi`；增加缺失作者 `Song, Dawn`\n\n12. **`zhao2024analysing`**\n    - 来源：[arXiv 2410.16090](https://arxiv.org/abs/2410.16090)\n    - 验证结果：当前 bib 作者顺序与 arXiv 一致，**无需修改**\n\n13. **`turner2023activation`**\n    - 来源：[arXiv 2308.10248v5](https://arxiv.org/abs/2308.10248v5)\n    - title: `Activation Addition: Steering Language Models Without Optimization` → `Steering Language Models With Activation Engineering`\n    - author: 增加 `Vazquez, Juan J.`；修正 Leech/Udell 顺序\n\n14. **`ravichander2021probing`**\n    - 来源：[ACL Anthology 2021.eacl-main.295](https://aclanthology.org/2021.eacl-main.295/)\n    - pages: `3331--3350` → `3363--3377`\n\n### 编译验证\n- pdflatex + bibtex: 编译成功，0 warning，0 error\n- bib 语法检查：花括号平衡，无空字段，38 条 entry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-bib-critical.md"
+}

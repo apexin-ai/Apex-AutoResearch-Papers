@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3563afc32f9a64e13a6a",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "analysis fig3 gemma xnli",
+  "task_key": "worker_analysis_fig3-gemma-xnli_20260523T065401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fig3-gemma-xnli_20260523T065401_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "dc01f2302e1cd535cafb71240e978c7095a357cbe67b09fc9d4cfc799b23b089"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**Fig 3 修改内容：**\n- 添加了第 6 行 `Gemma-2-9B (XNLI)`: Δ=+7.8pp, 95% CI [+5.7, +10.0]\n- 布局从 5 行调整为 6 行（3 模型 × 2 任务，对称排列）\n- 调整了 figure height (3.8→4.3)、y_positions、y_limits 以适配 6 行\n\n**图片本地路径：**\n- PNG: `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/fig3_asymmetry_forest.png`\n- PDF: `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/fig3_asymmetry_forest.pdf`\n\n**DE bootstrap 进度：**\n- 进程 550508 已运行 ~2h05m，64 个 worker 在跑\n- 当前在第 1 个 direction: **EN→EN**（日志只打印了 `[EN->EN] Bootstrap ...`，尚未完成）\n- 还有 DE→DE、EN→DE、DE→EN 三个 direction 未开始"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fig3-gemma-xnli.md"
+}

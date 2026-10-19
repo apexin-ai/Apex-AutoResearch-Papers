@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "a6c6d3c90b661c8d1a9e",
+  "project": "clkc_mech_interp",
+  "kind": "worker",
+  "title": "exp gemma newpipeline full",
+  "task_key": "worker_exp_gemma-newpipeline-full_20260524T093155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma-newpipeline-full_20260524T093155.log",
+    "occurrence": 1,
+    "bytes": 1230032,
+    "sha256": "3dfe6640089663be37fe20a8096acc0720b2ad2e2817e3036d4a312108e85647"
+  },
+  "statistics": {
+    "messages": 920,
+    "user_turns": 1,
+    "tool_calls": 399,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 114,
+      "tool_call": 399,
+      "tool_result": 399,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 893,
+      "chunks": [
+        {
+          "path": "a6c6d3c90b661c8d1a9e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a6c6d3c90b661c8d1a9e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a6c6d3c90b661c8d1a9e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a6c6d3c90b661c8d1a9e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a6c6d3c90b661c8d1a9e-part-0005.json",
+          "message_count": 173
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "a6c6d3c90b661c8d1a9e-part-0005.json",
+          "message_count": 7
+        },
+        {
+          "path": "a6c6d3c90b661c8d1a9e-part-0006.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-gemma-newpipeline-full.md"
+}

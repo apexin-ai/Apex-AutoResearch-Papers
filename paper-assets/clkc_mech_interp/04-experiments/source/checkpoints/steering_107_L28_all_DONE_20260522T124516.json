@@ -1,0 +1,50 @@
+{
+  "exp_id": "steering_107_L28_all",
+  "project": "clkc_mech_interp",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:33:06.652Z",
+    "updated_at": "2026-05-22T12:45:16.362Z",
+    "hypothesis": "Steering v1 在 L28/last-token 失败。可能原因是 last-token 注入过窄——冲突信号可能分布在多个 token 位置（如 entity tokens, context tokens）。all-position steering 覆盖所有 token，如果成功则说明因果信号分布式编码。parent=steering_107",
+    "parent": "steering_107",
+    "spec": {
+      "command": "steering_experiment.py --peak_layer 28 --position all --alphas -20 -10 -5 5 10 20",
+      "server": "westd-41302",
+      "gpu": "cuda:0",
+      "model_name": "Llama-3.1-8B-Instruct",
+      "data_path": "data/llama31",
+      "data_count": 136,
+      "seed": 42,
+      "pid": 480150,
+      "checkpoint_path": "data/llama31/steering_results/steering_results_L28_all.json",
+      "log_path": "logs/steering_llama_L28_all.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "probe_accuracy": 0.7757,
+      "n_samples": 136,
+      "alphas": [
+        -20,
+        -10,
+        -5,
+        5,
+        10,
+        20
+      ],
+      "position": "all",
+      "peak_layer": 28,
+      "best_fisher_p": 0.37,
+      "all_fisher_p_gt_0.05": true,
+      "max_steering_flip_pct": 11.8,
+      "max_control_flip_pct": 11.8,
+      "total_directional_flips": 7,
+      "conclusion_detail": "L28 all-position steering 无效。Flip 率与 random control 无差异。All-position 覆盖全部 token 位置仍无因果效应，排除了 last-token 过窄的假设。"
+    },
+    "completed_at": "2026-05-22T12:45:16.362Z"
+  },
+  "timestamp": "2026-05-22T12:45:16.449283+00:00",
+  "trigger": "update_registry"
+}

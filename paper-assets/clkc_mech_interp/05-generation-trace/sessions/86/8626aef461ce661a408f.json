@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8626aef461ce661a408f",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "infra gemma de probe status",
+  "task_key": "worker_infra_gemma-de-probe-status_20260522T173654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gemma-de-probe-status_20260522T173654_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "1d8ae26063dbbdcbd42803e0a9a5c51d190f17e646e72a9ea46f5e1315df01ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. Gemma Probe n=2000 — 已完成\n\n| 方向 | peak_layer | peak_acc | 95% CI |\n|------|-----------|----------|--------|\n| en→en | layer_24 | 0.7617 | [0.731, 0.791] |\n| zh→zh | layer_24 | 0.7097 | [0.674, 0.744] |\n| en→zh | layer_22 | 0.6290 | [0.573, 0.680] |\n| zh→en | layer_24 | 0.7023 | [0.627, 0.750] |\n\n**Asymmetry (peak layer):**\n- `asymmetry_diff` = 0.0662\n- `asymmetry_ci` = [0.019, 0.1108]\n- `asymmetry_p_value` = 0.006 (显著)\n- `n_seeds` = 2000\n\n### 2. DE Probe Training — 仍在运行\n\n进度 856/2000（~43%），输出文件尚未生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gemma-de-probe-status.md"
+}

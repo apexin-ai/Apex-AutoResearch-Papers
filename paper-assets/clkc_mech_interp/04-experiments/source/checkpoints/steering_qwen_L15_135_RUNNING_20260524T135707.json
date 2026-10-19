@@ -1,0 +1,26 @@
+{
+  "exp_id": "steering_qwen_L15_135",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:01:12.928Z",
+    "updated_at": "2026-05-24T13:57:07.653Z",
+    "hypothesis": "Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.",
+    "parent": "steering_107_qwen_L14",
+    "spec": {
+      "command": "python steering_experiment.py --model-path /root/autodl-tmp/models/Qwen/Qwen3-8B/ --activations-path data/qwen3/en_activations.pt --test-data data/qwen3/en_conflict_test_verified.jsonl --layer 15 --alphas -20 -10 -5 5 10 20 --position last",
+      "server": "westd-14391",
+      "data_path": "data/qwen3/en_conflict_test_verified.jsonl",
+      "data_count": 131,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "logistic regression probe on en_activations.pt layer 15",
+      "eval_data": "data/qwen3/en_conflict_test_verified.jsonl (N=131 conflict samples)"
+    }
+  },
+  "timestamp": "2026-05-24T13:57:07.782380+00:00",
+  "trigger": "update_registry"
+}

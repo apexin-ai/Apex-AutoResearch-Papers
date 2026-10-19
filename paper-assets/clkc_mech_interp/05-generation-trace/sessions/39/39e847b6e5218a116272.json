@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39e847b6e5218a116272",
+  "project": "clkc_mech_interp",
+  "kind": "result",
+  "title": "code probe balanced acc",
+  "task_key": "worker_code_probe_balanced_acc_20260521T195241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe_balanced_acc_20260521T195241_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "3baf9e4fbbf20a5d7984e18ffc66eea34d6614d1eefabd4eb104211c00e3e0d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\n[代码修改]\n- class_weight='balanced': ✓\n- balanced_accuracy_score: ✓\n- f1_score: ✓\n\n[Qwen 探针结果]\n=== EN→EN ===\nAccuracy: 75.0% | Balanced Acc: 75.0% | F1: 0.7500\nPeak layer: 24, Binomial p: 0.000000, Permutation p: 0.0\n\n=== ZH→ZH ===\nAccuracy: 63.0% | Balanced Acc: 63.0% | F1: 0.6271\nPeak layer: 21, Binomial p: 0.000035, Permutation p: 0.0\n\n=== EN→ZH ===\nAccuracy: 63.5% | Balanced Acc: 63.5% | F1: 0.6449\nPeak layer: 22, Binomial p: 0.000020, Permutation p: 0.0\n\n=== ZH→EN ===\nAccuracy: 62.5% | Balanced Acc: 62.5% | F1: 0.6087\nPeak layer: 19, Binomial p: 0.000742, Permutation p: 0.01\n\nGate: PASS\n```\n\n`class_weight='balanced'` 后 Accuracy 和 Balanced Accuracy 完全一致（说明分类器不再偏向多数类），所有方向 permutation p ≤ 0.01。跨语言迁移 EN→ZH 63.5% / ZH→EN 62.5% 的 balanced accuracy 远高于 50% chance，信号可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-probe-balanced-acc.md"
+}
