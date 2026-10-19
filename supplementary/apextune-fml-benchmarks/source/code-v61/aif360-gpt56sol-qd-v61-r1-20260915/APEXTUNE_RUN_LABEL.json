@@ -1,0 +1,15 @@
+{
+ "run_label": "aif360-code-v61-r1",
+ "run_dir": "aif360-gpt56sol-qd-v61-r1-20260915",
+ "benchmark": "Fairness_and_Bias_aif360",
+ "agent": "apextune-fml",
+ "created_at": "2026-09-15T11:05:51.436672+00:00",
+ "model": null,
+ "best_step": 88,
+ "best_val_abs_aod": 0.026713475841264878,
+ "final_test_abs_aod": 0.06818016502074276,
+ "final_test_accuracy": 0.6447249774571686,
+ "final_test_normalized_score": 0.17168243084331272,
+ "comparable": false,
+ "readme_generated": "derived view; raw summary.json is authoritative"
+}
