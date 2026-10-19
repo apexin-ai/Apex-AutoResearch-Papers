@@ -133,7 +133,8 @@ def commit_and_push(repo,title):
 
 def main():
     if os.environ.get('GITHUB_ACTIONS')!='true':raise RuntimeError('Run this script in GitHub Actions; it uses the runner temporary directory.')
-    manifest=json.loads(os.environ.pop('ARCHIVE_MANIFEST'))
+    event=json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text())
+    manifest=json.loads(event['inputs']['archive_manifest'])
     for item in manifest:print('::add-mask::'+item['url'],flush=True)
     token=os.environ['GITHUB_TOKEN']
     temporary=Path(os.environ['RUNNER_TEMP'])/'research-release';temporary.mkdir(exist_ok=True)

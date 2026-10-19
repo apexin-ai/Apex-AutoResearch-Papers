@@ -34,6 +34,5 @@ jobs:
           python3 -m pip install --quiet pypdf
       - name: Process, verify, upload, and remove one project at a time
         env:
-          ARCHIVE_MANIFEST: ${{ inputs.archive_manifest }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/release_s3_batch.py
