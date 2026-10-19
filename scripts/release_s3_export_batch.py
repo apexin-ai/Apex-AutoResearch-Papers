@@ -77,6 +77,8 @@ def main():
             for entry in index['projects']:
                 if entry['project']==collection:entry['catalog']=f'../research-snapshots/{project}/{DATE}/05-generation-trace/catalog.json'
             path.write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\n')
+        for guide_path in folder.glob('**/*.parts/README.md'):
+            guide_path.write_text(guide_path.read_text().replace('paper-assets/'+project+'--export-20260712/',folder.relative_to(repo).as_posix()+'/'))
         for selected in [collection]:batch.run([sys.executable,'scripts/validate_trace_release.py','--project',selected],repo)
         batch.verify_files(repo,[collection]);batch.run([sys.executable,'scripts/update_release_catalogue.py'],repo)
         record={'status':'uploaded','project':project,'collection':collection,'snapshot':existing,'derived_archive_sha256':manifest['derived_archive_sha256'],'indexed_members':len(members),'paper_pdf':manifest['paper_pdf'],'code_count':manifest['code_count'],'trace_count':manifest['trace_count']}

@@ -1,0 +1,28 @@
+name: Finalize research catalogue
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: research-asset-release
+  cancel-in-progress: false
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/paper-assets/
+            !/research-snapshots/
+            !/supplementary/
+          persist-credentials: false
+      - name: Finalize metadata, verify file paths, and remove temporary checkout
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/finalize_research_release.py
