@@ -124,6 +124,8 @@ def main():
         (repo / 'unmatched-mirror-objects.json').write_text(json.dumps(mirror_mismatches, indent=2))
         print(json.dumps({'unmatched_mirror_objects':len(mirror_mismatches),'first_paths':[r['s3_key'] for r in mirror_mismatches[:20]]}), flush=True)
         raise RuntimeError('Decompressed S3 mirrors contain unindexed objects; release those before finalization.')
+    expected['decompressed_mirror_audit'].update(status='Candidate objects matched to original archive source or exclusion records by project, path, and byte size', matched_objects=mirror_checked)
+    (repo / 'release-sources.json').write_text(json.dumps(expected, indent=2) + '\n')
     papers = sum(bool(json.loads(p.read_text()).get('paper_pdf')) for p in manifests)
     summary = {'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'workspace_archives': len(state), 'primary_project_records': len(manifests), 'primary_projects_with_manuscript_pdf': papers, 'additional_project_records_without_pdf': len(manifests)-papers, 'dated_project_snapshots': len(snapshots), 'supplementary_collections': len(list((repo/'supplementary').glob('*/manifest.json'))), 'document_pdf_records': len(documents['pdfs']), 'trace_collections': len(index), 'trace_source_records': sum(e['statistics'].get('files', 0) for e in index), 'recorded_events': sum(e['statistics'].get('messages', 0) for e in index), 'indexed_asset_rows_verified': rows_checked, 'mirror_objects_matched_by_original_path_and_size': mirror_checked, 'offline_preview_rounds': len(examples), 'source_archives_verified': True}
     (repo / 'release-summary.json').write_text(json.dumps(summary, indent=2) + '\n')
