@@ -1,32 +1,23 @@
 # Research Trace Atlas
 
-Inspect how each paper was produced: recorded tasks, conversations, tool calls, results, and loop notes. All eight released trace archives have GitHub-friendly Markdown transcripts and complete JSON counterparts.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **9 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
-**Start here:** download the repository and open [the offline preview](demo.html), or run `python3 scripts/serve_traces.py --open` from the repository root for the complete browser. On GitHub, use the paper guides below and open **Readable Markdown** for the clearest transcript view; JSON links remain beside each transcript.
+[Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
-You can also send `demo.html` on its own: it embeds all eight sample rounds and its interface resources, and can export each sample round as JSON without a server.
+For the complete browser, run `python3 scripts/serve_traces.py --open` from a downloaded repository. The offline preview embeds one actual bounded round per project when a matching round exists.
 
-| Paper project | Conversations | Worker logs | Result records | Context notes | Recorded events | Trace guide |
+| Project | Conversations | Worker logs | Results | Context notes | Events | Readable Markdown |
 |---|---:|---:|---:|---:|---:|---|
-| `causal_style_decomp_judge` | 69 | 221 | 211 | 5 | 73,378 | [Browse](../paper-assets/causal_style_decomp_judge/05-generation-trace/README.md) |
-| `cert_manip_resist_eval` | 137 | 381 | 358 | 4 | 97,735 | [Browse](../paper-assets/cert_manip_resist_eval/05-generation-trace/README.md) |
-| `ec_hte_llm_annotation` | 72 | 183 | 175 | 4 | 75,488 | [Browse](../paper-assets/ec_hte_llm_annotation/05-generation-trace/README.md) |
-| `entrainment_gated_ft` | 99 | 266 | 223 | 11 | 80,801 | [Browse](../paper-assets/entrainment_gated_ft/05-generation-trace/README.md) |
-| `importance_margin_vla_compress` | 1,235 | 2,223 | 2,107 | 189 | 413,702 | [Browse](../paper-assets/importance_margin_vla_compress/05-generation-trace/README.md) |
-| `ratekv` | 260 | 513 | 419 | 58 | 87,631 | [Browse](../paper-assets/ratekv/05-generation-trace/README.md) |
-| `recursive_gen_depth_est` | 347 | 686 | 642 | 104 | 166,550 | [Browse](../paper-assets/recursive_gen_depth_est/05-generation-trace/README.md) |
-| `schema-dag-extraction` | 217 | 506 | 474 | 45 | 131,771 | [Browse](../paper-assets/schema-dag-extraction/05-generation-trace/README.md) |
+| [acr-vla-conformal-refinement](../paper-assets/acr-vla-conformal-refinement/05-generation-trace/README.md) | 1,796 | 2,883 | 2,064 | 371 | 391,607 | [Read](../paper-assets/acr-vla-conformal-refinement/05-generation-trace/readable/README.md) |
+| [causal_style_decomp_judge](../paper-assets/causal_style_decomp_judge/05-generation-trace/README.md) | 69 | 221 | 211 | 5 | 73,378 | [Read](../paper-assets/causal_style_decomp_judge/05-generation-trace/readable/README.md) |
+| [cert_manip_resist_eval](../paper-assets/cert_manip_resist_eval/05-generation-trace/README.md) | 137 | 381 | 358 | 4 | 97,735 | [Read](../paper-assets/cert_manip_resist_eval/05-generation-trace/readable/README.md) |
+| [ec_hte_llm_annotation](../paper-assets/ec_hte_llm_annotation/05-generation-trace/README.md) | 72 | 183 | 175 | 4 | 75,488 | [Read](../paper-assets/ec_hte_llm_annotation/05-generation-trace/readable/README.md) |
+| [entrainment_gated_ft](../paper-assets/entrainment_gated_ft/05-generation-trace/README.md) | 99 | 266 | 223 | 11 | 80,801 | [Read](../paper-assets/entrainment_gated_ft/05-generation-trace/readable/README.md) |
+| [importance_margin_vla_compress](../paper-assets/importance_margin_vla_compress/05-generation-trace/README.md) | 1,235 | 2,223 | 2,107 | 189 | 413,702 | [Read](../paper-assets/importance_margin_vla_compress/05-generation-trace/readable/README.md) |
+| [ratekv](../paper-assets/ratekv/05-generation-trace/README.md) | 260 | 513 | 419 | 58 | 87,631 | [Read](../paper-assets/ratekv/05-generation-trace/readable/README.md) |
+| [recursive_gen_depth_est](../paper-assets/recursive_gen_depth_est/05-generation-trace/README.md) | 347 | 686 | 642 | 104 | 166,550 | [Read](../paper-assets/recursive_gen_depth_est/05-generation-trace/readable/README.md) |
+| [schema-dag-extraction](../paper-assets/schema-dag-extraction/05-generation-trace/README.md) | 217 | 506 | 474 | 45 | 131,771 | [Read](../paper-assets/schema-dag-extraction/05-generation-trace/readable/README.md) |
 
-The collection contains **2,436 conversation logs**, **4,979 worker logs**, **4,609 task-result records**, and **420 context/loop notes**. The 1,127,056 message/event total includes overlapping snapshots and parallel logs. It is not a deduplicated measure of scientific activity.
+**19,558 source records · 1,518,663 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
-## What you can inspect
-
-- Select a paper, then search and filter its source records.
-- Read a recorded round with user-role inputs, assistant messages, tool arguments, and tool results.
-- Move between rounds, filter by role, and search the selected round.
-- Download the complete selected round as JSON.
-- Check the archive member, occurrence, SHA-256, and original line numbers for any record.
-
-Source text retains its original language. A user-role message does not identify a human author. Missing prompts and timestamps are not reconstructed. Source-authored claims are not independently verified by this browser.
-
-See [the format and reference guide](FORMAT.md) for the schema, paging, preview selection, and comparisons with OpenAI math, mini-SWE-agent, and Sakana AI Scientist.
+Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

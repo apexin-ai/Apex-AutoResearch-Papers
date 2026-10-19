@@ -1,0 +1,27 @@
+{
+  "archives": {
+    "acr-vla-conformal-refinement/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 501864797,
+        "etag": "\"55f0985d2edfe6768687ad50e5311709-60\"",
+        "modified": "2026-05-31T17:29:09+00:00"
+      },
+      "archive_sha256": "3ac22dc66e8ba539b5ea4efdf25338c3c75aef3a4b59cbfbb57b1bb6788be2a5",
+      "projects": [
+        "acr-vla-conformal-refinement"
+      ],
+      "counts": [
+        {
+          "project": "acr-vla-conformal-refinement",
+          "title": "Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models",
+          "paper_pdf": "paper.pdf",
+          "code_count": 1517,
+          "data_count": 7791,
+          "trace_count": 7114
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39265650589"
+    }
+  }
+}

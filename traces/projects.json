@@ -2,6 +2,22 @@
   "schema_version": "1.0",
   "projects": [
     {
+      "project": "acr-vla-conformal-refinement",
+      "title": "Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models",
+      "catalog": "../paper-assets/acr-vla-conformal-refinement/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 7114,
+        "messages": 391607,
+        "user_turns": 12885,
+        "tool_calls": 156196,
+        "unparsed_lines": 2539,
+        "worker": 2883,
+        "result": 2064,
+        "conversation": 1796,
+        "history": 371
+      }
+    },
+    {
       "project": "causal_style_decomp_judge",
       "title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation",
       "catalog": "../paper-assets/causal_style_decomp_judge/05-generation-trace/catalog.json",

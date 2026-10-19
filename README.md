@@ -2,12 +2,12 @@
 
 This repository is a release-ready collection of manuscripts and supporting artifacts produced by an automated research system. It is organized for external review of what the system generated: papers, source files, code, experiment outputs, generation traces, validation notes, and maintenance records. The layout is inspired by the catalogue-and-manuscript organization of [openai/math](https://github.com/openai/math).
 
-The repository currently contains eight paper projects. Start with:
+The repository currently contains 9 research projects with manuscripts and supporting assets. Start with:
 
 - [`traces/README.md`](traces/README.md) — browse the research process through conversations, tool calls, and per-round JSON.
 - [`traces/demo.html`](traces/demo.html) — an offline preview containing one recorded conversation round per paper; download the repository and open the file.
 - [`CONTENTS.md`](CONTENTS.md) — manuscript map and project-level counts.
-- [`paper-assets/index.html`](paper-assets/index.html) — interactive 8-item asset matrix.
+- [`paper-assets/index.html`](paper-assets/index.html) — interactive project asset matrix.
 - [`paper-assets/asset-matrix.csv`](paper-assets/asset-matrix.csv) — one row per project and requirement.
 - [`RELEASE_NOTES.md`](RELEASE_NOTES.md) — scope, verification limits, and privacy handling.
 
