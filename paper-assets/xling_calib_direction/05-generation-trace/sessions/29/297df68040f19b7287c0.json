@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "297df68040f19b7287c0",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops verify plan002v3 and prep plan001",
+  "task_key": "worker_ops_verify_plan002v3_and_prep_plan001_20260521T130632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_plan002v3_and_prep_plan001_20260521T130632_result.json",
+    "occurrence": 1,
+    "bytes": 3117,
+    "sha256": "9e957faf4f882893dc8cc740b7419ee800698082c930d84616da765e3056dd10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Part A: plan_002_v3 — DEAD\n\n**进程 934594**：不存在。`extract_activations` 进程也不存在。\n\n**GPU 状态**：4× RTX PRO 6000 Black (96GB each)，全部空闲（0% 利用率，0MiB 显存）。无 GPU 进程。\n\n**崩溃原因**（日志末尾）：\n```\nFile \"extract_activations.py\", line 228, in load_model\n    max_memory = get_balanced_memory(\nFile \"accelerate/utils/modeling.py\", line 1019, in get_balanced_memory\n    if set(no_split_children.keys()) == set(no_split_module_classes):\nTypeError: unhashable type: 'set'\nEXIT_CODE=1\n```\n模型解压完成（5076/5076），权重加载完成（8237/8237），在 **dispatch 到 4 GPU 时**因 accelerate 库 bug 崩溃。`no_split_module_classes` 中包含不可哈希的 set 类型。\n\n**服务器上仍在运行的进程**：\n- PID 47972: `probing_controls_v2.py`（08:56 启动，CPU 97.2%，纯 CPU 运算）\n- PID 322679: `compute_cka.py`（19:04 启动，CPU 2978%，CKA bootstrap 运算）\n\n两者均不占 GPU，**4 卡完全空闲可用于 plan_001**。\n\n---\n\n## Part B: plan_001 准备状态\n\n**Qwen3 模型**：32/32 shards 完整，config.json 存在（1.3K）。\n\n**run_plan_001.sh**：存在，完整 pipeline：\n1. 检查 GPTQ 依赖（auto-gptq / gptqmodel）\n2. 验证模型（32 shards + tokenizer）\n3. `extract_activations_large.py` 提取 activations（20 langs × 24 layers，`--quantization none` 让 HF 自动检测 GPTQ config）\n4. 创建 train/eval split symlink 目录\n5. 训练 English probes\n6. Transfer evaluation（zero-shot, mean-shift, Procrustes, few-shot）\n\n**GPTQ 支持**：\n- `extract_activations.py`（plan_002_v3 用的，已崩溃）：有 GPTQ auto-detect 和 compressed-tensors 检查，但撞上 accelerate `get_balanced_memory()` bug\n- `extract_activations_large.py`（plan_001 用的）：专为大模型设计，提及 Qwen3-235B。quantization 走 bitsandbytes 路径，`--quantization none` 时由 HF 自动处理 GPTQ。**可能不走同一个 `get_balanced_memory` 调用，但需要注意同一 accelerate 版本是否有类似问题**\n\n**磁盘空间**：\n\n| 项目 | 数值 |\n|------|------|\n| /root/autodl-tmp 总容量 | 350G |\n| 已用 | 252G (72%) |\n| 可用 | **99G** |\n| activations/ 当前 | 4.0K（空） |\n\n**磁盘预估**：Qwen3-235B hidden_dim 约 4096~7168，24 layers × 20 langs × ~14K samples × hidden_dim × 2 bytes (bfloat16) ≈ **55~96GB**。99GB 可用空间**偏紧**，如果 hidden_dim 较大或存 float32 可能不够。\n\n---\n\n### 关键风险和下一步建议\n\n1. **accelerate bug 是 plan_001 的首要风险**：`extract_activations_large.py` 的 `load_model` 如果也调用了 `get_balanced_memory`，会撞同一个 bug。建议检查 `extract_activations_large.py` 的模型加载逻辑，或升级 accelerate（`pip install -U accelerate`）。\n2. **磁盘空间偏紧**：建议先确认 Qwen3 hidden_dim（从 config.json），精确计算后决定是否需要清理空间。\n3. **4 GPU 完全空闲**，可以立即启动 plan_001（在 accelerate bug 修复后）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-plan002v3-and-prep-plan001.md"
+}

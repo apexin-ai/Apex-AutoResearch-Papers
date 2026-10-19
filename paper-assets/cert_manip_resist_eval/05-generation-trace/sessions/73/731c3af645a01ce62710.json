@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_regime-transition-redraw-v3_20260524T084139_result.json",
     "occurrence": 1,
-    "bytes": 338,
-    "sha256": "40e070f65841632115345ad7e26cde989b1747f52b3b11d6fcb3d0cabf0a8fbe"
+    "bytes": 337,
+    "sha256": "d89c85c16620a6bb5b58beafc2ff2ca45f7f525bd9eba075565c76da8793e48f"
   },
   "statistics": {
     "messages": 1,

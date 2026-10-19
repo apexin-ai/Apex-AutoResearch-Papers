@@ -1,0 +1,41 @@
+paper_key: "miao2026closing"
+title: "Closing the Confidence-Faithfulness Gap in Large Language Models"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines:
+    - logit_baseline (token probability of predicted answer)
+    - SteerConf (prompting-based approach using multiple framings)
+  metrics:
+    - {name: "ECE", direction: "lower_better"}
+    - {name: "Brier Score", direction: "lower_better"}
+    - {name: "MAE", direction: "lower_better"}
+  datasets:
+    - {name: "MATH", size: "math reasoning"}
+    - {name: "MMLU", size: "multitask knowledge"}
+    - {name: "TriviaQA", size: "reading comprehension"}
+    - {name: "TruthfulQA", size: "truthfulness evaluation"}
+  ablation_dimensions:
+    - steering_injection_site (last_prompt_token vs answer_tokens vs both)
+    - cross_dataset_generalization
+    - base_to_instruct_transfer
+    - subspace_analysis (principal angles, CCA, variance decomposition)
+  training_recipe:
+    optimizer: "N/A (inference-time steering, no training)"
+    lr: "N/A"
+    hardware: "not specified"
+  method_family: "activation_steering_for_calibration"
+
+positioning:
+  core_claim: "LLM 内部的校准信号和口头化置信度信号是线性编码但相互正交的；联合推理+口头化置信度时推理过程会污染置信方向（Reasoning Contamination Effect）；提出两阶段自适应 steering pipeline 读取内部精度估计并对齐口头输出"
+  key_results: "Llama-3.1-8B ECE 从 14.9 降至 3.7（75%↓），Mistral-7B ECE 从 35.1 降至 3.3（91%↓），Qwen2.5-7B ECE 从 36.0 降至 10.7（70%↓）；置信方向与精度方向在联合提示下从 +0.26 对齐变为 -0.63 对立"
+  limitations:
+    - "仅测试 7-8B 规模模型，未验证更大/更小模型"
+    - "steering 向量的跨数据集迁移存在性能损失"
+    - "依赖线性探针假设，非线性信号可能被忽略"
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

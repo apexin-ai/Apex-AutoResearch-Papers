@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen14b-inference-test_20260521T194130_result.json",
     "occurrence": 1,
-    "bytes": 1175,
-    "sha256": "18819af8dc54e0214fbb9fd82fc89de1b89357b102b735b3d6786ad9fc454cb5"
+    "bytes": 1174,
+    "sha256": "ddc5fde5d67f002bec12f742a1a674558495d44825b91bd6c2664fe2c52f5474"
   },
   "statistics": {
     "messages": 1,

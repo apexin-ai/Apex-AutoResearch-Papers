@@ -1114,7 +1114,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-panel overview: (a) multi-judge panel under adversarial attack with K_eff diversity and eta_max vulnerability predictors, (b) regression framework decomposing panel ASR into diversity and weakest-link components under confound, (c) K-dependent predictor relevance showing eta_max significance transition at K>=5\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r1.png \\\n  --iterations 5 2>&1 | tail -30",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-panel overview: (a) multi-judge panel under adversarial attack with K_eff diversity and eta_max vulnerability predictors, (b) regression framework decomposing panel ASR into diversity and weakest-link components under confound, (c) K-dependent predictor relevance showing eta_max significance transition at K>=5\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r1.png \\\n  --iterations 5 2>&1 | tail -30",
               "description": "Generate Figure 1 Round 1",
               "timeout": "300000"
             }
@@ -1270,7 +1270,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-panel overview: (a) multi-judge panel under adversarial attack, (b) regression framework with K_eff and eta_max predictors under confound, (c) K-dependent predictor relevance transition\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r2.png \\\n  --iterations 5 2>&1 | tail -15",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-panel overview: (a) multi-judge panel under adversarial attack, (b) regression framework with K_eff and eta_max predictors under confound, (c) K-dependent predictor relevance transition\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r2.png \\\n  --iterations 5 2>&1 | tail -15",
               "description": "Generate Figure 1 Round 2",
               "timeout": "300000"
             }
@@ -1426,7 +1426,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-panel overview of the study framework\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r3.png \\\n  --iterations 3 2>&1 | tail -15",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-panel overview of the study framework\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r3.png \\\n  --iterations 3 2>&1 | tail -15",
               "description": "Generate Figure 1 Round 3",
               "timeout": "300000"
             }
@@ -1543,7 +1543,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-column overview: (a) multi-judge panel setup, (b) regression decomposition, (c) K-dependent predictor transition\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r4.png \\\n  --iterations 3 2>&1 | tail -10",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-column overview: (a) multi-judge panel setup, (b) regression decomposition, (c) K-dependent predictor transition\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r4.png \\\n  --iterations 3 2>&1 | tail -10",
               "description": "Generate Figure 1 Round 4",
               "timeout": "300000"
             }
@@ -1660,7 +1660,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-column framework overview for multi-judge panel robustness study\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r5.png \\\n  --iterations 3 2>&1 | tail -10",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_hero_intent.txt \\\n  --caption \"Three-column framework overview for multi-judge panel robustness study\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_framework_r5.png \\\n  --iterations 3 2>&1 | tail -10",
               "description": "Generate Figure 1 Round 5",
               "timeout": "300000"
             }
@@ -1894,7 +1894,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig2_theory_intent.txt \\\n  --caption \"Classical theory assumptions vs LLM evaluation reality across three dimensions: independence, fault model, and diversity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_theory_comparison_r1.png \\\n  --iterations 3 2>&1 | tail -10",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig2_theory_intent.txt \\\n  --caption \"Classical theory assumptions vs LLM evaluation reality across three dimensions: independence, fault model, and diversity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_theory_comparison_r1.png \\\n  --iterations 3 2>&1 | tail -10",
               "description": "Generate Figure 2 Round 1",
               "timeout": "300000"
             }

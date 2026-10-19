@@ -1,0 +1,103 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probe-Based Calibration.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Lingual Probing.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multilingual Calibration.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Correctness Probing Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Transfer Conditions}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}\textsc  {CaCLR}{}: Calibration-Consistent Lingual Regularization}{2}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:caclr_method}{{3.3}{2}{\caclr {}: Calibration-Consistent Lingual Regularization}{subsection.3.3}{}}
+\newlabel{eq:caclr}{{1}{2}{\caclr {}: Calibration-Consistent Lingual Regularization}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Difficulty--Capability Decomposition}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:decomp_method}{{3.4}{3}{Difficulty--Capability Decomposition}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Languages.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probing.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameters.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}The Depth--Transferability Pareto Frontier}{3}{section.5}\protected@file@percent }
+\newlabel{sec:pareto}{{5}{3}{The Depth--Transferability Pareto Frontier}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{English probe quality increases with depth.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-lingual transfer quality peaks at intermediate layers.}{3}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces English correctness probe AUROC by layer (Qwen3-235B, logistic regression). Depth\,\% = layer / total layers.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:qwen3_en}{{1}{4}{English correctness probe AUROC by layer (Qwen3-235B, logistic regression). Depth\,\% = layer / total layers}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Zero-shot transfer AUROC by resource tier at selected Qwen3 layers. Values are means over languages within each tier; $n$: high=6, mid=8, low=5.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:qwen3_transfer_tier}{{2}{4}{Zero-shot transfer AUROC by resource tier at selected Qwen3 layers. Values are means over languages within each tier; $n$: high=6, mid=8, low=5}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{The Pareto frontier is architecture-dependent.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-lingual layer ranking consistency.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Resource-tier modulation.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Difficulty--Capability Decomposition}{4}{section.6}\protected@file@percent }
+\newlabel{sec:decomposition}{{6}{4}{Difficulty--Capability Decomposition}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Difficulty probes transfer well.}{4}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-language zero-shot AUROC at the best-transfer (L40) and best-English (L76) layers on Qwen3-235B.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:qwen3_perlang}{{3}{5}{Per-language zero-shot AUROC at the best-transfer (L40) and best-English (L76) layers on Qwen3-235B}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Three-architecture Pareto frontier comparison.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:pareto_comparison}{{4}{5}{Three-architecture Pareto frontier comparison}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Decomposition reduces the transfer gap.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition across depth.}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prescriptive accuracy.}{5}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Difficulty probe quality (IRT Ridge regression, Qwen3 L48). EN $R^2=0.71$; zero-shot transfer $R^2$ and gap to English.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:difficulty_probe}{{5}{6}{Difficulty probe quality (IRT Ridge regression, Qwen3 L48). EN $R^2=0.71$; zero-shot transfer $R^2$ and gap to English}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Decomposition effect on the transfer gap (Qwen3, averaged across 8 layers and 9 non-English languages).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:decomposition_effect}{{6}{6}{Decomposition effect on the transfer gap (Qwen3, averaged across 8 layers and 9 non-English languages)}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}\textsc  {CaCLR}{}: Zero-Label Cross-Lingual Calibration}{6}{section.7}\protected@file@percent }
+\newlabel{sec:caclr}{{7}{6}{\caclr {}: Zero-Label Cross-Lingual Calibration}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Main Results}{6}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration quality.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mean-shift failure.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Resource-Tier Analysis}{6}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Variance decomposition by layer depth (Qwen3). Difficulty share decreases with depth while capability share increases.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:variance_decomposition}{{7}{7}{Variance decomposition by layer depth (Qwen3). Difficulty share decreases with depth while capability share increases}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Prescriptive accuracy of decomposition for predicting method choice per language-layer pair.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:prescriptive}{{8}{7}{Prescriptive accuracy of decomposition for predicting method choice per language-layer pair}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Consistency Term Ablation}{7}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Hyperparameter Sensitivity}{7}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Pareto Frontier Shift}{7}{subsection.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Cross-Lingual Orthogonality}{7}{section.8}\protected@file@percent }
+\newlabel{sec:orthogonality}{{8}{7}{Cross-Lingual Orthogonality}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Orthogonality holds across all languages.}{7}{section*.21}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Five-method comparison at Qwen3-235B L40 (Pareto-optimal transfer layer). AUROC averages over 19 non-English languages.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:caclr_qwen3}{{9}{8}{Five-method comparison at Qwen3-235B L40 (Pareto-optimal transfer layer). AUROC averages over 19 non-English languages}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Five-method comparison at Llama~4 Scout L32.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:caclr_llama4}{{10}{8}{Five-method comparison at Llama~4 Scout L32}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Resource-tier gradient.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture consistency.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Additional Analyses}{8}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Probe Complexity: Linear vs.\ MLP}{8}{subsection.9.1}\protected@file@percent }
+\newlabel{sec:probe_complexity}{{9.1}{8}{Probe Complexity: Linear vs.\ MLP}{subsection.9.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Cross-Benchmark Generalization}{8}{subsection.9.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces \textsc  {CaCLR}{} vs linear projection by resource tier (Qwen3, averaged across Pareto layers).}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:caclr_tier}{{11}{9}{\caclr {} vs linear projection by resource tier (Qwen3, averaged across Pareto layers)}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces \textsc  {CaCLR}{} consistency term ablation (Qwen3 L52, $\alpha =0.3$ fixed). $\Delta $ columns show pp vs linear projection.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:ablation}{{12}{9}{\caclr {} consistency term ablation (Qwen3 L52, $\alpha =0.3$ fixed). $\Delta $ columns show pp vs linear projection}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}INT8 Quantization Validation}{9}{subsection.9.3}\protected@file@percent }
+\newlabel{sec:int8}{{9.3}{9}{INT8 Quantization Validation}{subsection.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Extended Language Coverage}{9}{subsection.9.4}\protected@file@percent }
+\newlabel{sec:extended}{{9.4}{9}{Extended Language Coverage}{subsection.9.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Discussion}{9}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{9}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture effects.}{9}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Low-resource limitations.}{9}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.27}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Hyperparameter sensitivity (Qwen3, validation AUROC across 5 languages).}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:hyperparam}{{13}{10}{Hyperparameter sensitivity (Qwen3, validation AUROC across 5 languages)}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Correctness--confidence cosine similarity by language (averaged across architectures). All values $\ll 1$, confirming orthogonality.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:orthogonality}{{14}{10}{Correctness--confidence cosine similarity by language (averaged across architectures). All values $\ll 1$, confirming orthogonality}{table.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{10}{section.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Logistic regression vs.\ MLP at key Qwen3 layers. $\Delta _{\text  {en}}$: MLP English advantage; $\Delta _{\text  {xfer}}$: MLP transfer disadvantage.}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:probe_complexity}{{15}{11}{Logistic regression vs.\ MLP at key Qwen3 layers. $\Delta _{\text {en}}$: MLP English advantage; $\Delta _{\text {xfer}}$: MLP transfer disadvantage}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Cross-benchmark comparison (Qwen3-235B, logistic regression).}}{11}{table.16}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{16}{11}{Cross-benchmark comparison (Qwen3-235B, logistic regression)}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces INT8 vs.\ FP16 probing validation (Llama~4 Scout, 5\% subset).}}{11}{table.17}\protected@file@percent }
+\newlabel{tab:int8}{{17}{11}{INT8 vs.\ FP16 probing validation (Llama~4 Scout, 5\% subset)}{table.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Extended coverage: 20-language core vs.\ 53-language extension (Qwen3, L40).}}{11}{table.18}\protected@file@percent }
+\newlabel{tab:extended}{{18}{11}{Extended coverage: 20-language core vs.\ 53-language extension (Qwen3, L40)}{table.18}{}}
+\gdef \@abspage@last{11}

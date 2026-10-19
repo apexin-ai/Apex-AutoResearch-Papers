@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig5-regime-transition-annotation-fix_20260525T195614_result.json",
     "occurrence": 1,
-    "bytes": 282,
-    "sha256": "e4830da86413d35437a836216e070f005107059ed72f9ddfc97fc5b1e2e047e9"
+    "bytes": 281,
+    "sha256": "c556c52239225151b65523bd6679b6fbb1e498e7f394cb8e3590fcdbc998f2b9"
   },
   "statistics": {
     "messages": 1,

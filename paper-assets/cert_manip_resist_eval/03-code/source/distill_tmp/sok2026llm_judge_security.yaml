@@ -1,0 +1,25 @@
+paper_key: "sok2026llm_judge_security"
+title: "Security in LLM-as-a-Judge: A Comprehensive SoK"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [N/A - survey paper]
+  metrics:
+    - {name: "ASR (attack success rate)", direction: "descriptive"}
+    - {name: "Vulnerability taxonomy coverage", direction: "descriptive"}
+  datasets:
+    - {name: "863 works surveyed, 45 selected", size: "literature survey"}
+  ablation_dimensions: [attack_type, defense_type, judge_role]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "systematization_of_knowledge"
+
+positioning:
+  core_claim: "Comprehensive vulnerability taxonomy for LLM-as-a-Judge: attacks targeting judges, attacks through judges, defenses leveraging judges, and security applications"
+  key_results: "Open-source judges 50-68% ASR, frontier 27-44% ASR; 7-model diverse committees reduce ASR to 10-19% empirically"
+  limitations: ["Survey scope limited to 2020-2026", "No formal framework for committee design"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

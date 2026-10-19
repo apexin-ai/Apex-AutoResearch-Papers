@@ -5917,8 +5917,8 @@ _source line 274 · 2026-05-23T20:47:13.063Z_
 ```text
 Warning: Permanently added '[connect.westd.seetacloud.com]:49657' (ED25519) to the list of known hosts.
 ---
-origin	https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)
-origin	https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)
 ---
 94f5c65 V2 correction: fix error-handling bug, add complete analysis data
 3d1671d Fix K=5 epsilon sensitivity tie-breaking, correct K_eff distribution formula, fix r-values in robustness table, add temperature pilot and K_eff distribution appendix sections
@@ -5937,7 +5937,7 @@ f9a3944 Anonymous submission for review
   "session_id": "818c898a-d8b9-4aa0-97cd-7f3a3068a9bf",
   "uuid": "94d23a69-a17a-4da4-9b42-555591be63e6",
   "tool_use_result": {
-    "stdout": "Warning: Permanently added '[connect.westd.seetacloud.com]:49657' (ED25519) to the list of known hosts.\r\n---\norigin\thttps://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)\norigin\thttps://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)\n---\n94f5c65 V2 correction: fix error-handling bug, add complete analysis data\n3d1671d Fix K=5 epsilon sensitivity tie-breaking, correct K_eff distribution formula, fix r-values in robustness table, add temperature pilot and K_eff distribution appendix sections\nf9a3944 Anonymous submission for review",
+    "stdout": "Warning: Permanently added '[connect.westd.seetacloud.com]:49657' (ED25519) to the list of known hosts.\r\n---\norigin\thttps://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)\norigin\thttps://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)\n---\n94f5c65 V2 correction: fix error-handling bug, add complete analysis data\n3d1671d Fix K=5 epsilon sensitivity tie-breaking, correct K_eff distribution formula, fix r-values in robustness table, add temperature pilot and K_eff distribution appendix sections\nf9a3944 Anonymous submission for review",
     "stderr": "",
     "interrupted": false,
     "isImage": false,

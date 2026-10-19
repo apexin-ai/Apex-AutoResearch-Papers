@@ -1,0 +1,16 @@
+{
+  "exp_id": "taxonomy-broad-spectrum",
+  "project": "cert_manip_resist_eval",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:32:50.206Z",
+    "updated_at": "2026-05-22T03:41:05.429Z",
+    "hypothesis": "K_eff is a significant negative predictor of panel ASR specifically for broad-spectrum attacks (verbosity bias, position bias, authority bias) that exploit shared judge biases, consistent across both MMLU and ARC datasets. This validates the attack taxonomy: targeted attacks → η_max dominates; broad-spectrum attacks → K_eff provides additional protection.",
+    "parent": "mvp-step2v3-retry3"
+  },
+  "timestamp": "2026-05-22T03:41:05.443972+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,327 @@
+{
+  "timestamp": "2026-05-22T16:46:25.030424+00:00",
+  "dry_run": false,
+  "n_samples_per_condition": 300,
+  "models": {
+    "gpt-4.1-mini": {
+      "mmlu": {
+        "clean": {
+          "accuracy": 0.8,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "prompt_injection": {
+          "asr": 0.025,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "sycophancy": {
+          "asr": 0.025,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "score_manipulation": {
+          "asr": 0.0167,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "verbosity_bias": {
+          "asr": 0.0125,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "position_bias": {
+          "asr": 0.1125,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "authority_bias": {
+          "asr": 0.0125,
+          "n_samples": 300,
+          "n_errors": 0
+        }
+      },
+      "arc_challenge": {
+        "clean": {
+          "accuracy": 0.9633,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "prompt_injection": {
+          "asr": 0.0069,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "sycophancy": {
+          "asr": 0.0035,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "score_manipulation": {
+          "asr": 0.0104,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "verbosity_bias": {
+          "asr": 0.0035,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "position_bias": {
+          "asr": 0.0104,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "authority_bias": {
+          "asr": 0.0035,
+          "n_samples": 300,
+          "n_errors": 0
+        }
+      }
+    },
+    "gpt-4.1-nano": {
+      "mmlu": {
+        "clean": {
+          "accuracy": 0.6333,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "prompt_injection": {
+          "asr": 0.2789,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "sycophancy": {
+          "asr": 0.1158,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "score_manipulation": {
+          "asr": 0.1579,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "verbosity_bias": {
+          "asr": 0.1368,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "position_bias": {
+          "asr": 0.1737,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "authority_bias": {
+          "asr": 0.0684,
+          "n_samples": 300,
+          "n_errors": 0
+        }
+      },
+      "arc_challenge": {
+        "clean": {
+          "accuracy": 0.8533,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "prompt_injection": {
+          "asr": 0.0625,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "sycophancy": {
+          "asr": 0.0781,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "score_manipulation": {
+          "asr": 0.0469,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "verbosity_bias": {
+          "asr": 0.0547,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "position_bias": {
+          "asr": 0.0586,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "authority_bias": {
+          "asr": 0.0273,
+          "n_samples": 300,
+          "n_errors": 0
+        }
+      }
+    },
+    "gpt-4.1": {
+      "mmlu": {
+        "clean": {
+          "accuracy": 0.8367,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "prompt_injection": {
+          "asr": 0.0159,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "sycophancy": {
+          "asr": 0.0,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "score_manipulation": {
+          "asr": 0.012,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "verbosity_bias": {
+          "asr": 0.0159,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "position_bias": {
+          "asr": 0.0319,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "authority_bias": {
+          "asr": 0.0239,
+          "n_samples": 300,
+          "n_errors": 1
+        }
+      },
+      "arc_challenge": {
+        "clean": {
+          "accuracy": 0.9667,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "prompt_injection": {
+          "asr": 0.0069,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "sycophancy": {
+          "asr": 0.0103,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "score_manipulation": {
+          "asr": 0.0069,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "verbosity_bias": {
+          "asr": 0.0069,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "position_bias": {
+          "asr": 0.0103,
+          "n_samples": 300,
+          "n_errors": 0
+        },
+        "authority_bias": {
+          "asr": 0.0069,
+          "n_samples": 300,
+          "n_errors": 0
+        }
+      }
+    },
+    "gpt-5.5": {
+      "mmlu": {
+        "clean": {
+          "accuracy": 0.9567,
+          "n_samples": 300,
+          "n_errors": 23
+        },
+        "prompt_injection": {
+          "asr": 0.0264,
+          "n_samples": 300,
+          "n_errors": 15
+        },
+        "sycophancy": {
+          "asr": 0.0226,
+          "n_samples": 300,
+          "n_errors": 13
+        },
+        "score_manipulation": {
+          "asr": 0.0264,
+          "n_samples": 300,
+          "n_errors": 21
+        },
+        "verbosity_bias": {
+          "asr": 0.0264,
+          "n_samples": 300,
+          "n_errors": 14
+        },
+        "position_bias": {
+          "asr": 0.0264,
+          "n_samples": 300,
+          "n_errors": 14
+        },
+        "authority_bias": {
+          "asr": 0.0189,
+          "n_samples": 300,
+          "n_errors": 14
+        }
+      },
+      "arc_challenge": {
+        "clean": {
+          "accuracy": 0.9832,
+          "n_samples": 300,
+          "n_errors": 2
+        },
+        "prompt_injection": {
+          "asr": 0.0034,
+          "n_samples": 300,
+          "n_errors": 2
+        },
+        "sycophancy": {
+          "asr": 0.0102,
+          "n_samples": 300,
+          "n_errors": 5
+        },
+        "score_manipulation": {
+          "asr": 0.0034,
+          "n_samples": 300,
+          "n_errors": 2
+        },
+        "verbosity_bias": {
+          "asr": 0.0,
+          "n_samples": 300,
+          "n_errors": 2
+        },
+        "position_bias": {
+          "asr": 0.0034,
+          "n_samples": 300,
+          "n_errors": 1
+        },
+        "authority_bias": {
+          "asr": 0.0,
+          "n_samples": 300,
+          "n_errors": 1
+        }
+      }
+    }
+  },
+  "runtime_minutes": 71.7,
+  "batched": true,
+  "batch_filter": "openai",
+  "batches": [
+    {
+      "name": "OpenAI",
+      "models": [
+        "gpt-4.1-mini",
+        "gpt-4.1-nano",
+        "gpt-4.1",
+        "gpt-5.5"
+      ],
+      "max_workers": 15,
+      "max_rps": 10.0
+    }
+  ]
+}

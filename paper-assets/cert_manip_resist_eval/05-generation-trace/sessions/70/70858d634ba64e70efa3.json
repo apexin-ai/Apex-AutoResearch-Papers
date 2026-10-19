@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mvp-framework_20260521T170853_result.json",
     "occurrence": 1,
-    "bytes": 1401,
-    "sha256": "5fdd5605eaae886f89bae922292f078e6e7d694b4cd0028491cba5d5a42dfe14"
+    "bytes": 1400,
+    "sha256": "9a96b69a2085555ec65d7e8fb4b7bfee9a27af3d0079d5d921ec08776f1796c6"
   },
   "statistics": {
     "messages": 1,

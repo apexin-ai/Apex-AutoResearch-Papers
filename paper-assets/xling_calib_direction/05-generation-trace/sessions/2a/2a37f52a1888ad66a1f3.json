@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "2a37f52a1888ad66a1f3",
+  "project": "xling_calib_direction",
+  "kind": "worker",
+  "title": "fix compute cka split bias",
+  "task_key": "worker_fix_compute_cka_split_bias_20260521T124811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_compute_cka_split_bias_20260521T124811.log",
+    "occurrence": 1,
+    "bytes": 695872,
+    "sha256": "b8c89463164a2e08e90171c65f0dceaffc93a06ffabfdc87ecd8f74d9d4b2799"
+  },
+  "statistics": {
+    "messages": 428,
+    "user_turns": 0,
+    "tool_calls": 177,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 177,
+      "tool_result": 177,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 428,
+      "chunks": [
+        {
+          "path": "2a37f52a1888ad66a1f3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a37f52a1888ad66a1f3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a37f52a1888ad66a1f3-part-0003.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-compute-cka-split-bias.md"
+}

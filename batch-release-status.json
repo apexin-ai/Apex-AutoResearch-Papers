@@ -95,6 +95,47 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39265650589"
+    },
+    "cert_manip_resist_eval/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 508303849,
+        "etag": "\"d19d80a7bb9a931b698682f095cf0ecd-61\"",
+        "modified": "2026-05-31T17:29:09+00:00"
+      },
+      "archive_sha256": "3741f54c54a9849bc40ea9499ea2849bfd86df5f744a3e76a2601ea970a830c4",
+      "projects": [
+        "xling_calib_direction",
+        "cert_manip_resist_eval",
+        "xling_calab_direction"
+      ],
+      "counts": [
+        {
+          "project": "xling_calib_direction",
+          "title": "Shifting the Cross-Lingual Calibration Pareto Frontier: Probe-Based Calibration Transfer via CaCLR",
+          "paper_pdf": "paper.pdf",
+          "code_count": 121,
+          "data_count": 201,
+          "trace_count": 290
+        },
+        {
+          "project": "cert_manip_resist_eval",
+          "title": "The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation",
+          "paper_pdf": "paper.pdf",
+          "code_count": 253,
+          "data_count": 873,
+          "trace_count": 880
+        },
+        {
+          "project": "xling_calab_direction",
+          "title": "xling calab direction",
+          "paper_pdf": null,
+          "code_count": 0,
+          "data_count": 0,
+          "trace_count": 2
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39265650589"
     }
   }
 }

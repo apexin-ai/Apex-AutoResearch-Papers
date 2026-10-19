@@ -495,8 +495,8 @@ AWS 凭证已在 BE 的 ~/.agent-ml-be-backup.yaml 文件里。命令模板（�
 
 如果从远程 GPU 服务器上跑，需要先把凭证 scp 过去 + export：
 
-  export AWS_ACCESS_KEY_ID=...
-  export AWS_SECRET_ACCESS_KEY=...
+  export AWS_ACCESS_KEY_ID=[REDACTED]
+  export AWS_SECRET_ACCESS_KEY=[REDACTED]
   export AWS_DEFAULT_REGION=ap-northeast-1
 
 完成后汇报：
@@ -1491,8 +1491,8 @@ from pathlib import Path
 
 cfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))
 s3 = boto3.client('s3',
-    aws_access_key_id=cfg['aws_access_key_id'],
-    aws_secret_access_key=cfg['aws_secret_access_key'],
+    aws_access_key_id=[REDACTED]'aws_access_key_id'],
+    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],
     region_name=cfg['s3_region'])
 
 src = sys.argv[1]
@@ -2752,7 +2752,7 @@ called Bash
 
 ```json
 {
-  "command": "python3 -c \"\nimport yaml\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\nimport os\nos.makedirs(os.path.expanduser('~/.aws'), exist_ok=True)\nwith open(os.path.expanduser('~/.aws/credentials'), 'w') as f:\n    f.write('[default]\\n')\n    f.write(f\\\"aws_access_key_id = {cfg['aws_access_key_id']}\\n\\\")\n    f.write(f\\\"aws_secret_access_key = {cfg['aws_secret_access_key']}\\n\\\")\nwith open(os.path.expanduser('~/.aws/config'), 'w') as f:\n    f.write('[default]\\n')\n    f.write(f\\\"region = {cfg['s3_region']}\\n\\\")\nprint('AWS credentials configured')\n\"",
+  "command": "python3 -c \"\nimport yaml\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\nimport os\nos.makedirs(os.path.expanduser('~/.aws'), exist_ok=True)\nwith open(os.path.expanduser('~/.aws/credentials'), 'w') as f:\n    f.write('[default]\\n')\n    f.write(f\\\"aws_access_key_id = [REDACTED]'aws_access_key_id']}\\n\\\")\n    f.write(f\\\"aws_secret_access_key = [REDACTED]'aws_secret_access_key']}\\n\\\")\nwith open(os.path.expanduser('~/.aws/config'), 'w') as f:\n    f.write('[default]\\n')\n    f.write(f\\\"region = {cfg['s3_region']}\\n\\\")\nprint('AWS credentials configured')\n\"",
   "description": "Configure AWS credentials from yaml for CLI use"
 }
 ```
@@ -2767,7 +2767,7 @@ called Bash
   "session": "feishu:group:oc_511319d9c17dfa45ec974a0123143d46:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "python3 -c \"\nimport yaml\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\nimport os\nos.makedirs(os.path.expanduser('~/.aws'), exist_ok=True)\nwith open(os.path.expanduser('~/.aws/credentials'), 'w') as f:\n    f.write('[default]\\n')\n    f.write(f\\\"aws_access_key_id = {cfg['aws_access_key_id']}\\n\\\")\n    f.write(f\\\"aws_secret_access_key = {cfg['aws_secret_access_key']}\\n\\\")\nwith open(os.path.expanduser('~/.aws/config'), 'w') as f:\n    f.write('[default]\\n')\n    f.write(f\\\"region = {cfg['s3_region']}\\n\\\")\nprint('AWS credentials configured')\n\"",
+    "command": "python3 -c \"\nimport yaml\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\nimport os\nos.makedirs(os.path.expanduser('~/.aws'), exist_ok=True)\nwith open(os.path.expanduser('~/.aws/credentials'), 'w') as f:\n    f.write('[default]\\n')\n    f.write(f\\\"aws_access_key_id = [REDACTED]'aws_access_key_id']}\\n\\\")\n    f.write(f\\\"aws_secret_access_key = [REDACTED]'aws_secret_access_key']}\\n\\\")\nwith open(os.path.expanduser('~/.aws/config'), 'w') as f:\n    f.write('[default]\\n')\n    f.write(f\\\"region = {cfg['s3_region']}\\n\\\")\nprint('AWS credentials configured')\n\"",
     "description": "Configure AWS credentials from yaml for CLI use"
   }
 }

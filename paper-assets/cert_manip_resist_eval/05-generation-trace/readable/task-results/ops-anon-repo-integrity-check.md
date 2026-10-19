@@ -33,7 +33,7 @@ _source line 1_
 **两边完全一致。**
 
 ### Remote 配置
-已确认为 HTTPS+token 格式（`https://anonymous-nlp-2026-2:ghp_***@github.com/...`），无需修改。
+已确认为 HTTPS+token 格式（`https://[REDACTED]@github.com/...`），无需修改。
 
 ### 仓库根目录结构
 ```

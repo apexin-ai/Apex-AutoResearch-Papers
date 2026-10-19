@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_api-only-power-betastd_20260524T190307_result.json",
     "occurrence": 1,
-    "bytes": 872,
-    "sha256": "435d1f671b06465175c1835bc5130edd5fead9e70364cae938bc7c6e84a93c46"
+    "bytes": 871,
+    "sha256": "711c084db65a9a75742602a93bac56c25d713521490500b8739322775f5a8bbc"
   },
   "statistics": {
     "messages": 1,

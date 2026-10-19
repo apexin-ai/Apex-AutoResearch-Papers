@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_kill-duplicate-step1_20260522T124234_result.json",
     "occurrence": 1,
-    "bytes": 655,
-    "sha256": "275117acb5fdc162167cc584c711ab45c5a7cfc890fa4282f65126302771fb05"
+    "bytes": 654,
+    "sha256": "4edb5f4459ff77b70153c35c690502c99f1a50da99bafb80e954378389205383"
   },
   "statistics": {
     "messages": 1,

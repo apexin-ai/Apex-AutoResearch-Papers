@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_controlled-regression_20260523T071753_result.json",
     "occurrence": 1,
-    "bytes": 1359,
-    "sha256": "da41e206cd5347582669a397a6934a0a1063873e7e37d8aeddb7a26b1b9382f2"
+    "bytes": 1358,
+    "sha256": "ff13384ccdaa5181ff4a70705997e4c965e6d54c3210f91d8d01db23702cf5a0"
   },
   "statistics": {
     "messages": 1,

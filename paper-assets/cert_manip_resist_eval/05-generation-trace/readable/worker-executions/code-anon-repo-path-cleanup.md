@@ -3750,7 +3750,7 @@ _source line 85_
 ```json
 {
   "server": "seetacloud-rtx6000",
-  "command": "source /etc/network_turbo 2>/dev/null; cd /tmp/anon_staging && git remote set-url origin https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git && git push --force origin main 2>&1 && echo \"PUSH_OK\""
+  "command": "source /etc/network_turbo 2>/dev/null; cd /tmp/anon_staging && git remote set-url origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git && git push --force origin main 2>&1 && echo \"PUSH_OK\""
 }
 ```
 

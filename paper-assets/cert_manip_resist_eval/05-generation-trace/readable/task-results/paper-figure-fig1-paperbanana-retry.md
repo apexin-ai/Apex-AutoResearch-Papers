@@ -16,4 +16,4 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
 
-[Part 1](paper-figure-fig1-paperbanana-retry/part-001.md) · [Part 2](paper-figure-fig1-paperbanana-retry/part-002.md) · [Part 3](paper-figure-fig1-paperbanana-retry/part-003.md)
+[Part 1](paper-figure-fig1-paperbanana-retry/part-001.md) · [Part 2](paper-figure-fig1-paperbanana-retry/part-002.md) · [Part 3](paper-figure-fig1-paperbanana-retry/part-003.md) · [Part 4](paper-figure-fig1-paperbanana-retry/part-004.md) · [Part 5](paper-figure-fig1-paperbanana-retry/part-005.md)

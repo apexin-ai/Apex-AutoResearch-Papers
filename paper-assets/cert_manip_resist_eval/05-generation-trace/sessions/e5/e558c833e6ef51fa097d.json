@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-radar-chart_20260525T142321_result.json",
     "occurrence": 1,
-    "bytes": 636,
-    "sha256": "646a2ffa2b79bd47b72676cb31354747efa5d7a5395c1a322f749443c5d1b7cc"
+    "bytes": 635,
+    "sha256": "745ca6919a5b77f847d1ac1b74563696c0bd205c33fdacafa93e7556973f2837"
   },
   "statistics": {
     "messages": 1,

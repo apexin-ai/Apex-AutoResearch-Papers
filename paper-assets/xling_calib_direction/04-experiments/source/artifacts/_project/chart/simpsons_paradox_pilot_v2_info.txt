@@ -1,0 +1,6 @@
+Remote path: westd-13176:/root/xling_calib_direction/artifacts/figures/simpsons_paradox_pilot.pdf
+Script: scripts/plot_figures.py (modified Simpson's function only)
+Fix: y-axis changed from Transfer Degradation to ZS AUROC
+Left panel: pooled Spearman rho=-0.165, p=0.310 (negative, ns - expected for n=40 Qwen pilot)
+Right panel: per-layer rho positive (L12: 0.90, L24: 0.80, L27: 0.80)
+Sign reversal: pooled negative vs within-layer positive = Simpson's Paradox visible

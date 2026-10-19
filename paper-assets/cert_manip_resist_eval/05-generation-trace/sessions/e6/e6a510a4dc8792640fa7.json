@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_step2-keff-v2_20260521T224936_result.json",
     "occurrence": 1,
-    "bytes": 207,
-    "sha256": "9832bbb3f4d1cd2ec1c4264a832050a95acaab3a4631266b3aaa4ac6adc7b078"
+    "bytes": 206,
+    "sha256": "adfef8d4bd671baf74f392a714b78b1d811158a7a1703797dc272001ad590c0b"
   },
   "statistics": {
     "messages": 1,

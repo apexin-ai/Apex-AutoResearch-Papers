@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3136feb6ad57aa46cce2",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops check downloads and llama4 dryrun",
+  "task_key": "worker_ops_check_downloads_and_llama4_dryrun_20260520T225932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_downloads_and_llama4_dryrun_20260520T225932_result.json",
+    "occurrence": 1,
+    "bytes": 1858,
+    "sha256": "ee95173f260ce0ccde255d3e2dd540633f9758cef3f80c8d13b7ab63c671648e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 下载状态报告\n\n### Llama4-Scout-W4A16 (`RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized.w4a16`)\n| 项目 | 值 |\n|---|---|\n| 进程 PID | 32019 (running since 05:49) |\n| 已下载 | **29.6GB** (cache, 9 个 incomplete 文件) |\n| 已完成文件 | **0/14** safetensor shards (仅小文件 config/README 已完成) |\n| 当前速度 | **~2 MB/s**（仅 1 个文件在活跃下载，其余 8 个 stalled） |\n| 预估总大小 | ~63GB (14 shards × ~4.5GB) |\n| 预估剩余 | **4-5 小时**（按当前速度，且只有 1 个 worker 活跃） |\n| 架构 | `llama4`, 48 layers, hidden_size=5120, 16 local experts (MoE) |\n\n**问题**：hf-mirror 仍在走 xet-bridge CDN，大量文件 read timeout 后 stall，实际并发只有 1 个。\n\n### Qwen3-235B-A22B-GPTQ-Int4 (`Qwen/Qwen3-235B-A22B-GPTQ-Int4`)\n| 项目 | 值 |\n|---|---|\n| 进程 PID | 32724 (running since 05:52) |\n| 已下载 | **14.4GB** (cache, 8 个 incomplete 文件) |\n| 已完成文件 | **0/32** safetensor shards |\n| 当前速度 | **0 MB/s（完全 stalled）** |\n| 预估总大小 | ~120GB (32 shards) |\n| 架构 | `qwen3_moe`, 94 layers, hidden_size=4096 |\n\n### 磁盘\n```\n/root/autodl-tmp: 350G total, 134G used, 217G available (39%)\n```\n两个模型完成后约需 ~183GB，空间充足。\n\n### 诊断\n\n两个下载都严重 stall。`HF_HUB_DISABLE_XET=1` 没有阻止 xet-bridge 重定向，hf-mirror 在 AutoDL 网络下走 xet CDN 极慢且频繁超时。\n\n**建议操作**：\n1. **Kill 当前下载进程**，改用 ModelScope 下载（AutoDL 国内 CDN 速度快很多）\n2. ModelScope 上 Llama4 Scout 量化版可能没有，需要确认；Qwen3-235B-A22B-GPTQ-Int4 大概率有\n3. 或者用 `hf_transfer` + 设置 `HF_HUB_ENABLE_HF_TRANSFER=1` 绕过 xet\n\n需要我 kill 掉当前进程并切换下载方式吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-downloads-and-llama4-dryrun.md"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_beta-reg-epsilon_20260522T231659_result.json",
     "occurrence": 1,
-    "bytes": 915,
-    "sha256": "adbf62b35ede23415d5c813ec72976bf0fb902a5cc196bce8be2fd3d221f3bf1"
+    "bytes": 914,
+    "sha256": "efb718c6813aa08e5f52dea43a75561f1b1ad5909f1750bd5c55f46052c6a869"
   },
   "statistics": {
     "messages": 1,

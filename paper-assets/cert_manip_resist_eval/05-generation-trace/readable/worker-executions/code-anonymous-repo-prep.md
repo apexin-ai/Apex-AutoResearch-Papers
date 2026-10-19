@@ -5575,7 +5575,7 @@ _source line 125_
 ```json
 {
   "server": "seetacloud-rtx6000",
-  "command": "source /etc/network_turbo 2>/dev/null; cd /tmp/anon_staging && git branch -M main && git remote add origin https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git && git push -u origin main 2>&1",
+  "command": "source /etc/network_turbo 2>/dev/null; cd /tmp/anon_staging && git branch -M main && git remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git && git push -u origin main 2>&1",
   "warn": true
 }
 ```

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_provenance-trace-8values_20260523T111959_result.json",
     "occurrence": 1,
-    "bytes": 1161,
-    "sha256": "fa714f7305adae9622120525daad115801a441b60119868ec2aa315ed10b6a1e"
+    "bytes": 1160,
+    "sha256": "f98c4599d39c9820a45e5ea17ad2257febaf6aff8c9f076c1d16d2fe18ed988a"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,90 @@
+paper:
+  title: ''
+  version: 26
+  generated_at: '2026-05-21T10:34:42.023610+00:00'
+claims:
+- id: C001
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: deeper layers generally improve both English probe quality and cross-lingual
+    transfer (Spearman rho > 0.7, p < 0.05 for 4 of 5 languages)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_001
+    detail: Qwen2.5-7B layer-wise EN+ZS AUROC trends
+  - exp_id: mvp_003
+    detail: Llama-3.1-8B layer-wise EN+ZS AUROC trends
+  decisions: []
+  deprecated: false
+- id: C002
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: final 1-3 layers gain marginal English AUROC (+0.8pp) at the cost of transfer
+    degradation (1.5-4pp in 3 of 5 languages)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_001
+    detail: 'Qwen L24->L27: EN AUROC improves but ZS degrades in zh/hi/sw'
+  - exp_id: mvp_002
+    detail: Qwen complementary layers confirm L22-L26 ZS peak
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: deeper layers generally improve both English probe quality and cross-lingual
+    transfer, but Pareto frontier reveals local tradeoff at deepest layers
+  type: qualitative
+  evidence:
+  - exp_id: mvp_001
+    detail: Qwen Pareto analysis
+  - exp_id: mvp_003
+    detail: Llama Pareto analysis
+  decisions: []
+  deprecated: false
+- id: C004
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: English pilot selectivity concentrated in deeper layers (L20+ > 0.20, shallow
+    L0-L12 < 0.05)
+  type: quantitative
+  evidence:
+  - exp_id: plan_013
+    detail: 'Qwen2.5-7B English selectivity: L20=0.244, L24=0.248, L27=0.262; L0=0.02,
+      L4=0.037, L8=0.036, L12=0.042'
+  decisions: []
+  deprecated: false
+- id: C005
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: English pilot selectivity concentrated in deeper layers (L20+ > 0.20, shallow
+    < 0.05)
+  type: quantitative
+  evidence:
+  - exp_id: plan_013
+    detail: Qwen2.5-7B English selectivity data
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 5/5
+  claims: 5
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 5
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-21T10:34:42.023670+00:00'

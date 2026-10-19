@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_partial-knowledge-clustered-se_20260523T012338_result.json",
     "occurrence": 1,
-    "bytes": 783,
-    "sha256": "34144521da9cab20e9c7c16bd2dd073690c5c98db83509a758ef27b307644301"
+    "bytes": 782,
+    "sha256": "cbe274b3e88df76821e13bd0fb23b40e2c5d1716163403b884b03a84dfda72cd"
   },
   "statistics": {
     "messages": 1,

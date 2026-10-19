@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_dl-progress-check_20260521T204816_result.json",
     "occurrence": 1,
-    "bytes": 988,
-    "sha256": "52168a14b7cce531ff4da5cd2018b8df0d55f9cc80b64bf2c4295a9b429430ce"
+    "bytes": 987,
+    "sha256": "140f1e5371362d252d92396d8c789020b86f92e894a4cc7216ce7961cd6cfbc9"
   },
   "statistics": {
     "messages": 1,

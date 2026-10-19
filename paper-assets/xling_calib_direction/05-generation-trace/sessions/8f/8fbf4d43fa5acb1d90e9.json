@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fbf4d43fa5acb1d90e9",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops investigate csv selectivity",
+  "task_key": "worker_ops_investigate-csv-selectivity_20260521T063649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate-csv-selectivity_20260521T063649_result.json",
+    "occurrence": 1,
+    "bytes": 1698,
+    "sha256": "1aeed3aa49f98500f8abc4aaca2875c7e00b44b59993782162f062c88b511fd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 调查报告\n\n### 1. CSV 文件内容\n\n`results/probing_controls.csv` 包含 8 层 (L0/4/8/12/16/20/24/27) 的 real_auroc、perm_auroc 和 selectivity。底层 AUROC 值与 registry 一致，但 selectivity 列差异巨大（CSV L0=13.9 vs registry L0=0.020）。\n\n### 2. 不一致原因\n\n**selectivity 公式不同。** 两个版本的代码在 `code/` 下：\n\n| | `probing_controls.py` (v1, 生成该 CSV) | `probing_controls_v2.py` (v2, registry 权威数据) |\n|---|---|---|\n| **selectivity 公式** | `(real - perm) / (real - 0.5)` | `real - perm` (Hewitt & Liang 2019) |\n| **PCA** | PCA(100) 在 CV 外拟合（有数据泄漏） | 无 PCA |\n| **Scaler** | 全局 fit（泄漏） | 每 fold 内 fit（正确） |\n| **AUROC 计算** | `cross_val_score` (predict_proba) | `decision_function` |\n| **max_iter** | 1000 | 2000 |\n\nv1 的公式 `(real - perm) / (real - 0.5)` 在 L0 处分母极小 (0.501 - 0.5 = 0.0015)，导致 selectivity 膨胀到 13.9。这不是 Hewitt & Liang 定义，且 v1 还有 PCA/Scaler 数据泄漏问题。\n\n### 3. 正确数据\n\n**Registry plan_013 为权威数据**（Hewitt & Liang selectivity: L0=0.020 → L27=0.262），来自 v2 代码，方法学正确。\n\n### 4. 已执行操作\n\n已将 CSV 重命名：`results/probing_controls.csv` → `results/probing_controls_DEPRECATED.csv`\n\nv2 脚本输出的 `probing_controls_v2.csv` 尚未生成（registry 中 `plan_013_probing_controls_v2` 状态为 RUNNING）。\n\n### 5. 其他过时文件\n\n`code/probing_controls.py` (v1) 是产生错误 CSV 的源码，可考虑后续清理，但不紧急——关键是 CSV 已标记为 DEPRECATED，不会被误用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-csv-selectivity.md"
+}

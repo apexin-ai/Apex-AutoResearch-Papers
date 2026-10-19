@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_gam-data-version-compare_20260523T174455_result.json",
     "occurrence": 1,
-    "bytes": 3872,
-    "sha256": "e4316092a901d407101361b31e393bc214b1f2484b0ba43fe483678f28efad7d"
+    "bytes": 3871,
+    "sha256": "eb3c63d85151334f9128986d582b7d7bd80138d29c71a88379b54f723db8d75f"
   },
   "statistics": {
     "messages": 1,

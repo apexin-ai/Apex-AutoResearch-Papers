@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill-buggy-fp16_20260524T190047_result.json",
     "occurrence": 1,
-    "bytes": 94,
-    "sha256": "0bd01f5ea9995fb2e793471ebb17a5bd179b720a91109cdd63f4273546e836bc"
+    "bytes": 93,
+    "sha256": "1ce6a59a94196469186203d42fb94f46bd8bd3a1f2530e1dd59009c71c9feddc"
   },
   "statistics": {
     "messages": 1,

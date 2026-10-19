@@ -1,0 +1,26 @@
+{
+  "exp_id": "mvp-step2-keff-contrast",
+  "project": "cert_manip_resist_eval",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:58:37.012Z",
+    "updated_at": "2026-05-22T01:06:37.382Z",
+    "hypothesis": "Panels with higher MI-based K_eff (more independent judges) have lower ASR than panels with lower K_eff, regardless of family composition. K_eff predicts manipulation resistance better than family diversity.",
+    "spec": {
+      "command": "python3 scripts/run_step2_keff_contrast.py",
+      "server": "seetacloud-rtx6000",
+      "data_path": "MMLU + ARC-Challenge (HuggingFace)",
+      "data_count": 300,
+      "model_name": "6 models (Qwen-72B/32B/14B, Llama-70B/8B, Mistral-Large) AWQ",
+      "seed": 42,
+      "gpu": "0,1,2,3 (serial)",
+      "pid": 48121
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T01:06:37.388569+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_k7-wild-bootstrap_20260523T010244_result.json",
     "occurrence": 1,
-    "bytes": 1083,
-    "sha256": "12b796800453efd90aedfdba8ebf16cefd0d2c745a913339879180be117362b0"
+    "bytes": 1082,
+    "sha256": "114bf7bce1ca94279205c81fabfd33e48cea9c978778198b6933fbcc43417ffb"
   },
   "statistics": {
     "messages": 1,

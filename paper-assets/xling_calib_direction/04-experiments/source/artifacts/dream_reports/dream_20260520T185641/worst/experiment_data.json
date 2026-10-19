@@ -1,0 +1,1722 @@
+[
+  {
+    "name": "Full Pareto Frontier — Qwen3-235B-A22B (94 layers, MoE, INT8)",
+    "description": "Extract activations at 24 probed layers (every 4th of 94), 20 languages on GlobalMMLU. Train English logistic regression + 2-layer MLP correctness probes. Evaluate 5 transfer conditions: zero-shot, mean-shift, linear projection, few-shot (25/100), CaCLR.\n",
+    "results": {
+      "en_auroc_best_layer": 0.776,
+      "en_best_layer_idx": 72,
+      "en_auroc_range": [
+        0.612,
+        0.776
+      ],
+      "en_ece_raw_best": 0.172,
+      "en_ece_tempcal_best": 0.068,
+      "temp_scaling_T": 5.83,
+      "zs_transfer_auroc_mean_19lang": 0.621,
+      "zs_transfer_auroc_median_19lang": 0.633,
+      "zs_transfer_auroc_std_19lang": 0.054,
+      "zs_transfer_drop_mean_pp": 15.5,
+      "zs_pass_rate_19lang": 0.368,
+      "zs_pass_langs": [
+        "zh",
+        "fr",
+        "de",
+        "es",
+        "ja",
+        "ru",
+        "ko"
+      ],
+      "zs_fail_langs": [
+        "ar",
+        "hi",
+        "sw",
+        "yo",
+        "te",
+        "bn",
+        "ta",
+        "th",
+        "vi",
+        "uk",
+        "id",
+        "pl"
+      ],
+      "mean_shift_improves_count": 0,
+      "mean_shift_mean_delta_ece_pp": 3.14,
+      "linproj_auroc_mean_19lang": 0.648,
+      "linproj_improves_over_zs_count": 13,
+      "linproj_mean_delta_auroc_vs_zs_pp": 2.7,
+      "fewshot25_auroc_mean_19lang": 0.654,
+      "fewshot25_improves_over_zs_count": 14,
+      "fewshot100_auroc_mean_19lang": 0.671,
+      "fewshot100_improves_over_zs_count": 16,
+      "pareto_depth_transfer_rank_corr": 0.41,
+      "pareto_frontier_monotonic": false,
+      "pareto_n_dominated_layers": 6,
+      "transfer_by_family": {
+        "indo_european_germanic": {
+          "mean": 0.672,
+          "langs": [
+            "de",
+            "en"
+          ]
+        },
+        "indo_european_romance": {
+          "mean": 0.661,
+          "langs": [
+            "fr",
+            "es"
+          ]
+        },
+        "indo_european_slavic": {
+          "mean": 0.629,
+          "langs": [
+            "ru",
+            "uk",
+            "pl"
+          ]
+        },
+        "indo_european_indic": {
+          "mean": 0.598,
+          "langs": [
+            "hi",
+            "bn",
+            "te",
+            "ta"
+          ]
+        },
+        "sino_tibetan": {
+          "mean": 0.668,
+          "langs": [
+            "zh"
+          ]
+        },
+        "japonic": {
+          "mean": 0.651,
+          "langs": [
+            "ja"
+          ]
+        },
+        "koreanic": {
+          "mean": 0.648,
+          "langs": [
+            "ko"
+          ]
+        },
+        "afroasiatic": {
+          "mean": 0.612,
+          "langs": [
+            "ar"
+          ]
+        },
+        "niger_congo": {
+          "mean": 0.543,
+          "langs": [
+            "sw",
+            "yo"
+          ]
+        },
+        "tai_kadai": {
+          "mean": 0.591,
+          "langs": [
+            "th"
+          ]
+        },
+        "austronesian": {
+          "mean": 0.618,
+          "langs": [
+            "id"
+          ]
+        },
+        "austroasiatic": {
+          "mean": 0.607,
+          "langs": [
+            "vi"
+          ]
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 1: Qwen3-235B English Probe Performance by Layer (Selected Layers)",
+        "columns": [
+          "layer",
+          "depth_pct",
+          "logreg_auroc",
+          "mlp_auroc",
+          "ece_raw",
+          "ece_tempcal"
+        ],
+        "rows": [
+          [
+            4,
+            4,
+            0.612,
+            0.618,
+            0.298,
+            0.192
+          ],
+          [
+            16,
+            17,
+            0.653,
+            0.661,
+            0.251,
+            0.148
+          ],
+          [
+            28,
+            30,
+            0.694,
+            0.708,
+            0.224,
+            0.121
+          ],
+          [
+            40,
+            43,
+            0.721,
+            0.737,
+            0.203,
+            0.098
+          ],
+          [
+            52,
+            55,
+            0.742,
+            0.755,
+            0.191,
+            0.082
+          ],
+          [
+            60,
+            64,
+            0.758,
+            0.769,
+            0.183,
+            0.075
+          ],
+          [
+            72,
+            77,
+            0.776,
+            0.783,
+            0.172,
+            0.068
+          ],
+          [
+            80,
+            85,
+            0.771,
+            0.779,
+            0.176,
+            0.071
+          ],
+          [
+            88,
+            94,
+            0.753,
+            0.762,
+            0.185,
+            0.079
+          ],
+          [
+            92,
+            98,
+            0.728,
+            0.739,
+            0.198,
+            0.091
+          ]
+        ]
+      },
+      {
+        "name": "Table 2: Qwen3-235B Zero-Shot Transfer AUROC by Language (Best Transfer Layer)",
+        "columns": [
+          "language",
+          "family",
+          "resource_tier",
+          "best_zs_layer",
+          "best_zs_auroc",
+          "en_auroc_at_same_layer",
+          "drop_pp"
+        ],
+        "rows": [
+          [
+            "zh",
+            "sino_tibetan",
+            "high",
+            52,
+            0.668,
+            0.742,
+            7.4
+          ],
+          [
+            "fr",
+            "romance",
+            "high",
+            52,
+            0.672,
+            0.742,
+            7.0
+          ],
+          [
+            "de",
+            "germanic",
+            "high",
+            52,
+            0.671,
+            0.742,
+            7.1
+          ],
+          [
+            "es",
+            "romance",
+            "high",
+            52,
+            0.661,
+            0.742,
+            8.1
+          ],
+          [
+            "ja",
+            "japonic",
+            "high",
+            48,
+            0.651,
+            0.735,
+            8.4
+          ],
+          [
+            "ru",
+            "slavic",
+            "high",
+            48,
+            0.644,
+            0.735,
+            9.1
+          ],
+          [
+            "ko",
+            "koreanic",
+            "high",
+            48,
+            0.648,
+            0.735,
+            8.7
+          ],
+          [
+            "ar",
+            "afroasiatic",
+            "mid",
+            40,
+            0.612,
+            0.721,
+            10.9
+          ],
+          [
+            "hi",
+            "indic",
+            "mid",
+            40,
+            0.618,
+            0.721,
+            10.3
+          ],
+          [
+            "vi",
+            "austroasiatic",
+            "mid",
+            40,
+            0.607,
+            0.721,
+            11.4
+          ],
+          [
+            "id",
+            "austronesian",
+            "mid",
+            40,
+            0.618,
+            0.721,
+            10.3
+          ],
+          [
+            "th",
+            "tai_kadai",
+            "mid",
+            40,
+            0.591,
+            0.721,
+            13.0
+          ],
+          [
+            "pl",
+            "slavic",
+            "mid",
+            40,
+            0.621,
+            0.721,
+            10.0
+          ],
+          [
+            "uk",
+            "slavic",
+            "mid",
+            40,
+            0.614,
+            0.721,
+            10.7
+          ],
+          [
+            "bn",
+            "indic",
+            "low",
+            28,
+            0.583,
+            0.694,
+            11.1
+          ],
+          [
+            "te",
+            "indic",
+            "low",
+            28,
+            0.571,
+            0.694,
+            12.3
+          ],
+          [
+            "ta",
+            "indic",
+            "low",
+            28,
+            0.568,
+            0.694,
+            12.6
+          ],
+          [
+            "sw",
+            "niger_congo",
+            "low",
+            28,
+            0.557,
+            0.694,
+            13.7
+          ],
+          [
+            "yo",
+            "niger_congo",
+            "low",
+            28,
+            0.529,
+            0.694,
+            16.5
+          ]
+        ]
+      },
+      {
+        "name": "Table 3: Qwen3-235B Transfer Method Comparison (AUROC, 19-Language Mean)",
+        "columns": [
+          "method",
+          "auroc_mean",
+          "auroc_std",
+          "pass_rate",
+          "ece_mean",
+          "delta_vs_zs_pp"
+        ],
+        "rows": [
+          [
+            "zero_shot",
+            0.621,
+            0.054,
+            0.368,
+            0.194,
+            0.0
+          ],
+          [
+            "mean_shift",
+            0.604,
+            0.067,
+            0.263,
+            0.225,
+            -1.7
+          ],
+          [
+            "linear_projection",
+            0.648,
+            0.048,
+            0.526,
+            0.171,
+            2.7
+          ],
+          [
+            "few_shot_25",
+            0.654,
+            0.045,
+            0.526,
+            0.166,
+            3.3
+          ],
+          [
+            "few_shot_100",
+            0.671,
+            0.041,
+            0.632,
+            0.152,
+            5.0
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "The Pareto frontier is real on Qwen3-235B but weak: rank correlation of 0.41 means the depth-transfer tradeoff explains only ~17% of variance. MoE routing creates non-monotonic perturbations at mid-depth. The practical implication is limited — the frontier provides modest guidance for layer selection but is not a reliable engineering tool. Zero-shot transfer fails for 12/19 languages (AUROC < 0.65), with a clear resource-tier gradient. The field should not assume English-trained correctness probes transfer to low-resource languages. Mean-shift is confirmed dead at scale. Linear projection and few-shot are the only viable transfer methods, with few-shot-100 achieving the best results — but requiring 100 labeled examples per language partially negates the zero-label promise.\n\n\nQwen3-235B is a much larger MoE model than the MVP's Qwen2.5-7B. English AUROC at 0.776 improves modestly over MVP's 0.754 because the model is more capable and the correctness signal is more linearly accessible in larger models, but gains are sublinear — the larger model also has more complex, distributed representations that resist simple linear probing. Zero-shot transfer mean of 0.621 reflects the worst-tier prediction that transfer is unreliable: high-resource Indo-European languages (fr, de, es) and CJK (zh, ja, ko) transfer adequately because their representations share more subspace structure with English at intermediate layers, but low-resource languages (sw, yo, te, bn) and languages with very different morphology (th, ta) fail because the MoE routing creates language-specific expert patterns that are opaque to an English-trained linear probe. Mean-shift fails entirely (0/19) because the mean activation difference between languages conflates content, style, and script differences — subtracting it removes useful signal. The Pareto frontier rank correlation of 0.41 is real but moderate: the general trend (deeper = better English, worse transfer) holds, but MoE routing introduces non-monotonic noise at mid-depth layers where expert activation patterns shift. The 7/19 pass rate reflects that only typologically close or high-resource languages have enough representational overlap with English for zero-shot transfer to work.\n"
+  },
+  {
+    "name": "Full Pareto Frontier — Llama 4 Scout (48 layers, MoE, INT8)",
+    "description": "Extract activations at 12 probed layers (every 4th of 48), 20 languages on GlobalMMLU. Train English correctness probes, evaluate 5 transfer conditions.\n",
+    "results": {
+      "en_auroc_best_layer": 0.749,
+      "en_best_layer_idx": 36,
+      "en_auroc_range": [
+        0.598,
+        0.749
+      ],
+      "en_ece_raw_best": 0.188,
+      "en_ece_tempcal_best": 0.074,
+      "temp_scaling_T": 5.47,
+      "zs_transfer_auroc_mean_19lang": 0.594,
+      "zs_transfer_auroc_median_19lang": 0.601,
+      "zs_transfer_auroc_std_19lang": 0.061,
+      "zs_transfer_drop_mean_pp": 18.2,
+      "zs_pass_rate_19lang": 0.211,
+      "zs_pass_langs": [
+        "zh",
+        "fr",
+        "de",
+        "es"
+      ],
+      "zs_fail_langs": [
+        "ja",
+        "ru",
+        "ko",
+        "ar",
+        "hi",
+        "sw",
+        "yo",
+        "te",
+        "bn",
+        "ta",
+        "th",
+        "vi",
+        "uk",
+        "id",
+        "pl"
+      ],
+      "mean_shift_improves_count": 0,
+      "mean_shift_mean_delta_ece_pp": 4.21,
+      "linproj_auroc_mean_19lang": 0.623,
+      "linproj_improves_over_zs_count": 11,
+      "fewshot25_auroc_mean_19lang": 0.631,
+      "fewshot100_auroc_mean_19lang": 0.652,
+      "pareto_depth_transfer_rank_corr": 0.22,
+      "pareto_frontier_monotonic": false,
+      "pareto_n_dominated_layers": 3,
+      "pareto_frontier_agreement_with_qwen3": 0.33,
+      "nonmonotonic_layers": [
+        20,
+        24,
+        28
+      ]
+    },
+    "tables": [
+      {
+        "name": "Table 4: Llama 4 Scout English Probe Performance by Layer",
+        "columns": [
+          "layer",
+          "depth_pct",
+          "logreg_auroc",
+          "mlp_auroc",
+          "ece_raw",
+          "ece_tempcal"
+        ],
+        "rows": [
+          [
+            4,
+            8,
+            0.598,
+            0.604,
+            0.312,
+            0.201
+          ],
+          [
+            8,
+            17,
+            0.631,
+            0.641,
+            0.274,
+            0.168
+          ],
+          [
+            12,
+            25,
+            0.668,
+            0.679,
+            0.241,
+            0.137
+          ],
+          [
+            16,
+            33,
+            0.694,
+            0.706,
+            0.218,
+            0.112
+          ],
+          [
+            20,
+            42,
+            0.712,
+            0.722,
+            0.205,
+            0.098
+          ],
+          [
+            24,
+            50,
+            0.726,
+            0.735,
+            0.196,
+            0.088
+          ],
+          [
+            28,
+            58,
+            0.734,
+            0.743,
+            0.192,
+            0.083
+          ],
+          [
+            32,
+            67,
+            0.741,
+            0.749,
+            0.189,
+            0.078
+          ],
+          [
+            36,
+            75,
+            0.749,
+            0.755,
+            0.188,
+            0.074
+          ],
+          [
+            40,
+            83,
+            0.744,
+            0.751,
+            0.19,
+            0.077
+          ],
+          [
+            44,
+            92,
+            0.731,
+            0.738,
+            0.195,
+            0.084
+          ],
+          [
+            48,
+            100,
+            0.708,
+            0.718,
+            0.209,
+            0.097
+          ]
+        ]
+      },
+      {
+        "name": "Table 5: Llama 4 Scout Zero-Shot Transfer AUROC by Language (Best Transfer Layer)",
+        "columns": [
+          "language",
+          "best_zs_layer",
+          "best_zs_auroc",
+          "drop_vs_en_pp"
+        ],
+        "rows": [
+          [
+            "zh",
+            24,
+            0.658,
+            6.8
+          ],
+          [
+            "fr",
+            24,
+            0.662,
+            6.4
+          ],
+          [
+            "de",
+            24,
+            0.655,
+            7.1
+          ],
+          [
+            "es",
+            24,
+            0.651,
+            7.5
+          ],
+          [
+            "ja",
+            20,
+            0.631,
+            8.1
+          ],
+          [
+            "ru",
+            20,
+            0.622,
+            9.0
+          ],
+          [
+            "ko",
+            20,
+            0.627,
+            8.5
+          ],
+          [
+            "ar",
+            16,
+            0.589,
+            10.5
+          ],
+          [
+            "hi",
+            16,
+            0.594,
+            10.0
+          ],
+          [
+            "vi",
+            16,
+            0.581,
+            11.3
+          ],
+          [
+            "id",
+            16,
+            0.591,
+            10.3
+          ],
+          [
+            "th",
+            16,
+            0.568,
+            12.6
+          ],
+          [
+            "pl",
+            20,
+            0.608,
+            10.4
+          ],
+          [
+            "uk",
+            16,
+            0.592,
+            10.2
+          ],
+          [
+            "bn",
+            12,
+            0.556,
+            11.2
+          ],
+          [
+            "te",
+            12,
+            0.541,
+            12.7
+          ],
+          [
+            "ta",
+            12,
+            0.538,
+            13.0
+          ],
+          [
+            "sw",
+            12,
+            0.524,
+            14.4
+          ],
+          [
+            "yo",
+            12,
+            0.498,
+            17.0
+          ]
+        ]
+      },
+      {
+        "name": "Table 6: Cross-Architecture Pareto Frontier Agreement",
+        "columns": [
+          "metric",
+          "qwen3_235b",
+          "llama4_scout",
+          "agreement"
+        ],
+        "rows": [
+          [
+            "rank_corr_depth_vs_transfer",
+            0.41,
+            0.22,
+            "—"
+          ],
+          [
+            "pareto_optimal_layer_count",
+            "6/24",
+            "3/12",
+            "—"
+          ],
+          [
+            "best_transfer_layer_pct_depth",
+            "55%",
+            "50%",
+            "—"
+          ],
+          [
+            "zs_mean_auroc",
+            0.621,
+            0.594,
+            "—"
+          ],
+          [
+            "optimal_layer_rank_agreement_tau",
+            "—",
+            "—",
+            0.33
+          ],
+          [
+            "pass_lang_overlap_jaccard",
+            "—",
+            "—",
+            0.44
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Llama 4 Scout is the worst-tier's smoking gun for the diagnostic reframe. The Pareto frontier essentially doesn't exist on this architecture (rank corr 0.22, only 3 non-dominated layers). This is the strongest evidence for the diagnostic paper's thesis: the depth-transfer tradeoff from Claim 1 is not a universal property of transformers but an architecture-dependent phenomenon that cannot be assumed to generalize. The 0.33 cross-architecture agreement means practitioners cannot use findings from one model to guide layer selection on another. For the paper, this transforms from a weakness into a key finding: the field cannot assume probe-based calibration will behave consistently across architectures.\n\n\nLlama 4 Scout is the worst-tier's key failure point. Its Pareto frontier is flat/non-monotonic (rank correlation 0.22) because Llama 4 Scout's MoE architecture uses a different routing strategy than Qwen3-235B: its experts are more language-specialized at intermediate layers, meaning the English correctness direction at layers 20-28 is entangled with English-specific expert activations in ways that neither degrade nor improve monotonically with depth. English AUROC peaks at 0.749 (lower than Qwen3's 0.776) because Llama 4 Scout's 48 layers compress the representational hierarchy — the same functional stages are packed into fewer layers, leaving less room for a clean correctness signal to emerge. Zero-shot transfer is worse overall (mean 0.594 vs Qwen3's 0.621) because Llama 4 Scout's training data distribution is more English-centric, and its MoE routing assigns non-English tokens to a sparser expert set that shares less structure with the English experts. Only 4/19 languages pass the 0.65 threshold. The 0.33 cross-architecture Pareto agreement means the optimal layer for a given language on Qwen3 does not predict the optimal layer on Llama 4 — the tradeoff is architecture-specific, not a universal property of transformer depth.\n"
+  },
+  {
+    "name": "CaCLR Implementation and Comparative Evaluation",
+    "description": "Implement CaCLR (L_BCE + α·L_SB-ECE + β·L_consistency). Train CaCLR probes using English labels + unlabeled parallel activations. Compare vs all 5 transfer conditions across full Pareto frontier for both models × 20 languages.\n",
+    "results": {
+      "caclr_auroc_mean_qwen3": 0.645,
+      "caclr_auroc_mean_llama4": 0.618,
+      "caclr_vs_linproj_auroc_delta_pp_qwen3": -0.3,
+      "caclr_vs_linproj_auroc_delta_pp_llama4": -0.5,
+      "caclr_vs_zs_auroc_delta_pp_qwen3": 2.4,
+      "caclr_vs_zs_auroc_delta_pp_llama4": 2.4,
+      "caclr_vs_fewshot100_auroc_delta_pp_qwen3": -2.6,
+      "caclr_vs_fewshot100_auroc_delta_pp_llama4": -3.4,
+      "caclr_improvement_pass_rate_qwen3": 0.47,
+      "caclr_improvement_pass_rate_llama4": 0.37,
+      "caclr_ece_mean_qwen3": 0.174,
+      "caclr_ece_mean_llama4": 0.189,
+      "caclr_ece_reduction_vs_tempcal_pct_qwen3": 7.2,
+      "caclr_ece_reduction_vs_tempcal_pct_llama4": 3.8,
+      "best_alpha": 0.3,
+      "best_beta": 0.05,
+      "alpha_sensitivity": "moderate — ±0.1 changes AUROC by ~0.5pp",
+      "beta_sensitivity": "flat — β from 0.01 to 0.5 changes AUROC by <0.3pp, indicating consistency loss is inert",
+      "caclr_no_consistency_auroc_mean": 0.647,
+      "caclr_no_sbece_auroc_mean": 0.629,
+      "caclr_bce_only_auroc_mean": 0.621,
+      "caclr_per_lang_qwen3": {
+        "zh": {
+          "auroc": 0.671,
+          "delta_vs_zs": 0.3,
+          "delta_vs_linproj": -0.8
+        },
+        "fr": {
+          "auroc": 0.668,
+          "delta_vs_zs": -0.4,
+          "delta_vs_linproj": -1.2
+        },
+        "de": {
+          "auroc": 0.665,
+          "delta_vs_zs": -0.6,
+          "delta_vs_linproj": -0.9
+        },
+        "es": {
+          "auroc": 0.658,
+          "delta_vs_zs": -0.3,
+          "delta_vs_linproj": -0.7
+        },
+        "ja": {
+          "auroc": 0.649,
+          "delta_vs_zs": -0.2,
+          "delta_vs_linproj": -0.4
+        },
+        "ru": {
+          "auroc": 0.641,
+          "delta_vs_zs": -0.3,
+          "delta_vs_linproj": -0.6
+        },
+        "ko": {
+          "auroc": 0.647,
+          "delta_vs_zs": -0.1,
+          "delta_vs_linproj": -0.3
+        },
+        "ar": {
+          "auroc": 0.628,
+          "delta_vs_zs": 1.6,
+          "delta_vs_linproj": 0.2
+        },
+        "hi": {
+          "auroc": 0.635,
+          "delta_vs_zs": 1.7,
+          "delta_vs_linproj": 0.1
+        },
+        "vi": {
+          "auroc": 0.621,
+          "delta_vs_zs": 1.4,
+          "delta_vs_linproj": -0.3
+        },
+        "id": {
+          "auroc": 0.633,
+          "delta_vs_zs": 1.5,
+          "delta_vs_linproj": -0.1
+        },
+        "th": {
+          "auroc": 0.607,
+          "delta_vs_zs": 1.6,
+          "delta_vs_linproj": 0.3
+        },
+        "pl": {
+          "auroc": 0.638,
+          "delta_vs_zs": 1.7,
+          "delta_vs_linproj": 0.1
+        },
+        "uk": {
+          "auroc": 0.631,
+          "delta_vs_zs": 1.7,
+          "delta_vs_linproj": 0.2
+        },
+        "bn": {
+          "auroc": 0.601,
+          "delta_vs_zs": 1.8,
+          "delta_vs_linproj": 0.5
+        },
+        "te": {
+          "auroc": 0.589,
+          "delta_vs_zs": 1.8,
+          "delta_vs_linproj": 0.4
+        },
+        "ta": {
+          "auroc": 0.587,
+          "delta_vs_zs": 1.9,
+          "delta_vs_linproj": 0.6
+        },
+        "sw": {
+          "auroc": 0.578,
+          "delta_vs_zs": 2.1,
+          "delta_vs_linproj": 0.9
+        },
+        "yo": {
+          "auroc": 0.551,
+          "delta_vs_zs": 2.2,
+          "delta_vs_linproj": 0.7
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 7: Transfer Method Comparison Summary (19-Language Mean, Both Architectures)",
+        "columns": [
+          "method",
+          "qwen3_auroc",
+          "qwen3_ece",
+          "llama4_auroc",
+          "llama4_ece",
+          "labels_needed"
+        ],
+        "rows": [
+          [
+            "zero_shot",
+            0.621,
+            0.194,
+            0.594,
+            0.212,
+            "0 target"
+          ],
+          [
+            "mean_shift",
+            0.604,
+            0.225,
+            0.571,
+            0.248,
+            "0 target (fails)"
+          ],
+          [
+            "linear_projection",
+            0.648,
+            0.171,
+            0.623,
+            0.189,
+            "~50 parallel"
+          ],
+          [
+            "CaCLR",
+            0.645,
+            0.174,
+            0.618,
+            0.193,
+            "0 target + parallel"
+          ],
+          [
+            "few_shot_25",
+            0.654,
+            0.166,
+            0.631,
+            0.182,
+            "25 target"
+          ],
+          [
+            "few_shot_100",
+            0.671,
+            0.152,
+            0.652,
+            0.168,
+            "100 target"
+          ]
+        ]
+      },
+      {
+        "name": "Table 8: CaCLR Ablation (Qwen3-235B, 19-Language Mean)",
+        "columns": [
+          "variant",
+          "auroc_mean",
+          "ece_mean",
+          "delta_vs_full_pp"
+        ],
+        "rows": [
+          [
+            "Full CaCLR (BCE+SB-ECE+Consistency)",
+            0.645,
+            0.174,
+            0.0
+          ],
+          [
+            "CaCLR − Consistency (BCE+SB-ECE)",
+            0.647,
+            0.172,
+            0.2
+          ],
+          [
+            "CaCLR − SB-ECE (BCE+Consistency)",
+            0.629,
+            0.188,
+            -1.6
+          ],
+          [
+            "BCE Only (= zero-shot probe)",
+            0.621,
+            0.194,
+            -2.4
+          ],
+          [
+            "Linear Projection",
+            0.648,
+            0.171,
+            0.3
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CaCLR is a rigorous negative result. The consistency loss term — the core methodological novelty — is inert. This is not a hyperparameter tuning failure; β is swept over 3 orders of magnitude and the landscape is flat. The SB-ECE term provides modest calibration regularization, but this benefit is available without any cross-lingual machinery. Linear projection achieves the same or better results with a simpler mechanism. For the paper, this is framed as: \"consistency-based cross-lingual alignment objectives do not help when the underlying correctness signal has low cross-lingual SNR. This negative result saves the community from pursuing distributional-matching approaches (adversarial, MMD, consistency) for this problem class.\"\n\n\nCaCLR's consistency loss (L_consistency) is designed to align cross-lingual probe activations so that the English probe generalizes. In the worst tier, this fails because the cross-lingual correctness signal is too noisy for the consistency objective to find meaningful invariances. The unlabeled parallel activations contain language-specific variance (script, morphology, tokenization artifacts) that dominates the correctness signal, so minimizing distributional distance between languages collapses both signal and noise. The hyperparameter search confirms this: β (consistency weight) is driven to near-zero (0.05), and removing the consistency term entirely slightly improves performance (+0.2pp). The SB-ECE term helps modestly because it acts as a calibration regularizer on the English side, but this benefit doesn't compound with consistency. CaCLR ends up being essentially \"zero-shot + SB-ECE regularization\" — functionally a slightly calibration-aware version of the base probe. Linear projection beats CaCLR because projection directly estimates and applies the affine transformation between language representation subspaces, which is a more efficient use of the few available parallel datapoints than trying to learn an invariant representation. The key insight: simple alignment (linproj) outperforms principled invariance (CaCLR) when the signal-to-noise ratio of the target signal is low. For high-resource languages that already transfer well, CaCLR's overhead yields no benefit; for low-resource languages where help is needed, the consistency signal is too noisy to learn from.\n"
+  },
+  {
+    "name": "Difficulty-Controlled Ablation (Decomposition)",
+    "description": "Train IRT difficulty probes, project out difficulty direction from activations, retrain correctness probes on residuals, evaluate transfer. 10 representative languages × 8 representative layers per model.\n",
+    "results": {
+      "difficulty_probe_r2_en_qwen3": 0.52,
+      "difficulty_probe_r2_en_llama4": 0.47,
+      "difficulty_probe_transfer_r2_mean_9lang": 0.41,
+      "decomp_difficulty_var_explained_pct_qwen3": 14.3,
+      "decomp_difficulty_var_explained_pct_llama4": 11.8,
+      "correctness_residual_auroc_en_qwen3": 0.738,
+      "correctness_residual_auroc_en_llama4": 0.711,
+      "correctness_residual_transfer_auroc_mean_qwen3": 0.607,
+      "correctness_residual_transfer_auroc_mean_llama4": 0.581,
+      "transfer_improvement_after_projection": false,
+      "transfer_delta_after_projection_pp_qwen3": -1.4,
+      "transfer_delta_after_projection_pp_llama4": -1.3,
+      "difficulty_correctness_cosine_mean_qwen3": 0.34,
+      "difficulty_correctness_cosine_mean_llama4": 0.38,
+      "difficulty_correctness_cosine_std": 0.11,
+      "subspace_overlap_mean_angle_deg": 58
+    },
+    "tables": [
+      {
+        "name": "Table 9: Difficulty Probe Quality (Ridge Regression, R² on Held-Out)",
+        "columns": [
+          "language",
+          "qwen3_r2",
+          "llama4_r2",
+          "is_transfer"
+        ],
+        "rows": [
+          [
+            "en",
+            0.52,
+            0.47,
+            false
+          ],
+          [
+            "zh",
+            0.48,
+            0.43,
+            true
+          ],
+          [
+            "fr",
+            0.47,
+            0.42,
+            true
+          ],
+          [
+            "de",
+            0.46,
+            0.41,
+            true
+          ],
+          [
+            "ar",
+            0.42,
+            0.37,
+            true
+          ],
+          [
+            "hi",
+            0.41,
+            0.36,
+            true
+          ],
+          [
+            "ja",
+            0.44,
+            0.39,
+            true
+          ],
+          [
+            "ko",
+            0.43,
+            0.38,
+            true
+          ],
+          [
+            "sw",
+            0.33,
+            0.28,
+            true
+          ],
+          [
+            "yo",
+            0.29,
+            0.24,
+            true
+          ]
+        ]
+      },
+      {
+        "name": "Table 10: Decomposition Transfer Ablation (9-Language Mean)",
+        "columns": [
+          "condition",
+          "qwen3_auroc",
+          "qwen3_delta_pp",
+          "llama4_auroc",
+          "llama4_delta_pp"
+        ],
+        "rows": [
+          [
+            "Full activations (baseline)",
+            0.621,
+            0.0,
+            0.594,
+            0.0
+          ],
+          [
+            "Residual (difficulty projected out)",
+            0.607,
+            -1.4,
+            0.581,
+            -1.3
+          ],
+          [
+            "Difficulty component only",
+            0.568,
+            -5.3,
+            0.551,
+            -4.3
+          ],
+          [
+            "Random direction projected out (ctrl)",
+            0.618,
+            -0.3,
+            0.591,
+            -0.3
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Decomposition fails as a prescriptive tool. The difficulty-shared component, far from being a confound, is actually one of the more reliable cross-lingual bridges — removing it hurts. The capability-specific residual is more language-dependent, not less, because it captures idiosyncratic encoding patterns. For the diagnostic paper, this finding is reframed as: \"difficulty and capability are entangled in multilingual representations, unlike the clean separation reported in English-only work. This entanglement may be fundamental to how multilingual models represent knowledge — the shared difficulty structure is load-bearing for cross-lingual transfer, not a confound to be controlled for.\"\n\n\nIn the worst tier, difficulty and capability are entangled in cross-lingual representations. The difficulty direction explains only 14% (Qwen3) / 12% (Llama4) of correctness probe variance — real but modest. Critically, projecting out difficulty makes transfer WORSE (-1.3 to -1.4pp), not better. This is because the difficulty-shared component actually carries useful cross-lingual signal: questions that are hard in English tend to be hard everywhere due to shared conceptual complexity, and this shared difficulty signal is one of the few reliable cross-lingual bridges for the correctness probe. Removing it strips away a genuine cross-lingual invariance. The residual \"capability-specific\" component is more language-dependent, not less — it contains the idiosyncratic ways each language's tokens encode competence, which are precisely the non-transferable signals. The cosine similarity of 0.34-0.38 between difficulty and correctness directions confirms they are neither orthogonal nor aligned — they share a moderate subspace that cannot be cleanly separated. This contradicts the paper's original Claim 2 hypothesis that decomposition would be prescriptive. The decomposition is real but useless: it describes variance structure without enabling better transfer.\n"
+  },
+  {
+    "name": "Cross-Lingual Orthogonality Analysis",
+    "description": "Extract verbalized confidence direction, compute cosine similarity with correctness direction across 20 languages × 2 architectures. Analyze by resource tier and language family.\n",
+    "results": {
+      "orthogonality_cosine_mean_overall": 0.072,
+      "orthogonality_cosine_std_overall": 0.038,
+      "orthogonality_cosine_mean_qwen3": 0.068,
+      "orthogonality_cosine_mean_llama4": 0.076,
+      "orthogonality_cosine_range": [
+        0.018,
+        0.148
+      ],
+      "orthogonality_cosine_high_resource": 0.054,
+      "orthogonality_cosine_mid_resource": 0.071,
+      "orthogonality_cosine_low_resource": 0.098,
+      "pct_langs_cosine_below_0_1": 0.75,
+      "pct_langs_cosine_below_0_05": 0.35,
+      "confidence_probe_r2_mean": 0.68,
+      "confidence_probe_transfer_drops": true
+    },
+    "tables": [
+      {
+        "name": "Table 11: Correctness-Confidence Cosine Similarity by Language",
+        "columns": [
+          "language",
+          "resource_tier",
+          "qwen3_cosine",
+          "llama4_cosine",
+          "mean_cosine"
+        ],
+        "rows": [
+          [
+            "en",
+            "high",
+            0.038,
+            0.041,
+            0.04
+          ],
+          [
+            "zh",
+            "high",
+            0.042,
+            0.049,
+            0.046
+          ],
+          [
+            "fr",
+            "high",
+            0.045,
+            0.051,
+            0.048
+          ],
+          [
+            "de",
+            "high",
+            0.047,
+            0.054,
+            0.051
+          ],
+          [
+            "es",
+            "high",
+            0.049,
+            0.056,
+            0.053
+          ],
+          [
+            "ja",
+            "high",
+            0.055,
+            0.062,
+            0.059
+          ],
+          [
+            "ru",
+            "high",
+            0.058,
+            0.064,
+            0.061
+          ],
+          [
+            "ko",
+            "high",
+            0.061,
+            0.068,
+            0.065
+          ],
+          [
+            "ar",
+            "mid",
+            0.063,
+            0.072,
+            0.068
+          ],
+          [
+            "hi",
+            "mid",
+            0.065,
+            0.075,
+            0.07
+          ],
+          [
+            "vi",
+            "mid",
+            0.068,
+            0.077,
+            0.073
+          ],
+          [
+            "id",
+            "mid",
+            0.064,
+            0.073,
+            0.069
+          ],
+          [
+            "th",
+            "mid",
+            0.072,
+            0.082,
+            0.077
+          ],
+          [
+            "pl",
+            "mid",
+            0.059,
+            0.067,
+            0.063
+          ],
+          [
+            "uk",
+            "mid",
+            0.062,
+            0.071,
+            0.067
+          ],
+          [
+            "bn",
+            "low",
+            0.081,
+            0.092,
+            0.087
+          ],
+          [
+            "te",
+            "low",
+            0.088,
+            0.098,
+            0.093
+          ],
+          [
+            "ta",
+            "low",
+            0.091,
+            0.103,
+            0.097
+          ],
+          [
+            "sw",
+            "low",
+            0.098,
+            0.112,
+            0.105
+          ],
+          [
+            "yo",
+            "low",
+            0.112,
+            0.148,
+            0.13
+          ]
+        ]
+      },
+      {
+        "name": "Table 12: Orthogonality by Resource Tier (Mean Cosine ± Std)",
+        "columns": [
+          "resource_tier",
+          "n_langs",
+          "qwen3_mean",
+          "llama4_mean",
+          "overall_mean",
+          "std"
+        ],
+        "rows": [
+          [
+            "high",
+            8,
+            0.049,
+            0.056,
+            0.054,
+            0.009
+          ],
+          [
+            "mid",
+            7,
+            0.065,
+            0.074,
+            0.071,
+            0.005
+          ],
+          [
+            "low",
+            5,
+            0.094,
+            0.111,
+            0.098,
+            0.016
+          ],
+          [
+            "all",
+            20,
+            0.066,
+            0.076,
+            0.072,
+            0.022
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Claim 4 survives in the worst tier but its contribution is incremental. Orthogonality persists (mean 0.072, all < 0.15) — output-based calibration is indeed structurally limited everywhere. The resource-tier gradient (high: 0.054, mid: 0.071, low: 0.098) is novel but the effect size is modest. The correlation between orthogonality and transfer success is intriguing but not causal. For the diagnostic paper, this is framed as the one mechanistic takeaway: \"the correctness-confidence dissociation is a multilingual phenomenon, confirming that output-based calibration methods face a structural ceiling regardless of language. However, this ceiling is slightly lower for low-resource languages, suggesting that the dissociation partly reflects representation quality rather than a pure architectural invariant.\"\n\n\nOrthogonality persists cross-lingually (mean cosine 0.072, all languages below 0.15) because it is a structural property of how LLMs represent confidence vs correctness — the model's verbalized confidence is calibrated to appear confident regardless of actual correctness, and this dissociation is encoded geometrically at the representation level. However, the worst-tier variance is higher than Miao & Ungar's English-only finding (std 0.038 vs their ~0.01): low-resource languages show less orthogonality (cosine ~0.098) because the model has less capacity to maintain the confidence-correctness dissociation for languages with limited training data — when the model is uncertain due to lack of language-specific knowledge, both its correctness and confidence signals degrade in correlated ways, slightly breaking orthogonality. Reviewers may see this as incremental: Miao & Ungar showed orthogonality for English, we extend to 20 languages, but the finding is qualitatively the same. The resource- tier modulation is the one novel angle but the effect size is modest (0.054 vs 0.098).\n"
+  },
+  {
+    "name": "Probe Complexity Comparison",
+    "description": "Compare logistic regression vs 2-layer MLP at each probed layer for both models. Test hypothesis that linear probes transfer better cross-lingually.\n",
+    "results": {
+      "mlp_vs_logreg_en_auroc_delta_mean_pp_qwen3": 1.1,
+      "mlp_vs_logreg_en_auroc_delta_mean_pp_llama4": 0.9,
+      "mlp_vs_logreg_transfer_auroc_delta_mean_pp_qwen3": -0.4,
+      "mlp_vs_logreg_transfer_auroc_delta_mean_pp_llama4": -0.2,
+      "hypothesis_linear_transfers_better": "weak support",
+      "effect_size_cohens_d": 0.18,
+      "mlp_advantage_shallow_layers_pp": 0.6,
+      "mlp_advantage_deep_layers_pp": 1.4,
+      "logreg_transfer_advantage_shallow_pp": 0.1,
+      "logreg_transfer_advantage_deep_pp": 0.7
+    },
+    "tables": [
+      {
+        "name": "Table 13: Probe Complexity Comparison (Mean Across All Layers)",
+        "columns": [
+          "model",
+          "probe",
+          "en_auroc_mean",
+          "transfer_auroc_mean",
+          "en_ece_mean",
+          "transfer_ece_mean"
+        ],
+        "rows": [
+          [
+            "qwen3",
+            "logreg",
+            0.714,
+            0.621,
+            0.206,
+            0.194
+          ],
+          [
+            "qwen3",
+            "mlp",
+            0.725,
+            0.617,
+            0.198,
+            0.197
+          ],
+          [
+            "llama4",
+            "logreg",
+            0.697,
+            0.594,
+            0.219,
+            0.212
+          ],
+          [
+            "llama4",
+            "mlp",
+            0.706,
+            0.592,
+            0.212,
+            0.214
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Probe complexity is a non-finding. The effect is real but negligible (Cohen's d 0.18). Logistic regression is the correct default choice: nearly identical performance with fewer hyperparameters and better interpretability. This goes into the supplementary as a methods validation, not a main finding.\n\n\nThe hypothesis that linear probes transfer better receives only weak support. MLP probes are ~1pp better in English because the 2-layer MLP captures mild nonlinearities in the correctness signal (interaction effects between representation dimensions). But the cross-lingual transfer difference is tiny (-0.2 to -0.4pp favoring logistic regression) and inconsistent across languages and layers — Cohen's d of 0.18 means the effect would be invisible without large sample sizes. The interaction with depth is the most interesting signal: at deep layers, MLP probes overfit to English-specific patterns more (1.4pp English advantage) and consequently transfer worse (0.7pp transfer penalty). But even this effect is too small to be practically actionable. For the paper, this confirms logistic regression as the appropriate probe choice (simpler, nearly as good) but doesn't generate a standalone finding.\n"
+  },
+  {
+    "name": "Additional Benchmark Evaluation (Belebele + MMLU-ProX)",
+    "description": "Evaluate best probes + CaCLR on Belebele (reading comprehension, 20 languages) and MMLU-ProX (translated MMLU, 20 languages).\n",
+    "results": {
+      "belebele_en_auroc_qwen3": 0.741,
+      "belebele_en_auroc_llama4": 0.718,
+      "belebele_zs_transfer_mean_qwen3": 0.598,
+      "belebele_zs_transfer_mean_llama4": 0.572,
+      "belebele_drop_vs_globalmmlu_pp": 2.3,
+      "belebele_caclr_delta_vs_linproj_pp": -0.6,
+      "mmlupx_en_auroc_qwen3": 0.762,
+      "mmlupx_en_auroc_llama4": 0.738,
+      "mmlupx_zs_transfer_mean_qwen3": 0.583,
+      "mmlupx_zs_transfer_mean_llama4": 0.557,
+      "mmlupx_drop_vs_globalmmlu_pp": 3.8,
+      "mmlupx_caclr_delta_vs_linproj_pp": -0.9,
+      "lang_rank_correlation_globalmmlu_vs_belebele": 0.82,
+      "lang_rank_correlation_globalmmlu_vs_mmlupx": 0.71
+    },
+    "tables": [
+      {
+        "name": "Table 14: Cross-Benchmark Generalization (19-Language Mean)",
+        "columns": [
+          "benchmark",
+          "metric",
+          "qwen3",
+          "llama4"
+        ],
+        "rows": [
+          [
+            "GlobalMMLU",
+            "zs_transfer_auroc",
+            0.621,
+            0.594
+          ],
+          [
+            "Belebele",
+            "zs_transfer_auroc",
+            0.598,
+            0.572
+          ],
+          [
+            "MMLU-ProX",
+            "zs_transfer_auroc",
+            0.583,
+            0.557
+          ],
+          [
+            "GlobalMMLU",
+            "caclr_vs_linproj_pp",
+            -0.3,
+            -0.5
+          ],
+          [
+            "Belebele",
+            "caclr_vs_linproj_pp",
+            -0.6,
+            -0.8
+          ],
+          [
+            "MMLU-ProX",
+            "caclr_vs_linproj_pp",
+            -0.9,
+            -1.2
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Results partially generalize: Belebele confirms the main findings, MMLU-ProX is noisier due to translation artifacts. The language ranking is stable across benchmarks (which languages transfer well vs poorly is consistent), but absolute performance degrades with benchmark domain shift. CaCLR's negative result is robust across all three benchmarks — it never beats linear projection. For the paper, include Belebele in the main results and MMLU-ProX in supplementary with a note about translation artifacts.\n\n\nBelebele partially replicates GlobalMMLU findings because it is also a high-quality, natively multilingual benchmark where translation artifacts are minimal. The 2.3pp drop reflects the domain shift (reading comprehension vs knowledge questions) but the relative ranking of languages is preserved (rank corr 0.82). MMLU-ProX shows worse transfer (3.8pp drop) because it is machine-translated from English MMLU — translation artifacts create systematic distributional shifts that the English-trained correctness probe cannot handle. The translation introduces new failure modes: ambiguous translations for domain-specific terms, cultural references that don't transfer, and occasional errors in low-resource translations. CaCLR is again no better than linear projection on either benchmark, confirming the negative result generalizes beyond the training benchmark.\n"
+  },
+  {
+    "name": "INT8 Validation Ablation",
+    "description": "Compare INT8 vs FP16 probing results at 5 representative layers for Llama 4 Scout on 5% random subset. Validate that INT8 quantization doesn't distort correctness signals.\n",
+    "results": {
+      "int8_vs_fp16_auroc_delta_mean_pp": -0.3,
+      "int8_vs_fp16_auroc_delta_max_pp": -0.7,
+      "int8_vs_fp16_ece_delta_mean_pp": 0.2,
+      "int8_vs_fp16_activation_cosine_sim_mean": 0.994,
+      "int8_vs_fp16_rank_correlation_layers": 0.98,
+      "validation_passes": true
+    },
+    "tables": [
+      {
+        "name": "Table S1 (supplementary): INT8 vs FP16 Probing Comparison",
+        "columns": [
+          "layer",
+          "fp16_auroc",
+          "int8_auroc",
+          "delta_pp",
+          "activation_cosine"
+        ],
+        "rows": [
+          [
+            8,
+            0.637,
+            0.633,
+            -0.4,
+            0.993
+          ],
+          [
+            16,
+            0.7,
+            0.697,
+            -0.3,
+            0.994
+          ],
+          [
+            24,
+            0.731,
+            0.729,
+            -0.2,
+            0.995
+          ],
+          [
+            32,
+            0.746,
+            0.743,
+            -0.3,
+            0.994
+          ],
+          [
+            40,
+            0.748,
+            0.741,
+            -0.7,
+            0.992
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "INT8 validation passes. Quantization is not a confound for any findings in this paper. Include in supplementary appendix as one paragraph + Table S1.\n\n\nINT8 quantization introduces minimal distortion to correctness signals. The 0.3pp mean AUROC difference is within noise — INT8 preserves the relative ordering of activations that linear probes rely on, even though absolute magnitudes shift slightly. The 0.994 cosine similarity between INT8 and FP16 activations confirms near-perfect directional alignment. This is expected because correctness is encoded in the direction of activations, not their magnitude, and INT8 preserves directions well. The layer ranking is identical (rank corr 0.98). This ablation passes cleanly even in the worst tier — quantization artifacts are not the source of any failures observed elsewhere.\n"
+  },
+  {
+    "name": "Gemma 4 31B Dense — Third Architecture (Camera-Ready)",
+    "description": "Full Pareto frontier on Gemma 4 31B Dense (60 layers, dense architecture, FP16). Provides dense-vs-MoE architectural contrast for camera-ready extension.\n",
+    "results": {
+      "en_auroc_best_layer": 0.761,
+      "en_best_layer_idx": 45,
+      "zs_transfer_auroc_mean_19lang": 0.608,
+      "zs_transfer_drop_mean_pp": 16.8,
+      "pareto_depth_transfer_rank_corr": 0.48,
+      "pareto_frontier_agreement_with_qwen3": 0.42,
+      "pareto_frontier_agreement_with_llama4": 0.29,
+      "caclr_vs_linproj_pp": -0.2,
+      "dense_vs_moe_finding": "Dense architecture shows cleaner Pareto frontier (rank corr 0.48 vs 0.41/0.22 for MoE models) — MoE routing is a source of non-monotonic noise in the depth-transfer relationship"
+    },
+    "tables": [
+      {
+        "name": "Table 15: Three-Architecture Comparison Summary",
+        "columns": [
+          "model",
+          "type",
+          "layers",
+          "en_auroc",
+          "transfer_auroc",
+          "pareto_rank_corr",
+          "pareto_agreement_mean"
+        ],
+        "rows": [
+          [
+            "Qwen3-235B",
+            "MoE",
+            94,
+            0.776,
+            0.621,
+            0.41,
+            0.38
+          ],
+          [
+            "Llama4-Scout",
+            "MoE",
+            48,
+            0.749,
+            0.594,
+            0.22,
+            0.31
+          ],
+          [
+            "Gemma4-31B",
+            "Dense",
+            60,
+            0.761,
+            0.608,
+            0.48,
+            0.36
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Gemma4 confirms the diagnostic paper's thesis from a new angle: the Pareto frontier is more coherent in dense architectures, implicating MoE routing as a specific source of cross-lingual transfer noise. For camera-ready, this strengthens the \"architecture matters\" message without changing the core worst-tier narrative.\n\n\nGemma 4 31B Dense shows a cleaner (but still moderate) Pareto frontier because dense architectures have more homogeneous layer-to-layer representation transformations — no expert routing to create non-monotonic jumps. The rank correlation of 0.48 is the highest of the three architectures but still in the worst tier range. English AUROC of 0.761 is between Qwen3 (0.776) and Llama4 (0.749), consistent with its intermediate model size. Transfer is intermediate too (0.608). Cross-architecture agreement remains low (0.42 with Qwen3, 0.29 with Llama4), confirming architecture-dependence. The dense-vs-MoE contrast is the main value-add for camera-ready: it demonstrates that MoE routing is a specific source of frontier noise, not just model variation.\n"
+  },
+  {
+    "name": "Extended Language Coverage (50+ Languages, Camera-Ready)",
+    "description": "Expand from 20 to 50+ languages using full GlobalMMLU/Belebele language sets.\n",
+    "results": {
+      "total_languages": 52,
+      "zs_transfer_auroc_mean_51lang": 0.587,
+      "zs_pass_rate_51lang": 0.235,
+      "new_lang_families_added": 5,
+      "low_resource_auroc_mean_new_langs": 0.548,
+      "worst_language_auroc": 0.491,
+      "resource_tier_gradient_steeper": true
+    },
+    "tables": [
+      {
+        "name": "Table 16: Transfer Success by Resource Tier (Expanded 52-Language Set, Qwen3)",
+        "columns": [
+          "resource_tier",
+          "n_langs",
+          "zs_auroc_mean",
+          "zs_auroc_std",
+          "pass_rate"
+        ],
+        "rows": [
+          [
+            "high",
+            10,
+            0.653,
+            0.018,
+            0.7
+          ],
+          [
+            "mid",
+            18,
+            0.603,
+            0.024,
+            0.28
+          ],
+          [
+            "low",
+            14,
+            0.558,
+            0.031,
+            0.07
+          ],
+          [
+            "very_low",
+            10,
+            0.521,
+            0.022,
+            0.0
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Extended coverage is the nail in the coffin for universal probe-based calibration. With 52 languages, the majority fail to transfer. The resource-tier gradient is steep and monotonic. This is the strongest evidence for the diagnostic paper's conclusion: \"this research line does not generalize beyond a small set of high-resource languages without fundamental methodological advances.\"\n\nExpanding to 50+ languages worsens the aggregate picture because the additional languages are predominantly low- and very-low-resource. Many of these languages (e.g., Amharic, Lao, Mongolian, Georgian) have minimal representation in the models' training data, so their internal representations share even less structure with English. The pass rate drops from ~37% (7/19) to ~24% (12/51), and some languages approach chance (AUROC ~0.49). For the paper, this strengthens the diagnostic message: \"probe-based calibration has a severe language barrier that scales with the number of languages you try to cover.\"\n"
+  }
+]

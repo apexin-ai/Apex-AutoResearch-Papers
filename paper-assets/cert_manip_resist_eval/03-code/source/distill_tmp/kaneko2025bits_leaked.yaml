@@ -1,0 +1,83 @@
+paper_key: "kaneko2025bits_leaked"
+title: "Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs"
+venue: "NeurIPS 2025 spotlight"
+full_text_available: true
+
+research:
+  baselines: [Non-adaptive paraphrase attacks, GCG, PAIR]
+  metrics:
+    - {name: "N_min (minimum queries)", direction: "lower_better_for_attacker"}
+    - {name: "I_max (per-query leakage bits)", direction: "lower_better_for_defender"}
+    - {name: "ROUGE-L", direction: "higher_better"}
+    - {name: "ASR (jailbreak)", direction: "higher_better_for_attacker"}
+  datasets:
+    - {name: "System prompt leakage", size: "1k instances"}
+    - {name: "AdvBench jailbreak", size: "1k instances"}
+    - {name: "Unlearning relearning", size: "1k instances"}
+  ablation_dimensions: [signal_regime (tokens/logits/thinking), temperature, nucleus_threshold, model_size]
+  training_recipe: {optimizer: "N/A (attack framework)", lr: "N/A", hardware: "RoBERTa-base for MI estimation, 7 LLMs for attack targets"}
+  method_family: "information_theoretic_adversarial_bounds"
+
+positioning:
+  core_claim: "Tight attack cost bound N_min ≥ log₂(1/ε)/I_max via Fano inequality, achieved by SPRT — providing the first unified information-theoretic framework for quantifying adversarial attack costs against LLMs"
+  key_results: "Adaptive attacks match theoretical slope -1 on log-log plots (p>0.05); logits reduce queries ~50%; thinking process reduces by orders of magnitude"
+  limitations: ["Bounds assume adaptive attacks (non-adaptive deviate)", "MI estimation via variational bounds may underestimate", "2000 query cap in experiments"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Every adversarial attack against LLMs is an information extraction game — how many bits does each query leak?"
+  tension: "Existing attack/defense literature treats each scenario independently; there's no unified cost accounting framework"
+  key_insight: "The mutual information I(Z;T) per query is the fundamental currency — everything from jailbreaks to prompt extraction follows the same N ∝ 1/I law, proven tight via SPRT achievability"
+  argument_chain: "diverse attack scenarios → unified information-theoretic formulation → Fano lower bound → SPRT achievability → experimental validation across 3 attack types × 7 models"
+  contribution_framing: "Two theorems: lower bound (Fano) and achievability (SPRT), plus empirical validation"
+  intro_structure: "4 paragraphs: (1) LLM security landscape, (2) information leakage framing, (3) theoretical results preview, (4) contributions"
+  notable_technique: "The 'bits per query' framing transforms a complex security landscape into a single measurable quantity — extremely clean conceptual contribution"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "teaser_result"
+    description: "Log-log plots showing N vs 1/I with slope -1 for adaptive attacks across 7 models"
+    narrative_role: "Immediate visual proof that the theoretical bound is tight — the slope-1 line is the paper's central claim"
+    design_elements: ["log-log axes", "theoretical slope reference line", "per-model data points", "adaptive vs non-adaptive distinction"]
+    visual_style: "Scatter with regression lines, clear slope annotation, model-coded colors"
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "scatter"
+      what_compared: "Empirical N vs theoretical prediction across models and attack types"
+      how_gain_highlighted: "Slope ≈ -1 alignment with theoretical prediction"
+      design_note: "Log-log plot makes the power law relationship immediately visible"
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Temperature and nucleus parameter effects on leakage"
+      how_gain_highlighted: "Consistent slope despite parameter variation"
+      design_note: "Robustness demonstration across hyperparameter space"
+  ablation_figures:
+    - figure_id: "Table 1"
+      viz_type: "regression_table"
+      dimensions_varied: ["signal_regime", "adaptive_vs_nonadaptive"]
+      design_note: "Regression slopes with p-values — statistical rigor for the core claim"
+  figure_narrative_role: "Core result (log-log) → Robustness (temperature/nucleus) → Signal regime analysis → Model comparison"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models"
+    col_axis: "signal regimes × adaptive/non-adaptive"
+    row_organization: "flat"
+    col_organization: "grouped_by_regime"
+    highlight_strategy: "p-value significance markers"
+    statistical_reporting: "regression slopes with p-values, 5 seeds"
+    num_baselines: 2
+    design_note: "Slope and p-value pairs — the table IS the statistical test result"
+  ablation_tables:
+    - table_id: "Signal regime comparison"
+      what_varied: ["tokens only", "tokens+logits", "tokens+thinking", "tokens+thinking+logits"]
+      variation_style: "full_numbers"
+      design_note: "Ordered by information access level — shows monotonic leakage increase"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-model MI estimates, variational bound comparisons, extended results"
+    reason: "Main text focuses on aggregate theoretical validation"

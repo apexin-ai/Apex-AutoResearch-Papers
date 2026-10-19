@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_taxonomy-broad-spectrum_20260522T033416_result.json",
     "occurrence": 1,
-    "bytes": 876,
-    "sha256": "814f8c916de74cf2b05969daa43a80e4690c13f0cc2ac62264f752bf851e9567"
+    "bytes": 875,
+    "sha256": "62356c6319164f0b27325a2ae649e5529a8e049585b305461e1dbe8eb99486b8"
   },
   "statistics": {
     "messages": 1,

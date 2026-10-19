@@ -1,0 +1,83 @@
+{
+  "exp_id": "mvp_003",
+  "project": "xling_calib_direction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:27:06.449Z",
+    "updated_at": "2026-05-20T20:34:43.102Z",
+    "hypothesis": "Cross-lingual correctness direction is model-agnostic: an English-trained linear probe on Llama-3.1-8B-Instruct internal representations will transfer to non-English languages (zh/ar/hi/sw/ko) with AUROC >= 0.58, replicating the pattern observed in Qwen2.5-7B-Instruct (mvp_001).",
+    "parent": "mvp_001",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 bash /root/xling_calib_direction/run_mvp_003.sh",
+      "server": "westd-13176",
+      "data_path": "cais/mmlu + CohereForAI/Global-MMLU",
+      "data_count": "~14K test samples per language",
+      "model_name": "LLM-Research/Meta-Llama-3.1-8B-Instruct (ModelScope)",
+      "seed": 42,
+      "gpu": "cuda:2",
+      "tmux_session": "mvp_003",
+      "log_path": "/root/xling_calib_direction/mvp_003.log",
+      "checkpoint_source": "LLM-Research/Meta-Llama-3.1-8B-Instruct",
+      "eval_data": "cais/mmlu + CohereForAI/Global-MMLU"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "en_best_auroc": 0.7284,
+      "en_best_layer": 31,
+      "en_best_ece": 0.2052,
+      "en_auroc_range": [
+        0.6331,
+        0.7284
+      ],
+      "layer_depth_delta": 0.0953,
+      "layers_tested": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        31
+      ],
+      "best_zs_auroc": {
+        "zh": 0.64,
+        "ar": 0.6143,
+        "hi": 0.5917,
+        "ko": 0.648,
+        "sw": 0.5838
+      },
+      "best_zs_layer": {
+        "zh": 20,
+        "ar": 31,
+        "hi": 31,
+        "ko": 31,
+        "sw": 16
+      },
+      "zs_pass_langs": [
+        "zh",
+        "ar",
+        "hi",
+        "ko",
+        "sw"
+      ],
+      "zs_fail_langs": [],
+      "pass_fail": {
+        "P1": "FAIL (AUROC=0.7284 ok, ECE=0.2052 > 0.15)",
+        "P2": "PASS (5/5)",
+        "P3": "PASS (9.53pp)",
+        "P4": "FAIL (0/5, mean-shift no improvement)",
+        "overall": "PARTIAL"
+      }
+    },
+    "checkpoint_path": "/root/xling_calib_direction/probes_mvp003/",
+    "log_path": "/root/xling_calib_direction/results_mvp003/summary.txt",
+    "completed_at": "2026-05-20T20:34:43.102Z"
+  },
+  "timestamp": "2026-05-20T20:34:43.124873+00:00",
+  "trigger": "update_registry"
+}

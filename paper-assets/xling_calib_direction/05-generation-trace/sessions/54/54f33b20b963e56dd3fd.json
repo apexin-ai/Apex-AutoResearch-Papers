@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54f33b20b963e56dd3fd",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops verify plan001 startup",
+  "task_key": "worker_ops_verify_plan001_startup_20260521T134749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_plan001_startup_20260521T134749_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "8dd3d2d2d16c3e8d8310034aa476510df0da6bf2c84fdfd28e8f22e6fd91ad80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设定 60 秒后自动唤醒检查 plan_001 状态。等待中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-plan001-startup.md"
+}

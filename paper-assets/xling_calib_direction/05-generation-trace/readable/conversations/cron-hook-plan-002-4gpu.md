@@ -1,0 +1,1621 @@
+# cron hook plan 002 4gpu
+
+**Shifting the Cross-Lingual Calibration Pareto Frontier: Probe-Based Calibration Transfer via CaCLR** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/cron_hook_plan_002_4gpu.jsonl`
+- **Structured JSON:** [`35d1120651da1e7cf954.json`](../../sessions/35/35d1120651da1e7cf954.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+52 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T12:10:27.189082+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: plan_002_4gpu
+- project: xling_calib_direction
+- server: westd-13176
+- log_path: ~/runs/xling_calib_direction/plan_002_4gpu.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan_002_4gpu",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T12:10:38.651493+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T12:10:38.702119+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T12:10:43.089257+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "xling_calib_direction",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "xling_calib_direction",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T12:10:43.089671+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T12:10:43.140135+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "xling_calib_direction",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "xling_calib_direction",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T12:10:43.141089+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_002_4gpu\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:06:14.731Z\", \"updated_at\": \"2026-05-21T12:10:25.858Z\", \"hypothesis\": \"Cross-lingual correctness direction transfers across languages in Llama 4 Scout (48-layer MoE, W4A16): English-trained linear probes at 13 probed layers (0,4,8,...,44,47) will transfer to 19 non-English languages with AUROC ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent transfer pattern (shallow→deep ΔAUROC ≥ 5pp). MoE architecture with 17B active params provides architectural contrast to dense Qwen models. Retry of plan_002 with 4 GPUs (single-GPU OOM confirmed by dry-run).\", \"parent\": \"plan_002\", \"spec\": {\"command\": \"python -u code/extract_activations.py --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/... --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47 --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir /root/autodl-tmp/activations/llama4_scout/\", \"server\": \"westd-13176\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"data_path\": \"cais/mmlu + CohereForAI/Global-MMLU (cached at /root/autodl-tmp/.hf_cache)\", \"data_count\": \"~14K test samples per language, 20 languages\", \"model_name\": \"RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16\", \"seed\": 42, \"note\": \"4-GPU required (single GPU OOM). 3 code fixes: AutoModelForImageTextToText, language_model.model.layers, language_model.model.norm. Dry-run validated 66s/sample.\"}, \"server\": \"westd-13176\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"pid\": \"468430\", \"log_path\": \"~/runs/xling_calib_direction/plan_002_4gpu.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLI
+…[truncated 13106 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T12:10:43.141460+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "xling_calib_direction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "xling_calib_direction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T12:10:43.192137+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T12:10:43.192794+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-21T12:10:26Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 7 个实验 — DONE 6, RUNNING 1\\n**DONE 分布**: failed 2, success 4\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-13176:cuda:0, westd-13176:cuda:1, westd-13176:cuda:2, westd-13176:cuda:3\\n- **空闲（分配了没跑）**: westd-13176:cuda:0, westd-13176:cuda:1, westd-13176:cuda:2, westd-13176:cuda:3\\n\\n### 💾 磁盘余量\\n- **westd-13176**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 419G/879G 可用（已用 50%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `plan_013_probing_controls_v2` | westd-13176 | ? | 47972 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `plan_002_4gpu` [failed] — 2026-05-21T12:10:25 — CUDA OOM: CUDA out of memory. Tried to allocate 40.00 MiB. GPU 1 has a total cap\\n- `plan_002` [failed] — 2026-05-21T12:01:45 — CUDA OOM: CUDA out of memory. Tried to allocate 160.00 MiB. GPU 0 has a total ca\\n- `plan_013` [success] — 2026-05-21T00:59:20\\n- `mvp_003` [success] — 2026-05-20T20:48:56\\n- `mvp_001` [success] — 2026-05-20T20:26:56\\n\\n### 🔴 最近失败原因 (top 3)\\n- `plan_002_4gpu`: CUDA OOM: CUDA out of memory. Tried to allocate 40.00 MiB. GPU 1 has a total capacity of 94.97 GiB of which 32.50 MiB is free. Process 482839 has 88.03 GiB memory in use. Including non-PyTorch memory,\\n- `plan_002`: CUDA OOM: CUDA out of memory. Tried to allocate 160.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 25.81 MiB is free. Including non-PyTorch memory, this process has 94.94 GiB memory in use. \\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|----
+…[truncated 1926 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T12:10:43.193257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/ROADMAP.md\", \"content\": \"# xling_calib_direction — Research Dashboard\\n\\n> 最后更新: 2026-05-21 12:08 UTC | 更新原因: plan_002 OOM failed (M018: MoE total params >> active params). GPU plan revised: Llama4 cuda:0,1, Qwen3 cuda:2,3\\n\\n## 核心方向\\nCross-lingual correctness probe transfer: LLM 内部 correctness direction 的跨语言可迁移性。**Novelty 锚点**：CKA Simpson's Paradox（raw 负, partial 正）+ control task warning（selectivity 集中在 L20+）。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中 + 论文写作并行\\n- **MVP**: 3/3 完成 ✓\\n- **Research**: plan_013 ✓; plan_013_v2 RUNNING (CPU); plan_002 FAILED (OOM, 重新提交中)\\n- **Dream 趋势**: #3 best=4/6 WA; #4 best=3.5/5 Findings → **目标: 4/5 正会**\\n- **P0 代码**: 全部就绪 ✓\\n- **论文写作**: Intro ✅ | Method ✅ | Related Work ✅ | Experiments Setup ✅ | Figures 3/3 pilot ✅ | 剩余: Abstract, Results, Conclusion\\n- **关键教训 M018**: MoE 模型 total params >> active params，审批时必须用 total params 估显存\\n\\n## 模型状态\\n| 模型 | 量化 | 下载 | 显存需求 | 分配 GPU |\\n|------|------|------|---------|---------|\\n| Llama 4 Scout 17B-16E | W4A16 | ✅ 完成 | ~95GB (需 2 卡) | cuda:0,1 |\\n| Qwen3-235B-A22B | GPTQ-Int4 | ~29/32 shards | ~117GB (需 2-3 卡) | cuda:2,3 |\\n| Gemma 4 32.7B Dense | BF16 | 未开始 | ~63GB (单卡够) | 新服务器 |\\n\\n## GPU 执行计划 (westd-13176, 4× RTX PRO 6000 96GB)\\n**Phase 1 (现在)**: plan_002 重新提交 cuda:0,1 (2 卡, device_map=auto)。plan_013_v2 CPU 继续。\\n**Phase 2 (Qwen3 下载完成后)**: plan_001 cuda:2,3 (2 卡)。如 2 卡 OOM → 等 plan_002 完成后用 3-4 卡。\\n**Phase 3 (新服务器到达)**: plan_008 Gemma4 extraction。\\n**Phase 4 (activations 就绪)**: plan_003 CaCLR + plan_004 IRT + plan_011 CKA (CPU-bound)。\\n\\n## 近期任务\\n- [ ] plan_002 重新提交 (cuda:0,1, 修 OOM) — Agent 处理中\\n- [ ] 确认 Qwen3 下载完成 (29/32 → 32/32)\\n- [ ] Qwen3 就绪 → 提交 plan_001 (cuda:2,3)\\n- [ ] 新服务器 SSH → 环境搭建 → Gemma 4 下载 → plan_008\\n- [ ] plan_013_v2 完成 → selectivity threshold sensitivity\\n- [ ] plan_011 CKA full-scale — 
+…[truncated 1816 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T12:11:09.308481+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T12:11:09.359789+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/agent_a805d823.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T12:11:09.862504+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T12:11:10.114823+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/agent_a805d823.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Read",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T12:11:13.075420+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T12:11:13.527529+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Glob",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T12:11:13.527978+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T12:11:13.578835+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T12:11:16.491679+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T12:11:16.843311+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Glob",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-21T12:11:16.843841+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T12:11:16.944960+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Glob",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T12:11:19.755841+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T12:11:19.806813+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T12:11:19.807309+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T12:11:19.807895+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T12:11:48.307967+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "xling_calib_direction",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "xling_calib_direction",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T12:11:49.512450+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-21: 实验提交环境变量模板（3次失败教训）\\n\\nplan_002 连续失败 3 次，根因：`bash -c` 不读 `.bashrc`，导致 HF_HOME 未设置 + 网络访问失败。\\n\\n**所有实验提交必须用以下 env var block**：\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\nexport PYTHONUNBUFFERED=1 && \\\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\\\\nexport HF_HUB_OFFLINE=1 && \\\\\\nexport HF_DATASETS_OFFLINE=1 && \\\\\\nexport TRANSFORMERS_OFFLINE=1 && \\\\\\ncd /root/xling_calib_direction && \\\\\\npython -u code/xxx.py ...\\\"\\n```\\n\\n其他教训：\\n- `--gpu_id` 不是 extract_activations.py 的合法参数，用 CUDA_VISIBLE_DEVICES 控制 GPU\\n- `--languages` 用空格分隔（nargs=\\\"+\\\"），不是逗号\\n- `--model_name` 是必选参数\\n- 模型已在本地时必须设 OFFLINE=1，否则 transformers 尝试联网会因 HTTP client closed 崩溃\\n\\n## 2026-05-21: Simpson's Paradox in CKA-transfer relationship (D012 关键发现)\\n\\n- **发现**: CKA vs transfer AUROC 存在 Simpson's Paradox——pool 所有 layer 时弱负相关 (rho≈−0.16)，控制 depth 后符号反转为正 (Llama rho=+0.41 p=0.006, Qwen rho=+0.18 ns)\\n- **机制**: CKA 随 depth 下降，AUROC 随 depth 上升，两趋势相消产生虚假负相关。同一 depth 下，CKA 越高 → transfer 越好\\n- **意义**: 直接回应 Reviewer depth confound 质疑；符号反转本身是 publishable finding\\n- **局限**: Qwen partial rho underpowered (n=40)，per-layer n=5 只能看方向。Full-scale 20 langs 会大幅增加统计功效\\n- **决策影响**: 如 Director 确认，paper_framing 中 CKA 分析可从 \\\"suggestive correlation\\\" 升级\\n\\n## 2026-05-21: run_plan_001.sh 关键设计决策\\n\\n- **GPTQ 加载**: `--quantization none` 让 HF 自动检测 GPTQ（不用 bitsandbytes NF4）\\n- **Train/eval split**: `--split_ratio 0.7` 产出 `_train.pt`/`_eval.pt`，symlink 桥接下游脚本\\n- **Procrustes 平行配对**: for_eval/ 中 EN 必须指向 eval split（与 target 平行），已修复初始 bug\\n\\n## 2026-05-21: 模型下载路径\\n\\n- Llama4 正确路径: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\\n- Qwen3 路径: `/root/autodl-tmp/models/Qwen3-235B-A22
+…[truncated 666 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1204
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T12:11:49.914234+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__feishu_send_result_card",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__feishu_send_result_card",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T12:11:49.964834+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-21T12:12:10.247270+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-13176",
+  "exp_id": "plan_002_4gpu",
+  "project": "xling_calib_direction",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-13176",
+    "exp_id": "plan_002_4gpu",
+    "project": "xling_calib_direction",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T12:12:10.348070+00:00_
+
+called mcp__agent-ml-research__get_gpu_health
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_gpu_health</summary>
+
+```json
+{
+  "server": "westd-13176"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__get_gpu_health",
+  "tool_args": {
+    "server": "westd-13176"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-21T12:12:10.448918+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "xling_calib_direction",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "xling_calib_direction",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T12:12:11.503224+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"Loading model: /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/\", \"[transformers] `rope_parameters`'s high_freq_factor field must be greater than low_freq_factor, got high_freq_factor=1.0 and low_freq_factor=1.0\", \"[transformers] `rope_parameters`'s high_freq_factor field must be greater than low_freq_factor, got high_freq_factor=1.0 and low_freq_factor=1.0\", \"  Detected conditional generation architecture, using AutoModelForImageTextToText\", \"[transformers] `rope_parameters`'s high_freq_factor field must be greater than low_freq_factor, got high_freq_factor=1.0 and low_freq_factor=1.0\", \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\", \"Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\", \"\\rCompressing model:   0%|          | 0/5076 [00:00<?, ?it/s]\\rCompressing model:  12%|█▏        | 602/5076 [00:00<00:00, 5971.36it/s]\\rCompressing model:  24%|██▎       | 1200/5076 [00:00<00:02, 1870.12it/s]\\rCompressing model:  30%|██▉       | 1521/5076 [00:00<00:02, 1330.64it/s]\\rCompressing model:  34%|███▍      | 1732/5076 [00:01<00:02, 1388.25it/s]\\rCompressing model:  38%|███▊      | 1925/5076 [00:01<00:02, 1333.99it/s]\\rCompressing model:  41%|████      | 2091/5076 [00:01<00:02, 1383.46it/s]\\rCompressing model:  44%|████▍     | 2255/5076 [00:01<00:02, 1358.96it/s]\\rCompressing model:  48%|████▊     | 2417/5076 [00:01<00:01, 1413.08it/s]\\rCompressing model:  51%|█████     | 2572/5076 [00:01<00:01, 1373.40it/s]\\rCompressing model:  54%|█████▍    | 2736/5076 [00:01<00:01, 1435.86it/s]\\rCompressing model:  57%|█████▋    | 2888/5076 [00:01<00:01, 1394.72it/s]\\rCompressing model:  60%|██████    | 3057/5076 [00:02<00:01, 1470.66it/s]\\rCompressing model:  63%|██████▎   | 3214/5076 [00:02<00:01, 1496.78it/s]\\rCompressing model:  66%|██████▋   | 3368/5076 [
+…[truncated 7390 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1255
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T12:12:11.503770+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"servers\": {\"westd-13176\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__get_gpu_health",
+  "elapsed_ms": 1155
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T12:12:11.504057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_qwen3-process-check-and-dryrun-prep_20260521T115519\", \"task_type\": \"ops:qwen3-process-check-and-dryrun-prep\", \"project\": \"xling_calib_direction\", \"status\": \"running\", \"started_at\": \"2026-05-21T11:55:19.240802+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 1055
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T12:13:01.738395+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan_002_4gpu",
+  "field": "notes",
+  "value": "失败原因: compressed_tensors W4A16 decompression OOM — 模型以压缩格式加载到多GPU，但首次 forward pass 时 ct_decompress_hook 在 GPU 上原地解压 W4→FP16，GPU 1 单卡占用 88/95 GiB 后解压中间张量 OOM | Traceback: extract_activations.py:411 model(**inputs) → compressed_tensors/model_compressor.py:226 ct_decompress_hook → pack_quantized/helpers.py:159 unpack_from_int32 → OOM | 建议: (1) 禁用 compressed_tensors 解压，改用 bitsandbytes 或 AutoGPTQ 加载 (2) 手动 max_memory 限制每卡用量 (3) 用 vLLM/SGLang 离线推理绕开 HF compressed_tensors",
+  "project": "xling_calib_direction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan_002_4gpu",
+    "field": "notes",
+    "value": "失败原因: compressed_tensors W4A16 decompression OOM — 模型以压缩格式加载到多GPU，但首次 forward pass 时 ct_decompress_hook 在 GPU 上原地解压 W4→FP16，GPU 1 单卡占用 88/95 GiB 后解压中间张量 OOM | Traceback: extract_activations.py:411 model(**inputs) → compressed_tensors/model_compressor.py:226 ct_decompress_hook → pack_quantized/helpers.py:159 unpack_from_int32 → OOM | 建议: (1) 禁用 compressed_tensors 解压，改用 bitsandbytes 或 AutoGPTQ 加载 (2) 手动 max_memory 限制每卡用量 (3) 用 vLLM/SGLang 离线推理绕开 HF compressed_tensors",
+    "project": "xling_calib_direction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T12:13:02.140897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_002_4gpu\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:06:14.731Z\", \"updated_at\": \"2026-05-21T12:13:01.750Z\", \"hypothesis\": \"Cross-lingual correctness direction transfers across languages in Llama 4 Scout (48-layer MoE, W4A16): English-trained linear probes at 13 probed layers (0,4,8,...,44,47) will transfer to 19 non-English languages with AUROC ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent transfer pattern (shallow→deep ΔAUROC ≥ 5pp). MoE architecture with 17B active params provides architectural contrast to dense Qwen models. Retry of plan_002 with 4 GPUs (single-GPU OOM confirmed by dry-run).\", \"parent\": \"plan_002\", \"spec\": {\"command\": \"python -u code/extract_activations.py --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/... --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47 --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir /root/autodl-tmp/activations/llama4_scout/\", \"server\": \"westd-13176\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"data_path\": \"cais/mmlu + CohereForAI/Global-MMLU (cached at /root/autodl-tmp/.hf_cache)\", \"data_count\": \"~14K test samples per language, 20 languages\", \"model_name\": \"RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16\", \"seed\": 42, \"note\": \"4-GPU required (single GPU OOM). 3 code fixes: AutoModelForImageTextToText, language_model.model.layers, language_model.model.norm. Dry-run validated 66s/sample.\"}, \"server\": \"westd-13176\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"pid\": \"468430\", \"log_path\": \"~/runs/xling_calib_direction/plan_002_4gpu.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF
+…[truncated 1631 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-21T12:13:02.344781+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan_013_probing_controls_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "xling_calib_direction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan_013_probing_controls_v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "xling_calib_direction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T12:13:02.495822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_013_probing_controls_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:04:11.073Z\", \"updated_at\": \"2026-05-21T12:13:02.350Z\", \"conclusion\": \"failed\", \"spec\": {\"command\": \"python3 probing_controls_v2.py (PID 47972)\", \"server\": \"westd-13176\", \"pid\": 47972, \"data_path\": \"/root/xling_calib_direction/data/globalmmlu\", \"data_count\": -1, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"note\": \"已产出 L0 结果，从 PREPARING 补正状态\"}, \"completed_at\": \"2026-05-21T12:13:02.350Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1214}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-21T12:13:36.021123+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:plan_002_4gpu_oom_fix",
+  "project": "xling_calib_direction",
+  "task_prompt": "## 任务：修复 Llama 4 Scout W4A16 模型的 CUDA OOM 问题\n\n### 背景\nplan_002_4gpu 在 westd-13176（4× RTX PRO 6000 96GB）上运行 `extract_activations.py` 提取 Llama 4 Scout 激活时 OOM 失败。\n\n**根因**：模型用 `compressed_tensors` 格式存储（W4A16）。HF 加载时以压缩格式分布到多 GPU。但首次 forward pass 时，`compressed_tensors` 的 `ct_decompress_hook` 在 GPU 上原地解压 W4→FP16，导致 GPU 1 单卡 88/95 GiB 后 OOM。\n\n**Traceback 链**：\n```\nextract_activations.py:411 model(**inputs)\n→ compressed_tensors/model_compressor.py:226 ct_decompress_hook\n→ compressed_tensors/model_compressor.py:166 decompress_model\n→ compressed_tensors/base.py:194 decompress_module\n→ pack_quantized/helpers.py:159 unpack_from_int32\n→ torch.OutOfMemoryError\n```\n\n### 你的任务\n\n1. **SSH 到 westd-13176 读取代码**：\n   - 读 `/root/xling_calib_direction/code/extract_activations.py`，特别关注模型加载部分（AutoModelForImageTextToText / device_map 设置）\n   - 检查 compressed_tensors 版本：`pip show compressed-tensors`\n   - 检查 Llama 4 Scout 的 config.json：`cat /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/config.json | head -50`\n\n2. **分析修复方案（按优先级）**：\n   - **方案 A**：在加载后、推理前，手动调用 `model.decompress()` 或等效方法在 CPU 上解压，然后再移到 GPU。查 compressed_tensors API 是否支持\n   - **方案 B**：设置 `max_memory` 限制每卡 70GiB，留解压 headroom：`max_memory={0: \"70GiB\", 1: \"70GiB\", 2: \"70GiB\", 3: \"70GiB\"}`\n   - **方案 C**：在 model 加载时传 `decompress_before_dispatch=True` 或类似选项（查文档）\n   - **方案 D**：先 CPU 解压保存 FP16 权重到磁盘，再用 device_map 加载 FP16 版本\n   - **方案 E**：换用 AutoGPTQ 或 bitsandbytes 加载，绕开 compressed_tensors\n\n3. **实现最优方案**：\n   - 修改 `extract_activations.py` 的模型加载逻辑\n   - 修改后做 dry-run 验证（加载模型 + 处理 1 个样本），确认不 OOM\n   - 记录每卡显存占用\n\n4. **输出**：\n   - 修改了什么、为什么选这个方案\n   - dry-run 的显存占用和时间\n   - 是否需要额外的磁盘空间（如方案 D 需要保存 FP16 权重）\n\n### 环境信息\n- 服务器: westd-13176, account: root\n- conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: `/root/xling_calib_direction/`\n- 也可能在: `/root/autodl-tmp/xling_calib_direction/`（检查两个路径）\n- 模型路径: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\n- Python: `/root/miniconda3/bin/python`\n- torch 2.8.0+cu128, 4× RTX PRO 6000 96GB\n- 必须设 `export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`\n- 必须设 HF_HOME=/root/autodl-tmp/.hf_cache, HF_HUB_OFFLINE=1, HF_DATASETS_OFFLINE=1, TRANSFORMERS_OFFLINE=1\n",
+  "tool_groups": "['ssh']",
+  "tools": "['read_registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:plan_002_4gpu_oom_fix",
+    "project": "xling_calib_direction",
+    "task_prompt": "## 任务：修复 Llama 4 Scout W4A16 模型的 CUDA OOM 问题\n\n### 背景\nplan_002_4gpu 在 westd-13176（4× RTX PRO 6000 96GB）上运行 `extract_activations.py` 提取 Llama 4 Scout 激活时 OOM 失败。\n\n**根因**：模型用 `compressed_tensors` 格式存储（W4A16）。HF 加载时以压缩格式分布到多 GPU。但首次 forward pass 时，`compressed_tensors` 的 `ct_decompress_hook` 在 GPU 上原地解压 W4→FP16，导致 GPU 1 单卡 88/95 GiB 后 OOM。\n\n**Traceback 链**：\n```\nextract_activations.py:411 model(**inputs)\n→ compressed_tensors/model_compressor.py:226 ct_decompress_hook\n→ compressed_tensors/model_compressor.py:166 decompress_model\n→ compressed_tensors/base.py:194 decompress_module\n→ pack_quantized/helpers.py:159 unpack_from_int32\n→ torch.OutOfMemoryError\n```\n\n### 你的任务\n\n1. **SSH 到 westd-13176 读取代码**：\n   - 读 `/root/xling_calib_direction/code/extract_activations.py`，特别关注模型加载部分（AutoModelForImageTextToText / device_map 设置）\n   - 检查 compressed_tensors 版本：`pip show compressed-tensors`\n   - 检查 Llama 4 Scout 的 config.json：`cat /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/config.json | head -50`\n\n2. **分析修复方案（按优先级）**：\n   - **方案 A**：在加载后、推理前，手动调用 `model.decompress()` 或等效方法在 CPU 上解压，然后再移到 GPU。查 compressed_tensors API 是否支持\n   - **方案 B**：设置 `max_memory` 限制每卡 70GiB，留解压 headroom：`max_memory={0: \"70GiB\", 1: \"70GiB\", 2: \"70GiB\", 3: \"70GiB\"}`\n   - **方案 C**：在 model 加载时传 `decompress_before_dispatch=True` 或类似选项（查文档）\n   - **方案 D**：先 CPU 解压保存 FP16 权重到磁盘，再用 device_map 加载 FP16 版本\n   - **方案 E**：换用 AutoGPTQ 或 bitsandbytes 加载，绕开 compressed_tensors\n\n3. **实现最优方案**：\n   - 修改 `extract_activations.py` 的模型加载逻辑\n   - 修改后做 dry-run 验证（加载模型 + 处理 1 个样本），确认不 OOM\n   - 记录每卡显存占用\n\n4. **输出**：\n   - 修改了什么、为什么选这个方案\n   - dry-run 的显存占用和时间\n   - 是否需要额外的磁盘空间（如方案 D 需要保存 FP16 权重）\n\n### 环境信息\n- 服务器: westd-13176, account: root\n- conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: `/root/xling_calib_direction/`\n- 也可能在: `/root/autodl-tmp/xling_calib_direction/`（检查两个路径）\n- 模型路径: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\n- Python: `/root/miniconda3/bin/python`\n- torch 2.8.0+cu128, 4× RTX PRO 6000 96GB\n- 必须设 `export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`\n- 必须设 HF_HOME=/root/autodl-tmp/.hf_cache, HF_HUB_OFFLINE=1, HF_DATASETS_OFFLINE=1, TRANSFORMERS_OFFLINE=1\n",
+    "tool_groups": "['ssh']",
+    "tools": "['read_registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T12:13:39.083737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_plan_002_4gpu_oom_fix_20260521T121336\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/logs/workers/worker_diagnose_plan_002_4gpu_oom_fix_20260521T121336.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_plan_002_4gpu_oom_fix_20260521T121336 started. Use get_worker_status('worker_diagnose_plan_002_4gpu_oom_fix_20260521T121336') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3062
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-21T12:13:39.134805+00:00_
+
+called mcp__agent-ml-research__feishu_send_result_card
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_send_result_card</summary>
+
+```json
+{
+  "exp_id": "plan_002_4gpu",
+  "conclusion": "failed",
+  "key_metrics": "{'error': 'CUDA OOM on GPU 1 (88/95 GiB)', 'root_cause': 'compressed_tensors decompression hook', 'traceback': 'model(**inputs) → ct_decompress_hook → unpack_from_int32 → OOM'}",
+  "baseline_comparison": "plan_002 单卡 OOM → plan_002_4gpu 4卡仍 OOM。根因: compressed_tensors W4A16 首次推理时在 GPU 上原地解压 W4→FP16，单卡占满 88 GiB。已派 Worker 修复代码。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "tool_args": {
+    "exp_id": "plan_002_4gpu",
+    "conclusion": "failed",
+    "key_metrics": "{'error': 'CUDA OOM on GPU 1 (88/95 GiB)', 'root_cause': 'compressed_tensors decompression hook', 'traceback': 'model(**inputs) → ct_decompress_hook → unpack_from_int32 → OOM'}",
+    "baseline_comparison": "plan_002 单卡 OOM → plan_002_4gpu 4卡仍 OOM。根因: compressed_tensors W4A16 首次推理时在 GPU 上原地解压 W4→FP16，单卡占满 88 GiB。已派 Worker 修复代码。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T12:13:43.008267+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fdb21a7ec40b29b540473267c4\", \"chat_id\": \"oc_74ae31a7dc5ae9d419ba9a89bccc89c0\", \"msg_type\": \"interactive\", \"next_required_steps\": \"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "elapsed_ms": 3873
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-21T12:13:48.980218+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "xling_calib_direction",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "xling_calib_direction",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T12:13:49.030882+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-21: 实验提交环境变量模板（3次失败教训）\\n\\nplan_002 连续失败 3 次，根因：`bash -c` 不读 `.bashrc`，导致 HF_HOME 未设置 + 网络访问失败。\\n\\n**所有实验提交必须用以下 env var block**：\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\nexport PYTHONUNBUFFERED=1 && \\\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\\\\nexport HF_HUB_OFFLINE=1 && \\\\\\nexport HF_DATASETS_OFFLINE=1 && \\\\\\nexport TRANSFORMERS_OFFLINE=1 && \\\\\\ncd /root/xling_calib_direction && \\\\\\npython -u code/xxx.py ...\\\"\\n```\\n\\n其他教训：\\n- `--gpu_id` 不是 extract_activations.py 的合法参数，用 CUDA_VISIBLE_DEVICES 控制 GPU\\n- `--languages` 用空格分隔（nargs=\\\"+\\\"），不是逗号\\n- `--model_name` 是必选参数\\n- 模型已在本地时必须设 OFFLINE=1，否则 transformers 尝试联网会因 HTTP client closed 崩溃\\n\\n## 2026-05-21: Simpson's Paradox in CKA-transfer relationship (D012 关键发现)\\n\\n- **发现**: CKA vs transfer AUROC 存在 Simpson's Paradox——pool 所有 layer 时弱负相关 (rho≈−0.16)，控制 depth 后符号反转为正 (Llama rho=+0.41 p=0.006, Qwen rho=+0.18 ns)\\n- **机制**: CKA 随 depth 下降，AUROC 随 depth 上升，两趋势相消产生虚假负相关。同一 depth 下，CKA 越高 → transfer 越好\\n- **意义**: 直接回应 Reviewer depth confound 质疑；符号反转本身是 publishable finding\\n- **局限**: Qwen partial rho underpowered (n=40)，per-layer n=5 只能看方向。Full-scale 20 langs 会大幅增加统计功效\\n- **决策影响**: 如 Director 确认，paper_framing 中 CKA 分析可从 \\\"suggestive correlation\\\" 升级\\n\\n## 2026-05-21: run_plan_001.sh 关键设计决策\\n\\n- **GPTQ 加载**: `--quantization none` 让 HF 自动检测 GPTQ（不用 bitsandbytes NF4）\\n- **Train/eval split**: `--split_ratio 0.7` 产出 `_train.pt`/`_eval.pt`，symlink 桥接下游脚本\\n- **Procrustes 平行配对**: for_eval/ 中 EN 必须指向 eval split（与 target 平行），已修复初始 bug\\n\\n## 2026-05-21: 模型下载路径\\n\\n- Llama4 正确路径: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\\n- Qwen3 路径: `/root/autodl-tmp/models/Qwen3-235B-A22
+…[truncated 666 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-21T12:14:10.614318+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "xling_calib_direction",
+  "file": "memory.md",
+  "content": "# Memory\n\n## 2026-05-21: compressed_tensors W4A16 模型解压 OOM（plan_002 + plan_002_4gpu 连续失败）\n\n- **失败模式**: `compressed_tensors` 格式的量化模型（如 RedHatAI Llama-4-Scout W4A16）以压缩格式加载到 GPU 后，首次 forward pass 触发 `ct_decompress_hook`，在 GPU 上原地解压 W4→FP16，导致单卡显存暴增 OOM\n- **表现**: 模型加载+压缩阶段正常（Loading weights → Compressing model），但第一次 `model(**inputs)` 时 OOM\n- **Traceback**: `model(**inputs)` → `ct_decompress_hook` → `decompress_model` → `decompress_module` → `unpack_from_int32` → OOM\n- **关键数据**: GPU 1 容量 94.97 GiB，进程占 88.03 GiB（其中 PyTorch 仅 6.27 GiB，其余为 compressed_tensors 原生分配）\n- **修复方向**: (1) 用 max_memory 限制每卡用量留解压 headroom (2) CPU 解压后再分发到 GPU (3) 换 AutoGPTQ/bitsandbytes 加载 (4) 用 vLLM 离线推理绕开\n- **教训**: MoE 模型 compressed_tensors 格式的实际显存需求 = 压缩权重 + 解压中间张量 + FP16 最终权重，远超静态估算\n\n## 2026-05-21: 实验提交环境变量模板（3次失败教训）\n\nplan_002 连续失败 3 次，根因：`bash -c` 不读 `.bashrc`，导致 HF_HOME 未设置 + 网络访问失败。\n\n**所有实验提交必须用以下 env var block**：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport PYTHONUNBUFFERED=1 && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_OFFLINE=1 && \\\nexport HF_DATASETS_OFFLINE=1 && \\\nexport TRANSFORMERS_OFFLINE=1 && \\\ncd /root/xling_calib_direction && \\\npython -u code/xxx.py ...\"\n```\n\n其他教训：\n- `--gpu_id` 不是 extract_activations.py 的合法参数，用 CUDA_VISIBLE_DEVICES 控制 GPU\n- `--languages` 用空格分隔（nargs=\"+\"），不是逗号\n- `--model_name` 是必选参数\n- 模型已在本地时必须设 OFFLINE=1，否则 transformers 尝试联网会因 HTTP client closed 崩溃\n\n## 2026-05-21: Simpson's Paradox in CKA-transfer relationship (D012 关键发现)\n\n- **发现**: CKA vs transfer AUROC 存在 Simpson's Paradox——pool 所有 layer 时弱负相关 (rho≈−0.16)，控制 depth 后符号反转为正 (Llama rho=+0.41 p=0.006, Qwen rho=+0.18 ns)\n- **机制**: CKA 随 depth 下降，AUROC 随 depth 上升，两趋势相消产生虚假负相关。同一 depth 下，CKA 越高 → transfer 越好\n- **意义**: 直接回应 Reviewer depth confound 质疑；符号反转本身是 publishable finding\n- **局限**: Qwen partial rho underpowered (n=40)，per-layer n=5 只能看方向。Full-scale 20 langs 会大幅增加统计功效\n- **决策影响**: 如 Director 确认，paper_framing 中 CKA 分析可从 \"suggestive correlation\" 升级\n\n## 2026-05-21: run_plan_001.sh 关键设计决策\n\n- **GPTQ 加载**: `--quantization none` 让 HF 自动检测 GPTQ（不用 bitsandbytes NF4）\n- **Train/eval split**: `--split_ratio 0.7` 产出 `_train.pt`/`_eval.pt`，symlink 桥接下游脚本\n- **Procrustes 平行配对**: for_eval/ 中 EN 必须指向 eval split（与 target 平行），已修复初始 bug\n\n## 2026-05-21: 模型下载路径\n\n- Llama4 正确路径: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\n- Qwen3 路径: `/root/autodl-tmp/models/Qwen3-235B-A22B-GPTQ-Int4/`（config.json 在此目录下）\n- Qwen3 config: num_hidden_layers=94, hidden_size=4096, num_local_experts=128\n- 必须用 `HF_HUB_DISABLE_XET=1`（在 os.environ 中设置）+ `hf-mirror.com`\n- `python3` 不在 PATH，用 `/root/miniconda3/bin/python3`\n\n## 2026-05-21: EN AUROC 数据分裂（必须统一）\n\n- **问题**: registry mvp_001 EN AUROC=0.7541@L27（60/20/20 split）vs pareto_results.json EN AUROC=0.7459@L27（70/30 split, D010 后）\n- **差异**: 0.82pp，因评估分割不同\n- **决定**: 论文 figure 和表格统一使用 70/30 split 数据（D010 决策）。不同表格/图之间数字必须一致\n- **注意**: 引用 registry metrics 时检查是否为 70/30 split；旧 MVP 数据用 60/20/20，需标注或替换\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "xling_calib_direction",
+    "file": "memory.md",
+    "content": "# Memory\n\n## 2026-05-21: compressed_tensors W4A16 模型解压 OOM（plan_002 + plan_002_4gpu 连续失败）\n\n- **失败模式**: `compressed_tensors` 格式的量化模型（如 RedHatAI Llama-4-Scout W4A16）以压缩格式加载到 GPU 后，首次 forward pass 触发 `ct_decompress_hook`，在 GPU 上原地解压 W4→FP16，导致单卡显存暴增 OOM\n- **表现**: 模型加载+压缩阶段正常（Loading weights → Compressing model），但第一次 `model(**inputs)` 时 OOM\n- **Traceback**: `model(**inputs)` → `ct_decompress_hook` → `decompress_model` → `decompress_module` → `unpack_from_int32` → OOM\n- **关键数据**: GPU 1 容量 94.97 GiB，进程占 88.03 GiB（其中 PyTorch 仅 6.27 GiB，其余为 compressed_tensors 原生分配）\n- **修复方向**: (1) 用 max_memory 限制每卡用量留解压 headroom (2) CPU 解压后再分发到 GPU (3) 换 AutoGPTQ/bitsandbytes 加载 (4) 用 vLLM 离线推理绕开\n- **教训**: MoE 模型 compressed_tensors 格式的实际显存需求 = 压缩权重 + 解压中间张量 + FP16 最终权重，远超静态估算\n\n## 2026-05-21: 实验提交环境变量模板（3次失败教训）\n\nplan_002 连续失败 3 次，根因：`bash -c` 不读 `.bashrc`，导致 HF_HOME 未设置 + 网络访问失败。\n\n**所有实验提交必须用以下 env var block**：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport PYTHONUNBUFFERED=1 && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_OFFLINE=1 && \\\nexport HF_DATASETS_OFFLINE=1 && \\\nexport TRANSFORMERS_OFFLINE=1 && \\\ncd /root/xling_calib_direction && \\\npython -u code/xxx.py ...\"\n```\n\n其他教训：\n- `--gpu_id` 不是 extract_activations.py 的合法参数，用 CUDA_VISIBLE_DEVICES 控制 GPU\n- `--languages` 用空格分隔（nargs=\"+\"），不是逗号\n- `--model_name` 是必选参数\n- 模型已在本地时必须设 OFFLINE=1，否则 transformers 尝试联网会因 HTTP client closed 崩溃\n\n## 2026-05-21: Simpson's Paradox in CKA-transfer relationship (D012 关键发现)\n\n- **发现**: CKA vs transfer AUROC 存在 Simpson's Paradox——pool 所有 layer 时弱负相关 (rho≈−0.16)，控制 depth 后符号反转为正 (Llama rho=+0.41 p=0.006, Qwen rho=+0.18 ns)\n- **机制**: CKA 随 depth 下降，AUROC 随 depth 上升，两趋势相消产生虚假负相关。同一 depth 下，CKA 越高 → transfer 越好\n- **意义**: 直接回应 Reviewer depth confound 质疑；符号反转本身是 publishable finding\n- **局限**: Qwen partial rho underpowered (n=40)，per-layer n=5 只能看方向。Full-scale 20 langs 会大幅增加统计功效\n- **决策影响**: 如 Director 确认，paper_framing 中 CKA 分析可从 \"suggestive correlation\" 升级\n\n## 2026-05-21: run_plan_001.sh 关键设计决策\n\n- **GPTQ 加载**: `--quantization none` 让 HF 自动检测 GPTQ（不用 bitsandbytes NF4）\n- **Train/eval split**: `--split_ratio 0.7` 产出 `_train.pt`/`_eval.pt`，symlink 桥接下游脚本\n- **Procrustes 平行配对**: for_eval/ 中 EN 必须指向 eval split（与 target 平行），已修复初始 bug\n\n## 2026-05-21: 模型下载路径\n\n- Llama4 正确路径: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\n- Qwen3 路径: `/root/autodl-tmp/models/Qwen3-235B-A22B-GPTQ-Int4/`（config.json 在此目录下）\n- Qwen3 config: num_hidden_layers=94, hidden_size=4096, num_local_experts=128\n- 必须用 `HF_HUB_DISABLE_XET=1`（在 os.environ 中设置）+ `hf-mirror.com`\n- `python3` 不在 PATH，用 `/root/miniconda3/bin/python3`\n\n## 2026-05-21: EN AUROC 数据分裂（必须统一）\n\n- **问题**: registry mvp_001 EN AUROC=0.7541@L27（60/20/20 split）vs pareto_results.json EN AUROC=0.7459@L27（70/30 split, D010 后）\n- **差异**: 0.82pp，因评估分割不同\n- **决定**: 论文 figure 和表格统一使用 70/30 split 数据（D010 决策）。不同表格/图之间数字必须一致\n- **注意**: 引用 registry metrics 时检查是否为 70/30 split；旧 MVP 数据用 60/20/20，需标注或替换\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T12:14:23.461892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 12847
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-21T12:14:23.662869+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/0 在跑（4 卡全空闲）| Worker 2 (GPU 0 / CPU 2) | 磁盘: westd-13176 根分区 50% (419GB 可用)\n\n## plan_002_4gpu 失败诊断\n\n**结论**: compressed_tensors W4A16 解压 OOM（连续第 2 次，plan_002 单卡 → plan_002_4gpu 四卡均 OOM）\n\n**根因**: Llama 4 Scout 用 `compressed_tensors` 格式存储。HF 加载时以压缩格式分布到 GPU，但首次 `model(**inputs)` 时 `ct_decompress_hook` 在 GPU 上原地解压 W4→FP16，GPU 1 单卡被占用 88/95 GiB 后解压中间张量 OOM。4 卡 × 96GB = 384GB 理论够，但 compressed_tensors 的解压机制不是均匀分布——单卡承担了大部分解压负载。\n\n**Traceback**: `extract_activations.py:411 model(**inputs)` → `ct_decompress_hook` → `decompress_model` → `unpack_from_int32` → `torch.OutOfMemoryError`\n\n**已派 Worker** (diagnose:plan_002_4gpu_oom_fix) SSH 诊断+修复，方案优先级：\n1. max_memory 限制每卡用量留解压 headroom\n2. CPU 解压后再分发到 GPU\n3. 换 AutoGPTQ/bitsandbytes 加载\n4. vLLM 离线推理绕开 compressed_tensors\n\n**其他状态更新**:\n- plan_013_probing_controls_v2: 修正为 DONE(failed)（之前状态不一致 RUNNING+failed）\n- qwen3-process-check Worker 仍在运行中\n- 4 卡 GPU 当前全空闲，等 Worker 修复后可立即重提交\n\n**建议**: 等 Worker 诊断结果。如 compressed_tensors 无法绕过，可能需要改用其他 Llama 4 Scout 量化版本（如 GPTQ/AWQ/GGUF）或用 vLLM 做推理+hook 中间层。",
+  "project": "xling_calib_direction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 4/0 在跑（4 卡全空闲）| Worker 2 (GPU 0 / CPU 2) | 磁盘: westd-13176 根分区 50% (419GB 可用)\n\n## plan_002_4gpu 失败诊断\n\n**结论**: compressed_tensors W4A16 解压 OOM（连续第 2 次，plan_002 单卡 → plan_002_4gpu 四卡均 OOM）\n\n**根因**: Llama 4 Scout 用 `compressed_tensors` 格式存储。HF 加载时以压缩格式分布到 GPU，但首次 `model(**inputs)` 时 `ct_decompress_hook` 在 GPU 上原地解压 W4→FP16，GPU 1 单卡被占用 88/95 GiB 后解压中间张量 OOM。4 卡 × 96GB = 384GB 理论够，但 compressed_tensors 的解压机制不是均匀分布——单卡承担了大部分解压负载。\n\n**Traceback**: `extract_activations.py:411 model(**inputs)` → `ct_decompress_hook` → `decompress_model` → `unpack_from_int32` → `torch.OutOfMemoryError`\n\n**已派 Worker** (diagnose:plan_002_4gpu_oom_fix) SSH 诊断+修复，方案优先级：\n1. max_memory 限制每卡用量留解压 headroom\n2. CPU 解压后再分发到 GPU\n3. 换 AutoGPTQ/bitsandbytes 加载\n4. vLLM 离线推理绕开 compressed_tensors\n\n**其他状态更新**:\n- plan_013_probing_controls_v2: 修正为 DONE(failed)（之前状态不一致 RUNNING+failed）\n- qwen3-process-check Worker 仍在运行中\n- 4 卡 GPU 当前全空闲，等 Worker 修复后可立即重提交\n\n**建议**: 等 Worker 诊断结果。如 compressed_tensors 无法绕过，可能需要改用其他 Llama 4 Scout 量化版本（如 GPTQ/AWQ/GGUF）或用 vLLM 做推理+hook 中间层。",
+    "project": "xling_calib_direction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T12:14:25.016956+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_74ae31a7dc5ae9d419ba9a89bccc89c0:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_002_4gpu",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1354
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-21T12:14:32.635482+00:00_
+
+诊断完成，已执行所有必要操作：
+
+1. **根因**: `compressed_tensors` W4A16 首次推理时在 GPU 上原地解压 W4→FP16，单卡 88/95 GiB 后 OOM。4 卡也不够因为解压不均匀分布。
+2. **Registry**: plan_002_4gpu notes 已更新诊断详情；plan_013_probing_controls_v2 状态修正为 DONE(failed)
+3. **Memory.md**: 新增 compressed_tensors 解压 OOM 失败模式记录
+4. **Worker**: 已派 `diagnose:plan_002_4gpu_oom_fix` Worker SSH 诊断+修复代码
+5. **Director**: 已汇报失败诊断 + 修复方案 + 资源状态
+6. **飞书结果卡片**: 已发送
+
+等 Worker 回调后处理修复结果并重提交实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan_002_4gpu"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55d4269aae2679f179b8",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops fix stalled downloads v2",
+  "task_key": "worker_ops_fix_stalled_downloads_v2_20260520T232004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_stalled_downloads_v2_20260520T232004_result.json",
+    "occurrence": 1,
+    "bytes": 419,
+    "sha256": "bbbe5580faff28b30f4938d3557e30b7caf56b4ada89561741d4a40b1201c610"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态汇总：\n- 旧进程（32019, 32724）已终止\n- hf_transfer 已安装，但 huggingface_hub 新版已弃用 `HF_HUB_ENABLE_HF_TRANSFER`，实际走普通 HTTP + `HF_HUB_DISABLE_XET=1`\n- Llama4 下载 PID 36589（当前 33GB/63GB，需再下 30GB）\n- Qwen3 下载 PID 36611（当前 19GB/120GB，需再下 101GB）\n- 2.5 分钟后自动检查速度，如果慢于 2MB/s 将切换 ModelScope"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-stalled-downloads-v2.md"
+}

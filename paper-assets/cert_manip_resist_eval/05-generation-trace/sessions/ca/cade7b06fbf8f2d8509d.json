@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_plan006-judge-asr-concentration_20260524T093812_result.json",
     "occurrence": 1,
-    "bytes": 3490,
-    "sha256": "a18dd7b8eda6754fe010bffdcd857a835d9acd9fdacd1465356ca3892a17dc99"
+    "bytes": 3489,
+    "sha256": "f4d0c7cb5d91359a80fd4e2cbe7572d3961357c3d68bbf0bbf57d180b452d290"
   },
   "statistics": {
     "messages": 1,

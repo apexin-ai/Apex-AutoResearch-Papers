@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_step1-quick-check_20260522T113854_result.json",
     "occurrence": 1,
-    "bytes": 400,
-    "sha256": "724880fe66204cf42072132ffac7b6a3209311f2f26b19ed516a7eb2f57d91c8"
+    "bytes": 399,
+    "sha256": "5d2bd467679f650911d706e9f06ec40e5fbdf0a51ca694dd5216a88ebe16fc4e"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_d047-aggregation-rerun_20260525T215005_result.json",
     "occurrence": 1,
-    "bytes": 1362,
-    "sha256": "e0487afe309969c120da1699154c9be70d9347c4d40312383612daa0f0011433"
+    "bytes": 1361,
+    "sha256": "6cd60fba44bcdb703a91fc485b56a56575465013ec3b660badf51d4e9202ad83"
   },
   "statistics": {
     "messages": 1,

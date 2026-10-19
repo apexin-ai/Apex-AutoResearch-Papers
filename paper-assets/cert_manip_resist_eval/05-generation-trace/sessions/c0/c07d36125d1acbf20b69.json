@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_deploy-code_20260521T180140_result.json",
     "occurrence": 1,
-    "bytes": 547,
-    "sha256": "65983635e74f8df946eea87806f4518bc782330f77c3cb9502edfbd381cd35b8"
+    "bytes": 546,
+    "sha256": "62a12aaf589b26bd70072ba696c85cf22e8b3e1ea89648ba67207ebc7461bb82"
   },
   "statistics": {
     "messages": 1,

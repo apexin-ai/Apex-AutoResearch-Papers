@@ -624,7 +624,7 @@ _source line 14_
 ```json
 {
   "server": "seetacloud-rtx6000",
-  "command": "cd /root/autodl-tmp/anon_repo && git remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'"
+  "command": "cd /root/autodl-tmp/anon_repo && git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'"
 }
 ```
 
@@ -762,7 +762,7 @@ _source line 17 · 2026-05-23T18:52:38.046Z_
 <details><summary>↩ Tool result · `toolu_012nDvbCgWHkowzzzsYvVMed`</summary>
 
 ```text
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"origin\\thttps://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)\\norigin\\thttps://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"origin\\thttps://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)\\norigin\\thttps://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 ```
 
 </details>
@@ -777,9 +777,9 @@ _source line 17 · 2026-05-23T18:52:38.046Z_
   "session_id": "a1843d93-9a3b-481f-98e5-c7223703842e",
   "uuid": "ce1a3628-24c4-45f7-83c1-f614bd3a7c21",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"origin\\\\thttps://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)\\\\norigin\\\\thttps://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"origin\\\\thttps://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)\\\\norigin\\\\thttps://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
     "structuredContent": {
-      "result": "{\"success\": true, \"data\": {\"stdout\": \"origin\\thttps://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)\\norigin\\thttps://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"origin\\thttps://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (fetch)\\norigin\\thttps://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git (push)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
     }
   }
 }
@@ -796,7 +796,7 @@ _source line 18_
 修改完成。
 
 - **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）
-- **修改后**: `https://anonymous-nlp-2026-2:ghp_***@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）
+- **修改后**: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）
 
 <details><summary>Recorded metadata</summary>
 
@@ -843,7 +843,7 @@ _source line 19_
 修改完成。
 
 - **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）
-- **修改后**: `https://anonymous-nlp-2026-2:ghp_***@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）
+- **修改后**: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）
 
 <details><summary>Recorded metadata</summary>
 

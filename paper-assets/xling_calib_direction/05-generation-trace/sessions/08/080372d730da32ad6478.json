@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "id": "080372d730da32ad6478",
+  "project": "xling_calib_direction",
+  "kind": "worker",
+  "title": "exp plan 013 probing controls v2",
+  "task_key": "worker_exp_plan_013_probing_controls_v2_20260520T234133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_013_probing_controls_v2_20260520T234133.log",
+    "occurrence": 1,
+    "bytes": 2326686,
+    "sha256": "bb17c5d66d965f00e3d9cd78cfe6b23a64c81549ff2a666dd80e7f7266deda8a"
+  },
+  "statistics": {
+    "messages": 1860,
+    "user_turns": 2,
+    "tool_calls": 843,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 4,
+      "assistant": 157,
+      "tool_call": 843,
+      "tool_result": 843,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 937,
+      "chunks": [
+        {
+          "path": "080372d730da32ad6478-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0006.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 908,
+      "chunks": [
+        {
+          "path": "080372d730da32ad6478-part-0006.json",
+          "message_count": 143
+        },
+        {
+          "path": "080372d730da32ad6478-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "080372d730da32ad6478-part-0011.json",
+          "message_count": 45
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "080372d730da32ad6478-part-0011.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-plan-013-probing-controls-v2.md"
+}

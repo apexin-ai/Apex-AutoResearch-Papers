@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_plan009-vif-multicollinearity_20260522T070002_result.json",
     "occurrence": 1,
-    "bytes": 1816,
-    "sha256": "9e45bcdbbc3cfd77a88716b09e2b1329228bdcb9a45fd80c02ca2ddc7d0507b4"
+    "bytes": 1815,
+    "sha256": "c08c9a93973980e7598d565e68e2b90b2a9233ff4984fa9955ed229bedba91b2"
   },
   "statistics": {
     "messages": 1,

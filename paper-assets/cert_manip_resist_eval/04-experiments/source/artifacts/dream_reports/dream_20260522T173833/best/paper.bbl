@@ -1,0 +1,76 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Brown et~al.(2005)Brown, Wyatt, Harris, and Yao]{brown2005diversity}
+Gavin Brown, Jeremy Wyatt, Rachel Harris, and Xin Yao.
+\newblock Diversity creation methods: A survey and categorisation.
+\newblock \emph{Information Fusion}, 6\penalty0 (1):\penalty0 5--20, 2005.
+
+\bibitem[Castro and Liskov(1999)]{castro1999practical}
+Miguel Castro and Barbara Liskov.
+\newblock Practical {Byzantine} fault tolerance.
+\newblock In \emph{OSDI}, 1999.
+
+\bibitem[Dubois et~al.(2024)Dubois, Li, Taori, Zhang, Gulrajani, Ba, Guestrin,
+  Liang, and Hashimoto]{dubois2024alpacafarm}
+Yann Dubois, Xuechen Li, Rohan Taori, Tianyi Zhang, Ishaan Gulrajani, Jimmy Ba,
+  Carlos Guestrin, Percy Liang, and Tatsunori~B. Hashimoto.
+\newblock Alpacafarm: A simulation framework for methods that learn from human
+  feedback.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Krogh and Vedelsby(1994)]{krogh1994neural}
+Anders Krogh and Jesper Vedelsby.
+\newblock Neural network ensembles, cross validation, and active learning.
+\newblock \emph{NeurIPS}, 1994.
+
+\bibitem[Lamport et~al.(1982)Lamport, Shostak, and Pease]{lamport1982byzantine}
+Leslie Lamport, Robert Shostak, and Marshall Pease.
+\newblock The {Byzantine} generals problem.
+\newblock \emph{ACM Transactions on Programming Languages and Systems},
+  4\penalty0 (3):\penalty0 382--401, 1982.
+
+\bibitem[Li et~al.(2023)Li, Zhang, Dubois, Taori, Gulrajani, Guestrin, Liang,
+  and Hashimoto]{li2023alpacaeval}
+Xuechen Li, Tianyi Zhang, Yann Dubois, Rohan Taori, Ishaan Gulrajani, Carlos
+  Guestrin, Percy Liang, and Tatsunori~B. Hashimoto.
+\newblock Alpacaeval: An automatic evaluator of instruction-following models.
+\newblock 2023.
+
+\bibitem[Raina et~al.(2024)Raina, Liusie, and Gales]{raina2024llm}
+Vyas Raina, Adian Liusie, and Mark Gales.
+\newblock Is {LLM}-as-a-judge robust? investigating universal adversarial
+  attacks on zero-shot {LLM} assessment.
+\newblock 2024.
+
+\bibitem[Sagawa et~al.(2020)Sagawa, Raghunathan, Koh, and
+  Liang]{sagawa2020investigation}
+Shiori Sagawa, Aditi Raghunathan, Pang~Wei Koh, and Percy Liang.
+\newblock An investigation of why overparameterization exacerbates spurious
+  correlations.
+\newblock 2020.
+
+\bibitem[Shi et~al.(2024)]{shi2024optimization}
+Jiawen Shi et~al.
+\newblock Optimization-based prompt injection attack to {LLM}-as-a-judge.
+\newblock 2024.
+
+\bibitem[Wang et~al.(2023)Wang, Li, Chen, Zhu, Lin, Cao, Liu, Liu, and
+  Sui]{wang2023large}
+Peiyi Wang, Lei Li, Liang Chen, Dawei Zhu, Binghuai Lin, Yunbo Cao, Qi~Liu,
+  Tianyu Liu, and Zhifang Sui.
+\newblock Large language models are not fair evaluators.
+\newblock 2023.
+
+\bibitem[Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
+  Li, Xing, et~al.]{zheng2023judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P. Xing, et~al.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and chatbot arena.
+\newblock In \emph{NeurIPS}, 2023.
+
+\end{thebibliography}

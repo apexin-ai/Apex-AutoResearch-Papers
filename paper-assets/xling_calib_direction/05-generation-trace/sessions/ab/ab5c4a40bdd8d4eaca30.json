@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab5c4a40bdd8d4eaca30",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "paper research lit foundations",
+  "task_key": "worker_paper_research_lit_foundations_20260521T051208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_lit_foundations_20260521T051208_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "cf515f057d8853501dd239e89a46f870c0d282ea2cf3a4f53bcb36108eb029e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件完整，YAML 格式正确。完成情况：\n\n| Cluster | Target | Added | Verified | Failed |\n|---------|--------|-------|----------|--------|\n| **domain_adaptation_theory** | 3 | 3 (bendavid2010theory, zhao2019invariant, zhang2019bridging) | 3 | 0 |\n| **probing_methodology** | 3 | 3 (hewitt2019control, voita2020mdl, belinkov2022probing) | 3 | 0 |\n| **representation_similarity** | 2 | 2 (kornblith2019cka, wu2020similarity) | 2 | 0 |\n| **calibration_foundations** | 3 | 2 new (guo2017calibration, angelopoulos2023conformal) + 1 updated (karandikar2021sbece) | 3 | 0 |\n\n**总计**：新增 10 篇，更新 1 篇（karandikar — 补全 7 位作者全名、URL、verified: true）。所有 11 条目均通过 WebSearch 验证，verified: true。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-lit-foundations.md"
+}

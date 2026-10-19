@@ -1,20 +1,58 @@
-﻿Source archive,Candidate version path in archive,Bytes,Status note
-cert_manip_resist_eval/workspace.tar.gz,artifacts/review_round_8/submitted.pdf,3621125,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/_project/paper/main_8page_v1.pdf,3480976,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/_project/paper/main.pdf,10501687,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/review_round_6/submitted.pdf,1115164,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/review_round_5/submitted.pdf,934872,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T055016/median/paper.pdf,193714,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T055016/worst/paper.pdf,233287,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T055016/best/paper.pdf,230213,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T221131/median/paper.pdf,170689,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T221131/worst/paper.pdf,207011,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T221131/best/paper.pdf,171342,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T173833/median/paper.pdf,175634,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T173833/worst/paper.pdf,168626,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/dream_reports/dream_20260522T173833/best/paper.pdf,170094,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/review_round_7/submitted.pdf,3480989,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/review_round_2/submitted.pdf,859504,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/review_round_3/submitted.pdf,907374,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/review_round_4/submitted.pdf,916518,Archive candidate; official submission/public version not verified
-cert_manip_resist_eval/workspace.tar.gz,artifacts/review_round_1/submitted.pdf,494005,Archive candidate; official submission/public version not verified
+archive_path,source_bytes,output_path
+docs/paper/figures/fig_beta_trajectory.pdf,19275,01-manuscript/source/docs/paper/figures/fig_beta_trajectory.pdf
+docs/paper/figures/fig_panel_composition.pdf,15998,01-manuscript/source/docs/paper/figures/fig_panel_composition.pdf
+docs/paper/figures/fig5_forest_plot.pdf,26256,01-manuscript/source/docs/paper/figures/fig5_forest_plot.pdf
+docs/paper/figures/fig2_gam_keff_split.pdf,27767,01-manuscript/source/docs/paper/figures/fig2_gam_keff_split.pdf
+docs/paper/figures/fig_aggregation_r2_heatmap.pdf,24577,01-manuscript/source/docs/paper/figures/fig_aggregation_r2_heatmap.pdf
+docs/paper/figures/fig_framework_v4.pdf,3800370,01-manuscript/source/docs/paper/figures/fig_framework_v4.pdf
+docs/paper/figures/fig_sensitivity_contour_K3.pdf,715578,01-manuscript/source/docs/paper/figures/fig_sensitivity_contour_K3.pdf
+docs/paper/figures/fig_framework_pb.pdf,259144,01-manuscript/source/docs/paper/figures/fig_framework_pb.pdf
+docs/paper/figures/fig_framework.pdf,422212,01-manuscript/source/docs/paper/figures/fig_framework.pdf
+docs/paper/figures/fig_regime_transition.pdf,17744,01-manuscript/source/docs/paper/figures/fig_regime_transition.pdf
+docs/paper/figures/fig_keff_eta_scatter.pdf,31804,01-manuscript/source/docs/paper/figures/fig_keff_eta_scatter.pdf
+docs/paper/figures/fig_model_radar.pdf,46811,01-manuscript/source/docs/paper/figures/fig_model_radar.pdf
+docs/paper/figures/fig3_aggregation_gradient.pdf,25404,01-manuscript/source/docs/paper/figures/fig3_aggregation_gradient.pdf
+docs/paper/figures/fig_framework_v3_backup.pdf,3648696,01-manuscript/source/docs/paper/figures/fig_framework_v3_backup.pdf
+docs/paper/figures/fig_keff_eta_scatter_main.pdf,101193,01-manuscript/source/docs/paper/figures/fig_keff_eta_scatter_main.pdf
+docs/paper/figures/fig_framework_v3.pdf,3648696,01-manuscript/source/docs/paper/figures/fig_framework_v3.pdf
+docs/paper/figures/fig1_robustness_comparison.pdf,30076,01-manuscript/source/docs/paper/figures/fig1_robustness_comparison.pdf
+docs/paper/figures/fig_framework_v4_cropped.pdf,334139,01-manuscript/source/docs/paper/figures/fig_framework_v4_cropped.pdf
+docs/paper/figures/fig_sensitivity_contour_K7.pdf,603375,01-manuscript/source/docs/paper/figures/fig_sensitivity_contour_K7.pdf
+docs/paper/figures/fig_keff_eta_scatter_old.pdf,58054,01-manuscript/source/docs/paper/figures/fig_keff_eta_scatter_old.pdf
+docs/paper/figures/fig_theory_comparison.pdf,372716,01-manuscript/source/docs/paper/figures/fig_theory_comparison.pdf
+docs/paper/figures/fig_pipeline.pdf,3500210,01-manuscript/source/docs/paper/figures/fig_pipeline.pdf
+docs/paper/figures/fig_framework_new.pdf,3736811,01-manuscript/source/docs/paper/figures/fig_framework_new.pdf
+docs/paper/figures/fig_per_model_asr.pdf,34243,01-manuscript/source/docs/paper/figures/fig_per_model_asr.pdf
+docs/paper/figures/fig_sensitivity_contour_K5.pdf,590398,01-manuscript/source/docs/paper/figures/fig_sensitivity_contour_K5.pdf
+docs/paper/figures/fig_framework_pb_v2.pdf,319966,01-manuscript/source/docs/paper/figures/fig_framework_pb_v2.pdf
+docs/paper/figures/fig_keff_cross_benchmark.pdf,162155,01-manuscript/source/docs/paper/figures/fig_keff_cross_benchmark.pdf
+docs/paper/figures/fig_mi_heatmap.pdf,34915,01-manuscript/source/docs/paper/figures/fig_mi_heatmap.pdf
+docs/paper/figures/fig_keff_eta_scatter_v2.pdf,39687,01-manuscript/source/docs/paper/figures/fig_keff_eta_scatter_v2.pdf
+docs/paper/figures/fig_asr_distribution.pdf,158960,01-manuscript/source/docs/paper/figures/fig_asr_distribution.pdf
+docs/paper/figures/fig_framework_old.pdf,3456989,01-manuscript/source/docs/paper/figures/fig_framework_old.pdf
+docs/paper/figures/fig_aggregation_comparison.pdf,123948,01-manuscript/source/docs/paper/figures/fig_aggregation_comparison.pdf
+docs/paper/figures/fig_bootstrap_null.pdf,18396,01-manuscript/source/docs/paper/figures/fig_bootstrap_null.pdf
+docs/paper/figures/fig_framework_v2.pdf,3736811,01-manuscript/source/docs/paper/figures/fig_framework_v2.pdf
+docs/paper/figures/fig_keff_hist.pdf,15728,01-manuscript/source/docs/paper/figures/fig_keff_hist.pdf
+docs/paper/figures/fig_dominance_heatmap.pdf,25506,01-manuscript/source/docs/paper/figures/fig_dominance_heatmap.pdf
+docs/paper/figures/fig4_panel_design.pdf,18017,01-manuscript/source/docs/paper/figures/fig4_panel_design.pdf
+docs/paper/main.pdf,7628392,01-manuscript/source/docs/paper/main.pdf
+artifacts/review_round_8/submitted.pdf,3621125,01-manuscript/source/artifacts/review_round_8/submitted.pdf
+artifacts/_project/paper/main_8page_v1.pdf,3480976,01-manuscript/source/artifacts/_project/paper/main_8page_v1.pdf
+artifacts/_project/paper/main.pdf,10501687,01-manuscript/source/artifacts/_project/paper/main.pdf
+artifacts/review_round_6/submitted.pdf,1115164,01-manuscript/source/artifacts/review_round_6/submitted.pdf
+artifacts/review_round_5/submitted.pdf,934872,01-manuscript/source/artifacts/review_round_5/submitted.pdf
+artifacts/dream_reports/dream_20260522T055016/median/paper.pdf,193714,01-manuscript/source/artifacts/dream_reports/dream_20260522T055016/median/paper.pdf
+artifacts/dream_reports/dream_20260522T055016/worst/paper.pdf,233287,01-manuscript/source/artifacts/dream_reports/dream_20260522T055016/worst/paper.pdf
+artifacts/dream_reports/dream_20260522T055016/best/paper.pdf,230213,01-manuscript/source/artifacts/dream_reports/dream_20260522T055016/best/paper.pdf
+artifacts/dream_reports/dream_20260522T221131/median/paper.pdf,170689,01-manuscript/source/artifacts/dream_reports/dream_20260522T221131/median/paper.pdf
+artifacts/dream_reports/dream_20260522T221131/worst/paper.pdf,207011,01-manuscript/source/artifacts/dream_reports/dream_20260522T221131/worst/paper.pdf
+artifacts/dream_reports/dream_20260522T221131/best/paper.pdf,171342,01-manuscript/source/artifacts/dream_reports/dream_20260522T221131/best/paper.pdf
+artifacts/dream_reports/dream_20260522T173833/median/paper.pdf,175634,01-manuscript/source/artifacts/dream_reports/dream_20260522T173833/median/paper.pdf
+artifacts/dream_reports/dream_20260522T173833/worst/paper.pdf,168626,01-manuscript/source/artifacts/dream_reports/dream_20260522T173833/worst/paper.pdf
+artifacts/dream_reports/dream_20260522T173833/best/paper.pdf,170094,01-manuscript/source/artifacts/dream_reports/dream_20260522T173833/best/paper.pdf
+artifacts/review_round_7/submitted.pdf,3480989,01-manuscript/source/artifacts/review_round_7/submitted.pdf
+artifacts/review_round_2/submitted.pdf,859504,01-manuscript/source/artifacts/review_round_2/submitted.pdf
+artifacts/review_round_3/submitted.pdf,907374,01-manuscript/source/artifacts/review_round_3/submitted.pdf
+artifacts/review_round_4/submitted.pdf,916518,01-manuscript/source/artifacts/review_round_4/submitted.pdf
+artifacts/review_round_1/submitted.pdf,494005,01-manuscript/source/artifacts/review_round_1/submitted.pdf

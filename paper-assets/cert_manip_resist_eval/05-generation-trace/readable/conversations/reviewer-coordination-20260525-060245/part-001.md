@@ -6305,7 +6305,7 @@ called Read
 _source line 192 · 2026-05-23T20:27:24.949416+00:00_
 
 1	{
-2	  "raw": "修改完成。\n\n- **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）\n- **修改后**: `https://anonymous-nlp-2026-2:ghp_***@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）"
+2	  "raw": "修改完成。\n\n- **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）\n- **修改后**: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）"
 3	}
 
 <details><summary>Recorded metadata</summary>

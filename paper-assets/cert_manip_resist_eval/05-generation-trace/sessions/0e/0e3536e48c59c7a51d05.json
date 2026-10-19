@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_gam-keff-data-loading_20260523T173750_result.json",
     "occurrence": 1,
-    "bytes": 1045,
-    "sha256": "f1298afd1d6de0fa3eca7b1e6017b391878a6a48eb292982e6c0803ce05d86e2"
+    "bytes": 1044,
+    "sha256": "ab9c49e18cf9050614fb3df081c7efac5ca2161b1e7857a14d981439f72ae55e"
   },
   "statistics": {
     "messages": 1,

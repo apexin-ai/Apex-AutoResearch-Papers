@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_update-anon-repo_20260523T150507_result.json",
     "occurrence": 1,
-    "bytes": 208,
-    "sha256": "f1739412184e4605f37683ee589262748229b761430b967740550cb183219a29"
+    "bytes": 207,
+    "sha256": "6ebd842fd35ca410f4a2783883e5ea71124ea61d3a1eb72f20d6d02eb3162fdc"
   },
   "statistics": {
     "messages": 1,

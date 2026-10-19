@@ -1,0 +1,36 @@
+{
+  "exp_id": "plan001_step1_full_v2",
+  "project": "cert_manip_resist_eval",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:42:18.586Z",
+    "updated_at": "2026-05-23T20:16:48.011Z",
+    "spec": {
+      "command": "cleanup",
+      "server": "seetacloud-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "86629",
+      "log_path": "~/runs/cert_manip_resist_eval/plan001_step1_full_v2.log",
+      "submitted_at": "2026-05-22T07:42:18.568Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "n/a",
+      "data_count": 0,
+      "model_name": "n/a",
+      "seed": 0,
+      "checkpoint_path": "n/a",
+      "wall_clock_seconds": 131669.4,
+      "gpu_hours": 36.57
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T20:16:48.011Z"
+  },
+  "timestamp": "2026-05-23T20:16:48.051851+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_plan010-threshold-keff-positive-fdr_20260522T124552_result.json",
     "occurrence": 1,
-    "bytes": 2475,
-    "sha256": "a745958859e5980f5d91bca4267dfbe72b0ec0ccb9484666f594d3c80bb79bc3"
+    "bytes": 2474,
+    "sha256": "1ae55f3c522a357044eba80043764dfce9db794434e51f105d414ae08df3db00"
   },
   "statistics": {
     "messages": 1,

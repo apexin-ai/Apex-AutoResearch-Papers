@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_near-chance-sensitivity_20260525T091028_result.json",
     "occurrence": 1,
-    "bytes": 945,
-    "sha256": "91293221d35275efe0cfaa7a181de9a1c85188142cf32c4a28f17c29e1cd2731"
+    "bytes": 944,
+    "sha256": "57646b1c4f2e1a11a8a53d7526dbde32ee1f28da9db11a5c5946cb370a9f0d54"
   },
   "statistics": {
     "messages": 1,

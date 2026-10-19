@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig1-redesign-v3_20260525T144334_result.json",
     "occurrence": 1,
-    "bytes": 2116765,
-    "sha256": "1cbb7e75ac8d264e64920071fabad0226822945762ccdce750c94392c4c427ec"
+    "bytes": 2116834,
+    "sha256": "2af59e4c377e643650c8c48b978432ed7671e29c0ed270d027e5570c46d4aa49"
   },
   "statistics": {
     "messages": 1,
     "user_turns": 0,
     "tool_calls": 0,
     "roles": {
-      "result": 1
+      "log": 1
     },
-    "unparsed_lines_preserved": 0,
+    "unparsed_lines_preserved": 1,
     "reported_errors": 0
   },
   "rounds": [

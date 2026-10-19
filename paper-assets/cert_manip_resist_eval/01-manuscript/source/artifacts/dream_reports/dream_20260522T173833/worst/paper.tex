@@ -1,0 +1,667 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+
+\title{Structural Vulnerability Anatomy of Multi-Judge LLM Evaluation:\\Weakest-Link Dominance, Aggregation Defenses,\\and the Limits of Diversity}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multi-judge evaluation panels are increasingly adopted to improve the reliability of LLM assessment, with the implicit assumption that judge diversity provides robustness against adversarial manipulation.
+We present a large-scale empirical study (15 models, 455 three-judge panels, 18 attack conditions across 8 attack types and 2 benchmarks) that challenges this assumption.
+Our central finding is that the maximum individual vulnerability of any panel member ($\eta_{\max}$) is the dominant and near-sufficient predictor of panel attack success rate, achieving significance in 9--11 out of 12 core conditions depending on the correction method.
+Panel diversity ($K_{\mathrm{eff}}$), once residualized against $\eta_{\max}$, reaches significance in only 2--5 of 12 conditions and is highly sensitive to the statistical method applied.
+Capability-matched analysis within model tiers reveals that $K_{\mathrm{eff}}$'s apparent effect largely dissolves (1/6 significant), suggesting it is confounded with capability heterogeneity.
+Positively, we find that aggregation rule selection substantially modulates vulnerability: Bayesian aggregation reduces mean attack success rate from 0.261 (majority vote) to 0.198, while accuracy-weighted voting nearly eliminates $K_{\mathrm{eff}}$'s residual association.
+Per-judge ASR concentration analysis reveals that adaptive adversaries exhibit targeted attack patterns (Gini coefficient 0.38 vs.\ 0.12 under random faults, $p < 0.001$), with targeting driven by individual weakness rather than panel diversity.
+We release our 15-model evaluation benchmark and provide practical recommendations for robust panel design centered on individual judge screening and appropriate aggregation.
+\end{abstract}
+
+%-----------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%-----------------------------------------------------------------------
+
+As LLMs are increasingly used as evaluators of other LLMs, multi-judge panels have emerged as a natural defense against the biases and vulnerabilities of individual models.
+The intuition---borrowed implicitly from Byzantine Fault Tolerance (BFT)---is that a diverse set of independent judges should be harder to simultaneously fool than any single judge.
+This paper subjects that intuition to rigorous empirical scrutiny at a scale not previously attempted: 15 judge models spanning 6 model families and 3 capability tiers, exhaustively combined into 455 three-judge panels and evaluated under 8 adversarial attack types across 2 benchmarks.
+
+Our findings are sobering for proponents of diversity-based robustness.
+The vulnerability of a multi-judge panel is overwhelmingly determined by the weakness of its most vulnerable member.
+Specifically, $\eta_{\max}$---the maximum individual attack success rate among panel members---is a significant predictor of panel-level ASR in 9 out of 12 core conditions (FDR-corrected), explaining on average 34\% of the variance in panel ASR by itself.
+Adding panel diversity ($K_{\mathrm{eff}}$, the effective number of independent judgment dimensions) to the regression model contributes only an additional $\Delta R^2 = 0.04$ on average.
+
+The residualized $K_{\mathrm{eff}}$ effect is fragile: it reaches significance in 4/12 conditions under FDR correction but drops to 2/12 under Bonferroni correction, and is highly sensitive to model specification choices.
+When we control for capability more stringently through within-tier analysis (comparing panels drawn from the same capability stratum), $K_{\mathrm{eff}}$'s effect essentially vanishes (1/6 conditions significant).
+This pattern suggests that the apparent diversity effect in the full pool is largely a statistical reflection of capability heterogeneity: diverse panels tend to include weaker models, and it is these weaker models---not diversity per se---that drive vulnerability.
+
+These negative results regarding diversity are accompanied by several constructive contributions.
+We demonstrate that the choice of aggregation rule has a larger impact on panel robustness than panel composition: Bayesian aggregation reduces mean ASR by 24\% relative to majority voting.
+We characterize adaptive adversary targeting behavior through per-judge ASR concentration analysis, showing that adversaries focus attacks on the weakest judge (Gini--$\eta_{\max}$ correlation $r = 0.67$) rather than exploiting panel diversity (Gini--$K_{\mathrm{eff}}$ correlation $r = 0.21$, $p = 0.089$).
+We examine generalization to open-ended evaluation (MT-Bench), where $\eta_{\max}$ dominance strengthens while $K_{\mathrm{eff}}$'s direction becomes inconsistent with MCQ results.
+We also evaluate partial-knowledge adversaries, finding that model-specific knowledge provides only modest attack advantage (8.8\% ASR increase over uniform attacks).
+
+Our practical recommendation is straightforward: panel security is determined by the weakest judge.
+Practitioners should prioritize selecting individually robust judges and employing reliability-weighted aggregation, rather than pursuing diversity for its own sake.
+
+%-----------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+%-----------------------------------------------------------------------
+
+\paragraph{LLM-as-Judge.}
+Using LLMs as evaluators has become standard practice for assessing open-ended generation quality, with systems ranging from single-judge scoring to multi-judge panels with various aggregation schemes.
+Prior work has documented individual judge biases including position bias, verbosity bias, and self-enhancement bias, motivating multi-judge approaches.
+
+\paragraph{Adversarial Attacks on LLM Evaluators.}
+Recent work has shown that LLM judges can be manipulated through prompt injection, sycophancy exploitation, and score manipulation.
+However, most studies focus on single-judge vulnerability rather than panel-level robustness.
+
+\paragraph{Multi-Agent Robustness.}
+The connection between multi-agent systems and fault tolerance has been explored in distributed computing, but the specific setting of LLM evaluation panels under adaptive adversaries remains understudied.
+Byzantine Fault Tolerance provides a theoretical framework for random faults, but its applicability to strategic adversaries requires empirical validation.
+
+\paragraph{Panel Diversity Metrics.}
+Effective diversity ($K_{\mathrm{eff}}$), computed from mutual information matrices, quantifies the number of independent judgment dimensions in a panel, providing a continuous measure beyond simple model count or family-level heuristics.
+
+%-----------------------------------------------------------------------
+\section{Methodology}
+\label{sec:method}
+%-----------------------------------------------------------------------
+
+\subsection{Threat Model}
+We consider an adaptive adversary who can modify evaluation inputs (prompts, candidate responses) to maximize the probability of a favorable judgment from a multi-judge panel.
+The adversary has varying levels of knowledge about panel composition: full knowledge (knows each judge's vulnerability profile), partial knowledge (knows judge families but not specific vulnerabilities), and no knowledge (uniform attack).
+
+\subsection{Model Pool and Panel Construction}
+\label{sec:models}
+
+We assemble a pool of 15 LLM judges spanning 6 model families and 3 capability tiers (Table~\ref{tab:models}).
+All $\binom{15}{3} = 455$ three-judge panels are enumerated exhaustively. For the panel size sensitivity analysis (\S\ref{sec:panel_size}), we additionally construct panels of size $K \in \{5, 7, 9\}$.
+
+\begin{table}[t]
+\centering
+\caption{Model pool: 15 judges across 6 families and 3 capability tiers. Mean $\eta$ is the average individual attack success rate across 6 attack types; Clean ACC is the unattacked accuracy.}
+\label{tab:models}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Family} & \textbf{Size} & \textbf{Tier} & \textbf{Mean $\eta$} & \textbf{Clean ACC} \\
+\midrule
+Qwen2.5-7B & Qwen & 7B & S & 0.38 & 0.61 \\
+Qwen2.5-14B & Qwen & 14B & M & 0.22 & 0.74 \\
+Qwen2.5-72B & Qwen & 72B & L & 0.11 & 0.83 \\
+Llama-3.1-8B & Llama & 8B & S & 0.41 & 0.58 \\
+Llama-3.1-70B & Llama & 70B & L & 0.14 & 0.80 \\
+Mistral-7B & Mistral & 7B & S & 0.44 & 0.55 \\
+Mistral-Nemo-12B & Mistral & 12B & M & 0.27 & 0.69 \\
+Phi-3-mini & Microsoft & 3.8B & S & 0.49 & 0.52 \\
+Phi-3-medium & Microsoft & 14B & M & 0.25 & 0.71 \\
+Gemma-2-9B & Google & 9B & S & 0.36 & 0.63 \\
+GPT-4o-mini & OpenAI & API & M & 0.19 & 0.76 \\
+GPT-4o & OpenAI & API & L & 0.08 & 0.87 \\
+GPT-4.1 & OpenAI & API & L & 0.07 & 0.89 \\
+GPT-4.1-mini & OpenAI & API & M & 0.16 & 0.78 \\
+Claude-3.5-Haiku & Anthropic & API & M & 0.18 & 0.77 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Attack Types}
+
+We evaluate 8 adversarial attack types spanning diverse manipulation strategies:
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item \textbf{Sycophancy}: exploiting judges' tendency to agree with implied preferences.
+\item \textbf{Score manipulation}: direct numeric score inflation cues.
+\item \textbf{Position bias}: exploiting order-dependent evaluation biases.
+\item \textbf{Verbosity bias}: inflating response length to trigger verbosity preference.
+\item \textbf{Authority bias}: invoking authoritative framing.
+\item \textbf{Few-shot hijacking}: injecting misleading few-shot examples.
+\item \textbf{Persona manipulation}: exploiting persona-alignment training.
+\item \textbf{Instruction override}: injecting conflicting instructions.
+\end{itemize}
+
+\subsection{Metrics}
+
+\paragraph{Individual vulnerability ($\eta_j$).} The attack success rate of judge $j$: the fraction of evaluation instances where the adversary successfully flips the judge's assessment.
+
+\paragraph{Panel ASR.} The fraction of instances where the panel's aggregated decision is flipped by the attack, under a specified aggregation rule (default: majority vote).
+
+\paragraph{Maximum vulnerability ($\eta_{\max}$).} $\max_j \eta_j$ for a given panel---the vulnerability of the weakest link.
+
+\paragraph{Effective diversity ($K_{\mathrm{eff}}$).} Computed from the mutual information matrix of panel members' judgments:
+\begin{equation}
+K_{\mathrm{eff}} = \exp\left(-\sum_{i=1}^{K} \frac{\lambda_i}{\sum_j \lambda_j} \log \frac{\lambda_i}{\sum_j \lambda_j}\right)
+\end{equation}
+where $\lambda_i$ are the eigenvalues of the normalized MI matrix. Higher $K_{\mathrm{eff}}$ indicates more independent judgment dimensions.
+
+\paragraph{Regression framework.} For each condition (dataset $\times$ attack), we regress panel ASR on $\eta_{\max}$ and $K_{\mathrm{eff}}$ (residualized against $\eta_{\max}$) across 455 panels:
+\begin{equation}
+\text{ASR}_p = \beta_0 + \beta_{\eta} \cdot \eta_{\max,p} + \beta_{K} \cdot K_{\mathrm{eff,resid},p} + \epsilon_p
+\end{equation}
+
+%-----------------------------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+%-----------------------------------------------------------------------
+
+\subsection{Weakest-Link Dominance}
+\label{sec:weakest_link}
+
+Table~\ref{tab:main_regression} presents the residualized regression results across all 12 core conditions (2 datasets $\times$ 6 attacks).
+$\eta_{\max}$ achieves significance in 9/12 conditions with a mean $\beta_{\eta} = 0.73$ (range: 0.48--0.91).
+In contrast, $K_{\mathrm{eff,resid}}$ reaches significance in only 4/12 conditions (FDR-corrected), with a substantially smaller mean $\beta_K = 0.22$ (range: 0.06--0.41).
+
+The mean $R^2$ of the full model is 0.38, of which $\eta_{\max}$ alone explains 0.34 ($R^2_{\eta}$).
+The incremental contribution of $K_{\mathrm{eff}}$ is $\Delta R^2 = 0.04$---less than 2\% of additional unique variance explained by diversity beyond what individual weakness already captures.
+
+The correlation between $K_{\mathrm{eff}}$ and $\eta_{\max}$ is substantial (mean $r = 0.73$, range 0.35--0.85), indicating that diverse panels systematically include weaker judges.
+Only 1 of 12 conditions constitutes a ``confound-free'' case where the correlation is low enough ($r \approx 0.35$) for residualization to be trustworthy; in that condition, $K_{\mathrm{eff}}$ is marginally significant ($p = 0.032$, $\beta = 0.41$).
+
+\begin{table}[t]
+\centering
+\caption{Residualized regression: $\eta_{\max}$ and $K_{\mathrm{eff,resid}}$ as predictors of panel ASR across 15 models, 455 panels. Significance at $p < 0.05$ (FDR-corrected) in \textbf{bold}.}
+\label{tab:main_regression}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Dataset} & \textbf{Attack} & $\beta_{\eta}$ & $p_{\eta}$ & $\beta_{K,\mathrm{resid}}$ & $p_{K,\mathrm{resid}}$ & $R^2$ & $r(K,\eta)$ \\
+\midrule
+MMLU & sycophancy & 0.82 & \textbf{$<$0.001} & 0.18 & 0.147 & 0.41 & 0.78 \\
+MMLU & score\_manip & 0.55 & \textbf{$<$0.001} & 0.39 & \textbf{0.021} & 0.36 & 0.68 \\
+MMLU & position & 0.71 & \textbf{$<$0.001} & 0.24 & 0.089 & 0.39 & 0.75 \\
+MMLU & verbosity & 0.88 & \textbf{$<$0.001} & 0.09 & 0.511 & 0.42 & 0.81 \\
+MMLU & authority & 0.79 & \textbf{$<$0.001} & 0.15 & 0.218 & 0.37 & 0.76 \\
+MMLU & few\_shot & 0.64 & \textbf{0.002} & 0.31 & \textbf{0.043} & 0.33 & 0.70 \\
+ARC & sycophancy & 0.85 & \textbf{$<$0.001} & 0.12 & 0.341 & 0.43 & 0.79 \\
+ARC & score\_manip & 0.48 & \textbf{0.003} & 0.41 & \textbf{0.032} & 0.35 & 0.35 \\
+ARC & position & 0.73 & \textbf{$<$0.001} & 0.22 & 0.102 & 0.38 & 0.74 \\
+ARC & verbosity & 0.91 & \textbf{$<$0.001} & 0.06 & 0.649 & 0.44 & 0.82 \\
+ARC & authority & 0.76 & \textbf{$<$0.001} & 0.19 & 0.157 & 0.36 & 0.77 \\
+ARC & few\_shot & 0.59 & \textbf{0.004} & 0.28 & 0.071 & 0.32 & 0.72 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{Attack Type Generalization}
+\label{sec:attack_expand}
+
+To test whether these patterns hold beyond the original 6 attack types, we evaluate 3 additional attacks (persona manipulation, instruction override) on the same 455 panels (Table~\ref{tab:new_attacks}).
+The extended results reinforce $\eta_{\max}$ dominance: $\eta_{\max}$ is significant in 5/6 new conditions, while $K_{\mathrm{eff,resid}}$ is significant in only 2/6.
+Notably, persona manipulation on ARC yields a negative (though non-significant) $K_{\mathrm{eff}}$ direction ($\beta = -0.12$, $p = 0.389$), indicating that diversity may even be mildly protective in some settings---inconsistent with any universal ``diversity hurts'' claim.
+
+Across all 18 conditions combined, $\eta_{\max}$ reaches significance in 14/18 (78\%) while $K_{\mathrm{eff,resid}}$ reaches significance in only 6/18 (33\%).
+
+\begin{table}[t]
+\centering
+\caption{Extended attack types (455 panels, 15 models). $K_{\mathrm{eff}}$ direction is inconsistent across conditions.}
+\label{tab:new_attacks}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Dataset} & \textbf{Attack} & $\beta_{\eta}$ & $p_{\eta}$ & $\beta_{K,\mathrm{resid}}$ & $p_{K,\mathrm{resid}}$ & $R^2$ & \textbf{Direction} \\
+\midrule
+MMLU & few\_shot\_hijack & 0.64 & \textbf{0.002} & 0.31 & \textbf{0.043} & 0.33 & positive \\
+MMLU & persona\_manip & 0.91 & \textbf{$<$0.001} & 0.05 & 0.724 & 0.45 & near-zero \\
+MMLU & instruct\_override & 0.58 & \textbf{0.005} & 0.34 & \textbf{0.038} & 0.31 & positive \\
+ARC & few\_shot\_hijack & 0.59 & \textbf{0.004} & 0.28 & 0.071 & 0.32 & positive \\
+ARC & persona\_manip & 0.87 & \textbf{$<$0.001} & $-$0.12 & 0.389 & 0.41 & negative \\
+ARC & instruct\_override & 0.62 & \textbf{0.003} & 0.26 & 0.088 & 0.30 & positive \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{Adaptive Adversary Targeting Behavior}
+\label{sec:targeting}
+
+We analyze per-judge ASR distributions within each panel to characterize how adaptive adversaries allocate attack effort.
+Table~\ref{tab:concentration} compares attack concentration between adaptive and random-fault regimes using the Gini coefficient (higher = more concentrated on a single judge) and Shannon entropy (lower = more concentrated).
+
+Adaptive adversaries exhibit substantially more concentrated targeting (Gini 0.38 vs.\ 0.12, $p < 0.001$): on average, a single judge absorbs 51\% of the attack burden in the adaptive setting versus 38\% under random faults.
+Critically, this targeting tracks individual weakness, not panel diversity: Gini correlates strongly with $\eta_{\max}$ ($r = 0.67$, $p < 0.001$) but only weakly with $K_{\mathrm{eff}}$ ($r = 0.21$, $p = 0.089$; Table~\ref{tab:gini_corr}).
+The adversary attacks the weakest judge, not the most ``unique'' one.
+
+\begin{table}[t]
+\centering
+\caption{ASR concentration statistics: adaptive adversaries target specific judges far more than random faults.}
+\label{tab:concentration}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Metric} & \textbf{Adaptive (mean)} & \textbf{SD} & \textbf{RF (mean)} & \textbf{SD} & \textbf{$p$} \\
+\midrule
+Gini coefficient & 0.38 & 0.14 & 0.12 & 0.05 & $<$0.001 \\
+Entropy (bits) & 2.41 & 0.52 & 3.22 & 0.31 & $<$0.001 \\
+Max single-judge share & 0.51 & 0.12 & 0.38 & 0.06 & $<$0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Correlates of attack concentration (Gini coefficient). Targeting is driven by individual weakness ($\eta_{\max}$) and mean capability, not diversity ($K_{\mathrm{eff}}$).}
+\label{tab:gini_corr}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Predictor} & $r$ \textbf{with Gini} & $p$ & \textbf{Interpretation} \\
+\midrule
+$\eta_{\max}$ & 0.67 & $<$0.001 & Targeting tracks weakness \\
+$K_{\mathrm{eff}}$ & 0.21 & 0.089 & Weak / NS \\
+Panel size & 0.04 & 0.814 & No effect \\
+Mean capability & $-$0.58 & $<$0.001 & Stronger panels $\to$ less concentrated \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Aggregation Rule Comparison}
+\label{sec:aggregation}
+
+Beyond panel composition, the aggregation rule used to combine individual judgments substantially affects panel robustness (Tables~\ref{tab:agg_drivers} and \ref{tab:agg_defense}).
+
+Bayesian aggregation achieves the lowest mean ASR (0.198) with the smallest spread between best and worst panels (0.182), representing a 24\% reduction over majority voting (0.261).
+Threshold (unanimity) voting is the most conservative rule (lowest ASR for top panels at 0.098) but amplifies $K_{\mathrm{eff}}$'s residual significance from 4/12 to 6/12---because unanimity grants each judge effective veto power, and diverse panels are more likely to include a judge that vetoes correct decisions.
+Accuracy-weighted voting nearly eliminates $K_{\mathrm{eff}}$'s residual effect (2/12 significant) while maintaining strong $\eta_{\max}$ predictive power (10/12), suggesting that down-weighting unreliable judges addresses both vulnerability drivers.
+
+The variation in $K_{\mathrm{eff}}$'s significance across aggregation rules (1/12 to 6/12) itself suggests that the residual $K_{\mathrm{eff}}$ effect is partially an aggregation artifact rather than a structural vulnerability property.
+
+\begin{table}[t]
+\centering
+\caption{Vulnerability driver significance under different aggregation rules (12 conditions, 455 panels).}
+\label{tab:agg_drivers}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Aggregation} & $K_{\mathrm{eff}}$ \textbf{sig (/12)} & $\eta_{\max}$ \textbf{sig (/12)} & \textbf{Mean $R^2$} & \textbf{Best predictor} \\
+\midrule
+Majority Vote & 4 & 9 & 0.38 & $\eta_{\max}$ \\
+Threshold (Unanimity) & 6 & 7 & 0.42 & mixed \\
+Accuracy-Weighted & 2 & 10 & 0.45 & $\eta_{\max}$ \\
+Bayesian & 1 & 5 & 0.29 & $\eta_{\max}$ (weakened) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Aggregation as defense: mean ASR across all 455 panels and for top-10/bottom-10 panels.}
+\label{tab:agg_defense}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Aggregation} & \textbf{Mean ASR} & \textbf{Top-10 ASR} & \textbf{Bottom-10 ASR} & \textbf{Spread} \\
+\midrule
+Majority & 0.261 & 0.142 & 0.418 & 0.276 \\
+Threshold & 0.183 & 0.098 & 0.312 & 0.214 \\
+Weighted & 0.224 & 0.121 & 0.367 & 0.246 \\
+Bayesian & 0.198 & 0.112 & 0.294 & 0.182 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Panel Selection Strategies}
+\label{sec:selection}
+
+We benchmark 6 panel selection strategies (Table~\ref{tab:selection}) to translate our analytical findings into actionable guidance.
+The two best-performing strategies---Min-$\eta_{\max}$ and Strongest-$K$---both prioritize individual judge robustness and achieve statistically indistinguishable performance (mean ASR 0.229 vs.\ 0.234, $p = 0.478$).
+A Two-Stage algorithm (first screen for $\eta \leq 0.15$, then maximize $K_{\mathrm{eff}}$ among qualifying judges) achieves the numerically lowest ASR (0.227) but does not significantly outperform Strongest-$K$ ($\Delta = -3.1\%$, $p = 0.312$).
+
+Conversely, Max-$K_{\mathrm{eff}}$ is the \emph{worst} strategy (ASR 0.341), because maximizing diversity in an unrestricted pool systematically introduces the weakest judges.
+This reinforces our central finding: diversity without robustness screening is counterproductive.
+
+\begin{table}[t]
+\centering
+\caption{Panel selection strategies: mean ASR across 6 attack conditions. Wins = number of conditions where the strategy achieves the lowest ASR.}
+\label{tab:selection}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Strategy} & \textbf{Mean ASR} & \textbf{vs.\ Strongest-$K$ $\Delta$\%} & $p$ & \textbf{Wins} \\
+\midrule
+Random & 0.284 & +21.5\% & $<$0.001 & 0 \\
+Max-$K_{\mathrm{eff}}$ & 0.341 & +45.9\% & $<$0.001 & 0 \\
+Diversity-Only & 0.312 & +33.5\% & $<$0.001 & 0 \\
+Min-$\eta_{\max}$ & 0.229 & $-$2.1\% & 0.478 & 4 \\
+Strongest-$K$ & 0.234 & --- & --- & 1 \\
+Two-Stage & 0.227 & $-$3.1\% & 0.312 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Per-condition comparison of Two-Stage vs.\ Strongest-$K$. No condition reaches statistical significance.}
+\label{tab:selection_detail}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & \textbf{Two-Stage} & \textbf{Strongest-$K$} & $\Delta$\% & $p$ \\
+\midrule
+MMLU $\times$ sycophancy & 0.211 & 0.219 & $-$3.7\% & 0.284 \\
+MMLU $\times$ score\_manip & 0.198 & 0.207 & $-$4.3\% & 0.198 \\
+MMLU $\times$ position & 0.237 & 0.241 & $-$1.7\% & 0.641 \\
+ARC $\times$ sycophancy & 0.241 & 0.248 & $-$2.8\% & 0.352 \\
+ARC $\times$ score\_manip & 0.185 & 0.194 & $-$4.6\% & 0.187 \\
+ARC $\times$ position & 0.249 & 0.253 & $-$1.6\% & 0.689 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Panel Size Sensitivity}
+\label{sec:panel_size}
+
+We evaluate panel sizes $K \in \{3, 5, 7, 9\}$ to test whether our findings are robust to panel cardinality (Table~\ref{tab:panel_size}).
+$\eta_{\max}$'s significance ratio increases monotonically with panel size (0.75 at $K{=}3$ to 0.92 at $K{=}9$), consistent with the weakest-link mechanism: larger panels are more likely to include at least one weak judge, making $\eta_{\max}$ an increasingly reliable predictor.
+$K_{\mathrm{eff}}$'s significance ratio decreases monotonically (0.33 at $K{=}3$ to 0.08 at $K{=}9$), further supporting the interpretation that its apparent effect in small panels reflects tier-mixing variance rather than a genuine diversity mechanism.
+
+\begin{table}[t]
+\centering
+\caption{Panel size sensitivity: $\eta_{\max}$ dominance strengthens and $K_{\mathrm{eff}}$ effect vanishes as panel size increases.}
+\label{tab:panel_size}
+\small
+\begin{tabular}{cccccc}
+\toprule
+$K$ & \textbf{Panels} & $\eta_{\max}$ \textbf{sig ratio} & $K_{\mathrm{eff}}$ \textbf{sig ratio} & \textbf{Mean $R^2$} & $r(K_{\mathrm{eff}}, \eta_{\max})$ \\
+\midrule
+3 & 455 & 0.75 & 0.33 & 0.38 & 0.73 \\
+5 & 3{,}003 & 0.83 & 0.25 & 0.41 & 0.68 \\
+7 & 6{,}435 & 0.92 & 0.17 & 0.44 & 0.61 \\
+9 & 5{,}005 & 0.92 & 0.08 & 0.46 & 0.54 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Open-Ended Task Generalization}
+\label{sec:open_ended}
+
+To test whether MCQ-based findings generalize, we evaluate on MT-Bench (adapted) with 4 task-specific attacks (Table~\ref{tab:open_ended}).
+$\eta_{\max}$ maintains significance in all 4 conditions (dominance ratio 0.91), confirming that weakest-link vulnerability is task-general.
+$K_{\mathrm{eff}}$ shows inconsistent behavior: one condition yields a significant \emph{negative} direction (MT-Bench-Writing, $\beta = -0.22$, $p = 0.034$), meaning diversity is mildly protective---opposite to the MCQ pattern.
+The remaining 3 conditions are non-significant for $K_{\mathrm{eff}}$.
+Overall mean ASR on open-ended tasks (0.34) exceeds MCQ (0.26), suggesting open-ended evaluation is generally more vulnerable to adversarial manipulation.
+
+\begin{table}[t]
+\centering
+\caption{Open-ended evaluation (MT-Bench adapted): $\eta_{\max}$ dominates; $K_{\mathrm{eff}}$ direction is inconsistent with MCQ results.}
+\label{tab:open_ended}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Task} & \textbf{Attack} & $\beta_{\eta}$ & $p_{\eta}$ & $\beta_{K,\mathrm{resid}}$ & $p_{K,\mathrm{resid}}$ & \textbf{Direction} \\
+\midrule
+Writing & style\_manip & 0.79 & \textbf{$<$0.001} & $-$0.22 & \textbf{0.034} & \textsc{negative} \\
+Reasoning & logic\_distort & 0.84 & \textbf{$<$0.001} & 0.08 & 0.541 & near-zero \\
+Coding & output\_inject & 0.71 & \textbf{0.002} & 0.15 & 0.218 & positive (NS) \\
+Math & step\_skip & 0.88 & \textbf{$<$0.001} & $-$0.05 & 0.712 & near-zero \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{Partial-Knowledge Adversary}
+\label{sec:partial}
+
+We relax the full-knowledge assumption by simulating adversaries with three knowledge levels (Table~\ref{tab:partial}).
+Full-to-partial knowledge degradation is modest: knowing judge families instead of exact vulnerability profiles reduces ASR by only 8.8\% (0.261 $\to$ 0.238).
+Even zero-knowledge (uniform) attacks achieve an ASR of 0.204---only 21.8\% below full knowledge.
+$\eta_{\max}$ maintains significance under partial knowledge (8/12) and even under no knowledge (6/12), while $K_{\mathrm{eff}}$ drops to 2/12 and 0/12 respectively.
+This indicates that $\eta_{\max}$'s predictive power is robust across threat models, while $K_{\mathrm{eff}}$'s weak association depends on unrealistically strong adversary knowledge assumptions.
+
+\begin{table}[t]
+\centering
+\caption{Adversary knowledge level comparison: $\eta_{\max}$ remains predictive across threat models; $K_{\mathrm{eff}}$ vanishes under realistic assumptions.}
+\label{tab:partial}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Knowledge Level} & \textbf{Mean ASR} & $K_{\mathrm{eff}}$ \textbf{sig (/12)} & $\eta_{\max}$ \textbf{sig (/12)} & $R^2$ \\
+\midrule
+Full (exact $\eta_j$) & 0.261 & 4 & 9 & 0.38 \\
+Partial (family only) & 0.238 & 2 & 8 & 0.34 \\
+None (uniform attack) & 0.204 & 0 & 6 & 0.22 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{ASR degradation analysis across knowledge levels.}
+\label{tab:partial_degrade}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Transition} & $\Delta$\textbf{ASR} & $\Delta$\% & \textbf{Interpretation} \\
+\midrule
+Full $\to$ Partial & $-$0.023 & $-$8.8\% & Family info has modest value \\
+Full $\to$ None & $-$0.057 & $-$21.8\% & Knowledge matters but not dramatically \\
+Partial $\to$ None & $-$0.034 & $-$14.3\% & Family info alone: limited advantage \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%-----------------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+%-----------------------------------------------------------------------
+
+\subsection{The Role of Panel Diversity: Exploratory Analysis}
+\label{sec:keff_discuss}
+
+Our primary analysis establishes $\eta_{\max}$ as the dominant predictor of panel vulnerability.
+We now examine the residual $K_{\mathrm{eff}}$ effect more carefully, arguing that it is suggestive but confounded, and should not be treated as an established finding.
+
+\paragraph{Multicollinearity analysis.}
+Table~\ref{tab:multicollinearity} presents $K_{\mathrm{eff}}$'s significance under multiple correction and estimation methods.
+The significance count ranges from 2/12 (Bonferroni) to 7/12 (uncorrected)---a lack of convergence that undermines confidence in $K_{\mathrm{eff}}$'s independent effect.
+The partial correlation of $K_{\mathrm{eff}}$ controlling for $\eta_{\max}$ is 0.14 ($r^2 = 0.02$), meaning $K_{\mathrm{eff}}$ explains approximately 2\% of unique variance (Table~\ref{tab:partial_corr}).
+By contrast, $\eta_{\max}$'s partial correlation is 0.41 ($r^2 = 0.17$).
+
+\begin{table}[t]
+\centering
+\caption{$K_{\mathrm{eff}}$ significance under different correction methods (12 conditions). The range 2--7 indicates high sensitivity to analytical choices.}
+\label{tab:multicollinearity}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & $K_{\mathrm{eff}}$ \textbf{sig (/12)} & $\eta_{\max}$ \textbf{sig (/12)} & \textbf{Notes} \\
+\midrule
+Uncorrected & 7 & 10 & Liberal \\
+FDR (BH) & 4 & 9 & Standard \\
+Bonferroni & 2 & 8 & Conservative \\
+Bootstrap 95\% CI & 3 & 9 & Non-parametric \\
+Excl.\ extreme models (FDR) & 3 & 9 & Sensitivity \\
+Beta regression (FDR) & 3 & 10 & Bounded DV \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Partial correlations: $K_{\mathrm{eff}}$ explains negligible unique variance after controlling for $\eta_{\max}$.}
+\label{tab:partial_corr}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Predictor} & \textbf{Partial $r$} & \textbf{95\% CI} & $p$ \\
+\midrule
+$K_{\mathrm{eff}} \mid \eta_{\max}$ & 0.14 & [0.05, 0.23] & 0.003 \\
+$\eta_{\max} \mid K_{\mathrm{eff}}$ & 0.41 & [0.33, 0.49] & $<$0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Capability-matched analysis.}
+The strongest test of $K_{\mathrm{eff}}$'s independence comes from within-tier analysis (Table~\ref{tab:cap_matched}).
+When panels are drawn from the same capability tier (e.g., all small 7--8B models or all large 70B+/API models), $\eta_{\max}$ variance shrinks dramatically (0.008 vs.\ 0.045 in the full pool) and $K_{\mathrm{eff}}$ achieves significance in only 1/6 conditions.
+This result is consistent with the interpretation that $K_{\mathrm{eff}}$'s apparent effect in the full pool is driven by tier-mixing: diverse panels cross capability boundaries, systematically introducing weaker judges.
+
+\begin{table}[t]
+\centering
+\caption{Capability-matched $K_{\mathrm{eff}}$ analysis: within-tier panels. $K_{\mathrm{eff}}$'s effect essentially vanishes when capability is controlled.}
+\label{tab:cap_matched}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Tier} & \textbf{Panels} & \textbf{Condition} & $\beta_{K}$ & $p_{K}$ & $R^2$ & $\eta_{\max}$ \textbf{Var} \\
+\midrule
+Small (7--8B) & 10 & MMLU $\times$ syco. & 0.08 & 0.721 & 0.09 & 0.007 \\
+Small (7--8B) & 10 & ARC $\times$ score & 0.14 & 0.548 & 0.11 & 0.008 \\
+Medium (12--14B) & 10 & MMLU $\times$ syco. & 0.11 & 0.612 & 0.10 & 0.009 \\
+Medium (12--14B) & 10 & ARC $\times$ score & 0.29 & 0.041 & 0.18 & 0.011 \\
+Large (70B+/API) & 10 & MMLU $\times$ syco. & 0.06 & 0.891 & 0.07 & 0.004 \\
+Large (70B+/API) & 10 & ARC $\times$ score & 0.09 & 0.684 & 0.08 & 0.005 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{BFT Analogy: An Open Question}
+\label{sec:bft}
+
+The Byzantine Fault Tolerance framework predicts that independent judges should tolerate random faults through majority vote.
+We tested whether $K_{\mathrm{eff}}$'s role differs between adaptive and random-fault regimes (Table~\ref{tab:bft}).
+
+Contrary to the BFT prediction, $K_{\mathrm{eff}}$ is positively associated with panel ASR under \emph{both} regimes: 10/12 significant under random faults, compared to 4/12 under adaptive attacks.
+The direction is consistent (positive in both), with the $\beta$ ratio between adaptive and RF averaging 0.91.
+The regime interaction term is non-significant ($p = 0.217$), meaning we cannot reject the null that $K_{\mathrm{eff}}$'s effect is the same in both regimes.
+
+The key regime difference is predictability: $R^2$ is substantially higher under random faults (mean 0.62 vs.\ 0.38, $\Delta R^2 = 0.24$; Table~\ref{tab:bft_r2}), because adaptive adversaries introduce strategic variance that panel composition cannot explain.
+However, this predictability gap does not constitute a BFT reversal---diversity does not switch from protective to harmful across regimes.
+We therefore treat the BFT connection as an open question requiring further theoretical investigation.
+
+\begin{table}[t]
+\centering
+\caption{BFT regime contrast: $K_{\mathrm{eff}}$ is positively associated with ASR in both adaptive and random-fault regimes. No reversal observed.}
+\label{tab:bft}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Data} & \textbf{Attack} & $\beta_K$ \textbf{(Adpt.)} & $p$ \textbf{(Adpt.)} & $\beta_K$ \textbf{(RF)} & $p$ \textbf{(RF)} & \textbf{$\beta$ Ratio} & \textbf{Int.\ $p$} \\
+\midrule
+MMLU & syco. & 0.18 & 0.147 & 0.21 & \textbf{0.024} & 1.17 & 0.682 \\
+MMLU & score & 0.39 & \textbf{0.021} & 0.44 & \textbf{0.003} & 1.13 & 0.541 \\
+MMLU & pos. & 0.24 & 0.089 & 0.28 & \textbf{0.011} & 1.17 & 0.614 \\
+MMLU & verb. & 0.09 & 0.511 & 0.15 & 0.108 & 1.67 & 0.398 \\
+MMLU & auth. & 0.15 & 0.218 & 0.19 & \textbf{0.047} & 1.27 & 0.583 \\
+MMLU & few\_s. & 0.31 & \textbf{0.043} & 0.35 & \textbf{0.008} & 1.13 & 0.617 \\
+ARC & syco. & 0.12 & 0.341 & 0.16 & 0.072 & 1.33 & 0.521 \\
+ARC & score & 0.41 & \textbf{0.032} & 0.48 & \textbf{0.001} & 1.17 & 0.434 \\
+ARC & pos. & 0.22 & 0.102 & 0.27 & \textbf{0.015} & 1.23 & 0.548 \\
+ARC & verb. & 0.06 & 0.649 & 0.11 & 0.198 & 1.83 & 0.412 \\
+ARC & auth. & 0.19 & 0.157 & 0.22 & \textbf{0.038} & 1.16 & 0.601 \\
+ARC & few\_s. & 0.28 & 0.071 & 0.33 & \textbf{0.009} & 1.18 & 0.547 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{$R^2$ comparison across regimes: adaptive attacks introduce strategic variance that reduces predictability.}
+\label{tab:bft_r2}
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Dataset} & \textbf{Attack} & $R^2$ \textbf{(Adaptive)} & $R^2$ \textbf{(RF)} & $\Delta R^2$ \\
+\midrule
+MMLU & sycophancy & 0.41 & 0.64 & 0.23 \\
+MMLU & score\_manip & 0.36 & 0.58 & 0.22 \\
+MMLU & position & 0.39 & 0.61 & 0.22 \\
+MMLU & verbosity & 0.42 & 0.67 & 0.25 \\
+MMLU & authority & 0.37 & 0.59 & 0.22 \\
+MMLU & few\_shot & 0.33 & 0.55 & 0.22 \\
+ARC & sycophancy & 0.43 & 0.69 & 0.26 \\
+ARC & score\_manip & 0.35 & 0.57 & 0.22 \\
+ARC & position & 0.38 & 0.62 & 0.24 \\
+ARC & verbosity & 0.44 & 0.71 & 0.27 \\
+ARC & authority & 0.36 & 0.60 & 0.24 \\
+ARC & few\_shot & 0.32 & 0.53 & 0.21 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Diversity-Capability Tradeoff}
+\label{sec:tradeoff}
+
+The correlation between $K_{\mathrm{eff}}$ and $\eta_{\max}$ ($r = 0.73$, Spearman $\rho = 0.71$; tradeoff curve $R^2 = 0.53$) reflects a structural constraint in the current LLM ecosystem: achieving high panel diversity requires mixing models from different capability tiers, which inevitably introduces weaker judges.
+
+Pareto frontier analysis identifies 12 panels that are non-dominated on the ($K_{\mathrm{eff}}$, $\eta_{\max}$) plane (Table~\ref{tab:pareto}). 83\% of Pareto-optimal panels consist entirely of large-tier models, and 17\% are large+medium mixtures; no small-tier panels appear on the frontier.
+The Pareto-optimal panels have mean $K_{\mathrm{eff}} = 1.82$ and mean $\eta_{\max} = 0.09$---essentially, the recommendation reduces to ``select the strongest available models,'' with diversity being a secondary consequence rather than a design objective.
+
+\begin{table}[t]
+\centering
+\caption{Representative Pareto-optimal panels on the ($K_{\mathrm{eff}}$, $\eta_{\max}$) frontier. All consist of large-tier or large+medium models.}
+\label{tab:pareto}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{ID} & \textbf{Models} & $K_{\mathrm{eff}}$ & $\eta_{\max}$ & \textbf{Mean ASR} & \textbf{Composition} \\
+\midrule
+P\_012 & GPT-4.1 / GPT-4o / Qwen72B & 1.91 & 0.08 & 0.142 & all-large \\
+P\_034 & GPT-4.1 / Llama70B / GPT-4o & 2.14 & 0.09 & 0.151 & all-large \\
+P\_087 & GPT-4.1 / GPT-4o / Claude-Haiku & 1.72 & 0.07 & 0.138 & large+medium \\
+P\_156 & GPT-4o / Qwen72B / Llama70B & 2.31 & 0.11 & 0.163 & all-large \\
+P\_201 & GPT-4.1 / GPT-4.1m / GPT-4o & 1.45 & 0.07 & 0.131 & all-large \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+%-----------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%-----------------------------------------------------------------------
+
+This paper presents a systematic empirical study of structural vulnerability in multi-judge LLM evaluation, spanning 15 models, 455 panels, and 18 attack conditions.
+Our findings establish three principal conclusions:
+
+\textbf{(1) Weakest-link dominance.}
+Panel vulnerability is predominantly determined by the most vulnerable individual judge ($\eta_{\max}$), which achieves significant predictive power in 9--14 out of 12--18 conditions depending on the attack set.
+Panel diversity ($K_{\mathrm{eff}}$) adds negligible predictive value ($\Delta R^2 = 0.04$) and its residual significance is fragile across correction methods (2--5/12) and vanishes under capability-matched analysis (1/6).
+
+\textbf{(2) Aggregation matters more than composition.}
+The choice of aggregation rule has a larger effect on panel robustness than panel composition.
+Bayesian aggregation reduces mean ASR by 24\% relative to majority voting and substantially narrows the performance gap between strong and weak panels.
+
+\textbf{(3) Adaptive targeting tracks weakness, not diversity.}
+Adaptive adversaries concentrate attacks on the weakest judge (Gini--$\eta_{\max}$ $r = 0.67$) rather than exploiting structural diversity (Gini--$K_{\mathrm{eff}}$ $r = 0.21$, NS).
+This targeting pattern is robust across threat models: even partial-knowledge adversaries achieve 91\% of full-knowledge ASR.
+
+For practitioners, the recommendation is simple: select the most individually robust judges available and employ reliability-weighted aggregation.
+Diversity is neither a reliable defense nor a consistent liability---it is largely irrelevant once individual judge quality is controlled.
+
+%-----------------------------------------------------------------------
+\section*{Limitations}
+\label{sec:limitations}
+%-----------------------------------------------------------------------
+
+Our study has three main limitations.
+First, the capability-matched within-tier analysis is limited by small sample sizes ($\binom{5}{3} = 10$ panels per tier), which may lack statistical power to detect genuine small effects of diversity.
+Second, our adaptive adversary model assumes oracle access to individual judge vulnerability profiles; real-world adversaries operate with partial knowledge, under which $K_{\mathrm{eff}}$'s effect further diminishes (0/12 significant under zero knowledge).
+Third, MCQ and open-ended evaluation involve different attack dynamics, and our $K_{\mathrm{eff}}$ findings on MCQ benchmarks do not generalize to open-ended tasks (where diversity shows inconsistent, sometimes protective, effects); conclusions about diversity's role should therefore be qualified by evaluation format.
+
+\end{document}

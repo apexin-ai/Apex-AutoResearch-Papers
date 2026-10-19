@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_15model-aggregation-regression_20260522T181241_result.json",
     "occurrence": 1,
-    "bytes": 1362,
-    "sha256": "2450bc09e108fa440101476bea1aa3030cb52a85a7bff02475053047ff26630c"
+    "bytes": 1361,
+    "sha256": "e5fd1458117d183a2753204eebd3f247251bebacfef944be55baabe43acfad1d"
   },
   "statistics": {
     "messages": 1,

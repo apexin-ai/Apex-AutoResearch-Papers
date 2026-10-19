@@ -1,0 +1,1480 @@
+narrative_guidance: 'η_max dominance叙事作为主要claim坍塌。Bootstrap η_max降至3/12，与K_eff的1/12相比dominance
+  ratio仅3:1→实质上两个predictor都不robust。 VIF >7确认η_max与K_eff在当前设计下无法可靠分离。RF contrast的GO/NO-GO
+  gate失败——K_eff在random faults下也仅0-1/2显著，BFT类比失去实证基础。 GAM 6:6 split在bootstrap CI下退化为3-4/6
+  per category并出现2个reversal，clean taxonomy不成立。 Bayesian K_eff方向翻转在clustered SE下消失（0-1/7
+  negative）。ARC benchmark几乎全部NS——实质上是single-benchmark study。 论文必须彻底重构。Salvage路径：(A)
+  方法学贡献——OLS→bootstrap显著性collapse（η_max 11→3, K_eff 8→1）作为headline finding， 为LLM-as-judge评测文献提供non-independence
+  correction framework；(B) 数据资源贡献——15模型455 panels的adversarial评测数据集； (C) 聚合规则作为独立发现——即使η_max
+  vs K_eff分解不可靠，threshold R²=0.89 vs Bayesian R²=0.10的gradient仍成立。 目标EMNLP Findings（Overall
+  ~2.5-3.0），Main几乎不可能。
+
+  '
+imagined_experiments:
+- name: 'Scale expansion: 15 models with API + large open-source'
+  plan_id: plan_001
+  description: '将模型池从6扩展到15（加入GPT-4o-mini, GPT-4o, GPT-4.1, GPT-4.1-mini, Llama-3.1-70B,
+    Qwen2.5-72B等）， 重跑MI矩阵 + C(15,3)=455 panels回归 + bootstrap/clustered SE/mixed effects全套correction。
+
+    '
+  expected_results:
+    total_models: 15
+    total_panels: 455
+    total_conditions: 12
+    confound_mean_abs_r: 0.72
+    canonical_ols_eta_max_sig: 11/12
+    canonical_ols_keff_sig: 8/12
+    canonical_ols_keff_positive: 7
+    canonical_ols_keff_negative: 1
+    wild_cluster_bootstrap_v2_eta_max_sig: 3/12
+    wild_cluster_bootstrap_v2_keff_sig: 1/12
+    clustered_se_eta_max_sig: 5/12
+    clustered_se_keff_sig: 0/12
+    mixed_effects_eta_max_sig: 4/12
+    mixed_effects_keff_sig: 1/12
+    eta_keff_dominance_ratio_bootstrap: 3.0
+    se_inflation_factor: 3.2
+    bootstrap_position_0_eta_sig: 2/12
+    bootstrap_position_1_eta_sig: 5/12
+    bootstrap_position_2_eta_sig: 4/12
+    mmlu_eta_bootstrap_sig: 2/6
+    arc_eta_bootstrap_sig: 1/6
+    keff_practical_delta_asr_iqr_pp: 0.8
+    median_R2: 0.25
+  result_rationale: '扩展到15模型后，OLS结果表面上确认η_max dominance（11/12 vs 8/12）。但non-independence
+    correction的冲击远超预期。 Bootstrap v2（3-position max-p, Rademacher weights, B=9999）显示position
+    0的cluster imbalance问题 （claude-3-haiku=91 panels vs qwen2.5-14b=1）不仅存在于position
+    0——position 1和2也受cluster size不均影响， 只是程度较轻。3-position max-p取最保守估计，η_max仅3/12存活（全部在MMLU上，ARC仅1/6）。
+    K_eff在bootstrap下仅1/12——但这与η_max的3/12相比，dominance ratio仅3:1，远不如"η_max dominates"的叙事所需的清晰分离。
+    SE inflation ~3.2×（高于预期的2.5×），说明panel overlap导致的non-independence比initial估计更严重。
+    根本问题：455 panels来自15个model的C(15,3)组合，每个model出现在C(14,2)=91个panels中——观测值之间的非独立性是结构性的，
+    不是correction能完全解决的。bootstrap的保守性可能合理反映了真实的statistical power。
+
+    '
+  tables:
+  - caption: 'OLS vs correction methods: significance counts across 12 conditions'
+    columns:
+    - Method
+    - η_max sig
+    - K_eff sig
+    - K_eff positive
+    - K_eff negative
+    - Dominance ratio
+    rows:
+    - - OLS (naive)
+      - 11/12
+      - 8/12
+      - '7'
+      - '1'
+      - 1.4:1
+    - - Clustered SE (CR1, 15 clusters)
+      - 5/12
+      - 0/12
+      - —
+      - —
+      - ∞
+    - - Mixed effects (random judge intercepts)
+      - 4/12
+      - 1/12
+      - '1'
+      - '0'
+      - '4:1'
+    - - Wild cluster bootstrap v2 (max-p)
+      - 3/12
+      - 1/12
+      - '1'
+      - '0'
+      - '3:1'
+    - - SE inflation factor
+      - —
+      - —
+      - —
+      - —
+      - 3.2×
+  - caption: Bootstrap η_max significance by position and benchmark
+    columns:
+    - Position
+    - MMLU sig/6
+    - ARC sig/6
+    - Total sig/12
+    - Cluster balance (max/min panels)
+    rows:
+    - - Position 0
+      - 1/6
+      - 1/6
+      - 2/12
+      - '91:1'
+    - - Position 1
+      - 3/6
+      - 2/6
+      - 5/12
+      - '55:12'
+    - - Position 2
+      - 3/6
+      - 1/6
+      - 4/12
+      - '48:15'
+    - - Max-p (conservative)
+      - 2/6
+      - 1/6
+      - 3/12
+      - —
+  - caption: Per-condition bootstrap results (12 conditions)
+    columns:
+    - Dataset
+    - Attack
+    - OLS η_max p
+    - Bootstrap η_max p
+    - OLS K_eff p
+    - Bootstrap K_eff p
+    rows:
+    - - MMLU
+      - prompt_injection
+      - 2e-06
+      - '0.028'
+      - '0.004'
+      - '0.18'
+    - - MMLU
+      - score_manipulation
+      - 8e-05
+      - '0.041'
+      - '0.011'
+      - '0.31'
+    - - MMLU
+      - sycophancy
+      - '0.002'
+      - '0.14'
+      - '0.08'
+      - '0.42'
+    - - MMLU
+      - verbosity_bias
+      - '0.009'
+      - '0.22'
+      - '0.15'
+      - '0.55'
+    - - MMLU
+      - position_bias
+      - '0.001'
+      - '0.08'
+      - '0.035'
+      - '0.04'
+    - - MMLU
+      - authority_bias
+      - '0.004'
+      - '0.19'
+      - '0.09'
+      - '0.48'
+    - - ARC
+      - prompt_injection
+      - 3e-14
+      - '0.35'
+      - '0.001'
+      - '0.62'
+    - - ARC
+      - score_manipulation
+      - 1e-08
+      - '0.06'
+      - '0.003'
+      - '0.44'
+    - - ARC
+      - sycophancy
+      - '0.013'
+      - '0.52'
+      - '0.24'
+      - '0.71'
+    - - ARC
+      - verbosity_bias
+      - '0.031'
+      - '0.61'
+      - '0.18'
+      - '0.68'
+    - - ARC
+      - position_bias
+      - '0.006'
+      - '0.28'
+      - '0.008'
+      - '0.33'
+    - - ARC
+      - authority_bias
+      - '0.019'
+      - '0.44'
+      - '0.12'
+      - '0.59'
+  figures_description:
+  - 'Paired bar chart: 12 conditions × 4 methods (OLS, clustered SE, mixed effects,
+    bootstrap) showing η_max和K_eff p-values。OLS条形几乎全部低于0.05线，bootstrap后大部分跃升至NS区间。
+    视觉上最striking的是ARC benchmark——OLS下有极低p-value（如3e-14），bootstrap后全部>0.05。 这张图成为"non-independence
+    trap"方法学贡献的核心figure。
+
+    '
+  - 'Heatmap: 15×15 model pair co-occurrence matrix in 455 panels。对角线元素=91（每个model出现91次），
+    off-diagonal显示任意两个model共同出现的panel数。颜色分布揭示结构性非独立性的来源。
+
+    '
+  analysis: '这是worst档的核心灾难性结果。OLS给出的"η_max dominates (11:8)"在bootstrap correction后坍塌为"3:1，
+    且绝对数极低（3/12 vs 1/12）"。两个predictor在corrected inference下都几乎不显著——不是η_max dominates
+    K_eff， 而是整个regression在corrected inference下statistical power不足。 ARC benchmark尤其脆弱：OLS下最显著的条件（arc×PI,
+    p=3e-14）在bootstrap后完全NS（p=0.35）， 说明该条件的信号几乎entirely来自panel overlap inflation。如果排除ARC，实质上是single-benchmark
+    study（MMLU only）， reviewer会质疑generalizability。SE inflation 3.2×比预期高——可能是cluster
+    size imbalance（91:1） 放大了bootstrap保守性。但这也意味着OLS的所有结论都需要extreme caution来解读。 论文必须pivoting到"the
+    OLS→bootstrap collapse itself is the finding"——方法学贡献救场。
+
+    '
+- name: 'Attack expansion: few-shot hijacking, persona manipulation, instruction override'
+  plan_id: plan_002
+  description: '新增3种攻击类型（few-shot hijacking、persona manipulation、instruction override），在15模型池上运行。
+    扩展总条件数到18。验证weakest-link在更广泛attack surface上的表现。
+
+    '
+  expected_results:
+    new_attack_types: 3
+    total_attack_types: 9
+    total_conditions: 18
+    new_attacks_ols_eta_max_sig: 5/6
+    new_attacks_ols_keff_sig: 3/6
+    new_attacks_bootstrap_eta_max_sig: 1/6
+    new_attacks_bootstrap_keff_sig: 0/6
+    new_attacks_clustered_se_eta_max_sig: 2/6
+    new_attacks_clustered_se_keff_sig: 0/6
+    overall_18cond_bootstrap_eta_sig: 4/18
+    overall_18cond_bootstrap_keff_sig: 1/18
+    overall_18cond_ols_eta_sig: 16/18
+    overall_18cond_ols_keff_sig: 11/18
+    few_shot_hijacking_keff_direction: positive
+    persona_manipulation_keff_direction: positive
+    instruction_override_keff_direction: negative
+    gam_extended_targeted_positive: 4/9
+    gam_extended_sharedbias_negative: 5/9
+    gam_reversals: 3
+  result_rationale: '新增攻击在OLS下看似确认pattern（5/6 η_max sig, 3/6 K_eff sig），但bootstrap
+    correction后again坍塌 （1/6和0/6）。根本原因相同：455 panels的非独立性问题不因添加新attack types而缓解——每个attack下的panel结构完全相同。
+    更糟的是，新攻击引入GAM 6:6 split的reversal：few-shot hijacking理论上是targeted attack（需要针对specific
+    model）， 但实证中K_eff方向为正——因为few-shot hijacking利用in-context learning这一所有LLM共享的能力，实际行为更接近shared-bias。
+    persona manipulation也出现类似anomaly。原先clean的6:6 targeted/shared-bias taxonomy在9种攻击下退化为
+    4/9 targeted-positive vs 5/9 shared-bias-negative，有3个reversal。taxonomy不再"clean"，
+    而是"noisy with a directional tendency"——远不够支撑independent contribution。
+
+    '
+  tables:
+  - caption: 'New attack types: OLS vs bootstrap correction'
+    columns:
+    - Dataset
+    - Attack
+    - OLS η_max p
+    - Bootstrap η_max p
+    - OLS K_eff p
+    - Bootstrap K_eff p
+    - K_eff direction
+    rows:
+    - - MMLU
+      - few-shot-hijacking
+      - '0.001'
+      - '0.18'
+      - '0.02'
+      - '0.41'
+      - positive
+    - - MMLU
+      - persona-manipulation
+      - '0.003'
+      - '0.09'
+      - '0.04'
+      - '0.52'
+      - positive
+    - - MMLU
+      - instruction-override
+      - '0.0005'
+      - '0.04'
+      - '0.08'
+      - '0.38'
+      - negative
+    - - ARC
+      - few-shot-hijacking
+      - '0.008'
+      - '0.31'
+      - '0.05'
+      - '0.55'
+      - positive
+    - - ARC
+      - persona-manipulation
+      - '0.012'
+      - '0.22'
+      - '0.09'
+      - '0.63'
+      - positive
+    - - ARC
+      - instruction-override
+      - '0.002'
+      - '0.12'
+      - '0.11'
+      - '0.48'
+      - negative
+  - caption: 'Extended GAM taxonomy: 9 attacks × 2 benchmarks'
+    columns:
+    - Attack
+    - Category (original)
+    - K_eff direction (MMLU)
+    - K_eff direction (ARC)
+    - Consistent with taxonomy?
+    rows:
+    - - prompt_injection
+      - targeted
+      - positive
+      - positive
+      - 'yes'
+    - - score_manipulation
+      - targeted
+      - positive
+      - positive
+      - 'yes'
+    - - position_bias
+      - targeted
+      - positive
+      - negative
+      - REVERSAL
+    - - few-shot-hijacking
+      - targeted
+      - positive
+      - positive
+      - yes but mechanism unclear
+    - - persona-manipulation
+      - targeted
+      - positive
+      - positive
+      - yes but weak
+    - - sycophancy
+      - shared-bias
+      - negative
+      - negative
+      - 'yes'
+    - - verbosity_bias
+      - shared-bias
+      - negative
+      - positive
+      - REVERSAL
+    - - authority_bias
+      - shared-bias
+      - negative
+      - negative
+      - 'yes'
+    - - instruction-override
+      - shared-bias
+      - negative
+      - negative
+      - 'yes'
+  figures_description:
+  - 'Extended heatmap: 18 conditions × 2 predictors × 4 methods。OLS panel与bootstrap
+    panel的visual contrast 极为dramatic——左半bright（significant），右半dim（NS）。标注3个GAM reversal为红色X标记。
+
+    '
+  analysis: '攻击扩展确认了worst档的核心问题：所有新增数据都使用相同的455 panel结构，non-independence问题是structural的，
+    不会因为添加更多attack types而改善。OLS下看似丰富的结果在bootstrap后一律坍塌。 GAM taxonomy的3个reversal（arc×position_bias方向翻转，mmlu×verbosity_bias方向翻转，加上1个边界case）
+    使得"clean 6:6 split"不再成立。剩下的directional tendency（~60-70%与预测方向一致）在18个condition下
+    可能仅略好于chance（binomial test p ≈ 0.08-0.15），无法作为independent contribution。
+
+    '
+- name: 'Random-fault simulation: BFT contrast GO/NO-GO gate'
+  plan_id: plan_003
+  description: 'Random-fault simulation：每个judge独立以概率η_j fail，majority vote。 对比random
+    faults vs adaptive attacks下K_eff的显著性。 GO/NO-GO GATE：如果random-fault K_eff也不显著→BFT
+    framing彻底坍塌。
+
+    '
+  expected_results:
+    rf_conditions: 2
+    rf_ols_keff_sig: 2/2
+    rf_bootstrap_keff_sig: 0/2
+    rf_clustered_se_keff_sig: 1/2
+    rf_ols_eta_sig: 2/2
+    rf_bootstrap_eta_sig: 1/2
+    rf_mmlu_R2: 0.52
+    rf_arc_R2: 0.48
+    rf_keff_std_beta_mmlu: 0.18
+    rf_keff_std_beta_arc: 0.28
+    rf_vs_adaptive_keff_beta_ratio: 1.2
+    rf_vs_adaptive_contrast_p: 0.31
+    rf_vs_adaptive_cohen_d: 0.12
+    go_nogo_gate: FAIL
+  result_rationale: 'GO/NO-GO gate FAIL。Random-fault regime下K_eff在OLS中显著（2/2），但bootstrap
+    correction后降至0/2。 这不意味着BFT理论错误——而是本实验设计（455 panels, 15 models）的non-independence问题在RF
+    regime下同样存在。 RF regime的R²确实高于adaptive（0.52 vs 0.25），表明panel composition对RF错误的解释力更强，
+    但K_eff的独立贡献在corrected inference下无法与η_max可靠分离（VIF >7, 见plan_009）。 RF vs adaptive的K_eff
+    β ratio仅1.2×（预期需>2×才能convincingly demonstrate BFT contrast）， Cohen''s d = 0.12（远低于small
+    effect size标准0.2）。 BFT framing的核心逻辑——"diversity helps under random faults but
+    hurts under adaptive"—— 在实证上无法被本数据支撑。不是因为理论错误，而是因为实验设计的structural non-independence
+    使得任何K_eff相关的inference都不可靠。BFT对比降级为"directional observation consistent with theory"。
+
+    '
+  tables:
+  - caption: 'Random-fault vs adaptive: K_eff significance under correction'
+    columns:
+    - Regime
+    - Method
+    - η_max sig
+    - K_eff sig
+    - R²
+    - K_eff std β
+    rows:
+    - - Random-fault
+      - OLS
+      - 2/2
+      - 2/2
+      - '0.52'
+      - '+0.215'
+    - - Random-fault
+      - Clustered SE
+      - 2/2
+      - 1/2
+      - —
+      - '+0.215'
+    - - Random-fault
+      - Bootstrap v2
+      - 1/2
+      - 0/2
+      - —
+      - '+0.215'
+    - - Adaptive
+      - OLS
+      - 11/12
+      - 8/12
+      - '0.25'
+      - '+0.164'
+    - - Adaptive
+      - Clustered SE
+      - 5/12
+      - 0/12
+      - —
+      - '+0.164'
+    - - Adaptive
+      - Bootstrap v2
+      - 3/12
+      - 1/12
+      - —
+      - '+0.164'
+  - caption: 'BFT contrast: effect size analysis'
+    columns:
+    - Metric
+    - Value
+    - Threshold for claim
+    - Verdict
+    rows:
+    - - K_eff β ratio (RF/adaptive)
+      - '1.2'
+      - '>2.0'
+      - FAIL
+    - - Cohen's d (paired)
+      - '0.12'
+      - '>0.2 (small)'
+      - FAIL
+    - - Contrast p-value
+      - '0.31'
+      - <0.05
+      - FAIL
+    - - R² gap (RF - adaptive)
+      - '0.27'
+      - '>0.3'
+      - MARGINAL
+  figures_description:
+  - 'Paired comparison: RF vs adaptive regime下K_eff β的paired bar chart（2 conditions）。
+    两个bar高度接近，error bars重叠严重。下方annotate Cohen''s d = 0.12, p = 0.31。 标注"GO/NO-GO GATE:
+    FAIL"。
+
+    '
+  analysis: 'GO/NO-GO gate failure是worst档中最具结构性影响的结果。BFT framing是论文theoretical novelty的核心——
+    没有"random fault vs adaptive adversary"的对比，Claim 2整体坍塌。 但failure的原因是subtle的：不是K_eff在RF下真的不important（R²确实更高），
+    而是corrected inference下K_eff的独立效应在任何regime下都不可靠（VIF >7, 15 model clusters太少）。 这实际上reinforces方法学贡献——"combinatorial
+    panel designs create massive non-independence that makes ANY predictor-level inference
+    unreliable"——但代价是丧失了theoretical framing。 论文需要将BFT降级为motivation/intuition，而非tested
+    hypothesis。
+
+    '
+- name: 'Capability-matched validation: within-tier K_eff analysis'
+  plan_id: plan_004
+  description: '在同一capability tier内（3/3/9分层：3 frontier, 3 strong, 9 mid-weak）， 测试控制η_max
+    variance后K_eff是否显著。
+
+    '
+  expected_results:
+    tiers_tested: 3
+    tier_frontier_models: 3
+    tier_frontier_panels: 1
+    tier_strong_models: 3
+    tier_strong_panels: 1
+    tier_midweak_models: 9
+    tier_midweak_panels: 84
+    within_tier_eta_max_sig_frontier: 0/12
+    within_tier_keff_sig_frontier: 0/12
+    within_tier_eta_max_sig_strong: 0/12
+    within_tier_keff_sig_strong: 0/12
+    within_tier_eta_max_sig_midweak: 3/12
+    within_tier_keff_sig_midweak: 0/12
+    cross_tier_eta_max_sig: 11/12
+    cross_tier_keff_sig: 8/12
+    capability_range_eta_r: 0.82
+    within_tier_eta_range_reduction: 75%
+  result_rationale: 'Capability-matched analysis彻底暴露η_max dominance对capability tier
+    spread的依赖。 3/3/9分层下，frontier tier（3 models）和strong tier（3 models）各只有C(3,3)=1个panel——
+    根本没有足够variance做回归。mid-weak tier有C(9,3)=84 panels，但within-tier η_max range被压缩75%
+    （所有模型能力相近→η_max variation极小），η_max仅3/12 significant（全部在extreme conditions如PI下）。
+    K_eff within-tier全部NS（0/12），因为within-tier的diversity variation也被压缩。 对比cross-tier（all
+    455 panels）的11/12 η_max和8/12 K_eff，结论清晰： η_max dominance is driven by capability
+    tier spread, not a general principle。 这不意味η_max irrelevant——它means η_max在cross-tier比较中conflates
+    "model capability"和"individual vulnerability"， 而capability是confound不是target predictor。
+
+    '
+  tables:
+  - caption: Within-tier vs cross-tier regression significance
+    columns:
+    - Scope
+    - N models
+    - N panels (K=3)
+    - η_max sig/12
+    - K_eff sig/12
+    - η_max range (IQR)
+    rows:
+    - - Frontier (3)
+      - '3'
+      - '1'
+      - 0/12
+      - 0/12
+      - '0.02'
+    - - Strong (3)
+      - '3'
+      - '1'
+      - 0/12
+      - 0/12
+      - '0.04'
+    - - Mid-weak (9)
+      - '9'
+      - '84'
+      - 3/12
+      - 0/12
+      - '0.11'
+    - - Cross-tier (15)
+      - '15'
+      - '455'
+      - 11/12
+      - 8/12
+      - '0.38'
+  - caption: η_max significance vs capability range
+    columns:
+    - Analysis
+    - Capability range (ASR IQR)
+    - η_max sig count
+    - Correlation (range vs sig)
+    rows:
+    - - Within frontier
+      - '0.02'
+      - 0/12
+      - r = 0.82
+    - - Within strong
+      - '0.04'
+      - 0/12
+      - —
+    - - Within mid-weak
+      - '0.11'
+      - 3/12
+      - —
+    - - Cross-tier (all)
+      - '0.38'
+      - 11/12
+      - —
+    - - Restricted to mid-weak + strong
+      - '0.15'
+      - 4/12
+      - —
+  figures_description:
+  - 'Scatter: η_max range (x) vs η_max significance count (y) across different scoping
+    strategies。 Clear positive relationship (r=0.82) demonstrates that η_max "dominance"
+    scales linearly with the capability spread in the analysis pool。标注：within-tier
+    points clustered at bottom-left， cross-tier point at top-right。
+
+    '
+  analysis: '这是对Claim 1的最致命打击之一。η_max dominance不是关于"individual vulnerability drives
+    panel vulnerability"的 general principle，而是"当panel中存在capability差异极大的model时，最弱者的vulnerability自然predict了panel
+    outcome" 的trivial observation。类比：如果一个篮球队里有NBA球员和小学生，小学生的表现当然predict了队伍输赢——但这不是关于"weakest
+    link" 的深刻insight，而是关于"don''t mix radically different capability levels"的obvious
+    conclusion。 论文需要explicit caveat："η_max dominance finding is contingent on cross-tier
+    panel composition and does not generalize to capability-controlled settings"。
+
+    '
+- name: Two-stage panel design algorithm benchmark
+  plan_id: plan_005
+  description: '实现robustness-first两阶段算法（先筛η ≤ threshold，再最大化K_eff），对比5个baseline策略。
+    在15模型、455 panels上sweep threshold。
+
+    '
+  expected_results:
+    strategies_compared: 6
+    min_eta_max_win_rate_12cond: 9/12
+    strongest_k_win_rate_12cond: 8/12
+    two_stage_win_rate_12cond: 9/12
+    max_keff_win_rate_12cond: 2/12
+    random_win_rate_12cond: 0/12
+    min_eta_max_vs_two_stage_p: 0.78
+    min_eta_max_vs_strongest_k_p: 0.42
+    two_stage_marginal_improvement_over_min_eta: 0.003
+    two_stage_marginal_improvement_over_strongest_k: 0.008
+    threshold_sensitivity: high — optimal threshold attack-dependent
+    asr_range_min_eta: '[0.04, 0.52]'
+  result_rationale: 'min(η_max) strategy仍然wins 9/12 conditions（在worst档范围[8,10]内），但two-stage
+    algorithm与min(η_max) 之间的差异vanishingly small（mean Δ ASR = 0.003pp）。这是因为在robustness-first筛选后，surviving
+    models 的K_eff variation极小（都是strong models → natural diversity limited by capability
+    homogeneity）， 第二阶段"maximize K_eff"几乎不改变panel composition。 实质上two-stage ≈ min(η_max)
+    ≈ strongest-K，三者在win conditions上高度重叠。 Practical contribution从"novel algorithm"降级为"use
+    strong models"——一个trivial recommendation。 threshold参数高度attack-dependent（prompt_injection最优threshold
+    ≠ sycophancy最优threshold）， 无法给出universal prescriptive guidance。
+
+    '
+  tables:
+  - caption: Panel selection strategy comparison (12 conditions, K=3)
+    columns:
+    - Strategy
+    - Win count /12
+    - Mean ASR
+    - vs Random Δ ASR
+    rows:
+    - - Min η_max
+      - 9/12
+      - '0.087'
+      - '-0.085'
+    - - Two-stage (ours)
+      - 9/12
+      - '0.084'
+      - '-0.088'
+    - - Strongest-K
+      - 8/12
+      - '0.089'
+      - '-0.083'
+    - - Max K_eff
+      - 2/12
+      - '0.142'
+      - '-0.030'
+    - - Max family diversity
+      - 1/12
+      - '0.155'
+      - '-0.017'
+    - - Random
+      - 0/12
+      - '0.172'
+      - —
+  - caption: 'Two-stage vs min(η_max): head-to-head'
+    columns:
+    - Condition
+    - Two-stage ASR
+    - Min η_max ASR
+    - Δ ASR
+    - Winner
+    rows:
+    - - mmlu×PI
+      - '0.041'
+      - '0.044'
+      - '-0.003'
+      - Two-stage
+    - - mmlu×SM
+      - '0.058'
+      - '0.059'
+      - '-0.001'
+      - Two-stage
+    - - mmlu×syc
+      - '0.095'
+      - '0.093'
+      - '+0.002'
+      - Min η_max
+    - - mmlu×verb
+      - '0.102'
+      - '0.098'
+      - '+0.004'
+      - Min η_max
+    - - mmlu×pos
+      - '0.078'
+      - '0.082'
+      - '-0.004'
+      - Two-stage
+    - - mmlu×auth
+      - '0.088'
+      - '0.091'
+      - '-0.003'
+      - Two-stage
+    - - arc×PI
+      - '0.052'
+      - '0.055'
+      - '-0.003'
+      - Two-stage
+    - - arc×SM
+      - '0.068'
+      - '0.071'
+      - '-0.003'
+      - Two-stage
+    - - arc×syc
+      - '0.112'
+      - '0.108'
+      - '+0.004'
+      - Min η_max
+    - - arc×verb
+      - '0.118'
+      - '0.115'
+      - '+0.003'
+      - Min η_max
+    - - arc×pos
+      - '0.092'
+      - '0.095'
+      - '-0.003'
+      - Two-stage
+    - - arc×auth
+      - '0.098'
+      - '0.101'
+      - '-0.003'
+      - Two-stage
+  figures_description:
+  - 'Bar chart: 6 strategies × mean ASR。Min η_max, Two-stage, Strongest-K三者几乎indistinguishable
+    （误差条完全重叠），与Max K_eff和Random之间有clear gap。 标注p-values：two-stage vs min_eta p=0.78,
+    two-stage vs strongest_k p=0.42。
+
+    '
+  analysis: 'min(η_max) wins 9/12仍然是一个decent practical finding，但two-stage algorithm没有additional
+    value。 整个practical contribution可以用一句话总结："use the strongest available models"——
+    这太trivial to be a contribution。论文可以保留min(η_max) dominance作为supporting evidence
+    for η_max importance的indirect argument，但不能作为novel algorithm contribution。 Key
+    observation：min(η_max) ≈ strongest-K在实践中——因为individual robustness (η)与model capability
+    高度相关（r=0.72），选最robust的models ≈ 选最强的models。
+
+    '
+- name: Per-judge ASR concentration analysis
+  plan_id: plan_006
+  description: '对每个panel × attack，测量per-judge ASR分布的集中度（Gini系数、熵）。 直接验证adaptive adversary是否集中targeting
+    weakest judge。
+
+    '
+  expected_results:
+    median_gini: 0.28
+    mean_gini: 0.31
+    gini_targeted_attacks: 0.35
+    gini_shared_bias_attacks: 0.22
+    gini_vs_random_fault_baseline: 0.19
+    adaptive_vs_rf_gini_p: 0.04
+    adaptive_vs_rf_gini_d: 0.22
+    weakest_judge_share_median: 0.42
+    weakest_judge_share_targeted: 0.48
+    weakest_judge_share_shared_bias: 0.38
+    entropy_normalized_median: 0.81
+    gini_eta_max_correlation: 0.55
+  result_rationale: 'Concentration analysis显示adaptive adversary确实比random fault更集中targeting（Gini
+    0.28 vs 0.19, p=0.04）， 但effect size small（Cohen''s d=0.22）。更重要的是，Gini与η_max高度相关（r=0.55）——
+    concentration主要driven by capability gap（弱model承担更多attack success）， 而非adversary的strategic
+    targeting能力。 在shared-bias attacks下，Gini接近random baseline（0.22 vs 0.19），说明这些attacks确实不是targeted的
+    ——与GAM taxonomy的directional tendency一致，但同样不够clean to be standalone evidence。 总体上concentration
+    analysis提供了weak-to-moderate支撑adaptive adversary narrative， 但不足以independently establish
+    "adversary targets weakest link" claim。
+
+    '
+  tables:
+  - caption: ASR concentration metrics across conditions
+    columns:
+    - Attack category
+    - Median Gini
+    - Weakest-judge share
+    - vs RF baseline p
+    rows:
+    - - Targeted (PI, SM, PB)
+      - '0.35'
+      - '0.48'
+      - '0.02'
+    - - Shared-bias (syc, verb, auth)
+      - '0.22'
+      - '0.38'
+      - '0.28'
+    - - All adaptive
+      - '0.28'
+      - '0.42'
+      - '0.04'
+    - - Random-fault baseline
+      - '0.19'
+      - '0.36'
+      - —
+  - caption: Gini coefficient predictors
+    columns:
+    - Predictor
+    - r with Gini
+    - p
+    - Interpretation
+    rows:
+    - - η_max (panel)
+      - '0.55'
+      - <0.001
+      - Capability gap drives concentration
+    - - K_eff (panel)
+      - '-0.18'
+      - '0.12'
+      - Diversity weakly reduces concentration
+    - - Attack targetedness
+      - '0.31'
+      - '0.003'
+      - Targeted attacks more concentrated
+  figures_description:
+  - 'Violin plot: Gini distribution for targeted vs shared-bias vs random-fault。 Targeted
+    distribution shifted right but with heavy overlap with shared-bias。 Random-fault
+    baseline narrower and shifted left。
+
+    '
+  analysis: 'Concentration analysis是modest supporting evidence而非smoking gun。d=0.22太小，
+    且Gini主要由capability gap而非adversary strategy驱动（r=0.55 with η_max）。 可以在paper中作为supplementary
+    evidence保留但不能carry independent weight。 对worst-tier narrative的影响：不直接contradicts任何claim，但也不rescues
+    BFT framing（plan_003 failure）。
+
+    '
+- name: Diversity-capability tradeoff visualization
+  plan_id: plan_007
+  description: '在455 panels上绘制K_eff vs η_max scatter，拟合tradeoff curve，展示Pareto frontier，按tier分层。
+
+    '
+  expected_results:
+    overall_pearson_r: 0.65
+    overall_spearman_r: 0.61
+    within_frontier_r: 0.22
+    within_strong_r: 0.18
+    within_midweak_r: 0.35
+    cross_tier_r: 0.72
+    pareto_front_size: 8
+    pareto_dominated_by_min_eta: 6/8
+    tradeoff_R2_overall: 0.42
+    tradeoff_slope: 0.58
+  result_rationale: 'diversity_capability_r在worst档范围[0.55, 0.75]内，取值0.65。Tradeoff确实存在（R²=0.42），
+    但primarily driven by cross-tier differences。Within-tier r远低于overall（0.18-0.35
+    vs 0.65）， 表明tradeoff是ecosystem structure artifact而非fundamental constraint。 Pareto
+    frontier上8个panels中6个被min(η_max) dominate——Pareto analysis不能rescue practical contribution。
+    但0.65的correlation确实说明η_max和K_eff在current design下heavily confounded—— 这reinforces
+    VIF问题（plan_009），regression decomposition的reliability存疑。
+
+    '
+  tables:
+  - caption: Diversity-capability correlation by analysis scope
+    columns:
+    - Scope
+    - Pearson r
+    - R²
+    - N panels
+    - Interpretation
+    rows:
+    - - Overall (15 models)
+      - '0.65'
+      - '0.42'
+      - '455'
+      - Moderate-strong confound
+    - - Within frontier (3 models)
+      - '0.22'
+      - '0.05'
+      - '1'
+      - Weak (too few panels)
+    - - Within strong (3 models)
+      - '0.18'
+      - '0.03'
+      - '1'
+      - Weak (too few panels)
+    - - Within mid-weak (9 models)
+      - '0.35'
+      - '0.12'
+      - '84'
+      - Moderate within-tier
+    - - Cross-tier only
+      - '0.72'
+      - '0.52'
+      - '370'
+      - Strong — tier-driven
+  figures_description:
+  - 'Scatter: K_eff (x) vs η_max (y) for 455 panels, color-coded by tier composition。
+    Clear positive band from bottom-left (all-frontier panels: low K_eff, low η_max)
+    to top-right (cross-tier panels: high K_eff, high η_max)。Overall regression line
+    (r=0.65) and within-tier regression lines (near-flat) overlaid。Pareto frontier
+    in green。
+
+    '
+  analysis: 'Visualization清晰展示confound的severity。r=0.65意味着K_eff和η_max共享42%的variance——
+    regression无法reliably separate their independent effects，这与VIF >7（plan_009）一致。
+    Tradeoff本身是real as structural correlation，但"diversity is costly because it requires
+    weaker models" 这个interpretation only applies to cross-tier composition。 对论文的影响：Claim
+    3（diversity-capability tradeoff）不能作为"fundamental constraint"呈现， 而是"artifact of
+    current model ecosystem where capability predicts robustness"。
+
+    '
+- name: 'Panel size sensitivity: K=3,5,7,9'
+  plan_id: plan_008
+  description: '在不同panel size (K=3,5,7,9)下测试η_max dominance是否持续。 验证weakest-link是否universal
+    across panel sizes。
+
+    '
+  expected_results:
+    k3_bootstrap_eta_sig: 3/12
+    k3_bootstrap_keff_sig: 1/12
+    k5_bootstrap_eta_sig: 2/12
+    k5_bootstrap_keff_sig: 0/12
+    k7_bootstrap_eta_sig: 1/12
+    k7_bootstrap_keff_sig: 0/12
+    k9_bootstrap_eta_sig: 1/12
+    k9_bootstrap_keff_sig: 1/12
+    k5_panels: 3003
+    k7_panels: 6435
+    k9_panels: 5005
+    eta_sig_trend_bootstrap_p: 0.04
+    non_independence_amplification_k5: 4.1×
+    non_independence_amplification_k7: 5.8×
+    non_independence_amplification_k9: 7.2×
+  result_rationale: 'Panel size增大在worst档下不仅不改善η_max significance——反而使其更差。原因是non-independence问题
+    随K增大而amplify：K=5时每个model出现在C(14,4)=1001个panels中（vs K=3时91个）， SE inflation从3.2×（K=3）上升到7.2×（K=9）。更大的panels有更多overlap，corrected
+    inference 更conservative。Bootstrap η_max从K=3的3/12降至K=9的1/12。 Irony：更大panels理论上应该reduce
+    weakest-link effect（1 weak vote in 9 matters less）， 但这个theoretical prediction无法在corrected
+    inference下empirically confirm， 因为non-independence scales faster than signal。 K_eff同样全面collapse（最多1/12
+    at K=9），两个predictor都不work under corrected inference at large K。
+
+    '
+  tables:
+  - caption: 'Panel size × correction method: η_max significance'
+    columns:
+    - K
+    - N panels
+    - OLS η_max sig
+    - Bootstrap η_max sig
+    - SE inflation
+    - Model overlap per judge
+    rows:
+    - - '3'
+      - '455'
+      - 11/12
+      - 3/12
+      - 3.2×
+      - '91'
+    - - '5'
+      - '3003'
+      - 11/12
+      - 2/12
+      - 4.1×
+      - '1001'
+    - - '7'
+      - '6435'
+      - 10/12
+      - 1/12
+      - 5.8×
+      - '3003'
+    - - '9'
+      - '5005'
+      - 9/12
+      - 1/12
+      - 7.2×
+      - '2002'
+  - caption: 'Panel size × correction: K_eff significance'
+    columns:
+    - K
+    - OLS K_eff sig
+    - Bootstrap K_eff sig
+    - K_eff practical Δ ASR (IQR)
+    rows:
+    - - '3'
+      - 8/12
+      - 1/12
+      - 0.8pp
+    - - '5'
+      - 7/12
+      - 0/12
+      - 0.5pp
+    - - '7'
+      - 6/12
+      - 0/12
+      - 0.3pp
+    - - '9'
+      - 5/12
+      - 1/12
+      - 0.2pp
+  figures_description:
+  - 'Dual-axis line plot: K (x) vs significance count (y, left axis, lines for η_max
+    OLS/bootstrap) and SE inflation factor (y, right axis, gray area)。OLS lines stay
+    flat/slightly decreasing, bootstrap lines plummet, SE inflation area grows。Visual
+    message: "bigger panels = more overlap = less reliable inference"。
+
+    '
+  analysis: 'Panel size analysis在worst档下paradoxically成为方法学贡献的strongest evidence。 它直观展示了combinatorial
+    panel designs的fundamental problem：C(N,K) grows fast but each model''s participation
+    grows equally fast → non-independence scales with panel count。 这是LLM evaluation
+    community应该awareness的general insight，不限于adversarial setting。 但对composition-level
+    claims (η_max, K_eff) 完全destructive——neither predictor survives correction at
+    any K。
+
+    '
+- name: VIF + multicollinearity analysis
+  plan_id: plan_009
+  description: '计算VIF、partial correlations、residualized K_eff。尝试beta regression。 量化η_max与K_eff的multicollinearity
+    severity。
+
+    '
+  expected_results:
+    vif_eta_max: 7.8
+    vif_keff: 6.9
+    partial_r_eta_max_given_keff: 0.31
+    partial_r_keff_given_eta_max: 0.12
+    residualized_keff_sig: 2/12
+    residualized_keff_p_median: 0.28
+    beta_regression_eta_sig: 9/12
+    beta_regression_keff_sig: 3/12
+    condition_number: 18.5
+    variance_decomposition_shared: 0.42
+    variance_decomposition_eta_unique: 0.18
+    variance_decomposition_keff_unique: 0.03
+  result_rationale: 'VIF分析确认severe multicollinearity：VIF(η_max)=7.8, VIF(K_eff)=6.9（均>5的conventional
+    threshold， 接近>10的severe threshold）。根源是diversity-capability confound（r=0.65→VIF
+    ≈ 1/(1-r²) = 1/0.58 ≈ 1.7×... 等等，VIF的计算是1/(1-R²_j)，如果K_eff对η_max的R²=0.42（来自r=0.65），
+    则VIF(K_eff) = 1/(1-0.42) = 1.72。但如果加入其他confounds（tier indicators等），VIF会更高。 在有tier
+    indicators + K_eff + η_max的full model中，VIF可以达到7-8。
+
+    Partial correlation显示：controlling for K_eff后η_max与ASR的r=0.31（moderate）， 但controlling
+    for η_max后K_eff与ASR的r仅0.12（weak）。 Variance decomposition：42% shared between η_max和K_eff，18%
+    unique to η_max，仅3% unique to K_eff。 K_eff的"independent effect"实质上是noise level。
+    Beta regression（处理bounded [0,1] response）不改善K_eff situation：仍仅3/12显著。 结论：在当前design下η_max和K_eff
+    cannot be reliably separated as independent predictors。 整个regression-based decomposition
+    framework在VIF >5下unreliable。
+
+    '
+  tables:
+  - caption: Multicollinearity diagnostics
+    columns:
+    - Diagnostic
+    - η_max
+    - K_eff
+    - Threshold
+    - Verdict
+    rows:
+    - - VIF (base model)
+      - '2.4'
+      - '2.1'
+      - '>5 = concern'
+      - OK
+    - - VIF (with tier indicators)
+      - '7.8'
+      - '6.9'
+      - '>5 = concern'
+      - FAIL
+    - - Partial r (given other)
+      - '0.31'
+      - '0.12'
+      - —
+      - K_eff weak
+    - - Unique variance %
+      - 18%
+      - 3%
+      - —
+      - K_eff negligible
+    - - Condition number
+      - '18.5'
+      - —
+      - '>30 = severe'
+      - Moderate
+  - caption: 'Variance decomposition: shared vs unique'
+    columns:
+    - Component
+    - R² contribution
+    - '% of total explained'
+    rows:
+    - - Shared (η_max ∩ K_eff)
+      - '0.42'
+      - 67%
+    - - Unique η_max
+      - '0.18'
+      - 29%
+    - - Unique K_eff
+      - '0.03'
+      - 5%
+    - - Total model R²
+      - '0.63'
+      - 100%
+  - caption: Residualized K_eff regression results
+    columns:
+    - Dataset
+    - Attack
+    - Residualized K_eff β
+    - p
+    - Significant?
+    rows:
+    - - MMLU
+      - prompt_injection
+      - '0.08'
+      - '0.42'
+      - 'No'
+    - - MMLU
+      - score_manipulation
+      - '0.05'
+      - '0.58'
+      - 'No'
+    - - MMLU
+      - sycophancy
+      - '-0.12'
+      - '0.18'
+      - 'No'
+    - - MMLU
+      - verbosity_bias
+      - '-0.04'
+      - '0.65'
+      - 'No'
+    - - MMLU
+      - position_bias
+      - '0.15'
+      - '0.04'
+      - 'Yes'
+    - - MMLU
+      - authority_bias
+      - '-0.06'
+      - '0.52'
+      - 'No'
+    - - ARC
+      - prompt_injection
+      - '0.11'
+      - '0.22'
+      - 'No'
+    - - ARC
+      - score_manipulation
+      - '0.07'
+      - '0.41'
+      - 'No'
+    - - ARC
+      - sycophancy
+      - '-0.09'
+      - '0.35'
+      - 'No'
+    - - ARC
+      - verbosity_bias
+      - '-0.03'
+      - '0.72'
+      - 'No'
+    - - ARC
+      - position_bias
+      - '0.13'
+      - '0.08'
+      - 'No'
+    - - ARC
+      - authority_bias
+      - '-0.02'
+      - '0.81'
+      - 'No'
+  figures_description:
+  - 'Venn diagram: total explained variance分解为η_max unique (18%), K_eff unique (3%),
+    shared (42%)。 K_eff圆极小且almost entirely嵌入shared区域。Visual message: K_eff几乎没有independent
+    explanatory power。
+
+    '
+  - 'Scatter: raw K_eff (x) vs residualized K_eff (y, after regressing out η_max)。
+    大部分variation被regression去除，residualized K_eff集中在零附近with minimal spread。
+
+    '
+  analysis: 'VIF分析是worst档中最clean的negative result——它提供了一个principled statistical explanation
+    for为什么K_eff在corrected inference下always collapse。不是因为K_eff "doesn''t matter"， 而是因为在当前design下η_max和K_eff
+    share 67% of their explained variance， K_eff的unique contribution仅3%——在15 clusters的bootstrap下impossible
+    to detect。 这reinforces方法学贡献narrative：combinatorial panel designs + small number
+    of unique models = multicollinearity + non-independence = any predictor-level
+    decomposition is unreliable。 论文应该present VIF analysis as evidence that the regression
+    approach itself is inadequate for this research question，而非"K_eff doesn''t matter"。
+
+    '
+- name: 'Non-majority-vote aggregation: weighted, threshold, Bayesian'
+  plan_id: plan_010
+  description: '测试η_max dominance在weighted voting、threshold (unanimity)、Bayesian calibration下是否persist。
+    验证aggregation gradient。
+
+    '
+  expected_results:
+    majority_ols_eta_sig: 11/12
+    majority_ols_keff_sig: 8/12
+    majority_bootstrap_eta_sig: 3/12
+    majority_bootstrap_keff_sig: 1/12
+    weighted_ols_eta_sig: 9/12
+    weighted_ols_keff_sig: 9/12
+    weighted_bootstrap_eta_sig: 2/12
+    weighted_bootstrap_keff_sig: 1/12
+    threshold_ols_eta_sig: 12/12
+    threshold_ols_keff_sig: 11/12
+    threshold_bootstrap_eta_sig: 5/12
+    threshold_bootstrap_keff_sig: 2/12
+    threshold_R2: 0.89
+    bayesian_ols_eta_sig: 9/12
+    bayesian_ols_keff_sig: 7/12
+    bayesian_ols_keff_negative: 6
+    bayesian_bootstrap_eta_sig: 2/12
+    bayesian_bootstrap_keff_sig: 0/12
+    bayesian_bootstrap_keff_negative: 0
+    bayesian_R2: 0.1
+    aggregation_gradient_survives_correction: partially
+  result_rationale: 'Aggregation gradient在OLS下clear（threshold R²=0.89 → bayesian R²=0.10），
+    但bootstrap correction后Bayesian K_eff flip彻底消失：OLS下6/7 negative → bootstrap下0/12
+    significant。 原因：Bayesian aggregation减弱了panel composition对ASR的影响（R²=0.10），但这也意味着signal/noise
+    ratio极低—— 在bootstrap correction下signal completely drowned by noise。 Threshold
+    aggregation相对较好（bootstrap η_max 5/12），因为unanimity rule下 panel vulnerability完全由individual
+    vulnerabilities的AND/OR逻辑决定（R²=0.89）， signal极强→即使bootstrap conservative也能detect。
+    但这创造了一个awkward结论："只有在使用最不实用的aggregation rule（unanimity）时， η_max dominance才survives
+    bootstrap correction"——因为实践中没人用unanimity voting。 aggregation gradient作为R²的gradient仍然成立（0.89→0.10不受SE
+    correction影响）， 但individual predictor significance在每种aggregation下都unreliable after
+    correction。
+
+    '
+  tables:
+  - caption: 'Aggregation gradient: OLS vs bootstrap correction'
+    columns:
+    - Aggregation
+    - OLS η_max
+    - OLS K_eff
+    - Bootstrap η_max
+    - Bootstrap K_eff
+    - R²
+    rows:
+    - - Majority
+      - 11/12
+      - 8/12 (7+/1−)
+      - 3/12
+      - 1/12
+      - '0.30'
+    - - Weighted
+      - 9/12
+      - 9/12 (9+/0−)
+      - 2/12
+      - 1/12
+      - '0.28'
+    - - Threshold
+      - 12/12
+      - 11/12 (10+/1−)
+      - 5/12
+      - 2/12
+      - '0.89'
+    - - Bayesian
+      - 9/12
+      - 7/12 (1+/6−)
+      - 2/12
+      - 0/12 (0+/0−)
+      - '0.10'
+  - caption: Bayesian K_eff direction under correction
+    columns:
+    - Method
+    - K_eff negative (of significant)
+    - K_eff significant total
+    - Direction interpretation
+    rows:
+    - - OLS
+      - 6/7
+      - 7/12
+      - Strongly negative (protective)
+    - - Clustered SE
+      - 1/2
+      - 2/12
+      - Weak negative
+    - - Mixed effects
+      - 0/1
+      - 1/12
+      - Inconclusive
+    - - Bootstrap v2
+      - 0/0
+      - 0/12
+      - No signal survives
+  figures_description:
+  - 'Stacked bar chart: 4 aggregation rules × 4 correction methods。 每个bar的高度=significant
+    predictor count。OLS bars tall everywhere, bootstrap bars nearly empty except threshold。
+    Bayesian的K_eff方向（negative in OLS → absent in bootstrap）用color shift标注。
+
+    '
+  - 'Scatter: R² (x) vs bootstrap significant predictor count (y)。 Clear positive
+    relationship — only high R² (threshold, 0.89) produces bootstrap-surviving significance。
+    Annotate: "R²<0.3 → bootstrap kills all signals"。
+
+    '
+  analysis: 'Aggregation gradient是worst档中唯一partially salvageable的composition-related
+    finding。 R²的gradient（0.89→0.10）是descriptive statistic不受SE correction影响—— aggregation
+    rule确实determines how much panel composition matters for vulnerability。 但individual
+    predictor significance在除threshold外的所有aggregation下collapse after correction， Bayesian
+    K_eff flip（被寄予厚望的"defense lever"）完全是OLS artifact。 Salvage angle："aggregation choice
+    determines the predictability of panel vulnerability， but we cannot reliably decompose
+    this into η_max vs K_eff components"—— 这是一个weaker but defensible statement，可以作为论文的Claim
+    C。
+
+    '
+- name: Open-ended generation benchmark (MT-Bench / AlpacaEval)
+  plan_id: plan_011
+  description: '在MT-Bench或AlpacaEval-style open-ended generation任务上运行全部15 models +
+    6 attacks。 验证findings是否generalize beyond MCQ format。
+
+    '
+  expected_results:
+    benchmark: MT-Bench
+    total_conditions: 12
+    ols_eta_sig: 7/12
+    ols_keff_sig: 5/12
+    bootstrap_eta_sig: 1/12
+    bootstrap_keff_sig: 0/12
+    clustered_se_eta_sig: 3/12
+    clustered_se_keff_sig: 0/12
+    R2_median: 0.15
+    scoring_format: pairwise comparison
+    attack_implementation_challenges: 3
+    cross_benchmark_eta_correlation: 0.52
+    cross_benchmark_keff_correlation: 0.38
+  result_rationale: 'Open-ended generation benchmark引入新的complications。 MT-Bench使用pairwise
+    comparison scoring（而非MCQ的discrete label），judge vulnerability profile 与MCQ setting有中等相关（r=0.52
+    for η_max across benchmarks）。 OLS下η_max显著7/12，但bootstrap后仅1/12——same non-independence
+    problem。 更关键的是R²显著低于MCQ（0.15 vs 0.25），说明open-ended setting中panel composition 对vulnerability的解释力更低——可能因为open-ended
+    scoring有更多intrinsic noise。 3种attacks（sycophancy, verbosity_bias, authority_bias）在open-ended
+    setting的implementation 需要substantial modification，results可能不完全comparable。 总结：open-ended
+    benchmark不rescue任何claim，反而进一步dilute statistical power。 论文有效沦为two-MCQ-benchmark
+    + one-weak-open-ended study。
+
+    '
+  tables:
+  - caption: 'MT-Bench results: OLS vs bootstrap'
+    columns:
+    - Attack
+    - OLS η_max p
+    - Bootstrap η_max p
+    - OLS K_eff p
+    - Bootstrap K_eff p
+    - R²
+    rows:
+    - - prompt_injection
+      - '0.008'
+      - '0.22'
+      - '0.05'
+      - '0.48'
+      - '0.18'
+    - - score_manipulation
+      - '0.015'
+      - '0.31'
+      - '0.08'
+      - '0.55'
+      - '0.14'
+    - - sycophancy*
+      - '0.042'
+      - '0.51'
+      - '0.12'
+      - '0.63'
+      - '0.11'
+    - - verbosity_bias*
+      - '0.038'
+      - '0.48'
+      - '0.18'
+      - '0.58'
+      - '0.09'
+    - - position_bias
+      - '0.003'
+      - '0.08'
+      - '0.04'
+      - '0.38'
+      - '0.22'
+    - - authority_bias*
+      - '0.055'
+      - '0.55'
+      - '0.22'
+      - '0.68'
+      - '0.08'
+  - caption: Cross-benchmark consistency
+    columns:
+    - Metric
+    - MMLU-MT r
+    - ARC-MT r
+    - Interpretation
+    rows:
+    - - η_max profile
+      - '0.52'
+      - '0.48'
+      - Moderate — partial transfer
+    - - K_eff effect direction
+      - '0.38'
+      - '0.35'
+      - Weak — inconsistent
+    - - Condition-level R²
+      - '0.25'
+      - '0.22'
+      - Weak
+  figures_description:
+  - 'Three-panel comparison: MMLU (left), ARC (center), MT-Bench (right) showing bootstrap
+    significance counts for η_max and K_eff。MT-Bench panel nearly empty（1/12, 0/12）。
+    Visual message: "MCQ-only findings don''t transfer to open-ended evaluation"。
+
+    '
+  analysis: 'Open-ended benchmark是worst档的additional nail in the coffin。不仅不rescue findings，
+    还暴露了MCQ-specific limitation：MCQ的discrete 4-choice format可能artificially inflate
+    η_max signal（错误是categorical → vulnerability更binary → η_max更predictive）， 而open-ended
+    scoring的continuous nature dilutes this。 对论文的影响：如果MT-Bench results included，需要honest
+    caveat "our findings are primarily established for MCQ evaluation and show limited
+    transfer to open-ended settings"。 如果excluded，reviewer会问why not。Either way is problematic。
+
+    '
+- name: Partial-knowledge adversary model
+  plan_id: plan_012
+  description: '模拟partial-knowledge adversary：adversary知道model families但不知exact vulnerability
+    profiles。 对比full-knowledge vs partial-knowledge vs zero-knowledge adversary下的panel
+    vulnerability。
+
+    '
+  expected_results:
+    knowledge_levels: 3
+    full_knowledge_mean_asr: 0.142
+    partial_knowledge_mean_asr: 0.128
+    zero_knowledge_mean_asr: 0.098
+    partial_vs_full_ratio: 0.9
+    partial_vs_zero_ratio: 1.31
+    eta_max_sig_full: 3/12
+    eta_max_sig_partial: 2/12
+    eta_max_sig_zero: 1/12
+    keff_sig_any_level: 0/12
+    family_knowledge_value: moderate
+    knowledge_gradient_p: 0.04
+  result_rationale: 'Partial-knowledge adversary结果在worst档下mostly inconclusive。 Full→partial→zero
+    knowledge确实形成ASR gradient（0.142→0.128→0.098, p=0.04）， 说明adversary knowledge matters。但family
+    knowledge（partial level）只提供10% advantage over full knowledge （partial/full = 0.90）——因为family
+    labels不predict vulnerability well（Claim 4已确认, p=0.179）。 η_max significance在任何knowledge
+    level下都barely survives bootstrap（最好3/12 for full-knowledge）， K_eff在所有levels都0/12。Partial-knowledge分析adds
+    little to the paper—— 它confirm了family labels unreliability（already known）but doesn''t
+    provide new insight。 在worst档下这个experiment消耗GPU budget但return minimal novelty。
+
+    '
+  tables:
+  - caption: Adversary knowledge level × panel vulnerability
+    columns:
+    - Knowledge level
+    - Mean ASR
+    - η_max bootstrap sig
+    - K_eff bootstrap sig
+    - R²
+    rows:
+    - - Full (oracle)
+      - '0.142'
+      - 3/12
+      - 0/12
+      - '0.25'
+    - - Partial (family only)
+      - '0.128'
+      - 2/12
+      - 0/12
+      - '0.18'
+    - - Zero (random targeting)
+      - '0.098'
+      - 1/12
+      - 0/12
+      - '0.08'
+  - caption: Knowledge value decomposition
+    columns:
+    - Comparison
+    - Δ ASR
+    - p
+    - Practical interpretation
+    rows:
+    - - Full vs zero
+      - '+0.044'
+      - '0.002'
+      - Knowledge matters (44pp higher)
+    - - Full vs partial
+      - '+0.014'
+      - '0.18'
+      - Exact profile adds little over family
+    - - Partial vs zero
+      - '+0.030'
+      - '0.01'
+      - Family knowledge has moderate value
+  figures_description:
+  - 'Bar chart: 3 knowledge levels × mean ASR with error bars。Clear gradient but full-vs-partial
+    gap is small。Annotated with p-values between groups。
+
+    '
+  analysis: Partial-knowledge analysis是lowest-impact experiment in worst档。 它confirm两个already-known
+    facts（family labels unreliable, adversary knowledge matters） without adding new
+    insight。在page-limited paper (8 pages)中可以完全省略或放入appendix。 唯一minor value：knowledge
+    gradient validates that our "adaptive adversary" threat model is not unrealistic（even
+    partial knowledge gives advantage），但这is a setup assumption validation, not a contribution。

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "293b8804d638e51fd17e",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops download qwen3 235b",
+  "task_key": "worker_ops_download_qwen3_235b_20260520T210956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_qwen3_235b_20260520T210956_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "074ed1c331eb7cd697ef71c0a2e4d9f782ed40be224a8c57eed1d539f766abf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理。GPU 配置：4× RTX PRO 6000 Blackwell (96GB each)，总 VRAM 384GB。\n\n## 报告\n\n### 下载状态：**失败 — 磁盘空间不足**\n\n| 项目 | 详情 |\n|------|------|\n| 模型 | Qwen3-235B-A22B (MoE, 235B total / 22B active) |\n| BF16 大小 | ~439GB (118 shards × 3.72GB) |\n| 可用磁盘 | 263GB (`/root/autodl-tmp/`) |\n| **缺口** | **~176GB** |\n| GPU | 4× RTX PRO 6000 Blackwell, 96GB each, 总 384GB VRAM |\n\n### INT4 量化方案评估\n\nbitsandbytes 和 auto-gptq 均未安装。\n\n**推荐方案：BnB 4-bit (NF4)**\n- INT4 量化后模型约 **~120GB 磁盘**，可以放下（263GB 可用）\n- 4 张 96GB GPU 总 VRAM 384GB，BF16 加载都够（需 ~470GB 含 KV cache，不够），INT4 约 120GB + KV cache 完全没问题\n- 不需要预先下载量化版，直接下载 BF16 权重 + `load_in_4bit=True` 在线量化即可\n- 但 BF16 权重本身就需要 439GB 磁盘，**依然放不下**\n\n### 可行方案\n\n1. **下载预量化的 GPTQ/AWQ 版本**（如 `Qwen/Qwen3-235B-A22B-GPTQ-Int4` 或社区量化版），磁盘占用约 120GB，263GB 够用\n2. **扩容数据盘**到 600GB+，再下载 BF16 原版\n3. **清理现有数据**释放空间（当前已用 88GB），但仍不够补齐 176GB 缺口\n\n建议选方案 1，下载预量化版本。需要我查找并下载 Qwen3-235B-A22B 的 INT4 量化版吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-qwen3-235b.md"
+}

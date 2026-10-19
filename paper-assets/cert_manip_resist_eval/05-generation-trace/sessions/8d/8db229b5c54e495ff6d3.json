@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_7model-preview-pipeline_20260522T150246_result.json",
     "occurrence": 1,
-    "bytes": 1565,
-    "sha256": "f99349b26137b42932b7526f315cd668a946c3ca0435dc2227d9cfbd551118aa"
+    "bytes": 1564,
+    "sha256": "d02011e7ee1736a5b0a89e81d5cc52dc8a40585b81c39120afc611d7035e78aa"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-p3-composition-scatter_20260525T153949_result.json",
     "occurrence": 1,
-    "bytes": 534,
-    "sha256": "94d22abdf29a0da44d43b3683496ed0b9c162c76e92ee03dfdc9881fc93d711a"
+    "bytes": 533,
+    "sha256": "cfc5b1260bb9c929f7dcc7e5a51b39cb1156c84dfc84224af2184d2dc513eabd"
   },
   "statistics": {
     "messages": 1,

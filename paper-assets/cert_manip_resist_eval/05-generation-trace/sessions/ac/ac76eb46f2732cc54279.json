@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_plan001-data-completeness-check_20260522T071204_result.json",
     "occurrence": 1,
-    "bytes": 1347,
-    "sha256": "0589de07d362beab04421ba3e867472c24618f030150568deeb65b64073afd9b"
+    "bytes": 1346,
+    "sha256": "559572c1e01f6a816409b75fe24899fc6b69904bf5d520880fc41604ab703f1e"
   },
   "statistics": {
     "messages": 1,

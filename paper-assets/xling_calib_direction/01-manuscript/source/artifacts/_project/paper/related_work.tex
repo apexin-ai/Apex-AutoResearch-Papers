@@ -1,0 +1,63 @@
+% Requires: \usepackage{pifont} \newcommand{\cmark}{\ding{51}} \newcommand{\xmark}{\ding{55}}
+% Requires: \usepackage{booktabs}
+
+\section{Related Work}
+
+\subsection{LLM Calibration and Internal Representations}
+
+Post-hoc calibration methods such as temperature scaling \cite{guo2017calibration} and Platt scaling \cite{niculescu2005predicting} treat model confidence as a scalar output to be recalibrated after training. These approaches assume access to a held-out validation set from the target distribution and operate entirely on output logits without inspecting internal representations.
+A complementary line of work examines whether models can self-assess correctness through verbalized confidence. \citet{kadavath2022language} demonstrate that larger language models produce well-calibrated probability estimates when asked to evaluate their own answers, establishing that calibration information exists within the model prior to output generation.
+
+Recent studies shift attention from output-level calibration to representation-level probing. \citet{miao2026closing} identify that correctness and verbalized confidence occupy nearly orthogonal subspaces in hidden states (cosine similarity below 0.04), suggesting that standard confidence elicitation fails to capture the full calibration signal. Building on this observation, CORAL \cite{miao2026coral} trains correctness probes that transfer across tasks within English, achieving approximately 50\% ECE improvement over verbalized confidence baselines. CCPS \cite{khanmohammadi2025ccps} takes a complementary approach by measuring representation stability under input perturbations as a proxy for correctness. The Confidence Manifold framework \cite{confidence_manifold2026} reveals that calibration-relevant information concentrates in a low-dimensional subspace (3 to 8 dimensions), with as few as 25 labeled examples sufficient for 89\% probing accuracy. \citet{ji2025calibrating} further demonstrate that verbal uncertainty in LLMs corresponds to a linear direction in representation space, while \citet{joshi2025calibration} analyze how calibration signals evolve across layers, finding non-monotonic patterns that motivate layer selection.
+
+All of these studies operate exclusively in English and on a single model architecture. Our work extends correctness probing to 20 languages across 4 architectures, revealing that the geometric properties identified in English (orthogonality, low-dimensional manifold) do not transfer uniformly across languages.
+
+\subsection{Cross-Lingual Probing and Transfer}
+
+Cross-lingual probing investigates whether linguistic or behavioral properties encoded in one language's representations generalize to others. \citet{xiao2025knowledge} probe knowledge boundaries across 8 languages and find partial cross-lingual transfer, but their target signal is answerability (an input-level property) rather than correctness (which depends on the model's actual output). \citet{civelli2026shared} probe item difficulty using IRT-derived labels and report shared geometric structure across 7 languages; however, difficulty is a property of the question itself, independent of any particular model's response. DALI \cite{ravisankar2026dali} provides causal evidence through activation patching that English middle-layer representations can repair errors in 24 non-English languages, confirming that transferable correctness information exists but not quantifying when and why transfer fails.
+
+The technical foundations for cross-lingual alignment predate LLM-era probing. MUSE \cite{conneau2018muse} established adversarial training for unsupervised bilingual word embedding alignment, while VecMap \cite{artetxe2018vecmap} demonstrated that self-learning with structural similarity initialization achieves robust cross-lingual mappings without parallel data. Foundational cross-lingual transfer studies on multilingual BERT established that zero-shot transfer works surprisingly well between typologically similar languages \cite{pires2019multilingual} and across diverse NLP tasks covering 39 languages \cite{wu2019beto}. % [TO_ADD_BIB]
+\citet{liu2025middle} show that middle layers of fine-tuned LLMs exhibit stronger cross-lingual alignment than early or late layers, consistent with the depth patterns we observe for correctness probes.
+
+Our work differs in three respects: we probe correctness (an output-dependent signal that requires generating and evaluating answers), we provide systematic depth analysis with Pareto frontier characterization across architectures, and we evaluate 5 transfer methods (including linear projection inspired by MUSE/VecMap) across 20 languages.
+
+\subsection{Multilingual Calibration}
+
+Calibration quality varies dramatically across languages. \citet{zhou2025lace} document a 5$\times$ ECE gap between English and low-resource languages across 100+ languages and propose LACE, an adaptive layer ensemble that selects different layer combinations per language. While effective, LACE requires per-language validation data with correctness labels, limiting applicability to languages where such annotations exist.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Comparison with closely related work on calibration probing and cross-lingual transfer. Target signals: KB = knowledge boundary, Corr.\ = correctness, Diff.\ = difficulty. Zero-CL = zero target-language correctness labels required.}
+\label{tab:related_work}
+\begin{tabular}{lcccccc}
+\toprule
+& \textbf{Target} & \textbf{\# Langs} & \textbf{Calib.} & \textbf{Zero-CL} & \textbf{Depth} & \textbf{Transfer} \\
+& \textbf{Signal} & & \textbf{Metrics} & \textbf{Labels} & \textbf{Analysis} & \textbf{Methods} \\
+\midrule
+Xiao et al. & KB & 8 & \xmark & \cmark & \xmark & 1 \\
+LACE & -- & 100+ & \cmark & \xmark & partial & -- \\
+CORAL & Corr. & 1 & \cmark & -- & \cmark & 1 \\
+Miao \& Ungar & Corr. & 1 & \xmark & -- & \xmark & -- \\
+Civelli et al. & Diff. & 7 & \xmark & \cmark & \cmark & 1 \\
+\midrule
+\textbf{Ours} & \textbf{Corr.} & \textbf{20} & \cmark & \cmark & \cmark & \textbf{5} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The fundamental challenge that LACE addresses (per-language calibration heterogeneity) motivates our investigation, but our approach differs in both goal and mechanism. We analyze \emph{why} cross-lingual transfer of correctness probes fails (architecture-dependent depth-transferability tradeoffs, geometric divergence measured by CKA) rather than engineering a per-language compensation. Our method requires zero target-language correctness labels, transferring probes trained on English data alone.
+
+\subsection{Domain Adaptation Theory}
+
+The theoretical framework of \citet{bendavid2010theory} bounds target-domain error by source error plus a divergence term ($\mathcal{H}$-divergence) between source and target distributions, plus a joint ideal error. Applied to cross-lingual probe transfer, this predicts degradation proportional to the representational distance between languages. \citet{zhao2019invariant} prove a stronger negative result: when conditional distributions $P(Y|X)$ differ between domains, matching marginal distributions of representations can \emph{increase} target error rather than reduce it.
+
+This theoretical insight directly explains our empirical finding on CaCLR (Cross-lingual Calibration via Conditional Label-aware Representation matching). CaCLR applies MMD-based distributional matching to align probe logit distributions across languages. If distributional matching proves insufficient (pending experimental validation with plan\_003), this would align with the prediction of \citet{zhao2019invariant}: because conditional accuracy distributions $P(\text{correct}|\mathbf{h})$ differ between languages (due to varying model competence), marginal alignment may destroy the conditional structure that probes rely on. Our CKA partial correlation analysis further reveals a Simpson's Paradox where aggregate cross-lingual similarity masks within-layer divergence, a confounding pattern that naive cross-layer pooling obscures.
+
+\subsection{Probing Methodology and Evaluation}
+
+The methodological foundations of representation probing inform our experimental design. \citet{hewitt2019control} introduce control tasks that establish selectivity baselines, guarding against probes that succeed merely due to high capacity rather than genuine information in representations. \citet{voita2020mdl} propose minimum description length probes as an information-theoretic alternative, measuring the amount of effort required to extract a property. \citet{belinkov2022probing} surveys the broader landscape of probing classifiers, identifying best practices and common pitfalls including the capacity-informativeness tradeoff.
+
+We apply the control task framework of \citet{hewitt2019control} to cross-lingual correctness probing and find that approximately 28\% of positive transfer results in low-resource languages are capacity artifacts (probes achieve similar accuracy on shuffled labels). This finding underscores the importance of probing controls in multilingual settings where target-language data scarcity can inflate apparent transfer success. For measuring representational similarity across languages and layers, we employ CKA \cite{kornblith2019cka} with partial correlation analysis, revealing geometric structure invisible to standard pairwise comparisons. Conformal prediction \cite{angelopoulos2023conformal} offers distribution-free coverage guarantees complementary to our probing approach but requires per-language calibration data, which our zero-correctness-label setting explicitly avoids.
+
+Our work contributes the first systematic application of probing controls to cross-lingual transfer evaluation and applies CKA with depth-controlled partial correlation as a diagnostic for understanding transfer failure modes.

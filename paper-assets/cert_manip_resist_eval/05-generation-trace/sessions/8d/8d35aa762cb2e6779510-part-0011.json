@@ -2247,7 +2247,7 @@
           "content": [
             {
               "type": "text",
-              "text": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval\",\n  \"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"cert_manip_resist_eval\"\n}"
+              "text": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"cert_manip_resist_eval\"\n}"
             }
           ],
           "metadata": {
@@ -2617,7 +2617,7 @@
           "content": [
             {
               "type": "text",
-              "text": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval\",\n  \"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"cert_manip_resist_eval\"\n}"
+              "text": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"cert_manip_resist_eval\"\n}"
             }
           ],
           "metadata": {
@@ -2914,7 +2914,7 @@
             "session": "feishu:group:oc_511319d9c17dfa45ec974a0123143d46:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp && git clone https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git cert_manip_resist_eval_repo 2>&1",
+              "command": "cd /tmp && git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git cert_manip_resist_eval_repo 2>&1",
               "description": "Clone the GitHub repo"
             }
           },
@@ -3474,7 +3474,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[飞书用户 曹晓玉]: 📋 代码仓库更新（含凭证）\n\n论文经过多轮修改后，GitHub 仓库里的内容可能已经过时了。请在本机 clone 仓库，对照论文最新版本更新后 push。\n\n你的仓库信息：\n- 仓库地址：https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval\n- Push URL：https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git\n\n操作步骤：\n```\ngit config --global user.name \"Anonymous\"\ngit config --global user.email \"anonymous@example.com\"\ngit clone https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git\ncd cert_manip_resist_eval\n# 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容\ngit add -A && git commit -m \"sync with final paper\" && git push\n```\n\nGPU 服务器已经关了，不需要连。直接在本机操作。\n\n完成后汇报更新了哪些内容 + 最新 commit hash。"
+              "text": "[飞书用户 曹晓玉]: 📋 代码仓库更新（含凭证）\n\n论文经过多轮修改后，GitHub 仓库里的内容可能已经过时了。请在本机 clone 仓库，对照论文最新版本更新后 push。\n\n你的仓库信息：\n- 仓库地址：https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval\n- Push URL：https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git\n\n操作步骤：\n```\ngit config --global user.name \"Anonymous\"\ngit config --global user.email \"anonymous@example.com\"\ngit clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git\ncd cert_manip_resist_eval\n# 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容\ngit add -A && git commit -m \"sync with final paper\" && git push\n```\n\nGPU 服务器已经关了，不需要连。直接在本机操作。\n\n完成后汇报更新了哪些内容 + 最新 commit hash。"
             }
           ],
           "metadata": {
@@ -3498,7 +3498,7 @@
             "session": "feishu:group:oc_511319d9c17dfa45ec974a0123143d46:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp && git clone https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git cert_manip_resist_eval_check 2>&1",
+              "command": "cd /tmp && git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git cert_manip_resist_eval_check 2>&1",
               "description": "Clone repo with new credentials to verify"
             }
           },

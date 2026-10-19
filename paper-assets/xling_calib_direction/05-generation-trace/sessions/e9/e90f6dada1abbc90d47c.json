@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e90f6dada1abbc90d47c",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "run mvp 002 submit",
+  "task_key": "worker_run_mvp_002_submit_20260520T165936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_mvp_002_submit_20260520T165936_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "d392660d93de5ec21bfe10eb971ce351ce3334902cba54197374433105e962c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "mvp_002 启动成功。\n\n- **cuda:1** 占用 17.6GB 显存，GPU 利用率 90%\n- 正在提取 `en` 语言激活值，速度 ~34 it/s（14042 样本，预计 ~7 分钟/语言）\n- 提取层：`[2, 6, 10, 14, 18, 22, 26]`（7 层，均在模型 28 层范围内）\n\n注意：任务描述中层 30 越界（模型只有 28 层，索引 0-27），已自动修正为 `2,6,10,14,18,22,26`。mvp_001 实际用的也是 `0,4,8,12,16,20,24,27`（非描述中的 31）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-mvp-002-submit.md"
+}

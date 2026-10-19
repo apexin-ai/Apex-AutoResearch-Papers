@@ -3407,7 +3407,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[Director 指令] **运维要求：检查匿名仓库 git remote 配置**\n\n检查用来 push 匿名仓库的本地目录（可能是 /tmp/anon_repo 或其他路径）：\n\n```bash\ncd <匿名仓库目录>\ngit remote -v\n```\n\n如果显示 `git@github.com:...`（SSH），改成 HTTPS+token：\n```bash\ngit remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n确认显示 `https://...` 后回报。不要把这个 URL（含 token）提交到任何代码或日志文件中。"
+              "text": "[Director 指令] **运维要求：检查匿名仓库 git remote 配置**\n\n检查用来 push 匿名仓库的本地目录（可能是 /tmp/anon_repo 或其他路径）：\n\n```bash\ncd <匿名仓库目录>\ngit remote -v\n```\n\n如果显示 `git@github.com:...`（SSH），改成 HTTPS+token：\n```bash\ngit remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n确认显示 `https://...` 后回报。不要把这个 URL（含 token）提交到任何代码或日志文件中。"
             }
           ],
           "metadata": {

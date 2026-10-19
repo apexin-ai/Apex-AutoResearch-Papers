@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_scoring-parallel-fix_20260522T152408_result.json",
     "occurrence": 1,
-    "bytes": 740,
-    "sha256": "3eb4a922e4770f92f9c9e3e02bb9148a94e4bad21f7d3d4077319579056a8c86"
+    "bytes": 739,
+    "sha256": "65d33d635dbe70d99de88fda560b20370e2b2d26d3d04e49952252ab21a2c333"
   },
   "statistics": {
     "messages": 1,

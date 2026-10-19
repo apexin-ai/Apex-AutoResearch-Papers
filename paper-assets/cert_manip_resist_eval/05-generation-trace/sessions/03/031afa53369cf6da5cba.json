@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_appendix-citation-audit_20260525T090628_result.json",
     "occurrence": 1,
-    "bytes": 6286,
-    "sha256": "b13cd036258d0377da251b011947ce385faf9e188687f7fcaff99fec04fc08d1"
+    "bytes": 6285,
+    "sha256": "b466ac9b350a9df7fb65f9c8a97718acb18506f11dbe646ab4aac31c8999d4b5"
   },
   "statistics": {
     "messages": 1,

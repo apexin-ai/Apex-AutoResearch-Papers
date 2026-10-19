@@ -1,0 +1,115 @@
+{
+  "project": "xling_calib_direction",
+  "code_count": 121,
+  "data_count": 201,
+  "env_count": 0,
+  "tex_count": 31,
+  "bib_count": 5,
+  "review_count": 1,
+  "validation_count": 1,
+  "contribution_count": 2,
+  "chat_count": 48,
+  "worker_count": 242,
+  "trace_count": 290,
+  "trace_bytes": 40798834,
+  "maintenance_count": 48,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "068b6739f43715349bcfa0d96a9cfaa4cd77cc5fa0b2e5cc3224639b799c6bae",
+  "title": "Shifting the Cross-Lingual Calibration Pareto Frontier: Probe-Based Calibration Transfer via CaCLR",
+  "pages": 11,
+  "status_marker": "",
+  "version_count": 15,
+  "version_paths": [
+    "artifacts/dream_reports/dream_20260520T185641/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T185641/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T185641/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T201854/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T201854/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T201854/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T122458/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T122458/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T122458/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T044911/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T044911/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T044911/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T032808/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T032808/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T032808/best/paper.pdf"
+  ],
+  "archive_rel": "cert_manip_resist_eval/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "cert_manip_resist_eval/workspace.tar.gz",
+    "sha256": "3741f54c54a9849bc40ea9499ea2849bfd86df5f744a3e76a2601ea970a830c4",
+    "bytes": 508303849,
+    "etag": "\"d19d80a7bb9a931b698682f095cf0ecd-61\"",
+    "modified": "2026-05-31T17:29:09+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "31 source files; 15 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "2 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "48 conversations; 242 worker logs/results; 290 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "121 code/configuration files; 0 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "201 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "1 internal review records; 1 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "48 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}

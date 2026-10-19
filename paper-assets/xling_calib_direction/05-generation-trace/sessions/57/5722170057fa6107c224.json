@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5722170057fa6107c224",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "prep mvp 001 parallel tasks",
+  "task_key": "worker_prep_mvp_001_parallel_tasks_20260520T150620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_mvp_001_parallel_tasks_20260520T150620_result.json",
+    "occurrence": 1,
+    "bytes": 2056,
+    "sha256": "fcedc45174584392c263a7ce1ead18abedf7b63cf5d99b981c84453b21546d72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MMLU 也下载完成了！全部 3 项任务完成。汇总结果：\n\n---\n\n## Task 1: 数据集预下载 ✅\n\n### cais/mmlu (config: `all`)\n| Split | Samples | Columns |\n|-------|---------|---------|\n| test | 14,042 | question, subject, choices, answer |\n| validation | 1,531 | 同上 |\n| dev | 285 | 同上 |\n| auxiliary_train | 99,842 | 同上 |\n\n### CohereForAI/Global-MMLU\n- **Config 命名**: 直接用语言代码（如 `zh`, `ar`, `hi`, `sw`, `ko`），共 42 种语言可用\n- **所有 5 种语言均为**: test 14,042 + dev 285\n- **Columns**: sample_id, subject, subject_category, question, **option_a, option_b, option_c, option_d**, answer, required_knowledge, time_sensitive, reference, culture, region, country, cultural_sensitivity_label, is_annotated\n\n### 关键差异（脚本调试需注意）\n1. **Answer format**: MMLU 用 `choices` (list) + `answer` (int index)；GlobalMMLU 用 `option_a/b/c/d` (str) + `answer` (str letter)\n2. **Splits**: MMLU 有 4 个 split (含 validation 和 auxiliary_train)；GlobalMMLU 只有 test + dev\n3. **下载方式**: 必须设 `HF_ENDPOINT=https://hf-mirror.com` 且**不启用** `source /etc/network_turbo`（network_turbo 代理导致 HF SSL 超时）\n\n---\n\n## Task 2: 脚本 Dry-run ✅\n\n| 脚本 | 状态 | 说明 |\n|------|------|------|\n| train_probe.py | ✅ PASS | sklearn FutureWarning (penalty deprecation)，不影响运行 |\n| transfer_eval.py | ✅ PASS | 输出 transfer_results.csv |\n| analyze_results.py | ✅ PASS | 输出 auroc_by_layer.png, method_comparison.png, summary.txt |\n\n测试数据已清理。无 import error 或 runtime error。\n\n---\n\n## Task 3: 磁盘空间 ✅\n\n| 位置 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| 根分区 (/) | 30G | 942M (4%) | ~29G |\n| 数据盘 (/dev/sda2) | 879G | 402G (49%) | 433G |\n| /root/autodl-tmp/ | — | 8.1G | — |\n\n预估需求 ~22GB，**空间充足**。\n\n---\n\n## 模型下载状态\nQwen2.5-7B-Instruct (ModelScope) ~49%，预计还需 ~40 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-mvp-001-parallel-tasks.md"
+}

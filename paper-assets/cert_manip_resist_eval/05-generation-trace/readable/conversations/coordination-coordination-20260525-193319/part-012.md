@@ -2267,7 +2267,7 @@ called Bash
 
 ```json
 {
-  "command": "source /home/ubuntu/.venv/bin/activate && mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"The Diminishing Weakest Link: as panel size K grows from 3 to 7, the dominant vulnerability predictor shifts from individual model weakness (η_max) to collective judge diversity (K_eff), with a significance crossover at K* ∈ (3, 5)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_new.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.venv/bin/activate && mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"The Diminishing Weakest Link: as panel size K grows from 3 to 7, the dominant vulnerability predictor shifts from individual model weakness (η_max) to collective judge diversity (K_eff), with a significance crossover at K* ∈ (3, 5)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_new.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana to generate Figure 1",
   "timeout": "600000"
 }
@@ -2283,7 +2283,7 @@ called Bash
   "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
   "tool": "Bash",
   "tool_args": {
-    "command": "source /home/ubuntu/.venv/bin/activate && mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"The Diminishing Weakest Link: as panel size K grows from 3 to 7, the dominant vulnerability predictor shifts from individual model weakness (η_max) to collective judge diversity (K_eff), with a significance crossover at K* ∈ (3, 5)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_new.png \\\n  --iterations 5 2>&1",
+    "command": "source /home/ubuntu/.venv/bin/activate && mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"The Diminishing Weakest Link: as panel size K grows from 3 to 7, the dominant vulnerability predictor shifts from individual model weakness (η_max) to collective judge diversity (K_eff), with a significance crossover at K* ∈ (3, 5)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_new.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana to generate Figure 1",
     "timeout": "600000"
   }
@@ -2532,7 +2532,7 @@ called Bash
 
 ```json
 {
-  "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v2.txt \\\n  --caption \"The Diminishing Weakest Link: as panel size K grows from 3 to 7, the dominant vulnerability predictor shifts from individual model weakness (η_max) to collective judge diversity (K_eff)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v2.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v2.txt \\\n  --caption \"The Diminishing Weakest Link: as panel size K grows from 3 to 7, the dominant vulnerability predictor shifts from individual model weakness (η_max) to collective judge diversity (K_eff)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v2.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana v2 for Figure 1",
   "timeout": "600000"
 }
@@ -2548,7 +2548,7 @@ called Bash
   "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
   "tool": "Bash",
   "tool_args": {
-    "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v2.txt \\\n  --caption \"The Diminishing Weakest Link: as panel size K grows from 3 to 7, the dominant vulnerability predictor shifts from individual model weakness (η_max) to collective judge diversity (K_eff)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v2.png \\\n  --iterations 5 2>&1",
+    "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v2.txt \\\n  --caption \"The Diminishing Weakest Link: as panel size K grows from 3 to 7, the dominant vulnerability predictor shifts from individual model weakness (η_max) to collective judge diversity (K_eff)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v2.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana v2 for Figure 1",
     "timeout": "600000"
   }
@@ -4184,7 +4184,7 @@ called Bash
 
 ```json
 {
-  "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v3.txt \\\n  --caption \"The Diminishing Weakest Link: quantitative framework showing how vulnerability predictors shift from individual weakness (η_max) to collective diversity (K_eff) as panel size grows, with exact regression coefficients, bootstrap significance counts, and confidence intervals\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v3.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v3.txt \\\n  --caption \"The Diminishing Weakest Link: quantitative framework showing how vulnerability predictors shift from individual weakness (η_max) to collective diversity (K_eff) as panel size grows, with exact regression coefficients, bootstrap significance counts, and confidence intervals\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v3.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana v3 with high information density",
   "timeout": "600000"
 }
@@ -4200,7 +4200,7 @@ called Bash
   "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
   "tool": "Bash",
   "tool_args": {
-    "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v3.txt \\\n  --caption \"The Diminishing Weakest Link: quantitative framework showing how vulnerability predictors shift from individual weakness (η_max) to collective diversity (K_eff) as panel size grows, with exact regression coefficients, bootstrap significance counts, and confidence intervals\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v3.png \\\n  --iterations 5 2>&1",
+    "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v3.txt \\\n  --caption \"The Diminishing Weakest Link: quantitative framework showing how vulnerability predictors shift from individual weakness (η_max) to collective diversity (K_eff) as panel size grows, with exact regression coefficients, bootstrap significance counts, and confidence intervals\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v3.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana v3 with high information density",
     "timeout": "600000"
   }
@@ -4584,7 +4584,7 @@ called Bash
 
 ```json
 {
-  "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v4.txt \\\n  --caption \"The Diminishing Weakest Link: three-panel framework with labeled judge nodes, β_std trajectory crossover at K*∈(3,5), and quantitative evidence of predictor shift from η_max to K_eff\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v4.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v4.txt \\\n  --caption \"The Diminishing Weakest Link: three-panel framework with labeled judge nodes, β_std trajectory crossover at K*∈(3,5), and quantitative evidence of predictor shift from η_max to K_eff\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v4.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana v4 with trajectory plot",
   "timeout": "600000"
 }
@@ -4600,7 +4600,7 @@ called Bash
   "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
   "tool": "Bash",
   "tool_args": {
-    "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v4.txt \\\n  --caption \"The Diminishing Weakest Link: three-panel framework with labeled judge nodes, β_std trajectory crossover at K*∈(3,5), and quantitative evidence of predictor shift from η_max to K_eff\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v4.png \\\n  --iterations 5 2>&1",
+    "command": "source /home/ubuntu/.venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_intent_v4.txt \\\n  --caption \"The Diminishing Weakest Link: three-panel framework with labeled judge nodes, β_std trajectory crossover at K*∈(3,5), and quantitative evidence of predictor shift from η_max to K_eff\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework_v4.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana v4 with trajectory plot",
     "timeout": "600000"
   }

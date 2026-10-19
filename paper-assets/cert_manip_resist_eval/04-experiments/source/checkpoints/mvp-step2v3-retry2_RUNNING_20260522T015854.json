@@ -1,0 +1,42 @@
+{
+  "exp_id": "mvp-step2v3-retry2",
+  "project": "cert_manip_resist_eval",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:58:33.412Z",
+    "updated_at": "2026-05-22T01:58:53.935Z",
+    "hypothesis": "Controlling for individual model robustness (η_max), higher K_eff panels have significantly lower ASR. The SDPI bound η_joint ≤ K_eff · η_max has two factors: K_eff (diversity) and η_max (weakest-link robustness). Step 2 v2 confounded them. Multi-factor regression log(ASR) ~ log(K_eff) + log(η_max) should show K_eff coefficient significantly negative.",
+    "parent": "mvp-step2v3-retry",
+    "server": "seetacloud-rtx6000",
+    "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+    "reproduce": {
+      "server": "seetacloud-rtx6000",
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+      "started_at": "2026-05-22T01:58:52.433Z",
+      "command": "bash -c \"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export VLLM_WORKER_MULTIPROC_METHOD=spawn && cd /root/cert_manip_resist_eval && python scripts/run_step2v3_regression.py 2>&1 | tee /tmp/step2v3_retry2.log\""
+    },
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export VLLM_WORKER_MULTIPROC_METHOD=spawn && cd /root/cert_manip_resist_eval && python scripts/run_step2v3_regression.py 2>&1 | tee /tmp/step2v3_retry2.log\"",
+      "server": "seetacloud-rtx6000",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "64541",
+      "log_path": "~/runs/cert_manip_resist_eval/mvp-step2v3-retry2.log",
+      "submitted_at": "2026-05-22T01:58:53.868Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "64541",
+    "log_path": "~/runs/cert_manip_resist_eval/mvp-step2v3-retry2.log"
+  },
+  "timestamp": "2026-05-22T01:58:54.411315+00:00",
+  "trigger": "update_registry"
+}

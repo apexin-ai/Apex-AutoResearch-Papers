@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_env-detect_20260521T170808_result.json",
     "occurrence": 1,
-    "bytes": 373,
-    "sha256": "0108122d00742993af071f2b7a75a791672815ba58ff20182b15fd08b8d22544"
+    "bytes": 372,
+    "sha256": "51ae6ddacfab72fd1206affaf059058643e43f4cfe990a7ba03bb39b7e4568e4"
   },
   "statistics": {
     "messages": 1,

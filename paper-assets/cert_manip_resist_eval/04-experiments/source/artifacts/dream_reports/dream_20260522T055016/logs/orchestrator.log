@@ -1,0 +1,5 @@
+2026-05-22 06:22:27,599 INFO    core.tools.feishu  create_chat: name='审稿-cert_manip_resist_eval' → chat_id=oc_8afaeea93cf69f72a8cefdfe533b3c23
+2026-05-22 06:22:27,602 INFO    core.tools.dream  [dream] auto-created Group C for project=cert_manip_resist_eval: oc_8afaeea93cf69f72a8cefdfe533b3c23
+2026-05-22 06:29:23,154 INFO    core.tools.dream  [dream] appended reference check results for cert_manip_resist_eval/best
+2026-05-22 06:36:24,071 INFO    core.tools.dream  [dream] appended reference check results for cert_manip_resist_eval/median
+2026-05-22 06:42:46,964 INFO    core.tools.dream  [dream] appended reference check results for cert_manip_resist_eval/worst

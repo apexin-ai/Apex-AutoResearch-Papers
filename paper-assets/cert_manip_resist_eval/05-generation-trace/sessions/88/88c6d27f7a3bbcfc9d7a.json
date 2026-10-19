@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fp16-scope-cleanup_20260525T104835_result.json",
     "occurrence": 1,
-    "bytes": 757,
-    "sha256": "08540e765fc561749e8cca31b4786ce3526a465af3bb99cd8ee5a0e5707cc864"
+    "bytes": 756,
+    "sha256": "681d046ac27b2bfce78551de79e36763e22b3189786a0192f526c09f89456d1c"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,341 @@
+meta:
+  venue: EACL 2027
+  track: long
+  template: docs/paper/  # ACL style files (acl.sty, acl_natbib.bst) from github.com/acl-org/acl-style-files
+  template_note: "Downloaded 2026-05-21 from official acl-org/acl-style-files repo."
+  page_limit: 8
+  deadline: 2026-08-03
+  core_claim: >-
+    Cross-lingual correctness probe transfer reveals an architecture-dependent
+    depth-transferability tradeoff; the natural distributional-matching approach
+    (CaCLR) fails, but linear projection with ~50 parallel pairs is the practical
+    solution. A Simpson's Paradox in CKA-transfer provides geometric insight into
+    when and why transfer succeeds.
+  created_at: 2026-05-21T08:00:00Z
+  terminology_fixes:
+    - old: "zero-label"
+      new: "zero-correctness-label"
+    - old: "First systematic study"
+      new: "First large-scale study comparing correctness probe transfer across architectures"
+
+paper_outline:
+  - section: abstract
+    word_budget: 220
+    core_bullets:
+      - "Problem: Non-English languages suffer 5x worse calibration; all probe-based calibration methods are English-only"
+      - "Approach: First large-scale study — 2+ architectures × 20 languages × 5 transfer methods on GlobalMMLU"
+      - "Finding 1: Architecture-dependent Pareto frontier (Qwen strong tradeoff, Llama language-specific)"
+      - "Finding 2: Simpson's Paradox in CKA-transfer — raw negative, partial positive (geometric insight)"
+      - "Finding 3: ~28% low-resource probing results are capacity artifacts (control task warning)"
+      - "Finding 4: Linear projection ~50 pairs achieves 98% of full performance; Procrustes reversal at AUROC>0.60"
+      - "Finding 5: CaCLR distributional matching fails — geometric analysis explains why"
+    dependencies: [experiments, method, introduction]
+
+  - section: introduction
+    word_budget: 1000
+    core_bullets:
+      - "Hook: Non-English LLM users face 5x worse calibration (ECE gap, cite LACE), yet all probe-based calibration methods operate English-only"
+      - "Gap: Fixes require per-language labels (LACE) or 5x inference cost (MKA); nobody has tested correctness probe transfer multilingually. Xiao et al. probed knowledge boundaries (input-level answerability), not correctness (output-dependent accuracy)"
+      - "Insight: Correctness direction occupies language-agnostic low-dimensional subspace, but transfer governed by architecture-specific depth dynamics and a Simpson's Paradox in geometric alignment"
+      - "Approach: Systematic comparison of 5 transfer methods across architectures and 20 languages; CaCLR tests distributional matching; difficulty-capability decomposition explains failure modes"
+      - "Contributions: (1) architecture-dependent Pareto discovery + CKA geometric analysis with Simpson's Paradox, (2) 28% control-task artifact warning for the field, (3) linear projection practical recipe (~50 pairs, resource-tier stratification), (4) CaCLR principled negative result + decomposition analysis"
+    dependencies: [experiments, method]
+    figures: [fig1_pareto]
+    citation_hints:
+      - "Zhou et al. LACE — 5x ECE gap across 100+ languages"
+      - "Miao & Ungar 2026 — correctness-confidence orthogonality"
+      - "Xiao et al. ACL 2025 — closest prior work, differentiate knowledge boundary vs correctness"
+      - "CORAL, CCPS, Confidence Manifold — all English-only"
+
+  - section: related_work
+    word_budget: 1000
+    core_bullets:
+      - "Cluster 1 — Mechanistic calibration: Miao & Ungar (orthogonality), CORAL (cross-task probes), CCPS (perturbation stability), Confidence Manifold (low-dim structure), Joshi (layer evolution), Ji (verbal uncertainty direction) → all English-only, single architecture; we extend to multilingual multi-architecture"
+      - "Cluster 2 — Cross-lingual probing & alignment: Xiao (knowledge boundary ≠ correctness), Civelli (difficulty ≠ correctness), DALI (causal activation patching), Liu & Niehues (middle-layer alignment), Pires/Wu & Dredze (multilingual BERT transfer) → we add depth analysis, Pareto frontier, 5 transfer methods"
+      - "Cluster 3 — Multilingual calibration: LACE (per-language ensemble), temperature scaling → require per-language labels; we require zero correctness labels"
+      - "Cluster 4 — Theoretical: Ben-David (H-divergence), Zhao et al. 2019 (invariant representations + conditional shift) → we empirically test distributional matching prediction"
+      - "Cluster 5 — Methodology: Hewitt & Liang (control tasks), Voita & Titov (MDL), CKA (Kornblith), MUSE/VecMap (projection baselines), conformal prediction (complementary) → we apply controls to cross-lingual setting; projection motivated by MUSE/VecMap"
+      - "Table 1: side-by-side differentiation from 5 closest works (Xiao, LACE, CORAL, Miao & Ungar, Civelli)"
+    dependencies: [introduction]
+    tables: [tab1_related_work]
+
+  - section: method
+    word_budget: 1200
+    core_bullets:
+      - "3.1 Problem formulation: correctness probing (definition: p(correct|h_l)), notation, contrast with knowledge boundary (Xiao) and difficulty (Civelli)"
+      - "3.2 Experimental framework: models (Qwen3-8B/Llama4-Scout + MVP models), 20 languages by resource tier (HIGH/MED/LOW), GlobalMMLU test split 70/30 (probe_train/eval), activation extraction (register_forward_hook, post-norm, INT8/FP16)"
+      - "3.3 Transfer methods: (a) zero-shot (direct application), (b) mean-shift + rank-invariance proof (1-2 para formal argument why ΔAUROC≡0), (c) Procrustes alignment (parallel pairs, effect reversal analysis), (d) few-shot (25/50/100 target labels), (e) CaCLR (L_BCE + α·L_SB-ECE + β·L_consistency; MMD on 1-D probe logits from parallel GlobalMMLU items; implementation spec for reproducibility)"
+      - "3.4 Difficulty-capability decomposition: IRT difficulty probes → project out shared component → retrain on residual → prescriptive predictions"
+      - "3.5 Geometric analysis: CKA across layers controlling for depth (partial correlation), subspace angle measurement, Simpson's Paradox characterization"
+      - "3.6 Probing controls: Hewitt & Liang selectivity, permuted-label baseline, PCA dimensionality reduction (plan_013 protocol)"
+    dependencies: []
+    figures: [fig2_method_pipeline]
+    registry_refs: [mvp_001, mvp_003, plan_013]
+    notation_table:
+      h_l: "hidden representation at layer l"
+      w_l: "learned probe weight vector (correctness direction) at layer l"
+      AUROC: "Area Under ROC for correctness prediction"
+      ECE: "Expected Calibration Error (15-bin)"
+      CKA: "Centered Kernel Alignment"
+      SB-ECE: "Soft-Binned ECE (differentiable, Karandikar 2021)"
+
+  - section: experiments
+    word_budget: 1800
+    core_bullets:
+      - "4.1 Setup: 2+ architectures × 20 languages × 12-24 layers × 5 transfer methods; metrics (AUROC, ECE, Brier, selectivity); bootstrap CIs (1000 resamples) + paired permutation tests; Cohen's d effect sizes"
+      - "4.2 Main transfer results (Table 2): zero-shot → mean-shift → Procrustes → few-shot → CaCLR, grouped by architecture and resource tier [TODO plan_001, plan_002, plan_003]"
+      - "4.3 Pareto frontier (Figure 1): per-architecture depth-transferability scatter; per-language Spearman rho quantifying tradeoff strength; architecture comparison"
+      - "4.4 CKA geometric analysis (Figure 3): Simpson's Paradox — raw rho=-0.40 (p<0.01, Llama pilot) vs partial rho=+0.41 (p=0.006); transparency: Qwen pilot non-significant (rho=+0.18, p=0.274); bootstrap CIs; subspace angles"
+      - "4.5 Decomposition (Figure 4): difficulty-shared vs capability-specific transfer by resource tier and depth [TODO plan_004]"
+      - "4.6 Empirical findings (Table 3): (a) control task: 28% low-resource artifacts (selectivity<threshold at L20-L27), (b) projection: 50 pairs → 98%, HIGH saturate ~22, LOW ~48, (c) Procrustes reversal at zero-shot AUROC>0.60"
+      - "4.7 CaCLR analysis: β sweep across 3 OOM, component ablation, comparison with linear projection, negative result + geometric explanation (MMD matches marginals but not low-dim directional structure) [TODO plan_003]"
+    dependencies: [method]
+    tables: [tab2_main_results, tab3_empirical]
+    figures: [fig1_pareto, fig3_cka_simpson, fig4_decomposition, fig5_layer_auroc]
+    registry_refs: [mvp_001, mvp_002, mvp_003, plan_013]
+
+  - section: conclusion
+    word_budget: 350
+    core_bullets:
+      - "Summary: field-level viability test for multilingual probe calibration — architecture-dependent Pareto, CKA geometric insight, practical 50-pair recipe"
+      - "Limitations: MCQA only (GlobalMMLU), 2-3 architectures (observational, no causal attribution to specific features), CaCLR 1-D MMD design limitation, INT8 quantization"
+      - "Field warning: 28% capacity artifacts → all cross-lingual probing studies should include selectivity checks"
+      - "Future: multilingual probe pooling on high-resource languages, adapter-based alignment, extension to open-ended generation"
+    dependencies: [experiments, method, introduction]
+
+visualization_plan:
+  - fig_id: fig1_pareto
+    type: statistical
+    tool: matplotlib
+    description: "Hero figure: Pareto scatter — English probe AUROC (x) vs mean cross-lingual transfer AUROC (y) across layers, separate trajectories per architecture"
+    narrative_intent: >-
+      Deeper layers improve English probes but degrade cross-lingual transfer in
+      Qwen (strong Pareto tradeoff); Llama shows language-specific patterns where
+      some languages improve with depth — the tradeoff shape is architecture-dependent.
+    design_notes:
+      - "Pattern A: background bands for layer depth zones (shallow L0-8, mid L12-20, deep L24+) — show where tradeoff kicks in"
+      - "Connect layers with thin lines to show trajectory (path through Pareto space)"
+      - "Different marker shapes per architecture (circle=Qwen, triangle=Llama)"
+      - "Pattern F: per-label offset for key layer annotations (L0, L16, L24, L27/L31)"
+      - "Dashed Pareto frontier line for Qwen to highlight envelope"
+      - "Reference: calibration literature Pareto scatter (see CORAL Fig 3 style)"
+    data_source: "registry: mvp_001, mvp_002, mvp_003 [TODO: plan_001, plan_002 for full-scale 20 langs]"
+    placement: introduction
+    aspect_ratio: "4:3"
+
+  - fig_id: fig2_method_pipeline
+    type: conceptual
+    tool: paperbanana
+    description: "Method overview: LLM → layer activations → English probe → 5 transfer paths → multilingual evaluation"
+    narrative_intent: >-
+      Our framework systematically tests 5 transfer strategies from English-trained
+      correctness probes to target languages, ranging from zero-shot to CaCLR
+      distributional matching, evaluated across the full layer depth.
+    design_notes:
+      - "Left-to-right flow: multilingual LLM → extract h_l → train English probe → branch into 5 transfer methods"
+      - "5 methods as parallel paths: zero-shot (direct), mean-shift, Procrustes, few-shot, CaCLR"
+      - "CaCLR path highlighted: show BCE + SB-ECE + MMD(parallel) components"
+      - "Bottom: evaluation across 20 languages × resource tiers"
+      - "Keep minimal — max 3 vertical levels, no decorative elements"
+    data_source: "conceptual"
+    placement: method
+    aspect_ratio: "16:9"
+
+  - fig_id: fig3_cka_simpson
+    type: statistical
+    tool: matplotlib
+    description: "Simpson's Paradox dual panel: (left) raw CKA vs transfer with negative trend, (right) per-layer partial correlations showing positive trend"
+    narrative_intent: >-
+      Raw CKA-transfer correlation is negative (depth confound — deeper layers have
+      lower CKA AND lower transfer), but within each layer, higher cross-lingual CKA
+      predicts better transfer — a Simpson's Paradox revealing genuine geometric structure.
+    design_notes:
+      - "Pattern H: multi-panel asymmetric (1.4:1), left=aggregated, right=layer-stratified"
+      - "Left: scatter colored by depth (viridis gradient), global regression line (negative slope), annotate rho_raw and p-value"
+      - "Right: separate mini regression lines per layer (same depth colors), show positive slopes, annotate rho_partial"
+      - "Pattern J: path-effect white stroke on annotations for readability"
+      - "Panel titles as insights: left='Aggregate: depth confounds CKA-transfer', right='Per-layer: CKA predicts transfer'"
+      - "Transparency: if Qwen non-significant, mark with hollow markers + note"
+    data_source: "registry: mvp_003 CKA data [TODO: plan_001, plan_002 for full-scale + plan_011 partial correlation]"
+    placement: experiments
+    aspect_ratio: "2:1"
+
+  - fig_id: fig4_decomposition
+    type: statistical
+    tool: matplotlib
+    description: "Difficulty-capability decomposition: transfer AUROC curves for full probe vs difficulty-only vs capability-residual across layers"
+    narrative_intent: >-
+      The difficulty-shared component transfers well at all depths (flat curve);
+      the capability-specific component drives deep-layer degradation, explaining
+      why transfer fails for some languages at later layers.
+    design_notes:
+      - "Three lines per resource tier: full transfer (solid), difficulty-only (dashed), capability-residual (dotted)"
+      - "Pattern B: fill_between for gap between full and difficulty-only (shows capability contribution)"
+      - "Pattern A: vertical band marking 'degradation zone' where capability component diverges"
+      - "Facet by resource tier (HIGH/MED/LOW) or overlay with alpha differentiation"
+      - "X-axis: normalized layer depth (0-1); Y-axis: transfer AUROC"
+    data_source: "[TODO: plan_004 decomposition experiments]"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+  - fig_id: fig5_layer_auroc
+    type: statistical
+    tool: matplotlib
+    description: "Layer-wise AUROC: English vs cross-lingual transfer across all layers, side-by-side panels per architecture"
+    narrative_intent: >-
+      English AUROC increases monotonically with depth in both architectures, but
+      cross-lingual transfer peaks at intermediate layers — the divergence point and
+      pattern differ by architecture (Qwen: sharp drop after L24; Llama: gradual, language-dependent).
+    design_notes:
+      - "Pattern H: side-by-side panels (Qwen | Llama), shared y-axis"
+      - "English line bold blue; target languages by resource tier color (HIGH=green, MED=orange, LOW=red)"
+      - "Pattern C: horizontal dashed line at English best AUROC as reference"
+      - "Pattern A: vertical band marking 'optimal transfer zone' per architecture"
+      - "Thin lines per language, thick line for tier mean — show both individual variation and trend"
+      - "Reference: layer analysis line plots universal in this subfield (distilled-writing)"
+    data_source: "registry: mvp_001, mvp_002, mvp_003 [TODO: plan_001, plan_002 full-scale]"
+    placement: experiments
+    aspect_ratio: "2:1"
+
+table_plan:
+  - table_id: tab1_related_work
+    caption: "Comparison with closely related work on calibration probing and cross-lingual transfer"
+    placement: related_work
+    type: comparison
+    columns: [Paper, Target Signal, "# Langs", Metrics, "Labels Req.", Depth Analysis, Transfer Methods]
+    data_source: "manual"
+    notes: >-
+      Rows: Xiao et al. (knowledge boundary), LACE (per-language ensemble), CORAL (cross-task English),
+      Miao & Ungar (orthogonality), Civelli (difficulty), Ours. Checkmarks for binary features.
+      Highlight our unique combination: correctness + 20 langs + 0 correctness labels + full depth + 5 methods.
+
+  - table_id: tab2_main_results
+    caption: "Cross-lingual correctness probe transfer results (AUROC) across 5 methods, grouped by resource tier"
+    placement: experiments
+    type: comparison
+    columns: [Method, "HIGH (5L avg)", "MED (5L avg)", "LOW (5L avg)", Overall, "Best Layer"]
+    data_source: "registry: [TODO plan_001, plan_002, plan_003]"
+    notes: >-
+      Rows: zero-shot, mean-shift, Procrustes, few-shot-25, few-shot-50, few-shot-100, CaCLR.
+      Separate sub-tables per architecture. Bold best per column. Include ECE in parentheses.
+      MVP data (mvp_001, mvp_003) available for preliminary version.
+    baseline_row: "zero-shot"
+
+  - table_id: tab3_empirical
+    caption: "Key empirical findings with practical implications"
+    placement: experiments
+    type: statistics
+    columns: [Finding, Evidence, Threshold/Value, Implication]
+    data_source: "registry: plan_013, mvp_001, mvp_003 [TODO: plan_012]"
+    notes: >-
+      Three rows: (1) Control task: 28% low-resource results below selectivity threshold → field warning,
+      (2) Projection saturation: ~50 pairs (HIGH ~22, LOW ~48) → practical recipe,
+      (3) Procrustes reversal: helps when AUROC<0.50, hurts when >0.60 → conditional strategy.
+
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "LLM calibration and confidence estimation via internal representations"
+    - "cross-lingual representation transfer and alignment in multilingual LLMs"
+    - "probing methodology, controls, and representation similarity"
+  micro_clusters:
+    - cluster_name: "mechanistic_calibration"
+      search_queries:
+        - "correctness direction probing language models 2025 2026"
+        - "calibration internal representations LLM residual stream"
+        - "confidence manifold neural network representations"
+      must_cite:
+        - "Miao & Ungar 2026 (correctness-confidence orthogonality)"
+        - "Miao 2026 CORAL (cross-task correctness probes)"
+        - "Khanmohammadi 2025 CCPS (perturbation stability)"
+        - "Confidence Manifold 2026 (low-dimensional structure)"
+        - "Joshi 2025 (calibration across layers)"
+        - "Ji 2025 (verbal uncertainty linear feature)"
+      target_count: 8
+
+    - cluster_name: "cross_lingual_probing"
+      search_queries:
+        - "cross-lingual probe transfer multilingual LLM 2024 2025 2026"
+        - "knowledge boundary probing across languages"
+        - "cross-lingual difficulty probing shared geometry multilingual"
+      must_cite:
+        - "Xiao et al. ACL 2025 (knowledge boundary)"
+        - "Civelli 2026 (shared geometry of difficulty)"
+      target_count: 5
+
+    - cluster_name: "cross_lingual_alignment"
+      search_queries:
+        - "cross-lingual representation alignment multilingual LLM 2024 2025"
+        - "activation patching cross-lingual transfer"
+        - "MUSE VecMap cross-lingual embedding alignment"
+      must_cite:
+        - "Ravisankar 2026 DALI"
+        - "Liu & Niehues 2025 (middle-layer alignment)"
+        - "Conneau et al. 2018 MUSE"
+        - "Artetxe et al. 2018 VecMap"
+        - "Pires et al. 2019 (multilingual BERT)"
+        - "Wu & Dredze 2019 (cross-lingual transfer)"
+      target_count: 7
+
+    - cluster_name: "multilingual_calibration"
+      search_queries:
+        - "multilingual LLM calibration ECE cross-lingual 2024 2025"
+        - "temperature scaling multilingual language models"
+      must_cite:
+        - "Zhou et al. LACE (adaptive layer ensemble)"
+      target_count: 4
+
+    - cluster_name: "domain_adaptation_theory"
+      search_queries:
+        - "domain adaptation theory H-divergence representation learning"
+        - "invariant representations domain adaptation conditional shift Zhao 2019"
+      must_cite:
+        - "Ben-David et al. 2010 (H-divergence)"
+        - "Zhao et al. 2019 (invariant representations + conditional failure)"
+      target_count: 3
+
+    - cluster_name: "probing_methodology"
+      search_queries:
+        - "probing classifier control task selectivity Hewitt Liang"
+        - "MDL probes Voita Titov online coding"
+        - "probing methodology neural network representations 2019 2020"
+      must_cite:
+        - "Hewitt & Liang 2019 (control tasks)"
+        - "Voita & Titov 2020 (MDL probes)"
+      target_count: 3
+
+    - cluster_name: "representation_similarity"
+      search_queries:
+        - "CKA centered kernel alignment representation similarity"
+        - "SVCCA representation comparison neural networks"
+      must_cite:
+        - "Kornblith et al. 2019 (CKA)"
+      target_count: 2
+
+    - cluster_name: "calibration_foundations"
+      search_queries:
+        - "neural network calibration temperature scaling Guo 2017"
+        - "conformal prediction language models coverage guarantee"
+        - "soft binned ECE differentiable calibration"
+      must_cite:
+        - "Guo et al. 2017 (modern calibration)"
+        - "Angelopoulos & Bates 2023 (conformal prediction)"
+        - "Karandikar 2021 (SB-ECE)"
+      target_count: 3
+
+writing_order:
+  - method          # Can start now — framework clear from paper_framing
+  - related_work    # Can start now — literature-based, addresses reviewer concern
+  - experiments     # Needs P0 data; setup section writable now, results after plan_001/002
+  - introduction    # Needs method + experiments framing
+  - abstract        # Last — distills all sections
+  - conclusion      # Last — mirrors abstract + limitations
+
+appendix_plan:
+  - "A: Per-language detailed results (20 languages × all layers × 5 methods)"
+  - "B: CaCLR hyperparameter sensitivity (α and β sweeps)"
+  - "C: INT8 vs FP16 validation ablation"
+  - "D: Full CKA matrices and subspace angle tables"
+  - "E: Mean-shift rank-invariance formal proof"
+  - "F: Additional Pareto plots (per-language individual trajectories)"
+  - "G: Procrustes sensitivity analysis (pairs vs ΔAUROC curves)"

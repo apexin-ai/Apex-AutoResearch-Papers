@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_hotfix_position-bias-invert-bug_20260525T203938_result.json",
     "occurrence": 1,
-    "bytes": 3555,
-    "sha256": "11037e09ac5956f941fd57c9556b025892cbf00e6a46f8906f5d0735cbb9c873"
+    "bytes": 3554,
+    "sha256": "78e8ee020f28f8d2a9b952a0f04ede97c06a77878d6bfedf03d814ac521b906b"
   },
   "statistics": {
     "messages": 1,

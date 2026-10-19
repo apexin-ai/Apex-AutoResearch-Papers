@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_anonymous-repo-v2_20260525T090515.log",
     "occurrence": 1,
-    "bytes": 598418,
-    "sha256": "0fc9e4e0737bcf6ce815f11a85f969a3414befc9e7aaf1cd5dd27fe52d42daf1"
+    "bytes": 598298,
+    "sha256": "5ffdce738593cde2c7b367a192f99a6b2946be2cacd226580b753073888a1bed"
   },
   "statistics": {
     "messages": 297,

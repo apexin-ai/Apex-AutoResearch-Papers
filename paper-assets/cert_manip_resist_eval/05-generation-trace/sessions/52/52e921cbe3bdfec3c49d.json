@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-per-model-asr_20260525T154002_result.json",
     "occurrence": 1,
-    "bytes": 447,
-    "sha256": "585939716356c61236a2816a795173e7ff374e8334f6b881fff51183e0631855"
+    "bytes": 446,
+    "sha256": "66373a014e8ed83b58c8558b6adb26df37911af907c4530b772545664d85edb3"
   },
   "statistics": {
     "messages": 1,

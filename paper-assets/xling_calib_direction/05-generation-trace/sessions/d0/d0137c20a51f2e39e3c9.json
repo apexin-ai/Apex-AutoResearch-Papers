@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0137c20a51f2e39e3c9",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops full status and pilots",
+  "task_key": "worker_ops_full-status-and-pilots_20260521T104446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-status-and-pilots_20260521T104446_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "4553716da40975c94d12668e52c51b2e8a42afbfe46c3cefd152865f7c0975e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总报告：\n\n---\n\n### 状态汇总\n\n| # | 项目 | 状态 | 详情 |\n|---|------|------|------|\n| 1 | **Llama4 下载** | 进行中 | PID 69801, 运行 2h27m。11/14 shards, 63GB。正在下载 shard 12/14 (86%, 3.58MB/s) |\n| 2 | **Qwen3 下载** | 进行中 | PID 68080, 运行 3h03m。24 safetensors, 114GB。正在下载 shard 29/32 (22%, 741kB/s) |\n| 3 | **plan_013_v2** | 运行中 | PID 47972, 运行 9h49m, 103% CPU。已完成 3/8 层：L0=0.6304, L12=0.6389, L16=0.6801 AUROC |\n| 4 | **CKA pilot** | 已启动 | Python PID 78996, 3100% CPU, 1.2GB RSS |\n| 5 | **CaCLR pilot** | 已启动 | Python PID 79164, 3031% CPU, 2.3GB RSS |\n| 6 | **磁盘** | 76% | 264G/350G used, 87G free |\n| 7 | **Llama4 验证** | 跳过 | 尚未完成（11/14 shards） |\n\n**注意**：发现一个先前存在的 CKA 运行 (PID 77012, model=qwen25-7b-mvp, n_bootstrap=1000)，已运行较长时间，与本次新启动的 pilot 独立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-and-pilots.md"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_data_alt-diversity-extract_20260523T131153_result.json",
     "occurrence": 1,
-    "bytes": 731,
-    "sha256": "316b19b9500ee60d2e01e31d65e284241e82afb2d1b600c682d0ca659eccbf11"
+    "bytes": 730,
+    "sha256": "44d238538081685233ba887809f2a7c6ed61a5f28abaf8acd8826f89693aa7a8"
   },
   "statistics": {
     "messages": 1,

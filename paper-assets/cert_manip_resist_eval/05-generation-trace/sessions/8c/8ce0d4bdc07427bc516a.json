@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_taxonomy-status-urgent_20260522T045116_result.json",
     "occurrence": 1,
-    "bytes": 2663,
-    "sha256": "6b5cf87725b3afe251bb00113317bfae5112952931b4c32c93b854bfc29ef855"
+    "bytes": 2662,
+    "sha256": "59f7062ec21657f81c8e30ade0c1c0c28f928e808369f45ebbb9f7945d057cd6"
   },
   "statistics": {
     "messages": 1,

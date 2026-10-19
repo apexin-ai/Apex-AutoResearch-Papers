@@ -1,0 +1,90 @@
+paper_key: "yang2026diversity_scaling"
+title: "Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity"
+venue: "ICLR 2026 Workshop AIMS"
+full_text_available: true
+
+research:
+  baselines: [Homogeneous voting (L1), Persona-only diversity (L2), Model-only diversity (L3)]
+  metrics:
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "K* (effective channel count)", direction: "higher_better"}
+    - {name: "Cosine similarity (redundancy)", direction: "lower_better"}
+  datasets:
+    - {name: "GSM8K", size: "~8k"}
+    - {name: "ARC", size: "~7.7k"}
+    - {name: "Formal Logic", size: "N/A"}
+    - {name: "TruthfulQA", size: "~817"}
+    - {name: "HellaSwag", size: "~10k"}
+    - {name: "WinoGrande", size: "~1.8k"}
+    - {name: "Pro Medicine", size: "N/A"}
+  ablation_dimensions: [diversity_layer (L1-L4), agent_count (2-16), workflow (Vote/Debate)]
+  training_recipe: {optimizer: "N/A (inference only)", lr: "N/A", hardware: "7-8B models"}
+  method_family: "information_theoretic_multi_agent"
+
+positioning:
+  core_claim: "MAS performance is bounded by intrinsic task uncertainty not agent count; K* = 2^{H(ρ)} effective channels govern the scaling ceiling, with geometric contraction (1-α)^K predicting diminishing returns"
+  key_results: "2 diverse agents ≥ 16 homogeneous agents (8× efficiency); L4 adds 4-10% over L1; homogeneous plateau at N≈4"
+  limitations: ["Independence/uniform coverage assumptions", "K* measures semantic not task-relevant diversity", "Limited to 7-8B open models", "Only Vote and Debate workflows tested"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Why does adding more agents stop helping? The answer isn't compute — it's information redundancy"
+  tension: "Scaling agent count is the obvious strategy but yields diminishing returns; the community lacks a principled framework for when to stop scaling and start diversifying"
+  key_insight: "K* (entropy-based effective rank from agent embedding similarity) is a label-free predictor of scaling ceiling, introduced in Section 4 as the bridge between information theory and practical design"
+  argument_chain: "diminishing returns observation → information-theoretic formalization → K* metric → geometric contraction theorem → diversity layer experiments → design guidelines"
+  contribution_framing: "Three contributions: theoretical framework, K* metric, empirical validation across 7 benchmarks"
+  intro_structure: "4 paragraphs: (1) MAS scaling promise, (2) diminishing returns problem, (3) information-theoretic insight, (4) contributions"
+  notable_technique: "The 2-diverse-vs-16-homogeneous comparison is an extremely effective rhetorical device — makes the abstract theory immediately concrete"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "motivation"
+    description: "Accuracy vs agent count showing diminishing returns for homogeneous systems"
+    narrative_role: "Establishes the problem visually before introducing the theoretical framework"
+    design_elements: ["saturation curve", "clear plateau", "N values on x-axis"]
+    visual_style: "Clean line plot with plateau annotation"
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "scatter"
+      what_compared: "Cosine similarity vs success rate across diversity layers"
+      how_gain_highlighted: "Clear negative correlation — lower similarity → higher accuracy"
+      design_note: "Scatter with color-coded diversity layers makes the pattern immediately visible"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Pairwise similarity growth with agent count across diversity layers"
+      how_gain_highlighted: "Homogeneous lines rise fastest, confirming redundancy amplification"
+      design_note: "Multi-line comparison with diversity layer legend"
+  ablation_figures:
+    - figure_id: "Table 1"
+      viz_type: "comparison_table"
+      dimensions_varied: ["diversity_layer (L1-L4)", "workflow (Vote/Debate)"]
+      design_note: "Comprehensive grid showing additive diversity effects"
+  figure_narrative_role: "Problem (diminishing returns) → Theory (K*) → Empirical (diversity layers) → Analysis (similarity/Kc*/Kw*)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "diversity layers × workflows"
+    col_axis: "datasets"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best per column"
+    statistical_reporting: "single run"
+    num_baselines: 3
+    design_note: "Layer × workflow grid clearly shows additive diversity benefits"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["agent count (2 vs 16)", "diversity setting"]
+      variation_style: "full_numbers"
+      design_note: "The headline '2 diverse ≥ 16 homogeneous' result"
+    - table_id: "Table 3"
+      what_varied: ["K* across diversity layers"]
+      variation_style: "full_numbers"
+      design_note: "Monotonic K* increase L1→L4 validates the metric"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-task breakdowns, persona descriptions, Kc*/Kw* decomposition"
+    reason: "Main text focuses on aggregate patterns"

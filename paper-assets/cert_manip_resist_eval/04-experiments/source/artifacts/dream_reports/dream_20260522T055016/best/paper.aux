@@ -1,0 +1,72 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sok2026,yang2026,turkmen2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adversarial Attacks on LLM Judges.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Byzantine Fault Tolerance.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Panel Diversity Metrics.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Theoretical Framework}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup and Notation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Adaptive Adversary Model}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{thm:weakest-link}{{1}{3}{Weakest-Link Bound}{theorem.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Contrast with BFT}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Model pool summary. $\eta _{\max }$ values represent individual vulnerability across MMLU and ARC benchmarks. Avg ASR is the mean attack success rate across all 6 original attack types.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:models}{{1}{4}{Model pool summary. $\eta _{\max }$ values represent individual vulnerability across MMLU and ARC benchmarks. Avg ASR is the mean attack success rate across all 6 original attack types}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Model Pool}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Attack Types}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Benchmarks}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Panel Construction and Metrics}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Multivariate regression results across 455 panels. $\beta $ = standardized regression coefficient; $p$ = significance; $R^2$ = model fit. $\eta _{\max }$ consistently dominates while $K_{\text  {eff}}$ remains non-significant.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:regression}{{2}{5}{Multivariate regression results across 455 panels. $\beta $ = standardized regression coefficient; $p$ = significance; $R^2$ = model fit. $\eta _{\max }$ consistently dominates while $K_{\text {eff}}$ remains non-significant}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Weakest-Link Dominance at Scale}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:weakest-link}{{5.1}{5}{Weakest-Link Dominance at Scale}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Generalization Across Attack Types}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:attack-expansion}{{5.2}{5}{Generalization Across Attack Types}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Results for three additional attack types across 455 panels, compared to the average of the original 6 attacks. The weakest-link pattern generalizes across all attack vectors.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:new-attacks}{{3}{6}{Results for three additional attack types across 455 panels, compared to the average of the original 6 attacks. The weakest-link pattern generalizes across all attack vectors}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Contrast between adaptive adversary and random-fault (BFT) settings. Diversity ($K_{\text  {eff}}$) helps under random faults but not under adaptive adversaries, confirming the theoretical distinction.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:bft}{{4}{6}{Contrast between adaptive adversary and random-fault (BFT) settings. Diversity ($K_{\text {eff}}$) helps under random faults but not under adaptive adversaries, confirming the theoretical distinction}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}BFT vs.\ Adaptive Adversary: Empirical Contrast}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:bft-contrast}{{5.3}{6}{BFT vs.\ Adaptive Adversary: Empirical Contrast}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Capability-Matched Validation}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:capability-matched}{{5.4}{6}{Capability-Matched Validation}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}ASR Concentration Analysis}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:concentration}{{5.5}{6}{ASR Concentration Analysis}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Within-tier regression results. Even after controlling for capability class, $\eta _{\max }$ dominates, $K_{\text  {eff}}$ remains non-significant, and the diversity-capability tradeoff persists.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:within-tier}{{5}{7}{Within-tier regression results. Even after controlling for capability class, $\eta _{\max }$ dominates, $K_{\text {eff}}$ remains non-significant, and the diversity-capability tradeoff persists}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Attack success rate concentration metrics. High Gini coefficients and weakest-judge concentration rates confirm that attacks concentrate on the most vulnerable panel member.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:concentration}{{6}{7}{Attack success rate concentration metrics. High Gini coefficients and weakest-judge concentration rates confirm that attacks concentrate on the most vulnerable panel member}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}The Diversity-Capability Tradeoff}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:tradeoff}{{5.6}{7}{The Diversity-Capability Tradeoff}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Panel Size Sensitivity}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:panel-size}{{5.7}{7}{Panel Size Sensitivity}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Diversity-capability tradeoff across capability tiers. The negative correlation between $K_{\text  {eff}}$ and $\eta _{\max }$ persists within all tiers, ruling out a trivial size-class artifact.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:tradeoff}{{7}{8}{Diversity-capability tradeoff across capability tiers. The negative correlation between $K_{\text {eff}}$ and $\eta _{\max }$ persists within all tiers, ruling out a trivial size-class artifact}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Panel size sensitivity analysis. The weakest-link effect persists across all tested panel sizes, with only a slight decline in $\eta _{\max }$ dominance at larger $K$.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:panel-size}{{8}{8}{Panel size sensitivity analysis. The weakest-link effect persists across all tested panel sizes, with only a slight decline in $\eta _{\max }$ dominance at larger $K$}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Robustness-First Panel Design}{8}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:algorithm}{{5.8}{8}{Robustness-First Panel Design}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Threshold sensitivity.}{8}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Methodological Findings}{8}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gaussian copula failure.}{8}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Family labels as diversity proxies.}{8}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Panel design algorithm benchmark. Two-Stage dominates all baselines in mean ASR and achieves the best worst-case performance, while maintaining reasonable diversity.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:algorithm}{{9}{9}{Panel design algorithm benchmark. Two-Stage dominates all baselines in mean ASR and achieves the best worst-case performance, while maintaining reasonable diversity}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Threshold sensitivity for the robustness-first algorithm. The $\tau \in [0.15, 0.20]$ range balances robustness and diversity.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:threshold}{{10}{9}{Threshold sensitivity for the robustness-first algorithm. The $\tau \in [0.15, 0.20]$ range balances robustness and diversity}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does diversity fail?}{9}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Is the tradeoff permanent?}{9}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for practitioners.}{9}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{sok2026}{{1}{2026}{{SoK}}{{}}}
+\bibcite{yang2026}{{2}{2026}{{Yang et~al.}}{{}}}
+\bibcite{turkmen2026}{{3}{2026}{{Turkmen et~al.}}{{}}}
+\gdef \@abspage@last{10}

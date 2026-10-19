@@ -1,0 +1,95 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adversarial Attacks on LLM Evaluators.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Agent Robustness.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Panel Diversity Metrics.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Methodology}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Threat Model}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Model Pool and Panel Construction}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:models}{{3.2}{2}{Model Pool and Panel Construction}{subsection.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Model pool: 15 judges across 6 families and 3 capability tiers. Mean $\eta $ is the average individual attack success rate across 6 attack types; Clean ACC is the unattacked accuracy.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:models}{{1}{3}{Model pool: 15 judges across 6 families and 3 capability tiers. Mean $\eta $ is the average individual attack success rate across 6 attack types; Clean ACC is the unattacked accuracy}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Attack Types}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Metrics}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Individual vulnerability ($\eta _j$).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Panel ASR.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Maximum vulnerability ($\eta _{\max }$).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Effective diversity ($K_{\mathrm  {eff}}$).}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Residualized regression: $\eta _{\max }$ and $K_{\mathrm  {eff,resid}}$ as predictors of panel ASR across 15 models, 455 panels. Significance at $p < 0.05$ (FDR-corrected) in \textbf  {bold}.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:main_regression}{{2}{4}{Residualized regression: $\eta _{\max }$ and $K_{\mathrm {eff,resid}}$ as predictors of panel ASR across 15 models, 455 panels. Significance at $p < 0.05$ (FDR-corrected) in \textbf {bold}}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Regression framework.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Weakest-Link Dominance}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:weakest_link}{{4.1}{4}{Weakest-Link Dominance}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Attack Type Generalization}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:attack_expand}{{4.2}{4}{Attack Type Generalization}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Adaptive Adversary Targeting Behavior}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:targeting}{{4.3}{4}{Adaptive Adversary Targeting Behavior}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Extended attack types (455 panels, 15 models). $K_{\mathrm  {eff}}$ direction is inconsistent across conditions.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:new_attacks}{{3}{5}{Extended attack types (455 panels, 15 models). $K_{\mathrm {eff}}$ direction is inconsistent across conditions}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ASR concentration statistics: adaptive adversaries target specific judges far more than random faults.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:concentration}{{4}{5}{ASR concentration statistics: adaptive adversaries target specific judges far more than random faults}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Aggregation Rule Comparison}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:aggregation}{{4.4}{5}{Aggregation Rule Comparison}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Panel Selection Strategies}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:selection}{{4.5}{5}{Panel Selection Strategies}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Correlates of attack concentration (Gini coefficient). Targeting is driven by individual weakness ($\eta _{\max }$) and mean capability, not diversity ($K_{\mathrm  {eff}}$).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:gini_corr}{{5}{6}{Correlates of attack concentration (Gini coefficient). Targeting is driven by individual weakness ($\eta _{\max }$) and mean capability, not diversity ($K_{\mathrm {eff}}$)}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Vulnerability driver significance under different aggregation rules (12 conditions, 455 panels).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:agg_drivers}{{6}{6}{Vulnerability driver significance under different aggregation rules (12 conditions, 455 panels)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Panel Size Sensitivity}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:panel_size}{{4.6}{6}{Panel Size Sensitivity}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Open-Ended Task Generalization}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:open_ended}{{4.7}{6}{Open-Ended Task Generalization}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Partial-Knowledge Adversary}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:partial}{{4.8}{6}{Partial-Knowledge Adversary}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Role of Panel Diversity: Exploratory Analysis}{6}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:keff_discuss}{{5.1}{6}{The Role of Panel Diversity: Exploratory Analysis}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Aggregation as defense: mean ASR across all 455 panels and for top-10/bottom-10 panels.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:agg_defense}{{7}{7}{Aggregation as defense: mean ASR across all 455 panels and for top-10/bottom-10 panels}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Panel selection strategies: mean ASR across 6 attack conditions. Wins = number of conditions where the strategy achieves the lowest ASR.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:selection}{{8}{7}{Panel selection strategies: mean ASR across 6 attack conditions. Wins = number of conditions where the strategy achieves the lowest ASR}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multicollinearity analysis.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Capability-matched analysis.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}BFT Analogy: An Open Question}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:bft}{{5.2}{7}{BFT Analogy: An Open Question}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Diversity-Capability Tradeoff}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:tradeoff}{{5.3}{7}{Diversity-Capability Tradeoff}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-condition comparison of Two-Stage vs.\ Strongest-$K$. No condition reaches statistical significance.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:selection_detail}{{9}{8}{Per-condition comparison of Two-Stage vs.\ Strongest-$K$. No condition reaches statistical significance}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Panel size sensitivity: $\eta _{\max }$ dominance strengthens and $K_{\mathrm  {eff}}$ effect vanishes as panel size increases.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:panel_size}{{10}{8}{Panel size sensitivity: $\eta _{\max }$ dominance strengthens and $K_{\mathrm {eff}}$ effect vanishes as panel size increases}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Open-ended evaluation (MT-Bench adapted): $\eta _{\max }$ dominates; $K_{\mathrm  {eff}}$ direction is inconsistent with MCQ results.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:open_ended}{{11}{9}{Open-ended evaluation (MT-Bench adapted): $\eta _{\max }$ dominates; $K_{\mathrm {eff}}$ direction is inconsistent with MCQ results}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Adversary knowledge level comparison: $\eta _{\max }$ remains predictive across threat models; $K_{\mathrm  {eff}}$ vanishes under realistic assumptions.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:partial}{{12}{9}{Adversary knowledge level comparison: $\eta _{\max }$ remains predictive across threat models; $K_{\mathrm {eff}}$ vanishes under realistic assumptions}{table.12}{}}
+\newlabel{sec:limitations}{{6}{9}{Limitations}{section*.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces ASR degradation analysis across knowledge levels.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:partial_degrade}{{13}{10}{ASR degradation analysis across knowledge levels}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces $K_{\mathrm  {eff}}$ significance under different correction methods (12 conditions). The range 2--7 indicates high sensitivity to analytical choices.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:multicollinearity}{{14}{10}{$K_{\mathrm {eff}}$ significance under different correction methods (12 conditions). The range 2--7 indicates high sensitivity to analytical choices}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Partial correlations: $K_{\mathrm  {eff}}$ explains negligible unique variance after controlling for $\eta _{\max }$.}}{10}{table.15}\protected@file@percent }
+\newlabel{tab:partial_corr}{{15}{10}{Partial correlations: $K_{\mathrm {eff}}$ explains negligible unique variance after controlling for $\eta _{\max }$}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Capability-matched $K_{\mathrm  {eff}}$ analysis: within-tier panels. $K_{\mathrm  {eff}}$'s effect essentially vanishes when capability is controlled.}}{10}{table.16}\protected@file@percent }
+\newlabel{tab:cap_matched}{{16}{10}{Capability-matched $K_{\mathrm {eff}}$ analysis: within-tier panels. $K_{\mathrm {eff}}$'s effect essentially vanishes when capability is controlled}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces BFT regime contrast: $K_{\mathrm  {eff}}$ is positively associated with ASR in both adaptive and random-fault regimes. No reversal observed.}}{10}{table.17}\protected@file@percent }
+\newlabel{tab:bft}{{17}{10}{BFT regime contrast: $K_{\mathrm {eff}}$ is positively associated with ASR in both adaptive and random-fault regimes. No reversal observed}{table.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces $R^2$ comparison across regimes: adaptive attacks introduce strategic variance that reduces predictability.}}{11}{table.18}\protected@file@percent }
+\newlabel{tab:bft_r2}{{18}{11}{$R^2$ comparison across regimes: adaptive attacks introduce strategic variance that reduces predictability}{table.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Representative Pareto-optimal panels on the ($K_{\mathrm  {eff}}$, $\eta _{\max }$) frontier. All consist of large-tier or large+medium models.}}{11}{table.19}\protected@file@percent }
+\newlabel{tab:pareto}{{19}{11}{Representative Pareto-optimal panels on the ($K_{\mathrm {eff}}$, $\eta _{\max }$) frontier. All consist of large-tier or large+medium models}{table.19}{}}
+\gdef \@abspage@last{11}

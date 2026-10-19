@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig1-aspect-ratio_20260525T123154.log",
     "occurrence": 1,
-    "bytes": 118882,
-    "sha256": "c95999989adf847ee9ba43ead87209b7dbe9215b6b735b6de64db5dd72d1a373"
+    "bytes": 118843,
+    "sha256": "fd5a653eb05f50df03edeeed41fc39e30633e567c693edcd4d2a03a43be40da2"
   },
   "statistics": {
     "messages": 86,
@@ -1434,7 +1434,7 @@
               "id": "toolu_01NVYN4U6xoLLV3jCuHgptib",
               "name": "Bash",
               "input": {
-                "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
+                "command": "GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
                 "description": "Run PaperBanana to generate Figure 1 with wider aspect ratio",
                 "timeout": 600000
               },
@@ -1584,7 +1584,7 @@
               "id": "toolu_01XDc5ps7Q1AjDVEQYLhNcmd",
               "name": "Bash",
               "input": {
-                "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
+                "command": "GOOGLE_API_KEY=\"[REDACTED]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
                 "description": "Run PaperBanana to generate Figure 1 with wider aspect ratio",
                 "timeout": 600000
               },
@@ -2210,7 +2210,7 @@
               "id": "toolu_01GXbt6EFYG3xJvnoV72qMW5",
               "name": "Bash",
               "input": {
-                "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new2.png --iterations 5 2>&1",
+                "command": "GOOGLE_API_KEY=\"[REDACTED]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new2.png --iterations 5 2>&1",
                 "description": "Run PaperBanana iteration 2 with stronger wide aspect ratio constraint",
                 "timeout": 600000
               },

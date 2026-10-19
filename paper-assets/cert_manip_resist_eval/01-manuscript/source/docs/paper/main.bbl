@@ -1,0 +1,422 @@
+\begin{thebibliography}{52}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Al~Masoud et~al.(2026)Al~Masoud, Anju, Arazzi, Cihangiroglu, Kembu,
+  Nicolazzo, Nocera, {Vinod P.}, and Sakthidharan}]{almasoud2026security}
+Aiman Al~Masoud, Antony Anju, Marco Arazzi, Mert Cihangiroglu, Vignesh~Kumar
+  Kembu, Serena Nicolazzo, Antonino Nocera, {Vinod P.}, and Saraga
+  Sakthidharan. 2026.
+\newblock \href {https://arxiv.org/abs/2603.29403} {Security in
+  {LLM}-as-a-judge: A comprehensive {SoK}}.
+\newblock \emph{arXiv preprint arXiv:2603.29403}.
+\newblock ArXiv:2603.29403.
+
+\bibitem[{Bavaresco et~al.(2025)Bavaresco, Bernardi, Bertolazzi
+  et~al.}]{bavaresco2025llms}
+Anna Bavaresco, Raffaella Bernardi, Leonardo Bertolazzi, and 1 others. 2025.
+\newblock \href {https://aclanthology.org/2025.acl-short.20/} {{LLMs} instead
+  of human judges? {A} large scale empirical study across 20 {NLP} evaluation
+  tasks}.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pages 238--255.
+\newblock ArXiv:2406.18403.
+
+\bibitem[{Benjamini and Hochberg(1995)}]{benjamini1995controlling}
+Yoav Benjamini and Yosef Hochberg. 1995.
+\newblock \href {https://doi.org/10.1111/j.2517-6161.1995.tb02031.x}
+  {Controlling the false discovery rate: A practical and powerful approach to
+  multiple testing}.
+\newblock \emph{Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 57(1):289--300.
+
+\bibitem[{Brown et~al.(2005)Brown, Wyatt, and Ti{\~n}o}]{brown2005managing}
+Gavin Brown, Jeremy~L. Wyatt, and Peter Ti{\~n}o. 2005.
+\newblock \href {https://www.jmlr.org/papers/v6/brown05a.html} {Managing
+  diversity in regression ensembles}.
+\newblock \emph{Journal of Machine Learning Research}, 6:1621--1650.
+
+\bibitem[{Budescu(1993)}]{budescu1993dominance}
+David~V. Budescu. 1993.
+\newblock \href {https://doi.org/10.1037/0033-2909.114.3.542} {Dominance
+  analysis: A new approach to the problem of relative importance of predictors
+  in multiple regression}.
+\newblock \emph{Psychological Bulletin}, 114(3):542--551.
+
+\bibitem[{Cameron et~al.(2008)Cameron, Gelbach, and
+  Miller}]{cameron2008bootstrap}
+A.~Colin Cameron, Jonah~B. Gelbach, and Douglas~L. Miller. 2008.
+\newblock \href {https://doi.org/10.1162/rest.90.3.414} {Bootstrap-based
+  improvements for inference with clustered errors}.
+\newblock \emph{Review of Economics and Statistics}, 90(3):414--427.
+
+\bibitem[{Cameron and Miller(2015)}]{cameron2015practitioners}
+A.~Colin Cameron and Douglas~L. Miller. 2015.
+\newblock \href {https://doi.org/10.3368/jhr.50.2.317} {A practitioner's guide
+  to cluster-robust inference}.
+\newblock \emph{Journal of Human Resources}, 50(2):317--372.
+
+\bibitem[{Castro and Liskov(1999)}]{castro1999practical}
+Miguel Castro and Barbara Liskov. 1999.
+\newblock \href
+  {https://www.usenix.org/conference/osdi-99/practical-byzantine-fault-tolerance}
+  {Practical {Byzantine} fault tolerance}.
+\newblock In \emph{Proceedings of the 3rd USENIX Symposium on Operating Systems
+  Design and Implementation (OSDI)}, pages 173--186. USENIX Association.
+
+\bibitem[{Cinelli and Hazlett(2020)}]{cinelli2020making}
+Carlos Cinelli and Chad Hazlett. 2020.
+\newblock \href {https://doi.org/10.1111/rssb.12348} {Making sense of
+  sensitivity: Extending omitted variable bias}.
+\newblock \emph{Journal of the Royal Statistical Society: Series B},
+  82(1):39--67.
+
+\bibitem[{Clark et~al.(2018)Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick,
+  and Tafjord}]{clark2018arc}
+Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa
+  Schoenick, and Oyvind Tafjord. 2018.
+\newblock \href {https://arxiv.org/abs/1803.05457} {Think you have solved
+  question answering? {T}ry {ARC}, the {AI2} reasoning challenge}.
+\newblock \emph{arXiv preprint arXiv:1803.05457}.
+\newblock ArXiv:1803.05457.
+
+\bibitem[{Dawid and Skene(1979)}]{dawid1979maximum}
+Alexander~Philip Dawid and Allan~M. Skene. 1979.
+\newblock \href {https://doi.org/10.2307/2346806} {Maximum likelihood
+  estimation of observer error-rates using the {EM} algorithm}.
+\newblock \emph{Journal of the Royal Statistical Society. Series C (Applied
+  Statistics)}, 28(1):20--28.
+
+\bibitem[{DerSimonian and Laird(1986)}]{dersimonian1986meta}
+Rebecca DerSimonian and Nan Laird. 1986.
+\newblock \href {https://doi.org/10.1016/0197-2456(86)90046-2} {Meta-analysis
+  in clinical trials}.
+\newblock \emph{Controlled Clinical Trials}, 7(3):177--188.
+
+\bibitem[{Ebrahimi et~al.(2025)Ebrahimi, Dehghankar, and
+  Asudeh}]{ebrahimi2025adversary}
+Sana Ebrahimi, Mohsen Dehghankar, and Abolfazl Asudeh. 2025.
+\newblock \href {https://doi.org/10.18653/v1/2025.ijcnlp-long.90} {An
+  adversary-resistant multi-agent {LLM} system via credibility scoring}.
+\newblock In \emph{Proceedings of the 14th International Joint Conference on
+  Natural Language Processing and 4th Conference of the Asia-Pacific Chapter of
+  the Association for Computational Linguistics (IJCNLP-AACL)}, pages
+  1676--1693.
+
+\bibitem[{Genest and R\'{e}millard(2008)}]{genest2008validity}
+Christian Genest and Bruno R\'{e}millard. 2008.
+\newblock \href {https://doi.org/10.1214/07-AIHP148} {Validity of the
+  parametric bootstrap for goodness-of-fit testing in semiparametric models}.
+\newblock \emph{Annales de l'Institut Henri Poincar\'{e} -- Probabilit\'{e}s et
+  Statistiques}, 44(6):1096--1127.
+
+\bibitem[{Goodfellow et~al.(2015)Goodfellow, Shlens, and
+  Szegedy}]{goodfellow2015adversarial}
+Ian~J. Goodfellow, Jonathon Shlens, and Christian Szegedy. 2015.
+\newblock \href {https://arxiv.org/abs/1412.6572} {Explaining and harnessing
+  adversarial examples}.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{Greshake et~al.(2023)Greshake, Abdelnabi, Mishra, Endres, Holz, and
+  Fritz}]{greshake2023not}
+Kai Greshake, Sahar Abdelnabi, Shailesh Mishra, Christoph Endres, Thorsten
+  Holz, and Mario Fritz. 2023.
+\newblock \href {https://doi.org/10.1145/3605764.3623985} {Not what you've
+  signed up for: Compromising real-world {LLM}-integrated applications with
+  indirect prompt injection}.
+\newblock In \emph{Proceedings of the 16th ACM Workshop on Artificial
+  Intelligence and Security (AISec)}.
+
+\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Basart, Zou, Mazeika, Song,
+  and Steinhardt}]{hendrycks2021mmlu}
+Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn
+  Song, and Jacob Steinhardt. 2021.
+\newblock \href {https://openreview.net/forum?id=d7KBjmI3GmQ} {Measuring
+  massive multitask language understanding}.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{Kaneko and Baldwin(2025)}]{kaneko2025bits}
+Masahiro Kaneko and Timothy Baldwin. 2025.
+\newblock \href {https://arxiv.org/abs/2510.17000} {Bits leaked per query:
+  Information-theoretic bounds on adversarial attacks against {LLMs}}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+\newblock ArXiv:2510.17000. Spotlight.
+
+\bibitem[{Kariyappa and Qureshi(2019)}]{kariyappa2019improving}
+Sanjay Kariyappa and Moinuddin~K. Qureshi. 2019.
+\newblock \href {https://arxiv.org/abs/1901.09981} {Improving adversarial
+  robustness of ensembles with diversity training}.
+\newblock \emph{arXiv preprint arXiv:1901.09981}.
+\newblock ArXiv:1901.09981.
+
+\bibitem[{Kavathekar et~al.(2025)Kavathekar, Jain, Rathod, Kumaraguru, and
+  Ganu}]{tamas2025benchmarking}
+Ishan Kavathekar, Hemang Jain, Ameya Rathod, Ponnurangam Kumaraguru, and Tanuja
+  Ganu. 2025.
+\newblock \href {https://arxiv.org/abs/2511.05269} {{TAMAS}: Benchmarking
+  adversarial risks in multi-agent {LLM} systems}.
+\newblock In \emph{ICML 2025 Workshop on Multi-Agent Systems}.
+\newblock ArXiv:2511.05269.
+
+\bibitem[{Kim et~al.(2025)Kim, Garg, Peng, and Garg}]{kim2025correlated}
+Elliot Kim, Avi Garg, Kenny Peng, and Nikhil Garg. 2025.
+\newblock \href {https://arxiv.org/abs/2506.07962} {Correlated errors in large
+  language models}.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}.
+\newblock ArXiv:2506.07962.
+
+\bibitem[{Krogh and Vedelsby(1995)}]{krogh1995neural}
+Anders Krogh and Jesper Vedelsby. 1995.
+\newblock Neural network ensembles, cross validation, and active learning.
+\newblock In \emph{Advances in Neural Information Processing Systems 7 (NIPS)},
+  pages 231--238. MIT Press.
+
+\bibitem[{Kuai et~al.(2026)Kuai, Jiang, Zhu, Wang, Wu, Li, Zhang, Liu, Tu, Fan,
+  and Zhou}]{kuai2026independent}
+Chenchen Kuai, Jiwan Jiang, Zihao Zhu, Hao Wang, Keshu Wu, Zihao Li, Yunlong
+  Zhang, Chenxi Liu, Zhengzhong Tu, Zhiwen Fan, and Yang Zhou. 2026.
+\newblock \href {https://arxiv.org/abs/2604.07650} {How independent are large
+  language models? a statistical framework for auditing behavioral entanglement
+  and reweighting verifier ensembles}.
+\newblock \emph{arXiv preprint arXiv:2604.07650}.
+\newblock ArXiv:2604.07650.
+
+\bibitem[{Kuncheva and Whitaker(2003)}]{kuncheva2003measures}
+Ludmila~I. Kuncheva and Christopher~J. Whitaker. 2003.
+\newblock \href {https://doi.org/10.1023/A:1022859003006} {Measures of
+  diversity in classifier ensembles and their relationship with the ensemble
+  accuracy}.
+\newblock \emph{Machine Learning}, 51(2):181--207.
+
+\bibitem[{Kwon et~al.(2023)Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang,
+  and Stoica}]{kwon2023efficient}
+Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
+  Joseph Gonzalez, Hao Zhang, and Ion Stoica. 2023.
+\newblock \href {https://doi.org/10.1145/3600006.3613165} {Efficient memory
+  management for large language model serving with {PagedAttention}}.
+\newblock In \emph{Proceedings of the ACM SIGOPS 29th Symposium on Operating
+  Systems Principles (SOSP)}, pages 611--626.
+
+\bibitem[{Ladha(1992)}]{ladha1992condorcet}
+Krishna~K. Ladha. 1992.
+\newblock \href {https://doi.org/10.2307/2111584} {The {Condorcet} jury
+  theorem, free speech, and correlated votes}.
+\newblock \emph{American Journal of Political Science}, 36(3):617--634.
+
+\bibitem[{Lamport et~al.(1982)Lamport, Shostak, and
+  Pease}]{lamport1982byzantine}
+Leslie Lamport, Robert Shostak, and Marshall Pease. 1982.
+\newblock \href {https://doi.org/10.1145/357172.357176} {The {Byzantine}
+  generals problem}.
+\newblock \emph{ACM Transactions on Programming Languages and Systems
+  (TOPLAS)}, 4(3):382--401.
+
+\bibitem[{Li et~al.(2024)Li, Sun, Yuan, Fan, Zhao, and Liu}]{li2024autoj}
+Junlong Li, Shichao Sun, Weizhe Yuan, Run-Ze Fan, Hai Zhao, and Pengfei Liu.
+  2024.
+\newblock \href {https://arxiv.org/abs/2310.05470} {Generative judge for
+  evaluating alignment ({Auto-J})}.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+\newblock ArXiv:2310.05470.
+
+\bibitem[{Lin et~al.(2024)Lin, Tang, Tang, Yang, Chen, Wang, Xiao, Dang, Gan,
+  and Han}]{lin2024awq}
+Ji~Lin, Jiaming Tang, Haotian Tang, Shang Yang, Wei-Ming Chen, Wei-Chen Wang,
+  Guangxuan Xiao, Xingyu Dang, Chuang Gan, and Song Han. 2024.
+\newblock {AWQ}: Activation-aware weight quantization for on-device {LLM}
+  compression and acceleration.
+\newblock In \emph{Proceedings of Machine Learning and Systems (MLSys)},
+  volume~6.
+
+\bibitem[{MacKinnon and Webb(2018)}]{mackinnon2018wild}
+James~G. MacKinnon and Matthew~D. Webb. 2018.
+\newblock \href {https://doi.org/10.1111/ectj.12107} {The wild bootstrap for
+  few (treated) clusters}.
+\newblock \emph{The Econometrics Journal}, 21(2):114--135.
+
+\bibitem[{Maloyan et~al.(2025)Maloyan, Ashinov, and
+  Namiot}]{maloyan2025investigating}
+Narek Maloyan, Bislan Ashinov, and Dmitry Namiot. 2025.
+\newblock \href {https://arxiv.org/abs/2505.13348} {Investigating the
+  vulnerability of {LLM}-as-a-judge architectures to prompt-injection attacks}.
+\newblock \emph{arXiv preprint arXiv:2505.13348}.
+\newblock ArXiv:2505.13348.
+
+\bibitem[{Marie Jean Antoine Nicolas~de Caritat(1785)}]{condorcet1785essai}
+Marquis de~Condorcet Marie Jean Antoine Nicolas~de Caritat. 1785.
+\newblock \emph{Essai sur l'application de l'analyse \`a la probabilit\'e des
+  d\'ecisions rendues \`a la pluralit\'e des voix}.
+\newblock Imprimerie Royale, Paris.
+
+\bibitem[{Nelsen(2006)}]{nelsen2006copulas}
+Roger~B. Nelsen. 2006.
+\newblock \href {https://doi.org/10.1007/0-387-28678-0} {\emph{An Introduction
+  to Copulas}}, 2nd edition.
+\newblock Springer.
+
+\bibitem[{Pang et~al.(2019)Pang, Xu, Du, Chen, and Zhu}]{pang2019improving}
+Tianyu Pang, Kun Xu, Chao Du, Ning Chen, and Jun Zhu. 2019.
+\newblock \href {https://proceedings.mlr.press/v97/pang19a.html} {Improving
+  adversarial robustness via promoting ensemble diversity}.
+\newblock In \emph{Proceedings of the 36th International Conference on Machine
+  Learning (ICML)}, pages 4970--4979. PMLR.
+
+\bibitem[{Panickssery et~al.(2024)Panickssery, Bowman, and
+  Feng}]{panickssery2024llm}
+Arjun Panickssery, Samuel~R. Bowman, and Shi Feng. 2024.
+\newblock \href {https://arxiv.org/abs/2404.13076} {{LLM} evaluators recognize
+  and favor their own generations}.
+\newblock In \emph{Advances in Neural Information Processing Systems 37
+  (NeurIPS)}.
+\newblock ArXiv:2404.13076.
+
+\bibitem[{Papernot et~al.(2016)Papernot, McDaniel, and
+  Goodfellow}]{papernot2016transferability}
+Nicolas Papernot, Patrick McDaniel, and Ian Goodfellow. 2016.
+\newblock \href {https://arxiv.org/abs/1605.07277} {Transferability in machine
+  learning: from phenomena to black-box attacks using adversarial samples}.
+\newblock \emph{arXiv preprint arXiv:1605.07277}.
+\newblock ArXiv:1605.07277.
+
+\bibitem[{Papke and Wooldridge(1996)}]{papke1996econometric}
+Leslie~E. Papke and Jeffrey~M. Wooldridge. 1996.
+\newblock \href
+  {https://doi.org/10.1002/(SICI)1099-1255(199611)11:6<619::AID-JAE418>3.0.CO;2-1}
+  {Econometric methods for fractional response variables with an application to
+  401(k) plan participation rates}.
+\newblock \emph{Journal of Applied Econometrics}, 11(6):619--632.
+
+\bibitem[{Perez and Ribeiro(2022)}]{perez2022ignore}
+F{\'a}bio Perez and Ian Ribeiro. 2022.
+\newblock \href {https://arxiv.org/abs/2211.09527} {Ignore previous prompt:
+  Attack techniques for language models}.
+\newblock \emph{arXiv preprint arXiv:2211.09527}.
+\newblock ArXiv:2211.09527. NeurIPS 2022 ML Safety Workshop, Best Paper Award.
+
+\bibitem[{Qian et~al.(2026)Qian, Zhang, Zhou, Ding, Socolinsky, and
+  Zhang}]{qian2026collabeval}
+Yiyue Qian, Shinan Zhang, Yun Zhou, Haibo Ding, Diego Socolinsky, and Yi~Zhang.
+  2026.
+\newblock \href {https://arxiv.org/abs/2603.00993} {{CollabEval}: Enhancing
+  {LLM}-as-a-judge via multi-agent collaboration}.
+\newblock \emph{arXiv preprint arXiv:2603.00993}.
+\newblock ArXiv:2603.00993.
+
+\bibitem[{Raina et~al.(2024)Raina, Liusie, and Gales}]{raina2024judgerobust}
+Vyas Raina, Adian Liusie, and Mark Gales. 2024.
+\newblock \href {https://aclanthology.org/2024.emnlp-main.427/} {Is
+  {LLM}-as-a-judge robust? {I}nvestigating universal adversarial attacks on
+  zero-shot {LLM} assessment}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 7499--7517.
+
+\bibitem[{Schneier(2000)}]{schneier2000secrets}
+Bruce Schneier. 2000.
+\newblock \emph{Secrets and Lies: Digital Security in a Networked World}.
+\newblock John Wiley \& Sons.
+
+\bibitem[{Tambe(2011)}]{tambe2011security}
+Milind Tambe. 2011.
+\newblock \href {https://doi.org/10.1017/CBO9780511973031} {\emph{Security and
+  Game Theory: Algorithms, Deployed Systems, Lessons Learned}}.
+\newblock Cambridge University Press.
+
+\bibitem[{Tan et~al.(2025)Tan, Zhuang, Montgomery, Tang, Cuadron, Wang, Popa,
+  and Stoica}]{tan2024judgebench}
+Sijun Tan, Siyuan Zhuang, Kyle Montgomery, William~Y. Tang, Alejandro Cuadron,
+  Chenguang Wang, Raluca~Ada Popa, and Ion Stoica. 2025.
+\newblock \href {https://arxiv.org/abs/2410.12784} {{JudgeBench}: A benchmark
+  for evaluating {LLM}-based judges}.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+\newblock ArXiv:2410.12784.
+
+\bibitem[{Turkmen et~al.(2026)Turkmen, Buyukates, and
+  Bastopcu}]{turkmen2026ensemble}
+Yigit Turkmen, Baturalp Buyukates, and Melih Bastopcu. 2026.
+\newblock \href {https://arxiv.org/abs/2602.08003} {Don't always pick the
+  highest-performing model: An information theoretic view of {LLM} ensemble
+  selection}.
+\newblock \emph{arXiv preprint arXiv:2602.08003}.
+\newblock ArXiv:2602.08003.
+
+\bibitem[{Verga et~al.(2024)Verga, Hofstatter, Althammer, Su, Piktus,
+  Arkhangorodsky, Xu, White, and Lewis}]{verga2024replacing}
+Pat Verga, Sebastian Hofstatter, Sophia Althammer, Yixuan Su, Aleksandra
+  Piktus, Arkady Arkhangorodsky, Minjie Xu, Naomi White, and Patrick Lewis.
+  2024.
+\newblock \href {https://arxiv.org/abs/2404.18796} {Replacing judges with
+  juries: Evaluating {LLM} generations with a panel of diverse models}.
+\newblock \emph{arXiv preprint arXiv:2404.18796}.
+\newblock ArXiv:2404.18796.
+
+\bibitem[{Wallace et~al.(2019)Wallace, Feng, Kandpal, Gardner, and
+  Singh}]{wallace2019universal}
+Eric Wallace, Shi Feng, Nikhil Kandpal, Matt Gardner, and Sameer Singh. 2019.
+\newblock \href {https://aclanthology.org/D19-1221/} {Universal adversarial
+  triggers for attacking and analyzing {NLP}}.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP-IJCNLP)}, pages 2153--2162.
+
+\bibitem[{Wang et~al.(2023)Wang, Li, Chen, Cai, Zhu, Lin, Cao, Kong, Liu, Liu,
+  and Sui}]{wang2023fair}
+Peiyi Wang, Lei Li, Liang Chen, Zefan Cai, Dawei Zhu, Binghuai Lin, Yunbo Cao,
+  Lingpeng Kong, Qi~Liu, Tianyu Liu, and Zhifang Sui. 2023.
+\newblock \href {https://arxiv.org/abs/2305.17926} {Large language models are
+  not fair evaluators}.
+\newblock \emph{arXiv preprint arXiv:2305.17926}.
+\newblock ArXiv:2305.17926. Later published at ACL 2024.
+
+\bibitem[{Yang et~al.(2020)Yang, Zhang, Dong, Inkawhich, Gardner, Touchet,
+  Wilkes, Berry, and Li}]{zhu2020dverge}
+Huanrui Yang, Jingyang Zhang, Hongliang Dong, Nathan Inkawhich, Andrew Gardner,
+  Andrew Touchet, Wesley Wilkes, Heath Berry, and Hai Li. 2020.
+\newblock \href {https://arxiv.org/abs/2009.14720} {{DVERGE}: Diversifying
+  vulnerabilities for enhanced robust generation of ensembles}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, volume~33.
+\newblock ArXiv:2009.14720. Oral.
+
+\bibitem[{Yang et~al.(2026)Yang, Qu, Wen, Shi, Wen, Zhang, Wierman, and
+  Gu}]{yang2026diversity}
+Yingxuan Yang, Chengrui Qu, Muning Wen, Laixi Shi, Ying Wen, Weinan Zhang, Adam
+  Wierman, and Shangding Gu. 2026.
+\newblock \href {https://arxiv.org/abs/2602.03794} {Understanding agent scaling
+  in {LLM}-based multi-agent systems via diversity}.
+\newblock In \emph{ICLR 2026 Workshop on AIMS}.
+\newblock ArXiv:2602.03794.
+
+\bibitem[{Ye et~al.(2024)Ye, Wang, Huang, Chen, Zhang, Moniz, Gao, Geyer,
+  Huang, Chen, Chawla, and Zhang}]{ye2024justice}
+Jiayi Ye, Yanbo Wang, Yue Huang, Dongping Chen, Qihui Zhang, Nuno Moniz, Tian
+  Gao, Werner Geyer, Chao Huang, Pin-Yu Chen, Nitesh~V. Chawla, and Xiangliang
+  Zhang. 2024.
+\newblock \href {https://arxiv.org/abs/2410.02736} {Justice or prejudice?
+  {Q}uantifying biases in {LLM}-as-a-judge}.
+\newblock \emph{arXiv preprint arXiv:2410.02736}.
+\newblock ArXiv:2410.02736.
+
+\bibitem[{Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
+  Li, Xing, Zhang, Gonzalez, and Stoica}]{zheng2023judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P. Xing, Hao Zhang, Joseph~E.
+  Gonzalez, and Ion Stoica. 2023.
+\newblock \href {https://arxiv.org/abs/2306.05685} {Judging {LLM}-as-a-judge
+  with {MT-Bench} and {Chatbot Arena}}.
+\newblock In \emph{Advances in Neural Information Processing Systems 36
+  (NeurIPS)}.
+
+\bibitem[{Zou et~al.(2023)Zou, Wang, Carlini, Nasr, Kolter, and
+  Fredrikson}]{zou2023universal}
+Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr, J.~Zico Kolter, and Matt
+  Fredrikson. 2023.
+\newblock \href {https://arxiv.org/abs/2307.15043} {Universal and transferable
+  adversarial attacks on aligned language models}.
+\newblock \emph{arXiv preprint arXiv:2307.15043}.
+\newblock ArXiv:2307.15043.
+
+\end{thebibliography}

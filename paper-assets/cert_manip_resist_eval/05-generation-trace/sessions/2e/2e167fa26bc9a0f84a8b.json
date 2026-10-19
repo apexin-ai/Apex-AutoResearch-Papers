@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_mvp-step2v3-retry_20260522T015252_result.json",
     "occurrence": 1,
-    "bytes": 554,
-    "sha256": "5c284496178cc74d5c2d7efdff4db6545c066ec03a43fa403a7147c9f6bbadd0"
+    "bytes": 553,
+    "sha256": "df9d697f5fb0cf22fb5c892cfb38523427dc4f93cd03b05abb36104769f0c13c"
   },
   "statistics": {
     "messages": 1,

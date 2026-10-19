@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-mi-heatmap_20260525T144449_result.json",
     "occurrence": 1,
-    "bytes": 583,
-    "sha256": "a0dbd295d13daa17cb285e9ed44c35ee018c16e736d21c63f97752f1cc155628"
+    "bytes": 582,
+    "sha256": "25f302a790930e273df77328191d4979305c148637694149c226187c3c1cfbd9"
   },
   "statistics": {
     "messages": 1,

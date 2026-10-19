@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-beta-trajectory_20260525T150515_result.json",
     "occurrence": 1,
-    "bytes": 372,
-    "sha256": "f79241df3828de06edda9789a68727a0933a70bd17488b38f06629f3852693fc"
+    "bytes": 371,
+    "sha256": "bd0072a0e0994ef929451b6929f96772fa941ed7c45f5c1dbffa76ecb1ffcfb0"
   },
   "statistics": {
     "messages": 1,

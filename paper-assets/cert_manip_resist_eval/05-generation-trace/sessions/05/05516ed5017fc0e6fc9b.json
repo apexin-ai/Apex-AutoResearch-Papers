@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_regime-transition-bootstrap-corrected_20260523T175031_result.json",
     "occurrence": 1,
-    "bytes": 866,
-    "sha256": "767e127e0184d1c7cf562ff06bf8494198d14314f97340b70683eec5598a087e"
+    "bytes": 865,
+    "sha256": "415d08395b08d7eb307a8d35a6ac1279c368488ec3f08956c8bbec2616389a53"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig2-scatter-k5-restore_20260525T200712_result.json",
     "occurrence": 1,
-    "bytes": 608,
-    "sha256": "7cdb7ffbac4936835e4e23a7345520138732a927cd5e58c8683927c2778c56bf"
+    "bytes": 607,
+    "sha256": "47d5b5940e04ea5e0498a5712b979f1598c56c2c51792d6bee3956b8f4eba7c3"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,104 @@
+GAM K_eff 数据加载差异诊断报告
+================================
+日期: 2026-05-23
+
+1. 脚本路径与 K_eff 加载方式
+─────────────────────────────
+
+原始 GAM 脚本:
+  路径: /root/cert_manip_resist_eval/scripts/run_gam_tier_analysis.py
+  K_eff 加载: mi_data["keff_per_panel"][ds][pk]["keff"]
+  来源: load_mi_data() → artifacts/results/plan001/mi_matrix/mi_matrix_15models.json
+  公式: empirical_keff_from_rho (全对 copula ρ 矩阵)
+
+Bootstrap 脚本:
+  路径: /root/cert_manip_resist_eval/scripts/run_gam_bootstrap_ci_k3.py
+  K_eff 加载: mi_data["keff_per_panel"][ds][pk]["keff"]  (完全相同)
+  来源: 同上
+
+结论: K_eff 值 **完全一致**，两个脚本读取相同的 JSON 文件相同的字段。
+
+Corrected 版本:
+  路径: /root/cert_manip_resist_eval/scripts/run_gam_tier_analysis_corrected.py
+  仅修改了 tier 分类 (4/6/5 → 3/3/9)，未修复 ASR 计算的 error handling
+
+2. 差异根因: ASR 计算的 Error Handling 不同
+──────────────────────────────────────────────
+
+原始 GAM 脚本:
+  clean_list[i].get("winner", "tie")    # error → 当作 "tie"
+  attacked_list[i].get("winner", "tie") # error → 当作 "tie"
+
+Bootstrap 脚本:
+  _is_valid_score(sc)  # error → 跳过该样本
+  要求 sc["winner"] is not None 且 sc.get("error") 为 falsy
+
+影响: 当 API 模型返回 error 时:
+  - 原始脚本: error 被当作 "tie" 投票，可能被误计为 flip → ASR 被虚增
+  - Bootstrap 脚本: error 样本被跳过 → ASR 基于有效样本计算
+
+3. Error Score 分布
+────────────────────
+
+受影响最严重的 3 个模型 (均为 frontier 类):
+  gemini-3.5-flash:       742/4200 (17.7%)  ← mmlu clean 26.3% error rate
+  gemini-3.1-pro-preview: 335/4200 (8.0%)
+  gpt-5.5:                129/4200 (3.1%)
+
+其他 12 个模型合计仅 15 个 error。
+
+Error rate per condition:
+  mmlu × 各攻击:         ~3.0-3.4%
+  arc_challenge × 各攻击: ~0.6-0.8%
+
+4. 逐 Condition GAM 方向对比
+──────────────────────────────
+
+Condition                          V1(无filter) V2(有filter)  匹配   类别
+─────────────────────────────────────────────────────────────────────────
+mmluxprompt_injection                 +            +          OK    targeted
+mmluxscore_manipulation               +            +          OK    targeted
+mmluxposition_bias                    +            +          OK    targeted
+mmluxsycophancy                       -            +          DIFF  shared-bias
+mmluxverbosity_bias                   -            +          DIFF  shared-bias
+mmluxauthority_bias                   -            +          DIFF  shared-bias
+arc_challengexprompt_injection        +            +          OK    targeted
+arc_challengexscore_manipulation      +            +          OK    targeted
+arc_challengexposition_bias           +            +          OK    targeted
+arc_challengexsycophancy              -            +          DIFF  shared-bias
+arc_challengexverbosity_bias          -            +          DIFF  shared-bias
+arc_challengexauthority_bias          -            +          DIFF  shared-bias
+
+6 个 DIFF 全部是 shared-bias attacks，6 个 OK 全部是 targeted attacks。
+
+5. 因果链分析
+─────────────
+
+(a) gemini-3.5-flash, gemini-3.1-pro-preview, gpt-5.5 大量 error scores
+(b) 原始脚本将 error 当作 "tie" → 这些 frontier 模型的 individual ASR 被虚增
+    例: gemini-3.5-flash sycophancy V1=0.0794 vs V2=0.0000 (完全是 error 伪造的 ASR)
+(c) 含这些 frontier 模型的 panel: η_max 和 panel_ASR 同时被抬高
+(d) Frontier 模型通常有较高 K_eff (因为能力差异大, 判决独立性高)
+(e) 错误虚增了高 K_eff panels 的 ASR → partial dependence 负向
+(f) 这种虚增仅对 shared-bias attacks 达到翻转方向的程度,
+    因为 targeted attacks 本身 ASR 足够高, error 的相对影响较小
+
+6. 结论
+────────
+
+K_eff 值一致。差异来自 ASR 计算: 原始脚本将 error scores 当作 "tie"
+(错误做法), bootstrap 脚本跳过 error scores (正确做法)。
+
+**6:6 split 是 error handling bug 的产物**, 在正确处理 error 后不成立。
+正确的结果是 12/12 全部正向: K_eff 越高, panel ASR 越高 (无论攻击类型)。
+
+原始 GAM 脚本中 V1 shared-bias 的 GAM slope 量级很小 (-0.15 ~ -2.9),
+而 V2 的 slope 量级为 14~39, 说明 V1 的 "负向" 效果本身就微弱,
+仅仅因为 ~3% 的 error scores 就翻转了方向。
+
+7. 建议修复
+───────────
+
+将 run_gam_tier_analysis.py 和 run_gam_tier_analysis_corrected.py 中的
+ASR 计算改为使用 _is_valid_score() 过滤 error scores, 与 bootstrap 脚本
+保持一致。修复后需要重新跑一遍, 并更新论文中关于 6:6 split 的描述。

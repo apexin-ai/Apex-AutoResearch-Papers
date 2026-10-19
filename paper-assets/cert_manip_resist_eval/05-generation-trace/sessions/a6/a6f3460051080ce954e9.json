@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fp16-restart-8b-awq_20260525T105636_result.json",
     "occurrence": 1,
-    "bytes": 177,
-    "sha256": "66a98b7ef74cdd0910349528ba09309ad50ace2eecdc720e9212f309c8989d66"
+    "bytes": 176,
+    "sha256": "1f7d252e488f65ac41e5d81b298b7bba52b450f920121ddd6a182357c2e41c41"
   },
   "statistics": {
     "messages": 1,

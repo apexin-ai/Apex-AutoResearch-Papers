@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_keff-eta-scatter_20260523T134400_result.json",
     "occurrence": 1,
-    "bytes": 648,
-    "sha256": "b41fcc95e72bca050a2440cf419c04c96d4ce4661b39437f1df22e56beda24d2"
+    "bytes": 647,
+    "sha256": "fc1c882aa052cbb147d6542acbfa5db54d924fdb5dcd0c62e639cb5bdb85a27d"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1764234f3e6a42918ecd",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops gpu occupancy investigation",
+  "task_key": "worker_ops_gpu-occupancy-investigation_20260521T120207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-occupancy-investigation_20260521T120207_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "1314f4e6bc876e6a7132cce6dd6334872bb228c76cd65f391daba740a9a21017"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 占用报告\n\n**单个进程 PID 482839** 占用了 GPU 1/2/3，是本项目自己的任务：\n\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| 0 | 3 MiB | 空闲 |\n| 1 | 90,140 MiB / 97,887 MiB | 占用 |\n| 2 | 93,602 MiB / 97,887 MiB | 占用 |\n| 3 | 93,602 MiB / 97,887 MiB | 占用 |\n\n**进程详情：**\n\n- **PID**: 482839\n- **运行时间**: 4 分 3 秒\n- **CPU**: 80.5%\n- **RSS**: ~16.3 GB\n- **命令**:\n  ```\n  python -u code/extract_activations.py \\\n    --model_path /root/autodl-tmp/models/Qwen3-235B-GPTQ-Int4/ \\\n    --model_name qwen3_235b_gptq \\\n    --layers 0,4 \\\n    --languages en zh \\\n    --output_dir /root/autodl-tmp/activations/plan_001_dryrun \\\n    --max_samples 5\n  ```\n\n**结论**：不是未知进程。是本项目 `xling_calib_direction` 的 activation 提取脚本，正在用 Qwen3-235B-GPTQ-Int4 模型做 dry run（仅 5 个样本、2 层）。GPU 利用率 0%，说明当前在做 CPU 端工作（可能在加载模型或预处理数据）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-occupancy-investigation.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_002",
+  "project": "xling_calib_direction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:26:27.143Z",
+    "updated_at": "2026-05-20T17:00:09.060Z",
+    "hypothesis": "Layer-depth 效应在 Qwen2.5-7B-Instruct 的互补层集合（2,6,10,14,18,22,26,30）上复现，与 mvp_001（0,4,8,12,16,20,24,28,31）合并后提供近全层覆盖（17/32层），验证 AUROC 的 layer-depth 趋势不依赖于特定层采样。",
+    "parent": "mvp_001"
+  },
+  "timestamp": "2026-05-20T17:00:09.091982+00:00",
+  "trigger": "update_registry"
+}

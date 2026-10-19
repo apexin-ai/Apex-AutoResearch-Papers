@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74f18a893ced5a3148e3",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops resume llama4 download",
+  "task_key": "worker_ops_resume-llama4-download_20260521T073949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resume-llama4-download_20260521T073949_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "f2d05ecf23b005784b8f70852addacfb7de8de3c314ab8f0a5b4a24b0a7a0720"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程均在运行。\n\n**结果：**\n\n| 任务 | PID | 状态 |\n|------|-----|------|\n| Llama4 Scout W4A16 恢复下载 | 67791 | 运行中，8/27 文件已存在，正在下载剩余 6 个 shard（00004, 00009, 00011-00014），每个 ~4.9GB |\n| Telugu GlobalMMLU | 67841 | 运行中，数据集加载/下载中 |\n\n**注意事项：**\n- 两个下载都未认证（unauthenticated），速率受限。如果速度太慢，可设置 `HF_TOKEN` 加速。\n- Llama4 剩余约 ~30GB，按 AutoDL 代理速度预计需要数小时。\n- 可用 `tail -5 /tmp/llama4_download.log` 和 `tail -5 /tmp/te_download.log` 随时查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resume-llama4-download.md"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_a6-dbei-predictor-shift_20260524T120429_result.json",
     "occurrence": 1,
-    "bytes": 16,
-    "sha256": "0431adb3f4520f05c2975c60cbf66284deb3efb7ef2cfebcd21677376f76f434"
+    "bytes": 15,
+    "sha256": "ce4a1647d45fe2a4c49a27ff15d18a962283163096043939113e1780f0c8cb91"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,30 @@
+{
+  "exp_id": "r1w2-fp16-baseline",
+  "project": "cert_manip_resist_eval",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T17:02:51.535Z",
+    "updated_at": "2026-05-25T06:43:44.716Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/cert_manip_resist_eval && python scripts/run_fp16_baseline.py 2>&1 | tee /tmp/fp16_baseline_v3.log\"",
+      "server": "seetacloud-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "50554",
+      "log_path": "~/runs/cert_manip_resist_eval/r1w2-fp16-baseline.log",
+      "submitted_at": "2026-05-24T18:34:39.922Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "AWQ INT4 quantization introduces <2pp accuracy degradation vs FP16, ruling out quantization as confound for K_eff predictive power (R1-W2)",
+    "conclusion": "failed",
+    "notes": "仅 2/5 模型完成，Llama-8B 出现 AWQ 反超异常（ARC: AWQ=0.78, FP16=0.73, delta=-5pp），可能因 prompt template 不一致。结论不可靠。需重跑。"
+  },
+  "timestamp": "2026-05-25T06:43:44.762856+00:00",
+  "trigger": "update_registry"
+}

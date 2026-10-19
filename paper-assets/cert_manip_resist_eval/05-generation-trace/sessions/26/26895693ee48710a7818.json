@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_cinelli-table11-audit_20260524T164955_result.json",
     "occurrence": 1,
-    "bytes": 1678,
-    "sha256": "12c4636d4e9020ce7ec74ace8e8089d86e0c11fe5940df73361325e126dd9922"
+    "bytes": 1677,
+    "sha256": "2b77ac91641265431d7ddf405d8754dc43fd728367485deaff67833d9e43b3b6"
   },
   "statistics": {
     "messages": 1,

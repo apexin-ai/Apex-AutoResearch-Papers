@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_writing_abstract_intro_rewrite_20260524T181332_result.json",
     "occurrence": 1,
-    "bytes": 877,
-    "sha256": "ec5aff82377802f79475539e553526c9ed7f8c52591cb8fbff9a745db6d59995"
+    "bytes": 876,
+    "sha256": "94a1d6a90a80c7c632bd02ad097a14a944101c04eb738d5ea4d1279f6a008996"
   },
   "statistics": {
     "messages": 1,

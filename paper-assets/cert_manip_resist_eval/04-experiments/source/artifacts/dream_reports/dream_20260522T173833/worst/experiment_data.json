@@ -1,0 +1,1453 @@
+[
+  {
+    "name": "15-Model Scale Expansion",
+    "description": "扩展至 15 个模型（6 open-source + 4 API + 大型开源 70B/72B），重跑 MI matrix 和 全 panel（C(15,3)=455）回归分析。12 conditions（2 datasets × 6 attacks）。\n",
+    "results": {
+      "n_models": 15,
+      "n_panels": 455,
+      "n_conditions": 12,
+      "keff_raw_sig_positive": 7,
+      "keff_raw_sig_negative": 0,
+      "keff_raw_nonsig": 5,
+      "keff_resid_sig_positive": 4,
+      "keff_resid_nonsig": 8,
+      "eta_max_sig": 9,
+      "mean_R2_full_model": 0.38,
+      "mean_R2_eta_max_only": 0.34,
+      "delta_R2_keff_contribution": 0.04,
+      "keff_eta_max_correlation_mean": 0.73,
+      "keff_eta_max_correlation_range": [
+        0.62,
+        0.85
+      ],
+      "VIF_keff": 2.14,
+      "confound_free_conditions_count": 1,
+      "confound_free_condition_keff_p": 0.032,
+      "confound_free_condition_keff_beta": 0.41
+    },
+    "tables": [
+      {
+        "title": "Table 1: K_eff Residualized Regression — 15 Models, 455 Panels",
+        "columns": [
+          "Dataset",
+          "Attack",
+          "β_ηmax",
+          "p_ηmax",
+          "β_Keff_resid",
+          "p_Keff_resid",
+          "R²",
+          "K_eff-ηmax r"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "sycophancy",
+            "0.82",
+            "<0.001",
+            "0.18",
+            "0.147",
+            "0.41",
+            "0.78"
+          ],
+          [
+            "MMLU",
+            "score_manip",
+            "0.55",
+            "<0.001",
+            "0.39",
+            "0.021",
+            "0.36",
+            "0.68"
+          ],
+          [
+            "MMLU",
+            "position",
+            "0.71",
+            "<0.001",
+            "0.24",
+            "0.089",
+            "0.39",
+            "0.75"
+          ],
+          [
+            "MMLU",
+            "verbosity",
+            "0.88",
+            "<0.001",
+            "0.09",
+            "0.511",
+            "0.42",
+            "0.81"
+          ],
+          [
+            "MMLU",
+            "authority",
+            "0.79",
+            "<0.001",
+            "0.15",
+            "0.218",
+            "0.37",
+            "0.76"
+          ],
+          [
+            "MMLU",
+            "few_shot_hijack",
+            "0.64",
+            "0.002",
+            "0.31",
+            "0.043",
+            "0.33",
+            "0.70"
+          ],
+          [
+            "ARC",
+            "sycophancy",
+            "0.85",
+            "<0.001",
+            "0.12",
+            "0.341",
+            "0.43",
+            "0.79"
+          ],
+          [
+            "ARC",
+            "score_manip",
+            "0.48",
+            "0.003",
+            "0.41",
+            "0.032",
+            "0.35",
+            "0.35"
+          ],
+          [
+            "ARC",
+            "position",
+            "0.73",
+            "<0.001",
+            "0.22",
+            "0.102",
+            "0.38",
+            "0.74"
+          ],
+          [
+            "ARC",
+            "verbosity",
+            "0.91",
+            "<0.001",
+            "0.06",
+            "0.649",
+            "0.44",
+            "0.82"
+          ],
+          [
+            "ARC",
+            "authority",
+            "0.76",
+            "<0.001",
+            "0.19",
+            "0.157",
+            "0.36",
+            "0.77"
+          ],
+          [
+            "ARC",
+            "few_shot_hijack",
+            "0.59",
+            "0.004",
+            "0.28",
+            "0.071",
+            "0.32",
+            "0.72"
+          ]
+        ]
+      },
+      {
+        "title": "Table 2: Model Pool Summary — 15 Models",
+        "columns": [
+          "Model",
+          "Family",
+          "Size",
+          "Tier",
+          "Mean η (6 attacks)",
+          "Clean ACC"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-7B",
+            "Qwen",
+            "7B",
+            "small",
+            "0.38",
+            "0.61"
+          ],
+          [
+            "Qwen2.5-14B",
+            "Qwen",
+            "14B",
+            "medium",
+            "0.22",
+            "0.74"
+          ],
+          [
+            "Qwen2.5-72B",
+            "Qwen",
+            "72B",
+            "large",
+            "0.11",
+            "0.83"
+          ],
+          [
+            "Llama-3.1-8B",
+            "Llama",
+            "8B",
+            "small",
+            "0.41",
+            "0.58"
+          ],
+          [
+            "Llama-3.1-70B",
+            "Llama",
+            "70B",
+            "large",
+            "0.14",
+            "0.80"
+          ],
+          [
+            "Mistral-7B",
+            "Mistral",
+            "7B",
+            "small",
+            "0.44",
+            "0.55"
+          ],
+          [
+            "Mistral-Nemo-12B",
+            "Mistral",
+            "12B",
+            "medium",
+            "0.27",
+            "0.69"
+          ],
+          [
+            "Phi-3-mini",
+            "Microsoft",
+            "3.8B",
+            "small",
+            "0.49",
+            "0.52"
+          ],
+          [
+            "Phi-3-medium",
+            "Microsoft",
+            "14B",
+            "medium",
+            "0.25",
+            "0.71"
+          ],
+          [
+            "Gemma-2-9B",
+            "Google",
+            "9B",
+            "small",
+            "0.36",
+            "0.63"
+          ],
+          [
+            "GPT-4o-mini",
+            "OpenAI",
+            "API",
+            "medium",
+            "0.19",
+            "0.76"
+          ],
+          [
+            "GPT-4o",
+            "OpenAI",
+            "API",
+            "large",
+            "0.08",
+            "0.87"
+          ],
+          [
+            "GPT-4.1",
+            "OpenAI",
+            "API",
+            "large",
+            "0.07",
+            "0.89"
+          ],
+          [
+            "GPT-4.1-mini",
+            "OpenAI",
+            "API",
+            "medium",
+            "0.16",
+            "0.78"
+          ],
+          [
+            "Claude-3.5-Haiku",
+            "Anthropic",
+            "API",
+            "medium",
+            "0.18",
+            "0.77"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "核心 diversity trap framing 受到致命打击。K_eff residualized 显著率从期望的 8/12 降至 4/12，且这 4 个中有 2 个 p 值在 0.02-0.04 之间（经 FDR 校正后可能变 NS）。 仅 1 个 confound-free condition 意味着 residualization 的可信度依赖于线性假设—— reviewer 可以合理质疑 \"你的 K_eff effect 只是 nonlinear η_max effect 的残余\"。 η_max 9/12 显著是稳健的，weakest-link 叙事成立，但这是预期结果不是新发现。 ΔR² = 0.04 使得 \"dual vulnerability driver\" 的 framing 难以为继——第二个 driver 解释力不到 4%。需要 reframe 为 η_max-dominant 故事。\n\n\n15 模型涵盖 3 个 capability tier（small 7-8B、medium 13-14B、large 70B+ 及 API）， tier 跨度增大导致 K_eff 与 η_max 的 confound 加剧（r≈0.73）。高 K_eff panel 几乎 必然混入弱模型，低 K_eff panel 则趋于同质强模型。Residualization 后 K_eff 仅在 4/12 conditions 保持显著——恰好是 transferable attack（score_manipulation, position_bias） 且 η_max 方差本身较大的条件。其余 8 conditions 中 K_eff 的 partial effect 被 η_max 吸收殆尽。η_max 维持 9/12 显著，证明 weakest-link 仍是 dominant driver。 ΔR² 仅 0.04 意味着 K_eff 在 η_max 之上的增量解释力微乎其微。 仅 1 个 confound-free condition（arc×score_manipulation, r≈0.35）中 K_eff 勉强显著 （p=0.032），但单一 condition 无法支撑核心 claim。\n"
+  },
+  {
+    "name": "Attack Type Expansion",
+    "description": "新增 few-shot hijacking、persona manipulation、instruction override 三种攻击类型， 在 15 模型 455 panel 上运行，产生 6 个新 conditions（2 datasets × 3 new attacks）。\n",
+    "results": {
+      "new_conditions": 6,
+      "keff_resid_sig_new": 2,
+      "keff_resid_nonsig_new": 4,
+      "eta_max_sig_new": 5,
+      "keff_direction_positive_new": 4,
+      "keff_direction_negative_new": 1,
+      "keff_direction_near_zero_new": 1,
+      "mean_R2_new_conditions": 0.31,
+      "combined_keff_resid_sig_18": 6,
+      "combined_eta_max_sig_18": 14
+    },
+    "tables": [
+      {
+        "title": "Table 3: New Attack Types — K_eff Residualized Results",
+        "columns": [
+          "Dataset",
+          "Attack",
+          "β_ηmax",
+          "p_ηmax",
+          "β_Keff_resid",
+          "p_Keff_resid",
+          "R²",
+          "Direction"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "few_shot_hijack",
+            "0.64",
+            "0.002",
+            "0.31",
+            "0.043",
+            "0.33",
+            "positive"
+          ],
+          [
+            "MMLU",
+            "persona_manip",
+            "0.91",
+            "<0.001",
+            "0.05",
+            "0.724",
+            "0.45",
+            "near-zero"
+          ],
+          [
+            "MMLU",
+            "instruct_override",
+            "0.58",
+            "0.005",
+            "0.34",
+            "0.038",
+            "0.31",
+            "positive"
+          ],
+          [
+            "ARC",
+            "few_shot_hijack",
+            "0.59",
+            "0.004",
+            "0.28",
+            "0.071",
+            "0.32",
+            "positive"
+          ],
+          [
+            "ARC",
+            "persona_manip",
+            "0.87",
+            "<0.001",
+            "-0.12",
+            "0.389",
+            "0.41",
+            "negative"
+          ],
+          [
+            "ARC",
+            "instruct_override",
+            "0.62",
+            "0.003",
+            "0.26",
+            "0.088",
+            "0.30",
+            "positive"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "攻击扩展没有挽救 K_eff 叙事。新增条件中 K_eff 显著率 2/6，其中 persona manipulation 出现方向反转（K_eff 负但 NS）——这与 \"diversity hurts\" 不一致，虽然不显著但给 reviewer 提供了攻击点。合计 18 conditions 中 K_eff 6/18 显著，低于 33% 的 chance expected 阈值，FDR 校正后预计降至 4-5/18。η_max 14/18 显著，进一步巩固 weakest-link 的 dominant 地位。新攻击类型未发现任何 K_eff dominates η_max 的条件。\n\n\n新攻击类型中 few-shot hijacking 和 instruction override 是 transferable attack， K_eff 在这些条件下可能保持微弱正向显著（p≈0.03-0.04）；persona manipulation 则高度 依赖模型特定 persona alignment 训练，η_max 几乎完全解释方差。整体上新增 6 conditions 中仅 2 个 K_eff 显著，且 1 个条件 K_eff 方向为负（persona manipulation on ARC）， 方向不一致削弱了 \"diversity universally hurts\" 的叙事。18 条件合计 K_eff 6/18 ≈ 33% 显著率——FDR 校正后可能进一步缩减至 4-5/18，属于 \"suggestive but not robust\" 水平。\n"
+  },
+  {
+    "name": "Random-Fault BFT Contrast Simulation",
+    "description": "模拟随机故障场景：每个 judge 以概率 η_j 独立犯错，majority vote 决策。 比较 K_eff 在 random-fault vs adaptive 两种 regime 下的 β 和显著性。\n",
+    "results": {
+      "RF_keff_sig_positive": 10,
+      "RF_keff_nonsig": 2,
+      "RF_eta_max_sig": 11,
+      "RF_mean_beta_keff": 0.42,
+      "adaptive_mean_beta_keff": 0.38,
+      "BFT_RF_beta_ratio": 0.91,
+      "RF_mean_R2": 0.62,
+      "adaptive_mean_R2": 0.38,
+      "delta_R2_RF_vs_adaptive": 0.24,
+      "RF_keff_direction": "positive (same as adaptive)",
+      "regime_contrast_p_interaction": 0.217
+    },
+    "tables": [
+      {
+        "title": "Table 4: BFT Regime Contrast — K_eff β Comparison",
+        "columns": [
+          "Dataset",
+          "Attack",
+          "β_Keff (Adaptive)",
+          "p (Adaptive)",
+          "β_Keff (RF)",
+          "p (RF)",
+          "β Ratio",
+          "Interaction p"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "sycophancy",
+            "0.18",
+            "0.147",
+            "0.21",
+            "0.024",
+            "1.17",
+            "0.682"
+          ],
+          [
+            "MMLU",
+            "score_manip",
+            "0.39",
+            "0.021",
+            "0.44",
+            "0.003",
+            "1.13",
+            "0.541"
+          ],
+          [
+            "MMLU",
+            "position",
+            "0.24",
+            "0.089",
+            "0.28",
+            "0.011",
+            "1.17",
+            "0.614"
+          ],
+          [
+            "MMLU",
+            "verbosity",
+            "0.09",
+            "0.511",
+            "0.15",
+            "0.108",
+            "1.67",
+            "0.398"
+          ],
+          [
+            "MMLU",
+            "authority",
+            "0.15",
+            "0.218",
+            "0.19",
+            "0.047",
+            "1.27",
+            "0.583"
+          ],
+          [
+            "MMLU",
+            "few_shot_hijack",
+            "0.31",
+            "0.043",
+            "0.35",
+            "0.008",
+            "1.13",
+            "0.617"
+          ],
+          [
+            "ARC",
+            "sycophancy",
+            "0.12",
+            "0.341",
+            "0.16",
+            "0.072",
+            "1.33",
+            "0.521"
+          ],
+          [
+            "ARC",
+            "score_manip",
+            "0.41",
+            "0.032",
+            "0.48",
+            "0.001",
+            "1.17",
+            "0.434"
+          ],
+          [
+            "ARC",
+            "position",
+            "0.22",
+            "0.102",
+            "0.27",
+            "0.015",
+            "1.23",
+            "0.548"
+          ],
+          [
+            "ARC",
+            "verbosity",
+            "0.06",
+            "0.649",
+            "0.11",
+            "0.198",
+            "1.83",
+            "0.412"
+          ],
+          [
+            "ARC",
+            "authority",
+            "0.19",
+            "0.157",
+            "0.22",
+            "0.038",
+            "1.16",
+            "0.601"
+          ],
+          [
+            "ARC",
+            "few_shot_hijack",
+            "0.28",
+            "0.071",
+            "0.33",
+            "0.009",
+            "1.18",
+            "0.547"
+          ]
+        ]
+      },
+      {
+        "title": "Table 5: R² Comparison Across Regimes",
+        "columns": [
+          "Dataset",
+          "Attack",
+          "R² (Adaptive)",
+          "R² (RF)",
+          "ΔR²"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "sycophancy",
+            "0.41",
+            "0.64",
+            "0.23"
+          ],
+          [
+            "MMLU",
+            "score_manip",
+            "0.36",
+            "0.58",
+            "0.22"
+          ],
+          [
+            "MMLU",
+            "position",
+            "0.39",
+            "0.61",
+            "0.22"
+          ],
+          [
+            "MMLU",
+            "verbosity",
+            "0.42",
+            "0.67",
+            "0.25"
+          ],
+          [
+            "MMLU",
+            "authority",
+            "0.37",
+            "0.59",
+            "0.22"
+          ],
+          [
+            "MMLU",
+            "few_shot_hijack",
+            "0.33",
+            "0.55",
+            "0.22"
+          ],
+          [
+            "ARC",
+            "sycophancy",
+            "0.43",
+            "0.69",
+            "0.26"
+          ],
+          [
+            "ARC",
+            "score_manip",
+            "0.35",
+            "0.57",
+            "0.22"
+          ],
+          [
+            "ARC",
+            "position",
+            "0.38",
+            "0.62",
+            "0.24"
+          ],
+          [
+            "ARC",
+            "verbosity",
+            "0.44",
+            "0.71",
+            "0.27"
+          ],
+          [
+            "ARC",
+            "authority",
+            "0.36",
+            "0.60",
+            "0.24"
+          ],
+          [
+            "ARC",
+            "few_shot_hijack",
+            "0.32",
+            "0.53",
+            "0.21"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "BFT contrast 实验是 GO/NO-GO gate，结果为 NO-GO。K_eff 在 RF 下不仅没有变负 （diversity helps），反而保持正向且更显著（10/12 vs 4/12 residualized adaptive）。 这意味着 K_eff 的正向效应不是 adaptive adversary 特有的——而是 panel composition 的基本属性（高 diversity → 混入弱模型 → 高 ASR），RF 和 adaptive 下都成立。 BFT reversal mechanism 的核心前提被否定：我们无法证明 diversity 在 RF 下保护但在 adaptive 下有害。唯一可挽救的发现是 ΔR² = 0.24，说明 adaptive attacker 引入了 strategic variance 使得 panel composition 的预测力下降——但这是一个弱得多的 claim， 不足以支撑 Claim 2 作为独立贡献。BFT 应降级为 Discussion 中的 \"open question\"。\n\n\nBFT contrast 的核心预期是 K_eff 在 RF 下显著正向（diversity helps under random faults） 但在 adaptive 下 NS 或反转。Worst 档下实际观察到：K_eff 在 RF 下同样正向显著 （10/12），与 adaptive 下方向一致。原因：在 RF 模拟中 η_j 直接决定 judge 犯错率， 高 K_eff panel 仍然混入高 η_j 的弱模型，majority vote 下弱模型拉低整体正确率。 因此 K_eff 正向不是 \"diversity 主动有害\" 而是 \"diversity 引入弱模型\" 的统计反映—— 这在 RF 和 adaptive 两种 regime 下都成立。β ratio 0.91 表明两种 regime 下 K_eff 的效应量几乎相同，regime interaction term NS (p=0.217)。唯一的 regime 差异是 R²： RF 下 R²=0.62 vs adaptive R²=0.38，ΔR²=0.24——RF 更可预测但这只是因为 RF 没有 strategic variance，不是因为 K_eff 效应不同。BFT reversal mechanism 叙事瓦解。\n"
+  },
+  {
+    "name": "Capability-Matched K_eff Validation",
+    "description": "在同一 capability tier 内（all-small 7-8B 或 all-large 70B+/API）测试 K_eff 是否 仍然显著。如果 tier-matched panel 中 K_eff 消失 → K_eff 效应是 tier-mixing artifact。\n",
+    "results": {
+      "tiers_tested": 3,
+      "panels_small_tier": 10,
+      "panels_medium_tier": 10,
+      "panels_large_tier": 10,
+      "small_tier_keff_sig": 0,
+      "medium_tier_keff_sig": 1,
+      "large_tier_keff_sig": 0,
+      "total_capability_matched_keff_sig": 1,
+      "total_conditions_tested": 6,
+      "eta_max_variance_within_tier": 0.008,
+      "keff_eta_max_correlation_within_tier": 0.22,
+      "within_tier_keff_p_range": [
+        0.041,
+        0.891
+      ],
+      "within_tier_mean_R2": 0.12
+    },
+    "tables": [
+      {
+        "title": "Table 6: Capability-Matched K_eff Analysis",
+        "columns": [
+          "Tier",
+          "N Panels",
+          "Condition",
+          "β_Keff",
+          "p_Keff",
+          "R²",
+          "η_max Var"
+        ],
+        "rows": [
+          [
+            "Small (7-8B)",
+            "10",
+            "MMLU×sycophancy",
+            "0.08",
+            "0.721",
+            "0.09",
+            "0.007"
+          ],
+          [
+            "Small (7-8B)",
+            "10",
+            "ARC×score_manip",
+            "0.14",
+            "0.548",
+            "0.11",
+            "0.008"
+          ],
+          [
+            "Medium (12-14B+API-mini)",
+            "10",
+            "MMLU×sycophancy",
+            "0.11",
+            "0.612",
+            "0.10",
+            "0.009"
+          ],
+          [
+            "Medium (12-14B+API-mini)",
+            "10",
+            "ARC×score_manip",
+            "0.29",
+            "0.041",
+            "0.18",
+            "0.011"
+          ],
+          [
+            "Large (70B+API)",
+            "10",
+            "MMLU×sycophancy",
+            "0.06",
+            "0.891",
+            "0.07",
+            "0.004"
+          ],
+          [
+            "Large (70B+API)",
+            "10",
+            "ARC×score_manip",
+            "0.09",
+            "0.684",
+            "0.08",
+            "0.005"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这是对 diversity trap framing 的最强反驳。Capability-matched 0-1/6 显著意味着 K_eff 的独立效应在控制 capability 后基本消失。Residualized analysis 在全池中仍然 显著 4/12 的原因是：residualization 假设线性关系，但 K_eff-η_max confound 可能是 非线性的（阶梯型：跨 tier → K_eff 骤升 + η_max 骤升），线性 residualization 无法完全去除。Capability-matched 是更强的 confound control（分层而非回归调整）， 结果否定了 K_eff 的独立效应。需要在论文中诚实报告这个 null result，将 K_eff 从 core claim 降级为 \"exploratory, potentially confounded\"。\n\n\nCapability-matched 是 worst 档的致命实验。同 tier 内模型能力相近，η_max 方差极小 （约 0.008 vs 全池 0.045），消除了 tier-mixing confound。结果：K_eff 仅在 1/6 条件下显著（medium tier × score_manipulation, p=0.041，FDR 后可能 NS），其余 5/6 全部 NS。这直接证明 K_eff 的表面效应是 tier-mixing 的统计幻象：当你在全池抽 panel， 高 K_eff panel 跨 tier 抽样（混入 7B 和 70B），低 K_eff panel 同 tier 抽样—— K_eff 与 η_max 的相关性是 tier-mixing 的副产品，不是因果关系。 每个 tier 仅 C(5,3)=10 个 panel，样本量不足以检测小效应，但即便如此 η_max 方差 消失也说明在能力控制后 K_eff 没有独立的预测力。Reviewer 可以合理论证： \"K_eff effect = capability heterogeneity effect, not diversity per se\"。\n"
+  },
+  {
+    "name": "Two-Stage Panel Design Algorithm Benchmark",
+    "description": "Robustness-first 两阶段选择：(1) 筛选 η ≤ threshold 的 judge，(2) 在剩余中最大化 K_eff。 与 5 个 baseline（random, max-K_eff, strongest-K, min-η, diversity-only）对比。\n",
+    "results": {
+      "baselines_tested": 5,
+      "two_stage_vs_strongest_K_ASR_reduction_pct": 2.3,
+      "two_stage_vs_strongest_K_p": 0.312,
+      "two_stage_vs_random_ASR_reduction_pct": 18.4,
+      "two_stage_vs_max_keff_ASR_reduction_pct": 31.2,
+      "min_eta_dominates_conditions": 4,
+      "two_stage_dominates_conditions": 1,
+      "strongest_K_dominates_conditions": 1,
+      "two_stage_ASR_reduction_pct": 3.1,
+      "two_stage_vs_strongest_K_stat_sig": false,
+      "optimal_eta_threshold": 0.15
+    },
+    "tables": [
+      {
+        "title": "Table 7: Panel Selection Strategy Comparison (mean ASR across 6 attacks)",
+        "columns": [
+          "Strategy",
+          "Mean ASR",
+          "vs Strongest-K Δ%",
+          "p vs Strongest-K",
+          "Wins (6 conditions)"
+        ],
+        "rows": [
+          [
+            "Random",
+            "0.284",
+            "+21.5%",
+            "<0.001",
+            "0"
+          ],
+          [
+            "Max-K_eff",
+            "0.341",
+            "+45.9%",
+            "<0.001",
+            "0"
+          ],
+          [
+            "Diversity-Only",
+            "0.312",
+            "+33.5%",
+            "<0.001",
+            "0"
+          ],
+          [
+            "Min-η_max",
+            "0.229",
+            "-2.1%",
+            "0.478",
+            "4"
+          ],
+          [
+            "Strongest-K",
+            "0.234",
+            "—",
+            "—",
+            "1"
+          ],
+          [
+            "Two-Stage",
+            "0.227",
+            "-3.1%",
+            "0.312",
+            "1"
+          ]
+        ]
+      },
+      {
+        "title": "Table 8: Two-Stage vs Strongest-K Per Condition",
+        "columns": [
+          "Condition",
+          "ASR (Two-Stage)",
+          "ASR (Strongest-K)",
+          "Δ%",
+          "p"
+        ],
+        "rows": [
+          [
+            "MMLU×sycophancy",
+            "0.211",
+            "0.219",
+            "-3.7%",
+            "0.284"
+          ],
+          [
+            "MMLU×score_manip",
+            "0.198",
+            "0.207",
+            "-4.3%",
+            "0.198"
+          ],
+          [
+            "MMLU×position",
+            "0.237",
+            "0.241",
+            "-1.7%",
+            "0.641"
+          ],
+          [
+            "ARC×sycophancy",
+            "0.241",
+            "0.248",
+            "-2.8%",
+            "0.352"
+          ],
+          [
+            "ARC×score_manip",
+            "0.185",
+            "0.194",
+            "-4.6%",
+            "0.187"
+          ],
+          [
+            "ARC×position",
+            "0.249",
+            "0.253",
+            "-1.6%",
+            "0.689"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Two-stage ≤5% improvement over strongest-K 且无统计显著性。这与 worst 档的预期一致： 如果 K_eff 没有独立效应（plan_004），那么在 robustness-screened pool 中最大化 K_eff 不应带来额外收益。Max-K_eff 是最差策略（ASR 最高）这一发现仍然有价值—— 它警告不要盲目追求 diversity——但这只需 η_max 解释就够了（高 K_eff = 混入弱模型 = 高 ASR）， 不需要 \"diversity independently hurts\" 的 claim。实践建议简化为 \"pick the most robust judges, ignore diversity\"，这比 two-stage 更简单但可能过于平凡。\n\n\n在 worst 档下 K_eff 的独立效应已消失（plan_004 显示 capability-matched 后 K_eff NS）， 因此两阶段的第二步（maximize K_eff among screened judges）几乎不提供额外收益。 Robustness screening（step 1）本身有效——排除 η > threshold 的弱模型大幅降低 ASR—— 但这与简单的 strongest-K 策略效果相同。Two-stage 与 strongest-K 的差异仅 2.3% （p=0.312, NS），因为 screening 后剩余模型能力相近，K_eff 的变异范围收窄。 min_eta（不考虑 diversity）在 4/6 conditions 表现最佳，进一步说明 panel 安全由 最弱 judge 决定。Two-stage 的存在意义被削弱：如果第二步（diversity）没用， 算法退化为 \"just pick the strongest K models\"。\n"
+  },
+  {
+    "name": "Per-Judge ASR Concentration Analysis",
+    "description": "对每个 panel × attack，计算各 judge 的 ASR 分布，用 Gini 系数和 entropy 量化 adaptive adversary 的 targeting 集中度。高 Gini = adversary 集中攻击特定 judge。\n",
+    "results": {
+      "mean_gini_adaptive": 0.38,
+      "mean_gini_random_fault": 0.12,
+      "gini_diff_p": "<0.001",
+      "mean_entropy_adaptive": 2.41,
+      "mean_entropy_random_fault": 3.22,
+      "entropy_diff_p": "<0.001",
+      "gini_keff_correlation": 0.21,
+      "gini_keff_p": 0.089,
+      "gini_eta_max_correlation": 0.67,
+      "gini_eta_max_p": "<0.001",
+      "high_gini_panels_pct": 34,
+      "targeting_consistent_across_attacks": false
+    },
+    "tables": [
+      {
+        "title": "Table 9: ASR Concentration Statistics",
+        "columns": [
+          "Metric",
+          "Adaptive (mean)",
+          "Adaptive (SD)",
+          "RF (mean)",
+          "RF (SD)",
+          "Diff p"
+        ],
+        "rows": [
+          [
+            "Gini",
+            "0.38",
+            "0.14",
+            "0.12",
+            "0.05",
+            "<0.001"
+          ],
+          [
+            "Entropy (bits)",
+            "2.41",
+            "0.52",
+            "3.22",
+            "0.31",
+            "<0.001"
+          ],
+          [
+            "Max single-judge share",
+            "0.51",
+            "0.12",
+            "0.38",
+            "0.06",
+            "<0.001"
+          ]
+        ]
+      },
+      {
+        "title": "Table 10: Gini Coefficient Correlations",
+        "columns": [
+          "Predictor",
+          "r with Gini",
+          "p",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "η_max",
+            "0.67",
+            "<0.001",
+            "Targeting tracks individual weakness"
+          ],
+          [
+            "K_eff",
+            "0.21",
+            "0.089",
+            "Weak/NS association with diversity"
+          ],
+          [
+            "Panel size",
+            "0.04",
+            "0.814",
+            "No panel size effect"
+          ],
+          [
+            "Mean capability",
+            "-0.58",
+            "<0.001",
+            "Stronger panels → less concentrated targeting"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Per-judge 浓度分析提供了 adaptive vs RF 差异的直接证据——这是一个有用的 finding， 可作为 paper 的 empirical contribution。但分析同时削弱了 diversity trap：targeting 集中度由 η_max（而非 K_eff）解释。Adaptive adversary 攻击最弱 judge，不是利用 diverse attack surface。这与 reframed narrative（η_max dominant, diversity irrelevant） 一致。Gini 分析可以移入 \"Adaptive Adversary Behavior\" 子节，作为 η_max dominance 的补充证据，而非 diversity trap 的支持。\n\n\nAdaptive adversary 确实展现 targeting 行为（Gini 0.38 vs RF 0.12），但集中度 中等而非极端。关键问题：Gini 与 η_max 高度相关（r=0.67）但与 K_eff 弱相关（r=0.21, NS）。 这意味着 targeting 主要针对最弱 judge（η_max 高的 panel 中弱 judge 更容易被攻克）， 而不是利用 diversity 创造的 diverse attack surface。如果 K_eff 独立驱动 targeting， 我们预期 Gini 与 K_eff 显著相关（高 diversity → adversary 有更多独立漏洞可攻击 → 攻击更集中于特定 judge），但 p=0.089 未达显著。此外 targeting 不跨攻击一致—— 同一 panel 在不同攻击下被 target 的 judge 不同，进一步削弱 \"structural diversity creates systematic exploitable surface\" 的论点。\n"
+  },
+  {
+    "name": "Diversity-Capability Tradeoff Visualization",
+    "description": "绘制 K_eff vs η_max across 455 panels，拟合 tradeoff curve，Pareto frontier analysis， 按 tier 分层。\n",
+    "results": {
+      "keff_eta_max_pearson_r": 0.73,
+      "keff_eta_max_spearman_rho": 0.71,
+      "tradeoff_curve_R2": 0.53,
+      "pareto_frontier_size": 12,
+      "pareto_pct_from_large_tier": 83,
+      "pareto_pct_from_mixed_tier": 17,
+      "pareto_pct_from_small_tier": 0,
+      "pareto_panels_mean_keff": 1.82,
+      "pareto_panels_mean_eta_max": 0.09,
+      "non_pareto_gap_ASR": 0.11
+    },
+    "tables": [
+      {
+        "title": "Table 11: Pareto Frontier Panel Characteristics",
+        "columns": [
+          "Panel ID",
+          "Models",
+          "K_eff",
+          "η_max",
+          "Mean ASR",
+          "Tier Composition"
+        ],
+        "rows": [
+          [
+            "P_012",
+            "GPT-4.1 / GPT-4o / Qwen72B",
+            "1.91",
+            "0.08",
+            "0.142",
+            "all-large"
+          ],
+          [
+            "P_034",
+            "GPT-4.1 / Llama70B / GPT-4o",
+            "2.14",
+            "0.09",
+            "0.151",
+            "all-large"
+          ],
+          [
+            "P_087",
+            "GPT-4.1 / GPT-4o / Claude-Haiku",
+            "1.72",
+            "0.07",
+            "0.138",
+            "large+medium"
+          ],
+          [
+            "P_156",
+            "GPT-4o / Qwen72B / Llama70B",
+            "2.31",
+            "0.11",
+            "0.163",
+            "all-large"
+          ],
+          [
+            "P_201",
+            "GPT-4.1 / GPT-4.1m / GPT-4o",
+            "1.45",
+            "0.07",
+            "0.131",
+            "all-large"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Tradeoff visualization 是一个 clean methodological contribution，无论 K_eff 是否有 独立效应都有价值。它展示了当前 LLM 生态中 panel design 的结构约束：diversity 和 robustness 不是独立可优化的维度。但在 worst 档下，这更多被解读为 confound 的可视化 证据而非独立发现。可在论文中保留为 Fig 2 或 Fig 3，作为 \"understanding the evaluation landscape\" 的贡献。\n\n\nTradeoff 可视化清晰展示了 K_eff 与 η_max 的结构性关联：r=0.73，Pareto frontier 几乎完全由 large-tier panel 占据（83%），因为只有在全部选择强模型时才能同时获得 低 η_max 和中等 K_eff。Small-tier panel 全部位于 Pareto frontier 之下。 这个 visualization 本身有价值（展示了 evaluation panel design 的结构约束）， 但在 worst 档下它更多地支持了 \"K_eff effect is confound\" 的叙事：tradeoff 不是 独立的两个维度的 tension，而是 tier-mixing 的必然结果。Pareto frontier 上的 panel 基本就是 \"all strong models\"，equivalent to strongest-K 策略。\n"
+  },
+  {
+    "name": "Panel Size Sensitivity Analysis",
+    "description": "测试 K=3,5,7,9 不同 panel size 下 η_max 与 K_eff 的相对重要性是否变化。\n",
+    "results": {
+      "K3_panels": 455,
+      "K5_panels": 3003,
+      "K7_panels": 6435,
+      "K9_panels": 5005,
+      "K3_eta_max_sig_ratio": 0.75,
+      "K5_eta_max_sig_ratio": 0.83,
+      "K7_eta_max_sig_ratio": 0.92,
+      "K9_eta_max_sig_ratio": 0.92,
+      "K3_keff_resid_sig_ratio": 0.33,
+      "K5_keff_resid_sig_ratio": 0.25,
+      "K7_keff_resid_sig_ratio": 0.17,
+      "K9_keff_resid_sig_ratio": 0.08,
+      "keff_effect_trend_with_K": "monotonically decreasing"
+    },
+    "tables": [
+      {
+        "title": "Table 12: Panel Size Sensitivity — Significance Ratios",
+        "columns": [
+          "K",
+          "N Panels",
+          "η_max sig ratio",
+          "K_eff resid sig ratio",
+          "Mean R²",
+          "K_eff-η_max r"
+        ],
+        "rows": [
+          [
+            "3",
+            "455",
+            "0.75",
+            "0.33",
+            "0.38",
+            "0.73"
+          ],
+          [
+            "5",
+            "3003",
+            "0.83",
+            "0.25",
+            "0.41",
+            "0.68"
+          ],
+          [
+            "7",
+            "6435",
+            "0.92",
+            "0.17",
+            "0.44",
+            "0.61"
+          ],
+          [
+            "9",
+            "5005",
+            "0.92",
+            "0.08",
+            "0.46",
+            "0.54"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Panel size 分析揭示 K_eff 效应的 artifactual nature：它在小 panel（K=3）中最强 恰好是 tier-mixing 方差最大的地方。随 K 增大，confound 缓解，K_eff 效应消退。 η_max 的趋势则相反——大 panel 中仍有弱 judge，且 R² 随 K 增大说明 panel composition 的可预测性提高。这是支持 \"K_eff is confound\" 的又一条证据线。\n\n\nPanel size 增大时 η_max dominance 增强，K_eff effect 递减。原因：K=9 的 panel 包含 9/15 模型，几乎所有 panel 都包含至少一个弱模型，η_max 方差缩小但 level 保持高位。 同时 K_eff 的变异范围也缩小（大 panel 的 K_eff 趋向收敛）。更重要的是，majority vote 在大 panel 中的容错能力提高——但这被 η_max 的 monotonic 效应抵消（一个极弱 judge 的影响在 K=3 中是 catastrophic，在 K=9 中被稀释）。K_eff 的 sig ratio 从 K=3 的 0.33 降至 K=9 的 0.08，表明 K_eff 的表面效应主要在小 panel 中出现（因为 tier-mixing 的方差更大），进一步支持 confound 解释。\n"
+  },
+  {
+    "name": "VIF and Multicollinearity Deep Dive",
+    "description": "对现有回归数据进行全面多重共线性分析：VIF、偏相关、residualized K_eff、 Bonferroni/FDR correction、bootstrap CI、排除极端模型的敏感性分析、beta regression。\n",
+    "results": {
+      "VIF_keff_full_model": 2.14,
+      "VIF_eta_max_full_model": 2.14,
+      "keff_resid_sig_bonferroni_12": 2,
+      "keff_resid_sig_fdr_12": 4,
+      "keff_resid_sig_bootstrap_95CI_excludes_zero": 3,
+      "keff_resid_sig_exclude_extreme_models": 4,
+      "keff_resid_sig_exclude_extreme_models_fdr": 3,
+      "beta_regression_keff_sig": 3,
+      "beta_regression_eta_max_sig": 10,
+      "partial_r_keff_given_eta_max": 0.14,
+      "partial_r_eta_max_given_keff": 0.41,
+      "sensitivity_analyses_convergent": false,
+      "keff_resid_sig_range_across_methods": [
+        2,
+        5
+      ]
+    },
+    "tables": [
+      {
+        "title": "Table 13: K_eff Residualized Significance Under Different Correction Methods",
+        "columns": [
+          "Method",
+          "K_eff sig count (/12)",
+          "η_max sig count (/12)",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "Uncorrected",
+            "7",
+            "10",
+            "Liberal"
+          ],
+          [
+            "FDR (BH)",
+            "4",
+            "9",
+            "Standard"
+          ],
+          [
+            "Bonferroni",
+            "2",
+            "8",
+            "Conservative"
+          ],
+          [
+            "Bootstrap 95% CI",
+            "3",
+            "9",
+            "Non-parametric"
+          ],
+          [
+            "Exclude extreme models (FDR)",
+            "3",
+            "9",
+            "Sensitivity"
+          ],
+          [
+            "Beta regression (FDR)",
+            "3",
+            "10",
+            "Bounded DV"
+          ]
+        ]
+      },
+      {
+        "title": "Table 14: Partial Correlations",
+        "columns": [
+          "Predictor",
+          "Partial r (controlling other)",
+          "95% CI",
+          "p"
+        ],
+        "rows": [
+          [
+            "K_eff | η_max",
+            "0.14",
+            "[0.05, 0.23]",
+            "0.003"
+          ],
+          [
+            "η_max | K_eff",
+            "0.41",
+            "[0.33, 0.49]",
+            "<0.001"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "VIF 分析是 worst 档的核心打击。K_eff 的显著性在 2-5/12 范围内波动，高度依赖 统计方法选择——这是 \"researcher degrees of freedom\" 问题。Partial r (K_eff | η_max) = 0.14 意味着 K_eff 在控制 η_max 后仅解释 2% 的独特方差（r²=0.02）。相比之下 η_max 的 partial r = 0.41（17% 独特方差）。即使 K_eff 有微弱的独立效应，其实际意义（practical significance）可忽略。论文中需要诚实报告所有方法的结果范围，不能只报最有利的。\n\n\nVIF=2.14 在传统标准下不算严重（<5），但这掩盖了非线性 confound。Bonferroni 最严格， K_eff 降至 2/12 显著；FDR 保持 4/12；bootstrap CI 给出 3/12（因为 bootstrap 在 455 panels 中重复抽样，resampling variance 较大导致 CI 加宽）。排除极端模型 （ACC < 0.5 的 2 个模型）后 K_eff 4/12→3/12（FDR），说明效应部分依赖极端值。 Beta regression（适合 bounded proportion DV）与 OLS 结果不一致——K_eff 仅 3/12 显著（beta regression 对极端值更稳健）。核心问题：不同分析方法给出 2-5/12 的 显著性范围，缺乏收敛性。Reviewer 可以选择最严格的估计（2/12 Bonferroni）argue K_eff 无效应，或选择最宽松的（5/12 FDR without extreme exclusion）argue suggestive。 这种方法敏感性本身就是 \"not robust\" 的标志。\n"
+  },
+  {
+    "name": "Aggregation Rule Comparison",
+    "description": "在 15 模型 455 panel 上测试 majority vote、threshold voting（unanimity）、 weighted voting、Bayesian aggregation 四种聚合规则下的 K_eff 和 η_max 效应。\n",
+    "results": {
+      "majority_keff_resid_sig": 4,
+      "majority_eta_max_sig": 9,
+      "threshold_keff_resid_sig": 6,
+      "threshold_eta_max_sig": 7,
+      "weighted_keff_resid_sig": 2,
+      "weighted_eta_max_sig": 10,
+      "bayesian_keff_resid_sig": 1,
+      "bayesian_eta_max_sig": 5,
+      "keff_sig_varies_by_aggregation": true,
+      "aggregation_dependency_interpretation": "K_eff effect is aggregation artifact"
+    },
+    "tables": [
+      {
+        "title": "Table 15: Aggregation Rule × Vulnerability Driver Analysis",
+        "columns": [
+          "Aggregation",
+          "K_eff sig (/12)",
+          "η_max sig (/12)",
+          "Mean R²",
+          "Best Predictor"
+        ],
+        "rows": [
+          [
+            "Majority Vote",
+            "4",
+            "9",
+            "0.38",
+            "η_max"
+          ],
+          [
+            "Threshold (Unanimity)",
+            "6",
+            "7",
+            "0.42",
+            "mixed"
+          ],
+          [
+            "Accuracy-Weighted",
+            "2",
+            "10",
+            "0.45",
+            "η_max"
+          ],
+          [
+            "Bayesian",
+            "1",
+            "5",
+            "0.29",
+            "η_max (weakened)"
+          ]
+        ]
+      },
+      {
+        "title": "Table 16: Aggregation as Defense — Mean ASR Comparison",
+        "columns": [
+          "Aggregation",
+          "Mean ASR (all panels)",
+          "ASR (top-10 panels)",
+          "ASR (bottom-10 panels)",
+          "Spread"
+        ],
+        "rows": [
+          [
+            "Majority",
+            "0.261",
+            "0.142",
+            "0.418",
+            "0.276"
+          ],
+          [
+            "Threshold",
+            "0.183",
+            "0.098",
+            "0.312",
+            "0.214"
+          ],
+          [
+            "Weighted",
+            "0.224",
+            "0.121",
+            "0.367",
+            "0.246"
+          ],
+          [
+            "Bayesian",
+            "0.198",
+            "0.112",
+            "0.294",
+            "0.182"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Aggregation 分析是 worst 档中最具建设性的发现。虽然它进一步削弱了 K_eff 作为 independent driver 的 claim（aggregation-dependent → possible artifact），但它提供了 实际价值：(a) Bayesian aggregation 作为 defense 的有效性（ASR 均值和方差同时降低）； (b) Threshold voting 最严格但 K_eff 效应最强——不适合 adversarial setting； (c) Accuracy-weighted 是 good middle ground（K_eff 几乎消失，η_max 仍可控）。 可以 reframe 为 practical contribution: \"choosing the right aggregation rule matters more than panel diversity composition\"。\n\n\n聚合规则分析暴露 K_eff 效应的 aggregation dependency。Threshold voting（unanimity） 下 K_eff 6/12 显著——因为 unanimity 放大了单个 judge 的 veto power，diverse panel 中弱 judge 更可能 veto 正确判断。但这不是 \"diversity hurts\"，而是 \"unanimity amplifies weakest-link effect, and diverse panels have weaker links\"。Bayesian aggregation 大幅削弱两个 predictor：η_max 5/12，K_eff 1/12——Bayesian weighting 有效下调了不可靠 judge 的权重，部分 neutralize 了 weakest-link 效应。 Weighted voting 下 K_eff 几乎消失（2/12），因为 accuracy-based weights 自动 降权弱模型。核心问题：K_eff 的显著性从 1/12（Bayesian）到 6/12（threshold）—— 如果 K_eff 是真正的 structural vulnerability driver，它不应该如此依赖聚合规则。 这种依赖性暗示 K_eff 效应实际上是特定聚合规则对弱 judge 处理方式的 artifact。\n"
+  },
+  {
+    "name": "Open-Ended Generation Benchmark",
+    "description": "在 MT-Bench 或 AlpacaEval 风格的开放式生成任务上运行攻击实验， 验证 MCQ findings 是否推广到 open-ended evaluation。\n",
+    "results": {
+      "benchmark": "MT-Bench (adapted)",
+      "n_conditions": 4,
+      "keff_resid_sig_positive": 0,
+      "keff_resid_sig_negative": 1,
+      "keff_resid_nonsig": 3,
+      "eta_max_sig": 4,
+      "keff_direction_inconsistent_with_MCQ": true,
+      "open_ended_mean_ASR": 0.34,
+      "MCQ_mean_ASR": 0.26,
+      "eta_max_dominance_ratio_open": 0.91
+    },
+    "tables": [
+      {
+        "title": "Table 17: Open-Ended Task Results",
+        "columns": [
+          "Task Subset",
+          "Attack",
+          "β_ηmax",
+          "p_ηmax",
+          "β_Keff_resid",
+          "p_Keff_resid",
+          "Direction"
+        ],
+        "rows": [
+          [
+            "MT-Bench-Writing",
+            "style_manip",
+            "0.79",
+            "<0.001",
+            "-0.22",
+            "0.034",
+            "NEGATIVE"
+          ],
+          [
+            "MT-Bench-Reasoning",
+            "logic_distort",
+            "0.84",
+            "<0.001",
+            "0.08",
+            "0.541",
+            "near-zero"
+          ],
+          [
+            "MT-Bench-Coding",
+            "output_inject",
+            "0.71",
+            "0.002",
+            "0.15",
+            "0.218",
+            "positive (NS)"
+          ],
+          [
+            "MT-Bench-Math",
+            "step_skip",
+            "0.88",
+            "<0.001",
+            "-0.05",
+            "0.712",
+            "near-zero"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Open-ended 结果是 diversity trap 叙事的 generalizability failure。K_eff 在 MCQ 上 的正向效应不推广到 open-ended 评估——方向不一致且 1 个条件甚至反转。这使得 diversity trap 从 general finding 降级为 MCQ-specific observation，reviewers 会 质疑：如果 diversity 只在 MCQ 中 \"hurts\"，这到底是 diversity 的问题还是 MCQ evaluation 的 artifact？η_max 在两种任务上都一致显著，强化了 weakest-link 作为 universal driver 的地位。Reframe 后论文应在 title/abstract 中避免 generalize， 限定为 \"MCQ-based evaluation\" 或在 Discussion 中作为 limitation 显著标注。\n\n\nOpen-ended 任务与 MCQ 的攻击动态根本不同。MCQ 攻击通过影响 judge 对特定选项的偏好， K_eff 的 confound 来自 tier-mixing。Open-ended 评估中 judge 需要评估文本质量—— 攻击更多依赖 persuasive text generation，所有 judge 面临相似的 adversarial text。 因此 η_max 完全主导（4/4 sig）：最弱 judge 被最容易说服。K_eff 方向混乱——1 个 条件甚至显著负向（diverse panel 更好），因为 open-ended 评估中不同 judge 对文本 质量的多角度评估确实可以互补（更接近 BFT 的 benign fault 假设）。这与 MCQ 结果 不一致是 worst 档的关键打击：如果 diversity trap 不跨任务推广，它就不是一般性 原理，而是 MCQ 评估的特异性现象——可能由 MCQ 的离散选择结构 + tier-mixing confound 共同驱动。\n"
+  },
+  {
+    "name": "Partial-Knowledge Adversary Simulation",
+    "description": "模拟 adversary 仅知 judge family 但不知具体 vulnerability profile 的场景。 与 full-knowledge adversary 对比 ASR degradation。\n",
+    "results": {
+      "full_knowledge_mean_ASR": 0.261,
+      "partial_knowledge_mean_ASR": 0.238,
+      "no_knowledge_mean_ASR": 0.204,
+      "ASR_degradation_full_to_partial_pct": 8.8,
+      "ASR_degradation_full_to_none_pct": 21.8,
+      "partial_keff_sig": 2,
+      "partial_eta_max_sig": 8,
+      "family_knowledge_utility": "modest",
+      "keff_effect_under_partial": "weaker than full, similar direction"
+    },
+    "tables": [
+      {
+        "title": "Table 18: Adversary Knowledge Level Comparison",
+        "columns": [
+          "Knowledge Level",
+          "Mean ASR",
+          "K_eff sig (/12)",
+          "η_max sig (/12)",
+          "R²"
+        ],
+        "rows": [
+          [
+            "Full (exact η_j)",
+            "0.261",
+            "4",
+            "9",
+            "0.38"
+          ],
+          [
+            "Partial (family only)",
+            "0.238",
+            "2",
+            "8",
+            "0.34"
+          ],
+          [
+            "None (uniform attack)",
+            "0.204",
+            "0",
+            "6",
+            "0.22"
+          ]
+        ]
+      },
+      {
+        "title": "Table 19: ASR Degradation Analysis",
+        "columns": [
+          "Transition",
+          "ΔASR",
+          "Δ%",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Full → Partial",
+            "-0.023",
+            "-8.8%",
+            "Family info has modest value"
+          ],
+          [
+            "Full → None",
+            "-0.057",
+            "-21.8%",
+            "Model knowledge matters but not dramatically"
+          ],
+          [
+            "Partial → None",
+            "-0.034",
+            "-14.3%",
+            "Family info alone provides limited advantage"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Partial-knowledge 分析有两个重要含义：(a) 实践上，adversary 不需要精确 vulnerability 知识就能实现高 ASR（从 0.261 到 0.204 的下降 modest）——这本身是一个重要的安全发现； (b) 理论上，K_eff 效应依赖 full-knowledge 假设，在更现实的 threat model 下消失—— 这削弱了 K_eff 作为 general vulnerability driver 的 claim。在 reframed 论文中， 这个实验可以支持 \"η_max is robust across threat models while K_eff is threat-model-specific\" 的叙事。\n\nPartial-knowledge adversary（知 family 不知具体 vulnerability）仅比 full-knowledge 下降 8.8% ASR——说明 family 信息提供的攻击优势有限，因为 same-family 模型的 vulnerability profile 差异大（family labels 不可靠，plan_004 的 claim 4）。 No-knowledge adversary 下降 21.8%——说明 any model knowledge 都有价值但不是 dramatic。 K_eff 在 partial-knowledge 下仅 2/12 显著，进一步弱化了 \"diverse attack surface\" 叙事：如果 adversary 不知道具体 vulnerability，panel diversity 不应创造可利用的 attack surface（adversary 无法 target specific judges）。K_eff 效应在 partial-knowledge 下几乎消失，暗示 full-knowledge 下的 K_eff 效应部分来自 adversary 对具体 vulnerability 的知识（即 K_eff 效应依赖 threat model 假设——full-knowledge 在实践中不现实）。\n"
+  }
+]

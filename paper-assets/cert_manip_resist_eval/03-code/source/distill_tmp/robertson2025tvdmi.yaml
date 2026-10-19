@@ -1,0 +1,84 @@
+paper_key: "robertson2025tvdmi"
+title: "Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes"
+venue: "arXiv (under TMLR review) 2025"
+full_text_available: true
+
+research:
+  baselines: [MI (Difference of Entropies), GPPM (peer prediction), LLM Judge (with/without references), ROUGE, BLEU]
+  metrics:
+    - {name: "Cohen's d (discrimination)", direction: "higher_better"}
+    - {name: "AUC (item-level detection)", direction: "higher_better"}
+    - {name: "Adversarial robustness AUC", direction: "higher_better"}
+  datasets:
+    - {name: "10 domains (translation to peer review)", size: "29-30 strategies per domain"}
+  ablation_dimensions: [mechanism_type, domain_compression_ratio, adversarial_transformation_type]
+  training_recipe: {optimizer: "N/A (evaluation framework)", lr: "N/A", hardware: "LLM inference for binary critic"}
+  method_family: "information_theoretic_evaluation"
+
+positioning:
+  core_claim: "TVD-MI (bounded f-divergence) maintains polynomial sample complexity under adversarial manipulation while unbounded divergences (KL) degrade exponentially — operationalized via LLM binary critic achieving d=5.20 discrimination"
+  key_results: "TVD-MI Cohen's d=5.20 (mean across 10 domains) vs LLM judge d=0.54; AUC 0.71-0.77 item-level; robust AUC>0.70 under 4 adversarial transformations"
+  limitations: ["Peer review domain (20:1 compression) remains challenging", "Relies on pre-trained LLM knowledge", "Gap between empirical and worst-case theoretical bounds", "No fully adaptive attack testing"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Instead of asking 'which output is better?' we ask 'do these outputs share information about the same source?' — a relationship protected by the data processing inequality"
+  tension: "LLM judges apply subjective quality assessments that are vulnerable to manipulation; information-theoretic mechanisms offer provable guarantees but seem impractical"
+  key_insight: "The data processing inequality protects bounded f-divergences from adversarial distribution shift — TVD-MI operationalizes this through a simple binary LLM critic (same source or shuffled?)"
+  argument_chain: "evaluation vulnerability → information theory (DPI) → bounded vs unbounded divergences (Theorem 3.3) → TVD-MI operationalization → 10-domain validation → adversarial robustness"
+  contribution_framing: "Two contributions: theoretical framework (bounded divergence robustness), practical mechanism (TVD-MI via binary critic)"
+  intro_structure: "5 paragraphs: (1) evaluation crisis, (2) information vs quality framing, (3) DPI protection, (4) TVD-MI operationalization, (5) key results"
+  notable_technique: "The 'information vs quality' reframing is a paradigm shift — elegant replacement of subjective judgment with objective information measurement"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration"
+    description: "LLM judge inversion — rates conspiracy theory summaries higher than faithful ones in extreme compression"
+    narrative_role: "Devastating motivation: shows LLM judges can be systematically wrong, not just noisy"
+    design_elements: ["before/after comparison", "judge score inversion", "real examples"]
+    visual_style: "Side-by-side comparison with score annotations"
+  result_figures:
+    - figure_id: "Table 2"
+      viz_type: "comparison_table"
+      what_compared: "Discrimination (Cohen's d) across mechanisms × 10 domains"
+      how_gain_highlighted: "TVD-MI d=5.20 vs all others; color-coded effect size ranges"
+      design_note: "10-domain breadth makes the pattern undeniable"
+    - figure_id: "Tables 5-6"
+      viz_type: "comparison_table"
+      what_compared: "Adversarial robustness under 4 transformations"
+      how_gain_highlighted: "TVD-MI maintains AUC>0.70 while judges degrade toward 0.50"
+      design_note: "Side-by-side normal vs adversarial conditions"
+  ablation_figures:
+    - figure_id: "Table 4"
+      viz_type: "comparison_table"
+      dimensions_varied: ["mechanism", "domain"]
+      design_note: "Item-level AUC across mechanisms — granular validation"
+  figure_narrative_role: "Judge failure motivation → Mechanism comparison → Item-level detection → Adversarial robustness"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "mechanisms"
+    col_axis: "10 domains"
+    row_organization: "by_category"
+    col_organization: "grouped_by_domain"
+    highlight_strategy: "bold_best + color-coded effect sizes"
+    statistical_reporting: "Cohen's d with effect size interpretation"
+    num_baselines: 5
+    design_note: "Wide table spanning 10 domains — breadth is the selling point"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["mechanism", "domain"]
+      variation_style: "full_numbers"
+      design_note: "AUC matrix for item-level detection"
+    - table_id: "Tables 5-6"
+      what_varied: ["adversarial transformation type"]
+      variation_style: "full_numbers"
+      design_note: "Before/after adversarial attack AUC comparison"
+  supplementary_tables:
+    in_appendix: true
+    content: "Agent taxonomy details, per-domain strategy descriptions, additional metrics"
+    reason: "Main text focuses on aggregate patterns across 10 domains"

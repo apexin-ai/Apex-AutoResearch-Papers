@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_availability-statement_20260522T223217_result.json",
     "occurrence": 1,
-    "bytes": 236,
-    "sha256": "e374a10747ab173dcbf59439f4cdf04bb19a298b6ecef47a7a552069d190e08c"
+    "bytes": 235,
+    "sha256": "12f3e54cc506eea0bfa9ea5ef0c5214d705f40288122b62c2e9b7d2477cc1691"
   },
   "statistics": {
     "messages": 1,

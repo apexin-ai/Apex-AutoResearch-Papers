@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_epsilon-sensitivity-k5-v2_20260523T191934_result.json",
     "occurrence": 1,
-    "bytes": 1434,
-    "sha256": "908a484dcc90f3d029a88133a1cad8bbf2900dacb22d753ca38e7c2df86c6254"
+    "bytes": 1433,
+    "sha256": "6414c160ea39de32685c3642574b3f8c3e86cae7b2a2a831f23f7398a86f3154"
   },
   "statistics": {
     "messages": 1,

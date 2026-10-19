@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_forest-plot_20260523T001753_result.json",
     "occurrence": 1,
-    "bytes": 469,
-    "sha256": "7973b1403f8ebe69d880dc487d1487fb3cd108ae37e53e031af18e4d62345b7f"
+    "bytes": 468,
+    "sha256": "b4de037423ea1f7d7afa1b6136f001c828aa91500f2f75316190e13b5bc56423"
   },
   "statistics": {
     "messages": 1,

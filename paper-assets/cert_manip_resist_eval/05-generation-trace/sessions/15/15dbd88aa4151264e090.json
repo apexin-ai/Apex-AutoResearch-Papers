@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan001-parallel-v3-throttled_20260522T100712.log",
     "occurrence": 1,
-    "bytes": 608082,
-    "sha256": "8d40dd95194d25978dbdce64c32849b5108dc10099e05646f6cc3deb396ac963"
+    "bytes": 608098,
+    "sha256": "f2131e06ea0541c6e8362451ac00018b9bb30d543e6367190a49eff37a94ee75"
   },
   "statistics": {
     "messages": 284,

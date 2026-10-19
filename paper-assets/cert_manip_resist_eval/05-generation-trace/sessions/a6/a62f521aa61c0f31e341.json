@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_kappa-diversity-regime-transition_20260524T031621_result.json",
     "occurrence": 1,
-    "bytes": 1434,
-    "sha256": "dac1cca04445a849ac37a58baa973086a84e3dd9d3d2a29d16f29d70244ff443"
+    "bytes": 1433,
+    "sha256": "e3d6da2c66615bceb6bb686c2ae2b7ed4a5af5d7ed87a5bd136d95cb2349436d"
   },
   "statistics": {
     "messages": 1,

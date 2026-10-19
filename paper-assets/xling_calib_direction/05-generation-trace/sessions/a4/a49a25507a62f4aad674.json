@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a49a25507a62f4aad674",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops plan001 inference check",
+  "task_key": "worker_ops_plan001_inference_check_20260521T135812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan001_inference_check_20260521T135812_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "291d6f073a98a5d627215b1d726815e954d6b12628eaa4237d7495c9ba852dfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**GPU 利用率（每卡）：**\n| GPU | Util | 显存占用 |\n|-----|------|---------|\n| 0 | 0% | 90,159 / 97,887 MiB |\n| 1 | 0% | 93,623 / 97,887 MiB |\n| 2 | 0% | 93,623 / 97,887 MiB |\n| 3 | 0% | 93,623 / 97,887 MiB |\n\n**进程状态：** PID 299318 存活，运行 11 分钟，CPU 105%，内存 6.0%。\n\n**日志最新内容：** 停在 `Loading weights: 100%|██████████| 1977/1977`，之后无任何输出。\n\n**产出目录：** 空，无任何激活文件。\n\n### 判断：仍在加载阶段（MarlinLinear 权重重打包）\n\n权重文件加载完成（1977/1977 shards，约 2 秒），但日志此后无输出。进程 CPU 105%（单核满载）+ GPU 利用率全 0% = 正在做 CPU 端的 MarlinLinear 权重重打包。这是 GPTQ 模型加载的最后一步，235B 参数量下预计耗时较长（可能还需 5-15 分钟）。\n\n无 OOM 或错误信息，状态正常，继续等待即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan001-inference-check.md"
+}

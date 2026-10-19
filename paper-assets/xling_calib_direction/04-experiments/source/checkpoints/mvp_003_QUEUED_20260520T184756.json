@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_003",
+  "project": "xling_calib_direction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:27:06.449Z",
+    "updated_at": "2026-05-20T18:47:56.440Z",
+    "hypothesis": "Cross-lingual correctness direction is model-agnostic: an English-trained linear probe on Llama-3.1-8B-Instruct internal representations will transfer to non-English languages (zh/ar/hi/sw/ko) with AUROC >= 0.58, replicating the pattern observed in Qwen2.5-7B-Instruct (mvp_001).",
+    "parent": "mvp_001"
+  },
+  "timestamp": "2026-05-20T18:47:56.472020+00:00",
+  "trigger": "update_registry"
+}

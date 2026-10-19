@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a13025334cd900aa840b",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "analysis mvp 002 diagnose",
+  "task_key": "worker_analysis_mvp_002_diagnose_20260520T185417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_002_diagnose_20260520T185417_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "fb1cb8314fa9b210c06d39470daf58f3e98a6ff7697789fa9ff5a1c5df065258"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**mvp_002 进程正常退出（EXIT_CODE=0），但结果无效——是脚本 bug，不是崩溃。**\n\n### 根因：层配置不一致\n\n`run_mvp_002.sh` 中三个步骤的层配置不匹配：\n\n| 步骤 | 实际使用的层 | 结果 |\n|------|-------------|------|\n| `extract_activations.py` | `--layers 2,6,10,14,18,22,26` ✅ | 42 个激活文件全部正确生成 |\n| `train_probe.py` | 默认 `0,4,8,12,16,20,24,28,31` ❌ | 找不到 `layer0_en.pt` 等文件，全部 SKIP |\n| `transfer_eval.py` | 默认 `0,4,8,12,16,20,24,28,31` ❌ | 无 probe 可用，全部 SKIP |\n\n### 修复\n\n在 `run_mvp_002.sh` 中给 `train_probe.py` 和 `transfer_eval.py` 加 `--layers 2,6,10,14,18,22,26`：\n\n```bash\npython train_probe.py \\\n  --activations_dir ./activations_mvp002 \\\n  --output_dir ./probes_mvp002 \\\n  --layers 2,6,10,14,18,22,26          # <-- 缺这行\n\npython transfer_eval.py \\\n  --activations_dir ./activations_mvp002 \\\n  --probes_dir ./probes_mvp002 \\\n  --output_dir ./results_mvp002 \\\n  --layers 2,6,10,14,18,22,26          # <-- 缺这行\n```\n\n### 恢复\n\n激活文件（~8GB，42个文件）完好，重跑时**只需从 probe 训练开始**，无需重新提取激活，节省约 1.5 小时 GPU 时间。\n\nRegistry 已更新为 `DONE/failed`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-002-diagnose.md"
+}

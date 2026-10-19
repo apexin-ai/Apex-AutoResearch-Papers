@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_mixed-effects-v2-rerun_20260524T055823_result.json",
     "occurrence": 1,
-    "bytes": 782,
-    "sha256": "a953f08b155ce0b79b8768d181897583093353b3ea6e637906dda57215a57c66"
+    "bytes": 781,
+    "sha256": "53d256546781bc1f14a4d7502c959d70c5c916b30dee4dd3a9ce0d5d4ac5deaa"
   },
   "statistics": {
     "messages": 1,

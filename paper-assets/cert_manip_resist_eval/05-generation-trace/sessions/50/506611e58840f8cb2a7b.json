@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_westd-13176-connectivity_20260523T163523_result.json",
     "occurrence": 1,
-    "bytes": 322,
-    "sha256": "ccd67382a9dc78379cae7d0c192c7d3b9128f8f43c424679206a3426d7d29f33"
+    "bytes": 321,
+    "sha256": "b410d43e50b0c04df9a2f6bdaa0371185d751c9700146b87c49fed859d887379"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan001-step0-api-adapter_20260522T071153_result.json",
     "occurrence": 1,
-    "bytes": 1533,
-    "sha256": "63bac35ef193903bd8fc35f2648d1013b2a0b6935e0fe70136c83c861830aefb"
+    "bytes": 1532,
+    "sha256": "0a09e00af099466b18275555b0c52f36f8d0c36a48cf38850a1d96c3223d7e78"
   },
   "statistics": {
     "messages": 1,

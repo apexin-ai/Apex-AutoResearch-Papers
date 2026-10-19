@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_a5-crossed-re_20260524T114401_result.json",
     "occurrence": 1,
-    "bytes": 1512,
-    "sha256": "4e9f033a71a686aa64e78311c5969d03707b3ac249c9867c6a4c7a7bc6f7545e"
+    "bytes": 1511,
+    "sha256": "628f9453e24490f163544cdbf476ea0d491cab77b884616bf1c503f292f9fefa"
   },
   "statistics": {
     "messages": 1,

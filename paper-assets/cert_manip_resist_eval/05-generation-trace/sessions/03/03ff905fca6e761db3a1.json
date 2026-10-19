@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_step2-cron-resolve_20260522T010447_result.json",
     "occurrence": 1,
-    "bytes": 952,
-    "sha256": "b61add136dc2c5a24bc816a8d07b079a9a381d1286a2d3b16ff54ca517de8a9d"
+    "bytes": 951,
+    "sha256": "32dced102d2d770a18d5ac796f8eb147dbdfdd82b893ff40a8442cf9e9018ef9"
   },
   "statistics": {
     "messages": 1,

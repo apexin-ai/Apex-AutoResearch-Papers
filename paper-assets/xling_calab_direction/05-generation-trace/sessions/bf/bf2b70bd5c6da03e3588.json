@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf2b70bd5c6da03e3588",
+  "project": "xling_calab_direction",
+  "kind": "result",
+  "title": "ops llama4 validate dryrun v2",
+  "task_key": "worker_ops_llama4-validate-dryrun-v2_20260521T110134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama4-validate-dryrun-v2_20260521T110134_result.json",
+    "occurrence": 1,
+    "bytes": 1779,
+    "sha256": "9f6cc09fdbdaae3fe46dda7a0de1516ffdcefc7843948d5c0bfa34e657e393fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇报\n\n### 下载\n- **状态**: 成功，14/14 shard 全部就位，轮询约 21 分钟完成\n- **模型路径**: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\n- **文件**: 14 safetensors (12×4.7G + 2.9G + 2.0G) + config.json + tokenizer.json + tokenizer_config.json + model.safetensors.index.json\n\n### Dry-run\n- **状态**: 成功\n- **模型**: 48 层, hidden_dim=5120, bfloat16\n- **提取层数**: 13 层 `[0,4,8,12,16,20,24,28,32,36,40,44,47]`\n- **耗时**: 66s（含模型加载+解压+推理）\n- **输出**: 13 个 `L*/` 目录各含 `en_{train,eval}.npy` + `en_{train,eval}_labels.npy`，metadata.json 含 train/eval indices\n\n### 修复项（3 个）\n1. `AutoModelForVision2Seq` → `AutoModelForImageTextToText`（transformers 5.x 不兼容）\n2. `get_layer_modules` 新增 `model.language_model.model.layers` 路径（ConditionalGeneration 架构）\n3. `get_final_norm` 新增 `model.language_model.model.norm` 路径\n\n### GPU 需求\n- **单卡 OOM**：compressed_tensors 解压时显存不足（W4A16 压缩权重 ~62GB 占满单卡 95GB，解压需额外缓冲）\n- **最低 4 卡**（`CUDA_VISIBLE_DEVICES=0,1,2,3`）才能通过\n\n### 磁盘估算\n- Dry-run: 1 sample ≈ 10KB/层/语言（5120 dims × 2 bytes）\n- MMLU 全量 ~14,042 samples/语言 → 每层每语言 ~137MB（train 96MB + eval 41MB）\n- **全量: 20 langs × 13 layers × 137MB ≈ 35.6 GB**\n- **当前剩余: 99 GB** → 充足，无需额外清理\n\n### 环境注意\n- 需设置 `HF_HOME=/root/autodl-tmp/.hf_cache` 和 `HF_DATASETS_OFFLINE=1`（HF Hub 网络不通）\n- 需 `export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`\n- 需安装 `compressed-tensors`（已装）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama4-validate-dryrun-v2.md"
+}

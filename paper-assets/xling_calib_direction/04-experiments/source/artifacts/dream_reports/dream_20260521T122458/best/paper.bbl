@@ -1,0 +1,96 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Angelopoulos and Bates(2023)]{angelopoulos2023conformal}
+Anastasios~N. Angelopoulos and Stephen Bates.
+\newblock Conformal prediction: A gentle introduction.
+\newblock \emph{Foundations and Trends in Machine Learning}, 2023.
+
+\bibitem[Artetxe et~al.(2018)Artetxe, Labaka, and Agirre]{artetxe2018robust}
+Mikel Artetxe, Gorka Labaka, and Eneko Agirre.
+\newblock A robust self-learning method for fully unsupervised cross-lingual
+  mappings of word embeddings.
+\newblock In \emph{Proceedings of ACL}, 2018.
+
+\bibitem[Ben-David et~al.(2010)Ben-David, Blitzer, Crammer, Kulesza, Pereira,
+  and Vaughan]{bendavid2010theory}
+Shai Ben-David, John Blitzer, Koby Crammer, Alex Kulesza, Fernando Pereira, and
+  Jennifer~Wortman Vaughan.
+\newblock A theory of learning from different domains.
+\newblock In \emph{Machine Learning}, 2010.
+
+\bibitem[Conneau et~al.(2018)Conneau, Lample, Ranzato, Denoyer, and
+  J{\'e}gou]{conneau2018word}
+Alexis Conneau, Guillaume Lample, Marc'Aurelio Ranzato, Ludovic Denoyer, and
+  Herv{\'e} J{\'e}gou.
+\newblock Word translation without parallel data.
+\newblock In \emph{Proceedings of ICLR}, 2018.
+
+\bibitem[Guo et~al.(2017)Guo, Pleiss, Sun, and Weinberger]{guo2017calibration}
+Chuan Guo, Geoff Pleiss, Yu~Sun, and Kilian~Q. Weinberger.
+\newblock On calibration of modern neural networks.
+\newblock In \emph{Proceedings of ICML}, 2017.
+
+\bibitem[Hewitt and Liang(2019)]{hewitt2019designing}
+John Hewitt and Percy Liang.
+\newblock Designing and interpreting probes with control tasks.
+\newblock In \emph{Proceedings of EMNLP}, 2019.
+
+\bibitem[Ji et~al.(2024)]{ji2024confidence}
+Ziwei Ji et~al.
+\newblock Confidence directions in language model representations.
+\newblock In \emph{Proceedings of NeurIPS}, 2024.
+
+\bibitem[Kornblith et~al.(2019)Kornblith, Norouzi, Lee, and
+  Hinton]{kornblith2019similarity}
+Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton.
+\newblock Similarity of neural network representations revisited.
+\newblock In \emph{Proceedings of ICML}, 2019.
+
+\bibitem[Miao and Ungar(2026)]{miao2026steering}
+Yiding Miao and Lyle Ungar.
+\newblock Steering calibration via correctness-confidence orthogonality.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Miao et~al.(2026)]{miao2026coral}
+Yiding Miao et~al.
+\newblock Cross-task correctness probes for calibrating language models.
+\newblock In \emph{Proceedings of NAACL}, 2026.
+
+\bibitem[Pires et~al.(2019)Pires, Schlinger, and
+  Garrette]{pires2019multilingual}
+Telmo Pires, Eva Schlinger, and Dan Garrette.
+\newblock How multilingual is multilingual {BERT}?
+\newblock In \emph{Proceedings of ACL}, 2019.
+
+\bibitem[Wang et~al.(2024)]{wang2024mka}
+Yuxia Wang et~al.
+\newblock Multilingual knowledge aggregation for calibration.
+\newblock In \emph{Proceedings of ACL}, 2024.
+
+\bibitem[Wu and Dredze(2019)]{wu2019beto}
+Shijie Wu and Mark Dredze.
+\newblock Beto, bentz, becas: The surprising cross-lingual effectiveness of
+  {BERT}.
+\newblock In \emph{Proceedings of EMNLP}, 2019.
+
+\bibitem[Xiao et~al.(2025)]{xiao2025knowledge}
+Yijun Xiao et~al.
+\newblock Cross-lingual knowledge boundary probes for multilingual models.
+\newblock In \emph{Proceedings of ACL}, 2025.
+
+\bibitem[Zhao et~al.(2019)]{zhao2019learning}
+Han Zhao et~al.
+\newblock On learning invariant representations for domain adaptation.
+\newblock In \emph{Proceedings of ICML}, 2019.
+
+\bibitem[Zhou et~al.(2024)]{zhou2024lace}
+Yiwei Zhou et~al.
+\newblock {LACE}: Layer-adaptive calibration ensembles for multilingual {LLM}s.
+\newblock In \emph{Proceedings of EMNLP}, 2024.
+
+\end{thebibliography}

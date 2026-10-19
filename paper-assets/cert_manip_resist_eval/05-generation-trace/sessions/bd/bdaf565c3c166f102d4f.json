@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_attack-prompt-templates_20260522T190027_result.json",
     "occurrence": 1,
-    "bytes": 6701,
-    "sha256": "321918e670d3b45fbdc0923af50d9f8911d4490b3e307e3c4e1978ea623e4713"
+    "bytes": 6700,
+    "sha256": "f0726077d8b46da0d993e6f397ad163c500eba82c04c3cb3fa55825ff976d183"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_step3-mi-v1check_20260523T193125_result.json",
     "occurrence": 1,
-    "bytes": 1153,
-    "sha256": "9658144ffe65aefd887c15427e088653cd405ac21c4948d17e7f11454ed32bc2"
+    "bytes": 1152,
+    "sha256": "e94c48a4b1edf3f0e119688e5708f713254b147428754d7cba5ca883340c1f7f"
   },
   "statistics": {
     "messages": 1,

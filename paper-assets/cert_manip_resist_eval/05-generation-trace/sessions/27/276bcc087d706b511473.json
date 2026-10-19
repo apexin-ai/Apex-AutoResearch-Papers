@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure_dominance_heatmap_20260524T180637_result.json",
     "occurrence": 1,
-    "bytes": 441,
-    "sha256": "f6497db6a05d0103b0433971193c48fcab66a5e093e95a64dddd3385fe3e11ce"
+    "bytes": 440,
+    "sha256": "77f2f4ee6c3f08248f73d994709e3c9436431339dae38f93ec45aae6305f1f21"
   },
   "statistics": {
     "messages": 1,

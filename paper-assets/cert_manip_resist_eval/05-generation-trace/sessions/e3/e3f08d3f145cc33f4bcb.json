@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_v2-pattern-mining_20260523T184437_result.json",
     "occurrence": 1,
-    "bytes": 1699,
-    "sha256": "0f24f528f31542eec83d7080301c79d03fd7a14f7d59e0749536401175aabdd5"
+    "bytes": 1698,
+    "sha256": "c98f4d6827c1313387b04167aa00ccedd8104fb3dd47c3e548a605490311e999"
   },
   "statistics": {
     "messages": 1,

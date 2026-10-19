@@ -1,0 +1,335 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\title{Weakest-Link Monotonicity Theorem for\\Majority-Vote Panel ASR}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ================================================================
+\section{Setup and Definitions}
+%% ================================================================
+
+\begin{definition}[Panel and Majority Vote]
+\label{def:panel}
+A \emph{panel} $\mathcal{P} = \{J_1, \ldots, J_K\}$ consists of $K$ judges ($K$ odd) that independently evaluate a candidate text. The panel uses \emph{majority-vote aggregation}: it is \emph{compromised} if and only if at least $t = \lceil K/2 \rceil$ judges are individually compromised.
+\end{definition}
+
+\begin{definition}[Attack Model]
+\label{def:attack}
+An \emph{attack} $a \in \mathcal{A}$ is an adversarial perturbation applied to the input that all judges evaluate. Under attack $a$, the judges' failure outcomes are described by a joint distribution over binary random variables $(X_1^a, \ldots, X_K^a) \in \{0,1\}^K$, where $X_j^a = 1$ indicates that judge $J_j$ is compromised. The \emph{individual vulnerability} of $J_j$ under attack $a$ is
+\[
+    \eta_j(a) \;=\; \Pr(X_j^a = 1).
+\]
+The \emph{panel ASR} under attack $a$ is
+\[
+    \mathrm{ASR}(\mathcal{P}, a) \;=\; \Pr\!\Bigl(\textstyle\sum_{j=1}^K X_j^a \;\geq\; t\Bigr).
+\]
+\end{definition}
+
+\begin{definition}[Adaptive Adversary]
+\label{def:adversary}
+An \emph{adaptive adversary} has full knowledge of the panel composition $\mathcal{P}$, including the per-judge vulnerability profiles $\{\eta_j(\cdot)\}_{j=1}^K$ and the inter-judge correlation structure. The adversary selects $a^* \in \mathcal{A}$ to maximize the panel ASR:
+\[
+    \mathrm{ASR}^*(\mathcal{P}) \;=\; \sup_{a \in \mathcal{A}}\; \mathrm{ASR}(\mathcal{P}, a).
+\]
+\end{definition}
+
+\begin{definition}[Pointwise Vulnerability Dominance]
+\label{def:dominance}
+Let $\mathcal{P} = \{J_1, \ldots, J_{K-1}, J_K\}$ and $\mathcal{P}' = \{J_1, \ldots, J_{K-1}, J_K'\}$ be two panels sharing the first $K-1$ judges. Write $\mathbf{X}_{-K}^a = (X_1^a, \ldots, X_{K-1}^a)$ for the shared judges' outcomes. We say $J_K'$ is \emph{pointwise more vulnerable} than $J_K$ if, for every attack $a \in \mathcal{A}$ and every realization $\mathbf{x}_{-K} \in \{0,1\}^{K-1}$:
+\[
+    \Pr\bigl(X_{K'}^a = 1 \;\big|\; \mathbf{X}_{-K}^a = \mathbf{x}_{-K}\bigr) \;\geq\; \Pr\bigl(X_K^a = 1 \;\big|\; \mathbf{X}_{-K}^a = \mathbf{x}_{-K}\bigr).
+\]
+We further require that for each attack $a$, the marginal joint distribution of $\mathbf{X}_{-K}^a$ is the same in both panels $\mathcal{P}$ and $\mathcal{P}'$.
+\end{definition}
+
+\begin{remark}
+Under conditional independence (i.e., $X_K^a \perp \mathbf{X}_{-K}^a$ for all $a$), pointwise dominance reduces to \emph{marginal dominance}: $\eta_{K'}(a) \geq \eta_K(a)$ for all $a \in \mathcal{A}$. The conditional form is needed when judge failures are correlated---for instance, when a shared architectural vulnerability causes multiple judges to fail on the same inputs.
+\end{remark}
+
+
+%% ================================================================
+\section{Warm-Up: $K=3$, Independent Judges}
+%% ================================================================
+
+\begin{lemma}[$K=3$ Monotonicity]\label{lem:k3}
+For a panel of $K=3$ conditionally independent judges with vulnerabilities $\eta_1, \eta_2, \eta_3 \in [0,1]$ under a fixed attack, the panel ASR under majority vote ($t=2$) is
+\[
+    \mathrm{ASR} \;=\; \eta_1\eta_2 + \eta_1\eta_3 + \eta_2\eta_3 - 2\,\eta_1\eta_2\eta_3,
+\]
+and is strictly increasing in each $\eta_j$ whenever the other two judges are not simultaneously trivial. Letting $\eta_3 = \eta_{\max}$ without loss of generality:
+\[
+    \frac{\partial\,\mathrm{ASR}}{\partial\,\eta_{\max}} \;=\; \eta_1(1-\eta_2) + \eta_2(1-\eta_1) \;\geq\; 0,
+\]
+with equality if and only if $(\eta_1, \eta_2) \in \{(0,0),\, (1,1)\}$.
+\end{lemma}
+
+\begin{proof}
+The panel is compromised when at least 2 of 3 judges fail. Under independence, enumerating the four favorable configurations:
+\begin{align}
+    \mathrm{ASR}
+    &= \Pr(X_1{=}1,\, X_2{=}1,\, X_3{=}0) + \Pr(X_1{=}1,\, X_2{=}0,\, X_3{=}1) \nonumber \\
+    &\quad + \Pr(X_1{=}0,\, X_2{=}1,\, X_3{=}1) + \Pr(X_1{=}1,\, X_2{=}1,\, X_3{=}1) \nonumber \\[4pt]
+    &= \eta_1\eta_2(1{-}\eta_3) + \eta_1(1{-}\eta_2)\eta_3 + (1{-}\eta_1)\eta_2\eta_3 + \eta_1\eta_2\eta_3. \label{eq:k3-expand}
+\end{align}
+Collecting terms:
+\begin{align*}
+    \mathrm{ASR}
+    &= \eta_1\eta_2 \underbrace{-\, \eta_1\eta_2\eta_3 + \eta_1\eta_3 - \eta_1\eta_2\eta_3 + \eta_2\eta_3 - \eta_1\eta_2\eta_3 + \eta_1\eta_2\eta_3}_{\text{from the last three terms}} \\
+    &= \eta_1\eta_2 + \eta_1\eta_3 + \eta_2\eta_3 - 2\,\eta_1\eta_2\eta_3.
+\end{align*}
+Differentiating with respect to $\eta_3$:
+\[
+    \frac{\partial\,\mathrm{ASR}}{\partial\,\eta_3}
+    \;=\; \eta_1 + \eta_2 - 2\,\eta_1\eta_2
+    \;=\; \eta_1(1 - \eta_2) + \eta_2(1 - \eta_1).
+\]
+Since $\eta_1, \eta_2 \in [0,1]$, both summands are non-negative. The derivative vanishes iff both are zero: $\eta_1(1{-}\eta_2) = 0$ and $\eta_2(1{-}\eta_1) = 0$. If $\eta_1 = 0$, the second equation forces $\eta_2 = 0$. If $\eta_2 = 1$, the first is automatic, and the second forces $\eta_1 = 1$. Hence equality holds iff $(\eta_1, \eta_2) \in \{(0,0),\, (1,1)\}$.
+\end{proof}
+
+
+%% ================================================================
+\section{General $K$, Independent Judges}
+%% ================================================================
+
+\begin{lemma}[General Monotonicity, Independent Case]\label{lem:general-indep}
+For a panel of $K$ conditionally independent judges under a fixed attack, the panel ASR under majority vote with threshold $t = \lceil K/2 \rceil$ satisfies
+\[
+    \mathrm{ASR} \;=\; \Pr(Y \geq t) \;+\; \Pr(Y = t{-}1)\,\cdot\, \eta_K,
+\]
+where $Y = \sum_{j=1}^{K-1} X_j$ counts failures among the other $K{-}1$ judges. Consequently,
+\[
+    \frac{\partial\,\mathrm{ASR}}{\partial\,\eta_K} \;=\; \Pr(Y = t{-}1) \;\geq\; 0.
+\]
+\end{lemma}
+
+\begin{proof}
+Conditioning on the binary outcome of judge $K$:
+\begin{align*}
+    \mathrm{ASR}
+    &= \Pr(Y + X_K \geq t) \\
+    &= \Pr(Y \geq t{-}1)\,\cdot\,\eta_K \;+\; \Pr(Y \geq t)\,\cdot\,(1 - \eta_K) \\
+    &= \Pr(Y \geq t) \;+\; \bigl[\Pr(Y \geq t{-}1) - \Pr(Y \geq t)\bigr]\,\cdot\,\eta_K \\
+    &= \Pr(Y \geq t) \;+\; \Pr(Y = t{-}1)\,\cdot\,\eta_K.
+\end{align*}
+The second line uses independence of $X_K$ and $Y$, conditioning on whether $X_K = 1$ (needing $Y \geq t{-}1$) or $X_K = 0$ (needing $Y \geq t$). The result is affine in $\eta_K$ with slope $\Pr(Y = t{-}1) \geq 0$.
+\end{proof}
+
+\begin{remark}[Pivotal Voter Interpretation]
+The slope $\Pr(Y = t{-}1)$ is exactly the probability that judge $K$ is \emph{pivotal}: the remaining $K{-}1$ judges produce exactly $t{-}1$ failures, and judge $K$'s outcome determines the panel decision. Monotonicity holds because a judge can only tip the panel toward compromise (by failing), never away from it.
+\end{remark}
+
+
+%% ================================================================
+\section{Main Result: Correlated Judges, Adaptive Adversary}
+%% ================================================================
+
+\begin{theorem}[Weakest-Link Monotonicity]\label{thm:main}
+Let $\mathcal{P} = \{J_1, \ldots, J_{K-1}, J_K\}$ and $\mathcal{P}' = \{J_1, \ldots, J_{K-1}, J_K'\}$ be two panels using majority vote with threshold $t = \lceil K/2 \rceil$, sharing judges $J_1, \ldots, J_{K-1}$ and satisfying Definition~\ref{def:dominance} (pointwise vulnerability dominance of $J_K'$ over $J_K$). Then:
+\begin{enumerate}[label=(\alph*)]
+    \item For every fixed attack $a \in \mathcal{A}$:
+    \[
+        \mathrm{ASR}(\mathcal{P}', a) \;\geq\; \mathrm{ASR}(\mathcal{P}, a).
+    \]
+    \item For any adversary strategy, including an adaptive adversary:
+    \[
+        \mathrm{ASR}^*(\mathcal{P}') \;\geq\; \mathrm{ASR}^*(\mathcal{P}).
+    \]
+\end{enumerate}
+In particular, replacing the weakest panel member with a more vulnerable judge (increasing $\eta_{\max}$) cannot decrease the panel ASR.
+\end{theorem}
+
+\begin{proof}
+\textbf{Part (a): Fixed attack.}
+Fix an arbitrary attack $a \in \mathcal{A}$. Let $\mathbf{x}_{-K} = (x_1, \ldots, x_{K-1}) \in \{0,1\}^{K-1}$ denote a realization of the shared judges' outcomes, and let $s = \sum_{j=1}^{K-1} x_j$. By the law of total probability:
+\begin{equation}\label{eq:total-prob}
+    \mathrm{ASR}(\mathcal{P}, a)
+    \;=\; \sum_{\mathbf{x}_{-K} \in \{0,1\}^{K-1}} \Pr(\mathbf{X}_{-K}^a = \mathbf{x}_{-K})\;\cdot\; \Pr\!\bigl(s + X_K^a \geq t \;\big|\; \mathbf{X}_{-K}^a = \mathbf{x}_{-K}\bigr).
+\end{equation}
+Since $X_K^a \in \{0,1\}$, the inner probability depends on $s$ in exactly three cases:
+\begin{itemize}
+    \item \textbf{Case $s \geq t$:} The panel is compromised regardless of $X_K^a$. Both panels contribute~$1$.
+    \item \textbf{Case $s = t{-}1$:} The panel is compromised iff $X_K^a = 1$ (resp.\ $X_{K'}^a = 1$). By pointwise dominance:
+    \[
+        \Pr(X_{K'}^a = 1 \mid \mathbf{x}_{-K}) \;\geq\; \Pr(X_K^a = 1 \mid \mathbf{x}_{-K}).
+    \]
+    \item \textbf{Case $s \leq t{-}2$:} Even with $X_K^a = 1$, the total $s + 1 \leq t{-}1 < t$. Neither panel is compromised; both contribute~$0$.
+\end{itemize}
+Since the marginal distribution of $\mathbf{X}_{-K}^a$ is identical in both panels (Definition~\ref{def:dominance}), summing over all realizations yields
+\begin{equation}\label{eq:pointwise-ineq}
+    \mathrm{ASR}(\mathcal{P}', a) \;\geq\; \mathrm{ASR}(\mathcal{P}, a).
+\end{equation}
+
+\medskip
+\noindent\textbf{Part (b): Adaptive adversary.}
+Taking the supremum over all attacks and applying \eqref{eq:pointwise-ineq}:
+\[
+    \mathrm{ASR}^*(\mathcal{P}')
+    \;=\; \sup_{a \in \mathcal{A}} \mathrm{ASR}(\mathcal{P}', a)
+    \;\geq\; \sup_{a \in \mathcal{A}} \mathrm{ASR}(\mathcal{P}, a)
+    \;=\; \mathrm{ASR}^*(\mathcal{P}),
+\]
+since each term in the supremum on the right is bounded by the corresponding term on the left. \qedhere
+\end{proof}
+
+\begin{remark}[Empirical Verification of Pointwise Dominance]
+The pointwise dominance condition in Theorem~\ref{thm:main} can be verified empirically by checking, for each sample $x$ and each judge pair $(j, j')$ with $\eta_j > \eta_{j'}$, whether $\Pr(e_j {=} 1 \mid x) \geq \Pr(e_{j'} {=} 1 \mid x)$ holds. In practice, this amounts to:
+\begin{enumerate}
+\item Computing the per-sample error indicators for each judge under each attack.
+\item For each ordered pair $(j, j')$ with $\eta_j > \eta_{j'}$, counting the fraction of samples where $j$ succeeds but $j'$ fails (dominance violations).
+\item If the violation rate is small relative to the pivotal probability $\Pr(Y = t{-}1)$, the monotonicity conclusion of Theorem~\ref{thm:main} remains approximately valid even when strict pointwise dominance does not hold exactly.
+\end{enumerate}
+We report this verification in Section~X (Experiments).
+\end{remark}
+
+\begin{remark}[Generality of the Result]
+Three aspects of Theorem~\ref{thm:main} merit emphasis:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Arbitrary correlations.} The proof makes no independence assumption. Judges may exhibit arbitrary failure correlations---including those induced by shared architectural vulnerabilities, common training data, or attack transfer effects---as long as pointwise dominance holds.
+    \item \textbf{Threshold generality.} The proof uses only the threshold structure of majority vote. It extends verbatim to any $t$-out-of-$K$ aggregation rule, including unanimity ($t = K$) and any-judge-fails ($t = 1$).
+    \item \textbf{Adversary generality.} Part (b) holds for any adversary class that selects from the same attack space $\mathcal{A}$, including randomized adversaries (who select a distribution over $\mathcal{A}$, since a mixture preserves the pointwise inequality).
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[Sufficient Conditions for Pointwise Dominance]
+Pointwise dominance (Definition~\ref{def:dominance}) is satisfied whenever:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Model capability ordering.} $J_K'$ has strictly lower capability than $J_K$ on all tasks, so any attack that fools $J_K$ also fools $J_K'$, and $J_K'$ is vulnerable to additional attacks.
+    \item \textbf{Vulnerability superset.} The set of inputs on which $J_K'$ errs is a superset of those on which $J_K$ errs, for every attack.
+    \item \textbf{Conditional independence.} If $X_K^a \perp \mathbf{X}_{-K}^a$ for all $a$, then pointwise dominance reduces to $\eta_{K'}(a) \geq \eta_K(a)$ for all $a$ (marginal dominance), which is empirically verifiable by measuring individual ASR.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[Coupling Interpretation]
+An equivalent proof uses a coupling argument: construct $(X_K^a, X_{K'}^a)$ on a common probability space such that $X_{K'}^a \geq X_K^a$ almost surely (feasible by the standard coupling for stochastic dominance whenever pointwise dominance holds). Then $\sum_{j=1}^{K-1} X_j^a + X_{K'}^a \geq \sum_{j=1}^{K-1} X_j^a + X_K^a$ pointwise, so $\{$panel~$\mathcal{P}$ fails$\} \subseteq \{$panel~$\mathcal{P}'$ fails$\}$ and $\mathrm{ASR}(\mathcal{P}', a) \geq \mathrm{ASR}(\mathcal{P}, a)$.
+\end{remark}
+
+
+%% ================================================================
+\section{Tightness and Bounds}
+%% ================================================================
+
+\begin{proposition}[Equality Conditions]\label{prop:tight}
+Under the conditions of Theorem~\ref{thm:main}, for a fixed attack $a$:
+\[
+    \mathrm{ASR}(\mathcal{P}', a) = \mathrm{ASR}(\mathcal{P}, a)
+\]
+if and only if, for every realization $\mathbf{x}_{-K}$ with $\sum x_j = t{-}1$ and $\Pr(\mathbf{X}_{-K}^a = \mathbf{x}_{-K}) > 0$:
+\[
+    \Pr(X_{K'}^a = 1 \mid \mathbf{x}_{-K}) \;=\; \Pr(X_K^a = 1 \mid \mathbf{x}_{-K}).
+\]
+For conditionally independent judges, this simplifies to: either $\Pr(Y = t{-}1) = 0$ (no pivotal configuration exists) or $\eta_{K'}(a) = \eta_K(a)$.
+\end{proposition}
+
+\begin{proof}
+From the proof of Theorem~\ref{thm:main}, the ASR difference is:
+\begin{align*}
+    \Delta
+    &= \mathrm{ASR}(\mathcal{P}', a) - \mathrm{ASR}(\mathcal{P}, a) \\
+    &= \!\!\sum_{\substack{\mathbf{x}_{-K}:\, s = t-1}}\!\! \Pr(\mathbf{X}_{-K}^a {=} \mathbf{x}_{-K})\,\bigl[\Pr(X_{K'}^a {=} 1 \mid \mathbf{x}_{-K}) - \Pr(X_K^a {=} 1 \mid \mathbf{x}_{-K})\bigr].
+\end{align*}
+Each summand is non-negative (pointwise dominance ensures the bracket is $\geq 0$; the probability weight is $\geq 0$). The sum vanishes iff every summand with positive weight has a zero bracket. Under conditional independence, $\Pr(X_K^a = 1 \mid \mathbf{x}_{-K}) = \eta_K(a)$ is constant across realizations, so the condition collapses to $\eta_{K'}(a) = \eta_K(a)$ or the event $\{Y = t{-}1\}$ having zero probability.
+\end{proof}
+
+\begin{remark}
+The condition $\Pr(Y = t{-}1) = 0$ is degenerate: it requires all $\eta_j \in \{0,1\}$ with the count of $\eta_j = 1$ never equaling $t{-}1$. In all non-degenerate panels, the monotonicity is \emph{strict} whenever $\eta_{K'} > \eta_K$ under some attack.
+\end{remark}
+
+\begin{proposition}[Panel ASR Bounds]\label{prop:bounds}
+For a panel of $K$ conditionally independent judges with ordered vulnerabilities $\eta_{(1)} \leq \cdots \leq \eta_{(K)} = \eta_{\max}$ under a fixed attack:
+\[
+    \prod_{j=K-t+1}^{K} \eta_{(j)} \;\leq\; \mathrm{ASR} \;\leq\; \sum_{k=t}^{K} \binom{K}{k}\, \eta_{\max}^{\,k}\, (1-\eta_{\max})^{K-k}.
+\]
+\end{proposition}
+
+\begin{proof}
+\textit{Lower bound.}
+The event that the $t$ most vulnerable judges ($J_{(K-t+1)}, \ldots, J_{(K)}$) all fail implies panel compromise. By independence:
+\[
+    \mathrm{ASR} \;\geq\; \Pr\!\bigl(\textstyle\bigcap_{j=K-t+1}^K \{X_{(j)} = 1\}\bigr) \;=\; \prod_{j=K-t+1}^{K} \eta_{(j)}.
+\]
+
+\textit{Upper bound.}
+Since $\eta_j \leq \eta_{\max}$ for all $j$, replacing each $\eta_j$ with $\eta_{\max}$ increases ASR by Lemma~\ref{lem:general-indep} (applied iteratively to each judge). The resulting panel has i.i.d.\ $\mathrm{Bernoulli}(\eta_{\max})$ failures, giving the binomial tail.
+\end{proof}
+
+\begin{remark}[Scaling Regimes]
+For small $\eta_{\max}$ and fixed $K$, the leading-order behavior is:
+\begin{itemize}
+    \item If the top $t$ vulnerabilities satisfy $\eta_{(j)} = \Theta(\eta_{\max})$ for $j \geq K{-}t{+}1$: \[ \mathrm{ASR} \;=\; \Theta\!\bigl(\eta_{\max}^{\,t}\bigr). \]
+    Majority vote provides a $t$-th power suppression relative to the individual maximum.
+    \item If the vulnerability distribution is \emph{heavy-tailed} (one judge much weaker than the rest): the lower bound $\prod \eta_{(j)}$ is small, but the adversary can still exploit correlated failures (attack transfer) to push ASR closer to $\binom{K}{t}\eta_{\max}^t$.
+    \item For $K=3$, $t=2$: $\mathrm{ASR} = \Theta(\eta_{\max}^2)$ in the small-vulnerability regime.
+\end{itemize}
+\end{remark}
+
+
+%% ================================================================
+\section{Corollary: Panel Design}
+%% ================================================================
+
+\begin{corollary}[Robustness-First Design Principle]\label{cor:design}
+Under the adaptive adversary model of Definition~\ref{def:adversary}, the optimal panel selection strategy is \emph{robustness-first}:
+\begin{enumerate}[label=\textbf{Stage~\arabic*}:]
+    \item \textbf{Robustness screening.} From the candidate pool, retain only judges satisfying $\eta_j \leq \tau$ for a robustness threshold $\tau$. By Theorem~\ref{thm:main}, replacing any judge with $\eta_j > \tau$ by one with $\eta_j \leq \tau$ weakly reduces panel ASR.
+    \item \textbf{Diversity maximization.} Among the retained judges, select the $K$-judge panel that maximizes effective independence $K_{\mathrm{eff}}$ (or any suitable diversity measure). This provides residual protection against broad-spectrum attacks without introducing weak links.
+\end{enumerate}
+The ordering is essential: diversity maximization without robustness screening may increase $\eta_{\max}$ via the diversity-capability tradeoff, which by Theorem~\ref{thm:main} weakly increases panel ASR.
+\end{corollary}
+
+\begin{proof}
+Stage~1 is a direct application of Theorem~\ref{thm:main}: if $J_K$ has $\eta_K > \tau$ and $J_K'$ has $\eta_{K'} \leq \tau < \eta_K$, and $J_K'$ satisfies pointwise dominance of $J_K$ over $J_K'$ (i.e., $J_K$ is pointwise more vulnerable than $J_K'$), then $\mathrm{ASR}^*(\mathcal{P}) \geq \mathrm{ASR}^*(\mathcal{P}')$. The robustness constraint $\eta_j \leq \tau$ for all panel members ensures $\eta_{\max} \leq \tau$, bounding the dominant predictor.
+
+Stage~2 maximizes judge independence, which provides residual protection under conditions where individual judge errors are approximately independent (BFT-like regime). When $\eta_{\max}$ is controlled, increasing $K_{\mathrm{eff}}$ reduces the probability that broad-spectrum attacks simultaneously compromise $t$ judges, since near-independent failures must co-occur by chance.
+
+The ordering is essential: maximizing diversity without first constraining $\eta_{\max}$ risks introducing weaker judges. By Theorem~\ref{thm:main}, any increase in $\eta_{\max}$ weakly increases panel ASR, potentially negating the benefits of greater independence.
+\end{proof}
+
+\begin{remark}[Empirical Support]
+In our experiments (Section~X), we observe $r(K_{\mathrm{eff}}, \eta_{\max}) \approx -0.78$ ($p < 0.001$) across 6 models, confirming the tension between diversity and robustness predicted by the ordering constraint above. The SDPI bound $\eta_{\mathrm{panel}} \leq K_{\mathrm{eff}} \cdot \eta_{\max}$ provides a quantitative framework for trading off these factors in Stage~2.
+\end{remark}
+
+
+%% ================================================================
+\section{Connection to Empirical Results}
+%% ================================================================
+
+\begin{remark}[Empirical Validation]
+Theorem~\ref{thm:main} makes a testable prediction: in a multivariate regression $\log(\mathrm{ASR}) \sim \beta_1 \log(\eta_{\max}) + \beta_2 \log(K_{\mathrm{eff}})$, $\eta_{\max}$ should be a significant predictor ($\beta_1 > 0$) while $K_{\mathrm{eff}}$ should be weak or non-significant ($\beta_2 \approx 0$), because the theorem establishes monotonicity in $\eta_{\max}$ but not in $K_{\mathrm{eff}}$.
+
+Across 12 experimental conditions (2 benchmarks $\times$ 6 attack types):
+\begin{itemize}
+    \item $\eta_{\max}$ is significant (BH-FDR $q < 0.05$) in 6/12 conditions (50\%), with 3/12 surviving Bonferroni correction.
+    \item $K_{\mathrm{eff}}$ is significant in only 1/12 conditions (8\%). Residualized $K_{\mathrm{eff}}$ (orthogonalized against $\eta_{\max}$, VIF $= 1.04$) confirms this is not a collinearity artifact.
+    \item The sole exception (ARC $\times$ sycophancy, $\beta_2 = -2.85$, $p = 0.003$) corresponds to the one attack type that exploits a \emph{shared} judge bias rather than targeting individual vulnerabilities---the ``BFT-like'' regime where faults are approximately random.
+\end{itemize}
+This pattern is precisely what Theorem~\ref{thm:main} predicts: monotonicity in $\eta_{\max}$ drives the primary effect, and $K_{\mathrm{eff}}$ matters only when the adversary cannot selectively target the weakest judge.
+\end{remark}
+
+\begin{remark}[When Diversity Helps]
+Theorem~\ref{thm:main} does \emph{not} claim diversity is useless. It establishes that \emph{reducing $\eta_{\max}$ weakly dominates increasing $K_{\mathrm{eff}}$} as a defense strategy. Diversity retains value in three regimes:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Controlled $\eta_{\max}$:} When all judges exceed a robustness threshold (Corollary~\ref{cor:design}, Stage~2), higher $K_{\mathrm{eff}}$ reduces the ASR ceiling via the SDPI bound $\mathrm{ASR} \leq K_{\mathrm{eff}} \cdot \eta_{\max}$.
+    \item \textbf{Broad-spectrum attacks:} When attacks exploit biases shared across judges (sycophancy, position bias), failures approximate random faults and the BFT analogy holds.
+    \item \textbf{Non-adversarial settings:} For calibration, bias reduction, and inter-rater agreement, diversity provides standard statistical benefits unrelated to adversarial robustness.
+\end{enumerate}
+\end{remark}
+
+
+\end{document}

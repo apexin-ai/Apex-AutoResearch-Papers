@@ -1,0 +1,302 @@
+papers:
+  miao2026closing:
+    title: "Closing the Confidence-Faithfulness Gap in Large Language Models"
+    authors: ["Ruoxi Miao", "Lyle Ungar"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2603.25052"
+    category: "mechanistic_calibration"
+    role: "foundation"
+    relevance: "Showed correctness direction and verbalized confidence direction are orthogonal (cosine < 0.04) in 7-8B models. Motivates probing internal representations. English-only — our cross-lingual extension is the natural next step."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  xiao2025knowledge:
+    title: "Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations"
+    authors: ["Zheng Xiao"]
+    year: 2025
+    venue: "ACL 2025"
+    url: "https://arxiv.org/abs/2504.13816"
+    category: "cross_lingual_probing"
+    role: "direct-competitor"
+    relevance: "Closest prior work. Cross-lingual transfer of knowledge-boundary probes (answerable vs unanswerable). Key differences: they probe knowledge boundaries (input-level), we probe correctness (output-dependent); they measure probing accuracy, not ECE/Brier; they test 8 languages, we target 20+."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  civelli2026shared:
+    title: "A Shared Geometry of Difficulty in Multilingual Language Models"
+    authors: ["Andrea Civelli"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2601.12731"
+    category: "cross_lingual_probing"
+    role: "foundation"
+    relevance: "Cross-lingual difficulty probe transfer at intermediate layers. Architecture-dependent optimal depth (24-49%). Probes IRT difficulty (question property), not correctness (model property). Critical control for our difficulty ablation."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  zhou2025lace:
+    title: "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in LLMs"
+    authors: ["Zhou"]
+    year: 2025
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2510.03136"
+    category: "multilingual_calibration"
+    role: "direct-competitor"
+    relevance: "LACE: adaptive layer ensemble for multilingual calibration. Confirmed 5x ECE gap across 100+ languages. Requires per-language validation data. Our CaCLR needs no non-English correctness labels."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  ravisankar2026dali:
+    title: "Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs"
+    authors: ["Ravisankar"]
+    year: 2026
+    venue: "EACL 2026"
+    url: "https://arxiv.org/abs/2504.09378"
+    category: "cross_lingual_alignment"
+    role: "foundation"
+    relevance: "DALI: causal evidence via activation patching that English middle-layer representations fix non-English errors across 24 languages. Strongest causal support for our hypothesis."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  miao2026coral:
+    title: "Correctness-Optimized Residual Activation Lens (CORAL)"
+    authors: ["Ruoxi Miao"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2602.06022"
+    category: "mechanistic_calibration"
+    role: "direct-competitor"
+    relevance: "Transferable correctness probes via regularized MLP on residual activations, ~50% ECE improvement at 53-66% depth. English-only, cross-task. CaCLR positioned as solution to their identified distribution-shift transfer degradation."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  joshi2025calibration:
+    title: "Calibration Across Layers: Understanding Calibration Evolution in LLMs"
+    authors: ["Joshi"]
+    year: 2025
+    venue: "EMNLP 2025"
+    url: ""
+    category: "mechanistic_calibration"
+    role: "foundation"
+    relevance: "Identified low-dimensional calibration direction in residual stream evolving across layers."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  confidence_manifold2026:
+    title: "The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models"
+    authors: []
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2602.08159"
+    category: "mechanistic_calibration"
+    role: "foundation"
+    relevance: "Correctness signals occupy 3-8 dimensions, linearly separable. 25 labeled examples achieve 89% of full-data accuracy. All English-only."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  karandikar2021sbece:
+    title: "Soft Calibration Objectives for Neural Networks"
+    authors: ["Archit Karandikar", "Nicholas Cain", "Dustin Tran", "Balaji Lakshminarayanan", "Jonathon Shlens", "Michael C. Mozer", "Becca Roelofs"]
+    year: 2021
+    venue: "NeurIPS 2021"
+    url: "https://proceedings.neurips.cc/paper/2021/hash/f8905bd3df64ace64a68e154ba72f24c-Abstract.html"
+    category: "calibration_foundations"
+    role: "method-component"
+    relevance: "SB-ECE: differentiable soft-binned ECE enabling gradient-based calibration optimization. Core component of our CaCLR objective."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  khanmohammadi2025ccps:
+    title: "Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS)"
+    authors: ["Khanmohammadi"]
+    year: 2025
+    venue: "EMNLP 2025"
+    url: "https://arxiv.org/abs/2505.21772"
+    category: "mechanistic_calibration"
+    role: "direct-competitor"
+    relevance: "Calibration via probing perturbed representation stability at final layer. ~55% ECE reduction. English-only, single layer. No cross-lingual or multi-layer analysis."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  liu2025middle:
+    title: "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs"
+    authors: ["Liu", "Niehues"]
+    year: 2025
+    venue: "ACL 2025"
+    url: ""
+    category: "cross_lingual_alignment"
+    role: "foundation"
+    relevance: "Middle layers form strongest language-agnostic shared space. Supports our hypothesis about intermediate-layer transfer."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  ji2025calibrating:
+    title: "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations"
+    authors: ["Ji"]
+    year: 2025
+    venue: "EMNLP 2025"
+    url: ""
+    category: "mechanistic_calibration"
+    role: "background"
+    relevance: "Verbal uncertainty governed by single linear direction in representation space."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20"
+
+  bendavid2010theory:
+    title: "A Theory of Learning from Different Domains"
+    authors: ["Shai Ben-David", "John Blitzer", "Koby Crammer", "Alex Kulesza", "Fernando Pereira", "Jennifer Wortman Vaughan"]
+    year: 2010
+    venue: "Machine Learning, Vol. 79, pp. 151-175"
+    url: "https://link.springer.com/article/10.1007/s10994-009-5152-4"
+    category: "domain_adaptation_theory"
+    role: "foundation"
+    relevance: "H-divergence framework for domain adaptation. Theoretical basis for bounding target error via source error and domain divergence — underpins our cross-lingual transfer analysis."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  zhao2019invariant:
+    title: "On Learning Invariant Representations for Domain Adaptation"
+    authors: ["Han Zhao", "Remi Tachet des Combes", "Kun Zhang", "Geoffrey J. Gordon"]
+    year: 2019
+    venue: "ICML 2019"
+    url: "https://proceedings.mlr.press/v97/zhao19a.html"
+    category: "domain_adaptation_theory"
+    role: "foundation"
+    relevance: "Proves marginal distribution matching fails when conditional distributions differ. Motivates why naive cross-lingual probe transfer may degrade — our CaCLR addresses this gap."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  zhang2019bridging:
+    title: "Bridging Theory and Algorithm for Domain Adaptation"
+    authors: ["Yuchen Zhang", "Tianle Liu", "Mingsheng Long", "Michael I. Jordan"]
+    year: 2019
+    venue: "ICML 2019"
+    url: "https://proceedings.mlr.press/v97/zhang19i.html"
+    category: "domain_adaptation_theory"
+    role: "foundation"
+    relevance: "Margin Disparity Discrepancy — tighter generalization bound connecting domain adaptation theory to practical adversarial algorithms. Complements Ben-David and Zhao theoretical foundations."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  hewitt2019control:
+    title: "Designing and Interpreting Probes with Control Tasks"
+    authors: ["John Hewitt", "Percy Liang"]
+    year: 2019
+    venue: "EMNLP 2019"
+    url: "https://aclanthology.org/D19-1275/"
+    category: "probing_methodology"
+    role: "foundation"
+    relevance: "Defines selectivity metric for probes — ensures probe accuracy reflects encoded information, not classifier capacity. Methodological baseline for our probing evaluation."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  voita2020mdl:
+    title: "Information-Theoretic Probing with Minimum Description Length"
+    authors: ["Elena Voita", "Ivan Titov"]
+    year: 2020
+    venue: "EMNLP 2020"
+    url: "https://aclanthology.org/2020.emnlp-main.14/"
+    category: "probing_methodology"
+    role: "foundation"
+    relevance: "MDL probing — information-theoretic alternative measuring compression quality rather than raw accuracy. More robust evaluation metric for cross-lingual probe transfer."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  belinkov2022probing:
+    title: "Probing Classifiers: Promises, Shortcomings, and Advances"
+    authors: ["Yonatan Belinkov"]
+    year: 2022
+    venue: "Computational Linguistics, Vol. 48, No. 1, pp. 207-219"
+    url: "https://aclanthology.org/2022.cl-1.7/"
+    category: "probing_methodology"
+    role: "foundation"
+    relevance: "Comprehensive survey of probing methodology — defines best practices, pitfalls, and evaluation standards we follow in our experimental design."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  kornblith2019cka:
+    title: "Similarity of Neural Network Representations Revisited"
+    authors: ["Simon Kornblith", "Mohammad Norouzi", "Honglak Lee", "Geoffrey Hinton"]
+    year: 2019
+    venue: "ICML 2019"
+    url: "https://proceedings.mlr.press/v97/kornblith19a.html"
+    category: "representation_similarity"
+    role: "foundation"
+    relevance: "Centered Kernel Alignment (CKA) — our primary metric for measuring cross-lingual representation similarity across layers."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  wu2020similarity:
+    title: "Similarity Analysis of Contextual Word Representation Models"
+    authors: ["John Wu", "Yonatan Belinkov", "Hassan Sajjad", "Nadir Durrani", "Fahim Dalvi", "James Glass"]
+    year: 2020
+    venue: "ACL 2020"
+    url: "https://aclanthology.org/2020.acl-main.422/"
+    category: "representation_similarity"
+    role: "foundation"
+    relevance: "Applies CKA and SVCCA to compare contextual word representations across architectures — direct precedent for our cross-lingual representation similarity analysis."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  guo2017calibration:
+    title: "On Calibration of Modern Neural Networks"
+    authors: ["Chuan Guo", "Geoff Pleiss", "Yu Sun", "Kilian Q. Weinberger"]
+    year: 2017
+    venue: "ICML 2017"
+    url: "https://proceedings.mlr.press/v70/guo17a.html"
+    category: "calibration_foundations"
+    role: "foundation"
+    relevance: "Temperature scaling baseline — canonical post-hoc calibration method we compare against. Established ECE as standard calibration metric."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+  angelopoulos2023conformal:
+    title: "Conformal Prediction: A Gentle Introduction"
+    authors: ["Anastasios N. Angelopoulos", "Stephen Bates"]
+    year: 2023
+    venue: "Foundations and Trends in Machine Learning, Vol. 16, No. 4, pp. 494-591"
+    url: "https://www.nowpublishers.com/article/Details/MAL-101"
+    category: "calibration_foundations"
+    role: "foundation"
+    relevance: "Distribution-free uncertainty quantification framework — theoretical grounding for our conformal prediction extension of CaCLR."
+    verified: true
+    added_by: "worker"
+    added_at: "2026-05-21"
+
+categories:
+  mechanistic_calibration: "Probing/steering calibration signals in LLM internal representations"
+  cross_lingual_probing: "Cross-lingual transfer of probes/directions in multilingual models"
+  cross_lingual_alignment: "Language alignment and shared representations in multilingual LLMs"
+  multilingual_calibration: "Calibration methods for multilingual LLMs"
+  calibration_methods: "General calibration objectives and techniques"
+  domain_adaptation_theory: "Theoretical foundations for domain adaptation and representation learning"
+  probing_methodology: "Methodology for probing neural network representations"
+  representation_similarity: "Metrics and methods for comparing neural network representations"
+  calibration_foundations: "Foundational calibration and uncertainty quantification methods"
+
+meta:
+  created_at: "2026-05-20"
+  last_updated: "2026-05-21"
+  total_papers: 22

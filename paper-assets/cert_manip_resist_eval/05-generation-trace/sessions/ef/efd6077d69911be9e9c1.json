@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director_20260525T060233_857354.jsonl",
     "occurrence": 1,
-    "bytes": 3792197,
-    "sha256": "98c3d57a8961d5e456040b45823a883fd862de52bd178e8226b6483a792b0e99"
+    "bytes": 3791857,
+    "sha256": "c1fba6554a423c5f38041f193666d8c8cef25a00a346b569b6a5b57f00812ff6"
   },
   "statistics": {
     "messages": 3980,

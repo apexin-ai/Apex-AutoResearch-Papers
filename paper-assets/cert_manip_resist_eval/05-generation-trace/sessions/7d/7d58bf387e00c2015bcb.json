@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_error-filter-and-pipeline-check_20260522T161449_result.json",
     "occurrence": 1,
-    "bytes": 2421,
-    "sha256": "a3de9e4261023fc176d0bad6ef43a28860a83b1bc92e8bd02bb3a25f4ba4b954"
+    "bytes": 2420,
+    "sha256": "ccd477b0b920ee52ada9b2975f0ea5cd8f54a2d74f501ae6c39c6510362a791e"
   },
   "statistics": {
     "messages": 1,

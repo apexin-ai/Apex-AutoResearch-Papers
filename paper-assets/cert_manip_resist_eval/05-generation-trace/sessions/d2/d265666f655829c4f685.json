@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_data_cross-benchmark-iv-extract_20260523T161234_result.json",
     "occurrence": 1,
-    "bytes": 555,
-    "sha256": "7596fced31ead193ac1973d29a3a6a23c76a79373179d1f9323204f17dcda355"
+    "bytes": 554,
+    "sha256": "706a804f26ae1faf07a4b85010127524953dde1f93283f28259ac3c68b7e45d1"
   },
   "statistics": {
     "messages": 1,

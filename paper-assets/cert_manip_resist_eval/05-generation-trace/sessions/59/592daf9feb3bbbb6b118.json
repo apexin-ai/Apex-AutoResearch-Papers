@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_stochastic-dominance_20260523T001734_result.json",
     "occurrence": 1,
-    "bytes": 1047,
-    "sha256": "96d499af5d8a90889b67d3ac3b75458ce28a8e7efda509929cdf41f45f1d1a7c"
+    "bytes": 1046,
+    "sha256": "35f3830ac0cfd083ee016ebb3e090d29c9e3b5ca96592ffc2bd560f055ac8710"
   },
   "statistics": {
     "messages": 1,

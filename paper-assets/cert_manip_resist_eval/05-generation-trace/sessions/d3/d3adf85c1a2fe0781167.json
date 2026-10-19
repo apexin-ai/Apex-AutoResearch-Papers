@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_condition-dependent-dominance_20260522T173756_result.json",
     "occurrence": 1,
-    "bytes": 2380,
-    "sha256": "ce15c6a3a9848804ec53005f11354425f4a9e46b8b56478778ebb70db1fb3166"
+    "bytes": 2379,
+    "sha256": "12b41bae8f21be1cb923dd54d994c204e4dbfe2aaf97b18b26e91b9ca029ef8c"
   },
   "statistics": {
     "messages": 1,

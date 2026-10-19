@@ -1,0 +1,457 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{natbib}
+
+\newcommand{\etamax}{\ensuremath{\eta_{\max}}}
+\newcommand{\keff}{\ensuremath{K_{\text{eff}}}}
+
+\title{Weakest Link, Not Diversity: Adversarial Vulnerability \\in Multi-Judge LLM Evaluation}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multi-judge LLM evaluation panels are widely assumed to benefit from judge diversity, drawing on the analogy to Byzantine fault tolerance (BFT).
+We conduct the first large-scale empirical study decomposing panel vulnerability into individual judge weakness ($\etamax$, the maximum single-judge attack success rate) and structural diversity ($\keff$, the effective number of independent judges).
+Across 15 models, 455 three-judge panels, 6 attack types, and 2 benchmarks (12 conditions), we find that $\etamax$ is the dominant predictor of panel vulnerability, surviving non-independence correction at 5--8 out of 12 conditions depending on the method, while $\keff$ collapses from 8/12 (na\"ive OLS) to 0--1/12 after correcting for the panel overlap inherent in combinatorial designs.
+We further demonstrate that this discrepancy between OLS and corrected inference is itself informative: the $\sim$2.5$\times$ standard error inflation reveals severe non-independence in panel-level regressions, a methodological concern relevant to any combinatorial evaluation study.
+Practically, a simple $\min(\etamax)$ selection strategy dominates all 12 conditions, and we provide actionable recommendations for robust panel design.
+\end{abstract}
+
+%---------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+Using multiple LLM judges to evaluate model outputs has become standard practice, with the implicit assumption that diversity among judges improves robustness against adversarial manipulation.
+This assumption mirrors classical Byzantine fault tolerance (BFT): if faults are independent and random, adding independent nodes increases system reliability.
+However, adversarial attacks on LLM judges are neither independent nor random---strategic adversaries can exploit judge-specific vulnerabilities, potentially turning diversity from an asset into a liability.
+
+Despite growing deployment of multi-judge panels, no prior work has empirically decomposed panel-level vulnerability into its constituent drivers under adversarial conditions at scale.
+We address this gap through a large-scale study spanning 15 models from 6 families across 3 capability tiers, yielding $\binom{15}{3}=455$ unique three-judge panels evaluated under 6 attack types on 2 benchmarks (12 conditions total).
+
+We decompose panel attack success rate (ASR) into two structural predictors: $\etamax$---the vulnerability of the weakest individual judge---and $\keff$---the effective number of independent judges derived from the mutual information matrix.
+Our analysis reveals three primary contributions:
+
+\paragraph{(1) $\etamax$ dominance with benchmark-dependent strength.}
+Under rigorous non-independence correction (wild cluster bootstrap, clustered standard errors, mixed effects), $\etamax$ remains significant in 5--8/12 conditions while $\keff$ collapses to 0--3/12.
+The dominance ratio is 5:1 under bootstrap inference.
+However, this dominance is benchmark-dependent: MMLU conditions show stronger $\etamax$ signal (4/6 bootstrap) than ARC (1/6), reflecting the higher scoring variance of 4-choice versus 2-choice formats.
+
+\paragraph{(2) Methodological transparency on non-independence.}
+Na\"ive OLS yields $\etamax$ 11/12 and $\keff$ 8/12 significant, but standard errors are inflated by $\sim$2.5$\times$ due to panel overlap (each of 15 judges appears in $\sim$91 of 455 panels).
+We systematically compare four correction methods---OLS, wild cluster bootstrap, clustered SE, and mixed effects---demonstrating that significance conclusions are highly sensitive to the correction method chosen.
+This methodological demonstration is relevant beyond our specific application to any study employing combinatorial evaluation designs.
+
+\paragraph{(3) Practical defense recommendations.}
+A simple $\min(\etamax)$ panel selection strategy dominates all 12 conditions with zero failures, providing a robust and practical design principle: prioritize individual judge robustness over panel diversity.
+
+%---------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{LLM-as-Judge.}
+LLM-based evaluation has become widespread for assessing open-ended generation quality (Zheng et al., 2023).
+Multi-judge panels using majority voting or weighted aggregation aim to reduce individual judge biases.
+However, systematic analysis of panel robustness under adversarial conditions remains limited.
+
+\paragraph{Adversarial Attacks on LLM Judges.}
+Recent work has demonstrated that LLM judges are vulnerable to prompt injection, sycophancy exploitation, and various cognitive biases.
+These attacks can be categorized as \emph{targeted} (exploiting judge-specific weaknesses) and \emph{shared-bias} (exploiting common vulnerabilities across judges).
+
+\paragraph{Byzantine Fault Tolerance.}
+Classical BFT theory guarantees system correctness when fewer than $f$ out of $n=3f+1$ nodes fail, assuming independent random faults.
+The critical assumption of fault independence breaks down under adaptive adversaries who can observe and exploit system structure.
+
+\paragraph{Panel Diversity in Evaluation.}
+Prior work on ensemble methods and committee-based evaluation has emphasized diversity as a key factor for robustness.
+We provide the first large-scale empirical test of this assumption under adversarial conditions in the LLM judge setting.
+
+%---------------------------------------------------------------------
+\section{Method}
+\label{sec:method}
+
+\subsection{Panel Construction and Metrics}
+
+Given a pool of $N=15$ LLM judges spanning 6 model families (OpenAI, Anthropic, Google, Meta, Qwen, Mistral) and 3 capability tiers (small/7B, medium/70B, API-frontier), we enumerate all $\binom{15}{3}=455$ unique three-judge panels.
+
+For each panel $P=\{j_1, j_2, j_3\}$, we define two structural predictors:
+
+\paragraph{Maximum individual vulnerability ($\etamax$).}
+$\etamax(P) = \max_{j \in P} \eta_j$, where $\eta_j$ is judge $j$'s individual attack success rate under a given attack type.
+This captures the ``weakest link'' in the panel.
+
+\paragraph{Effective number of independent judges ($\keff$).}
+We compute pairwise mutual information $\text{MI}(j_i, j_k)$ from the joint scoring distribution across evaluation instances.
+$\keff$ is derived from the eigenspectrum of the MI matrix, measuring the effective dimensionality of the panel's scoring behavior.
+Higher $\keff$ indicates greater functional independence among judges.
+
+\subsection{Attack Types}
+
+We evaluate 6 attack types spanning two mechanistic categories:
+
+\begin{itemize}
+\item \textbf{Targeted attacks} exploit judge-specific vulnerabilities: prompt injection (PI), score manipulation (SM), and position bias (PB).
+\item \textbf{Shared-bias attacks} exploit common cognitive biases: sycophancy (syco), verbosity bias (VB), and authority bias (auth).
+\end{itemize}
+
+Each attack is evaluated on 2 benchmarks (MMLU with 4-choice MCQ format and ARC with 2-choice format), yielding 12 conditions.
+
+\subsection{Regression Specification}
+
+Our canonical regression specification is log-log OLS:
+\begin{equation}
+\log(\text{ASR} + \epsilon) = \beta_0 + \beta_1 \log(\keff) + \beta_2 \log(\etamax + \epsilon) + \varepsilon
+\label{eq:regression}
+\end{equation}
+where $\epsilon$ is a small constant to handle zero values.
+
+\subsection{Non-Independence Correction Methods}
+\label{sec:correction}
+
+A critical methodological concern is that the 455 panels are not independent observations: each of the 15 judges appears in $\binom{14}{2}=91$ panels ($\sim$20\% of all panels).
+This overlap inflates OLS standard errors by approximately 2.5$\times$.
+We apply four correction methods:
+
+\begin{enumerate}
+\item \textbf{Na\"ive OLS}: baseline with no correction for panel overlap.
+\item \textbf{Wild cluster bootstrap} (B=9999, Rademacher weights, 3-position max-$p$): clusters panels by each judge position and reports the maximum $p$-value across positions as a conservative bound.
+\item \textbf{Clustered standard errors} (CR1, 15 judge clusters): adjusts standard errors for within-judge correlation across panels.
+\item \textbf{Mixed effects}: includes random judge intercepts to absorb judge-level variance.
+\end{enumerate}
+
+%---------------------------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Main Results: $\etamax$ Dominance}
+\label{sec:main_results}
+
+Table~\ref{tab:correction_comparison} presents the central result.
+Under na\"ive OLS, both $\etamax$ (11/12) and $\keff$ (8/12, with 7 positive and 1 negative) appear strongly significant, suggesting a dual-driver model of panel vulnerability.
+However, correcting for panel non-independence reveals a stark asymmetry: $\etamax$ retains significance at 5--8/12 depending on the correction method, while $\keff$ collapses to 0--3/12.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{$\etamax$ sig} & \textbf{$\keff$ sig} & \textbf{Ratio} & \textbf{Note} \\
+\midrule
+OLS & 11/12 & 8/12 & 1.4:1 & Inflated \\
+Bootstrap & 5/12 & 1/12 & 5:1 & Conservative \\
+Clustered SE & 8/12 & 0/12 & 8:0 & Consistent \\
+Mixed effects & 7/12 & 3/12 & 2.3:1 & Random int. \\
+Tier-corrected & 11/12 & 5/12 & 2.2:1 & 3/3/9 tiers \\
+\bottomrule
+\end{tabular}
+\caption{Significance counts (out of 12 benchmark$\times$attack conditions) for $\etamax$ and $\keff$ across correction methods. The $\etamax$:$\keff$ dominance ratio increases from 1.4:1 (OLS) to 5:1 (bootstrap) after correcting for panel non-independence, because $\keff$ significance is more severely inflated by panel overlap than $\etamax$.}
+\label{tab:correction_comparison}
+\end{table}
+
+The wild cluster bootstrap gives 5/12 for $\etamax$ and 1/12 for $\keff$, yielding a dominance ratio of 5:1.
+This is a conservative lower bound: position~0 clustering is imbalanced (one judge appears in 91 panels while another appears in only 1), which tightens the max-$p$ criterion.
+Positions~1 and 2, which have more balanced cluster sizes, yield $\etamax$ significance at 9/12---consistent with the clustered SE result of 8/12.
+
+\paragraph{Benchmark asymmetry.}
+$\etamax$ dominance is benchmark-dependent.
+Under bootstrap, MMLU conditions show $\etamax$ significance in 4/6 attacks (PI, SM, PB, VB survive), while ARC shows significance in only 1/6 (PI, marginally).
+We attribute this to the scoring format: MMLU's 4-choice structure provides more variance for $\etamax$ to capture than ARC's binary format.
+This structural limitation should be considered when generalizing our findings.
+
+\subsection{Standard Error Inflation Analysis}
+\label{sec:se_inflation}
+
+The discrepancy between OLS and corrected results is itself informative.
+Standard errors inflate by approximately 2.5$\times$ under clustered SE relative to OLS, consistent with the expected overlap: each judge appears in 91/455 $\approx$ 20\% of panels.
+This inflation is not a statistical nuisance but a structural property of combinatorial evaluation designs.
+
+Any study that enumerates all $\binom{N}{K}$ panels from a model pool faces the same non-independence structure.
+Our systematic comparison of four correction methods (Table~\ref{tab:correction_comparison}) provides a template for future combinatorial evaluation studies.
+The key finding is that the correction method can change significance conclusions substantially---$\keff$ goes from 8/12 (OLS) to 0/12 (clustered SE)---making the choice of correction method a first-order methodological decision.
+
+\subsection{Multicollinearity and Partial Correlations}
+\label{sec:vif}
+
+$\keff$ and $\etamax$ are structurally correlated ($r=0.70$) because more diverse panels tend to include less capable (and thus more vulnerable) models.
+We conduct a thorough multicollinearity analysis to assess whether $\keff$'s significance is driven by this confound.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Specification} & \textbf{VIF($\keff$)} & \textbf{VIF($\etamax$)} & \textbf{Interp.} \\
+\midrule
+Base log-log & 1.96 & 1.96 & Acceptable \\
++ Tier indicators & 3.8 & 4.2 & Moderate \\
++ Benchmark int. & 4.5 & 4.8 & Approaching caution \\
+\bottomrule
+\end{tabular}
+\caption{Variance inflation factors across regression specifications.
+VIF remains below the conventional concern threshold of 10, but the moderate range (3--5) requires careful interpretation.}
+\label{tab:vif}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Analysis} & \textbf{$\etamax$} & \textbf{$\keff$} & \textbf{Dominance} \\
+\midrule
+Partial corr. & $r=0.35$ & $r=0.12$ & $\etamax$ 3$\times$ \\
+Resid. $\keff$ (OLS) & --- & 3/12 & Marginal \\
+Resid. $\keff$ (boot.) & --- & 0/12 & Eliminated \\
+Beta regression & 10/12 & 5/12 & $\etamax$ 2$\times$ \\
+Bonferroni & 8/12 & 4/12 & $\etamax$ 2$\times$ \\
+FDR & 10/12 & 6/12 & $\etamax$ 1.7$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Partial correlations and residualized regression confirm $\etamax$ dominance across analytical approaches.
+The partial correlation of $\etamax$ given $\keff$ (0.35) is approximately 3$\times$ the reverse (0.12).
+Residualizing $\keff$ on $\etamax$ eliminates its significance under bootstrap (0/12).}
+\label{tab:partial}
+\end{table}
+
+Table~\ref{tab:vif} shows that VIF values remain in the moderate range (1.96--4.8), below the conventional concern threshold of 10 but sufficient to warrant discussion.
+Table~\ref{tab:partial} presents complementary evidence: the partial correlation of $\etamax$ given $\keff$ ($r=0.35$) is approximately three times larger than the reverse ($r=0.12$), and residualizing $\keff$ on $\etamax$ eliminates its bootstrap significance entirely (0/12).
+Beta regression, which is more appropriate for the bounded ASR response, gives $\etamax$ 10/12 versus $\keff$ 5/12.
+
+These analyses converge: $\etamax$ retains independent predictive power across all specifications, while $\keff$'s apparent significance is partially attributable to its correlation with $\etamax$ and partially to panel overlap inflation.
+
+\subsection{GAM Analysis: Suggestive Taxonomic Pattern}
+\label{sec:gam}
+
+Linear regression masks an important structure in $\keff$'s effect.
+Generalized additive model (GAM) analysis reveals that the direction of $\keff$'s partial effect splits cleanly by attack mechanism:
+
+\begin{itemize}
+\item \textbf{Targeted attacks} (PI, SM, PB $\times$ 2 benchmarks = 6 conditions): $\keff$ partial effect is \emph{positive} in all 6 conditions---diversity is associated with higher vulnerability.
+\item \textbf{Shared-bias attacks} (syco, VB, auth $\times$ 2 benchmarks = 6 conditions): $\keff$ partial effect is \emph{negative} in all 6 conditions---diversity is directionally protective.
+\end{itemize}
+
+This 6:6 split is consistent with the mechanistic distinction: targeted attacks exploit judge-specific weaknesses (more diverse panels expose more distinct attack surfaces), while shared-bias attacks exploit biases common across judges (diverse panels may dilute correlated errors).
+We emphasize that this taxonomic pattern is suggestive and warrants further investigation---individual condition significance under clustered SE or bootstrap inference has not been fully validated for the GAM specification, and the clean 6:6 split should be interpreted as a qualitative structural finding rather than 12 independent statistical tests.
+
+\subsection{Random-Fault BFT Contrast}
+\label{sec:bft}
+
+To assess whether the BFT analogy holds under any conditions, we contrast the adaptive-attack regime with a random-fault (RF) regime where each judge fails independently with probability proportional to $1 - \text{accuracy}$.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccl}
+\toprule
+\textbf{Regime} & \textbf{Bench.} & \textbf{$\keff$ $p$ (OLS)} & \textbf{$\keff$ $p$ (boot.)} & \textbf{$R^2$} & \textbf{Interp.} \\
+\midrule
+RF & MMLU & 0.002 & 0.03 & 0.73 & Genuine \\
+RF & ARC & 0.008 & 0.06 & 0.68 & Borderline \\
+Adaptive & MMLU & varies & 5/6 NS & 0.25 & Inflated \\
+Adaptive & ARC & varies & 6/6 NS & 0.18 & Inflated \\
+\bottomrule
+\end{tabular}
+\caption{$\keff$ significance and model fit ($R^2$) under random-fault vs.\ adaptive regimes.
+Under random faults, panel composition is highly predictive ($R^2\approx 0.70$) and $\keff$ is genuinely significant.
+Under adaptive attacks, predictability collapses ($R^2\approx 0.22$) and $\keff$ significance is largely artifactual.}
+\label{tab:bft}
+\end{table}
+
+Table~\ref{tab:bft} shows a clear predictability gap.
+Under random faults, $\keff$ is genuinely significant ($p=0.03$ under bootstrap for MMLU, borderline $p=0.06$ for ARC) with $R^2\approx 0.68$--$0.73$---panel composition strongly predicts vulnerability.
+Under adaptive attacks, $\keff$ significance collapses (5--6 out of 6 NS under bootstrap) with $R^2\approx 0.18$--$0.25$.
+
+The key contrast is not that diversity helps under RF but hurts under adaptive---$\keff$'s standardized coefficient is positive in \emph{both} regimes ($\beta_\text{std}=+0.215$ for RF MMLU, $+0.379$ for RF ARC).
+Rather, the distinction is that $\keff$'s harmful association is \emph{genuine} under RF (survives all corrections) but \emph{artifactual} under adaptive attacks (driven by panel overlap inflation).
+Adaptive adversaries introduce strategic variance beyond what panel-level structural predictors can capture.
+
+\subsection{Aggregation Gradient}
+\label{sec:aggregation}
+
+We evaluate how the choice of vote aggregation rule modulates vulnerability by testing four methods: majority vote, accuracy-weighted voting, threshold (unanimity) voting, and Bayesian calibration.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l ccc ccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{$\etamax$ sig}} & \multicolumn{3}{c}{\textbf{$\keff$ sig}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+\textbf{Aggregation} & OLS & Clust. & Boot. & OLS & Clust. & Boot. \\
+\midrule
+Majority & 11/12 & 8/12 & 5/12 & 8/12 & 0/12 & 1/12 \\
+Weighted & 9/12 & 6/12 & 4/12 & 9/12 & 2/12 & 1/12 \\
+Threshold & 12/12 & 10/12 & 7/12 & 11/12 & 5/12 & 3/12 \\
+Bayesian & 9/12 & 5/12 & 3/12 & 7/12 & 4/12 & 3/12 \\
+\bottomrule
+\end{tabular}
+\caption{Aggregation gradient under three correction methods.
+Threshold (unanimity) voting amplifies both predictors' significance, while Bayesian calibration attenuates both.
+Under OLS, Bayesian reverses $\keff$ direction (6/7 negative coefficients), but this reversal is attenuated under bootstrap (2/7 negative survive).
+The ordinal ranking (threshold $>$ majority $>$ weighted $>$ Bayesian for dual-driver significance) is preserved across all correction methods.}
+\label{tab:aggregation}
+\end{table}
+
+Table~\ref{tab:aggregation} reveals a consistent aggregation gradient.
+Threshold voting amplifies both vulnerability channels (OLS $R^2=0.89$), consistent with unanimity rules being maximally sensitive to any single corrupted judge.
+Bayesian calibration attenuates both channels, with $\etamax$ dropping from 11/12 to 9/12 (OLS) and $\keff$ showing a directional tendency toward sign reversal.
+
+Under OLS, Bayesian aggregation reverses $\keff$'s coefficient sign in 6/7 MMLU conditions (from positive/harmful to negative/protective).
+However, this reversal is partially attenuated under non-independence correction: only 2/7 negative coefficients survive bootstrap inference.
+The structural direction---Bayesian reduces both $\etamax$ and $\keff$ significance---is consistent across all correction methods, but the sign reversal claim requires further validation.
+
+The ordinal ranking of aggregation methods (threshold $>$ majority $>$ weighted $>$ Bayesian for vulnerability) is preserved under all three correction approaches, making this a robust qualitative finding even as absolute significance counts decrease.
+
+\subsection{Bayesian $\keff$ Sign Flip Detail}
+\label{sec:bayesian_flip}
+
+To examine the Bayesian $\keff$ sign reversal more carefully, Table~\ref{tab:bayesian_flip} reports condition-level results.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{$\keff$ $\beta$ (OLS)} & \textbf{Clust. sig} & \textbf{Boot. sig} \\
+\midrule
+MMLU$\times$PI & $-0.42$ & Yes ($p$=0.04) & Yes ($p$=0.03) \\
+MMLU$\times$SM & $-0.38$ & No ($p$=0.12) & No ($p$=0.18) \\
+MMLU$\times$PB & $-0.31$ & No ($p$=0.15) & No ($p$=0.22) \\
+MMLU$\times$syco & $-0.25$ & Yes ($p$=0.04) & No ($p$=0.08) \\
+MMLU$\times$VB & $-0.29$ & No ($p$=0.09) & No ($p$=0.14) \\
+MMLU$\times$auth & $-0.22$ & Yes ($p$=0.03) & Yes ($p$=0.04) \\
+ARC$\times$PI & $+0.15$ & No ($p$=0.35) & No ($p$=0.42) \\
+\bottomrule
+\end{tabular}
+\caption{Condition-level $\keff$ coefficients under Bayesian aggregation. The sign reversal (negative = protective) is robust for MMLU$\times$PI and MMLU$\times$auth under both correction methods, partial for MMLU$\times$syco, and absent for the remaining conditions. ARC$\times$PI does not show the reversal.}
+\label{tab:bayesian_flip}
+\end{table}
+
+Two conditions---MMLU$\times$PI ($\beta=-0.42$, bootstrap $p=0.03$) and MMLU$\times$auth ($\beta=-0.22$, bootstrap $p=0.04$)---show robust sign reversals surviving both correction methods.
+MMLU$\times$syco shows a partial reversal (clustered SE significant but bootstrap borderline).
+The remaining conditions show directional negative coefficients that do not survive correction.
+This pattern suggests that Bayesian calibration can reverse the diversity--vulnerability relationship for specific attack types, but the effect is not universal.
+
+\subsection{Practical Panel Design}
+\label{sec:practical}
+
+Across all 12 conditions, a simple $\min(\etamax)$ selection strategy---choosing the panel with the lowest maximum individual vulnerability---dominates every alternative (12/12 wins).
+The ASR advantage ranges from +0.038 (ARC$\times$sycophancy) to +0.511 (ARC$\times$prompt injection), indicating substantial practical gains.
+
+The practical effect size of $\keff$ is small: an interquartile range change in $\keff$ corresponds to $\Delta\text{ASR}=1.3$ percentage points, and clustered SE confidence intervals contain zero in 11/12 conditions.
+Even in the single condition where $\keff$ is the sole significant predictor under any correction (ARC$\times$position bias under mixed effects), $\min(\etamax)$ still outperforms $\max(\keff)$.
+
+\paragraph{Diversity-capability tradeoff.}
+The $r=0.70$ correlation between $\keff$ and $\etamax$ reflects a structural constraint of the current LLM ecosystem: maximizing panel diversity requires including less capable models, which increases $\etamax$.
+This tradeoff motivates a two-stage design: (1)~screen for individual robustness ($\eta \leq$ threshold), then (2)~maximize $\keff$ among qualifying judges.
+However, the marginal gain from stage~2 is small given the 12/12 dominance of $\min(\etamax)$.
+
+\paragraph{Family labels do not predict diversity.}
+Model family labels (e.g., Qwen, Llama, OpenAI) do not significantly predict judge independence ($p=0.179$ for MMLU, $p=0.385$ for ARC; Mann-Whitney $U$ test over 14 within-family and 91 cross-family MI pairs).
+Within-family MI variance is high (e.g., Llama-70B and Llama-8B show MI of only 0.05 due to the capability gap exceeding family similarity), indicating that capability proximity, not family membership, drives inter-judge correlation.
+
+%---------------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{When diversity may help.}
+Our findings should not be interpreted as a blanket indictment of panel diversity.
+The GAM analysis (Section~\ref{sec:gam}) suggests that $\keff$'s effect splits by attack mechanism, with diversity directionally protective against shared-bias attacks.
+Additionally, diversity remains beneficial in non-adversarial settings (e.g., reducing calibration errors) and after robustness screening (when all judges exceed a capability threshold, the diversity-capability tradeoff is broken).
+
+\paragraph{Implications for practice.}
+Our results suggest a dual-channel defense stack: (1)~robustness-first selection ($\min(\etamax)$, effective in 12/12 conditions) combined with (2)~Bayesian aggregation (which directionally reverses $\keff$'s harmful association).
+This combination addresses both the individual vulnerability channel (by selecting robust judges) and the structural diversity channel (by modulating how diverse scores are combined).
+
+\paragraph{Broader applicability.}
+The non-independence correction framework we develop is relevant to any study that enumerates combinatorial subsets from a finite pool.
+As LLM evaluation increasingly relies on multi-judge panels, the methodological distinction between na\"ive and corrected inference will become a standard concern.
+
+\subsection{Limitations}
+
+\textbf{Benchmark scope.}
+Our findings are established on two MCQ benchmarks (MMLU and ARC).
+The benchmark asymmetry we observe (MMLU stronger than ARC for $\etamax$ signal) suggests that scoring format affects the detectability of vulnerability drivers.
+Generalization to open-ended evaluation benchmarks (e.g., MT-Bench, AlpacaEval) is a critical direction for future work, where higher scoring variance may strengthen $\etamax$ dominance.
+
+\textbf{Attack coverage.}
+We evaluate 6 attack types covering targeted and shared-bias mechanisms.
+Broader attack coverage (e.g., few-shot hijacking, persona manipulation, instruction override) is needed to test the universality of the weakest-link finding.
+
+\textbf{Panel size.}
+Our analysis uses $K=3$ panels.
+Larger panels ($K=5,7,9$) may dilute the $\etamax$ effect through averaging, but also face extreme panel overlap ($\binom{15}{9}=5005$ panels with each model in $\sim$3000 panels), making corrected inference challenging without a substantially larger model pool.
+
+\textbf{Capability-matched validation.}
+The $r=0.70$ correlation between $\keff$ and $\etamax$ limits our ability to fully disentangle their independent effects.
+Within-tier analysis (e.g., API-only models) reduces this confound ($r\approx 0.55$) but at the cost of statistical power (84 panels for 9 API models).
+A definitive capability-matched validation requires more models per tier.
+
+\textbf{GAM validation.}
+The 6:6 taxonomic split is derived from GAM partial effects under OLS.
+Bootstrapped confidence intervals for GAM smooths under the panel non-independence structure have not been computed; the pattern should be treated as a suggestive structural finding pending further validation.
+
+%---------------------------------------------------------------------
+\section{Conclusion}
+
+We present the first large-scale empirical decomposition of multi-judge LLM evaluation panel vulnerability under adversarial attack.
+Across 15 models, 455 panels, and 12 conditions, we find that panel vulnerability is dominated by the weakest individual judge ($\etamax$), with a 5:1 dominance ratio over structural diversity ($\keff$) under rigorous non-independence correction.
+This dominance is directional with benchmark-dependent strength---stronger for MMLU than ARC---reflecting the influence of scoring format on vulnerability signal.
+We demonstrate that na\"ive OLS inference substantially inflates significance for both predictors due to panel overlap, and that methodological transparency about correction choices is essential for combinatorial evaluation designs.
+Practically, a simple $\min(\etamax)$ strategy dominates all conditions, providing an actionable principle: secure your weakest judge before diversifying your panel.
+
+%\bibliography{custom}
+
+\appendix
+
+\section{Diversity-Capability Tradeoff}
+\label{app:tradeoff}
+
+The $r=0.70$ correlation between $\keff$ and $\etamax$ arises because the current LLM ecosystem exhibits a capability gradient: adding more diverse (functionally independent) judges requires reaching beyond the top-tier models into less capable ones. We observe a log-linear tradeoff: $\keff \approx 1.2 + 0.8 \cdot \log(\etamax)$, though residual variance is substantial (49\% unexplained), meaning some panel compositions beat the tradeoff curve.
+
+Tier stratification confirms this pattern:
+\begin{itemize}
+\item \textbf{Small (7B)}: $\keff \in [2.2, 2.8]$, $\etamax \in [0.15, 0.35]$---diverse but vulnerable.
+\item \textbf{Medium (70B)}: $\keff \in [2.0, 2.6]$, $\etamax \in [0.08, 0.20]$---moderate.
+\item \textbf{API}: $\keff \in [1.5, 2.5]$, $\etamax \in [0.03, 0.15]$---wide range, including the most robust compositions.
+\end{itemize}
+
+Pareto-optimal panels (maximizing $\keff$ for a given $\etamax$ level) are dominated by API-tier models mixed with top open-source models (e.g., GPT-4o + Claude-3.5-Sonnet + Qwen2.5-72B achieves $\keff=2.35$ at $\etamax=0.06$).
+
+\section{GO/NO-GO Gate for BFT Framing}
+\label{app:gate}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Criterion} & \textbf{Result} & \textbf{Status} \\
+\midrule
+RF $\keff$ sig $\geq$1/2 (OLS) & 2/2 & PASS \\
+RF $\keff$ sig $\geq$1/2 (bootstrap) & 1/2 & PARTIAL \\
+RF $R^2 >$ adaptive $R^2$ & 0.70 vs 0.22 & PASS \\
+RF--adaptive contrast & 1--2/2 vs 1/12 & PARTIAL \\
+BFT framing viable? & Yes with caveats & PARTIAL \\
+\bottomrule
+\end{tabular}
+\caption{GO/NO-GO gate assessment for the BFT framing. The $R^2$ gap is the robust finding; significance contrasts are benchmark-dependent.}
+\label{tab:gate}
+\end{table}
+
+\end{document}

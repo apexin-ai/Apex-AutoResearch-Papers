@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_ssh-diagnose-and-download_20260521T173107_result.json",
     "occurrence": 1,
-    "bytes": 1925,
-    "sha256": "dbd0ddfd9de9f1794c2f61a63048b86edb809676b018796d6b4dd93bf42733f6"
+    "bytes": 1924,
+    "sha256": "71a26c909edc722c17daa81fbf25b419f7f4bc52bc2c1a1f10fc52da3064ad2f"
   },
   "statistics": {
     "messages": 1,

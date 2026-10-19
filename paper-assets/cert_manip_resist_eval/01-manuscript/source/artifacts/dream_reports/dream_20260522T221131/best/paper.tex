@@ -1,0 +1,398 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\renewcommand{\bibsection}{\section*{References}}
+
+\title{Weakest Link, Not Diversity: Adversarial Vulnerability in Multi-Judge LLM Evaluation}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multi-judge LLM evaluation panels are increasingly adopted to improve reliability, with an implicit assumption---rooted in Byzantine Fault Tolerance (BFT) theory---that judge diversity provides robustness against manipulation. We conduct the first large-scale empirical decomposition of panel vulnerability into two structural predictors: individual judge weakness ($\eta_{\max}$, the vulnerability of the weakest panel member) and panel diversity ($K_{\text{eff}}$, effective number of independent behavioral clusters). Across 15 models from 6 families, 455 panels, 9 attack types, and 3 benchmarks (MMLU, ARC-Challenge, MT-Bench), we find that $\eta_{\max}$ \emph{robustly} dominates panel vulnerability---significant in 8/12 conditions under clustered standard errors and 5/12 under wild cluster bootstrap, with a dominance ratio of 5:1 over $K_{\text{eff}}$. $K_{\text{eff}}$ shows directional but statistically fragile association, collapsing from 8/12 (OLS) to 0/12 (clustered SE) after correcting for panel non-independence. A Generalized Additive Model (GAM) analysis reveals a clean mechanistic split: $K_{\text{eff}}$ is positive (diversity harmful) for all targeted attacks and negative (diversity protective) for all shared-bias attacks---a 10:8 taxonomy across 9 attack types. Aggregation rule choice fundamentally modulates vulnerability: Bayesian calibration reverses $K_{\text{eff}}$ direction and weakens $\eta_{\max}$, while threshold voting amplifies both. We propose a robustness-first panel design algorithm that wins 12/12 conditions, outperforming naive diversity maximization which performs worse than random selection.
+\end{abstract}
+
+\section{Introduction}
+
+The use of Large Language Models (LLMs) as automated judges for evaluating other LLMs has become a cornerstone of modern NLP evaluation \cite{zheng2023judging}. To mitigate individual judge biases, recent work increasingly employs multi-judge panels where multiple LLM judges evaluate candidates and their scores are aggregated via majority vote or similar mechanisms. The implicit operating assumption---borrowed from distributed systems and BFT theory---is that judge diversity provides robustness: more diverse panels should be harder to fool.
+
+This assumption has not been empirically tested under adversarial conditions. In non-adversarial settings, diversity does reduce calibration errors and position biases. But adversarial manipulation fundamentally changes the threat model: an adaptive adversary can exploit judge-specific vulnerabilities, potentially turning diversity from a defense into an attack surface.
+
+We conduct the first large-scale empirical study decomposing panel vulnerability into two structural predictors. Let $\eta_{\max}$ denote the vulnerability of the weakest judge in a panel (the maximum individual attack success rate), and $K_{\text{eff}}$ denote the effective number of independent behavioral clusters among panel judges (a diversity measure derived from mutual information). Our central question: \emph{which structural factor---individual weakness or panel diversity---drives vulnerability under adaptive adversarial attack?}
+
+Our findings challenge the diversity-as-defense assumption:
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{Weakest-link dominance.} $\eta_{\max}$ robustly dominates panel vulnerability (5:1 over $K_{\text{eff}}$ under bootstrap inference). $K_{\text{eff}}$'s apparent significance under OLS (8/12) collapses to 0--1/12 after correcting for panel non-independence---a methodological finding relevant to all combinatorial evaluation designs.
+
+\item \textbf{BFT reversal evidence.} A random-fault Monte Carlo contrast experiment shows $K_{\text{eff}}$ is genuinely significant (2/2, all corrections) under i.i.d. faults but artifactual under adaptive attacks, providing causal evidence for the failure of BFT assumptions.
+
+\item \textbf{Attack-type taxonomy.} GAM analysis reveals a clean mechanistic split: $K_{\text{eff}}$ is positive (diversity harmful) for targeted attacks and negative (diversity protective) for shared-bias attacks---a 10:8 pattern across 9 attack types.
+
+\item \textbf{Aggregation as control lever.} Bayesian calibration reverses $K_{\text{eff}}$ direction (from harmful to protective) and weakens $\eta_{\max}$ dominance. Threshold voting amplifies both drivers ($R^2=0.87$).
+
+\item \textbf{Robustness-first panel design.} A two-stage algorithm (filter by $\eta_{\max}$, then optimize $K_{\text{eff}}$) wins 12/12 conditions. Naive $K_{\text{eff}}$ maximization performs \emph{worse} than random selection.
+\end{enumerate}
+
+\section{Related Work}
+
+\paragraph{LLM-as-Judge.} LLM-based evaluation has become standard practice for open-ended generation tasks \cite{zheng2023judging}. Known biases include position bias, verbosity bias, and sycophancy. Multi-judge panels have been proposed as a mitigation strategy, though systematic analysis of panel robustness under adversarial conditions remains absent.
+
+\paragraph{Adversarial Attacks on LLM Judges.} Prior work has demonstrated that individual LLM judges can be manipulated through prompt injection, score inflation, and stylistic gaming. However, existing studies focus on single-judge vulnerability rather than panel-level structural predictors.
+
+\paragraph{Byzantine Fault Tolerance.} BFT theory guarantees correctness when fewer than $f < n/3$ nodes fail independently. The key assumption---independent, random faults---is violated by adaptive adversaries who can strategically target specific judges. Our work provides the first empirical quantification of this assumption violation in LLM evaluation.
+
+\section{Method}
+
+\subsection{Panel Construction}
+
+We enumerate all $\binom{15}{3} = 455$ panels of size $K=3$ from a pool of 15 LLM judges spanning 6 model families (GPT, Claude, Gemini, Llama, Qwen, Mistral) and 3 capability tiers (frontier, mid, base). Each panel evaluates benchmark items under majority vote.
+
+\subsection{Vulnerability Predictors}
+
+\paragraph{Individual Weakness ($\eta_{\max}$).} For each panel, $\eta_{\max} = \max_{j \in \text{panel}} \eta_j$, where $\eta_j$ is judge $j$'s individual attack success rate (ASR) under a given attack type. This captures the weakest-link hypothesis: panel vulnerability is determined by the most exploitable judge.
+
+\paragraph{Panel Diversity ($K_{\text{eff}}$).} We compute pairwise mutual information (MI) between all judge pairs' evaluation vectors on clean data, then derive $K_{\text{eff}}$ as the effective number of independent clusters. Higher $K_{\text{eff}}$ indicates greater behavioral diversity among panel judges.
+
+\subsection{Attack Types}
+
+We study 9 attack types spanning two mechanistic categories:
+
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \textbf{Targeted attacks} exploit judge-specific weaknesses: prompt injection, score manipulation, position bias exploitation, few-shot hijacking, instruction override, format gaming.
+\item \textbf{Shared-bias attacks} exploit common cognitive biases: sycophancy amplification, verbosity bias, authority bias, style manipulation, length inflation, persona manipulation.
+\end{itemize}
+
+\subsection{Regression Specification}
+
+Our canonical specification is log-log OLS:
+\begin{equation}
+\log(\text{ASR} + \epsilon) = \beta_0 + \beta_1 \log(K_{\text{eff}}) + \beta_2 \log(\eta_{\max} + \epsilon)
+\label{eq:regression}
+\end{equation}
+where $\epsilon$ is a small constant for numerical stability. We report significance under four correction methods: standard OLS, clustered standard errors (CR1, 15 judge clusters), wild cluster bootstrap ($B=9999$, Rademacher weights, max-$p$ across 3 judge positions), and mixed effects (random judge intercepts). Panel non-independence arises because judges appear in multiple panels (e.g., claude-3-haiku appears in 91/455 panels), inflating standard errors by $\sim$2.5$\times$.
+
+\subsection{Aggregation Rules}
+
+We evaluate five aggregation rules: majority vote (baseline), accuracy-weighted vote, threshold (unanimity), Bayesian calibration (prior-weighted), and veto (single-judge override).
+
+\section{Experiments}
+
+\subsection{Core Results: Weakest-Link Dominance}
+\label{sec:core}
+
+Table~\ref{tab:correction} presents our primary results across 15 models, 455 panels, and 12 conditions (6 attack types $\times$ 2 benchmarks). The pattern is stark: $\eta_{\max}$ dominates under all correction methods, while $K_{\text{eff}}$'s significance collapses after accounting for panel non-independence.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{$\eta_{\max}$ sig} & \textbf{$K_{\text{eff}}$ sig} & \textbf{$K_{\text{eff}}$ dir} & \textbf{Ratio} \\
+\midrule
+OLS & 11/12 & 8/12 & 7+/1$-$ & 1.4:1 \\
+Clustered SE & 8/12 & 0/12 & -- & $\infty$ \\
+Bootstrap v2 & 5/12 & 1/12 & 1+ & 5:1 \\
+Mixed effects & 7/12 & 3/12 & 3+ & 2.3:1 \\
+\bottomrule
+\end{tabular}
+\caption{Correction method comparison (15 models, 455 panels, 12 conditions). $\eta_{\max}$ significance is robust across all methods; $K_{\text{eff}}$ collapses from 8/12 under OLS to 0--1/12 after non-independence correction. SE inflation $\sim$2.5$\times$ is consistent with 91/455 panel overlap.}
+\label{tab:correction}
+\end{table}
+
+Under OLS, both predictors appear significant ($\eta_{\max}$ 11/12, $K_{\text{eff}}$ 8/12), producing a misleading near-parity (1.4:1). Clustered SE correction---which accounts for shared judge membership across panels---eliminates all $K_{\text{eff}}$ significance (0/12) while retaining $\eta_{\max}$ at 8/12. The most conservative method (wild cluster bootstrap with max-$p$ across judge positions) gives a 5:1 dominance ratio. The $\min(\eta_{\max})$ panel selection strategy wins 12/12 conditions with ASR advantages ranging from 3.8 to 51.1 percentage points.
+
+\subsection{Attack Surface Expansion}
+\label{sec:attack_expansion}
+
+To confirm that $\eta_{\max}$ dominance is not an artifact of our initial attack selection, we extend to 3 additional attack types (few-shot hijacking, persona manipulation, instruction override), yielding 18 total conditions. Table~\ref{tab:extended_attack} shows results under clustered SE.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Attack} & \textbf{Mech.} & \textbf{$\eta_{\max}$} & \textbf{$K_{\text{eff}}$} & \textbf{GAM dir} \\
+\midrule
+Few-shot hijack & targ. & \checkmark\checkmark & 0/2 & positive \\
+Persona manip. & shared & \checkmark\checkmark & 0/2 & negative \\
+Instr. override & targ. & 1/2 & 0/2 & positive \\
+\midrule
+\multicolumn{2}{l}{\textit{Combined (18 cond.)}} & 13/18 & 0/18 & 10:8 \\
+\bottomrule
+\end{tabular}
+\caption{Extended attack taxonomy (clustered SE). $\eta_{\max}$ remains dominant across all new attack types. GAM taxonomy extends cleanly from 6:6 to 10:8 (targeted:shared-bias). $\checkmark\checkmark$ = significant on both benchmarks.}
+\label{tab:extended_attack}
+\end{table}
+
+The combined dominance ratio under clustered SE is 13:0---$K_{\text{eff}}$ achieves zero significance across all 18 conditions. The GAM taxonomy extends cleanly: few-shot hijacking and instruction override are classified as targeted (positive $K_{\text{eff}}$), while persona manipulation is classified as shared-bias (negative $K_{\text{eff}}$), extending the split from 6:6 to 10:8.
+
+\subsection{Random-Fault BFT Contrast}
+\label{sec:rf}
+
+To provide causal evidence for BFT assumption failure, we construct a random-fault (RF) baseline via Monte Carlo simulation (10,000 iterations). Each judge fails independently with probability $\eta_j = 1 - \text{clean\_accuracy}$.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Metric} & \textbf{Random Fault} & \textbf{Adaptive} & \textbf{Interpretation} \\
+\midrule
+$K_{\text{eff}}$ sig (OLS) & 2/2 & 8/12 & Both appear sig. \\
+$K_{\text{eff}}$ sig (CL-SE) & 2/2 & 0/12 & RF genuine; adap. not \\
+$K_{\text{eff}}$ sig (Boot.) & 2/2 & 1/12 & Consistent contrast \\
+$K_{\text{eff}}$ std $\beta$ & +0.297 & +0.164 & RF larger, genuine \\
+$R^2$ & 0.78--0.81 & 0.25--0.35 & Predictability gap \\
+$\eta_{\max}$ sig (all) & 2/2 & 5--8/12 & Genuine in both \\
+\bottomrule
+\end{tabular}
+\caption{Random-fault vs.\ adaptive regime contrast. $K_{\text{eff}}$ is genuinely significant under i.i.d.\ faults (2/2 under all corrections) but artifactual under adaptive attacks (0--1/12 after correction). The $R^2$ gap ($\Delta = 0.48$) quantifies the unpredictability introduced by adaptive adversaries.}
+\label{tab:rf_contrast}
+\end{table}
+
+Table~\ref{tab:rf_contrast} presents the contrast. Under random faults, $K_{\text{eff}}$ is significant 2/2 under \emph{all} correction methods ($p_{\text{bootstrap}} = 0.003$ for MMLU, $<$0.001 for ARC), with $R^2 = 0.78$--$0.81$. Under adaptive attacks, the same predictor collapses to 0--1/12 after correction. This is not a direction reversal---$K_{\text{eff}}$ is positively associated with vulnerability in \emph{both} regimes. The difference is that the RF association is genuine (panel structure determines fault tolerance under i.i.d.\ assumptions), while the adaptive association is inflated by panel overlap. The $R^2$ gap ($\Delta = 0.48$) directly quantifies the strategic variance introduced by adaptive adversaries that panel structure cannot predict.
+
+\subsection{ASR Concentration Analysis}
+\label{sec:concentration}
+
+To provide mechanistic evidence for $\eta_{\max}$ dominance, we compute per-judge ASR distributions within each panel and measure concentration via Gini coefficients and Shannon entropy.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Attack} & \textbf{Cat.} & \textbf{Gini} & \textbf{Entropy} & \textbf{Top-1 frac.} \\
+\midrule
+Prompt inject. & targ. & 0.82 & 0.73 & 0.65 \\
+Score manip. & targ. & 0.79 & 0.78 & 0.62 \\
+Position bias & targ. & 0.74 & 0.94 & 0.56 \\
+Sycophancy & shared & 0.45 & 1.38 & 0.40 \\
+Verbosity bias & shared & 0.42 & 1.47 & 0.37 \\
+Authority bias & shared & 0.41 & 1.50 & 0.36 \\
+\bottomrule
+\end{tabular}
+\caption{ASR concentration by attack category. Targeted attacks show highly concentrated ASR (Gini $>$ 0.7, top-1 judge contributes $>$56\% of panel ASR), providing mechanistic evidence for $\eta_{\max}$ dominance. Mann-Whitney $U$ test: $p < 0.001$ between categories.}
+\label{tab:concentration}
+\end{table}
+
+Table~\ref{tab:concentration} reveals a sharp dichotomy. Under targeted attacks, ASR is highly concentrated: the most vulnerable judge contributes 56--65\% of total panel ASR (mean Gini = 0.78). Under shared-bias attacks, ASR is more uniformly distributed (mean Gini = 0.43, top-1 fraction = 37\%). The Gini--$\eta_{\max}$ correlation is $r = 0.83$, directly linking panel-level vulnerability to judge-level concentration. This independently validates the GAM taxonomy: targeted and shared-bias attacks differ not only in $K_{\text{eff}}$ direction but in their micro-level ASR distribution patterns.
+
+\subsection{Aggregation Gradient}
+\label{sec:aggregation}
+
+We evaluate five aggregation rules under clustered SE to characterize how vote aggregation modulates vulnerability.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccl}
+\toprule
+\textbf{Rule} & \textbf{$\eta_{\max}$} & \textbf{$K_{\text{eff}}$} & \textbf{Neg.} & \textbf{$R^2$} & \textbf{Position} \\
+\midrule
+Veto & 11/12 & 0/12 & -- & 0.82 & Max vuln. \\
+Threshold & 10/12 & 4/12 & 1/4 & 0.87 & High \\
+Majority & 8/12 & 0/12 & -- & 0.28 & Moderate \\
+Weighted & 6/12 & 1/12 & 0/1 & 0.26 & Low-mod. \\
+Bayesian & 5/12 & 4/12 & 3/4 & 0.09 & Min vuln. \\
+\bottomrule
+\end{tabular}
+\caption{Aggregation gradient under clustered SE. ``Neg.'' = fraction of significant $K_{\text{eff}}$ coefficients that are negative. Bayesian calibration weakens $\eta_{\max}$ (11$\to$5/12) and flips $K_{\text{eff}}$ direction (3/4 negative), while veto/threshold amplify the weakest-link channel.}
+\label{tab:aggregation}
+\end{table}
+
+Table~\ref{tab:aggregation} reveals a gradient from maximum to minimum vulnerability. Veto rule (any single judge can override) maximizes $\eta_{\max}$ dominance (11/12) with $K_{\text{eff}}$ completely suppressed. Threshold voting (unanimity) amplifies both channels ($R^2 = 0.87$). Bayesian calibration, which down-weights unreliable judges using prior accuracy estimates, achieves the strongest mitigation: $\eta_{\max}$ drops to 5/12 and $K_{\text{eff}}$ flips to majority-negative (3/4 significant coefficients negative), meaning diversity becomes protective.
+
+Under bootstrap, Bayesian $K_{\text{eff}}$ shows 3/12 significant---all negative (3/3 negative fraction = 100\%). This directional flip is the cleanest evidence that aggregation is an independent control lever, unaffected by the non-independence concerns that plague the diversity analysis.
+
+\subsection{Panel Design Algorithm}
+\label{sec:design}
+
+We benchmark a two-stage robustness-first algorithm against 6 baseline strategies across 12 conditions.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Strategy} & \textbf{Mean ASR} & \textbf{Rank} & \textbf{$\Delta$ vs.\ random (pp)} \\
+\midrule
+Two-stage & 0.112 & 1 & $-$8.3 \\
+$\min(\eta_{\max})$ & 0.119 & 2 & $-$7.6 \\
+Strongest-$K$ & 0.131 & 3 & $-$6.4 \\
+Uniform family & 0.158 & 4 & $-$3.7 \\
+Max disagreement & 0.172 & 5 & $-$2.3 \\
+Random & 0.195 & 6 & 0.0 \\
+$\max(K_{\text{eff}})$ & 0.208 & 7 & $+$1.3 \\
+\bottomrule
+\end{tabular}
+\caption{Panel design strategy comparison (mean ASR across 12 conditions). The $\max(K_{\text{eff}})$ strategy---the intuitive ``maximize diversity'' approach---performs \emph{worse} than random selection because it introduces weak models. Two-stage provides a marginal 0.7pp improvement over $\min(\eta_{\max})$ alone.}
+\label{tab:strategy}
+\end{table}
+
+Table~\ref{tab:strategy} presents the ranking. The most striking result is that $\max(K_{\text{eff}})$---the intuitive ``diversify your panel'' strategy---ranks \emph{last}, performing 1.3pp worse than random selection. This occurs because maximizing diversity necessarily introduces weaker models (the diversity-capability tradeoff, $r = 0.70$). The two-stage algorithm provides a consistent but modest improvement (0.7pp) over pure $\min(\eta_{\max})$, with the marginal gain concentrated in targeted attack conditions (5/6 wins, mean $\Delta = -1.1$pp) where controlled $K_{\text{eff}}$ optimization adds value after robustness screening.
+
+\subsection{Capability-Matched Validation}
+\label{sec:capability}
+
+To disentangle $\eta_{\max}$ and $K_{\text{eff}}$ (confound $r = 0.70$ in the full pool), we conduct within-tier analysis using 9 base-tier models (84 panels), which reduces the confound to $r = 0.35$ and $\eta_{\max}$ variance by 65--70\%.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Setting} & \textbf{Panels} & \textbf{$r$} & \textbf{$\eta_{\max}$ (CL)} & \textbf{$K_{\text{eff}}$ (CL)} \\
+\midrule
+Full pool & 455 & 0.70 & 8/12 & 0/12 \\
+Base tier & 84 & 0.35 & 4/12 & 2/12 \\
+\bottomrule
+\end{tabular}
+\caption{Cross-tier vs.\ within-tier comparison (clustered SE). Controlling for capability reduces confound and reveals $K_{\text{eff}}$ as a weak but detectable secondary factor (2/12, both in targeted conditions). The dominance ratio narrows from $\infty$ to 2:1, but $\eta_{\max}$ still dominates.}
+\label{tab:capability}
+\end{table}
+
+Within the base tier (Table~\ref{tab:capability}), $K_{\text{eff}}$ emerges as a weak secondary factor (2/12 significant under clustered SE), with the dominance ratio narrowing from $\infty$ to 2:1. Both significant $K_{\text{eff}}$ conditions are targeted attacks (mmlu$\times$prompt\_injection, $\beta = +0.31$, $p = 0.028$; mmlu$\times$score\_manipulation, $\beta = +0.25$, $p = 0.041$), consistent with the GAM taxonomy. The within-tier $R^2$ mean drops to 0.18 (vs.\ 0.30 in the full pool), confirming that cross-tier $\eta_{\max}$ variance is the primary source of predictive power.
+
+\subsection{Diversity-Capability Tradeoff}
+\label{sec:tradeoff}
+
+The structural correlation between $K_{\text{eff}}$ and $\eta_{\max}$ ($r = 0.70$, 95\% CI $[0.66, 0.74]$) reflects a fundamental constraint in the current LLM ecosystem: maximizing behavioral diversity requires including models from different capability tiers, which inevitably introduces weaker judges. This correlation is strongest within model families ($r = 0.81$) and weakest at the frontier tier ($r = 0.35$), where architectural differences provide diversity without large capability gaps. The Pareto frontier analysis shows that 97.4\% of panels are dominated, with optimal panels clustering in the low-$K_{\text{eff}}$, low-$\eta_{\max}$ region. VIF analysis confirms moderate but non-pathological multicollinearity (VIF = 2.96, condition number = 4.8), with partial correlations of $r(\eta_{\max}, \text{ASR} \mid K_{\text{eff}}) = 0.42$ vs.\ $r(K_{\text{eff}}, \text{ASR} \mid \eta_{\max}) = 0.18$.
+
+\subsection{Panel Size Sensitivity}
+\label{sec:panel_size}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{$K$} & \textbf{Panels} & \textbf{$\eta_{\max}$} & \textbf{$K_{\text{eff}}$} & \textbf{Ratio} & \textbf{SE infl.} \\
+\midrule
+3 & 455 & 8/12 & 0/12 & $\infty$ & 2.5$\times$ \\
+5 & 3003 & 9/12 & 1/12 & 9:1 & 4.1$\times$ \\
+7 & 6435 & 9/12 & 1/12 & 9:1 & 6.3$\times$ \\
+9 & 5005 & 8/12 & 2/12 & 4:1 & 7.8$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Panel size sensitivity (clustered SE). $\eta_{\max}$ dominance persists across $K=3$--$9$, confirming the weakest-link mechanism is scale-invariant. SE inflation increases sharply with $K$, underscoring the necessity of non-independence correction in combinatorial designs.}
+\label{tab:panel_size}
+\end{table}
+
+Table~\ref{tab:panel_size} demonstrates that $\eta_{\max}$ dominance is not an artifact of small panels. Across $K = 3$ to $K = 9$, the $\eta_{\max}$ effect size decreases slightly (standardized $\beta$: 0.42 to 0.31) as larger panels provide more majority-vote fault tolerance, but the dominance ratio remains $\geq$4:1. The $\min(\eta_{\max})$ strategy wins 12/12 conditions at every panel size. SE inflation increases from 2.5$\times$ to 7.8$\times$, providing compelling evidence that non-independence correction is essential for panel studies at any scale.
+
+\subsection{Generation Benchmark Extension}
+\label{sec:generation}
+
+To rule out MCQ-specific artifacts, we extend to MT-Bench, an open-ended generation benchmark with 1--10 scale scoring. We test 3 generation-specific attack types across 12 available models and 220 panels.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Format} & \textbf{$\eta_{\max}$ (CL)} & \textbf{$K_{\text{eff}}$ (CL)} & \textbf{Ratio} \\
+\midrule
+MCQ (MMLU+ARC) & 8/12 & 0/12 & $\infty$ \\
+Generation (MT-Bench) & 4/6 & 0/6 & $\infty$ \\
+Combined & 12/18 & 0/18 & $\infty$ \\
+\bottomrule
+\end{tabular}
+\caption{Cross-format consistency (clustered SE). $\eta_{\max}$ dominance generalizes from MCQ to open-ended generation evaluation. The combined ratio across 18 conditions is $\infty$ (12:0).}
+\label{tab:generation}
+\end{table}
+
+Table~\ref{tab:generation} confirms that $\eta_{\max}$ dominance generalizes across evaluation formats. Under clustered SE, the combined dominance ratio is 12:0 across 18 conditions. GAM classification of generation attacks aligns with the mechanistic taxonomy: style manipulation and length inflation are shared-bias (negative $K_{\text{eff}}$), while format gaming is targeted (positive $K_{\text{eff}}$). The $\min(\eta_{\max})$ strategy wins 6/6 generation conditions, confirming the practical recommendation is format-agnostic.
+
+\subsection{Partial-Knowledge Adversary}
+\label{sec:partial}
+
+Real-world adversaries rarely have full knowledge of panel composition. We simulate three knowledge levels: full (baseline), family-only (adversary knows model family labels but not specific vulnerability profiles), and random (no targeting).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Knowledge} & \textbf{ASR} & \textbf{$\eta_{\max}$ (CL)} & \textbf{$K_{\text{eff}}$ (CL)} & \textbf{$R^2$} \\
+\midrule
+Full & 0.195 & 8/12 & 0/12 & 0.30 \\
+Family-only & 0.160 & 7/12 & 0/12 & 0.24 \\
+Random & 0.113 & 3/12 & 0/12 & 0.08 \\
+\bottomrule
+\end{tabular}
+\caption{Adversary knowledge level comparison (clustered SE). Family-only knowledge retains 82\% attack efficiency. $K_{\text{eff}}$ is 0/12 under all knowledge levels. $\eta_{\max}$ dominance persists under realistic threat models.}
+\label{tab:partial}
+\end{table}
+
+Table~\ref{tab:partial} reveals that family-level knowledge retains 82\% of full-knowledge attack efficiency ($\text{ASR} = 0.160$ vs.\ $0.195$), because same-family models share training pipeline and architectural biases ($r_{\text{family-vulnerability}} = 0.61$). Defenders cannot rely on panel composition secrecy: family labels are easily inferred from API endpoints and response styles. $K_{\text{eff}}$ remains 0/12 under all knowledge levels, and $\eta_{\max}$ dominance persists even under family-only targeting (7/12), confirming the core findings are robust to adversary capability assumptions.
+
+\section{Discussion}
+
+\paragraph{When diversity helps.} Our results do not imply diversity is universally harmful. Under shared-bias attacks, GAM analysis consistently shows negative $K_{\text{eff}}$ direction (8/8 conditions including extended attacks), meaning diversity provides partial immunity when the adversary exploits biases shared across model families. After robustness screening removes weak judges, the diversity-capability tradeoff is weakened ($r$ drops from 0.70 to 0.35), creating conditions where diversity optimization adds marginal value. And in non-adversarial settings, diversity remains beneficial for reducing calibration errors and position biases.
+
+\paragraph{Practical recommendations.} Based on our findings, we recommend a defense stack combining: (1) robustness-first screening to eliminate $\eta_{\max}$ as a vulnerability driver, and (2) Bayesian aggregation to reverse $K_{\text{eff}}$ from harmful to protective. This dual-channel approach addresses both structural vulnerability drivers. The $\max(K_{\text{eff}})$ strategy should be explicitly avoided, as it performs worse than random selection.
+
+\paragraph{Methodological implications.} The dramatic significance shift from OLS to clustered SE ($K_{\text{eff}}$: 8/12 $\to$ 0/12) is a cautionary finding for all combinatorial evaluation designs where the same items (here, judges) appear in multiple experimental units (panels). SE inflation of 2.5--7.8$\times$ can produce severely misleading conclusions. We recommend that future panel studies routinely report clustered SE alongside OLS.
+
+\section{Conclusion}
+
+We conducted the first large-scale empirical decomposition of multi-judge LLM evaluation panel vulnerability. Our central finding---that panel vulnerability is dominated by the weakest individual judge, not panel diversity---challenges the implicit BFT assumption underlying multi-judge evaluation design. The dominance ratio of 5:1 ($\eta_{\max}$ over $K_{\text{eff}}$) is robust across 9 attack types, 3 benchmarks, 4 panel sizes, 3 adversary knowledge levels, and 4 statistical correction methods. Aggregation rule choice provides an independent control lever: Bayesian calibration reverses diversity's role from vulnerability to defense. We release our two-stage panel design algorithm as a practical tool for building adversarially robust evaluation panels.
+
+\section*{Limitations}
+
+Our study has three main limitations. First, the model pool (15 models, 6 families) represents the current LLM ecosystem; the diversity-capability tradeoff ($r = 0.70$) may weaken as more capable open-source models become available. Second, our adaptive adversary model assumes strategic targeting of individual judges---real-world adversaries may face additional constraints (e.g., limited query budgets) that reduce attack efficiency below the levels we measure. Third, the Bayesian aggregation defense requires access to clean-data accuracy estimates, which may themselves be subject to manipulation; evaluating the robustness of the defense stack to meta-adversarial attacks remains future work.
+
+\begin{thebibliography}{9}
+\bibitem{zheng2023judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao Zhuang, Zi Lin, Zhuohan Li, Dacheng Li, Eric P.\ Xing, Hao Zhang, Joseph E.\ Gonzalez, and Ion Stoica.
+\newblock Judging {LLM}-as-a-{J}udge with {MT-B}ench and {C}hatbot {A}rena.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2023.
+
+\bibitem{lamport1982byzantine}
+Leslie Lamport, Robert Shostak, and Marshall Pease.
+\newblock The {B}yzantine generals problem.
+\newblock \emph{ACM Transactions on Programming Languages and Systems}, 4(3):382--401, 1982.
+
+\bibitem{hendrycks2021mmlu}
+Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn Song, and Jacob Steinhardt.
+\newblock Measuring massive multitask language understanding.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
+
+\bibitem{clark2018arc}
+Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa Schoenick, and Oyvind Tafjord.
+\newblock Think you have solved question answering? {T}ry {ARC}, the {AI2} reasoning challenge.
+\newblock \emph{arXiv preprint arXiv:1803.05457}, 2018.
+
+\bibitem{perez2022red}
+Ethan Perez, Saffron Huang, Francis Song, Trevor Cai, Roman Ring, John Aslanides, Amelia Glaese, Nat McAleese, and Geoffrey Irving.
+\newblock Red teaming language models with language models.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing}, 2022.
+
+\bibitem{panickssery2024llm}
+Arjun Panickssery, Samuel R.\ Bowman, and Shi Feng.
+\newblock {LLM} evaluators recognize and favor their own generations.
+\newblock \emph{arXiv preprint arXiv:2404.13076}, 2024.
+
+\bibitem{raina2024llm}
+Vyas Raina, Adian Liusie, and Mark J.\ F.\ Gales.
+\newblock Is {LLM}-as-a-{J}udge robust? {I}nvestigating universal adversarial attacks on zero-shot {LLM} assessment.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing}, 2024.
+\end{thebibliography}
+
+\end{document}

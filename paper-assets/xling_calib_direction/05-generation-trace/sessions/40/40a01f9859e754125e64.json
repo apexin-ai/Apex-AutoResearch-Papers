@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40a01f9859e754125e64",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops download llama4 scout",
+  "task_key": "worker_ops_download_llama4_scout_20260520T211009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_llama4_scout_20260520T211009_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "fb56e858937b657933a8d1de817e40dee217f1b93314c680dc1ce1995269c5fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1.8GB 下载完成（~3 min），聚合速度约 10 MB/s，修正预估约 **5-6 小时**完成。\n\n下载稳定运行中，进程 PID 27560。后续可用以下命令检查进度：\n\n```bash\n# 查看已下载大小\ndu -sh /root/autodl-tmp/models/Llama4Scout/\n\n# 查看下载日志\ntail -20 /root/autodl-tmp/download_llama4_scout.log\n\n# 检查进程是否存活\nps -p 27560 -o pid=\n```\n\n如需继续轮询，告诉我。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-llama4-scout.md"
+}

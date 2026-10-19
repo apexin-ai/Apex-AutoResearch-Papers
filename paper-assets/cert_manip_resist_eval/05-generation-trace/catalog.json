@@ -7,7 +7,7 @@
     "messages": 97735,
     "user_turns": 2743,
     "tool_calls": 39456,
-    "unparsed_lines": 382,
+    "unparsed_lines": 386,
     "worker": 381,
     "result": 358,
     "conversation": 137,
@@ -12646,7 +12646,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/experiment-fp16-attack-eval.md",
       "path": "sessions/85/857419452dadbe140e24.json"
     },
@@ -14302,7 +14302,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/ops-fig1-redesign-v3.md",
       "path": "sessions/a3/a3725d75eeb099772baf.json"
     },
@@ -15076,7 +15076,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/paper-figure-fig1-paperbanana.md",
       "path": "sessions/2b/2b154127d7d75197f799.json"
     },
@@ -15094,7 +15094,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/paper-figure-fig1-paperbanana-retry.md",
       "path": "sessions/37/3793d7a2d8b35d8bc9f3.json"
     },

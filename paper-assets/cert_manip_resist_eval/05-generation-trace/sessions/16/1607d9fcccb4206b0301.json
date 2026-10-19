@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_dl-mistral-resume_20260521T202809_result.json",
     "occurrence": 1,
-    "bytes": 594,
-    "sha256": "7f8b3dcb972a3fcc76d19774caaceedfc7deb12a7885a92060116d1a94e6259f"
+    "bytes": 593,
+    "sha256": "fb117445d645167bd5bc989000da886c67b3a7a20cd0bb5039a97d4b8825f327"
   },
   "statistics": {
     "messages": 1,

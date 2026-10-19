@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_server-data-backup_20260523T201307_result.json",
     "occurrence": 1,
-    "bytes": 319,
-    "sha256": "8efec90c0441aaecfc20d7f8c324e7521db6ae474dc4ed16937fccccbdb6238b"
+    "bytes": 318,
+    "sha256": "3c6fbdabff4f413ae8217eba2383b27e0566f1096f5475620c0e20d68524cac0"
   },
   "statistics": {
     "messages": 1,

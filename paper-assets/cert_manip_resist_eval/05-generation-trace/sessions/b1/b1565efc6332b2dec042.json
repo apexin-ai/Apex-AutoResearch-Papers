@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_openrouter-verify_20260522T125727_result.json",
     "occurrence": 1,
-    "bytes": 1662,
-    "sha256": "77581c70641ec30430ffe8a4c887bc1cfd909380d18e877f3fb31ed703764973"
+    "bytes": 1661,
+    "sha256": "c0be6adc8be1503510926726d1ee149d3c333aa0bf5f484b755dfa9609e56dd7"
   },
   "statistics": {
     "messages": 1,

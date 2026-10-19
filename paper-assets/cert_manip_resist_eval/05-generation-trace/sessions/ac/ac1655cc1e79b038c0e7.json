@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_step1-autoscale-scoring_20260522T132636_result.json",
     "occurrence": 1,
-    "bytes": 1118,
-    "sha256": "bfb6f79cfe41fbba4e4330212cb7b7107e5bb17399acd476719985d35e94792b"
+    "bytes": 1117,
+    "sha256": "0b10085c87274b85c43040ff32d913d99bfd1622eb5407d63f13b13086879d14"
   },
   "statistics": {
     "messages": 1,

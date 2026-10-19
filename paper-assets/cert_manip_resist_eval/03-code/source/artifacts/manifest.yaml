@@ -1,0 +1,981 @@
+- id: art_20260521_0c2e22
+  name: T1 SDPI Parallel Channel Composition
+  type: report
+  description: 'T1 theory: serial vs parallel channel composition, K_eff as upper
+    bound of exact Gaussian value, defense gap via Pinsker+Hoeffding'
+  path: projects/cert_manip_resist_eval/artifacts/_project/report/t1_sdpi_parallel.md
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T20:24:52.856047+00:00'
+  tags:
+  - theory
+  - T1
+  - SDPI
+  - K_eff
+- id: art_20260521_84825b
+  name: T3 PEG Truthfulness Degradation
+  type: report
+  description: 'T3 theory: PEG incentive/operational degradation ε(ρ)=1-√(1-ρ²), Proposition
+    1&2 (sketch proof), practical threshold ρ<0.44'
+  path: projects/cert_manip_resist_eval/artifacts/_project/report/t3_peg_degradation.md
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T20:24:56.261917+00:00'
+  tags:
+  - theory
+  - T3
+  - PEG
+  - degradation
+- id: art_20260522_6e6108
+  name: plan009_vif_multicollinearity_analysis
+  type: report
+  description: 'VIF + multicollinearity diagnostics for 12 regression conditions.
+    Confirms K_eff non-significance is real (not collinearity artifact): residualized
+    K_eff 1/12 sig, η_max Bonferroni 3/12 sig, Beta vs OLS 11/12 concordant.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/report/plan009_vif_analysis_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:04:33.505182+00:00'
+  tags:
+  - plan009
+  - vif
+  - multicollinearity
+  - statistics
+- id: art_20260522_e0a7f8
+  name: plan003_random_fault_simulation
+  type: report
+  description: Random-fault vs adaptive attack comparison. Random-fault K_eff also
+    0/12 sig (structural collinearity), but R² much higher (0.55-0.95 vs 0.14-0.73)
+    — adaptive attacks introduce unexplained variance beyond K_eff/η_max.
+  path: projects/cert_manip_resist_eval/artifacts/_project/report/plan003_random_fault_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:05:07.063344+00:00'
+  tags:
+  - plan003
+  - random-fault
+  - bft
+  - simulation
+- id: art_20260522_de722c
+  name: plan001_api_model_availability
+  type: data
+  description: API endpoint model availability test. 13 API models available (GPT-4o/4.1/5.x,
+    Claude, Gemini) + 6 local AWQ models = 19 total model pool.
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/plan001_api_model_availability.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:08:40.335042+00:00'
+  tags:
+  - plan001
+  - api
+  - models
+- id: art_20260522_bfe2e7
+  name: plan001_api_adapter
+  type: report
+  description: 'API Judge Service adapter + 9-model validation. All 9/9 pass. Fixes:
+    gpt-5.5 no temp=0, gemini-2.5-pro long output repair. Cost est ~$50-70.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/report/plan001_step0_adapter_validation.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:22:04.288378+00:00'
+  tags:
+  - plan001
+  - step0
+  - api-adapter
+- id: art_20260522_8f9b62
+  name: 'Theorem 1: Weakest-Link Monotonicity Proof'
+  type: paper
+  description: Complete formal proof that panel ASR under majority vote is monotonically
+    non-decreasing in η_max. Covers K=3 explicit case, general K independent case,
+    and general K with correlated judges + adaptive adversary. Includes tightness
+    analysis, bounds, and panel design corollary.
+  path: projects/cert_manip_resist_eval/artifacts/_project/paper/theorem1_proof.tex
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T11:20:41.519102+00:00'
+  tags:
+  - theory
+  - theorem1
+  - weakest-link
+  - monotonicity
+  - proof
+- id: art_20260522_1c81c1
+  name: theorem1_weakest_link_proof
+  type: paper
+  description: 'Formal proof of Theorem 1 (Weakest-Link Theorem): Panel ASR is monotonically
+    increasing in η_max under correlated judges and adaptive adversaries. Includes
+    Lemma 1-2 (independent case), main theorem (correlated+adaptive), tightness (ASR=Θ(η_max^t)),
+    and robustness-first corollary.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/paper/theorem1_proof_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T11:32:30.725731+00:00'
+  tags:
+  - theorem1
+  - proof
+  - weakest-link
+  - theory
+- id: art_20260522_5b7243
+  name: plan010_aggregation_analysis
+  type: report
+  description: 'Non-majority-vote aggregation experiment. 4 methods × 12 conditions
+    × 20 panels. Key finding: Bayesian aggregation partially breaks weakest-link (η_max
+    3/12 sig vs majority 8/12). Threshold voting makes K_eff positively significant
+    (diversity harmful under unanimity).'
+  path: projects/cert_manip_resist_eval/artifacts/_project/report/plan010_aggregation_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T12:13:42.002724+00:00'
+  tags:
+  - plan010
+  - aggregation
+  - theorem1
+  - weakest-link
+- id: art_20260522_40f939
+  name: plan010_fdr_cv_analysis
+  type: report
+  description: 'Plan 010 FDR correction (48 tests) + Bayesian 5-fold CV. FDR-48: majority
+    η_max 5/12, bayesian 2/12. CV confirms no info leakage (3/12 unchanged). Robust.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/report/plan010_fdr_cv_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T12:22:41.180235+00:00'
+  tags:
+  - plan010
+  - fdr
+  - cross-validation
+  - bayesian
+- id: art_20260522_64cb5f
+  name: plan010_threshold_keff_positive_fdr
+  type: data
+  description: FDR-48 corrected analysis of threshold_vote K_eff positive direction.
+    8/12 conditions show FDR-significant positive K_eff under threshold aggregation.
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/results_plan010_threshold_keff_positive_fdr.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T12:48:01.048679+00:00'
+  tags:
+  - plan010
+  - fdr
+  - threshold_vote
+  - keff
+  - statistics
+- id: art_20260522_fa9b03
+  name: references.bib
+  type: paper
+  description: 'Verified BibTeX bibliography for EMNLP 2026 paper. 29 entries across
+    3 categories: 12 from literature_map.yaml, 10 classic references, 7 supplementary
+    references. All verified via WebSearch.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/paper/references.bib
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:06:20.518177+00:00'
+  tags:
+  - bibliography
+  - references
+  - paper
+- id: art_20260522_5d0b42
+  name: 7model_preview_results
+  type: data
+  description: '7-model preview pipeline results: confound, regression, random-fault
+    (7 models, 35 panels, 12 conditions)'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/7model_preview_results.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:09:56.375296+00:00'
+  tags: []
+- id: art_20260522_afad71
+  name: 7model_confound_scatter
+  type: chart
+  description: K_eff vs eta_max confound scatter (7 models, 35 panels, 12 conditions)
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/7model_confound_scatter_location.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:09:58.215244+00:00'
+  tags: []
+- id: art_20260522_e6364c
+  name: fig1_robustness_comparison
+  type: chart
+  description: 'Fig 1: η_max vs K_eff FDR significance across 4 correction methods
+    (OLS/Bootstrap/Clustered SE/Mixed Effects). Shows η_max dominant (5-11/12) vs
+    K_eff fragile (0-1/12 under robust methods).'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig1_robustness_comparison.pdf
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-22T21:10:57.120256+00:00'
+  tags:
+  - paper
+  - figure
+  - robustness
+  - eta_max
+  - keff
+- id: art_20260522_0a521c
+  name: fig2_gam_keff_split
+  type: chart
+  description: 'Fig 2: GAM K_eff 6:6 attack-type split. Targeted attacks (prompt injection,
+    score manipulation, position bias) show positive K_eff (diversity harmful); shared-bias
+    attacks (sycophancy, verbosity, authority) show negative K_eff (diversity protective).'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig2_gam_keff_split.pdf
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-22T21:11:00.081906+00:00'
+  tags:
+  - paper
+  - figure
+  - gam
+  - attack_taxonomy
+  - keff
+- id: art_20260522_99976f
+  name: fig3_aggregation_gradient
+  type: chart
+  description: 'Fig 3: Aggregation gradient — K_eff β across 4 methods (Majority→Weighted→Threshold→Bayesian).
+    Shows Bayesian reversal: K_eff flips from positive (7+/1−) to negative (1+/6−).'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig3_aggregation_gradient.pdf
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-22T21:21:18.958073+00:00'
+  tags:
+  - paper
+  - figure
+  - aggregation
+  - bayesian
+  - keff
+- id: art_20260522_db2c58
+  name: fig4_panel_design
+  type: chart
+  description: 'Fig 4: Panel design strategy comparison — min(η_max) achieves lowest
+    ASR in 12/12 conditions vs Random and max(K_eff). Most points at ~0 ASR.'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig4_panel_design.pdf
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-22T21:21:21.531574+00:00'
+  tags:
+  - paper
+  - figure
+  - panel_design
+  - eta_max
+  - weakest_link
+- id: art_20260523_3d2ead
+  name: partial_knowledge_adversary
+  type: data
+  description: 'Partial-Knowledge Adversary Ablation: oracle (3/3 judges known) vs
+    partial-knowledge (2/3) comparison. η_max dominance amplified (+52% β), K_eff
+    drops (8/12→5/12 FDR sig). Robust to relaxed threat model.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/partial_knowledge_adversary.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T00:52:45.328758+00:00'
+  tags:
+  - ablation
+  - partial-knowledge
+  - threat-model
+  - plan001
+- id: art_20260523_b4f19a
+  name: fig_framework
+  type: chart
+  description: 'Section 3 framework concept figure: Panel Construction → Adversary
+    Model → Vulnerability Metrics → Aggregation. 4-module left-to-right flow with
+    color coding (blue/red/gray/green).'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig_framework.png
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-23T00:55:39.397063+00:00'
+  tags:
+  - figure
+  - framework
+  - methodology
+  - concept-diagram
+- id: art_20260523_fae934
+  name: K=5 Wild Cluster Bootstrap Results
+  type: data
+  description: K=5 wild cluster bootstrap (B=9999, 5-position max-p). K_eff 7/12 FDR
+    sig (all positive), eta_max 0/12. Dramatic K-dependent reversal from K=3.
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k5_wild_cluster_bootstrap_summary.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T00:56:01.646529+00:00'
+  tags:
+  - bootstrap
+  - k5
+  - panel_analysis
+  - plan001
+- id: art_20260523_1f7de8
+  name: K=7 Wild Cluster Bootstrap Results (B=9999)
+  type: data
+  description: 'K=7 wild cluster bootstrap with 7-position max-p, B=9999, 6435 panels.
+    Results: K_eff 5/12 FDR sig (all positive), η_max 0/12. Validation: arc×sycophancy
+    K_eff β=-0.176 (negative, consistent with K=3/K=5).'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k7_wild_bootstrap_results.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T01:12:12.610534+00:00'
+  tags:
+  - bootstrap
+  - k7
+  - wild-cluster
+  - plan001
+- id: art_20260523_828d2f
+  name: partial_knowledge_clustered_se
+  type: data
+  description: 'Partial-knowledge (2/3 judges) + clustered SE analysis: η_max 12/12
+    FDR sig, K_eff 0/12, mean β_η=0.589'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/partial_knowledge_clustered_se.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T01:27:17.673756+00:00'
+  tags:
+  - partial_knowledge
+  - clustered_se
+  - robustness
+  - plan001
+- id: art_20260523_ac1ce3
+  name: k5_gam_analysis
+  type: data
+  description: 'K=5 GAM analysis results: K_eff direction split 7+/5- (vs K=3 6+/6-).
+    Only mmluxsycophancy flipped from negative to positive. GAM+tier split: 4+/8-.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k5_gam_analysis.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T01:28:34.418900+00:00'
+  tags:
+  - k5
+  - gam
+  - split
+  - keff
+- id: art_20260523_fc4280
+  name: k5_panel_selection
+  type: data
+  description: 'K=5 panel selection strategy comparison: min(η_max) vs max(K_eff)
+    vs min(K_eff) vs random across 12 conditions. Key finding: min(η_max) and min(K_eff)
+    converge to identical panels — both achieve avg ASR 0.077, far below random (0.109)
+    and max(K_eff) (0.194).'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k5_panel_selection.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T03:13:10.777509+00:00'
+  tags:
+  - panel_selection
+  - K5
+  - strategy_comparison
+- id: art_20260523_c49b17
+  name: k5_aggregation_analysis
+  type: data
+  description: 'K=5 aggregation gradient analysis: 4 methods x 12 conditions, log-log
+    OLS with BH FDR. Key finding: Bayesian K_eff reversal disappears at K=5 (0 neg
+    vs K=3''s 6 neg).'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k5_aggregation_analysis.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T03:15:53.173998+00:00'
+  tags:
+  - k5
+  - aggregation
+  - keff
+  - bayesian
+  - plan001
+- id: art_20260523_09d62f
+  name: k5_panel_selection_bootstrap
+  type: data
+  description: 'K=5 panel selection bootstrap CIs (B=9999). Sample-level and strategy-level
+    bootstrap for 4 strategies across 12 conditions. Pairwise significance tests:
+    min(η_max) vs random 10/12 sig, min(K_eff) vs random 10/12 sig, min(η_max) vs
+    max(K_eff) 11/12 sig.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k5_panel_selection_bootstrap.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:23:43.585508+00:00'
+  tags:
+  - bootstrap
+  - panel_selection
+  - K5
+  - significance
+- id: art_20260523_65f213
+  name: k5_aggregation_bootstrap
+  type: data
+  description: K=5 aggregation wild cluster bootstrap (B=9999) — 4 methods × 12 conditions.
+    Majority 7/12, Weighted 9/12, Threshold 10/12, Bayesian 0/12. No Bayesian K_eff
+    reversal.
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k5_aggregation_bootstrap.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:33:36.384628+00:00'
+  tags:
+  - bootstrap
+  - k5
+  - aggregation
+  - wild-cluster
+  - plan001
+- id: art_20260523_b6d10e
+  name: k4_wild_cluster_bootstrap
+  type: data
+  description: 'K=4 wild cluster bootstrap results (B=9999, 4-position max-p, supermajority
+    3/4 vote). K_eff FDR sig: 2/12, eta_max FDR sig: 1/12. Transition point between
+    K=3 (eta_max dominated) and K=5 (K_eff dominated).'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k4_wild_cluster_bootstrap.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:41:42.036207+00:00'
+  tags:
+  - bootstrap
+  - k4
+  - wild-cluster
+  - cross-k
+  - plan001
+- id: art_20260523_5090a9
+  name: attacked_keff
+  type: data
+  description: 'SF-4 Attacked K_eff stability analysis: Spearman r and mean abs diff
+    between clean and attacked K_eff across 6 attacks x 2 datasets x 455 K=3 panels'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/attacked_keff.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:08:46.178098+00:00'
+  tags:
+  - SF-4
+  - keff
+  - stability
+  - attacked
+- id: art_20260523_adcd04
+  name: api_only_regression
+  type: data
+  description: API-only (9 models) subset regression for MF-1 robustness check. K=3
+    (84 panels) and K=5 (126 panels) canonical OLS + clustered SE.
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/api_only_regression.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:09:26.922290+00:00'
+  tags:
+  - MF-1
+  - api-only
+  - regression
+  - robustness
+- id: art_20260523_fa6a4e
+  name: k5_rf_contrast
+  type: data
+  description: 'K=5 Random-Fault contrast analysis: RF simulation on 3003 panels with
+    5-position clustered SE and wild cluster bootstrap. RF R²=0.705 vs adaptive R²=0.256
+    (gap=+0.449). K_eff significant 2/2 under all methods (OLS, clustered SE, bootstrap).'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k5_rf_contrast_pointer.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:12:14.992242+00:00'
+  tags:
+  - k5
+  - random_fault
+  - rf_contrast
+  - regression
+  - bootstrap
+- id: art_20260523_98d101
+  name: fractional_logit
+  type: data
+  description: Fractional logistic regression (Papke & Wooldridge 1996) for K=3/5/7
+    panels. GLM Binomial logit on raw ASR [0,1]. Direction concordance 93.1%. HC1
+    robust SE closely matches OLS significance.
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/fractional_logit_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:12:18.228439+00:00'
+  tags:
+  - MF-3
+  - robustness
+  - fractional-logit
+  - regression
+- id: art_20260523_5d595c
+  name: theorem1_violation
+  type: data
+  description: 'Theorem 1 violation characterization: per-condition analysis of K=3
+    panel pairs where higher eta_max does not yield higher panel ASR'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/theorem1_violation.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:21:20.083536+00:00'
+  tags:
+  - theorem1
+  - violation
+  - panel
+  - monotonicity
+- id: art_20260523_b9295a
+  name: controlled_regression
+  type: data
+  description: Controlled regression with confound variables (mean_accuracy, n_local)
+    for MF-1 supplement
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/controlled_regression.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:23:46.535263+00:00'
+  tags:
+  - mf1
+  - confound
+  - controlled_regression
+- id: art_20260523_4a3a30
+  name: random_subsample_transition
+  type: data
+  description: 'Random 9-model subsampling ×1000: K_eff transition robustness test
+    stratified by local model count'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/random_subsample_transition_pointer.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:45:33.206036+00:00'
+  tags:
+  - subsample
+  - K_eff
+  - confound
+  - plan001
+- id: art_20260523_7b237a
+  name: sensitivity_analysis
+  type: data
+  description: 'Cinelli & Hazlett (2020) OVB sensitivity analysis: RV and benchmarks
+    for 36 conditions. 8/36 RV exceeds eta_max benchmarks (K3:1/12, K5:3/12, K7:4/12).'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/sensitivity_analysis.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T08:13:17.354751+00:00'
+  tags:
+  - sensitivity
+  - ovb
+  - cinelli-hazlett
+  - robustness-value
+- id: art_20260523_f65caa
+  name: sensitivity_contour_plots
+  type: chart
+  description: Contour plots of adjusted K_eff coefficient under hypothetical confounding
+    for K=3,5,7. Shows RV contour, zero contour, and eta_max benchmark position.
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/sensitivity_contours_info.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T08:13:20.601927+00:00'
+  tags:
+  - sensitivity
+  - contour
+  - K3
+  - K5
+  - K7
+- id: art_20260523_d125fc
+  name: appendix_v2_rerun_results
+  type: data
+  description: 'V2 corrected appendix analyses: Cross-benchmark IV (unchanged), Cinelli-Hazlett
+    (K5 strengthened 6/12→10/12), K_eff stability (strengthened)'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/appendix_v2_rerun_results.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:46:32.169679+00:00'
+  tags:
+  - v2-correction
+  - appendix
+- id: art_20260523_9d0001
+  name: fig_regime_transition_v2
+  type: chart
+  description: 'Figure 2: Regime transition plot with V2 corrected data. K=3 K_eff(4)>η_max(3),
+    K≥5 η_max→0, K_eff sole predictor. PDF+PNG.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/fig_regime_transition_v2_meta.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:49:31.579379+00:00'
+  tags:
+  - v2-correction
+  - figure
+  - regime-transition
+- id: art_20260524_993d63
+  name: kappa_diversity_regime_transition
+  type: data
+  description: κ-diversity regime transition bootstrap results (K=3/5/7). κ-div dominant
+    from K=3 (8/12), no transition pattern unlike K_eff. Confirms transition is K_eff-specific.
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/kappa_diversity_regime_transition.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T03:40:37.302458+00:00'
+  tags:
+  - v2-correction
+  - kappa-diversity
+  - regime-transition
+  - r5-evidence
+- id: art_20260524_da28c9
+  name: k7_aggregation_bootstrap_v2_summary
+  type: data
+  description: 'K=7 V2 aggregation bootstrap results summary. Majority K_eff=8/12,
+    Weighted=6/12, Threshold=10/12, Bayesian=0/12. Trend: 4→7→8 (not 9 as previously
+    claimed).'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/k7_aggregation_bootstrap_v2_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T08:36:55.328029+00:00'
+  tags:
+  - v2
+  - bootstrap
+  - k7
+  - aggregation
+  - data-integrity
+- id: art_20260524_e55891
+  name: keff_plugin_vs_closedform_analysis
+  type: data
+  description: 'Plug-in MI vs closed-form K_eff comparison: 2910 panels, overall Pearson
+    r=0.966, within-K rank Spearman ~0.86. Validates closed-form approximation for
+    ranking.'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/data/keff_plugin_vs_closedform_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-24T11:21:56.371267+00:00'
+  tags:
+  - keff
+  - validation
+  - methodology
+  - plug-in-MI
+- id: art_20260524_2340b0
+  name: crossed_re_results
+  type: data
+  description: 'Crossed Random Effects (multi-membership CRVE) vs wild cluster bootstrap:
+    K=3 CRVE 0/12 (conservative), K=5 CRVE 8/12 (vs bootstrap 7/12), K=7 CRVE 8/12
+    (matches bootstrap). Core K_eff conclusion robust for K≥5.'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/data/crossed_re_results_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-24T12:18:20.858769+00:00'
+  tags:
+  - crossed-RE
+  - robustness
+  - methodology
+  - CRVE
+- id: art_20260524_e5d9a1
+  name: dbei_predictor_shift
+  type: data
+  description: 'DBEI (Shannon MI entropy) vs K_eff predictor shift analysis. Shannon
+    shows no shift (4/12→4/12→0/12), K_eff shows shift (6/12→8/12→2/12). shift_pattern_matches_keff=false.
+    DBEI-K_eff correlation: -0.63 to -0.76.'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/data/dbei_predictor_shift_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-24T12:52:50.824268+00:00'
+  tags:
+  - DBEI
+  - Shannon
+  - predictor-shift
+  - diversity
+  - robustness
+- id: art_20260524_2e636a
+  name: pool_a_mde_power_analysis
+  type: data
+  description: Pool A MDE Power Analysis (n_sim=1000, n_boot=999). K=3 MDE@80%=0.897.
+    K=5 MDE@80% not achievable (max power 0.301 at β_std=1.0). WCB extremely conservative
+    with few clusters.
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/data/pool_a_mde_summary.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-24T13:17:14.688054+00:00'
+  tags:
+  - power-analysis
+  - MDE
+  - pool-A
+  - bootstrap
+  - methodology
+- id: art_20260524_a585f0
+  name: fig_dominance_heatmap
+  type: chart
+  description: 'Predictor Dominance Heatmap: 12 conditions (2 benchmarks × 6 attacks)
+    × 3 panel sizes (K=3,5,7), showing which predictor (K_eff, η_max, both, or neither)
+    is FDR-significant via wild cluster bootstrap. Visualizes the shift from mixed
+    dominance at K=3 to K_eff dominance at K≥5.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/fig_dominance_heatmap.png
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T18:11:23.628932+00:00'
+  tags:
+  - paper-figure
+  - heatmap
+  - predictor-dominance
+  - wild-cluster-bootstrap
+- id: art_20260524_284a30
+  name: fig_dominance_heatmap
+  type: chart
+  description: 'Predictor Dominance Heatmap: K=3 mixed (purple/orange/grey/blue),
+    K≥5 shifts to blue (K_eff dominant), Position Bias row all grey. Visualizes predictor
+    shift across K values and attack types.'
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig_dominance_heatmap.pdf
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-24T18:11:55.178638+00:00'
+  tags:
+  - figure
+  - heatmap
+  - predictor-shift
+  - dominance
+- id: art_20260524_3d086f
+  name: fig_framework
+  type: chart
+  description: 'Figure 1: The Shifting Bottleneck — three-panel concept figure showing
+    how panel size changes adversarial vulnerability bottleneck. (a) K=3: single weak
+    judge dominates (η_max), (b) transition zone K*∈(3,5), (c) K≥5: structural diversity
+    dominates (K_eff). PNG+PDF at 300 DPI.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/fig_framework.png
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T18:40:34.058670+00:00'
+  tags:
+  - figure1
+  - hero-figure
+  - concept-diagram
+  - paper
+- id: art_20260524_b4eba4
+  name: fig_framework
+  type: chart
+  description: Figure 1 conceptual diagram "The Shifting Bottleneck" — three-panel
+    triptych showing how the dominant vulnerability predictor shifts from η_max (weakest-link)
+    to K_eff (diversity) as LLM judge panel size increases. Panel (a) Small Panel
+    K=3, Panel (b) Transition Zone, Panel (c) Large Panel K≥5. Matplotlib vector output
+    (PDF+PNG), 300 DPI.
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/fig_framework.pdf
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T18:58:33.335258+00:00'
+  tags:
+  - figure1
+  - hero-figure
+  - conceptual-diagram
+  - paper
+- id: art_20260525_fd2724
+  name: kappa_diversity_regression_R6_1A
+  type: data
+  description: 'R6 Batch 1A: κ-diversity vs K_eff WCB regression comparison. Divergent
+    predictor shift: κ-div 8→7→6, K_eff 3→7→8. ρ>0.985.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/kappa_diversity_regression_R6_1A.txt
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T06:59:09.611958+00:00'
+  tags:
+  - R6
+  - rebuttal
+  - kappa-diversity
+  - keff
+  - regression
+  - WCB
+- id: art_20260525_d82971
+  name: main_8page_v1
+  type: paper
+  description: 8-page main text PDF (Figure 7 forest plot moved to appendix to fit
+    page limit)
+  path: projects/cert_manip_resist_eval/artifacts/_project/paper/main_8page_v1.pdf
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T19:27:49.687772+00:00'
+  tags:
+  - paper
+  - layout
+  - 8-page
+- id: art_20260525_f7afd4
+  name: fig_keff_eta_scatter_k5
+  type: chart
+  description: K_eff vs η_max scatter plot for K=5 panels (C(15,5)=3003 panels, Pool
+    A=126). r_full=0.81, r_poolA=0.85. 9 API models corrected.
+  path: projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig_keff_eta_scatter.png
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: plan001_step1_full_v4
+  skill: ''
+  created_at: '2026-05-25T20:34:34.103296+00:00'
+  tags:
+  - figure
+  - scatter
+  - k5
+  - keff
+  - eta_max
+  - paper
+- id: art_20260525_f59697
+  name: position_bias_fix_comparison
+  type: report
+  description: 'Comparison report: pre-fix vs post-fix analysis results after removing
+    erroneous _invert_winners() on position_bias. Includes OLS, WCB, fractional logit,
+    meta-analytic pooling, FDR, and core claim verification.'
+  path: projects/cert_manip_resist_eval/artifacts/_project/report/position_bias_fix_comparison.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:56:55.408022+00:00'
+  tags:
+  - bugfix
+  - position_bias
+  - reanalysis
+- id: art_20260525_a0b558
+  name: per_condition_full_reanalysis
+  type: data
+  description: Per-condition detailed results (OLS/WCB/frac-logit) for all 12 conditions
+    × K=3,5,7 after position_bias fix.
+  path: projects/cert_manip_resist_eval/artifacts/_project/data/per_condition_full_reanalysis.json
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:56:57.988414+00:00'
+  tags:
+  - bugfix
+  - position_bias
+  - reanalysis
+  - per_condition
+- id: art_20260526_ede941
+  name: main_pdf_20260526_appendix_fix
+  type: paper
+  description: Final compiled PDF after appendix layout fixes (26 table captions,
+    5 table resizebox, 3 equation splits, 1 figure width fix). 42 pages.
+  path: projects/cert_manip_resist_eval/artifacts/_project/paper/main.pdf
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T04:27:06.458885+00:00'
+  tags:
+  - paper
+  - pdf
+  - appendix-fix
+- id: art_20260526_682882
+  name: fig1_framework_paperbanana
+  type: chart
+  description: 'Figure 1 (fig_framework) generated by PaperBanana. Three-panel predictor
+    relevance transition: (a) K=3 weakest-link dominance (warm rose), (b) K=5 transition
+    (lavender), (c) K>=5 diversity dominance (cool blue). run_id: run_20260526_043611_392862'
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/fig1_framework_pb.png
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T04:40:39.925941+00:00'
+  tags:
+  - figure
+  - paperbanana
+  - framework
+- id: art_20260526_8be1d4
+  name: fig2_theory_comparison_v3_paperbanana
+  type: chart
+  description: 'Figure 2 (theory_comparison) v3 by PaperBanana. 3-row comparison:
+    Independence (connected vs independent circles), Fault Model (shield vs crosshair),
+    Diversity (shapes vs mini scatter plot with r=0.70-0.81). run_id: run_20260526_044407_7ae08b'
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/fig2_theory_v3.png
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T04:47:48.843236+00:00'
+  tags:
+  - figure
+  - paperbanana
+  - theory-comparison
+- id: art_20260526_fd61bc
+  name: fig2_theory_comparison_v4_pillars
+  type: chart
+  description: 'Figure 2 v4: Three Pillars metaphor. Left: intact teal pillars (Independence,
+    Random Faults, Beneficial Diversity) supporting roof. Right: damaged pillars (cracked+chained,
+    bent+bullseye, DNA double helix for r=0.70-0.81 confound). Center jagged crack.
+    No gray dots, no scatter plots. run_id: run_20260526_045157_a57f7a'
+  path: projects/cert_manip_resist_eval/artifacts/_project/chart/fig2_theory_v4.png
+  url: null
+  project: cert_manip_resist_eval
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T04:55:36.498950+00:00'
+  tags:
+  - figure
+  - paperbanana
+  - theory-comparison
+  - pillars

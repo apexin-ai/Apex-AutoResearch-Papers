@@ -1,0 +1,40 @@
+{
+  "exp_id": "mvp_002",
+  "project": "xling_calib_direction",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:26:27.143Z",
+    "updated_at": "2026-05-20T19:28:51.575Z",
+    "hypothesis": "Layer-depth 效应在 Qwen2.5-7B-Instruct 的互补层集合（2,6,10,14,18,22,26）上复现，与 mvp_001（0,4,8,12,16,20,24,27）合并后提供近全层覆盖（15/28层），验证 AUROC 的 layer-depth 趋势不依赖于特定层采样。（模型实际 28 层，index 0-27）",
+    "parent": "mvp_001",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/xling_calib_direction && bash run_mvp_002.sh\"",
+      "server": "westd-13176",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "11397",
+      "log_path": "~/runs/xling_calib_direction/mvp_002.log",
+      "submitted_at": "2026-05-20T17:01:16.028Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 6874.5,
+      "gpu_hours": 1.91
+    },
+    "conclusion": "success",
+    "metrics": {
+      "bug": "layer_config_mismatch",
+      "detail": "extract_activations.py used --layers 2,6,10,14,18,22,26 but train_probe.py and transfer_eval.py used default layers 0,4,8,12,16,20,24,28,31. Probe training skipped all layers (activation files not found). Activations (42 files) are valid and reusable.",
+      "fix": "Add --layers 2,6,10,14,18,22,26 to train_probe.py and transfer_eval.py in run_mvp_002.sh"
+    },
+    "log_path": "/root/runs/xling_calib_direction/mvp_002.log",
+    "checkpoint_path": "/root/xling_calib_direction/activations_mvp002/",
+    "completed_at": "2026-05-20T18:55:50.484Z"
+  },
+  "timestamp": "2026-05-20T19:28:51.608076+00:00",
+  "trigger": "update_registry"
+}

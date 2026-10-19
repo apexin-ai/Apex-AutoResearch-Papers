@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r6-1a-kappa-diversity_20260525T064751_result.json",
     "occurrence": 1,
-    "bytes": 1140,
-    "sha256": "ad9ea9f22e4f64e4be9a861364068ebe085aadcc345d7334b19c548bcf0784b2"
+    "bytes": 1139,
+    "sha256": "7d04a7898a3faa0dea2230080a635f9cf1937317621302babe6d14688a85fe99"
   },
   "statistics": {
     "messages": 1,

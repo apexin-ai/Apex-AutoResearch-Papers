@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_scp-and-pipeline_20260522T165558_result.json",
     "occurrence": 1,
-    "bytes": 998,
-    "sha256": "025912e43f763d4ef6cd3ad53619d97e0bc1f187d92fd73f21eab91c54d7a1a3"
+    "bytes": 997,
+    "sha256": "247023c765ef9e537883ed545900a948a3de23c1f294e7c1bf41549de8475242"
   },
   "statistics": {
     "messages": 1,

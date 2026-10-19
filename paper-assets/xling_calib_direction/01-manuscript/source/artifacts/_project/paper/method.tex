@@ -1,0 +1,82 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+\label{sec:problem}
+
+Given a multilingual large language model (LLM) and a multiple-choice question-answering (MCQA) instance, we extract the post-layer-norm residual stream representation $\mathbf{h}_l \in \mathbb{R}^d$ at layer $l$. A \emph{correctness probe} is a linear classifier
+\begin{equation}
+  f_l(\mathbf{h}_l) = \sigma(\mathbf{w}_l^\top \mathbf{h}_l + b_l)
+  \label{eq:probe}
+\end{equation}
+trained to predict $p(\text{correct} \mid \mathbf{h}_l)$, the probability that the model's selected answer is correct. This target is output-dependent: it reflects the model's actual accuracy on each instance, not an intrinsic property of the input.
+
+We distinguish correctness probing from two related tasks. \emph{Knowledge boundary probing} \citep{xiao2025knowledge} classifies whether a question is answerable, an input-level property independent of model output. \emph{Difficulty probing} \citep{civelli2026shared} predicts item difficulty as a language-agnostic question property via Item Response Theory (IRT). Our central question is whether an English-trained probe $f_l$ can transfer zero-shot to a target language $t$ without any target-language correctness labels (zero-correctness-label transfer), and which alignment strategies improve this transfer.
+
+\subsection{Experimental Framework}
+\label{sec:framework}
+
+\paragraph{Models.} We evaluate Qwen3-8B and Llama4-Scout as primary architectures (P0), with Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct for validation (MVP).
+
+\paragraph{Languages.} We test 20 languages spanning three resource tiers based on GlobalMMLU availability: \textsc{high} (zh, de, fr, es, ja), \textsc{med} (ar, ko, vi, th, tr), and \textsc{low} (hi, sw, bn, te, my, am, zu, yo, si, km).
+
+\paragraph{Data.} We use the GlobalMMLU test split, partitioned 70/30 via stratified sampling into \texttt{probe\_train} and \texttt{eval} portions. English binary correctness labels come from \texttt{probe\_train} only; all reported results use \texttt{eval} exclusively.
+
+\paragraph{Activation extraction.} We register forward hooks on post-layer-norm residual stream outputs. Layers are sampled at regular intervals (every 4th layer for 28-layer models, every 8th for 96-layer models). We use INT8 quantization for large models and include a FP16 validation ablation at representative layers to control for quantization artifacts.
+
+\paragraph{Metrics.} We report Area Under the ROC Curve (AUROC) for correctness discrimination, Expected Calibration Error (ECE, 15-bin) for calibration quality, Brier score, and selectivity \citep{hewitt2019control}. % [TO_ADD_BIB]
+
+\subsection{Transfer Methods}
+\label{sec:transfer}
+
+We compare five methods ordered by complexity.
+
+\paragraph{(a) Zero-shot transfer.} The English-trained probe $f_l$ is applied directly to target language representations without adaptation. This serves as the baseline for all comparisons.
+
+\paragraph{(b) Mean-shift alignment.} We subtract the cross-lingual mean difference $\boldsymbol{\delta} = \boldsymbol{\mu}_{\text{en}} - \boldsymbol{\mu}_t$ from target activations before applying the English probe.
+
+\textbf{Rank-invariance proof.} Under the StandardScaler fitted on English training data, each dimension is normalized as $z_i = (h_i - \mu_{\text{en},i}) / \sigma_{\text{en},i}$. After mean-shift, the target representation becomes $h_i + \delta_i$, and the scaled value is
+\begin{equation}
+  z'_i = \frac{h_i + \delta_i - \mu_{\text{en},i}}{\sigma_{\text{en},i}} = z_i + c_i
+  \label{eq:meanshift}
+\end{equation}
+where $c_i = \delta_i / \sigma_{\text{en},i}$ is a constant independent of the input sample. The probe logit then shifts by $\mathbf{w}^\top \mathbf{c}$, a scalar applied identically to every sample. Because AUROC depends only on the ranking of predictions, this uniform offset leaves the ranking unchanged: $\Delta\text{AUROC} \equiv 0$. Our MVP experiments confirm this prediction exactly ($\Delta\text{AUROC} = 0.000000$ across 5 languages $\times$ all layers). ECE can change because binned probability values shift after the sigmoid transformation, but these changes are inconsistent across configurations and do not constitute reliable calibration improvement.
+
+\paragraph{(c) Procrustes alignment.} We learn an orthogonal mapping from a small set of parallel sentence pairs by solving
+\begin{equation}
+  \mathbf{R}^* = \arg\min_{\mathbf{R}^\top\mathbf{R}=\mathbf{I}} \|\mathbf{X}_{\text{en}}\mathbf{R} - \mathbf{X}_t\|_F
+  \label{eq:procrustes}
+\end{equation}
+following cross-lingual word embedding alignment methods such as MUSE \citep{conneau2018muse} and VecMap \citep{artetxe2018vecmap}. % [TO_ADD_BIB]
+Approximately 50 parallel pairs achieve 98\% of 200-pair performance. Resource tier matters: \textsc{high} languages saturate at ${\sim}$22 pairs and \textsc{low} languages at ${\sim}$48. An effect reversal occurs at moderate transfer quality: Procrustes alignment helps when zero-shot AUROC $< 0.50$ but degrades performance when zero-shot AUROC $> 0.60$, which implies that alignment strategy must be conditioned on baseline transfer quality.
+
+\paragraph{(d) Few-shot probe training.} We retrain the probe from scratch on 25, 50, or 100 target-language labeled examples. This requires target-language correctness labels and serves as an upper-bound reference.
+
+\paragraph{(e) CaCLR (Calibration-aware Cross-Lingual Regularization).} CaCLR tests whether joint calibration and distributional matching can improve zero-correctness-label transfer. The objective combines three terms:
+\begin{equation}
+  \mathcal{L} = \mathcal{L}_{\text{BCE}} + \alpha \cdot \mathcal{L}_{\text{SB-ECE}} + \beta \cdot \mathcal{L}_{\text{consistency}}
+  \label{eq:caclr}
+\end{equation}
+$\mathcal{L}_{\text{BCE}}$ is standard binary cross-entropy on English \texttt{probe\_train} labels. $\mathcal{L}_{\text{SB-ECE}}$ is the differentiable Soft-Binned ECE (SB-ECE) of \citet{karandikar2021sbece}, which replaces hard histogram bins with soft assignments to enable gradient-based calibration optimization. $\mathcal{L}_{\text{consistency}}$ is Maximum Mean Discrepancy (MMD) computed on \emph{probe logits} from parallel English and target-language inputs. Operating on probe outputs (rather than raw activations) ensures gradient flow to probe parameters. For linear probes, the logit $\mathbf{w}^\top \mathbf{h} + b$ is one-dimensional, so MMD operates in 1-D space; we discuss this design limitation in \S\ref{sec:discussion}. We use a Gaussian RBF kernel with bandwidth selected by the median heuristic. Parallel activations come from the GlobalMMLU \texttt{probe\_train} portion (70\% of test split); no target-language correctness labels are required. The probe is initialized from the standard logistic regression solution (warm start) and optimized with Adam (learning rate $10^{-3}$). We apply early stopping based on English validation ECE. Both $\alpha$ and $\beta$ are swept across three orders of magnitude; batch size and epoch count are reported in the Appendix.
+
+\subsection{Difficulty-Capability Decomposition}
+\label{sec:decomposition}
+
+We train IRT-based difficulty probes that predict question difficulty, a language-agnostic property independent of model capability. To isolate the capability-specific component, we project out the difficulty direction from each representation:
+\begin{equation}
+  \mathbf{h}_l^{\text{res}} = \mathbf{h}_l - (\mathbf{h}_l \cdot \hat{\mathbf{w}}_{\text{diff}})\hat{\mathbf{w}}_{\text{diff}}
+  \label{eq:residual}
+\end{equation}
+where $\hat{\mathbf{w}}_{\text{diff}}$ is the unit-norm difficulty direction. We retrain correctness probes on the residual $\mathbf{h}_l^{\text{res}}$ and compare cross-lingual transfer. This decomposition yields a prescriptive signal: when the difficulty component dominates a language-layer combination, transfer should succeed because the underlying structure is shared across languages. When the capability component dominates, transfer should degrade because the encoding is language-specific.
+
+\subsection{Geometric Analysis}
+\label{sec:geometric}
+
+We quantify cross-lingual representational similarity with Centered Kernel Alignment (CKA) \citep{kornblith2019cka}. % [TO_ADD_BIB]
+The central analysis applies partial correlation to control for layer depth, which reveals a Simpson's Paradox in the CKA-transfer relationship. The raw correlation between CKA and transfer AUROC across all language-layer pairs is negative, because both quantities covary with depth (deeper layers have lower CKA and, in some architectures, lower transfer AUROC). After controlling for depth, the partial correlation reverses sign: within each layer, higher cross-lingual CKA predicts better probe transfer (Llama pilot: $\rho = +0.41$, $p = 0.006$; 14 of 17 layer-level correlations positive). We report bootstrap confidence intervals (1000 resamples) for all partial correlations. We supplement CKA with subspace angle analysis that measures the cross-lingual angular distance between correctness directions $\mathbf{w}_l$ at each layer. These results are framed as geometric and correlational analysis, not mechanistic explanation.
+
+\subsection{Probing Controls}
+\label{sec:controls}
+
+We validate probe quality with the control task framework of \citet{hewitt2019control}. % [TO_ADD_BIB]
+Selectivity is the gap between AUROC on true correctness labels and AUROC on randomly shuffled labels; higher selectivity indicates that the probe captures genuine task-relevant structure rather than exploiting representational capacity. We reduce activations to 100 dimensions via PCA before probe training to guard against high-dimensional overfitting, and report 5-fold cross-validated estimates. Pilot results on Qwen2.5-7B show selectivity concentrated in layers 20 through 27 (0.244 to 0.262), with shallow layers below 0.05. Across the full language-layer grid, approximately 28\% of low-resource combinations fall below a meaningful selectivity threshold, which indicates that a substantial fraction of reported probing results in these settings reflect capacity artifacts rather than genuine correctness encoding.

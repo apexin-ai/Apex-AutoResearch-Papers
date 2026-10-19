@@ -1,0 +1,53 @@
+{
+  "exp_id": "mvp-step2v3-retry",
+  "project": "cert_manip_resist_eval",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:34:16.405Z",
+    "updated_at": "2026-05-22T01:57:45.390Z",
+    "hypothesis": "Controlling for individual model robustness (η_max), higher K_eff panels have significantly lower ASR. The SDPI bound η_joint ≤ K_eff · η_max has two factors: K_eff (diversity) and η_max (weakest-link robustness). Step 2 v2 confounded them. Multi-factor regression log(ASR) ~ log(K_eff) + log(η_max) should show K_eff coefficient significantly negative.",
+    "parent": "mvp-step2v3-regression",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export VLLM_WORKER_MULTIPROC_METHOD=spawn && cd /root/cert_manip_resist_eval && python scripts/run_step2v3_regression.py 2>&1 | tee /tmp/step2v3_retry.log\"",
+      "server": "seetacloud-rtx6000",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "61724",
+      "log_path": "~/runs/cert_manip_resist_eval/mvp-step2v3-retry.log",
+      "submitted_at": "2026-05-22T01:36:47.115Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1258.3,
+      "gpu_hours": 1.4
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T01:57:10.004Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T01:52:08.955147+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T01:57:11.306341+00:00"
+        }
+      ]
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T01:57:45.390Z"
+  },
+  "timestamp": "2026-05-22T01:57:45.400327+00:00",
+  "trigger": "update_registry"
+}

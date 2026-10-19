@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r4-a3-mi-plugin-vs-closedform_20260524T110501_result.json",
     "occurrence": 1,
-    "bytes": 988,
-    "sha256": "78449e68806b5d189ab7cace0d52eae182adf2b866e8d690a34d5e15eaa84bac"
+    "bytes": 987,
+    "sha256": "022faea26ea858d2f9af52e5c6899e96dc6dc7583b53f21593729fd0b5eee9db"
   },
   "statistics": {
     "messages": 1,

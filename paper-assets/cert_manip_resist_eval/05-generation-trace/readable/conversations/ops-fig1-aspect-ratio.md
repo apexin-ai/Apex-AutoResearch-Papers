@@ -785,7 +785,7 @@ called Bash
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
   "description": "Run PaperBanana to generate Figure 1 with wider aspect ratio",
   "timeout": "600000"
 }
@@ -801,7 +801,7 @@ called Bash
   "session": "worker_ops_fig1-aspect-ratio_20260525T123154",
   "tool": "Bash",
   "tool_args": {
-    "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
+    "command": "GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
     "description": "Run PaperBanana to generate Figure 1 with wider aspect ratio",
     "timeout": "600000"
   }
@@ -900,7 +900,7 @@ called Bash
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
   "description": "Run PaperBanana to generate Figure 1 with wider aspect ratio",
   "timeout": "600000"
 }
@@ -916,7 +916,7 @@ called Bash
   "session": "worker_ops_fig1-aspect-ratio_20260525T123154",
   "tool": "Bash",
   "tool_args": {
-    "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
+    "command": "GOOGLE_API_KEY=\"[REDACTED]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new.png --iterations 5 2>&1",
     "description": "Run PaperBanana to generate Figure 1 with wider aspect ratio",
     "timeout": "600000"
   }
@@ -1218,7 +1218,7 @@ called Bash
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new2.png --iterations 5 2>&1",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new2.png --iterations 5 2>&1",
   "description": "Run PaperBanana iteration 2 with stronger wide aspect ratio constraint",
   "timeout": "600000"
 }
@@ -1234,7 +1234,7 @@ called Bash
   "session": "worker_ops_fig1-aspect-ratio_20260525T123154",
   "tool": "Bash",
   "tool_args": {
-    "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new2.png --iterations 5 2>&1",
+    "command": "GOOGLE_API_KEY=\"[REDACTED]\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.venv/bin/paperbanana generate --input /tmp/fig1_intent.txt --caption \"The Diminishing Weakest Link\" --vlm-model gemini-2.5-pro --output /tmp/fig1_new2.png --iterations 5 2>&1",
     "description": "Run PaperBanana iteration 2 with stronger wide aspect ratio constraint",
     "timeout": "600000"
   }

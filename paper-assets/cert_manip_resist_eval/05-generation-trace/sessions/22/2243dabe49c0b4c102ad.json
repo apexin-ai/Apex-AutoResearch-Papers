@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_anon-repo-v1-residual-fix_20260523T203119_result.json",
     "occurrence": 1,
-    "bytes": 1128,
-    "sha256": "f34cbdd288f60363f200427e82898396361289dfbead4895a69e3995e4b5649e"
+    "bytes": 1127,
+    "sha256": "e98a89798c59491093c9ea0569fa223adcd1e53f4e84bfc1d48ce2e81a3414f0"
   },
   "statistics": {
     "messages": 1,

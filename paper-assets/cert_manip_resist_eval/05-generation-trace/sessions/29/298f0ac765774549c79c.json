@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_download-large-models_20260521T175959_result.json",
     "occurrence": 1,
-    "bytes": 1184,
-    "sha256": "7fc44c8340dfc74e738e31561987e768e292d9a2a4c6fe4ceaeef665edaff4bc"
+    "bytes": 1183,
+    "sha256": "2d83a905ff340410b26748af35fa2a0c98f2cc164120e07a2c114d32bf2db30c"
   },
   "statistics": {
     "messages": 1,

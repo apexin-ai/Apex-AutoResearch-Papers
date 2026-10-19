@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_copula-gof-and-step2_20260521T222507_result.json",
     "occurrence": 1,
-    "bytes": 82,
-    "sha256": "a53a04ed68569abf47990de0e25b8002e75bef2b33cc5ce602f28fd070bac9be"
+    "bytes": 81,
+    "sha256": "dd978438b503b49017d9eabf5b1dcbacaef67c4cde80c295eed6595f2da80975"
   },
   "statistics": {
     "messages": 1,

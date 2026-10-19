@@ -1,0 +1,86 @@
+paper_key: "turkmen2026copula"
+title: "Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [Top-k selection, Term-1-only (relevance), mRMR (relevance - redundancy)]
+  metrics:
+    - {name: "Ensemble error rate", direction: "lower_better"}
+    - {name: "Mutual information I(Y;X_S)", direction: "higher_better"}
+  datasets:
+    - {name: "MEDMCQA", size: "4,183 questions (8,366 binary)"}
+    - {name: "MMLU", size: "5,000 questions (10,000 binary)"}
+    - {name: "IMDB", size: "appendix"}
+  ablation_dimensions: [ensemble_size_k, temperature, correlation_structure, selection_criterion_terms]
+  training_recipe: {optimizer: "Greedy MI selection", lr: "N/A", hardware: "12-13 LLMs including GPT-4.1, Claude-3.5, LLaMA-3.1, Qwen3-235b, Gemini-2.5-flash"}
+  method_family: "information_theoretic_ensemble"
+
+positioning:
+  core_claim: "Gaussian-copula model decomposes ensemble gain into relevance, prediction redundancy, and error correlation — the third term (missed by standard feature selection) explains why cross-family diversity beats top-k accuracy selection"
+  key_results: "Greedy MI: 16.3% error at k=5 vs Top-k 17.0% (MEDMCQA); 14.4% vs 15.0% at k=4 (MMLU); error floor Φ(Φ⁻¹(1-α)/√ρ) validated; within-family ρ~0.7-0.8, cross-family ρ~0.4-0.5"
+  limitations: ["Binary classification focus", "Gaussian-copula assumption", "Moderate gains (~0.5-1% absolute)"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "The obvious ensemble strategy — pick the best models — is suboptimal because it ignores correlated errors"
+  tension: "Standard diversity metrics (mRMR) capture prediction redundancy but miss structured error correlation, leading to perverse selection of weak models"
+  key_insight: "The three-term MI decomposition (Theorem 4.3) reveals that error correlation is a distinct information source — greedy MI captures all three terms while mRMR captures only two"
+  argument_chain: "top-k suboptimality → Gaussian-copula model → independence theorem (baseline) → three-term decomposition → saturation theorem → greedy MI algorithm → cross-family validation"
+  contribution_framing: "Four theorems building a complete theory: independence case → decomposition → saturation → algorithm"
+  intro_structure: "4 paragraphs: (1) ensemble selection problem, (2) correlation overlooked, (3) information-theoretic framework, (4) contributions"
+  notable_technique: "Building theory incrementally from independence (Theorem 4.1) through decomposition (4.3) to saturation (4.4) — each theorem extends the previous in a logical chain"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "motivation"
+    description: "Example showing top-k selects 4 same-family models while greedy MI spans 5 families"
+    narrative_role: "Concrete illustration of why accuracy-based selection fails"
+    design_elements: ["model family color-coding", "selection comparison", "accuracy vs diversity tradeoff"]
+    visual_style: "Side-by-side selection visualization with family labels"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "Empirical vs copula-predicted pairwise error probabilities"
+      how_gain_highlighted: "Tight diagonal alignment validates the model"
+      design_note: "Model validation figure — essential for theory-heavy paper"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Ensemble error vs k for Greedy MI vs Top-k vs mRMR (MEDMCQA)"
+      how_gain_highlighted: "Greedy MI consistently below Top-k in the practical range k=3-7"
+      design_note: "Error curves with confidence bands show statistical significance of gains"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Same comparison on MMLU"
+      how_gain_highlighted: "Consistent pattern across datasets"
+      design_note: "Replication across datasets strengthens the claim"
+  ablation_figures:
+    - figure_id: "Table 1-2"
+      viz_type: "selection_table"
+      dimensions_varied: ["selection method", "k value"]
+      design_note: "Shows actual model identities selected — reveals cross-family vs same-family pattern"
+  figure_narrative_role: "Motivation (selection comparison) → Model validation (copula fit) → Main results (error curves) → Selection analysis"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Figures 5-6 (presented as plots)"
+    row_axis: "methods"
+    col_axis: "ensemble size k"
+    row_organization: "flat"
+    col_organization: "sequential_k"
+    highlight_strategy: "line color differentiation"
+    statistical_reporting: "mean ± std across 5 random splits"
+    num_baselines: 3
+    design_note: "Main results as line plots rather than tables — emphasizes the scaling behavior"
+  ablation_tables:
+    - table_id: "Tables 1-2"
+      what_varied: ["selection method at specific k values"]
+      variation_style: "full_numbers"
+      design_note: "Shows model identities and family distribution of selections"
+  supplementary_tables:
+    in_appendix: true
+    content: "IMDB results, additional temperature settings, copula parameter estimates"
+    reason: "Main text focuses on MEDMCQA and MMLU as primary validation"

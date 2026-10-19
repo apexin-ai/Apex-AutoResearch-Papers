@@ -1,0 +1,149 @@
+dreams:
+  dream_20260520T185641:
+    dream_id: dream_20260520T185641
+    project: xling_calib_direction
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Core submission for EACL 2027 ARR: 2 models (Qwen3-235B + Llama 4 Scout)
+      × 20 languages. Key risks: (1) CaCLR may not outperform simple linear projection;
+      (2) difficulty-shared vs capability-specific decomposition may not cleanly separate;
+      (3) orthogonality claim 4 may be seen as incremental. MVP showed mean-shift
+      completely fails, Pareto tradeoff directly observed at L24 vs L27.'
+    what_if: []
+    pid: 125082
+    chat_id: oc_74ae31a7dc5ae9d419ba9a89bccc89c0
+    card_message_id: om_x100b6fd47051f4a0b265b3fe5d1a636
+    started_at: '2026-05-20T18:56:41+00:00'
+    updated_at: '2026-05-20T19:57:00+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: abe53e536c904420db4b681d2d0235b9002bdc7eb51dd196e066bb0ebb988b82
+    review_quality:
+      best: simulated
+      worst: simulated
+  dream_20260520T201854:
+    dream_id: dream_20260520T201854
+    project: xling_calib_direction
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Re-dream after first Dream review (3/6). Key framing changes since last
+      dream: (1) CaCLR now has conditional narrative — Path A method contribution
+      if consistency loss works, Path B principled negative result with geometric
+      misalignment explanation if it doesn''t; (2) mean-shift rank-invariance as formal
+      theoretical contribution (proof + experimental validation); (3) CKA mechanistic
+      analysis added (plan_011) to explain WHY transfer fails; (4) probing control
+      tasks (plan_013, Hewitt & Liang 2019); (5) linear projection sensitivity analysis
+      (plan_012); (6) statistical rigor: bootstrap CIs + paired tests + Cohen''s d
+      as cross-cutting requirement; (7) per-language Spearman rho for Pareto frontier;
+      (8) AUROC threshold sensitivity analysis; (9) expanded related work coverage
+      (domain adaptation theory, alignment literature, conformal prediction); (10)
+      decomposition grid justified (10 langs × 8 layers covers 3 resource tiers ×
+      major families). Verify these changes lift score to best ≥ weak accept and median
+      ≥ borderline.'
+    what_if: []
+    pid: 131579
+    chat_id: oc_74ae31a7dc5ae9d419ba9a89bccc89c0
+    card_message_id: om_x100b6fd53c3d84a4b20f1fa4dc1cde6
+    started_at: '2026-05-20T20:18:54+00:00'
+    updated_at: '2026-05-20T21:21:00+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ccb3236e3a09fe69e2743b2478ddc02c0fe3689a60e05d6ef674b697ff427635
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T032808:
+    dream_id: dream_20260521T032808
+    project: xling_calib_direction
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 181069
+    chat_id: oc_74ae31a7dc5ae9d419ba9a89bccc89c0
+    card_message_id: om_x100b6fd3f2468484b2c6877cfb71b11
+    started_at: '2026-05-21T03:28:08+00:00'
+    updated_at: '2026-05-21T04:29:22+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d83b319af4ec6189d413f9a2ef08bb38805c40f09592cab3fc17f24c274b7cb2
+    review_quality:
+      best: simulated
+      worst: simulated
+  dream_20260521T044911:
+    dream_id: dream_20260521T044911
+    project: xling_calib_direction
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key improvements since last dream: (1) Simpson''s Paradox in CKA-transfer
+      relationship — raw correlation negative but partial correlation controlling
+      for depth is positive (Llama rho=+0.41, p=0.006), genuine geometric insight;
+      (2) Claim 4 downgraded to subsection, space freed for control task finding and
+      projection efficiency; (3) Control task methodological warning elevated to main
+      body (28% low-resource artifacts); (4) Linear projection sample efficiency (~50
+      pairs, tier-stratified); (5) Procrustes effect reversal (helps ZS<0.50, hurts
+      ZS>0.60); (6) Complete CaCLR implementation spec for reproducibility; (7) 30+
+      references planned; (8) Statistical framework: bootstrap CI + permutation tests
+      + Cohen''s d; (9) Figure plan: Pareto scatter plot, layer-wise AUROC, decomposition
+      visualization. Focus review on whether novelty improvements are sufficient for
+      main conference acceptance.'
+    what_if: []
+    pid: 188758
+    chat_id: oc_74ae31a7dc5ae9d419ba9a89bccc89c0
+    card_message_id: om_x100b6fdca2b0d8acb36a63f6636a36a
+    started_at: '2026-05-21T04:49:11+00:00'
+    updated_at: '2026-05-21T06:12:32+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d33b69fd6cbfdccc0053d740b696271c4c4041f1206986e8dafc02dbdaec2f9b
+    review_quality:
+      best: simulated
+      median: simulated
+  dream_20260521T122458:
+    dream_id: dream_20260521T122458
+    project: xling_calib_direction
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 252112
+    chat_id: oc_74ae31a7dc5ae9d419ba9a89bccc89c0
+    card_message_id: om_x100b6fdbd77ef4b0b27cb941bdc70ed
+    started_at: '2026-05-21T12:24:58+00:00'
+    updated_at: '2026-05-21T14:01:32+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ff0fe05cfb7989881f81b63bd685d66f084c833b5a6f4776ed535484713f7754
+    review_quality:
+      best: simulated

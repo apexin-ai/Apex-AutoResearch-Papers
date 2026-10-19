@@ -1,0 +1,17 @@
+Plan 010 Aggregation Analysis Results
+
+Server path: /root/cert_manip_resist_eval/artifacts/results/results_plan010_aggregation.json
+
+Summary:
+| Method          | η_max sig | K_eff sig neg | mean R² |
+|-----------------|-----------|---------------|---------|
+| majority_vote   | 8/12      | 1/12          | 0.446   |
+| weighted_vote   | 7/12      | 1/12          | 0.378   |
+| threshold_vote  | 7/12      | 0/12          | 0.693   |
+| bayesian        | 3/12      | 0/12          | 0.223   |
+
+Key findings:
+1. Majority + weighted: η_max dominates, confirms weakest-link theorem
+2. Threshold (unanimous): η_max still sig 7/12, but K_eff POSITIVELY sig in 7+ conditions — diversity harmful under unanimity (easier to break consensus)
+3. Bayesian: η_max only 3/12 sig — reliability weighting effectively mitigates weakest-link by down-weighting unreliable judges
+4. Conclusion: Weakest-link is NOT universal, depends on aggregation rule. Bayesian aggregation is a partial remedy.

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_mvp-step1-full_20260521T214445_result.json",
     "occurrence": 1,
-    "bytes": 5808,
-    "sha256": "d2cac3512b3e6a0570ab8b8e17f2ecfd59dc7ce6f245a293b74247f4e36994a1"
+    "bytes": 5807,
+    "sha256": "0214ccca1a9bbdd281ced682471033634caca1f0e8bed2681681bd4e6e124331"
   },
   "statistics": {
     "messages": 1,

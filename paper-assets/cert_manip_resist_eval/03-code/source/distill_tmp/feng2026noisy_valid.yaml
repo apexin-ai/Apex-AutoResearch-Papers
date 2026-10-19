@@ -1,0 +1,77 @@
+paper_key: "feng2026noisy_valid"
+title: "Noisy but Valid: Robust Statistical Evaluation of LLMs with Imperfect Judges"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines: [Direct human evaluation, PPI (prediction-powered inference) variants, Oracle with known judge parameters]
+  metrics:
+    - {name: "Type-I error rate", direction: "lower_better"}
+    - {name: "Type-II error rate (power)", direction: "lower_better"}
+    - {name: "Oracle Gap", direction: "lower_better"}
+  datasets:
+    - {name: "Jigsaw Toxic Comment Classification", size: "large"}
+    - {name: "Hate Speech Offensive", size: "medium"}
+    - {name: "SafeRLHF", size: "medium"}
+  ablation_dimensions: [calibration_set_size (n_M=25-100), judge_model_size, prompt_strategy (single/federated)]
+  training_recipe: {optimizer: "N/A (statistical framework)", lr: "N/A", hardware: "LLaMA-3.1-8B/70B as judges"}
+  method_family: "statistical_hypothesis_testing"
+
+positioning:
+  core_claim: "Variance-corrected hypothesis testing achieves finite-sample Type-I error control despite calibration uncertainty from imperfect LLM judges, with exact conditions for when noisy judges outperform direct human evaluation"
+  key_results: "Type-I error controlled at 5% across all settings; noisy HT outperforms direct testing when (TPR-FPR)² exceeds variance threshold; Oracle Gap quantifies estimation cost"
+  limitations: ["Binary pass/fail only", "Normal approximation may fail at n_M<5", "Requires separate judge validation", "Assumes deterministic ground truth"]
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLM judges make errors — but can we still draw valid statistical conclusions from their noisy labels?"
+  tension: "Practitioners either blindly trust LLM judges or avoid them entirely; neither approach is principled"
+  key_insight: "By explicitly modeling judge TPR/FPR and propagating estimation uncertainty through hypothesis testing, noisy judges can be provably better than small human samples — Theorem 5.4 gives the exact decision boundary"
+  argument_chain: "noisy judges → explicit error model (TPR/FPR) → variance-corrected testing → Type-I control theorem → judge adoption decision theorem → empirical validation"
+  contribution_framing: "Three contributions: framework, theoretical analysis (error control + adoption conditions), empirical validation"
+  intro_structure: "5 paragraphs: (1) LLM evaluation importance, (2) judge imperfection problem, (3) existing approaches inadequacy, (4) proposed framework, (5) contributions"
+  notable_technique: "The 'Oracle Gap' concept is brilliant framing — turns a limitation (estimation uncertainty) into a measurable quantity"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "Two-phase pipeline: judge calibration on small human-labeled set → variance-corrected testing on large judge-labeled set"
+    narrative_role: "Makes the methodology immediately concrete"
+    design_elements: ["two-phase flow", "sample size annotations", "mathematical notation overlay"]
+    visual_style: "Flowchart with embedded equations"
+  result_figures:
+    - figure_id: "Type-I/Type-II error plots"
+      viz_type: "line_plot"
+      what_compared: "Error rates across methods vs calibration set size"
+      how_gain_highlighted: "All methods below 5% Type-I threshold; noisy HT achieves lowest Type-II"
+      design_note: "Horizontal threshold line for Type-I control makes the guarantee visually verifiable"
+  ablation_figures:
+    - figure_id: "Judge adoption analysis"
+      viz_type: "heatmap"
+      dimensions_varied: ["TPR", "FPR"]
+      design_note: "Decision boundary visualization for when to adopt noisy judge"
+  figure_narrative_role: "Method overview → Error control validation → Judge quality analysis → Adoption decision"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Main results"
+    row_axis: "methods"
+    col_axis: "datasets × error types"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + threshold marking"
+    statistical_reporting: "mean across multiple runs"
+    num_baselines: 3
+    design_note: "Dual reporting of Type-I and Type-II gives complete picture"
+  ablation_tables:
+    - table_id: "Calibration size analysis"
+      what_varied: ["n_M from 25 to 100"]
+      variation_style: "full_numbers"
+      design_note: "Shows Oracle Gap shrinking with calibration set size"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-dataset detailed results, judge prompt variants, sensitivity analysis"
+    reason: "Main text focuses on theoretical framework and key empirical validation"

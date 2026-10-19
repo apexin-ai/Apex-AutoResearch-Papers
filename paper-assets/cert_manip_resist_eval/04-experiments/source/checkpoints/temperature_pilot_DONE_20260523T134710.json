@@ -1,0 +1,55 @@
+{
+  "exp_id": "temperature_pilot",
+  "project": "cert_manip_resist_eval",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:22:13.574Z",
+    "updated_at": "2026-05-23T13:47:10.946Z",
+    "hypothesis": "Temperature variation (t=0.0/0.3/0.7/1.0) changes pairwise MI between judges, thereby changing K_eff. If temperature is a valid instrument for K_eff manipulation, it provides quasi-experimental evidence that K_eff causally affects panel ASR, not just correlationally.",
+    "spec": {
+      "command": "python scripts/run_temperature_pilot.py",
+      "server": "seetacloud-rtx6000",
+      "data_path": "MMLU + ARC-Challenge (300 samples each)",
+      "data_count": 300,
+      "model_name": "3 API models (gpt-4.1-nano, gemini-3.5-flash, claude-3-haiku) x 4 temperatures (0.0, 0.3, 0.7, 1.0)",
+      "seed": 42,
+      "pid": "168020",
+      "log_path": "/tmp/temperature_pilot.log",
+      "checkpoint_path": "/root/cert_manip_resist_eval/artifacts/results/plan001/"
+    },
+    "metrics": {
+      "accuracy_delta_max": {
+        "gpt-4.1-nano": 0.007,
+        "gemini-3.5-flash": 0.009,
+        "claude-3-haiku": 0
+      },
+      "keff_by_temperature": {
+        "mmlu": {
+          "t0.0": 2.584,
+          "t0.3": 2.598,
+          "t0.7": 2.564,
+          "t1.0": 2.592
+        },
+        "arc": {
+          "t0.0": 2.698,
+          "t0.3": 2.711,
+          "t0.7": 2.686,
+          "t1.0": 2.684
+        }
+      },
+      "keff_delta_max": {
+        "mmlu": 0.034,
+        "arc": 0.027
+      },
+      "conclusion_summary": "Temperature 0→1 changes K_eff by <0.03, accuracy by <1%. Temperature is NOT a valid instrument for K_eff manipulation.",
+      "data_status": "216/216 checkpoints complete, final JSON truncated (numpy.bool_ serialization error)"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-23T13:47:10.946Z"
+  },
+  "timestamp": "2026-05-23T13:47:10.988955+00:00",
+  "trigger": "update_registry"
+}

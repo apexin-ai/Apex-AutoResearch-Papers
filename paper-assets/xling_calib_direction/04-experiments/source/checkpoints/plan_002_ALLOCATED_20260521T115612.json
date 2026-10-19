@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan_002",
+  "project": "xling_calib_direction",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 2,
+    "created_at": "2026-05-21T11:46:06.605Z",
+    "updated_at": "2026-05-21T11:56:12.237Z",
+    "hypothesis": "Cross-lingual correctness direction transfers across languages in Llama 4 Scout (48-layer MoE, W4A16): English-trained linear probes at 13 probed layers (0,4,8,...,44,47) will transfer to 19 non-English languages with AUROC ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent transfer pattern (shallow→deep ΔAUROC ≥ 5pp). MoE architecture with 17B active params provides architectural contrast to dense Qwen models.",
+    "server": "westd-13176",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-13176",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-21T11:47:17.654Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONUNBUFFERED=1 && cd /root/xling_calib_direction && python -u code/extract_activations.py --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/ --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47 --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir /root/autodl-tmp/activations/llama4_scout/\"",
+      "finished_at": "2026-05-21T11:54:18.906Z",
+      "training_hours": 0.12
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-21T11:48:15.052Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T11:48:16.350219+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T11:54:20.808886+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-21T11:56:12.261805+00:00",
+  "trigger": "update_registry"
+}

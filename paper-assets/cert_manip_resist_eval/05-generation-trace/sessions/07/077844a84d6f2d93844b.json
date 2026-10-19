@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_anon-repo-path-cleanup_20260523T125904_result.json",
     "occurrence": 1,
-    "bytes": 348,
-    "sha256": "f62c55557362d8777a44cfe53d3a132ba52c2463e3e2de2c4aad77556e6ac47c"
+    "bytes": 347,
+    "sha256": "3dcf7792c9f4dc17b2fc5df1c1c5c3470e03168f22dc034cb1c86743257c6349"
   },
   "statistics": {
     "messages": 1,

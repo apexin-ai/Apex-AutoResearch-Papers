@@ -1,0 +1,74 @@
+{
+  "exp_id": "plan_013",
+  "project": "xling_calib_direction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:39:58.089Z",
+    "updated_at": "2026-05-21T00:59:20.023Z",
+    "hypothesis": "English correctness probes capture genuine linguistic signal: 5-fold CV with PCA(100) dimensionality reduction shows real AUROC significantly above permuted-label baseline (0.746 vs 0.484 at best layer), with selectivity (Hewitt & Liang 2019) concentrated in later layers (L20-L27), confirming the probe is not exploiting spurious high-dimensional correlations.",
+    "parent": "mvp_001",
+    "spec": {
+      "command": "python probing_controls_v2.py (5-fold CV + PCA-100)",
+      "server": "westd-13176",
+      "data_path": "/root/xling_calib_direction/activations/layer*_en.pt",
+      "data_count": "~14K MMLU test samples",
+      "model_name": "Qwen2.5-7B-Instruct (activations from mvp_001)",
+      "seed": 42,
+      "checkpoint_source": "mvp_001 activations",
+      "eval_data": "same activations, 5-fold CV"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "method": "5-fold CV + PCA(100) + LogisticRegression (C=1.0, L2, lbfgs, max_iter=2000)",
+      "selectivity_hewitt_liang": {
+        "L0": 0.02,
+        "L4": 0.037,
+        "L8": 0.036,
+        "L12": 0.042,
+        "L16": 0.123,
+        "L20": 0.244,
+        "L24": 0.248,
+        "L27": 0.262
+      },
+      "real_auroc": {
+        "L0": 0.501,
+        "L4": 0.524,
+        "L8": 0.529,
+        "L12": 0.53,
+        "L16": 0.615,
+        "L20": 0.733,
+        "L24": 0.738,
+        "L27": 0.746
+      },
+      "permuted_auroc": {
+        "L0": 0.481,
+        "L4": 0.487,
+        "L8": 0.493,
+        "L12": 0.488,
+        "L16": 0.492,
+        "L20": 0.489,
+        "L24": 0.49,
+        "L27": 0.484
+      },
+      "pca_variance_retained": {
+        "L0": 0.922,
+        "L4": 0.912,
+        "L8": 0.885,
+        "L12": 0.868,
+        "L16": 0.783,
+        "L20": 0.738,
+        "L24": 0.844,
+        "L27": 0.794
+      },
+      "note": "Selectivity = real_AUROC - permuted_AUROC (Hewitt & Liang 2019). Signal concentrated in L20-L27. PCA(100) retains 73-92% variance."
+    },
+    "checkpoint_path": "/root/xling_calib_direction/results/probing_controls.csv",
+    "log_path": "/root/xling_calib_direction/results/probing_controls.csv",
+    "completed_at": "2026-05-21T00:59:20.023Z"
+  },
+  "timestamp": "2026-05-21T00:59:20.074498+00:00",
+  "trigger": "update_registry"
+}

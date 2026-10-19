@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_pipeline-results-readout_20260522T170140_result.json",
     "occurrence": 1,
-    "bytes": 3859,
-    "sha256": "f120b59a3ddc57993131f4902e10f2e41fd065e7e608e989ae1a367546cdbf43"
+    "bytes": 3858,
+    "sha256": "06948f345e535fcd711d76fb84d41d1aa262f36fb436d2a32d440c4e2a7554dc"
   },
   "statistics": {
     "messages": 1,

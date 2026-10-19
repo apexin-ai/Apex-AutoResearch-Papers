@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69f1ea2d055f7b14cf2a",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops kill plan002v3 and prep plan001",
+  "task_key": "worker_ops_kill_plan002v3_and_prep_plan001_20260521T132712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_plan002v3_and_prep_plan001_20260521T132712_result.json",
+    "occurrence": 1,
+    "bytes": 1394,
+    "sha256": "a758a916a03ec32341f5ba24959c872d086cf0b31e526e23f6ceff1d3ca9ec9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型完整，32 个 shard 齐全。汇总：\n\n---\n\n**1. plan_002_v3 状态**: 已 kill（SIGTERM 成功），tmux session 已清理。**4 卡 GPU 全部 clean（0 MiB x 4）**。\n\n**2. Qwen3 模型完整本地路径**:\n```\n/root/autodl-tmp/models/Qwen3-235B-GPTQ-Int4/\n```\n32 个 safetensors shard + tokenizer 齐全。\n\n**3. extract_activations_large.py 参数格式**:\n```\n--model           # HuggingFace model name or local path (required)\n--languages       # nargs+, 默认 20 语言\n--layers          # 逗号分隔, 默认 \"0,4,8,12,16,20,24,28,31\"\n--output_dir      # 默认 ./activations\n--n_shot          # 默认 5\n--max_samples     # 0=全部\n--dtype           # bfloat16 | float16\n--quantization    # none | int4 | int8\n--save_interval   # 默认 500\n--split_ratio     # 默认 0.0\n--split_seed      # 默认 42\n--subjects        # 可选，限定 MMLU 科目\n```\n\n脚本用 `device_map=\"auto\"`，GPTQ 模型已经是 int4 量化，`--quantization` 参数用于 bitsandbytes 量化——GPTQ 模型应传 `--quantization none`（默认值即可）。\n\n**4. 磁盘**: /root/autodl-tmp/ **99GB 可用**（350G 总量，已用 252G，72%）。\n\n注意：Qwen3-235B-A22B 有 94 层，`--layers` 默认值 `\"0,4,8,12,16,20,24,28,31\"` 是给 32 层模型的，需要改为适合 94 层的采样（如 `0,8,16,24,32,48,64,80,93`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-plan002v3-and-prep-plan001.md"
+}

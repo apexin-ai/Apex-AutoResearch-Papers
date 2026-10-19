@@ -1,0 +1,77 @@
+paper_key: "kim2025correlated_errors"
+title: "Correlated Errors in Large Language Models"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines: [Random baseline (33% agreement on 4-choice), Per-accuracy expected agreement]
+  metrics:
+    - {name: "Error agreement rate (when both err)", direction: "descriptive"}
+    - {name: "Regression coefficients (same-company, same-architecture)", direction: "descriptive"}
+    - {name: "R²", direction: "higher_better"}
+  datasets:
+    - {name: "HuggingFace Open LLM Leaderboard (MMLU)", size: "349 models × 12,032 questions"}
+    - {name: "Helm", size: "71 models × 14,042 questions"}
+    - {name: "Resume evaluation", size: "20 models × 1,800 resume-job pairs"}
+  ablation_dimensions: [same_company, same_architecture, accuracy_level, parameter_count, model_generation]
+  training_recipe: {optimizer: "N/A (observational study)", lr: "N/A", hardware: "inference only"}
+  method_family: "empirical_correlation_analysis"
+
+positioning:
+  core_claim: "LLM error correlation is substantial and systematic — 60% pairwise agreement when both err (vs 33% random baseline), driven by shared company (+6.6%), architecture (+7.6%), and accuracy level (+2-4%)"
+  key_results: "60% error agreement (vs 33% baseline); same-company +6.6%, same-architecture +7.6%; R² 0.34-0.62; LLM-as-Judge inflates scores for same-provider models"
+  limitations: ["Limited to multiple-choice and numerical scoring", "Treats all wrong answers identically", "Resume evaluation subjective despite human labels"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "规模涌现型"
+  hook: "We assume diverse LLMs provide independent signals — but do they actually make different mistakes?"
+  tension: "The promise of multi-model systems rests on diversity, but shared training data, architectures, and RLHF pipelines may create hidden correlations"
+  key_insight: "Error correlation is not just present but systematic and predictable from observable model attributes — revealed through regression analysis on 350+ models"
+  argument_chain: "diversity assumption → 350+ model error analysis → systematic correlation finding → regression on model attributes → downstream impact (judge bias, labor market)"
+  contribution_framing: "Three questions answered: magnitude, drivers, consequences"
+  intro_structure: "4 paragraphs: (1) LLM diversity promise, (2) potential correlation concern, (3) study design, (4) key findings preview"
+  notable_technique: "Uses three different downstream applications (MCQ, judging, labor market) to show correlation matters practically, not just statistically"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration"
+    description: "Heatmap of pairwise error agreement rates across model families"
+    narrative_role: "Makes the abstract concept of error correlation visually tangible"
+    design_elements: ["model family clusters", "color-coded correlation strength", "diagonal blocks for same-family"]
+    visual_style: "Heatmap with hierarchical clustering by model family"
+  result_figures:
+    - figure_id: "Regression analysis"
+      viz_type: "bar_chart"
+      what_compared: "Contribution of model attributes to error correlation"
+      how_gain_highlighted: "Bar heights show same-company and same-architecture as dominant drivers"
+      design_note: "Coefficient visualization makes drivers immediately comparable"
+  ablation_figures:
+    - figure_id: "LLM-as-Judge analysis"
+      viz_type: "scatter"
+      dimensions_varied: ["judge-examinee relationship (same/different company, architecture)"]
+      design_note: "Shows systematic bias from correlated errors in evaluation setting"
+  figure_narrative_role: "Correlation heatmap → Regression drivers → Judge bias → Labor market simulation"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "regression covariates"
+    col_axis: "datasets (HuggingFace, Helm)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "significance stars + effect sizes"
+    statistical_reporting: "regression coefficients with standard errors, R²"
+    num_baselines: 1
+    design_note: "Standard econometric regression table — unusual in ML but appropriate for observational study"
+  ablation_tables:
+    - table_id: "Judge bias analysis"
+      what_varied: ["judge-examinee relationship"]
+      variation_style: "full_numbers"
+      design_note: "Shows score inflation from same-provider pairs"
+  supplementary_tables:
+    in_appendix: true
+    content: "Full regression specifications, robustness checks, per-architecture breakdowns"
+    reason: "Main text focuses on headline findings and downstream applications"

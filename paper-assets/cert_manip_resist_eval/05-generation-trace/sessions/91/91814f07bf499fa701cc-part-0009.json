@@ -200,7 +200,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"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\" && .venv/bin/python3 -c \"from src.api_judge_service import API_MODEL_REGISTRY, _OPENROUTER_MODEL_MAP; print('Registry:', list(API_MODEL_REGISTRY.keys())); print('Map:', list(_OPENROUTER_MODEL_MAP.keys()))\"",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"[REDACTED]\" && .venv/bin/python3 -c \"from src.api_judge_service import API_MODEL_REGISTRY, _OPENROUTER_MODEL_MAP; print('Registry:', list(API_MODEL_REGISTRY.keys())); print('Map:', list(_OPENROUTER_MODEL_MAP.keys()))\"",
               "description": "Verify updated model registry"
             }
           },
@@ -239,7 +239,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"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\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch claude > /tmp/step1_claude.log 2>&1 & echo \"Claude PID=$!\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch gemini > /tmp/step1_gemini.log 2>&1 & echo \"Gemini PID=$!\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch openai > /tmp/step1_openai.log 2>&1 & echo \"OpenAI PID=$!\"",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"[REDACTED]\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch claude > /tmp/step1_claude.log 2>&1 & echo \"Claude PID=$!\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch gemini > /tmp/step1_gemini.log 2>&1 & echo \"Gemini PID=$!\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch openai > /tmp/step1_openai.log 2>&1 & echo \"OpenAI PID=$!\"",
               "description": "Launch all 3 batches in parallel with 15w/10rps"
             }
           },
@@ -410,7 +410,7 @@
           "content": [
             {
               "type": "text",
-              "text": "391511 /bin/bash -c source /home/ubuntu/.claude-account-2/shell-snapshots/snapshot-bash-1779463903460-da9whg.sh 2>/dev/null || true && shopt -u extglob 2>/dev/null || true && eval 'cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"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\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch claude > /tmp/step1_claude.log 2>&1 & echo \"Claude PID=$!\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch gemini > /tmp/step1_gemini.log 2>&1 & echo \"Gemini PID=$!\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch openai > /tmp/step1_openai.log 2>&1 & echo \"OpenAI PID=$!\"' < /dev/null && pwd -P >| /tmp/claude-239d-cwd\n391514 .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch claude\n391769 /bin/bash -c source /home/ubuntu/.claude-account-2/shell-snapshots/snapshot-bash-1779463903460-da9whg.sh 2>/dev/null || true && shopt -u extglob 2>/dev/null || true && eval 'pgrep -af \"step1_batched\"' < /dev/null && pwd -P >| /tmp/claude-1eb2-cwd"
+              "text": "391511 /bin/bash -c source /home/ubuntu/.claude-account-2/shell-snapshots/snapshot-bash-1779463903460-da9whg.sh 2>/dev/null || true && shopt -u extglob 2>/dev/null || true && eval 'cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"[REDACTED]\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch claude > /tmp/step1_claude.log 2>&1 & echo \"Claude PID=$!\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch gemini > /tmp/step1_gemini.log 2>&1 & echo \"Gemini PID=$!\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch openai > /tmp/step1_openai.log 2>&1 & echo \"OpenAI PID=$!\"' < /dev/null && pwd -P >| /tmp/claude-239d-cwd\n391514 .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch claude\n391769 /bin/bash -c source /home/ubuntu/.claude-account-2/shell-snapshots/snapshot-bash-1779463903460-da9whg.sh 2>/dev/null || true && shopt -u extglob 2>/dev/null || true && eval 'pgrep -af \"step1_batched\"' < /dev/null && pwd -P >| /tmp/claude-1eb2-cwd"
             }
           ],
           "metadata": {
@@ -513,7 +513,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"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\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch gemini > /tmp/step1_gemini.log 2>&1 & echo \"Gemini PID=$!\"",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"[REDACTED]\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch gemini > /tmp/step1_gemini.log 2>&1 & echo \"Gemini PID=$!\"",
               "description": "Launch Gemini batch separately"
             }
           },
@@ -552,7 +552,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"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\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch openai > /tmp/step1_openai.log 2>&1 & echo \"OpenAI PID=$!\"",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring && export OPENROUTER_API_KEY=\"[REDACTED]\" && nohup .venv/bin/python3 scripts/run_plan001_step1_batched.py --batch openai > /tmp/step1_openai.log 2>&1 & echo \"OpenAI PID=$!\"",
               "description": "Launch OpenAI batch separately"
             }
           },

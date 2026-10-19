@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b25d185bfd7e704b96a",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops plot figures pilot",
+  "task_key": "worker_ops_plot-figures-pilot_20260521T063637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plot-figures-pilot_20260521T063637_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "410856562b980d89d45db21d7c7290bb679413d3cd8c20c11831ced690738401"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 PDF 全部生成完毕：\n\n| Figure | 文件 | 大小 |\n|--------|------|------|\n| (a) Simpson's Paradox | `simpsons_paradox_pilot.pdf` | 32 KB |\n| (b) Selectivity Heatmap | `selectivity_heatmap_pilot.pdf` | 31 KB |\n| (c) Pareto Scatter | `pareto_scatter_pilot.pdf` | 23 KB |\n\n**数据说明**：\n- **Figure (a)**：使用 Qwen 数据（CKA from mvp001 + AUROC from pareto_detail.csv）。Llama 只有 CKA 无 AUROC 数据，未纳入。左面板拟合 pooled 线性回归（显示 slope），右面板按层分色各自拟合。\n- **Figure (b)**：EN 列填充 selectivity 值（灰色标记 <0.05 的低信号层），小字标注 real AUROC。其余 5 语言列显示 \"—\" + 浅灰底色。\n- **Figure (c)**：5 语言 Okabe-Ito 配色，Pareto 最优点（L24/L27）加标注，对角线参考线。\n\n脚本位于 `/root/xling_calib_direction/scripts/plot_figures.py`，输出在 `artifacts/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plot-figures-pilot.md"
+}

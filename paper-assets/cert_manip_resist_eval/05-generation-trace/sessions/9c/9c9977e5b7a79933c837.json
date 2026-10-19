@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_temperature-cost-estimate_20260523T080404_result.json",
     "occurrence": 1,
-    "bytes": 3029,
-    "sha256": "0d25b526a2d0d5a47bd25f5ee60115f79a85bd47b3b0a4129f5f119058ad4fa5"
+    "bytes": 3028,
+    "sha256": "bfdeffcaff52c84a9e09981bccca50e32d0e47ccab05a6d0fbe616952d26e883"
   },
   "statistics": {
     "messages": 1,

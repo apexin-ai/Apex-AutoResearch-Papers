@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_dl-llama70b-resume_20260521T202803_result.json",
     "occurrence": 1,
-    "bytes": 407,
-    "sha256": "661e09167780f3973121917b4495358ecb9708ffbf2deffe086b659dfa370710"
+    "bytes": 406,
+    "sha256": "ad66f5a35e18ce72ea8692291a55d8becc8b7aff7fbc408f80c82b4a8e992261"
   },
   "statistics": {
     "messages": 1,

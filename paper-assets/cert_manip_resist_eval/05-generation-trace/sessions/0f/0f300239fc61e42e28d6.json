@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_scatter-regen-logr_20260525T225224_result.json",
     "occurrence": 1,
-    "bytes": 767,
-    "sha256": "057496b7976ce71c440c0dc4e0a86da93609ebb7f4c7b9ceb9648754837bd1ff"
+    "bytes": 766,
+    "sha256": "b301bef669a48306010267c69976ba8d9a973b871a04ffd0663ae3094238a0bc"
   },
   "statistics": {
     "messages": 1,

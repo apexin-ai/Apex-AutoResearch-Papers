@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mini-smoke-test_20260521T190612_result.json",
     "occurrence": 1,
-    "bytes": 720,
-    "sha256": "f78fb820f58723fced9e2e75edbdcbbc0753ff6ceef47fe896981d669b67b303"
+    "bytes": 719,
+    "sha256": "2648ce54a5194253bba1bcb4458096bfe91fbeb048baaafe6daf098df033ea2b"
   },
   "statistics": {
     "messages": 1,

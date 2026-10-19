@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fp16-hotfix-deploy_20260524T184110_result.json",
     "occurrence": 1,
-    "bytes": 545,
-    "sha256": "0a0e47322f197bfb210b0684a63fff538defe246b334cc2ecc5f67035953f73c"
+    "bytes": 544,
+    "sha256": "e34a52c59d0f084f9f6490312f50e703676fed94bae9fe1757bd7eb0aca53204"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,1 @@
+Figure 2 regime transition generated with V2 data. fig_regime_transition.pdf (20KB), fig_regime_transition.png (64KB). V2 data: K=3 K_eff(4) already exceeds η_max(3), K≥5 η_max drops to 0, K_eff becomes sole predictor. Transition zone annotated at K∈(3,5).

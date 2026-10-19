@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_step2-wait-and-continue_20260522T004503_result.json",
     "occurrence": 1,
-    "bytes": 4128,
-    "sha256": "63aa8c1dc34ca7d276a41532f87688e4c362dfc797ba5dd06c0c72e53968fc7c"
+    "bytes": 4127,
+    "sha256": "de5301028e8e8a05e5a4efe25dd5b1de9e357f59ea6c74f55cafac7a6f57f95b"
   },
   "statistics": {
     "messages": 1,

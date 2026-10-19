@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_keff-distribution-corrected_20260523T143348_result.json",
     "occurrence": 1,
-    "bytes": 497,
-    "sha256": "b402b1454db5a171818d86b8eefd6b99d92534729c02d2c0251ba118747df920"
+    "bytes": 496,
+    "sha256": "89fa324ab8c693af12885aba6538dcca08ea356e66c47869611416121d291ef1"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_d047-tex-narrative-numbers_20260525T210434_result.json",
     "occurrence": 1,
-    "bytes": 2225235,
-    "sha256": "033663739701907596e3ff24936d14f44a13465dfc40218f85fad3b0ff03b85d"
+    "bytes": 2225234,
+    "sha256": "42907676d468288fb01e729b4f701f73e5baf5f3e1160ca8cf3dd8100fa4c24d"
   },
   "statistics": {
     "messages": 1,

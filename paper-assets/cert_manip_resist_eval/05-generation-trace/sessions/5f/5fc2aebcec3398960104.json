@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_d047-figure-regen_20260525T212230_result.json",
     "occurrence": 1,
-    "bytes": 1211,
-    "sha256": "c383246af971a480e4d20cd5a630bbf0b7ff8951c02bee969dd734447e8d5dce"
+    "bytes": 1210,
+    "sha256": "3a36fc895bb97cc299f34e2662d81176ee5dd9dbc0ac152fc380f8b062a59b53"
   },
   "statistics": {
     "messages": 1,

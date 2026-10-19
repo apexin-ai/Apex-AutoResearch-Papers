@@ -16,4 +16,4 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
 
-[Part 1](ops-fig1-redesign-v3/part-001.md) · [Part 2](ops-fig1-redesign-v3/part-002.md) · [Part 3](ops-fig1-redesign-v3/part-003.md) · [Part 4](ops-fig1-redesign-v3/part-004.md)
+[Part 1](ops-fig1-redesign-v3/part-001.md) · [Part 2](ops-fig1-redesign-v3/part-002.md) · [Part 3](ops-fig1-redesign-v3/part-003.md) · [Part 4](ops-fig1-redesign-v3/part-004.md) · [Part 5](ops-fig1-redesign-v3/part-005.md)

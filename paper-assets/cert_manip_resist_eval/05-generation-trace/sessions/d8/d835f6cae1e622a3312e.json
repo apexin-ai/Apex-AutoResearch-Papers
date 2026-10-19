@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_plan010-fdr-and-cv_20260522T121717_result.json",
     "occurrence": 1,
-    "bytes": 1307,
-    "sha256": "787175f0a83634700b20ae3b1db74241fe7b88ea0dda007b0a9515b9ed9b45f0"
+    "bytes": 1306,
+    "sha256": "be3d727c9cfb92632fe46a11251027dd8a9f8e3d70934f4404d96c350d5403c4"
   },
   "statistics": {
     "messages": 1,

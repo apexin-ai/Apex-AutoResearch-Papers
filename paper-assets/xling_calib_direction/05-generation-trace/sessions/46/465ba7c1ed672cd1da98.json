@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "465ba7c1ed672cd1da98",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "exp plan 012 linproj sensitivity",
+  "task_key": "worker_exp_plan_012_linproj_sensitivity_20260520T232058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_012_linproj_sensitivity_20260520T232058_result.json",
+    "occurrence": 1,
+    "bytes": 1442,
+    "sha256": "03970e8c90b4571832b586f86c8bf546cd9d636e50010d2ffa7ec547e76a4a34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `/root/xling_calib_direction/results/linproj_sensitivity.csv`（320行数据，8层×5语言×8个N值）。\n\n## 关键发现\n\n**Mean-shift 效果因层和语言差异极大，不是稳健的校准方法。**\n\n### 有效的组合（ΔECE < 0，mean-shift 改善校准）\n\n| Layer | Lang | ECE_ZS | ECE_MS(all) | ΔECE |\n|-------|------|--------|-------------|------|\n| 8 | sw | 0.629 | 0.479 | **-0.150** |\n| 8 | zh | 0.445 | 0.347 | **-0.098** |\n| 12 | zh | 0.418 | 0.379 | -0.039 |\n| 0 | hi | 0.444 | 0.424 | -0.020 |\n\n### 有害的组合（ΔECE > 0，mean-shift 恶化校准）\n\n| Layer | Lang | ECE_ZS | ECE_MS(all) | ΔECE |\n|-------|------|--------|-------------|------|\n| 0 | sw | 0.313 | 0.451 | **+0.138** |\n| 0 | zh | 0.314 | 0.367 | +0.053 |\n| 0 | ko | 0.375 | 0.426 | +0.050 |\n| 8 | hi | 0.488 | 0.535 | +0.047 |\n\n### N 的影响\n\n- N=10 时方差大（std ~0.03-0.07），N≥200 后基本稳定（std <0.01）\n- N 对 mean-shift 方向（改善/恶化）无影响——小 N 和大 N 的 ΔECE 符号一致\n- 对于有效组合（layer8-sw），N=10 反而效果最好（ΔECE=-0.169 vs all=-0.150），但方差高\n\n### 结论\nMean-shift 不是通用校准方法。它只在特定 layer-language 组合上有效（如 layer8 的 sw/zh），在其他组合上反而恶化校准。这说明语言间的 representation shift 不是简单的均值平移。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-plan-012-linproj-sensitivity.md"
+}

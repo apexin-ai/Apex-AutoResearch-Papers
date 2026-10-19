@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_plan006-cinelli-hazlett-v2_20260524T100043_result.json",
     "occurrence": 1,
-    "bytes": 996,
-    "sha256": "7f72e5e92848d1266cf48410b5269cb395e7bf84fdfb3800d649c406ce82f348"
+    "bytes": 995,
+    "sha256": "2b5ca09000c40686e6276d49d9c00bd6a9a7f37a72730d677f35a5c462907a26"
   },
   "statistics": {
     "messages": 1,

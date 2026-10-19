@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_d047-nearchance-filtered_20260525T215030_result.json",
     "occurrence": 1,
-    "bytes": 1162,
-    "sha256": "6843c180a785ee360f3528ed55adcaf68e239e8cacff613f802760aca2e1b81e"
+    "bytes": 1161,
+    "sha256": "3a41038372f3c7c0f361c84bf88ec938cfe8872899b6d884a20b0c8d4f4a1e54"
   },
   "statistics": {
     "messages": 1,

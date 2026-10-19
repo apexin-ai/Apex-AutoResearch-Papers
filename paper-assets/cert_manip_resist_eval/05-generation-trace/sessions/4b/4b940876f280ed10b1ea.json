@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill-duplicate-mc_20260524T121015_result.json",
     "occurrence": 1,
-    "bytes": 388,
-    "sha256": "57c89e427a5285fe23067b928ec59692fb056117a6d8055d41e48da1a0fef514"
+    "bytes": 387,
+    "sha256": "ee68fb7601a33200719409ea118d54cc77cad2d2a3a5528e2af0f9e6a7074e1f"
   },
   "statistics": {
     "messages": 1,

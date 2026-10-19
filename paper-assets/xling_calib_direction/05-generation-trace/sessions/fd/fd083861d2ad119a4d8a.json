@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd083861d2ad119a4d8a",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops qwen3 modelscope check",
+  "task_key": "worker_ops_qwen3-modelscope-check_20260521T074110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen3-modelscope-check_20260521T074110_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "b38f6f115d1ea36c98e6db7a3465d3e2062741ce9bd29f2b1a2168733f8b57cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据够了，汇总报告：\n\n## 结果\n\n### 1. ModelScope 可用性\n**有。** Model ID: `Qwen/Qwen3-235B-A22B-GPTQ-Int4`，116GB，6万+ 下载量。\n\n### 2. 下载已切换\n- 已 kill HF 下载进程 (PID 53359)\n- ModelScope 下载已启动 (PID 68080)\n- **8 路并行下载**，单流 1.7-2.7 MB/s，聚合带宽 ~16 MB/s\n- ModelScope 没有复用 HF 已下载的 6 个 shard，从头下载全部 32 个\n- **预计总耗时 ~2 小时**（vs. HF 的 ~27h 剩余），加速约 13x\n\n### 3. 磁盘空间\n- 数据盘 350GB，已用 175GB，剩余 176GB\n- Qwen3 还需 ~75GB，Llama4 还需 ~34GB，总计 ~109GB — 够用\n\n### 4. Llama4 下载状态\n- PID 67796 在跑，8/27 files (46GB)\n- 也是 HF 源（同样偏慢），但文件较小，暂不切换\n\n日志文件：`/tmp/qwen3_modelscope.log`，可随时 `tail` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen3-modelscope-check.md"
+}

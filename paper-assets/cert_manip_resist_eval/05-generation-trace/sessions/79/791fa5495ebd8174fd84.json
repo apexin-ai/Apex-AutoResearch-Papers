@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_update-step3-step4-dual-keff_20260521T220444_result.json",
     "occurrence": 1,
-    "bytes": 915,
-    "sha256": "811465d6651f0124cb37f384088fc5500862025497ba3212005ca905a6dfad3d"
+    "bytes": 914,
+    "sha256": "9c504b2bee9e73472e229e12644c3a39d72b07937cecbcb73b6a4515c8eeac0b"
   },
   "statistics": {
     "messages": 1,

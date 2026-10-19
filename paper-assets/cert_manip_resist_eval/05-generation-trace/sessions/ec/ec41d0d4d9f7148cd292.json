@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_fix-loader-rerun-pipeline_20260522T170513_result.json",
     "occurrence": 1,
-    "bytes": 3132,
-    "sha256": "ec6540d8f3435ab199940dbfb6e13009e4c41daf5bae2ee04a39a229ac3e0516"
+    "bytes": 3131,
+    "sha256": "f42bc2bfd693dfb9f0b136a1e5f4b95c4112136d97cd0b5002463d3414149be2"
   },
   "statistics": {
     "messages": 1,

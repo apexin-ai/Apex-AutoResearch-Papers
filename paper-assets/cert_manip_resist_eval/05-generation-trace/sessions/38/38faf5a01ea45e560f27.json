@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_table1-k3-ols-corrected_20260523T175018_result.json",
     "occurrence": 1,
-    "bytes": 1327,
-    "sha256": "b5016b51fa7d383acc7519ecfd8892997a065c4c4cbd8714f4ffb3305b872d45"
+    "bytes": 1326,
+    "sha256": "b2c6638117abf6efd7ec7a0475b5cbd75d18a9fbbd6d57f9ec3cbd752397443c"
   },
   "statistics": {
     "messages": 1,

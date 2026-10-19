@@ -1,0 +1,148 @@
+% Framework overview figure — TikZ
+\begin{figure*}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  % ── Global styles ──
+  every node/.style={font=\small},
+  stage/.style={
+    rounded corners=4pt,
+    minimum width=3.6cm,
+    draw=#1!60!black, line width=0.8pt,
+    fill=#1!6,
+    blur shadow={shadow blur steps=6, shadow xshift=0.6pt, shadow yshift=-0.6pt,
+                 shadow opacity=12},
+    inner sep=0pt,
+  },
+  stage title/.style={
+    font=\small\bfseries, text=#1!60!black,
+    inner sep=4pt,
+  },
+  item box/.style={
+    rounded corners=2.5pt,
+    draw=#1!30, fill=white, line width=0.4pt,
+    minimum width=3.1cm, minimum height=0.48cm,
+    inner sep=2pt,
+    font=\footnotesize,
+  },
+  metric box/.style={
+    rounded corners=2.5pt,
+    draw=green!35!black!30, fill=green!3,
+    line width=0.4pt,
+    minimum width=1.38cm, minimum height=0.85cm,
+    inner sep=2pt,
+  },
+  eq box/.style={
+    rounded corners=2.5pt,
+    draw=yellow!60!black!25, fill=yellow!5,
+    line width=0.4pt,
+    minimum width=3.1cm, minimum height=0.48cm,
+    inner sep=2.5pt,
+    font=\footnotesize,
+  },
+  connector/.style={
+    ->,>={Stealth[length=4pt,width=3pt]},
+    line width=0.9pt, color=black!45,
+  },
+  sec ref/.style={
+    font=\scriptsize\itshape, text=#1!45!black,
+  },
+]
+
+% ── Color definitions ──
+\definecolor{cpanel}{HTML}{4A7DC0}
+\definecolor{cadv}{HTML}{C75050}
+\definecolor{cmetric}{HTML}{4A9A5B}
+\definecolor{cagg}{HTML}{7E57A8}
+
+% ── Horizontal spacing ──
+\def\stageW{3.6cm}
+\def\stageH{3.9cm}
+\def\gap{1.3cm}
+
+% ════════════════════════════════════════════
+%  STAGE 1 — Panel Construction
+% ════════════════════════════════════════════
+\node[stage=cpanel, minimum height=\stageH] (S1) at (0,0) {};
+\node[stage title=cpanel, anchor=north] at ([yshift=-3pt]S1.north) {Panel Construction};
+\node[sec ref=cpanel, anchor=north east] at ([xshift=-4pt,yshift=-5pt]S1.north east) {\S3};
+
+% Items
+\node[item box=cpanel] (s1a) at ([yshift=-0.85cm]S1.north) {%
+  \makebox[2.9cm][l]{\textbf{15 judges}\hfill{\scriptsize 6 families, 3 tiers}}};
+\node[item box=cpanel, below=3.5pt of s1a] (s1b) {%
+  \makebox[2.9cm][l]{\textbf{\boldmath$K \in \{3,5,7\}$}\hfill{\scriptsize 455\,--\,6\kern-0.5pt,435}}};
+\node[item box=cpanel, below=3.5pt of s1b] (s1c) {%
+  \makebox[2.9cm][l]{\textbf{2 benchmarks}\hfill{\scriptsize MMLU, ARC}}};
+\node[item box=cpanel, below=3.5pt of s1c] (s1d) {%
+  \makebox[2.9cm][l]{\textbf{Exhaustive}\hfill{\scriptsize all $\binom{N}{K}$ panels}}};
+
+% ════════════════════════════════════════════
+%  STAGE 2 — Adversary Model
+% ════════════════════════════════════════════
+\node[stage=cadv, minimum height=\stageH, right=\gap of S1] (S2) {};
+\node[stage title=cadv, anchor=north] at ([yshift=-3pt]S2.north) {Adversary Model};
+\node[sec ref=cadv, anchor=north east] at ([xshift=-4pt,yshift=-5pt]S2.north east) {\S3};
+
+\node[item box=cadv] (s2a) at ([yshift=-0.85cm]S2.north) {%
+  \makebox[2.9cm][l]{\textbf{Prompt injection}\hfill{\scriptsize targeted}}};
+\node[item box=cadv, below=3.5pt of s2a] (s2b) {%
+  \makebox[2.9cm][l]{\textbf{Sycophancy}\hfill{\scriptsize shared-bias}}};
+\node[item box=cadv, below=3.5pt of s2b] (s2c) {%
+  \makebox[2.9cm][l]{\textbf{Score manipulation}\hfill{\scriptsize targeted}}};
+\node[item box=cadv, below=3.5pt of s2c] (s2d) {%
+  \makebox[2.9cm][l]{\textbf{Verbosity bias}\hfill{\scriptsize shared-bias}}};
+\node[item box=cadv, below=3.5pt of s2d] (s2e) {%
+  \makebox[2.9cm][l]{\textbf{Position / Authority}\hfill{\scriptsize shared-bias}}};
+
+% ════════════════════════════════════════════
+%  STAGE 3 — Vulnerability Metrics
+% ════════════════════════════════════════════
+\node[stage=cmetric, minimum height=\stageH, right=\gap of S2] (S3) {};
+\node[stage title=cmetric, anchor=north] at ([yshift=-3pt]S3.north) {Vulnerability Metrics};
+\node[sec ref=cmetric, anchor=north east] at ([xshift=-4pt,yshift=-5pt]S3.north east) {\S3};
+
+% Two metric boxes side by side
+\node[metric box, anchor=north west] (m1) at ([xshift=5pt,yshift=-0.72cm]S3.north west) {};
+\node[font=\normalsize,text=cmetric!70!black] at ([yshift=3pt]m1.center) {$\eta_{\max}$};
+\node[font=\tiny,text=black!55] at ([yshift=-8pt]m1.center) {weakest-link};
+
+\node[metric box, anchor=north east] (m2) at ([xshift=-5pt,yshift=-0.72cm]S3.north east) {};
+\node[font=\normalsize,text=cmetric!70!black] at ([yshift=3pt]m2.center) {$K_{\mathrm{eff}}$};
+\node[font=\tiny,text=black!55] at ([yshift=-8pt]m2.center) {independence};
+
+% Equation box
+\node[eq box, below=6pt of m1.south east, anchor=north, minimum width=3.1cm] (eq) {%
+  $\log\!\mathrm{ASR} = \alpha {+} \beta_1\!\log K_{\mathrm{eff}} {+} \beta_2\!\log \eta_{\max}$};
+
+% Bullet items
+\node[font=\footnotesize, text=black!60, anchor=north west]
+  (b1) at ([xshift=5pt, yshift=-4pt]eq.south west) {\textbullet\ Wild cluster bootstrap};
+\node[font=\footnotesize, text=black!60, anchor=north west]
+  (b2) at ([yshift=-1pt]b1.south west) {\textbullet\ Dominance analysis};
+
+% ════════════════════════════════════════════
+%  STAGE 4 — Aggregation
+% ════════════════════════════════════════════
+\node[stage=cagg, minimum height=\stageH, right=\gap of S3] (S4) {};
+\node[stage title=cagg, anchor=north] at ([yshift=-3pt]S4.north) {Aggregation};
+\node[sec ref=cagg, anchor=north east] at ([xshift=-4pt,yshift=-5pt]S4.north east) {\S3};
+
+\node[item box=cagg] (s4a) at ([yshift=-0.85cm]S4.north) {%
+  \makebox[2.9cm][l]{\textbf{Majority vote}\hfill{\scriptsize baseline}}};
+\node[item box=cagg, below=3.5pt of s4a] (s4b) {%
+  \makebox[2.9cm][l]{\textbf{Weighted vote}\hfill{\scriptsize acc-weighted}}};
+\node[item box=cagg, below=3.5pt of s4b] (s4c) {%
+  \makebox[2.9cm][l]{\textbf{Threshold}\hfill{\scriptsize unanimity}}};
+\node[item box=cagg, below=3.5pt of s4c] (s4d) {%
+  \makebox[2.9cm][l]{\textbf{Bayesian calib.}\hfill{\scriptsize posterior $>$ 0.5}}};
+
+% ── Connecting arrows ──
+\draw[connector] (S1.east) -- (S2.west);
+\draw[connector] (S2.east) -- (S3.west);
+\draw[connector] (S3.east) -- (S4.west);
+
+\end{tikzpicture}}%
+\caption{Overview of our evaluation framework. Given $N$ candidate LLM judges, we construct $K$-judge panels (\S\ref{sec:experiments}), subject them to six adversarial attack types (\S\ref{sec:threat_model}), and assess vulnerability through two complementary metrics: $\eta_{\max}$ (weakest-link individual susceptibility) and $K_{\text{eff}}$ (effective independent channels via mutual information). Panel decisions are aggregated through four methods of increasing sophistication (\S\ref{sec:aggregation}).}
+\label{fig:framework}
+\end{figure*}

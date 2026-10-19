@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_step2v3-final-fix_20260522T015550_result.json",
     "occurrence": 1,
-    "bytes": 539,
-    "sha256": "d230d96a90e60f8af2765b9d18c1a9dd60e9a3b1d98b7a4621de9d5378c906cd"
+    "bytes": 538,
+    "sha256": "beda5853d5e46e5e6a8a65b98f6858665717e0e78f663d1797a24f5c3c12af16"
   },
   "statistics": {
     "messages": 1,

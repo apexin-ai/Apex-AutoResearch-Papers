@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_keff-stability-stochdom_20260523T123019_result.json",
     "occurrence": 1,
-    "bytes": 1360,
-    "sha256": "d399de37d52f14f15e2394fe1e94fa10f326c0aa08d957e33b65dc32bde397ff"
+    "bytes": 1359,
+    "sha256": "885fa6cf65786550404e1c3244e5b7b5b5ce00f514d843e5a01621f4c3ac34d5"
   },
   "statistics": {
     "messages": 1,

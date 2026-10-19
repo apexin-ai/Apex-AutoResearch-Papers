@@ -1,0 +1,126 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{miao2026steering}
+\citation{zhou2024lace}
+\citation{wang2024mka}
+\citation{miao2026coral,ji2024confidence}
+\citation{xiao2025knowledge}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{miao2026coral}
+\citation{ji2024confidence}
+\citation{miao2026steering}
+\citation{xiao2025knowledge}
+\citation{pires2019multilingual}
+\citation{wu2019beto}
+\citation{zhou2024lace}
+\citation{guo2017calibration}
+\citation{angelopoulos2023conformal}
+\citation{kornblith2019similarity}
+\citation{bendavid2010theory}
+\citation{zhao2019learning}
+\citation{conneau2018word}
+\citation{artetxe2018robust}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probe-Based Calibration.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Lingual Probing and Transfer.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration in Multilingual Settings.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation Similarity and Domain Adaptation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Correctness Probing Framework}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Transfer Conditions.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Difficulty--Capability Decomposition}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:decomposition}{{3.2}{3}{Difficulty--Capability Decomposition}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Calibration-Aware Cross-Lingual Regularization (CaCLR{})}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:caclr}{{3.3}{3}{Calibration-Aware Cross-Lingual Regularization (\caclr {})}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implementation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}CKA Geometric Analysis}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Languages.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Three-architecture summary. EN best: English AUROC at English-optimal layer. ZS mean: 20-language mean AUROC at ZS-optimal layer. Gap: EN best minus ZS mean at EN-optimal layer. $\tilde  {\rho }$: median per-language Spearman $\rho $ (depth vs.\ ZS AUROC). Pareto langs: fraction showing local tradeoff.}}{4}{table.caption.11}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:arch_summary}{{1}{4}{Three-architecture summary. EN best: English AUROC at English-optimal layer. ZS mean: 20-language mean AUROC at ZS-optimal layer. Gap: EN best minus ZS mean at EN-optimal layer. $\tilde {\rho }$: median per-language Spearman $\rho $ (depth vs.\ ZS AUROC). Pareto langs: fraction showing local tradeoff}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Qwen3-235B Pareto frontier (selected layers). Drop = EN AUROC $-$ ZS mean AUROC at each layer. L48 is the ZS-optimal layer; L68 is EN-optimal.}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:pareto_qwen}{{2}{4}{Qwen3-235B Pareto frontier (selected layers). Drop = EN AUROC $-$ ZS mean AUROC at each layer. L48 is the ZS-optimal layer; L68 is EN-optimal}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Claim 1: Architecture-Dependent Depth--Transfer Tradeoff}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:pareto}{{5.1}{4}{Claim 1: Architecture-Dependent Depth--Transfer Tradeoff}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Difficulty--capability decomposition (3 architectures, 10 languages pooled). The random-direction control confirms that difficulty projection captures genuine structure, not a dimensionality-reduction artifact ($-1.5\,\text  {pp}$ vs.\ $+4.5\,\text  {pp}$ for difficulty projection).}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:decomp}{{3}{5}{Difficulty--capability decomposition (3 architectures, 10 languages pooled). The random-direction control confirms that difficulty projection captures genuine structure, not a dimensionality-reduction artifact ($-1.5\pp $ vs.\ $+4.5\pp $ for difficulty projection)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Transfer conditions at the ZS-optimal layer (3-architecture, 20-language average). $\Delta $: improvement over zero-shot in AUROC (pp). CaCLR{} requires parallel activations but no target-language labels.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:transfer}{{4}{5}{Transfer conditions at the ZS-optimal layer (3-architecture, 20-language average). $\Delta $: improvement over zero-shot in AUROC (pp). \caclr {} requires parallel activations but no target-language labels}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Claim 2: Difficulty Transfers, Capability Does Not}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:decomposition_results}{{5.2}{5}{Claim 2: Difficulty Transfers, Capability Does Not}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Claim 3: CaCLR{} Shifts the Pareto Frontier}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:caclr_results}{{5.3}{5}{Claim 3: \caclr {} Shifts the Pareto Frontier}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Main Result.}{5}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $\beta $ sweep for consistency loss (3-architecture average, $\alpha {=}0.1$). Optimal at $\beta {=}0.05$ with inverted-U response.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:beta}{{5}{6}{$\beta $ sweep for consistency loss (3-architecture average, $\alpha {=}0.1$). Optimal at $\beta {=}0.05$ with inverted-U response}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Consistency Loss ($\beta $) Sweep.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Component Ablation.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tier-Stratified Improvement.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Depth Profile.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Distributional Matching Comparison.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Claim 4: Simpson's Paradox in CKA--Transfer Geometry}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cka}{{5.4}{6}{Claim 4: Simpson's Paradox in CKA--Transfer Geometry}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{The Paradox.}{6}{section*.22}\protected@file@percent }
+\citation{hewitt2019designing}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Simpson's Paradox: raw vs.\ partial Spearman correlation between CKA and ZS AUROC. Partial correlation controls for normalized depth. Sign reversal confirmed across all architectures.}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:simpson}{{6}{7}{Simpson's Paradox: raw vs.\ partial Spearman correlation between CKA and ZS AUROC. Partial correlation controls for normalized depth. Sign reversal confirmed across all architectures}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Subspace angle analysis (pooled across architectures). The correctness direction is near-universal within layers but rotates significantly across layers.}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:subspace}{{7}{7}{Subspace angle analysis (pooled across architectures). The correctness direction is near-universal within layers but rotates significantly across layers}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Subspace Angle Analysis.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA Cliff Threshold.}{7}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Additional Analyses}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Probing Control Tasks}{7}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:control}{{6.1}{7}{Probing Control Tasks}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Linear Projection Sample Efficiency and Procrustes Reversal}{7}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:linproj}{{6.2}{7}{Linear Projection Sample Efficiency and Procrustes Reversal}{subsection.6.2}{}}
+\citation{miao2026steering}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-lingual artifact rates (selectivity threshold $= 0.05$). Artifacts concentrate in LOW-resource languages at $>$60\% depth.}}{8}{table.caption.27}\protected@file@percent }
+\newlabel{tab:control}{{8}{8}{Cross-lingual artifact rates (selectivity threshold $= 0.05$). Artifacts concentrate in LOW-resource languages at $>$60\% depth}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-benchmark generalization (3 architectures, 20 languages).}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:crossbench}{{9}{8}{Cross-benchmark generalization (3 architectures, 20 languages)}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Cross-Lingual Correctness--Confidence Orthogonality}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Probe Complexity Comparison}{8}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Cross-Benchmark Generalization}{8}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Quantization Validation}{8}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:quant}{{6.6}{8}{Quantization Validation}{subsection.6.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Extended Language Coverage}{8}{subsection.6.7}\protected@file@percent }
+\newlabel{sec:extended}{{6.7}{8}{Extended Language Coverage}{subsection.6.7}{}}
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{angelopoulos2023conformal}{{1}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{artetxe2018robust}{{2}{2018}{{Artetxe et~al.}}{{Artetxe, Labaka, and Agirre}}}
+\bibcite{bendavid2010theory}{{3}{2010}{{Ben-David et~al.}}{{Ben-David, Blitzer, Crammer, Kulesza, Pereira, and Vaughan}}}
+\bibcite{conneau2018word}{{4}{2018}{{Conneau et~al.}}{{Conneau, Lample, Ranzato, Denoyer, and J{\'e}gou}}}
+\bibcite{guo2017calibration}{{5}{2017}{{Guo et~al.}}{{Guo, Pleiss, Sun, and Weinberger}}}
+\bibcite{hewitt2019designing}{{6}{2019}{{Hewitt and Liang}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Mean-Shift Fails.}{9}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practitioner Recommendations.}{9}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\bibcite{ji2024confidence}{{7}{2024}{{Ji et~al.}}{{}}}
+\bibcite{kornblith2019similarity}{{8}{2019}{{Kornblith et~al.}}{{Kornblith, Norouzi, Lee, and Hinton}}}
+\bibcite{miao2026steering}{{9}{2026}{{Miao and Ungar}}{{}}}
+\bibcite{miao2026coral}{{10}{2026}{{Miao et~al.}}{{}}}
+\bibcite{pires2019multilingual}{{11}{2019}{{Pires et~al.}}{{Pires, Schlinger, and Garrette}}}
+\bibcite{wang2024mka}{{12}{2024}{{Wang et~al.}}{{}}}
+\bibcite{wu2019beto}{{13}{2019}{{Wu and Dredze}}{{}}}
+\bibcite{xiao2025knowledge}{{14}{2025}{{Xiao et~al.}}{{}}}
+\bibcite{zhao2019learning}{{15}{2019}{{Zhao et~al.}}{{}}}
+\bibcite{zhou2024lace}{{16}{2024}{{Zhou et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Per-Language Spearman Correlations (Qwen3-235B)}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:spearman}{{A}{10}{Per-Language Spearman Correlations (Qwen3-235B)}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}CaCLR Depth Profile (Qwen3)}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:depth_profile}{{B}{10}{CaCLR Depth Profile (Qwen3)}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Per-language Spearman $\rho $ (depth vs.\ ZS AUROC) for Qwen3-235B. Checkmark indicates $p < 0.05$.}}{11}{table.caption.33}\protected@file@percent }
+\newlabel{app:tab_spearman}{{10}{11}{Per-language Spearman $\rho $ (depth vs.\ ZS AUROC) for Qwen3-235B. Checkmark indicates $p < 0.05$}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces CaCLR{} improvement by depth on Qwen3-235B (20-language mean). Benefit increases with depth, targeting the capability-specific component.}}{11}{table.caption.34}\protected@file@percent }
+\newlabel{app:tab_depth}{{11}{11}{\caclr {} improvement by depth on Qwen3-235B (20-language mean). Benefit increases with depth, targeting the capability-specific component}{table.caption.34}{}}
+\gdef \@abspage@last{11}

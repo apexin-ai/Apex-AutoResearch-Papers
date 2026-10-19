@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_random-fault-contrast-v2_20260523T182424_result.json",
     "occurrence": 1,
-    "bytes": 1092,
-    "sha256": "51f8dcb7c46a5b636d1ede10b1693edf64807c4213fb0f960cd4c6943979a7a3"
+    "bytes": 1091,
+    "sha256": "379f1fbd3bcfc61773b1f02a07af6b536e5dde09ba7055771e581da4f2e9ad62"
   },
   "statistics": {
     "messages": 1,

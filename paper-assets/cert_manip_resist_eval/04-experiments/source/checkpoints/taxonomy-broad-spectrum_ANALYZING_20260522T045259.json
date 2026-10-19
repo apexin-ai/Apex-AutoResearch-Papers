@@ -1,0 +1,85 @@
+{
+  "exp_id": "taxonomy-broad-spectrum",
+  "project": "cert_manip_resist_eval",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:32:50.206Z",
+    "updated_at": "2026-05-22T04:52:59.258Z",
+    "hypothesis": "K_eff is a significant negative predictor of panel ASR specifically for broad-spectrum attacks (verbosity bias, position bias, authority bias) that exploit shared judge biases, consistent across both MMLU and ARC datasets. This validates the attack taxonomy: targeted attacks → η_max dominates; broad-spectrum attacks → K_eff provides additional protection.",
+    "parent": "mvp-step2v3-retry3",
+    "spec": {
+      "command": "python scripts/run_taxonomy_broadspectrum.py",
+      "server": "seetacloud-rtx6000",
+      "data_path": "artifacts/results/results_step1_full_20260521_222222.json",
+      "data_count": 300,
+      "model_name": "6 models AWQ INT4",
+      "seed": 42,
+      "checkpoint_source": "pretrained AWQ INT4 models",
+      "eval_data": "mmlu + arc_challenge (300 samples each)"
+    },
+    "metrics": {
+      "regression_summary": {
+        "mmlu_verbosity_bias": {
+          "B_keff": -0.4384,
+          "p_keff": 0.6123,
+          "B_eta_max": 1.9313,
+          "p_eta_max": 0.0057,
+          "R2": 0.4071,
+          "eta_max_CV": 0.113
+        },
+        "mmlu_position_bias": {
+          "B_keff": 3.3574,
+          "p_keff": 0.035,
+          "B_eta_max": -0.0156,
+          "p_eta_max": 0.9446,
+          "R2": 0.5432,
+          "eta_max_CV": 0.4832
+        },
+        "mmlu_authority_bias": {
+          "B_keff": 0.616,
+          "p_keff": 0.4855,
+          "B_eta_max": 0.3683,
+          "p_eta_max": 0.4678,
+          "R2": 0.1425,
+          "eta_max_CV": 0.1353
+        },
+        "arc_verbosity_bias": {
+          "B_keff": -1.6064,
+          "p_keff": 0.2109,
+          "B_eta_max": 1.1168,
+          "p_eta_max": 0.0111,
+          "R2": 0.3333,
+          "eta_max_CV": 0.3339
+        },
+        "arc_position_bias": {
+          "B_keff": 9.6462,
+          "p_keff": 0.0844,
+          "B_eta_max": -2.6904,
+          "p_eta_max": 0.1101,
+          "R2": 0.1661,
+          "eta_max_CV": 0.3196
+        },
+        "arc_authority_bias": {
+          "B_keff": 0.1241,
+          "p_keff": 0.8345,
+          "B_eta_max": 1.2541,
+          "p_eta_max": 0.0031,
+          "R2": 0.4334,
+          "eta_max_CV": 0.181
+        }
+      },
+      "keff_significant_negative_count": "0/6",
+      "eta_max_significant_count": "3/6",
+      "n_models": 6,
+      "n_attacks": 3,
+      "n_datasets": 2,
+      "n_panels": 20
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T04:52:59.276483+00:00",
+  "trigger": "update_registry"
+}

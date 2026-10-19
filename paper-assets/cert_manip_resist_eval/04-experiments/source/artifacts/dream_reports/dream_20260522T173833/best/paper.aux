@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zheng2023judging,li2023alpacaeval}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{zheng2023judging,li2023alpacaeval,dubois2024alpacafarm}
+\citation{wang2023large,zheng2023judging}
+\citation{raina2024llm,shi2024optimization}
+\citation{lamport1982byzantine,castro1999practical}
+\citation{sagawa2020investigation}
+\citation{krogh1994neural,brown2005diversity}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adversarial Attacks on LLM Judges.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Byzantine Fault Tolerance.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble Diversity.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Formulation}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adversary Model.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vulnerability Metrics.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Regression Model.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Panels.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attacks.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Methods.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}The Diversity Trap: Core Evidence}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Dual Vulnerability Drivers}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Capability-Matched Validation}{3}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dual vulnerability drivers: 15-model regression across 12 conditions (455 panels each). $K_{\text  {eff}}^{\text  {resid}}$ is residualized against $\eta _{\text  {max}}$ (VIF$=$1.02). Bold $p$-values are FDR-significant ($q < 0.05$). ``Dominant'' indicates which predictor has the larger standardized $\beta $.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:core}{{1}{4}{Dual vulnerability drivers: 15-model regression across 12 conditions (455 panels each). $\keffresid $ is residualized against $\etamax $ (VIF$=$1.02). Bold $p$-values are FDR-significant ($q < 0.05$). ``Dominant'' indicates which predictor has the larger standardized $\beta $}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Within-tier $K_{\text  {eff}}$ validation. Large tier uses only top-tier models (70B+ and API), eliminating tier-mixing.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:tier}{{2}{4}{Within-tier $\keff $ validation. Large tier uses only top-tier models (70B+ and API), eliminating tier-mixing}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Statistical Robustness}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Mechanism: BFT Reversal}{4}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Random-Fault Contrast}{4}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Multiple comparison robustness across correction methods.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:diagnostics}{{3}{5}{Multiple comparison robustness across correction methods}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces BFT regime contrast: $K_{\text  {eff}}$ coefficient under adaptive vs.\ calibrated random faults (12 conditions, 455 panels). ``Flipped'' indicates $\beta _{\text  {RF}}$ is significantly negative (diversity helps under random faults).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:bft}{{4}{5}{BFT regime contrast: $\keff $ coefficient under adaptive vs.\ calibrated random faults (12 conditions, 455 panels). ``Flipped'' indicates $\beta _{\text {RF}}$ is significantly negative (diversity helps under random faults)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}ASR Concentration Analysis}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Generalization}{5}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Attack Surface Expansion}{5}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Open-Ended Benchmarks}{5}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces ASR concentration: adaptive vs.\ random-fault regimes.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:concentration}{{5}{6}{ASR concentration: adaptive vs.\ random-fault regimes}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Extended attack results (6 new conditions, 15 models).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:expanded}{{6}{6}{Extended attack results (6 new conditions, 15 models)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Panel Size Sensitivity}{6}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Partial-Knowledge Adversary}{6}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Structural Barriers to Independence}{6}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Gaussian Copula Failure}{6}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Family Labels Are Unreliable}{6}{subsection.8.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Open-ended benchmark results (8 conditions). Pattern consistent with MCQ findings despite higher evaluation noise.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:openended}{{7}{7}{Open-ended benchmark results (8 conditions). Pattern consistent with MCQ findings despite higher evaluation noise}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Panel size sensitivity ($K = 3, 5, 7, 9$).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:panelsize}{{8}{7}{Panel size sensitivity ($K = 3, 5, 7, 9$)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Diversity-Capability Tradeoff}{7}{subsection.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Defense: Panel Design and Aggregation}{7}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Two-Stage Panel Selection}{7}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Aggregation Rule Modulation}{7}{subsection.9.2}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{custom}
+\bibcite{brown2005diversity}{{1}{2005}{{Brown et~al.}}{{Brown, Wyatt, Harris, and Yao}}}
+\bibcite{castro1999practical}{{2}{1999}{{Castro and Liskov}}{{}}}
+\bibcite{dubois2024alpacafarm}{{3}{2024}{{Dubois et~al.}}{{Dubois, Li, Taori, Zhang, Gulrajani, Ba, Guestrin, Liang, and Hashimoto}}}
+\bibcite{krogh1994neural}{{4}{1994}{{Krogh and Vedelsby}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Adversary knowledge level comparison.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:partial}{{9}{8}{Adversary knowledge level comparison}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Panel selection strategy benchmark (15 models, MMLU, 6 attacks). Two-stage achieves 84\% of oracle efficiency.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:defense}{{10}{8}{Panel selection strategy benchmark (15 models, MMLU, 6 attacks). Two-stage achieves 84\% of oracle efficiency}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{8}{section.10}\protected@file@percent }
+\bibcite{lamport1982byzantine}{{5}{1982}{{Lamport et~al.}}{{Lamport, Shostak, and Pease}}}
+\bibcite{li2023alpacaeval}{{6}{2023}{{Li et~al.}}{{Li, Zhang, Dubois, Taori, Gulrajani, Guestrin, Liang, and Hashimoto}}}
+\bibcite{raina2024llm}{{7}{2024}{{Raina et~al.}}{{Raina, Liusie, and Gales}}}
+\bibcite{sagawa2020investigation}{{8}{2020}{{Sagawa et~al.}}{{Sagawa, Raghunathan, Koh, and Liang}}}
+\bibcite{shi2024optimization}{{9}{2024}{{Shi et~al.}}{{}}}
+\bibcite{wang2023large}{{10}{2023}{{Wang et~al.}}{{Wang, Li, Chen, Zhu, Lin, Cao, Liu, Liu, and Sui}}}
+\bibcite{zheng2023judging}{{11}{2023}{{Zheng et~al.}}{{Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li, Li, Xing, et~al.}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Aggregation rule $\times $ vulnerability drivers (455 panels).}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:aggregation}{{11}{9}{Aggregation rule $\times $ vulnerability drivers (455 panels)}{table.11}{}}
+\gdef \@abspage@last{9}

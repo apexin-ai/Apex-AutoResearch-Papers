@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fp16-status-check_20260524T194956_result.json",
     "occurrence": 1,
-    "bytes": 783,
-    "sha256": "2d18e15482edf3d6ddcdfc1948e5f9db549835a7208752d69822c01cd22397e2"
+    "bytes": 782,
+    "sha256": "5e484f5e2fc61b6c40ce3bcc07c301c4ae58091e321ebd7421f4070322af9767"
   },
   "statistics": {
     "messages": 1,

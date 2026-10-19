@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan001-fix-concurrency-urgent_20260522T102750_result.json",
     "occurrence": 1,
-    "bytes": 511,
-    "sha256": "096fddb56c21d37768f55284e8d41728c304dcac16ac8c82eb40ebad968a32e1"
+    "bytes": 510,
+    "sha256": "c58a17a2fc7d7b6aa10f7c60ed23c91df8e25e171f1859944e759676debcca88"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_anon-repo-remote-fix_20260523T185152_result.json",
     "occurrence": 1,
-    "bytes": 268,
-    "sha256": "f2c8ec2b72d0ee5a7389432c7827275e5ec6d7bf3d76e7fa7521451586010bec"
+    "bytes": 249,
+    "sha256": "87359da7851aaf2830ac80c4c8c13db57e2f29608c8cddbbf32500484906f03d"
   },
   "statistics": {
     "messages": 1,
@@ -33,7 +33,7 @@
           "content": [
             {
               "type": "text",
-              "text": "修改完成。\n\n- **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）\n- **修改后**: `https://anonymous-nlp-2026-2:ghp_***@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）"
+              "text": "修改完成。\n\n- **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）\n- **修改后**: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）"
             }
           ],
           "id": "event-000001"

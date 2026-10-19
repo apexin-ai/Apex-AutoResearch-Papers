@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d044-cinelli-hazlett-v2-correction_20260524T102049_result.json",
     "occurrence": 1,
-    "bytes": 1029,
-    "sha256": "9f2fa5285d4342247d688833f77c5aac8bcb680ddd61f6bd43d7a3a54968d8e3"
+    "bytes": 1028,
+    "sha256": "ba5672a7b56b16ab245a19955c1cfb7d825e563c96430e31dfb90ebf32153848"
   },
   "statistics": {
     "messages": 1,

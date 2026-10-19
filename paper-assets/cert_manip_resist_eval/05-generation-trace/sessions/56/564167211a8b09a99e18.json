@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-asr-violin_20260525T150501_result.json",
     "occurrence": 1,
-    "bytes": 619,
-    "sha256": "62fb2e83427457c72c292162af9d994492c02422899a5976a6f221b97296ae32"
+    "bytes": 618,
+    "sha256": "d0b3c895c4fce14a57bab9cdfe7b12ecf8a7f1adae99f9105efe4a35e458bb68"
   },
   "statistics": {
     "messages": 1,

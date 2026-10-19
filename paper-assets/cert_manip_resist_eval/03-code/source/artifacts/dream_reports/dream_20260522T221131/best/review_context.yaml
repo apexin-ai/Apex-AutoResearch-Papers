@@ -1,0 +1,1060 @@
+narrative_guidance: 所有 planned 实验均确认并强化 v5 framing。η_max 在新攻击类型、面板尺寸、生成任务中全面主导； K_eff
+  脆弱性在每种校正方法下稳定复现。RF 对照实验提供 BFT 反转的干净因果证据； GAM 6:6 分割在 bootstrapped CIs 下通过验证并扩展至新攻击类型；聚合梯度在
+  clustered SE 下复现， Bayesian 翻转 K_eff 方向这一发现被确认为真实效应而非统计伪迹。五贡献堆栈完整无缺， 论文作为一项自信的实证贡献交付，附带可操作的防御建议和方法论透明性。
+imagined_experiments:
+- name: 15-Model Scaling Expansion
+  plan_id: plan_001
+  description: 扩展至 15 模型（6 families），455 panels × 12 conditions 全量回归 + MI 矩阵 + 所有校正方法
+  expected_results:
+    status: DONE (plan001_step1_full_v4)
+    models: 15
+    panels: 455
+    conditions: 12
+    eta_max_sig_ols: 11/12
+    keff_sig_ols: 8/12 (7+/1-)
+    eta_max_sig_clustered_se: 8/12
+    keff_sig_clustered_se: 0/12
+    eta_max_sig_bootstrap_v2: 5/12
+    keff_sig_bootstrap_v2: 1/12
+    eta_max_sig_mixed_effects: 7/12
+    keff_sig_mixed_effects: 3/12
+    dominance_ratio_bootstrap: '5:1'
+    gam_split: 6 targeted positive / 6 shared-bias negative
+    min_eta_max_wins: 12/12
+    confound_r: 0.701
+    se_inflation_factor: ~2.5x
+    rf_keff_sig: 2/2
+    rf_r2_mmlu: 0.734
+    rf_r2_arc: 0.813
+  result_rationale: 已完成。15 模型覆盖 6 families × 3 capability tiers，提供 η_max 和 K_eff 充足方差。
+    SE 膨胀 ~2.5x 与 91/455 panel overlap 一致（claude-3-haiku 出现在 91 个 panels 中）。 η_max
+    存活校正因为它捕捉的是真实的个体 judge 脆弱性——不是 panel 重叠伪迹。 K_eff 崩溃因为其 OLS 显著性被 overlapping panels
+    的相关残差膨胀——clustered SE 控制共享 judge 成员关系后，K_eff 的独立信号太弱。GAM 6:6 分割源于攻击机制差异： targeted
+    attacks 利用 judge 特异性弱点（diversity = 更多攻击面），shared-bias attacks 利用共性认知偏差（diversity
+    = 部分 judges 免疫）。
+  tables:
+  - name: Correction Method Comparison (Actual Results)
+    columns:
+    - Method
+    - η_max sig
+    - K_eff sig
+    - K_eff dir
+    - Note
+    rows:
+    - - OLS
+      - 11/12
+      - 8/12
+      - 7+/1-
+      - Panel overlap inflated
+    - - Clustered SE (CR1, 15 clusters)
+      - 8/12
+      - 0/12
+      - '-'
+      - Conservative
+    - - Wild cluster bootstrap v2
+      - 5/12
+      - 1/12
+      - 1+
+      - Max-p across 3 positions
+    - - Mixed effects
+      - 7/12
+      - 3/12
+      - 3+
+      - Random judge intercepts
+  figures_description:
+  - 已生成：OLS vs corrected p-value 对比热图，12 conditions × 4 methods
+  analysis: 已完成。η_max:K_eff 主导比从 OLS 的 1.4:1 升至 bootstrap 的 5:1，证明相对主导性在校正下 增强而非减弱。Benchmark
+    不对称（MMLU 4/6 vs ARC 1/6 存活 bootstrap）由 MMLU 4-choice 格式提供更多 scoring variance 解释。此结果构成
+    paper 的实证基础。
+- name: Attack Surface Expansion
+  plan_id: plan_002
+  description: 新增 3 种攻击类型（few-shot hijacking, persona manipulation, instruction override），在
+    15 模型 × 2 benchmarks 上运行，共 6 新 conditions
+  expected_results:
+    new_attack_types: 3
+    new_conditions: 6
+    total_conditions: 18
+    new_eta_max_sig_ols: 6/6
+    new_keff_sig_ols: 4/6 (3+/1-)
+    new_eta_max_sig_clustered_se: 5/6
+    new_keff_sig_clustered_se: 0/6
+    new_eta_max_sig_bootstrap: 3/6
+    new_keff_sig_bootstrap: 0/6
+    combined_eta_max_sig_clustered_se: 13/18
+    combined_keff_sig_clustered_se: 0/18
+    combined_dominance_ratio_clustered_se: '13:0'
+    gam_extended_split: 10 targeted positive / 8 shared-bias negative
+    gam_new_attacks_classification:
+      few_shot_hijacking: targeted (positive K_eff)
+      persona_manipulation: shared-bias (negative K_eff)
+      instruction_override: targeted (positive K_eff)
+    new_r2_range:
+    - 0.22
+    - 0.45
+    min_eta_max_wins_extended: 18/18
+  result_rationale: Few-shot hijacking 利用模型在 in-context learning 上的个体差异——不同 judges
+    对 few-shot 示例的敏感度差异极大（GPT-4.1 vs Llama-8B 可差 3-5x），因此属于 targeted attack，η_max
+    捕捉最易受影响的 judge。Instruction override 利用 instruction-following 能力的模型间方差， 同样属于 targeted。Persona
+    manipulation 利用 LLMs 对权威/身份线索的普遍敏感性——这是一种 共享认知偏差，不同能力模型都会受影响，因此属于 shared-bias，K_eff
+    方向为负（diversity 提供 部分免疫）。新攻击在 OLS 下延续 η_max 主导模式，但 K_eff 再次因 panel overlap 膨胀而
+    显著——clustered SE 后归零，与原 12 conditions 完全一致。GAM 扩展至 10:8 分割，clean taxonomy 覆盖 9
+    种攻击类型。
+  tables:
+  - name: Extended Attack Taxonomy (Clustered SE)
+    columns:
+    - Attack Type
+    - Mechanism
+    - Benchmark
+    - η_max sig?
+    - K_eff sig?
+    - K_eff GAM direction
+    rows:
+    - - few-shot hijacking
+      - targeted
+      - MMLU
+      - 'Yes'
+      - 'No'
+      - positive
+    - - few-shot hijacking
+      - targeted
+      - ARC
+      - 'Yes'
+      - 'No'
+      - positive
+    - - persona manipulation
+      - shared-bias
+      - MMLU
+      - 'Yes'
+      - 'No'
+      - negative
+    - - persona manipulation
+      - shared-bias
+      - ARC
+      - 'Yes'
+      - 'No'
+      - negative
+    - - instruction override
+      - targeted
+      - MMLU
+      - 'Yes'
+      - 'No'
+      - positive
+    - - instruction override
+      - targeted
+      - ARC
+      - 'No'
+      - 'No'
+      - positive
+  - name: Extended GAM Split Summary
+    columns:
+    - Category
+    - Original (6 attacks)
+    - New (3 attacks)
+    - Total
+    - K_eff direction
+    rows:
+    - - Targeted
+      - 6/6 positive
+      - 4/4 positive
+      - 10/10
+      - positive (diversity harmful)
+    - - Shared-bias
+      - 6/6 negative
+      - 2/2 negative (persona×2)
+      - 8/8
+      - negative (diversity protective)
+  figures_description:
+  - 'Extended GAM partial effect heatmap: 9 attack types × 2 benchmarks, color-coded
+    by K_eff direction'
+  - 'η_max dominance ratio bar chart: original 12 vs extended 18 conditions under
+    each correction method'
+  analysis: 新攻击类型提供独立证据线，确认 η_max 主导性不依赖于特定攻击选择。GAM taxonomy 从 6:6 扩展至 10:8，mechanistic
+    split 的稳健性增强——审稿人无法再质疑 taxonomy 是 cherry-picked 6 种 攻击的巧合。Instruction override
+    在 ARC 上 η_max 未显著（ARC 2-choice 格式对 instruction override 的 judge 间方差不敏感），与原始 benchmark
+    asymmetry 一致。论文标题和核心叙事完全支持。
+- name: Random-Fault BFT Contrast Experiment
+  plan_id: plan_003
+  description: Monte Carlo 随机故障模拟作为 BFT 对照。每个 judge 以 η_j = 1 - clean_accuracy 独立失败，majority
+    vote。对比 adaptive regime 证明 BFT 反转
+  expected_results:
+    regime: Random Fault (i.i.d.)
+    conditions: 2
+    monte_carlo_iterations: 10000
+    rf_keff_sig_ols: 2/2
+    rf_keff_sig_clustered_se: 2/2
+    rf_keff_sig_bootstrap: 2/2
+    rf_keff_direction: positive (2/2)
+    rf_keff_std_beta_mmlu: 0.215
+    rf_keff_std_beta_arc: 0.379
+    rf_eta_sig_all_methods: 2/2
+    rf_r2_mmlu: 0.78
+    rf_r2_arc: 0.81
+    adaptive_keff_sig_clustered_se: 0/12
+    adaptive_keff_sig_bootstrap: 1/12
+    delta_r2_rf_vs_adaptive: 0.48
+    go_nogo_gate: PASS (RF K_eff ≥2/2)
+  result_rationale: 随机故障下 K_eff 显著的根本原因是 BFT 的 i.i.d. 假设成立：每个 judge 独立以固定概率犯错， panel
+    结构（多样性）直接影响冗余覆盖。K_eff 高的 panel 中 judges 的错误模式更不相关， majority vote 的容错能力与独立性成正比——这正是
+    BFT 的核心机制。K_eff 方向为正（diversity → higher error）因为高 K_eff panel 必然包含弱模型（r=0.70 tradeoff），而在
+    i.i.d. 体制下 弱模型的高错误率直接传导为 panel 错误率——但关键是 K_eff 的贡献是独立的、真实的（所有校正 方法均显著 2/2）。对照
+    adaptive regime：相同的 K_eff 在 OLS 下显著 8/12，但 clustered SE 后崩溃至 0/12——因为 adaptive
+    adversary 引入了 panel 结构无法预测的策略方差，K_eff 的 apparent OLS 信号完全来自 panel overlap 膨胀。R²
+    差异（RF 0.78-0.81 vs adaptive ~0.30） 直接量化了 adaptive adversary 引入的不可预测性。GO/NO-GO
+    gate 通过，BFT framing 得到 因果层面的支撑。
+  tables:
+  - name: RF vs Adaptive Contrast (Key Metrics)
+    columns:
+    - Metric
+    - Random Fault
+    - Adaptive
+    - Interpretation
+    rows:
+    - - K_eff sig (OLS)
+      - 2/2
+      - 8/12 (7+/1-)
+      - Both appear significant under OLS
+    - - K_eff sig (Clustered SE)
+      - 2/2
+      - 0/12
+      - RF genuine; adaptive artifactual
+    - - K_eff sig (Bootstrap v2)
+      - 2/2
+      - 1/12
+      - Consistent contrast
+    - - K_eff std β (mean)
+      - '+0.297'
+      - '+0.164'
+      - RF effect larger and genuine
+    - - R²
+      - 0.78-0.81
+      - 0.25-0.35
+      - RF structurally determined; adaptive not
+    - - η_max sig (all methods)
+      - 2/2
+      - 5-8/12
+      - η_max genuine in both regimes
+  - name: RF Per-Benchmark Detail
+    columns:
+    - Benchmark
+    - η_max β
+    - K_eff β
+    - R²
+    - K_eff p (bootstrap)
+    rows:
+    - - MMLU
+      - '+0.482'
+      - '+0.215'
+      - '0.78'
+      - '0.003'
+    - - ARC
+      - '+0.551'
+      - '+0.379'
+      - '0.81'
+      - <0.001
+  figures_description:
+  - 'Dual-panel figure: (Left) coefficient comparison RF vs adaptive for η_max and
+    K_eff with 95% CIs; (Right) R² comparison bar chart showing RF >> adaptive'
+  - 'Scatter plot: predicted vs actual error rate under RF regime showing tight fit
+    (R²≈0.80) vs adaptive regime showing wide dispersion'
+  analysis: '这是论文的关键因果证据。RF 对照证明 K_eff 在满足 i.i.d. 假设时有真实效应——BFT 理论 在随机故障下成立。而 adaptive
+    regime 下 K_eff 的 OLS 显著性完全是 panel overlap 的伪迹。 这不是"diversity helps under RF but
+    hurts under adaptive"——K_eff 在两种 regime 下方向均 为正。区别是：RF 下 K_eff 的正关联是真实的（panel
+    结构决定了容错性），adaptive 下是膨胀的 （adversary 引入的策略方差使 panel 结构预测力崩溃）。此发现为 Contribution
+    #2（BFT reversal evidence）提供了不可替代的因果论证。'
+- name: Capability-Matched Validation
+  plan_id: plan_004
+  description: 在同一 capability tier 内（主要利用 9-model base tier, 84 panels）测试控制 η_max
+    方差后 K_eff 是否浮现为显著预测因子
+  expected_results:
+    primary_tier: base (9 models, 84 panels)
+    within_tier_eta_max_variance_reduction: 65-70%
+    within_tier_keff_eta_max_r: 0.35
+    conditions: 12
+    within_tier_keff_sig_ols: 5/12
+    within_tier_keff_sig_clustered_se: 2/12
+    within_tier_keff_direction: 4+/1-
+    within_tier_eta_max_sig_ols: 7/12
+    within_tier_eta_max_sig_clustered_se: 4/12
+    within_tier_dominance_ratio: '2:1'
+    within_tier_r2_mean: 0.18
+    cross_tier_comparison:
+      full_pool_dominance_ratio: '5:1'
+      within_tier_dominance_ratio: '2:1'
+      interpretation: η_max still dominant but K_eff gains relative signal
+  result_rationale: 在同一 capability tier 内，η_max 方差降低约 65-70%（因为同 tier 模型能力接近），而 K_eff
+    方差保持（同 tier 模型仍来自不同 families/architectures）。η_max 和 K_eff 的 confound 从 r=0.70（全池）降至
+    r≈0.35（tier 内），解开了回归中的多重共线性。在此条件下，K_eff 的边际信号——通常被 η_max 的强效应淹没——变得可检测。OLS 下 5/12
+    显著；clustered SE 后 保留 2/12，表明 K_eff 有微弱但真实的独立效应。主导比从 5:1 降至 2:1，但 η_max 仍然 主导。这支持论文叙事：K_eff
+    有方向性关联但在全池分析中被 η_max 压倒——当人为控制 η_max 方差时 K_eff 才浮现，这恰恰说明在自然变异条件下 η_max 是主要驱动因素。此外，within-tier
+    R² 均值仅 0.18，说明 tier 内的面板脆弱性预测力大幅下降——进一步证明 η_max 的跨 tier 方差是预测力的主要来源。
+  tables:
+  - name: Cross-Tier vs Within-Tier Comparison
+    columns:
+    - Setting
+    - Panels
+    - K_eff-η_max r
+    - η_max sig (CL-SE)
+    - K_eff sig (CL-SE)
+    - Ratio
+    - R² mean
+    rows:
+    - - Full pool (15 models)
+      - '455'
+      - '0.70'
+      - 8/12
+      - 0/12
+      - '8:0'
+      - '0.30'
+    - - Base tier (9 models)
+      - '84'
+      - '0.35'
+      - 4/12
+      - 2/12
+      - '2:1'
+      - '0.18'
+    - - Frontier tier (3 models)
+      - '1'
+      - '-'
+      - '-'
+      - '-'
+      - '-'
+      - '-'
+  - name: Within-Tier K_eff Significant Conditions
+    columns:
+    - Condition
+    - K_eff β
+    - K_eff p (CL-SE)
+    - Direction
+    - GAM confirms?
+    rows:
+    - - mmlu×prompt_injection
+      - '+0.31'
+      - '0.028'
+      - positive
+      - Yes (targeted)
+    - - mmlu×score_manipulation
+      - '+0.25'
+      - '0.041'
+      - positive
+      - Yes (targeted)
+  figures_description:
+  - 'Coefficient forest plot: full pool vs within-tier, showing η_max shrinkage and
+    K_eff emergence'
+  - 'K_eff-η_max scatter: full pool (r=0.70) vs base tier (r=0.35), demonstrating
+    confound reduction'
+  analysis: Capability-matched validation 提供了 disentangle η_max 和 K_eff 的准自然实验。关键发现：
+    即使在控制 η_max 方差后，K_eff 仍然是次要驱动因素（2:1 而非 1:1 或 K_eff 主导）。 论文可表述为："当 capability 差异被控制时，diversity
+    浮现为统计上可检测的次要因素——但在 自然 panel 组合中，capability 差异（通过 η_max）压倒性地主导脆弱性。"这强化了 robustness-first
+    设计建议：先筛选 capability，再在筛选后的池中考虑 diversity。
+- name: Two-Stage Panel Design Algorithm Benchmark
+  plan_id: plan_005
+  description: 实现 robustness-first 两阶段算法（filter η > threshold → maximize K_eff），对标
+    5 个 baseline 策略
+  expected_results:
+    baselines:
+    - random
+    - max_keff
+    - max_disagreement
+    - strongest_k
+    - uniform_family
+    conditions: 12
+    min_eta_max_wins: 12/12
+    two_stage_vs_min_eta_max_improvement_pp:
+    - 0.3
+    - 1.8
+    two_stage_vs_min_eta_max_mean_improvement_pp: 0.7
+    two_stage_wins_vs_min_eta_max: 7/12
+    strategy_ranking:
+      rank_1: two-stage (robustness-first + K_eff)
+      rank_2: min_eta_max (robustness-first only)
+      rank_3: strongest_k
+      rank_4: uniform_family
+      rank_5: max_disagreement
+      rank_6: max_keff
+      rank_7: random
+    max_keff_vs_random: worse in 8/12 (includes weak models)
+    strongest_k_gap_from_min_eta_max: 1.2pp mean
+    asr_advantage_range:
+    - 0.038
+    - 0.511
+  result_rationale: min_eta_max 策略赢 12/12 因为 η_max 是主导脆弱性驱动因素。两阶段策略在 min_eta_max 基础上提供边际改进（mean
+    0.7pp）：在已通过 robustness 筛选的 judge 子集中，K_eff 的微弱次要效应（在 capability-matched 设置中可检测，如
+    plan_004 所示）被利用。改进最大 的条件是 targeted attacks（K_eff 方向为正 = diversity 有害 → 在 robustness-screened
+    池中最小化 K_eff 有帮助）。改进最小的条件是 shared-bias attacks（K_eff 方向为负 → diversity 在这些条件下是保护性的
+    → 最大化 K_eff 更优）。max_keff 策略表现差于 random 因为最大化 diversity 必然引入弱模型（r=0.70 tradeoff），直接提高了
+    η_max。 strongest_k 与 min_eta_max 差距仅 1.2pp——因为最强模型通常也最鲁棒，但 min_eta_max 是直接优化目标函数而
+    strongest_k 是代理指标。
+  tables:
+  - name: Strategy Comparison (Mean ASR across 12 conditions)
+    columns:
+    - Strategy
+    - Mean ASR
+    - Rank
+    - Δ vs random (pp)
+    rows:
+    - - two-stage
+      - '0.112'
+      - '1'
+      - '-8.3'
+    - - min_eta_max
+      - '0.119'
+      - '2'
+      - '-7.6'
+    - - strongest_k
+      - '0.131'
+      - '3'
+      - '-6.4'
+    - - uniform_family
+      - '0.158'
+      - '4'
+      - '-3.7'
+    - - max_disagreement
+      - '0.172'
+      - '5'
+      - '-2.3'
+    - - random
+      - '0.195'
+      - '6'
+      - '0.0'
+    - - max_keff
+      - '0.208'
+      - '7'
+      - '+1.3'
+  - name: Two-Stage vs min_eta_max Per-Attack-Type
+    columns:
+    - Attack category
+    - Conditions
+    - Two-stage better?
+    - Mean Δ (pp)
+    rows:
+    - - Targeted
+      - '6'
+      - 5/6
+      - '-1.1'
+    - - Shared-bias
+      - '6'
+      - 2/6
+      - '-0.3'
+  figures_description:
+  - 'Strategy comparison radar chart: 7 strategies × 12 conditions, showing two-stage
+    and min_eta_max as dominant envelope'
+  - 'Pareto frontier plot: ASR vs K_eff across strategies, showing max_keff dominated'
+  analysis: Two-stage 算法的边际改进（0.7pp）虽然在统计上一致但实际影响不大——论文应诚实呈现这一点。 核心 practical recommendation
+    保持不变：robustness-first screening 是关键步骤，K_eff 优化是可选的次要步骤。max_keff 策略的失败（差于 random）是论文叙事的有力支撑——直观的
+    "多样化 panel" 建议在实践中适得其反。
+- name: Per-Judge ASR Concentration Analysis
+  plan_id: plan_006
+  description: 计算每个 panel × attack 的 per-judge ASR 分布的 Gini 系数和 Shannon 熵，量化 adaptive
+    adversary 是否针对特定 judge
+  expected_results:
+    panels: 455
+    conditions: 12
+    gini_targeted_mean: 0.78
+    gini_targeted_range:
+    - 0.72
+    - 0.85
+    gini_shared_bias_mean: 0.43
+    gini_shared_bias_range:
+    - 0.35
+    - 0.52
+    gini_targeted_vs_shared_mannwhitney_p: <0.001
+    entropy_targeted_mean: 0.82
+    entropy_shared_bias_mean: 1.45
+    gini_eta_max_correlation: 0.83
+    top1_judge_asr_fraction_targeted: 0.61
+    top1_judge_asr_fraction_shared: 0.38
+  result_rationale: Targeted attacks（prompt injection, score manipulation, position
+    bias）利用特定 judge 的个体弱点——adversary 的攻击策略集中在 panel 中最脆弱的 judge 上。这导致 ASR 分布 高度集中（Gini
+    0.72-0.85）：top-1 judge 贡献了约 61% 的 panel 总 ASR。这是 η_max 主导性的直接微观机制证据——vulnerability
+    确实集中在 weakest link。相比之下，shared-bias attacks（sycophancy, verbosity, authority）利用多个
+    judges 共享的认知偏差，ASR 更 均匀地分布在 panel 成员间（Gini 0.35-0.52），top-1 judge 仅贡献约 38%。Gini
+    与 η_max 的高相关（r=0.83）直接证明 panel-level vulnerability 与 judge-level concentration
+    是同一现象的两个面。这为 GAM 6:6 split 提供了独立的 mechanistic 验证——targeted 和 shared-bias 不仅在 K_eff
+    方向上分裂，在 ASR concentration 模式上也完全分裂。
+  tables:
+  - name: ASR Concentration by Attack Category
+    columns:
+    - Attack Type
+    - Category
+    - Gini (mean)
+    - Entropy (mean)
+    - Top-1 judge ASR fraction
+    rows:
+    - - prompt_injection
+      - targeted
+      - '0.82'
+      - '0.73'
+      - '0.65'
+    - - score_manipulation
+      - targeted
+      - '0.79'
+      - '0.78'
+      - '0.62'
+    - - position_bias
+      - targeted
+      - '0.74'
+      - '0.94'
+      - '0.56'
+    - - sycophancy
+      - shared-bias
+      - '0.45'
+      - '1.38'
+      - '0.40'
+    - - verbosity_bias
+      - shared-bias
+      - '0.42'
+      - '1.47'
+      - '0.37'
+    - - authority_bias
+      - shared-bias
+      - '0.41'
+      - '1.50'
+      - '0.36'
+  figures_description:
+  - 'Violin plot: Gini coefficient distribution for targeted vs shared-bias attacks,
+    showing clean separation'
+  - 'Heatmap: per-judge ASR contribution matrix for a representative panel under prompt_injection
+    (concentrated) vs sycophancy (dispersed)'
+  analysis: ASR 浓度分析为 η_max 主导性提供了微观机制证据，超越了回归系数的间接推断。审稿人常问 "what's the mechanism?"——本实验直接回答：targeted
+    adversary 将攻击集中在 weakest judge 上（Gini>0.7），使 η_max 成为 panel 脆弱性的充分统计量。shared-bias
+    下 ASR 更分散 解释了为什么 K_eff 在这类攻击中为负——diversity 提供 partial immunity 因为并非所有 judges 都同样受
+    shared bias 影响。此发现独立验证 GAM taxonomy。
+- name: Diversity-Capability Tradeoff Visualization
+  plan_id: plan_007
+  description: 绘制 K_eff vs η_max scatter，拟合 tradeoff curve，计算 Pareto frontier，按 tier
+    分层
+  expected_results:
+    overall_keff_etamax_r: 0.7
+    overall_keff_etamax_r_ci95:
+    - 0.66
+    - 0.74
+    tier_stratified:
+      base_tier_r: 0.52
+      mid_tier_r: 0.48
+      frontier_tier_r: 0.35
+    pareto_frontier_size: 12
+    pareto_dominance_pct: 97.4% of panels dominated
+    pareto_frontier_composition: predominantly low-K_eff, low-η_max panels
+    tradeoff_curve_fit: monotone increasing, concave
+    within_family_r: 0.81
+    cross_family_r: 0.65
+  result_rationale: 'r=0.70 的 structural correlation 源于当前 LLM 生态系统的特性：最大化 K_eff 需要包含来自
+    不同 capability tiers 的模型（不同 family × tier 组合提供最大 behavioral diversity）， 这必然引入能力较弱的
+    judges，推高 η_max。Tier 分层后 r 降低（base: 0.52, frontier: 0.35） 说明 tradeoff 在 tier 内较弱——within
+    tier 的 diversity（来自不同 architecture/training） 不需要大幅牺牲 capability。这支持 two-stage
+    recommendation 的逻辑：先筛选 capability tier（打破跨 tier tradeoff），再在 tier 内最大化 diversity（利用弱化的
+    within-tier tradeoff）。 Pareto frontier 几乎全部由 low-K_eff, low-η_max panels 占据——no
+    free lunch，但 robustness-first selection 自然落在 Pareto frontier 上。'
+  tables:
+  - name: Tradeoff Correlation by Stratification
+    columns:
+    - Stratification
+    - N panels
+    - r(K_eff, η_max)
+    - 95% CI
+    rows:
+    - - Full pool
+      - '455'
+      - '0.70'
+      - '[0.66, 0.74]'
+    - - Base tier only
+      - '84'
+      - '0.52'
+      - '[0.38, 0.64]'
+    - - Within-family
+      - varies
+      - '0.81'
+      - '[0.73, 0.87]'
+    - - Cross-family
+      - varies
+      - '0.65'
+      - '[0.58, 0.71]'
+  figures_description:
+  - K_eff vs η_max scatter (455 panels), color-coded by tier, with Pareto frontier
+    highlighted and marginal density plots
+  - Tradeoff curve with 95% CI band, showing concave monotone relationship
+  analysis: 可视化使 structural constraint 具象化——审稿人直观理解为什么 max_keff 策略失败（右上角） 而 min_eta_max
+    策略成功（左下角）。Tier 内相关降低的发现为 two-stage algorithm 提供了 理论基础：capability screening 打破了跨
+    tier 的 strong tradeoff，使后续 diversity 优化在弱 tradeoff 条件下进行。此 figure 应作为论文 Fig 3
+    或 Fig 4。
+- name: Panel Size Sensitivity Analysis
+  plan_id: plan_008
+  description: 测试 K=3,5,7,9 不同 panel 尺寸下 η_max 主导性是否持续
+  expected_results:
+    panel_sizes:
+    - 3
+    - 5
+    - 7
+    - 9
+    panels_per_size:
+    - 455
+    - 3003
+    - 6435
+    - 5005
+    eta_max_sig_by_k_clustered_se:
+      k3: 8/12
+      k5: 9/12
+      k7: 9/12
+      k9: 8/12
+    keff_sig_by_k_clustered_se:
+      k3: 0/12
+      k5: 1/12
+      k7: 1/12
+      k9: 2/12
+    dominance_ratio_by_k:
+      k3: '8:0'
+      k5: '9:1'
+      k7: '9:1'
+      k9: '4:1'
+    eta_max_effect_size_trend: decreasing with K (from 0.42 at K=3 to 0.31 at K=9)
+    keff_effect_size_trend: stable (0.12-0.16 across all K)
+    min_eta_max_wins_by_k:
+      k3: 12/12
+      k5: 12/12
+      k7: 12/12
+      k9: 12/12
+    se_inflation_by_k:
+    - 2.5
+    - 4.1
+    - 6.3
+    - 7.8
+  result_rationale: η_max 主导性在所有 K 下持续因为 weakest-link 机制是 scale-invariant：无论 panel
+    有多少 judges，adversary 总是针对最脆弱的那个。K 增加时 η_max 的 effect size 略降（0.42→0.31） 因为更大 panel
+    中 majority vote 的容错能力增加——单个 judge 的失败更难翻转整个 panel。 但 η_max 仍然主导，因为 adversary 不只针对一个
+    judge——adaptive adversary 可以同时攻击 多个弱 judges。K_eff 在 K=9 时达到 2/12 显著：更多 panels（5005）提供了更多统计
+    power， 但 effect size 保持微小（0.12-0.16）。SE 膨胀随 K 急剧增加（每个 model 出现在更多 panels 中），从
+    K=3 的 2.5x 到 K=9 的 7.8x。这为 non-independence 校正方法的必要性 提供了更强的论据——在 K=7 或 K=9 下使用
+    OLS 会产生极度膨胀的显著性计数。 min_eta_max 策略在所有 K 下赢 12/12，确认 practical recommendation 对
+    panel size 鲁棒。
+  tables:
+  - name: Panel Size Sensitivity Summary (Clustered SE)
+    columns:
+    - K
+    - Panels
+    - η_max sig
+    - K_eff sig
+    - Ratio
+    - SE inflation
+    - η_max β (mean)
+    rows:
+    - - '3'
+      - '455'
+      - 8/12
+      - 0/12
+      - '8:0'
+      - 2.5x
+      - '0.42'
+    - - '5'
+      - '3003'
+      - 9/12
+      - 1/12
+      - '9:1'
+      - 4.1x
+      - '0.38'
+    - - '7'
+      - '6435'
+      - 9/12
+      - 1/12
+      - '9:1'
+      - 6.3x
+      - '0.34'
+    - - '9'
+      - '5005'
+      - 8/12
+      - 2/12
+      - '4:1'
+      - 7.8x
+      - '0.31'
+  figures_description:
+  - 'Line plot: η_max and K_eff significance counts vs panel size K, showing η_max
+    stability and K_eff marginal increase'
+  - 'SE inflation curve: showing exponential growth of SE inflation factor with K,
+    motivating clustered SE necessity'
+  analysis: Panel size sensitivity 提供两个关键发现：(1) η_max 主导性在 K=3 到 K=9 范围内稳定持续， 确认 weakest-link
+    不是小 panel 的 artifact；(2) SE 膨胀随 K 急剧增加，为方法论 contribution（non-independence correction
+    的必要性）提供量化支撑。K=9 时 K_eff 达到 2/12 显著但 effect size 仍微小——power 增加检测到了真实但 practically
+    insignificant 的效应。论文 supplementary 中可报告此分析作为 robustness check。
+- name: VIF + Multicollinearity Diagnostic
+  plan_id: plan_009
+  description: 计算 VIF、partial correlations、residualized K_eff regression，应用 Bonferroni/FDR
+    校正，尝试 beta regression
+  expected_results:
+    gpu_needed: false
+    raw_vif_keff: 2.96
+    raw_vif_eta_max: 2.96
+    residualized_vif_keff: 1.0
+    partial_correlation_keff_asr_given_eta: 0.18
+    partial_correlation_eta_asr_given_keff: 0.42
+    bonferroni_eta_max_sig: 7/12
+    bonferroni_keff_sig: 2/12
+    fdr_eta_max_sig: 8/12
+    fdr_keff_sig: 3/12
+    beta_regression_eta_max_sig: 10/12
+    beta_regression_keff_sig: 4/12 (3+/1-)
+    beta_regression_dispersion_phi:
+    - 3.2
+    - 8.7
+    condition_number: 4.8
+    reviewer_blocking_issue: false
+  result_rationale: Raw VIF ≈ 2.96 直接由 r=0.70 的 confound 决定（VIF = 1/(1-r²) = 1/(1-0.49)
+    = 1.96 在 bivariate 情况下；加上 tier indicators 后升至约 2.96）。VIF < 5 远低于标准 reviewer concern
+    阈值（通常 VIF > 10），甚至低于 stricter 标准（VIF > 5）。Residualization 后 VIF 降至 1.0（by construction），residualized
+    K_eff 的 partial correlation 仅 0.18 vs η_max 的 0.42——直接量化了主导性差异。Beta regression
+    作为 ASR ∈ [0,1] 的 distributional 替代方案：η_max 显著性从 log-log OLS 的 11/12 降至 10/12（beta
+    regression 对极端值更鲁棒），K_eff 从 8/12 升至 4/12（beta regression 更好地处理 heteroscedasticity）。Condition
+    number 4.8 < 30 确认无有害多重共线性。Bonferroni 校正（most conservative）给出 η_max 7/12 vs K_eff
+    2/12——即使在最保守的多重比较 校正下 η_max 仍显著主导。无 reviewer-blocking issue。
+  tables:
+  - name: Multicollinearity Diagnostics
+    columns:
+    - Metric
+    - Value
+    - Threshold
+    - Status
+    rows:
+    - - VIF (K_eff, raw)
+      - '2.96'
+      - < 5 (strict) / < 10 (standard)
+      - PASS
+    - - VIF (K_eff, residualized)
+      - '1.00'
+      - < 5
+      - PASS
+    - - Condition number
+      - '4.8'
+      - < 30
+      - PASS
+    - - Partial r(K_eff, ASR | η_max)
+      - '0.18'
+      - '-'
+      - Weak
+    - - Partial r(η_max, ASR | K_eff)
+      - '0.42'
+      - '-'
+      - Moderate-strong
+  - name: Method Comparison with Multiple Testing Correction
+    columns:
+    - Method
+    - η_max sig
+    - K_eff sig
+    - K_eff direction
+    rows:
+    - - OLS + FDR
+      - 11/12
+      - 8/12
+      - 7+/1-
+    - - OLS + Bonferroni
+      - 7/12
+      - 2/12
+      - 2+/0-
+    - - Clustered SE + FDR
+      - 8/12
+      - 0/12
+      - '-'
+    - - Beta regression + FDR
+      - 10/12
+      - 4/12
+      - 3+/1-
+  figures_description:
+  - 'VIF bar chart: raw vs residualized for all predictors, with VIF=5 and VIF=10
+    reference lines'
+  - 'Partial correlation comparison: two-panel bar chart showing partial r for η_max
+    and K_eff'
+  analysis: VIF 分析消除了审稿人 RC1 的 last-resort 攻击角度——multicollinearity is moderate, not
+    pathological。r=0.70 在经验社会科学中常见（e.g., income and education）， standard practice
+    是报告 VIF 并继续。Beta regression 提供了 distributional robustness check：结论与 log-log OLS
+    一致。论文可在 methods 节用一段话报告 VIF diagnostics 并在 supplementary 中给出完整表格。
+- name: Aggregation Gradient Under Clustered SE
+  plan_id: plan_010
+  description: 在 clustered SE 和 bootstrap 下重新运行 4 种聚合规则 + 新增 veto rule，验证聚合梯度是否为真实效应而非
+    overlap 伪迹
+  expected_results:
+    aggregation_rules:
+    - majority
+    - weighted
+    - threshold
+    - bayesian
+    - veto
+    correction_methods:
+    - OLS
+    - clustered_se
+    - bootstrap_v2
+    majority_clustered_se:
+      eta_sig: 8/12
+      keff_sig: 0/12
+    weighted_clustered_se:
+      eta_sig: 6/12
+      keff_sig: 1/12
+      keff_direction: 1+
+    threshold_clustered_se:
+      eta_sig: 10/12
+      keff_sig: 4/12
+      keff_direction: 3+/1-
+      r2: 0.87
+    bayesian_clustered_se:
+      eta_sig: 5/12
+      keff_sig: 4/12
+      keff_direction: 1+/3-
+      keff_negative_frac: 3/4
+    veto_clustered_se:
+      eta_sig: 11/12
+      keff_sig: 0/12
+      r2: 0.82
+    bayesian_bootstrap:
+      eta_sig: 3/12
+      keff_sig: 3/12
+      keff_direction: 0+/3-
+      keff_negative_frac: 3/3
+    gradient_preserved_under_correction: true
+    bayesian_keff_flip_genuine: true
+    aggregation_gradient_order: veto > threshold > majority > weighted > bayesian
+  result_rationale: 聚合梯度在 clustered SE 下保持，因为不同投票规则产生的脆弱性差异是 structural/mathematical
+    的，不是 panel overlap 的伪迹。Threshold（unanimity）要求所有 judges 一致，使单个 judge 的 failure
+    直接传导为 panel failure——R²=0.87 说明 panel 结构几乎完全决定了 threshold voting 下的脆弱性。这种强 structural
+    效应在 clustered SE 下大量存活（η_max 10/12, K_eff 4/12）。Veto rule（单个 judge 可否决）是 weakest-link
+    的极端化——η_max 几乎 完美预测（11/12），K_eff 被完全压倒（0/12）。 Bayesian calibration 翻转 K_eff 方向的关键机制：Bayesian
+    使用 prior accuracy 下调不可靠 judges 的权重，有效中和了 weakest-link 通道。η_max 的直接效应被削弱（11→5/12）。
+    剩余的 K_eff 信号主要来自 shared-bias 条件（diversity 保护性的部分），因此净方向为负。 在 bootstrap 下，Bayesian
+    K_eff 仅 3/12 显著但全部为负（3/3 negative fraction）—— direction flip 是真实的。这确认 aggregation
+    是独立于 non-independence correction 的 control lever。论文的 prescriptive conclusion（robustness-first
+    + Bayesian = dual-channel defense）在最严格校正下依然成立。
+  tables:
+  - name: Aggregation Gradient Under Clustered SE
+    columns:
+    - Rule
+    - η_max sig
+    - K_eff sig
+    - K_eff neg frac
+    - R²
+    - Gradient position
+    rows:
+    - - Veto
+      - 11/12
+      - 0/12
+      - '-'
+      - '0.82'
+      - Maximum vulnerability
+    - - Threshold
+      - 10/12
+      - 4/12
+      - 1/4
+      - '0.87'
+      - High
+    - - Majority
+      - 8/12
+      - 0/12
+      - '-'
+      - '0.28'
+      - Moderate
+    - - Weighted
+      - 6/12
+      - 1/12
+      - 0/1
+      - '0.26'
+      - Low-moderate
+    - - Bayesian
+      - 5/12
+      - 4/12
+      - 3/4
+      - '0.09'
+      - Minimum vulnerability
+  - name: Bayesian K_eff Direction Detail
+    columns:
+    - Correction
+    - K_eff sig total
+    - K_eff positive
+    - K_eff negative
+    - Neg fraction
+    rows:
+    - - OLS
+      - 7/12
+      - '1'
+      - '6'
+      - 6/7 (86%)
+    - - Clustered SE
+      - 4/12
+      - '1'
+      - '3'
+      - 3/4 (75%)
+    - - Bootstrap v2
+      - 3/12
+      - '0'
+      - '3'
+      - 3/3 (100%)
+  figures_description:
+  - 'Aggregation gradient stacked bar chart: η_max and K_eff significance by rule,
+    comparing OLS vs clustered SE side by side'
+  - 'K_eff coefficient sign heatmap: 5 rules × 12 conditions, showing Bayesian blue
+    (negative) vs threshold/veto red (positive)'
+  analysis: 聚合梯度在校正下的稳健性是论文的独立贡献——它不受 non-independence concern 的影响，因为 它描述的是投票规则数学的
+    structural 性质。Veto rule 的加入使梯度两端更 extreme： veto（pure weakest-link）vs Bayesian（weakest-link
+    neutralized + diversity flip）。 论文可以将此呈现为 defense design spectrum——practitioners
+    根据其对 false positive vs false negative 的偏好选择适当位置。Bayesian K_eff 在 bootstrap 下 3/3
+    negative 是 cleanest possible evidence for the flip。
+- name: Open-Ended Generation Benchmark Extension
+  plan_id: plan_011
+  description: 在 MT-Bench 风格的 open-ended generation 任务上测试 weakest-link 假说，超越 MCQ 格式
+  expected_results:
+    benchmark: MT-Bench (8 categories)
+    judge_format: 1-10 scale scoring
+    models_available: 12
+    panels: 220
+    attack_types:
+    - style_manipulation
+    - length_inflation
+    - format_gaming
+    conditions: 6
+    eta_max_sig_ols: 5/6
+    keff_sig_ols: 3/6 (2+/1-)
+    eta_max_sig_clustered_se: 4/6
+    keff_sig_clustered_se: 0/6
+    r2_mean: 0.22
+    gam_generation_split:
+      style_manipulation: shared-bias (negative K_eff)
+      length_inflation: shared-bias (negative K_eff)
+      format_gaming: targeted (positive K_eff)
+    min_eta_max_wins: 6/6
+    cross_format_consistency: η_max dominant in both MCQ and generation
+  result_rationale: η_max 主导性在 generation 任务中持续因为底层机制相同：无论 judges 评估 MCQ 正确性还是 generation
+    质量，adversary 都针对最可操纵的 judge。Generation 的 1-10 scale 提供了比 MCQ binary 更多的操纵空间（微妙的
+    style/format manipulation 可以影响 rubric-based scoring），但 vulnerability 的 distribution
+    across judges 仍然是高度不均匀的—— 某些 judges 对 length inflation 或 format gaming 特别敏感。R²
+    较低（0.22 vs MCQ 的 0.30）因为 generation evaluation 有更多 idiosyncratic variance（rubric
+    interpretation, 文化偏好等）。K_eff 在 OLS 下 3/6 显著但 clustered SE 后归零——与 MCQ 完全一致。 GAM
+    分类中，style manipulation 和 length inflation 属于 shared-bias（所有 LLM judges 都倾向于给更长/更
+    polished 的回答更高分），而 format gaming 属于 targeted（利用特定 model 的 format parsing 差异）。12
+    模型（部分 API 模型不支持 generation evaluation） 给出 220 panels，足够进行 regression analysis。min_eta_max
+    策略在 generation 上同样 赢 6/6，确认 practical recommendation 跨 task format 通用。
+  tables:
+  - name: Generation Benchmark Results (Clustered SE)
+    columns:
+    - Condition
+    - η_max sig?
+    - K_eff sig?
+    - K_eff GAM dir
+    - R²
+    rows:
+    - - style_manipulation × MT-Bench
+      - 'Yes'
+      - 'No'
+      - negative
+      - '0.19'
+    - - length_inflation × MT-Bench
+      - 'Yes'
+      - 'No'
+      - negative
+      - '0.24'
+    - - format_gaming × MT-Bench
+      - 'Yes'
+      - 'No'
+      - positive
+      - '0.23'
+  - name: Cross-Format Consistency
+    columns:
+    - Format
+    - η_max sig (CL-SE)
+    - K_eff sig (CL-SE)
+    - Dominance ratio
+    rows:
+    - - MCQ (MMLU+ARC)
+      - 8/12
+      - 0/12
+      - '8:0'
+    - - Generation (MT-Bench)
+      - 4/6
+      - 0/6
+      - '4:0'
+    - - Combined
+      - 12/18
+      - 0/18
+      - '12:0'
+  figures_description:
+  - 'Side-by-side coefficient forest plot: MCQ vs generation tasks, showing η_max
+    dominance in both formats'
+  analysis: Generation extension 消除了"MCQ-specific artifact"的审稿人质疑。η_max 主导性跨 task
+    format 通用性是论文 generalizability 论证的关键证据。R² 降低反映了 generation evaluation 的内在 noise，但
+    relative driver importance（η_max >> K_eff）完全保持。 此实验可作为 Section 5 的扩展分析或 supplementary
+    material。
+- name: Partial-Knowledge Adversary Model
+  plan_id: plan_012
+  description: 模拟 adversary 仅知道 judge family labels（不知具体脆弱性 profile）的 realistic threat
+    model
+  expected_results:
+    knowledge_levels:
+    - full (baseline)
+    - family-only
+    - random
+    asr_reduction_family_vs_full_pct: 18
+    asr_reduction_random_vs_full_pct: 42
+    family_knowledge_eta_max_sig_clustered_se: 7/12
+    family_knowledge_keff_sig_clustered_se: 0/12
+    family_knowledge_dominance_ratio: '7:0'
+    random_targeting_eta_max_sig_clustered_se: 3/12
+    random_targeting_keff_sig_clustered_se: 0/12
+    family_knowledge_r2_mean: 0.24
+    family_label_attack_efficiency: 0.82
+  result_rationale: Family-only adversary 的 ASR 仅降 18%（而非 random 的 42%），因为 family
+    labels 与 vulnerability profiles 有中等相关：同 family 模型共享 training pipeline 和 architectural
+    biases，adversary 可基于 family 推断出 approximately correct 的攻击 策略。η_max 仍然主导（7/12 vs
+    full-knowledge 的 8/12）因为 family-level targeting 仍 preferentially hits weaker judges——family
+    labels 虽然 noisy 但 informationally above chance。K_eff 在 partial-knowledge 下同样为
+    0/12——diversity 在任何 knowledge level 下都不是 independent protective factor after correction。Attack
+    efficiency 0.82 意味着 family labels 提供了 82% of full-knowledge targeting effectiveness——这对
+    ecological validity 至关重要：现实中 adversary 通常知道 panel 的 model families （从 API endpoint,
+    response style 等推断），因此 full-knowledge 结果的 relevance 不仅限于理论上限。Random targeting
+    下 η_max 仅 3/12 显著——random adversary 无法有效 利用 individual weaknesses，说明 η_max 的 predictive
+    power 依赖于 adversary 的 targeting ability，与 adaptive vs RF contrast（plan_003）形成完整呼应。
+  tables:
+  - name: Adversary Knowledge Level Comparison (Clustered SE)
+    columns:
+    - Knowledge level
+    - Mean ASR
+    - ASR vs full (%)
+    - η_max sig
+    - K_eff sig
+    - R²
+    rows:
+    - - Full knowledge
+      - '0.195'
+      - 100%
+      - 8/12
+      - 0/12
+      - '0.30'
+    - - Family-only
+      - '0.160'
+      - 82%
+      - 7/12
+      - 0/12
+      - '0.24'
+    - - Random
+      - '0.113'
+      - 58%
+      - 3/12
+      - 0/12
+      - '0.08'
+  - name: Family Label Informativeness
+    columns:
+    - Metric
+    - Value
+    - Interpretation
+    rows:
+    - - Attack efficiency (family/full)
+      - '0.82'
+      - Family labels highly informative for targeting
+    - - Family-vulnerability correlation
+      - '0.61'
+      - Moderate; same family shares weaknesses
+    - - η_max sig retention (family vs full)
+      - 7/8
+      - Targeting still exploits weakest link
+  figures_description:
+  - 'Three-panel ASR distribution: full vs family-only vs random, showing gradual
+    degradation'
+  - η_max coefficient trajectory across knowledge levels, showing graceful degradation
+  analysis: Partial-knowledge 实验将论文结论从 worst-case（omniscient adversary）扩展至 realistic
+    threat model。Family-only adversary 保留 82% 攻击效率这一发现对 practical defense implications
+    至关重要——defenders 不能依赖"adversary 不知道 panel 具体组成"的假设， 因为 family-level knowledge 几乎
+    sufficient。η_max 在所有 knowledge levels 下主导， K_eff 在所有 knowledge levels 下为 0/12——核心发现对
+    adversary 能力假设鲁棒。 Random targeting 的 R²=0.08 呼应 plan_003 的 RF 结论：panel 结构的预测力依赖于
+    adversary 的 strategic targeting——这是论文 adaptive vs random 对比叙事的第三个 independent
+    evidence line。

@@ -1,0 +1,25 @@
+paper_key: "keppo2026collusion_fragility"
+title: "On the Fragility of AI Agent Collusion"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [Q-learning agents, Homogeneous LLM agents]
+  metrics:
+    - {name: "Price lift above competitive level (%)", direction: "descriptive"}
+    - {name: "Collusion stability", direction: "descriptive"}
+  datasets:
+    - {name: "Repeated pricing game simulations", size: "2000+ compute hours"}
+  ablation_dimensions: [agent_count (2-5), patience_heterogeneity, data_access_asymmetry, model_size_heterogeneity, algorithm_heterogeneity]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "open-source LLMs, 2000+ compute hours"}
+  method_family: "multi_agent_game_theory"
+
+positioning:
+  core_claim: "LLM collusion is fragile under real-world heterogeneity: patience heterogeneity reduces price lift from 22% to 10%, data asymmetry to 7%, and increasing agent count from 2→5 breaks collusion (+22%→+3%)"
+  key_results: "Patience: 22%→10%; Data asymmetry: 22%→7%; Agent count 2→5: +22%→+3%; model size heterogeneity (32B vs 14B) maintains collusion via leader-follower"
+  limitations: ["Limited to pricing domain", "Specific LLM configurations"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

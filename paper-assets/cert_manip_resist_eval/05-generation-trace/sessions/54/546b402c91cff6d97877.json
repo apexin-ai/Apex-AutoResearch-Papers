@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan001-step3-mi-matrix_20260522T075635_result.json",
     "occurrence": 1,
-    "bytes": 1107,
-    "sha256": "ad877c7cec96ab63bed11115fa262ad9578ebae1b19b85851af9c3b39c521f1e"
+    "bytes": 1106,
+    "sha256": "487d31f8fbfe6f9222e4c51ebd6a1e569d167c586bdb345fa6b0415d879474c0"
   },
   "statistics": {
     "messages": 1,

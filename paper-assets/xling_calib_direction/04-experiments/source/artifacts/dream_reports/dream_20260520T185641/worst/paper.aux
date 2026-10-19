@@ -1,0 +1,86 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\bibstyle{plainnat}
+\citation{miao-etal-2024-coral,burns2023discovering,miao-ungar-2026}
+\citation{miao-etal-2024-coral}
+\citation{miao-ungar-2026}
+\citation{xiao-etal-2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{burns2023discovering}
+\citation{miao-etal-2024-coral}
+\citation{miao-ungar-2026}
+\citation{xiao-etal-2025}
+\citation{civelli2024}
+\citation{zhou-etal-2024-lace}
+\citation{huang-etal-2024-mka}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probe-Based Calibration.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Lingual Representation Transfer.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multilingual Calibration.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Correctness Probing}{2}{subsection.3.1}\protected@file@percent }
+\citation{miao-ungar-2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Transfer Conditions}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}CaCLR: Calibration-Aware Cross-Lingual Regularization}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Difficulty--Capability Decomposition}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Orthogonality Measurement}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Languages.}{3}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces English logistic regression probe performance by relative depth on Qwen3-235B and Llama~4 Scout. AUROC peaks at ${\sim }75$\% depth on both architectures, with a drop in final layers. ECE$_\text  {tc}$: ECE after temperature calibration.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:en_probes}{{1}{4}{English logistic regression probe performance by relative depth on Qwen3-235B and Llama~4 Scout. AUROC peaks at ${\sim }75$\% depth on both architectures, with a drop in final layers. ECE$_\text {tc}$: ECE after temperature calibration}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}English Probing Baselines}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Lingual Zero-Shot Transfer}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Transfer Method Comparison and CaCLR}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CaCLR is a negative result.}{4}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Zero-shot transfer AUROC at each language's best transfer layer. $\Delta $: drop vs.\ English at the same layer (pp). Only 7/19 languages exceed $0.65$ on Qwen3; only 4/19 on Llama~4 Scout.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:zs_transfer}{{2}{5}{Zero-shot transfer AUROC at each language's best transfer layer. $\Delta $: drop vs.\ English at the same layer (pp). Only 7/19 languages exceed $0.65$ on Qwen3; only 4/19 on Llama~4 Scout}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Architecture-Dependent Pareto Frontier}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Difficulty--Capability Decomposition}{5}{subsection.5.5}\protected@file@percent }
+\citation{miao-ungar-2026}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Transfer method comparison (19-language mean, both architectures). CaCLR does not outperform linear projection despite requiring parallel activations.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:transfer_methods}{{3}{6}{Transfer method comparison (19-language mean, both architectures). CaCLR does not outperform linear projection despite requiring parallel activations}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CaCLR ablation on Qwen3-235B (19-language mean). Removing the consistency loss \emph  {improves} AUROC by $0.2$~pp. The SB-ECE calibration term provides the only benefit.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:caclr_ablation}{{4}{6}{CaCLR ablation on Qwen3-235B (19-language mean). Removing the consistency loss \emph {improves} AUROC by $0.2$~pp. The SB-ECE calibration term provides the only benefit}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Lingual Orthogonality}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Probe Complexity}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:probe_complexity}{{5.7}{6}{Probe Complexity}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Pareto frontier coherence across architectures. Rank correlation ($\rho $) between layer depth and cross-lingual transfer quality. Dense architecture (Gemma~4) shows the cleanest frontier; Llama~4 Scout's frontier is essentially flat.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:pareto_arch}{{5}{7}{Pareto frontier coherence across architectures. Rank correlation ($\rho $) between layer depth and cross-lingual transfer quality. Dense architecture (Gemma~4) shows the cleanest frontier; Llama~4 Scout's frontier is essentially flat}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Decomposition ablation (9-language mean). Projecting out the difficulty direction \emph  {hurts} transfer, contradicting the hypothesis that difficulty is a confound. Random direction control confirms the effect is specific to difficulty.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:decomposition}{{6}{7}{Decomposition ablation (9-language mean). Projecting out the difficulty direction \emph {hurts} transfer, contradicting the hypothesis that difficulty is a confound. Random direction control confirms the effect is specific to difficulty}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Cross-Benchmark Generalization}{7}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Extended Language Coverage}{7}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The state of cross-lingual probe-based calibration.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why CaCLR fails.}{7}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Correctness--confidence cosine similarity by resource tier. Orthogonality persists across all languages ($\max {=}0.148$, Yor\`{u}b\'{a} on Llama~4), but degrades for low-resource languages.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:orthogonality}{{7}{8}{Correctness--confidence cosine similarity by resource tier. Orthogonality persists across all languages ($\max {=}0.148$, Yor\`{u}b\'{a} on Llama~4), but degrades for low-resource languages}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Probe complexity comparison (mean across all layers). MLP probes gain ${\sim }1$~pp in English but transfer $0.2$--$0.4$~pp worse. Effect size is negligible (Cohen's $d{=}0.18$).}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:probe_complexity}{{8}{8}{Probe complexity comparison (mean across all layers). MLP probes gain ${\sim }1$~pp in English but transfer $0.2$--$0.4$~pp worse. Effect size is negligible (Cohen's $d{=}0.18$)}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why decomposition fails.}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture dependence.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibdata{references}
+\bibcite{burns2023discovering}{{1}{2023}{{Burns et~al.}}{{Burns, Ye, Klein, and Steinhardt}}}
+\bibcite{civelli2024}{{2}{2024}{{Civelli et~al.}}{{}}}
+\bibcite{huang-etal-2024-mka}{{3}{2024}{{Huang et~al.}}{{}}}
+\bibcite{miao-ungar-2026}{{4}{2026}{{Miao and Ungar}}{{}}}
+\bibcite{miao-etal-2024-coral}{{5}{2024}{{Miao et~al.}}{{}}}
+\bibcite{xiao-etal-2025}{{6}{2025}{{Xiao et~al.}}{{}}}
+\bibcite{zhou-etal-2024-lace}{{7}{2024}{{Zhou et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-benchmark generalization (19-language mean). The language ranking is stable (Spearman $\rho {=}0.82$ GlobalMMLU--Belebele, $0.71$ GlobalMMLU--MMLU-ProX) but absolute performance degrades. CaCLR's negative result is consistent across benchmarks.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{9}{9}{Cross-benchmark generalization (19-language mean). The language ranking is stable (Spearman $\rho {=}0.82$ GlobalMMLU--Belebele, $0.71$ GlobalMMLU--MMLU-ProX) but absolute performance degrades. CaCLR's negative result is consistent across benchmarks}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Zero-shot transfer by resource tier on expanded 52-language set (Qwen3-235B). Pass rate (AUROC $\geq 0.65$) drops from 70\% for high-resource to 0\% for very-low-resource languages.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:extended_langs}{{10}{9}{Zero-shot transfer by resource tier on expanded 52-language set (Qwen3-235B). Pass rate (AUROC $\geq 0.65$) drops from 70\% for high-resource to 0\% for very-low-resource languages}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}INT8 Quantization Validation}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:int8}{{A}{9}{INT8 Quantization Validation}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces INT8 vs FP16 probing comparison on Llama~4 Scout (5\% subset). Mean AUROC difference is $0.3$~pp; activation cosine similarity is $0.994$; layer ranking is preserved ($\rho {=}0.98$).}}{10}{table.11}\protected@file@percent }
+\newlabel{tab:int8}{{11}{10}{INT8 vs FP16 probing comparison on Llama~4 Scout (5\% subset). Mean AUROC difference is $0.3$~pp; activation cosine similarity is $0.994$; layer ranking is preserved ($\rho {=}0.98$)}{table.11}{}}
+\gdef \@abspage@last{10}

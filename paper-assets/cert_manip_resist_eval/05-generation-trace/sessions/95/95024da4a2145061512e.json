@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_clustered-se-consistency_20260522T210421_result.json",
     "occurrence": 1,
-    "bytes": 3528,
-    "sha256": "dfa3cbdd22157878d4e4e2e65f0f92ced59a6f33bdc7094c544086c0dbf36777"
+    "bytes": 3527,
+    "sha256": "b636fd96396b6b4c744831f86851349926d2180f4afe5cf9e6809dd93ac4b75b"
   },
   "statistics": {
     "messages": 1,

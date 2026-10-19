@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_wild-cluster-bootstrap_20260522T194342_result.json",
     "occurrence": 1,
-    "bytes": 1022,
-    "sha256": "d6e34c18dba5758a20e539b4b05a312a4c31306c973f63abeca28884989ef452"
+    "bytes": 1021,
+    "sha256": "9c2de2aa87453330ffb20f0a7245cd1632826bc3d7e5ece8ab1845341a02ffbc"
   },
   "statistics": {
     "messages": 1,

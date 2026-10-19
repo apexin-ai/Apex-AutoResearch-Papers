@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "053c7036eb3c11367aed",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops disk cleanup symlink",
+  "task_key": "worker_ops_disk_cleanup_symlink_20260520T204326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_symlink_20260520T204326_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "0786d27d01ac894ed2ba42b083b1c0fa59ffcfd4d4aa95b7a500522b977b66dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "迁移全部完成。\n\n```\n=== Disk Cleanup Report ===\n1. Pre-migration checks: 3个 transfer_eval.py 进程在运行，等待约5分钟至全部完成\n2. Backup verification: PASS（6个文件抽样，shape和数据均匹配）\n3. Migration: 成功（mv + symlink）\n   - /root/xling_calib_direction -> /root/autodl-tmp/xling_calib_direction\n4. Post-migration verification: symlink OK, torch.load OK, 目录结构完整\n5. Disk space before: / 620MB free (98% used), /root/autodl-tmp/ 291GB free\n6. Disk space after:  / 30GB free (4% used),  /root/autodl-tmp/ 263GB free\n7. HF_HOME: /root/autodl-tmp/.hf_cache (287MB, 已写入 .bashrc)\n```\n\n根分区从 620MB 恢复到 30GB 可用空间，释放了约 29GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-symlink.md"
+}

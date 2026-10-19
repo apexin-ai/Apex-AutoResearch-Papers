@@ -23,6 +23,6 @@ _source line 1_
 修改完成。
 
 - **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）
-- **修改后**: `https://anonymous-nlp-2026-2:ghp_***@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）
+- **修改后**: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）
 
 ---

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_k5-k7-panels_20260523T001931_result.json",
     "occurrence": 1,
-    "bytes": 1341,
-    "sha256": "3695fea4f9b1d95f21e238acacd9ac8fd74794a1016dba91690898ca3898d150"
+    "bytes": 1340,
+    "sha256": "fe65aa4796987f24b91877cd018da217cb184df3f2b639375c0d296ab2ff28e4"
   },
   "statistics": {
     "messages": 1,

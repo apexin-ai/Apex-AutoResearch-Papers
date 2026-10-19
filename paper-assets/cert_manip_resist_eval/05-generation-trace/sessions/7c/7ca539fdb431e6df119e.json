@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r6-2c-eta-under-kappa_20260525T072558_result.json",
     "occurrence": 1,
-    "bytes": 1052,
-    "sha256": "af5b7e0f454ee9bc18300f8d55e504f176d2c1f7d48609748c367a364b650693"
+    "bytes": 1051,
+    "sha256": "8eb86cc44e30ded6143471cd6e6b48e3f597c61dd62c5f73c9e664657322cd8e"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,437 @@
+issues:
+- id: "R1-N3+R2-N1"
+  summary: "参考文献严重不足（仅8篇）且多条引用元数据错误/疑似虚构"
+  category: writing
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  action_items:
+    - round: 2
+      action: "Related Work已扩至25 citations (verified)。目标30+。"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 4
+      action: "Dream #4 median+worst: 需补 Burns CCS, Kadavath, Wendler, Ravisankar DALI."
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-N1"
+  summary: "Abstract数值矛盾——dream-specific，原则：所有数字需明确推导路径"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 1
+  last_seen_round: 1
+  action_items:
+    - round: 2
+      action: "Will verify when writing Abstract/Results with real data."
+      assigned_to: author
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-N2"
+  summary: "Abstract '25% of transfer gap'无推导路径——dream-specific"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 1
+  last_seen_round: 1
+  action_items:
+    - round: 2
+      action: "Enforce when writing Abstract with real data."
+      assigned_to: author
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-N4"
+  summary: "全文缺乏统计检验和方差估计"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  action_items:
+    - round: 2
+      action: "Stats framework defined. P0 code includes bootstrap CI + permutation tests + Cohen's d."
+      assigned_to: agent
+      status: in_progress
+    - round: 4
+      action: "Dream #4: add multi-seed variance (3-5 seeds) for CaCLR, few-shot, Procrustes. Single seed=42 flagged."
+      assigned_to: agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R2-N2"
+  summary: "Pareto frontier术语缺乏形式化验证"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 2
+  action_items:
+    - round: 2
+      action: "pareto_analysis complete. Scatter figure PASS. Narrative = 'local tradeoff'."
+      assigned_to: agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R2-N3"
+  summary: "四项贡献新颖性均为增量性"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  action_items:
+    - round: 2
+      action: "Novelty anchors = CKA Simpson's Paradox + control tasks. plan_011 decisive."
+      assigned_to: director
+      status: in_progress
+    - round: 4
+      action: "Dream #4 confirmed: Simpson's Paradox (high novelty) + control tasks (field-level) are anchors."
+      assigned_to: director
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W1+R2-Q2"
+  summary: "CaCLR 'zero-label'表述误导性——需改为'label-free'"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  action_items:
+    - round: 2
+      action: "paper_framing.md + all tex updated with 'label-free' qualifier."
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W4+R2-W2"
+  summary: "0张图——需至少3个核心figures"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  action_items:
+    - round: 3
+      action: "3 figures generated: selectivity heatmap PASS, pareto scatter PASS, Simpson's Paradox PASS (v2 fix). Pilot versions; final after plan_011."
+      assigned_to: agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R2-W1"
+  summary: "Related Work过短"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 2
+  action_items:
+    - round: 2
+      action: "25 citations, 5 subsections. Targeting 30+."
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R2-W3"
+  summary: "'First systematic study'声明过强"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 2
+  action_items:
+    - round: 2
+      action: "Introduction corrections applied. Reviewer PASS."
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W2"
+  summary: "CaCLR超参数(α,β)无sensitivity analysis + 缺 CORAL 对比"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  action_items:
+    - round: 3
+      action: "plan_003: α/β sweeps + CORAL loss comparison (D015)."
+      assigned_to: agent
+      status: in_progress
+    - round: 4
+      action: "Dream #4: add high-dim MMD (PCA-50/100) + mixed EN+xling β criterion (D016)."
+      assigned_to: agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W3"
+  summary: "量化验证范围过窄——需跨架构验证"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 2
+  action_items:
+    - round: 2
+      action: "plan_010 P1: W4A16 vs FP16 + GPTQ-Int4 vs FP16."
+      assigned_to: agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W5"
+  summary: "Very low resource tier仅4种语言，统计结论不可靠"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 1
+  last_seen_round: 1
+  action_items:
+    - round: 1
+      action: "20 languages in P0 will expand. Mark as preliminary if still small."
+      assigned_to: author
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W6"
+  summary: "Probe训练细节缺失"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  action_items:
+    - round: 3
+      action: "Experiments Setup written + PASS. Full probe config included."
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R2-W5"
+  summary: "CaCLR改进幅度有限，cost-benefit未讨论"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 1
+  last_seen_round: 3
+  action_items:
+    - round: 2
+      action: "Depends on real CaCLR results. Dual narrative ready."
+      assigned_to: author
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "DM-W1"
+  summary: "MMD仅在1-D probe logits上测试——negative result scope受限"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 4
+  action_items:
+    - round: 2
+      action: "Defense: 1-D principled for calibration. Caveat in §3.2 + Discussion."
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 4
+      action: "Dream #4 ALL 3 TIERS: test high-dim MMD on PCA-reduced activations (d=50/100). Broadens or resolves scope concern. D016."
+      assigned_to: agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "DM-W3"
+  summary: "Linear projection 'only viable path' overclaim"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  action_items:
+    - round: 2
+      action: "Reframed as 'label-free method that consistently improves'."
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "D013-28PCT"
+  summary: "28% 虚构跨语言数据全文清理"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  resolution: "All 28% removed from Introduction, method.tex, related_work.tex. Reviewer PASS confirmed."
+  resolution_round: 3
+
+- id: "D013-PLAN003"
+  summary: "plan_003 内部编号泄漏到论文"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  resolution: "Replaced with 'pending experimental validation'. Reviewer PASS."
+  resolution_round: 3
+
+- id: "D015-A1"
+  summary: "Re-dream: 缺 CORAL loss 对比"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 3
+  action_items:
+    - round: 3
+      action: "CORAL added to plan_003 in experiment_plan.yaml (D015)."
+      assigned_to: director
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "D015-A2"
+  summary: "Re-dream: selectivity threshold sensitivity"
+  category: experiment
+  severity: info
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 3
+  action_items:
+    - round: 3
+      action: "0.03/0.05/0.10 thresholds added to plan_013 notes (D015)."
+      assigned_to: director
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "D015-FIG"
+  summary: "Simpson's Paradox figure y轴错误"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  resolution: "Y-axis changed to ZS AUROC. Sign reversal visible. Reviewer PASS."
+  resolution_round: 3
+
+- id: "EXP-SETUP-1"
+  summary: "experiments.tex LOW tier + PCA scope + 层数矛盾 + metric不一致 + GPU名"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  resolution: "All 5 items fixed. Reviewer PASS confirmed."
+  resolution_round: 3
+
+# === New issues from Dream #4 (D016) ===
+
+- id: "D016-ARCH"
+  summary: "Architecture comparison confounded: n=2 MoE vs n=1 Dense, 差异与 scale/training 混淆"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 4
+  action_items:
+    - round: 4
+      action: "Gemma 4 Dense upgraded to P0 (D016). User providing 4 GPUs for new server. Soften framing to 'architecture-correlated'."
+      assigned_to: director
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "D016-SEED"
+  summary: "Single random seed (seed=42) — effect sizes 可能在 seed variance 范围内"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  action_items:
+    - round: 4
+      action: "3-5 seeds for CaCLR, few-shot (25/100), Procrustes at representative layers. CPU-bound."
+      assigned_to: agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "D016-BETA"
+  summary: "CaCLR β selection uses English-only criterion — may bias against cross-lingual benefit"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  action_items:
+    - round: 4
+      action: "Add mixed EN + validation langs (zh, sw) to β selection criterion. plan_003 extension."
+      assigned_to: agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "D016-TAUTOLOGY"
+  summary: "CKA-transfer partial correlation 可能有 measurement overlap (tautology concern)"
+  category: framing
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  action_items:
+    - round: 4
+      action: "Add discussion paragraph explaining why sign reversal is informative beyond overlap. Subspace angle analysis already partially addresses."
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "D016-IRT"
+  summary: "IRT difficulty source 未指定 — circularity risk if from model accuracy"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  action_items:
+    - round: 4
+      action: "Clarify IRT source in paper. Weaken prescriptive claims. plan_004."
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "D016-PROCRUSTES"
+  summary: "Procrustes train/eval contamination risk — parallel pairs may overlap eval set"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 4
+  action_items:
+    - round: 4
+      action: "Already fixed in previous session: global split indices, Procrustes fits on train-split only. Verify during P0 execution."
+      assigned_to: agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null

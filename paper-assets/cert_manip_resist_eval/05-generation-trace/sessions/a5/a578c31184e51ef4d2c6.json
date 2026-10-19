@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_experiment_fp16-baseline-v3-bugfix_20260524T182108_result.json",
     "occurrence": 1,
-    "bytes": 1073,
-    "sha256": "37b502baef78fb42b4882685584af5254c2355a6676eab3a4f410ff4aadcde64"
+    "bytes": 1072,
+    "sha256": "c692ebcf744993b922d3ab054a7214de2daf462b6251ab1781ddfb22592cd84b"
   },
   "statistics": {
     "messages": 1,

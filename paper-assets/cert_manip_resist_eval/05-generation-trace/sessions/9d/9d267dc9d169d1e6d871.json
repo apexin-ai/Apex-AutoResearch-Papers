@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-keff-hist-r2-heatmap_20260525T155945_result.json",
     "occurrence": 1,
-    "bytes": 589,
-    "sha256": "0c476dd6291f69161194cea9c9733a93eefd80fa414f3f1a2580e505663c5e45"
+    "bytes": 588,
+    "sha256": "7b0fc9d3cbfaf732042b6a3cddb22d9d371fa555c0358b84cbd59c0bf0541b8b"
   },
   "statistics": {
     "messages": 1,

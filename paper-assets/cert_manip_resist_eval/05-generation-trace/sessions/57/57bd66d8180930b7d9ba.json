@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_gam-bootstrap-ci-k3_20260523T163711_result.json",
     "occurrence": 1,
-    "bytes": 784,
-    "sha256": "f1ae623f700b88629275c5a7b0627b30e6e6faa39e8ecce532fbd6c1637d906a"
+    "bytes": 783,
+    "sha256": "6fc133bf2c63a07c076317c518dbb2aab3e5d391be228d8ffd21713633189496"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_d047-remaining-fixes_20260525T214133_result.json",
     "occurrence": 1,
-    "bytes": 1536,
-    "sha256": "22882c51c8568b5d1abf9d447c96266c7f2dedf0982a7ae6d2b2c480198c836e"
+    "bytes": 1535,
+    "sha256": "5068cf949c3bbc7bb771d6cc6b8ffc779c511ec0683aa4555d8398d6738192c6"
   },
   "statistics": {
     "messages": 1,

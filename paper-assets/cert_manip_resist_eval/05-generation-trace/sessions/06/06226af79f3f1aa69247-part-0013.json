@@ -869,7 +869,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig2_theory_intent.txt \\\n  --caption \"Classical Theory vs. LLM Evaluation Reality: three assumption violations (independence, fault model, diversity) that motivate our empirical analysis\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_theory_comparison.png \\\n  --iterations 5 2>&1 | tail -30",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig2_theory_intent.txt \\\n  --caption \"Classical Theory vs. LLM Evaluation Reality: three assumption violations (independence, fault model, diversity) that motivate our empirical analysis\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_theory_comparison.png \\\n  --iterations 5 2>&1 | tail -30",
               "description": "PaperBanana generate Figure 2 theory comparison",
               "timeout": "300000",
               "run_in_background": "True"
@@ -910,7 +910,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig3_pipeline_intent.txt \\\n  --caption \"Experimental Pipeline and Factorial Design: 15 judges across 6 families, combinatorial panels at K=3/5/7, 6 attack types on 2 benchmarks, statistical analysis via log-log OLS, fractional logit, and wild cluster bootstrap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_pipeline.png \\\n  --iterations 5 2>&1 | tail -30",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig3_pipeline_intent.txt \\\n  --caption \"Experimental Pipeline and Factorial Design: 15 judges across 6 families, combinatorial panels at K=3/5/7, 6 attack types on 2 benchmarks, statistical analysis via log-log OLS, fractional logit, and wild cluster bootstrap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_pipeline.png \\\n  --iterations 5 2>&1 | tail -30",
               "description": "PaperBanana generate Figure 3 pipeline",
               "timeout": "300000",
               "run_in_background": "True"
@@ -3485,7 +3485,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig2_theory_v2_intent.txt \\\n  --caption \"Classical Theory vs LLM Evaluation Reality: independence violated by shared pretraining, random fault model violated by adaptive adversaries, diversity benefit violated by diversity-capability confound\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_theory_comparison_v2.png \\\n  --iterations 5 2>&1 | tail -30",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig2_theory_v2_intent.txt \\\n  --caption \"Classical Theory vs LLM Evaluation Reality: independence violated by shared pretraining, random fault model violated by adaptive adversaries, diversity benefit violated by diversity-capability confound\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_theory_comparison_v2.png \\\n  --iterations 5 2>&1 | tail -30",
               "description": "PaperBanana Figure 2 v2 round 1",
               "timeout": "300000"
             }

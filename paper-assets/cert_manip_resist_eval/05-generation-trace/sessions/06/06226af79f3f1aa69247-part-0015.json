@@ -567,7 +567,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "echo \"${GOOGLE_API_KEY:0:8}...\" 2>/dev/null; [ -n \"$GOOGLE_API_KEY\" ] && echo \"KEY_SET\" || echo \"KEY_NOT_SET\"",
+              "command": "echo \"${GOOGLE_API_KEY:[REDACTED]}...\" 2>/dev/null; [ -n \"$GOOGLE_API_KEY\" ] && echo \"KEY_SET\" || echo \"KEY_NOT_SET\"",
               "description": "Check if GOOGLE_API_KEY is set"
             }
           },
@@ -976,7 +976,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_framework_intent.txt \\\n  --caption \"Three-panel predictor relevance transition: (a) K=3 weakest-link dominance, (b) K=5 transition, (c) K>=5 diversity dominance with predictor weight bars\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig1_framework_pb.png \\\n  --iterations 5 2>&1 | tail -40",
+              "command": "source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_framework_intent.txt \\\n  --caption \"Three-panel predictor relevance transition: (a) K=3 weakest-link dominance, (b) K=5 transition, (c) K>=5 diversity dominance with predictor weight bars\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig1_framework_pb.png \\\n  --iterations 5 2>&1 | tail -40",
               "description": "Generate Figure 1 with PaperBanana",
               "timeout": "300000"
             }
@@ -1644,7 +1644,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig2_theory_v3_intent.txt \\\n  --caption \"Classical theory vs LLM evaluation reality: three assumption violations (independence, fault model, diversity) with mini scatter plot showing diversity-capability confound r=0.70-0.81\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig2_theory_v3.png \\\n  --iterations 5 2>&1 | tail -30",
+              "command": "source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig2_theory_v3_intent.txt \\\n  --caption \"Classical theory vs LLM evaluation reality: three assumption violations (independence, fault model, diversity) with mini scatter plot showing diversity-capability confound r=0.70-0.81\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig2_theory_v3.png \\\n  --iterations 5 2>&1 | tail -30",
               "description": "Generate Figure 2 v3 with PaperBanana",
               "timeout": "300000",
               "run_in_background": "True"
@@ -2039,7 +2039,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig2_theory_v3_intent.txt \\\n  --caption \"Classical theory vs LLM evaluation reality: independence, fault model, diversity assumption violations with scatter plot showing r=0.70-0.81 confound\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig2_theory_v3.png \\\n  --iterations 5 2>&1 | tail -30",
+              "command": "source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig2_theory_v3_intent.txt \\\n  --caption \"Classical theory vs LLM evaluation reality: independence, fault model, diversity assumption violations with scatter plot showing r=0.70-0.81 confound\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig2_theory_v3.png \\\n  --iterations 5 2>&1 | tail -30",
               "description": "Retry PaperBanana Figure 2 generation",
               "timeout": "300000"
             }
@@ -2687,7 +2687,7 @@
             "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
             "tool": "Bash",
             "tool_args": {
-              "command": "source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig2_theory_v4_intent.txt \\\n  --caption \"Three pillars metaphor: classical theory (intact pillars of independence, random faults, beneficial diversity) vs LLM reality (cracked, bent, and DNA-helix confounded pillars). The diversity-capability confound (r=0.70-0.81) shown as inseparable double helix.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig2_theory_v4.png \\\n  --iterations 5 2>&1 | tail -30",
+              "command": "source /tmp/pb_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig2_theory_v4_intent.txt \\\n  --caption \"Three pillars metaphor: classical theory (intact pillars of independence, random faults, beneficial diversity) vs LLM reality (cracked, bent, and DNA-helix confounded pillars). The diversity-capability confound (r=0.70-0.81) shown as inseparable double helix.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig2_theory_v4.png \\\n  --iterations 5 2>&1 | tail -30",
               "description": "Generate Figure 2 v4 — three pillars metaphor",
               "timeout": "300000"
             }

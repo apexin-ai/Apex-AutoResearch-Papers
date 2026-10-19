@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_dl-qwen32b_20260521T182508_result.json",
     "occurrence": 1,
-    "bytes": 584,
-    "sha256": "70cdc758a649334d7ed6dc8246f91ff3ab6bf7d181e83a555c6f4464010ea214"
+    "bytes": 583,
+    "sha256": "db9ea916312f779d28ea7134cb744cc754c63de5d9ebeb8d68f2628c1fe7183e"
   },
   "statistics": {
     "messages": 1,

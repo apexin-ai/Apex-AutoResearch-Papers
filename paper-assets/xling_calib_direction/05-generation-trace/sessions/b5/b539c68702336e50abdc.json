@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b539c68702336e50abdc",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "investigate cka data inconsistency",
+  "task_key": "worker_investigate_cka_data_inconsistency_20260521T122713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_cka_data_inconsistency_20260521T122713_result.json",
+    "occurrence": 1,
+    "bytes": 3024,
+    "sha256": "79e61b15eb88ca02973185b4846bbf80f245ee128737ae60400deec90eb99e79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据下载超时，但核心验证已完成。现在写报告。\n\n---\n\n## CKA 数据一致性调查报告\n\n### 1. 找到的 CKA 数据文件\n\n共找到 **3 套 Qwen2.5-7B 数据** + **1 套 Llama-3.1-8B 数据**：\n\n| 数据集 | 文件路径 | 修改时间 | sw L0 值 |\n|--------|---------|---------|---------|\n| **A: MVP原版** | `results/cka_results.csv` | 05-21 04:22 | **0.4397** |\n| **A': MVP备份** | `xling_backup/results_mvp001/cka_results.csv` | — | 0.4397 (同A) |\n| **B: 验证版** | `results/cka_matrix_verify.csv` | 05-21 10:50 | **0.4398** |\n| **B': 验证复制** | `results_cka_mvp001/cka_matrix_qwen25_7b.csv` | 05-21 12:14 | 0.4398 (同B) |\n| **C: Pilot版** | `results/cka_pilot/cka_matrix.csv` | 05-21 20:00 | **0.9058** |\n| **D: Llama MVP003** | `results_cka_mvp003/cka_matrix_llama31_8b.csv` | 05-21 12:15 | 0.2654 |\n\n实际上只有 **2 套不同的 Qwen 数值**：A/B ≈ 0.44 vs C = 0.91。\n\n### 2. Layer 0 逐语言对比\n\n| 语言 | A/B (全量) | C (Pilot) | 差值 |\n|------|-----------|-----------|------|\n| zh | 0.912 | 0.959 | +0.047 |\n| ar | 0.901 | 0.948 | +0.047 |\n| hi | 0.536 | 0.746 | **+0.210** |\n| sw | 0.440 | 0.906 | **+0.466** |\n| ko | 0.687 | 0.794 | +0.107 |\n\n低资源语言偏差极大（sw 偏差 +0.47），高资源语言偏差较小。\n\n### 3. 根因分析\n\n**两套脚本使用相同的 activation 数据（14042 x 3584）和相同的 Linear CKA 公式。唯一区别是样本子集。**\n\n- **`compute_cka.py`（根目录版）**：使用全部 14042 个样本 → sw L0 = 0.44\n- **`code/compute_cka.py`（pilot 版）**：对 `.pt` 文件做位置 70/30 分割，只用后 30%（4213 样本）→ sw L0 = 0.91\n\n我在服务器上直接复现了这个差异：\n\n```\n                full(14042)  eval30%(4213)  train70%(9829)  random(4213)\nsw L0:            0.4397        0.9058         0.3135         0.4162\n```\n\n**随机抽样同样 4213 个样本给出 CKA = 0.42，接近全量值。** 这证明问题不是样本量，而是**位置分割导致的 subject 偏差**。\n\nMMLU 数据按 subject 顺序排列，70/30 位置分割把不同的 subject 集合分到了 train 和 eval。后 30% 的 subject 碰巧在低资源语言上有更高的跨语言表征相似性（可能是 STEM 类 subject，术语更趋国际化）。\n\n### 4. 结论\n\n| 问题 | 答案 |\n|------|------|\n| **哪版正确？** | **A/B（全量版，sw L0 = 0.44）是正确的代表性 CKA 值** |\n| **Pilot 版为何不同？** | `code/compute_cka.py` 的 `load_eval_activations()` 对 `.pt` 格式做了有偏的位置分割 |\n| **需要修复什么？** | `code/compute_cka.py` 第 ~95 行 `pt_flat` 分支：应使用全量数据计算 CKA，或改为随机分割 |\n\n如果 pilot 脚本需要 eval-only 数据做 CKA 与 probe metrics 的相关性分析（避免数据泄露），应在 activation 提取阶段就做随机分割并存为 `_train.npy` / `_eval.npy`，而不是在 CKA 计算时按位置切分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-cka-data-inconsistency.md"
+}

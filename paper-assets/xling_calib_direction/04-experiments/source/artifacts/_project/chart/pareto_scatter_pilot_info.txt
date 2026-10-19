@@ -1,0 +1,3 @@
+Remote path: westd-13176:/root/xling_calib_direction/artifacts/figures/pareto_scatter_pilot.pdf (23KB)
+Script: scripts/plot_figures.py
+Data source: results/pareto/pareto_detail.csv

@@ -1,0 +1,19 @@
+Plan 003 Random-Fault Simulation Results
+
+Server path: /root/cert_manip_resist_eval/artifacts/results/results_plan003_random_fault.json
+
+Summary:
+- Adaptive K_eff significant negative: 1/12 (arc_challenge×sycophancy)
+- Random-fault K_eff significant negative: 0/12
+- Random-fault R² range: 0.55-0.95
+- Adaptive R² range: 0.14-0.73
+
+Key findings:
+1. K_eff NOT significant even under random-fault (0/12) — structural collinearity with η_max
+   - High K_eff panels include weak judges (llama-8b), so K_eff ↑ correlates with η_max ↑
+   - Even controlling for η_max, 2nd/3rd weakest judge fault rates push up majority-vote failure
+2. Random-fault R² much higher than adaptive R² — independent fault model is far more predictable
+3. This means: adaptive attacks introduce variance that K_eff + η_max cannot explain
+4. Reframing opportunity: instead of "K_eff works for random but not adaptive", 
+   the story is "independent fault models (BFT assumption) predict panel failure well (high R²), 
+   but adaptive attacks break this predictability"

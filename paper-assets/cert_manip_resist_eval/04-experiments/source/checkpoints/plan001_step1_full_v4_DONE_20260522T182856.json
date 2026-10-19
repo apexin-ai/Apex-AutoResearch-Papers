@@ -1,0 +1,39 @@
+{
+  "exp_id": "plan001_step1_full_v4",
+  "project": "cert_manip_resist_eval",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:45:20.230Z",
+    "updated_at": "2026-05-22T18:28:56.770Z",
+    "spec": {
+      "command": "python scripts/run_plan001_step1_api_scoring.py",
+      "server": "seetacloud-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "87031",
+      "log_path": "/tmp/step1_claude.log;/tmp/step1_gemini.log;/tmp/step1_openai.log",
+      "submitted_at": "2026-05-22T07:45:20.206Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MMLU + ARC-Challenge (300 samples each)",
+      "data_count": 300,
+      "model_name": "9 API models (claude-opus-4, gpt-5.5, gemini-2.5-pro, gpt-4.1, claude-sonnet-4, gpt-4o, gemini-2.5-flash, gpt-4o-mini, claude-3-haiku)",
+      "seed": 42,
+      "checkpoint_source": "n/a",
+      "eval_data": "mmlu + arc_challenge, 300 pairs each, 6 attacks + clean",
+      "checkpoint_path": "/root/cert_manip_resist_eval/artifacts/results/plan001/",
+      "wall_clock_seconds": 38616.6,
+      "gpu_hours": 10.73
+    },
+    "hypothesis": "Expanding from 6 to 15 models (9 API + 6 local) across 6 families and 3 capability tiers breaks the structural K_eff-η_max collinearity (r=-0.8 with 6 models). With 15 models, panels can have high K_eff (cross-family diversity) without necessarily including weak judges, enabling clean separation of diversity vs robustness effects.",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T18:28:56.770Z"
+  },
+  "timestamp": "2026-05-22T18:28:56.807943+00:00",
+  "trigger": "update_registry"
+}

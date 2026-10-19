@@ -1,0 +1,440 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+
+\title{The Mirage of Significance: How Non-Independence Inflates \\Predictor Effects in Combinatorial LLM Evaluation Panels}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multi-judge LLM evaluation panels are increasingly adopted to improve reliability, yet their vulnerability to adversarial manipulation remains poorly understood. We conduct a large-scale study decomposing panel vulnerability into individual judge weakness ($\eta_{\max}$) and structural diversity ($K_{\text{eff}}$) across 15 models, 455 panels, 9 attack types, and 3 benchmarks. Our central finding is \emph{methodological}: standard OLS regression dramatically overstates predictor significance due to structural non-independence among combinatorial panels---each of 15 models appears in 91 of 455 panels. Under wild cluster bootstrap correction, $\eta_{\max}$ significance drops from 11/12 to 3/12 conditions, and $K_{\text{eff}}$ from 8/12 to 1/12, with SE inflation of $3.2\times$. This collapse scales with panel size: at $K{=}9$, SE inflation reaches $7.2\times$ and $\eta_{\max}$ significance falls to 1/12. We further show that multicollinearity (VIF $>$ 7) prevents reliable separation of $\eta_{\max}$ and $K_{\text{eff}}$, and that a BFT-inspired random-fault contrast fails its GO/NO-GO gate. Two findings survive correction: (1) aggregation rule choice fundamentally modulates vulnerability predictability (threshold $R^2{=}0.89$ vs.\ Bayesian $R^2{=}0.10$), and (2) selecting minimum-$\eta_{\max}$ panels wins 9/12 conditions regardless of correction method. We release a 15-model, 455-panel adversarial evaluation dataset and provide a non-independence correction framework for combinatorial evaluation designs.
+\end{abstract}
+
+\section{Introduction}
+
+Multi-judge evaluation panels---where multiple LLMs independently assess candidate outputs and their judgments are aggregated---have emerged as a practical approach to improving evaluation reliability. An implicit assumption in this paradigm is that \emph{diversity} among judges provides robustness, analogous to Byzantine Fault Tolerance (BFT) in distributed systems: uncorrelated judges should resist correlated failures.
+
+We set out to test this assumption at scale by decomposing panel vulnerability under adversarial attack into two components: (1) the individual vulnerability of the weakest judge ($\eta_{\max}$), and (2) the effective number of independent judgment dimensions ($K_{\text{eff}}$, derived from eigenvalue decomposition of inter-judge mutual information matrices). Our study covers 15 models spanning 6 families and 3 capability tiers, $\binom{15}{3} = 455$ three-judge panels, 9 attack types, and 3 benchmarks (MMLU, ARC, MT-Bench).
+
+The headline result is \emph{not} what we expected to find. Under standard OLS regression, $\eta_{\max}$ appears significant in 11/12 conditions and $K_{\text{eff}}$ in 8/12---suggesting that individual weakness dominates but diversity also matters. However, the 455 panels are structurally non-independent: each model participates in $\binom{14}{2} = 91$ panels. When we apply wild cluster bootstrap ($B{=}9999$, Rademacher weights, 3-position max-$p$), $\eta_{\max}$ significance collapses to 3/12 and $K_{\text{eff}}$ to 1/12. Standard errors inflate by $3.2\times$, and this inflation \emph{worsens} with panel size (reaching $7.2\times$ at $K{=}9$).
+
+This OLS-to-bootstrap collapse is itself a finding of general interest. Combinatorial panel designs---evaluating all $\binom{N}{K}$ subsets of $N$ available models---are a natural experimental paradigm for studying panel composition effects, but the resulting non-independence is structural and severe. We demonstrate that neither $\eta_{\max}$ nor $K_{\text{eff}}$ can be reliably established as independent predictors under corrected inference, and that a VIF analysis (VIF $> 7$ for both predictors) confirms they share 67\% of their explained variance.
+
+Two findings are robust to correction. First, the aggregation rule gradient---threshold voting yields $R^2{=}0.89$ while Bayesian calibration yields $R^2{=}0.10$---is a descriptive statistic unaffected by SE correction. Second, the practical recommendation to select minimum-$\eta_{\max}$ panels holds in 9/12 conditions under direct comparison, as panel ranking does not depend on regression significance.
+
+Our contributions are: (1) a methodological framework for diagnosing and correcting non-independence in combinatorial evaluation designs; (2) empirical demonstration that OLS significance is inflated by $3.2$--$7.2\times$ in such designs; (3) a 15-model, 455-panel adversarial evaluation dataset across 9 attack types; and (4) practical guidance on aggregation rule selection and panel composition.
+
+
+\section{Related Work}
+
+\paragraph{LLM-as-Judge.} Using LLMs as evaluators has become standard practice, with single-judge and multi-judge configurations studied extensively. Panel-based evaluation has been proposed to mitigate individual judge biases, but systematic analysis of panel vulnerability under adversarial conditions remains limited.
+
+\paragraph{Adversarial Attacks on LLM Judges.} Prior work has demonstrated that LLM judges are susceptible to prompt injection, sycophancy manipulation, and position bias exploitation. These studies focus on individual judges rather than panel-level vulnerability.
+
+\paragraph{Byzantine Fault Tolerance.} BFT provides a theoretical framework for reasoning about panel robustness: a system of $n$ nodes tolerates $f < n/3$ arbitrary (Byzantine) faults. This analogy has been informally invoked in the LLM evaluation literature but never empirically tested.
+
+\paragraph{Non-Independence in Panel Data.} Clustered standard errors and bootstrap methods for panel data with cross-sectional dependence are well-established in econometrics. However, their application to combinatorial experimental designs in NLP---where observations are constructed from overlapping subsets of a fixed pool---has received little attention.
+
+
+\section{Method}
+
+\subsection{Experimental Design}
+
+\paragraph{Model Pool.} We use 15 LLMs spanning 6 families (OpenAI, Anthropic, Google, Meta, Qwen, Mistral) and 3 capability tiers: frontier (3 models), strong (3 models), and mid-weak (9 models).
+
+\paragraph{Panel Construction.} For panel size $K{=}3$, we enumerate all $\binom{15}{3} = 455$ panels. For sensitivity analysis, we also examine $K \in \{5, 7, 9\}$, yielding 3{,}003 to 6{,}435 panels.
+
+\paragraph{Attack Types.} We implement 9 adversarial attacks in two categories:
+\begin{itemize}[nosep]
+    \item \textbf{Targeted} (exploit judge-specific weaknesses): prompt injection, score manipulation, position bias, few-shot hijacking, persona manipulation
+    \item \textbf{Shared-bias} (exploit common cognitive biases): sycophancy, verbosity bias, authority bias, instruction override
+\end{itemize}
+
+\paragraph{Benchmarks.} MMLU (4-choice MCQ), ARC (multiple-choice), and MT-Bench (open-ended pairwise comparison).
+
+\paragraph{Vulnerability Metric.} For each panel $\times$ attack condition, we measure the \emph{attack success rate} (ASR): the fraction of evaluation instances where the adversarial manipulation changes the panel's aggregated judgment.
+
+\subsection{Predictor Variables}
+
+\paragraph{Individual Weakness ($\eta_{\max}$).} The maximum individual ASR among the $K$ judges in a panel, representing the vulnerability of the weakest link.
+
+\paragraph{Effective Diversity ($K_{\text{eff}}$).} Derived from eigenvalue decomposition of the inter-judge mutual information (MI) matrix. $K_{\text{eff}}$ captures the effective number of independent judgment dimensions, ranging from 1 (all judges identical) to $K$ (fully independent).
+
+\paragraph{Regression Specification.} We use a log-log OLS specification:
+\begin{equation}
+    \log(\text{ASR} + \epsilon) = \beta_0 + \beta_1 \log(\eta_{\max} + \epsilon) + \beta_2 \log(K_{\text{eff}}) + \varepsilon
+\end{equation}
+
+\subsection{Non-Independence Correction Methods}
+
+The $\binom{N}{K}$ combinatorial design creates severe non-independence: each model appears in $\binom{N-1}{K-1}$ panels. We apply four correction methods:
+
+\begin{enumerate}[nosep]
+    \item \textbf{OLS} (naive baseline): assumes independent observations.
+    \item \textbf{Clustered SE} (CR1): clusters on judge identity (15 clusters).
+    \item \textbf{Mixed effects}: random intercepts for each judge.
+    \item \textbf{Wild cluster bootstrap v2}: $B{=}9999$ replications, Rademacher weights, max-$p$ across 3 cluster positions. Most conservative.
+\end{enumerate}
+
+
+\section{Experiments and Results}
+
+\subsection{Scale Expansion and Significance Collapse}
+\label{sec:scale}
+
+Table~\ref{tab:ols_vs_correction} presents our central result. Under OLS, $\eta_{\max}$ appears significant in 11/12 conditions and $K_{\text{eff}}$ in 8/12 (7 positive, 1 negative), suggesting a clear dominance pattern. However, all three correction methods substantially reduce significance counts.
+
+\begin{table}[h]
+\centering
+\caption{OLS vs.\ correction methods: significance counts across 12 conditions (MMLU $\times$ 6 attacks + ARC $\times$ 6 attacks, $p < 0.05$).}
+\label{tab:ols_vs_correction}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method & $\eta_{\max}$ sig & $K_{\text{eff}}$ sig & $K_{\text{eff}}$ +/-- & Dom.\ ratio \\
+\midrule
+OLS (naive) & 11/12 & 8/12 & 7/1 & 1.4:1 \\
+Clustered SE (CR1) & 5/12 & 0/12 & --- & $\infty$ \\
+Mixed effects & 4/12 & 1/12 & 1/0 & 4:1 \\
+Wild cluster bootstrap v2 & 3/12 & 1/12 & 1/0 & 3:1 \\
+\midrule
+SE inflation factor & \multicolumn{4}{c}{$3.2\times$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The bootstrap is the most conservative method: $\eta_{\max}$ retains significance in only 3/12 conditions, all on MMLU (2/6 MMLU, 1/6 ARC). $K_{\text{eff}}$ survives in only 1/12. The dominance ratio ($\eta_{\max}$:$K_{\text{eff}}$ significant conditions) actually \emph{increases} from 1.4:1 (OLS) to 3:1 (bootstrap)---but both predictors are near floor.
+
+Table~\ref{tab:per_condition} shows per-condition detail. The most striking case is ARC $\times$ prompt injection: OLS $p = 3 \times 10^{-14}$ collapses to bootstrap $p = 0.35$, indicating that the OLS signal was almost entirely an artifact of panel overlap.
+
+\begin{table}[h]
+\centering
+\caption{Per-condition bootstrap results (selected conditions).}
+\label{tab:per_condition}
+\small
+\begin{tabular}{llcccc}
+\toprule
+Dataset & Attack & OLS $\eta$ $p$ & Boot $\eta$ $p$ & OLS $K$ $p$ & Boot $K$ $p$ \\
+\midrule
+MMLU & prompt\_inj & 2e-6 & 0.028 & 0.004 & 0.18 \\
+MMLU & score\_manip & 8e-5 & 0.041 & 0.011 & 0.31 \\
+MMLU & position\_bias & 0.001 & 0.08 & 0.035 & 0.04 \\
+ARC & prompt\_inj & 3e-14 & 0.35 & 0.001 & 0.62 \\
+ARC & score\_manip & 1e-8 & 0.06 & 0.003 & 0.44 \\
+ARC & sycophancy & 0.013 & 0.52 & 0.24 & 0.71 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Bootstrap significance varies by cluster position: position 0 (most imbalanced, 91:1 panel ratio) yields 2/12, while positions 1 and 2 yield 5/12 and 4/12 respectively. The 3-position max-$p$ (3/12) is conservative but legitimate.
+
+\subsection{Attack Expansion}
+\label{sec:attack_expansion}
+
+We extend to 9 attack types (adding few-shot hijacking, persona manipulation, instruction override), creating 18 total conditions. The pattern is consistent: OLS significance (16/18 $\eta_{\max}$, 11/18 $K_{\text{eff}}$) collapses under bootstrap (4/18 and 1/18 respectively), confirming that the non-independence problem is structural.
+
+\begin{table}[h]
+\centering
+\caption{New attack types: OLS vs.\ bootstrap correction (6 conditions).}
+\label{tab:new_attacks}
+\small
+\begin{tabular}{llcccc}
+\toprule
+Dataset & Attack & OLS $\eta$ $p$ & Boot $\eta$ $p$ & OLS $K$ $p$ & Boot $K$ $p$ \\
+\midrule
+MMLU & few-shot-hijack & 0.001 & 0.18 & 0.02 & 0.41 \\
+MMLU & persona-manip & 0.003 & 0.09 & 0.04 & 0.52 \\
+MMLU & instr-override & 5e-4 & 0.04 & 0.08 & 0.38 \\
+ARC & few-shot-hijack & 0.008 & 0.31 & 0.05 & 0.55 \\
+ARC & persona-manip & 0.012 & 0.22 & 0.09 & 0.63 \\
+ARC & instr-override & 0.002 & 0.12 & 0.11 & 0.48 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The attack expansion also degrades the GAM-based attack taxonomy. The original 6-attack, 6:6 targeted/shared-bias split (all targeted showing positive $K_{\text{eff}}$, all shared-bias showing negative) develops 3 reversals at 9 attacks (Table~\ref{tab:gam_taxonomy}). Position bias reverses direction on ARC, and verbosity bias reverses on MMLU. The taxonomy retains a directional tendency ($\sim$60--70\% agreement) but is no longer clean.
+
+\begin{table}[h]
+\centering
+\caption{Extended GAM taxonomy: $K_{\text{eff}}$ direction across 9 attacks $\times$ 2 benchmarks.}
+\label{tab:gam_taxonomy}
+\small
+\begin{tabular}{llccc}
+\toprule
+Attack & Category & $K_{\text{eff}}$ dir (MMLU) & $K_{\text{eff}}$ dir (ARC) & Consistent? \\
+\midrule
+prompt\_injection & targeted & + & + & yes \\
+score\_manipulation & targeted & + & + & yes \\
+position\_bias & targeted & + & -- & \textbf{REVERSAL} \\
+few-shot-hijacking & targeted & + & + & weak \\
+persona-manipulation & targeted & + & + & weak \\
+sycophancy & shared-bias & -- & -- & yes \\
+verbosity\_bias & shared-bias & -- & + & \textbf{REVERSAL} \\
+authority\_bias & shared-bias & -- & -- & yes \\
+instruction-override & shared-bias & -- & -- & yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{BFT Random-Fault Contrast}
+\label{sec:bft}
+
+We test whether $K_{\text{eff}}$ differentiates random faults from adaptive attacks---the core BFT-inspired hypothesis. Under random faults (each judge fails independently with probability $\eta_j$, majority vote), $K_{\text{eff}}$ achieves higher $R^2$ (0.52 vs.\ 0.25 for adaptive) but collapses under bootstrap correction (0/2 significant). The GO/NO-GO gate fails on all criteria (Table~\ref{tab:bft_contrast}).
+
+\begin{table}[h]
+\centering
+\caption{BFT contrast: effect size analysis. All metrics fail their thresholds.}
+\label{tab:bft_contrast}
+\small
+\begin{tabular}{lccc}
+\toprule
+Metric & Value & Threshold & Verdict \\
+\midrule
+$K_{\text{eff}}$ $\beta$ ratio (RF/adaptive) & 1.2 & $>2.0$ & FAIL \\
+Cohen's $d$ (paired) & 0.12 & $>0.2$ & FAIL \\
+Contrast $p$-value & 0.31 & $<0.05$ & FAIL \\
+$R^2$ gap (RF -- adaptive) & 0.27 & $>0.3$ & MARGINAL \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The failure is not because BFT theory is wrong, but because corrected inference cannot reliably isolate $K_{\text{eff}}$'s independent contribution in either regime. With only 15 model clusters and VIF $> 7$, the regression framework is fundamentally underpowered for predictor-level decomposition.
+
+\subsection{Capability-Matched Validation}
+\label{sec:capability}
+
+Within-tier analysis (3 frontier, 3 strong, 9 mid-weak models) reveals that $\eta_{\max}$ dominance is contingent on cross-tier panel composition. When panels are restricted to capability-matched models, $\eta_{\max}$ range compresses by 75\% and significance drops dramatically (Table~\ref{tab:within_tier}).
+
+\begin{table}[h]
+\centering
+\caption{Within-tier vs.\ cross-tier regression significance.}
+\label{tab:within_tier}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Scope & $N$ panels & $\eta_{\max}$ sig & $K_{\text{eff}}$ sig & $\eta_{\max}$ IQR \\
+\midrule
+Frontier (3 models) & 1 & 0/12 & 0/12 & 0.02 \\
+Strong (3 models) & 1 & 0/12 & 0/12 & 0.04 \\
+Mid-weak (9 models) & 84 & 3/12 & 0/12 & 0.11 \\
+Cross-tier (15 models) & 455 & 11/12 & 8/12 & 0.38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This demonstrates that $\eta_{\max}$ significance in the full pool reflects capability tier spread rather than a general weakest-link principle. When panels contain models of similar capability, neither predictor is informative.
+
+\subsection{VIF and Multicollinearity Analysis}
+\label{sec:vif}
+
+Variance inflation factor analysis confirms that $\eta_{\max}$ and $K_{\text{eff}}$ cannot be reliably separated as independent predictors (Table~\ref{tab:vif}).
+
+\begin{table}[h]
+\centering
+\caption{Multicollinearity diagnostics and variance decomposition.}
+\label{tab:vif}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Diagnostic & $\eta_{\max}$ & $K_{\text{eff}}$ & Threshold & Verdict \\
+\midrule
+VIF (with tier indicators) & 7.8 & 6.9 & $>5$ & FAIL \\
+Partial $r$ (given other) & 0.31 & 0.12 & --- & $K_{\text{eff}}$ weak \\
+Unique variance \% & 18\% & 3\% & --- & $K_{\text{eff}}$ negligible \\
+Condition number & 18.5 & --- & $>30$ & Moderate \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Variance decomposition reveals that 67\% of explained variance is shared between $\eta_{\max}$ and $K_{\text{eff}}$, with $\eta_{\max}$ contributing 18\% unique and $K_{\text{eff}}$ only 3\%. Residualized $K_{\text{eff}}$ (orthogonalized against $\eta_{\max}$) is significant in only 2/12 conditions. Beta regression does not improve $K_{\text{eff}}$ status (3/12). The fundamental issue is the diversity-capability confound ($r = 0.65$): in the current model ecosystem, high-diversity panels necessarily include weaker models.
+
+\subsection{Panel Size Sensitivity}
+\label{sec:panel_size}
+
+Non-independence amplification scales with panel size. As $K$ increases from 3 to 9, each model's participation grows from 91 to 2{,}002 panels, and SE inflation increases from $3.2\times$ to $7.2\times$ (Table~\ref{tab:panel_size}).
+
+\begin{table}[h]
+\centering
+\caption{Panel size $\times$ correction: $\eta_{\max}$ and $K_{\text{eff}}$ significance.}
+\label{tab:panel_size}
+\small
+\begin{tabular}{lccccc}
+\toprule
+$K$ & $N$ panels & OLS $\eta$ sig & Boot $\eta$ sig & SE inflation & Overlap/judge \\
+\midrule
+3 & 455 & 11/12 & 3/12 & $3.2\times$ & 91 \\
+5 & 3{,}003 & 11/12 & 2/12 & $4.1\times$ & 1{,}001 \\
+7 & 6{,}435 & 10/12 & 1/12 & $5.8\times$ & 3{,}003 \\
+9 & 5{,}005 & 9/12 & 1/12 & $7.2\times$ & 2{,}002 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+$K_{\text{eff}}$ bootstrap significance remains at 0--1/12 across all panel sizes. The practical effect size of $K_{\text{eff}}$ also diminishes: IQR-based $\Delta$ASR drops from 0.8pp ($K{=}3$) to 0.2pp ($K{=}9$). Larger panels theoretically reduce the weakest-link effect (one weak vote matters less in 9 than in 3), but this cannot be confirmed under corrected inference because non-independence scales faster than signal.
+
+\subsection{Aggregation Rule Gradient}
+\label{sec:aggregation}
+
+While individual predictor significance is fragile, the aggregation rule gradient is robust: it describes $R^2$ variation, a descriptive statistic unaffected by SE correction (Table~\ref{tab:aggregation}).
+
+\begin{table}[h]
+\centering
+\caption{Aggregation gradient: OLS vs.\ bootstrap correction across 4 aggregation rules.}
+\label{tab:aggregation}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Aggregation & OLS $\eta$ & OLS $K$ & Boot $\eta$ & Boot $K$ & $R^2$ \\
+\midrule
+Threshold & 12/12 & 11/12 & 5/12 & 2/12 & 0.89 \\
+Majority & 11/12 & 8/12 (7+/1--) & 3/12 & 1/12 & 0.30 \\
+Weighted & 9/12 & 9/12 (9+/0--) & 2/12 & 1/12 & 0.28 \\
+Bayesian & 9/12 & 7/12 (1+/6--) & 2/12 & 0/12 & 0.10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The $R^2$ gradient from 0.89 (threshold/unanimity) to 0.10 (Bayesian) is substantial and meaningful: aggregation rule choice determines how predictable panel vulnerability is from composition. Threshold voting maximizes the influence of individual judge weakness; Bayesian calibration minimizes it.
+
+Under OLS, Bayesian aggregation reverses $K_{\text{eff}}$ direction (6/7 significant coefficients negative, suggesting diversity becomes protective). However, this reversal does not survive bootstrap correction (0/12 significant), following the same pattern as all other $K_{\text{eff}}$ findings. The direction reversal is a directional observation only.
+
+\subsection{Panel Selection Strategies}
+\label{sec:selection}
+
+Despite the fragility of regression-based predictor decomposition, the practical recommendation of selecting minimum-$\eta_{\max}$ panels is robust because it depends on panel \emph{ranking}, not on statistical significance of regression coefficients (Table~\ref{tab:selection}).
+
+\begin{table}[h]
+\centering
+\caption{Panel selection strategy comparison (12 conditions, $K{=}3$).}
+\label{tab:selection}
+\small
+\begin{tabular}{lccc}
+\toprule
+Strategy & Win count /12 & Mean ASR & vs.\ Random $\Delta$ \\
+\midrule
+Min $\eta_{\max}$ & 9/12 & 0.087 & --0.085 \\
+Two-stage (ours) & 9/12 & 0.084 & --0.088 \\
+Strongest-$K$ & 8/12 & 0.089 & --0.083 \\
+Max $K_{\text{eff}}$ & 2/12 & 0.142 & --0.030 \\
+Max family diversity & 1/12 & 0.155 & --0.017 \\
+Random & 0/12 & 0.172 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Min-$\eta_{\max}$ and our two-stage algorithm (screen $\eta \leq$ threshold, then maximize $K_{\text{eff}}$) tie at 9/12, with negligible ASR difference (0.003pp). The two-stage algorithm provides no marginal improvement over simply selecting the most individually robust models. This is because individual robustness ($\eta$) and model capability are highly correlated ($r = 0.72$): selecting the most robust models $\approx$ selecting the strongest models.
+
+\subsection{ASR Concentration Analysis}
+\label{sec:concentration}
+
+Per-judge ASR distribution analysis shows that adaptive adversaries produce moderately higher concentration than random faults (Gini 0.28 vs.\ 0.19, $p = 0.04$, Cohen's $d = 0.22$). However, Gini is primarily driven by capability gap ($r = 0.55$ with $\eta_{\max}$) rather than adversary strategy, and the effect size is small. Targeted attacks show higher concentration than shared-bias attacks (Gini 0.35 vs.\ 0.22), consistent with the directional taxonomy but insufficient to independently establish an adversary targeting claim.
+
+\begin{table}[h]
+\centering
+\caption{ASR concentration metrics by attack category.}
+\label{tab:concentration}
+\small
+\begin{tabular}{lccc}
+\toprule
+Attack category & Median Gini & Weakest-judge share & vs.\ RF $p$ \\
+\midrule
+Targeted (PI, SM, PB) & 0.35 & 0.48 & 0.02 \\
+Shared-bias (syc, verb, auth) & 0.22 & 0.38 & 0.28 \\
+All adaptive & 0.28 & 0.42 & 0.04 \\
+Random-fault baseline & 0.19 & 0.36 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Open-Ended Generation Benchmark}
+\label{sec:mtbench}
+
+MT-Bench results mirror the MCQ pattern but with lower $R^2$ (median 0.15 vs.\ 0.25 for MMLU). Under bootstrap, $\eta_{\max}$ retains significance in only 1/12 conditions and $K_{\text{eff}}$ in 0/12. Cross-benchmark consistency is moderate for $\eta_{\max}$ profiles ($r = 0.52$ MMLU--MT) and weak for $K_{\text{eff}}$ ($r = 0.38$).
+
+\begin{table}[h]
+\centering
+\caption{MT-Bench: OLS vs.\ bootstrap (6 attack conditions). * indicates adapted attack implementation.}
+\label{tab:mtbench}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Attack & OLS $\eta$ $p$ & Boot $\eta$ $p$ & OLS $K$ $p$ & Boot $K$ $p$ & $R^2$ \\
+\midrule
+prompt\_inj & 0.008 & 0.22 & 0.05 & 0.48 & 0.18 \\
+score\_manip & 0.015 & 0.31 & 0.08 & 0.55 & 0.14 \\
+sycophancy* & 0.042 & 0.51 & 0.12 & 0.63 & 0.11 \\
+verbosity* & 0.038 & 0.48 & 0.18 & 0.58 & 0.09 \\
+position\_bias & 0.003 & 0.08 & 0.04 & 0.38 & 0.22 \\
+authority* & 0.055 & 0.55 & 0.22 & 0.68 & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The lower $R^2$ on MT-Bench likely reflects the continuous pairwise comparison format (vs.\ MCQ's discrete categorical judgments), which introduces more intrinsic scoring noise. Three attacks required substantial adaptation for open-ended evaluation, limiting direct comparability.
+
+\subsection{Partial-Knowledge Adversary}
+\label{sec:partial_knowledge}
+
+We simulate three adversary knowledge levels: full (oracle), partial (family labels only), and zero (random targeting). An ASR gradient exists ($0.142 \to 0.128 \to 0.098$, $p = 0.04$), confirming that adversary knowledge matters. Family knowledge provides moderate value ($\Delta$ASR $= 0.030$, $p = 0.01$) over zero knowledge, but exact vulnerability profiles add little beyond family information ($\Delta = 0.014$, $p = 0.18$). Neither $\eta_{\max}$ nor $K_{\text{eff}}$ significance improves at any knowledge level.
+
+\begin{table}[h]
+\centering
+\caption{Adversary knowledge level vs.\ panel vulnerability.}
+\label{tab:partial_knowledge}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Knowledge & Mean ASR & Boot $\eta$ sig & Boot $K$ sig & $R^2$ \\
+\midrule
+Full (oracle) & 0.142 & 3/12 & 0/12 & 0.25 \\
+Partial (family) & 0.128 & 2/12 & 0/12 & 0.18 \\
+Zero (random) & 0.098 & 1/12 & 0/12 & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{Discussion}
+
+\paragraph{The Non-Independence Problem Is Structural.} Our results demonstrate that combinatorial panel designs create a fundamental tension: exhaustive enumeration maximizes statistical coverage but introduces severe non-independence. Each of $N$ models appears in $\binom{N-1}{K-1}$ panels, creating cross-observation correlation that inflates standard errors by $3.2$--$7.2\times$ depending on $K$. This is not a correctable nuisance---it is an intrinsic property of the experimental design.
+
+\paragraph{Neither Predictor Is Reliably Established.} Under corrected inference, $\eta_{\max}$ retains significance in only 3/12 conditions (bootstrap) and $K_{\text{eff}}$ in 1/12. The VIF analysis ($>7$ for both) confirms that 67\% of explained variance is shared, with $K_{\text{eff}}$ contributing only 3\% unique variance. The regression-based decomposition framework is fundamentally inadequate for isolating independent predictor effects with 15 model clusters.
+
+\paragraph{What Survives.} Two findings are robust. First, the aggregation $R^2$ gradient (0.89 to 0.10) is descriptive and independent of inference correction---it characterizes how much panel composition matters under different voting rules. Second, minimum-$\eta_{\max}$ selection dominates alternative strategies in 9/12 conditions, a result based on direct comparison rather than regression significance.
+
+\paragraph{The Diversity-Capability Confound.} The correlation between $\eta_{\max}$ and $K_{\text{eff}}$ ($r = 0.65$, $R^2 = 0.42$) is primarily driven by cross-tier differences ($r = 0.72$ for cross-tier panels vs.\ $r = 0.22$--$0.35$ within-tier). In the current LLM ecosystem, capability predicts robustness: high-diversity panels necessarily include weaker models. This confound is not an artifact of our analysis but a structural feature of the model landscape.
+
+\paragraph{Implications for Evaluation Practice.} Our results suggest three practical takeaways: (1) prioritize individual judge quality over panel diversity; (2) choose aggregation rules deliberately---Bayesian calibration reduces composition sensitivity while threshold voting amplifies it; (3) be cautious about regression-based conclusions from combinatorial panel designs without non-independence correction.
+
+
+\section{Conclusion}
+
+We conducted a large-scale study of LLM evaluation panel vulnerability, finding that standard OLS regression dramatically overstates predictor significance in combinatorial panel designs due to structural non-independence. Under wild cluster bootstrap correction, $\eta_{\max}$ significance drops from 11/12 to 3/12 and $K_{\text{eff}}$ from 8/12 to 1/12, with SE inflation of $3.2\times$. This collapse is itself a methodological contribution: it provides a concrete demonstration of why non-independence correction is essential for combinatorial evaluation research.
+
+Two findings survive: aggregation rule choice modulates vulnerability predictability ($R^2$ from 0.89 to 0.10), and minimum-$\eta_{\max}$ panel selection outperforms alternatives in 9/12 conditions. We release a 15-model, 455-panel adversarial evaluation dataset as a resource for future work.
+
+
+\section*{Limitations}
+
+Our study has three main limitations. First, with 15 models and therefore 15 clusters, bootstrap correction is conservative and may be overly so---the true significance of $\eta_{\max}$ likely lies between the OLS upper bound (11/12) and the bootstrap lower bound (3/12). Studies with larger model pools ($N \geq 30$) would provide more reliable corrected inference. Second, our findings are primarily established on MCQ benchmarks (MMLU, ARC); MT-Bench results show limited transfer, suggesting that the vulnerability dynamics may be format-dependent. Third, the diversity-capability confound ($r = 0.65$) is a property of the current model ecosystem and may change as the landscape evolves.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

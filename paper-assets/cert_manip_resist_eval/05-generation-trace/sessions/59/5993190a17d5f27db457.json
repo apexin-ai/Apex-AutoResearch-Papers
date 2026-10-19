@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-sensitivity-contour_20260525T151931_result.json",
     "occurrence": 1,
-    "bytes": 556,
-    "sha256": "35b3c78b741f187b36e9bc784dc0dab9b079a405a750fa4000e2a170bf8076e4"
+    "bytes": 555,
+    "sha256": "8092d57ac13ad67a86eb12e3db531cd1cd531db2985653e5a4e6b9c1a9f285af"
   },
   "statistics": {
     "messages": 1,

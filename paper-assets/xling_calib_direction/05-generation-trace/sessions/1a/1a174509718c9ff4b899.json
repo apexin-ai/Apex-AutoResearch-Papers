@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a174509718c9ff4b899",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "analysis mvp 001 layer27 supplement",
+  "task_key": "worker_analysis_mvp_001_layer27_supplement_20260520T184655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_001_layer27_supplement_20260520T184655_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "a72a6b5f84139cedc2667779d3e915454c18076724f57e3856fe1ea3def3b71d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是完整结果：\n\n```\n=== Layer 27 Results ===\n\n英语 Probe:\n  Layer 27: AUROC=0.7541  ECE=0.1951  Brier=0.2227\n  Temperature scaling: T=6.21 → ECE=0.0744 (PASS P1)\n\nZero-shot Transfer (layer 27):\n  zh: AUROC=0.6607  ECE=0.2673  p=0.0010\n  ar: AUROC=0.6346  ECE=0.3202  p=0.0010\n  hi: AUROC=0.6257  ECE=0.4363  p=0.0010\n  sw: AUROC=0.5603  ECE=0.3270  p=0.0010\n  ko: AUROC=0.6069  ECE=0.3423  p=0.0010\n\nMean-shift (layer 27):\n  zh: AUROC=0.6607  ECE=0.2598  ΔECE=-0.75pp\n  ar: AUROC=0.6346  ECE=0.3440  ΔECE=+2.38pp\n  hi: AUROC=0.6256  ECE=0.3797  ΔECE=-5.66pp\n  sw: AUROC=0.5603  ECE=0.5103  ΔECE=+18.33pp\n  ko: AUROC=0.6069  ECE=0.3707  ΔECE=+2.84pp\n\n对比 Layer 24 vs Layer 27:\n  EN AUROC: L24=0.7486 vs L27=0.7541 (Δ=+0.55pp)\n  EN ECE:   L24=0.1982 vs L27=0.1951 (Δ=-0.31pp)\n  EN Brier: L24=0.2249 vs L27=0.2227 (Δ=-0.22pp)\n```\n\nLayer 27 是所有层中 AUROC 最高的（0.7541 > L24 的 0.7486），且原始 ECE 略低于 L24。经 temperature scaling 后 ECE=0.0744，远低于 0.15 阈值，**P1 判定 PASS**。两个 CSV 文件已合并完毕，layer 27 数据已追加到完整结果中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-001-layer27-supplement.md"
+}

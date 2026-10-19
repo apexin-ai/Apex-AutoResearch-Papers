@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_rf-keff-correction_20260522T201836_result.json",
     "occurrence": 1,
-    "bytes": 1774,
-    "sha256": "0370db45beb51940a7b0331d4881e532787dfdca96985ffb8040e7d01bc38f45"
+    "bytes": 1773,
+    "sha256": "02e870c55ad4900b737a0894312cf149e4ac80c2afa29a3b9060bab34057748b"
   },
   "statistics": {
     "messages": 1,

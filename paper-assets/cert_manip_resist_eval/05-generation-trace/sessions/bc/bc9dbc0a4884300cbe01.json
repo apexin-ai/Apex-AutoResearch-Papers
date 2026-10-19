@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig1-aspect-ratio_20260525T123154_result.json",
     "occurrence": 1,
-    "bytes": 425,
-    "sha256": "2e3ce049b3e8e3589ee6eb8d7c66d378b6c395b916c45154a42ee9f0670b8c49"
+    "bytes": 424,
+    "sha256": "6d16834e3a5458cfe551edf4cf49d99e792e0943c8d6be1a0235362620bb817a"
   },
   "statistics": {
     "messages": 1,

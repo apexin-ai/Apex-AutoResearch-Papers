@@ -6,65 +6,6 @@
 
 ## Round 167
 
-### User
-
-_source line 1573 · 2026-05-22T17:11:34.559229+00:00_
-
-[WORKER DONE] Worker worker_code_fix-loader-rerun-pipeline_20260522T170513 已完成（status=done）。用 `get_worker_status('worker_code_fix-loader-rerun-pipeline_20260522T170513')` 读取结果，然后处理。
-
-- worker_id: worker_code_fix-loader-rerun-pipeline_20260522T170513
-- project: cert_manip_resist_eval
-- status: done
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
-  "source": "worker:done"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1574 · 2026-05-22T17:11:41.899242+00:00_
-
-called mcp__agent-ml-research__get_worker_status
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
-
-```json
-{
-  "worker_id": "worker_code_fix-loader-rerun-pipeline_20260522T170513"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_551817662c2d314a3713be79c074d906",
-  "tool": "mcp__agent-ml-research__get_worker_status",
-  "tool_args": {
-    "worker_id": "worker_code_fix-loader-rerun-pipeline_20260522T170513"
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
 _source line 1575 · 2026-05-22T17:11:41.949975+00:00_

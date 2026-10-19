@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_partial-knowledge-adversary_20260523T004625_result.json",
     "occurrence": 1,
-    "bytes": 979,
-    "sha256": "4ac78cb3dfbf78c3800d70c4f2c80ca5872a9768160d6a79b7adce4ba8ff7ad6"
+    "bytes": 978,
+    "sha256": "9ad3344a6eed7e0d0b47f160e3580bae74bfed46d61cffedc5b45370ba83efba"
   },
   "statistics": {
     "messages": 1,

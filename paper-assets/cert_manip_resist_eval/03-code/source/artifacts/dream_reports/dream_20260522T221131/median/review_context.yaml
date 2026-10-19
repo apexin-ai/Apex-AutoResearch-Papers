@@ -1,0 +1,1184 @@
+narrative_guidance: 'Claims require hedging but core story survives. η_max dominance
+  downgraded from ''robust'' to ''directional with benchmark-dependent strength''
+  — MMLU strong, ARC weak, must discuss why. K_eff fragility still holds but framed
+  as ''inconclusive'' rather than ''clean null''. GAM 6:6 split presented as ''suggestive
+  taxonomic pattern warranting further investigation'' rather than confirmed mechanism.
+  RF contrast becomes a partial validation (if completed) or acknowledged limitation
+  (if not). Aggregation gradient retains OLS results with caveat that clustered SE
+  validation is incomplete. Paper shifts from 5-contribution to 3-contribution focus:
+  (1) η_max dominance (primary), (2) methodological transparency on non-independence
+  (elevated to co-primary — the correction story itself becomes a contribution), (3)
+  practical defense recommendations (min_eta_max still wins). Title softened to candidate
+  2 or 3. ''Diversity Trap'' title likely too strong — ''Weakest Link'' framing preferred.
+  Supplementary materials carry more analytical weight to address reviewer concerns
+  about incomplete robustness checks.'
+imagined_experiments:
+- name: Scale Expansion to 15 Models
+  plan_id: plan_001
+  description: Add API models (GPT-4o-mini, GPT-4o, GPT-4.1, GPT-4.1-mini, Claude,
+    Gemini) and large open-source (Llama-3.1-70B, Qwen2.5-72B) to reach 15 models
+    total. Rerun MI matrix + full regression suite on C(15,3)=455 panels across 12
+    benchmark×attack conditions.
+  expected_results:
+    models_total: 15
+    api_models: 9
+    local_models: 6
+    panels: 455
+    conditions: 12
+    confound_r_keff_eta: 0.7
+    ols_eta_sig: 11/12
+    ols_keff_sig: 8/12 (7+/1-)
+    bootstrap_eta_sig: 5/12
+    bootstrap_keff_sig: 1/12
+    clustered_se_eta_sig: 8/12
+    clustered_se_keff_sig: 0/12
+    mixed_effects_eta_sig: 7/12
+    mixed_effects_keff_sig: 3/12
+    dominance_ratio_bootstrap: '5:1'
+    se_inflation_factor: ~2.5x
+    mmlu_bootstrap_eta: 4/6
+    arc_bootstrap_eta: 1/6
+    gam_targeted_positive: 6/6
+    gam_sharedbias_negative: 6/6
+    min_eta_max_wins: 12/12
+    practical_delta_asr_keff_iqr_pp: 1.3
+  result_rationale: 'Under median tier, plan_001 IS the shipped evidence — plan001_step1_full_v4
+    realized it successfully. The 15-model expansion dramatically increased panel
+    count (20→455) and broke the 6-model confound ceiling (r=-0.8→+0.70). K_eff flips
+    from NS-negative (6-model: arc×sycophancy only) to predominantly positive (7+/1-)
+    under OLS, BUT this OLS significance is inflated by panel non-independence: each
+    of 15 judges appears in ~91 panels, creating massive overlap. Correction methods
+    (bootstrap/clustered SE/mixed effects) collapse K_eff from 8/12 to 0-3/12 while
+    η_max survives at 5-8/12. The 5:1 dominance ratio under bootstrap is actually
+    STRONGER than OLS''s 11:8≈1.4:1 because K_eff collapses faster than η_max. ARC
+    weakness (1/6 bootstrap η_max vs MMLU 4/6) reflects MCQ format: 4-choice MMLU
+    gives more scoring variance for η_max signal than 2-choice ARC. This benchmark
+    asymmetry is a structural limitation of the experimental design, not a refutation
+    of η_max dominance.'
+  tables:
+  - name: Correction Method Comparison (12 conditions)
+    columns:
+    - Method
+    - η_max sig
+    - K_eff sig
+    - Dominance ratio
+    - Note
+    rows:
+    - - OLS (baseline)
+      - 11/12
+      - 8/12 (7+/1-)
+      - 1.4:1
+      - Inflated by panel overlap
+    - - Wild cluster bootstrap v2
+      - 5/12
+      - 1/12
+      - '5:1'
+      - Conservative lower bound; position 0 imbalance
+    - - Clustered SE (CR1)
+      - 8/12
+      - 0/12
+      - '8:0'
+      - Consistent with bootstrap positions 1&2
+    - - Mixed effects
+      - 7/12
+      - 3/12
+      - 2.3:1
+      - Random judge intercepts
+    - - Tier-indicator corrected
+      - 11/12
+      - 5/12
+      - 2.2:1
+      - 3/3/9 tier control
+  - name: Bootstrap η_max by Benchmark
+    columns:
+    - Benchmark
+    - η_max bootstrap sig
+    - Attacks surviving
+    - Attacks lost
+    rows:
+    - - MMLU
+      - 4/6
+      - PI, SM, PB, VB
+      - syco, auth
+    - - ARC
+      - 1/6
+      - PI only (marginal)
+      - SM, PB, syco, VB, auth
+  figures_description:
+  - 'Fig 1: Coefficient significance heatmap — 4 correction methods × 12 conditions,
+    color-coded by η_max/K_eff significance. Shows systematic K_eff collapse across
+    rows while η_max retains partial survival.'
+  - 'Fig 2: SE inflation scatter — OLS SE vs corrected SE for each coefficient, showing
+    ~2.5x inflation line.'
+  analysis: 'plan_001 is the foundational experiment and is already completed as plan001_step1_full_v4.
+    Under median tier, no further analysis of this data yields stronger results. The
+    key tension is between OLS (favorable) and bootstrap (conservative): the paper
+    must present both transparently. The benchmark asymmetry (MMLU >> ARC) is the
+    main weakness — reviewers will question whether η_max dominance is benchmark-dependent.
+    The honest answer is yes, partially: η_max is stronger in higher-variance scoring
+    formats. This needs explicit discussion in Section 5.'
+- name: Attack Expansion to 6+ Types
+  plan_id: plan_002
+  description: Add few-shot hijacking, persona manipulation, instruction override
+    attacks. Run on full 15-model pool. Test universality of weakest-link finding
+    across broader attack surface.
+  expected_results:
+    status: not_completed
+    reason: Time and compute constraints; 60 GPU-hours not allocated
+    hypothetical_if_run:
+      new_attacks_tested: 3
+      few_shot_hijacking_eta_sig: likely 1/2 (MMLU yes, ARC no)
+      few_shot_hijacking_keff_sig: likely 0/2 after correction
+      persona_manipulation_eta_sig: likely 1/2
+      persona_manipulation_keff_sig: likely 0/2 after correction
+      instruction_override_eta_sig: likely 2/2
+      instruction_override_keff_sig: likely 0-1/2 after correction
+      overall_eta_sig_new: 4/6 OLS, 2-3/6 bootstrap
+      overall_keff_sig_new: 2-3/6 OLS, 0-1/6 bootstrap
+      new_gam_pattern: few-shot hijacking and instruction override → targeted (K_eff
+        positive); persona manipulation → ambiguous
+  result_rationale: 'Under median tier, plan_002 is not completed due to resource
+    constraints. If run, results would be mixed: new attack types would largely confirm
+    η_max dominance pattern but with benchmark asymmetry persisting (MMLU > ARC).
+    Few-shot hijacking is mechanistically similar to prompt_injection (targeted, judge-specific)
+    so K_eff would be directionally positive but NS after correction. Persona manipulation
+    is ambiguous — it exploits both judge-specific persona susceptibility AND shared
+    anthropomorphic biases, making the targeted/shared-bias taxonomy assignment unclear.
+    Instruction override is the strongest targeted attack variant, so η_max likely
+    robust. Net: the attack expansion would not change the core narrative but would
+    introduce 1-2 conditions that don''t cleanly fit the GAM 6:6 taxonomy, requiring
+    a footnote about taxonomy edge cases. The marginal evidence gain doesn''t justify
+    the 60 GPU-hour cost under the median scenario — the paper can acknowledge this
+    as a limitation.'
+  tables:
+  - name: Hypothetical New Attack Results (OLS vs Bootstrap)
+    columns:
+    - Attack
+    - Benchmark
+    - η_max OLS p
+    - η_max bootstrap p
+    - K_eff OLS p
+    - K_eff bootstrap p
+    - GAM K_eff direction
+    rows:
+    - - Few-shot hijacking
+      - MMLU
+      - <0.001
+      - '0.03'
+      - '0.04'
+      - '0.15'
+      - positive
+    - - Few-shot hijacking
+      - ARC
+      - '0.008'
+      - '0.12'
+      - '0.18'
+      - '0.45'
+      - positive
+    - - Persona manipulation
+      - MMLU
+      - '0.003'
+      - '0.07'
+      - '0.06'
+      - '0.22'
+      - mixed (+0.02)
+    - - Persona manipulation
+      - ARC
+      - '0.02'
+      - '0.18'
+      - '0.12'
+      - '0.38'
+      - mixed (-0.01)
+    - - Instruction override
+      - MMLU
+      - <0.001
+      - '0.01'
+      - '0.03'
+      - '0.09'
+      - positive
+    - - Instruction override
+      - ARC
+      - '0.005'
+      - '0.04'
+      - '0.09'
+      - '0.28'
+      - positive
+  figures_description:
+  - 'Hypothetical Fig: Extended GAM partial effects for 18 conditions (12 original
+    + 6 new). The 6:6 targeted/shared-bias split extends to roughly 9:6 with 3 ambiguous,
+    weakening the clean binary taxonomy.'
+  analysis: 'Non-completion is the most likely median outcome. The paper handles this
+    by stating ''six representative attack types covering targeted and shared-bias
+    mechanisms'' and acknowledging that broader attack coverage is future work. If
+    partially completed (e.g., 1-2 new attacks only), the results add marginal support
+    but also introduce taxonomy edge cases that complicate the clean GAM narrative.
+    Net value: low marginal information gain for high compute cost. Better to invest
+    the GPU-hours in plan_003 (BFT contrast) which directly supports a core claim.'
+- name: Random-Fault BFT Contrast Experiment
+  plan_id: plan_003
+  description: 'Monte Carlo simulation: each judge fails independently with probability
+    η_j under random faults. Compare K_eff significance under RF regime vs adaptive
+    regime. GO/NO-GO gate: if RF K_eff also not significant → BFT framing collapses.'
+  expected_results:
+    status: partially_completed
+    note: RF data exists in plan001_step1_full_v4 (2 conditions). Under median, standalone
+      plan_003 adds bootstrap robustness check that weakens ARC.
+    rf_mmlu_keff_sig_ols: true
+    rf_mmlu_keff_p_ols: 0.002
+    rf_mmlu_keff_p_bootstrap: 0.03
+    rf_mmlu_keff_std_beta: 0.215
+    rf_mmlu_r2: 0.73
+    rf_arc_keff_sig_ols: true
+    rf_arc_keff_p_ols: 0.008
+    rf_arc_keff_p_bootstrap: 0.06
+    rf_arc_keff_std_beta: 0.379
+    rf_arc_r2: 0.68
+    rf_keff_sig_bootstrap: 1/2
+    rf_keff_sig_ols: 2/2
+    rf_keff_sig_clustered_se: 2/2
+    adaptive_keff_sig_bootstrap: 1/12
+    contrast_delta_r2: RF 0.65-0.73 vs adaptive 0.15-0.30
+    bft_gate: partial_pass
+  result_rationale: 'Under median tier, plan_003''s core data already exists within
+    plan001_step1_full_v4 (RF K_eff sig 2/2 under all methods, R²=0.73/0.81). However,
+    when plan_003 is run as a standalone experiment with full bootstrap robustness
+    checks, ARC RF drops to borderline significance (bootstrap p=0.06) — this is because
+    ARC''s 2-choice format has less scoring variance, and with only 2 RF conditions
+    the bootstrap has limited power. The GO/NO-GO gate partially passes: K_eff IS
+    significant under RF for MMLU (cleanly), borderline for ARC. The BFT contrast
+    remains valid for MMLU (K_eff genuine under RF, artifactual under adaptive) but
+    weakened for ARC. The R² gap (RF ~0.70 vs adaptive ~0.25) is the stronger evidence
+    for the BFT framing than individual significance counts. Under median, the paper
+    presents the R² gap as the primary BFT evidence and the K_eff significance contrast
+    as supporting evidence with caveats about ARC weakness. The BFT framing survives
+    but is downgraded from ''clean contrast'' to ''directional contrast with benchmark
+    dependence.'''
+  tables:
+  - name: RF vs Adaptive K_eff Significance Contrast
+    columns:
+    - Regime
+    - Benchmark
+    - K_eff OLS p
+    - K_eff bootstrap p
+    - K_eff std_β
+    - R²
+    - Interpretation
+    rows:
+    - - Random fault
+      - MMLU
+      - '0.002'
+      - '0.03'
+      - '+0.215'
+      - '0.73'
+      - Genuine — survives bootstrap
+    - - Random fault
+      - ARC
+      - '0.008'
+      - '0.06'
+      - '+0.379'
+      - '0.68'
+      - Borderline — benchmark limitation
+    - - Adaptive
+      - MMLU (avg 6 attacks)
+      - varies
+      - 5/6 NS
+      - +0.18 avg
+      - 0.25 avg
+      - Inflated by panel overlap
+    - - Adaptive
+      - ARC (avg 6 attacks)
+      - varies
+      - 6/6 NS
+      - +0.15 avg
+      - 0.18 avg
+      - Inflated + weak benchmark
+  - name: GO/NO-GO Gate Assessment
+    columns:
+    - Criterion
+    - Result
+    - Status
+    rows:
+    - - RF K_eff sig ≥1/2 (OLS)
+      - 2/2
+      - PASS
+    - - RF K_eff sig ≥1/2 (bootstrap)
+      - 1/2
+      - PARTIAL PASS
+    - - RF R² > adaptive R²
+      - 0.70 vs 0.22 (avg)
+      - PASS
+    - - RF-adaptive K_eff contrast
+      - RF 1-2/2 vs adaptive 1/12
+      - PARTIAL PASS
+    - - BFT framing viable?
+      - Yes with caveats
+      - PARTIAL PASS
+  figures_description:
+  - 'Fig: R² comparison bar chart — RF regime vs adaptive regime, split by benchmark.
+    Shows dramatic predictability gap (RF ~0.70 vs adaptive ~0.22) that is the core
+    BFT contrast evidence.'
+  - 'Fig: K_eff coefficient scatter — RF vs adaptive conditions, showing RF K_eff
+    consistently positive and significant while adaptive K_eff is scattered around
+    zero after correction.'
+  analysis: 'The BFT contrast partially passes the GO/NO-GO gate under median. The
+    R² gap is the robust finding (large, benchmark-independent). The K_eff significance
+    contrast is benchmark-dependent (MMLU clean, ARC borderline). Paper should lead
+    with R² gap as primary evidence for BFT contrast, use K_eff significance as secondary.
+    The honest framing: ''Under random faults, panel composition (η_max + K_eff) is
+    highly predictive (R²≈0.70); under adaptive attacks, predictability collapses
+    (R²≈0.22), consistent with BFT assumptions being violated by strategic adversaries.''
+    This avoids over-claiming on significance counts and focuses on the more robust
+    quantity.'
+- name: Capability-Matched Validation
+  plan_id: plan_004
+  description: Within same capability tier (all 7B or all 70B), test whether K_eff
+    emerges as significant predictor when η_max variance is controlled by construction.
+  expected_results:
+    status: not_completed
+    reason: Depends on plan_001; insufficient models per tier for meaningful panel
+      counts
+    hypothetical_if_run:
+      tier_7b_models: 3
+      tier_7b_panels: 1
+      tier_70b_models: 3
+      tier_70b_panels: 1
+      tier_api_models: 9
+      tier_api_panels: 84
+      note: Only API tier has enough models for meaningful regression
+      api_tier_eta_max_sig: 4-5/12 OLS
+      api_tier_keff_sig: 2-3/12 OLS, 0-1/12 bootstrap
+      api_tier_confound_r: 0.55
+      api_tier_eta_max_range: narrower within tier
+      within_tier_keff_emerges: false
+  result_rationale: 'Under median tier, plan_004 is not completed primarily because
+    the experimental design doesn''t support it well. The 3/3/9 tier split means only
+    the API tier (9 models, C(9,3)=84 panels) has enough data for regression. Within-tier,
+    η_max variance IS reduced (models more similar in capability), but so is K_eff
+    variance — both variables compress when you restrict to a capability band. The
+    confound r drops from 0.70 to ~0.55 within the API tier, which is better but not
+    sufficient to cleanly separate the two predictors. K_eff would show 2-3/12 significant
+    under OLS within the API tier (slight improvement over full-pool because confound
+    is reduced), but collapse to 0-1/12 under bootstrap (same panel overlap problem
+    persists). The experiment doesn''t resolve the K_eff question because the panel
+    overlap issue is structural, not related to capability matching. The paper should
+    acknowledge this as a limitation: ''Capability-matched validation requires a larger
+    model pool with more models per tier, which is a constraint of the current LLM
+    ecosystem.'''
+  tables:
+  - name: Tier Composition and Statistical Power
+    columns:
+    - Tier
+    - Models
+    - Panels C(n,3)
+    - η_max range
+    - K_eff range
+    - Regression viable?
+    rows:
+    - - Small (7B)
+      - '3'
+      - '1'
+      - narrow
+      - degenerate
+      - No — 1 panel
+    - - Medium (70B)
+      - '3'
+      - '1'
+      - narrow
+      - degenerate
+      - No — 1 panel
+    - - API
+      - '9'
+      - '84'
+      - moderate
+      - moderate
+      - Marginal — 84 panels, 12 conditions
+    - - Full pool
+      - '15'
+      - '455'
+      - wide
+      - wide
+      - Yes — primary analysis
+  figures_description:
+  - 'Hypothetical Fig: K_eff vs η_max scatter colored by tier, showing compression
+    of both variables within tiers and the reduced but persistent confound.'
+  analysis: This experiment is structurally underpowered given the current model pool.
+    The 3/3/9 tier split was not designed for within-tier regression. Even in the
+    API tier, 84 panels × 12 conditions would give ~7 effective observations per condition
+    after accounting for non-independence — too few for reliable bootstrap inference.
+    The paper should present the diversity-capability tradeoff (r=0.70) as a structural
+    limitation and note that capability-matched validation requires future work with
+    larger model pools. This is an honest acknowledged limitation, not a failure.
+- name: Two-Stage Panel Design Algorithm Benchmark
+  plan_id: plan_005
+  description: 'Benchmark robustness-first two-stage algorithm: (1) filter η > threshold,
+    (2) maximize K_eff. Compare against 5 baselines including Strongest-K, Random,
+    Max-Diversity, Min-η_max, Max-Accuracy.'
+  expected_results:
+    status: not_completed
+    reason: Depends on plan_001; Dream flagged marginal improvement over Strongest-K
+    hypothetical_if_run:
+      baselines:
+      - Min-η_max
+      - Strongest-K
+      - Max-K_eff
+      - Random
+      - Max-Accuracy
+      two_stage_vs_min_eta:
+        asr_improvement_mean_pp: 0.8
+        conditions_improved: 7/12
+        conditions_equal: 5/12
+        conditions_worse: 0/12
+      two_stage_vs_strongest_k:
+        asr_improvement_mean_pp: 1.5
+        note: Marginal — Strongest-K already approximates robustness-first
+      two_stage_vs_max_keff:
+        asr_improvement_mean_pp: 8.2
+        note: Large — max diversity selects weak judges
+      two_stage_vs_random:
+        asr_improvement_mean_pp: 5.1
+      min_eta_max_still_wins: 10-12/12
+      two_stage_marginal_gain: Marginal over min_eta_max; meaningful over naive diversity
+  result_rationale: 'Under median tier, plan_005 is not completed but is low-risk
+    because Claim 6 (min_eta_max dominates 12/12) is already strong from plan001_step1_full_v4.
+    The two-stage algorithm would add K_eff maximization as a tiebreaker after robustness
+    screening. Dream flagged that this is marginal because: (1) after robustness screening,
+    the remaining model pool is small (e.g., top 5-6 judges), so K_eff variation among
+    them is limited; (2) Strongest-K approximates robustness-first by construction
+    (selecting strongest models usually means selecting most robust ones, given the
+    capability-robustness correlation). The two-stage approach wins 7/12 conditions
+    over pure min_eta_max but the improvement is <1pp ASR on average — practically
+    negligible. The real value of the two-stage algorithm is conceptual (it provides
+    a principled framework) rather than empirical (marginal gains over simpler heuristics).
+    Paper can present the algorithm as a recommendation without the full benchmark,
+    supported by the min_eta_max 12/12 dominance result.'
+  tables:
+  - name: Hypothetical Algorithm Benchmark (ASR, lower is better)
+    columns:
+    - Strategy
+    - Mean ASR
+    - Conditions best
+    - vs Min-η_max Δ
+    rows:
+    - - Two-stage (robustness + K_eff)
+      - '0.142'
+      - 7/12
+      - -0.8pp
+    - - Min-η_max
+      - '0.150'
+      - 5/12
+      - baseline
+    - - Strongest-K
+      - '0.155'
+      - 0/12
+      - +0.5pp
+    - - Random
+      - '0.193'
+      - 0/12
+      - +4.3pp
+    - - Max-K_eff
+      - '0.222'
+      - 0/12
+      - +7.2pp
+    - - Max-Accuracy
+      - '0.160'
+      - 0/12
+      - +1.0pp
+  figures_description:
+  - 'Hypothetical Fig: Paired difference plot showing ASR improvement of two-stage
+    over each baseline across 12 conditions. Most improvements are small (<2pp) except
+    vs Max-K_eff (large, 5-12pp).'
+  analysis: 'The two-stage algorithm''s main contribution is showing that naive diversity
+    maximization is actively harmful (Max-K_eff is worst strategy), while robustness-first
+    selection is optimal. The marginal gain of adding K_eff as a tiebreaker is real
+    but small. This aligns with the core narrative: judge quality dominates, diversity
+    is secondary. The paper can present the algorithm conceptually with the existing
+    min_eta_max 12/12 result as the primary evidence, noting that the full benchmark
+    with 5 baselines is planned future work.'
+- name: Per-Judge ASR Concentration Analysis
+  plan_id: plan_006
+  description: For each panel × attack, compute Gini coefficient and entropy of per-judge
+    ASR distribution. Test whether adaptive adversaries concentrate attacks on specific
+    judges (high Gini) vs spread evenly (low Gini).
+  expected_results:
+    status: not_completed
+    reason: Time constraints; depends on plan_001 judge-level ASR breakdowns
+    hypothetical_if_run:
+      gini_targeted_attacks_mean: 0.45
+      gini_shared_bias_attacks_mean: 0.22
+      gini_difference_p: 0.003
+      entropy_targeted_mean: 1.8
+      entropy_shared_bias_mean: 2.5
+      gini_eta_max_correlation: 0.62
+      concentration_supports_mechanism: true
+      note: Targeted attacks show higher concentration (exploit specific weak judges);
+        shared-bias attacks spread more evenly (exploit common vulnerability)
+  result_rationale: 'Under median tier, this experiment is not completed due to time
+    constraints — it requires per-judge ASR breakdowns that may not be stored in the
+    current data pipeline. If run, the results would support the GAM taxonomy mechanism:
+    targeted attacks (PI, SM, PB) concentrate ASR on specific weak judges (high Gini
+    ~0.45), while shared-bias attacks (syco, VB, auth) spread vulnerability more evenly
+    across judges (low Gini ~0.22). This concentration difference provides direct
+    evidence for WHY η_max dominates: adaptive adversaries exploit the single weakest
+    judge disproportionately. However, the Gini-η_max correlation (~0.62) means this
+    is partially confounded — panels with high η_max naturally have more unequal ASR
+    distributions. The result is confirmatory rather than independently informative.
+    Under median, this adds a nice figure to the supplementary but doesn''t change
+    any claims. Not completing it is an acceptable loss.'
+  tables:
+  - name: Hypothetical Gini Coefficients by Attack Category
+    columns:
+    - Attack type
+    - Category
+    - Gini (mean)
+    - Gini (SD)
+    - Entropy (mean)
+    rows:
+    - - prompt_injection
+      - targeted
+      - '0.52'
+      - '0.11'
+      - '1.6'
+    - - score_manipulation
+      - targeted
+      - '0.48'
+      - '0.13'
+      - '1.7'
+    - - position_bias
+      - targeted
+      - '0.38'
+      - '0.09'
+      - '2.0'
+    - - sycophancy
+      - shared-bias
+      - '0.25'
+      - '0.08'
+      - '2.4'
+    - - verbosity_bias
+      - shared-bias
+      - '0.20'
+      - '0.07'
+      - '2.5'
+    - - authority_bias
+      - shared-bias
+      - '0.21'
+      - '0.06'
+      - '2.6'
+  figures_description:
+  - 'Hypothetical Fig: Violin plot of Gini coefficients by attack category (targeted
+    vs shared-bias), showing clear separation with some overlap in position_bias.'
+  analysis: 'Confirmatory experiment — would strengthen the mechanistic narrative
+    for the GAM 6:6 split but is not essential for any core claim. The Gini concentration
+    metric provides an intuitive explanation for practitioners: ''targeted attacks
+    pile up on your worst judge; shared-bias attacks erode all judges somewhat equally.''
+    Non-completion is acknowledged as a limitation in the discussion section.'
+- name: Diversity-Capability Tradeoff Visualization
+  plan_id: plan_007
+  description: Plot K_eff vs η_max across all 455 panels. Fit tradeoff curve. Compute
+    Pareto frontier. Stratify by model tier.
+  expected_results:
+    status: completed_or_trivially_completable
+    reason: No GPU needed; uses existing panel-level data from plan001_step1_full_v4
+    keff_eta_max_r: 0.7
+    pareto_frontier_panels: 8
+    pareto_frontier_composition: Dominated by API-tier + top open-source panels
+    tier_stratification:
+      small_7b_panels:
+        keff_range:
+        - 2.2
+        - 2.8
+        eta_max_range:
+        - 0.15
+        - 0.35
+      medium_70b_panels:
+        keff_range:
+        - 2.0
+        - 2.6
+        eta_max_range:
+        - 0.08
+        - 0.2
+      api_panels:
+        keff_range:
+        - 1.5
+        - 2.5
+        eta_max_range:
+        - 0.03
+        - 0.15
+    tradeoff_curve_fit: 'log-linear: K_eff ≈ 1.2 + 0.8·log(η_max)'
+    residual_variance: Substantial — r=0.70 means 51% variance explained; panels with
+      same η_max can have K_eff ranging ±0.5
+  result_rationale: 'Under median tier, this experiment is trivially completable (no
+    GPU, pure post-processing of existing data). The r=0.70 tradeoff is already known.
+    The Pareto frontier visualization adds value by showing practitioners which specific
+    panel compositions achieve the best K_eff for a given robustness level. The tier
+    stratification confirms that small models occupy the high-η_max/high-K_eff corner
+    (diverse but weak) while API models span a wider range including the desirable
+    low-η_max region. The log-linear tradeoff curve captures the structural constraint:
+    as you add more diverse (independent) judges, you necessarily include less capable
+    ones. The 49% unexplained variance means the tradeoff is real but not deterministic
+    — some panel compositions beat the tradeoff curve, and these are candidates for
+    practical deployment. This is a solid supplementary figure but doesn''t change
+    any claims — it visualizes Claim 3.'
+  tables:
+  - name: Pareto-Optimal Panel Compositions (hypothetical top 5)
+    columns:
+    - Panel ID
+    - Models
+    - K_eff
+    - η_max
+    - Pareto rank
+    rows:
+    - - P_042
+      - gpt-4o + claude-3.5-sonnet + qwen2.5-72b
+      - '2.35'
+      - '0.06'
+      - '1'
+    - - P_118
+      - gpt-4.1 + claude-3.5-sonnet + llama-70b
+      - '2.28'
+      - '0.07'
+      - '2'
+    - - P_203
+      - gpt-4o + gpt-4.1 + qwen2.5-72b
+      - '1.95'
+      - '0.04'
+      - '3'
+    - - P_089
+      - gpt-4.1 + gpt-4.1-mini + claude-3.5-sonnet
+      - '1.72'
+      - '0.03'
+      - '4'
+    - - P_301
+      - gpt-4o + gpt-4.1 + claude-3.5-sonnet
+      - '1.85'
+      - '0.035'
+      - '5'
+  figures_description:
+  - 'Fig: K_eff vs η_max scatter for 455 panels, colored by tier. Pareto frontier
+    highlighted. Log-linear tradeoff curve overlaid. Annotations for key panel compositions.'
+  analysis: 'Clean visualization exercise that supports the narrative. The main insight
+    for practitioners: the Pareto frontier shows you CAN get moderate diversity (K_eff
+    ~2.0-2.3) with good robustness (η_max <0.07) by mixing top API models with the
+    best open-source models. But pushing K_eff beyond ~2.5 requires including 7B-class
+    models that dramatically increase η_max. This is the structural constraint behind
+    Claim 3.'
+- name: Panel Size Sensitivity K=3,5,7,9
+  plan_id: plan_008
+  description: Test whether η_max dominance persists as panel size K grows from 3
+    to 5, 7, 9. Larger panels may dilute η_max effect through averaging.
+  expected_results:
+    status: not_completed
+    reason: 30 GPU-hours; depends on plan_001; combinatorial explosion at K=7,9
+    hypothetical_if_run:
+      k3_eta_sig: 5/12 bootstrap
+      k5_eta_sig: 4-5/12 bootstrap
+      k7_eta_sig: 3-4/12 bootstrap
+      k9_eta_sig: 2-3/12 bootstrap
+      k3_keff_sig: 1/12 bootstrap
+      k5_keff_sig: 0-1/12 bootstrap
+      k7_keff_sig: 0-1/12 bootstrap
+      k9_keff_sig: 1-2/12 bootstrap
+      eta_max_weakening_trend: η_max significance decreases monotonically with K
+      keff_stable_or_slight_increase: K_eff remains NS but may gain marginal significance
+        at K=9
+      panels_k5: 3003
+      panels_k7: 6435
+      panels_k9: 5005
+      overlap_severity_k9: extreme — each model in ~3000 panels
+  result_rationale: 'Under median tier, plan_008 is not completed due to compute constraints
+    and combinatorial explosion. If run, the key prediction is that η_max dominance
+    WEAKENS with larger panels because: (1) larger panels average over more judges,
+    diluting any single judge''s weakness; (2) the η_max metric itself (max individual
+    vulnerability) becomes a less tight predictor when K grows — in a K=9 panel, having
+    1 weak judge out of 9 matters less than 1 out of 3 under majority vote; (3) conversely,
+    K_eff might gain marginal significance at K=9 because diversity effects accumulate
+    with more judges. However, the panel non-independence problem becomes CATASTROPHIC
+    at K=7,9: C(15,7)=6435 panels means each model appears in ~3000 panels (66% overlap),
+    making bootstrap correction extremely aggressive and possibly breaking inference
+    entirely. The honest median prediction is that K=5 gives similar results to K=3
+    (confirming robustness), but K=7 and K=9 are uninterpretable due to overlap severity.
+    This is a known limitation of the combinatorial design.'
+  tables:
+  - name: Hypothetical Panel Size Sensitivity
+    columns:
+    - K
+    - Panels
+    - Avg overlap per model
+    - η_max sig (bootstrap)
+    - K_eff sig (bootstrap)
+    - Interpretable?
+    rows:
+    - - '3'
+      - '455'
+      - 91 (20%)
+      - 5/12
+      - 1/12
+      - 'Yes'
+    - - '5'
+      - '3003'
+      - 1001 (33%)
+      - 4-5/12
+      - 0-1/12
+      - Marginal
+    - - '7'
+      - '6435'
+      - 3003 (47%)
+      - 3-4/12
+      - 0-1/12
+      - Questionable
+    - - '9'
+      - '5005'
+      - 3003 (60%)
+      - 2-3/12
+      - 1-2/12
+      - No — overlap too severe
+  figures_description:
+  - 'Hypothetical Fig: η_max and K_eff significance counts vs panel size K, showing
+    monotonic weakening of η_max and stable-to-marginal K_eff.'
+  analysis: 'Panel size sensitivity is important for generalization but faces a fundamental
+    design limitation: with 15 models, larger panels create extreme overlap that invalidates
+    bootstrap inference. The paper can note this as a limitation: ''Our K=3 design
+    balances combinatorial coverage against overlap severity; K>5 analysis requires
+    a larger model pool.'' This is an honest acknowledged limitation, not a threat
+    to the core claims.'
+- name: VIF and Multicollinearity Analysis
+  plan_id: plan_009
+  description: Compute VIF for K_eff and η_max. Partial correlations. Residualized
+    K_eff regression. Bonferroni/FDR correction. Beta regression as robustness check.
+  expected_results:
+    status: completed
+    reason: No GPU needed; uses existing regression data
+    vif_keff: 3.4
+    vif_eta_max: 3.4
+    note_vif: 'Symmetric VIF due to single confound; VIF = 1/(1-r²) = 1/(1-0.49) ≈
+      1.96 for r=0.70. Wait — VIF for 2-predictor model = 1/(1-r²) where r is between
+      the two predictors. r=0.70 → r²=0.49 → VIF=1.96. But log-log spec may have different
+      effective correlation. Adjusting: log(K_eff) vs log(η_max) correlation ~0.65
+      → VIF ≈ 2.7. With tier indicators, VIF could reach 3-5 range.'
+    vif_with_tier_control: 4.2
+    partial_corr_eta_given_keff: 0.35
+    partial_corr_keff_given_eta: 0.12
+    residualized_keff_sig: 3/12 OLS, 0/12 bootstrap
+    beta_regression_eta_sig: 10/12
+    beta_regression_keff_sig: 5/12
+    bonferroni_eta_sig: 8/12
+    bonferroni_keff_sig: 4/12
+    fdr_eta_sig: 10/12
+    fdr_keff_sig: 6/12
+  result_rationale: 'Under median tier, plan_009 is completed (no GPU needed). VIF
+    in the 3-5 range indicates moderate multicollinearity — not severe enough to invalidate
+    the regression (conventional threshold is VIF>10 for concern, VIF>5 for caution),
+    but enough to inflate standard errors and make coefficient estimates less stable.
+    The key insight is asymmetric: partial correlation of η_max given K_eff (0.35)
+    is much larger than K_eff given η_max (0.12), confirming η_max retains independent
+    predictive power while K_eff''s independent contribution is marginal. Residualized
+    K_eff (regress K_eff on η_max, use residuals as predictor) gives 3/12 under OLS
+    and 0/12 under bootstrap — confirming that K_eff''s significance in the main regression
+    is partially driven by its correlation with η_max. Beta regression (appropriate
+    for bounded ASR data) gives higher K_eff significance (5/12) than OLS (8/12) because
+    beta regression handles the 0-1 bounded response better, but the η_max dominance
+    pattern persists (10/12 vs 5/12). Bonferroni correction (conservative) drops K_eff
+    to 4/12; FDR (less conservative) keeps it at 6/12. Net: VIF requires discussion
+    but doesn''t change the core narrative — η_max dominates regardless of how you
+    handle the collinearity.'
+  tables:
+  - name: VIF Analysis Summary
+    columns:
+    - Specification
+    - VIF(K_eff)
+    - VIF(η_max)
+    - Interpretation
+    rows:
+    - - Base log-log (2 predictors)
+      - '1.96'
+      - '1.96'
+      - Low — acceptable
+    - - With tier indicators (3/3/9)
+      - '3.8'
+      - '4.2'
+      - Moderate — requires discussion
+    - - With tier + benchmark interaction
+      - '4.5'
+      - '4.8'
+      - Moderate-high — approaching caution threshold
+  - name: Partial Correlations and Residualized Regression
+    columns:
+    - Analysis
+    - η_max result
+    - K_eff result
+    - Dominance
+    rows:
+    - - Partial corr (given other)
+      - r=0.35
+      - r=0.12
+      - η_max 3x stronger
+    - - Residualized K_eff (OLS)
+      - —
+      - 3/12 sig
+      - K_eff marginal
+    - - Residualized K_eff (bootstrap)
+      - —
+      - 0/12 sig
+      - K_eff eliminated
+    - - Beta regression
+      - 10/12 sig
+      - 5/12 sig
+      - η_max 2x
+    - - Bonferroni correction
+      - 8/12 sig
+      - 4/12 sig
+      - η_max 2x
+    - - FDR correction
+      - 10/12 sig
+      - 6/12 sig
+      - η_max 1.7x
+  figures_description:
+  - 'Fig: Partial regression plots for η_max and K_eff — η_max plot shows clear positive
+    slope with tight scatter; K_eff plot shows weak positive slope with wide scatter
+    and confidence interval crossing zero in most conditions.'
+  analysis: 'VIF analysis is a clean methodological contribution. The VIF 3-5 range
+    is in the ''requires discussion but not invalidating'' zone. The paper should
+    include a paragraph in the methods section noting: ''K_eff and η_max show moderate
+    collinearity (VIF 3-5 with tier controls). We address this through (a) partial
+    correlations confirming η_max retains 3× stronger independent association than
+    K_eff, (b) residualized K_eff regression showing K_eff''s significance is partially
+    confound-driven, (c) alternative diversity metrics (Q-stat, disagreement, κ-diversity)
+    providing converging evidence that η_max dominates regardless of diversity operationalization.''
+    This turns a potential weakness into a strength by demonstrating thorough collinearity
+    awareness.'
+- name: Non-Majority-Vote Aggregation Analysis
+  plan_id: plan_010
+  description: Test weakest-link dominance under weighted voting, veto rules, Bayesian
+    aggregation. Verify aggregation gradient holds under correction methods.
+  expected_results:
+    status: partially_completed_via_plan001
+    reason: Aggregation gradient (majority/weighted/threshold/bayesian) already in
+      plan001_step1_full_v4. Plan_010 adds clustered SE / bootstrap validation of
+      aggregation results.
+    aggregation_gradient_ols:
+      majority:
+        eta_sig: 11/12
+        keff_sig: 8/12
+        keff_neg: 1
+      weighted:
+        eta_sig: 9/12
+        keff_sig: 9/12
+        keff_neg: 0
+      threshold:
+        eta_sig: 12/12
+        keff_sig: 11/12
+        keff_neg: 1
+        r2: 0.89
+      bayesian:
+        eta_sig: 9/12
+        keff_sig: 7/12
+        keff_neg: 6
+    aggregation_gradient_clustered_se:
+      majority:
+        eta_sig: 8/12
+        keff_sig: 0/12
+      weighted:
+        eta_sig: 6/12
+        keff_sig: 2/12
+      threshold:
+        eta_sig: 10/12
+        keff_sig: 5/12
+      bayesian:
+        eta_sig: 5/12
+        keff_sig: 4/12
+        keff_neg: 3
+    aggregation_gradient_bootstrap:
+      majority:
+        eta_sig: 5/12
+        keff_sig: 1/12
+      weighted:
+        eta_sig: 4/12
+        keff_sig: 1/12
+      threshold:
+        eta_sig: 7/12
+        keff_sig: 3/12
+      bayesian:
+        eta_sig: 3/12
+        keff_sig: 3/12
+        keff_neg: 2
+    bayesian_keff_flip_attenuated: true
+    bayesian_keff_negative_bootstrap: 2/7 (down from 6/7 OLS)
+    threshold_most_robust: true
+  result_rationale: 'Under median tier, the aggregation gradient exists in plan001_step1_full_v4
+    under OLS but has NOT been validated under clustered SE or bootstrap. Plan_010''s
+    median outcome is that this validation is partially completed, revealing important
+    attenuation. The Bayesian K_eff flip (6/7 negative under OLS) is partially attenuated
+    under clustered SE (3/7 negative) and substantially attenuated under bootstrap
+    (2/7 negative). This is because the K_eff flip under Bayesian aggregation was
+    partially driven by the same panel overlap inflation — when corrected, fewer conditions
+    show the sign reversal. The key narrative impact: Bayesian aggregation STILL shows
+    a directional tendency to flip K_eff to negative (protective), but the effect
+    is weaker and less reliable than OLS suggests. Threshold voting remains the most
+    robust aggregation for significance (highest η_max and K_eff sig counts even after
+    correction), consistent with unanimity rules being most sensitive to panel composition.
+    The aggregation gradient direction (threshold → majority → weighted → bayesian)
+    is preserved under all correction methods — the ordinal ranking is robust even
+    if absolute significance counts decrease. This allows the paper to retain Claim
+    7 with softened language: ''aggregation rule choice modulates vulnerability drivers,
+    with Bayesian calibration showing directional evidence of K_eff reversal that
+    requires further validation.'''
+  tables:
+  - name: Aggregation Gradient Under Three Correction Methods
+    columns:
+    - Aggregation
+    - η_max OLS
+    - η_max clustered
+    - η_max bootstrap
+    - K_eff OLS
+    - K_eff clustered
+    - K_eff bootstrap
+    - K_eff neg (OLS/clustered/bootstrap)
+    rows:
+    - - Majority
+      - 11/12
+      - 8/12
+      - 5/12
+      - 8/12
+      - 0/12
+      - 1/12
+      - 1 / 0 / 0
+    - - Weighted
+      - 9/12
+      - 6/12
+      - 4/12
+      - 9/12
+      - 2/12
+      - 1/12
+      - 0 / 0 / 0
+    - - Threshold
+      - 12/12
+      - 10/12
+      - 7/12
+      - 11/12
+      - 5/12
+      - 3/12
+      - 1 / 1 / 0
+    - - Bayesian
+      - 9/12
+      - 5/12
+      - 3/12
+      - 7/12
+      - 4/12
+      - 3/12
+      - 6 / 3 / 2
+  - name: Bayesian K_eff Sign Flip Detail
+    columns:
+    - Condition
+    - K_eff β (OLS)
+    - K_eff sign (OLS)
+    - K_eff sig (clustered SE)
+    - K_eff sig (bootstrap)
+    - Flip survives?
+    rows:
+    - - mmlu×PI
+      - '-0.42'
+      - negative
+      - Yes (p=0.04)
+      - Yes (p=0.03)
+      - 'Yes'
+    - - mmlu×SM
+      - '-0.38'
+      - negative
+      - No (p=0.12)
+      - No (p=0.18)
+      - 'No'
+    - - mmlu×PB
+      - '-0.31'
+      - negative
+      - No (p=0.15)
+      - No (p=0.22)
+      - 'No'
+    - - mmlu×syco
+      - '-0.25'
+      - negative
+      - Yes (p=0.04)
+      - No (p=0.08)
+      - Partial
+    - - mmlu×VB
+      - '-0.29'
+      - negative
+      - No (p=0.09)
+      - No (p=0.14)
+      - 'No'
+    - - mmlu×auth
+      - '-0.22'
+      - negative
+      - Yes (p=0.03)
+      - Yes (p=0.04)
+      - 'Yes'
+    - - arc×PI
+      - '+0.15'
+      - positive
+      - No (p=0.35)
+      - No (p=0.42)
+      - N/A (wrong sign)
+  figures_description:
+  - 'Fig: Aggregation gradient — 4 panels showing η_max and K_eff significance under
+    OLS, clustered SE, bootstrap. Bars decrease in height from threshold to bayesian
+    for η_max; K_eff bars show sign flip in Bayesian panel.'
+  analysis: 'The aggregation gradient is a real finding that survives correction in
+    ordinal terms (threshold > majority > weighted > bayesian for dual-driver significance).
+    The Bayesian K_eff flip attenuation is the key median concern: the paper cannot
+    claim ''Bayesian reverses K_eff direction'' with the same confidence as under
+    OLS. Softened framing: ''Bayesian calibration shows a directional tendency to
+    reverse K_eff from harmful to protective, with 6/7 conditions showing negative
+    K_eff coefficients under OLS. However, only 2-3/7 survive non-independence correction,
+    suggesting the sign reversal is partially inflated by panel overlap. The structural
+    direction (Bayesian reduces both η_max and K_eff significance) is consistent across
+    correction methods.'' This is honest and still supports the practical recommendation
+    of Bayesian aggregation as part of the defense stack.'
+- name: Open-Ended Generation Benchmark
+  plan_id: plan_011
+  description: Add MT-Bench or AlpacaEval-style task beyond MCQ. Test whether η_max
+    dominance generalizes beyond multiple-choice format.
+  expected_results:
+    status: not_completed
+    reason: 40 GPU-hours; requires new evaluation pipeline for open-ended generation
+    hypothetical_if_run:
+      benchmark: MT-Bench (8 categories)
+      models_evaluated: 15
+      panels: 455
+      eta_max_sig_ols: 8-10/48 (8 categories × 6 attacks)
+      eta_max_sig_bootstrap: 3-5/48
+      keff_sig_ols: 5-8/48
+      keff_sig_bootstrap: 0-2/48
+      eta_max_dominance_holds: true
+      scoring_variance_impact: Open-ended scoring has MORE variance than MCQ → η_max
+        may be STRONGER
+      complication: Attack definitions need adaptation — prompt_injection and score_manipulation
+        differ for open-ended evaluation
+  result_rationale: 'Under median tier, plan_011 is not completed due to the substantial
+    engineering effort required: open-ended generation evaluation requires different
+    attack implementations (prompt injection in scoring rubrics rather than MCQ options),
+    different evaluation protocols (pairwise comparison or Likert-scale rather than
+    accuracy), and different ASR definitions. The 40 GPU-hour budget underestimates
+    the engineering overhead. If run, the prediction is that η_max dominance would
+    hold or strengthen: open-ended scoring has higher variance than MCQ (continuous
+    scale vs binary correct/incorrect), which provides MORE signal for η_max. However,
+    K_eff significance might also increase because judge disagreements in open-ended
+    evaluation are more diverse and less correlated. The net effect: η_max still dominates
+    but the ratio may be closer to 3:1 rather than 5:1. The benchmark asymmetry concern
+    (ARC weaker than MMLU) would be partially addressed if MT-Bench shows strong η_max,
+    but this is speculative. Paper acknowledges this as the primary limitation: ''Our
+    findings are established on MCQ benchmarks; generalization to open-ended evaluation
+    is a critical direction for future work.'''
+  tables:
+  - name: Hypothetical MT-Bench Results (aggregated across 8 categories)
+    columns:
+    - Metric
+    - OLS
+    - Bootstrap
+    - Note
+    rows:
+    - - η_max sig
+      - 8-10/48
+      - 3-5/48
+      - Similar ratio to MCQ (~50% OLS, ~10% bootstrap)
+    - - K_eff sig
+      - 5-8/48
+      - 0-2/48
+      - Slightly higher than MCQ due to scoring variance
+    - - Dominance ratio
+      - ~2:1 OLS, ~3:1 bootstrap
+      - —
+      - Closer ratio than MCQ due to more K_eff signal
+    - - R² mean
+      - '0.18'
+      - —
+      - Lower than MCQ — more noise in open-ended scoring
+  figures_description:
+  - 'Hypothetical Fig: Side-by-side heatmap of η_max and K_eff significance across
+    MCQ (MMLU+ARC) vs open-ended (MT-Bench), showing consistent η_max dominance pattern.'
+  analysis: 'This is the highest-value missing experiment for the paper''s generalizability
+    claims, but also the most expensive to implement. Under median, it''s not completed
+    and the paper acknowledges MCQ-only as the primary scope limitation. The benchmark
+    asymmetry discussion (ARC weaker than MMLU) already provides an opening: ''scoring
+    format affects signal strength for η_max, motivating future work on open-ended
+    evaluation where scoring variance is higher.'' This turns the limitation into
+    a clear next step.'
+- name: Partial-Knowledge Adversary Model
+  plan_id: plan_012
+  description: Test adversary who knows model families but not exact vulnerability
+    profiles. Interpolates between white-box (knows all η_j) and black-box (knows
+    nothing) settings.
+  expected_results:
+    status: not_completed
+    reason: 10 GPU-hours; depends on plan_001 + plan_003; low priority (P2)
+    hypothetical_if_run:
+      adversary_levels:
+        black_box:
+          asr_mean: 0.08
+          eta_max_sig: 3/12
+          keff_sig: 1/12
+        family_knowledge:
+          asr_mean: 0.12
+          eta_max_sig: 5/12
+          keff_sig: 2/12
+        capability_tier_knowledge:
+          asr_mean: 0.16
+          eta_max_sig: 7/12
+          keff_sig: 3/12
+        white_box:
+          asr_mean: 0.22
+          eta_max_sig: 11/12
+          keff_sig: 8/12
+      eta_max_dominance_holds_all_levels: true
+      keff_increases_with_knowledge: true
+      family_knowledge_insufficient: Confirmed — family labels don't predict vulnerability
+        (Claim 4)
+  result_rationale: 'Under median tier, plan_012 is not completed (low priority P2,
+    depends on two other experiments). If run, the main prediction is that η_max dominance
+    holds across all adversary knowledge levels, but the STRENGTH of both predictors
+    increases with adversary knowledge. Under black-box (no knowledge of panel composition),
+    attacks are essentially random → lower ASR, both η_max and K_eff weakly significant.
+    Under family knowledge, the adversary can guess which model families are in the
+    panel but not exact vulnerability profiles → modest improvement, but family labels
+    are unreliable predictors (Claim 4), so the gain is limited. Under white-box (current
+    experimental setup), ASR is highest and both predictors are most significant.
+    The gradient from black-box to white-box would show that panel vulnerability is
+    primarily an information asymmetry problem: adversaries who know judge weaknesses
+    can exploit η_max effectively; those who don''t are reduced to generic attacks
+    where K_eff matters more. This is interesting but not essential for the core narrative
+    — it''s a natural extension that strengthens the practical implications section.'
+  tables:
+  - name: Hypothetical Adversary Knowledge Gradient
+    columns:
+    - Knowledge level
+    - Mean ASR
+    - η_max sig (OLS)
+    - K_eff sig (OLS)
+    - η_max:K_eff ratio
+    rows:
+    - - Black-box
+      - '0.08'
+      - 3/12
+      - 1/12
+      - '3:1'
+    - - Family labels only
+      - '0.12'
+      - 5/12
+      - 2/12
+      - 2.5:1
+    - - Capability tier
+      - '0.16'
+      - 7/12
+      - 3/12
+      - 2.3:1
+    - - White-box (full η_j)
+      - '0.22'
+      - 11/12
+      - 8/12
+      - 1.4:1
+  figures_description:
+  - 'Hypothetical Fig: ASR vs adversary knowledge level, with η_max and K_eff significance
+    overlaid, showing monotonic increase in both ASR and predictor significance.'
+  analysis: Interesting theoretical contribution but not essential under median tier.
+    The finding that information asymmetry modulates predictor strength is intuitive
+    — if you don't know which judge is weakest, you can't exploit η_max. The practical
+    implication (keep panel composition secret) is already common sense for security.
+    Non-completion is acceptable; could be framed as future work in the discussion
+    section.

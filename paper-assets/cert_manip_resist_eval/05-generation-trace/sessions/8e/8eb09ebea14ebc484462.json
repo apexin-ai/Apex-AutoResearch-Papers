@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_theorem1-violation_20260523T071732_result.json",
     "occurrence": 1,
-    "bytes": 1409,
-    "sha256": "05177993270c8d5537d6dc41f6115eaafd9a56d0a2767e42ffaab958d2cb0941"
+    "bytes": 1408,
+    "sha256": "de5e34f0d63a794f5b76ab3a40a8a41106539544c08ce73bdd4b620f1f7d240a"
   },
   "statistics": {
     "messages": 1,

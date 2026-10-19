@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_appendix-v2-rerun_20260523T191113_result.json",
     "occurrence": 1,
-    "bytes": 1751,
-    "sha256": "161af727539004c92bb5ca82b707c4224cfc7bbadb2d6415c70b2d4505a77a9f"
+    "bytes": 1750,
+    "sha256": "5d7d9fa2b8114f25c04317b89f64894c60f80d92f9a9f5e9380471b0423414cc"
   },
   "statistics": {
     "messages": 1,

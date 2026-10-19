@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_plan001-step1-api-scoring_20260522T072241.log",
     "occurrence": 1,
-    "bytes": 1288326,
-    "sha256": "802c259eea60fe6e94f7e1f5de7ab644b361dcc1e16f51a41a5f56cacd46fec2"
+    "bytes": 1288358,
+    "sha256": "ae225ad7b5cb12d45b44934d61c772ea9b6d9f80c01a24da2d182e4fdf1ea583"
   },
   "statistics": {
     "messages": 627,

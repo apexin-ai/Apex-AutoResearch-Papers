@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_post-reboot-check_20260522T020924_result.json",
     "occurrence": 1,
-    "bytes": 831,
-    "sha256": "064cbf98bf1f6eaf85b151a4543b7348e092ea8c1b7968a34e37f4720b97908f"
+    "bytes": 830,
+    "sha256": "2ce85a9820ae39c279ffc9dc207cde745e689fa7cdaa6b1552a5afbedcdafdb1"
   },
   "statistics": {
     "messages": 1,

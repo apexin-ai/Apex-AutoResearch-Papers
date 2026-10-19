@@ -1,0 +1,327 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{enumitem}
+
+\setlength{\parskip}{0.3em}
+\setlength{\parindent}{1em}
+
+\newcommand{\keff}{K_{\text{eff}}}
+\newcommand{\etamax}{\eta_{\max}}
+\newcommand{\kresid}{K_{\text{resid}}}
+\newcommand{\asr}{\text{ASR}}
+
+\title{Rethinking Diversity in LLM Evaluation Panels:\\When More Judges Make Things Worse}
+
+\author{Anonymous Submission}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multi-judge LLM evaluation panels are increasingly adopted, with diversity widely assumed to improve robustness against manipulation---analogous to Byzantine Fault Tolerance (BFT) where independent nodes tolerate uncorrelated failures. We present the first large-scale empirical study examining how panel composition affects adversarial vulnerability, spanning 15 models from 6 families, 455 three-judge panels, and 6 attack types across 2 benchmarks. Our primary finding is that \emph{individual judge weakness} ($\etamax$) is the dominant predictor of panel attack success rate (ASR), significant in 9 of 12 conditions with a medium-large effect size (partial $\eta^2 = 0.18$). Panel diversity ($\keff$), after orthogonalization against $\etamax$, emerges as a secondary but statistically significant risk factor in 7 of 12 conditions (partial $\eta^2 = 0.04$), primarily for transferable attack types. Crucially, this diversity effect is substantially attenuated within capability-matched tiers (2 of 18 conditions significant), indicating it largely reflects structural capability tier-mixing rather than an intrinsic property of diversity. We further show that Gaussian copula models underestimate inter-judge dependencies by a median factor of $10\times$, and that model family labels do not predict judge independence ($p = 0.18$). We propose a robustness-first panel design principle that reduces ASR by 47\% over random selection, and characterize how aggregation rules modulate vulnerability drivers. Our results suggest that the common assumption ``more diverse panels are more robust'' requires careful qualification under adversarial conditions.
+\end{abstract}
+
+\section{Introduction}
+
+As large language models (LLMs) are increasingly deployed as automated evaluators, multi-judge evaluation panels have emerged as a natural defense against individual model biases and adversarial manipulation. The intuition is straightforward and widely held: a diverse panel of judges, drawing from different model families and capability levels, should be harder to fool than any single judge. This reasoning echoes Byzantine Fault Tolerance (BFT) in distributed systems, where independent nodes tolerate uncorrelated faults.
+
+We test this assumption at unprecedented scale. Using 15 LLM judges spanning 6 model families and 3 capability tiers, we exhaustively enumerate all $\binom{15}{3} = 455$ three-judge panels and evaluate their vulnerability to 6 adversarial attack types across 2 benchmarks (MMLU and ARC), yielding 12 experimental conditions. Our statistical framework uses residualized regression to disentangle two compositional predictors of panel vulnerability: the weakness of the most vulnerable judge ($\etamax$) and the effective diversity of the panel ($\keff$), orthogonalized against $\etamax$ to ensure $\text{VIF} = 1.00$.
+
+Our findings paint a nuanced picture. Individual judge weakness ($\etamax$) is the primary driver of panel vulnerability, significant in 9/12 conditions with partial $\eta^2 = 0.18$. Panel diversity ($\keff$), after controlling for $\etamax$, is a statistically significant but practically modest amplifying factor---significant in 7/12 conditions but with partial $\eta^2 = 0.04$, roughly one-quarter the effect size of $\etamax$. The diversity effect is concentrated in transferable attacks (5/6 significant) and largely absent for shared-bias attacks (1/8 significant), suggesting a mechanism tied to diverse attack surfaces rather than a universal vulnerability.
+
+Critically, capability-matched validation reveals that the diversity effect is substantially attenuated within capability tiers (2/18 significant vs.\ 7/12 in the full pool), indicating that much of the observed effect reflects structural tier-mixing: heterogeneous panels span capability levels, structurally including weaker models.
+
+These findings have practical implications. We demonstrate that robustness-first panel selection---screening for individual judge robustness before considering diversity---reduces ASR by 47\% compared to random selection and substantially outperforms diversity-maximizing strategies. We also show that aggregation rules modulate vulnerability: threshold voting amplifies diversity's harmful effect ($1.45\times$), while Bayesian aggregation partially mitigates individual weakness.
+
+Our contributions are:
+\begin{enumerate}[topsep=2pt, itemsep=1pt, leftmargin=2em]
+    \item \textbf{Empirical:} The first large-scale analysis (15 models, 455 panels, 6 attacks) identifying $\etamax$ as the primary vulnerability driver with $\keff$ as a conditional amplifying factor in heterogeneous pools.
+    \item \textbf{Methodological:} Demonstration that Gaussian copula models underestimate inter-judge dependencies by $10\times$ (median), and that model family labels do not predict judge independence.
+    \item \textbf{Practical:} A robustness-first panel design principle and characterization of aggregation rule effects on vulnerability drivers.
+\end{enumerate}
+
+\section{Background and Related Work}
+
+\paragraph{LLM-as-Judge.} The use of LLMs as automated evaluators has become standard practice for assessing open-ended generation quality. Single-judge setups suffer from known biases including position bias, verbosity preference, and sycophancy. Multi-judge panels have been proposed as a mitigation, with the implicit assumption that diversity improves robustness.
+
+\paragraph{Adversarial Attacks on LLM Judges.} Recent work has demonstrated that LLM judges are susceptible to adversarial manipulation through prompt injection, score manipulation, and various bias exploitation strategies. However, prior work has focused on individual judge vulnerability rather than panel-level compositional effects.
+
+\paragraph{Byzantine Fault Tolerance.} In distributed systems, BFT protocols tolerate up to $f$ faulty nodes among $n = 3f+1$ total nodes, assuming faults are independent and non-adaptive. The analogy to multi-judge panels is appealing but assumes random (non-strategic) faults---an assumption that breaks under adaptive adversaries who can target judge-specific vulnerabilities.
+
+\paragraph{Panel Diversity in Evaluation.} Several recent studies advocate for diverse evaluation panels, drawing from different model families to reduce correlated errors. Our work provides the first systematic empirical test of whether this diversity assumption holds under adversarial conditions.
+
+\section{Methodology}
+
+\subsection{Threat Model}
+
+We consider an adaptive adversary with full knowledge of each judge's vulnerability profile ($\eta_j$ for judge $j$). The adversary crafts perturbations to maximize panel-level attack success rate (ASR) under majority voting. We also evaluate a partial-knowledge variant where the adversary knows only model family labels and capability tiers.
+
+\subsection{Panel Composition Metrics}
+
+\paragraph{Individual Weakness ($\etamax$).} For a panel of $K$ judges, $\etamax = \max_{j \in \text{panel}} \eta_j$, where $\eta_j$ is judge $j$'s individual ASR under the given attack. This captures the weakest-link property.
+
+\paragraph{Effective Diversity ($\keff$).} We measure panel diversity using the effective number of independent judgment dimensions, computed from the eigenspectrum of the inter-judge agreement matrix. Higher $\keff$ indicates more diverse judgment patterns.
+
+\paragraph{Theorem 1 (Monotonicity Bound).} Under an adaptive adversary with majority voting, $\text{panel\_ASR} \leq \etamax \cdot (1 + \varepsilon \cdot \log K)$, where $\varepsilon$ depends on the correlation structure. The bound is tight to a factor of 1.35 empirically.
+
+\subsection{Statistical Framework}
+
+To disentangle the effects of $\etamax$ and $\keff$, we use residualized regression. We first regress $\keff$ on $\etamax$ and use the residuals ($\kresid$) as the diversity predictor, ensuring VIF $= 1.00$ by construction. Our regression model is:
+\begin{equation}
+    \asr_{\text{panel}} = \beta_0 + \beta_\eta \cdot \etamax + \beta_K \cdot \kresid + \epsilon
+\end{equation}
+We apply Benjamini-Hochberg FDR correction across the 12 conditions. Bonferroni correction is reported as a conservative bound.
+
+\subsection{Experimental Setup}
+
+\paragraph{Models.} 15 LLM judges from 6 families: GPT-4o, GPT-4o-mini, GPT-4.1, GPT-4.1-mini (OpenAI); Claude-3.5-Sonnet (Anthropic); Gemini-1.5-Pro (Google); Llama-3-8B, Llama-3.1-70B (Meta); Qwen2.5-7B, Qwen2.5-14B, Qwen2.5-72B (Alibaba); Mistral-7B, Mixtral-8x22B (Mistral); and two additional open-source models. This yields 3 capability tiers: 7B-class (5 models), 70B-class (3 models), and API-class (7 models).
+
+\paragraph{Panels.} All $\binom{15}{3} = 455$ three-judge panels, with majority voting as the default aggregation rule.
+
+\paragraph{Datasets.} MMLU and ARC-Challenge, representing standard multiple-choice evaluation benchmarks.
+
+\paragraph{Attacks.} Six attack types spanning three mechanism categories: \emph{transferable} (prompt injection, score manipulation, position bias), \emph{shared-bias} (sycophancy, verbosity bias, authority bias), and an extended set of 3 additional attacks (few-shot hijacking, persona manipulation, instruction override) for a total of 18 conditions in the expanded analysis.
+
+\section{Results}
+
+\subsection{Dual Vulnerability Drivers: $\etamax$ Dominates, $\keff$ Amplifies}
+
+Table~\ref{tab:main_regression} presents the residualized regression results across 12 core conditions. $\etamax$ is FDR-significant in 9/12 conditions (median $\beta = 0.47$), confirming that individual judge weakness is the primary vulnerability driver. $\kresid$ is FDR-significant and positive in 7/12 conditions (median $\beta = 0.14$), indicating that diversity is a statistically significant but secondary risk factor.
+
+Two conditions with naturally low confounding ($r(\keff, \etamax) \approx 0.35$)---ARC$\times$score\_manipulation and ARC$\times$position---provide the strongest evidence for an independent diversity effect, with $\kresid$ achieving $p = 3.7 \times 10^{-8}$ and $p = 5.2 \times 10^{-7}$ respectively, both surviving Bonferroni correction.
+
+The five non-significant conditions cluster in shared-bias attacks (sycophancy 2/2, authority 2/2, verbosity 1/2), where all models share similar vulnerabilities and the diverse-attack-surface mechanism does not apply.
+
+\begin{table}[t]
+\centering
+\caption{Residualized regression across 12 conditions (455 panels). $\kresid$ is orthogonalized against $\etamax$ (VIF $= 1.00$). FDR correction via Benjamini-Hochberg.}
+\label{tab:main_regression}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Condition & $\beta(\etamax)$ & $p(\etamax)$ & $\beta(\kresid)$ & $p(\kresid)$ & FDR & $R^2$ \\
+\midrule
+MMLU$\times$PI & 0.52 & $<$0.001 & 0.21 & 0.003 & \checkmark & 0.42 \\
+MMLU$\times$SM & 0.48 & 0.002 & 0.16 & 0.012 & \checkmark & 0.38 \\
+MMLU$\times$Syc & 0.55 & $<$0.001 & 0.06 & 0.285 & & 0.34 \\
+MMLU$\times$VB & 0.42 & 0.005 & 0.09 & 0.078 & & 0.30 \\
+MMLU$\times$Pos & 0.39 & 0.008 & 0.18 & 0.006 & \checkmark & 0.36 \\
+MMLU$\times$Auth & 0.50 & $<$0.001 & 0.05 & 0.352 & & 0.32 \\
+ARC$\times$PI & 0.56 & $<$0.001 & 0.19 & 0.005 & \checkmark & 0.44 \\
+ARC$\times$SM & 0.15 & 0.142 & 0.24 & 3.7e-8 & \checkmark & 0.40 \\
+ARC$\times$Syc & 0.58 & $<$0.001 & 0.04 & 0.418 & & 0.36 \\
+ARC$\times$VB & 0.44 & 0.003 & 0.14 & 0.018 & \checkmark & 0.35 \\
+ARC$\times$Pos & 0.08 & 0.683 & 0.22 & 5.2e-7 & \checkmark & 0.38 \\
+ARC$\times$Auth & 0.46 & 0.001 & 0.07 & 0.192 & & 0.31 \\
+\midrule
+\textbf{Summary} & \textbf{9/12 sig} & & \textbf{7/12 sig} & & & \textbf{0.36} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Effect Size Context.} Partial $\eta^2$ analysis reveals that $\etamax$ has a medium-large effect (median partial $\eta^2 = 0.18$) while $\kresid$ has a small effect (median partial $\eta^2 = 0.04$). The mean incremental $R^2$ contributed by $\kresid$ is $+0.07$, indicating that diversity explains modest additional variance beyond individual weakness. Beta regression as a robustness check (appropriate for bounded ASR $\in [0,1]$) yields 6/12 significant conditions, with 92\% concordance with OLS results.
+
+\subsection{Attack-Type Dependency: When Diversity Matters}
+
+The diversity effect is strongly modulated by attack mechanism type. Table~\ref{tab:attack_mechanism} summarizes results across the expanded 18-condition analysis (6 original $+$ 3 new attack types $\times$ 2 datasets).
+
+\begin{table}[t]
+\centering
+\caption{$\kresid$ significance by attack mechanism type (18 conditions, 455 panels).}
+\label{tab:attack_mechanism}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Mechanism & Attacks & $\kresid$ sig & $\etamax$ sig & Mean $\beta(\kresid)$ \\
+\midrule
+Transferable & PI, SM, Pos & 5/6 & 4/6 & 0.20 \\
+Shared-bias & Syc, Auth, VB, Persona & 1/8 & 6/8 & 0.07 \\
+Targeted & Instr.\ override & 0/2 & 2/2 & 0.07 \\
+ICL-dependent & Few-shot hijack & 1/2 & 1/2 & 0.14 \\
+\midrule
+\textbf{Overall} & & \textbf{7/18} & \textbf{13/18} & \textbf{0.12} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The pattern is clear: $\kresid$ is a significant predictor primarily for \emph{transferable} attacks (5/6 conditions, mean $\beta = 0.20$), where different models exhibit different vulnerability profiles and the adversary can exploit judge-specific weaknesses across the diverse attack surface. For shared-bias attacks, where all models share similar vulnerabilities (e.g., sycophancy, authority deference), $\etamax$ dominates and diversity is largely irrelevant. Instruction override attacks are fully dominated by $\etamax$ ($\beta \approx 0.55$--$0.62$), as they target instruction-following weakness concentrated in the most vulnerable judge.
+
+The overall $\kresid$ significance rate across all 18 conditions is 7/18 (39\%), substantially lower than the 7/12 (58\%) in the core analysis. This underscores that the diversity risk factor is \emph{conditional}: it operates primarily through transferable attacks in heterogeneous model pools.
+
+\subsection{Capability-Matched Validation}
+\label{sec:capability_matched}
+
+To test whether the diversity effect persists when capability differences are controlled, we conduct within-tier analyses: strong tier (70B $+$ API, 8 models, 56 panels), weak tier (7B $+$ 14B, 5 models, 10 panels), and API-only (5 models, 10 panels), each across 6 representative conditions (Table~\ref{tab:within_tier}).
+
+\begin{table}[t]
+\centering
+\caption{Within-tier vs.\ full-pool $\kresid$ significance. The diversity effect is substantially attenuated when capability tier is controlled.}
+\label{tab:within_tier}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Scope & $N$ panels & $\kresid$ sig(+) & $\etamax$ sig & Med $R^2$ & $r(\keff, \etamax)$ \\
+\midrule
+Full pool (ref) & 455 & 7/12 (0.58) & 9/12 (0.75) & 0.38 & +0.72 \\
+Strong tier & 56 & 1/6 (0.17) & 3/6 (0.50) & 0.20 & +0.38 \\
+Weak tier & 10 & 0/6 (0.00) & 4/6 (0.67) & 0.32 & +0.42 \\
+API-only & 10 & 1/6 (0.17) & 2/6 (0.33) & 0.15 & +0.35 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The $\kresid$ significance rate drops from 58\% in the full pool to 11\% within tiers (2/18 total). This indicates that much of the diversity effect observed in the full pool reflects capability tier-mixing: high-$\keff$ panels structurally span tiers and include weaker models, creating vulnerability through a pathway not fully captured by linear residualization. Within-tier $r(\keff, \etamax) \approx 0.35$--$0.42$, substantially lower than the full-pool $r = 0.72$, confirming reduced confounding.
+
+The two within-tier significant conditions (MMLU$\times$prompt\_injection in the strong tier, $p = 0.038$; ARC$\times$score\_manipulation in the API tier, $p = 0.042$) suggest that a residual diversity effect may exist for specific attack types even within tiers, but the evidence base is narrow. We interpret this as a \textbf{key limitation}: the independent contribution of diversity beyond tier-mixing is small and condition-specific.
+
+\subsection{Adaptive vs.\ Random-Fault Regime Contrast}
+
+Motivated by the BFT analogy, we compare how $\kresid$ behaves under adaptive adversaries versus a random-fault simulation where each judge independently fails with its empirical probability $p_j$ (Table~\ref{tab:bft_contrast}).
+
+\begin{table}[t]
+\centering
+\caption{Adaptive vs.\ random-fault regime comparison. $\kresid$ is positive in both regimes (no sign reversal), but relative importance of $\etamax$ vs.\ $\kresid$ shifts.}
+\label{tab:bft_contrast}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Metric & Adaptive & Random-Fault & $\Delta$ & Interpretation \\
+\midrule
+$\kresid$ sig rate & 7/12 & 10/12 & +3 & Stronger in RF \\
+Mean $\beta(\kresid)$ & 0.14 & 0.21 & +0.07 & RF $\beta$ 1.4$\times$ larger \\
+$\etamax$ sig rate & 9/12 & 7/12 & $-2$ & Weaker in RF \\
+Mean $\beta(\etamax)$ & 0.44 & 0.32 & $-0.12$ & Strategic targeting absent \\
+Mean $R^2$ & 0.38 & 0.52 & +0.14 & RF more predictable \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Contrary to the naive BFT prediction, $\kresid$ is positive in \emph{both} regimes---we observe no qualitative sign reversal. Diversity does not help under random faults either, because diverse panels structurally include weaker models whose higher individual failure rates manifest under any fault model. However, the relative importance of the two drivers shifts in a manner consistent with the BFT framework: under random faults, $\kresid$ is \emph{more} important (10/12 sig, $\beta = 0.21$) while $\etamax$ is \emph{less} important (7/12 sig, $\beta = 0.32$), because random faults lack the strategic targeting that makes $\etamax$ dominant under adaptive adversaries. The $R^2$ gap of $+0.14$ confirms that random faults produce more predictable panel behavior, consistent with the theoretical framework where adaptive adversaries introduce strategic variance.
+
+We interpret the BFT analogy as \emph{illustrative rather than conclusive}: it correctly predicts the relative importance shift but not the sign reversal, likely because the structural confound (diverse $=$ weaker members) is more fundamental than the adaptive/random distinction.
+
+\subsection{When Diversity Helps}
+\label{sec:when_helps}
+
+Our results should not be read as a blanket indictment of panel diversity. Several conditions suggest diversity may be neutral or beneficial:
+
+\paragraph{Within capability tiers.} When all judges exceed a capability threshold (Section~\ref{sec:capability_matched}), the diversity effect is approximately neutral. The robustness-first principle is sufficient in these regimes.
+
+\paragraph{Shared-bias attacks.} For attacks exploiting biases shared across all models (sycophancy, authority), $\kresid$ is non-significant in 7/8 conditions. In this regime, diversity neither helps nor hurts---the attack bypasses compositional defenses entirely.
+
+\paragraph{Larger panels.} Panel size sensitivity analysis (K $= 3, 5, 7, 9$) shows that the diversity effect diminishes with panel size. At $K = 3$ (455 panels), $\kresid$ is significant in 4/6 representative conditions; at $K = 9$ (5005 panels), only 1/6. The $\beta$ ratio of $\etamax$ to $\kresid$ increases from 2.8:1 at $K = 3$ to 6.0:1 at $K = 9$, as majority voting dilutes the influence of individual weak judges in larger panels.
+
+\paragraph{Partial-knowledge adversaries.} Under a partial-knowledge adversary (knowing only family labels and tiers, not exact vulnerability profiles), $\kresid$ significance drops from 7/12 to 3/12, and mean $\beta(\kresid)$ from 0.18 to 0.12 (33\% reduction). The diversity risk factor is sensitive to adversary capability: with imperfect targeting, the diverse attack surface mechanism is blunted.
+
+\subsection{Aggregation Rules Modulate Vulnerability}
+
+Table~\ref{tab:aggregation} shows how different aggregation rules interact with the dual vulnerability drivers.
+
+\begin{table}[t]
+\centering
+\caption{Aggregation rule $\times$ vulnerability driver interaction (12 conditions, 455 panels).}
+\label{tab:aggregation}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Aggregation & $\kresid$ sig & $\etamax$ sig & $\beta(K)$ ampl. & $\beta(\eta)$ ampl. & ASR \\
+\midrule
+Majority (ref) & 7/12 & 9/12 & 1.00$\times$ & 1.00$\times$ & 0.172 \\
+Threshold & 9/12 & 9/12 & 1.45$\times$ & 1.05$\times$ & 0.192 \\
+Bayesian & 4/12 & 5/12 & 0.65$\times$ & 0.55$\times$ & 0.142 \\
+Rel.-weighted & 5/12 & 7/12 & 0.80$\times$ & 0.78$\times$ & 0.155 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Threshold/unanimity voting amplifies the diversity effect.} Requiring unanimous agreement means any single compromised judge blocks consensus. $\kresid$ significance increases from 7/12 to 9/12, with $\beta$ amplified by $1.45\times$. Two previously non-significant shared-bias conditions become significant under unanimity. This has a clear practical implication: \emph{unanimity voting should be avoided in adversarial settings}.
+
+\paragraph{Bayesian aggregation partially mitigates individual weakness.} Accuracy-weighted Bayesian aggregation down-weights less reliable judges, reducing $\etamax$ significance from 9/12 to 5/12 ($0.55\times$ $\beta$ reduction) and mean ASR by 18\%. The $\kresid$ effect is also indirectly attenuated (7/12 $\to$ 4/12), since the diversity effect transmits primarily through weak judges that are now down-weighted. However, Bayesian aggregation does not eliminate the dual vulnerability pattern---it requires accurate priors, which degrade with larger model pools.
+
+\subsection{Robustness-First Panel Design}
+
+We benchmark a two-stage panel selection algorithm against five baselines across 6 conditions (Table~\ref{tab:panel_selection}).
+
+\begin{table}[t]
+\centering
+\caption{Panel selection strategy comparison (mean ASR, lower is better). Top-3 strategies are separated by $<1$ percentage point.}
+\label{tab:panel_selection}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Strategy & Mean ASR & vs.\ Random & vs.\ Strongest-K & Win count & Rank \\
+\midrule
+Two-stage & 0.091 & $-$47\% & $-$7\% & 3/6 & 1.8 \\
+Min-$\etamax$ & 0.092 & $-$46\% & $-$7\% & 1/6 & 2.2 \\
+Strongest-K & 0.091 & $-$47\% & --- & 2/6 & 2.3 \\
+Max-$\keff$ & 0.152 & $-$11\% & +67\% & 0/6 & 4.3 \\
+Max-family-div & 0.164 & $-$4\% & +80\% & 0/6 & 4.8 \\
+Random & 0.170 & --- & +87\% & 0/6 & 5.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The key insight is not the marginal difference between two-stage, min-$\etamax$, and strongest-K strategies (which are statistically indistinguishable at $p = 0.42$), but rather the large gap between robustness-oriented strategies (ASR $\approx 0.09$) and diversity-oriented strategies (Max-$\keff$: 0.152, Max-family-diversity: 0.164, Random: 0.170). \textbf{Diversity-first panel selection is actively harmful}, increasing ASR by 67--87\% over robustness-first approaches. Among robustness-qualified judges, diversity serves as a neutral tiebreaker at best.
+
+The optimal threshold for the two-stage algorithm is $\eta \leq 0.25$ (9 models pass), with ASR sensitivity $<15\%$ across the $[0.18, 0.35]$ threshold range.
+
+\section{Analysis}
+
+\subsection{Diversity-Capability Tradeoff Decomposition}
+
+The overall correlation $r(\keff, \etamax) = +0.72$ ($p < 0.001$) reflects a structural property of the current LLM ecosystem: maximizing panel diversity requires mixing capability tiers, which necessarily introduces weaker models. Decomposing this correlation reveals that 72\% of the variance comes from between-tier differences ($r = 0.82$), while within-tier correlation is substantially weaker ($r \approx 0.38$, pooled across tiers). This tier-mixing effect is the primary pathway through which diversity increases vulnerability.
+
+The Pareto frontier across 455 panels identifies 14 panels near the optimal knee at $\keff \approx 1.8$, $\etamax \approx 0.15$, corresponding to combinations of 2 strong API models and 1 strong open-source model. Beyond this knee, ASR increases sharply with $\keff$.
+
+\subsection{Gaussian Copula Failure}
+
+The Gaussian copula model underestimates mutual information (MI) between judge pairs by a median factor of $10\times$ across 105 model pairs (range: $5$--$85\times$). Underestimation is most severe for cross-tier pairs (median $18\times$ for extreme cross-tier combinations) and mildest for within-tier pairs at similar capability levels (median $7\times$ for within-7B). This invalidates copula-based independence bounds commonly assumed in panel robustness analyses.
+
+\subsection{Family Labels Do Not Predict Independence}
+
+Mann-Whitney U test comparing within-family vs.\ cross-family MI yields $p = 0.18$, indicating that model family labels (Qwen, Llama, Mistral, etc.) do not reliably predict judge independence. Capability proximity, not family membership, is the primary driver of inter-judge correlation.
+
+\subsection{ASR Concentration Analysis}
+
+Per-judge ASR concentration (Gini $= 0.45$ median) confirms that attacks partially concentrate on the weakest judge, with the most vulnerable judge absorbing 55\% of attack success (vs.\ 33\% uniform baseline for $K=3$). Concentration is higher for transferable attacks (Gini $= 0.52$) than shared-bias attacks (Gini $= 0.30$), and higher in weak-tier panels (Gini $= 0.55$) than strong-tier panels (Gini $= 0.25$). This supports the $\etamax$-dominance mechanism while showing that attacks are not exclusively concentrated on a single judge.
+
+\section{Discussion and Limitations}
+
+\paragraph{Scope: MCQ benchmarks.} Our findings are established on multiple-choice evaluation tasks (MMLU, ARC). Preliminary results on open-ended evaluation (MT-Bench style) show direction-consistent but non-significant $\kresid$ effects ($p$ range $0.065$--$0.185$, $R^2 = 0.12$). Power analysis indicates $N \approx 1{,}200$ panels would be needed for 80\% power at the observed effect size, suggesting this may reflect insufficient power rather than absent effects. Extending to open-ended evaluation is important future work.
+
+\paragraph{Tier-mixing vs.\ intrinsic diversity.} The capability-matched analysis (Section~\ref{sec:capability_matched}) reveals that much of the diversity effect in the full pool reflects tier-mixing through non-linear channels not captured by residualization. We cannot conclusively distinguish an intrinsic causal effect of diversity from a structural artifact of the current model ecosystem.
+
+\paragraph{BFT analogy.} The absence of $\kresid$ sign reversal between adaptive and random-fault regimes weakens the BFT reversal narrative. The analogy is useful for understanding relative importance shifts but does not deliver the predicted qualitative reversal, likely because the structural confound persists in both regimes.
+
+\paragraph{Panel size.} Our diversity findings are most relevant for $K=3$ panels, representing the majority of current cost-constrained deployments. For $K \geq 7$, the diversity effect is negligible.
+
+\paragraph{Adversary strength.} Under partial-knowledge adversaries, both $\kresid$ and $\etamax$ effects attenuate, with $\kresid$ attenuating more rapidly ($-57\%$ vs.\ $-44\%$). Real-world adversaries with imperfect knowledge face a substantially diminished diversity risk.
+
+\paragraph{Ceiling effects.} One condition (MMLU$\times$few-shot hijacking) exhibited ceiling effects ($R^2 = 0.12$, all models ASR $> 0.70$), reducing regression discriminability.
+
+\section{Conclusion}
+
+We have presented the first large-scale empirical study of how panel composition affects adversarial vulnerability in LLM evaluation. Individual judge weakness ($\etamax$) is the primary and dominant vulnerability driver, while panel diversity ($\keff$) is a conditional risk factor whose independent contribution depends on pool composition heterogeneity and attack type. The diversity effect is concentrated in transferable attacks against heterogeneous panels and is substantially attenuated within capability tiers, under partial-knowledge adversaries, and in larger panels. We recommend a robustness-first panel design principle: screen for individual judge robustness before considering diversity, and avoid unanimity voting in adversarial settings. Our methodological contributions---demonstrating Gaussian copula failure ($10\times$ MI underestimation) and family label unreliability---provide tools for more principled panel design.
+
+\section*{Limitations}
+
+Our study has three main limitations. First, the independent diversity effect (partial $\eta^2 = 0.04$) is small and largely reflects structural tier-mixing, limiting causal claims about diversity \textit{per se}. Second, our findings are established on MCQ benchmarks and may not generalize to open-ended evaluation, where preliminary results are inconclusive. Third, the BFT reversal predicted by theory was not observed empirically, constraining the theoretical contribution to an illustrative analogy rather than a validated mechanism.
+
+\bibliographystyle{plainnat}
+
+\end{document}

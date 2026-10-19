@@ -1,0 +1,17 @@
+Plan 009 VIF Multicollinearity Analysis Results
+
+Server path: /root/cert_manip_resist_eval/artifacts/results/results_plan009_vif_analysis.json
+
+Summary:
+- Mean VIF(K_eff): 2.9943 (range 1.01-10.02)
+- K_eff residualized significant: 1/12 (only arc_challenge×sycophancy)
+- η_max Bonferroni significant: 3/12
+- η_max FDR significant: 6/12
+- Beta vs OLS concordance: 11/12
+
+Key findings:
+1. VIF mostly 1.0-5.4 (acceptable), one outlier arc_challenge×position_bias VIF=10.02
+2. Residualized K_eff confirms non-significance is NOT collinearity artifact
+3. η_max survives strict multiple testing correction (Bonferroni 3/12, FDR 6/12)
+4. Beta regression agrees with OLS in 11/12 conditions — conclusions robust
+5. arc_challenge×sycophancy remains the sole K_eff exception (partial r=-0.64, p=0.002)

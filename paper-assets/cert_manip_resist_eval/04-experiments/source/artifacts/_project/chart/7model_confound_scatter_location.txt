@@ -1,0 +1,1 @@
+Remote: /root/cert_manip_resist_eval/artifacts/results/7model_confound_scatter.png

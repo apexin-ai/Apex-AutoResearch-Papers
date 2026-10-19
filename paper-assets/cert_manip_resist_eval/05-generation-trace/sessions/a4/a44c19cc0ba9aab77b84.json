@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure_fig_regime_transition_20260523T194555_result.json",
     "occurrence": 1,
-    "bytes": 301,
-    "sha256": "fb42ea499a93ce4bd11d3505047ce030b49ba7aca8ea5155468cd2919d14b7a1"
+    "bytes": 300,
+    "sha256": "a84acaa05d7fdb055bf93ef614512b1108c22c71f55cb1336e8049c65e34a38b"
   },
   "statistics": {
     "messages": 1,

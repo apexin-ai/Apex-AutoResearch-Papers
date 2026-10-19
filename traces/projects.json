@@ -58,7 +58,7 @@
         "messages": 97735,
         "user_turns": 2743,
         "tool_calls": 39456,
-        "unparsed_lines": 382,
+        "unparsed_lines": 386,
         "worker": 381,
         "result": 358,
         "conversation": 137,
@@ -195,6 +195,35 @@
         "worker": 506,
         "conversation": 217,
         "history": 45
+      }
+    },
+    {
+      "project": "xling_calab_direction",
+      "title": "xling calab direction",
+      "catalog": "../paper-assets/xling_calab_direction/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2,
+        "messages": 404,
+        "user_turns": 0,
+        "tool_calls": 116,
+        "unparsed_lines": 1,
+        "worker": 1,
+        "result": 1
+      }
+    },
+    {
+      "project": "xling_calib_direction",
+      "title": "Shifting the Cross-Lingual Calibration Pareto Frontier: Probe-Based Calibration Transfer via CaCLR",
+      "catalog": "../paper-assets/xling_calib_direction/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 290,
+        "messages": 27260,
+        "user_turns": 696,
+        "tool_calls": 11335,
+        "unparsed_lines": 121,
+        "worker": 123,
+        "result": 119,
+        "conversation": 48
       }
     }
   ]

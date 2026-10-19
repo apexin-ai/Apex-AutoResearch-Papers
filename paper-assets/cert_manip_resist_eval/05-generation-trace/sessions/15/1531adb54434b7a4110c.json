@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_sync-keff_20260521T200247_result.json",
     "occurrence": 1,
-    "bytes": 157,
-    "sha256": "71da5fe9f80ba311a0218122259d5e52b62c5ac4b57bffb517d4df0d6b48e7b4"
+    "bytes": 156,
+    "sha256": "4314a9b3c7de8c44209fcfcb39118830b314b623630b57f2cc0300630197e7ba"
   },
   "statistics": {
     "messages": 1,

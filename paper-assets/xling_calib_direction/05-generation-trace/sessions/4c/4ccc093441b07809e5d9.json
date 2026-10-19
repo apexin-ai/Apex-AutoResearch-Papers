@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ccc093441b07809e5d9",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "code cka pilot",
+  "task_key": "worker_code_cka_pilot_20260520T201949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cka_pilot_20260520T201949_result.json",
+    "occurrence": 1,
+    "bytes": 2739,
+    "sha256": "f5739ed7767fa3f3e8787acc16a66920f2d0fe6732e114a5531af0a4abc6eebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型的 CKA 都跑完了。汇总结果：\n\n---\n\n## CKA Results (Qwen2.5-7B, mvp_001)\n\n| Layer |   zh   |   ar   |   hi   |   sw   |   ko   |\n|------:|-------:|-------:|-------:|-------:|-------:|\n|     0 | 0.9121 | 0.9014 | 0.5365 | 0.4397 | 0.6869 |\n|     4 | 0.6519 | 0.6416 | 0.5191 | 0.4703 | 0.6305 |\n|     8 | 0.8146 | 0.7370 | 0.5926 | 0.6039 | 0.7245 |\n|    12 | 0.8429 | 0.8195 | 0.6143 | 0.6115 | 0.7885 |\n|    16 | 0.8859 | 0.8829 | 0.5755 | 0.5930 | 0.8647 |\n|    20 | 0.7642 | 0.6641 | 0.3707 | 0.3988 | 0.6696 |\n|    24 | 0.6940 | 0.5443 | 0.1619 | 0.1250 | 0.5513 |\n|    27 | 0.3445 | 0.3564 | 0.1165 | 0.0841 | 0.3179 |\n\n**Spearman (CKA vs zero-shot AUROC):**\n- Overall: rho = **-0.1645**, p = 0.3103 (not significant)\n- Per-language:\n  - zh: rho = -0.5952, p = 0.1195\n  - ar: rho = -0.6667, p = 0.0710\n  - **hi: rho = -0.7857, p = 0.0208** (significant)\n  - **sw: rho = -0.8810, p = 0.0039** (significant)\n  - ko: rho = -0.6190, p = 0.1017\n\n---\n\n## CKA Results (Llama-3.1-8B, mvp_003)\n\n| Layer |   zh   |   ar   |   hi   |   sw   |\n|------:|-------:|-------:|-------:|-------:|\n|     0 | 0.8805 | 0.6785 | 0.1978 | 0.2654 |\n|     4 | 0.9302 | 0.9237 | 0.5313 | 0.7124 |\n|     8 | 0.8913 | 0.8798 | 0.5534 | 0.7459 |\n|    12 | 0.9224 | 0.9050 | 0.6236 | 0.7047 |\n|    16 | 0.8573 | 0.8300 | 0.5108 | 0.6715 |\n|    20 | 0.6365 | 0.5675 | 0.3496 | 0.3874 |\n|    24 | 0.6069 | 0.5266 | 0.2752 | 0.3000 |\n|    28 | 0.5806 | 0.4820 | 0.2213 | 0.2561 |\n|    31 | 0.4686 | 0.3055 | 0.1615 | 0.2661 |\n\n（mvp_003 的 transfer_results.csv 尚未生成，train_probe 仍在运行，Spearman 待补。）\n\n---\n\n## 解读\n\n1. **CKA 随深度单调下降（两个模型一致）**：深层表示跨语言相似度急剧降低。Qwen L27 和 Llama L31 的 CKA 降到 0.08–0.47，说明最深层的表示已高度语言特异化。\n\n2. **CKA 与 AUROC 呈负相关**：per-language 分析显示 hi (rho=-0.79) 和 sw (rho=-0.88) 显著负相关。这意味着 **CKA 越低（表示越不相似）的层，transfer AUROC 反而越高**。这与直觉相反——表面上\"更不对齐\"的深层反而更有鉴别力。\n\n3. **Overall 相关不显著**的原因：不同语言的 CKA 水平差异大（zh/ar 高 vs hi/sw 低），pooling 后语言间变异淹没了层间趋势。\n\n4. **Pareto frontier 解释**：CKA 本身不能直接解释 transfer quality，但 **低 CKA + 高 AUROC** 的组合暗示深层存在语言特异化的 calibration-relevant 特征。这支持\"deep layers encode language-specific confidence patterns\"的假设，与 mvp_001 发现的\"中深层最优\"一致——中层兼具足够的跨语言结构和语言特异信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cka-pilot.md"
+}

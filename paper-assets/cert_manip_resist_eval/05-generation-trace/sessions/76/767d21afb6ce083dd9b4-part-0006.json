@@ -1297,7 +1297,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[飞书用户 曹晓玉 (ou_824b44868720b97fb51403f9b842a039)]: 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\n这个是 OpenRouter 官方的 api key，直接用 OpenRouter 的格式来调就可以了"
+              "text": "[飞书用户 曹晓玉 (ou_824b44868720b97fb51403f9b842a039)]: [REDACTED_API_TOKEN]\n这个是 OpenRouter 官方的 api key，直接用 OpenRouter 的格式来调就可以了"
             }
           ],
           "metadata": {
@@ -1362,7 +1362,7 @@
             "tool_args": {
               "project": "cert_manip_resist_eval",
               "key_id": "openrouter_api_key",
-              "value": "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",
+              "value": "[REDACTED_API_TOKEN]",
               "provider": "OpenRouter",
               "purpose": "Unified API gateway for GPT-4o/4.1/Claude/Gemini scoring in plan_001 Step 1, bypassing unstable proxy"
             }

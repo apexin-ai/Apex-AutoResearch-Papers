@@ -1,0 +1,26 @@
+paper_key: "jung2026logarithmic_scores"
+title: "Logarithmic Scores, Power-Law Discoveries: Disentangling Measurement from Coverage in Agent-Based Evaluation"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [Simple prompting, Non-persona agents]
+  metrics:
+    - {name: "Quality score scaling (logarithmic)", direction: "descriptive"}
+    - {name: "Issue discovery count (power law)", direction: "higher_better"}
+    - {name: "Panel size N scaling exponent", direction: "descriptive"}
+  datasets:
+    - {name: "960 conversational sessions × 15 tasks", size: "960 sessions"}
+  ablation_dimensions: [panel_size, persona_type (Big Five), task_type]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "LLM inference"}
+  method_family: "multi_agent_evaluation_scaling"
+
+positioning:
+  core_claim: "Score-coverage dissociation: scoring reliability scales logarithmically with panel size N while discovery follows power law N^0.69 — measurement and coverage are fundamentally different scaling regimes"
+  key_results: "Scoring: O(log N); Discovery: O(N^0.69); Big Five personas drive diversity; critical issues emerge fast, corner cases need larger panels"
+  limitations: ["Limited to conversational AI evaluation", "Persona conditioning domain-specific"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

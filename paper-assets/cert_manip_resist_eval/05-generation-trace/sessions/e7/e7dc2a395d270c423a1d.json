@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_8model-data-completeness_20260522T124705_result.json",
     "occurrence": 1,
-    "bytes": 2859,
-    "sha256": "3a918ce2fd8c2c8adf3225e4c69cb1f5e43e103249e9fb6e88f3731123fc914d"
+    "bytes": 2858,
+    "sha256": "752e748f346662b3bddb885c4e3a7c8ece59ec3144086b28ee29bba602015026"
   },
   "statistics": {
     "messages": 1,

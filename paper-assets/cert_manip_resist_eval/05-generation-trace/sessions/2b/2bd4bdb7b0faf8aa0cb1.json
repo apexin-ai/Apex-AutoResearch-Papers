@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_vif-partial-corr_20260522T235642_result.json",
     "occurrence": 1,
-    "bytes": 696,
-    "sha256": "18dba51bc15df8b72974e72397b87f872bc9e86ba90b8ed404ec1c0b61af7326"
+    "bytes": 695,
+    "sha256": "03a4545476db2e2443cba8565571c9a766eaeec19e7d31b46f7693fc07f7582c"
   },
   "statistics": {
     "messages": 1,

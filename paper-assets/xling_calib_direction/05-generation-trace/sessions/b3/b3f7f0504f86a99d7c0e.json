@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3f7f0504f86a99d7c0e",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops check downloads start plan002",
+  "task_key": "worker_ops_check_downloads_start_plan002_20260521T035341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_downloads_start_plan002_20260521T035341_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "343364a68f8f9657651eedf174a5701f19fb48a3d1e2b37864a9a09727474938"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型都还在下载中，plan_002 未启动。\n\n| 模型 | 大小 | 进度 | PID |\n|------|------|------|-----|\n| Llama4-Scout-W4A16 | 44G | 8/14 safetensors, 7 incomplete | 53308 |\n| Qwen3-235B-GPTQ-Int4 | 9.5G | 16 incomplete | 53359 |\n\n磁盘 209G 可用 (41%)，空间充足。进度已记录到 `artifacts/download_progress_plan002.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-downloads-start-plan002.md"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig5-brighter-colors_20260525T141754_result.json",
     "occurrence": 1,
-    "bytes": 172,
-    "sha256": "a633643e5e28790a95f6e99f64eee1b2e2cd6fe10037aa1aaf7ba3d7169d1892"
+    "bytes": 171,
+    "sha256": "dced9c938c3ea40226dacb1c01b5252f8511bbd6282be1f68b7d397e9d830f3d"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_deprecate-regime-transition_20260524T073727_result.json",
     "occurrence": 1,
-    "bytes": 211,
-    "sha256": "e9dfc86be67c2906987614d5b5144ba24c3f74fdf578d4dfca1ecb370b3b3fcd"
+    "bytes": 210,
+    "sha256": "16012d57b90ffc7adf63f18ddb9cf1b09fa787e7e30f3da16d9810fd1a12cdf5"
   },
   "statistics": {
     "messages": 1,

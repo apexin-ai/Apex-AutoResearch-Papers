@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_proxy-restore-and-test_20260522T130206_result.json",
     "occurrence": 1,
-    "bytes": 1006,
-    "sha256": "34162d449f2b9bc0e016b98bc9427f2a195cc139af5032fd893a742c6beaa3da"
+    "bytes": 1005,
+    "sha256": "f21850629aa66bae1331247d5e3ec4a03285e890af594a09fc350200658b00a1"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_k5-v2-cleanup-and-r2_20260524T070750_result.json",
     "occurrence": 1,
-    "bytes": 406,
-    "sha256": "64d83f7e6c64888b94f5a119ba24df88b92666d4816af80b210bbe2f78b686cd"
+    "bytes": 405,
+    "sha256": "71c97df708350a85ed09f3a2508cc76d9e0eff7b4018ac20df1c2219d46e04aa"
   },
   "statistics": {
     "messages": 1,

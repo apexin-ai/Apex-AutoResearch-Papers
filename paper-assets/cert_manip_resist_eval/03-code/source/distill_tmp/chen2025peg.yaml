@@ -1,0 +1,80 @@
+paper_key: "chen2025peg"
+title: "Incentivizing Truthful Language Models via Peer Elicitation Games"
+venue: "NeurIPS 2025"
+full_text_available: true
+
+research:
+  baselines: [Generative Ranking, Discriminative Ranking, Mutual Information Ranking, Equilibrium Ranking Discriminator (ER-D)]
+  metrics:
+    - {name: "Accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "ARC-Easy", size: "~2.4k"}
+    - {name: "ARC-Challenge", size: "~1.2k"}
+    - {name: "MMLU", size: "~14k"}
+    - {name: "GPQA-Main", size: "~450"}
+  ablation_dimensions: [number_of_discriminators, model_heterogeneity, learning_rate, iterations_per_round]
+  training_recipe: {optimizer: "Online Mirror Descent with negative entropy Bregman divergence", lr: "0.1", hardware: "7B models, inference only"}
+  method_family: "peer_prediction_game_theory"
+
+positioning:
+  core_claim: "DMI-based multi-agent peer elicitation achieves dominant strategy truthfulness with O(√T) regret, outperforming consensus games by 10%+ through information-theoretic scoring rather than agreement-based signals"
+  key_results: "ARC-Challenge 87.01% (+9.5% over ER-D), MMLU 70.73% (+11.1%), weaker models gain +26-29pp"
+  limitations: ["Conditional independence assumption violated with >5 similar discriminators causing degradation", "Requires sufficiently diverse heterogeneous models", "Limited to multiple-choice evaluation"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Agreement-based consensus mechanisms can converge on consistently wrong outputs — PEG uses information-theoretic peer signals instead"
+  tension: "Existing consensus games (like Equilibrium Ranking) optimize for agreement, not truth; this creates a fundamental gap between consistency and correctness"
+  key_insight: "Mutual information from determinant-based co-report matrices elicits latent model capabilities better than agreement signals; revealed in the mechanism design section through the payment formula"
+  argument_chain: "agreement ≠ truth → game-theoretic peer prediction → DMI-based payments → dominant truthfulness guarantee → empirical validation on QA benchmarks"
+  contribution_framing: "Three contributions: framework design, theoretical guarantees (dominant truthfulness + regret + convergence), empirical gains"
+  intro_structure: "5 paragraphs: (1) LLM evaluation challenge, (2) consensus game limitations, (3) peer prediction opportunity, (4) PEG overview, (5) contributions list"
+  notable_technique: "Uses the tension between agreement and truth as the central narrative driver — shows consensus games are fundamentally flawed, not just suboptimal"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "PEG framework showing generator + multiple heterogeneous discriminators with peer evaluation and DMI-based payments"
+    narrative_role: "Establishes the multi-agent architecture as distinct from pairwise consensus games"
+    design_elements: ["multi-agent layout", "payment flow arrows", "role distinction (generator vs discriminators)"]
+    visual_style: "Schematic diagram with agent icons, directional arrows for information flow"
+  result_figures:
+    - figure_id: "Table 1"
+      viz_type: "comparison_table"
+      what_compared: "PEG vs 4 baselines across 4 datasets"
+      how_gain_highlighted: "Bold best results"
+      design_note: "Clean grid with method × dataset layout"
+  ablation_figures:
+    - figure_id: "Table 5"
+      viz_type: "scaling_table"
+      dimensions_varied: ["number_of_discriminators (3,5,7)"]
+      design_note: "Shows degradation at K=7 from conditional independence violation — key empirical finding"
+  figure_narrative_role: "Method overview → Per-model improvement → Scaling analysis → Convergence visualization"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets"
+    row_organization: "flat"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 4
+    design_note: "Compact 5×4 table, clear dominance pattern"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["individual model improvements in 3-discriminator setting"]
+      variation_style: "full_numbers"
+      design_note: "Before/after format showing per-model gains"
+    - table_id: "Table 5"
+      what_varied: ["discriminator count scaling"]
+      variation_style: "full_numbers"
+      design_note: "Critical for showing K=7 degradation from conditional independence violation"
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended model combinations and additional datasets"
+    reason: "Main text focuses on core 3-discriminator setting"

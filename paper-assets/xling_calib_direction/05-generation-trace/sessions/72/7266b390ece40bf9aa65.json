@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7266b390ece40bf9aa65",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "analysis partial correlation pilot",
+  "task_key": "worker_analysis_partial_correlation_pilot_20260521T041917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_partial_correlation_pilot_20260521T041917_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "b8e2ebdf358cbe44e08bdfcc06b1b33138f8c7fd5f7da01d280890c2db505afc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n发现了 **Simpson's Paradox**——比预期的\"depth confound\"故事更强。\n\n### 核心数值\n\n|  | Raw rho | Partial rho (ctrl depth) | Per-layer median rho |\n|--|---------|--------------------------|---------------------|\n| **Qwen2.5-7B** | −0.16 (ns) | +0.18 (ns, underpowered) | **+0.80** |\n| **Llama-3.1-8B** | −0.16 (ns) | **+0.41 (p=0.006)** | **+0.60** |\n\n### 机制\n\n- CKA 随 depth 下降（rho≈−0.5），AUROC 随 depth 上升（rho≈+0.65）\n- 直接 pool 所有 layer：两个趋势相消，raw correlation 接近零/弱负\n- **控制 depth 后符号反转为正**：在同一层内，CKA 越高（表示越相似）→ transfer AUROC 越高\n- 14/17 个 layer-level correlation 为正\n\n### 判断\n\n**YES — CKA 有独立解释力。** Reviewer 说的 depth confound 确实存在，但控制后关系更强而非消失。这是 Simpson's paradox，反而加强了论文 novelty：\n\n1. 直接回应 Reviewer 的 confound 质疑\n2. 符号反转本身就是 publishable finding\n3. 机制清晰：同一 depth 下，跨语言表示越相似 → 校准方向迁移越好\n\n**局限**：Qwen partial correlation 不显著（n=40 underpowered）；per-layer n=5 只能看方向。\n\n产出已写入 `artifacts/partial_correlation_pilot.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-partial-correlation-pilot.md"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_em-dash-fix_20260523T015250_result.json",
     "occurrence": 1,
-    "bytes": 492,
-    "sha256": "e5471806c0d686a7032dedbf44a0773b2b07bb1025091783be783dc314fd4f61"
+    "bytes": 491,
+    "sha256": "2d36d72bcdc2196a170021419b2dba08562985be8875ed71b3c8eb27b951ed23"
   },
   "statistics": {
     "messages": 1,

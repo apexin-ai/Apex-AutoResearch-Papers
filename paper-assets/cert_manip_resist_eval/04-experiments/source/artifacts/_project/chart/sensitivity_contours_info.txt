@@ -1,0 +1,4 @@
+Remote paths:
+- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png
+- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png
+- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png

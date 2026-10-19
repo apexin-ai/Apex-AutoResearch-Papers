@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_quant-dummy-regression_20260524T184151_result.json",
     "occurrence": 1,
-    "bytes": 1626,
-    "sha256": "5e12789c18c39c2d122ae817cd6c405fe3df406d93fdb1e48aefec90bc8b08c2"
+    "bytes": 1625,
+    "sha256": "d1b2769fde29394690a6ec4372a00c328d51ff2497195e997c9acc2c03fa701a"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_data_k5-aggregation-table-extract_20260523T101302_result.json",
     "occurrence": 1,
-    "bytes": 550,
-    "sha256": "ede729fde89ecfe8c04e9e00c3a0575d4bcf6753f2c95263cea0cfaab81e762c"
+    "bytes": 549,
+    "sha256": "ed3125c934f768e18d822424351913a210f1ae3f021bdd1bfb6eba2147a0a155"
   },
   "statistics": {
     "messages": 1,

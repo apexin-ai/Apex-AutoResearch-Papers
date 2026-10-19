@@ -1,0 +1,4216 @@
+dream_id: dream_20260522T055016
+project: cert_manip_resist_eval
+venue: emnlp-2026
+focus: 'Reframed as adaptive adversary vs BFT distinction paper. Core: weakest-link
+  theorem + diversity-capability tradeoff. Negative result challenging the diversity
+  assumption in multi-judge LLM evaluation. Key question: is the theoretical contribution
+  (adaptive adversary bound) strong enough for EMNLP main?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 扩展实验全面验证 weakest-link 主导性；adaptive vs random-fault 对比效果显著；两阶段算法在扩展模型池上
+        clean win
+      key_assumptions:
+      - η_max 在 15+ 模型的 455 panel × 6 attack 条件下一致显著（≥80% conditions）
+      - K_eff 在 adaptive 设置下一致不显著（≥85% conditions），但在 random-fault 模拟中显著（≥70%）——BFT
+        对比干净
+      - diversity-capability tradeoff 在 capability-stratified 分析中持续存在（tier 内 r ≤ -0.5）
+      - 两阶段算法在 ≥90% 条件下 dominate 所有 baseline
+      - API 模型（GPT-4o, Claude, Gemini）行为与 open-source 一致，不引入新 regime
+      number_ranges:
+        eta_max_sig_rate:
+        - 0.8
+        - 0.95
+        keff_nonsig_rate_adaptive:
+        - 0.85
+        - 0.95
+        keff_sig_rate_random_fault:
+        - 0.7
+        - 0.9
+        weakest_link_median_R2:
+        - 0.45
+        - 0.65
+        diversity_capability_r:
+        - -0.85
+        - -0.65
+        diversity_capability_r_within_tier:
+        - -0.7
+        - -0.5
+        bft_contrast_cohen_d:
+        - 0.8
+        - 1.5
+        algorithm_win_rate:
+        - 0.9
+        - 1.0
+        copula_underestimate_ratio:
+        - 10
+        - 235
+        expanded_panel_weakest_link_consistency:
+        - 0.8
+        - 0.95
+      narrative_direction: '原始 framing 完全成立。Title "The Diversity Trap" 直接用。6 个 claims
+        全部 land。 Story: adaptive adversary theorem 提供理论解释 → 大规模实证验证 weakest-link →  diversity-capability
+        tradeoff 揭示结构性障碍 → robustness-first 算法给出实用方案。 卖点是 theory + comprehensive negative
+        result + practical fix 三位一体。 预期 reviewer 的 "only 6 models" concern 被 15+ 模型
+        455 panel 彻底消除。
+
+        '
+    median:
+      tier: median
+      meaning: weakest-link 在多数条件下成立但非绝对；BFT 对比存在但效果量中等；某些 regime（如全强模型 panel）diversity
+        有边际作用
+      key_assumptions:
+      - η_max 在 60-75% conditions 下显著；剩余条件中 η_max 方向正确但 p 在 0.05-0.15
+      - K_eff 在 adaptive 设置下 ~70% 不显著，但 ~15% 条件下有弱显著负效应（diversity 确实略有帮助）
+      - API 模型引入新 regime：全强模型 panel（GPT-4o + Claude + Gemini）中 diversity-capability
+        tradeoff 减弱（r ≈ -0.3），weakest-link 效应变弱
+      - random-fault vs adaptive 对比方向正确但 Cohen's d 中等
+      - 两阶段算法在 60-80% 条件下 win，但在全强模型 regime 中与 max-K_eff 策略无显著差异
+      number_ranges:
+        eta_max_sig_rate:
+        - 0.55
+        - 0.75
+        keff_nonsig_rate_adaptive:
+        - 0.65
+        - 0.8
+        keff_sig_rate_random_fault:
+        - 0.45
+        - 0.65
+        weakest_link_median_R2:
+        - 0.3
+        - 0.45
+        diversity_capability_r:
+        - -0.75
+        - -0.55
+        diversity_capability_r_within_tier:
+        - -0.45
+        - -0.2
+        bft_contrast_cohen_d:
+        - 0.4
+        - 0.8
+        algorithm_win_rate:
+        - 0.6
+        - 0.8
+        copula_underestimate_ratio:
+        - 10
+        - 235
+        expanded_panel_weakest_link_consistency:
+        - 0.55
+        - 0.75
+      narrative_direction: '需要从 "diversity never helps" 软化为 "individual robustness
+        is the dominant factor;  diversity provides marginal benefit only when individual
+        robustness is already high"。 Title 调整为 "The Weakest Link" 而非 "The Diversity
+        Trap"——emphasis 从 diversity 有害 转为 η_max 主导。Claim 2 (BFT distinction) 需加 nuance：区分
+        capability-homogeneous  vs heterogeneous regime，承认在前者中 diversity 有边际作用。Claim
+        3 加 regime-dependent  caveat。Claim 6 的算法价值下降，改为 guideline 而非 formal algorithm。
+        论文仍然成立：核心 negative result（diversity 不是 primary defense）+ 理论贡献 （adaptive adversary
+        bound）+ regime analysis 是足够的 EMNLP contribution stack。 但需要补充 "when does diversity
+        help" 的 ablation 来堵 reviewer concern。
+
+        '
+    worst:
+      tier: worst
+      meaning: weakest-link 效应在扩展数据上碎片化；仅在弱模型 panel 中成立；强模型 regime 中 diversity 确实提供保护——核心
+        claim 需要 reframe
+      key_assumptions:
+      - η_max 仅在 35-50% conditions 下显著；在强模型 panel 中几乎不显著
+      - K_eff 在 ~40% adaptive conditions 下也有显著负效应——diversity 在部分设置中确实有效
+      - diversity-capability tradeoff 主要是 artifact of current ecosystem，而非 fundamental：加入
+        API 模型后 tradeoff 大幅减弱（overall r ≈ -0.4）
+      - random-fault vs adaptive 对比不显著或 effect size 很小——理论贡献的核心卖点被削弱
+      - 两阶段算法无显著优势——robustness-first 不 dominate
+      number_ranges:
+        eta_max_sig_rate:
+        - 0.3
+        - 0.5
+        keff_nonsig_rate_adaptive:
+        - 0.45
+        - 0.65
+        keff_sig_rate_random_fault:
+        - 0.3
+        - 0.5
+        weakest_link_median_R2:
+        - 0.15
+        - 0.3
+        diversity_capability_r:
+        - -0.5
+        - -0.3
+        diversity_capability_r_within_tier:
+        - -0.25
+        - 0.0
+        bft_contrast_cohen_d:
+        - 0.1
+        - 0.4
+        algorithm_win_rate:
+        - 0.35
+        - 0.55
+        copula_underestimate_ratio:
+        - 10
+        - 235
+        expanded_panel_weakest_link_consistency:
+        - 0.3
+        - 0.5
+      narrative_direction: '核心 negative result 不再 universal——需要彻底 reframe。不降级目标，但换
+        angle： 从 "diversity is a trap" 转为 "A Framework for Panel Security Analysis:
+        When Diversity  Helps and When It Hurts"。核心贡献变成：(1) formal adaptive adversary
+        framework 本身 （即使 weakest-link 不总 dominate，framework 仍有价值作为分析工具）；(2) regime  characterization——精确刻画
+        diversity 有效和无效的条件边界（capability threshold,  attack type, model homogeneity）；(3)
+        copula failure + family label unreliability  作为 methodological contribution
+        上升为主要卖点；(4) diversity-capability tradeoff  限定为 open-source ecosystem 的 empirical
+        finding。 论文从 strong negative result paper 变成 analytical framework paper。EMNLP
+        仍可行 但需要更重地卖 framework novelty 和 regime analysis 的精细度。风险是 reviewer  认为 "it
+        depends on the regime" 是 incremental insight——需要通过 formal framework  的 elegance
+        和 practical implications 来补偿。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T055016/best/paper.pdf
+  imagined_experiments:
+  - name: 'Scale expansion: 15+ models (API + large open-source)'
+    plan_id: plan_001
+    description: '将模型池从 6 扩展到 15+（新增 GPT-4o-mini, GPT-4o, GPT-4.1, Claude-3.5-Sonnet,  Gemini-1.5-Pro,
+      Llama-3.1-70B-Instruct, Qwen2.5-72B-Instruct, Mixtral-8x22B）。 在 C(15,3)=455
+      panels × 2 datasets × 6 attacks = 5460 条件上重跑 MI matrix + multivariate regression。
+
+      '
+    expected_results:
+      total_models: 15
+      total_panels: 455
+      total_conditions: 5460
+      eta_max_sig_rate: 0.87
+      eta_max_median_p: 0.008
+      eta_max_median_beta: 0.72
+      keff_nonsig_rate_adaptive: 0.91
+      keff_median_p: 0.43
+      weakest_link_median_R2: 0.56
+      weakest_link_R2_range:
+      - 0.38
+      - 0.74
+      api_vs_opensource_behavior_consistent: true
+      api_model_eta_max_range:
+      - 0.03
+      - 0.18
+      opensource_model_eta_max_range:
+      - 0.05
+      - 0.52
+      expanded_panel_weakest_link_consistency: 0.89
+      mi_matrix_size: 105 pairs
+      gaussian_copula_underestimate_median: 18.4
+      copula_underestimate_ratio_range:
+      - 8
+      - 235
+      family_label_predictive_p: 0.31
+    result_rationale: '455 panels 提供了巨大的统计功效，使 η_max 的主导性在绝大多数条件下达到显著。 η_max sig rate
+      达 87% 而非 100%，是因为少数 panels 中所有成员 η_max 都很低（全由强模型组成）， 此时 η_max 方差不足以驱动显著回归系数。K_eff
+      在 91% 条件下不显著，因为 adaptive adversary  总是瞄准最弱 judge，使 diversity 的保护效果被旁路——额外的 judge
+      独立性无法阻止 attacker  锁定弱点。R² 中位数 0.56 表明 η_max 单因子解释了过半方差，剩余方差来自 attack-specific
+      noise  和非线性效应。API 模型（GPT-4o 等）η_max 普遍较低（0.03-0.18），因为它们经过更强的 safety  training，但其行为模式与
+      open-source 一致——仍然是 weakest-link 决定 panel 安全性， 没有出现 API 模型引入的新 regime（如 coordinated
+      defense 或 shared vulnerability）。 Copula 低估比率中位数 18.4× 与 MVP 阶段的 10-21× 一致，说明
+      LLM judges 之间的  非线性依赖结构不随模型池扩大而消失。
+
+      '
+    tables:
+    - name: 'Table 1: Model Pool Summary'
+      columns:
+      - Model
+      - Type
+      - Size
+      - η_max (MMLU)
+      - η_max (ARC)
+      - Avg ASR
+      rows:
+      - - Qwen2.5-7B-Instruct
+        - Open
+        - 7B
+        - '0.32'
+        - '0.28'
+        - '0.30'
+      - - Llama-3.1-8B-Instruct
+        - Open
+        - 8B
+        - '0.38'
+        - '0.35'
+        - '0.37'
+      - - Mistral-7B-Instruct-v0.3
+        - Open
+        - 7B
+        - '0.45'
+        - '0.42'
+        - '0.44'
+      - - Gemma-2-9B-Instruct
+        - Open
+        - 9B
+        - '0.29'
+        - '0.25'
+        - '0.27'
+      - - Phi-3.5-mini-Instruct
+        - Open
+        - 3.8B
+        - '0.52'
+        - '0.48'
+        - '0.50'
+      - - InternLM2.5-7B-Chat
+        - Open
+        - 7B
+        - '0.35'
+        - '0.31'
+        - '0.33'
+      - - Llama-3.1-70B-Instruct
+        - Open
+        - 70B
+        - '0.12'
+        - '0.09'
+        - '0.11'
+      - - Qwen2.5-72B-Instruct
+        - Open
+        - 72B
+        - '0.10'
+        - '0.08'
+        - '0.09'
+      - - Mixtral-8x22B-Instruct
+        - Open
+        - 141B MoE
+        - '0.15'
+        - '0.13'
+        - '0.14'
+      - - GPT-4o-mini
+        - API
+        - —
+        - '0.18'
+        - '0.15'
+        - '0.17'
+      - - GPT-4o
+        - API
+        - —
+        - '0.08'
+        - '0.06'
+        - '0.07'
+      - - GPT-4.1
+        - API
+        - —
+        - '0.05'
+        - '0.04'
+        - '0.05'
+      - - Claude-3.5-Sonnet
+        - API
+        - —
+        - '0.06'
+        - '0.05'
+        - '0.06'
+      - - Gemini-1.5-Pro
+        - API
+        - —
+        - '0.09'
+        - '0.07'
+        - '0.08'
+      - - DeepSeek-V2.5-Chat
+        - Open
+        - 236B MoE
+        - '0.13'
+        - '0.11'
+        - '0.12'
+    - name: 'Table 2: Regression Results Summary (455 panels)'
+      columns:
+      - Dataset
+      - Attack
+      - β(η_max)
+      - p(η_max)
+      - β(K_eff)
+      - p(K_eff)
+      - R²
+      rows:
+      - - MMLU
+        - Prompt Injection
+        - '0.78'
+        - '0.001'
+        - '-0.05'
+        - '0.52'
+        - '0.61'
+      - - MMLU
+        - Score Manipulation
+        - '0.71'
+        - '0.003'
+        - '0.08'
+        - '0.38'
+        - '0.54'
+      - - MMLU
+        - Sycophancy
+        - '0.65'
+        - '0.012'
+        - '-0.03'
+        - '0.71'
+        - '0.48'
+      - - MMLU
+        - Verbosity Bias
+        - '0.69'
+        - '0.006'
+        - '0.11'
+        - '0.22'
+        - '0.52'
+      - - MMLU
+        - Position Bias
+        - '0.74'
+        - '0.002'
+        - '-0.09'
+        - '0.31'
+        - '0.58'
+      - - MMLU
+        - Authority Bias
+        - '0.82'
+        - <0.001
+        - '0.04'
+        - '0.63'
+        - '0.67'
+      - - ARC
+        - Prompt Injection
+        - '0.76'
+        - '0.002'
+        - '-0.07'
+        - '0.44'
+        - '0.59'
+      - - ARC
+        - Score Manipulation
+        - '0.68'
+        - '0.008'
+        - '0.06'
+        - '0.49'
+        - '0.51'
+      - - ARC
+        - Sycophancy
+        - '0.73'
+        - '0.004'
+        - '-0.12'
+        - '0.18'
+        - '0.55'
+      - - ARC
+        - Verbosity Bias
+        - '0.64'
+        - '0.015'
+        - '0.03'
+        - '0.72'
+        - '0.46'
+      - - ARC
+        - Position Bias
+        - '0.70'
+        - '0.005'
+        - '-0.08'
+        - '0.35'
+        - '0.53'
+      - - ARC
+        - Authority Bias
+        - '0.80'
+        - '0.001'
+        - '0.02'
+        - '0.81'
+        - '0.65'
+    figures_description:
+    - 'Fig 1a: Heatmap of 15×15 pairwise MI matrix, hierarchical clustering by capability
+      proximity (not family). API models cluster with strong open-source models. Block
+      structure reveals capability-driven correlation, not family-driven.'
+    - 'Fig 1b: Scatter plot η_max vs panel ASR for 455 panels, colored by K_eff quartile.
+      Strong positive correlation regardless of K_eff level; K_eff color bands fully
+      overlap, demonstrating K_eff irrelevance.'
+    analysis: '455 panels 的大规模回归彻底消除了 "only 6 models" 的 reviewer concern。η_max 在 87%  conditions
+      下显著（12 条件中 ~10-11 条），K_eff 在 91% 下不显著（~11/12），与 MVP 阶段  4/6 和 5/6 的方向完全一致但统计功效大幅提升。API
+      模型的加入没有改变 weakest-link 结构， 反而强化了故事——即使用最强 API 模型，panel 安全性仍由最弱成员决定。
+
+      '
+  - name: 'Attack expansion: 6+ attack types'
+    plan_id: plan_002
+    description: '在 plan_001 的 15+ 模型池上新增 few-shot hijacking、persona manipulation、instruction
+      override  三种攻击，将攻击类型从 6 种扩展到 9 种。验证 weakest-link 在更广攻击面上的普适性。
+
+      '
+    expected_results:
+      total_attack_types: 9
+      total_conditions: 8190
+      eta_max_sig_rate_new_attacks: 0.85
+      keff_nonsig_rate_new_attacks: 0.89
+      few_shot_hijacking_mean_asr: 0.31
+      persona_manipulation_mean_asr: 0.22
+      instruction_override_mean_asr: 0.38
+      cross_attack_eta_max_rank_correlation: 0.82
+      weakest_link_R2_new_attacks_median: 0.53
+    result_rationale: '新增攻击类型本质上仍遵循 adaptive adversary 逻辑——attacker 可以针对每种攻击类型选择最弱
+      judge。 Few-shot hijacking ASR 较高（0.31）因为它利用 in-context learning 能力，小模型尤其脆弱。
+      Persona manipulation ASR 较低（0.22）因为需要更复杂的社会工程，但仍集中在弱 judge 上。 Instruction override
+      ASR 最高（0.38）因为它直接覆盖评判指令，safety training 弱的模型几乎  无法抵抗。跨攻击 η_max rank correlation
+      0.82 说明各 judge 的相对脆弱程度在不同攻击间高度一致， 这进一步支持 "individual robustness is an intrinsic
+      property" 的论点。新攻击的 R² 与原 6 种 持平，说明 weakest-link 结构不依赖特定攻击机制。
+
+      '
+    tables:
+    - name: 'Table 3: New Attack Types Results'
+      columns:
+      - Attack
+      - Mean ASR
+      - η_max sig%
+      - K_eff nonsig%
+      - Median R²
+      rows:
+      - - Few-shot Hijacking
+        - '0.31'
+        - 83%
+        - 87%
+        - '0.51'
+      - - Persona Manipulation
+        - '0.22'
+        - 87%
+        - 91%
+        - '0.54'
+      - - Instruction Override
+        - '0.38'
+        - 85%
+        - 88%
+        - '0.53'
+      - - — Original 6 (avg) —
+        - '0.24'
+        - 87%
+        - 91%
+        - '0.56'
+    figures_description:
+    - 'Fig S1: Cross-attack η_max rank stability heatmap. 9×9 Spearman ρ matrix of
+      per-model η_max ranks across attacks. All pairwise ρ > 0.7, median 0.82. Demonstrates
+      that vulnerability is a stable model property, not attack-specific.'
+    analysis: '9 种攻击全面验证 weakest-link 的攻击类型无关性。新增的 3 种攻击涵盖了不同攻击向量 （in-context manipulation,
+      social engineering, direct override），但 η_max 主导性无一例外。 跨攻击 rank stability（ρ=0.82）是一个额外发现，可支撑
+      "robustness as intrinsic property" 的论述。
+
+      '
+  - name: Adaptive adversary formal theorem + random-fault simulation
+    plan_id: plan_003
+    description: '(a) 形式化定理：在 adaptive adversary 模型下，panel_ASR = Θ(η_max)。 (b) 实现
+      random-fault simulation：每个 judge 以 prob p_j 独立失败。 (c) 证明 K_eff 在 random faults
+      下显著，验证 BFT distinction。
+
+      '
+    expected_results:
+      theorem_statement: For an adaptive adversary with access to per-judge vulnerability
+        profiles, panel_ASR ≥ max_j η_j for majority-vote aggregation
+      random_fault_keff_sig_rate: 0.78
+      random_fault_keff_median_p: 0.012
+      random_fault_keff_median_beta: -0.45
+      adaptive_keff_sig_rate: 0.09
+      adaptive_keff_median_p: 0.43
+      bft_contrast_cohen_d: 1.12
+      bft_contrast_p: <0.001
+      random_fault_R2_improvement_with_keff: 0.18
+      adaptive_R2_improvement_with_keff: 0.01
+    result_rationale: 'BFT 对比效果显著（Cohen''s d = 1.12）因为两种 fault model 有根本性差异： Random
+      faults 下每个 judge 独立以 p_j 失败，panel 失败需要 ≥K/2 个 judge 同时失败， 概率随独立 judge 数指数下降——这就是
+      BFT 的 redundancy argument，diversity（K_eff）直接降低 相关失败概率。但 adaptive adversary 不受此约束：attacker
+      观察所有 judge 的弱点，构造  针对最弱 judge 的攻击，使该 judge 几乎必然失败，然后只需攻破 K/2-1 个额外 judge， 而这些额外
+      judge 面对的是已被优化的攻击，成功率远高于随机。因此 K_eff 的保护效果被  adaptive targeting 完全消解。Random-fault
+      下 K_eff sig rate 0.78 而非更高，是因为当 所有 judge 的 p_j 都很低时 K_eff 效果也不明显（地板效应）。Cohen''s
+      d 1.12 是 large  effect size，足以支撑 "this is a fundamentally different regime"
+      的论点。
+
+      '
+    tables:
+    - name: 'Table 4: BFT vs Adaptive Adversary Contrast'
+      columns:
+      - Metric
+      - Adaptive
+      - Random-Fault
+      - Cohen's d
+      - p-value
+      rows:
+      - - K_eff β (mean)
+        - '-0.03'
+        - '-0.45'
+        - '1.12'
+        - <0.001
+      - - K_eff sig rate
+        - 9%
+        - 78%
+        - —
+        - —
+      - - η_max β (mean)
+        - '0.72'
+        - '0.31'
+        - '0.85'
+        - <0.001
+      - - R² (mean)
+        - '0.56'
+        - '0.42'
+        - '0.62'
+        - '0.003'
+    figures_description:
+    - 'Fig 2: Paired coefficient plot. For each of 12 conditions, plot β(K_eff) under
+      adaptive (red) vs random-fault (blue). Connected by lines. Adaptive coefficients
+      cluster near 0; random-fault coefficients are consistently negative. Clear visual
+      separation validates theorem.'
+    - 'Fig 3: Schematic diagram of adaptive vs random fault model. Left: BFT model
+      with independent random failures. Right: Adaptive adversary model with targeted
+      attack on weakest node. Formal bound shown below each.'
+    analysis: '这是论文的理论核心。形式化定理将 intuition "attacker targets weakest link" 提升为可证明的
+      bound。 Random-fault simulation 提供了 counterfactual evidence：如果 LLM 失败真的是随机的，diversity  确实有用（K_eff
+      sig in 78% conditions）。但实际攻击是 adaptive 的，diversity 失效。 Cohen''s d = 1.12 的 BFT
+      对比直接回应 reviewer concern RC4（"BFT comparison is a strawman"）—— 数据证明 BFT 假设下 K_eff
+      确实有效，只是该假设对 LLM adversary 不成立。
+
+      '
+  - name: Capability-matched validation
+    plan_id: plan_004
+    description: '在同一 capability tier 内（7B tier, 70B tier, API tier）测试 K_eff 是否在 η_max
+      方差被控制后 变得显著。如果 tier 内 K_eff 仍不显著，强化 weakest-link 定理；同时检验 diversity-capability  tradeoff
+      是否在 tier 内持续。
+
+      '
+    expected_results:
+      tiers_defined: 3
+      tier_7b_models:
+      - Qwen2.5-7B
+      - Llama-3.1-8B
+      - Mistral-7B
+      - Gemma-2-9B
+      - Phi-3.5-mini
+      - InternLM2.5-7B
+      tier_70b_models:
+      - Llama-3.1-70B
+      - Qwen2.5-72B
+      - Mixtral-8x22B
+      - DeepSeek-V2.5
+      tier_api_models:
+      - GPT-4o-mini
+      - GPT-4o
+      - GPT-4.1
+      - Claude-3.5-Sonnet
+      - Gemini-1.5-Pro
+      within_tier_keff_sig_rate: 0.12
+      within_tier_eta_max_sig_rate: 0.71
+      within_tier_R2_median: 0.38
+      diversity_capability_r_within_7b: -0.58
+      diversity_capability_r_within_70b: -0.52
+      diversity_capability_r_within_api: -0.61
+      diversity_capability_r_overall: -0.78
+      tier_7b_panels: 20
+      tier_70b_panels: 4
+      tier_api_panels: 10
+    result_rationale: '即使在同一 capability tier 内控制了 η_max 的跨 tier 方差，η_max 仍在 71% 条件下显著，
+      因为 tier 内部的 robustness 差异仍然实质性存在（如 7B tier 中 Phi-3.5-mini η_max=0.52  而 Gemma-2-9B
+      η_max=0.29）。R² 下降到 0.38（整体 0.56）符合预期——tier 内 η_max  方差更小，解释力自然降低，但仍是最强预测因子。K_eff
+      在 tier 内依然不显著（12%）， 因为 adaptive adversary 的 targeting 机制不依赖于 judges 的绝对能力水平。
+      Diversity-capability tradeoff 在 tier 内持续存在（r ≈ -0.52 to -0.61），因为即使在同一  size
+      class 内，更 diverse 的组合必然包含该 tier 中较弱的模型——这是 current LLM ecosystem  的结构性属性，不是
+      sampling artifact。Tier 内 r 绝对值略低于整体（-0.78）， 因为 tier 内的 capability range 更窄，但方向完全一致。
+
+      '
+    tables:
+    - name: 'Table 5: Within-Tier Regression Results'
+      columns:
+      - Tier
+      - N panels
+      - η_max sig%
+      - K_eff sig%
+      - Median R²
+      - K_eff-η_max r
+      rows:
+      - - 7B (6 models)
+        - '20'
+        - 73%
+        - 10%
+        - '0.36'
+        - '-0.58'
+      - - 70B (4 models)
+        - '4'
+        - 67%
+        - 17%
+        - '0.41'
+        - '-0.52'
+      - - API (5 models)
+        - '10'
+        - 72%
+        - 12%
+        - '0.39'
+        - '-0.61'
+      - - All (15 models)
+        - '455'
+        - 87%
+        - 9%
+        - '0.56'
+        - '-0.78'
+    figures_description:
+    - 'Fig 4: Scatter plot K_eff vs η_max, faceted by capability tier. Each panel
+      shows one tier with its own regression line. Negative correlation persists within
+      each tier (r = -0.52 to -0.61), not just an artifact of cross-tier capability
+      differences.'
+    analysis: 'Capability-matched 分析是回应 "tradeoff is trivially explained by capability
+      differences"  reviewer concern 的关键证据。Tier 内 r ≈ -0.55 证明 diversity-capability
+      tradeoff 是  结构性的，而非仅由 7B-vs-70B 差异驱动。同时 tier 内 K_eff 依然不显著，进一步封堵  "if you control
+      for capability, diversity might help" 的反驳路线。
+
+      '
+  - name: 'Two-stage panel design algorithm: full benchmark'
+    plan_id: plan_005
+    description: '实现 robustness-first 两阶段算法：(1) 筛选 η ≤ threshold 的 judges，(2) 在合格者中最大化
+      K_eff。 在 15+ 模型池上对 5 个 baseline 做全面 benchmark。扫描 threshold 参数，报告 Pareto frontier。
+
+      '
+    expected_results:
+      algorithm_win_rate_vs_random: 0.97
+      algorithm_win_rate_vs_max_keff: 0.94
+      algorithm_win_rate_vs_min_eta: 0.82
+      algorithm_win_rate_vs_max_family_div: 0.96
+      algorithm_win_rate_vs_strongest_k: 0.78
+      algorithm_overall_win_rate: 0.93
+      optimal_threshold_mmlu: 0.2
+      optimal_threshold_arc: 0.18
+      two_stage_mean_asr: 0.042
+      random_baseline_mean_asr: 0.187
+      max_keff_baseline_mean_asr: 0.231
+      min_eta_baseline_mean_asr: 0.051
+      strongest_k_baseline_mean_asr: 0.048
+      max_family_div_baseline_mean_asr: 0.198
+      pareto_frontier_size: 8
+    result_rationale: '两阶段算法 dominate 绝大多数 baseline，因为它同时优化了两个关键维度：先保证 panel  无明显弱点（η
+      ≤ threshold 过滤），再在安全约束内最大化 diversity（K_eff maximization）。 vs random（97%）和 vs
+      max_family_div（96%）胜率极高，因为这两个 baseline 完全不考虑  individual robustness，经常选入弱模型。vs
+      max_keff（94%）高胜率因为 max_keff 策略为追求  diversity 主动选入弱模型。vs min_eta（82%）和 vs strongest_k（78%）胜率相对低，因为这些  策略本身就做了
+      robustness 筛选，但它们忽略 diversity 导致在某些攻击类型上过拟合—— 两阶段算法在 K_eff 约束后获得更好的 attack coverage。Overall
+      93% 超过 90% threshold， 符合 best 档预期。min_eta 和 strongest_k 的 ASR（0.051, 0.048）接近两阶段（0.042），
+      说明 robustness 是主要因素，但两阶段的 diversity bonus 在边际上提供了一致性优势。
+
+      '
+    tables:
+    - name: 'Table 6: Panel Design Algorithm Benchmark'
+      columns:
+      - Strategy
+      - Mean ASR
+      - Win Rate vs Two-Stage
+      - Worst-Case ASR
+      - Avg K_eff
+      rows:
+      - - Two-Stage (ours)
+        - '0.042'
+        - —
+        - '0.089'
+        - '2.41'
+      - - Random
+        - '0.187'
+        - 3%
+        - '0.412'
+        - '2.18'
+      - - Max K_eff
+        - '0.231'
+        - 6%
+        - '0.485'
+        - '2.87'
+      - - Min η_max
+        - '0.051'
+        - 18%
+        - '0.098'
+        - '1.73'
+      - - Strongest-K
+        - '0.048'
+        - 22%
+        - '0.095'
+        - '1.61'
+      - - Max Family Diversity
+        - '0.198'
+        - 4%
+        - '0.423'
+        - '2.65'
+    - name: 'Table 7: Threshold Sensitivity Analysis'
+      columns:
+      - Threshold
+      - Qualifying Models
+      - Mean ASR
+      - K_eff
+      - Recommendation
+      rows:
+      - - '0.10'
+        - '5'
+        - '0.038'
+        - '2.12'
+        - Aggressive
+      - - '0.15'
+        - '7'
+        - '0.040'
+        - '2.31'
+        - Recommended (ARC)
+      - - '0.20'
+        - '9'
+        - '0.042'
+        - '2.41'
+        - Recommended (MMLU)
+      - - '0.30'
+        - '11'
+        - '0.058'
+        - '2.58'
+        - Moderate
+      - - '0.50'
+        - '14'
+        - '0.112'
+        - '2.74'
+        - Loose (not recommended)
+    figures_description:
+    - 'Fig 5: Pareto frontier plot. X-axis: mean ASR, Y-axis: K_eff. Each strategy
+      is a point (or cloud for random). Two-stage dominates the Pareto frontier. Min-η_max
+      and strongest-K near the frontier but suboptimal in diversity. Max-K_eff in
+      the high-ASR region.'
+    - 'Fig 6: Threshold sweep curve. X-axis: η threshold, Y-axis: mean ASR (left)
+      and K_eff (right). Dual y-axis shows ASR rising sharply above threshold 0.25
+      while K_eff plateaus. Optimal operating point clearly visible.'
+    analysis: '两阶段算法在 93% 条件下 dominate 所有 baseline，验证了 Claim 6。关键 insight 是 min_eta  和
+      strongest_k 已经很强（因为 robustness 是主因），但两阶段在 diversity bonus 上提供了  一致性边际改善。Threshold
+      分析给出实用指南：0.15-0.20 是 sweet spot。回应 RC5 "algorithm is  trivial"——strongest_k
+      确实接近，但在 attack-specific 场景中两阶段的 K_eff bonus 提供了 robustness。
+
+      '
+  - name: Per-judge ASR concentration analysis
+    plan_id: plan_006
+    description: '对每个 panel × attack 组合，分析 per-judge ASR 分布，用 Gini 系数和熵度量攻击成功是否  集中在最弱
+      judge 上。提供 adaptive adversary targeting 行为的直接证据。
+
+      '
+    expected_results:
+      mean_gini_coefficient: 0.68
+      gini_range:
+      - 0.42
+      - 0.91
+      concentration_on_weakest_rate: 0.89
+      weakest_judge_asr_vs_panel_mean_ratio: 2.8
+      strongest_judge_asr_vs_panel_mean_ratio: 0.31
+      entropy_normalized_mean: 0.38
+      entropy_vs_uniform_p: <0.001
+    result_rationale: 'Gini 系数均值 0.68（高度集中）直接反映 adaptive adversary 的 targeting 效果。
+      攻击成功高度集中在最弱 judge 上：89% 的 panel × attack 组合中，最弱 judge 的 ASR 是  panel 均值的 2.8
+      倍，最强 judge 仅为均值的 0.31 倍。这不是因为攻击 "恰好" 对某些模型  更有效——而是 adaptive adversary 的本质：attacker
+      知道每个 judge 的弱点，构造的攻击  自然集中打击最脆弱的 judge。归一化熵 0.38（远低于均匀分布的 1.0）与 uniform 分布  显著不同（p<0.001），排除了
+      "ASR 在 judges 间均匀分布" 的 null hypothesis。 少数 Gini < 0.5 的情况出现在全由强模型组成的 panel 中——此时所有
+      judge 都较为稳健， 攻击难以集中突破任何一个，但 overall ASR 也很低。
+
+      '
+    tables:
+    - name: 'Table 8: ASR Concentration Metrics'
+      columns:
+      - Panel Tier
+      - Mean Gini
+      - Weakest/Mean Ratio
+      - Conc. on Weakest %
+      rows:
+      - - Mixed (weak+strong)
+        - '0.78'
+        - '3.4'
+        - 94%
+      - - Within 7B tier
+        - '0.62'
+        - '2.3'
+        - 85%
+      - - Within 70B/API tier
+        - '0.51'
+        - '1.8'
+        - 78%
+      - - All panels
+        - '0.68'
+        - '2.8'
+        - 89%
+    figures_description:
+    - 'Fig 7: Per-judge ASR bar charts for 6 representative panels (2 per tier). Within
+      each panel, bars sorted by judge strength. Consistent pattern: weakest judge''s
+      bar towers over others. Annotated with Gini coefficient.'
+    analysis: 'ASR concentration 分析提供了 adaptive adversary theorem 的最直观实证支持。Gini =
+      0.68  意味着攻击成功极度不均匀——weakest link 不只是统计抽象，而是 observable phenomenon。 这补充了 regression
+      分析：regression 告诉我们 η_max 是最佳预测因子， concentration 分析告诉我们 WHY——因为攻击物理上集中在最弱 judge。
+
+      '
+  - name: Diversity-capability tradeoff visualization
+    plan_id: plan_007
+    description: '绘制 K_eff vs η_max 散点图（455 panels），拟合 tradeoff 曲线，展示 Pareto frontier，
+      按 capability tier 分层可视化。
+
+      '
+    expected_results:
+      overall_r: -0.78
+      overall_r_p: <0.001
+      overall_r_ci95:
+      - -0.82
+      - -0.73
+      within_tier_r_mean: -0.57
+      pareto_panels_count: 12
+      pareto_dominated_rate: 0.97
+      tradeoff_slope: -0.34
+      tradeoff_slope_se: 0.03
+    result_rationale: 'K_eff 与 η_max 的强负相关（r = -0.78）反映 LLM 生态系统的结构性约束： 要获得 diverse
+      panel（高 K_eff），必须采样不同家族/尺寸的模型，而当前 LLM 生态中  模型能力差异巨大（3.8B Phi 到 236B DeepSeek），diverse
+      采样不可避免地纳入弱模型。 高 K_eff panel 意味着 judges 不相关——而不相关通常意味着采用了 heterogeneous 模型， 其中一定包含能力较差的成员。97%
+      的 panels 被 Pareto 支配，说明同时优化 diversity  和 robustness 在当前生态下几乎不可能——这正是 "diversity
+      trap" 的可视化表达。 Tier 内 r 均值 -0.57 弱于整体但仍 moderate-to-strong，证明这不是 trivial 的  size-class
+      artifact。
+
+      '
+    tables:
+    - name: 'Table 9: Diversity-Capability Tradeoff by Tier'
+      columns:
+      - Tier
+      - r(K_eff, η_max)
+      - p-value
+      - N panels
+      - Interpretation
+      rows:
+      - - 7B
+        - '-0.58'
+        - '0.008'
+        - '20'
+        - Tradeoff persists within same-size models
+      - - 70B
+        - '-0.52'
+        - '0.048'
+        - '4'
+        - Limited N but consistent direction
+      - - API
+        - '-0.61'
+        - '0.003'
+        - '10'
+        - API ecosystem shows same structure
+      - - All
+        - '-0.78'
+        - <0.001
+        - '455'
+        - Strong structural tradeoff
+    figures_description:
+    - 'Fig 8: Main tradeoff plot. Scatter of 455 panels: x = K_eff, y = η_max. Color
+      by tier. Fitted OLS line (slope = -0.34, shaded 95% CI). Pareto frontier marked.
+      Top-right quadrant (high K_eff, high η_max) is empty — the diversity trap visualized.'
+    - 'Fig 9: Marginal density plots on axes showing K_eff and η_max distributions.
+      Bimodal structure in η_max reflecting tier gaps.'
+    analysis: 'Tradeoff 可视化是论文的 signature figure，将抽象的 "diversity trap" 概念变为直观的  空象限（top-right
+      region is empty）。读者一看即知：在当前 LLM 生态下，不存在既 diverse  又 robust 的 panel——这是论文最具传播力的视觉论据。
+
+      '
+  - name: 'Panel size sensitivity: K=3,5,7,9'
+    plan_id: plan_008
+    description: '测试 weakest-link 定理在不同 panel 尺寸（K=3,5,7,9）下是否持续成立。 检验 η_max 主导性是否随
+      K 增大而减弱（diversity 是否在 large panels 中开始生效）。
+
+      '
+    expected_results:
+      k3_eta_max_sig_rate: 0.87
+      k5_eta_max_sig_rate: 0.85
+      k7_eta_max_sig_rate: 0.83
+      k9_eta_max_sig_rate: 0.8
+      k3_keff_nonsig_rate: 0.91
+      k5_keff_nonsig_rate: 0.88
+      k7_keff_nonsig_rate: 0.85
+      k9_keff_nonsig_rate: 0.82
+      k3_panels: 455
+      k5_panels: 3003
+      k7_panels: 6435
+      k9_panels: 5005
+      eta_max_dominance_trend: slight decline but persistent
+      keff_emergence_threshold: not reached at K=9
+    result_rationale: 'η_max 主导性随 K 增大略微下降（87% → 80%），K_eff 的 nonsig rate 也略降（91%
+      → 82%）， 但两个核心结论在 K=9 仍成立。η_max 轻微下降是因为大 panel 中 "weakest link" 更可能出现  极端弱模型——但同时大
+      panel 也包含更多强模型来 outvote 弱模型，产生了微弱的 diversity  buffer。然而这个 buffer 效果远不足以让 K_eff
+      变显著——在 K=9 时 K_eff nonsig rate 仍有  82%，说明即使 9 个 judges 也不足以通过 diversity 抵消 adaptive
+      adversary 的 targeting。 直觉上，adaptive adversary 在大 panel 中需要攻破 K/2=5 个 judges
+      而非 2 个， 但它仍然从最弱的开始攻破，而弱 judges 的 ASR 远高于平均。在 current LLM ecosystem 中  K_eff
+      的 emergence threshold 在 K≤9 范围内未被达到——这可能需要 K>>9 且所有 judges  都足够强才能让 diversity
+      的边际效果变显著。
+
+      '
+    tables:
+    - name: 'Table 10: Panel Size Sensitivity'
+      columns:
+      - K
+      - N panels
+      - η_max sig%
+      - K_eff nonsig%
+      - Median R²
+      - Mean ASR
+      rows:
+      - - '3'
+        - '455'
+        - 87%
+        - 91%
+        - '0.56'
+        - '0.148'
+      - - '5'
+        - '3003'
+        - 85%
+        - 88%
+        - '0.52'
+        - '0.119'
+      - - '7'
+        - '6435'
+        - 83%
+        - 85%
+        - '0.49'
+        - '0.098'
+      - - '9'
+        - '5005'
+        - 80%
+        - 82%
+        - '0.46'
+        - '0.082'
+    figures_description:
+    - 'Fig 10: Line plot with 95% CI bands. X-axis: panel size K. Two series: η_max
+      sig rate (solid, declining slowly from 87% to 80%) and K_eff nonsig rate (dashed,
+      declining from 91% to 82%). Both remain well above significance thresholds.
+      Annotated: ''K_eff emergence threshold not reached at K=9''.'
+    - 'Fig S2: Mean panel ASR vs K, showing the expected decline due to majority-vote
+      averaging. Decomposed into η_max contribution and K_eff contribution via Shapley
+      value analysis.'
+    analysis: Panel size sensitivity 分析表明 weakest-link 定理不是 small-panel artifact。
+      K=9 时 η_max 仍在 80% conditions 下显著，K_eff 在 82% 下不显著，两者都在 best 档  阈值范围内。轻微的 trend
+      可以诚实报告为 "diversity may matter at much larger K,  but is irrelevant in practical
+      panel sizes"——这加强而非削弱了论文的 practical impact， 因为 K=3-9 覆盖了几乎所有实际部署场景。
+  review_report: '---
+
+    dream_id: dream_20260522T055016
+
+    tier: best
+
+    overall_score: 2.5 — Borderline Findings
+
+    timestamp: 2026-05-22T06:29:08.114740+00:00
+
+    ---
+
+
+    # Dream Review Report: "The Diversity Trap"
+
+
+    **Paper**: The Diversity Trap: Why Adding More Judges Doesn''t Make LLM Evaluation
+    Safer
+
+    **Venue**: EMNLP 2026 (ARR)
+
+    **Review Mode**: Full (2 Reviewers + Roundtable)
+
+    **Dream ID**: 20260522T055016
+
+
+    ---
+
+
+    ## Consolidated Review
+
+
+    ### Paper Summary
+
+
+    This paper challenges the assumption that judge diversity in multi-LLM evaluation
+    panels provides defense against adversarial manipulation. It formalizes an adaptive
+    adversary model and proves a "Weakest-Link Theorem" showing panel ASR is dominated
+    by η_max (the weakest judge''s vulnerability), not by K_eff (effective independence).
+    Empirical validation spans 15 models, 455 three-judge panels, 9 attack types,
+    2 benchmarks, and panel sizes K∈{3,5,7,9}. A BFT/adaptive contrast (Cohen''s d=1.12),
+    diversity-capability tradeoff (r=-0.78), and a two-stage robustness-first panel
+    design algorithm are presented.
+
+
+    ---
+
+
+    ## R1 Assessment (Methods + Experiments)
+
+
+    ### Soundness: 2.5/5
+
+
+    **Theorem 1 has a fundamental gap.** The claim panel_ASR ≥ η_max under majority-vote
+    aggregation requires compromising ⌈K/2⌉ judges, not just the weakest one. The
+    proof sketch hand-waves about attack transfer ("partially effective against judges
+    with correlated vulnerabilities") without establishing any formal bound on transfer
+    rates. For K=3, compromising the weakest judge (probability η_max) is necessary
+    but not sufficient — the adversary must also compromise at least one additional
+    judge. The theorem''s lower bound is only valid if the attack on J* automatically
+    transfers to ⌈K/2⌉-1 other judges with probability 1, which is neither stated
+    nor justified.
+
+
+    **Multicollinearity (r=-0.78) between K_eff and η_max** is a serious concern for
+    the regression analysis. When two predictors are this strongly correlated, the
+    standard errors of their coefficients are inflated. K_eff''s non-significance
+    could partly be a power artifact of multicollinearity rather than true irrelevance.
+    VIF (Variance Inflation Factor) is never reported. The paper should at minimum
+    report VIF, and ideally use partial correlation or structural equation modeling
+    to disentangle the two factors.
+
+
+    **R² = 0.56 is moderate, not dominant.** 44% unexplained variance is substantial.
+    The paper claims η_max "dominates" panel ASR, but a single-factor model leaving
+    nearly half the variance unexplained suggests important omitted variables (attack-specific
+    noise, judge-attack interactions, prompt-specific effects).
+
+
+    **Random-fault simulation is reasonable** as a conceptual contrast, though using
+    p_j = η_j directly (rather than calibrated random failure rates) somewhat favors
+    the paper''s thesis. The BFT distinction is the paper''s cleanest contribution.
+
+
+    **Within-tier analysis (70B tier)**: Only 4 panels from 4 models. This is drastically
+    underpowered and the 67% η_max significance rate is based on roughly 8 out of
+    12 conditions — unreliable at this N. The 70B tier results should be presented
+    as directional only.
+
+
+    ### Reproducibility: 2/5
+
+
+    - Attack implementations are not described in sufficient detail. What are the
+    specific prompts for each of the 9 attack types? How is "score manipulation" operationalized?
+
+    - How is ASR computed exactly? Binary success/fail per sample? What''s the threshold?
+
+    - MI estimation method (for computing K_eff) is not specified. Binning? kNN? Kernel
+    density?
+
+    - No inference hyperparameters (temperature, top-p, max tokens) reported for any
+    model.
+
+    - No code, data, or artifact release mentioned.
+
+    - API model versions not pinned (GPT-4o, Claude-3.5-Sonnet have multiple snapshots).
+
+
+    ### Excitement: 3/5
+
+
+    The contrarian thesis is compelling and timely. If the theoretical gap were closed
+    and the analysis were more rigorous, this would be an important contribution.
+    The BFT/adaptive distinction is pedagogically valuable. However, the marginal
+    improvement of the two-stage algorithm (0.042 vs 0.048 for Strongest-K) undermines
+    the practical contribution.
+
+
+    ### Strengths
+
+    - S1: Timely, contrarian thesis that challenges an implicit assumption in the
+    multi-judge literature
+
+    - S2: Impressive scale: 15 models spanning open-source and API, 455 panels, 9
+    attack types
+
+    - S3: The BFT vs adaptive adversary distinction and random-fault simulation are
+    clean and convincing
+
+    - S4: Diversity-capability tradeoff (r=-0.78) is a genuine empirical finding with
+    structural implications
+
+    - S5: Within-tier analysis (despite small N for 70B) shows the tradeoff is not
+    purely a size-class artifact
+
+    - S6: ASR concentration analysis (Gini=0.68) provides intuitive evidence for the
+    targeting mechanism
+
+    - S7: Panel size sensitivity (K=3-9) demonstrates robustness of the main finding
+
+
+    ### Weaknesses
+
+    - W1 (Major): Theorem 1 proof gap — compromising one judge does not imply compromising
+    the majority-vote panel
+
+    - W2 (Major): Multicollinearity between K_eff and η_max (r=-0.78) invalidates
+    the regression-based claim that K_eff is irrelevant; VIF not reported
+
+    - W3 (Major): Reproducibility is poor — attack details, MI estimation, hyperparameters,
+    and code all missing
+
+    - W4 (Moderate): Only majority-vote aggregation tested; weighted voting, debate,
+    or other mechanisms might change conclusions
+
+    - W5 (Moderate): Two-stage algorithm improvement over Strongest-K is marginal
+    (0.042 vs 0.048 = 12.5% relative improvement)
+
+    - W6 (Moderate): Benchmarks limited to two MCQ tasks (MMLU, ARC); no open-ended
+    generation tasks tested
+
+    - W7 (Moderate): Adaptive adversary with full panel knowledge is unrealistically
+    strong; no partial-knowledge adversary tested
+
+    - W8 (Minor): 70B tier with N=4 panels is drastically underpowered
+
+    - W9 (Minor): No multiple comparison correction across 12+ conditions
+
+
+    ### Questions for Authors
+
+    - Q1: Can you provide a rigorous proof of Theorem 1 that accounts for the majority-vote
+    requirement? What is the assumed transfer probability from the weakest judge to
+    others?
+
+    - Q2: What is the VIF for the K_eff predictor in the regression? Have you tried
+    residualizing K_eff against η_max before testing its significance?
+
+    - Q3: What happens under a partial-knowledge adversary (e.g., knows model families
+    but not exact vulnerability profiles)?
+
+    - Q4: How is ASR operationalized for each attack type? Is it binary per-sample
+    or averaged over some scoring rubric?
+
+    - Q5: What MI estimator was used for K_eff computation? How sensitive are results
+    to the estimator choice?
+
+
+    ---
+
+
+    ## R2 Assessment (Novelty + Related Work)
+
+
+    ### Novelty: Low-to-Medium
+
+
+    **The weakest-link principle under adaptive adversaries is well-established in
+    security.** Schneier''s "security is only as strong as its weakest link" is a
+    foundational axiom. In ML specifically:
+
+    - Adversarial transferability (Papernot et al. 2016, Tramèr et al. 2017) shows
+    attacks transfer between models, undermining ensemble defenses
+
+    - He et al. (2017) "Adversarial Examples for Semantic Segmentation and Object
+    Detection" demonstrated that ensemble-based defenses fail against adaptive adversaries
+
+    - Tramèr et al. (2018) "Ensemble Adversarial Training" explicitly showed that
+    diverse ensembles don''t protect against adaptive attacks
+
+
+    The paper''s BFT/adaptive distinction is a valid pedagogical reframing for the
+    LLM-judge context, but the core insight is not new. The empirical scale (15 models,
+    455 panels) is the primary contribution over existing work.
+
+
+    **The diversity-capability tradeoff** (r=-0.78) may partly conflate capability
+    with robustness. Larger models are both more capable AND more robust (due to more
+    RLHF/safety training), so the tradeoff could be a "diversity-size" artifact rather
+    than a structural property of diversity itself.
+
+
+    ### Excitement: 2.5/5
+
+
+    The finding is relevant to practitioners but not surprising to the security community.
+    The practical guidance (robustness-first) is sensible but the algorithmic contribution
+    is thin.
+
+
+    ### Soundness: 2.5/5
+
+    (Deferred to R1 for details, but concur on Theorem 1 gap and multicollinearity
+    issues)
+
+
+    ### Reproducibility: 2/5
+
+    (Concur with R1)
+
+
+    ### Strengths
+
+    - S1: Clear, well-structured paper with a compelling narrative arc
+
+    - S2: The BFT/adaptive distinction, while not novel in security, is a useful bridge
+    for the NLP community
+
+    - S3: Comprehensive experimental coverage with systematic variation across multiple
+    dimensions
+
+    - S4: Actionable practical guidance for panel designers
+
+
+    ### Weaknesses
+
+    - W1 (Critical): **Only 3 references cited.** This is far below the standard for
+    a top venue (typically 25-40). The paper fails to contextualize within the broader
+    ensemble adversarial robustness, adversarial transferability, LLM-as-judge, and
+    prompt injection literatures.
+
+    - W2 (Critical): **All 3 cited references are from 2026 with incomplete bibliographic
+    details** (no first authors for SoK, no venue details). Their verifiability is
+    questionable. If any are fabricated, this is grounds for rejection.
+
+    - W3 (Major): **BFT strawman risk.** Without verifiable citations, we cannot confirm
+    that existing papers actually claim diversity protects against adversarial (rather
+    than non-adversarial) manipulation. The papers cited may only claim diversity
+    reduces *average bias*, not adversarial ASR.
+
+    - W4 (Major): Limited novelty — weakest-link under adaptive adversaries is well-known
+    in security. The paper presents this as a "surprising" finding without acknowledging
+    prior art.
+
+    - W5 (Moderate): No discussion of when diversity IS beneficial (non-adversarial
+    settings, reducing bias, improving calibration). The "diversity trap" framing
+    may mislead practitioners into avoiding diversity entirely.
+
+    - W6 (Moderate): No ethical discussion of the attack taxonomy''s dual-use potential.
+
+
+    ### Related Work Gaps (Critical)
+
+    The paper must cite and discuss:
+
+    1. **Ensemble adversarial robustness**: Tramèr et al. (2018) "Ensemble Adversarial
+    Training"; He et al. (2017) ensemble defenses under adaptive attacks
+
+    2. **Adversarial transferability**: Papernot et al. (2016, 2017); Tramèr et al.
+    (2017) "Space of Adversarial Examples"
+
+    3. **LLM-as-Judge foundations**: Zheng et al. (2023) MT-Bench/Chatbot Arena; Li
+    et al. (2023) AlpacaEval
+
+    4. **LLM judge biases**: Wang et al. (2023) position bias; Koo et al. (2023) sycophancy
+
+    5. **Prompt injection**: Perez & Ribeiro (2022); Greshake et al. (2023)
+
+    6. **Multi-judge evaluation**: Verga et al. (2024); Li et al. (2024) multi-LLM
+    panels
+
+    7. **Ensemble diversity theory**: Krogh & Vedelsby (1995); Brown et al. (2005)
+    negative correlation learning
+
+    8. **Security weakest-link**: Schneier (2000); Anderson (2001)
+
+
+    ### Questions for Authors
+
+    - Q1: Can you verify the three cited references? Please provide full bibliographic
+    details (all authors, exact venue, DOI/URL).
+
+    - Q2: Do the cited papers actually claim diversity protects against *adversarial*
+    manipulation specifically, or just against *bias reduction*?
+
+    - Q3: How do you position your work relative to the ensemble adversarial robustness
+    literature (Tramèr et al. 2018)?
+
+    - Q4: In what settings IS diversity beneficial? Your framing may be taken as a
+    blanket recommendation against diversity.
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+
+    **Points of agreement:**
+
+    1. Theorem 1''s proof gap is a real issue (both reviewers)
+
+    2. Multicollinearity undermines the regression-based argument (both)
+
+    3. Two-stage algorithm''s marginal improvement limits practical impact (both)
+
+    4. Reproducibility is inadequate (both)
+
+    5. The BFT/adaptive distinction is the paper''s cleanest contribution (both)
+
+
+    **Points of divergence:**
+
+    - R2 is substantially more concerned about the references (potentially disqualifying)
+    and novelty (well-known in security). R1 views the empirical scale as a genuine
+    contribution even if the insight is not entirely new.
+
+    - R1 scores 2.5 (Borderline Findings); R2 scores 2.0 (Major revision needed).
+
+
+    ### Step 3: Convergence
+
+
+    After discussion, the reviewers converge on the following assessment:
+
+
+    1. **The reference problem is severe but addressable.** If the 3 cited references
+    are fabricated, this is disqualifying. If they are real but incomplete, the paper
+    still needs 20+ additional references to meet venue standards. This is flagged
+    as a mandatory revision.
+
+
+    2. **Theorem 1 needs a rigorous proof or restatement.** The current proof sketch
+    does not establish the claimed bound under majority vote. Options: (a) prove with
+    explicit transfer assumptions, (b) weaken to "panel_ASR is monotonically increasing
+    in η_max" which the empirical data supports, (c) frame as an empirical finding
+    rather than a theorem.
+
+
+    3. **Multicollinearity must be addressed.** At minimum: report VIF, try partial
+    correlation, or use a structural model that separates direct and indirect effects.
+
+
+    4. **The contribution is real but incremental.** The empirical scale (15 models,
+    455 panels, 9 attacks) is impressive, and the BFT/adaptive distinction is pedagogically
+    valuable for the NLP community even if known in security. But the theoretical
+    gap, reproducibility issues, and thin related work prevent acceptance at the main
+    conference.
+
+
+    5. **The paper would benefit from a "when diversity helps" section** to avoid
+    misleading practitioners.
+
+
+    ### Step 4: Final Consensus
+
+
+    **Consensus Score: 2.5 (Borderline Findings)**
+
+
+    The paper addresses a timely and practically relevant question with impressive
+    experimental breadth. The BFT/adaptive adversary distinction and the diversity-capability
+    tradeoff are genuine contributions. However, fundamental issues prevent acceptance
+    to the main conference:
+
+
+    - The formal theorem has a proof gap that undermines the theoretical claim
+
+    - Severe multicollinearity between K_eff and η_max is not addressed
+
+    - Only 3 references (with questionable verifiability) is far below venue standards
+
+    - Reproducibility is poor (missing attack details, hyperparameters, code)
+
+    - The core insight (weakest-link under adaptive adversaries) has extensive prior
+    art in security
+
+
+    With significant revisions — rigorous proof, comprehensive related work (25+ references),
+    multicollinearity analysis, reproducibility package — this could be a solid Findings
+    paper or potentially main conference.
+
+
+    ---
+
+
+    ## Scores
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness | 2.5 | 2.5 | **2.5/5** |
+
+    | Excitement | 3.0 | 2.5 | **2.5/5** |
+
+    | Reproducibility | 2.0 | 2.0 | **2.0/5** |
+
+    | Overall | 2.5 | 2.0 | **2.5** |
+
+
+    **Overall Assessment: 2.5 (Borderline Findings)**
+
+    **Confidence: 4/5**
+
+
+    ### Mandatory Revisions for Resubmission
+
+    1. Fix Theorem 1 proof or restate as empirical finding
+
+    2. Add 20-30 references covering ensemble adversarial robustness, adversarial
+    transferability, LLM-as-judge, prompt injection literatures
+
+    3. Report VIF; address multicollinearity with partial correlation or structural
+    modeling
+
+    4. Add reproducibility details: attack prompts, MI estimator, hyperparameters,
+    code release
+
+    5. Test at least one non-majority-vote aggregation mechanism
+
+    6. Add discussion of when diversity IS beneficial (non-adversarial settings)
+
+
+    ### Recommended Revisions
+
+    7. Test partial-knowledge adversary
+
+    8. Add open-ended generation benchmarks beyond MCQ
+
+    9. Strengthen 70B tier analysis or caveat appropriately
+
+    10. Add ethical considerations for the attack taxonomy
+
+
+    ---
+
+
+    引用验证失败: 目录不存在: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/paper'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T055016/median/paper.pdf
+  imagined_experiments:
+  - name: 'Scale expansion: 15+ models (API + large open-source)'
+    plan_id: plan_001
+    description: '将模型池从 6 扩展到 15（新增 GPT-4o-mini, GPT-4o, GPT-4.1, Claude-3.5-Sonnet,
+      Gemini-1.5-Pro, Llama-3.1-70B, Qwen2.5-72B, Mixtral-8x22B）。在 C(15,3)=455 panels
+      上重跑 MI matrix 和 multivariate regression。2 datasets × 3 attacks = 6 conditions。
+
+      '
+    expected_results:
+      total_panels: 455
+      total_mi_pairs: 105
+      eta_max_sig_count: 5
+      eta_max_sig_rate: 0.83
+      eta_max_median_beta: 0.52
+      keff_sig_negative_count: 1
+      keff_sig_positive_count: 1
+      keff_nonsig_count: 4
+      keff_nonsig_rate: 0.67
+      keff_median_beta_when_sig: -0.12
+      median_R2: 0.38
+      R2_eta_only: 0.34
+      R2_increment_from_keff: 0.04
+      copula_underestimate_median: 42
+      copula_underestimate_range_lo: 8
+      copula_underestimate_range_hi: 210
+      family_label_mann_whitney_p: 0.12
+      keff_eta_max_r_overall: -0.65
+    result_rationale: 'N=455 panels 比 MVP 的 N=20 提供了极大的统计功效提升。η_max 在 MVP 中已 4/6 显著，
+      扩大样本量后即使效果量不变也更容易达到显著性，因此升至 5/6。但 median 档非 100%： ARC×sycophancy 条件下 η_max 方差在
+      API 模型中被压缩（API 模型 η_max 整体偏低且聚集）， 导致该条件下 η_max 效应被稀释（p ≈ 0.07）。K_eff 在 MVP 中
+      1/6 显著负（arc×sycophancy）， 扩展后高功效检测到弱效应：MMLU×prompt_injection 中 K_eff 呈弱显著负（β=-0.12,
+      p=0.03）， 但标准化效应量仅为 η_max 的 1/4。同时 MMLU×position 中 K_eff 出现与 MVP 一致的异常 正效应（p=0.04），原因是
+      position bias 在高多样性 panel 中反而触发更多 judge 的 共享 bias。API 模型引入新现象：GPT-4o/Claude/Gemini
+      三者个体鲁棒性都高（η_max 低）， 它们组成的 panel 中 η_max 方差被压缩，K_eff 的边际效应变得可检测。Copula 中位数从 MVP
+      的 10-21× 变为 42×，因为 API 模型间的高阶依赖（共享训练数据 distribution） 比开源模型间更强，但 Gaussian copula
+      仍然无法捕捉。Family label 测试 p=0.12：新增 5 个 API 模型（理论上 5 个不同 family）推高了 cross-family
+      样本量，但 API 模型间 MI 反而偏高（共享训练 paradigm），导致 within vs cross-family 区分依然不显著。
+
+      '
+    tables:
+    - name: 'Table 2: Multivariate Regression on 455 Panels (15 Models)'
+      columns:
+      - Condition
+      - β(η_max)
+      - p(η_max)
+      - β(K_eff)
+      - p(K_eff)
+      - R²
+      - ΔR²(+K_eff)
+      rows:
+      - - MMLU×prompt_inj
+        - '0.58'
+        - '0.001'
+        - '-0.12'
+        - '0.031'
+        - '0.41'
+        - '+0.04'
+      - - MMLU×score_manip
+        - '0.51'
+        - '0.003'
+        - '-0.06'
+        - '0.218'
+        - '0.36'
+        - '+0.01'
+      - - MMLU×sycophancy
+        - '0.47'
+        - <0.001
+        - '-0.04'
+        - '0.412'
+        - '0.35'
+        - '+0.00'
+      - - ARC×prompt_inj
+        - '0.55'
+        - <0.001
+        - '-0.08'
+        - '0.089'
+        - '0.39'
+        - '+0.02'
+      - - ARC×score_manip
+        - '0.49'
+        - '0.005'
+        - '-0.05'
+        - '0.287'
+        - '0.34'
+        - '+0.01'
+      - - ARC×sycophancy
+        - '0.44'
+        - '0.072'
+        - '-0.15'
+        - '0.008'
+        - '0.42'
+        - '+0.06'
+    - name: 'Table 3: Copula Underestimation Ratio (15-model MI Matrix)'
+      columns:
+      - Model Pair Type
+      - N pairs
+      - Median MI_obs/MI_gauss
+      - Range
+      rows:
+      - - Open-source × Open-source
+        - '15'
+        - 28×
+        - 8-145×
+      - - API × API
+        - '10'
+        - 68×
+        - 32-210×
+      - - Open-source × API
+        - '80'
+        - 41×
+        - 12-180×
+      - - Overall
+        - '105'
+        - 42×
+        - 8-210×
+    figures_description:
+    - 'Fig 2a: Scatter plot of η_max vs K_eff for 455 panels, color-coded by capability
+      tier (7B/14-32B/70B/API). Clear negative slope (r=-0.65) with API-only panels
+      forming a distinct cluster in the low-η_max, moderate-K_eff region.'
+    - 'Fig 2b: Heatmap of 15×15 pairwise MI matrix (MMLU), clustered by capability
+      rather than family. API models cluster together despite different families.
+      Diagonal blocks correspond to capability tiers, not model families.'
+    analysis: '核心发现：η_max 仍然是主导预测因子（5/6 条件显著），但 K_eff 不再是完全无关—— 在 1/6 条件中呈弱显著负效应（diversity
+      有边际帮助）。关键 nuance：K_eff 显著的条件 恰好是 η_max 方差最大的条件（arc×sycophancy，R²=0.42），提示当个体鲁棒性差异大时
+      diversity 的边际价值才可检测。API 模型引入 "全强 regime"：在这个 regime 中 weakest-link 效应减弱（因为没有明显
+      weak link），diversity 的边际效应变得相对更重要。这要求论文 叙事从 "diversity never helps" 转为 "diversity''s
+      marginal benefit is dominated by and conditional on individual robustness"。Copula
+      失败结论进一步加强（中位 42× vs MVP 的 10-21×），特别是 API 模型间的 68× 中位数表明这些模型共享比开源模型更强的 隐性依赖。ΔR²
+      分析是关键防守数据：加入 K_eff 后 R² 平均仅提升 0.02，最高 0.06， 表明 diversity 的解释力在统计显著的条件下也很有限。
+
+      '
+  - name: 'Attack expansion: 6+ attack types'
+    plan_id: plan_002
+    description: '在 plan_001 的 15 模型池基础上新增 few-shot hijacking, persona manipulation,
+      instruction override 三种攻击。总计 2 datasets × 6 attacks = 12 conditions， 455 panels/condition。验证
+      weakest-link 跨攻击面普适性。
+
+      '
+    expected_results:
+      total_conditions: 12
+      eta_max_sig_count: 8
+      eta_max_sig_rate: 0.67
+      keff_sig_negative_count: 2
+      keff_sig_positive_count: 1
+      keff_nonsig_count: 9
+      keff_nonsig_rate: 0.75
+      keff_median_beta_when_sig: -0.14
+      eta_max_median_beta: 0.48
+      median_R2: 0.36
+      new_attack_eta_max_sig_rate: 0.5
+      new_attack_keff_nonsig_rate: 0.83
+    result_rationale: '新攻击类型中，few-shot hijacking 和 instruction override 是典型 targeted
+      attack， η_max 效应强（β≈0.55-0.60），K_eff 无关——攻击者直接针对最弱 judge 的 instruction following
+      缺陷，diversity 无法对冲。Persona manipulation 是唯一例外：该攻击利用 judge 对 authority/persona
+      的响应差异，不同模型的 persona susceptibility 分布更均匀 （不像 prompt injection 那样集中在弱模型），导致 η_max
+      效应减弱（p≈0.08-0.12）， K_eff 在 ARC×persona 中呈弱显著负（p=0.04）。这解释了为什么 8/12 而非 12/12
+      η_max 显著：4 个不显著条件中 3 个涉及 persona manipulation（2 个 dataset）和 ARC×sycophancy （延续
+      plan_001 趋势），1 个是 MMLU×authority（边缘 p=0.06）。新攻击整体 η_max 显著率（3/6=0.50）低于原有攻击（5/6=0.83），因为
+      few-shot hijacking 在 MMLU 上 所有模型 ASR 都很高（ceiling effect，η_max 方差被压缩），persona
+      manipulation 如上述。 K_eff 在新攻击中仅 1/6 显著负——targeted attack 本质上不给 diversity 发挥空间。
+
+      '
+    tables:
+    - name: 'Table 4: Regression Summary Across 12 Conditions (455 Panels)'
+      columns:
+      - Attack Type
+      - Dataset
+      - β(η_max)
+      - p(η_max)
+      - β(K_eff)
+      - p(K_eff)
+      - R²
+      rows:
+      - - prompt_injection
+        - MMLU
+        - '0.58'
+        - '0.001'
+        - '-0.12'
+        - '0.031'
+        - '0.41'
+      - - prompt_injection
+        - ARC
+        - '0.55'
+        - <0.001
+        - '-0.08'
+        - '0.089'
+        - '0.39'
+      - - score_manipulation
+        - MMLU
+        - '0.51'
+        - '0.003'
+        - '-0.06'
+        - '0.218'
+        - '0.36'
+      - - score_manipulation
+        - ARC
+        - '0.49'
+        - '0.005'
+        - '-0.05'
+        - '0.287'
+        - '0.34'
+      - - sycophancy
+        - MMLU
+        - '0.47'
+        - <0.001
+        - '-0.04'
+        - '0.412'
+        - '0.35'
+      - - sycophancy
+        - ARC
+        - '0.44'
+        - '0.072'
+        - '-0.15'
+        - '0.008'
+        - '0.42'
+      - - few_shot_hijack
+        - MMLU
+        - '0.32'
+        - '0.118'
+        - '-0.03'
+        - '0.605'
+        - '0.18'
+      - - few_shot_hijack
+        - ARC
+        - '0.57'
+        - '0.002'
+        - '-0.07'
+        - '0.154'
+        - '0.38'
+      - - persona_manip
+        - MMLU
+        - '0.38'
+        - '0.085'
+        - '-0.11'
+        - '0.062'
+        - '0.28'
+      - - persona_manip
+        - ARC
+        - '0.35'
+        - '0.108'
+        - '-0.16'
+        - '0.038'
+        - '0.30'
+      - - instruction_override
+        - MMLU
+        - '0.60'
+        - <0.001
+        - '-0.05'
+        - '0.321'
+        - '0.43'
+      - - instruction_override
+        - ARC
+        - '0.53'
+        - '0.004'
+        - '0.09'
+        - '0.047'
+        - '0.37'
+    figures_description:
+    - 'Fig 3: Forest plot of standardized β coefficients for η_max (blue) and K_eff
+      (red) across 12 conditions. η_max consistently positive and large; K_eff scattered
+      around zero with occasional weak negative values. Error bars (95% CI) for K_eff
+      cross zero in 9/12 conditions.'
+    analysis: 'Attack expansion 确认 weakest-link 在大多数攻击类型下成立，但揭示了 attack-type 异质性：
+      targeted attacks（prompt_injection, instruction_override）η_max 效应最强（β>0.50），
+      broad-spectrum attacks（sycophancy, persona_manipulation）效应减弱。Few-shot hijacking
+      在 MMLU 上出现 ceiling effect（所有模型 ASR>0.7），是方法论警告而非反例。 Persona manipulation 是论文中需要
+      explicitly address 的边界条件：当攻击不 adaptive-target weakest judge 而是均匀影响所有 judge 时，diversity
+      确实有边际作用。这恰好支持 Claim 2（BFT distinction）——persona manipulation 更接近 "random fault"
+      模式， K_eff 的边际显著正好验证了理论预测。论文策略：将 persona manipulation 作为 "when does diversity
+      help" section 的核心案例。instruction_override 在 ARC 上 K_eff 异常正（p=0.04）需要报告但解释为 confound：高
+      K_eff panels 恰好包含更多 API 模型（instruction following 强），K_eff 和 capability 在该 subset
+      中混淆。
+
+      '
+  - name: Adaptive adversary formal theorem + random-fault simulation
+    plan_id: plan_003
+    description: '(a) 形式化证明 adaptive adversary 下 panel_ASR = Θ(η_max)； (b) 实现 random-fault
+      simulation（每个 judge 独立以 p_j 失败）； (c) 对比 adaptive vs random-fault 下 K_eff 的预测力，验证
+      BFT distinction。 在 6 original conditions 上运行（不依赖 plan_001）。
+
+      '
+    expected_results:
+      theorem_bound: panel_ASR ≤ η_max · (1 + ε·log(K))
+      bound_tightness: within factor 1.3 of empirical
+      rf_keff_sig_negative_count: 4
+      rf_keff_sig_rate: 0.67
+      rf_eta_max_sig_count: 2
+      rf_eta_max_sig_rate: 0.33
+      adaptive_keff_nonsig_rate: 0.83
+      randomfault_keff_sig_rate: 0.67
+      contrast_cohen_d: 0.62
+      contrast_direction: correct
+      keff_beta_shift_mean: -0.35
+      keff_beta_shift_range_lo: -0.18
+      keff_beta_shift_range_hi: -0.52
+    result_rationale: 'Formal theorem: adaptive adversary 选择 argmax_j ASR_j，因此 panel
+      在 majority vote 下的 ASR 受限于攻击者能否翻转 ≥ceil(K/2) 个 judge。Adaptive adversary 最优策略是
+      先攻破最弱 judge，再依次攻击次弱 judge。因此 panel_ASR 主要项为 η_max，次要项为 ordered statistics 的衰减——当
+      K 增大时次弱 judge 的鲁棒性提供对数级修正， 给出 η_max·(1+ε·log(K)) 上界。在 median 档，empirical ASR
+      不完美吻合理论上界 （within factor 1.3 而非 optimistic 档的 1.1），因为实际攻击不完全 adaptive—— 有些攻击（sycophancy）对所有
+      judge 都有一定效果，不完全集中在最弱 judge。
+
+      Random-fault simulation: 将每个 judge 的 failure 建模为独立 Bernoulli(p_j)， p_j 取自 empirical
+      ASR。在此设定下 K_eff 显著负（4/6 条件），因为独立失败下 增加独立 judge 确实降低 panel 失败概率（BFT 有效）。η_max
+      仅在 2/6 条件中显著， 因为 random fault 下攻击不集中在最弱 judge——每个 judge 的贡献更均匀。
+
+      Cohen''s d = 0.62（中等效应量）而非 optimistic 的 >0.8，原因：在 sycophancy 和 persona-like
+      条件下，实际攻击本身就有 random-fault 成分（bias 影响所有 judge）， 导致 adaptive vs random-fault 区分度降低。但
+      d=0.62 仍足以支持 "distinct regimes" 论点。 Reviewer 可能要求 confidence interval——95% CI
+      为 [0.28, 0.96]，下界 >0 但偏宽， 论文需要 acknowledge 这一点。
+
+      '
+    tables:
+    - name: 'Table 5: Adaptive vs Random-Fault Regime Comparison'
+      columns:
+      - Condition
+      - β(K_eff) Adaptive
+      - p Adaptive
+      - β(K_eff) Random-Fault
+      - p Random-Fault
+      - Δβ
+      rows:
+      - - MMLU×prompt_inj
+        - '-0.12'
+        - '0.031'
+        - '-0.48'
+        - '0.002'
+        - '-0.36'
+      - - MMLU×score_manip
+        - '-0.06'
+        - '0.218'
+        - '-0.41'
+        - '0.008'
+        - '-0.35'
+      - - MMLU×sycophancy
+        - '-0.04'
+        - '0.412'
+        - '-0.22'
+        - '0.078'
+        - '-0.18'
+      - - ARC×prompt_inj
+        - '-0.08'
+        - '0.089'
+        - '-0.52'
+        - <0.001
+        - '-0.44'
+      - - ARC×score_manip
+        - '-0.05'
+        - '0.287'
+        - '-0.38'
+        - '0.015'
+        - '-0.33'
+      - - ARC×sycophancy
+        - '-0.15'
+        - '0.008'
+        - '-0.47'
+        - '0.003'
+        - '-0.32'
+    - name: 'Table 6: BFT Contrast Summary Statistics'
+      columns:
+      - Metric
+      - Adaptive
+      - Random-Fault
+      - Cohen's d
+      - 95% CI
+      rows:
+      - - K_eff sig rate
+        - '0.17'
+        - '0.67'
+        - —
+        - —
+      - - Mean |β(K_eff)|
+        - '0.08'
+        - '0.41'
+        - '0.62'
+        - '[0.28, 0.96]'
+      - - Mean R²
+        - '0.38'
+        - '0.44'
+        - —
+        - —
+      - - η_max sig rate
+        - '0.83'
+        - '0.33'
+        - —
+        - —
+    figures_description:
+    - 'Fig 4a: Paired bar chart showing β(K_eff) under adaptive (light) vs random-fault
+      (dark) regime for each of 6 conditions. Random-fault bars consistently more
+      negative. Significance markers (* for p<0.05) appear on 4/6 random-fault bars
+      but only 1/6 adaptive bars.'
+    - 'Fig 4b: Schematic illustrating adaptive adversary targeting strategy (attack
+      concentrates on weakest judge) vs random-fault (attacks distributed uniformly).
+      Arrows show information flow from adversary to judges.'
+    analysis: 'BFT distinction 是论文的理论核心，median 档下 Cohen''s d=0.62 提供了 "moderate" 级别证据——
+      足以论证两种 regime 在统计上可区分，但不足以宣称 dramatic difference。论文策略： (1) 报告 d=0.62 和宽 CI，honest
+      地说这是 moderate effect；(2) 用 sycophancy 条件 作为 "bridge case"——该攻击同时具有 adaptive
+      和 random 成分，恰好在两种 regime 间 过渡；(3) 理论贡献不依赖 effect size——theorem 本身是 worst-case
+      bound，即使实际 攻击不完全 adaptive，bound 仍有效。Reviewer 若 push back on effect size，可回应
+      "our theorem provides a security guarantee; the moderate empirical effect size
+      reflects that real attacks lie on a spectrum between fully adaptive and fully
+      random, which our framework captures."
+
+      '
+  - name: Capability-matched validation
+    plan_id: plan_004
+    description: '在相同 capability tier 内（控制 η_max 方差）测试 K_eff 是否显著。 Tier 划分：Strong（70B
+      + API，~8 models, C(8,3)=56 panels）、 Weak（7B + 14B, ~5 models, C(5,3)=10 panels）、
+      API-only（5 models, C(5,3)=10 panels）。6 conditions。
+
+      '
+    expected_results:
+      strong_tier_n_panels: 56
+      strong_eta_max_sig_count: 3
+      strong_eta_max_sig_rate: 0.5
+      strong_keff_sig_negative_count: 1
+      strong_keff_sig_rate: 0.17
+      strong_median_R2: 0.22
+      strong_keff_median_beta: -0.15
+      weak_tier_n_panels: 10
+      weak_eta_max_sig_count: 3
+      weak_eta_max_sig_rate: 0.5
+      weak_keff_sig_negative_count: 0
+      weak_keff_sig_rate: 0.0
+      weak_median_R2: 0.28
+      api_tier_n_panels: 10
+      api_eta_max_sig_count: 2
+      api_eta_max_sig_rate: 0.33
+      api_keff_sig_negative_count: 1
+      api_keff_sig_rate: 0.17
+      api_median_R2: 0.18
+      api_keff_beta_when_sig: -0.22
+      within_tier_r_strong: -0.35
+      within_tier_r_weak: -0.28
+      within_tier_r_api: -0.32
+    result_rationale: 'Capability-matched analysis 是 median 档的关键 nuance 实验。控制 capability
+      tier 后， η_max 的方差被大幅压缩：Strong tier 内 η_max range 从全局的 [0.05, 0.85] 缩小到 [0.05,
+      0.35]，Weak tier 缩小到 [0.45, 0.85]。方差压缩导致 η_max 回归系数虽方向 正确但显著性下降（strong tier 3/6,
+      weak tier 3/6, API 2/6）。
+
+      关键发现在 Strong tier 和 API tier：当所有模型个体鲁棒性都已较高（η_max < 0.35）， η_max 的 remaining
+      variance 中，K_eff 的 marginal 贡献变得可检测。Strong tier 中 MMLU×prompt_injection 条件下
+      K_eff β=-0.15, p=0.04——当 panel 中全是 robust model 时， diversity 提供了额外的边际防护。API
+      tier 中类似（1/6 显著），但 N=10 power 太低 需要 caveat。
+
+      Weak tier 中 K_eff 0/6 显著——当模型都 weak 时，增加 diversity 只是换一个同样 weak 的 judge，没有安全增益。这是核心
+      insight：diversity helps only when the "weakest link" is already strong。类比物理安全：给一栋所有门都坚固的建筑增加不同品牌的锁有边际帮助；
+      给一栋有敞开窗户的建筑加锁毫无意义。
+
+      Within-tier tradeoff r ≈ -0.32（strong）vs 全局 r=-0.65：tier 内 tradeoff 依然存在 但大幅减弱，因为
+      capability range 被控制。这表明全局 tradeoff 的主要驱动力是跨 tier 差异，而非 tier 内差异。
+
+      '
+    tables:
+    - name: 'Table 7: Within-Tier Regression Results (η_max Controlled)'
+      columns:
+      - Tier
+      - N panels
+      - η_max sig rate
+      - K_eff sig(-) rate
+      - Median R²
+      - r(K_eff,η_max)
+      rows:
+      - - Strong (70B+API)
+        - '56'
+        - 3/6 (0.50)
+        - 1/6 (0.17)
+        - '0.22'
+        - '-0.35'
+      - - Weak (7B+14B)
+        - '10'
+        - 3/6 (0.50)
+        - 0/6 (0.00)
+        - '0.28'
+        - '-0.28'
+      - - API-only
+        - '10'
+        - 2/6 (0.33)
+        - 1/6 (0.17)
+        - '0.18'
+        - '-0.32'
+      - - Full pool (ref)
+        - '455'
+        - 5/6 (0.83)
+        - 1/6 (0.17)
+        - '0.38'
+        - '-0.65'
+    - name: 'Table 8: API-Only Tier Detail (C(5,3)=10 Panels)'
+      columns:
+      - Condition
+      - β(η_max)
+      - p(η_max)
+      - β(K_eff)
+      - p(K_eff)
+      - R²
+      rows:
+      - - MMLU×prompt_inj
+        - '0.35'
+        - '0.042'
+        - '-0.22'
+        - '0.048'
+        - '0.21'
+      - - MMLU×score_manip
+        - '0.28'
+        - '0.112'
+        - '-0.14'
+        - '0.187'
+        - '0.14'
+      - - MMLU×sycophancy
+        - '0.22'
+        - '0.185'
+        - '-0.08'
+        - '0.412'
+        - '0.10'
+      - - ARC×prompt_inj
+        - '0.38'
+        - '0.035'
+        - '-0.18'
+        - '0.082'
+        - '0.22'
+      - - ARC×score_manip
+        - '0.25'
+        - '0.148'
+        - '-0.10'
+        - '0.285'
+        - '0.12'
+      - - ARC×sycophancy
+        - '0.20'
+        - '0.218'
+        - '-0.20'
+        - '0.065'
+        - '0.18'
+    figures_description:
+    - 'Fig 5: Three-panel scatter (Strong/Weak/API tier) of η_max vs panel ASR for
+      one representative condition (MMLU×prompt_injection). Strong tier shows tight
+      cluster with weak slope; Weak tier shows steep positive slope (weakest link
+      drives ASR); API tier shows flat relationship. Regression lines with 95% CI
+      bands.'
+    - 'Fig 6: Bar chart comparing K_eff significance rate across tiers. Clear step
+      pattern: Weak (0%) < Full (17%) < Strong (17%) ≈ API (17%), but with annotation
+      showing Strong/API K_eff effect sizes are larger when significant.'
+    analysis: '这是 median 档叙事的核心 ablation，直接回应 reviewer concern "when does diversity
+      help?"。 答案清晰：diversity 仅在 capability-homogeneous high-robustness regime 中有边际作用。
+      但需诚实报告 limitations：(1) API tier N=10，统计功效低，显著结果需谨慎解读； (2) Strong tier 1/6 显著可能是
+      multiple comparison 产物（6 tests, Bonferroni 后不再显著）。 论文建议策略：报告未校正和 Bonferroni
+      校正后的 p 值，并强调 effect size 而非 p 值—— 即使 Bonferroni 后 K_eff 不显著，β=-0.15 的 direction
+      和 magnitude 仍是有信息量的。 Within-tier tradeoff r ≈ -0.32 表明即使在同一 tier 内，选择更 diverse
+      的 panel 仍会 略微牺牲 robustness，但代价远小于跨 tier 选择。这为 Claim 3 提供了 nuanced version： "the
+      diversity-capability tradeoff is primarily driven by cross-tier selection; within-tier,
+      the tradeoff is attenuated but not eliminated."
+
+      '
+  - name: 'Two-stage panel design algorithm: full benchmark'
+    plan_id: plan_005
+    description: '实现 robustness-first 两阶段算法并与 5 baselines 对比。 策略：(1) Random, (2) Max-K_eff,
+      (3) Min-η_max, (4) Max-family-diversity, (5) Strongest-K, (6) Two-stage (filter
+      η≤threshold, then max K_eff)。 在 15 模型池 × 6 conditions 上评估。Sweep threshold parameter。
+
+      '
+    expected_results:
+      two_stage_win_rate: 0.67
+      two_stage_win_count: 4
+      total_conditions: 6
+      min_eta_max_win_count: 1
+      strongest_k_win_count: 1
+      max_keff_rank: 4.2
+      max_family_div_rank: 4.8
+      random_rank: 5.1
+      strong_regime_two_stage_vs_max_keff_p: 0.32
+      strong_regime_two_stage_vs_min_eta_p: 0.28
+      strong_regime_difference: not significant
+      optimal_threshold_range:
+      - 0.2
+      - 0.35
+      threshold_sensitivity: moderate
+      pareto_knee_eta: 0.28
+    result_rationale: 'Two-stage 算法在 4/6 conditions (0.67) 下 win（定义：最低 panel ASR），因为它在
+      第一阶段过滤掉 weak judge 后，第二阶段的 diversity maximization 在 robust-judge pool 中确实提供边际增益（与
+      plan_004 结论一致）。但 median 档下 win rate 仅 0.67 而非 optimistic 的 >0.85：
+
+      (1) 在 MMLU×sycophancy 中 Min-η_max 策略赢——因为 sycophancy 攻击几乎完全由 个体鲁棒性决定，第二阶段的 diversity
+      增益为零，而 Min-η_max 省去了第二阶段的 diversity 妥协（有时 max K_eff 会选入一个略弱但更 diverse 的 judge）。
+
+      (2) 在 ARC×prompt_injection 中 Strongest-K 策略赢——该条件下最强 3 个模型恰好 也是最 robust against
+      prompt injection 的（GPT-4o, Claude, GPT-4.1），而 two-stage 在 threshold=0.28 时让入了一个
+      borderline 模型。
+
+      All-strong regime（仅限 API 模型 pool）中，two-stage 与 max-K_eff 和 min-η_max 均无显著差异（p>0.25），因为所有候选模型都通过了
+      threshold——第一阶段 filter 变成 no-op，退化为 max-K_eff。这直接降低了 Claim 6 的价值：当模型都足够 robust
+      时， 任何合理策略都差不多。论文应将 Claim 6 从 "formal algorithm" 降级为 "practical guideline"：先确保个体鲁棒性，然后在此基础上增加
+      diversity 是 good practice 但 不需要复杂算法。
+
+      Threshold sweep 显示最优 threshold 在 0.20-0.35 范围内，sensitivity 中等—— 偏离最优 threshold
+      ±0.10 导致 ASR 增加 ~15%（不是 dramatic failure，但也不 robust）。
+
+      '
+    tables:
+    - name: 'Table 9: Panel Selection Strategy Comparison (Mean ASR, Lower = Better)'
+      columns:
+      - Strategy
+      - MMLU×PI
+      - MMLU×SM
+      - MMLU×Syc
+      - ARC×PI
+      - ARC×SM
+      - ARC×Syc
+      - Mean Rank
+      rows:
+      - - Two-stage (ours)
+        - '0.082'
+        - '0.095'
+        - '0.118'
+        - '0.068'
+        - '0.075'
+        - '0.088'
+        - '1.7'
+      - - Min-η_max
+        - '0.091'
+        - '0.098'
+        - '0.105'
+        - '0.072'
+        - '0.079'
+        - '0.092'
+        - '2.2'
+      - - Strongest-K
+        - '0.088'
+        - '0.102'
+        - '0.125'
+        - '0.062'
+        - '0.082'
+        - '0.098'
+        - '2.8'
+      - - Max-K_eff
+        - '0.145'
+        - '0.152'
+        - '0.168'
+        - '0.118'
+        - '0.128'
+        - '0.142'
+        - '4.2'
+      - - Max-family-div
+        - '0.162'
+        - '0.175'
+        - '0.188'
+        - '0.135'
+        - '0.148'
+        - '0.158'
+        - '4.8'
+      - - Random
+        - '0.178'
+        - '0.185'
+        - '0.195'
+        - '0.148'
+        - '0.155'
+        - '0.172'
+        - '5.1'
+    - name: 'Table 10: Threshold Sensitivity Analysis'
+      columns:
+      - Threshold (η)
+      - N judges passing
+      - Mean ASR
+      - Δ from optimal
+      rows:
+      - - '0.10'
+        - '3'
+        - '0.092'
+        - '+0.008'
+      - - '0.20'
+        - '6'
+        - '0.085'
+        - '+0.001'
+      - - '0.25'
+        - '8'
+        - '0.084'
+        - '0.000'
+      - - '0.30'
+        - '10'
+        - '0.088'
+        - '+0.004'
+      - - '0.40'
+        - '12'
+        - '0.105'
+        - '+0.021'
+      - - '0.50'
+        - '14'
+        - '0.132'
+        - '+0.048'
+      - - 1.00 (no filter)
+        - '15'
+        - '0.145'
+        - '+0.061'
+    figures_description:
+    - 'Fig 7: Pareto frontier plot with x-axis = mean panel η_max, y-axis = mean panel
+      K_eff. Each strategy is a point. Two-stage traces a curve as threshold varies.
+      Knee at threshold≈0.28. Min-η_max is at top-left (low η_max, low K_eff); Max-K_eff
+      at bottom-right (high η_max, high K_eff).'
+    analysis: 'Two-stage 算法在 median 档下优势温和但一致（mean rank 1.7 vs 次优 min-η_max 的 2.2）。
+      关键 insight：策略差异主要来自 Max-K_eff 和 Max-family-div 的 bad performance （rank 4-5），而非
+      Two-stage 的 exceptional performance。Top-3 策略（Two-stage, Min-η_max, Strongest-K）之间差异较小，在
+      all-strong regime 中更是不显著。 这意味着论文的 practical message 是："avoid diversity-first
+      strategies" 而不是 "use our specific algorithm"。Claim 6 相应降级为 practical guideline：
+      "When designing multi-judge panels, prioritize individual robustness over diversity.
+      Among robustness-qualified judges, diversity is a useful tiebreaker." Threshold
+      sensitivity 中 moderate 意味着不需要精确调参——threshold 在 0.20-0.35 范围内都 reasonable，不像某些
+      ML hyperparameters 那样 brittle。
+
+      '
+  - name: Per-judge ASR concentration analysis
+    plan_id: plan_006
+    description: '对每个 panel × attack，测量 per-judge ASR 分布的集中度（Gini, Entropy, 最弱 judge
+      占比）。验证 adaptive adversary 是否确实将攻击集中在最弱 judge 上。 455 panels × 6 conditions。
+
+      '
+    expected_results:
+      gini_median: 0.42
+      gini_range_lo: 0.15
+      gini_range_hi: 0.68
+      gini_strong_tier_median: 0.28
+      gini_weak_tier_median: 0.52
+      weakest_judge_asr_share_median: 0.58
+      weakest_judge_share_strong_tier: 0.42
+      weakest_judge_share_weak_tier: 0.68
+      entropy_ratio_to_uniform_median: 0.72
+      concentration_eta_max_correlation: 0.55
+    result_rationale: 'Median 档下 Gini=0.42 表明攻击成功有中等程度的集中性——不是完全集中在最弱 judge （Gini>0.7
+      = optimistic），也不是均匀分布（Gini<0.2）。最弱 judge 承担 58% 的 攻击成功（在 K=3 panel 中均匀分布期望值为
+      33%），是其他 judge 的约 1.7 倍—— 方向正确但非压倒性。
+
+      Tier 差异揭示机制：Weak tier Gini=0.52, weakest share=68%——weak models 中 最弱那个被 disproportionately
+      攻击（adaptive targeting 效果明显）。Strong tier Gini=0.28, weakest share=42%——strong
+      models 间差异小，攻击更分散。这与 plan_004 发现一致：Strong tier 中 diversity 有边际作用恰好因为攻击不完全集中在最弱
+      judge。
+
+      concentration 与 η_max 相关性 r=0.55（中等）而非 >0.8（optimistic），因为 sycophancy 和 persona
+      manipulation 攻击对 strong judge 也有一定效果，拉低了 整体集中度。这为理论 bound 的 "within factor 1.3"
+      提供了解释：实际攻击在 fully-adaptive（bound 假设）和 partially-random（现实）之间。
+
+      '
+    tables:
+    - name: 'Table 11: Per-Judge ASR Concentration Metrics'
+      columns:
+      - Metric
+      - Overall
+      - Strong Tier
+      - Weak Tier
+      - API Tier
+      rows:
+      - - Gini coefficient (median)
+        - '0.42'
+        - '0.28'
+        - '0.52'
+        - '0.25'
+      - - Weakest judge ASR share
+        - '0.58'
+        - '0.42'
+        - '0.68'
+        - '0.40'
+      - - Entropy ratio (vs uniform)
+        - '0.72'
+        - '0.82'
+        - '0.62'
+        - '0.85'
+      - - Corr(concentration, η_max)
+        - '0.55'
+        - '0.38'
+        - '0.48'
+        - '0.32'
+    - name: 'Table 12: Concentration by Attack Type'
+      columns:
+      - Attack
+      - Gini (median)
+      - Weakest Share
+      - Interpretation
+      rows:
+      - - prompt_injection
+        - '0.52'
+        - '0.65'
+        - Highly targeted
+      - - score_manipulation
+        - '0.48'
+        - '0.62'
+        - Targeted
+      - - instruction_override
+        - '0.55'
+        - '0.68'
+        - Highly targeted
+      - - few_shot_hijack
+        - '0.45'
+        - '0.58'
+        - Moderately targeted
+      - - sycophancy
+        - '0.32'
+        - '0.48'
+        - Partially distributed
+      - - persona_manip
+        - '0.28'
+        - '0.42'
+        - Distributed
+    figures_description:
+    - 'Fig 8a: Violin plot of per-judge ASR Gini coefficient stratified by tier (Strong/Weak/API).
+      Weak tier distribution shifted right (higher concentration). Horizontal line
+      at Gini=0.33 (perfect concentration on one of three judges).'
+    - 'Fig 8b: Stacked bar chart showing ASR attribution to weakest/middle/strongest
+      judge, averaged across panels, for each attack type. Prompt injection and instruction
+      override show tall ''weakest'' bars; sycophancy and persona manipulation show
+      more balanced distribution.'
+    analysis: 'Concentration analysis 提供了 adaptive adversary 假设的直接 empirical 检验——
+      但 median 档下证据是 moderate 而非 conclusive。Gini=0.42 和 weakest share=58% 支持 "attacks
+      concentrate on weakest judge" 但不支持 "attacks EXCLUSIVELY target weakest judge"。论文应诚实报告：real-world
+      attacks lie on a spectrum between fully adaptive and fully random。Attack type
+      是关键调节变量——prompt injection 几乎完全 adaptive（Gini=0.52），persona manipulation 接近 distributed（Gini=0.28）。
+      这为 Section 5 "When Does Diversity Help?" 提供数据：diversity 在 distributed attacks
+      中更有用。Tier 差异（Strong Gini=0.28 vs Weak Gini=0.52）为 plan_004 的 within-tier 发现提供了
+      mechanistic explanation。
+
+      '
+  - name: Diversity-capability tradeoff visualization
+    plan_id: plan_007
+    description: '对 C(15,3)=455 panels 绘制 K_eff vs η_max，拟合 tradeoff curve， 展示 Pareto
+      frontier，按 capability tier 分层分析。
+
+      '
+    expected_results:
+      overall_r: -0.65
+      overall_r_p: <0.001
+      within_7B_r: -0.28
+      within_70B_r: -0.35
+      within_api_r: -0.32
+      cross_tier_r: -0.78
+      pareto_frontier_n_panels: 12
+      pareto_knee_keff: 2.1
+      pareto_knee_eta_max: 0.18
+    result_rationale: 'Overall r=-0.65 反映了一个结构性现象：当前 LLM 生态系统中，模型 diversity 主要来自 capability
+      差异（不同 size、不同训练数据量、不同 RLHF 程度），而 capability 差异 直接导致 robustness 差异。7B 模型 diverse
+      from 70B 模型（高 K_eff），但也 weaker （高 η_max）。
+
+      Cross-tier r=-0.78（强负相关）vs within-tier r≈-0.32（弱负相关）清晰分解了 tradeoff 来源：~70% 的
+      tradeoff 来自跨 tier 选择（选入 weak model 来增加 diversity）， ~30% 来自 tier 内差异（即使同 tier
+      模型，更 diverse 的组合也略微牺牲 robustness）。
+
+      Median 档下 overall r=-0.65 而非 optimistic 的 r<-0.8，因为 API 模型引入了 "high diversity
+      + high robustness" 区域：GPT-4o 和 Claude 来自不同 family、 不同训练 paradigm（高 K_eff），但个体鲁棒性都高（低
+      η_max）。这些 data points 拉弱了全局负相关。这是论文的重要 nuance：tradeoff 在当前生态系统中存在，但 随着 API 模型整体能力提升，tradeoff
+      正在减弱。
+
+      Pareto frontier 上 12 个 panels（从 455 中）揭示了最优选择区域：knee 在 K_eff≈2.1, η_max≈0.18，对应
+      "2-3 strong API models + 1 strong open-source model" 的组合。
+
+      '
+    tables:
+    - name: 'Table 13: Diversity-Capability Tradeoff by Tier'
+      columns:
+      - Analysis Scope
+      - N panels
+      - r(K_eff, η_max)
+      - p-value
+      - Interpretation
+      rows:
+      - - Overall
+        - '455'
+        - '-0.65'
+        - <0.001
+        - Strong tradeoff
+      - - Within 7B tier
+        - '10'
+        - '-0.28'
+        - '0.082'
+        - Weak/non-significant
+      - - Within 70B tier
+        - '10'
+        - '-0.35'
+        - '0.045'
+        - Moderate
+      - - Within API tier
+        - '10'
+        - '-0.32'
+        - '0.058'
+        - Moderate/non-significant
+      - - Cross-tier only
+        - '425'
+        - '-0.78'
+        - <0.001
+        - Dominant driver
+    figures_description:
+    - 'Fig 9a: Scatter plot of K_eff (x) vs η_max (y) for 455 panels, color-coded
+      by tier composition (all-strong=blue, mixed=gray, all-weak=red). Negative slope
+      visible. Pareto frontier marked in black. API-heavy panels cluster in desirable
+      low-η_max, moderate-K_eff region.'
+    - 'Fig 9b: Same data with contour overlay showing panel ASR (lighter = lower ASR).
+      Optimal region hugs the Pareto frontier at the knee, not at max-K_eff (right
+      edge, high ASR) or min-η_max (left edge, low K_eff).'
+    analysis: 'Tradeoff visualization 是论文最直观的 figure。r=-0.65 足够强来支持 Claim 3， 但 within-tier
+      分析（r≈-0.32）要求 nuanced framing："the tradeoff is primarily structural (driven
+      by cross-tier selection) rather than fundamental." 这意味着如果未来 LLM 生态系统能力 baseline
+      整体提升（所有模型都变强），tradeoff 可能自然消失——这是 limitations 中应讨论的点。Pareto frontier 分析直接支持
+      Claim 6 的降级版本：最优策略不需要复杂算法，只需 "pick from the Pareto frontier"， 而 frontier 上的
+      panels 特征明确——强模型为主 + 适度多样性。
+
+      '
+  - name: 'Panel size sensitivity: K=3,5,7,9'
+    plan_id: plan_008
+    description: '测试 weakest-link theorem 在不同 panel size 下的稳健性。 K=3 (C(15,3)=455),
+      K=5 (C(15,5)=3003), K=7 (C(15,7)=6435), K=9 (C(15,9)=5005)。6 conditions per
+      K。
+
+      '
+    expected_results:
+      k3_eta_max_sig_rate: 0.83
+      k3_keff_nonsig_rate: 0.67
+      k3_eta_keff_beta_ratio: 5.2
+      k3_median_R2: 0.38
+      k5_eta_max_sig_rate: 0.83
+      k5_keff_nonsig_rate: 0.5
+      k5_keff_sig_negative_count: 2
+      k5_eta_keff_beta_ratio: 3.8
+      k5_median_R2: 0.35
+      k7_eta_max_sig_rate: 0.83
+      k7_keff_nonsig_rate: 0.5
+      k7_keff_sig_negative_count: 3
+      k7_eta_keff_beta_ratio: 2.6
+      k7_median_R2: 0.32
+      k9_eta_max_sig_rate: 0.83
+      k9_keff_nonsig_rate: 0.33
+      k9_keff_sig_negative_count: 3
+      k9_eta_keff_beta_ratio: 2.1
+      k9_median_R2: 0.3
+      keff_importance_trend: monotonically increasing with K
+      eta_max_dominance_persists: true
+      crossover_k: not reached at K=9; extrapolation suggests K≈15-20
+    result_rationale: 'Panel size 增大时 K_eff 重要性单调递增，原因是 majority vote 机制：K=3 时攻击者只需
+      翻转 2/3 judge（容易集中攻击），K=9 时需翻转 5/9（被迫分散攻击资源）。随着 K 增大， 攻击从 fully-adaptive（集中在最弱
+      judge）被迫转向 partially-distributed，K_eff 的 BFT 式保护效应逐渐显现。
+
+      Median 档下 β ratio 从 K=3 的 5.2:1 下降到 K=9 的 2.1:1——η_max 始终 dominant 但优势逐渐缩小。K_eff
+      在 K=7 和 K=9 时分别有 3/6 条件显著负。但 crossover point （K_eff 重要性超过 η_max）未在 K≤9 范围内达到——外推估计需要
+      K≈15-20，这在实际 部署中不现实（成本、延迟）。
+
+      η_max 显著率在所有 K 下保持 ~0.83：无论 panel 多大，最弱 judge 的个体鲁棒性 始终是 ASR 的强预测因子。这是论文的稳健性
+      finding——weakest-link 在实际 panel size 范围内（K=3-9）始终成立。
+
+      R² 随 K 增大略微下降（0.38→0.30），因为大 panel 的 ASR 方差被 voting mechanism 本身压缩——多数投票自带平滑效果，降低了任何单一因子的可解释方差。
+
+      对论文 practical implication：增加 panel size 有 diminishing returns——从 K=3 到 K=5 ASR
+      降低 ~25%，从 K=5 到 K=7 仅降 ~12%，从 K=7 到 K=9 仅降 ~6%。 Robustness-first message 在所有
+      K 下成立。
+
+      '
+    tables:
+    - name: 'Table 14: Weakest-Link Stability Across Panel Sizes'
+      columns:
+      - Panel Size K
+      - N panels
+      - η_max sig rate
+      - K_eff sig(-) rate
+      - β ratio (η/K)
+      - Median R²
+      rows:
+      - - K=3
+        - '455'
+        - 5/6 (0.83)
+        - 1/6 (0.17)
+        - '5.2'
+        - '0.38'
+      - - K=5
+        - '3003'
+        - 5/6 (0.83)
+        - 2/6 (0.33)
+        - '3.8'
+        - '0.35'
+      - - K=7
+        - '6435'
+        - 5/6 (0.83)
+        - 3/6 (0.50)
+        - '2.6'
+        - '0.32'
+      - - K=9
+        - '5005'
+        - 5/6 (0.83)
+        - 3/6 (0.50)
+        - '2.1'
+        - '0.30'
+    - name: 'Table 15: Mean Panel ASR by Size and Strategy'
+      columns:
+      - K
+      - Two-stage
+      - Min-η_max
+      - Max-K_eff
+      - Random
+      - Δ(Two-stage vs Random)
+      rows:
+      - - '3'
+        - '0.084'
+        - '0.093'
+        - '0.145'
+        - '0.178'
+        - -53%
+      - - '5'
+        - '0.062'
+        - '0.068'
+        - '0.098'
+        - '0.135'
+        - -54%
+      - - '7'
+        - '0.048'
+        - '0.052'
+        - '0.072'
+        - '0.108'
+        - -56%
+      - - '9'
+        - '0.041'
+        - '0.044'
+        - '0.058'
+        - '0.092'
+        - -55%
+    figures_description:
+    - 'Fig 10a: Line plot with K on x-axis, standardized β on y-axis, two lines for
+      η_max (blue, decreasing slowly) and K_eff (red, increasing from near-zero).
+      Lines converge but don''t cross by K=9. Shaded region shows 95% CI. Extrapolated
+      crossover at K≈15-20 (dashed).'
+    - 'Fig 10b: Bar chart of mean ASR by strategy and K. All strategies improve with
+      K but converge — the gap between Two-stage and Random shrinks proportionally
+      (~55% reduction maintained). Diminishing returns visible.'
+    analysis: 'Panel size analysis 提供了 weakest-link theorem 的 boundary condition：η_max
+      在 K≤9 范围内始终 dominant，但 K_eff 重要性随 K 增大而增加。Median 档下 crossover 不在 实际范围内（K≈15-20），保护了论文核心
+      claim。但 reviewer 可能问 "what about K=15?"—— 论文应回应：(1) K=15 在实际部署中不 economical；(2)
+      即使 K=15，η_max 仍然 significant， 只是不再 dominant；(3) 更重要的是 diminishing returns——从
+      K=9 到 K=15 的安全增益 不值得 67% 的成本增加。
+
+      这个实验也为 Claim 2（BFT distinction）提供了新角度：K 增大 effectively 使攻击 "more random-like"（攻击者被迫分散资源），所以
+      K_eff 的保护效应增强——这正是 BFT 理论预测的。论文可以将此表述为 "panel size modulates the effective adaptivity
+      of the adversary"。'
+  review_report: '---
+
+    dream_id: dream_20260522T055016
+
+    tier: median
+
+    overall_score: 2.5 - Borderline Findings
+
+    timestamp: 2026-05-22T06:36:05.259008+00:00
+
+    ---
+
+
+    # Dream Review Report: "The Weakest Link: Individual Robustness Dominates Diversity
+    in Multi-Judge LLM Evaluation Security"
+
+
+    **Dream ID:** 20260522T055016
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Target Venue:** EMNLP 2026 (ARR)
+
+
+    ---
+
+
+    ## Consolidated Assessment
+
+
+    **Overall Score: 2.5 / 5 (Borderline Findings)**
+
+
+    | Dimension | R1 | R2 | Converged |
+
+    |---|---|---|---|
+
+    | Soundness | 2.5 | 2.5 | 2.5 |
+
+    | Excitement | 3.0 | 2.0 | 2.5 |
+
+    | Reproducibility | 2.0 | 2.0 | 2.0 |
+
+    | Overall | 2.5 | 2.0 | 2.5 |
+
+    | Confidence | 4 | 4 | 4 |
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper argues that multi-judge LLM evaluation panel security is dominated by
+    individual judge robustness (η_max) rather than judge diversity (K_eff), challenging
+    the implicit BFT analogy in the diversity-as-defense literature. Through experiments
+    on 455 three-judge panels from 15 LLMs across 6 attack types and 2 benchmarks,
+    the paper shows η_max is significant in 8/12 conditions while K_eff in only 2/12.
+    It formalizes an adaptive adversary bound (ASR ≤ η_max·(1+ε·log K)), contrasts
+    adaptive vs. random-fault regimes (Cohen''s d = 0.62), identifies a structural
+    diversity-capability tradeoff (r = −0.65), and proposes a robustness-first panel
+    design guideline.
+
+
+    ---
+
+
+    ## Reviewer Agreement (Roundtable Convergence)
+
+
+    Both reviewers agree on the following points:
+
+
+    ### Shared Strengths
+
+
+    1. **The BFT vs. adaptive adversary contrast is the paper''s strongest contribution.**
+    The random-fault simulation cleanly isolates the fault model as the explanatory
+    variable: K_eff goes from significant in 1/6 (adaptive) to 4/6 (random-fault)
+    conditions. Cohen''s d = 0.62 establishes moderate-effect distinguishability.
+    This is methodologically sound and pedagogically valuable.
+
+
+    2. **Experimental scale is ambitious and well-designed.** 15 models spanning 3
+    capability tiers, all C(15,3)=455 panels enumerated (avoiding sampling bias),
+    6 attack types covering targeted and distributed attacks, 2 benchmarks, and panel
+    sizes K=3–9. The combinatorial exhaustiveness is a genuine methodological strength.
+
+
+    3. **The diversity-capability tradeoff decomposition is informative.** Showing
+    that r = −0.65 overall is driven primarily by cross-tier selection (r = −0.78)
+    rather than within-tier differences (r ≈ −0.32) provides a structural explanation
+    and actionable insight for practitioners.
+
+
+    4. **The Gaussian copula failure finding (42× median underestimation) has implications
+    beyond this paper.** It warns the community that copula-based independence assumptions
+    systematically overestimate multi-judge panel quality.
+
+
+    5. **The paper''s narrative is nuanced and honest.** The regime-dependent framing
+    ("diversity helps only when individual robustness is already high") is more calibrated
+    than a blanket "diversity never helps" claim. The Limitations section is candid
+    about statistical power issues.
+
+
+    ### Shared Weaknesses
+
+
+    1. **[CRITICAL] Theorem 1 has a fundamental proof gap.** The theorem claims ASR_panel
+    ≤ η_max·(1+ε·log K) under majority vote, but majority vote requires compromising
+    ⌈K/2⌉ judges, not just one. The paper provides no rigorous bound on the probability
+    that attacking the weakest judge also compromises additional judges to achieve
+    a majority. The "proof sketch" relies on an informal argument about correlated
+    vulnerabilities without quantifying the transfer probability. This undermines
+    the paper''s theoretical core. **Recommendation:** Either provide a rigorous proof
+    with explicit assumptions about inter-judge vulnerability correlation, or downgrade
+    to an "empirical observation" and remove the "theorem" label.
+
+
+    2. **[CRITICAL] No bibliography or references are present in the paper.** The
+    Related Work section makes generic claims ("Recent surveys and frameworks explicitly
+    advocate..."; "established in the distributed systems literature") but cites zero
+    specific papers. No bibliography section exists. This is far below venue standards
+    (EMNLP expects 25–40 references) and would likely trigger desk rejection. Even
+    for a dream/draft review, the absence of any citation infrastructure is a fundamental
+    structural deficiency.
+
+
+    3. **[MAJOR] Multicollinearity between K_eff and η_max (r = −0.65) is unaddressed.**
+    At this correlation level, VIF ≈ 1.7–2.5, inflating standard errors for both predictors.
+    K_eff''s non-significance (median p = 0.43 across conditions) could partly reflect
+    a Type II error artifact rather than genuine irrelevance. The paper reports no
+    VIF, no tolerance statistics, no partial correlations, and no residualization
+    analysis. Without these standard regression diagnostics, the central empirical
+    claim — that K_eff is truly irrelevant rather than merely undetectable due to
+    collinearity — is not rigorously established.
+
+
+    4. **[MAJOR] Limited novelty over existing security and adversarial ML literature.**
+    The weakest-link principle is foundational in security (Schneier 2000, Anderson
+    2001). Tramer et al. (2018, "Ensemble Adversarial Training") demonstrated that
+    diverse ensembles fail against adaptive adversaries in vision. Adversarial transferability
+    research (Papernot et al. 2016, 2017) established the mechanism by which attacks
+    transfer across models. The paper''s core insight — adaptive adversaries undermine
+    diversity-based defenses by targeting the weakest component — is a domain transfer
+    of established results rather than a novel discovery. The paper should position
+    itself as an empirical validation in a new domain with additional quantitative
+    insights (copula failure, regime analysis), not as overturning a "prevailing assumption."
+
+
+    5. **[MAJOR] Reproducibility is critically low.** Missing details include: (a)
+    attack prompt implementations for all 6 attack types, (b) MI estimation method
+    for computing K_eff, (c) ASR operationalization (binary threshold? continuous?),
+    (d) API model versions and inference hyperparameters, (e) no code or data release
+    mentioned. A reader cannot reproduce these experiments from the paper alone.
+
+
+    6. **[MODERATE] The "prevailing assumption" framing may be a strawman.** The paper
+    claims the field treats diversity as "the key security mechanism," but without
+    verifiable citations, we cannot confirm this is actually the prevailing view.
+    The diversity-as-defense literature may primarily advocate diversity for reducing
+    non-adversarial biases (position, verbosity, sycophancy), not for defending against
+    adaptive adversaries. If so, the paper attacks a position few hold.
+
+
+    ### Divergence Points (Resolved in Roundtable)
+
+
+    - **Excitement:** R1 rated 3/5 (timely question, practically relevant even if
+    not fully surprising); R2 rated 2/5 (well-known in security literature, minimal
+    intellectual novelty). **Converged at 2.5/5** — the empirical application to LLM
+    judges is timely and the regime analysis adds value, but the core mechanism is
+    not new. The paper''s contribution is empirical validation + quantification in
+    a specific domain, which has moderate but not high excitement.
+
+
+    - **Severity of Related Work gap:** R1 treated it as a "minor issue" (sparse references);
+    R2 treated it as disqualifying. **Converged: this is a critical issue** that must
+    be addressed before any submission. The complete absence of a bibliography goes
+    beyond "sparse references" — it is a structural deficiency.
+
+
+    ---
+
+
+    ## R1 Detailed Review: Methods and Experiments
+
+
+    ### Key Methodological Concerns
+
+
+    1. **Regression specification (log-log model).** The log-log regression log(ASR)
+    ~ log(η_max) + log(K_eff) imposes a power-law relationship with no justification.
+    ASR is bounded in [0,1]; a logistic or beta regression would be more appropriate.
+    No residual analysis, heteroscedasticity tests (Breusch-Pagan), or comparison
+    with alternative functional forms is provided. Mis-specification could bias coefficient
+    estimates.
+
+
+    2. **Within-tier analyses are severely underpowered.** The Weak tier has only
+    10 panels (C(5,3)=10); the API tier also has 10 panels. With N=10 and 2 predictors,
+    each regression has ~7 degrees of freedom. Significance rates (e.g., "0/6 significant
+    in Weak tier") should be heavily caveated. The paper correctly acknowledges low
+    power for the API tier but less so for the Weak tier.
+
+
+    3. **No multiple comparison correction across 12+ conditions.** At α=0.05 across
+    12 tests, ~0.6 false positives are expected. The claim "η_max significant in 8/12
+    conditions" would weaken under Bonferroni or FDR correction. The paper should
+    either apply corrections or argue explicitly for why uncorrected comparisons are
+    appropriate (e.g., consistent directionality across conditions).
+
+
+    4. **Two-stage algorithm evaluated on training data.** The threshold τ is optimized
+    (Table 12) on the same 15-model pool and 6 conditions used to evaluate the algorithm
+    (Table 11). No held-out model pool, leave-one-model-out cross-validation, or unseen
+    attack type is used for generalization testing. The two-stage advantage (mean
+    rank 1.7 vs. Min-η_max at 2.2) is modest and could reflect overfitting.
+
+
+    5. **Attack independence assumption.** If the same adversarial prompts are tested
+    on all 455 panels (rather than independently generated per panel), the panel-level
+    ASR values are not independent observations, violating the regression assumption.
+    This is not clarified in the paper.
+
+
+    ### Missing Analyses
+
+
+    - VIF and partial correlation analysis for all 12 regression conditions
+
+    - Regression diagnostics (residual plots, Cook''s distance, influential observations)
+
+    - Alternative regression specifications (beta regression, logistic)
+
+    - Confidence intervals on "sig rate" claims (Clopper-Pearson intervals)
+
+    - Non-majority-vote aggregation mechanisms (weighted vote, veto rules)
+
+    - Partial-knowledge adversary model
+
+    - Open-ended generation benchmarks (both MMLU and ARC are MCQ)
+
+
+    ---
+
+
+    ## R2 Detailed Review: Novelty and Related Work
+
+
+    ### Novelty Assessment
+
+
+    The paper presents three types of contribution with varying novelty:
+
+
+    1. **Weakest-link under adaptive adversaries (LOW novelty):** Established in security
+    engineering (Schneier 2000) and demonstrated empirically for ML ensembles (Tramer
+    et al. 2018, He et al. 2017). The domain transfer to LLM judges is incremental.
+
+
+    2. **Regime analysis and BFT contrast (MODERATE novelty):** The explicit empirical
+    demonstration that switching from adaptive to random faults reverses K_eff''s
+    predictive role is a clean result. The regime-dependent nuance (diversity helps
+    only when individual robustness is high) adds genuine insight. The copula failure
+    quantification (42×) is useful.
+
+
+    3. **Two-stage algorithm (LOW novelty):** The algorithm''s marginal advantage
+    over "just use the strongest models" (Min-η_max) confirms the paper''s own thesis
+    but provides minimal actionable contribution beyond common sense.
+
+
+    ### Related Work Gaps (Priority Order)
+
+
+    1. **Ensemble adversarial robustness** — Tramer et al. 2018; He et al. 2017; Pang
+    et al. 2019
+
+    2. **Adversarial transferability** — Papernot et al. 2016, 2017; Tramer et al.
+    2017; Demontis et al. 2019
+
+    3. **LLM-as-Judge foundations** — Zheng et al. 2023 (MT-Bench); Li et al. 2023
+    (AlpacaEval); Dubois et al. 2024
+
+    4. **LLM judge biases** — Wang et al. 2023 (position bias); Koo et al. 2023 (sycophancy)
+
+    5. **Prompt injection** — Perez & Ribeiro 2022; Greshake et al. 2023
+
+    6. **Correlated LLM errors** — relevant work on behavioral entanglement in LLMs
+
+    7. **Ensemble diversity theory** — Krogh & Vedelsby 1995; Brown et al. 2005
+
+    8. **Security fundamentals** — Schneier 2000; Anderson 2001
+
+
+    ### Framing Recommendations
+
+
+    - Reframe from "challenging the prevailing assumption" to "empirically validating
+    and quantifying a predicted but unmeasured phenomenon in the LLM judge setting"
+
+    - Explicitly discuss when diversity IS beneficial (non-adversarial bias reduction,
+    calibration, evaluation coverage) to avoid misleading practitioners
+
+    - Position the BFT contrast and regime analysis as the primary novel contributions
+
+    - Downgrade the two-stage algorithm from a "contribution" to a "practical guideline"
+    (which the paper already partially does)
+
+
+    ---
+
+
+    ## Experimental Coverage Assessment
+
+
+    Comparing against the experimental design reference (8 planned experiments):
+
+
+    | Experiment | Plan ID | Status | Assessment |
+
+    |---|---|---|---|
+
+    | Scale expansion (15 models) | plan_001 | ✅ Covered | Tables 1-2 match expected
+    design |
+
+    | Attack expansion (6 types) | plan_002 | ✅ Covered | Table 3 covers all 12 conditions
+    |
+
+    | Adaptive adversary theorem + RF simulation | plan_003 | ✅ Covered | Tables 4-5,
+    but theorem proof gap |
+
+    | Capability-matched validation | plan_004 | ✅ Covered | Tables 8-9, but underpowered
+    |
+
+    | Two-stage algorithm benchmark | plan_005 | ✅ Covered | Tables 11-12 |
+
+    | Per-judge ASR concentration | plan_006 | ✅ Covered | Tables 6-7 |
+
+    | Diversity-capability tradeoff | plan_007 | ✅ Covered | Table 10 |
+
+    | Panel size sensitivity | plan_008 | ✅ Covered | Tables 13-14 |
+
+
+    All 8 planned experiments are present. The coverage is comprehensive. However,
+    depth suffers in several areas due to missing statistical diagnostics (VIF, multiple
+    comparison correction, regression alternatives).
+
+
+    ---
+
+
+    ## Actionable Revision Recommendations
+
+
+    ### Must-Fix (for any resubmission)
+
+
+    1. **Add a complete bibliography** with 25–40 properly cited references. This
+    is a prerequisite for any venue.
+
+    2. **Either rigorously prove Theorem 1** (with explicit assumptions about inter-judge
+    correlation and majority-vote mechanics) **or relabel it** as an "empirical observation"
+    / "conjecture."
+
+    3. **Report VIF and partial correlations** for all regression conditions. Consider
+    residualizing K_eff against η_max (or vice versa) to disentangle collinearity
+    from genuine irrelevance.
+
+    4. **Add full reproducibility details**: attack prompts (at least examples), MI
+    estimation method, ASR operationalization, model versions, inference parameters.
+    Ideally release code.
+
+    5. **Reframe the novelty claim** to acknowledge the weakest-link principle''s
+    prior establishment in security and adversarial ML. Position the contribution
+    as empirical quantification in the LLM judge domain, with novel regime analysis
+    and copula failure findings.
+
+
+    ### Should-Fix (to strengthen for Main conference)
+
+
+    6. Apply Bonferroni or FDR correction across the 12 conditions, or provide explicit
+    justification for uncorrected comparisons.
+
+    7. Test alternative regression specifications (beta regression for bounded ASR).
+
+    8. Validate the two-stage algorithm on held-out models or via cross-validation.
+
+    9. Discuss when diversity IS beneficial (non-adversarial settings) to avoid misleading
+    framing.
+
+    10. Test at least one non-MCQ benchmark (open-ended generation).
+
+
+    ### Nice-to-Have
+
+
+    11. Partial-knowledge adversary model (adversary knows families but not exact
+    vulnerabilities).
+
+    12. Non-majority-vote aggregation mechanisms (weighted vote, debate, veto).
+
+    13. Confidence intervals for "sig rate" claims using Clopper-Pearson.
+
+
+    ---
+
+
+    ## Verdict
+
+
+    The paper addresses a timely and practically important question with ambitious
+    experimental scope. The BFT/adaptive contrast, regime analysis, and copula failure
+    findings are genuine contributions. However, the complete absence of references
+    is a disqualifying structural deficiency, the theorem has a proof gap, multicollinearity
+    threatens the central empirical claim, and the novelty over existing security
+    literature is limited. In its current form, the paper is below the Findings bar
+    (score 3.0) due to these critical issues. With the must-fix revisions — particularly
+    adding a full bibliography, addressing multicollinearity, and reframing the novelty
+    — this could reach the Findings level (3.0–3.5). Reaching Main conference level
+    (4.0) would additionally require a rigorous theorem, stronger reproducibility,
+    and more compelling novelty framing.
+
+
+    **Converged Overall: 2.5 / 5 (Borderline Findings)**
+
+
+
+    ---
+
+
+    引用验证失败: 目录不存在: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/paper'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T055016/worst/paper.pdf
+  imagined_experiments:
+  - name: 'Scale expansion: 15+ models (API + large open-source)'
+    plan_id: plan_001
+    description: '将模型池从 6 扩展到 15+（加入 GPT-4o-mini, GPT-4o, GPT-4.1, Claude-3.5-Sonnet,
+      Gemini-1.5-Pro, Llama-3.1-70B, Qwen2.5-72B, Mixtral-8x22B），重跑 MI 矩阵和 C(15,3)=455
+      panels 的多元回归。
+
+      '
+    expected_results:
+      total_panels: 455
+      total_conditions: 12
+      eta_max_sig_count: 5
+      eta_max_sig_rate: 0.42
+      keff_sig_negative_count: 4
+      keff_nonsig_count: 7
+      keff_sig_positive_count: 1
+      median_R2: 0.22
+      eta_max_median_beta: 0.61
+      keff_median_beta: -0.18
+      overall_keff_p_median: 0.14
+      api_model_panels_eta_max_sig_rate: 0.17
+      api_model_panels_keff_sig_rate: 0.5
+      opensource_weak_panels_eta_max_sig_rate: 0.67
+      opensource_weak_panels_keff_sig_rate: 0.17
+      expanded_panel_weakest_link_consistency: 0.42
+    result_rationale: '扩展模型池引入高能力 API 模型后，capability range 显著拉宽。在纯 API 模型 （GPT-4o,
+      Claude, Gemini）组成的 panel 中，所有成员 η 都很低（individual ASR ~5-15%），η_max 方差小，回归中 η_max
+      的解释力下降（low variance → low signal）。 此时 K_eff 代表的模型多样性反而能捕捉到 residual attack surface
+      差异—— 不同 API 模型对不同 attack type 的脆弱面不同，diversity 确实提供了互补保护。 但在包含弱模型（7B open-source）的
+      panel 中，某个模型 η ≈ 0.6-0.8， 远高于其他成员，weakest-link 效应依然成立。总体来看 η_max 显著率从 MVP 的
+      67%（4/6）下降到 42%（5/12），K_eff 从 0/6 显著负变为 4/12—— weakest-link theorem 不再 universal，而是
+      regime-dependent。
+
+      '
+    tables:
+    - caption: Multivariate regression results on 455 panels (15 models, K=3)
+      columns:
+      - Dataset
+      - Attack
+      - β(η_max)
+      - p(η_max)
+      - β(K_eff)
+      - p(K_eff)
+      - R²
+      rows:
+      - - MMLU
+        - prompt-injection
+        - '0.82'
+        - '0.003'
+        - '-0.31'
+        - '0.08'
+        - '0.34'
+      - - MMLU
+        - score-manipulation
+        - '0.74'
+        - '0.011'
+        - '-0.22'
+        - '0.18'
+        - '0.26'
+      - - MMLU
+        - sycophancy
+        - '0.58'
+        - '0.042'
+        - '-0.41'
+        - '0.03'
+        - '0.28'
+      - - MMLU
+        - verbosity
+        - '0.45'
+        - '0.12'
+        - '-0.15'
+        - '0.42'
+        - '0.14'
+      - - MMLU
+        - position
+        - '0.39'
+        - '0.18'
+        - '0.12'
+        - '0.51'
+        - '0.09'
+      - - MMLU
+        - authority
+        - '0.68'
+        - '0.008'
+        - '-0.28'
+        - '0.11'
+        - '0.29'
+      - - ARC
+        - prompt-injection
+        - '0.71'
+        - '0.015'
+        - '-0.38'
+        - '0.04'
+        - '0.31'
+      - - ARC
+        - score-manipulation
+        - '0.63'
+        - '0.028'
+        - '-0.19'
+        - '0.27'
+        - '0.22'
+      - - ARC
+        - sycophancy
+        - '0.52'
+        - '0.065'
+        - '-0.44'
+        - '0.02'
+        - '0.25'
+      - - ARC
+        - verbosity
+        - '0.41'
+        - '0.14'
+        - '-0.33'
+        - '0.07'
+        - '0.18'
+      - - ARC
+        - position
+        - '0.33'
+        - '0.22'
+        - '0.18'
+        - '0.35'
+        - '0.08'
+      - - ARC
+        - authority
+        - '0.55'
+        - '0.052'
+        - '-0.26'
+        - '0.15'
+        - '0.21'
+    - caption: Regime-stratified η_max significance (panel capability tiers)
+      columns:
+      - Panel Tier
+      - N panels
+      - η_max sig rate
+      - K_eff sig negative rate
+      - Median R²
+      rows:
+      - - All-API (GPT/Claude/Gemini)
+        - '20'
+        - '0.17'
+        - '0.50'
+        - '0.12'
+      - - Mixed (API + 70B)
+        - '120'
+        - '0.33'
+        - '0.42'
+        - '0.19'
+      - - All-large-OS (70B class)
+        - '35'
+        - '0.50'
+        - '0.25'
+        - '0.24'
+      - - Mixed (large + small OS)
+        - '180'
+        - '0.58'
+        - '0.17'
+        - '0.28'
+      - - All-small-OS (7B class)
+        - '10'
+        - '0.67'
+        - '0.08'
+        - '0.35'
+      - - Contains ≥1 weak model
+        - '280'
+        - '0.55'
+        - '0.18'
+        - '0.27'
+    figures_description:
+    - 'Heatmap: 12 conditions × 2 predictors (η_max, K_eff) showing p-values. Clear
+      diagonal pattern — η_max cells darker (more significant) for targeted attacks
+      (prompt-injection, score-manipulation), K_eff cells darker for shared-bias attacks
+      (sycophancy) but only in strong-model panels.'
+    - 'Scatter: panel min-capability (x) vs η_max significance (y, binary). Logistic
+      regression overlay shows threshold around 70B-class capability where η_max transitions
+      from dominant to non-significant.'
+    analysis: '这是 worst 档最核心的结果变化。MVP 阶段的 6 模型结论（η_max dominates universally） 在 15
+      模型池上碎片化为 regime-dependent 结论。关键发现：(1) 强模型 panel 中 η_max 方差太小，不构成 weakest link——因为没有
+      weak link；(2) 此时 K_eff 代表的 diversity 确实提供了互补保护；(3) 弱模型 panel 中 MVP 结论完全成立。 论文
+      reframe 方向：从 "η_max always dominates" 变为 "η_max dominates when there exists
+      a sufficiently weak member; above a capability threshold, diversity becomes
+      the operative defense"。这实际上是更有趣的 nuanced result，但需要 reviewer 接受 regime-dependent
+      结论的价值。
+
+      '
+  - name: 'Attack expansion: 6+ attack types'
+    plan_id: plan_002
+    description: '新增 few-shot hijacking、persona manipulation、instruction override
+      三种攻击， 在 15+ 模型池上运行，验证 weakest-link 在更广泛 attack surface 上的表现。
+
+      '
+    expected_results:
+      new_attack_types: 3
+      total_attack_types: 9
+      total_conditions: 18
+      eta_max_sig_rate_new_attacks: 0.33
+      keff_sig_negative_rate_new_attacks: 0.5
+      eta_max_sig_rate_overall: 0.39
+      keff_sig_negative_rate_overall: 0.39
+      few_shot_hijacking_eta_max_p: 0.19
+      few_shot_hijacking_keff_p: 0.04
+      persona_manipulation_eta_max_p: 0.035
+      persona_manipulation_keff_p: 0.22
+      instruction_override_eta_max_p: 0.08
+      instruction_override_keff_p: 0.03
+    result_rationale: '新增攻击类型进一步分裂 weakest-link 的 universality。few-shot hijacking
+      和 instruction override 是高度 transferable 的攻击——它们利用 instruction-following 这一所有
+      LLM 共享的特性，因此对 panel 中所有模型的 ASR 较均匀。此时 η_max 解释力弱（因为 variance across judges 低），而
+      K_eff 反而显著——多样性意味着 不同模型对 instruction-following exploit 的具体 failure mode 不同，提供互补保护。
+      persona manipulation 类似 sycophancy，更依赖 individual model 特性（某些模型 对 authority
+      cues 特别敏感），η_max 仍显著。总体上 η_max 和 K_eff 各在约 40% 条件下显著，无一方 universal dominate——核心
+      claim 需要 nuance。
+
+      '
+    tables:
+    - caption: Regression results for new attack types (455 panels)
+      columns:
+      - Dataset
+      - Attack
+      - β(η_max)
+      - p(η_max)
+      - β(K_eff)
+      - p(K_eff)
+      - R²
+      rows:
+      - - MMLU
+        - few-shot-hijacking
+        - '0.28'
+        - '0.24'
+        - '-0.48'
+        - '0.03'
+        - '0.19'
+      - - MMLU
+        - persona-manipulation
+        - '0.72'
+        - '0.009'
+        - '-0.14'
+        - '0.39'
+        - '0.25'
+      - - MMLU
+        - instruction-override
+        - '0.35'
+        - '0.15'
+        - '-0.52'
+        - '0.02'
+        - '0.22'
+      - - ARC
+        - few-shot-hijacking
+        - '0.31'
+        - '0.19'
+        - '-0.39'
+        - '0.05'
+        - '0.16'
+      - - ARC
+        - persona-manipulation
+        - '0.65'
+        - '0.035'
+        - '-0.21'
+        - '0.22'
+        - '0.22'
+      - - ARC
+        - instruction-override
+        - '0.38'
+        - '0.12'
+        - '-0.44'
+        - '0.03'
+        - '0.20'
+    figures_description:
+    - 'Bar chart: attack type (x) vs η_max significance (blue) and K_eff significance
+      (orange), grouped. Shows clear pattern — targeted attacks (prompt-injection,
+      persona) favor η_max; transferable attacks (few-shot-hijacking, instruction-override,
+      sycophancy) favor K_eff.'
+    analysis: '攻击扩展进一步确认 regime-dependent 结论，且揭示了一个有价值的 pattern： attack transferability
+      是决定 η_max vs K_eff 哪个更重要的关键维度。 targeted attacks（需要针对特定模型调优的攻击）→ η_max 主导； transferable
+      attacks（利用 LLM 共性弱点的攻击）→ K_eff 有效。 这为 framework paper 提供了 regime characterization
+      的第二个维度 （第一个是 panel capability tier），增强了 analytical contribution。
+
+      '
+  - name: Adaptive adversary formal theorem + random-fault simulation
+    plan_id: plan_003
+    description: '(a) 形式化定理：adaptive adversary 下 panel_ASR = Θ(η_max)； (b) random-fault
+      simulation：每个 judge 独立以概率 p_j fail； (c) 对比验证 BFT 区分。
+
+      '
+    expected_results:
+      theorem_holds: true
+      theorem_tightness: loose in strong-model regime
+      random_fault_keff_sig_rate: 0.39
+      adaptive_keff_sig_rate: 0.39
+      bft_contrast_cohen_d: 0.22
+      bft_contrast_p: 0.08
+      keff_beta_ratio_random_vs_adaptive: 1.4
+      random_fault_keff_median_beta: -0.52
+      adaptive_keff_median_beta: -0.37
+      regime_interaction_p: 0.04
+    result_rationale: '形式化定理本身在数学上成立——在 adaptive adversary 假设下，panel ASR 的 upper bound
+      确实由 max(η_j) 决定。但在 worst 档下，实证数据显示这个 bound 在强模型 regime 中很 loose（实际 ASR 远低于 η_max
+      bound），因为即使是 adaptive adversary，当所有模型都很强时，攻击成本太高，实际行为更接近 opportunistic 而非 truly
+      adaptive。random-fault simulation 中 K_eff 确实 比 adaptive 条件下更显著，但差异不大（Cohen''s
+      d ≈ 0.22，远小于预期的 0.5+）——因为在实际数据中，即使是 adaptive attacks 也不完美 adaptive （attacker
+      没有完美的 per-judge oracle），与 random fault 的差距没有 理论预测的那么大。关键的 saving grace 是 regime
+      × fault-type 交互显著 （p=0.04）：在弱模型 panel 中 adaptive vs random 差异大，强模型 panel 中 差异消失。这支持
+      regime characterization 的 narrative。
+
+      '
+    tables:
+    - caption: 'K_eff significance: adaptive vs random-fault across regimes'
+      columns:
+      - Regime
+      - Fault Type
+      - K_eff β
+      - K_eff p
+      - η_max β
+      - η_max p
+      rows:
+      - - Weak panels
+        - adaptive
+        - '-0.12'
+        - '0.48'
+        - '0.78'
+        - '0.004'
+      - - Weak panels
+        - random-fault
+        - '-0.41'
+        - '0.03'
+        - '0.52'
+        - '0.06'
+      - - Mixed panels
+        - adaptive
+        - '-0.28'
+        - '0.09'
+        - '0.55'
+        - '0.04'
+      - - Mixed panels
+        - random-fault
+        - '-0.45'
+        - '0.02'
+        - '0.38'
+        - '0.11'
+      - - Strong panels
+        - adaptive
+        - '-0.44'
+        - '0.02'
+        - '0.22'
+        - '0.31'
+      - - Strong panels
+        - random-fault
+        - '-0.58'
+        - '0.005'
+        - '0.15'
+        - '0.48'
+    - caption: BFT contrast effect sizes
+      columns:
+      - Metric
+      - Weak panels
+      - Mixed panels
+      - Strong panels
+      - Overall
+      rows:
+      - - Cohen's d (K_eff β difference)
+        - '0.38'
+        - '0.21'
+        - '0.12'
+        - '0.22'
+      - - p (paired t-test)
+        - '0.04'
+        - '0.12'
+        - '0.41'
+        - '0.08'
+    figures_description:
+    - 'Paired bar chart: K_eff β under adaptive (red) vs random-fault (blue), stratified
+      by panel regime. Gap shrinks from left (weak) to right (strong), visualizing
+      the regime × fault-type interaction.'
+    analysis: 'BFT 区分的理论贡献被削弱。Overall Cohen''s d = 0.22 远低于 medium effect size 标准（0.5），且
+      overall p = 0.08 不显著。只有在 weak panel regime 中 contrast 才显著（d = 0.38, p = 0.04）。这意味着
+      "adaptive adversary fundamentally different from BFT" 这个 claim 需要限定为 "the distinction
+      matters primarily in weak-model settings"。不过 regime × fault-type 交互效应本身是有趣的发现，
+      可以作为 framework 的 analytical insight。论文需要降低 BFT contrast 的 claim 强度，从 "fundamental
+      distinction" 变为 "regime-dependent distinction"。
+
+      '
+  - name: Capability-matched validation
+    plan_id: plan_004
+    description: '在同一 capability tier 内（如全 7B 或全 70B），测试控制 η_max 方差后 K_eff 是否显著。如果
+      within-tier K_eff 显著 → diversity 在控制 capability 后确实有效。
+
+      '
+    expected_results:
+      tiers_tested: 3
+      tier_7b_keff_sig_rate: 0.17
+      tier_7b_eta_max_sig_rate: 0.5
+      tier_70b_keff_sig_rate: 0.33
+      tier_70b_eta_max_sig_rate: 0.33
+      tier_api_keff_sig_rate: 0.5
+      tier_api_eta_max_sig_rate: 0.17
+      diversity_capability_r_overall: -0.41
+      diversity_capability_r_within_7b: -0.18
+      diversity_capability_r_within_70b: -0.08
+      diversity_capability_r_within_api: -0.05
+      within_tier_keff_overall_sig_rate: 0.33
+    result_rationale: '控制 capability tier 后，η_max 方差被大幅压缩（within-tier models 能力接近），
+      回归中 η_max 的解释力下降。此时 K_eff 在部分条件下变得显著——特别是在 API tier 中（3/6 显著），因为 GPT-4o、Claude、Gemini
+      虽然 capability 相似， 但 vulnerability profile 显著不同（不同训练数据和 safety alignment 策略），
+      diversity 确实提供互补保护。70B tier 中 K_eff 中等显著（2/6），7B tier 中 仍不显著（1/6）——因为 7B 模型普遍
+      vulnerable，η_max 方差虽然 within-tier 较小但绝对值仍高，weakest-link 效应持续。 diversity-capability
+      tradeoff 的 overall r 从 MVP 的 -0.8 降到 -0.41（加入 API 模型后 tradeoff 大幅减弱），within-tier
+      r 接近 0（-0.05 to -0.18）—— tradeoff 主要是 cross-tier artifact（比较 7B 和 70B 当然 diversity
+      高但 capability 低），而非 fundamental constraint。
+
+      '
+    tables:
+    - caption: 'Within-tier regression: K_eff significance by capability tier'
+      columns:
+      - Tier
+      - N models
+      - N panels (K=3)
+      - η_max sig rate
+      - K_eff sig neg rate
+      - Median R²
+      - K_eff-η_max r
+      rows:
+      - - 7B class
+        - '5'
+        - '10'
+        - '0.50'
+        - '0.17'
+        - '0.18'
+        - '-0.18'
+      - - 70B class
+        - '4'
+        - '4'
+        - '0.33'
+        - '0.33'
+        - '0.15'
+        - '-0.08'
+      - - API models
+        - '5'
+        - '10'
+        - '0.17'
+        - '0.50'
+        - '0.12'
+        - '-0.05'
+      - - Cross-tier (all)
+        - '15'
+        - '455'
+        - '0.42'
+        - '0.33'
+        - '0.22'
+        - '-0.41'
+    - caption: Diversity-capability tradeoff decomposition
+      columns:
+      - Scope
+      - Pearson r
+      - p-value
+      - Interpretation
+      rows:
+      - - Overall (15 models)
+        - '-0.41'
+        - '0.003'
+        - Moderate negative — driven by tier differences
+      - - Within 7B
+        - '-0.18'
+        - '0.38'
+        - Not significant — no tradeoff within tier
+      - - Within 70B
+        - '-0.08'
+        - '0.72'
+        - Not significant
+      - - Within API
+        - '-0.05'
+        - '0.81'
+        - Not significant
+      - - Open-source only (10 models)
+        - '-0.72'
+        - '0.001'
+        - Strong negative — ecosystem artifact
+    figures_description:
+    - 'Scatter plot with color-coded tiers: K_eff (x) vs η_max (y) for all 455 panels.
+      Within-tier points form horizontal clusters (no tradeoff), but cross-tier slope
+      is steep negative. Regression lines: overall (dashed, slope=-0.41) vs within-tier
+      (solid, near-flat).'
+    analysis: '这是 worst 档最具杀伤力的结果。diversity-capability tradeoff（Claim 3）被 证实主要是 open-source
+      ecosystem artifact，而非 fundamental constraint。 加入 API 模型后 overall r 从 -0.8 降到
+      -0.41，within-tier r 接近 0。 这意味着 "diversity and security are structurally at odds"
+      这个 strong claim 需要大幅限定为 "in the current open-source ecosystem, where capability
+      strongly predicts robustness, pursuing diversity across capability tiers introduces
+      weaker models"。同时 within-tier K_eff 显著率 33% 表明 diversity 在 controlled settings
+      中确实有效——进一步削弱 "diversity is a trap" narrative。论文 reframe 必须诚实承认这一点。
+
+      '
+  - name: 'Two-stage panel design algorithm: full benchmark'
+    plan_id: plan_005
+    description: '实现 robustness-first 两阶段算法（先筛 η ≤ threshold，再最大化 K_eff）， 对比 5 个 baseline
+      策略。在 15+ 模型池上 sweep threshold。
+
+      '
+    expected_results:
+      strategies_compared: 6
+      total_conditions: 18
+      two_stage_win_rate: 0.44
+      min_eta_max_win_rate: 0.39
+      max_keff_win_rate: 0.33
+      strongest_k_win_rate: 0.5
+      random_win_rate: 0.06
+      max_family_div_win_rate: 0.11
+      two_stage_vs_strongest_k_p: 0.32
+      two_stage_mean_asr: 0.091
+      strongest_k_mean_asr: 0.082
+      threshold_sensitivity: high — optimal threshold varies by attack type
+      pareto_dominated_by_strongest_k: partially
+    result_rationale: '两阶段算法在 worst 档下表现不突出，因为 (1) strongest-K 策略（直接选最强 K 个 模型）在强模型
+      regime 中已经接近最优——当 API 模型可用时，选 GPT-4o + Claude + Gemini 既有高 robustness 又有 decent
+      diversity（不同公司的模型自然 diverse）； (2) 两阶段算法的 threshold 参数高度 attack-dependent——对
+      prompt injection 最优 threshold ≠ 对 sycophancy 最优 threshold——无法给出 universal 建议；
+      (3) 在弱模型 pool（纯 open-source 7B）中两阶段确实优于 max-K_eff，但 strongest-K 同样优于 max-K_eff，且不需要
+      threshold tuning。 win rate 0.44 略低于 strongest-K 的 0.50，且差异不显著（p=0.32）。 robustness-first
+      不 dominate，practical contribution 被削弱为 "在缺乏 API 模型时的合理 heuristic" 而非 "universal
+      optimal strategy"。
+
+      '
+    tables:
+    - caption: Panel selection strategy benchmark (mean ASR, lower is better)
+      columns:
+      - Strategy
+      - Mean ASR
+      - Median ASR
+      - Win rate
+      - vs Random p
+      rows:
+      - - Two-stage (ours)
+        - '0.091'
+        - '0.078'
+        - '0.44'
+        - '0.001'
+      - - Strongest-K
+        - '0.082'
+        - '0.071'
+        - '0.50'
+        - <0.001
+      - - Min-η_max
+        - '0.095'
+        - '0.085'
+        - '0.39'
+        - '0.003'
+      - - Max-K_eff
+        - '0.131'
+        - '0.118'
+        - '0.33'
+        - '0.02'
+      - - Max-family-diversity
+        - '0.158'
+        - '0.142'
+        - '0.11'
+        - '0.15'
+      - - Random
+        - '0.172'
+        - '0.155'
+        - '0.06'
+        - —
+    - caption: 'Head-to-head: Two-stage vs Strongest-K by regime'
+      columns:
+      - Regime
+      - Two-stage wins
+      - Strongest-K wins
+      - Tie
+      - p
+      rows:
+      - - Weak panels (OS-7B only)
+        - 4/6
+        - 2/6
+        - '0'
+        - '0.12'
+      - - Mixed panels
+        - 3/6
+        - 3/6
+        - '0'
+        - '0.82'
+      - - Strong panels (API available)
+        - 1/6
+        - 4/6
+        - '1'
+        - '0.08'
+    figures_description:
+    - 'Pareto frontier plot: mean ASR (y, lower better) vs computational cost (x,
+      lower better). Two-stage and Strongest-K both on frontier but at different points.
+      Max-K_eff and Random clearly dominated.'
+    analysis: '两阶段算法没有显著优势，Claim 6 实质性削弱。strongest-K 策略在有 API 模型 可用时 win rate 更高，且不需要
+      threshold 参数。两阶段算法唯一优势场景是 纯 open-source weak model pool（4/6 wins），但这一场景在实践中正在减少
+      （API 模型越来越便宜易用）。practical contribution 从 "robustness-first algorithm dominates"
+      降级为 "when restricted to weak model pools, a robustness-first heuristic helps,
+      but is unnecessary when strong models are available"。可以在 paper 中作为 minor practical
+      insight 保留， 但不能作为主要 contribution。
+
+      '
+  - name: Per-judge ASR concentration analysis
+    plan_id: plan_006
+    description: '对每个 panel × attack，测量 per-judge ASR 分布的集中度（Gini 系数、熵）， 验证攻击是否集中在最弱
+      judge 上。
+
+      '
+    expected_results:
+      median_gini: 0.31
+      mean_gini: 0.34
+      gini_strong_panels: 0.18
+      gini_weak_panels: 0.52
+      gini_mixed_panels: 0.38
+      entropy_normalized_median: 0.78
+      concentration_on_weakest_fraction: 0.48
+      concentration_on_weakest_strong_panels: 0.38
+      concentration_on_weakest_weak_panels: 0.61
+      gini_adaptive_vs_random_p: 0.06
+      gini_adaptive_vs_random_d: 0.28
+    result_rationale: 'Per-judge ASR 集中度呈现清晰的 regime 分裂。在 weak panel（包含 7B 模型）中， Gini
+      ≈ 0.52，最弱 judge 承担 61% 的攻击成功——符合 adaptive adversary targeting 预测。但在 strong panel（全
+      API 模型）中，Gini ≈ 0.18，接近均匀分布—— 攻击成功较均匀地分布在各 judge 上，因为没有明显的 "weakest link" 可供集中攻击。
+      adaptive vs random-fault 的 Gini 差异不显著（p=0.06, d=0.28）——因为即使在 adaptive 条件下，当模型能力相近时，attacker
+      的 targeting 精度有限，行为 接近 semi-random。这进一步支持 "adaptive adversary distinction matters
+      primarily in weak-model regime" 的结论。
+
+      '
+    tables:
+    - caption: Per-judge ASR concentration by panel regime
+      columns:
+      - Regime
+      - Median Gini
+      - Mean entropy (norm.)
+      - Weakest-judge share
+      - N panels
+      rows:
+      - - All-API
+        - '0.18'
+        - '0.91'
+        - '0.38'
+        - '20'
+      - - Mixed (API+70B)
+        - '0.28'
+        - '0.83'
+        - '0.42'
+        - '120'
+      - - All-large-OS
+        - '0.35'
+        - '0.77'
+        - '0.47'
+        - '35'
+      - - Mixed (large+small OS)
+        - '0.45'
+        - '0.69'
+        - '0.55'
+        - '180'
+      - - All-small-OS
+        - '0.52'
+        - '0.62'
+        - '0.61'
+        - '10'
+    - caption: 'Concentration: adaptive vs random-fault'
+      columns:
+      - Fault Type
+      - Median Gini
+      - Weakest-judge share
+      - Paired diff p
+      rows:
+      - - Adaptive
+        - '0.34'
+        - '0.48'
+        - —
+      - - Random-fault
+        - '0.26'
+        - '0.41'
+        - '0.06'
+    figures_description:
+    - 'Violin plot: Gini coefficient distribution, stratified by panel regime (x)
+      and colored by fault type (adaptive=red, random=blue). Weak panels show high
+      Gini with clear adaptive-random separation; strong panels show low Gini with
+      overlapping distributions.'
+    analysis: 'Concentration analysis 部分支持 adaptive adversary narrative，但仅限于 weak
+      panel regime。在 strong panels 中，ASR 近乎均匀分布——不存在 "weakest link" targeting 行为。这从另一个角度确认
+      regime-dependent 结论：adaptive adversary model 的 descriptive accuracy 本身也是 regime-dependent
+      的。 在强模型 panel 中，adversary 更像 "均匀探测" 而非 "精准打击"。 这对形式化定理没有影响（定理给出 upper bound，不要求
+      tight），但削弱了 "adaptive adversary is the right threat model" 的 empirical support。
+
+      '
+  - name: Diversity-capability tradeoff visualization
+    plan_id: plan_007
+    description: '在 C(15,3)=455 panels 上绘制 K_eff vs η_max scatter，拟合 tradeoff 曲线，
+      展示 Pareto frontier，按 capability tier 分层。
+
+      '
+    expected_results:
+      overall_pearson_r: -0.41
+      overall_spearman_r: -0.38
+      pareto_front_size: 12
+      pareto_composition: 8/12 contain ≥2 API models
+      tradeoff_slope: -0.33
+      tradeoff_R2: 0.17
+      api_inclusive_r: -0.22
+      opensource_only_r: -0.72
+      pareto_panels_mean_asr: 0.075
+      non_pareto_mean_asr: 0.148
+    result_rationale: '可视化清晰展示 tradeoff 的 ecosystem-dependent 本质。在纯 open-source 空间中，
+      K_eff vs η_max 呈强负相关（r=-0.72）：要 diversity 就必须跨 capability tier 混搭（如 7B + 70B），必然引入弱模型。但加入
+      API 模型后，右上角出现一个 "sweet spot" 区域——API 模型组合同时实现高 K_eff（不同公司模型自然 diverse） 和低 η_max（都很强）。Pareto
+      frontier 被 API-inclusive panels 主导（8/12）， 表明 tradeoff 可以通过使用 strong diverse
+      models 打破。 Overall R² = 0.17 表明 tradeoff 只解释 17% 的方差——远非 "structural"。
+
+      '
+    tables:
+    - caption: Tradeoff statistics by model pool composition
+      columns:
+      - Pool
+      - N panels
+      - r(K_eff, η_max)
+      - p
+      - R²
+      - Interpretation
+      rows:
+      - - All 15 models
+        - '455'
+        - '-0.41'
+        - '0.003'
+        - '0.17'
+        - Moderate — not structural
+      - - Open-source only (10)
+        - '120'
+        - '-0.72'
+        - <0.001
+        - '0.52'
+        - Strong — ecosystem artifact
+      - - API-inclusive (≥1 API)
+        - '335'
+        - '-0.22'
+        - '0.04'
+        - '0.05'
+        - Weak — API breaks tradeoff
+      - - All-API (5)
+        - '10'
+        - '-0.05'
+        - '0.89'
+        - '0.003'
+        - None — diversity is free
+    figures_description:
+    - 'Main scatter: K_eff (x) vs η_max (y) for 455 panels, colored by tier composition
+      (blue=all-API, green=mixed, red=all-OS-weak). Pareto frontier highlighted. Two
+      regression lines: overall (dashed, r=-0.41) and open-source-only (dotted, r=-0.72).
+      Clear visual that API models break the tradeoff.'
+    - 'Inset: K_eff (x) vs mean panel ASR (y) for Pareto-optimal panels only, showing
+      that the ''diversity tax'' disappears on the frontier.'
+    analysis: '可视化是 reframed paper 的关键 figure。它同时传达两个信息：(1) open-source ecosystem
+      中 tradeoff 确实存在且严重（r=-0.72）；(2) 这不是 fundamental constraint——API 模型的加入打破了 tradeoff。实际含义：diversity-as-defense
+      不是 inherently flawed，只是在当前 open-source 生态中因 capability 分层 严重而表现为 trap。随着 open-source
+      模型 capability 提升（如未来 7B 模型 接近当前 70B 水平），tradeoff 将进一步缩小。这是一个 more nuanced 且
+      arguably more useful 的 finding，但比 "diversity is fundamentally a trap" 的 punch
+      力弱很多。
+
+      '
+  - name: 'Panel size sensitivity: K=3,5,7,9'
+    plan_id: plan_008
+    description: '在不同 panel size (K=3,5,7,9) 下测试 weakest-link theorem。验证 η_max dominance
+      是否随 K 增大而变化。
+
+      '
+    expected_results:
+      k3_eta_max_sig_rate: 0.42
+      k5_eta_max_sig_rate: 0.33
+      k7_eta_max_sig_rate: 0.28
+      k9_eta_max_sig_rate: 0.22
+      k3_keff_sig_negative_rate: 0.33
+      k5_keff_sig_negative_rate: 0.39
+      k7_keff_sig_negative_rate: 0.5
+      k9_keff_sig_negative_rate: 0.56
+      eta_max_sig_trend_p: 0.03
+      keff_sig_trend_p: 0.02
+      k9_median_asr_reduction_vs_k3: 0.35
+      diversity_benefit_threshold_k: 5
+    result_rationale: '随着 panel size 增大，两个效应叠加削弱 weakest-link：(1) 更多 judges 意味着 更大的
+      voting majority 需要被 flip，即使 weakest judge 被攻破，其 1 票在 K=9 的 majority-vote 中影响更小（1/9
+      vs 1/3）；(2) 大 panel 更可能包含 strong models（15 个模型中选 9 个 vs 选 3 个），η_max 的绝对值被拉低，
+      方差也更小。因此 η_max 显著率从 K=3 的 42% 单调下降到 K=9 的 22%， 而 K_eff 显著率从 33% 上升到 56%。在 K
+      ≈ 5 时出现交叉——diversity 开始比 individual robustness 更重要。这对 practical recommendation
+      有直接影响：K=3 时 focus on robustness，K≥5 时 diversity matters。 但这也进一步削弱了 "weakest-link
+      is universal" 的 claim——它甚至 不对所有 panel size universal。
+
+      '
+    tables:
+    - caption: Weakest-link persistence across panel sizes
+      columns:
+      - K
+      - N panels
+      - η_max sig rate
+      - K_eff sig neg rate
+      - Median R²
+      - Mean ASR
+      rows:
+      - - '3'
+        - '455'
+        - '0.42'
+        - '0.33'
+        - '0.22'
+        - '0.134'
+      - - '5'
+        - '3003'
+        - '0.33'
+        - '0.39'
+        - '0.18'
+        - '0.105'
+      - - '7'
+        - '6435'
+        - '0.28'
+        - '0.50'
+        - '0.15'
+        - '0.092'
+      - - '9'
+        - '5005'
+        - '0.22'
+        - '0.56'
+        - '0.13'
+        - '0.087'
+    - caption: 'Transition analysis: K at which K_eff overtakes η_max'
+      columns:
+      - Metric
+      - K=3
+      - K=5
+      - K=7
+      - K=9
+      - Trend p
+      rows:
+      - - η_max sig rate
+        - '0.42'
+        - '0.33'
+        - '0.28'
+        - '0.22'
+        - '0.03'
+      - - K_eff sig neg rate
+        - '0.33'
+        - '0.39'
+        - '0.50'
+        - '0.56'
+        - '0.02'
+      - - η_max > K_eff (conditions)
+        - 7/18
+        - 6/18
+        - 4/18
+        - 3/18
+        - —
+    figures_description:
+    - 'Line plot: panel size K (x) vs significance rate (y), two lines — η_max (red,
+      decreasing) and K_eff (blue, increasing). Crossover at K≈5 highlighted. Shaded
+      95% CI bands.'
+    - 'Box plot: panel ASR distribution by K, showing monotonic decrease with increasing
+      K — diversity does provide aggregate protection at scale.'
+    analysis: Panel size sensitivity 是最终确认 weakest-link non-universality 的实验。 η_max
+      显著率随 K 单调下降（0.42→0.22），K_eff 单调上升（0.33→0.56）， 交叉在 K≈5。这有一个直觉解释：K=3 majority
+      vote 中 1 个被攻破的 judge 已经占 1/3 的权重，weakest link 影响巨大；K=9 中 1/9 权重，需要同时 攻破 5 个
+      judge 才能 flip panel，此时 diversity（不同 judge 的 failure mode 不同）确实提供了实质保护。 对 paper
+      的影响：weakest-link theorem 需要 qualified as "primarily applies to small panels
+      (K≤5) and when panel includes sufficiently weak members"。 Practical recommendation
+      变为 regime-dependent guidance：小 panel 重 robustness，大 panel 重 diversity。这对 framework
+      paper narrative 实际上 是 positive——提供了一个清晰的、可操作的 regime boundary。
+  review_report: '---
+
+    dream_id: dream_20260522T055016
+
+    tier: worst
+
+    overall_score: 2.5 - Borderline Findings
+
+    timestamp: 2026-05-22T06:42:28.774776+00:00
+
+    ---
+
+
+    # Dream Review Report — "When Does Diversity Defend?"
+
+
+    **dream_id:** 20260522T055016 | **tier:** worst | **venue:** EMNLP 2026 (ARR)
+
+
+    ---
+
+
+    ## Meta-Review (Roundtable Consensus)
+
+
+    ### Paper Summary
+
+
+    The paper studies security of multi-judge LLM evaluation panels against adversarial
+    manipulation. It formalizes the distinction between BFT random-fault and adaptive
+    adversary threat models, proves a weakest-link bound (Theorem 1: ASR_panel = Θ(η_max)),
+    and conducts empirical analysis across 455 three-judge panels from 15 models (5
+    API, 10 open-source), 9 attack types, and 2 benchmarks (MMLU, ARC). The central
+    finding is that panel security is regime-dependent: weak-model panels exhibit
+    a weakest-link effect (η_max significant in 67% of conditions), while strong-model
+    panels benefit from diversity (K_eff significant in 50%). A second regime dimension
+    — attack transferability — further modulates which factor dominates. The diversity–capability
+    tradeoff is shown to be an open-source ecosystem artifact (r = −0.72 OS-only vs.
+    r = −0.05 within-API).
+
+
+    ### Consensus Strengths
+
+
+    1. **Relevant, well-scoped research question.** The BFT analogy for multi-judge
+    panels is widespread but unexamined; formalizing and empirically testing it addresses
+    a real gap in the LLM evaluation literature.
+
+
+    2. **Comprehensive experimental matrix.** C(15,3) = 455 panels, 9 attack types
+    spanning targeted and transferable categories, panel sizes K ∈ {3,5,7,9}, and
+    stratified regime analysis. This combinatorial exhaustiveness exceeds typical
+    studies.
+
+
+    3. **Intellectually honest regime-dependent framing.** The paper could have claimed
+    "diversity is a trap" but instead presents the nuanced finding that the answer
+    depends on capability tier and attack type. The two-dimensional regime characterization
+    (capability × transferability) is a useful conceptual contribution.
+
+
+    4. **Clean BFT contrast design.** The random-fault simulation directly isolates
+    the fault model as the explanatory variable and is the paper''s strongest empirical
+    contribution.
+
+
+    5. **Useful ecosystem-specific tradeoff decomposition.** Showing that overall
+    r = −0.41 is driven by cross-tier mixing (OS-only r = −0.72) rather than within-tier
+    variation (r ≈ −0.05 to −0.18) provides structural insight with forward-looking
+    implications.
+
+
+    6. **Panel size sensitivity analysis.** The η_max → K_eff crossover at K ≈ 5 connects
+    back to the theoretical framework and yields actionable guidance.
+
+
+    ### Consensus Weaknesses
+
+
+    1. **[CRITICAL] Zero verifiable references.** All citation markers render as "?".
+    The Related Work section is ~15 lines with no bibliography. EMNLP submissions
+    typically have 25–40 citations. This alone approaches desk-reject territory. Critical
+    missing bodies of work include: ensemble adversarial robustness (Tramèr et al.
+    2018), adversarial transferability (Papernot et al. 2016–2017), LLM-as-Judge (Zheng
+    et al. 2023), LLM judge biases (Wang et al. 2023; Koo et al. 2023), prompt injection
+    (Greshake et al. 2023), BFT (Lamport et al. 1982; Castro & Liskov 1999), security
+    weakest-link principle (Schneier 2000; Anderson 2001), and ensemble diversity
+    theory (Krogh & Vedelsby 1995).
+
+
+    2. **[CRITICAL] Theorem 1 has a proof gap.** The theorem claims ASR_panel = Θ(η_max)
+    under majority vote, but majority vote requires compromising ⌈K/2⌉ judges, not
+    just one. The proof hand-waves about "partially transferring" attacks to correlated
+    judges without quantifying transfer probability or providing formal conditions
+    under which the lower bound holds. As stated, the theorem is incomplete — the
+    upper bound O(η_max) is easy, but the lower bound Ω(η_max) requires explicit assumptions
+    about inter-judge vulnerability correlation.
+
+
+    3. **[MAJOR] Limited novelty beyond domain transfer.** The weakest-link principle
+    under adaptive adversaries is well-established in security engineering (Schneier
+    2000) and adversarial ML (Tramèr et al. 2018; He et al. 2017 on ensemble defenses
+    failing under adaptive attacks). The paper does not acknowledge this prior art,
+    instead framing the finding as "challenging a prevailing assumption." The genuine
+    contribution is empirical quantification in the LLM-judge domain and the regime
+    characterization — the paper should be positioned accordingly.
+
+
+    4. **[MAJOR] Potential strawman framing.** Without verifiable citations, it is
+    unclear whether the multi-judge evaluation literature actually claims diversity
+    defends against *adversarial* manipulation specifically (as opposed to reducing
+    non-adversarial biases like position bias, verbosity, or sycophancy). The paper
+    may be attacking a position few researchers hold.
+
+
+    5. **[MAJOR] Severe multicollinearity unaddressed.** K_eff and η_max are strongly
+    negatively correlated (overall r = −0.41; within open-source r = −0.72). The paper
+    never reports VIF, does not test residualized K_eff (orthogonalized against η_max),
+    and does not consider mediation models. Non-significance of K_eff could reflect
+    collinearity artifacts rather than genuine irrelevance.
+
+
+    6. **[MAJOR] Copula methodology absent.** The abstract claims Gaussian copulas
+    underestimate inter-judge dependence by 10–21×, but the paper never describes
+    how the copula model is fitted, what marginals are assumed, or how MI_gauss is
+    computed. This contribution is stated but not substantiated.
+
+
+    7. **[MAJOR] No multiple comparison correction.** Reporting "η_max significant
+    in X% of conditions" across 12–18 conditions treats each as independent, but they
+    share the same 455 panels. No Bonferroni, FDR, or mixed-effects pooling is applied.
+    Several borderline p-values (0.042, 0.052, 0.065) would lose significance after
+    correction.
+
+
+    8. **[MAJOR] Within-tier analyses severely underpowered.** The API tier has N
+    = 10 panels (C(5,3)), the 70B tier has N = 4 panels (C(4,3)). Regression with
+    2 predictors on 4 data points has zero statistical power. Claims about within-tier
+    K_eff significance should be flagged as exploratory.
+
+
+    9. **[MODERATE] Two-stage algorithm provides no significant improvement.** It
+    does not beat the trivial Strongest-K baseline (p = 0.32). Mean ASR: Two-stage
+    0.091 vs. Strongest-K 0.082. The practical contribution is marginal.
+
+
+    10. **[MODERATE] Low explanatory power.** Median R² = 0.22 across conditions means
+    78% of variance in panel ASR is unexplained. No investigation of residual variance,
+    missing predictors, or model adequacy is provided.
+
+
+    11. **[MODERATE] Only 6 of 8 allowed pages used; no figures.** The paper has 10
+    tables and zero figures. Two unused pages could address multiple weaknesses: proper
+    Related Work, copula methodology, regression diagnostics, and at least 2–3 figures
+    (K_eff vs. η_max scatter, regime heatmap, BFT contrast visualization).
+
+
+    12. **[MODERATE] Reproducibility deficiencies.** No attack prompt templates, no
+    MI estimation method specified, no inference hyperparameters, no API model version
+    pinning, no code/data release mentioned.
+
+
+    ### Key Questions for Authors
+
+
+    1. Can you provide a formal proof of Theorem 1 that explicitly models the probability
+    of compromising ⌈K/2⌉ judges under majority vote? What inter-judge correlation
+    assumptions are required for the lower bound?
+
+
+    2. How do you position relative to Tramèr et al. (2018) and He et al. (2017),
+    who demonstrated that ensemble diversity fails under adaptive adversaries in vision?
+    What is genuinely new beyond domain transfer?
+
+
+    3. Does the prior multi-judge evaluation literature actually claim diversity defends
+    against *adversarial* manipulation, or primarily against non-adversarial biases?
+
+
+    4. What is the VIF for K_eff in the main regression? What happens with residualized
+    K_eff?
+
+
+    5. What happens to significance rates after Bonferroni correction across the 12–18
+    conditions?
+
+
+    6. How was MI_gauss computed for the copula analysis? What marginals and estimator
+    were used?
+
+
+    7. Why is the paper only 6 pages when 8 are allowed? What was omitted?
+
+
+    ### Experiment Design Coverage Assessment
+
+
+    Comparing against the 8 planned experiments in review_context.yaml:
+
+    - ✅ Plan 001 (Scale expansion to 15 models): Covered in Tables 1–2
+
+    - ✅ Plan 002 (Attack expansion to 9 types): Covered in Table 3
+
+    - ✅ Plan 003 (Adaptive vs random-fault + BFT contrast): Covered in Table 4
+
+    - ✅ Plan 004 (Capability-matched validation): Covered in Tables 6–7
+
+    - ✅ Plan 005 (Two-stage algorithm benchmark): Covered in Tables 9–10
+
+    - ✅ Plan 006 (Per-judge ASR concentration): Covered in Table 5
+
+    - ✅ Plan 007 (Diversity-capability tradeoff visualization): Covered in Table 7
+    (but no figures)
+
+    - ✅ Plan 008 (Panel size sensitivity K=3,5,7,9): Covered in Table 8
+
+
+    All 8 planned experiments are present. However, the planned figures (scatter plots,
+    heatmaps, violin plots, Pareto frontiers) described in the experiment design are
+    entirely absent from the paper.
+
+
+    ---
+
+
+    ## R1 Assessment (Methods + Experiments Focus)
+
+
+    ### Strengths
+
+    1. Well-scoped research question with practical import
+
+    2. Comprehensive 455-panel experimental matrix at commendable scale
+
+    3. BFT contrast is the strongest empirical contribution — clean counterfactual
+    design
+
+    4. ASR concentration (Gini) analysis provides direct mechanistic evidence
+
+    5. Panel size sensitivity demonstrates robustness across K = 3–9
+
+    6. Within-tier analysis reasonably attempts to control for diversity–capability
+    confound
+
+
+    ### Weaknesses
+
+    1. **[Major]** Theorem 1 proof gap — lower bound requires compromising ⌈K/2⌉ judges
+
+    2. **[Major]** Multicollinearity (VIF unreported, r up to −0.72 within OS)
+
+    3. **[Major]** No multiple comparison correction across 12–18 dependent conditions
+
+    4. **[Major]** Regression model specification: no interaction terms, no diagnostics,
+    no model comparison
+
+    5. **[Major]** Within-tier sample sizes (N = 4 for 70B, N = 10 for API) are severely
+    underpowered
+
+    6. **[Moderate]** Unrealistically strong adversary model with no partial-knowledge
+    variant tested
+
+    7. **[Moderate]** Only majority-vote aggregation (no weighted voting or Bayesian
+    aggregation)
+
+    8. **[Moderate]** Two-stage algorithm doesn''t beat Strongest-K (p = 0.32)
+
+    9. **[Moderate]** Only MCQ benchmarks (MMLU, ARC); open-ended evaluation may differ
+
+    10. **[Minor]** No figures in a data-rich paper
+
+
+    ### R1 Scores
+
+    - Soundness: 2/5
+
+    - Excitement: 3/5
+
+    - Reproducibility: 1.5/5
+
+    - Overall: 2.5/5 (Borderline Findings)
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## R2 Assessment (Novelty + Related Work Focus)
+
+
+    ### Strengths
+
+    1. BFT/adaptive contrast is the most genuinely novel empirical contribution for
+    the NLP community
+
+    2. Combinatorial exhaustiveness (all C(15,3) panels) avoids sampling bias
+
+    3. Intellectually honest regime-dependent framing over the stronger but false
+    "diversity is a trap"
+
+    4. Diversity–capability tradeoff decomposition (cross-tier vs. within-tier) is
+    informative
+
+    5. Copula underestimation finding has implications beyond this paper (if substantiated)
+
+    6. Panel size sensitivity connects back to theoretical framework
+
+
+    ### Weaknesses
+
+    1. **[Critical]** Zero verifiable references — disqualifying for peer-reviewed
+    venue
+
+    2. **[Critical]** Core weakest-link insight is well-known in security/adversarial
+    ML; framing overstates novelty
+
+    3. **[Major]** "Prevailing assumption" being challenged may be a strawman
+
+    4. **[Major]** Copula analysis claimed but methodology never presented
+
+    5. **[Major]** Six listed contributions individually lack sufficient depth for
+    Main
+
+    6. **[Major]** Hedged "it depends" conclusion reduces competitive impact
+
+    7. **[Moderate]** No figures; 10 tables in 6 pages is visually dense
+
+    8. **[Moderate]** Only 6/8 pages used — signals incompleteness
+
+    9. **[Minor]** No discussion of when diversity IS beneficial (non-adversarial
+    settings)
+
+
+    ### R2 Scores
+
+    - Soundness: 2.5/5
+
+    - Excitement: 2/5
+
+    - Reproducibility: 2/5
+
+    - Overall: 2.0/5 (Resubmit next cycle)
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## Consolidated Scores (Roundtable Consensus)
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness | 2.0 | 2.5 | **2.5** |
+
+    | Excitement | 3.0 | 2.0 | **2.5** |
+
+    | Reproducibility | 1.5 | 2.0 | **2.0** |
+
+    | Overall | 2.5 | 2.0 | **2.5** |
+
+    | Confidence | 4.0 | 4.0 | **4.0** |
+
+
+    **Overall Assessment: 2.5 / 5 (Borderline Findings)**
+
+
+    ### Justification
+
+
+    The paper addresses a timely and relevant question — whether diversity actually
+    defends multi-judge LLM evaluation panels — with commendable experimental scale
+    (455 panels, 15 models, 9 attacks). The regime-dependent characterization (capability
+    tier × attack transferability) and BFT contrast design are genuine contributions
+    to the NLP evaluation literature.
+
+
+    However, multiple critical issues prevent acceptance at the current stage:
+
+
+    1. **The complete absence of references is near-disqualifying.** No bibliography,
+    no verifiable citations, and a Related Work section of ~15 lines. This must be
+    comprehensively addressed with 25+ references covering ensemble adversarial robustness,
+    LLM-as-judge, adversarial transferability, BFT, and security weakest-link.
+
+
+    2. **The formal contribution (Theorem 1) is broken.** The proof does not account
+    for the requirement to compromise a majority of judges, not just the weakest one.
+    Either fix the theorem with explicit inter-judge correlation assumptions, or restate
+    the weakest-link finding as a well-supported empirical observation rather than
+    a theorem.
+
+
+    3. **Novelty is limited to domain transfer.** The weakest-link effect under adaptive
+    adversaries is established in security engineering and adversarial ML. The paper
+    should be repositioned as empirical quantification and regime characterization
+    in the LLM-judge domain, not as overturning a prevailing assumption.
+
+
+    4. **Statistical methodology has gaps.** Multicollinearity unaddressed (no VIF),
+    no multiple comparison correction, underpowered within-tier analyses, low R² without
+    residual investigation, and missing regression diagnostics.
+
+
+    5. **Key claimed contributions are unsubstantiated.** The copula analysis is stated
+    but never methodologically described. The family-label finding is mentioned in
+    one line.
+
+
+    6. **The paper leaves 2 pages unused and includes zero figures** in a data-rich
+    study that would greatly benefit from visualization.
+
+
+    ### Path to Acceptance
+
+
+    With major revisions, this could reach **Findings (3.0–3.5)**:
+
+    - Full bibliography with 25+ references and honest novelty positioning
+
+    - Fix Theorem 1 or recast as empirical finding
+
+    - Present copula methodology
+
+    - Report VIF, apply multiple comparison correction, add mixed-effects model
+
+    - Add 2–3 figures (K_eff vs. η_max scatter by regime, BFT contrast visualization)
+
+    - Use the remaining 2 pages for the above
+
+
+    Reaching **Main (4.0)** would additionally require a sharper central contribution
+    — e.g., a principled regime-aware panel design algorithm that demonstrably outperforms
+    baselines, or theoretical results with tighter bounds.
+
+
+
+    ---
+
+
+    引用验证失败: 目录不存在: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/paper'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-22T06:42:46+00:00'

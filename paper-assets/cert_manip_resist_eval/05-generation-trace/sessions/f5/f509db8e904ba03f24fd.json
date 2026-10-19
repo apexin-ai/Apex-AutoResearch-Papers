@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_model-freshness-check_20260522T152247_result.json",
     "occurrence": 1,
-    "bytes": 4225,
-    "sha256": "1c412130ece184125fb8f23cfa66bab6328b795773645b67a7b10de2a9e733c7"
+    "bytes": 4224,
+    "sha256": "b8826487b550ffeac49d15986f3d4b11a05ea6b01ad79ee933b1e663f6390bdd"
   },
   "statistics": {
     "messages": 1,

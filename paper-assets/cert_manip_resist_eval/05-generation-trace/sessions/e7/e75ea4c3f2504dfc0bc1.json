@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fp16-redownload-shards_20260525T125347_result.json",
     "occurrence": 1,
-    "bytes": 202,
-    "sha256": "9197d339f2ed69e98d5b3bf5910f41b6f754ccfa7dc23d62fbb2083ddd6b22e3"
+    "bytes": 201,
+    "sha256": "1918e9e417f32de7871ca5778256841d0fd193b6a6635d370a93066114d1661b"
   },
   "statistics": {
     "messages": 1,

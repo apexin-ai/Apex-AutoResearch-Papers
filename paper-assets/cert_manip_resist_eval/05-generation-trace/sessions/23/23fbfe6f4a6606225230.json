@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_a6-bash-wait_20260524T124738_result.json",
     "occurrence": 1,
-    "bytes": 101,
-    "sha256": "ba10f289eb3c0598800617e5f4a063fb3687485b0d008bfb77c213d1d6ab42a4"
+    "bytes": 100,
+    "sha256": "0eca03945f4c1d65724b3083790942787fbfff8fa6cf741820da05e874b9c71c"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fp16-pid-cleanup_20260524T171713_result.json",
     "occurrence": 1,
-    "bytes": 803,
-    "sha256": "04e7678c99356c1a6adeba45d2b02335daf5c302592e56c56981e0629078f1ba"
+    "bytes": 802,
+    "sha256": "3bd04d744ad922962bd4168cbde585f7709f759c42f3c30c3ddc9ed99eb438fa"
   },
   "statistics": {
     "messages": 1,

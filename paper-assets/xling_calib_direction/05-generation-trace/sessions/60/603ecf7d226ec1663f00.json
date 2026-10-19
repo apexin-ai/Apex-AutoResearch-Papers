@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "603ecf7d226ec1663f00",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "exp plan 013 probing controls v2",
+  "task_key": "worker_exp_plan_013_probing_controls_v2_20260520T234133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_013_probing_controls_v2_20260520T234133_result.json",
+    "occurrence": 1,
+    "bytes": 2401861,
+    "sha256": "f8756a7fd335d8ef3df324398c060af6572c46e19fe27d397e6fc0be1755919a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "603ecf7d226ec1663f00-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/exp-plan-013-probing-controls-v2.md"
+}

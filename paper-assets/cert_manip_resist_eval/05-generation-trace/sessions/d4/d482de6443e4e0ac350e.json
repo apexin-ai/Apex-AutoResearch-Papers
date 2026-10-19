@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_tiebreaking-rerun-k5-epsilon_20260523T143954_result.json",
     "occurrence": 1,
-    "bytes": 1387,
-    "sha256": "03674da0e8cee09c44b8efe535031d00834e9773d68cd16b1df6fe0c7bbeba03"
+    "bytes": 1386,
+    "sha256": "aa3808c9d5755667be92c48f6f830fc9718ee28c9c169da83d3e030c2e0e62de"
   },
   "statistics": {
     "messages": 1,

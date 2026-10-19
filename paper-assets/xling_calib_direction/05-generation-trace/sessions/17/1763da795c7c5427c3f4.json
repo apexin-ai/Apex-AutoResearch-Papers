@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1763da795c7c5427c3f4",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "code verify extract large on qwen7b",
+  "task_key": "worker_code_verify_extract_large_on_qwen7b_20260520T214532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_extract_large_on_qwen7b_20260520T214532_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "cf12f6aa78e97f3e75f59fa161c17c2f348a6ee82e371b5d25bc6304e2e49fea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 验证报告\n\n| 项目 | 结果 |\n|------|------|\n| **1. 语法检查** | SYNTAX OK，`--help` 正常 |\n| **2. Dry-run** | 成功。Hook 正常触发（\"Layer access path: model.model.layers\"），checkpoint 在 sample 5/10 各保存一次，6 个 .pt 文件全部生成 |\n| **3. 格式兼容性** | 完全兼容。shape=(10, 3584)，dtype=float32，字段名 `activations`/`labels` 与原版一致 |\n| **4. 数值对比** | Layer 0: max_diff=0, Layer 12: max_diff=0, **Layer 27: max_diff=441.4** |\n| **5. 测试文件** | 已清理 |\n\n### 发现的问题\n\n**Layer 27（最后一层）数值不一致**：HuggingFace `output_hidden_states` 在最后一个位置返回的是经过 `model.model.norm()` (final LayerNorm) 的输出，而 hook 捕获的是 norm 之前的原始输出。已通过实验验证 `norm(hook_raw) vs hs[28]: max_diff=0.000000`。\n\n**影响**：仅影响最后一层。前面和中间层完全一致（max_diff=0）。\n\n**修复建议**：在 `extract_activations_large.py` 中，如果 `layer_idx == n_model_layers - 1`（最后一层），对 hook 输出额外应用 `model.model.norm`，以保持与原版输出的一致性。或者不修，因为原版的行为其实也不完全\"纯粹\"（最后一层混入了 norm），用 hook 版的 pre-norm 输出反而在语义上更一致（所有层都是 layer 的直接输出）。\n\n**需要决策**：保持 pre-norm（hook 版当前行为，所有层语义统一）还是改为 post-norm（与原版一致）？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-extract-large-on-qwen7b.md"
+}

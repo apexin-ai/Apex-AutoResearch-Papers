@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_step1-batched-progress_20260522T121927_result.json",
     "occurrence": 1,
-    "bytes": 495,
-    "sha256": "b5f4a2f2881b9aaa8af96e3d73222547a243c83d67462b5546aca9b406507e69"
+    "bytes": 494,
+    "sha256": "2d1d952ad06d51c76367357e3d373231c8cbc25f4c1138c2ecd7b5bf77aa5a9e"
   },
   "statistics": {
     "messages": 1,

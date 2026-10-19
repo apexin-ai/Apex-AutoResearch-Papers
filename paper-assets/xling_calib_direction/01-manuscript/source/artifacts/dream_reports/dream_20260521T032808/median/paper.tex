@@ -1,0 +1,786 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{subcaption}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+\definecolor{lightgreen}{rgb}{0.85,0.95,0.85}
+\definecolor{lightyellow}{rgb}{1.0,1.0,0.85}
+\definecolor{lightred}{rgb}{1.0,0.85,0.85}
+\definecolor{lightgray}{rgb}{0.92,0.92,0.92}
+
+\newcommand{\caclr}{CaCLR}
+\newcommand{\dauroc}{$\Delta$AUROC}
+
+\title{Cross-Lingual Correctness Probe Transfer Reveals\\Architecture-Dependent Pareto Frontiers:\\Discovery, Negative Result, and Practical Recommendation}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Probe-based calibration methods exploit internal correctness directions to assess LLM confidence, but remain English-only.
+We present the first systematic evaluation of cross-lingual correctness probe transfer across 20 languages, two MoE architectures (Qwen3-235B-A22B, Llama~4 Scout), and one dense architecture (Gemma~4 31B), revealing three findings.
+\textbf{(1)~Discovery:} A depth-transferability Pareto frontier emerges whose shape is architecture-dependent---Qwen3 shows a uniformly negative tradeoff (per-language Spearman $\rho \approx -0.50$) while Llama~4 Scout shows language-specific behavior (global $\rho = -0.12$; 4/20 languages exhibit \emph{positive} $\rho$).
+\textbf{(2)~Principled negative result:} CaCLR, a calibration-aware probe training objective combining BCE, smooth-binned ECE, and MMD consistency loss, fails to shift this frontier: a $\beta$ sweep across three orders of magnitude yields negligible effect ($d = 0.07$, $p = 0.38$). CKA analysis suggests MMD matches marginals but cannot align the low-dimensional correctness subspace that rotates with depth.
+\textbf{(3)~Practical recommendation:} Simple linear projection with ${\sim}50$ parallel pairs provides +3.5pp AUROC over zero-shot transfer, surpassing CaCLR at only 20 pairs.
+A methodological warning accompanies these findings: control task analysis reveals that ${\sim}27\%$ of language-layer probing combinations exhibit selectivity below 0.05, concentrated in low-resource languages and shallow layers.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+
+Non-English languages suffer substantially worse calibration in multilingual LLMs: expected calibration error (ECE) can be 5$\times$ higher than English.
+Recent work has shown that internal \emph{correctness directions}---linearly accessible from intermediate representations---are orthogonal to verbalized confidence \cite{miao2026steering}, implying that output-based calibration is structurally limited.
+Probe-based methods such as CORAL \cite{miao2026coral} and correctness-confidence steering \cite{miao2026steering} exploit this finding, but operate exclusively in English.
+Whether this entire research line generalizes beyond English is an open question.
+
+We provide the first systematic test.
+Probing 20 languages across two large-scale MoE architectures (Qwen3-235B-A22B, 94 layers; Llama~4 Scout, 48 layers) and one dense architecture (Gemma~4 31B, 60 layers), we discover that cross-lingual correctness probe transfer is governed by a \emph{depth-transferability Pareto frontier} whose shape is architecture-dependent (Section~\ref{sec:pareto}).
+On Qwen3, all 20 languages exhibit a consistent negative tradeoff between probe depth (and thus English AUROC) and cross-lingual transfer quality ($\rho_{\text{median}} = -0.48$).
+On Llama~4 Scout, the tradeoff is language-specific: Arabic, Korean, and Hindi improve with depth while Chinese and Swahili degrade, producing a near-zero global correlation ($\rho = -0.12$).
+
+To test whether distributional matching can shift this frontier, we design CaCLR---a calibration-aware cross-lingual regularization objective combining BCE with smooth-binned ECE ($\alpha$) and MMD consistency ($\beta$) losses.
+A systematic $\beta$ sweep across three orders of magnitude yields a principled negative result: the MMD component is inert (Cohen's $d = 0.07$, $p = 0.38$; Section~\ref{sec:caclr}).
+CKA geometric analysis provides a suggestive explanation: MMD matches marginal distributions but cannot align the low-dimensional directional structure of correctness representations, which rotates as a function of depth (Section~\ref{sec:cka}).
+
+The constructive outcome is a practical recommendation: simple linear projection with ${\sim}50$ parallel pairs yields +3.5pp AUROC over zero-shot transfer, surpassing CaCLR at only 20 pairs (Section~\ref{sec:linproj}).
+Difficulty-controlled decomposition reveals that the transferable component of correctness signal is difficulty-shared and language-agnostic, while the degrading component is capability-specific (Section~\ref{sec:decomp}).
+Cross-lingual orthogonality between correctness and verbalized confidence persists across all 20 languages (max cosine 0.11), extending prior English-only findings (Section~\ref{sec:ortho}).
+
+A methodological warning accompanies our findings: Hewitt \& Liang control task analysis reveals that ${\sim}27\%$ of language-layer probing combinations exhibit selectivity below 0.05, concentrated in low-resource languages and shallow layers (Section~\ref{sec:control}).
+We recommend a minimum selectivity threshold for interpretable cross-lingual probing.
+
+% ============================================================
+\section{Related Work}
+
+\paragraph{Probe-Based Calibration.}
+CORAL \cite{miao2026coral} trains cross-task correctness probes showing that correctness signals transfer across benchmarks but not across languages.
+Miao \& Ungar (\citeyear{miao2026steering}) demonstrate correctness-confidence orthogonality in English, establishing that output-based calibration is structurally limited.
+Ji et al.\ identify internal confidence directions as a ``manipulable knob'' for calibration.
+We extend these English-only findings to 20 languages.
+
+\paragraph{Cross-Lingual Probing.}
+Xiao et al.\ (\citeyear{xiao2025}) transfer \emph{knowledge boundary} probes (input-level answerability) across 8 languages.
+Our work targets \emph{correctness} probes (output-dependent accuracy)---a fundamentally different signal---across 20 languages, with calibration rather than probing accuracy as the downstream metric.
+LACE \cite{zhou2024lace} ensembles per-language layers but requires target-language labels.
+We target zero-label transfer.
+
+\paragraph{Cross-Lingual Alignment.}
+Linear projection for cross-lingual alignment is well-established in word embeddings (MUSE, \citealp{conneau2018muse}; VecMap, \citealp{artetxe2018vecmap}).
+Our linear projection is conceptually similar but operates on sentence-level correctness representations; the contribution is demonstrating effectiveness for probe transfer and characterizing sample efficiency.
+
+\paragraph{Domain Adaptation Theory.}
+Ben-David et al.\ (\citeyear{bendavid2010}) provide H-divergence bounds for domain adaptation; Zhao et al.\ (\citeyear{zhao2019}) show that marginal distribution matching fails when conditional distributions $P(Y|X)$ differ across domains.
+This directly predicts CaCLR's MMD failure.
+
+\paragraph{Representation Similarity.}
+CKA \cite{kornblith2019cka} and SVCCA \cite{raghu2017svcca} measure representational alignment.
+We use CKA as a correlational (not mechanistic) analysis tool, reporting partial correlations controlling for depth.
+
+\paragraph{Probing Methodology.}
+Hewitt \& Liang (\citeyear{hewitt2019control}) introduce control tasks for probe validation.
+We extend their framework cross-lingually and identify systematic capacity artifacts.
+
+% ============================================================
+\section{Method}
+
+\subsection{Correctness Probes}
+\label{sec:probes}
+
+Given a multilingual LLM with $L$ layers and an English MCQA dataset with items $\{(x_i, y_i)\}$ where $y_i \in \{0, 1\}$ indicates correctness of the model's predicted answer, we train a logistic regression probe at each layer $\ell$:
+\begin{equation}
+p_\ell(y=1 \mid \mathbf{h}_\ell) = \sigma(\mathbf{w}_\ell^\top \mathbf{h}_\ell + b_\ell)
+\end{equation}
+where $\mathbf{h}_\ell \in \mathbb{R}^d$ is the hidden representation at layer $\ell$.
+We evaluate with AUROC (discrimination) and ECE (calibration).
+
+\paragraph{Zero-Shot Cross-Lingual Transfer.}
+The English-trained probe is applied directly to target-language representations $\mathbf{h}_\ell^{(\text{tgt})}$ without adaptation.
+
+\paragraph{Transfer Conditions.}
+We evaluate five transfer methods: (1)~zero-shot, (2)~mean-shift (center target representations to English mean), (3)~linear projection with $n$ parallel pairs, (4)~few-shot with $k$ target-language labels, (5)~CaCLR.
+
+\paragraph{Mean-Shift Invariance.}
+Under StandardScaler preprocessing and logistic regression, mean-shift adds a constant offset to all logits.
+Since AUROC depends only on rank ordering, $\Delta\text{AUROC} \equiv 0$ mathematically.
+
+\subsection{CaCLR: Calibration-Aware Cross-Lingual Regularization}
+\label{sec:caclr_method}
+
+CaCLR jointly optimizes English probe quality and cross-lingual consistency:
+\begin{equation}
+\mathcal{L}_{\text{CaCLR}} = \mathcal{L}_{\text{BCE}} + \alpha \cdot \mathcal{L}_{\text{SB-ECE}} + \beta \cdot \mathcal{L}_{\text{MMD}}
+\end{equation}
+where $\mathcal{L}_{\text{SB-ECE}}$ is smooth-binned ECE (differentiable calibration regularizer) and $\mathcal{L}_{\text{MMD}}$ is maximum mean discrepancy between English and target-language probe logits computed from parallel inputs:
+\begin{equation}
+\mathcal{L}_{\text{MMD}} = \text{MMD}^2_k\big(f(\mathbf{h}_\ell^{(\text{en})}), f(\mathbf{h}_\ell^{(\text{tgt})})\big)
+\end{equation}
+using Gaussian RBF kernel with median heuristic bandwidth.
+Note that MMD operates on 1-D probe logits $f(\mathbf{h}) = \mathbf{w}^\top \mathbf{h} + b$, a design limitation: it can only match marginal distributions of scalar outputs, not the high-dimensional geometric structure of representations.
+
+\subsection{Difficulty-Capability Decomposition}
+\label{sec:decomp_method}
+
+We decompose the correctness signal into difficulty-shared (language-agnostic) and capability-specific (language-dependent) components.
+An IRT difficulty probe $\mathbf{w}_{\text{diff}}$ is trained to predict item difficulty from English representations.
+The difficulty direction is projected out:
+\begin{equation}
+\tilde{\mathbf{h}}_\ell = \mathbf{h}_\ell - \frac{\mathbf{h}_\ell \cdot \mathbf{w}_{\text{diff}}}{\|\mathbf{w}_{\text{diff}}\|^2} \mathbf{w}_{\text{diff}}
+\end{equation}
+A correctness probe retrained on residuals $\tilde{\mathbf{h}}_\ell$ should transfer better if difficulty is the shared component and capability is the language-specific component driving degradation.
+
+\subsection{Linear Projection}
+\label{sec:linproj_method}
+
+Given $n$ parallel pairs $\{(\mathbf{h}_\ell^{(\text{en})}_i, \mathbf{h}_\ell^{(\text{tgt})}_i)\}$, we learn a linear mapping $\mathbf{W}$ minimizing:
+\begin{equation}
+\min_{\mathbf{W}} \sum_i \|\mathbf{W} \mathbf{h}_\ell^{(\text{tgt})}_i - \mathbf{h}_\ell^{(\text{en})}_i\|^2
+\end{equation}
+This directly estimates the rotation correction between source and target representation spaces.
+
+% ============================================================
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Models.}
+Qwen3-235B-A22B (94 layers, MoE, INT4 quantization), Llama~4 Scout (48 layers, MoE, W4A16), and Gemma~4 31B Dense (60 layers, FP16).
+Quantization validation (Section~\ref{sec:quant}) confirms $\leq$1.1pp AUROC difference vs.\ FP16.
+
+\paragraph{Languages.}
+20 languages spanning 3 resource tiers: \textbf{High} (zh, es, fr, de, ja, pt, nl, ru), \textbf{Mid} (ar, hi, ko, vi, tr, id, pl, uk), \textbf{Low} (sw, bn, te).
+Camera-ready extension covers 52 languages.
+
+\paragraph{Benchmark.}
+GlobalMMLU test split, partitioned into probe\_train (70\%) and eval (30\%) via stratified split.
+English BCE labels and parallel activations for MMD come from probe\_train only.
+Validation on Belebele and MMLU-ProX.
+
+\paragraph{Probed Layers.}
+Qwen3: 24 layers (every 4th); Llama~4 Scout: 12 layers (every 4th); Gemma~4: 15 layers (every 4th).
+
+\paragraph{CaCLR Implementation.}
+Gaussian RBF kernel with median heuristic bandwidth; Adam optimizer ($\text{lr} = 0.001$, cosine decay); 50 epochs with early stopping (patience 10 on val BCE); initialized from standard LR solution; batch size 256.
+Average parallel set size per language: 9,800 items (min: 4,200 for Telugu, max: 14,042 for English).
+
+\paragraph{Statistical Testing.}
+All comparisons use bootstrap 95\% CIs (1,000 resamples), paired permutation tests, and Cohen's $d$.
+
+% ============================================================
+\section{Results}
+
+\subsection{Pareto Frontier Discovery}
+\label{sec:pareto}
+
+\paragraph{Qwen3-235B: Uniform Strong Tradeoff.}
+Table~\ref{tab:qwen_transfer} summarizes the depth-transferability tradeoff on Qwen3.
+English AUROC peaks at layer 72 ($\approx$77\% depth) with AUROC = 0.80.
+However, the best \emph{transfer} layer is L48 ($\approx$51\% depth), where average zero-shot AUROC across 19 languages is 0.669 vs.\ 0.647 at L72---a 2.2pp gap.
+All 20 languages exhibit negative Spearman $\rho$ between depth and transfer AUROC ($\rho_{\text{median}} = -0.48$, range $[-0.58, -0.42]$), confirming a universal tradeoff on this architecture.
+Low-resource languages show stronger negative correlation (sw: $-0.58$, bn: $-0.56$, te: $-0.55$) due to weaker cross-lingual representations.
+
+\begin{table}[t]
+\centering
+\small
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{ZS AUROC}} & \multirow{2}{*}{\textbf{$\rho$}} \\
+\cmidrule(lr){2-3}
+\textbf{Language} & \textbf{L48} & \textbf{L72} & \\
+\midrule
+zh & 0.73 & 0.71 & $-0.45$ \\
+es & 0.72 & 0.70 & $-0.42$ \\
+fr & 0.71 & 0.70 & $-0.43$ \\
+de & 0.70 & 0.69 & $-0.44$ \\
+ja & 0.69 & 0.67 & $-0.47$ \\
+pt & 0.70 & 0.69 & $-0.43$ \\
+nl & 0.69 & 0.68 & $-0.44$ \\
+ru & 0.69 & 0.67 & $-0.46$ \\
+\midrule
+ar & 0.67 & 0.65 & $-0.50$ \\
+hi & 0.66 & 0.64 & $-0.52$ \\
+ko & 0.68 & 0.66 & $-0.48$ \\
+vi & 0.66 & 0.64 & $-0.51$ \\
+tr & 0.65 & 0.63 & $-0.53$ \\
+id & 0.67 & 0.65 & $-0.49$ \\
+pl & 0.68 & 0.66 & $-0.46$ \\
+uk & 0.67 & 0.65 & $-0.47$ \\
+\midrule
+sw & 0.58 & 0.55 & $-0.58$ \\
+bn & 0.57 & 0.54 & $-0.56$ \\
+te & 0.59 & 0.56 & $-0.55$ \\
+\midrule
+\textbf{Avg} & \textbf{0.669} & \textbf{0.647} & $-0.48$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Qwen3-235B zero-shot transfer AUROC at best transfer layer (L48, 51\% depth) vs.\ EN-optimal layer (L72, 77\% depth), with per-language Spearman $\rho$ (depth vs.\ transfer AUROC). All $\rho$ values are negative. Languages grouped by resource tier (High/Mid/Low).}
+\label{tab:qwen_transfer}
+\end{table}
+
+\paragraph{Llama 4 Scout: Language-Specific Tradeoff.}
+Table~\ref{tab:arch_contrast} contrasts per-language $\rho$ across architectures.
+Llama~4 Scout shows a qualitatively different pattern: global $\rho = -0.12$, with 4 languages exhibiting \emph{positive} $\rho$ (ar: $+0.15$, ko: $+0.12$, hi: $+0.08$, id: $+0.02$), 8 near zero, and only 8 significantly negative.
+This means deeper layers improve transfer for some languages while degrading it for others---there is no single ``best transfer layer'' on this architecture.
+Per-language best layers vary from L20 (sw, bn) to L40 (ar, ko), whereas on Qwen3 all languages converge near L48.
+
+\begin{table}[t]
+\centering
+\small
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Language} & \textbf{Qwen3 $\rho$} & \textbf{Llama4 $\rho$} \\
+\midrule
+zh & $-0.45$ & $-0.35$ \\
+es & $-0.42$ & $-0.30$ \\
+fr & $-0.43$ & $-0.28$ \\
+de & $-0.44$ & $-0.32$ \\
+ja & $-0.47$ & $-0.25$ \\
+pt & $-0.43$ & $-0.27$ \\
+nl & $-0.44$ & $-0.22$ \\
+ru & $-0.46$ & $-0.18$ \\
+\midrule
+ar & $-0.50$ & $\mathbf{+0.15}$ \\
+hi & $-0.52$ & $\mathbf{+0.08}$ \\
+ko & $-0.48$ & $\mathbf{+0.12}$ \\
+vi & $-0.51$ & $-0.05$ \\
+tr & $-0.53$ & $-0.08$ \\
+id & $-0.49$ & $\mathbf{+0.02}$ \\
+pl & $-0.46$ & $-0.10$ \\
+uk & $-0.47$ & $-0.05$ \\
+\midrule
+sw & $-0.58$ & $-0.42$ \\
+bn & $-0.56$ & $-0.38$ \\
+te & $-0.55$ & $-0.30$ \\
+\midrule
+\textbf{Median} & $-0.48$ & $-0.10$ \\
+\textbf{Range} & [$-0.58$, $-0.42$] & [$-0.42$, $+0.15$] \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Architecture contrast: per-language Spearman $\rho$ (depth vs.\ zero-shot transfer AUROC). Qwen3 shows uniformly negative $\rho$; Llama~4 Scout shows language-specific behavior with 4 positive values (\textbf{bold}).}
+\label{tab:arch_contrast}
+\end{table}
+
+\paragraph{Gemma 4 31B Dense.}
+The dense architecture exhibits the strongest and most uniform tradeoff ($\rho_{\text{median}} = -0.55$, range $[-0.62, -0.48]$, $\sigma = 0.04$), consistent with the absence of MoE routing heterogeneity.
+EN best AUROC is 0.79 at layer 42 (70\% depth); best transfer layer is L30 (50\% depth) with median zero-shot AUROC 0.67.
+The CKA cliff is steeper (magnitude 0.18) than both MoE models, providing the strongest architecture contrast.
+
+\subsection{CaCLR: A Principled Negative Result}
+\label{sec:caclr}
+
+\paragraph{$\beta$ Sweep.}
+Table~\ref{tab:beta_sweep} presents the MMD consistency loss $\beta$ sweep across three orders of magnitude.
+No value of $\beta$ achieves $p < 0.05$ or $d > 0.2$.
+At low $\beta$ (0.001--0.01), MMD gradients are too weak to influence probe weights.
+At moderate $\beta$ (0.03--0.1), MMD pushes toward marginal distribution alignment of 1-D logits without addressing correctness direction rotation.
+At high $\beta$ (0.3--1.0), MMD dominates the loss, degrading discriminative power ($\Delta$AUROC $= -0.010$ at $\beta = 1.0$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+$\beta$ & $\Delta$AUROC & $\Delta$ECE \\
+\midrule
+\rowcolor{lightgray}
+0 (ref.) & 0.000 & 0.000 \\
+0.001 & +0.002 & $-0.001$ \\
+0.003 & +0.001 & $-0.001$ \\
+0.01 & +0.001 & 0.000 \\
+0.03 & $-0.001$ & +0.001 \\
+0.1 & $-0.002$ & +0.002 \\
+0.3 & $-0.005$ & +0.003 \\
+1.0 & $-0.010$ & +0.005 \\
+\midrule
+\multicolumn{3}{l}{\small Paired perm.\ $p = 0.38$, Cohen's $d = 0.07$} \\
+\bottomrule
+\end{tabular}
+\caption{$\beta$ sweep (MMD consistency weight). $\Delta$AUROC and $\Delta$ECE are relative to $\beta = 0$ (i.e., $\alpha$-only baseline with $\alpha = 0.5$). No $\beta$ value produces a significant effect.}
+\label{tab:beta_sweep}
+\end{table}
+
+\paragraph{Component Ablation.}
+Table~\ref{tab:ablation} decomposes CaCLR into its components.
+The $\alpha$ (SB-ECE) term reduces ECE from 0.175 to 0.125 ($-$5.0pp) with minimal AUROC impact (+0.004pp).
+The $\beta$ (MMD) term contributes $+$0.001pp AUROC and $-$0.001pp ECE---functionally zero.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Configuration} & \textbf{ZS AUROC} & \textbf{ECE} \\
+\midrule
+BCE only & 0.647 & 0.175 \\
+$+\alpha$ (SB-ECE) & 0.651 & 0.125 \\
+$+\beta$ (MMD) & 0.649 & 0.173 \\
+$+\alpha + \beta$ (Full) & 0.652 & 0.124 \\
+\bottomrule
+\end{tabular}
+\caption{CaCLR component ablation (Qwen3, L48). The $\alpha$ term drives ECE improvement; $\beta$ contributes nothing.}
+\label{tab:ablation}
+\end{table}
+
+\paragraph{Full Method Comparison.}
+Table~\ref{tab:method_comparison} ranks all transfer methods.
+Linear projection with 50 pairs (+3.5pp on Qwen3, +3.2pp on Llama~4) and few-shot with 100 labels (+4.6pp, +4.4pp) significantly outperform zero-shot transfer.
+CaCLR achieves only +0.8pp on Qwen3 and +0.6pp on Llama~4, almost entirely from the $\alpha$ component.
+Mean-shift produces $\Delta$AUROC $\equiv 0$ as predicted by the rank-invariance proof.
+
+\begin{table}[t]
+\centering
+\small
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{Qwen3 (L48)}} & \multicolumn{2}{c}{\textbf{Llama4 (L28)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Method} & AUROC & $\Delta$ & AUROC & $\Delta$ \\
+\midrule
+Zero-shot & 0.669 & --- & 0.638 & --- \\
+Mean-shift & 0.669 & 0.000 & 0.638 & 0.000 \\
+CaCLR ($\alpha$ only) & 0.673 & +0.004 & 0.642 & +0.004 \\
+CaCLR (full) & 0.677 & +0.008 & 0.644 & +0.006 \\
+\midrule
+Linear proj.\ (50) & 0.704 & +0.035 & 0.670 & +0.032 \\
+Few-shot (25) & 0.695 & +0.026 & 0.662 & +0.024 \\
+Few-shot (100) & 0.715 & +0.046 & 0.682 & +0.044 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Transfer method comparison. Linear projection and few-shot methods significantly outperform zero-shot and CaCLR. $\Delta$ is vs.\ zero-shot. Bootstrap 95\% CI for linear proj.\ $\Delta$: $[0.025, 0.045]$ (Qwen3).}
+\label{tab:method_comparison}
+\end{table}
+
+\subsection{CKA Geometric Analysis}
+\label{sec:cka}
+
+CKA (linear kernel) between English and 19 target languages declines monotonically with depth: median CKA drops from 0.83 at shallow layers to 0.48 at deep layers.
+At 70\% depth, resource-tier banding is clear (High: 0.58, Mid: 0.46, Low: 0.34).
+Qwen3 exhibits a steeper CKA cliff at 72\% depth (magnitude 0.15) than Llama~4 at 65\% depth (0.08), consistent with the stronger Pareto tradeoff.
+
+\paragraph{Partial Correlation Analysis.}
+Table~\ref{tab:cka_partial} presents the key statistical test.
+Pooled CKA--transfer correlation is $r = 0.52$ ($p < 10^{-6}$), but this is confounded by depth.
+Partial correlation controlling for normalized depth drops to $r = 0.18$ ($p = 0.11$)---CKA adds marginal information beyond depth itself.
+We therefore frame CKA as \emph{suggestive correlational analysis}, not geometric explanation.
+
+The between-language claim remains valid: at matched depth, languages with higher CKA show less transfer degradation ($r = 0.52$, $p = 0.02$, $n = 19$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Analysis} & $r$ & $p$ & \textbf{Interpretation} \\
+\midrule
+CKA--transfer (pooled) & 0.52 & $<10^{-6}$ & Strong but confounded \\
+Depth--transfer & --- & --- & Primary driver \\
+CKA $|$ depth (partial) & 0.18 & 0.11 & Suggestive only \\
+\midrule
+Between-lang (same depth) & 0.52 & 0.02 & Valid cross-lang claim \\
+\bottomrule
+\end{tabular}
+\caption{CKA as transfer predictor. Partial correlation controlling depth reduces $r$ from 0.52 to 0.18, indicating CKA's predictive power is largely driven by depth. Between-language correlation at matched depth remains significant.}
+\label{tab:cka_partial}
+\end{table}
+
+\paragraph{Subspace Angle Analysis.}
+Correctness subspace angles between English and target languages increase from median 15\textdegree{} at shallow layers to 38\textdegree{} at deep layers, far below the random baseline of 72\textdegree.
+This quantifies the rotation of correctness directions with depth: the subspace persists but rotates, consistent with the Pareto frontier---deeper layers encode stronger English correctness but rotate away from cross-lingual alignment.
+
+\subsection{Difficulty-Capability Decomposition}
+\label{sec:decomp}
+
+Table~\ref{tab:decomp} summarizes the decomposition ablation.
+Removing the difficulty direction before retraining correctness probes improves transfer in 65\% of language-layer combinations (paired permutation $p = 0.028$, Cohen's $d = 0.25$).
+The effect is concentrated at deep layers (78\% improved, $d \approx 0.35$) and high-resource languages (72\% improved), with diminishing returns for low-resource languages (50\% improved) where probes are noisier.
+A random-direction control confirms specificity: random removal yields $d = 0.05$ ($p = 0.42$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{Med.\ $\Delta$AUC} & \textbf{\% Impr.} & $d$ \\
+\midrule
+Difficulty removed & +0.015 & 65\% & 0.25 \\
+Random direction & +0.003 & 52\% & 0.05 \\
+\midrule
+\multicolumn{4}{l}{\small \textit{Difficulty removed, by depth:}} \\
+\quad Shallow (20--40\%) & +0.005 & 48\% & --- \\
+\quad Mid (40--60\%) & +0.015 & 65\% & --- \\
+\quad Deep (60--90\%) & +0.022 & 78\% & --- \\
+\midrule
+\multicolumn{4}{l}{\small \textit{Difficulty removed, by resource tier:}} \\
+\quad High & +0.020 & 72\% & --- \\
+\quad Mid & +0.013 & 63\% & --- \\
+\quad Low & +0.008 & 50\% & --- \\
+\bottomrule
+\end{tabular}
+\caption{Decomposition ablation. Removing the difficulty direction improves transfer, concentrated at deep layers and high-resource languages. Random-direction control confirms specificity ($p = 0.42$). Effect size is small ($d = 0.25$), supporting a qualitative rather than quantitative claim.}
+\label{tab:decomp}
+\end{table}
+
+The IRT difficulty probe achieves median $R^2 = 0.40$ (range $[0.22, 0.52]$), peaking at 65\% depth.
+The difficulty--correctness cosine of 0.20 (range $[0.10, 0.32]$) indicates incomplete separation---the decomposition is informative but not clean.
+
+\subsection{Cross-Lingual Orthogonality}
+\label{sec:ortho}
+
+Table~\ref{tab:ortho} extends the correctness-confidence orthogonality finding to 20 languages.
+All cosine values remain below 0.12 (English: 0.032 on Qwen3, 0.036 on Llama~4), confirming that output-based calibration is structurally limited regardless of language.
+A resource-tier gradient emerges: high-resource median 0.037, mid 0.054, low 0.090 (Spearman $\rho = -0.58$, $p = 0.008$ with log resource estimate).
+Cross-architecture correlation is 0.94, indicating the pattern is model-agnostic.
+
+\begin{table}[t]
+\centering
+\small
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{lcc|lcc}
+\toprule
+\textbf{Lang} & \textbf{Qwen3} & \textbf{Llama4} & \textbf{Lang} & \textbf{Qwen3} & \textbf{Llama4} \\
+\midrule
+en & .032 & .036 & ar & .055 & .060 \\
+zh & .038 & .042 & hi & .058 & .065 \\
+es & .035 & .038 & ko & .050 & .055 \\
+fr & .033 & .036 & vi & .060 & .068 \\
+de & .036 & .040 & tr & .062 & .070 \\
+ja & .040 & .045 & id & .048 & .052 \\
+pt & .034 & .037 & pl & .040 & .045 \\
+nl & .033 & .036 & uk & .045 & .050 \\
+ru & .042 & .048 & sw & .095 & .110 \\
+ &  &  & bn & .088 & .098 \\
+ &  &  & te & .078 & .085 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Tier medians:}} & \multicolumn{3}{l}{High: .037, Mid: .054, Low: .090} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Correctness-confidence cosine similarity across 20 languages and 2 architectures. All values $< 0.12$. Resource-tier gradient: $\rho = -0.58$, $p = 0.008$.}
+\label{tab:ortho}
+\end{table}
+
+\subsection{Linear Projection Sample Efficiency}
+\label{sec:linproj}
+
+Table~\ref{tab:linproj} presents the linear projection learning curve.
+With only 10 parallel pairs, median $\Delta$AUROC is +1.2pp; at 50 pairs, it reaches +3.5pp (90\% of achievable improvement).
+Diminishing returns set in around 60 pairs (knee), consistent with cross-lingual alignment literature.
+Linear projection surpasses CaCLR at only 20 pairs.
+Low-resource languages benefit most (+4.5pp at 50 pairs vs.\ +2.8pp for high-resource), as their larger geometric misalignment provides more room for correction.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{rccl}
+\toprule
+\textbf{Pairs} & \textbf{Med.\ $\Delta$AUC} & \textbf{Std} & \textbf{Note} \\
+\midrule
+10 & +0.012 & 0.022 & Below CaCLR \\
+20 & +0.023 & 0.016 & Matches CaCLR \\
+50 & +0.035 & 0.011 & 90\% of max \\
+100 & +0.040 & 0.008 & Near saturation \\
+200 & +0.042 & 0.007 & Saturated \\
+\midrule
+\multicolumn{4}{l}{\small CaCLR surpassed at ${\sim}$20 pairs; knee at ${\sim}$60} \\
+\bottomrule
+\end{tabular}
+\caption{Linear projection sample efficiency. $\sim$50 parallel pairs achieve 90\% of maximum improvement. CaCLR is surpassed at $\sim$20 pairs.}
+\label{tab:linproj}
+\end{table}
+
+\subsection{Control Task Analysis}
+\label{sec:control}
+
+Table~\ref{tab:control} presents the Hewitt \& Liang control task analysis extended to 20 languages.
+Approximately 27\% of language-layer combinations exhibit selectivity $< 0.05$, concentrated along two dimensions: shallow layers universally (85\% below threshold at 0--20\% depth) and low-resource languages at mid-depth (42\% below for sw/bn/te).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+& \textbf{Shallow} & \textbf{Mid} & \textbf{Deep} \\
+& (0--30\%) & (30--60\%) & (60--100\%) \\
+\midrule
+High resource & 80\% & 12\% & 5\% \\
+Mid resource & 88\% & 22\% & 8\% \\
+Low resource & 92\% & 38\% & 15\% \\
+\midrule
+\textbf{All} & 85\% & 18\% & 8\% \\
+\bottomrule
+\end{tabular}
+\caption{Fraction of language-layer combinations with selectivity $< 0.05$ (capacity artifact risk). Total: ${\sim}$27\%. Shallow layers and low-resource languages are most affected.}
+\label{tab:control}
+\end{table}
+
+This has two implications.
+First, shallow-layer low selectivity is expected and benign---the paper does not claim correctness signal at shallow layers.
+Second, low-resource mid-depth artifacts are a genuine concern: probes with selectivity $< 0.05$ may reflect capacity memorization rather than correctness signal.
+We recommend selectivity $\geq 0.05$ as a minimum threshold for interpretable cross-lingual probing.
+Our own statistical tests exclude combinations below this threshold where feasible.
+
+\subsection{Probe Complexity Validation}
+\label{sec:probe_complexity}
+
+MLP probes (2-layer) achieve +2.2pp English AUROC over logistic regression (0.825 vs.\ 0.80 on Qwen3; 0.80 vs.\ 0.78 on Llama~4) but suffer a 5.4pp larger transfer gap (18.5\% vs.\ 13.1\% on Qwen3).
+Logistic regression transfers better for 82\% of languages; exceptions are zh and es where MLP nonlinearity partially transfers.
+This validates the focus on linear probes: the transferable component of correctness signal is geometric (linear subspace), and nonlinear components are language-specific.
+
+\subsection{Additional Validation}
+\label{sec:quant}
+
+\paragraph{Quantization.}
+Comparing W4A16 vs.\ FP16 on Llama~4 Scout (5 layers, 5\% subset) yields max $\Delta$AUROC of 0.009 with Pearson $r = 0.996$.
+GPTQ-Int4 vs.\ FP16 on Qwen3 yields max $\Delta$AUROC of 0.011 ($r = 0.995$).
+All differences are within bootstrap CIs.
+
+\paragraph{Cross-Benchmark Generalization.}
+On Belebele (reading comprehension), Pareto $\rho = -0.45$ and linear projection $\Delta = +3.0$pp.
+On MMLU-ProX (translated MCQA), $\rho = -0.48$ and $\Delta = +3.4$pp.
+Method ranking is consistent across all three benchmarks (rank correlation with GlobalMMLU: 0.80 for Belebele, 0.90 for MMLU-ProX).
+CaCLR $\beta$ remains inert on all benchmarks.
+
+\paragraph{Extended Language Coverage.}
+Expanding to 52 languages, median zero-shot AUROC is 0.64 (range $[0.50, 0.73]$).
+10 languages fall below 0.55 (am, my, zu, sn, rw, xh, ny, mg), reflecting minimal pretraining representation.
+With linear projection, 67\% of languages (35/52) achieve viable calibration ($\text{AUROC} > 0.60$).
+
+% ============================================================
+\section{Discussion}
+
+\paragraph{Why Does MMD Fail?}
+MMD operates on 1-D probe logits and can only match marginal distributions (mean and variance of scalar outputs).
+Cross-lingual correctness misalignment is \emph{geometric rotation}---the correctness direction points differently in different languages' activation spaces.
+This rotation occurs in high-dimensional space \emph{before} the probe, where MMD on post-probe logits cannot reach.
+Zhao et al.\ (\citeyear{zhao2019}) predict exactly this: marginal matching fails when $P(Y|X)$ differs across domains, as correctness label distributions are language-dependent.
+Linear projection succeeds because it directly estimates the rotation matrix via parallel pairs.
+
+\paragraph{Architecture Dependence.}
+With $n = 3$ architectures differing in type (MoE vs.\ dense), scale, layer count, and training data, we cannot attribute tradeoff shape to specific architectural features.
+The finding is observational: practitioners must empirically characterize the Pareto frontier for their target architecture rather than assuming a universal depth rule.
+
+\paragraph{Limitations.}
+(1)~MCQA only: clean correctness labeling requires closed-form evaluation; open-ended generation requires different signal types.
+(2)~$n = 3$ architectures: insufficient for causal attribution.
+(3)~Decomposition effect size ($d = 0.25$) supports a qualitative claim only.
+(4)~CKA is correlational after controlling for depth.
+(5)~27\% of probing combinations are potential capacity artifacts, particularly for low-resource languages.
+
+% ============================================================
+\section{Conclusion}
+
+We present the first systematic study of cross-lingual correctness probe transfer, revealing an architecture-dependent depth-transferability Pareto frontier.
+The natural distributional-matching approach (CaCLR with MMD consistency) fails---a principled negative result explained by the geometric nature of cross-lingual misalignment.
+The practical recommendation is simple: linear projection with ${\sim}50$ parallel pairs provides +3.5pp AUROC, surpassing CaCLR at 20 pairs and achieving 90\% of the maximum achievable improvement.
+Cross-lingual orthogonality between correctness and confidence persists across all 20 tested languages (max cosine 0.11), establishing output-based calibration as structurally limited regardless of language.
+We further contribute a methodological warning: approximately 27\% of cross-lingual probing results are capacity artifacts, and recommend selectivity $\geq 0.05$ as a minimum interpretability threshold.
+
+% ============================================================
+% References
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{30}
+
+\bibitem[Angelopoulos and Bates,2023]{angelopoulos2023conformal}
+Anastasios Angelopoulos and Stephen Bates. 2023.
+\newblock Conformal prediction: A gentle introduction.
+\newblock {\em Foundations and Trends in Machine Learning}, 16(4):494--591.
+
+\bibitem[Artetxe et~al.,2018]{artetxe2018vecmap}
+Mikel Artetxe, Gorka Labaka, and Eneko Agirre. 2018.
+\newblock A robust self-learning method for fully unsupervised cross-lingual mappings of word embeddings.
+\newblock In {\em Proceedings of ACL}, pages 789--798.
+
+\bibitem[Ben-David et~al.,2010]{bendavid2010}
+Shai Ben-David, John Blitzer, Koby Crammer, Alex Kulesza, Fernando Pereira, and Jennifer~Wortman Vaughan. 2010.
+\newblock A theory of learning from different domains.
+\newblock {\em Machine Learning}, 79(1):151--175.
+
+\bibitem[Conneau et~al.,2018]{conneau2018muse}
+Alexis Conneau, Guillaume Lample, Marc'Aurelio Ranzato, Ludovic Denoyer, and Herv{\'e} J{\'e}gou. 2018.
+\newblock Word translation without parallel data.
+\newblock In {\em Proceedings of ICLR}.
+
+\bibitem[Hewitt and Liang,2019]{hewitt2019control}
+John Hewitt and Percy Liang. 2019.
+\newblock Designing and interpreting probes with control tasks.
+\newblock In {\em Proceedings of EMNLP}, pages 2733--2743.
+
+\bibitem[Kornblith et~al.,2019]{kornblith2019cka}
+Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton. 2019.
+\newblock Similarity of neural network representations revisited.
+\newblock In {\em Proceedings of ICML}, pages 3519--3529.
+
+\bibitem[Miao et~al., 2026a]{miao2026coral}
+Qingyi Miao, Mingxuan Ju, and Lyle Ungar. 2026a.
+\newblock {CORAL}: Cross-task correctness probes for LLM calibration.
+\newblock In {\em Proceedings of NAACL}.
+
+\bibitem[Miao and Ungar,2026]{miao2026steering}
+Qingyi Miao and Lyle Ungar. 2026.
+\newblock Steering LLM confidence via orthogonal correctness directions.
+\newblock In {\em Proceedings of ACL}.
+
+\bibitem[Pires et~al.,2019]{pires2019multilingual}
+Telmo Pires, Eva Schlinger, and Dan Garrette. 2019.
+\newblock How multilingual is multilingual {BERT}?
+\newblock In {\em Proceedings of ACL}, pages 4996--5001.
+
+\bibitem[Raghu et~al.,2017]{raghu2017svcca}
+Maithra Raghu, Justin Gilmer, Jason Yosinski, and Jascha Sohl-Dickstein. 2017.
+\newblock {SVCCA}: Singular vector canonical correlation analysis for deep learning dynamics and interpretability.
+\newblock In {\em Proceedings of NeurIPS}, pages 6076--6085.
+
+\bibitem[Voita and Titov,2020]{voita2020mdl}
+Elena Voita and Ivan Titov. 2020.
+\newblock Information-theoretic probing with minimum description length.
+\newblock In {\em Proceedings of EMNLP}, pages 183--196.
+
+\bibitem[Wu and Dredze,2019]{wu2019beto}
+Shijie Wu and Mark Dredze. 2019.
+\newblock Beto, bentz, becas: The surprising cross-lingual effectiveness of {BERT}.
+\newblock In {\em Proceedings of EMNLP}, pages 833--844.
+
+\bibitem[Xiao et~al.,2025]{xiao2025}
+Shuyue Xiao, Zhiwei Zhang, and Linyi Yang. 2025.
+\newblock Cross-lingual knowledge boundary probing in large language models.
+\newblock In {\em Proceedings of ACL}, pages 1204--1218.
+
+\bibitem[Zhao et~al.,2019]{zhao2019}
+Han Zhao, Remi Tachet des Combes, Kun Zhang, and Geoffrey Gordon. 2019.
+\newblock On learning invariant representations for domain adaptation.
+\newblock In {\em Proceedings of ICML}, pages 7523--7532.
+
+\bibitem[Zhou et~al.,2024]{zhou2024lace}
+Kaitlyn Zhou, Dan Jurafsky, and Tatsunori Hashimoto. 2024.
+\newblock {LACE}: Language-aware cross-lingual calibration.
+\newblock In {\em Proceedings of EMNLP}, pages 2891--2906.
+
+\end{thebibliography}
+
+% ============================================================
+\appendix
+\section{Supplementary Results}
+
+\subsection{Probe Complexity (Table S1)}
+
+Table~\ref{tab:probe_complexity_supp} compares logistic regression and MLP probes.
+MLP achieves higher English AUROC but larger transfer gap at all layers, with the gap widening at deeper layers (6.5pp at deep vs.\ 2.0pp at shallow).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{EN AUROC}} & \multicolumn{2}{c}{\textbf{Transfer Gap}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Model} & LogReg & MLP & LogReg & MLP \\
+\midrule
+Qwen3 & 0.800 & 0.825 & 13.1\% & 18.5\% \\
+Llama4 & 0.780 & 0.800 & 14.2\% & 19.5\% \\
+\midrule
+\multicolumn{5}{l}{\small LogReg better transfer: 82\% of langs} \\
+\multicolumn{5}{l}{\small LogReg ECE: 0.135; MLP ECE: 0.148} \\
+\bottomrule
+\end{tabular}
+\caption{Probe complexity comparison. MLP gains English AUROC at the cost of larger transfer gap.}
+\label{tab:probe_complexity_supp}
+\end{table}
+
+\subsection{Cross-Benchmark Generalization (Table S2)}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Benchmark} & \textbf{EN} & \textbf{ZS} & $\rho$ & \textbf{LP $\Delta$} & $\beta$ $\Delta$ \\
+\midrule
+GlobalMMLU & 0.80 & 0.669 & $-0.50$ & +.035 & +.002 \\
+Belebele & 0.77 & 0.650 & $-0.45$ & +.030 & +.002 \\
+MMLU-ProX & 0.81 & 0.670 & $-0.48$ & +.034 & +.003 \\
+\midrule
+\multicolumn{6}{l}{\small Rank corr.\ with GlobalMMLU: Belebele 0.80, MMLU-ProX 0.90} \\
+\bottomrule
+\end{tabular}
+\caption{Cross-benchmark generalization (Qwen3). EN = EN best AUROC; ZS = zero-shot median; LP = linear projection 50 pairs. CaCLR $\beta$ inert across all benchmarks.}
+\label{tab:benchmark_supp}
+\end{table}
+
+\subsection{Quantization Validation (Table S3)}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{Llama4 (W4A16)}} & \multicolumn{2}{c}{\textbf{Qwen3 (INT4)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Layer} & $\Delta$AUC & & $\Delta$AUC & \\
+\midrule
+L8 / L16 & $-0.004$ & & $-0.006$ & \\
+L16 / L32 & $-0.004$ & & $-0.005$ & \\
+L24 / L48 & $-0.005$ & & $-0.004$ & \\
+L32 / L64 & $-0.007$ & & $-0.005$ & \\
+L40 / L80 & $-0.009$ & & $-0.011$ & \\
+\midrule
+\textbf{Mean} & $-0.004$ & $r{=}.996$ & $-0.005$ & $r{=}.995$ \\
+\bottomrule
+\end{tabular}
+\caption{Quantization validation. All $\Delta$AUROC within bootstrap CIs. Quantization does not distort correctness signals.}
+\label{tab:quant_supp}
+\end{table}
+
+\subsection{Control Task Details (Table S4)}
+
+English selectivity increases with depth on both architectures: shallow average 0.03, mid 0.15--0.18, deep 0.24--0.27.
+Low-resource languages show lower selectivity at matched depth (median 0.09 vs.\ 0.19 for high-resource), with the worst combinations being sw at 0--50\% depth (median selectivity 0.02) and te at 0--40\% depth (0.02).
+All control task AUROCs remain near chance (median 0.50, range $[0.48, 0.53]$), confirming negligible probe capacity for memorizing random labels.
+
+\subsection{Three-Architecture Summary (Table CR1)}
+
+\begin{table}[h]
+\centering
+\small
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Model} & \textbf{Type} & \textbf{EN} & \textbf{ZS} & $\rho_{\text{med}}$ & $\rho_{\sigma}$ & \textbf{CKA cliff} & \textbf{LP $\Delta$} \\
+\midrule
+Qwen3-235B & MoE & .80 & .669 & $-.48$ & .05 & .15 & +.035 \\
+Llama4 Scout & MoE & .78 & .638 & $-.10$ & .12 & .08 & +.032 \\
+Gemma4 31B & Dense & .79 & .670 & $-.55$ & .04 & .18 & +.033 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Three-architecture comparison. Dense model shows strongest, most uniform Pareto ($\rho_\sigma = 0.04$). MoE models vary: Qwen3 moderate uniform, Llama4 language-specific.}
+\label{tab:three_arch}
+\end{table}
+
+\subsection{Extended 52-Language Coverage (Table CR2)}
+
+Of 52 languages tested, 32 achieve zero-shot AUROC $> 0.60$ and 25 exceed 0.65.
+With linear projection (+3.2pp median), 35/52 (67\%) reach viable calibration.
+8 new languages fall below 0.55 (am, my, zu, sn, rw, xh, ny, mg), reflecting minimal pretraining representation.
+The resource-tier gradient replicates at scale ($\rho_{\text{median}} = -0.47$ across 52 languages).
+
+\end{document}

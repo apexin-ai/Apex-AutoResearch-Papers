@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_r6-1b-collect-synthetic_20260525T074547_result.json",
     "occurrence": 1,
-    "bytes": 369,
-    "sha256": "5602c3170fcb0d79ff5684ca7e249fe532bc26ecc9dfd8dccb4440e867896283"
+    "bytes": 368,
+    "sha256": "6526eb671bfb40696179c783bd4c5ea2e7e3a0a21eff3efe9da7655a07850d96"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_step3-mi-filter-and-sensitivity_20260522T163508_result.json",
     "occurrence": 1,
-    "bytes": 1607,
-    "sha256": "190804e0e45bda76276f71afe905700107b1dce5227304224bde0cb965cd00fc"
+    "bytes": 1606,
+    "sha256": "209f8127c6056525a2fe1891b8a1e7cbb7dafc9f0e6b9130a5f3a63fc01060dd"
   },
   "statistics": {
     "messages": 1,

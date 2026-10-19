@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99372357a68d8c804364",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops critical fix extraction",
+  "task_key": "worker_ops_critical-fix-extraction_20260521T112646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_critical-fix-extraction_20260521T112646_result.json",
+    "occurrence": 1,
+    "bytes": 1363,
+    "sha256": "cb069d3ddeb88c3e699d308d02517fcc13ea339a84bd0958982f66adf21093d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总如下：\n\n---\n\n## 修复结果\n\n| Fix | 状态 | 详情 |\n|-----|------|------|\n| **Fix 1** extract_activations.py float→half | ✅ | 第264行 `.float()` → `.half()`, 文件中不再有 `.float()` |\n| **Fix 2** 下游脚本 float16 兼容 | ✅ | train_probes.py 第126行已有 `.astype(np.float32)`; caclr_highdim.py 同样已有; compute_cka.py 第100/110行新增 `.astype(np.float32)` |\n| **Fix 3** 旧 MVP 模型删除 | ✅ | LLM-Research/ 和 Qwen/ 已删除，释放 ~30GB |\n| **Fix 4** run_p0.sh PYTHONUNBUFFERED | ✅ | 第3行已加 `export PYTHONUNBUFFERED=1` |\n\n## 磁盘空间\n\n`/root/autodl-tmp/`: **101GB 可用** (250GB used / 350GB total, 72%)\n\n## 模型下载状态\n\n### Llama4 Scout W4A16 — ✅ 下载完成\n- **路径**: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\n- safetensors: **14/14** 全部就绪\n- config.json: ✅ 存在\n- `._____temp/`: 存在但为空（无残留下载文件）\n\n### Qwen3-235B-GPTQ-Int4 — ⚠️ 下载未完成\n- **路径**: `/root/autodl-tmp/models/Qwen3-235B-GPTQ-Int4/`\n- safetensors: 主目录 **27/32**, `._____temp/` 中还有 **5 个** (25,26,27,29,31) 未移出\n- config.json: ✅ 存在\n- 缺失的 shard 仍在 temp 目录，说明下载可能中断或仍在进行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-critical-fix-extraction.md"
+}

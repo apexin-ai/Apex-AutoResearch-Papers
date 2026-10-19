@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_kill-seetacloud-scoring_20260522T134617_result.json",
     "occurrence": 1,
-    "bytes": 178,
-    "sha256": "f877e62abb365a70b7743f4ae9785f83e79cdb9d6bb6345455d9b37740badcd7"
+    "bytes": 177,
+    "sha256": "f9e08475d6c2d1b6e751396113847aae2f8e527f32d64c28d7250b564cc29a86"
   },
   "statistics": {
     "messages": 1,

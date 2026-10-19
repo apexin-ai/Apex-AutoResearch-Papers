@@ -1,13 +1,13 @@
 # Contents
 
-This catalogue covers **13 research projects**. Open a project README for its manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **15 research projects**. Open a project README for its manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
 | [acr-vla-conformal-refinement](paper-assets/acr-vla-conformal-refinement/README.md) | [PDF](paper-assets/acr-vla-conformal-refinement/01-manuscript/paper.pdf) | 1,517 | 7,791 | 7,114 | 391,607 |
 | [causal_annot_error_attrib](paper-assets/causal_annot_error_attrib/README.md) | [PDF](paper-assets/causal_annot_error_attrib/01-manuscript/paper.pdf) | 212 | 303 | 475 | 66,314 |
 | [causal_style_decomp_judge](paper-assets/causal_style_decomp_judge/README.md) | [PDF](paper-assets/causal_style_decomp_judge/01-manuscript/paper.pdf) | 171 | 488 | 506 | 73,378 |
-| [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) | 82 | 520 | 880 | 97,735 |
+| [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) | 253 | 873 | 880 | 97,735 |
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
 | [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |
 | [ec_hte_llm_annotation](paper-assets/ec_hte_llm_annotation/README.md) | [PDF](paper-assets/ec_hte_llm_annotation/01-manuscript/paper.pdf) | 27 | 74 | 434 | 75,488 |
@@ -17,6 +17,8 @@ This catalogue covers **13 research projects**. Open a project README for its ma
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 70 | 44 | 1,250 | 87,631 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
+| [xling_calab_direction](paper-assets/xling_calab_direction/README.md) | No PDF in snapshot | 0 | 0 | 2 | 404 |
+| [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 
 [Interactive asset catalogue](paper-assets/index.html) · [Full asset matrix](paper-assets/asset-matrix.csv) · [Readable trace guides](traces/README.md)
 

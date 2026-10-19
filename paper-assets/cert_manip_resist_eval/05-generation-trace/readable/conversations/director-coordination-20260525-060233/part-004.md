@@ -8362,7 +8362,7 @@ _source line 1780 · 2026-05-23T15:15:33.825071+00:00_
 - Commit message 不含作者信息 ✓
 
 ## 安全: WARNING
-[severity: warning] **GitHub PAT token 明文残留在 worker 日志中**。`worker_code_anonymous-repo-prep_20260523T125117.log` 第 187 行附近包含完整的 GitHub Personal Access Token（`ghp_7Jfg...`），通过 `git remote add origin https://user:TOKEN@github.com/...` 的方式暴露。当前 update-anon-repo worker 也通过 grep 旧日志获取该 token 完成 push，导致 token 在两个日志文件中都可见。
+[severity: warning] **GitHub PAT token 明文残留在 worker 日志中**。`worker_code_anonymous-repo-prep_20260523T125117.log` 第 187 行附近包含完整的 GitHub Personal Access Token（`ghp_7Jfg...`），通过 `git remote add origin https://[REDACTED]@github.com/...` 的方式暴露。当前 update-anon-repo worker 也通过 grep 旧日志获取该 token 完成 push，导致 token 在两个日志文件中都可见。
 
 **建议**：
 1. 确认该 token 的权限范围——如果仅限于 `anonymous-nlp-2026-2` org 的 repo 写权限，风险可控
@@ -15840,7 +15840,7 @@ git remote -v
 **如果显示 `git@github.com:...` (SSH)，必须改成 HTTPS+token：**
 
 ```bash
-git remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'
+git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'
 ```
 
 确认显示 `https://...` 之后，正常 push：
@@ -15934,7 +15934,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ````json
 {
-  "text": "**运维要求：检查匿名仓库 git remote 配置**\n\n检查用来 push 匿名仓库的本地目录（可能是 /tmp/anon_repo 或其他路径）：\n\n```bash\ncd <匿名仓库目录>\ngit remote -v\n```\n\n如果显示 `git@github.com:...`（SSH），改成 HTTPS+token：\n```bash\ngit remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n确认显示 `https://...` 后回报。不要把这个 URL（含 token）提交到任何代码或日志文件中。",
+  "text": "**运维要求：检查匿名仓库 git remote 配置**\n\n检查用来 push 匿名仓库的本地目录（可能是 /tmp/anon_repo 或其他路径）：\n\n```bash\ncd <匿名仓库目录>\ngit remote -v\n```\n\n如果显示 `git@github.com:...`（SSH），改成 HTTPS+token：\n```bash\ngit remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n确认显示 `https://...` 后回报。不要把这个 URL（含 token）提交到任何代码或日志文件中。",
   "project": "cert_manip_resist_eval"
 }
 ````
@@ -15949,7 +15949,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_511319d9c17dfa45ec974a0123143d46:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "**运维要求：检查匿名仓库 git remote 配置**\n\n检查用来 push 匿名仓库的本地目录（可能是 /tmp/anon_repo 或其他路径）：\n\n```bash\ncd <匿名仓库目录>\ngit remote -v\n```\n\n如果显示 `git@github.com:...`（SSH），改成 HTTPS+token：\n```bash\ngit remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n确认显示 `https://...` 后回报。不要把这个 URL（含 token）提交到任何代码或日志文件中。",
+    "text": "**运维要求：检查匿名仓库 git remote 配置**\n\n检查用来 push 匿名仓库的本地目录（可能是 /tmp/anon_repo 或其他路径）：\n\n```bash\ncd <匿名仓库目录>\ngit remote -v\n```\n\n如果显示 `git@github.com:...`（SSH），改成 HTTPS+token：\n```bash\ngit remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n确认显示 `https://...` 后回报。不要把这个 URL（含 token）提交到任何代码或日志文件中。",
     "project": "cert_manip_resist_eval"
   }
 }
@@ -16208,7 +16208,7 @@ _source line 2008 · 2026-05-23T18:55:54.621442+00:00_
 
    **正确的 HTTPS+token URL：**
    ```
-   https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git
+   https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git
    ```
 
 4. **完成后向我汇报**：
@@ -16300,7 +16300,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ````json
 {
-  "text": "**运维要求：匿名仓库完整性核查（必做）**\n\n验证 https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval 是否完整推送。\n\n**Step 1: 检查 GitHub 远程状态**\n```bash\ncurl -s -H 'Authorization: [REDACTED] [REDACTED_GITHUB_TOKEN]' 'https://api.github.com/repos/anonymous-nlp-2026-2/cert_manip_resist_eval/commits?per_page=5' | python3 -c \"import sys,json; [print(c['sha'][:7],c['commit']['message'][:80]) for c in json.load(sys.stdin)]\"\n```\n\n**Step 2: 检查本地匿名仓库**\n```bash\ncd /tmp/anon_repo  # 或实际路径，找不到就 find /tmp -name \"anon_repo\" -type d 2>/dev/null\ngit log --oneline -5\ngit status\nfind . -type f -not -path './.git/*' | wc -l\n```\n\n**Step 3: 确认 remote 是 HTTPS（不是 SSH）**\n```bash\ngit remote -v\n```\n如果是 SSH，改为：\n```bash\ngit remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n**Step 4: 如果本地有未推送的 commit → push**\n\n**Step 5: 报告**\n- GitHub 上的文件数 + 最新 commit hash\n- 本地文件数 + 最新 commit hash\n- 两边是否一致\n- 仓库是否包含核心代码 + README + requirements\n\n不确定就先报告现状，不要盲目推送。**注意：不要把含 token 的 URL 提交到任何代码文件或日志中。**",
+  "text": "**运维要求：匿名仓库完整性核查（必做）**\n\n验证 https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval 是否完整推送。\n\n**Step 1: 检查 GitHub 远程状态**\n```bash\ncurl -s -H 'Authorization: [REDACTED] [REDACTED_GITHUB_TOKEN]' 'https://api.github.com/repos/anonymous-nlp-2026-2/cert_manip_resist_eval/commits?per_page=5' | python3 -c \"import sys,json; [print(c['sha'][:7],c['commit']['message'][:80]) for c in json.load(sys.stdin)]\"\n```\n\n**Step 2: 检查本地匿名仓库**\n```bash\ncd /tmp/anon_repo  # 或实际路径，找不到就 find /tmp -name \"anon_repo\" -type d 2>/dev/null\ngit log --oneline -5\ngit status\nfind . -type f -not -path './.git/*' | wc -l\n```\n\n**Step 3: 确认 remote 是 HTTPS（不是 SSH）**\n```bash\ngit remote -v\n```\n如果是 SSH，改为：\n```bash\ngit remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n**Step 4: 如果本地有未推送的 commit → push**\n\n**Step 5: 报告**\n- GitHub 上的文件数 + 最新 commit hash\n- 本地文件数 + 最新 commit hash\n- 两边是否一致\n- 仓库是否包含核心代码 + README + requirements\n\n不确定就先报告现状，不要盲目推送。**注意：不要把含 token 的 URL 提交到任何代码文件或日志中。**",
   "project": "cert_manip_resist_eval"
 }
 ````
@@ -16315,7 +16315,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_511319d9c17dfa45ec974a0123143d46:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "**运维要求：匿名仓库完整性核查（必做）**\n\n验证 https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval 是否完整推送。\n\n**Step 1: 检查 GitHub 远程状态**\n```bash\ncurl -s -H 'Authorization: [REDACTED] [REDACTED_GITHUB_TOKEN]' 'https://api.github.com/repos/anonymous-nlp-2026-2/cert_manip_resist_eval/commits?per_page=5' | python3 -c \"import sys,json; [print(c['sha'][:7],c['commit']['message'][:80]) for c in json.load(sys.stdin)]\"\n```\n\n**Step 2: 检查本地匿名仓库**\n```bash\ncd /tmp/anon_repo  # 或实际路径，找不到就 find /tmp -name \"anon_repo\" -type d 2>/dev/null\ngit log --oneline -5\ngit status\nfind . -type f -not -path './.git/*' | wc -l\n```\n\n**Step 3: 确认 remote 是 HTTPS（不是 SSH）**\n```bash\ngit remote -v\n```\n如果是 SSH，改为：\n```bash\ngit remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n**Step 4: 如果本地有未推送的 commit → push**\n\n**Step 5: 报告**\n- GitHub 上的文件数 + 最新 commit hash\n- 本地文件数 + 最新 commit hash\n- 两边是否一致\n- 仓库是否包含核心代码 + README + requirements\n\n不确定就先报告现状，不要盲目推送。**注意：不要把含 token 的 URL 提交到任何代码文件或日志中。**",
+    "text": "**运维要求：匿名仓库完整性核查（必做）**\n\n验证 https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval 是否完整推送。\n\n**Step 1: 检查 GitHub 远程状态**\n```bash\ncurl -s -H 'Authorization: [REDACTED] [REDACTED_GITHUB_TOKEN]' 'https://api.github.com/repos/anonymous-nlp-2026-2/cert_manip_resist_eval/commits?per_page=5' | python3 -c \"import sys,json; [print(c['sha'][:7],c['commit']['message'][:80]) for c in json.load(sys.stdin)]\"\n```\n\n**Step 2: 检查本地匿名仓库**\n```bash\ncd /tmp/anon_repo  # 或实际路径，找不到就 find /tmp -name \"anon_repo\" -type d 2>/dev/null\ngit log --oneline -5\ngit status\nfind . -type f -not -path './.git/*' | wc -l\n```\n\n**Step 3: 确认 remote 是 HTTPS（不是 SSH）**\n```bash\ngit remote -v\n```\n如果是 SSH，改为：\n```bash\ngit remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git'\n```\n\n**Step 4: 如果本地有未推送的 commit → push**\n\n**Step 5: 报告**\n- GitHub 上的文件数 + 最新 commit hash\n- 本地文件数 + 最新 commit hash\n- 两边是否一致\n- 仓库是否包含核心代码 + README + requirements\n\n不确定就先报告现状，不要盲目推送。**注意：不要把含 token 的 URL 提交到任何代码文件或日志中。**",
     "project": "cert_manip_resist_eval"
   }
 }

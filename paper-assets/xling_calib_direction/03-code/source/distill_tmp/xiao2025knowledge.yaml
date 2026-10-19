@@ -1,0 +1,194 @@
+paper_key: "xiao2025knowledge"
+title: "Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations"
+venue: "ACL 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Vanilla probing (no alignment)"
+    - "Mean shifting alignment"
+    - "Linear projection alignment"
+    - "Full-parameter fine-tuning"
+    - "LoRA fine-tuning"
+  metrics:
+    - {name: "Probing accuracy (ID)", direction: "higher_better"}
+    - {name: "Probing accuracy (OOD / cross-lingual transfer)", direction: "higher_better"}
+    - {name: "Effective dimensionality", direction: "analysis_metric"}
+    - {name: "Participation ratio", direction: "analysis_metric"}
+  datasets:
+    - {name: "FreshQAParallel", size: "9,600 test samples, 8 languages, true/false premise questions"}
+    - {name: "SeaRefuse", size: "64,075 train + 6,000 test, 5 languages, answerable/unanswerable entity-centric questions"}
+    - {name: "TrueFalseMultiLang", size: "48,680 test samples, 8 languages, translated true/false statements"}
+  ablation_dimensions:
+    - "Layer depth (all layers probed independently)"
+    - "Source vs. target language (8x8 transfer matrix)"
+    - "Alignment method (vanilla / mean-shift / linear projection)"
+    - "Language resource level (high / mid / low)"
+    - "Pooling method (mean vs. last-token)"
+    - "Parallel vs. non-parallel data for mean shifting"
+    - "Fine-tuning language pair selection"
+    - "Model scale (7B / 14B / 72B)"
+  training_recipe:
+    optimizer: "AdamW (implied by standard HuggingFace SFT pipeline)"
+    lr: "1e-5 (full parameter), 1e-4 (LoRA rank 32, alpha 64)"
+    batch_size: "global batch size 512"
+    hardware: "4 nodes x 32 A800 80G GPUs for 72B model, DeepSpeed ZeRO-3"
+    probing: "k x m linear classifiers (k layers, m languages), last-token representations"
+  method_family: "Representation probing + training-free cross-lingual alignment (mean shift / linear projection)"
+
+positioning:
+  core_claim: "LLMs encode knowledge boundary perception in middle-to-upper layers with a linear cross-lingual structure, enabling training-free transfer of boundary recognition across languages via simple mean shifting or linear projection."
+  key_results: >
+    Linear projection nearly closes the ID-OOD gap (e.g., Thai 88.31%, Malay 88.64% after projection vs ~80% vanilla OOD).
+    Weak-to-strong: Khmer probes outperform on projected high-resource languages.
+    English effective dimensionality drops from 116 to 87 when projected onto Khmer subspace.
+    Fine-tuning: Qwen2.5-7B +2.3% average; Llama-3.1-8B >10% in upper layers.
+    Expression gap: false-premise hints improve generation by 24.49% (Vietnamese) and 17.69% (Malay) on Qwen2.5.
+  limitations:
+    - "Cannot track how knowledge boundary representations evolve during the generation/reasoning process"
+    - "Unable to locate the 'aha moment' when LLMs become aware of knowledge boundaries during chain-of-thought"
+    - "Probing only captures static representations at inference time, not dynamic generation behavior"
+    - "Focus on Southeast Asian languages; generalization to other language families not fully explored"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with the critical problem that understanding LLM knowledge boundaries is crucial for preventing
+    hallucination, then immediately highlights the research gap: prior work focused almost exclusively on English,
+    leaving cross-lingual knowledge boundary cognition unexplored.
+  tension: >
+    Existing knowledge boundary research is monolingual (English-centric). Low-resource languages suffer worse
+    calibration, and we don't know whether LLMs even perceive knowledge boundaries consistently across languages.
+    This creates a fundamental reliability gap for multilingual deployment.
+  key_insight: >
+    Revealed in Section 3-4 through layer-wise probing: knowledge boundary representations converge in middle-upper
+    layers AND follow a linear cross-lingual structure. This linearity is the pivotal insight enabling training-free
+    transfer. Further deepened by the weak-to-strong finding where low-resource probes outperform on projected
+    high-resource languages (Section 5).
+  argument_chain: >
+    Problem (cross-lingual knowledge boundary perception unknown) ->
+    Dataset construction (3 multilingual benchmarks) ->
+    Layer-wise probing reveals middle-upper layer convergence ->
+    Cross-lingual transfer matrices reveal linear structure ->
+    Training-free alignment (mean shift + linear projection) nearly closes gap ->
+    Weak-to-strong generalization provides geometric explanation ->
+    Fine-tuning further enhances boundaries + discovers self-defense mechanism ->
+    Validation across models (Qwen, Llama) and scales (7B-72B)
+  contribution_framing: >
+    Three-fold contribution framed as empirical discovery + practical method + resource release:
+    (1) layer encoding discovery, (2) linear structure enabling training-free transfer,
+    (3) fine-tuning enhancement with self-defense mechanism.
+    Datasets and code released as community resource.
+  intro_structure: >
+    4 paragraphs: P1 establishes hallucination prevention motivation and English-centric gap;
+    P2 introduces cross-lingual internal representation analysis as the research approach;
+    P3 summarizes three key empirical findings (layer location, linear structure, fine-tuning effects);
+    P4 states three-fold contributions and mentions dataset/code release.
+  notable_technique: >
+    The "weak-to-strong generalization" narrative is remarkably effective: low-resource language probes
+    outperforming on high-resource languages after projection is a counter-intuitive result that creates
+    a memorable finding. The geometric explanation (effective dimensionality reduction as regularization)
+    provides satisfying mechanistic understanding. Also, the "self-defense mechanism" where fine-tuning
+    on Khmer-English unexpectedly enhances Chinese representations is a striking emergent finding.
+
+figures:
+  figure_count: 14
+  figure1:
+    type: "motivation"
+    description: >
+      Schematic diagram illustrating the research goal. Left side shows the overall objective of analyzing
+      LLMs' knowledge boundary cognition across languages. Right side visualizes actual internal representations
+      when the model encodes known vs. unknown questions in English and Lao, showing the representation space
+      where knowledge boundaries are encoded.
+    narrative_role: >
+      Frames the entire research question visually: do LLMs perceive knowledge boundaries similarly across
+      languages? The right-side visualization immediately hints at the linear separability finding.
+    design_elements:
+      - "Split layout: conceptual goal (left) vs. concrete evidence (right)"
+      - "Bilingual representation visualization (English + Lao)"
+      - "Known vs. unknown question distinction in representation space"
+    visual_style: >
+      Clean schematic with conceptual diagram on left and data-driven visualization on right.
+      Uses spatial separation to show knowledge boundary encoding across two languages.
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "In-distribution vs. OOD probing accuracy across all layers for three alignment methods (vanilla, mean-shift, linear projection), averaged over all languages"
+      how_gain_highlighted: "Gap between ID and OOD curves shows alignment effectiveness; linear projection curve nearly overlaps ID curve in middle-upper layers"
+      design_note: "Layer-wise line plot is the canonical visualization for probing studies; showing all three methods on same axes enables direct gap comparison"
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      what_compared: "8x8 language transfer matrices at layer 3 (worst) vs. layer 19 (best) of Qwen2.5-7B"
+      how_gain_highlighted: "Side-by-side heatmaps make the dramatic improvement from layer 3 to layer 19 visually striking; diagonal (ID) vs off-diagonal (OOD) contrast"
+      design_note: "Paired heatmaps at contrasting layers is an effective way to show layer depth matters; language ordering enables resource-level pattern reading"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Khmer probe performance on multiple languages after linear projection across layers — shows weak-to-strong generalization"
+      how_gain_highlighted: "Lines for high-resource languages exceed the Khmer self-performance line, visually demonstrating the counter-intuitive weak-to-strong effect"
+      design_note: "Highlighting one source language's transfer to all targets in a single plot isolates the weak-to-strong phenomenon cleanly"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "scatter_3d"
+      dimensions_varied: ["language axis", "topic-aware truth axis", "binary truth axis"]
+      design_note: >
+        Three panels of the same 3D scatter plot with different ground-truth label colorings (language, topic,
+        truth value). Demonstrates language-neutral encoding by showing truth/falsity separates via a
+        near-horizontal hyperplane independent of language and topic. The triple-view approach is a clever
+        way to show multi-dimensional structure without overwhelming the reader.
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["layer depth", "language (Chinese enhanced after Khmer-English SFT)"]
+      design_note: "Shows the self-defense mechanism: fine-tuning on Khmer-English unexpectedly boosts Chinese representations. Line plot across layers reveals the phenomenon is layer-specific."
+  figure_narrative_role: >
+    Figure 1 (motivation: what we study) ->
+    Figure 2 (core finding: layer-wise convergence + alignment effectiveness) ->
+    Figure 3 (detail: language-pair transfer matrices at extreme layers) ->
+    Figure 4 (geometric insight: LDA reveals language-neutral linear structure) ->
+    Figure 5 (surprising finding: weak-to-strong generalization) ->
+    Figure 6 (emergent finding: self-defense mechanism from fine-tuning).
+    Progression from "what" to "how well" to "why" to "surprising implications."
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "models x conditions (baseline vs. false-premise hinted)"
+    col_axis: "8 languages (en, zh, vi, th, id, ms, km, lo)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_language"
+    highlight_strategy: "Percentage values with computed gains; largest gains highlighted in text discussion"
+    statistical_reporting: "Raw accuracy percentages without confidence intervals"
+    num_baselines: 2
+    design_note: >
+      Table 2 focuses on the expression gap between internal knowledge and generation behavior.
+      The baseline-vs-hinted comparison is more insightful than a typical method comparison table
+      because it reveals how much knowledge the model possesses but fails to express.
+      The cross-lingual breakdown reveals language-specific expression gaps (Vietnamese 24.49% gain).
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["Language (English vs. Khmer)", "Original vs. projected representations"]
+      variation_style: "full_numbers"
+      design_note: >
+        Effective dimensionality and participation ratio before/after projection.
+        Compact 2x4 table delivers the geometric explanation for weak-to-strong:
+        English dimensionality drops 116->87 while Khmer stays 103->97, showing
+        projection acts as regularization on high-resource representations.
+    - table_id: "Table 5"
+      what_varied: ["Parallel vs. non-parallel data for mean-shifting", "Layer depth"]
+      variation_style: "full_numbers"
+      design_note: "Demonstrates that non-parallel data approximation achieves comparable results to parallel data (86.48% vs 86.56% at layer 18), making the method more practical."
+    - table_id: "Table 6"
+      what_varied: ["Pooling method (mean vs. last-token)"]
+      variation_style: "full_numbers"
+      design_note: "Simple 2x2 ablation showing last-token pooling is substantially better for OOD transfer (83.95% vs 79.52%), justifying the design choice."
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Table 1 (dataset statistics), Table 4 (SeaRefuse transfer accuracy before/after fine-tuning),
+      Table 5 (parallel vs non-parallel mean-shifting), Table 6 (pooling ablation).
+      Appendices contain full transferability matrices for all model-layer-language combinations.
+    reason: >
+      Main text focuses on key findings with representative examples; full numerical results
+      for all language pairs and layers moved to appendix to avoid overwhelming the main narrative.
+      Appendix supports reproducibility while main text maintains readability.

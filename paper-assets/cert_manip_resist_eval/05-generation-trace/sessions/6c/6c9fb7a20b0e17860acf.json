@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig-bootstrap-null_20260525T150527_result.json",
     "occurrence": 1,
-    "bytes": 348,
-    "sha256": "701740105d6aeadbb7ae986fed428592e17e08eadfc3471d5daab922f2084656"
+    "bytes": 347,
+    "sha256": "1dc0cdfa877a3ad7f791bbc3986340af985f5d2011eae9c27ed7c39b42141e85"
   },
   "statistics": {
     "messages": 1,

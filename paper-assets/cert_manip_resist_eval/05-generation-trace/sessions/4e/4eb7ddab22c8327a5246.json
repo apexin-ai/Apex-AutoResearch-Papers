@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_aggregation-loglog-canonical_20260522T182814_result.json",
     "occurrence": 1,
-    "bytes": 1019,
-    "sha256": "fe9cf5cae731718d8d48fd5b93eab7e567d64e1a78b61770654525ca2261d429"
+    "bytes": 1018,
+    "sha256": "a1e4868f9cdfdf2cec59c304f760b48e34ffa1442ded7d40d830ebee57cae5b1"
   },
   "statistics": {
     "messages": 1,

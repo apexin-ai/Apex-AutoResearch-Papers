@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_a1-monte-carlo-wait_20260524T120834_result.json",
     "occurrence": 1,
-    "bytes": 85,
-    "sha256": "568984c86b8e9cb03f004f18346446c0a7fe7f1b4cf2853f7707d0a5016cbada"
+    "bytes": 84,
+    "sha256": "2a164cd566b2719b082f4f09a1f9bb2a5dbab6b4f940b242926cd60c6f7b1c34"
   },
   "statistics": {
     "messages": 1,

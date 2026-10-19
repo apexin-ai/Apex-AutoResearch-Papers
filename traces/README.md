@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **13 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **15 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -21,7 +21,9 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [ratekv](../paper-assets/ratekv/05-generation-trace/README.md) | 260 | 513 | 419 | 58 | 87,631 | [Read](../paper-assets/ratekv/05-generation-trace/readable/README.md) |
 | [recursive_gen_depth_est](../paper-assets/recursive_gen_depth_est/05-generation-trace/README.md) | 347 | 686 | 642 | 104 | 166,550 | [Read](../paper-assets/recursive_gen_depth_est/05-generation-trace/readable/README.md) |
 | [schema-dag-extraction](../paper-assets/schema-dag-extraction/05-generation-trace/README.md) | 217 | 506 | 474 | 45 | 131,771 | [Read](../paper-assets/schema-dag-extraction/05-generation-trace/readable/README.md) |
+| [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
+| [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**20,071 source records · 1,587,221 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**20,363 source records · 1,614,885 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

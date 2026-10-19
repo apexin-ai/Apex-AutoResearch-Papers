@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb2e6c0698a3392eafa1",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260521T060332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260521T060332_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "7c657d948fbd6232c7743f3be6ca1a61f5a275d4880b6ad832cc0cefc24209b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `docs/paper/introduction.tex`。\n\n验证结果：\n- 无 em-dash/en-dash\n- 无禁用句式（leverage/utilize/delve/remarkable success 等）\n- 所有 `\\cite{}` keys 均来自 Related Work 和 Method 已有引用\n- Simpson's Paradox 和 control task finding 均在 P3 preview\n- CaCLR 用条件式（\"results pending experimental validation\"）\n- Contributions 列表 4 项，对齐 paper_framing claims\n- ~860 words\n- Figure~\\ref{fig:pareto} 引用已预留"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

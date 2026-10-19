@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig2-scatter-restyle-v2_20260525T200328_result.json",
     "occurrence": 1,
-    "bytes": 477,
-    "sha256": "dfab1df8b1f6288c6e15a37f39c6652183b1bd343a988119776b82e767fdc299"
+    "bytes": 476,
+    "sha256": "a45c4c5e5f67f5995ebf257fbb1a2c8574da426cd8efdd8384adc688fa2bb75f"
   },
   "statistics": {
     "messages": 1,

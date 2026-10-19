@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_anonymous-repo-prep_20260523T125117.log",
     "occurrence": 1,
-    "bytes": 219682,
-    "sha256": "90a0a3a775cdc16ca102617e16bb63996d50dc2b48e51039bc9ccc49ccaf18a6"
+    "bytes": 219648,
+    "sha256": "47dfda6564c85b7065c7a0408794f133ff1b83676582b1c558da64bb515318f8"
   },
   "statistics": {
     "messages": 139,
@@ -4847,7 +4847,7 @@
               "name": "mcp__agent-ml-research__ssh_execute",
               "input": {
                 "server": "seetacloud-rtx6000",
-                "command": "source /etc/network_turbo 2>/dev/null; cd /tmp/anon_staging && git branch -M main && git remote add origin https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git && git push -u origin main 2>&1",
+                "command": "source /etc/network_turbo 2>/dev/null; cd /tmp/anon_staging && git branch -M main && git remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git && git push -u origin main 2>&1",
                 "warn": true
               },
               "caller": {

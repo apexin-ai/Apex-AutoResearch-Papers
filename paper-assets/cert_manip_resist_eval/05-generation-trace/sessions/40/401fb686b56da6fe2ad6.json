@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_attacked-keff_20260523T070444_result.json",
     "occurrence": 1,
-    "bytes": 943,
-    "sha256": "24b8baf4a494993244a77e798ddc506fdb6f07106051dfd4152ceccc770f0f97"
+    "bytes": 942,
+    "sha256": "333d1a931fb78ff1ed4026fccfb70dd2f7488e55d100e980076fe32f36501059"
   },
   "statistics": {
     "messages": 1,

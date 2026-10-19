@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp-step2v3-retry",
+  "project": "cert_manip_resist_eval",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:34:16.405Z",
+    "updated_at": "2026-05-22T01:34:26.057Z",
+    "hypothesis": "Controlling for individual model robustness (η_max), higher K_eff panels have significantly lower ASR. The SDPI bound η_joint ≤ K_eff · η_max has two factors: K_eff (diversity) and η_max (weakest-link robustness). Step 2 v2 confounded them. Multi-factor regression log(ASR) ~ log(K_eff) + log(η_max) should show K_eff coefficient significantly negative.",
+    "parent": "mvp-step2v3-regression"
+  },
+  "timestamp": "2026-05-22T01:34:26.077211+00:00",
+  "trigger": "update_registry"
+}

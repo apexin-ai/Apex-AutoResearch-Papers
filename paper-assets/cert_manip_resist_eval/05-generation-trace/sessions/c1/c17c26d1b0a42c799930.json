@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan001-fix-condition-keys_20260522T082358_result.json",
     "occurrence": 1,
-    "bytes": 478,
-    "sha256": "401e2e2592f9777521b9c4bbc87f6aa22ee29fdb21b8a4aacfdeabd482e2a5b8"
+    "bytes": 477,
+    "sha256": "36f6e6b61c098703f79f48174324b3a395936ef6fd96940c518f27aa88f2f3e6"
   },
   "statistics": {
     "messages": 1,

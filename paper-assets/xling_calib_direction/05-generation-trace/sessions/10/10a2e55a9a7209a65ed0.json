@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10a2e55a9a7209a65ed0",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops qwen3 status quick",
+  "task_key": "worker_ops_qwen3-status-quick_20260521T114642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen3-status-quick_20260521T114642_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "1510482f4da8a03f8476f48809d7e10fac0aba251ff4e10dea006fdeca2ed264"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Qwen3-235B-GPTQ-Int4 下载状态：未完成**\n\n| 指标 | 值 |\n|------|-----|\n| Safetensors | **28/32**（根目录 28 个） |\n| Temp 目录 | **1 个**，含 4 个未完成 shard（00026, 00027, 00029, 00031） |\n| 当前总大小 | **134G** |\n| Config 路径 | `/root/autodl-tmp/models/Qwen3-235B-GPTQ-Int4/config.json` |\n| 层数 | **94** |\n| hidden_size | **4096** |\n| experts | **128**（每 token 激活 8 个，MoE 架构） |\n\n还差 4 个 shard 在 `._____temp/` 中，下载进程可能仍在跑或已中断，需要确认是否有活跃的下载进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen3-status-quick.md"
+}

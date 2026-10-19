@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_capability-matched-c3_20260523T103549_result.json",
     "occurrence": 1,
-    "bytes": 4410,
-    "sha256": "fa40ca1aab009e97513cc6da4ac8c03fac4a965480db9f4adfdd14a3f44ffb78"
+    "bytes": 4409,
+    "sha256": "261d34489aa0666397ac19d134ae392ac9e31a795d909a148773293f776a58cf"
   },
   "statistics": {
     "messages": 1,

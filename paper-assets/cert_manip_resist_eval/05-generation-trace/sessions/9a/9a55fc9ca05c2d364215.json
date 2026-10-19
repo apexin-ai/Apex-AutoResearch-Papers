@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_15model-family-copula_20260522T175131_result.json",
     "occurrence": 1,
-    "bytes": 1242,
-    "sha256": "29f73087c090e706253f16f4571626ef583871eda9ba3f75104e7f190e8f2217"
+    "bytes": 1241,
+    "sha256": "b7f48032bccf22a8a92074e6b2023dd11345ca413260b78d0f898be7cf81d5a2"
   },
   "statistics": {
     "messages": 1,

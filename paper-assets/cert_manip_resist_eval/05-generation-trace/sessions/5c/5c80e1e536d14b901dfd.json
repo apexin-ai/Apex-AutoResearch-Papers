@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_a4-pool-a-mde_20260524T112417_result.json",
     "occurrence": 1,
-    "bytes": 2368695,
-    "sha256": "4daef5f1b5280ddd3d8c4a795aab103e52a8a98fb5d078ae573effef612083c1"
+    "bytes": 2368694,
+    "sha256": "51a1e20124bef06a8e7419cddbe808c45df04b721b04989143d01e90a5dd499b"
   },
   "statistics": {
     "messages": 1,

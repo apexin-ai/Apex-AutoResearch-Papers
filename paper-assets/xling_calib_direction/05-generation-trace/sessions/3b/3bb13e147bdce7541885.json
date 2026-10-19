@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bb13e147bdce7541885",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops plan002 retry2 logcheck",
+  "task_key": "worker_ops_plan002-retry2-logcheck_20260521T115651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan002-retry2-logcheck_20260521T115651_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "a3e0254b5166f0ec7355007e6d3449bdaf07a3f8c829c29c818601110bfcd13f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态正常，正在加载模型：\n\n1. **PID 435411 存活** — 运行 46 秒\n2. **无 HF Hub 错误** — 模型从本地离线加载 `/root/autodl-tmp/models/Llama4-Scout-W4A16/`，compression 已完成，weights loading 进度 ~88%（7209/8237）\n3. **GPU 0 显存 64063 MiB** — 模型正在加载到显存，GPU 1-3 空闲\n\n模型加载即将完成，预计很快进入推理阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan002-retry2-logcheck.md"
+}

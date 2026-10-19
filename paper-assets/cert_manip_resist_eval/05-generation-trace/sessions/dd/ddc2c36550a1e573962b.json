@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_k5-majority-10vs7-discrepancy_20260524T071803_result.json",
     "occurrence": 1,
-    "bytes": 4530,
-    "sha256": "1a4a44587feba15fe089a084b19236a442ff40609e4de3071e06eb286e503ba0"
+    "bytes": 4529,
+    "sha256": "e0f55754dfe2d8a8d9fbcd36bab68aa109ff18b2a2b375972fc98a0986322263"
   },
   "statistics": {
     "messages": 1,

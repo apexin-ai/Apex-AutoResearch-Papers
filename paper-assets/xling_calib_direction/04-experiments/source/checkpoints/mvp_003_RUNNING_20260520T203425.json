@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp_003",
+  "project": "xling_calib_direction",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:27:06.449Z",
+    "updated_at": "2026-05-20T20:34:25.015Z",
+    "hypothesis": "Cross-lingual correctness direction is model-agnostic: an English-trained linear probe on Llama-3.1-8B-Instruct internal representations will transfer to non-English languages (zh/ar/hi/sw/ko) with AUROC >= 0.58, replicating the pattern observed in Qwen2.5-7B-Instruct (mvp_001).",
+    "parent": "mvp_001",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 bash /root/xling_calib_direction/run_mvp_003.sh",
+      "server": "westd-13176",
+      "data_path": "cais/mmlu + CohereForAI/Global-MMLU",
+      "data_count": "~14K test samples per language",
+      "model_name": "LLM-Research/Meta-Llama-3.1-8B-Instruct (ModelScope)",
+      "seed": 42,
+      "gpu": "cuda:2",
+      "tmux_session": "mvp_003",
+      "log_path": "/root/xling_calib_direction/mvp_003.log",
+      "checkpoint_source": "LLM-Research/Meta-Llama-3.1-8B-Instruct",
+      "eval_data": "cais/mmlu + CohereForAI/Global-MMLU"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T20:34:25.056587+00:00",
+  "trigger": "update_registry"
+}

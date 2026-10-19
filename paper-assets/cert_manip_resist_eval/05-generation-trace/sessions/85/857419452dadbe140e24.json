@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_experiment_fp16-attack-eval_20260525T160952_result.json",
     "occurrence": 1,
-    "bytes": 2355563,
-    "sha256": "8e82e1b5041475233204cd9a1a4ed1f1cceaf82e60b81132d4af4fd1b194a3b0"
+    "bytes": 2355538,
+    "sha256": "c16d93e45ebb01dd236134ecae06328ba7abc2942f05ae3a1b6ef42caab1692b"
   },
   "statistics": {
     "messages": 1,
     "user_turns": 0,
     "tool_calls": 0,
     "roles": {
-      "result": 1
+      "log": 1
     },
-    "unparsed_lines_preserved": 0,
+    "unparsed_lines_preserved": 1,
     "reported_errors": 0
   },
   "rounds": [

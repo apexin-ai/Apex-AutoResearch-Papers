@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "641ab105bbd40a449c79",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops llama4 download fix",
+  "task_key": "worker_ops_llama4-download-fix_20260521T081649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama4-download-fix_20260521T081649_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "ea6887365df148d28d4da0b152eb78fe0f6ea39db587adfde69d274e8cca6d2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n1. **ModelScope 可用性**: 有。`RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized.w4a16` 在 ModelScope 上存在。\n\n2. **采取方案**: \n   - 已 kill HF 下载进程 (PID 67791)\n   - 已启动 ModelScope 下载 (PID 69801)，14 个 shard（每个 ~4.6GB，总计 ~65GB），7-8 个并行下载中\n   - 当前单 shard 速度 ~0.75-1.4 MB/s，合计吞吐 ~7 MB/s\n\n3. **ETA 预估**: ~65GB / ~7 MB/s ≈ **2.5-3 小时**。速度不算快但稳定在传输，不像 HF 反复超时。磁盘上已有 48GB（之前 HF 下载的部分文件），空间需注意。\n\n监控命令：\n```bash\ntail -5 /tmp/llama4_modelscope.log\nps -p 69801 -o pid,etime=\ndu -sh /root/autodl-tmp/models/Llama4-Scout-W4A16/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama4-download-fix.md"
+}

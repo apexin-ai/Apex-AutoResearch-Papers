@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_clustered-se-mixed-effects_20260522T185951_result.json",
     "occurrence": 1,
-    "bytes": 1580,
-    "sha256": "c1d1d308e924c3d8ea5a0bf4e6b792740d370ffb7d454b6a1607fea90b7d1daa"
+    "bytes": 1579,
+    "sha256": "2f749365d47317f3c3723920e7cd78ae5ff43b666ede3e89a827486abb1d9022"
   },
   "statistics": {
     "messages": 1,

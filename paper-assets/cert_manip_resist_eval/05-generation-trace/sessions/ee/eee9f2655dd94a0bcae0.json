@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan001-gemini-fix_20260522T072340_result.json",
     "occurrence": 1,
-    "bytes": 490,
-    "sha256": "1b3281428019731e41bcaaf6f612cb36200a102d9b7d39daffa1769d9899fc82"
+    "bytes": 489,
+    "sha256": "ec6d8b51efe718c5ba8b3d89f7fba4395430fe17b49e7bbdb0439658c25b59db"
   },
   "statistics": {
     "messages": 1,

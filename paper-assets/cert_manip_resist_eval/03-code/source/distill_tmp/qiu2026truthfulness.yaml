@@ -1,0 +1,72 @@
+paper_key: "qiu2026truthfulness"
+title: "Truthfulness Despite Weak Supervision: Evaluating and Training LLMs Using Peer Prediction"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines: [LLM-as-a-Judge (various sizes)]
+  metrics:
+    - {name: "Accuracy correlation with peer prediction scores", direction: "higher_better"}
+    - {name: "Deception resistance (capability gap tolerance)", direction: "higher_better"}
+  datasets:
+    - {name: "Multi-domain QA (85 domains)", size: "37,079 questions"}
+    - {name: "Training set", size: "120k paired responses"}
+  ablation_dimensions: [number_of_participants, number_of_experts, expert_size, capability_gap]
+  training_recipe: {optimizer: "LoRA DPO", lr: "not specified", hardware: "NVIDIA A100, 20-80 GPU hours per evaluation run"}
+  method_family: "peer_prediction_information_theory"
+
+positioning:
+  core_claim: "Peer prediction achieves inverse scaling — deception resistance increases when participants are stronger than experts — enabling weak-to-strong evaluation without ground truth"
+  key_results: "Maintains effectiveness at 100× capability gap; LLM-as-a-Judge fails at 5-20× gap; LoRA DPO training recovers accuracy from malicious finetuning"
+  limitations: ["Limited analysis of collusion scenarios", "O(n²m) complexity per question", "Produces relative not absolute scores"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "How can we evaluate frontier models when no stronger judge exists? Standard LLM-as-a-Judge breaks down at capability gaps"
+  tension: "Weak supervision is inevitable for frontier models; existing methods degrade precisely when they're needed most"
+  key_insight: "Mutual predictability between peers — not direct quality assessment — provides evaluation signal that strengthens with model capability, revealed through inverse scaling property"
+  argument_chain: "weak supervision bottleneck → peer prediction mechanism → BNE incentive compatibility → inverse scaling theorem → empirical validation across 85 domains + deception resistance"
+  contribution_framing: "Three contributions: evaluation mechanism, inverse scaling property, truthfulness training pipeline"
+  intro_structure: "5 paragraphs: (1) frontier evaluation problem, (2) LLM-as-a-Judge limitations, (3) peer prediction opportunity, (4) key results preview, (5) contributions"
+  notable_technique: "The inverse scaling property is the killer argument — turns the weakness (no strong judge) into a feature"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "Recovery curve showing peer prediction training surpassing LLM judges of multiple sizes"
+    narrative_role: "Immediate visual proof that the method works where baselines fail"
+    design_elements: ["multiple baseline curves", "capability gap axis", "crossover point highlighted"]
+    visual_style: "Line plot with distinct colors per method, shaded confidence regions"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Deception resistance vs capability gap for peer prediction vs LLM-as-a-Judge"
+      how_gain_highlighted: "Crossover point where LLM judge goes below random while peer prediction stays robust"
+      design_note: "The inverse scaling visual is the paper's most memorable figure"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Ensemble performance scaling with participant/expert count"
+      how_gain_highlighted: "Monotonic improvement validates theoretical predictions"
+      design_note: "Scaling curves with clear saturation behavior"
+  ablation_figures: []
+  figure_narrative_role: "Teaser result → Inverse scaling proof → Domain-level analysis → Ensemble scaling"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Correlation analysis across 85 domains"
+    row_axis: "methods"
+    col_axis: "domains"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "correlation coefficients"
+    statistical_reporting: "Spearman correlation across domains"
+    num_baselines: 2
+    design_note: "Emphasizes breadth (85 domains) rather than depth on single benchmark"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Collusion analysis, per-domain breakdowns, training details"
+    reason: "Main text focuses on core mechanism and inverse scaling property"

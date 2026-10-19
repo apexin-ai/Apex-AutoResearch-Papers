@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_data_sensitivity-table-extract_20260523T101251_result.json",
     "occurrence": 1,
-    "bytes": 559,
-    "sha256": "211461051270bf3328914176a09b1ad84e09eb24f3684119bd5aa1120bf96289"
+    "bytes": 558,
+    "sha256": "6bd8dd06e4b34b9060160d2c618d07ae2aabb8cccb822bcd897df5038d36a153"
   },
   "statistics": {
     "messages": 1,

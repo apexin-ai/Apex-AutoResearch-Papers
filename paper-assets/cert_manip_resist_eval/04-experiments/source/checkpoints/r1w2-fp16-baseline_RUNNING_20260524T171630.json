@@ -1,0 +1,33 @@
+{
+  "exp_id": "r1w2-fp16-baseline",
+  "project": "cert_manip_resist_eval",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T17:02:51.535Z",
+    "updated_at": "2026-05-24T17:16:30.744Z",
+    "spec": {
+      "command": "python scripts/run_fp16_baseline.py",
+      "server": "seetacloud-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "43675",
+      "log_path": "/tmp/fp16_baseline.log",
+      "submitted_at": "2026-05-24T17:12:33.517Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MMLU + ARC-Challenge (100 samples each)",
+      "data_count": 100,
+      "model_name": "6 AWQ INT4 models + FP16 counterparts",
+      "seed": 42,
+      "checkpoint_path": "/root/cert_manip_resist_eval/artifacts/results/plan001/fp16_baseline.json"
+    },
+    "hypothesis": "AWQ INT4 quantization introduces <2pp accuracy degradation vs FP16, ruling out quantization as confound for K_eff predictive power (R1-W2)"
+  },
+  "timestamp": "2026-05-24T17:16:30.796745+00:00",
+  "trigger": "update_registry"
+}

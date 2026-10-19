@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_k5-aggregation-code-history_20260524T070914_result.json",
     "occurrence": 1,
-    "bytes": 2729,
-    "sha256": "ad355da9ee6b8e4688ab62ee69ca733c7cbd21a38fa33cda25e197252e0c10c9"
+    "bytes": 2728,
+    "sha256": "f9667e942f5fa56358f05109ea3ae2c13bbf878e5b78c5ec62d2a976d4d97ff7"
   },
   "statistics": {
     "messages": 1,

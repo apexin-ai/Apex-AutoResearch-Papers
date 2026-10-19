@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_capability-matched_20260523T074327_result.json",
     "occurrence": 1,
-    "bytes": 2111,
-    "sha256": "ed8b63a1910e44146fd48c135b22b1b45cdad70a802cfa39dd177ec4117f5e3f"
+    "bytes": 2110,
+    "sha256": "aa97d566ce38575aa7de563686212732f92d8562f4722a9598674ae1dcbf2441"
   },
   "statistics": {
     "messages": 1,

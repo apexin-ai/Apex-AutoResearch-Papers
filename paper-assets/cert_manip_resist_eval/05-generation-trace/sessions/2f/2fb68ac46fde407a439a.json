@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_data-traceability-check_20260523T191548_result.json",
     "occurrence": 1,
-    "bytes": 1056,
-    "sha256": "382ef03bf1b922ca4f6f6b6dc61a0d475d2fb3b587b3a70aeeeac0cd167f5b23"
+    "bytes": 1055,
+    "sha256": "722acbb01c54eb69207cb2ef2cbe1fb044cddbd5241d1f65c070a4a58f29eada"
   },
   "statistics": {
     "messages": 1,

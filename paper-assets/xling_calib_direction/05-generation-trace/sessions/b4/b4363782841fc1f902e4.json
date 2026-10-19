@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4363782841fc1f902e4",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops global solver fix",
+  "task_key": "worker_ops_global-solver-fix_20260521T093127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_global-solver-fix_20260521T093127_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "efcf1e0891864226e8fcb99fb8a57686dca2526cffbba4fd2d3eb09f9327f657"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部语法检查通过。\n\n**修改报告：3处 `solver=\"lbfgs\"` → `solver=\"liblinear\"`**\n\n| 文件 | 行号 | 原内容 |\n|------|------|--------|\n| `code/compute_cka.py` | 276 | `solver=\"lbfgs\"` |\n| `code/train_caclr.py` | 240 | `solver=\"lbfgs\"` |\n| `code/transfer_eval.py` | 226 | `solver=\"lbfgs\"` |\n\n无残留，13个 `.py` 文件语法检查全部通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-global-solver-fix.md"
+}

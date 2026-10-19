@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure_fig1_paperbanana_retry_20260524T184404_result.json",
     "occurrence": 1,
-    "bytes": 2110991,
-    "sha256": "d4df27275930a2f5ab15abe7b8f55dce57784045077d9b3b361428d5da12e06d"
+    "bytes": 2111033,
+    "sha256": "c24a6b05145897e99cf72e6ca496e09646d4253fcafa31651f119bcba3f0653c"
   },
   "statistics": {
     "messages": 1,
     "user_turns": 0,
     "tool_calls": 0,
     "roles": {
-      "result": 1
+      "log": 1
     },
-    "unparsed_lines_preserved": 0,
+    "unparsed_lines_preserved": 1,
     "reported_errors": 0
   },
   "rounds": [

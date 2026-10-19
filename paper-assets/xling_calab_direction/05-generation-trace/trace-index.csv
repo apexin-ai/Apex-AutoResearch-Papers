@@ -1,0 +1,3 @@
+source_archive,member_path,source_bytes,sanitized_bytes,processing
+cert_manip_resist_eval/workspace.tar.gz,logs/workers/worker_ops_llama4-validate-dryrun-v2_20260521T110134.log,735998,700916,Credentials and binary attachments redacted
+cert_manip_resist_eval/workspace.tar.gz,logs/workers/worker_ops_llama4-validate-dryrun-v2_20260521T110134_result.json,1779,1779,Credentials and binary attachments redacted

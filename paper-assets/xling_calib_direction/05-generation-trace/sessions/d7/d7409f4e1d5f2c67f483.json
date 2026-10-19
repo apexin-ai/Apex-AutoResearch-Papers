@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7409f4e1d5f2c67f483",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "analysis cka transfer degradation",
+  "task_key": "worker_analysis_cka_transfer_degradation_20260520T203251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cka_transfer_degradation_20260520T203251_result.json",
+    "occurrence": 1,
+    "bytes": 2296,
+    "sha256": "97db23d739f77a7017d6fd19277c27dc30411045cf18a875be6586d22ce2f7be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是结果汇总：\n\n---\n\n## 1. mvp_003 Gate Check (Llama-3.1-8B-Instruct)\n\n**EN Probe (per layer):**\n\n| Layer | AUROC | ECE |\n|-------|-------|-----|\n| 0 | 0.6498 | 0.1481 |\n| 4 | 0.6349 | 0.2214 |\n| 8 | 0.6331 | 0.2287 |\n| 12 | 0.6563 | 0.2630 |\n| 16 | 0.7026 | 0.2579 |\n| 20 | 0.7229 | 0.2257 |\n| 24 | 0.7235 | 0.2421 |\n| 28 | 0.7129 | 0.2438 |\n| **31** | **0.7284** | **0.2052** |\n\n**ZS Transfer (best layer per lang):**\n\n| Lang | Best AUROC | Layer | p |\n|------|-----------|-------|---|\n| zh | 0.6400 | 20 | 0.001 |\n| ko | 0.6480 | 31 | 0.001 |\n| ar | 0.6143 | 31 | 0.001 |\n| hi | 0.5917 | 31 | 0.001 |\n| sw | 0.5838 | 16 | 0.001 |\n\n**Gate:**\n- P1: **FAIL** (ECE=0.2052 > 0.15)\n- P2: **PASS** (5/5 ≥ 0.58)\n- P3: **PASS** (9.53pp)\n- P4: **FAIL** (0/5 mean-shift)\n- Overall: **PARTIAL** — 与 Qwen (mvp_001) 模式一致\n\n---\n\n## 2. CKA vs Transfer Degradation\n\n**Llama (mvp_003) — Overall: rho=-0.5192, p=0.0012 \\*\\***\n\nHigher CKA (more similar EN-target representations) → lower transfer degradation. Significant.\n\nPer-language:\n| Lang | rho | p |\n|------|------|-------|\n| hi | -0.7333 | 0.025 * |\n| sw | -0.5833 | 0.099 |\n| zh | -0.5333 | 0.139 |\n| ar | -0.2833 | 0.460 |\n\n**Qwen (mvp_001) — Overall: rho=-0.3086, p=0.053 (marginal)**\n\nPer-language: 无显著结果。\n\n---\n\n## 3. Cross-model CKA 对比\n\n| Lang | Qwen CKA | Llama CKA | Qwen Deg | Llama Deg |\n|------|----------|-----------|----------|-----------|\n| zh | 0.7388 | 0.7527 | 0.1148 | 0.1462 |\n| ar | 0.6934 | 0.6776 | 0.1542 | 0.1698 |\n| hi | 0.4359 | 0.3805 | 0.2164 | 0.1698 |\n| sw | 0.4158 | 0.4788 | 0.2246 | 0.2090 |\n\n**Language ranking 两模型一致：**\n- CKA: zh > ar > ... > hi/sw（高资源语言表征更相似）\n- Degradation: zh < ar < hi < sw（高资源语言迁移损失更小）\n\n**关键发现：** Llama 上 CKA-degradation 相关性显著（p=0.001），Qwen 上边际显著（p=0.053）。方向一致（负相关），说明 **representation similarity 确实能解释 cross-lingual transfer quality**，且这个关系是 model-agnostic 的。Llama 的 ko 数据缺失（CKA 分析未包含 ko），但不影响主结论。\n\nRegistry 已更新为 DONE，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cka-transfer-degradation.md"
+}

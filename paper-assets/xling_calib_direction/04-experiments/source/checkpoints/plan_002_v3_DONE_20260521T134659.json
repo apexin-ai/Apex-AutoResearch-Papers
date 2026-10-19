@@ -1,0 +1,43 @@
+{
+  "exp_id": "plan_002_v3",
+  "project": "xling_calib_direction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:24:23.888Z",
+    "updated_at": "2026-05-21T13:46:59.706Z",
+    "hypothesis": "Cross-lingual correctness direction transfers across languages in Llama 4 Scout (48-layer MoE, W4A16): English-trained linear probes at 13 probed layers (0,4,8,...,44,47) will transfer to 19 non-English languages with AUROC ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent transfer pattern (shallow→deep ΔAUROC ≥ 5pp). MoE architecture with 17B active params provides architectural contrast to dense Qwen models. Retry after killing Qwen3 dry run (PID 482839) that was occupying GPU 1-3.",
+    "parent": "plan_002_4gpu",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ... && python -u code/extract_activations.py --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/ --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47 --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir /root/autodl-tmp/activations/llama4_scout/\"",
+      "server": "westd-13176",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "934594",
+      "log_path": "~/runs/xling_calib_direction/plan_002_v3.log",
+      "submitted_at": "2026-05-21T12:26:41.691Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "cais/mmlu + CohereForAI/Global-MMLU (cached at /root/autodl-tmp/.hf_cache)",
+      "data_count": "~14K test samples per language, 20 languages",
+      "model_name": "RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16",
+      "seed": 42,
+      "checkpoint_source": "N/A (activation extraction, not eval)",
+      "eval_data": "N/A (activation extraction, not eval)",
+      "note": "Retry after killing Qwen3 dry run (PID 482839). 4 GPU clean confirmed.",
+      "wall_clock_seconds": 4818.0,
+      "gpu_hours": 5.35
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T13:46:59.706Z"
+  },
+  "timestamp": "2026-05-21T13:46:59.762189+00:00",
+  "trigger": "update_registry"
+}

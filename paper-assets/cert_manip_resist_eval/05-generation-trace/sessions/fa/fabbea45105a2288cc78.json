@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_read_fractional-logit-json_20260523T074634_result.json",
     "occurrence": 1,
-    "bytes": 2987,
-    "sha256": "24918355909c5452477bee267ce3642817b0f9a04a456ba14150131b9e5f8ac9"
+    "bytes": 2986,
+    "sha256": "f179cd79b408eb5f4334e931ee4b5085b5efa8f88f388114caefcb597aa3d320"
   },
   "statistics": {
     "messages": 1,

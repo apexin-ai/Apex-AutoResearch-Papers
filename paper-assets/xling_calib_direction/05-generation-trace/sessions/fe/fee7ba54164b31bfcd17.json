@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fee7ba54164b31bfcd17",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "code compute cka plan011",
+  "task_key": "worker_code_compute-cka-plan011_20260521T091130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compute-cka-plan011_20260521T091130_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "bab7dd17fbcc7320086ec0765a31797a8c12d2a74730486e5bf6db4ac6c8f64e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`code/compute_cka.py` 已部署到服务器并通过验证。\n\n- 语法检查: SYNTAX OK\n- `--help`: 所有 CLI 参数正常显示\n- 不依赖 pingouin（partial correlation 手动实现）\n- 兼容新格式（npy）和旧格式（pt_flat）\n- 四种分析均已实现：(a) same-layer cross-lang Spearman, (b) partial Spearman controlling for depth, (c) per-language Spearman, (d) subspace angle\n- 所有 correlation 带 1000-resample bootstrap 95% CI\n- 输出结构完整：JSON + CSV + report.txt"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compute-cka-plan011.md"
+}

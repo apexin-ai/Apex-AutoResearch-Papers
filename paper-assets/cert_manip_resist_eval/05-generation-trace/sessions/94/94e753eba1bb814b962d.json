@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_gam-tier-fix-3-3-9_20260522T192555_result.json",
     "occurrence": 1,
-    "bytes": 1172,
-    "sha256": "6ad8a1e341d4d8ecff1d4aa725bdd27db2c8058a0e99ad42e8c05b150c276090"
+    "bytes": 1171,
+    "sha256": "568cc0ccae2a17c3b0434e871f1a31ec812dd6ced31329aad6ce8b69f2ebd3ea"
   },
   "statistics": {
     "messages": 1,

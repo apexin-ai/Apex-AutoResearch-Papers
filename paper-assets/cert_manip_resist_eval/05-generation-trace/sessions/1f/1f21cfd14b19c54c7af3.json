@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_anon-repo-v2-push_20260523T201936_result.json",
     "occurrence": 1,
-    "bytes": 466,
-    "sha256": "a975e2ef66b5d4e9db00f95ecfb9d43fefc29fc4e1a2aeeb4121a304763a4ede"
+    "bytes": 465,
+    "sha256": "ea64bd754dad9df5a7e1dd55b381a021725dba376173340c3d4182531d6b48dc"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92527dcfe8eea1e9d20c",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "code compute cka script",
+  "task_key": "worker_code_compute_cka_script_20260521T024843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compute_cka_script_20260521T024843_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "5d91ec2512c4eb408e6477f5bb675bd8b92408f4f981a5099b9dd9e162f42568"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出：**\n- `code/compute_cka.py` — Linear CKA 计算脚本，已同步到服务器并验证\n- `artifacts/compute_cka_verified.md` — 验证报告\n\n**验证结果：** 40 组 CKA 值与已有 `cka_results.csv` 偏差均 < 0.0004（float32 精度差异），算法实现正确。\n\n关键发现：CKA 在中间层 12-16 达峰值（~0.74-0.76），顶层 27 降至 0.24——跨语言表示相似性在接近输出时急剧下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compute-cka-script.md"
+}

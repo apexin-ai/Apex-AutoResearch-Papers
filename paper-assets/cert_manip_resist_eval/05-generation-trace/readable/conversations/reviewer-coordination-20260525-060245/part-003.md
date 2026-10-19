@@ -225,7 +225,7 @@ GOOGLE_API_KEY | **draw-paper-figure.skill.md** |\\n30\\t\\n31\\t## 执行环境
 GOOGLE_API_KEY\\n40\\t\\n41\\t```python\\n42\\trequest_secret(key_id=\\\"google_api_key\\\", project=\\\"&lt;project_name>\\\", purpose=\\\"PaperBanana 概念图生成\\\")\\n43\\t# 等待 Director 审批后\\n44\\tpoll_secret_request(re
 GOOGLE_API_KEY。\\n48\\t\\n49\\t### Step 2：安装验证（每次使用前必须检查）\\n50\\t\\n51\\t```bash\\n52\\t# 检查是否已安装\\n53\\tpaperbanana --version 2>/dev/null || {\\n54\\t  echo \\\"PaperBanana 未安装，正在安装...\\\"\\n55\\t  pip install pap
 paperbanana --version\\n57\\t}\\n58\\t```\\n59\\t\\n60\\t如果 `paperbanana --version` 失败（命令不存在），必须先 `pip install paperbanana -q` 安装。版本需 ≥ 0.1.2。\\n61\\t\\n62\\t**设计前必读** `skills/global/paper-visualization.skill.md` 的概念图 L1（防丑 7 条）+ L2（叙事 6 条）+ L3 Pattern + Checklist。统计图部分不适用于 PaperBanana。\\n63\\t\\n64\\t## 命令：ge
-GOOGLE_API_KEY=\\\"$GOOGLE_API_KEY\\\" paperbanana generate \\\\\\n115\\t  --input /tmp/fig_intent.txt \\\\\\n116\\t  --caption \\\"Three-panel diagnostic framework: (a) TF vs AR performance gap, (b) systematic dia
+GOOGLE_API_KEY=[REDACTED]"$GOOGLE_API_KEY\\\" paperbanana generate \\\\\\n115\\t  --input /tmp/fig_intent.txt \\\\\\n116\\t  --caption \\\"Three-panel diagnostic framework: (a) TF vs AR performance gap, (b) systematic dia
 fig1_overview.png \\\\\\n119\\t  --iterations 5\\n120\\t```\\n121\\t\\n122\\t### Step 3：视觉检查（不可跳过）\\n123\\t\\n124\\t**Read 生成的 PNG 文件**，视觉评估以下维度：\\n125\\t\\n126\\t1. **高级感**：是否有顶会论文的精致感？还是看起来像课程作业？\\n127\
 fig1_overview.png')\\n141\\th, w = img.shape[:2]\\n142\\tfig = plt.figure(figsize=(w/300, h/300), dpi=300)\\n143\\tax = fig.add_axes([0,0,1,1]); ax.imshow(img); ax.axis('off')\\n144\\tplt.savefig('figures
 fig1_overview.pdf', bbox_inches='tight', pad_inches=0)\\n145\\tplt.close()\\n146\\t\\\"\\n147\\t```\\n148\\t\\n149\\t## 意图描述质量红线\\n150\\t\\n151\\tIntent 质量直接决定图的质量。必须包含以下 7 项（缺一不可）：\\n152\\t\\n153\\t1. *
@@ -679,7 +679,7 @@ GOOGLE_API_KEY。\\n3\\tname: paper-banana\\n4\\tscope: global\\n5\\ttags:\\n6\\
 GOOGLE_API_KEY | **draw-paper-figure.skill.md** |\\n30\\t\\n31\\t## 执行环境\\n32\\t\\n33\\t**PaperBanana 在本机（EC2）运行，不
 GOOGLE_API_KEY\\n40\\t\\n41\\t```python\\n42\\trequest_secret(key_id=\\\"google_api_key\\\", project=\\\"&lt;project_
 GOOGLE_API_KEY。\\n48\\t\\n49\\t### Step 2：安装验证（每次使用前必须检查）\\n50\\t\\n51\\t```bash\\n52\\t# 检查是否已安装\\n53\\tpaperbana
-GOOGLE_API_KEY=\\\"$GOOGLE_API_KEY\\\" paperbanana generate \\\\\\n115\\t  --input /tmp/fig_intent.txt \\\\\\n116\
+GOOGLE_API_KEY=[REDACTED]"$GOOGLE_API_KEY\\\" paperbanana generate \\\\\\n115\\t  --input /tmp/fig_intent.txt \\\\\\n116\
 GOOGLE_API_KEY 是否有效：`curl -s -o /dev/null -w '%{http_code}' \\\"https://generativelanguage.googleapis.com/v1beta/m
 GOOGLE_API_KEY\\\"` 应返回 200\\n213\\t3. 如果仍然失败，回退 matplotlib 手写：\\n214\\t   - Read `skills/global/paper-visualizati
 GOOGLE_API_KEY。\\nname: paper-banana\\nscope: global\\ntags:\\n  - visualization\\n  - paper\\n  - matplotlib\\n  

@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan001_step1_parallel_v3",
+  "project": "cert_manip_resist_eval",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:32:11.100Z",
+    "updated_at": "2026-05-23T20:15:15.614Z",
+    "spec": {
+      "command": "bash -c \"unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy NO_PROXY && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python scripts/run_plan001_step1_parallel.py 2>&1 | tee artifacts/logs/plan001_step1_parallel_v3.log\"",
+      "server": "seetacloud-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "93189",
+      "log_path": "~/runs/cert_manip_resist_eval/plan001_step1_parallel_v3.log",
+      "submitted_at": "2026-05-22T09:32:11.063Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T20:15:15.681838+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_step1-provider-batch-fix_20260522T115926_result.json",
     "occurrence": 1,
-    "bytes": 879,
-    "sha256": "609790a22648283d9cf39ed7e45af193114a5ea59edfdc988bd8133e4ad58aad"
+    "bytes": 878,
+    "sha256": "42b5c8f41d3ed118454e512d15486d04f6b5a8933bbee1f6ccac56d21a307e33"
   },
   "statistics": {
     "messages": 1,

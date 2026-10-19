@@ -1,0 +1,77 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zheng2023judging}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{zheng2023judging}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adversarial Attacks on LLM Judges.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Byzantine Fault Tolerance.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Panel Construction}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Vulnerability Predictors}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Individual Weakness ($\eta _{\max }$).}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Panel Diversity ($K_{\text  {eff}}$).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Attack Types}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Correction method comparison (15 models, 455 panels, 12 conditions). $\eta _{\max }$ significance is robust across all methods; $K_{\text  {eff}}$ collapses from 8/12 under OLS to 0--1/12 after non-independence correction. SE inflation $\sim $2.5$\times $ is consistent with 91/455 panel overlap.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:correction}{{1}{3}{Correction method comparison (15 models, 455 panels, 12 conditions). $\eta _{\max }$ significance is robust across all methods; $K_{\text {eff}}$ collapses from 8/12 under OLS to 0--1/12 after non-independence correction. SE inflation $\sim $2.5$\times $ is consistent with 91/455 panel overlap}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Regression Specification}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{eq:regression}{{1}{3}{Regression Specification}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Aggregation Rules}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Core Results: Weakest-Link Dominance}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:core}{{4.1}{3}{Core Results: Weakest-Link Dominance}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Attack Surface Expansion}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:attack_expansion}{{4.2}{3}{Attack Surface Expansion}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Extended attack taxonomy (clustered SE). $\eta _{\max }$ remains dominant across all new attack types. GAM taxonomy extends cleanly from 6:6 to 10:8 (targeted:shared-bias). $\text  {$\mathsurround \z@ \mathchar "558$}\text  {$\mathsurround \z@ \mathchar "558$}$ = significant on both benchmarks.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:extended_attack}{{2}{4}{Extended attack taxonomy (clustered SE). $\eta _{\max }$ remains dominant across all new attack types. GAM taxonomy extends cleanly from 6:6 to 10:8 (targeted:shared-bias). $\checkmark \checkmark $ = significant on both benchmarks}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Random-fault vs.\ adaptive regime contrast. $K_{\text  {eff}}$ is genuinely significant under i.i.d.\ faults (2/2 under all corrections) but artifactual under adaptive attacks (0--1/12 after correction). The $R^2$ gap ($\Delta = 0.48$) quantifies the unpredictability introduced by adaptive adversaries.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:rf_contrast}{{3}{4}{Random-fault vs.\ adaptive regime contrast. $K_{\text {eff}}$ is genuinely significant under i.i.d.\ faults (2/2 under all corrections) but artifactual under adaptive attacks (0--1/12 after correction). The $R^2$ gap ($\Delta = 0.48$) quantifies the unpredictability introduced by adaptive adversaries}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Random-Fault BFT Contrast}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:rf}{{4.3}{4}{Random-Fault BFT Contrast}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}ASR Concentration Analysis}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:concentration}{{4.4}{4}{ASR Concentration Analysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ASR concentration by attack category. Targeted attacks show highly concentrated ASR (Gini $>$ 0.7, top-1 judge contributes $>$56\% of panel ASR), providing mechanistic evidence for $\eta _{\max }$ dominance. Mann-Whitney $U$ test: $p < 0.001$ between categories.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:concentration}{{4}{5}{ASR concentration by attack category. Targeted attacks show highly concentrated ASR (Gini $>$ 0.7, top-1 judge contributes $>$56\% of panel ASR), providing mechanistic evidence for $\eta _{\max }$ dominance. Mann-Whitney $U$ test: $p < 0.001$ between categories}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Aggregation gradient under clustered SE. ``Neg.'' = fraction of significant $K_{\text  {eff}}$ coefficients that are negative. Bayesian calibration weakens $\eta _{\max }$ (11$\to $5/12) and flips $K_{\text  {eff}}$ direction (3/4 negative), while veto/threshold amplify the weakest-link channel.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:aggregation}{{5}{5}{Aggregation gradient under clustered SE. ``Neg.'' = fraction of significant $K_{\text {eff}}$ coefficients that are negative. Bayesian calibration weakens $\eta _{\max }$ (11$\to $5/12) and flips $K_{\text {eff}}$ direction (3/4 negative), while veto/threshold amplify the weakest-link channel}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Aggregation Gradient}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:aggregation}{{4.5}{5}{Aggregation Gradient}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Panel Design Algorithm}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:design}{{4.6}{5}{Panel Design Algorithm}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Capability-Matched Validation}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:capability}{{4.7}{5}{Capability-Matched Validation}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Panel design strategy comparison (mean ASR across 12 conditions). The $\max (K_{\text  {eff}})$ strategy---the intuitive ``maximize diversity'' approach---performs \emph  {worse} than random selection because it introduces weak models. Two-stage provides a marginal 0.7pp improvement over $\min (\eta _{\max })$ alone.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:strategy}{{6}{6}{Panel design strategy comparison (mean ASR across 12 conditions). The $\max (K_{\text {eff}})$ strategy---the intuitive ``maximize diversity'' approach---performs \emph {worse} than random selection because it introduces weak models. Two-stage provides a marginal 0.7pp improvement over $\min (\eta _{\max })$ alone}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-tier vs.\ within-tier comparison (clustered SE). Controlling for capability reduces confound and reveals $K_{\text  {eff}}$ as a weak but detectable secondary factor (2/12, both in targeted conditions). The dominance ratio narrows from $\infty $ to 2:1, but $\eta _{\max }$ still dominates.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:capability}{{7}{6}{Cross-tier vs.\ within-tier comparison (clustered SE). Controlling for capability reduces confound and reveals $K_{\text {eff}}$ as a weak but detectable secondary factor (2/12, both in targeted conditions). The dominance ratio narrows from $\infty $ to 2:1, but $\eta _{\max }$ still dominates}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Diversity-Capability Tradeoff}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:tradeoff}{{4.8}{6}{Diversity-Capability Tradeoff}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Panel Size Sensitivity}{6}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:panel_size}{{4.9}{6}{Panel Size Sensitivity}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Generation Benchmark Extension}{6}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:generation}{{4.10}{6}{Generation Benchmark Extension}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Panel size sensitivity (clustered SE). $\eta _{\max }$ dominance persists across $K=3$--$9$, confirming the weakest-link mechanism is scale-invariant. SE inflation increases sharply with $K$, underscoring the necessity of non-independence correction in combinatorial designs.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:panel_size}{{8}{7}{Panel size sensitivity (clustered SE). $\eta _{\max }$ dominance persists across $K=3$--$9$, confirming the weakest-link mechanism is scale-invariant. SE inflation increases sharply with $K$, underscoring the necessity of non-independence correction in combinatorial designs}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-format consistency (clustered SE). $\eta _{\max }$ dominance generalizes from MCQ to open-ended generation evaluation. The combined ratio across 18 conditions is $\infty $ (12:0).}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:generation}{{9}{7}{Cross-format consistency (clustered SE). $\eta _{\max }$ dominance generalizes from MCQ to open-ended generation evaluation. The combined ratio across 18 conditions is $\infty $ (12:0)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Partial-Knowledge Adversary}{7}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:partial}{{4.11}{7}{Partial-Knowledge Adversary}{subsection.4.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When diversity helps.}{7}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical recommendations.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Methodological implications.}{7}{section*.8}\protected@file@percent }
+\bibcite{zheng2023judging}{{1}{}{{}}{{}}}
+\bibcite{lamport1982byzantine}{{2}{}{{}}{{}}}
+\bibcite{hendrycks2021mmlu}{{3}{}{{}}{{}}}
+\bibcite{clark2018arc}{{4}{}{{}}{{}}}
+\bibcite{perez2022red}{{5}{}{{}}{{}}}
+\bibcite{panickssery2024llm}{{6}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Adversary knowledge level comparison (clustered SE). Family-only knowledge retains 82\% attack efficiency. $K_{\text  {eff}}$ is 0/12 under all knowledge levels. $\eta _{\max }$ dominance persists under realistic threat models.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:partial}{{10}{8}{Adversary knowledge level comparison (clustered SE). Family-only knowledge retains 82\% attack efficiency. $K_{\text {eff}}$ is 0/12 under all knowledge levels. $\eta _{\max }$ dominance persists under realistic threat models}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{raina2024llm}{{7}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\gdef \@abspage@last{9}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_read_temperature-pilot-results_20260523T091857_result.json",
     "occurrence": 1,
-    "bytes": 1166,
-    "sha256": "e370c5775d68412fb617b66941d2fc06525a97aab62753d8fcaaf64f822c3a31"
+    "bytes": 1165,
+    "sha256": "de3467827ef58ba61ef882269080ec556513de45c78b29fbe29daea5b2638bf2"
   },
   "statistics": {
     "messages": 1,

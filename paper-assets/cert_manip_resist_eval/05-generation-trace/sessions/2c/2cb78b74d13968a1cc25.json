@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_bayesian-posterior-entropy_20260524T190152_result.json",
     "occurrence": 1,
-    "bytes": 894,
-    "sha256": "470e236b213879800c9df77417a0c0e115312bc48f272ed6bb32460082339448"
+    "bytes": 893,
+    "sha256": "b17cb8c6a2b6ac51047536fcb45805c8b70c068ed9357ea240d47b27f0d7b38e"
   },
   "statistics": {
     "messages": 1,

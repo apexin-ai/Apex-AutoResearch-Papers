@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_cinelli-hazlett-sensitivity_20260523T080322_result.json",
     "occurrence": 1,
-    "bytes": 1022,
-    "sha256": "232a391a9f448c240b5f8f7f2536f89e896642817dabfcb90624aa19ae3b2fbb"
+    "bytes": 1021,
+    "sha256": "784fa8339a21429772493e261469873adf0775c8e1d5c7d5210bdf5521f87325"
   },
   "statistics": {
     "messages": 1,

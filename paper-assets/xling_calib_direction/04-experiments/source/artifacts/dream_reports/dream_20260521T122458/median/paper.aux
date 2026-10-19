@@ -1,0 +1,148 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zhou2025lace}
+\citation{miao2026coral,joshi2025calibration,confidence_manifold2026}
+\citation{miao2026closing}
+\citation{confidence_manifold2026}
+\citation{joshi2025calibration}
+\citation{xiao2025knowledge}
+\citation{civelli2026shared}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{hewitt2019designing}
+\citation{joshi2025calibration}
+\citation{miao2026coral}
+\citation{miao2026closing}
+\citation{confidence_manifold2026}
+\citation{conneau2018word,artetxe2018robust}
+\citation{pires2019multilingual}
+\citation{wu2019beto}
+\citation{ravisankar2026dali}
+\citation{zhou2025lace}
+\citation{xiao2025knowledge}
+\citation{bendavid2010theory}
+\citation{zhao2019learning}
+\citation{hewitt2019designing}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probe-based calibration.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-lingual representations.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multilingual calibration.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain adaptation theory.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probing methodology.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Correctness Probes}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Transfer Methods}{2}{subsection.3.2}\protected@file@percent }
+\citation{kornblith2019similarity}
+\citation{hewitt2019designing}
+\@writefile{toc}{\contentsline {paragraph}{Zero-shot (\textsc  {zs}{}).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mean-shift.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\textsc  {CaCLR}{}.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Linear projection.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Few-shot.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}CKA Analysis}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Probing Controls}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Data and Models}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Languages.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Pareto Frontier Across Architectures}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:pareto}{{4.1}{3}{Pareto Frontier Across Architectures}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Architecture comparison on Pareto frontier strength. Pareto sig.\ = number of languages with significant negative depth--transfer Spearman $\rho $ ($p<0.05$).}}{4}{table.caption.17}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:arch_comparison}{{1}{4}{Architecture comparison on Pareto frontier strength. Pareto sig.\ = number of languages with significant negative depth--transfer Spearman $\rho $ ($p<0.05$)}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Selected per-language results for Qwen3-235B (EN-optimal L80). ZS = zero-shot \textsc  {auroc}{} at EN-optimal layer. * denotes $p<0.05$.}}{4}{table.caption.19}\protected@file@percent }
+\newlabel{tab:per_lang}{{2}{4}{Selected per-language results for Qwen3-235B (EN-optimal L80). ZS = zero-shot \aur {} at EN-optimal layer. * denotes $p<0.05$}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen3-235B.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Llama 4 Scout.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gemma 4 31B (Dense).}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-language patterns.}{4}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Simpson's Paradox: raw vs.\ partial Spearman $\rho $ between \textsc  {CKA}{} and transfer \textsc  {auroc}{}, controlling for layer depth. Partial correlation is positive in all cases, significant in 2/3 full-scale architectures.}}{5}{table.caption.22}\protected@file@percent }
+\newlabel{tab:simpson}{{3}{5}{Simpson's Paradox: raw vs.\ partial Spearman $\rho $ between \cka {} and transfer \aur {}, controlling for layer depth. Partial correlation is positive in all cases, significant in 2/3 full-scale architectures}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Mean subspace angle between English and target-language correctness directions by resource tier. Larger angles correspond to worse zero-shot transfer.}}{5}{table.caption.24}\protected@file@percent }
+\newlabel{tab:subspace}{{4}{5}{Mean subspace angle between English and target-language correctness directions by resource tier. Larger angles correspond to worse zero-shot transfer}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{Divergent languages across architectures.}{5}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}CKA Geometry and Simpson's Paradox}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cka}{{4.2}{5}{CKA Geometry and Simpson's Paradox}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Simpson's Paradox.}{5}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Subspace angle analysis.}{5}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}CaCLR: A Systematic Negative Result}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:caclr}{{4.3}{5}{CaCLR: A Systematic Negative Result}{subsection.4.3}{}}
+\citation{zhao2019learning}
+\citation{zhao2019learning}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $\beta $ sweep for \textsc  {CaCLR}{} (Qwen3-235B, L68, mean over 20~languages, 3~seeds). All effects are negligible.}}{6}{table.caption.26}\protected@file@percent }
+\newlabel{tab:beta_sweep}{{5}{6}{$\beta $ sweep for \caclr {} (Qwen3-235B, L68, mean over 20~languages, 3~seeds). All effects are negligible}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Distributional matching ablation. All marginal-matching methods are inert; linear projection and few-shot, which directly address subspace rotation, succeed.}}{6}{table.caption.28}\protected@file@percent }
+\newlabel{tab:dist_matching}{{6}{6}{Distributional matching ablation. All marginal-matching methods are inert; linear projection and few-shot, which directly address subspace rotation, succeed}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{$\beta $ sweep.}{6}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Distributional matching ablation.}{6}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Geometric explanation.}{6}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Component ablation.}{6}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Transfer Method Comparison}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:transfer}{{4.4}{6}{Transfer Method Comparison}{subsection.4.4}{}}
+\citation{miao2026closing}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Why distributional matching fails: \textsc  {CaCLR}{} reduces MMD distance but correctness subspace angle is unchanged. The conditional structure differs across languages; marginal matching cannot fix conditional mismatch \cite  {zhao2019learning}.}}{7}{table.caption.30}\protected@file@percent }
+\newlabel{tab:why_fails}{{7}{7}{Why distributional matching fails: \caclr {} reduces MMD distance but correctness subspace angle is unchanged. The conditional structure differs across languages; marginal matching cannot fix conditional mismatch \cite {zhao2019learning}}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Transfer method comparison (Qwen3-235B, L68, mean over 20~languages). Linear projection is the best label-free method; few-shot with 100~labels achieves the highest absolute performance.}}{7}{table.caption.32}\protected@file@percent }
+\newlabel{tab:transfer_comparison}{{8}{7}{Transfer method comparison (Qwen3-235B, L68, mean over 20~languages). Linear projection is the best label-free method; few-shot with 100~labels achieves the highest absolute performance}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Linear Projection: Sample Efficiency and Effect Reversal}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:projection}{{4.5}{7}{Linear Projection: Sample Efficiency and Effect Reversal}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Saturation curves.}{7}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Procrustes effect reversal.}{7}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Difficulty Decomposition}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:decomposition}{{4.6}{7}{Difficulty Decomposition}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Lingual Orthogonality}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:orthogonality}{{4.7}{7}{Cross-Lingual Orthogonality}{subsection.4.7}{}}
+\citation{hewitt2019designing}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Linear projection $\Delta $\textsc  {auroc}{} (pp) by resource tier and parallel pair count (Qwen3-235B, L68). LOW-resource languages benefit most.}}{8}{table.caption.34}\protected@file@percent }
+\newlabel{tab:saturation}{{9}{8}{Linear projection $\Delta $\aur {} (pp) by resource tier and parallel pair count (Qwen3-235B, L68). LOW-resource languages benefit most}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Procrustes effect reversal: linear projection helps low-ZS languages but harms high-ZS ones. Deployment recommendation: use projection when ZS \textsc  {auroc}{} $< 0.57$, skip for $> 0.65$.}}{8}{table.caption.36}\protected@file@percent }
+\newlabel{tab:reversal}{{10}{8}{Procrustes effect reversal: linear projection helps low-ZS languages but harms high-ZS ones. Deployment recommendation: use projection when ZS \aur {} $< 0.57$, skip for $> 0.65$}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Probe Complexity Validation}{8}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:probe_complexity}{{4.8}{8}{Probe Complexity Validation}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Cross-Benchmark Generalization}{8}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:benchmarks}{{4.9}{8}{Cross-Benchmark Generalization}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Probing Controls}{8}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:controls}{{4.10}{8}{Probing Controls}{subsection.4.10}{}}
+\citation{zhao2019learning}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Difficulty decomposition results (Qwen3-235B, 8-layer mean). Diff-proj = after projecting out difficulty direction. Rand $\Delta $ = random-direction control. * = $p<0.05$.}}{9}{table.caption.37}\protected@file@percent }
+\newlabel{tab:decomp}{{11}{9}{Difficulty decomposition results (Qwen3-235B, 8-layer mean). Diff-proj = after projecting out difficulty direction. Rand $\Delta $ = random-direction control. * = $p<0.05$}{table.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces LR vs MLP probe comparison (Q=Qwen3, L=Llama4). MLP overfits English-specific patterns, widening the transfer gap by ${\sim }5$~pp.}}{9}{table.caption.38}\protected@file@percent }
+\newlabel{tab:lr_mlp}{{12}{9}{LR vs MLP probe comparison (Q=Qwen3, L=Llama4). MLP overfits English-specific patterns, widening the transfer gap by ${\sim }5$~pp}{table.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Quantization Validation}{9}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:quantization}{{4.11}{9}{Quantization Validation}{subsection.4.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Extended Language Coverage}{9}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:extended}{{4.12}{9}{Extended Language Coverage}{subsection.4.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical recommendations.}{9}{section*.43}\protected@file@percent }
+\bibcite{angelopoulos2023conformal}{{1}{2023}{{Angelopoulos and Bates}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-benchmark consistency (Qwen3-235B). All qualitative findings generalize. Cross-benchmark language ranking $\rho = 0.89$.}}{10}{table.caption.39}\protected@file@percent }
+\newlabel{tab:cross_bench}{{13}{10}{Cross-benchmark consistency (Qwen3-235B). All qualitative findings generalize. Cross-benchmark language ranking $\rho = 0.89$}{table.caption.39}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Artifact rate (selectivity $< 0.05$) by resource tier and depth zone, averaged across 3~architectures. Low-resource shallow layers are predominantly artifacts.}}{10}{table.caption.40}\protected@file@percent }
+\newlabel{tab:controls}{{14}{10}{Artifact rate (selectivity $< 0.05$) by resource tier and depth zone, averaged across 3~architectures. Low-resource shallow layers are predominantly artifacts}{table.caption.40}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why distributional matching fails.}{10}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\bibcite{artetxe2018robust}{{2}{2018}{{Artetxe et~al.}}{{}}}
+\bibcite{bendavid2010theory}{{3}{2010}{{Ben-David et~al.}}{{}}}
+\bibcite{civelli2026shared}{{4}{2026}{{Civelli et~al.}}{{}}}
+\bibcite{confidence_manifold2026}{{5}{2026}{{Anonymous}}{{}}}
+\bibcite{conneau2018word}{{6}{2018}{{Conneau et~al.}}{{}}}
+\bibcite{hewitt2019designing}{{7}{2019}{{Hewitt and Liang}}{{}}}
+\bibcite{ji2025calibrating}{{8}{2025}{{Ji et~al.}}{{}}}
+\bibcite{joshi2025calibration}{{9}{2025}{{Joshi et~al.}}{{}}}
+\bibcite{kornblith2019similarity}{{10}{2019}{{Kornblith et~al.}}{{}}}
+\bibcite{miao2026coral}{{11}{2026}{{Miao et~al.}}{{}}}
+\bibcite{miao2026closing}{{12}{2026}{{Miao and Ungar}}{{}}}
+\bibcite{pires2019multilingual}{{13}{2019}{{Pires et~al.}}{{}}}
+\bibcite{ravisankar2026dali}{{14}{2026}{{Ravisankar et~al.}}{{}}}
+\bibcite{wu2019beto}{{15}{2019}{{Wu and Dredze}}{{}}}
+\bibcite{xiao2025knowledge}{{16}{2025}{{Xiao et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Quantization validation (selected layers). Max $|\Delta | = 0.012$; CKA $> 0.97$ throughout. Quantization artifacts are negligible.}}{11}{table.caption.41}\protected@file@percent }
+\newlabel{tab:quant}{{15}{11}{Quantization validation (selected layers). Max $|\Delta | = 0.012$; CKA $> 0.97$ throughout. Quantization artifacts are negligible}{table.caption.41}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Language coverage expansion to 52 languages. Art.\% = artifact rate. Pass = ZS \textsc  {auroc}{} $>$ 0.58. Core findings replicate (rank correlation 20 vs.\ 52 = 0.95).}}{11}{table.caption.42}\protected@file@percent }
+\newlabel{tab:extended}{{16}{11}{Language coverage expansion to 52 languages. Art.\% = artifact rate. Pass = ZS \aur {} $>$ 0.58. Core findings replicate (rank correlation 20 vs.\ 52 = 0.95)}{table.caption.42}{}}
+\bibcite{zhao2019learning}{{17}{2019}{{Zhao et~al.}}{{}}}
+\bibcite{zhou2025lace}{{18}{2025}{{Zhou et~al.}}{{}}}
+\gdef \@abspage@last{12}

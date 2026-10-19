@@ -1,0 +1,524 @@
+baseline: null
+experiments:
+  mvp_001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T14:17:02.273Z'
+    updated_at: '2026-05-20T20:26:56.163Z'
+    hypothesis: 在 7B 模型的中间层 activation space 中存在 language-agnostic correctness direction，使得英语训练的线性
+      probe（LogisticRegression）能 zero-shot 迁移到非英语语言（≥3/5 语言 AUROC ≥ 0.58, p < 0.05），且存在
+      layer-depth 效应（浅层 vs 深层 ΔAUROC ≥ 5pp）。Mean-shift alignment 可进一步改善迁移（Δ ≥ 2pp
+      for ≥3/5 语言）。
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/xling_calib_direction && bash run_mvp.sh"
+      server: westd-13176
+      gpu:
+      - cuda:0
+      pid: '9845'
+      log_path: ~/runs/xling_calib_direction/mvp_001.log
+      submitted_at: '2026-05-20T16:29:25.456Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      wall_clock_seconds: 6824.1
+      gpu_hours: 1.9
+    conclusion: success
+    metrics:
+      en_best_auroc: 0.7541
+      en_best_layer: 27
+      en_best_ece_raw: 0.1951
+      temp_scaling_fixed:
+        L24:
+          T: 0.67
+          ECE_cal: 0.2205
+        L27:
+          T: 0.62
+          ECE_cal: 0.2216
+        note: 3-way split (60/20/20), T on val, ECE on test. Temp scaling worsens
+          ECE.
+      en_auroc_range:
+      - 0.6113
+      - 0.7541
+      layer_depth_delta: 0.1428
+      layers_tested:
+      - 0
+      - 4
+      - 8
+      - 12
+      - 16
+      - 20
+      - 24
+      - 27
+      zs_pass_langs:
+      - zh
+      - ar
+      - hi
+      - ko
+      zs_fail_langs:
+      - sw
+      best_zs_auroc:
+        zh: 0.686
+        ar: 0.651
+        hi: 0.652
+        ko: 0.648
+        sw: 0.56
+      mean_shift_delta_ece:
+        zh: -0.36
+        ar: -0.06
+        hi: 2.22
+        sw: 6.44
+        ko: 0.01
+      pass_fail: PARTIAL 2/4 (P2+P3 pass, P1+P4 fail). Research phase continues per
+        D006.
+      p1: FAIL (AUROC=0.7541 ok, ECE=0.1951 raw > 0.15, temp scaling ineffective)
+      p2: PASS (4/5)
+      p3: PASS (14.28pp)
+      p4: FAIL (0/5, mean-shift no improvement)
+    checkpoint_path: /root/xling_calib_direction/probes/
+    log_path: /root/xling_calib_direction/results/summary.txt
+    completed_at: '2026-05-20T18:23:09.593Z'
+  mvp_002:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T16:26:27.143Z'
+    updated_at: '2026-05-20T19:29:01.161Z'
+    hypothesis: Layer-depth 效应在 Qwen2.5-7B-Instruct 的互补层集合（2,6,10,14,18,22,26）上复现，与
+      mvp_001（0,4,8,12,16,20,24,27）合并后提供近全层覆盖（15/28层），验证 AUROC 的 layer-depth 趋势不依赖于特定层采样。（模型实际
+      28 层，index 0-27）
+    parent: mvp_001
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/xling_calib_direction && bash run_mvp_002.sh"
+      server: westd-13176
+      gpu:
+      - cuda:1
+      pid: '11397'
+      log_path: ~/runs/xling_calib_direction/mvp_002.log
+      submitted_at: '2026-05-20T17:01:16.028Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      wall_clock_seconds: 6874.5
+      gpu_hours: 1.91
+    conclusion: success
+    metrics:
+      en_best_auroc: 0.7481
+      en_best_layer: 26
+      en_auroc_range:
+      - 0.6229
+      - 0.7481
+      layer_depth_delta: 0.1251
+      best_zs_auroc:
+        zh: 0.6774
+        ar: 0.6302
+        hi: 0.6068
+        sw: 0.5467
+        ko: 0.6678
+      best_zs_layer:
+        zh: 26
+        ar: 26
+        hi: 22
+        sw: 22
+        ko: 26
+      pass_fail:
+        P1_en_auroc_ece: FAIL (ECE=0.2112 > 0.15)
+        P2_zs_auroc: PASS (4/5)
+        P3_layer_delta: PASS (12.51pp)
+        P4_mean_shift: FAIL (0/5, zero delta)
+        overall: PARTIAL
+    log_path: /root/xling_calib_direction/results_mvp002/summary.txt
+    checkpoint_path: /root/xling_calib_direction/probes_mvp002/
+    completed_at: '2026-05-20T18:55:50.484Z'
+  mvp_003:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T18:27:06.449Z'
+    updated_at: '2026-05-20T20:48:56.916Z'
+    hypothesis: 'Cross-lingual correctness direction is model-agnostic: an English-trained
+      linear probe on Llama-3.1-8B-Instruct internal representations will transfer
+      to non-English languages (zh/ar/hi/sw/ko) with AUROC >= 0.58, replicating the
+      pattern observed in Qwen2.5-7B-Instruct (mvp_001).'
+    parent: mvp_001
+    spec:
+      command: CUDA_VISIBLE_DEVICES=2 bash /root/xling_calib_direction/run_mvp_003.sh
+      server: westd-13176
+      data_path: cais/mmlu + CohereForAI/Global-MMLU
+      data_count: ~14K test samples per language
+      model_name: LLM-Research/Meta-Llama-3.1-8B-Instruct (ModelScope)
+      seed: 42
+      gpu: cuda:2
+      tmux_session: mvp_003
+      log_path: /root/xling_calib_direction/mvp_003.log
+      checkpoint_source: LLM-Research/Meta-Llama-3.1-8B-Instruct
+      eval_data: cais/mmlu + CohereForAI/Global-MMLU
+    conclusion: success
+    metrics:
+      en_best_auroc: 0.7284
+      en_best_layer: 31
+      en_best_ece_raw: 0.2052
+      en_auroc_range:
+      - 0.6331
+      - 0.7284
+      layer_depth_delta: 0.0953
+      layers_tested:
+      - 0
+      - 4
+      - 8
+      - 12
+      - 16
+      - 20
+      - 24
+      - 28
+      - 31
+      best_zs_auroc:
+        zh: 0.64
+        ar: 0.6146
+        hi: 0.5935
+        ko: 0.6481
+        sw: 0.5838
+      best_zs_layer:
+        zh: 20
+        ar: 31
+        hi: 31
+        ko: 31
+        sw: 16
+      zs_pass_langs:
+      - zh
+      - ar
+      - hi
+      - ko
+      - sw
+      zs_fail_langs: []
+      pass_fail: PARTIAL 2/4 (P2 5/5 PASS, P3 PASS 9.53pp, P1 FAIL ECE, P4 FAIL mean-shift)
+      note: 'zh@L31 sigmoid saturation artifact fixed (decision_function for AUROC).
+        P4 FAIL is expected: mean-shift adds constant offset to linear logits, AUROC
+        is rank-invariant.'
+      cka_vs_degradation:
+        overall_rho: -0.3982
+        overall_p: 0.0068
+        per_lang:
+          ar:
+            rho: -0.2833
+            p: 0.46
+          hi:
+            rho: -0.6667
+            p: 0.0499
+          ko:
+            rho: 0.25
+            p: 0.5165
+          sw:
+            rho: -0.5833
+            p: 0.0992
+          zh:
+            rho: -0.4833
+            p: 0.1875
+    checkpoint_path: /root/xling_calib_direction/probes_mvp003/
+    log_path: /root/xling_calib_direction/results_mvp003/summary.txt
+    completed_at: '2026-05-20T20:34:43.102Z'
+  plan_013:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T00:39:58.089Z'
+    updated_at: '2026-05-21T00:59:20.023Z'
+    hypothesis: 'English correctness probes capture genuine linguistic signal: 5-fold
+      CV with PCA(100) dimensionality reduction shows real AUROC significantly above
+      permuted-label baseline (0.746 vs 0.484 at best layer), with selectivity (Hewitt
+      & Liang 2019) concentrated in later layers (L20-L27), confirming the probe is
+      not exploiting spurious high-dimensional correlations.'
+    parent: mvp_001
+    spec:
+      command: python probing_controls_v2.py (5-fold CV + PCA-100)
+      server: westd-13176
+      data_path: /root/xling_calib_direction/activations/layer*_en.pt
+      data_count: ~14K MMLU test samples
+      model_name: Qwen2.5-7B-Instruct (activations from mvp_001)
+      seed: 42
+      checkpoint_source: mvp_001 activations
+      eval_data: same activations, 5-fold CV
+    conclusion: success
+    metrics:
+      method: 5-fold CV + PCA(100) + LogisticRegression (C=1.0, L2, lbfgs, max_iter=2000)
+      selectivity_hewitt_liang:
+        L0: 0.02
+        L4: 0.037
+        L8: 0.036
+        L12: 0.042
+        L16: 0.123
+        L20: 0.244
+        L24: 0.248
+        L27: 0.262
+      real_auroc:
+        L0: 0.501
+        L4: 0.524
+        L8: 0.529
+        L12: 0.53
+        L16: 0.615
+        L20: 0.733
+        L24: 0.738
+        L27: 0.746
+      permuted_auroc:
+        L0: 0.481
+        L4: 0.487
+        L8: 0.493
+        L12: 0.488
+        L16: 0.492
+        L20: 0.489
+        L24: 0.49
+        L27: 0.484
+      pca_variance_retained:
+        L0: 0.922
+        L4: 0.912
+        L8: 0.885
+        L12: 0.868
+        L16: 0.783
+        L20: 0.738
+        L24: 0.844
+        L27: 0.794
+      note: Selectivity = real_AUROC - permuted_AUROC (Hewitt & Liang 2019). Signal
+        concentrated in L20-L27. PCA(100) retains 73-92% variance.
+    checkpoint_path: /root/xling_calib_direction/results/probing_controls.csv
+    log_path: /root/xling_calib_direction/results/probing_controls.csv
+    completed_at: '2026-05-21T00:59:20.023Z'
+  plan_013_probing_controls_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T01:04:11.073Z'
+    updated_at: '2026-05-21T12:13:02.350Z'
+    conclusion: failed
+    spec:
+      command: python3 probing_controls_v2.py (PID 47972)
+      server: westd-13176
+      pid: 47972
+      data_path: /root/xling_calib_direction/data/globalmmlu
+      data_count: -1
+      model_name: Qwen2.5-7B-Instruct
+      seed: 42
+      note: 已产出 L0 结果，从 PREPARING 补正状态
+    completed_at: '2026-05-21T12:13:02.350Z'
+  plan_002:
+    status: DONE
+    retry_count: 3
+    created_at: '2026-05-21T11:46:06.605Z'
+    updated_at: '2026-05-21T12:01:45.355Z'
+    hypothesis: 'Cross-lingual correctness direction transfers across languages in
+      Llama 4 Scout (48-layer MoE, W4A16): English-trained linear probes at 13 probed
+      layers (0,4,8,...,44,47) will transfer to 19 non-English languages with AUROC
+      ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent transfer pattern
+      (shallow→deep ΔAUROC ≥ 5pp). MoE architecture with 17B active params provides
+      architectural contrast to dense Qwen models.'
+    server: westd-13176
+    gpu: cuda:0
+    account: root
+    reproduce:
+      server: westd-13176
+      gpu: cuda:0
+      started_at: '2026-05-21T11:47:17.654Z'
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache
+        && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1
+        && cd /root/xling_calib_direction && python -u code/extract_activations.py
+        --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/
+        --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47
+        --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir
+        /root/autodl-tmp/activations/llama4_scout/"
+      finished_at: '2026-05-21T12:01:43.858Z'
+      training_hours: 0.24
+    failure_reason: 'CUDA OOM: CUDA out of memory. Tried to allocate 160.00 MiB. GPU
+      0 has a total capacity of 94.97 GiB of which 25.81 MiB is free. Including non-PyTorch
+      memory, this process has 94.94 GiB memory in use. Of the allocated memory 93.27
+      GiB is allocated by PyTorch, a'
+    completed_at: '2026-05-21T11:48:15.052Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-21T11:48:16.350219+00:00'
+      - event: on_failed
+        action: agent
+        ts: '2026-05-21T11:54:20.808886+00:00'
+      - event: on_failed
+        action: agent
+        ts: '2026-05-21T12:01:45.990550+00:00'
+      previous_failure:
+        conclusion: failed
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache
+        && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1
+        && cd /root/xling_calib_direction && python -u code/extract_activations.py
+        --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/
+        --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47
+        --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir
+        /root/autodl-tmp/activations/llama4_scout/"
+      server: westd-13176
+      gpu:
+      - cuda:0
+      pid: '477148'
+      log_path: ~/runs/xling_calib_direction/plan_002.log
+      submitted_at: '2026-05-21T11:58:12.099Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      wall_clock_seconds: 212.4
+      gpu_hours: 0.06
+    pid: '477148'
+    log_path: ~/runs/xling_calib_direction/plan_002.log
+    conclusion: failed
+  plan_002_4gpu:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T12:06:14.731Z'
+    updated_at: '2026-05-21T12:24:23.098Z'
+    hypothesis: 'Cross-lingual correctness direction transfers across languages in
+      Llama 4 Scout (48-layer MoE, W4A16): English-trained linear probes at 13 probed
+      layers (0,4,8,...,44,47) will transfer to 19 non-English languages with AUROC
+      ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent transfer pattern
+      (shallow→deep ΔAUROC ≥ 5pp). MoE architecture with 17B active params provides
+      architectural contrast to dense Qwen models. Retry of plan_002 with 4 GPUs (single-GPU
+      OOM confirmed by dry-run).'
+    parent: plan_002
+    spec:
+      command: python -u code/extract_activations.py --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/...
+        --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47
+        --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir
+        /root/autodl-tmp/activations/llama4_scout/
+      server: westd-13176
+      gpu:
+      - cuda:0
+      - cuda:1
+      - cuda:2
+      - cuda:3
+      data_path: cais/mmlu + CohereForAI/Global-MMLU (cached at /root/autodl-tmp/.hf_cache)
+      data_count: ~14K test samples per language, 20 languages
+      model_name: RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16
+      seed: 42
+      note: '4-GPU required (single GPU OOM). 3 code fixes: AutoModelForImageTextToText,
+        language_model.model.layers, language_model.model.norm. Dry-run validated
+        66s/sample.'
+    server: westd-13176
+    gpu: cuda:0,cuda:1,cuda:2,cuda:3
+    account: root
+    pid: '468430'
+    log_path: ~/runs/xling_calib_direction/plan_002_4gpu.log
+    reproduce:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache
+        && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1
+        && export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /root/xling_calib_direction
+        && python -u code/extract_activations.py --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/
+        --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47
+        --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir
+        /root/autodl-tmp/activations/llama4_scout/"
+      finished_at: '2026-05-21T12:10:25.168Z'
+    failure_reason: 'CUDA OOM: CUDA out of memory. Tried to allocate 40.00 MiB. GPU
+      1 has a total capacity of 94.97 GiB of which 32.50 MiB is free. Process 482839
+      has 88.03 GiB memory in use. Including non-PyTorch memory, this process has
+      6.90 GiB memory in use. Of the allocated m'
+    conclusion: failed
+    completed_at: '2026-05-21T12:10:25.858Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-21T12:10:27.165461+00:00'
+    notes: '根因纠正(Director): OOM 不是 compressed_tensors 解压问题，而是 Qwen3 dry run (PID 482839)
+      占着 GPU 1-3（88 GiB）。4卡 dry run 在 clean GPU 上是成功的。已 kill 482839 并重新提交 plan_002_v3。'
+  plan_002_v3:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T12:24:23.888Z'
+    updated_at: '2026-05-21T13:46:59.706Z'
+    hypothesis: 'Cross-lingual correctness direction transfers across languages in
+      Llama 4 Scout (48-layer MoE, W4A16): English-trained linear probes at 13 probed
+      layers (0,4,8,...,44,47) will transfer to 19 non-English languages with AUROC
+      ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent transfer pattern
+      (shallow→deep ΔAUROC ≥ 5pp). MoE architecture with 17B active params provides
+      architectural contrast to dense Qwen models. Retry after killing Qwen3 dry run
+      (PID 482839) that was occupying GPU 1-3.'
+    parent: plan_002_4gpu
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && ... && python -u code/extract_activations.py --model_path /root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/
+        --model_name llama4_scout_w4a16 --layers 0,4,8,12,16,20,24,28,32,36,40,44,47
+        --languages en zh ar hi sw ko es fr de ru tr bn ja pt vi te id pl nl uk --output_dir
+        /root/autodl-tmp/activations/llama4_scout/"
+      server: westd-13176
+      gpu:
+      - cuda:0
+      - cuda:1
+      - cuda:2
+      - cuda:3
+      pid: '934594'
+      log_path: ~/runs/xling_calib_direction/plan_002_v3.log
+      submitted_at: '2026-05-21T12:26:41.691Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: cais/mmlu + CohereForAI/Global-MMLU (cached at /root/autodl-tmp/.hf_cache)
+      data_count: ~14K test samples per language, 20 languages
+      model_name: RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16
+      seed: 42
+      checkpoint_source: N/A (activation extraction, not eval)
+      eval_data: N/A (activation extraction, not eval)
+      note: Retry after killing Qwen3 dry run (PID 482839). 4 GPU clean confirmed.
+      wall_clock_seconds: 4818.0
+      gpu_hours: 5.35
+    conclusion: killed
+    completed_at: '2026-05-21T13:46:59.706Z'
+  plan_001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T13:47:00.241Z'
+    updated_at: '2026-05-21T14:24:44.595Z'
+    hypothesis: 'Cross-lingual correctness direction transfers across languages in
+      Qwen3-235B-A22B (94-layer MoE, GPTQ-Int4): English-trained linear probes at
+      24 probed layers (every 4th + final layer 93) will transfer to 19 non-English
+      languages with AUROC ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent
+      transfer pattern. 235B MoE architecture with 22B active params provides scale
+      contrast to 7-8B dense models (mvp_001/003).'
+    spec:
+      command: python -u code/extract_activations_large.py --model /root/autodl-tmp/models/Qwen3-235B-GPTQ-Int4/
+        --languages en zh ar hi sw ko de fr ja pt ru vi th bn te ur ta gu mr kn --layers
+        0,4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,93 --output_dir
+        /root/autodl-tmp/activations/qwen3_235b --dtype bfloat16 --max_samples 0 --split_ratio
+        0.7 --split_seed 42
+      server: westd-13176
+      gpu:
+      - cuda:0
+      - cuda:1
+      - cuda:2
+      - cuda:3
+      pid: '299313'
+      log_path: ~/runs/xling_calib_direction/plan_001.log
+      submitted_at: '2026-05-21T13:47:31.482Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: cais/mmlu + CohereForAI/Global-MMLU (cached at /root/autodl-tmp/.hf_cache)
+      data_count: ~14K test samples per language, 20 languages
+      model_name: Qwen/Qwen3-235B-A22B-GPTQ-Int4
+      seed: 42
+      checkpoint_source: N/A (activation extraction)
+      eval_data: N/A (activation extraction)
+      note: 'D019: priority switch from Llama4 to Qwen3. 94 layers, 24 probed layers,
+        20 languages. device_map=auto, GPTQ quantization auto-detected.'
+      wall_clock_seconds: 2233.1
+      gpu_hours: 2.48
+    conclusion: failed
+    notes: '崩溃根因: AutoModelForCausalLM.from_pretrained() + device_map="auto" 无法正确分发
+      Qwen3-235B GPTQ MoE 的 expert 权重（卡在 meta device → MarlinLinear post_init() 崩溃）。需改用
+      GPTQModel 原生 API。'
+    completed_at: '2026-05-21T14:24:44.595Z'
+  plan_001_v2:
+    status: ALLOCATED
+    retry_count: 0
+    created_at: '2026-05-21T14:44:07.507Z'
+    updated_at: '2026-05-21T14:44:23.983Z'
+    hypothesis: 'Cross-lingual correctness direction transfers across languages in
+      Qwen3-235B-A22B (94-layer MoE, GPTQ-Int4): English-trained linear probes at
+      24 probed layers (every 4th + final layer 93) will transfer to 19 non-English
+      languages with AUROC ≥ 0.58 for ≥15/19 languages at best layer, with depth-dependent
+      transfer pattern. Retry with GPTQModel.from_quantized() API after AutoModelForCausalLM
+      meta device crash.'
+    parent: plan_001

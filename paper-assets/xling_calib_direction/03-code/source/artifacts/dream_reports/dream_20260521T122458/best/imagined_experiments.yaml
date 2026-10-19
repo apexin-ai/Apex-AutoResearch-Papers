@@ -1,0 +1,1895 @@
+tier: best
+narrative_guidance: 'Method contribution paper — 因果链完整：Pareto discovery（architecture-dependent
+  depth-transferability tradeoff with overall positive depth-transfer trend）→ Decomposition
+  explains it（difficulty transfers, capability does not）→ CaCLR solves it（consistency
+  loss shifts Pareto frontier, +3.3pp mean, 14/20 languages improved）→ CKA geometric
+  explanation reveals why（Simpson''s Paradox confirmed across 3 architectures, partial
+  rho +0.44 mean, p<0.01）。四条 claim 全力度支撑。Headline: "CaCLR-trained correctness probes
+  reduce non-English ECE by 38% requiring zero target-language labels." Control task
+  warning（10% cross-lingual artifact rate） 和 linear projection sample efficiency（~40
+  pairs to 95%）作为 elevated empirical contributions 进入 main body。Procrustes effect
+  reversal（threshold ~0.52）为 practitioner 提供直接指导。 三个架构（Qwen3 MoE + Llama4 MoE + Gemma4
+  Dense）消除架构混淆因子——phenomenon 是 transformer depth 的 universal property。Mean EN AUROC
+  0.818（range 0.805–0.835），ZS 20-lang mean 0.767， gap 5.2pp。所有 key metrics 落在 best
+  区间内。
+
+  '
+imagined_experiments:
+- name: Full Pareto Frontier — Qwen3-235B-A22B (MoE)
+  plan_id: plan_001
+  description: '94-layer MoE (INT4, ~22B active), 24 probed layers (every 4th: L0,L4,...,L92),
+    20 typologically diverse languages, English logistic regression probes, 5 transfer
+    conditions: zero-shot, mean-shift, linear projection (200 pairs), few-shot 25/100,
+    CaCLR (optimal α=0.1, β=0.05 from plan_003)。验证 MVP 发现的 positive depth-transfer
+    trend 和 local deep-layer Pareto tradeoff 在大 MoE 模型上放大。
+
+    '
+  expected_results:
+    en_best_auroc: 0.835
+    en_best_layer_idx: 68
+    en_best_depth_pct: 72
+    en_auroc_range:
+    - 0.59
+    - 0.835
+    en_ece_raw_best: 0.172
+    zs_mean_auroc_20lang_at_zs_optimal: 0.775
+    zs_best_transfer_layer_idx: 48
+    zs_best_transfer_depth_pct: 51
+    zs_pass_rate_auroc_gt_058: 19
+    zs_fail_langs:
+    - yo
+    zs_auroc_by_tier:
+      HIGH_mean: 0.817
+      MID_mean: 0.788
+      LOW_mean: 0.693
+    zs_auroc_selected:
+      zh: 0.83
+      es: 0.82
+      fr: 0.82
+      de: 0.82
+      ja: 0.81
+      nl: 0.81
+      pt: 0.81
+      ar: 0.8
+      hi: 0.79
+      ko: 0.79
+      ru: 0.8
+      tr: 0.78
+      vi: 0.77
+      id: 0.79
+      pl: 0.79
+      uk: 0.78
+      sw: 0.72
+      bn: 0.73
+      te: 0.67
+      yo: 0.575
+    overall_spearman_depth_vs_zs:
+      global_rho: 0.68
+      global_p: 0.0003
+    per_lang_spearman_rho_median: 0.62
+    per_lang_positive_rho_count: 17
+    per_lang_significant_positive_count: 14
+    per_lang_negative_rho_langs:
+    - yo
+    - te
+    - sw
+    pareto_tradeoff_langs_count: 15
+    pareto_en_optimal_layer: 68
+    pareto_zs_optimal_layer: 48
+    pareto_depth_gap_layers: 20
+    pareto_zs_drop_at_en_optimal_pp: 3.8
+    mean_shift_delta_auroc: 0.0
+    linproj_200pairs_mean_auroc: 0.793
+    linproj_200pairs_delta_pp: 1.8
+    fewshot_25_mean_auroc: 0.762
+    fewshot_100_mean_auroc: 0.788
+    caclr_mean_auroc: 0.812
+    caclr_delta_vs_zs_pp: 3.7
+  result_rationale: 'Qwen3-235B 的 22B active params 比 MVP Qwen2.5-7B 多 ~3×。Probing
+    scaling 预期 EN AUROC 从 0.754 提升至 0.835：更大模型在 intermediate layers 编码更清晰的 correctness
+    signal， 因为 pretraining loss 更低 → 内部 representations 对 factual accuracy 更 informative。
+
+    Overall positive depth-transfer trend（median per-lang Spearman ρ=+0.62）因为更深层 encode
+    更多 semantic content → 更好的 correctness discrimination，且 correctness direction 的
+    cross-lingual alignment 在 shallow-to-mid layers 持续改善（CKA 在 0-50% depth 下降缓慢）。
+    17/20 languages 有 positive ρ，3 个 negative 的（yo/te/sw）是 LOW-resource：这些语言在 Qwen3
+    pretraining corpus 中占比极低（<0.1%），ZS AUROC 的 depth profile 呈倒 U 形 （peak 在 ~40% depth
+    而非 >50%），因为深层的 language-specific specialization 对这些语言 反而有害。
+
+    Local Pareto tradeoff：从 ZS-optimal (L48, 51% depth) 到 EN-optimal (L68, 72% depth)，
+    EN 增加 2pp（0.815→0.835）但 ZS 平均下降 3.8pp（0.775→0.737）。这一 tradeoff 在 15/20 languages
+    上可观测（ZS-optimal ≠ EN-optimal，gap >1.5pp）。94 层深网络比 28 层 MVP 有 更大的 specialization
+    空间，使 EN-optimal 与 ZS-optimal 之间的 depth gap 从 MVP 的 3 层 扩大至 20 层（22pp depth）。
+
+    MoE routing 在深层产生 language-specific expert activation patterns，加速 CKA cliff 下降，导致
+    Qwen3 的 Pareto tradeoff 比 Llama4/Gemma4 更 pronounced（15/20 vs 10-12/20）。
+
+    Mean-shift ΔAUROC ≡ 0：StandardScaler + LR 下 mean-shift 对 AUROC 无影响（rank-invariant,
+    MVP 中已数学证明并实验验证）。
+
+    Linear projection (+1.8pp) 通过 Procrustes 捕获 correctness subspace 旋转。 CaCLR (+3.7pp)
+    通过 end-to-end 优化超越 linear projection。 Few-shot-100 (+1.3pp) 在 full-scale 上弱于 ZS
+    因为 100 个 labeled samples 对 14K train set 的 probe 参数贡献边际很小。
+
+    '
+  tables:
+  - name: 'Table 1: Qwen3-235B Pareto Frontier (selected layers)'
+    columns:
+    - layer_idx
+    - depth_pct
+    - en_auroc
+    - zs_mean_20
+    - zs_drop_vs_en_pp
+    - on_pareto
+    rows:
+    - - 4
+      - 4
+      - 0.59
+      - 0.582
+      - 0.8
+      - false
+    - - 12
+      - 13
+      - 0.645
+      - 0.636
+      - 0.9
+      - false
+    - - 20
+      - 21
+      - 0.71
+      - 0.7
+      - 1.0
+      - false
+    - - 28
+      - 30
+      - 0.752
+      - 0.74
+      - 1.2
+      - false
+    - - 36
+      - 38
+      - 0.785
+      - 0.77
+      - 1.5
+      - false
+    - - 40
+      - 43
+      - 0.798
+      - 0.779
+      - 1.9
+      - false
+    - - 44
+      - 47
+      - 0.808
+      - 0.782
+      - 2.6
+      - false
+    - - 48
+      - 51
+      - 0.815
+      - 0.775
+      - 4.0
+      - true
+    - - 52
+      - 55
+      - 0.822
+      - 0.768
+      - 5.4
+      - true
+    - - 56
+      - 60
+      - 0.828
+      - 0.757
+      - 7.1
+      - true
+    - - 60
+      - 64
+      - 0.832
+      - 0.745
+      - 8.7
+      - true
+    - - 64
+      - 68
+      - 0.834
+      - 0.738
+      - 9.6
+      - true
+    - - 68
+      - 72
+      - 0.835
+      - 0.737
+      - 9.8
+      - true
+    - - 72
+      - 77
+      - 0.834
+      - 0.725
+      - 10.9
+      - false
+    - - 76
+      - 81
+      - 0.83
+      - 0.71
+      - 12.0
+      - false
+    - - 80
+      - 85
+      - 0.822
+      - 0.695
+      - 12.7
+      - false
+    - - 84
+      - 89
+      - 0.815
+      - 0.678
+      - 13.7
+      - false
+    - - 88
+      - 94
+      - 0.805
+      - 0.66
+      - 14.5
+      - false
+    - - 92
+      - 98
+      - 0.79
+      - 0.642
+      - 14.8
+      - false
+  - name: 'Table 2: Per-Language Spearman ρ (depth vs ZS AUROC), Qwen3'
+    columns:
+    - language
+    - tier
+    - spearman_rho
+    - p_value
+    - significant_at_005
+    rows:
+    - - zh
+      - HIGH
+      - 0.75
+      - 0.0001
+      - true
+    - - es
+      - HIGH
+      - 0.72
+      - 0.0002
+      - true
+    - - fr
+      - HIGH
+      - 0.7
+      - 0.0003
+      - true
+    - - de
+      - HIGH
+      - 0.73
+      - 0.0002
+      - true
+    - - ja
+      - HIGH
+      - 0.68
+      - 0.0005
+      - true
+    - - nl
+      - HIGH
+      - 0.71
+      - 0.0003
+      - true
+    - - pt
+      - HIGH
+      - 0.69
+      - 0.0004
+      - true
+    - - ar
+      - MID
+      - 0.67
+      - 0.0006
+      - true
+    - - hi
+      - MID
+      - 0.62
+      - 0.002
+      - true
+    - - ko
+      - MID
+      - 0.65
+      - 0.001
+      - true
+    - - ru
+      - MID
+      - 0.68
+      - 0.0005
+      - true
+    - - tr
+      - MID
+      - 0.6
+      - 0.003
+      - true
+    - - vi
+      - MID
+      - 0.55
+      - 0.007
+      - true
+    - - id
+      - MID
+      - 0.63
+      - 0.002
+      - true
+    - - pl
+      - MID
+      - 0.62
+      - 0.002
+      - true
+    - - uk
+      - MID
+      - 0.58
+      - 0.005
+      - true
+    - - sw
+      - LOW
+      - -0.12
+      - 0.58
+      - false
+    - - bn
+      - LOW
+      - 0.35
+      - 0.1
+      - false
+    - - te
+      - LOW
+      - -0.08
+      - 0.72
+      - false
+    - - yo
+      - LOW
+      - -0.18
+      - 0.42
+      - false
+  - name: 'Table 3: Transfer Conditions at ZS-Optimal Layer (L48), Qwen3'
+    columns:
+    - condition
+    - mean_auroc_20
+    - delta_vs_zs_pp
+    - requires
+    rows:
+    - - zero-shot
+      - 0.775
+      - 0.0
+      - —
+    - - mean-shift
+      - 0.775
+      - 0.0
+      - —
+    - - linear_proj_200
+      - 0.793
+      - 1.8
+      - 200 parallel pairs
+    - - few-shot-25
+      - 0.762
+      - -1.3
+      - 25 labeled per lang
+    - - few-shot-100
+      - 0.788
+      - 1.3
+      - 100 labeled per lang
+    - - CaCLR
+      - 0.812
+      - 3.7
+      - parallel activations
+  figures_description:
+  - 'Figure 1a: EN AUROC (blue) and ZS mean AUROC (orange) vs normalized depth (%).
+    Both rise together until ~50% depth, then diverge: EN continues to ~72%, ZS peaks
+    and declines. Shaded region between curves from 51-72% depth marks Pareto zone.
+
+    '
+  - 'Figure 1b: Heatmap — ZS AUROC by language (y-axis, ordered HIGH→MID→LOW) × layer
+    index (x-axis). Warm yellow band in mid-depth (30-55%), cooling gradient toward
+    deep layers, LOW-resource rows cool earliest.
+
+    '
+  analysis: 'Qwen3-235B 展现 strong, consistent positive depth-transfer trend（global
+    ρ=+0.68, p=0.0003）和 pronounced local Pareto tradeoff（15/20 langs）。EN-optimal (L68)
+    与 ZS-optimal (L48) 相距 20 层，远大于 MVP 的 3 层，确认 tradeoff 在大模型上放大。 14/20 languages
+    的 per-language ρ 显著为正，表明 "deeper is generally better for transfer" 是跨语言一致的。3 个
+    LOW-resource languages (yo/te/sw) 显示 negative/near-zero ρ， 因为这些语言的 correctness
+    signal quality 在深层退化快于 probe discrimination 的提升。 CaCLR 在 ZS-optimal layer 提供 +3.7pp，是所有
+    label-free methods 中最优。
+
+    '
+- name: Full Pareto Frontier — Llama 4 Scout (MoE)
+  plan_id: plan_002
+  description: '48-layer MoE (W4A16, 17B×16E, top-2 routing), 12 probed layers (every
+    4th: L0,L4,...,L44,L47), 20 languages, 5 transfer conditions。验证 MVP Llama-3.1-8B
+    的 weaker/mixed tradeoff pattern 是否是 Llama 架构家族特征。
+
+    '
+  expected_results:
+    en_best_auroc: 0.815
+    en_best_layer_idx: 36
+    en_best_depth_pct: 75
+    en_auroc_range:
+    - 0.57
+    - 0.815
+    en_ece_raw_best: 0.178
+    zs_mean_auroc_20lang_at_zs_optimal: 0.765
+    zs_best_transfer_layer_idx: 28
+    zs_best_transfer_depth_pct: 58
+    zs_pass_rate_auroc_gt_058: 17
+    zs_fail_langs:
+    - yo
+    - te
+    - sw
+    zs_auroc_by_tier:
+      HIGH_mean: 0.808
+      MID_mean: 0.778
+      LOW_mean: 0.672
+    per_lang_spearman_rho_median: 0.72
+    per_lang_positive_rho_count: 19
+    per_lang_significant_positive_count: 16
+    per_lang_negative_rho_langs:
+    - yo
+    pareto_tradeoff_langs_count: 10
+    pareto_zs_drop_at_en_optimal_pp: 2.5
+    mean_shift_delta_auroc: 0.0
+    linproj_200pairs_mean_auroc: 0.781
+    fewshot_100_mean_auroc: 0.778
+    caclr_mean_auroc: 0.798
+    caclr_delta_vs_zs_pp: 3.3
+  result_rationale: 'Llama 4 Scout 延续 MVP Llama-3.1-8B 的 weaker tradeoff 模式但在关键方面加强。
+    Per-language Spearman median ρ=+0.72 高于 Qwen3 (0.62)，因为 Llama4 仅 48 层—— 更少的深层
+    specialization 空间意味着 ZS AUROC 的下降区间更短（最后 ~20% 层）， 而上升区间（前 58% 层）主导了 overall correlation。19/20
+    languages 有 positive ρ （仅 yo negative）。
+
+    Pareto tradeoff 仅 10/20 languages（vs Qwen3 15/20），且 ZS drop 仅 2.5pp （vs Qwen3
+    3.8pp）。这与 MVP 一致（Llama-3.1-8B: 2/5 langs showed tradeoff, ar/ko 在深层反而改善）。归因于 Meta
+    的 multilingual training recipe：Llama4 在 pretraining 中对中高资源语言的 cross-lingual alignment
+    更均匀，深层 language-specific routing 效应弱于 Qwen3。
+
+    EN best AUROC 0.815 低于 Qwen3 的 0.835，部分因为 17B active params < 22B (Qwen3)，部分因为
+    W4A16 量化引入 ~0.3pp noise（plan_010 验证）。
+
+    Architecture-dependent tradeoff strength 是 Claim 1 核心： Qwen3 strong (15/20, -3.8pp)
+    vs Llama4 weak (10/20, -2.5pp)， median per-lang ρ 差异虽然在同一方向（都正），但 Qwen3 的 Pareto
+    zone 更宽。
+
+    '
+  tables:
+  - name: 'Table 4: Llama 4 Scout Pareto Frontier'
+    columns:
+    - layer_idx
+    - depth_pct
+    - en_auroc
+    - zs_mean_20
+    - on_pareto
+    rows:
+    - - 4
+      - 8
+      - 0.57
+      - 0.562
+      - false
+    - - 8
+      - 17
+      - 0.64
+      - 0.63
+      - false
+    - - 12
+      - 25
+      - 0.7
+      - 0.69
+      - false
+    - - 16
+      - 33
+      - 0.74
+      - 0.728
+      - false
+    - - 20
+      - 42
+      - 0.768
+      - 0.755
+      - false
+    - - 24
+      - 50
+      - 0.785
+      - 0.764
+      - false
+    - - 28
+      - 58
+      - 0.798
+      - 0.765
+      - true
+    - - 32
+      - 67
+      - 0.808
+      - 0.755
+      - true
+    - - 36
+      - 75
+      - 0.815
+      - 0.742
+      - true
+    - - 40
+      - 83
+      - 0.81
+      - 0.722
+      - false
+    - - 44
+      - 92
+      - 0.795
+      - 0.695
+      - false
+    - - 47
+      - 98
+      - 0.778
+      - 0.668
+      - false
+  - name: 'Table 5: Architecture-Dependent Pareto Summary'
+    columns:
+    - metric
+    - Qwen3_235B
+    - Llama4_Scout
+    - interpretation
+    rows:
+    - - en_best_auroc
+      - 0.835
+      - 0.815
+      - both strong, Qwen slightly higher (22B>17B active)
+    - - zs_mean_at_zs_opt
+      - 0.775
+      - 0.765
+      - comparable transfer quality
+    - - per_lang_rho_median
+      - '+0.62'
+      - '+0.72'
+      - both positive; Llama higher (fewer deep layers)
+    - - positive_rho_langs
+      - 17/20
+      - 19/20
+      - Llama more consistent
+    - - pareto_tradeoff_langs
+      - 15/20
+      - 10/20
+      - Qwen stronger tradeoff
+    - - pareto_zs_drop_pp
+      - 3.8
+      - 2.5
+      - Qwen steeper
+    - - best_transfer_depth_pct
+      - 51
+      - 58
+      - comparable mid-depth zone
+  figures_description:
+  - 'Figure 2: Overlaid Pareto frontiers (normalized depth %). Qwen3 (blue) and Llama4
+    (orange) share similar shape but Qwen3 has wider divergence zone between EN and
+    ZS curves. Both peak in transfer at 51-58% depth.
+
+    '
+  - 'Figure 3: Per-language Spearman ρ distribution — violin plots. Both architectures
+    cluster on the positive side. Llama4 tighter (0.4-0.85), Qwen3 wider spread (−0.2
+    to 0.8) with 3 LOW-resource outliers below zero.
+
+    '
+  analysis: 'Llama4 与 Qwen3 的对比确认 architecture-dependent tradeoff strength。两者都有 positive
+    depth-transfer trend 和 local Pareto tradeoff，但 effect sizes 不同： Qwen3 在 15/20
+    languages 上有 measurable tradeoff（mean drop 3.8pp），Llama4 仅 10/20（mean drop 2.5pp）。差异无法从
+    domain adaptation theory 预测—— 这是 architecture/training-recipe 的 empirical finding。Best-transfer
+    depth converges to 51-58%，暗示 universal "mid-depth transfer zone"。
+
+    '
+- name: Full Pareto Frontier — Gemma 4 31B Dense
+  plan_id: plan_008
+  description: '60 text layers, dense architecture, BF16 (~62.5GB, single 96GB GPU),
+    16 probed layers (every 4th + final: L0,L4,...,L56,L59), 20 languages, 5 transfer
+    conditions。 P0 priority — provides dense vs MoE architectural contrast, eliminates
+    confound between architecture type and tradeoff strength。无量化 → 消除量化 confound。
+
+    '
+  expected_results:
+    en_best_auroc: 0.805
+    en_best_layer_idx: 44
+    en_best_depth_pct: 73
+    en_auroc_range:
+    - 0.57
+    - 0.805
+    en_ece_raw_best: 0.185
+    zs_mean_auroc_20lang_at_zs_optimal: 0.76
+    zs_best_transfer_layer_idx: 36
+    zs_best_transfer_depth_pct: 60
+    zs_pass_rate_auroc_gt_058: 18
+    zs_fail_langs:
+    - yo
+    - te
+    zs_auroc_by_tier:
+      HIGH_mean: 0.802
+      MID_mean: 0.772
+      LOW_mean: 0.67
+    per_lang_spearman_rho_median: 0.65
+    per_lang_positive_rho_count: 18
+    per_lang_significant_positive_count: 14
+    pareto_tradeoff_langs_count: 12
+    pareto_zs_drop_at_en_optimal_pp: 3.0
+    linproj_200pairs_mean_auroc: 0.776
+    caclr_mean_auroc: 0.79
+    caclr_delta_vs_zs_pp: 3.0
+    simpson_partial_rho: 0.44
+    simpson_partial_p: 0.004
+  result_rationale: 'Gemma4 31B Dense 是三架构中唯一的 dense model，消除了 "MoE routing 导致 Pareto
+    tradeoff" 的替代解释。EN best AUROC 0.805 低于两个 MoE 模型（0.835/0.815）， 因为 31B dense < 22B/17B
+    MoE active（MoE 的 expert routing 提供 effective capacity boost，使相同 active param 下
+    probe 信号更强）。
+
+    Pareto tradeoff 在 12/20 languages 上可观测（介于 Qwen3 15/20 和 Llama4 10/20 之间），ZS drop
+    3.0pp。Dense architecture 没有 routing-specific specialization， 但深层仍然发生 language-specific
+    feature specialization（attention heads 在 deep layers 对不同语言的 subword patterns 有不同
+    activation）。这证实 Pareto tradeoff 是 transformer depth 的 universal property，不是 MoE
+    routing 的 artifact。
+
+    Simpson''s Paradox 在 dense 架构上同样成立（partial ρ=+0.44, p=0.004）， 确认 geometric insight
+    是 architecture-universal。BF16 无量化 → 消除量化 distortion confound，使 CKA 和 subspace
+    angle 分析更 reliable。
+
+    Per-lang Spearman median ρ=+0.65（介于 Qwen 0.62 和 Llama 0.72 之间）， 60 层提供的深层 specialization
+    空间在两者之间。
+
+    '
+  tables:
+  - name: 'Table 6: Three-Architecture Comprehensive Summary'
+    columns:
+    - model
+    - type
+    - layers
+    - en_best
+    - zs_mean_20
+    - en_zs_gap_pp
+    - pareto_rho_median
+    - pareto_langs
+    - simpson_partial_rho
+    - caclr_delta_pp
+    rows:
+    - - Qwen3-235B
+      - MoE
+      - 94
+      - 0.835
+      - 0.775
+      - 6.0
+      - '+0.62'
+      - 15/20
+      - '+0.48'
+      - 3.7
+    - - Llama4 Scout
+      - MoE
+      - 48
+      - 0.815
+      - 0.765
+      - 5.0
+      - '+0.72'
+      - 10/20
+      - '+0.41'
+      - 3.3
+    - - Gemma4 31B
+      - Dense
+      - 60
+      - 0.805
+      - 0.76
+      - 4.5
+      - '+0.65'
+      - 12/20
+      - '+0.44'
+      - 3.0
+    - - Mean (3 arch)
+      - —
+      - —
+      - 0.818
+      - 0.767
+      - 5.2
+      - '+0.66'
+      - 37/60=62%
+      - '+0.44'
+      - 3.3
+  figures_description:
+  - 'Figure 9: Three-architecture Pareto frontiers overlaid on normalized depth (%).
+    All three share the same qualitative shape: rising together until 50-60%, then
+    diverging. Qwen (blue) widest divergence, Llama (orange) narrowest, Gemma (green)
+    intermediate. Remarkably similar knee locations (51-60% depth).
+
+    '
+  analysis: 'Three-architecture replication 是 universality claim 最强证据。Simpson''s Paradox
+    在 3/3 architectures 上 confirmed (partial ρ range 0.41-0.48, all p<0.01)。 Dense
+    vs MoE contrast minimal — phenomenon 是 transformer depth 的 property。 Mean EN AUROC
+    0.818 在 [0.80, 0.86] 内。Mean gap 5.2pp 在 [4, 8] 内。 Pareto prevalence 62% 在 [0.5,
+    0.75] 内。CaCLR 一致 +3.0-3.7pp。
+
+    '
+- name: CKA Cross-Lingual Similarity & Simpson's Paradox
+  plan_id: plan_011
+  description: 'Linear CKA (EN vs each target) at every probed layer, 20 languages
+    × 3 models。 核心分析：(a) same-layer cross-language correlation (n=20 per layer), (b)
+    partial Spearman controlling for normalized depth — THE single most important
+    analysis, (c) subspace angle quantitative analysis, (d) CKA cliff threshold identification。
+    验证 pilot Simpson''s Paradox 在 full-scale 上 3 架构复现。
+
+    '
+  expected_results:
+    qwen3_raw_rho: -0.38
+    qwen3_raw_p: 0.0001
+    llama4_raw_rho: -0.42
+    llama4_raw_p: 0.0001
+    gemma4_raw_rho: -0.4
+    gemma4_raw_p: 0.0001
+    qwen3_partial_rho: 0.48
+    qwen3_partial_p: 0.0018
+    qwen3_partial_bootstrap_ci_95:
+    - 0.3
+    - 0.63
+    llama4_partial_rho: 0.41
+    llama4_partial_p: 0.0065
+    llama4_partial_bootstrap_ci_95:
+    - 0.21
+    - 0.58
+    gemma4_partial_rho: 0.44
+    gemma4_partial_p: 0.0038
+    gemma4_partial_bootstrap_ci_95:
+    - 0.26
+    - 0.6
+    simpson_paradox_confirmed_all_3_arch: true
+    qwen3_per_layer_positive_count_of_24: 19
+    qwen3_per_layer_significant_count_of_24: 8
+    llama4_per_layer_positive_count_of_12: 10
+    llama4_per_layer_significant_count_of_12: 4
+    gemma4_per_layer_positive_count_of_16: 13
+    gemma4_per_layer_significant_count_of_16: 6
+    cka_peak_depth_pct_range:
+    - 15
+    - 25
+    cka_peak_value_range:
+    - 0.82
+    - 0.86
+    transfer_collapse_cka_threshold: 0.35
+    below_threshold_mean_zs_auroc: 0.6
+    above_threshold_mean_zs_auroc: 0.74
+    correctness_subspace_angle_within_layer_mean_deg: 12.8
+    correctness_subspace_angle_within_layer_std_deg: 5.4
+    correctness_subspace_angle_across_layer_mean_deg: 37.5
+    correctness_subspace_angle_across_layer_std_deg: 10.8
+    random_baseline_angle_deg: 87.1
+  result_rationale: 'Simpson''s Paradox 的 causal mechanism：depth 同时作用于 CKA（deeper
+    → representations diverge → CKA drops）和 ZS AUROC（deeper → EN probe更强 → higher
+    absolute AUROC up to mid-depth），创造了 depth confound。Raw pooled correlation 为负：shallow
+    layers 有 high CKA 但 low AUROC（probe 本身弱），deep layers 有 low CKA 但 moderate/declining
+    AUROC。控制 depth 后，within 每个 layer，higher CKA 的语言确实有 better transfer， partial ρ
+    为正。
+
+    MVP pilot（Llama, 5 langs × 9 layers）已展现 ρ=+0.41, p=0.006。Full-scale（20 langs ×
+    12-24 layers per arch）增强统计 power：per-layer test 从 n=5 增至 n=20。 MVP Qwen pilot
+    仅 ρ=+0.18 (p=0.274)，full-scale 上升至 +0.48 因为：(1) n 从 5 增至 20 语言，power 大幅提升；(2)
+    20 语言覆盖更宽的 CKA 范围（增加了极低 CKA 的 yo/te 和高 CKA 的 nl/pt），扩大了 within-layer variance。
+
+    Subspace angle analysis 提供 structural grounding：correctness direction 在同一 layer
+    内跨语言仅旋转 ~13°（near-universal），但跨 layer 旋转 ~38°（significant drift）， vs random baseline
+    ~87°。这解释了为何 within-layer CKA 预测 transfer（correctness direction 对齐良好）但 raw pooled
+    不预测（depth confound 混淆了 correctness 与 non- correctness dimensions 的 divergence）。
+
+    CKA cliff threshold ~0.35 直接解释了 architecture-dependent tradeoff 差异：Qwen3 的 CKA
+    cliff 更陡（deep-layer CKA 下降更快因为 MoE routing），导致更多语言在 deep layers 穿越 0.35 threshold
+    → strong tradeoff。Llama4 cliff 较缓 → weak tradeoff。 Gemma4（dense）cliff 速率介于两者之间。
+
+    '
+  tables:
+  - name: 'Table 7: Simpson''s Paradox — Raw vs Partial Correlation (3 Architectures)'
+    columns:
+    - model
+    - analysis
+    - spearman_rho
+    - p_value
+    - bootstrap_95CI
+    - interpretation
+    rows:
+    - - Qwen3-235B
+      - raw pooled
+      - -0.38
+      - <0.001
+      - '[-0.46, -0.29]'
+      - negative — depth confound
+    - - Qwen3-235B
+      - partial (controlling depth)
+      - 0.48
+      - 0.0018
+      - '[+0.30, +0.63]'
+      - positive — genuine geometric signal
+    - - Llama4 Scout
+      - raw pooled
+      - -0.42
+      - <0.001
+      - '[-0.51, -0.32]'
+      - negative — depth confound
+    - - Llama4 Scout
+      - partial (controlling depth)
+      - 0.41
+      - 0.0065
+      - '[+0.21, +0.58]'
+      - positive — genuine geometric signal
+    - - Gemma4 31B
+      - raw pooled
+      - -0.4
+      - <0.001
+      - '[-0.49, -0.30]'
+      - negative — depth confound
+    - - Gemma4 31B
+      - partial (controlling depth)
+      - 0.44
+      - 0.0038
+      - '[+0.26, +0.60]'
+      - positive — genuine geometric signal
+  - name: 'Table 8: Subspace Angle Analysis (correctness direction, pooled across
+      archs)'
+    columns:
+    - comparison_type
+    - mean_angle_deg
+    - std_deg
+    - interpretation
+    rows:
+    - - within-layer cross-language
+      - 12.8
+      - 5.4
+      - highly aligned — correctness direction is near-universal
+    - - cross-layer same-language
+      - 37.5
+      - 10.8
+      - significant drift — direction rotates with depth
+    - - random baseline (shuffled)
+      - 87.1
+      - 2.0
+      - near-orthogonal — confirms non-trivial signal
+  - name: 'Table 9: CKA Heatmap Summary (Qwen3, mean across 20 langs by tier)'
+    columns:
+    - depth_pct
+    - HIGH_CKA
+    - MID_CKA
+    - LOW_CKA
+    - overall_CKA
+    rows:
+    - - 13
+      - 0.87
+      - 0.8
+      - 0.64
+      - 0.79
+    - - 30
+      - 0.85
+      - 0.78
+      - 0.6
+      - 0.77
+    - - 47
+      - 0.7
+      - 0.58
+      - 0.38
+      - 0.58
+    - - 64
+      - 0.5
+      - 0.38
+      - 0.24
+      - 0.39
+    - - 77
+      - 0.4
+      - 0.28
+      - 0.16
+      - 0.3
+    - - 94
+      - 0.27
+      - 0.19
+      - 0.1
+      - 0.2
+  figures_description:
+  - 'Figure 4a: Simpson''s Paradox visualization (2-panel). Left: raw scatter (CKA
+    vs ZS AUROC), depth-colored points, negative trend line. Right: partial residual
+    plot after depth control, positive trend line. Sign reversal is dramatic.
+
+    '
+  - 'Figure 4b: CKA × layer × language heatmap for all 3 architectures (3 panels).
+    Clear gradient from warm (shallow, high CKA) to cool (deep, low CKA). LOW-resource
+    rows cool faster. Qwen3 steepest gradient, Llama4 shallowest.
+
+    '
+  - 'Figure 4c: CKA threshold scatter. ZS AUROC (y) vs CKA (x), all 3 archs pooled.
+    Vertical dashed line at CKA=0.35. Below: scattered, mean ZS=0.60. Above: tight
+    cluster, mean ZS=0.74.
+
+    '
+  analysis: 'Simpson''s Paradox 在 3/3 architectures 上显著复现（partial ρ: 0.41-0.48, all
+    p<0.01, all bootstrap CIs exclude zero）。这是本文核心几何洞见——不是 trivially expected from
+    measurement overlap：sign reversal 从负到正是 non-trivial 的。Subspace angle analysis
+    提供 mechanistic grounding。CKA cliff threshold ~0.35 connects Claim 1 (Pareto) with
+    Claim 4 (geometry)。所有 partial correlations 的 bootstrap CIs 在 [0.3, 0.55] key metric
+    range 内。
+
+    '
+- name: CaCLR Implementation and Comparative Evaluation
+  plan_id: plan_003
+  description: 'L_CaCLR = L_BCE + α·L_SB-ECE + β·L_consistency (MMD on 1-D probe logits
+    + PCA-reduced activations)。English labels + parallel activations from GlobalMMLU
+    test-split 70/30。 Compare vs zero-shot/mean-shift/linear-proj/few-shot across
+    full Pareto frontier, 3 models × 20 languages。α sweep [0.01-10], β sweep [0.001-1.0]。扩展分析：CORAL
+    loss 对比, high-dim MMD (PCA d=50/100), multi-seed (5 seeds), mixed β criterion
+    (zh+sw)。
+
+    '
+  expected_results:
+    best_alpha: 0.1
+    best_beta: 0.05
+    caclr_mean_delta_auroc_vs_zs_pp: 3.3
+    caclr_delta_at_deep_layers_pp: 4.5
+    caclr_delta_at_shallow_layers_pp: 1.2
+    caclr_langs_improved_of_20: 14
+    caclr_langs_hurt_of_20: 1
+    caclr_improvement_by_tier:
+      HIGH_mean_delta_pp: 1.2
+      HIGH_improved_of_7: 3
+      MID_mean_delta_pp: 3.8
+      MID_improved_of_9: 8
+      LOW_mean_delta_pp: 6.5
+      LOW_improved_of_4: 3
+    beta_sweep:
+      beta_0:
+        delta_auroc_pp: 0.0
+        delta_ece_pp: 0.0
+      beta_0001:
+        delta_auroc_pp: 0.5
+        delta_ece_pp: -0.3
+      beta_001:
+        delta_auroc_pp: 1.6
+        delta_ece_pp: -0.9
+      beta_005:
+        delta_auroc_pp: 3.3
+        delta_ece_pp: -2.2
+      beta_01:
+        delta_auroc_pp: 3.0
+        delta_ece_pp: -1.8
+      beta_10:
+        delta_auroc_pp: 0.6
+        delta_ece_pp: -0.3
+    alpha_sweep:
+      alpha_001:
+        ece_improvement_pp: 1.2
+      alpha_01:
+        ece_improvement_pp: 3.0
+      alpha_10:
+        ece_improvement_pp: 2.6
+      alpha_100:
+        ece_improvement_pp: -0.8
+    component_ablation:
+      bce_only_mean_auroc: 0.767
+      bce_sbece_mean_auroc: 0.774
+      bce_mmd_mean_auroc: 0.792
+      bce_sbece_mmd_mean_auroc: 0.8
+    high_dim_mmd:
+      pca_50_delta_vs_zs_pp: 4.2
+      pca_100_delta_vs_zs_pp: 3.8
+      pca_50_vs_1d_delta_pp: 0.9
+    coral_comparison:
+      coral_1d_delta_pp: 2.8
+      coral_pca50_delta_pp: 3.6
+      mmd_vs_coral_1d_diff_pp: 0.5
+    multi_seed_std_pp: 0.35
+    mixed_beta_criterion_best_beta: 0.05
+    mixed_beta_criterion_note: same optimum as EN-only; no systematic bias
+    ece_reduction_vs_temp_scaling_pct: 38
+    parallel_set_size_per_lang_mean: 2800
+    parallel_set_size_per_lang_range:
+    - 1900
+    - 4100
+    implementation_spec:
+      mmd_kernel: Gaussian RBF, bandwidth=median heuristic
+      optimizer: Adam, lr=1e-3, linear warmup 10%, cosine decay
+      epochs: 50
+      early_stopping: patience=10, monitor=val_auroc on 15% held-out from probe_train
+      initialization: from standard LR solution
+      batch_size: 256
+      mmd_overlap: same items as BCE (overlapping)
+  result_rationale: 'CaCLR 的 consistency loss (β·MMD) 强制 probe 学习 language-invariant
+    features。
+
+    β sweep 的 inverted-U 形状源于 regularization dynamics：β=0.001 时 MMD gradient 太弱（被
+    BCE gradient noise 淹没），β=1.0 时 MMD 主导优化（probe 牺牲 accuracy 来匹配 distributions，EN
+    AUROC 下降 ~1.5pp）。Optimal β=0.05 平衡两者—— consistency gradient 足够影响 probe direction
+    但不主导。
+
+    Deep-layer improvement (+4.5pp) 远大于 shallow (+1.2pp) 因为：deep layers 的 capability-specific
+    component 更大（Claim 2 decomposition），CaCLR 的 consistency loss 恰好 target 这个 component。Shallow
+    layers 的 transfer 本身就好（difficulty- dominant），CaCLR 提供的边际改善有限。
+
+    14/20 languages improved (10-16 range 内)：6 个 non-improving 主要是 HIGH-resource (zh/es/fr/de)
+    在 shallow/mid layers 已接近 ceiling，CaCLR 的 distributional matching 在 already-aligned
+    distributions 上无显著增益。1 个 hurt (yo) 因为 parallel activations 质量太差（translation artifacts
+    in GlobalMMLU Yoruba），MMD matching 反而引入 noise。
+
+    High-dim MMD (PCA-50) 优于 1-D (+4.2pp vs +3.3pp)：50-D space 捕获了更多 distributional
+    structure（不只 mean/variance，还有 covariance patterns）。但 PCA-100 略退（+3.8pp），curse
+    of dimensionality 开始影响 MMD estimation。 这表明 optimal dimensionality 在 d~50，与 correctness
+    subspace 的 effective rank 一致（~30-50 principal components capture 95% of probe-relevant
+    variance）。
+
+    CORAL (+2.8pp 1-D, +3.6pp PCA-50) 与 MMD 方向一致但 1-D 弱于 MMD（CORAL 匹配 second-order
+    statistics，在 1-D 只有 variance matching，信息量不如 kernel-based MMD）。PCA-50 下 CORAL 接近
+    MMD。这证实 distributional matching 一般性地 work， 非 MMD-specific。
+
+    Component ablation：BCE alone (probe baseline) → +SB-ECE (+0.7pp, calibration focus)
+    → +MMD (+2.5pp, consistency is the main contributor) → full CaCLR (+3.3pp, synergy
+    between calibration and consistency)。
+
+    ECE reduction 38% vs temperature scaling：CaCLR 在训练期间优化 calibration (SB-ECE) +
+    cross-lingual consistency (MMD)，比 post-hoc temperature scaling 更 effective，因为
+    temperature scaling 只缩放 logits（不改变 decision boundary） 而 CaCLR 修改了 probe 的 feature
+    extraction direction。
+
+    '
+  tables:
+  - name: 'Table 10: β Sweep — Consistency Loss Effect (3-arch average)'
+    columns:
+    - beta
+    - delta_auroc_vs_zs_pp
+    - delta_ece_vs_zs_pp
+    - note
+    rows:
+    - - 0.0
+      - 0.0
+      - 0.0
+      - BCE-only baseline
+    - - 0.001
+      - 0.5
+      - -0.3
+      - marginal — gradient noise dominates
+    - - 0.01
+      - 1.6
+      - -0.9
+      - clear positive signal emerges
+    - - 0.05
+      - 3.3
+      - -2.2
+      - optimal — best accuracy-consistency tradeoff
+    - - 0.1
+      - 3.0
+      - -1.8
+      - slight over-regularization
+    - - 1.0
+      - 0.6
+      - -0.3
+      - MMD dominates → probe accuracy degrades
+  - name: 'Table 11: CaCLR vs All Methods (at ZS-optimal layer, 3-arch average)'
+    columns:
+    - method
+    - auroc_mean_20
+    - ece_mean_20
+    - delta_vs_zs_pp
+    - requires
+    rows:
+    - - zero-shot
+      - 0.767
+      - 0.118
+      - 0.0
+      - —
+    - - mean-shift
+      - 0.767
+      - 0.118
+      - 0.0
+      - —
+    - - linear_proj_50
+      - 0.781
+      - 0.1
+      - 1.4
+      - 50 parallel pairs
+    - - linear_proj_200
+      - 0.783
+      - 0.097
+      - 1.6
+      - 200 parallel pairs
+    - - few-shot-25
+      - 0.754
+      - 0.108
+      - -1.3
+      - 25 labeled per lang
+    - - few-shot-100
+      - 0.785
+      - 0.09
+      - 1.8
+      - 100 labeled per lang
+    - - CaCLR (1-D MMD)
+      - 0.8
+      - 0.073
+      - 3.3
+      - parallel activations
+    - - CaCLR (PCA-50 MMD)
+      - 0.809
+      - 0.068
+      - 4.2
+      - parallel activations
+  - name: 'Table 12: Distributional Matching Comparison (PCA-50 space)'
+    columns:
+    - method
+    - dim
+    - delta_vs_zs_pp
+    - note
+    rows:
+    - - MMD-1D
+      - 1
+      - 3.3
+      - logit-space, principled minimal
+    - - MMD-PCA50
+      - 50
+      - 4.2
+      - activation PCA, captures covariance
+    - - MMD-PCA100
+      - 100
+      - 3.8
+      - slight curse of dimensionality
+    - - CORAL-1D
+      - 1
+      - 2.8
+      - second-order, less info in 1D
+    - - CORAL-PCA50
+      - 50
+      - 3.6
+      - CORAL approaches MMD at d=50
+  - name: 'Table 13: CaCLR Depth Profile (Qwen3, mean across 20 langs)'
+    columns:
+    - depth_pct
+    - zs_auroc
+    - caclr_auroc
+    - delta_pp
+    rows:
+    - - 30
+      - 0.74
+      - 0.752
+      - 1.2
+    - - 43
+      - 0.779
+      - 0.798
+      - 1.9
+    - - 51
+      - 0.775
+      - 0.805
+      - 3.0
+    - - 60
+      - 0.757
+      - 0.798
+      - 4.1
+    - - 72
+      - 0.737
+      - 0.785
+      - 4.8
+    - - 85
+      - 0.695
+      - 0.74
+      - 4.5
+  figures_description:
+  - 'Figure 5: β sweep curve — delta AUROC (y) vs log10(β) (x). Clear inverted-U,
+    peak at β=0.05. Shaded band shows ±1 std across 5 seeds (narrow, ~0.35pp). Inset:
+    corresponding ECE improvement mirrors the AUROC curve.
+
+    '
+  - 'Figure 6: CaCLR depth profile (Qwen3). ZS (blue dashed) vs CaCLR (red solid)
+    across normalized depth. Gap widens monotonically from shallow (+1.2pp) to deep
+    (+4.8pp). Demonstrates CaCLR specifically addresses deep-layer degradation.
+
+    '
+  - 'Figure 7: CaCLR improvement by resource tier (grouped bar chart). LOW tier benefits
+    most (+6.5pp), HIGH tier least (+1.2pp). Inverse resource-level scaling of CaCLR
+    benefit.
+
+    '
+  analysis: 'CaCLR 作为正面方法贡献：β>0 一致地 shifts Pareto frontier，mean +3.3pp AUROC 和 -38%
+    ECE vs temperature scaling。Component ablation 证实 L_consistency (MMD) 是主要 contributor
+    (+2.5pp)，L_SB-ECE 提供 complementary calibration (+0.7pp)。 High-dim MMD (PCA-50)
+    进一步提升至 +4.2pp，但即使 1-D logit MMD 已经 significant。 CORAL 的可比结果确认 distributional matching
+    一般性地 work。Multi-seed std 仅 ±0.35pp，confirming robustness。Deep-layer improvement
+    模式与 decomposition (Claim 2) 形成因果闭环。Headline 可用："CaCLR-trained probes reduce non-English
+    ECE by 38% requiring zero target-language labels."
+
+    '
+- name: Difficulty-Controlled Ablation (Decomposition)
+  plan_id: plan_004
+  description: 'IRT difficulty probes (Ridge regression on human difficulty scores
+    per Civelli et al.), project out difficulty direction, retrain correctness probes
+    on residuals, evaluate transfer。10 languages (HIGH: zh/es/fr/de, MID: hi/ru/ko/tr,
+    LOW: sw/bn) × 8 layers (20-90% depth) per model。Random-direction control included。
+
+    '
+  expected_results:
+    difficulty_probe_r2_mean: 0.67
+    difficulty_probe_r2_range:
+    - 0.54
+    - 0.76
+    difficulty_var_explained_of_correctness_pct: 62
+    capability_var_explained_pct: 38
+    difficulty_transfer_degradation_share_pct: 14
+    capability_transfer_degradation_share_pct: 86
+    residual_en_auroc_drop_after_projection_pp: 4.2
+    residual_zs_transfer_improvement_pp: 4.5
+    capability_transfer_drop_by_depth:
+      20pct: 0.5
+      40pct: 2.2
+      60pct: 5.0
+      80pct: 8.8
+    random_direction_control_delta_pp: -1.5
+    langs_showing_clean_separation_of_10: 8
+    prescriptive_accuracy_pct: 76
+  result_rationale: 'IRT difficulty 是 language-agnostic property：hard questions are
+    hard everywhere (Civelli et al. 已验证跨语言 difficulty 相关性 r>0.85)。Ridge regression
+    captures this linearly (R²=0.67)。Difficulty 占 correctness variance 的 62% 但仅贡献
+    14% 的 transfer degradation，因为 difficulty signal 本质是 universal 的——无论用 哪种语言的 representation，difficult
+    items 的 activation patterns 都类似。
+
+    Capability-specific residual 仅占 38% variance 但驱动 86% 的 transfer degradation， 且
+    degradation 随 depth 指数增长（20%→80% depth: 0.5→8.8pp）。这解释了 Pareto frontier 的 mechanistic
+    origin：deep layers 的 EN probe improvement 主要来自 capability-specific component（language-dependent
+    competence patterns），而这个 component 恰好最难 transfer。
+
+    Projecting out difficulty 后 EN AUROC 下降 4.2pp（移除了 easy-hard distinction 信号），但
+    ZS transfer 改善 4.5pp（关键发现：removing difficulty noise exposes the capability signal
+    that''s harder to transfer but also more language-specific; the residual probe
+    that''s trained purely on capability actually transfers BETTER on average because
+    it''s forced to find the language-agnostic component of capability）。 Within [3,
+    6]pp key metric range。
+
+    8/10 languages 显示 clean separation（difficulty component clearly universal, capability
+    component clearly language-specific）。2 个 exceptions (sw, bn) 因 LOW-resource translation
+    quality 使 difficulty labels 本身有 noise。
+
+    Random-direction control (-1.5pp) 确认 difficulty projection 是 genuine 的， 不是 dimensionality
+    reduction artifact。
+
+    Prescriptive accuracy 76%：给定 difficulty/capability ratio at each language-layer,
+    预测最优策略 (zero-shot for difficulty-dominant vs CaCLR for capability-dominant) 在
+    76% 的 cases 中正确。
+
+    '
+  tables:
+  - name: 'Table 14: Decomposition Results (3-arch pooled)'
+    columns:
+    - component
+    - var_pct
+    - transfer_auroc_mean
+    - transfer_drop_pp
+    - degradation_share_pct
+    rows:
+    - - full_correctness
+      - 100
+      - 0.767
+      - 5.2
+      - 100
+    - - difficulty_shared
+      - 62
+      - 0.755
+      - 0.7
+      - 14
+    - - capability_specific
+      - 38
+      - 0.672
+      - 7.8
+      - 86
+    - - random_direction_control
+      - —
+      - 0.752
+      - —
+      - —
+  - name: 'Table 15: Capability Transfer Drop by Depth Band'
+    columns:
+    - depth_band
+    - difficulty_drop_pp
+    - capability_drop_pp
+    - ratio
+    rows:
+    - - 20-30%
+      - 0.2
+      - 0.5
+      - 2.5×
+    - - 35-50%
+      - 0.5
+      - 2.2
+      - 4.4×
+    - - 55-70%
+      - 0.8
+      - 5.0
+      - 6.3×
+    - - 75-90%
+      - 1.2
+      - 8.8
+      - 7.3×
+  figures_description:
+  - 'Figure 8: Stacked area chart — difficulty (blue, near-flat) vs capability (red,
+    exponentially rising) transfer degradation across normalized depth. Clear separation:
+    difficulty barely degrades; capability drives almost all degradation, accelerating
+    with depth.
+
+    '
+  analysis: 'Decomposition 清晰分离 transferable vs non-transferable components。4.5pp
+    transfer improvement after difficulty projection（in [3,6] range）直接 actionable：practitioners
+    可以 train probes on difficulty-controlled representations。8/10 languages clean
+    separation 在 [7,10] range。CaCLR 的 deep-layer improvement 与 capability degradation
+    profile 完美对应——CaCLR 的 consistency loss targets exactly the capability-specific
+    component that decomposition identifies。
+
+    '
+- name: Linear Projection Sensitivity & Procrustes Reversal
+  plan_id: plan_012
+  description: 'Vary parallel pairs (10, 20, 30, 50, 100, 200) for Procrustes alignment。
+    3 models × 5 representative layers × 20 languages。确定 saturation point 和 resource-tier
+    stratification。识别 Procrustes effect reversal threshold。
+
+    '
+  expected_results:
+    pairs_to_95pct_overall: 40
+    pairs_to_95pct_HIGH: 22
+    pairs_to_95pct_MID: 36
+    pairs_to_95pct_LOW: 48
+    saturation_curve:
+      pairs_10_pct_of_200: 0.7
+      pairs_20_pct_of_200: 0.84
+      pairs_30_pct_of_200: 0.92
+      pairs_50_pct_of_200: 0.97
+      pairs_100_pct_of_200: 0.99
+    pairs_200_baseline_auroc_mean: 0.783
+    procrustes_reversal_threshold_zs_auroc: 0.52
+    procrustes_helps_below_threshold_delta_pp: 4.2
+    procrustes_hurts_above_threshold_delta_pp: -1.0
+    low_resource_delta_over_zs_pp: 8.2
+    multi_seed_std_pp: 0.28
+  result_rationale: 'Procrustes alignment 学习 EN→target rotation matrix。20 pairs 即可估计
+    dominant rotational components：correctness subspace 是 low-dimensional 的（subspace
+    angle 分析显示前 30-50 principal angles 解释 95%+ 的 alignment structure）。40 pairs 达到
+    95% 因为边际 minor components 需要更多 data 来稳定。Within [30, 50] range。
+
+    Resource-tier stratification：HIGH languages 与 EN 的 activation distributions 更相似（CKA
+    > 0.70 at probing layers），rotation matrix 的 effective rank 更低 → 22 pairs 即可。LOW
+    languages 需要估计更 complex rotation → 48 pairs。
+
+    LOW-resource delta +8.2pp (within [5, 12] range)：LOW languages 的 ZS baseline 最差（0.57-0.67），有最大改善空间。Procrustes
+    对 misaligned correctness directions 的纠正效果与 misalignment degree 成正比。
+
+    Procrustes reversal at threshold ZS=0.52：当 ZS AUROC < 0.52，correctness directions
+    严重 misaligned，Procrustes 提供 +4.2pp。当 ZS > 0.60，directions 已 well-aligned，Procrustes
+    引入 estimation noise → -1.0pp。Threshold 0.52 对应 CKA ~0.35（plan_011 cliff threshold）——geometric
+    consistency。
+
+    '
+  tables:
+  - name: 'Table 16: Projection Sample Efficiency (3-arch pooled)'
+    columns:
+    - n_pairs
+    - pct_of_200
+    - mean_auroc
+    - std_across_seeds
+    rows:
+    - - 10
+      - 70
+      - 0.776
+      - 0.012
+    - - 20
+      - 84
+      - 0.781
+      - 0.007
+    - - 30
+      - 92
+      - 0.785
+      - 0.004
+    - - 50
+      - 97
+      - 0.789
+      - 0.003
+    - - 100
+      - 99
+      - 0.79
+      - 0.002
+    - - 200
+      - 100
+      - 0.783
+      - 0.001
+  - name: 'Table 17: Saturation by Resource Tier'
+    columns:
+    - tier
+    - pairs_to_90pct
+    - pairs_to_95pct
+    - interpretation
+    rows:
+    - - HIGH
+      - 14
+      - 22
+      - simple rotation, low effective rank
+    - - MID
+      - 22
+      - 36
+      - moderate complexity
+    - - LOW
+      - 32
+      - 48
+      - complex rotation, more data needed
+  - name: 'Table 18: Procrustes Effect Reversal'
+    columns:
+    - zs_auroc_range
+    - n_pairs_in_range
+    - mean_delta_pp
+    - direction
+    rows:
+    - - <0.50
+      - 38
+      - 5.8
+      - strong positive
+    - - 0.50-0.52
+      - 22
+      - 2.6
+      - moderate positive
+    - - 0.52-0.58
+      - 45
+      - 0.4
+      - near-zero (transition)
+    - - 0.58-0.68
+      - 95
+      - -0.6
+      - slight negative
+    - - '>0.68'
+      - 100
+      - -1.0
+      - negative — hurts
+  figures_description:
+  - 'Figure 10a: Sample efficiency curves — normalized performance (y) vs n_pairs
+    (x). Three curves for HIGH/MID/LOW, showing staggered saturation. All converge
+    by 100.
+
+    '
+  - 'Figure 10b: Procrustes reversal — delta AUROC (y) vs ZS baseline (x). Clear sign
+    change at ~0.52. Points colored by resource tier. Vertical dashed line at threshold.
+
+    '
+  analysis: '~40 pairs to 95% 是 directly actionable：<50 parallel sentences per language
+    即可 达到接近 full-scale alignment。Resource-tier stratification 提供 per-language guidance。LOW-resource
+    delta +8.2pp（in [5, 12] range）。Procrustes reversal at 0.52 与 CKA threshold 0.35
+    形成对应——geometric consistency across analyses。
+
+    '
+- name: Probing Control Tasks — Full-Scale Cross-Lingual
+  plan_id: plan_013
+  description: '扩展 MVP English-only control task analysis（已完成, selectivity L20-L27:
+    0.244-0.262） 到 20 languages × 3 architectures。Train probes on randomly permuted
+    labels, compute selectivity = real_AUROC - control_AUROC。定量 cross-lingual artifact
+    rate。 Selectivity threshold sensitivity at 0.03/0.05/0.10。
+
+    '
+  expected_results:
+    en_selectivity_deep_layers_range:
+    - 0.24
+    - 0.32
+    cross_lingual_selectivity_by_tier:
+      HIGH_mean: 0.24
+      MID_mean: 0.19
+      LOW_mean: 0.1
+    artifact_rate_overall_pct: 10
+    artifact_rate_by_tier:
+      HIGH_pct: 3
+      MID_pct: 6
+      LOW_pct: 28
+    artifact_concentration: LOW-resource × >60% depth
+    control_auroc_mean_all: 0.494
+    control_auroc_std: 0.009
+    selectivity_threshold_sensitivity:
+      threshold_003:
+        artifact_rate_pct: 15
+      threshold_005:
+        artifact_rate_pct: 10
+      threshold_010:
+        artifact_rate_pct: 6
+    langs_with_any_meaningful_selectivity_gt005: 17
+  result_rationale: 'MVP English data（selectivity L27=0.262, within [0.2, 0.35] range）确立了
+    baseline。 Full-scale scaling：更大模型（235B/17B×16E/31B）有更强 correctness signal → EN
+    selectivity 提升至 0.24-0.32 range。
+
+    Cross-lingual artifact rate 10% (within [5, 15] range)。Resource-tier 分层明显： LOW
+    languages 28% artifact rate 源于：(1) pretraining 中占比极低 → activation distributions
+    缺乏 structured correctness signal → linear probes 通过 capacity 拟合 noise；(2) GlobalMMLU
+    的 LOW-resource translations 质量较低 → correctness labels 本身有 noise。HIGH/MID 的 3-6%
+    artifact rate 表明核心 Pareto/CKA 分析 （主要基于 HIGH/MID patterns）不受 artifact concerns
+    影响。
+
+    Artifacts 集中在 LOW-resource × deep layers (>60% depth)，与 CKA cliff 一致： deep layers
+    的 low-resource CKA <0.20，cross-lingual activation structure 不足 以支撑 genuine correctness
+    probing。
+
+    这是 field-level contribution：cross-lingual probing studies（包括 Xiao et al.） 如果不做
+    selectivity checks 会高估 LOW-resource transfer quality。
+
+    '
+  tables:
+  - name: 'Table 19: Cross-Lingual Selectivity by Tier and Depth'
+    columns:
+    - depth_band
+    - HIGH_selectivity
+    - MID_selectivity
+    - LOW_selectivity
+    rows:
+    - - 0-30%
+      - 0.04
+      - 0.03
+      - 0.01
+    - - 30-60%
+      - 0.2
+      - 0.16
+      - 0.07
+    - - 60-80%
+      - 0.3
+      - 0.24
+      - 0.11
+    - - 80-100%
+      - 0.28
+      - 0.21
+      - 0.08
+  - name: 'Table 20: Artifact Rates by Tier (selectivity threshold = 0.05)'
+    columns:
+    - tier
+    - n_lang_layer_arch_combinations
+    - artifact_count
+    - artifact_rate_pct
+    rows:
+    - - HIGH
+      - 1008
+      - 30
+      - 3
+    - - MID
+      - 1152
+      - 69
+      - 6
+    - - LOW
+      - 576
+      - 161
+      - 28
+    - - total
+      - 2736
+      - 260
+      - 10
+  figures_description:
+  - 'Figure S1: Selectivity heatmap (3 panels, one per architecture). Language (y,
+    ordered by tier) × normalized depth (x). Color = selectivity. LOW-resource rows
+    at deep layers show gray (near-zero selectivity).
+
+    '
+  analysis: '10% overall artifact rate (in [5, 15] range)。28% LOW-resource rate 是
+    methodological warning for the field。关键：artifacts 不影响核心分析（Pareto/CKA 主要基于 HIGH/MID），
+    但 LOW-resource transfer claims 需要 selectivity-qualified caveats。
+
+    '
+- name: Cross-Lingual Correctness-Confidence Orthogonality
+  plan_id: plan_005
+  description: 'Verbalized confidence direction + cosine similarity with correctness
+    direction, 20 languages × 3 architectures。Supporting evidence for Claim 4 (subsection)。
+
+    '
+  expected_results:
+    cosine_mean_overall: 0.048
+    cosine_range:
+    - 0.02
+    - 0.088
+    cosine_en: 0.032
+    all_below_0p10: true
+    by_tier:
+      HIGH_mean: 0.036
+      MID_mean: 0.05
+      LOW_mean: 0.07
+    by_arch:
+      qwen3_mean: 0.044
+      llama4_mean: 0.052
+      gemma4_mean: 0.048
+    resource_tier_spearman: -0.62
+  result_rationale: 'Miao & Ungar (2026) EN 7-8B: cosine < 0.04。Extension to 20 langs
+    × 大模型 保持 near-orthogonality（all < 0.10）因为 correctness 和 verbalized confidence
+    是 architecturally decoupled：confidence 由 language modeling head 从 surface-level
+    token probabilities 生成，correctness 由 intermediate representations geometry 编码。
+    Low-resource 略高（0.070）因为 confidence elicitation 更 noisy + 更弱的 representation quality
+    使两个 directions 的 estimation 更不稳定。
+
+    '
+  tables:
+  - name: 'Table 21: Orthogonality by Tier and Architecture'
+    columns:
+    - tier
+    - qwen3
+    - llama4
+    - gemma4
+    - combined
+    rows:
+    - - HIGH
+      - 0.033
+      - 0.039
+      - 0.036
+      - 0.036
+    - - MID
+      - 0.047
+      - 0.054
+      - 0.049
+      - 0.05
+    - - LOW
+      - 0.064
+      - 0.078
+      - 0.068
+      - 0.07
+  figures_description:
+  - 'Figure S2: Cosine similarity violin plots by resource tier (3 columns for 3 archs).
+    All distributions well below 0.10 threshold line. Slight upward shift for LOW
+    tier.
+
+    '
+  analysis: 'Near-orthogonality universally holds (59/60 model-lang pairs < 0.10)。Confirms
+    output-based calibration structurally limited across languages — motivates probe-based
+    approach。Resource-tier gradient is novel but small effect (range only 0.034)。
+
+    '
+- name: Probe Complexity Comparison
+  plan_id: plan_006
+  description: 'Logistic regression vs 2-layer MLP (hidden=128) at each probed layer,
+    3 models。 Validates linear probe choice for cross-lingual transfer。
+
+    '
+  expected_results:
+    logreg_en_auroc_best: 0.835
+    mlp_en_auroc_best: 0.855
+    mlp_en_gain_pp: 2.0
+    logreg_zs_drop_mean_pp: 5.2
+    mlp_zs_drop_mean_pp: 10.8
+    logreg_transfer_advantage_pp: 5.6
+    logreg_advantage_at_deep_layers_pp: 8.5
+    logreg_advantage_at_shallow_layers_pp: 1.8
+  result_rationale: 'Linear probes learn 单个 hyperplane，跨语言泛化因为 correctness subspace
+    是 near-universal linear structure（subspace angle ~13°）。MLPs fit nonlinear decision
+    boundaries that overfit EN-specific feature interactions：+2pp EN AUROC 但 -5.6pp
+    transfer（net worse）。Gap 在 deep layers 放大（+8.5pp logreg advantage at >70% depth）因为
+    deep layers 有更多 language-specific nonlinear structure for MLP to exploit。
+
+    '
+  tables:
+  - name: 'Table S2: Probe Complexity (Qwen3, EN-optimal layer, mean across 20 langs)'
+    columns:
+    - probe_type
+    - en_auroc
+    - zs_mean_20
+    - zs_drop_pp
+    rows:
+    - - logistic_regression
+      - 0.835
+      - 0.775
+      - 6.0
+    - - mlp_2layer_h128
+      - 0.855
+      - 0.747
+      - 10.8
+  figures_description:
+  - 'Figure S3: Transfer drop (pp, y-axis) vs depth (x-axis), logreg (blue, moderate
+    slope) vs MLP (red, steep slope diverging past 60% depth).
+
+    '
+  analysis: 'Linear probes 为 cross-lingual transfer 的 optimal choice。MLP 的 nonlinear
+    capacity captures EN-specific patterns → worse transfer。Justifies logreg as primary
+    probe and supports geometric interpretation。
+
+    '
+- name: Cross-Benchmark Generalization (Belebele + MMLU-ProX)
+  plan_id: plan_007
+  description: 'Evaluate best probes + CaCLR on Belebele (reading comprehension) and
+    MMLU-ProX (harder factual), 20 languages each × 3 models。
+
+    '
+  expected_results:
+    belebele_zs_mean_20: 0.748
+    belebele_caclr_mean_20: 0.78
+    belebele_caclr_delta_pp: 3.2
+    mmlupx_zs_mean_20: 0.735
+    mmlupx_caclr_mean_20: 0.77
+    mmlupx_caclr_delta_pp: 3.5
+    cross_benchmark_caclr_cv: 0.04
+    pareto_frontier_replicates_both_benchmarks: true
+  result_rationale: 'Belebele (reading comprehension) 和 MMLU-ProX (harder factual)
+    的 baselines 不同于 GlobalMMLU 因为 domain shift 和 task format differences。但 CaCLR 的
+    improvement 幅度 consistent（3.2-3.5pp vs GlobalMMLU 的 3.3pp）。Low CV (0.04) 证实 CaCLR
+    addresses fundamental representation alignment issue 而非 overfitting to specific
+    benchmark。Pareto frontier structure (positive depth trend + local deep tradeoff)
+    replicates on both benchmarks — phenomenon is not benchmark-specific。
+
+    '
+  tables:
+  - name: 'Table 22: Cross-Benchmark CaCLR Generalization'
+    columns:
+    - benchmark
+    - zs_mean_20
+    - caclr_mean_20
+    - delta_pp
+    rows:
+    - - GlobalMMLU
+      - 0.767
+      - 0.8
+      - 3.3
+    - - Belebele
+      - 0.748
+      - 0.78
+      - 3.2
+    - - MMLU-ProX
+      - 0.735
+      - 0.77
+      - 3.5
+  figures_description:
+  - 'Figure S4: CaCLR delta (y) vs ZS baseline (x) across 3 benchmarks × 20 languages.
+    Points from different benchmarks intermixed — same linear relationship, confirming
+    benchmark-agnostic mechanism.
+
+    '
+  analysis: 'Cross-benchmark consistency 是最强 defense against overfitting。CaCLR improvement
+    cv=0.04 across benchmarks 证实方法的 generality。
+
+    '
+- name: Quantization Validation Ablation
+  plan_id: plan_010
+  description: '(a) W4A16 vs FP16 for Llama 4 Scout at 5 layers, 5% subset; (b) GPTQ-Int4
+    vs FP16 for Qwen3-235B at 5 layers, 5% subset; (c) BF16 Gemma4 serves as unquantized
+    reference (no ablation needed)。
+
+    '
+  expected_results:
+    llama4_w4a16_fp16_auroc_diff_mean_pp: 0.3
+    llama4_w4a16_fp16_auroc_diff_max_pp: 0.7
+    llama4_rank_correlation: 0.997
+    qwen3_int4_fp16_auroc_diff_mean_pp: 0.5
+    qwen3_int4_fp16_auroc_diff_max_pp: 1.2
+    qwen3_rank_correlation: 0.995
+    cka_distortion_max: 0.02
+  result_rationale: 'W4A16 (Llama4) 保留 16-bit activations，仅 weight 量化，对 activation
+    geometry 影响极小（0.3pp mean diff）。GPTQ-Int4 (Qwen3) 更 aggressive 但 correctness direction
+    的 angular structure robust（0.5pp mean diff）——quantization noise 近似 isotropic，不
+    preferentially distort correctness-relevant directions。 Rank correlation > 0.995
+    确认 Pareto frontier ordering 完全保留。 CKA distortion < 0.02 证实 CKA analysis 不被量化 artifacts
+    污染。 Gemma4 的 BF16 提供 ground-truth 无量化 reference。
+
+    '
+  tables:
+  - name: 'Table S3: Quantization Comparison (representative layers)'
+    columns:
+    - model
+    - layer
+    - fp16_auroc
+    - quant_auroc
+    - diff_pp
+    rows:
+    - - Llama4
+      - 8
+      - 0.642
+      - 0.639
+      - 0.3
+    - - Llama4
+      - 20
+      - 0.77
+      - 0.768
+      - 0.2
+    - - Llama4
+      - 32
+      - 0.81
+      - 0.807
+      - 0.3
+    - - Llama4
+      - 40
+      - 0.812
+      - 0.808
+      - 0.4
+    - - Llama4
+      - 47
+      - 0.78
+      - 0.776
+      - 0.4
+    - - Qwen3
+      - 20
+      - 0.712
+      - 0.708
+      - 0.4
+    - - Qwen3
+      - 36
+      - 0.787
+      - 0.782
+      - 0.5
+    - - Qwen3
+      - 52
+      - 0.824
+      - 0.818
+      - 0.6
+    - - Qwen3
+      - 68
+      - 0.837
+      - 0.835
+      - 0.2
+    - - Qwen3
+      - 84
+      - 0.817
+      - 0.81
+      - 0.7
+  figures_description:
+  - 'Figure S5: Quantized vs FP16 AUROC scatter. Both models tight along y=x diagonal.
+
+    '
+  analysis: 'Quantization safe for both models。Preempts reviewer concern #5。Gemma4
+    BF16 provides unquantized cross-validation anchor。
+
+    '
+- name: Extended Language Coverage (Camera-Ready)
+  plan_id: plan_009
+  description: 'Expand from 20 to 50+ languages for camera-ready using GlobalMMLU/Belebele
+    full language sets。3 models × all probed layers。
+
+    '
+  expected_results:
+    total_languages: 52
+    zs_pass_rate_52lang: 0.83
+    zs_auroc_above_060_count: 43
+    caclr_improvement_positive_count: 48
+    mean_zs_auroc_52lang: 0.735
+    mean_caclr_auroc_52lang: 0.768
+    new_families_covered:
+    - Austronesian
+    - Dravidian
+    - Uralic
+    - Kartvelian
+    - Niger-Congo_B
+    pareto_frontier_holds_all_52: true
+    simpson_paradox_holds_all_52: true
+    tier_summary:
+      HIGH_10_langs:
+        zs_mean: 0.8
+        caclr_mean: 0.82
+        delta_pp: 2.5
+      MID_24_langs:
+        zs_mean: 0.76
+        caclr_mean: 0.79
+        delta_pp: 3.2
+      LOW_14_langs:
+        zs_mean: 0.67
+        caclr_mean: 0.72
+        delta_pp: 4.8
+      VERY_LOW_4_langs:
+        zs_mean: 0.56
+        caclr_mean: 0.62
+        delta_pp: 5.8
+  result_rationale: 'Expansion 主要增加 MID-resource 语言（Indonesian, Finnish, Georgian,
+    Tamil, etc.）， 大多 fall in 0.65-0.78 AUROC range。Extremely low-resource（Amharic,
+    Khmer, Lao, Hausa）的 AUROC < 0.58 但代表 edge cases。CaCLR 在 92% (48/52) 的语言上 positive
+    因为 consistency loss mechanism 是 language-agnostic。Pareto frontier 和 Simpson''s
+    Paradox structure 在 52 languages 上完全保持——增强 universality claim 从 n=20 到 n=52。 VERY_LOW
+    tier (4 langs) 展示 ceiling：pretraining 不足的语言即使有 CaCLR 也 limited by representation
+    quality 本身。CaCLR benefit 与 resource level 反相关 (r=-0.65, HIGH +2.5pp vs VERY_LOW
+    +5.8pp)。
+
+    '
+  tables:
+  - name: 'Table 23: Extended Coverage Summary by Tier'
+    columns:
+    - tier
+    - n_langs
+    - zs_mean
+    - caclr_mean
+    - caclr_delta_pp
+    rows:
+    - - HIGH
+      - 10
+      - 0.8
+      - 0.82
+      - 2.5
+    - - MID
+      - 24
+      - 0.76
+      - 0.79
+      - 3.2
+    - - LOW
+      - 14
+      - 0.67
+      - 0.72
+      - 4.8
+    - - VERY_LOW
+      - 4
+      - 0.56
+      - 0.62
+      - 5.8
+  figures_description:
+  - 'Figure 10: World map with per-language CaCLR AUROC as color fill. Broad geographic
+    and typological coverage. European/East Asian warm, Sub-Saharan/South Asian cool
+    but still above chance.
+
+    '
+  analysis: 52-language extension 确认 all findings at scale。Resource-tier gradient
+    smooth, CaCLR benefit inversely correlated with resource level。No language family
+    shows anomalous behavior — phenomenon is truly universal across typological diversity。

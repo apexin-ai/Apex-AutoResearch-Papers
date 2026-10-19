@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_appendix-attacks_20260522T221224_result.json",
     "occurrence": 1,
-    "bytes": 380,
-    "sha256": "7f0f2ab7cee7340b754ee90bf7a58b0c767f8e5d77e31ae7c1788aed857f9235"
+    "bytes": 379,
+    "sha256": "1c8e20c6bade065521297906625a5093e9a528dab10a9a72f3570f6ca5d93cbe"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_k5-rf-contrast_20260523T070356_result.json",
     "occurrence": 1,
-    "bytes": 919,
-    "sha256": "1ba752a3fff64df22cabccce506817af9a873e66b8647bbfc3058f704da509b9"
+    "bytes": 918,
+    "sha256": "924a719ed1fc5c17d83f9c1cad4759f105c84d70e56afc42b1e796964a14341f"
   },
   "statistics": {
     "messages": 1,

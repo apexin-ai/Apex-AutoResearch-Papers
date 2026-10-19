@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fp16-force-kill_20260525T105309_result.json",
     "occurrence": 1,
-    "bytes": 780,
-    "sha256": "a42df5c575d2c50a8e033da43ded5b90a2bc0bb2cad6926e64b6de0a3ba71607"
+    "bytes": 779,
+    "sha256": "0d7b438960f1b9c6a89cb1ccd4358bd3e8692cdba3d66af76cd8862751e6feac"
   },
   "statistics": {
     "messages": 1,

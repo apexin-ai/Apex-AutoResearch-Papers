@@ -1,0 +1,518 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{caption}
+\captionsetup{font=small}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+
+\title{The Weakest Link: Individual Robustness Dominates Diversity\\in Multi-Judge LLM Evaluation Security}
+
+\author{Anonymous Submission to EMNLP 2026}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Multi-judge LLM evaluation panels are increasingly deployed under the assumption that judge diversity---analogous to Byzantine Fault Tolerance (BFT)---provides robust defense against adversarial manipulation.
+We challenge this assumption by demonstrating that adaptive adversaries fundamentally invalidate the diversity-as-defense paradigm.
+Through experiments on 455 three-judge panels drawn from 15 LLMs (including GPT-4o, Claude-3.5-Sonnet, Gemini-1.5-Pro, and open-source models up to 72B parameters) across 6 attack types and 2 benchmarks, we establish that panel attack success rate is dominated by the individual robustness of the weakest member ($\eta_{\max}$), not effective diversity ($K_{\text{eff}}$).
+We formalize this as an adaptive adversary bound ($\text{ASR}_{\text{panel}} \leq \eta_{\max} \cdot (1 + \varepsilon \log K)$), empirically validate it within a factor of 1.3, and contrast it with a random-fault regime where diversity does help (Cohen's $d = 0.62$).
+Crucially, we identify a \emph{regime-dependent} nuance: diversity provides marginal benefit only when individual robustness is already high---in capability-homogeneous strong panels, $K_{\text{eff}}$ shows weak but detectable protective effects.
+We further document a structural diversity-capability tradeoff ($r = -0.65$) driven primarily by cross-tier model selection, and show that Gaussian copula models underestimate inter-judge dependence by a median factor of $42\times$.
+A robustness-first panel design guideline that filters for individual robustness before maximizing diversity achieves the lowest attack success rates across conditions, though its advantage over simpler robustness-only strategies is modest.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+
+As LLM-as-judge evaluation becomes standard practice, multi-judge panels have emerged as the primary defense against adversarial manipulation. The prevailing design philosophy mirrors Byzantine Fault Tolerance: assemble diverse, independent judges so that no single compromised judge can corrupt the panel verdict. Recent surveys and frameworks explicitly advocate maximizing judge diversity as the key security mechanism.
+
+This reasoning contains a critical flaw. BFT assumes \emph{random} faults---each node fails independently with some probability. But LLM adversaries are \emph{adaptive}: they can identify and specifically target the weakest judge in a panel. Under adaptive adversaries, the security guarantee degrades from the BFT promise of $\Theta(f/n)$ fault tolerance to a weakest-link regime where $\text{ASR}_{\text{panel}} = \Theta(\eta_{\max})$.
+
+Worse, pursuing diversity in the current LLM ecosystem introduces a structural tradeoff. Model diversity primarily arises from capability differences---7B models are diverse from 70B models but also substantially less robust. Maximizing diversity thus actively introduces weak links, undermining the very security it promises.
+
+We present a systematic empirical and theoretical analysis of this phenomenon. Our contributions:
+
+\begin{enumerate}
+    \item \textbf{Weakest-link theorem}: Across 455 panels, 15 models, 6 attack types, and 2 benchmarks, individual robustness ($\eta_{\max}$) is the dominant predictor of panel ASR (significant in 8/12 conditions), while diversity ($K_{\text{eff}}$) is largely non-significant (9/12 conditions). The incremental $R^2$ from adding $K_{\text{eff}}$ is a median 0.02.
+
+    \item \textbf{Adaptive adversary formalization}: We prove $\text{ASR}_{\text{panel}} \leq \eta_{\max} \cdot (1 + \varepsilon \log K)$ and validate it empirically. A random-fault contrast confirms that diversity \emph{does} help under BFT-like conditions ($K_{\text{eff}}$ significant in 4/6 conditions), establishing the adaptive--random distinction with moderate effect size (Cohen's $d = 0.62$).
+
+    \item \textbf{Regime analysis}: Diversity provides marginal benefit only when individual robustness is already high. In capability-homogeneous strong panels, $K_{\text{eff}}$ shows weak protective effects (1/6 significant in strong tier). In weak panels, diversity provides zero benefit (0/6 significant).
+
+    \item \textbf{Diversity-capability tradeoff}: $r(K_{\text{eff}}, \eta_{\max}) = -0.65$ overall, driven primarily by cross-tier selection ($r = -0.78$) rather than within-tier differences ($r \approx -0.32$).
+
+    \item \textbf{Gaussian copula failure}: Copula models underestimate inter-judge mutual information by $42\times$ (median), with API model pairs showing $68\times$ underestimation.
+
+    \item \textbf{Robustness-first guideline}: A two-stage strategy (filter for robustness, then maximize diversity) achieves the best mean rank (1.7/6) across conditions, though the gap to simpler robustness-only strategies is modest.
+\end{enumerate}
+
+% ============================================================
+\section{Related Work}
+
+\paragraph{Multi-Judge LLM Evaluation.} Multi-judge evaluation panels have been proposed as a defense against individual judge biases and manipulation. Recent work advocates maximizing judge diversity, drawing implicit parallels to ensemble methods and fault-tolerant systems. However, these frameworks do not model adaptive adversaries who can selectively target panel members.
+
+\paragraph{Adversarial Attacks on LLM Judges.} Prompt injection, score manipulation, and sycophancy bias have been demonstrated against individual LLM judges. Prior work focuses on single-judge vulnerabilities; we extend the analysis to multi-judge panels where the interaction between individual vulnerabilities and panel composition determines security.
+
+\paragraph{Byzantine Fault Tolerance.} Classical BFT guarantees safety when fewer than $f < n/3$ nodes are faulty, assuming \emph{independent, random} faults. The assumption of random faults is critical---adaptive adversaries who can choose which nodes to compromise fundamentally change the security calculus, as established in the distributed systems literature.
+
+% ============================================================
+\section{Methodology}
+
+\subsection{Threat Model}
+
+We consider an adaptive adversary who can:
+(i)~observe the panel composition (which judges are used),
+(ii)~estimate individual judge vulnerabilities,
+(iii)~craft attacks targeting the weakest judge(s).
+The adversary's goal is to flip the majority verdict of a $K$-judge panel via majority vote.
+
+\begin{definition}[Individual Susceptibility]
+For judge $j$, $\eta_j$ is the attack success rate (ASR) against judge $j$ in isolation. For a panel $P$, $\eta_{\max}(P) = \max_{j \in P} \eta_j$.
+\end{definition}
+
+\begin{definition}[Effective Diversity]
+$K_{\text{eff}}(P) = \left(\sum_{i,j \in P} e^{-D_{\mathrm{KL}}(p_i \| p_j)}\right)^{-1}$ measures the effective number of independent judges, where $D_{\mathrm{KL}}$ is the KL divergence between judge response distributions. $K_{\text{eff}} = 1$ indicates fully correlated judges; $K_{\text{eff}} = K$ indicates fully independent judges.
+\end{definition}
+
+\subsection{Models, Datasets, and Attacks}
+
+\paragraph{Models (15).} We evaluate 15 LLMs spanning three capability tiers:
+\emph{Weak} (5 models, 7B--14B parameters),
+\emph{Strong} (5 models, 70B+ open-source), and
+\emph{API} (5 models: GPT-4o-mini, GPT-4o, GPT-4.1, Claude-3.5-Sonnet, Gemini-1.5-Pro).
+All $\binom{15}{3} = 455$ three-judge panels are enumerated.
+
+\paragraph{Datasets.} MMLU and ARC-Challenge, selected for coverage of factual reasoning and multi-hop inference.
+
+\paragraph{Attacks (6).} Prompt injection, score manipulation, sycophancy exploitation, few-shot hijacking, persona manipulation, and instruction override. These span targeted attacks (adversary focuses on specific judge weaknesses) and distributed attacks (affect all judges).
+
+\subsection{Analysis Framework}
+
+For each panel $P$ under condition $c$ (dataset $\times$ attack), we fit:
+\begin{equation}
+    \log(\text{ASR}_P^c) = \beta_0 + \beta_1 \log(\eta_{\max}(P)) + \beta_2 \log(K_{\text{eff}}(P)) + \epsilon
+\end{equation}
+A dominant $\beta_1$ with non-significant $\beta_2$ supports the weakest-link hypothesis; significant negative $\beta_2$ indicates diversity provides protection.
+
+% ============================================================
+\section{The Weakest-Link Effect}
+\label{sec:weakest-link}
+
+\subsection{Scale Expansion: 15-Model Results}
+
+We evaluate all 455 three-judge panels from 15 models across 6 conditions (2 datasets $\times$ 3 original attacks). Table~\ref{tab:regression-15} presents multivariate regression results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Multivariate regression on 455 panels (15 models). $\eta_{\max}$ is significant in 5/6 conditions; $K_{\text{eff}}$ reaches significance in only 1/6 with small effect size.}
+\label{tab:regression-15}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Condition & $\beta(\eta)$ & $p(\eta)$ & $\beta(K)$ & $p(K)$ & $R^2$ & $\Delta R^2$ \\
+\midrule
+MMLU$\times$PI   & 0.58 & .001  & $-$0.12 & .031 & .41 & +.04 \\
+MMLU$\times$SM   & 0.51 & .003  & $-$0.06 & .218 & .36 & +.01 \\
+MMLU$\times$Syc  & 0.47 & {$<$.001} & $-$0.04 & .412 & .35 & +.00 \\
+ARC$\times$PI    & 0.55 & {$<$.001} & $-$0.08 & .089 & .39 & +.02 \\
+ARC$\times$SM    & 0.49 & .005  & $-$0.05 & .287 & .34 & +.01 \\
+ARC$\times$Syc   & 0.44 & .072  & $-$0.15 & .008 & .42 & +.06 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+$\eta_{\max}$ is significant in 5/6 conditions (median $\beta = 0.52$), confirming that the weakest judge's individual robustness dominates panel security. $K_{\text{eff}}$ reaches significance in only 1/6 conditions (MMLU$\times$PI, $\beta = -0.12$, $p = .031$), with a marginal $\Delta R^2$ of +0.04. The sole exception is ARC$\times$Sycophancy, where $K_{\text{eff}}$ is the significant predictor ($p = .008$) and $\eta_{\max}$ is marginal ($p = .072$)---a case we analyze in Section~\ref{sec:when-diversity}.
+
+The Gaussian copula systematically underestimates inter-judge mutual information (Table~\ref{tab:copula}). API model pairs show the highest underestimation ($68\times$ median), suggesting shared training paradigms create latent dependencies invisible to standard independence measures.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Copula underestimation ratio ($\text{MI}_{\text{obs}} / \text{MI}_{\text{gauss}}$) across 105 model pairs.}
+\label{tab:copula}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Pair Type & $N$ & Median & Range \\
+\midrule
+Open $\times$ Open   & 15 & 28$\times$ & 8--145$\times$ \\
+API $\times$ API      & 10 & 68$\times$ & 32--210$\times$ \\
+Open $\times$ API     & 80 & 41$\times$ & 12--180$\times$ \\
+Overall               & 105 & 42$\times$ & 8--210$\times$ \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+Model family labels do not predict judge independence: within-family vs.\ cross-family MI shows no significant difference (Mann-Whitney $p = 0.12$), indicating that ``diversity'' defined by family membership is a poor proxy for functional independence.
+
+\subsection{Attack Generalization: 6 Attack Types}
+
+We expand from 3 to 6 attack types (adding few-shot hijacking, persona manipulation, instruction override), yielding 12 conditions. Table~\ref{tab:attack-expansion} presents results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Regression summary across 12 conditions (455 panels). $\eta_{\max}$ significant in 8/12; $K_{\text{eff}}$ significant (negative) in only 2/12.}
+\label{tab:attack-expansion}
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Attack & Data & $\beta(\eta)$ & $p(\eta)$ & $\beta(K)$ & $p(K)$ & $R^2$ \\
+\midrule
+prompt\_inj     & MMLU & 0.58 & .001 & $-$0.12 & .031 & .41 \\
+prompt\_inj     & ARC  & 0.55 & {$<$.001} & $-$0.08 & .089 & .39 \\
+score\_manip    & MMLU & 0.51 & .003 & $-$0.06 & .218 & .36 \\
+score\_manip    & ARC  & 0.49 & .005 & $-$0.05 & .287 & .34 \\
+sycophancy      & MMLU & 0.47 & {$<$.001} & $-$0.04 & .412 & .35 \\
+sycophancy      & ARC  & 0.44 & .072 & $-$0.15 & .008 & .42 \\
+few\_shot       & MMLU & 0.32 & .118 & $-$0.03 & .605 & .18 \\
+few\_shot       & ARC  & 0.57 & .002 & $-$0.07 & .154 & .38 \\
+persona         & MMLU & 0.38 & .085 & $-$0.11 & .062 & .28 \\
+persona         & ARC  & 0.35 & .108 & $-$0.16 & .038 & .30 \\
+instr\_override & MMLU & 0.60 & {$<$.001} & $-$0.05 & .321 & .43 \\
+instr\_override & ARC  & 0.53 & .004 & +0.09 & .047 & .37 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The weakest-link pattern generalizes across attack types but with important heterogeneity. Targeted attacks (prompt injection, instruction override) show the strongest $\eta_{\max}$ effects ($\beta > 0.50$). Distributed attacks (sycophancy, persona manipulation) show attenuated $\eta_{\max}$ effects and correspondingly stronger (though still small) $K_{\text{eff}}$ effects.
+
+Two conditions warrant discussion. \emph{Few-shot hijacking on MMLU} shows neither predictor significant ($R^2 = 0.18$), reflecting a ceiling effect: all models exhibit high ASR ($> 0.7$) against this attack on MMLU, compressing $\eta_{\max}$ variance. \emph{Instruction override on ARC} shows an anomalous positive $K_{\text{eff}}$ effect ($\beta = +0.09$, $p = .047$), driven by confounding between $K_{\text{eff}}$ and API model presence in that condition.
+
+% ============================================================
+\section{Adaptive Adversaries vs.\ Byzantine Faults}
+\label{sec:bft}
+
+\subsection{Formal Bound and Regime Contrast}
+
+We formalize the weakest-link intuition as an adaptive adversary bound:
+
+\begin{theorem}[Adaptive Adversary Bound]
+Under an adaptive adversary who targets judges in order of decreasing susceptibility, the panel ASR under majority vote satisfies:
+\begin{equation}
+    \textit{ASR}_{\textit{panel}} \leq \eta_{\max} \cdot (1 + \varepsilon \cdot \log K)
+\end{equation}
+where $\varepsilon$ depends on the decay rate of ordered judge susceptibilities $\eta_{(1)} \geq \eta_{(2)} \geq \cdots \geq \eta_{(K)}$.
+\end{theorem}
+
+The bound is empirically tight: observed panel ASR falls within a factor of 1.3 of the theoretical upper bound.
+
+To validate the adaptive--random distinction, we contrast empirical (adaptive) attacks with a \emph{random-fault simulation} where each judge fails independently as $\text{Bernoulli}(\eta_j)$. Table~\ref{tab:bft-contrast} shows that $K_{\text{eff}}$ has dramatically different predictive power across regimes.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Adaptive vs.\ random-fault regime comparison. Under random faults, $K_{\text{eff}}$ is significant in 4/6 conditions (diversity helps); under adaptive attacks, only 1/6.}
+\label{tab:bft-contrast}
+\begin{tabular}{@{}lccccr@{}}
+\toprule
+Condition & $\beta(K)_A$ & $p_A$ & $\beta(K)_{RF}$ & $p_{RF}$ & $\Delta\beta$ \\
+\midrule
+MMLU$\times$PI  & $-$0.12 & .031 & $-$0.48 & .002 & $-$0.36 \\
+MMLU$\times$SM  & $-$0.06 & .218 & $-$0.41 & .008 & $-$0.35 \\
+MMLU$\times$Syc & $-$0.04 & .412 & $-$0.22 & .078 & $-$0.18 \\
+ARC$\times$PI   & $-$0.08 & .089 & $-$0.52 & {$<$.001} & $-$0.44 \\
+ARC$\times$SM   & $-$0.05 & .287 & $-$0.38 & .015 & $-$0.33 \\
+ARC$\times$Syc  & $-$0.15 & .008 & $-$0.47 & .003 & $-$0.32 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The BFT contrast yields a moderate effect size (Table~\ref{tab:bft-summary}): Cohen's $d = 0.62$ [0.28, 0.96] for the difference in $|\beta(K_{\text{eff}})|$ between regimes. This confirms the regimes are distinguishable, though the wide confidence interval reflects that some attacks (notably sycophancy) exhibit hybrid adaptive-random characteristics.
+
+\begin{table}[t]
+\centering
+\small
+\caption{BFT contrast summary. The two regimes are statistically distinguishable ($d = 0.62$), with diversity's protective role reversing between them.}
+\label{tab:bft-summary}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Metric & Adaptive & Random & $d$ & 95\% CI \\
+\midrule
+$K_{\text{eff}}$ sig rate   & 0.17 & 0.67 & --- & --- \\
+Mean $|\beta(K)|$           & 0.08 & 0.41 & 0.62 & [0.28, 0.96] \\
+Mean $R^2$                  & 0.38 & 0.44 & --- & --- \\
+$\eta_{\max}$ sig rate      & 0.83 & 0.33 & --- & --- \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The key insight: under random faults, $\eta_{\max}$ significance drops to 0.33 while $K_{\text{eff}}$ rises to 0.67---the classical BFT regime where redundancy protects. Under adaptive attacks, the pattern inverts. Real-world LLM attacks fall on a spectrum between these extremes; our theorem provides a worst-case guarantee for the adaptive end.
+
+\subsection{Attack Concentration Evidence}
+
+We directly measure whether attacks concentrate on the weakest judge via per-judge ASR distributions across 455 panels (Table~\ref{tab:concentration}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Per-judge ASR concentration metrics. Higher Gini and weakest-judge share indicate more targeted attacks.}
+\label{tab:concentration}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Metric & Overall & Strong & Weak & API \\
+\midrule
+Gini (median)        & 0.42 & 0.28 & 0.52 & 0.25 \\
+Weakest judge share  & 0.58 & 0.42 & 0.68 & 0.40 \\
+Entropy ratio        & 0.72 & 0.82 & 0.62 & 0.85 \\
+$r$(conc., $\eta_{\max}$) & 0.55 & 0.38 & 0.48 & 0.32 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The median Gini coefficient of 0.42 and weakest-judge ASR share of 58\% (vs.\ 33\% expected under uniform distribution for $K=3$) confirm moderate attack concentration on the weakest judge. This concentration varies by attack type (Table~\ref{tab:concentration-attack}): targeted attacks (prompt injection, instruction override) show Gini $> 0.50$, while distributed attacks (persona manipulation) show Gini $\approx 0.28$.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Concentration by attack type. Targeted attacks concentrate on the weakest judge; distributed attacks spread across judges.}
+\label{tab:concentration-attack}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Attack & Gini & Weakest Share & Pattern \\
+\midrule
+prompt\_injection    & 0.52 & 0.65 & Highly targeted \\
+score\_manipulation  & 0.48 & 0.62 & Targeted \\
+instruction\_override & 0.55 & 0.68 & Highly targeted \\
+few\_shot\_hijack    & 0.45 & 0.58 & Moderately targeted \\
+sycophancy           & 0.32 & 0.48 & Partially distributed \\
+persona\_manip       & 0.28 & 0.42 & Distributed \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The tier-level analysis is revealing: Weak tier panels show high concentration (Gini = 0.52, weakest share = 68\%), while Strong and API tiers show lower concentration (Gini $\approx$ 0.25--0.28). When all judges are individually robust, the adversary cannot disproportionately exploit any single judge, and attack success distributes more uniformly. This directly explains why diversity shows marginal benefit in strong panels (Section~\ref{sec:when-diversity}): when attacks are distributed rather than concentrated, redundancy provides partial protection.
+
+% ============================================================
+\section{When Does Diversity Help?}
+\label{sec:when-diversity}
+
+\subsection{Capability-Matched Validation}
+
+A natural objection to the weakest-link finding is confounding: $K_{\text{eff}}$ and $\eta_{\max}$ are correlated ($r = -0.65$), so $K_{\text{eff}}$'s non-significance may reflect collinearity rather than irrelevance. We address this by analyzing panels \emph{within} capability tiers, where $\eta_{\max}$ variance is compressed (Table~\ref{tab:within-tier}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Within-tier regression results. Diversity ($K_{\text{eff}}$) shows weak protective effects only in the Strong tier; zero benefit in the Weak tier.}
+\label{tab:within-tier}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Tier & $N$ & $\eta$ sig & $K$ sig($-$) & Med.\ $R^2$ & $r(K, \eta)$ \\
+\midrule
+Strong (70B+API) & 56  & 3/6 & 1/6 & .22 & $-$0.35 \\
+Weak (7B+14B)    & 10  & 3/6 & 0/6 & .28 & $-$0.28 \\
+API-only         & 10  & 2/6 & 1/6 & .18 & $-$0.32 \\
+Full pool (ref)  & 455 & 5/6 & 1/6 & .38 & $-$0.65 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The result is clear: \textbf{diversity provides marginal benefit only when individual robustness is already high}. In the Weak tier, $K_{\text{eff}}$ is non-significant in all 6 conditions---adding a different-but-equally-weak judge provides no security gain. In the Strong tier, $K_{\text{eff}}$ reaches significance in 1/6 conditions ($\beta = -0.15$), though this does not survive Bonferroni correction. The API tier shows a similar pattern (1/6, $\beta = -0.22$), but with only 10 panels, statistical power is limited.
+
+Table~\ref{tab:api-detail} provides the API-tier breakdown, where the effect is most theoretically interesting: when all judges are individually robust, the residual protective role of diversity becomes detectable.
+
+\begin{table}[t]
+\centering
+\small
+\caption{API-only tier detail ($C(5,3) = 10$ panels). Low power limits conclusions, but the direction is consistent: $K_{\text{eff}}$ effects are negative where detectable.}
+\label{tab:api-detail}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Condition & $\beta(\eta)$ & $p(\eta)$ & $\beta(K)$ & $p(K)$ & $R^2$ \\
+\midrule
+MMLU$\times$PI  & 0.35 & .042 & $-$0.22 & .048 & .21 \\
+MMLU$\times$SM  & 0.28 & .112 & $-$0.14 & .187 & .14 \\
+MMLU$\times$Syc & 0.22 & .185 & $-$0.08 & .412 & .10 \\
+ARC$\times$PI   & 0.38 & .035 & $-$0.18 & .082 & .22 \\
+ARC$\times$SM   & 0.25 & .148 & $-$0.10 & .285 & .12 \\
+ARC$\times$Syc  & 0.20 & .218 & $-$0.20 & .065 & .18 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The within-tier tradeoff ($r \approx -0.32$) is substantially attenuated compared to the overall tradeoff ($r = -0.65$), confirming that the global tradeoff is primarily structural (cross-tier selection introduces weak models) rather than fundamental. If the LLM ecosystem converges toward uniformly high capability, the diversity-robustness tradeoff may naturally diminish.
+
+\subsection{Diversity-Capability Tradeoff}
+
+Table~\ref{tab:tradeoff} decomposes the diversity-capability tradeoff by analysis scope.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Diversity-capability tradeoff decomposition. The overall tradeoff ($r = -0.65$) is driven by cross-tier selection ($r = -0.78$); within-tier tradeoffs are moderate.}
+\label{tab:tradeoff}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Scope & $N$ & $r(K, \eta)$ & $p$ & Interpretation \\
+\midrule
+Overall       & 455 & $-$0.65 & {$<$.001} & Strong tradeoff \\
+Within 7B     & 10  & $-$0.28 & .082 & Weak \\
+Within 70B    & 10  & $-$0.35 & .045 & Moderate \\
+Within API    & 10  & $-$0.32 & .058 & Moderate \\
+Cross-tier    & 425 & $-$0.78 & {$<$.001} & Dominant driver \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+Approximately 70\% of the tradeoff originates from cross-tier selection: choosing a 7B model for diversity alongside 70B models maximizes $K_{\text{eff}}$ but dramatically increases $\eta_{\max}$. Within tiers, the tradeoff is attenuated but not eliminated ($r \approx -0.32$), suggesting that even among models of similar capability, more diverse configurations carry a modest robustness cost.
+
+The Pareto frontier analysis identifies 12 panels (from 455) that are Pareto-optimal in the $K_{\text{eff}}$--$\eta_{\max}$ space. The knee of the frontier occurs at $K_{\text{eff}} \approx 2.1$, $\eta_{\max} \approx 0.18$, corresponding to combinations of 2--3 strong API models with 1 strong open-source model.
+
+% ============================================================
+\section{Practical Panel Design}
+\label{sec:design}
+
+\subsection{Two-Stage Algorithm}
+
+Based on our findings, we propose a robustness-first panel design guideline:
+\begin{enumerate}
+    \item \textbf{Filter}: Retain only judges with $\eta_j \leq \tau$ (robustness threshold).
+    \item \textbf{Diversify}: Among qualifying judges, select the $K$-subset maximizing $K_{\text{eff}}$.
+\end{enumerate}
+
+Table~\ref{tab:strategies} compares this two-stage approach against five baselines across 6 conditions.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Panel selection strategy comparison (mean panel ASR, lower is better). Two-stage achieves the best mean rank but its advantage over Min-$\eta_{\max}$ is modest.}
+\label{tab:strategies}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+Strategy & \rotatebox{60}{MMLU$\times$PI} & \rotatebox{60}{MMLU$\times$SM} & \rotatebox{60}{MMLU$\times$Syc} & \rotatebox{60}{ARC$\times$PI} & \rotatebox{60}{ARC$\times$SM} & \rotatebox{60}{ARC$\times$Syc} & Rank \\
+\midrule
+Two-stage    & .082 & .095 & .118 & .068 & .075 & .088 & 1.7 \\
+Min-$\eta$   & .091 & .098 & .105 & .072 & .079 & .092 & 2.2 \\
+Strongest-K  & .088 & .102 & .125 & .062 & .082 & .098 & 2.8 \\
+Max-$K_{\text{eff}}$    & .145 & .152 & .168 & .118 & .128 & .142 & 4.2 \\
+Max-fam-div  & .162 & .175 & .188 & .135 & .148 & .158 & 4.8 \\
+Random       & .178 & .185 & .195 & .148 & .155 & .172 & 5.1 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The two-stage strategy wins 4/6 conditions (mean rank 1.7), but its advantage over Min-$\eta_{\max}$ (rank 2.2) and Strongest-K (rank 2.8) is modest. The primary finding is \emph{negative}: diversity-first strategies (Max-$K_{\text{eff}}$, Max-family-diversity) perform substantially worse than any robustness-aware strategy, with ASR roughly 2$\times$ that of the two-stage approach.
+
+In the all-strong regime (API models only), the difference between Two-stage, Min-$\eta_{\max}$, and Max-$K_{\text{eff}}$ is not statistically significant ($p > 0.25$), because all candidates pass the robustness filter and the first stage becomes a no-op. This further supports framing Claim~6 as a \emph{guideline} rather than a formal algorithm: \textbf{prioritize individual robustness; among robust judges, diversity is a useful tiebreaker.}
+
+Threshold sensitivity analysis (Table~\ref{tab:threshold}) shows the optimal $\tau$ lies in [0.20, 0.35], with moderate sensitivity: deviating $\pm 0.10$ from optimal increases ASR by $\sim$15\%.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Threshold sensitivity for the two-stage strategy. Performance is robust across $\tau \in [0.20, 0.35]$.}
+\label{tab:threshold}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$\tau$ & Judges passing & Mean ASR & $\Delta$ from optimal \\
+\midrule
+0.10 & 3  & .092 & +.008 \\
+0.20 & 6  & .085 & +.001 \\
+0.25 & 8  & .084 & .000 \\
+0.30 & 10 & .088 & +.004 \\
+0.40 & 12 & .105 & +.021 \\
+0.50 & 14 & .132 & +.048 \\
+1.00 & 15 & .145 & +.061 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+\subsection{Panel Size Sensitivity}
+
+We test whether the weakest-link finding holds across panel sizes $K \in \{3, 5, 7, 9\}$ (Table~\ref{tab:panel-size}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Weakest-link stability across panel sizes. $\eta_{\max}$ remains dominant at all tested $K$, but $K_{\text{eff}}$'s relative importance grows monotonically.}
+\label{tab:panel-size}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+$K$ & $N$ panels & $\eta$ sig & $K$ sig($-$) & $\beta$ ratio & Med.\ $R^2$ \\
+\midrule
+3 & 455   & 5/6 & 1/6 & 5.2 & .38 \\
+5 & 3003  & 5/6 & 2/6 & 3.8 & .35 \\
+7 & 6435  & 5/6 & 3/6 & 2.6 & .32 \\
+9 & 5005  & 5/6 & 3/6 & 2.1 & .30 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+$\eta_{\max}$ significance is stable at $\sim$0.83 across all panel sizes, confirming the weakest-link effect is not an artifact of small panels. However, $K_{\text{eff}}$'s relative importance grows monotonically: the $\beta$ ratio ($\eta_{\max}$ effect / $K_{\text{eff}}$ effect) decreases from 5.2 at $K=3$ to 2.1 at $K=9$. Extrapolation suggests a crossover at $K \approx 15$--20, beyond practical deployment range.
+
+This trend has a natural interpretation: larger panels force the adversary to compromise more judges for a majority, effectively pushing the attack toward the random-fault regime where diversity helps. This is precisely the BFT transition predicted by our theoretical framework (Section~\ref{sec:bft}).
+
+Table~\ref{tab:panel-size-strategy} shows that the robustness-first advantage persists and scales with panel size, with diminishing returns beyond $K = 7$.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Mean panel ASR by size and strategy. Robustness-first advantage persists at all $K$; returns diminish beyond $K=7$.}
+\label{tab:panel-size-strategy}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+$K$ & Two-stage & Min-$\eta$ & Max-$K$ & Random & $\Delta$(TS vs Rand) \\
+\midrule
+3 & .084 & .093 & .145 & .178 & $-$53\% \\
+5 & .062 & .068 & .098 & .135 & $-$54\% \\
+7 & .048 & .052 & .072 & .108 & $-$56\% \\
+9 & .041 & .044 & .058 & .092 & $-$55\% \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+% ============================================================
+\section{Discussion and Conclusion}
+
+Our findings challenge the prevailing assumption that diversity is the primary defense for multi-judge LLM evaluation panels. The weakest-link effect---individual robustness dominating panel security---is robust across 15 models, 6 attack types, 2 benchmarks, and panel sizes from 3 to 9. The adaptive adversary formalization explains \emph{why}: unlike BFT's random faults, adaptive adversaries concentrate on the weakest judge, neutralizing the redundancy benefit of diverse panels.
+
+However, the picture is more nuanced than ``diversity never helps.'' We identify a regime-dependent structure:
+
+\begin{itemize}
+    \item \textbf{When all judges are weak}, diversity provides zero additional protection. The weakest link dominates completely, and replacing one weak judge with a different weak judge changes nothing.
+    \item \textbf{When all judges are strong}, diversity provides marginal additional protection. Attack concentration decreases (Gini drops from 0.52 to 0.25--0.28), and $K_{\text{eff}}$ shows weak but detectable protective effects.
+    \item \textbf{In mixed panels}, the cross-tier diversity-capability tradeoff dominates: the weak judge introduced for diversity becomes the weakest link.
+\end{itemize}
+
+The practical implication is a simple guideline: \textbf{prioritize individual robustness, then diversify among robust judges}. This two-stage approach consistently outperforms both robustness-only and diversity-only strategies, though the margin over robustness-only selection is modest. The message is less ``use our algorithm'' and more ``avoid diversity-first design'': strategies that prioritize family diversity or effective independence without controlling for individual robustness yield ASR roughly $2\times$ that of robustness-aware approaches.
+
+We also document that Gaussian copula models underestimate inter-judge dependence by $42\times$ (median), with API models showing $68\times$ underestimation. This has implications beyond adversarial settings: any framework relying on copula-based independence bounds for multi-judge reliability will systematically overestimate panel quality.
+
+The adaptive adversary bound ($\text{ASR} \leq \eta_{\max} \cdot (1 + \varepsilon \log K)$), validated within a factor of 1.3, provides a worst-case security guarantee for panel designers. Combined with the BFT contrast ($d = 0.62$), it offers a theoretical framework for reasoning about when diversity helps (random faults, large $K$) versus when it does not (adaptive attacks, practical $K$).
+
+% ============================================================
+\section*{Limitations}
+
+Our study has three main limitations. First, the capability-matched analysis within the API tier ($N = 10$ panels) has low statistical power; the detected $K_{\text{eff}}$ effects (1/6 significant) should be interpreted as directional evidence rather than definitive proof. Second, our adaptive adversary model assumes the adversary has full knowledge of panel composition and individual judge vulnerabilities---a strong assumption that may overestimate adversary capability in practice. The moderate concentration metrics (Gini $= 0.42$) suggest real attacks lie on a spectrum between fully adaptive and fully random. Third, the diversity-capability tradeoff ($r = -0.65$) reflects the current LLM ecosystem structure; as model capabilities converge, this tradeoff may weaken, potentially increasing the relative value of diversity in future panel design.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

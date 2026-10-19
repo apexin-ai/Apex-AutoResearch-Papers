@@ -1,0 +1,24 @@
+Plan 010 FDR + CV Results
+
+Server path: /root/cert_manip_resist_eval/artifacts/results/results_plan010_fdr_cv.json
+
+FDR Correction (48 tests unified BH-FDR):
+| Method          | η_max raw | η_max FDR-48 | η_max Bonf | K_eff neg raw | K_eff neg FDR |
+|-----------------|-----------|--------------|------------|---------------|---------------|
+| majority_vote   | 8/12      | 5/12         | 1/12       | 1/12          | 1/12          |
+| weighted_vote   | 7/12      | 6/12         | 1/12       | 1/12          | 1/12          |
+| threshold_vote  | 7/12      | 6/12         | 5/12       | 0/12          | 0/12          |
+| bayesian        | 3/12      | 2/12         | 1/12       | 0/12          | 0/12          |
+
+Note: plan_009 FDR was 12-test scope (majority only, 6/12). This is 48-test scope, more conservative.
+
+Bayesian 5-fold CV:
+| Variant                    | η_max sig raw | η_max sig FDR-12 |
+|----------------------------|---------------|------------------|
+| Original (300-sample)      | 3/12          | 2/12             |
+| 5-fold CV                  | 3/12          | 1/12             |
+Conclusion: ROBUST — no info leakage. Same 3 conditions significant (mmlu__sycophancy, mmlu__verbosity_bias, arc_challenge__sycophancy).
+
+Paper annotations needed:
+1. Threshold ASR denominator differs (clean-unanimous subset, not all samples) — add table footnote
+2. Bayesian label: "calibrated Bayesian with clean-set accuracy; in deployment, use held-out calibration set"

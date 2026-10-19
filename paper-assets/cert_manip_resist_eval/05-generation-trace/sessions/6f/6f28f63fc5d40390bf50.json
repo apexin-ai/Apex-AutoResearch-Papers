@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_step1-scoring-restart_20260522T130523_result.json",
     "occurrence": 1,
-    "bytes": 734,
-    "sha256": "04ae56cc2476d8ce9f566acba348079069bdb204079bf69cdc3e3b3fcec66b2e"
+    "bytes": 733,
+    "sha256": "44795df695780d186cef3c3d699db4d9dfbcb821ea276003bfbab4cc1156f720"
   },
   "statistics": {
     "messages": 1,

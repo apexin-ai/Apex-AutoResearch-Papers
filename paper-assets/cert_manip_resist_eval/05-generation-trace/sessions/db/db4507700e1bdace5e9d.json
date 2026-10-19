@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_prep-step2-attacks_20260521T214143_result.json",
     "occurrence": 1,
-    "bytes": 764,
-    "sha256": "bc7d1e030c6170deb0bdb57b4f548b54eeb74b03a79cb9de80bdb6171ea81eac"
+    "bytes": 763,
+    "sha256": "9a403743efebb526bf326f51bcf16b727a9aed09a3659956e681fb06a0e36074"
   },
   "statistics": {
     "messages": 1,

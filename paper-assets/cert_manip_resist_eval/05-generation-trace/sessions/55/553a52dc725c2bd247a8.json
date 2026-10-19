@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_k7-keff-provenance_20260524T073610_result.json",
     "occurrence": 1,
-    "bytes": 2461291,
-    "sha256": "efc87573395d8b4e34154ced60a305e0f7f63b75c055b6275be13b58882ee47a"
+    "bytes": 2461290,
+    "sha256": "687ce888928375537efded6f0a328a63aa6125ec5f25694026ba2339820a44fb"
   },
   "statistics": {
     "messages": 1,

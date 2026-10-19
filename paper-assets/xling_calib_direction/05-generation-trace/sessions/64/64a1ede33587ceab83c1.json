@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64a1ede33587ceab83c1",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops check downloads verify llama4",
+  "task_key": "worker_ops_check_downloads_verify_llama4_20260521T003952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_downloads_verify_llama4_20260521T003952_result.json",
+    "occurrence": 1,
+    "bytes": 1299,
+    "sha256": "8acd00ab8e008a542004d5f1ba5f64a3a4ee7d1d198ff6a4af54e7411b0268ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Llama4 下载状态：**进行中**\n- 模型：`RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized.w4a16`（W4A16量化，非GPTQ）\n- 路径：`/root/autodl-tmp/models/Llama4-Scout-W4A16/`\n- 已下载：**42GB**，已完成 **6/14** 个 safetensors 分片\n- 当前有 5 个 `.incomplete` 文件正在下载\n- 进程运行 ~80 分钟（07:20 开始），速度约 **525 MB/min (~8.7 MB/s)**\n- 预估总大小 ~98GB，ETA 约 **1.5-2 小时**\n\n### 2. Qwen3 下载状态：**进行中**\n- 模型：`Qwen/Qwen3-235B-A22B-GPTQ-Int4`\n- 路径：`/root/autodl-tmp/models/Qwen3-235B-A22B-GPTQ-Int4/`\n- 已下载：**34GB**，已完成 **6/32** 个 safetensors 分片\n- 当前有 4 个 `.incomplete` 文件正在下载\n- 预估总大小 ~120-130GB，ETA 约 **3-4 小时**\n\n### 3. 磁盘空间\n- `/root/autodl-tmp`：350GB 总量，已用 163GB，剩余 **188GB**\n- 两个模型预计还需下载 ~110-140GB，空间充足\n\n### 4. 验证\n尚未执行。两个模型均未下载完成，等下载结束后再做完整性验证。\n\n### 注意\n任务中指定的目录名（`Llama-4-Scout-17B-16E-Instruct-GPTQ-4b-128g`）与实际下载目录不同。实际使用的是 `RedHatAI` 的 W4A16 量化版本（vLLM 优化），而非 GPTQ-4b-128g 版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-downloads-verify-llama4.md"
+}

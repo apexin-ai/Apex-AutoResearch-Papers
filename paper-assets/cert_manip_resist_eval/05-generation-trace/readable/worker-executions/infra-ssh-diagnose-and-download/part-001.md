@@ -3364,12 +3364,12 @@ _source line 68 · 2026-05-21T17:33:13.414Z_
 
 ```text
 1	gpu_server_password:
-2	  created_at: '2026-05-21T16:52:54.564880+00:00'
+[REDACTED]	  created_at: '2026-05-21T16:52:54.564880+00:00'
 3	  provider: SeetaCloud
 4	  purpose: SSH password for RTX 6000 96G server
 5	  updated_at: '2026-05-21T16:52:54.564898+00:00'
 6	openrouter_api_key:
-7	  created_at: '2026-05-21T17:26:46.897398+00:00'
+[REDACTED]	  created_at: '2026-05-21T17:26:46.897398+00:00'
 8	  provider: OpenRouter (self-hosted proxy)
 9	  purpose: LLM API access via OpenRouter format, base_url=http://47.94.22.126/v1
 10	  updated_at: '2026-05-21T17:26:46.897424+00:00'
@@ -3391,7 +3391,7 @@ _source line 68 · 2026-05-21T17:33:13.414Z_
     "type": "text",
     "file": {
       "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/config/secrets/cert_manip_resist_eval/manifest.yaml",
-      "content": "gpu_server_password:\n  created_at: '2026-05-21T16:52:54.564880+00:00'\n  provider: SeetaCloud\n  purpose: SSH password for RTX 6000 96G server\n  updated_at: '2026-05-21T16:52:54.564898+00:00'\nopenrouter_api_key:\n  created_at: '2026-05-21T17:26:46.897398+00:00'\n  provider: OpenRouter (self-hosted proxy)\n  purpose: LLM API access via OpenRouter format, base_url=http://47.94.22.126/v1\n  updated_at: '2026-05-21T17:26:46.897424+00:00'\n",
+      "content": "gpu_server_password:\n  [REDACTED] '2026-05-21T16:52:54.564880+00:00'\n  provider: SeetaCloud\n  purpose: SSH password for RTX 6000 96G server\n  updated_at: '2026-05-21T16:52:54.564898+00:00'\nopenrouter_api_key:\n  [REDACTED] '2026-05-21T17:26:46.897398+00:00'\n  provider: OpenRouter (self-hosted proxy)\n  purpose: LLM API access via OpenRouter format, base_url=http://47.94.22.126/v1\n  updated_at: '2026-05-21T17:26:46.897424+00:00'\n",
       "numLines": 11,
       "startLine": 1,
       "totalLines": 11

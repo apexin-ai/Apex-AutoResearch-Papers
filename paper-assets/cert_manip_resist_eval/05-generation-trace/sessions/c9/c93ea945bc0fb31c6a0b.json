@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fig4-per-model-asr-restyle_20260525T195326_result.json",
     "occurrence": 1,
-    "bytes": 717,
-    "sha256": "60a8e8d168d9a54f67dc20557514b2e185ceeb535674f557d75a69f505f0a0a2"
+    "bytes": 716,
+    "sha256": "f94d1f25dc92ec76d47837dada4d73c6d287b2108ba42667474794250c04fe77"
   },
   "statistics": {
     "messages": 1,

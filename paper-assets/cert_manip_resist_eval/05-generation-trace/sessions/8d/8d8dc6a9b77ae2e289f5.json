@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_power-cr2-cr3_20260522T231641_result.json",
     "occurrence": 1,
-    "bytes": 912,
-    "sha256": "98f97c97b8cdff3015d4dde1d39bab3ff4e84693a4c50316839f201b85963fda"
+    "bytes": 911,
+    "sha256": "1ce2361d44ada53bfacb92f76078725e03f087d437d4f1747150ed31535d1db4"
   },
   "statistics": {
     "messages": 1,

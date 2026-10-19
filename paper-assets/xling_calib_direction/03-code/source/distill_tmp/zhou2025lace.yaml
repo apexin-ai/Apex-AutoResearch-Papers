@@ -1,0 +1,107 @@
+paper_key: "zhou2025lace"
+title: "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Final Layer (standard softmax confidence from last transformer layer)"
+    - "Best Layer (single layer minimizing avg ECE)"
+    - "Good Layers Ensemble (average over layers outperforming final layer)"
+    - "Temperature Scaling (post-hoc calibration)"
+    - "Isotonic Regression (post-hoc calibration)"
+  metrics:
+    - {name: "ECE (Expected Calibration Error)", direction: "lower_better"}
+    - {name: "Brier Score", direction: "lower_better"}
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "Accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "MMMLU", size: "15 languages, human-translated MMLU, ~10K instances"}
+    - {name: "Belebele", size: "122 languages, parallel reading comprehension"}
+  ablation_dimensions:
+    - "Layer selection strategy (final vs best vs ensemble vs LACE)"
+    - "Post-hoc calibration method (none vs temperature scaling vs isotonic regression)"
+    - "Model family (6 families: LLaMA3, Qwen2.5, Mistral, Aya, DeepSeek, Phi)"
+    - "Language resource level (high vs low resource)"
+    - "Language identity (per-language layer selection in LACE)"
+  training_recipe:
+    optimizer: "N/A (training-free methods; no optimization)"
+    lr: "N/A"
+    hardware: "not specified (8-shot evaluation across 6 model families)"
+  method_family: "Training-free layer-wise calibration via intermediate representation confidence extraction"
+
+positioning:
+  core_claim: "Non-English languages suffer systematically worse calibration (5x higher ECE) in LLMs, and the final layer is the culprit due to English-centric bias; late-intermediate layers provide better-calibrated multilingual confidence signals, enabling training-free calibration methods (LACE) that close the cross-lingual calibration gap."
+  key_results: "LLaMA3 MMMLU: English ECE 4.61% vs non-English 23.12% (5x gap); LACE reduces non-English ECE from 22.44% to 5.96%; LACE+Isotonic achieves 3.09% ECE; Layer 29 (of 32) is optimal for LLaMA3 non-English (Delta ECE -8.57%); Aya Layer 28 achieves Delta ECE -8.59%; Non-English underconfidence: 78.8% of correct predictions are underconfident vs 25.7% for English"
+  limitations:
+    - "Experiments limited to mid-scale models (7B-8B parameters)"
+    - "Focus on multiple-choice QA; benefits may not extend to open-ended generation"
+    - "Methods are post-hoc interventions rather than training-integrated solutions"
+    - "Effects should be validated on larger model sizes"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Calibration is crucial for reliable LLM deployment in high-stakes domains (medical, legal), yet most calibration research is English-only — reflecting 'Square One Bias' that advances along single dimensions while neglecting intersections like multilingual calibration."
+  tension: "Existing calibration studies examine few languages, use machine-translated data, and narrow model sets. The multilingual calibration landscape is terra incognita. The implicit assumption that English-optimized final layers provide reliable confidence everywhere is shown to be fundamentally flawed."
+  key_insight: "Section 4 (layer-wise analysis): English calibration improves monotonically with depth to final layer, but non-English calibration peaks at late-intermediate layers (24-29 of 32) then DEGRADES toward the final layer. This divergence reveals English-centric bias in final-layer representations — the final layer 'overwrites' multilingual calibration signals with English-optimized patterns. Visualized dramatically in Figure 3 (heatmap showing layer-wise ECE across languages) and Figure 4 (reliability diagrams comparing Layer 29 vs final layer)."
+  argument_chain: "problem (calibration matters for trust) -> gap (multilingual calibration unexplored) -> large-scale empirical study (6 models, 100+ languages) -> finding 1 (non-English 5x worse calibration) -> finding 2 (confidence distribution patterns differ by model family) -> finding 3 (layer-wise analysis: intermediate > final for non-English) -> mechanistic insight (final layer English bias) -> solution (LACE: per-language layer ensemble) -> validation (ECE 22.44% -> 3.09%)"
+  contribution_framing: "Three explicitly numbered contributions: (1) first large-scale empirical analysis of multilingual LLM calibration across 100+ languages, (2) first layer-wise investigation of multilingual calibration discovering intermediate layer superiority, (3) novel training-free calibration methods (LACE). Each contribution uses 'first' framing to establish novelty."
+  intro_structure: "6 paragraphs: P1 (calibration definition and importance for high-stakes) -> P2 (Square One Bias: English-only calibration research) -> P3 (research gap: few languages, narrow models) -> P4 (our findings: 5x gap, intermediate layers, confidence patterns) -> P5 (methodological contributions: Best Layer, Good Layers, LACE) -> P6 (explicit numbered contribution list)"
+  notable_technique: "The 'Square One Bias' framing is rhetorically powerful — it names a meta-problem in the field (advancing one dimension while neglecting intersections) and positions the paper as addressing a systematic blind spot. Also effective: the 'hidden costs of English-centric alignment' framing in abstract and conclusion, suggesting the problem is baked into standard training, not just an oversight."
+
+figures:
+  figure_count: 14
+  figure1:
+    type: "motivation"
+    description: "Scatter plot showing resource level (% of training pages, log scale) vs Brier score on Belebele. Each point is a language, showing strong negative correlation — data-rich languages achieve better calibration. Demonstrates the systematic resource-calibration disparity."
+    narrative_role: "Establishes the core problem visually: calibration quality is tightly coupled to language resource level, making it a structural rather than incidental issue. Sets up the need for methods that address this systematic gap."
+    design_elements: ["Scatter plot with language labels", "Log-scale x-axis for resource level", "Trend line showing correlation", "Wide spread of languages from low to high resource"]
+    visual_style: "Clean scatter with labeled data points. X-axis is log-scaled resource level (% pages), Y-axis is Brier score. Languages are scattered with visible negative trend. Minimalist design with clear axis labels. Color-coded language points with legend at bottom."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "histogram"
+      what_compared: "Confidence score distributions for English vs Non-English in LLaMA3 (a) and Aya (b). English shown in blue, Non-English in orange. Vertical dashed lines for mean accuracy and confidence."
+      how_gain_highlighted: "The dramatic visual separation between English (peaked high confidence) and Non-English (spread lower confidence) distributions in LLaMA3 immediately conveys the calibration disparity. Aya shows similar distributions but both right-skewed (overconfident)."
+      design_note: "Overlapping histograms with transparency are effective for showing distributional differences. Vertical reference lines (accuracy, confidence means) provide quantitative anchors. The LLaMA3 vs Aya comparison reveals model-family-specific patterns."
+    - figure_id: "Figure 5"
+      viz_type: "forest_plot"
+      what_compared: "Average ECE with 95% confidence intervals for Final Layer, Best Layer, Good Layers, and LACE across LLaMA3 and Aya models"
+      how_gain_highlighted: "Progressive leftward movement (lower ECE) from Final Layer to LACE visually demonstrates each method's cumulative improvement. CI bars show statistical significance of improvements."
+      design_note: "Forest plot is unusual for ML papers but effective here — borrowed from meta-analysis convention, it conveys both point estimates and uncertainty. Compact representation of the method comparison hierarchy."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      dimensions_varied: ["transformer layer (x-axis)", "language (y-axis)", "ECE (color intensity)"]
+      design_note: "Dual-panel figure: top heatmaps show entropy across layers for LLaMA3 and Aya, bottom line plots show ECE across layers per language. The heatmap reveals the 'sweet spot' at late-intermediate layers where non-English ECE is minimized. The contrast between monotonically improving English (to final layer) and peaked-then-declining non-English is the paper's key visual finding."
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["language (9 languages in 3x3 grid)", "layer choice (Layer 29 'sweet spot' vs Final Layer 32)"]
+      design_note: "3x3 grid of reliability diagrams (English, Arabic, German, Hindi, Indonesian, Japanese, Korean, Spanish, Swahili). Each subplot shows grouped bars comparing Layer 29 (blue, solid) vs Layer 32 (orange, hatched). Inset text boxes show exact ECE numbers and delta. The consistent improvement across diverse languages is visually compelling. Design: solid vs hatched fill distinguishes methods within each confidence bin."
+  figure_narrative_role: "Figure 1 (motivation: resource-calibration correlation) -> Figure 2 (diagnosis: confidence distribution divergence English vs non-English) -> Figure 3 (mechanism: layer-wise heatmap revealing intermediate layer superiority) -> Figure 4 (per-language validation: reliability diagrams confirming Layer 29 > Layer 32) -> Figure 5 (solution comparison: forest plot showing LACE best) -> Figure 6+ (appendix: additional models and datasets)"
+
+tables:
+  table_count: 13
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "languages (English + 12 non-English + average)"
+    col_axis: "metrics (ECE, Brier, AUROC, Accuracy) grouped by model (LLaMA3, Aya)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "English row serves as reference point; average non-English row highlights the gap; individual language rows show variance"
+    statistical_reporting: "Point estimates per language; no confidence intervals in main table"
+    num_baselines: 2
+    design_note: "Two-model side-by-side layout enables direct comparison of English-centric (LLaMA3) vs multilingual-first (Aya) calibration patterns. The 5x ECE gap (4.61% vs 23.12%) for LLaMA3 is the table's headline number."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Calibration method (Final Layer, Best Layer, Good Layers, LACE, +Temperature Scaling, +Isotonic Regression)"]
+      variation_style: "full_numbers"
+      design_note: "Progressive improvement table: each row adds a component, showing cumulative gains. Final row (LACE + Isotonic) achieves 3.09% ECE from 22.44% baseline — a 86% relative reduction. Clear progression from simple to complex methods."
+    - table_id: "Tables 3-6"
+      what_varied: ["Model family (Mistral, Qwen2.5, Phi, DeepSeek)"]
+      variation_style: "full_numbers"
+      design_note: "Replicates Table 1 structure for four additional models, demonstrating generality of findings across model families."
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 8-13: Belebele results for all six models across 122 languages. Table 7: detailed per-language calibration statistics for LLaMA3."
+    reason: "Main text uses MMMLU (15 languages) for detailed analysis; Belebele (122 languages) in appendix provides breadth validation without overwhelming the main narrative. The 122-language tables are too large for main text."

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_plan003-random-fault-sim_20260522T070023_result.json",
     "occurrence": 1,
-    "bytes": 908,
-    "sha256": "16ed8d956006baeadba08d460fb77f1338ca0a57512af263f649788eca6f6494"
+    "bytes": 907,
+    "sha256": "f6e27959d878a33ecf06248cb82bb7be27c3e74fa640196be1c2fedd187bd2dd"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,28 @@
+paper_key: "chen2026behavioral_entanglement"
+title: "How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [Majority voting, Standard ensemble]
+  metrics:
+    - {name: "BEI (Behavioral Entanglement Index)", direction: "lower_better"}
+    - {name: "CIG (Cumulative Information Gain)", direction: "descriptive"}
+    - {name: "Spearman correlation", direction: "descriptive"}
+    - {name: "Judge precision", direction: "higher_better"}
+    - {name: "Verification accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "18 LLMs from 6 families", size: "multi-benchmark"}
+  ablation_dimensions: [model_family, task_difficulty, reweighting_strategy]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "inference only"}
+  method_family: "behavioral_correlation_analysis"
+
+positioning:
+  core_claim: "Multi-resolution BEI and CIG metrics reveal widespread behavioral entanglement; cross-family entanglement 40-60% lower than intra-family; de-entangled reweighting achieves +4.5% over majority voting"
+  key_results: "CIG correlates with judge precision degradation (ρ=0.64-0.71, p<0.01); cross-family 40-60% lower entanglement; +4.5% accuracy via reweighting"
+  limitations: ["Limited to 18 models", "Reweighting requires entanglement estimation"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

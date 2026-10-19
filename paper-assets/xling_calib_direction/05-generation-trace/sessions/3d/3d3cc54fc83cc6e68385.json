@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d3cc54fc83cc6e68385",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "fix plan001 gptqmodel api",
+  "task_key": "worker_fix_plan001_gptqmodel_api_20260521T142431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan001_gptqmodel_api_20260521T142431_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "90b441c61961c4ca777d4fb74b4d64d7888ce376552ff7b165386aae5448dbc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**gptqmodel 版本**: 7.0.0\n\n**代码修改 (4 处)**:\n1. `parse_args()`: `--quantization` 增加 `\"gptq\"` 选项\n2. `load_model()`: 新增 GPTQ 分支 — `GPTQModel.from_quantized()` 原生 API，在 multimodal 检测之前短路返回，不影响 Llama4 逻辑\n3. `get_layer_modules()`: 新增 `model.model.model.layers` 路径（GPTQModel 多包一层 wrapper）\n4. `get_final_norm()`: 新增 `model.model.model.norm` 路径\n\n**Dry run 结果**: 成功\n- MarlinLinear kernel，4 卡分布加载，94 层\n- 5 样本 en，~2.2s/样本，model_acc=1.000\n- GPU 峰值占用: ~31GB/卡（总 ~123GB），运行后已清零\n- 输出文件: layer0_en.pt (82K), layer93_en.pt (82K)\n\n**Git commit**: `3a0524e` on master"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan001-gptqmodel-api.md"
+}

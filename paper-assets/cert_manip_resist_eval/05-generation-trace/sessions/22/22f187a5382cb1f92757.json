@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan001-parallel-v2_20260522T094736_result.json",
     "occurrence": 1,
-    "bytes": 585,
-    "sha256": "9cee88eb87c9398f717c87673452d8cb2db3a2d12a3fc7b74f6b80549a60b6ab"
+    "bytes": 584,
+    "sha256": "dd1737e96f81f359bba330f5f1c9b66543ee7fdc259f6884c984765f0111661c"
   },
   "statistics": {
     "messages": 1,

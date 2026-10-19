@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91c7697ce332257b6dec",
+  "project": "xling_calib_direction",
+  "kind": "result",
+  "title": "ops llama4 validate and dryrun",
+  "task_key": "worker_ops_llama4-validate-and-dryrun_20260521T105908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama4-validate-and-dryrun_20260521T105908_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "3d918c11eb0d2dac4eb13743a6017791b9daf9f399f4dbc3e3eb1faf42051331"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **已完成**: shard 1-10, 12-13（12 个）\n- **下载中**: shard 11, 14（在 `._____temp` 目录）\n- 模型目录: `/root/autodl-tmp/models/Llama4-Scout-W4A16/RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized___w4a16/`\n\n~4.5 分钟后自动复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama4-validate-and-dryrun.md"
+}

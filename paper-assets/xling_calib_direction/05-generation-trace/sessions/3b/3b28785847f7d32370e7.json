@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "3b28785847f7d32370e7",
+  "project": "xling_calib_direction",
+  "kind": "worker",
+  "title": "ops deploy procrustes and run plan012",
+  "task_key": "worker_ops_deploy_procrustes_and_run_plan012_20260520T234634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy_procrustes_and_run_plan012_20260520T234634.log",
+    "occurrence": 1,
+    "bytes": 703683,
+    "sha256": "abe3578d2bc7c33f6b10f7a85fa7323a675fa1410db3423ee274ee345bc0bdf9"
+  },
+  "statistics": {
+    "messages": 560,
+    "user_turns": 0,
+    "tool_calls": 225,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 105,
+      "tool_call": 225,
+      "tool_result": 225,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 560,
+      "chunks": [
+        {
+          "path": "3b28785847f7d32370e7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b28785847f7d32370e7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b28785847f7d32370e7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b28785847f7d32370e7-part-0004.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-deploy-procrustes-and-run-plan012.md"
+}

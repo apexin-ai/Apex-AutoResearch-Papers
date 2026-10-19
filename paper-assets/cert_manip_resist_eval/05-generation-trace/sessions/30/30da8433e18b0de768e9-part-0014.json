@@ -3434,7 +3434,7 @@
           "content": [
             {
               "type": "text",
-              "text": "1\t{\n2\t  \"raw\": \"修改完成。\\n\\n- **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）\\n- **修改后**: `https://anonymous-nlp-2026-2:ghp_***@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）\"\n3\t}"
+              "text": "1\t{\n2\t  \"raw\": \"修改完成。\\n\\n- **修改前**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（无认证）\\n- **修改后**: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/cert_manip_resist_eval.git`（HTTPS+token）\"\n3\t}"
             }
           ],
           "metadata": {

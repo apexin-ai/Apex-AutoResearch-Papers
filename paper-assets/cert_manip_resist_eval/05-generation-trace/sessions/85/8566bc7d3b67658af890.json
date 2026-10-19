@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_appendix-wording-fix_20260523T014745_result.json",
     "occurrence": 1,
-    "bytes": 1465,
-    "sha256": "a175468c711937710a63d4a71e421790f115b8687a46da5f5aa7cdf1f73bf110"
+    "bytes": 1464,
+    "sha256": "defa176280378bc5b71e9e76e079ae9562b0191c096e2496244e237a27f2790b"
   },
   "statistics": {
     "messages": 1,

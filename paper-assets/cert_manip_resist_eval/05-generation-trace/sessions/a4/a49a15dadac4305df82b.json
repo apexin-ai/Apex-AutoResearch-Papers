@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_gpu-cleanup-and-restart_20260522T020502_result.json",
     "occurrence": 1,
-    "bytes": 609,
-    "sha256": "251355c8fa05433d8214120b5b6d9a130c79529dd0e00c5712f0e573c527620d"
+    "bytes": 608,
+    "sha256": "44dffa290ce7d461b4b7af25f47bbe5461b672686b188124a3ebe4d119e08728"
   },
   "statistics": {
     "messages": 1,

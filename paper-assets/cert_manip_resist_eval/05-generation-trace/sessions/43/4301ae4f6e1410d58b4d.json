@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_writing_threat_model_20260522T151212_result.json",
     "occurrence": 1,
-    "bytes": 377,
-    "sha256": "0b6fa3f08ef66930367178d6a31e82342f92017a16a381828645b70e2d21b911"
+    "bytes": 376,
+    "sha256": "f6e9b94b0b7bd301b8d4edf34813fd1e3b4f7d586ffb7ce60afe982b7a82a73c"
   },
   "statistics": {
     "messages": 1,

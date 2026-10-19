@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0",
+  "id": "f5d0b7e51a6089467839",
+  "project": "xling_calib_direction",
+  "kind": "worker",
+  "title": "ops cka pilot mvp",
+  "task_key": "worker_ops_cka-pilot-mvp_20260521T102442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cka-pilot-mvp_20260521T102442.log",
+    "occurrence": 1,
+    "bytes": 3468990,
+    "sha256": "b9fb97480b0e993ec9f5d20a645af365b8de27b9e43140aa8891d3d849c20d93"
+  },
+  "statistics": {
+    "messages": 3295,
+    "user_turns": 3,
+    "tool_calls": 1539,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 3,
+      "assistant": 189,
+      "tool_call": 1539,
+      "tool_result": 1539,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 962,
+      "chunks": [
+        {
+          "path": "f5d0b7e51a6089467839-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0006.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1122,
+      "chunks": [
+        {
+          "path": "f5d0b7e51a6089467839-part-0006.json",
+          "message_count": 118
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0012.json",
+          "message_count": 104
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1197,
+      "chunks": [
+        {
+          "path": "f5d0b7e51a6089467839-part-0012.json",
+          "message_count": 76
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0016.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0017.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0018.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5d0b7e51a6089467839-part-0019.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "f5d0b7e51a6089467839-part-0019.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cka-pilot-mvp.md"
+}
