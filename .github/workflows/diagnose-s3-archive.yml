@@ -1,0 +1,27 @@
+name: Diagnose slow research archive
+on:
+  workflow_dispatch:
+    inputs:
+      archive_manifest:
+        description: One source archive with an expiring object URL
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /scripts/
+          persist-credentials: false
+      - name: Prepare temporary storage
+        run: |
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc
+          python3 -m pip install --quiet pypdf
+      - name: Inspect source collection with bounded runtime
+        run: python3 scripts/diagnose_s3_archive.py
