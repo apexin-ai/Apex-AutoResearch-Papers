@@ -419,6 +419,7 @@ def persist_session(directory, session):
 
 def build_project(project):
     directory = project / "05-generation-trace"
+    (directory / 'readable').mkdir(parents=True, exist_ok=True)
     manifest = json.loads((project / "08-index/asset-manifest.json").read_text())
     entries, occurrences = [], collections.Counter()
     readable_names = collections.Counter()

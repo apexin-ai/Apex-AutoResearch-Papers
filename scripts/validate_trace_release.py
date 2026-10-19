@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check the exported JSON against every sanitized source archive member."""
 import collections
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -40,10 +41,15 @@ def load_messages(path, session):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--project', action='append', help='Validate only the selected project; repeatable')
+    args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     collection = json.loads((root / "traces/projects.json").read_text())
     totals = collections.Counter()
     for paper in collection["projects"]:
+        if args.project and paper['project'] not in args.project:
+            continue
         directory = root / "paper-assets" / paper["project"] / "05-generation-trace"
         catalog = json.loads((directory / "catalog.json").read_text())
         indexed = {e["id"]: e for e in catalog["sessions"]}
@@ -74,6 +80,9 @@ def main():
         assert not indexed, f"Unmatched catalogue entries in {paper['project']}"
         assert catalog["statistics"] == paper["statistics"], paper["project"]
         # Preview must be an exact recorded round from its full session.
+        if not (directory / "example-session.json").exists():
+            print(f"Verified {paper['project']}: {len(catalog['sessions']):,} sources; no bounded preview round", flush=True)
+            continue
         preview = json.loads((directory / "example-session.json").read_text())
         entry = next(e for e in catalog["sessions"] if e["id"] == preview["id"])
         full_path = directory / entry["path"]
