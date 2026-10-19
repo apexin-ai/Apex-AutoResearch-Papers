@@ -18,6 +18,28 @@
       }
     },
     {
+      "project": "action_cond_info_bottleneck",
+      "title": "action cond info bottleneck",
+      "catalog": "../paper-assets/action_cond_info_bottleneck/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 800,
+        "messages": 45967,
+        "user_turns": 1442,
+        "tool_calls": 17637,
+        "unparsed_lines": 316,
+        "worker": 365,
+        "result": 262,
+        "conversation": 150,
+        "history": 23
+      }
+    },
+    {
+      "project": "be-idea-gen-0515-3",
+      "title": "be idea gen 0515 3",
+      "catalog": "../paper-assets/be-idea-gen-0515-3/05-generation-trace/catalog.json",
+      "statistics": {}
+    },
+    {
       "project": "causal_annot_error_attrib",
       "title": "Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction",
       "catalog": "../paper-assets/causal_annot_error_attrib/05-generation-trace/catalog.json",
@@ -79,6 +101,22 @@
         "worker": 310,
         "conversation": 92,
         "history": 5
+      }
+    },
+    {
+      "project": "contrastive_entrain_calib",
+      "title": "The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration",
+      "catalog": "../paper-assets/contrastive_entrain_calib/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1573,
+        "messages": 119612,
+        "user_turns": 3550,
+        "tool_calls": 47503,
+        "unparsed_lines": 651,
+        "worker": 663,
+        "result": 634,
+        "conversation": 250,
+        "history": 26
       }
     },
     {

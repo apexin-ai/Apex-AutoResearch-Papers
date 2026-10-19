@@ -1,0 +1,127 @@
+{
+  "project": "contrastive_entrain_calib",
+  "code_count": 339,
+  "data_count": 940,
+  "env_count": 0,
+  "tex_count": 42,
+  "bib_count": 2,
+  "review_count": 9,
+  "validation_count": 10,
+  "contribution_count": 3,
+  "chat_count": 250,
+  "worker_count": 1297,
+  "trace_count": 1573,
+  "trace_bytes": 193107253,
+  "maintenance_count": 53,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "6e7fd6422fb54e3ac8901f2a7b46b6b8b32f1f697a8f0233ea1157c9c0402e3f",
+  "title": "The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration",
+  "pages": 13,
+  "status_marker": "Anonymous ACL submission",
+  "version_count": 27,
+  "version_paths": [
+    "docs/paper/figures/fig_framework.pdf",
+    "docs/paper/figures/fig_teaser_a.pdf",
+    "docs/paper/figures/fig_teaser_b.pdf",
+    "docs/paper/figures/fig_teaser.pdf",
+    "docs/paper/figures/fig_layer_auroc.pdf",
+    "docs/paper/figures/fig_trajectory.pdf",
+    "docs/paper/figures/fig_probe_trap.pdf",
+    "docs/paper/main.pdf",
+    "artifacts/review_round_8/submitted.pdf",
+    "artifacts/review_round_6/submitted.pdf",
+    "artifacts/review_round_9/submitted.pdf",
+    "artifacts/review_round_5/submitted.pdf",
+    "artifacts/dream_reports/dream_20260519T201849/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260519T201849/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260519T201849/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260518T110318/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260518T110318/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260518T110318/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260518T125925/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260518T125925/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260518T125925/best/paper.pdf",
+    "artifacts/review_round_7/submitted.pdf",
+    "artifacts/review_round_2/submitted.pdf",
+    "artifacts/review_round_10/submitted.pdf",
+    "artifacts/review_round_3/submitted.pdf",
+    "artifacts/review_round_4/submitted.pdf",
+    "artifacts/review_round_1/submitted.pdf"
+  ],
+  "archive_rel": "contrastive_entrain_calib/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "contrastive_entrain_calib/workspace.tar.gz",
+    "sha256": "280daf5339dd533c45eb09037630d407db8bcae29e6e0b3d7f1214143025b7e7",
+    "bytes": 424217495,
+    "etag": "\"0db6c741aa81a1ae7972a44fe26085b2-51\"",
+    "modified": "2026-05-31T17:30:16+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "42 source files; 27 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "3 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "250 conversations; 1297 worker logs/results; 1573 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "339 code/configuration files; 0 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "940 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "9 internal review records; 10 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "53 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}
