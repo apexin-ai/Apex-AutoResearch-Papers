@@ -553,7 +553,7 @@ def main():
         for summary in previous:
             if summary["project"] not in selected:
                 projects.append(summary)
-                preview = ROOT / "paper-assets" / summary["project"] / "05-generation-trace/example-session.json"
+                preview = (target / summary["catalog"]).resolve().parent / "example-session.json"
                 if preview.exists():
                     examples.append(json.loads(preview.read_text()))
         projects.sort(key=lambda p: p["project"])

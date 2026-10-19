@@ -225,6 +225,10 @@ def is_trace(rel: str, member: tarfile.TarInfo) -> bool:
 import argparse
 import datetime
 import tempfile
+import gzip
+import bz2
+import lzma
+from types import SimpleNamespace
 
 PART_SIZE = 80 * 1024**2
 EXCLUDE_NAMES = {'.env', '.env.local', '.env.production', 'credentials', 'credentials.json', 'accounts.json', 'auth.json', '.netrc', '.npmrc', '.pypirc'}
@@ -258,7 +262,7 @@ def digest(path):
 def write_csv(path, fields, rows):
     path.parent.mkdir(parents=True,exist_ok=True)
     with path.open('w',newline='',encoding='utf-8') as f:
-        w=csv.DictWriter(f,fieldnames=fields,extrasaction='ignore');w.writeheader();w.writerows(rows)
+        w=csv.DictWriter(f,fieldnames=fields,extrasaction='ignore',lineterminator='\n');w.writeheader();w.writerows(rows)
 
 
 def split_file(path):
@@ -284,7 +288,8 @@ def project_path(name, fallback):
     # Some exports store a single project directly under a workspace root.
     for anchor in ('docs','logs','task_context','artifacts','scripts','results','data','src'):
         if anchor in parts:
-            i=parts.index(anchor);return fallback,'/'.join(parts[i:])
+            i=parts.index(anchor)
+            if i==0 or (i==1 and parts[0] in {'workspace',fallback}):return fallback,'/'.join(parts[i:])
     return None,None
 
 
@@ -304,6 +309,11 @@ def classify_asset(rel):
 def sanitize_member(tf, member, target, trace=None, rel=None):
     # JSONL is handled line by line so a large conversation does not require a
     # second full in-memory copy. The temporary spool is deleted after each member.
+    if target is not None and Path(member.name).suffix.lower() in {'.tar','.zip','.gz','.tgz','.bz2','.xz'}:
+        with tempfile.NamedTemporaryFile(suffix=Path(member.name).suffix) as nested:
+            with tf.extractfile(member) as source:shutil.copyfileobj(source,nested,4*1024**2)
+            nested.flush()
+            return sanitize_nested(Path(nested.name),target)
     with tf.extractfile(member) as source:
         if trace is not None:
             with tempfile.TemporaryFile() as spool:
@@ -330,6 +340,49 @@ def sanitize_member(tf, member, target, trace=None, rel=None):
     size=target.stat().st_size;sha=digest(target)
     parts=split_file(target)
     return size, {'sha256':sha,'split':str(parts.name) if parts else None}
+
+
+def sanitize_nested(archive, target):
+    directory=target.with_name(target.name+'.contents');directory.mkdir(parents=True,exist_ok=True)
+    if sum(p.endswith('.contents') for p in directory.parts)>8:raise ValueError('Nested archive depth exceeds eight')
+    rows=[];total=0
+    def member(reader, info):
+        nonlocal total
+        rel=str(safe_rel(info.name))
+        if rel in {'.',''}:return
+        reason=''
+        if not info.isfile():reason='Non-regular archive entry'
+        elif excluded(rel):reason='Dependency, cache, runtime account directory, or Git internals'
+        elif rel.endswith(('.jsonl.lock','.json.lock','.log.lock')):reason='Runtime file lock'
+        elif Path(rel).name.lower() in EXCLUDE_NAMES:reason='Credential/account file'
+        if reason:
+            rows.append(dict(member_path=rel,source_bytes=info.size,output_bytes=0,status=reason,sha256=''));return
+        destination=directory/safe_rel(rel)
+        size,details=sanitize_member(reader,info,destination);total+=size
+        rows.append(dict(member_path=rel,source_bytes=info.size,output_bytes=size,status='Sanitized extracted copy',sha256=details['sha256']))
+    if zipfile.is_zipfile(archive):
+        with zipfile.ZipFile(archive) as z:
+            class Reader:
+                def extractfile(self,info):return z.open(info.name)
+            for info in z.infolist():
+                # ZIP symlinks are recorded but never followed.
+                mode=(info.external_attr>>16)&0o170000
+                m=SimpleNamespace(name=info.filename,size=info.file_size,isfile=lambda i=info,m=mode:not i.is_dir() and m!=0o120000)
+                member(Reader(),m)
+    elif tarfile.is_tarfile(archive):
+        with tarfile.open(archive,'r|*') as t:
+            for info in t:
+                if not info.isdir():member(t,info)
+    else:
+        suffix=target.suffix.lower();opener={'.gz':gzip.open,'.bz2':bz2.open,'.xz':lzma.open}.get(suffix)
+        if opener is None:raise ValueError('Unsupported or invalid nested archive: '+target.name)
+        class Reader:
+            def extractfile(self,info):return opener(archive,'rb')
+        m=SimpleNamespace(name=target.stem,size=archive.stat().st_size,isfile=lambda:True)
+        member(Reader(),m)
+    write_csv(directory/'extraction-manifest.csv',['member_path','source_bytes','output_bytes','status','sha256'],rows)
+    (directory/'README.md').write_text('# Sanitized archive contents\n\nThese files were extracted without executing code. Original archive members and exclusions are listed in [the manifest](extraction-manifest.csv). Source archive SHA-256: `'+digest(archive)+'`.\n')
+    return total,{'sha256':digest(archive),'split':None,'storage':'sanitized-archive-contents'}
 
 
 def paper_metadata(path, fallback):
@@ -368,7 +421,7 @@ def criteria(info):
 
 
 def finish(profile, archive_key, meta, archive_sha, repo):
-    pdir=profile.pop('_dir');profile.pop('_trace').close();rows=profile.pop('_rows');exclusions=profile.pop('_exclusions')
+    pdir=profile.pop('_dir');previous=profile.pop('_previous',{});profile.pop('_trace').close();rows=profile.pop('_rows');exclusions=profile.pop('_exclusions')
     papers=[r for r in rows if r['category']=='01-manuscript' and r['archive_path'].lower().endswith('.pdf')]
     candidates=sorted(papers,key=lambda r:(r['archive_path']!='docs/paper/main.pdf', not r['archive_path'].endswith('main.pdf'),'archive' in r['archive_path'],len(r['archive_path'])))
     profile['paper_pdf']=None;profile['paper_sha256']='';profile['title']=profile['project'].replace('_',' ').replace('-',' ');profile['pages']=0;profile['status_marker']=''
@@ -380,6 +433,9 @@ def finish(profile, archive_key, meta, archive_sha, repo):
             profile['title'],profile['pages'],profile['status_marker']=paper_metadata(src,profile['title'])
     profile.update(version_count=len(papers),version_paths=[r['archive_path'] for r in papers],archive_rel=archive_key,archive_note='Archive scan completed',archive_error=None,source_s3={'bucket':'agent-ml-research-project-backups-20260531','key':archive_key,'sha256':archive_sha,**meta})
     profile['academic_record']={'date':meta.get('modified','2026-10-19')[:10],'record':'Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.'}
+    if previous.get('paper_sha256')==profile.get('paper_sha256') and profile.get('paper_sha256'):
+        profile['title']=previous.get('title',profile['title'])
+        profile['academic_record']=previous.get('academic_record',profile['academic_record'])
     profile['criteria']=criteria(profile)
     fields=['category','archive_path','member_path','source_bytes','output_path','output_bytes','sha256','storage']
     write_csv(pdir/'08-index/asset-manifest.csv',fields,rows)
@@ -399,7 +455,7 @@ def write_project_readme(pdir, info):
     for r in info['criteria']:lines.append('| '+' | '.join(str(r[k]).replace('|','\\|') for k in ('name','status','evidence','gap'))+' |')
     lines+=['','## What each directory contains','']
     lines += [f'- `{k}/`: {v}' for k,v in CATEGORIES.items()]
-    lines+=['','## Source and scope','',f"Source: `s3://agent-ml-research-project-backups-20260531/{s['archive_rel']}`. Archive SHA-256: `{s['source_s3']['sha256']}`.",'',f"{s['code_count']:,} code/configuration files; {s['data_count']:,} data/result files; {s['trace_count']:,} trace sources. The selected manuscript has {s['pages']} pages; {s['version_count']} PDF candidates are indexed.",'','Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).','', 'Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.','']
+    lines+=['','## Source and scope','',f"Source: `s3://agent-ml-research-project-backups-20260531/{s['archive_rel']}`. Archive SHA-256 (derived archive for export snapshots): `{s['source_s3'].get('sha256') or s.get('derived_archive_sha256', 'not recorded')}`.",'',f"{s['code_count']:,} code/configuration files; {s['data_count']:,} data/result files; {s['trace_count']:,} trace sources. The selected manuscript has {s['pages']} pages; {s['version_count']} PDF candidates are indexed.",'','Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).','', 'Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.','']
     if not info['paper_pdf']:lines[4]=lines[4].replace('[Manuscript](01-manuscript/paper.pdf) · ','');lines+=['No manuscript PDF was found in this project snapshot.','']
     (pdir/'README.md').write_text('\n'.join(lines))
 
@@ -412,19 +468,22 @@ def collect(archive, repo, archive_key, metadata=None):
         for member in tf:
             project,rel=project_path(member.name,fallback)
             if not project or not rel:continue
-            if project.startswith(('__','idea_gen_')):continue
+            if project.startswith(('.','_','idea_gen_')):continue
             if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*',project):raise ValueError('Unsafe project name')
             if project not in profiles:
                 pdir=repo/'paper-assets'/project
+                previous = json.loads((pdir/'08-index/asset-manifest.json').read_text()) if (pdir/'08-index/asset-manifest.json').exists() else {}
                 if pdir.exists():shutil.rmtree(pdir)
                 for cat in CATEGORIES:(pdir/cat).mkdir(parents=True,exist_ok=True)
-                profiles[project]=dict(project=project,_dir=pdir,_trace=tarfile.open(pdir/'05-generation-trace/trace-files.tar.gz','w:gz',compresslevel=4),_rows=[],_exclusions=[],**{k:0 for k in ['code_count','data_count','env_count','tex_count','bib_count','review_count','validation_count','contribution_count','chat_count','worker_count','trace_count','trace_bytes','maintenance_count','provenance_count','submission_count','license_count']})
+                profiles[project]=dict(project=project,_previous=previous,_dir=pdir,_trace=tarfile.open(pdir/'05-generation-trace/trace-files.tar.gz','w:gz',compresslevel=4),_rows=[],_exclusions=[],**{k:0 for k in ['code_count','data_count','env_count','tex_count','bib_count','review_count','validation_count','contribution_count','chat_count','worker_count','trace_count','trace_bytes','maintenance_count','provenance_count','submission_count','license_count']})
             p=profiles[project]
             reason=''
             if not member.isfile():
                 if not member.isdir():reason='Non-regular archive entry'
                 else:continue
             elif excluded(rel):reason='Dependency, cache, runtime account directory, or Git internals'
+            elif rel.endswith(('.jsonl.lock','.json.lock','.log.lock')):reason='Runtime file lock'
+            elif Path(rel).suffix.lower()=='.7z':reason='Unsupported nested archive format; original retained in S3'
             elif Path(rel).name.lower() in EXCLUDE_NAMES or re.search(r'(?:^|/)(?:id_rsa|id_ed25519|.*credentials.*|.*accounts.*)(?:\.[^/]*)?$',rel,re.I):reason='Account or credential file'
             if reason:
                 p['_exclusions'].append(dict(member_path=member.name,source_bytes=member.size,reason=reason));continue
@@ -439,14 +498,14 @@ def collect(archive, repo, archive_key, metadata=None):
                     n=2
                     while target.with_name(target.stem+f'-archive-copy-{n}'+target.suffix).exists():n+=1
                     target=target.with_name(target.stem+f'-archive-copy-{n}'+target.suffix)
-                size,details=sanitize_member(tf,member,target);out=str(target.relative_to(p['_dir']))
+                size,details=sanitize_member(tf,member,target);out=str(target.relative_to(p['_dir']))+(('.contents') if details and details.get('storage')=='sanitized-archive-contents' else '')
                 if category=='03-code':p['code_count']+=1;p['env_count']+=int(path.name.lower() in ENV_NAMES)
                 if category=='04-experiments':p['data_count']+=1
                 if category=='01-manuscript':p['tex_count']+=int(path.suffix.lower() in {'.tex','.bib','.bst','.sty','.cls'});p['bib_count']+=int(path.suffix.lower()=='.bib')
                 if category=='02-contributions':p['contribution_count']+=1
                 if category=='06-validation':p['review_count']+=int(is_review(rel));p['validation_count']+=int(not is_review(rel))
                 if category=='07-maintenance':p['maintenance_count']+=1;p['license_count']+=int(path.name.lower().startswith('license'));p['provenance_count']+=int('provenance' in path.name.lower())
-            p['_rows'].append(dict(category=category,archive_path=rel,member_path=member.name,source_bytes=member.size,output_path=out,output_bytes=size,sha256=details['sha256'] if details else '',storage='split-parts' if details and details['split'] else 'sanitized-trace-archive' if category=='05-generation-trace' else 'file'))
+            p['_rows'].append(dict(category=category,archive_path=rel,member_path=member.name,source_bytes=member.size,output_path=out,output_bytes=size,sha256=details['sha256'] if details else '',storage=details['storage'] if details and details.get('storage') else 'split-parts' if details and details['split'] else 'sanitized-trace-archive' if category=='05-generation-trace' else 'file'))
             counts[project]+=1
             if sum(counts.values())%1000==0:print(json.dumps({'archive':archive_key,'collected_files':sum(counts.values()),'projects':list(profiles)}),flush=True)
     result=[]
@@ -455,5 +514,8 @@ def collect(archive, repo, archive_key, metadata=None):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('archive',type=Path);parser.add_argument('--repo',type=Path,default=ROOT);parser.add_argument('--source-key',required=True)
-    args=parser.parse_args();print(json.dumps(collect(args.archive,args.repo,args.source_key),indent=2))
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('archive',type=Path);parser.add_argument('--repo',type=Path,default=ROOT);parser.add_argument('--source-key',required=True);parser.add_argument('--source-metadata-json',type=Path);parser.add_argument('--result-json',type=Path)
+    args=parser.parse_args();metadata=json.loads(args.source_metadata_json.read_text()) if args.source_metadata_json else {}
+    result=collect(args.archive,args.repo,args.source_key,metadata)
+    if args.result_json:args.result_json.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+    else:print(json.dumps(result,indent=2))

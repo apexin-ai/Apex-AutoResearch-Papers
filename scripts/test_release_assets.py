@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Safety and completeness checks for the streaming archive collector."""
-import io, json, tempfile, tarfile, unittest
+import io, json, tempfile, tarfile, unittest, zipfile, gzip
 from pathlib import Path
 import release_assets as a
 from pypdf import PdfWriter
@@ -10,6 +10,23 @@ class ReleaseAssetTests(unittest.TestCase):
         for path in ['/absolute/file','project/../../escape']:
             with self.assertRaises(ValueError):a.safe_rel(path)
         self.assertEqual(a.safe_rel('scripts/run.py'),Path('scripts/run.py'))
+    def test_nested_archives_are_sanitized(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);path=root/'bundle.zip'
+            with zipfile.ZipFile(path,'w') as f:
+                f.writestr('code/run.py','print("retained")')
+                f.writestr('.env','PRIVATE_DATA=secret')
+                f.writestr('config.json','{"api_key":"synthetic-sensitive-value"}')
+            _,info=a.sanitize_nested(path,root/'release.zip')
+            self.assertEqual(info['storage'],'sanitized-archive-contents')
+            out=root/'release.zip.contents'
+            self.assertTrue((out/'code/run.py').exists());self.assertFalse((out/'.env').exists())
+            self.assertNotIn('synthetic-sensitive-value',(out/'config.json').read_text())
+            with zipfile.ZipFile(root/'traversal.zip','w') as f:f.writestr('../../escape','bad')
+            with self.assertRaises(ValueError):a.sanitize_nested(root/'traversal.zip',root/'out.zip')
+            with gzip.open(root/'metrics.csv.gz','wb') as f:f.write(b'seed,score\n1,0.7\n')
+            a.sanitize_nested(root/'metrics.csv.gz',root/'output.csv.gz')
+            self.assertEqual((root/'output.csv.gz.contents/output.csv').read_text(),'seed,score\n1,0.7\n')
     def test_archive_order_and_redaction(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td);archive=root/'workspace.tar.gz';repo=root/'repo';repo.mkdir()

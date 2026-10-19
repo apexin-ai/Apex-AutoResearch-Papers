@@ -50,7 +50,7 @@ def main():
     for paper in collection["projects"]:
         if args.project and paper['project'] not in args.project:
             continue
-        directory = root / "paper-assets" / paper["project"] / "05-generation-trace"
+        directory = (root / "traces" / paper["catalog"]).resolve().parent
         catalog = json.loads((directory / "catalog.json").read_text())
         indexed = {e["id"]: e for e in catalog["sessions"]}
         occurrences = collections.Counter()
