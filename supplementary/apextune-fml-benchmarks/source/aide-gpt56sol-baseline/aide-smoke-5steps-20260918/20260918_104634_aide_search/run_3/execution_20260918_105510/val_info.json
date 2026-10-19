@@ -1,0 +1,42 @@
+{
+  "compas": {
+    "means": {
+      "cls_acc_mean": 0.6568421052631579,
+      "balanced_cls_acc_mean": 0.6671350313033579,
+      "disparate_impact_mean": 0.9113924050632911,
+      "abs_disparate_impact_diff_mean": 0.08860759493670889,
+      "eod_mean": -0.04091954022988509,
+      "abs_eod_mean": 0.04091954022988509,
+      "aod_mean": 0.006387892026837261,
+      "abs_aod_mean": 0.006387892026837261,
+      "theil_index_mean": 0.13141874598581013,
+      "abs_theil_index_mean": 0.13141874598581013,
+      "constraint_violated": false
+    },
+    "stderrs": {
+      "cls_acc_stderr": 0.0,
+      "balanced_cls_acc_stderr": 0.0,
+      "disparate_impact_stderr": 0.0,
+      "abs_disparate_impact_diff_stderr": 0.0,
+      "eod_stderr": 0.0,
+      "abs_eod_stderr": 0.0,
+      "aod_stderr": 0.0,
+      "abs_aod_stderr": 0.0,
+      "theil_index_stderr": 0.0,
+      "abs_theil_index_stderr": 0.0
+    },
+    "final_info_dict": {
+      "cls_acc": 0.6568421052631579,
+      "balanced_cls_acc": 0.6671350313033579,
+      "disparate_impact": 0.9113924050632911,
+      "abs_disparate_impact_diff": 0.08860759493670889,
+      "eod": -0.04091954022988509,
+      "abs_eod": 0.04091954022988509,
+      "aod": 0.006387892026837261,
+      "abs_aod": 0.006387892026837261,
+      "theil_index": 0.13141874598581013,
+      "abs_theil_index": 0.13141874598581013,
+      "constraint_violated": false
+    }
+  }
+}

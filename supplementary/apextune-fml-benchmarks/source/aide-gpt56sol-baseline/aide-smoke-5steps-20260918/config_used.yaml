@@ -1,0 +1,30 @@
+agent:
+  aide:
+    debug_prob: 0.5
+    execute_timeout: 2400
+    max_debug_depth: 3
+    max_stderr_output: 1500
+    max_steps: 5
+    num_drafts: 5
+  model: gpt-5.6-sol
+  provider: OpenAI
+  type: aide
+benchmark:
+  name: Fairness_and_Bias_aif360
+metrics:
+  include_datasets:
+  - compas
+  include_metrics:
+  - abs_aod_mean
+  optimization_direction: null
+  per_metric_direction:
+    abs_aod_mean: lower
+    abs_disparate_impact_diff_mean: lower
+    abs_eod_mean: lower
+    abs_theil_index_mean: lower
+    aod_mean: null
+    balanced_cls_acc_mean: higher
+    cls_acc_mean: higher
+    disparate_impact_mean: null
+    eod_mean: null
+    theil_index_mean: null

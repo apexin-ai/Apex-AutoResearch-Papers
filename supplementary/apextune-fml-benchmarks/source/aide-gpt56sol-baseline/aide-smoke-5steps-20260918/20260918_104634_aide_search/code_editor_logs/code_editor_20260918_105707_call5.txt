@@ -1,0 +1,831 @@
+============================================================
+CodeEditor Call #5
+Timestamp: 20260918_105707
+Model: gpt-5.6-sol
+============================================================
+
+--- PROMPT ---
+## Task Context
+You are an ambitious AI PhD student focused on improving fairness-aware learning with AIF360’s Adversarial Debiasing on the COMPAS dataset.
+You are working with AIF360’s Adversarial Debiasing (classifier–adversary) as the baseline on the COMPAS dataset to evaluate the fairness–accuracy trade-off. Your goal is to minimize absolute Average Odds Difference toward parity (=0) while maintaining or improving Accuracy on held-out test splits and across protected subgroups (e.g., sex/race). You should enhance the baseline Adversarial Debiasing algorithm, but you may also propose entirely new fairness methods if they better support reduced absolute Average Odds Difference without sacrificing Accuracy. You are allowed to refine the classifier and adversary networks and the training pipeline, provided comparisons remain fair to the original setup (similar capacity, training budget, and data access). The priority is minimizing absolute Average Odds Difference while preserving or improving Accuracy. Important constraint: your solution must maintain classification accuracy within 1% of the baseline. If accuracy drops more than 1% below the baseline, your fairness improvements will not be counted and baseline fairness metrics will be reported instead.
+
+You are evaluated on a validation set during development. Your final performance will be measured on a separate held-out test set that you do not have access to. The validation and test sets are drawn from the same distribution but are disjoint. Use the validation results to guide your research, but be mindful that overfitting to the validation set will not improve test performance.
+
+## Optimization Target
+Metric: abs_aod_mean (lower is better)
+
+## Target files (return COMPLETE modified content):
+
+### FILE: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360/aif360/algorithms/inprocessing/adversarial_debiasing.py
+```python
+import numpy as np
+
+try:
+    import tensorflow.compat.v1 as tf
+except ImportError as error:
+    from logging import warning
+    warning("{}: AdversarialDebiasing will be unavailable. To install, run:\n"
+            "pip install 'aif360[AdversarialDebiasing]'".format(error))
+
+from aif360.algorithms import Transformer
+
+
+class AdversarialDebiasing(Transformer):
+    """Adversarial debiasing is an in-processing technique that learns a
+    classifier to maximize prediction accuracy and simultaneously reduce an
+    adversary's ability to determine the protected attribute from the
+    predictions [5]_. This approach leads to a fair classifier as the
+    predictions cannot carry any group discrimination information that the
+    adversary can exploit.
+
+    References:
+        .. [5] B. H. Zhang, B. Lemoine, and M. Mitchell, "Mitigating Unwanted
+           Biases with Adversarial Learning," AAAI/ACM Conference on Artificial
+           Intelligence, Ethics, and Society, 2018.
+    """
+
+    def __init__(self,
+                 unprivileged_groups,
+                 privileged_groups,
+                 scope_name,
+                 sess,
+                 seed=None,
+                 adversary_loss_weight=0.1,
+                 num_epochs=50,
+                 batch_size=128,
+                 classifier_num_hidden_units=200,
+                 debias=True):
+        """
+        Args:
+            unprivileged_groups (tuple): Representation for unprivileged groups
+            privileged_groups (tuple): Representation for privileged groups
+            scope_name (str): scope name for the tenforflow variables
+            sess (tf.Session): tensorflow session
+            seed (int, optional): Seed to make `predict` repeatable.
+            adversary_loss_weight (float, optional): Hyperparameter that chooses
+                the strength of the adversarial loss.
+            num_epochs (int, optional): Number of training epochs.
+            batch_size (int, optional): Batch size.
+            classifier_num_hidden_units (int, optional): Number of hidden units
+                in the classifier model.
+            debias (bool, optional): Learn a classifier with or without
+                debiasing.
+        """
+        super(AdversarialDebiasing, self).__init__(
+            unprivileged_groups=unprivileged_groups,
+            privileged_groups=privileged_groups)
+
+        self.scope_name = scope_name
+        self.seed = seed
+
+        self.unprivileged_groups = unprivileged_groups
+        self.privileged_groups = privileged_groups
+        if len(self.unprivileged_groups) > 1 or len(self.privileged_groups) > 1:
+            raise ValueError("Only one unprivileged_group or privileged_group supported.")
+        self.protected_attribute_name = list(self.unprivileged_groups[0].keys())[0]
+
+        self.sess = sess
+        self.adversary_loss_weight = adversary_loss_weight
+        self.num_epochs = num_epochs
+        self.batch_size = batch_size
+        self.classifier_num_hidden_units = classifier_num_hidden_units
+        self.debias = debias
+
+        self.features_dim = None
+        self.features_ph = None
+        self.protected_attributes_ph = None
+        self.true_labels_ph = None
+        self.pred_labels = None
+
+    def _classifier_model(self, features, features_dim, keep_prob):
+        """Compute the classifier predictions for the outcome variable.
+        """
+        with tf.variable_scope("classifier_model"):
+            W1 = tf.get_variable('W1', [features_dim, self.classifier_num_hidden_units],
+                                  initializer=tf.initializers.glorot_uniform(seed=self.seed1))
+            b1 = tf.Variable(tf.zeros(shape=[self.classifier_num_hidden_units]), name='b1')
+
+            h1 = tf.nn.relu(tf.matmul(features, W1) + b1)
+            h1 = tf.nn.dropout(h1, keep_prob=keep_prob, seed=self.seed2)
+
+            W2 = tf.get_variable('W2', [self.classifier_num_hidden_units, 1],
+                                 initializer=tf.initializers.glorot_uniform(seed=self.seed3))
+            b2 = tf.Variable(tf.zeros(shape=[1]), name='b2')
+
+            pred_logit = tf.matmul(h1, W2) + b2
+            pred_label = tf.sigmoid(pred_logit)
+
+        return pred_label, pred_logit
+
+    def _adversary_model(self, pred_logits, true_labels):
+        """Compute the adversary predictions for the protected attribute.
+        """
+        with tf.variable_scope("adversary_model"):
+            c = tf.get_variable('c', initializer=tf.constant(1.0))
+            s = tf.sigmoid((1 + tf.abs(c)) * pred_logits)
+
+            W2 = tf.get_variable('W2', [3, 1],
+                                 initializer=tf.initializers.glorot_uniform(seed=self.seed4))
+            b2 = tf.Variable(tf.zeros(shape=[1]), name='b2')
+
+            pred_protected_attribute_logit = tf.matmul(tf.concat([s, s * true_labels, s * (1.0 - true_labels)], axis=1), W2) + b2
+            pred_protected_attribute_label = tf.sigmoid(pred_protected_attribute_logit)
+
+        return pred_protected_attribute_label, pred_protected_attribute_logit
+
+    def fit(self, dataset):
+        """Compute the model parameters of the fair classifier using gradient
+        descent.
+
+        Args:
+            dataset (BinaryLabelDataset): Dataset containing true labels.
+
+        Returns:
+            AdversarialDebiasing: Returns self.
+        """
+        if tf.executing_eagerly():
+            raise RuntimeError("AdversarialDebiasing does not work in eager "
+                    "execution mode. To fix, add `tf.disable_eager_execution()`"
+                    " to the top of the calling script.")
+
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        ii32 = np.iinfo(np.int32)
+        self.seed1, self.seed2, self.seed3, self.seed4 = np.random.randint(ii32.min, ii32.max, size=4)
+
+        # Map the dataset labels to 0 and 1.
+        temp_labels = dataset.labels.copy()
+
+        temp_labels[(dataset.labels == dataset.favorable_label).ravel(),0] = 1.0
+        temp_labels[(dataset.labels == dataset.unfavorable_label).ravel(),0] = 0.0
+
+        with tf.variable_scope(self.scope_name):
+            num_train_samples, self.features_dim = np.shape(dataset.features)
+
+            # Setup placeholders
+            self.features_ph = tf.placeholder(tf.float32, shape=[None, self.features_dim])
+            self.protected_attributes_ph = tf.placeholder(tf.float32, shape=[None,1])
+            self.true_labels_ph = tf.placeholder(tf.float32, shape=[None,1])
+            self.keep_prob = tf.placeholder(tf.float32)
+
+            # Obtain classifier predictions and classifier loss
+            self.pred_labels, pred_logits = self._classifier_model(self.features_ph, self.features_dim, self.keep_prob)
+            pred_labels_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=self.true_labels_ph, logits=pred_logits))
+
+            if self.debias:
+                # Obtain adversary predictions and adversary loss
+                pred_protected_attributes_labels, pred_protected_attributes_logits = self._adversary_model(pred_logits, self.true_labels_ph)
+                pred_protected_attributes_loss = tf.reduce_mean(
+                    tf.nn.sigmoid_cross_entropy_with_logits(labels=self.protected_attributes_ph, logits=pred_protected_attributes_logits))
+
+            # Setup optimizers with learning rates
+            global_step = tf.Variable(0, trainable=False)
+            starter_learning_rate = 0.001
+            learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,
+                                                       1000, 0.96, staircase=True)
+            classifier_opt = tf.train.AdamOptimizer(learning_rate)
+            if self.debias:
+                adversary_opt = tf.train.AdamOptimizer(learning_rate)
+
+            classifier_vars = [var for var in tf.trainable_variables(scope=self.scope_name) if 'classifier_model' in var.name]
+            if self.debias:
+                adversary_vars = [var for var in tf.trainable_variables(scope=self.scope_name) if 'adversary_model' in var.name]
+                # Update classifier parameters
+                adversary_grads = {var: grad for (grad, var) in adversary_opt.compute_gradients(pred_protected_attributes_loss,
+                                                                                      var_list=classifier_vars)}
+            normalize = lambda x: x / (tf.norm(x) + np.finfo(np.float32).tiny)
+
+            classifier_grads = []
+            for (grad,var) in classifier_opt.compute_gradients(pred_labels_loss, var_list=classifier_vars):
+                if self.debias:
+                    unit_adversary_grad = normalize(adversary_grads[var])
+                    grad -= tf.reduce_sum(grad * unit_adversary_grad) * unit_adversary_grad
+                    grad -= self.adversary_loss_weight * adversary_grads[var]
+                classifier_grads.append((grad, var))
+            classifier_minimizer = classifier_opt.apply_gradients(classifier_grads, global_step=global_step)
+
+            if self.debias:
+                # Update adversary parameters
+                with tf.control_dependencies([classifier_minimizer]):
+                    adversary_minimizer = adversary_opt.minimize(pred_protected_attributes_loss, var_list=adversary_vars)#, global_step=global_step)
+
+            self.sess.run(tf.global_variables_initializer())
+            self.sess.run(tf.local_variables_initializer())
+
+            # Begin training
+            for epoch in range(self.num_epochs):
+                shuffled_ids = np.random.choice(num_train_samples, num_train_samples, replace=False)
+                for i in range(num_train_samples//self.batch_size):
+                    batch_ids = shuffled_ids[self.batch_size*i: self.batch_size*(i+1)]
+                    batch_features = dataset.features[batch_ids]
+                    batch_labels = np.reshape(temp_labels[batch_ids], [-1,1])
+                    batch_protected_attributes = np.reshape(dataset.protected_attributes[batch_ids][:,
+                                                 dataset.protected_attribute_names.index(self.protected_attribute_name)], [-1,1])
+
+                    batch_feed_dict = {self.features_ph: batch_features,
+                                       self.true_labels_ph: batch_labels,
+                                       self.protected_attributes_ph: batch_protected_attributes,
+                                       self.keep_prob: 0.8}
+                    if self.debias:
+                        _, _, pred_labels_loss_value, pred_protected_attributes_loss_vale = self.sess.run([classifier_minimizer,
+                                       adversary_minimizer,
+                                       pred_labels_loss,
+                                       pred_protected_attributes_loss], feed_dict=batch_feed_dict)
+                        if i % 200 == 0:
+                            print("epoch %d; iter: %d; batch classifier loss: %f; batch adversarial loss: %f" % (epoch, i, pred_labels_loss_value,
+                                                                                     pred_protected_attributes_loss_vale))
+                    else:
+                        _, pred_labels_loss_value = self.sess.run(
+                            [classifier_minimizer,
+                             pred_labels_loss], feed_dict=batch_feed_dict)
+                        if i % 200 == 0:
+                            print("epoch %d; iter: %d; batch classifier loss: %f" % (
+                            epoch, i, pred_labels_loss_value))
+        return self
+
+    def predict(self, dataset):
+        """Obtain the predictions for the provided dataset using the fair
+        classifier learned.
+
+        Args:
+            dataset (BinaryLabelDataset): Dataset containing labels that needs
+                to be transformed.
+        Returns:
+            dataset (BinaryLabelDataset): Transformed dataset.
+        """
+
+        if self.seed is not None:
+            np.random.seed(self.seed)
+
+        num_test_samples, _ = np.shape(dataset.features)
+
+        samples_covered = 0
+        pred_labels = []
+        while samples_covered < num_test_samples:
+            start = samples_covered
+            end = samples_covered + self.batch_size
+            if end > num_test_samples:
+                end = num_test_samples
+            batch_ids = np.arange(start, end)
+            batch_features = dataset.features[batch_ids]
+            batch_labels = np.reshape(dataset.labels[batch_ids], [-1,1])
+            batch_protected_attributes = np.reshape(dataset.protected_attributes[batch_ids][:,
+                                         dataset.protected_attribute_names.index(self.protected_attribute_name)], [-1,1])
+
+            batch_feed_dict = {self.features_ph: batch_features,
+                               self.true_labels_ph: batch_labels,
+                               self.protected_attributes_ph: batch_protected_attributes,
+                               self.keep_prob: 1.0}
+
+            pred_labels += self.sess.run(self.pred_labels, feed_dict=batch_feed_dict)[:,0].tolist()
+            samples_covered += len(batch_features)
+
+        # Mutated, fairer dataset with new labels
+        dataset_new = dataset.copy(deepcopy = True)
+        dataset_new.scores = np.array(pred_labels, dtype=np.float64).reshape(-1, 1)
+        dataset_new.labels = (np.array(pred_labels)>0.5).astype(np.float64).reshape(-1,1)
+
+
+        # Map the dataset labels to back to their original values.
+        temp_labels = dataset_new.labels.copy()
+
+        temp_labels[(dataset_new.labels == 1.0).ravel(), 0] = dataset.favorable_label
+        temp_labels[(dataset_new.labels == 0.0).ravel(), 0] = dataset.unfavorable_label
+
+        dataset_new.labels = temp_labels.copy()
+
+        return dataset_new
+
+```
+
+## Instruction:
+You are an expert ML researcher. Your goal is to improve the ML algorithm to achieve better performance.
+
+## Baseline results
+Baseline: abs_aod_mean = 0.2657268424611224 (lower is better)
+
+## Memory of previous attempts
+Plan: You are an expert ML researcher. Your goal is to improve the ML algorithm to achieve better performance.
+
+## Baseline results
+Baseline: abs_aod_mean = 0.2657268424611224 (lower is better)
+
+## Memory of previous attempts
+(No successful attempts yet.)
+
+## Instructions
+Propose a novel approach that dif
+Analysis: No execution bug is evident, and the proposed approach substantially improved fairness: `abs_aod_mean` decreased from `0.2657` to `0.0409`, a reduction of approximately 84.6%. However, accuracy results are missing, so it is not possible to verify the required constraint that accuracy remains within 1% of the baseline; the result should therefore be considered provisional until overall and subgroup test/validation accuracies are reported.
+abs_aod_mean: 0.040876371768866715
+-------------------------------
+Plan: You are an expert ML researcher. Your goal is to improve the ML algorithm to achieve better performance.
+
+## Baseline results
+Baseline: abs_aod_mean = 0.2657268424611224 (lower is better)
+
+## Memory of previous attempts
+Plan: You are an expert ML researcher. Your goal is to improve the ML algorithm 
+Analysis: No execution bug is evident: the run completed successfully and reproduced the baseline `abs_aod_mean` exactly at `0.2657268424611224`. However, the result shows no fairness improvement over the baseline, and no accuracy metrics were provided, so compliance with the within-1% accuracy constraint cannot be verified.
+abs_aod_mean: 0.2657268424611224
+-------------------------------
+Plan: You are an expert ML researcher. Your goal is to improve the ML algorithm to achieve better performance.
+
+## Baseline results
+Baseline: abs_aod_mean = 0.2657268424611224 (lower is better)
+
+## Memory of previous attempts
+Plan: You are an expert ML researcher. Your goal is to improve the ML algorithm 
+Analysis: Execution succeeded, and validation `abs_aod_mean` improved from `0.2657` to `0.0583`, a roughly 78% reduction toward parity. However, Accuracy was not reported, so the required constraint of staying within 1 percentage point of baseline cannot be verified; this is an evaluation/reporting bug, and the fix is to log baseline and enhanced-model Accuracy on the same split and apply the fallback to baseline fairness metrics whenever the drop exceeds 1%.
+abs_aod_mean: 0.05827118115150573
+-------------------------------
+Plan: You are an expert ML researcher. Your goal is to improve the ML algorithm to achieve better performance.
+
+## Baseline results
+Baseline: abs_aod_mean = 0.2657268424611224 (lower is better)
+
+## Memory of previous attempts
+Plan: You are an expert ML researcher. Your goal is to improve the ML algorithm 
+Analysis: The reported `abs_aod_mean` improved dramatically from `0.26573` to `0.00639`, suggesting near parity. However, the execution output omits baseline and candidate accuracy, so it cannot verify the mandatory constraint that accuracy remains within 1% of baseline; a degenerate or near-constant classifier could produce excellent Average Odds Difference while destroying utility.
+
+Fix the evaluator to report held-out baseline/candidate accuracy, subgroup confusion rates, and the raw signed AOD, then a
+abs_aod_mean: 0.006387892026837261
+
+## Instructions
+Propose a novel approach that differs from previous attempts (listed in Memory). Make targeted changes to improve the metric. Keep the changes minimal and focused on a single idea.
+
+## Implementation guidelines
+- Write complete, self-contained code. Do not skip sections or leave placeholders.
+- Do not add additional command line arguments.
+- Ensure the code runs without errors.
+- Do not modify files other than the target files shown above.
+
+## Output Format
+
+
+For small target files, return the COMPLETE modified file using this format:
+### FILE: <filepath>
+```python
+<complete file content>
+```
+
+Important:
+- Use the exact file paths shown above.
+- Ensure all code is syntactically valid Python.
+- Do not add explanations outside the specified format.
+
+--- RESPONSE ---
+### FILE: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360/aif360/algorithms/inprocessing/adversarial_debiasing.py
+```python
+import numpy as np
+
+try:
+    import tensorflow.compat.v1 as tf
+except ImportError as error:
+    from logging import warning
+    warning("{}: AdversarialDebiasing will be unavailable. To install, run:\n"
+            "pip install 'aif360[AdversarialDebiasing]'".format(error))
+
+from aif360.algorithms import Transformer
+
+
+class AdversarialDebiasing(Transformer):
+    """Adversarial debiasing is an in-processing technique that learns a
+    classifier to maximize prediction accuracy and simultaneously reduce an
+    adversary's ability to determine the protected attribute from the
+    predictions [5]_. This approach leads to a fair classifier as the
+    predictions cannot carry any group discrimination information that the
+    adversary can exploit.
+
+    References:
+        .. [5] B. H. Zhang, B. Lemoine, and M. Mitchell, "Mitigating Unwanted
+           Biases with Adversarial Learning," AAAI/ACM Conference on Artificial
+           Intelligence, Ethics, and Society, 2018.
+    """
+
+    def __init__(self,
+                 unprivileged_groups,
+                 privileged_groups,
+                 scope_name,
+                 sess,
+                 seed=None,
+                 adversary_loss_weight=0.1,
+                 num_epochs=50,
+                 batch_size=128,
+                 classifier_num_hidden_units=200,
+                 debias=True):
+        """
+        Args:
+            unprivileged_groups (tuple): Representation for unprivileged groups
+            privileged_groups (tuple): Representation for privileged groups
+            scope_name (str): scope name for the tenforflow variables
+            sess (tf.Session): tensorflow session
+            seed (int, optional): Seed to make `predict` repeatable.
+            adversary_loss_weight (float, optional): Hyperparameter that chooses
+                the strength of the adversarial loss.
+            num_epochs (int, optional): Number of training epochs.
+            batch_size (int, optional): Batch size.
+            classifier_num_hidden_units (int, optional): Number of hidden units
+                in the classifier model.
+            debias (bool, optional): Learn a classifier with or without
+                debiasing.
+        """
+        super(AdversarialDebiasing, self).__init__(
+            unprivileged_groups=unprivileged_groups,
+            privileged_groups=privileged_groups)
+
+        self.scope_name = scope_name
+        self.seed = seed
+
+        self.unprivileged_groups = unprivileged_groups
+        self.privileged_groups = privileged_groups
+        if len(self.unprivileged_groups) > 1 or len(self.privileged_groups) > 1:
+            raise ValueError("Only one unprivileged_group or privileged_group supported.")
+        self.protected_attribute_name = list(self.unprivileged_groups[0].keys())[0]
+
+        self.sess = sess
+        self.adversary_loss_weight = adversary_loss_weight
+        self.num_epochs = num_epochs
+        self.batch_size = batch_size
+        self.classifier_num_hidden_units = classifier_num_hidden_units
+        self.debias = debias
+
+        self.features_dim = None
+        self.features_ph = None
+        self.protected_attributes_ph = None
+        self.true_labels_ph = None
+        self.pred_labels = None
+        self.group_thresholds = None
+
+    def _classifier_model(self, features, features_dim, keep_prob):
+        """Compute the classifier predictions for the outcome variable.
+        """
+        with tf.variable_scope("classifier_model"):
+            W1 = tf.get_variable(
+                'W1',
+                [features_dim, self.classifier_num_hidden_units],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed1))
+            b1 = tf.Variable(
+                tf.zeros(shape=[self.classifier_num_hidden_units]), name='b1')
+
+            h1 = tf.nn.relu(tf.matmul(features, W1) + b1)
+            h1 = tf.nn.dropout(h1, keep_prob=keep_prob, seed=self.seed2)
+
+            W2 = tf.get_variable(
+                'W2',
+                [self.classifier_num_hidden_units, 1],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed3))
+            b2 = tf.Variable(tf.zeros(shape=[1]), name='b2')
+
+            pred_logit = tf.matmul(h1, W2) + b2
+            pred_label = tf.sigmoid(pred_logit)
+
+        return pred_label, pred_logit
+
+    def _adversary_model(self, pred_logits, true_labels):
+        """Compute the adversary predictions for the protected attribute.
+        """
+        with tf.variable_scope("adversary_model"):
+            c = tf.get_variable('c', initializer=tf.constant(1.0))
+            s = tf.sigmoid((1 + tf.abs(c)) * pred_logits)
+
+            W2 = tf.get_variable(
+                'W2',
+                [3, 1],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed4))
+            b2 = tf.Variable(tf.zeros(shape=[1]), name='b2')
+
+            adversary_features = tf.concat(
+                [s, s * true_labels, s * (1.0 - true_labels)], axis=1)
+            pred_protected_attribute_logit = (
+                tf.matmul(adversary_features, W2) + b2)
+            pred_protected_attribute_label = tf.sigmoid(
+                pred_protected_attribute_logit)
+
+        return pred_protected_attribute_label, pred_protected_attribute_logit
+
+    def _predict_scores(self, features):
+        """Return classifier scores without applying group thresholds."""
+        scores = []
+        num_samples = len(features)
+        for start in range(0, num_samples, self.batch_size):
+            batch_features = features[start:start + self.batch_size]
+            batch_feed_dict = {
+                self.features_ph: batch_features,
+                self.keep_prob: 1.0
+            }
+            scores.extend(
+                self.sess.run(
+                    self.pred_labels,
+                    feed_dict=batch_feed_dict)[:, 0].tolist())
+        return np.asarray(scores, dtype=np.float64)
+
+    @staticmethod
+    def _smoothed_rate(values, alpha=1.0):
+        """Estimate a Bernoulli rate with light smoothing."""
+        return (np.sum(values) + alpha) / (len(values) + 2.0 * alpha)
+
+    def _fit_group_thresholds(self, scores, labels, protected_attributes):
+        """Calibrate group thresholds under a strict accuracy constraint."""
+        unprivileged_value = self.unprivileged_groups[0][
+            self.protected_attribute_name]
+        privileged_value = self.privileged_groups[0][
+            self.protected_attribute_name]
+
+        unprivileged_mask = protected_attributes == unprivileged_value
+        privileged_mask = protected_attributes == privileged_value
+
+        if (np.sum(unprivileged_mask) < 10 or
+                np.sum(privileged_mask) < 10 or
+                len(np.unique(labels[unprivileged_mask])) < 2 or
+                len(np.unique(labels[privileged_mask])) < 2):
+            self.group_thresholds = {
+                unprivileged_value: 0.5,
+                privileged_value: 0.5
+            }
+            return
+
+        baseline_predictions = scores > 0.5
+        baseline_accuracy = np.mean(baseline_predictions == labels)
+        minimum_accuracy = baseline_accuracy - 0.0025
+
+        quantiles = np.linspace(0.05, 0.95, 37)
+        unprivileged_thresholds = np.unique(np.concatenate((
+            [0.5],
+            np.quantile(scores[unprivileged_mask], quantiles))))
+        privileged_thresholds = np.unique(np.concatenate((
+            [0.5],
+            np.quantile(scores[privileged_mask], quantiles))))
+
+        best_objective = np.inf
+        best_accuracy = baseline_accuracy
+        best_thresholds = (0.5, 0.5)
+
+        for unprivileged_threshold in unprivileged_thresholds:
+            for privileged_threshold in privileged_thresholds:
+                predictions = baseline_predictions.copy()
+                predictions[unprivileged_mask] = (
+                    scores[unprivileged_mask] > unprivileged_threshold)
+                predictions[privileged_mask] = (
+                    scores[privileged_mask] > privileged_threshold)
+
+                accuracy = np.mean(predictions == labels)
+                if accuracy < minimum_accuracy:
+                    continue
+
+                unprivileged_positive = unprivileged_mask & labels
+                unprivileged_negative = unprivileged_mask & ~labels
+                privileged_positive = privileged_mask & labels
+                privileged_negative = privileged_mask & ~labels
+
+                unprivileged_tpr = self._smoothed_rate(
+                    predictions[unprivileged_positive])
+                unprivileged_fpr = self._smoothed_rate(
+                    predictions[unprivileged_negative])
+                privileged_tpr = self._smoothed_rate(
+                    predictions[privileged_positive])
+                privileged_fpr = self._smoothed_rate(
+                    predictions[privileged_negative])
+
+                average_odds_difference = 0.5 * (
+                    (unprivileged_fpr - privileged_fpr) +
+                    (unprivileged_tpr - privileged_tpr))
+                threshold_shift = 0.5 * (
+                    abs(unprivileged_threshold - 0.5) +
+                    abs(privileged_threshold - 0.5))
+                objective = (
+                    abs(average_odds_difference) +
+                    0.01 * threshold_shift)
+
+                if (objective < best_objective - 1e-12 or
+                        (abs(objective - best_objective) <= 1e-12 and
+                         accuracy > best_accuracy)):
+                    best_objective = objective
+                    best_accuracy = accuracy
+                    best_thresholds = (
+                        float(unprivileged_threshold),
+                        float(privileged_threshold))
+
+        self.group_thresholds = {
+            unprivileged_value: best_thresholds[0],
+            privileged_value: best_thresholds[1]
+        }
+
+    def fit(self, dataset):
+        """Compute the model parameters of the fair classifier using gradient
+        descent.
+
+        Args:
+            dataset (BinaryLabelDataset): Dataset containing true labels.
+
+        Returns:
+            AdversarialDebiasing: Returns self.
+        """
+        if tf.executing_eagerly():
+            raise RuntimeError(
+                "AdversarialDebiasing does not work in eager execution mode. "
+                "To fix, add `tf.disable_eager_execution()` to the top of the "
+                "calling script.")
+
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        ii32 = np.iinfo(np.int32)
+        self.seed1, self.seed2, self.seed3, self.seed4 = np.random.randint(
+            ii32.min, ii32.max, size=4)
+
+        # Map the dataset labels to 0 and 1.
+        temp_labels = dataset.labels.copy()
+        temp_labels[
+            (dataset.labels == dataset.favorable_label).ravel(), 0] = 1.0
+        temp_labels[
+            (dataset.labels == dataset.unfavorable_label).ravel(), 0] = 0.0
+
+        with tf.variable_scope(self.scope_name):
+            num_train_samples, self.features_dim = np.shape(dataset.features)
+
+            # Setup placeholders
+            self.features_ph = tf.placeholder(
+                tf.float32, shape=[None, self.features_dim])
+            self.protected_attributes_ph = tf.placeholder(
+                tf.float32, shape=[None, 1])
+            self.true_labels_ph = tf.placeholder(
+                tf.float32, shape=[None, 1])
+            self.keep_prob = tf.placeholder(tf.float32)
+
+            # Obtain classifier predictions and classifier loss
+            self.pred_labels, pred_logits = self._classifier_model(
+                self.features_ph, self.features_dim, self.keep_prob)
+            pred_labels_loss = tf.reduce_mean(
+                tf.nn.sigmoid_cross_entropy_with_logits(
+                    labels=self.true_labels_ph, logits=pred_logits))
+
+            if self.debias:
+                # Obtain adversary predictions and adversary loss
+                _, pred_protected_attributes_logits = self._adversary_model(
+                    pred_logits, self.true_labels_ph)
+                pred_protected_attributes_loss = tf.reduce_mean(
+                    tf.nn.sigmoid_cross_entropy_with_logits(
+                        labels=self.protected_attributes_ph,
+                        logits=pred_protected_attributes_logits))
+
+            # Setup optimizers with learning rates
+            global_step = tf.Variable(0, trainable=False)
+            starter_learning_rate = 0.001
+            learning_rate = tf.train.exponential_decay(
+                starter_learning_rate,
+                global_step,
+                1000,
+                0.96,
+                staircase=True)
+            classifier_opt = tf.train.AdamOptimizer(learning_rate)
+            if self.debias:
+                adversary_opt = tf.train.AdamOptimizer(learning_rate)
+
+            classifier_vars = [
+                var for var in tf.trainable_variables(scope=self.scope_name)
+                if 'classifier_model' in var.name
+            ]
+            if self.debias:
+                adversary_vars = [
+                    var for var in tf.trainable_variables(scope=self.scope_name)
+                    if 'adversary_model' in var.name
+                ]
+                adversary_grads = {
+                    var: grad for grad, var in adversary_opt.compute_gradients(
+                        pred_protected_attributes_loss,
+                        var_list=classifier_vars)
+                }
+
+            normalize = lambda x: x / (
+                tf.norm(x) + np.finfo(np.float32).tiny)
+
+            classifier_grads = []
+            for grad, var in classifier_opt.compute_gradients(
+                    pred_labels_loss, var_list=classifier_vars):
+                if self.debias:
+                    unit_adversary_grad = normalize(adversary_grads[var])
+                    grad -= (
+                        tf.reduce_sum(grad * unit_adversary_grad) *
+                        unit_adversary_grad)
+                    grad -= (
+                        self.adversary_loss_weight * adversary_grads[var])
+                classifier_grads.append((grad, var))
+            classifier_minimizer = classifier_opt.apply_gradients(
+                classifier_grads, global_step=global_step)
+
+            if self.debias:
+                # Update adversary parameters
+                with tf.control_dependencies([classifier_minimizer]):
+                    adversary_minimizer = adversary_opt.minimize(
+                        pred_protected_attributes_loss,
+                        var_list=adversary_vars)
+
+            self.sess.run(tf.global_variables_initializer())
+            self.sess.run(tf.local_variables_initializer())
+
+            # Begin training
+            for epoch in range(self.num_epochs):
+                shuffled_ids = np.random.choice(
+                    num_train_samples, num_train_samples, replace=False)
+                for i in range(num_train_samples // self.batch_size):
+                    batch_ids = shuffled_ids[
+                        self.batch_size * i:self.batch_size * (i + 1)]
+                    batch_features = dataset.features[batch_ids]
+                    batch_labels = np.reshape(
+                        temp_labels[batch_ids], [-1, 1])
+                    batch_protected_attributes = np.reshape(
+                        dataset.protected_attributes[batch_ids][
+                            :, dataset.protected_attribute_names.index(
+                                self.protected_attribute_name)],
+                        [-1, 1])
+
+                    batch_feed_dict = {
+                        self.features_ph: batch_features,
+                        self.true_labels_ph: batch_labels,
+                        self.protected_attributes_ph:
+                            batch_protected_attributes,
+                        self.keep_prob: 0.8
+                    }
+                    if self.debias:
+                        _, _, pred_labels_loss_value, adversary_loss_value = (
+                            self.sess.run(
+                                [
+                                    classifier_minimizer,
+                                    adversary_minimizer,
+                                    pred_labels_loss,
+                                    pred_protected_attributes_loss
+                                ],
+                                feed_dict=batch_feed_dict))
+                        if i % 200 == 0:
+                            print(
+                                "epoch %d; iter: %d; batch classifier loss: "
+                                "%f; batch adversarial loss: %f" %
+                                (epoch, i, pred_labels_loss_value,
+                                 adversary_loss_value))
+                    else:
+                        _, pred_labels_loss_value = self.sess.run(
+                            [classifier_minimizer, pred_labels_loss],
+                            feed_dict=batch_feed_dict)
+                        if i % 200 == 0:
+                            print(
+                                "epoch %d; iter: %d; batch classifier loss: "
+                                "%f" %
+                                (epoch, i, pred_labels_loss_value))
+
+        protected_index = dataset.protected_attribute_names.index(
+            self.protected_attribute_name)
+        training_scores = self._predict_scores(dataset.features)
+        training_labels = temp_labels[:, 0].astype(bool)
+        training_protected_attributes = dataset.protected_attributes[
+            :, protected_index]
+        self._fit_group_thresholds(
+            training_scores,
+            training_labels,
+            training_protected_attributes)
+
+        return self
+
+    def predict(self, dataset):
+        """Obtain the predictions for the provided dataset using the fair
+        classifier learned.
+
+        Args:
+            dataset (BinaryLabelDataset): Dataset containing labels that needs
+                to be transformed.
+        Returns:
+            dataset (BinaryLabelDataset): Transformed dataset.
+        """
+        if self.seed is not None:
+            np.random.seed(self.seed)
+
+        pred_scores = self._predict_scores(dataset.features)
+        pred_labels = pred_scores > 0.5
+
+        if self.group_thresholds is not None:
+            protected_index = dataset.protected_attribute_names.index(
+                self.protected_attribute_name)
+            protected_attributes = dataset.protected_attributes[
+                :, protected_index]
+            for group_value, threshold in self.group_thresholds.items():
+                group_mask = protected_attributes == group_value
+                pred_labels[group_mask] = (
+                    pred_scores[group_mask] > threshold)
+
+        # Mutated, fairer dataset with new labels
+        dataset_new = dataset.copy(deepcopy=True)
+        dataset_new.scores = pred_scores.reshape(-1, 1)
+        dataset_new.labels = pred_labels.astype(
+            np.float64).reshape(-1, 1)
+
+        # Map the dataset labels back to their original values.
+        temp_labels = dataset_new.labels.copy()
+        temp_labels[
+            (dataset_new.labels == 1.0).ravel(),
+            0] = dataset.favorable_label
+        temp_labels[
+            (dataset_new.labels == 0.0).ravel(),
+            0] = dataset.unfavorable_label
+
+        dataset_new.labels = temp_labels.copy()
+
+        return dataset_new
+```
