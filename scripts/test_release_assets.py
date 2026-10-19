@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
 """Safety and completeness checks for the streaming archive collector."""
-import io, json, tempfile, tarfile, unittest, zipfile, gzip
+import io, json, tempfile, tarfile, unittest, zipfile, gzip, re, subprocess, sys
 from pathlib import Path
 import release_assets as a
 from pypdf import PdfWriter
 
 class ReleaseAssetTests(unittest.TestCase):
+    def test_redaction_long_text_and_assignment_equivalence(self):
+        pattern,replacement=a.REDACT_PATTERNS[-2]
+        previous=re.compile(pattern.pattern.replace('(?<![A-Z_])',''))
+        for prefix in ['', 'project_', 'ABC', '9abc', 'wordAWS_', 'lower_']:
+            for key in ['API_KEY','ACCESS_TOKEN','SECRET_KEY','AUTH_TOKEN','PASSWORD','AWS_SECRET_ACCESS_KEY','AWS_ACCESS_KEY_ID']:
+                text=f'before {prefix}{key} = "synthetic-sensitive-value" after'
+                self.assertEqual(pattern.sub(replacement,text),previous.sub(replacement,text))
+                self.assertNotIn('synthetic-sensitive-value',a.redact_text(text))
+        # A long token must not cause the assignment matcher to retry every
+        # suffix. Use a subprocess so a regression cannot hang the test suite.
+        program='import release_assets as a; text="a"*1000000; assert a.redact_text(text)==text'
+        subprocess.run([sys.executable,'-c',program],cwd=Path(a.__file__).parent,check=True,timeout=5)
     def test_paths(self):
         for path in ['/absolute/file','project/../../escape']:
             with self.assertRaises(ValueError):a.safe_rel(path)
